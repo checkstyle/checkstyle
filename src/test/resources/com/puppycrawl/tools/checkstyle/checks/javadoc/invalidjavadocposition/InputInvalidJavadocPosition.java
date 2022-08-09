@@ -65,4 +65,30 @@ class InputInvalidJavadocPosition7 {
         /** violation */ @Deprecated int variable3; // violation
     }
 }
-/** violation */ // violation
+class GenericConstructor {
+    /** valid */
+    <E extends String> GenericConstructor(E a) {}
+
+    // violation below 'Javadoc .* placed in the wrong location.'
+    </** invalid */E extends String>  GenericConstructor(E a, E b) {}
+
+    // violation below 'Javadoc .* placed in the wrong location.'
+    <E extends String> /** invalid */ GenericConstructor(E a, E b, E c) {}
+
+    // violation below 'Javadoc .* placed in the wrong location.'
+    <E extends String> GenericConstructor(/** invalid */E a, E b, E c, E d) {}
+
+    // violation below 'Javadoc .* placed in the wrong location.'
+    <E extends String> GenericConstructor(E a, E b, E c, E d, E e) {/** invalid */}
+
+    /** valid */
+    private <E extends String> GenericConstructor() {}
+
+    private class InnerClass {
+        /** valid */
+        <E extends String> InnerClass() {}
+
+        /** valid */ <E extends String> InnerClass(E a) {}
+    }
+}
+/** invalid */ // violation 'Javadoc .* placed in the wrong location.'
