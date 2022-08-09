@@ -4,24 +4,24 @@ InvalidJavadocPosition
 
 */
 
-package /** violation */ com.puppycrawl.tools // violation
+package /** invalid */ com.puppycrawl.tools // violation 'Javadoc .* placed in the wrong location.'
         .checkstyle.checks.javadoc.invalidjavadocposition;
 
-/** violation */ // violation
+/** invalid */ // violation 'Javadoc .* placed in the wrong location.'
 import java.lang.String;
 
-/** violation */ // violation
+/** invalid */ // violation 'Javadoc .* placed in the wrong location.'
 /** valid */
 class InputInvalidJavadocPosition {
-    /** violation */ // violation
+    /** invalid */ // violation 'Javadoc .* placed in the wrong location.'
 }
 /** valid */
 /* ignore */
 class InputInvalidJavadocPosition2 {
-    /** violation */ // violation
+    /** invalid */ // violation 'Javadoc .* placed in the wrong location.'
     static { /* ignore */ }
 
-    /** violation */ // violation
+    /** invalid */ // violation 'Javadoc .* placed in the wrong location.'
     /** valid */
     int field1;
     /** valid */
@@ -31,9 +31,9 @@ class InputInvalidJavadocPosition2 {
     /** valid */
     @Deprecated int field4;
 
-    int /** violation */ field20; // violation
-    int field21 /** violation */; // violation
-    @Deprecated /** violation */ int field22; // violation
+    int /** invalid */ field20; // violation 'Javadoc .* placed in the wrong location.'
+    int field21 /** invalid */; // violation 'Javadoc .* placed in the wrong location.'
+    @Deprecated /** invalid */ int field22; // violation 'Javadoc .* placed in the wrong location.'
 
     void method1() {}
     /** valid */
@@ -43,26 +43,26 @@ class InputInvalidJavadocPosition2 {
     /** valid */
     String[] method4() { return null; }
 
-    void /** violation */ method20() {} // violation
-    void method21 /** violation */ () {} // violation
-    void method22(/** violation */) {} // violation
-    void method23() /** violation */ {} // violation
-    void method24() { /** violation */ } // violation
-    void method25() { /** violation */ int variable; } // violation
+    void /** invalid */ method20() {} // violation 'Javadoc .* placed in the wrong location.'
+    void method21 /** invalid */ () {} // violation 'Javadoc .* placed in the wrong location.'
+    void method22(/** invalid */) {} // violation 'Javadoc .* placed in the wrong location.'
+    void method23() /** invalid */ {} // violation 'Javadoc .* placed in the wrong location.'
+    void method24() { /** invalid */ } // violation 'Javadoc .* placed in the wrong location.'
+    void method25() { /** invalid */ int variable; } // violation '.* placed in the wrong location.'
 }
 @Deprecated
-/** violation */ // violation
+/** invalid */ // violation 'Javadoc .* placed in the wrong location.'
 class InputInvalidJavadocPosition3 {}
 /** valid */
 @Deprecated
 class InputInvalidJavadocPosition4 {}
-class /** violation */ InputInvalidJavadocPosition5 {} // violation
-class InputInvalidJavadocPosition6 /** violation */ {} // violation
+class /** invalid */ InputInvalidJavadocPosition5 {} // violation '.* placed in the wrong location.'
+class InputInvalidJavadocPosition6 /** invalid */ {} // violation '.* placed in the wrong location.'
 class InputInvalidJavadocPosition7 {
     void method() {
-        /** violation */ int variable1; // violation
-        /** violation */ final int variable2; // violation
-        /** violation */ @Deprecated int variable3; // violation
+        /** invalid */ int variable1; // violation 'Javadoc .* placed in the wrong location.'
+        /** invalid */ final int variable2; // violation 'Javadoc .* placed in the wrong location.'
+        /** invalid */ @Deprecated int variable3; // violation '.* placed in the wrong location.'
     }
 }
 class GenericConstructor {
