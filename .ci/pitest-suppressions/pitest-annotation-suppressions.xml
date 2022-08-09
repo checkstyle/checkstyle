@@ -5,15 +5,6 @@
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck</mutatedClass>
     <mutatedMethod>&lt;init&gt;</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
-    <description>Removed assignment to member variable closingParens</description>
-    <lineContent>private ClosingParensOption closingParens = ClosingParensOption.NEVER;</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>AnnotationUseStyleCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck</mutatedClass>
-    <mutatedMethod>&lt;init&gt;</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
     <description>Removed assignment to member variable trailingArrayComma</description>
     <lineContent>private TrailingArrayCommaOption trailingArrayComma = TrailingArrayCommaOption.NEVER;</lineContent>
   </mutation>
