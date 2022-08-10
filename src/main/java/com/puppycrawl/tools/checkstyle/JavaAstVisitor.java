@@ -83,7 +83,8 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * `--SEMI -&gt; ;
  * </pre>
  * <p>
- * See https://github.com/checkstyle/checkstyle/pull/10434 for a good example of how
+ * See <a href="https://github.com/checkstyle/checkstyle/pull/10434">#10434</a>
+ * for a good example of how
  * to make changes to Checkstyle's grammar and AST.
  * </p>
  * <p>

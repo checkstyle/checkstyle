@@ -334,8 +334,10 @@ public final class ConfigurationLoader {
      * with the string value of the corresponding data types. This method must remain
      * outside inner class for easier testing since inner class requires an instance.
      *
-     * <p>Code copied from ant -
-     * http://cvs.apache.org/viewcvs/jakarta-ant/src/main/org/apache/tools/ant/ProjectHelper.java
+     * <p>Code copied from
+     * <a href="http://cvs.apache.org/viewcvs/jakarta-ant/src/main/org/apache/tools/ant/ProjectHelper.java">
+     * ant
+     * </a>
      *
      * @param value The string to be scanned for property references. Must
      *              not be {@code null}.
@@ -387,8 +389,10 @@ public final class ConfigurationLoader {
      * {@code null} entries in the first collection indicate a property
      * reference from the second collection.
      *
-     * <p>Code copied from ant -
-     * http://cvs.apache.org/viewcvs/jakarta-ant/src/main/org/apache/tools/ant/ProjectHelper.java
+     * <p>Code copied from
+     * <a href="http://cvs.apache.org/viewcvs/jakarta-ant/src/main/org/apache/tools/ant/ProjectHelper.java">
+     * ant
+     * </a>
      *
      * @param value     Text to parse. Must not be {@code null}.
      * @param fragments Collection to add text fragments to.

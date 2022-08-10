@@ -72,7 +72,7 @@ public class MethodDefHandler extends BlockParentHandler {
     /**
      * Gets the start line of the method, excluding any annotations. This is required because the
      * current {@link TokenTypes#METHOD_DEF} may not always be the start as seen in
-     * https://github.com/checkstyle/checkstyle/issues/3145.
+     * <a href="https://github.com/checkstyle/checkstyle/issues/3145">#3145</a>.
      *
      * @param mainAst
      *            The method definition ast.
