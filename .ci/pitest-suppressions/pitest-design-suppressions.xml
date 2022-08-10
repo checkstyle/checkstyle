@@ -37,15 +37,6 @@
   </mutation>
 
   <mutation unstable="false">
-    <sourceFile>FinalClassCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.design.FinalClassCheck$TypeDeclarationDescription</mutatedClass>
-    <mutatedMethod>getDepth</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ReturnValuesMutator</mutator>
-    <description>replaced return of primitive boolean/byte/short/integer value with (x == 1) ? 0 : x + 1</description>
-    <lineContent>return depth;</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
     <sourceFile>HideUtilityClassConstructorCheck.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.design.HideUtilityClassConstructorCheck$Details</mutatedClass>
     <mutatedMethod>invoke</mutatedMethod>
