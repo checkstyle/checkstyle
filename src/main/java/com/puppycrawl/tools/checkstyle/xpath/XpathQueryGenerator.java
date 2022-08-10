@@ -338,8 +338,10 @@ public class XpathQueryGenerator {
      * Custom method for Xpath generation to maintain compatibility
      * with Saxon and encoding outside Ascii range characters.
      *
-     * <p>According to Saxon documentation in http://saxon.sourceforge.net/saxon7.1/expressions.html
-     * From Saxon 7.1, string delimiters can be doubled within the string to represent
+     * <p>According to
+     * <a href="http://saxon.sourceforge.net/saxon7.1/expressions.html">Saxon documentation</a>:
+     * <br>
+     * From Saxon 7.1, string delimiters can be doubled within the string to represent`
      * the delimiter itself: for example select='"He said, ""Go!"""'.
      *
      * <p>Guava cannot as Guava encoding does not meet our requirements like
@@ -361,7 +363,8 @@ public class XpathQueryGenerator {
 
     /**
      * Encodes escape character for Xpath. Escape characters need '&amp;' before, but it also
-     * requires XML 1.1 until https://github.com/checkstyle/checkstyle/issues/5168.
+     * requires XML 1.1
+     * until <a href="https://github.com/checkstyle/checkstyle/issues/5168">#5168</a>.
      *
      * @param chr Character to check.
      * @return String, Encoded string.

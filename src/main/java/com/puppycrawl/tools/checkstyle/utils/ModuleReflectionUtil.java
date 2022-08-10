@@ -196,7 +196,7 @@ public final class ModuleReflectionUtil {
     /**
      * Checks whether a class is {@code XpathFileGeneratorAstFilter} or
      * {@code XpathFileGeneratorAuditListener}.
-     * See issue #102 https://github.com/checkstyle/checkstyle/issues/102
+     * See issue <a href="https://github.com/checkstyle/checkstyle/issues/102">#102</a>
      *
      * @param clazz class to check.
      * @return true if a class name starts with `XpathFileGenerator`.

@@ -329,7 +329,8 @@ public class JavadocStyleCheck
 
     /**
      * HTML tags that are allowed in java docs.
-     * From https://www.w3schools.com/tags/default.asp
+     * From <a href="https://www.w3schools.com/tags/default.asp">w3schools</a>:
+     * <br>
      * The forms and structure tags are not allowed
      */
     private static final Set<String> ALLOWED_TAGS = Set.of(

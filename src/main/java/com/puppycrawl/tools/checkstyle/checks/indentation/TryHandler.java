@@ -165,8 +165,9 @@ public class TryHandler extends BlockParentHandler {
     }
 
     /**
-     * Check if the expression is resource of try block.
-     * https://docs.oracle.com/javase/specs/jls/se8/html/jls-14.html#jls-14.20.3
+     * Check if the expression is resource of
+     * <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-14.html#jls-14.20.3">
+     * try block</a>.
      *
      * @param expression The expression to check
      * @return if the expression provided is try block's resource specification.
