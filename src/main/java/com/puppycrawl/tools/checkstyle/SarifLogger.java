@@ -39,7 +39,7 @@ import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 /**
  * Simple SARIF logger.
  * SARIF stands for the static analysis results interchange format.
- * Reference: https://sarifweb.azurewebsites.net/
+ * See <a href="https://sarifweb.azurewebsites.net/">reference</a>
  */
 public class SarifLogger extends AutomaticBean implements AuditListener {
 
@@ -233,7 +233,7 @@ public class SarifLogger extends AutomaticBean implements AuditListener {
 
     /**
      * Escape \b, \f, \n, \r, \t, \", \\ and U+0000 through U+001F.
-     * Reference: https://www.ietf.org/rfc/rfc4627.txt - 2.5. Strings
+     * See <a href="https://www.ietf.org/rfc/rfc4627.txt">reference</a> - 2.5. Strings
      *
      * @param value the value to escape.
      * @return the escaped value if necessary.

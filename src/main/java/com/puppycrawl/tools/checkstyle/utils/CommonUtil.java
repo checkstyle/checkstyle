@@ -277,8 +277,9 @@ public final class CommonUtil {
      * <p>
      * It is faster version of {@link String#startsWith(String)} optimized for
      *  one-character prefixes at the expense of
-     * some readability. Suggested by SimplifyStartsWith PMD rule:
-     * http://pmd.sourceforge.net/pmd-5.3.1/pmd-java/rules/java/optimizations.html#SimplifyStartsWith
+     * some readability. Suggested by
+     * <a href="http://pmd.sourceforge.net/pmd-5.3.1/pmd-java/rules/java/optimizations.html#SimplifyStartsWith">
+     * SimplifyStartsWith</a> PMD rule:
      * </p>
      *
      * @param value
@@ -297,8 +298,9 @@ public final class CommonUtil {
      * <p>
      * It is faster version of {@link String#endsWith(String)} optimized for
      *  one-character suffixes at the expense of
-     * some readability. Suggested by SimplifyStartsWith PMD rule:
-     * http://pmd.sourceforge.net/pmd-5.3.1/pmd-java/rules/java/optimizations.html#SimplifyStartsWith
+     * some readability. Suggested by
+     * <a href="http://pmd.sourceforge.net/pmd-5.3.1/pmd-java/rules/java/optimizations.html#SimplifyStartsWith">
+     * SimplifyStartsWith</a> PMD rule:
      * </p>
      *
      * @param value

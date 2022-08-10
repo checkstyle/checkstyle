@@ -32,7 +32,7 @@ import com.puppycrawl.tools.checkstyle.xpath.XpathQueryGenerator;
  * Catches {@code TreeWalkerAuditEvent} and generates corresponding xpath query.
  * Stores violations and xpath queries map inside static variable
  * for {@code XpathFileGeneratorAuditListener}.
- * See issue #102 https://github.com/checkstyle/checkstyle/issues/102
+ * See issue <a href="https://github.com/checkstyle/checkstyle/issues/102">#102</a>
  */
 public class XpathFileGeneratorAstFilter extends AutomaticBean implements TreeWalkerFilter {
 

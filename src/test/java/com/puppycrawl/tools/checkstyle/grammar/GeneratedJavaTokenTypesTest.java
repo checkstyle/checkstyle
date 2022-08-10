@@ -53,7 +53,7 @@ public class GeneratedJavaTokenTypesTest {
      * </p>
      *
      * <p>
-     * Issue: https://github.com/checkstyle/checkstyle/issues/505
+     * Issue: <a href="https://github.com/checkstyle/checkstyle/issues/505">#505</a>
      * </p>
      */
     @Test
