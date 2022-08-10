@@ -32,6 +32,7 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.URI;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -267,15 +268,16 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
     @Test
     public void testPathToCacheContainsOnlyFileName() throws IOException {
         final Configuration config = new DefaultConfiguration("myName");
-        final String filePath = "temp.cache";
-        final PropertyCacheFile cache = new PropertyCacheFile(config, filePath);
+        final String fileName = "temp.cache";
+        final Path filePath = Paths.get(fileName);
+        final PropertyCacheFile cache = new PropertyCacheFile(config, fileName);
 
         // no exception expected
         cache.persist();
         assertWithMessage("Cache file does not exist")
-                .that(Files.exists(Paths.get(filePath)))
+                .that(Files.exists(filePath))
                 .isTrue();
-        Files.delete(Paths.get(filePath));
+        Files.delete(filePath);
     }
 
     @Test
