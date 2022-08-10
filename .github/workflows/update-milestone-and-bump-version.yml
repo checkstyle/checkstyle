@@ -1,0 +1,43 @@
+#############################################################################
+# GitHub Action to bump release version
+#
+#############################################################################
+name: "Bump version"
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'New Version'
+        required: true
+        default: 'warning'
+permissions:
+  contents: write
+  pull-requests: write
+jobs:
+  printInputs:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "Latest Version: ${{ github.event.inputs.version }}"
+  bump:
+    name: Bump version
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get the version
+        id: get_version
+        run: |
+          LATEST_TAG=$(curl -s https://api.github.com/repos/checkstyle/checkstyle/releases/latest \
+                         | jq ".tag_name") 
+          echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//"$LATEST_TAG"}
+      - name: Modify File
+        run: |
+          ./.ci/bump-release-version.sh $VERSION
+      - name: Push commit
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git commit -am "minor: Bump release version to ${{ steps.get_version.outputs.VERSION }}"
+          git push
+      - name: GitHub Milestone
+        run: |
+          .ci/update-github-milestone.sh
