@@ -23,8 +23,8 @@ import java.util.Locale;
 
 /**
  * This enum represents access modifiers.
- * Access modifiers names are taken from JLS:
- * https://docs.oracle.com/javase/specs/jls/se8/html/jls-6.html#jls-6.6
+ * Access modifiers names are taken from
+ * <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-6.html#jls-6.6">JLS</a>
  *
  */
 public enum AccessModifierOption {
