@@ -68,6 +68,7 @@
       <path>
         <fileset dir="${basedir}" includes="**/*">
           <exclude name=".git/**/*"/>
+          <exclude name=".teamcity/**/*"/>
           <exclude name="src/main/**/*"/>
           <exclude name="src/test/java/**/*"/>
           <exclude name="src/site/resources/images/**/*"/>
