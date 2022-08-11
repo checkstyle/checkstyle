@@ -34,6 +34,7 @@ import java.util.ResourceBundle;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
+import org.junitpioneer.jupiter.DefaultLocale;
 
 import com.puppycrawl.tools.checkstyle.AbstractAutomaticBean.OutputStreamOptions;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
@@ -44,7 +45,7 @@ import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
 public class DefaultLoggerTest {
 
-    private static final Locale DEFAULT_LOCALE = Locale.getDefault();
+    private static final Locale DEFAULT_LOCALE = Locale.ENGLISH;
 
     @AfterEach
     public void tearDown() {
@@ -277,6 +278,7 @@ public class DefaultLoggerTest {
                 .contains(country);
     }
 
+    @DefaultLocale("en")
     @Test
     public void testNewCtor() throws Exception {
         final ResourceBundle bundle = ResourceBundle.getBundle(
