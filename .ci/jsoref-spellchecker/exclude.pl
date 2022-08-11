@@ -16,6 +16,7 @@ my @excludes=qw(
   /.*_..\.translation[^/]*$
   /openjdk17-excluded\.files$
   ^cdg-pitest-licence.txt$
+  ^.teamcity/
 );
 my $exclude = join "|", @excludes;
 while (<>) {
