@@ -98,6 +98,7 @@ public interface DetailAST {
      *      traversal of subtrees to be written per the needs of each check
      *      to avoid unintended side effects.
      */
+    @SuppressWarnings("DeprecatedIsStillUsed")
     @Deprecated(since = "8.43")
     boolean branchContains(int type);
 
