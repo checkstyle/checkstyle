@@ -331,6 +331,7 @@
     </module>
     <module name="RightCurly">
       <property name="tokens" value="INTERFACE_DEF"/>
+      <property name="tokens" value="OBJBLOCK"/>
       <property name="option" value="alone_or_singleline"/>
     </module>
 

@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.blocks;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck.MSG_KEY_LINE_ALONE;
+import static com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck.MSG_KEY_LINE_BREAK_AFTER;
 import static com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck.MSG_KEY_LINE_BREAK_BEFORE;
 import static com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck.MSG_KEY_LINE_SAME;
 
@@ -178,6 +179,25 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputRightCurlyTestNullPointerException.java"), expected);
+    }
+
+    @Test
+    public void testObjectBlockLineBreakAfter() throws Exception {
+        final String[] expected = {
+            "17:5: " + getCheckMessage(MSG_KEY_LINE_BREAK_AFTER, "}", 5),
+            "38:9: " + getCheckMessage(MSG_KEY_LINE_BREAK_AFTER, "}", 9),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputRightCurlyTestObjectBlockLineBreakAfter.java"), expected);
+    }
+
+    @Test
+    public void testObjectBlockSingleLine() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("InputRightCurlyTestObjectBlockSingleLine.java"), expected);
     }
 
     @Test

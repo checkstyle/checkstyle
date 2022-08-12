@@ -1318,6 +1318,8 @@ allowedFuture.addCallback(result -> {
                   RECORD_DEF</a>
                 ,<a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMPACT_CTOR_DEF">
                   COMPACT_CTOR_DEF</a>
+                ,<a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#OBJBLOCK">
+                  OBJBLOCK</a>
                 .
               </td>
               <td>
@@ -1477,6 +1479,33 @@ public class Test {
   public void violate() { bar(); } // OK , because singleline
 }
         </source>
+
+        <p>
+              To configure the check with policy <code>alone_or_singleline</code>
+              for <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#OBJBLOCK">
+              OBJBLOCK</a>
+              token:
+        </p>
+        <source>
+&lt;module name=&quot;RightCurly&quot;&gt;
+    &lt;property name=&quot;option&quot; value=&quot;alone_or_singleline&quot;/&gt;
+    &lt;property name=&quot;tokens&quot; value=&quot;OBJBLOCK&quot;/&gt;
+&lt;/module&gt;
+        </source>
+
+        <p>Example: </p>
+        <source>
+public class Test {
+
+    Object o1 = new Object() {
+    }; int i1 = 0; // violation, rightCurly should have line break after.
+
+    Object o2 = new Object() {
+    }; // OK
+
+    Object o3 = new Object() {}; // OK
+}
+        </source>
       </subsection>
 
       <subsection name="Example of Usage" id="RightCurly_Example_of_Usage">
@@ -1501,6 +1530,10 @@ public class Test {
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fblocks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22line.alone%22">
             line.alone</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fblocks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22line.break.after%22">
+            line.break.after</a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fblocks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22line.break.before%22">
