@@ -37,6 +37,7 @@
                test/resources/**/*,test/resources-noncompilable/**/*,**/gen/**"/>
       <formatter type="plain"/>
       <formatter type="xml" toFile="${mvn.project.build.directory}/cs_errors.xml"/>
+      <formatter type="sarif" toFile="${mvn.project.build.directory}/cs_errors.sarif"/>
       <classpath path="${mvn.runtime_classpath}"/>
       <property key="checkstyle.cache.file" file="${mvn.project.build.directory}/cachefile"/>
       <property key="checkstyle.header.file" file="config/java.header"/>
@@ -67,6 +68,8 @@
       <path>
         <fileset dir="${basedir}" includes="**/*">
           <exclude name=".git/**/*"/>
+          <!-- TeamCity config is generated and contains embedded CDATA -->
+          <exclude name=".teamcity/**/*"/>
           <exclude name="src/main/**/*"/>
           <exclude name="src/test/java/**/*"/>
           <exclude name="src/site/resources/images/**/*"/>

@@ -51,8 +51,7 @@ Documentation is available in HTML format, see https://checkstyle.org/checks.htm
 
 ## Continuous integration and Quality reports
 
-Travis (Linux & MacOS build): [![][travis img]][travis]
-AppVeyor (Windows build): [![][appveyor img]][appveyor]
+See our CIs statuses.
 
 Quality reports: https://checkstyle.org/project-reports.html
 

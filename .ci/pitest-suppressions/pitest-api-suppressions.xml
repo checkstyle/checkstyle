@@ -1,93 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suppressedMutations>
   <mutation unstable="false">
-    <sourceFile>AbstractCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.api.AbstractCheck</mutatedClass>
-    <mutatedMethod>getTokenNames</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
-    <description>replaced call to java/util/Collections::unmodifiableSet with argument</description>
-    <lineContent>return Collections.unmodifiableSet(tokens);</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>AbstractFileSetCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck</mutatedClass>
-    <mutatedMethod>&lt;init&gt;</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
-    <description>Removed assignment to member variable fileExtensions</description>
-    <lineContent>private String[] fileExtensions = CommonUtil.EMPTY_STRING_ARRAY;</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>AbstractFileSetCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck</mutatedClass>
-    <mutatedMethod>&lt;init&gt;</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
-    <description>Removed assignment to member variable tabWidth</description>
-    <lineContent>private int tabWidth = CommonUtil.DEFAULT_TAB_WIDTH;</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>AbstractFileSetCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck</mutatedClass>
-    <mutatedMethod>getFileExtensions</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
-    <description>replaced call to java/util/Arrays::copyOf with argument</description>
-    <lineContent>return Arrays.copyOf(fileExtensions, fileExtensions.length);</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>AbstractFileSetCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck</mutatedClass>
-    <mutatedMethod>log</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to java/util/Map::get</description>
-    <lineContent>getCustomMessages().get(key)));</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
     <sourceFile>AbstractViolationReporter.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.api.AbstractViolationReporter</mutatedClass>
     <mutatedMethod>setSeverity</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
     <description>Removed assignment to member variable severityLevel</description>
     <lineContent>severityLevel = SeverityLevel.getInstance(severity);</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>AutomaticBean.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.api.AutomaticBean</mutatedClass>
-    <mutatedMethod>tryCopyProperty</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
-    <description>replaced call to java/lang/String::format with argument</description>
-    <lineContent>final String message = String.format(Locale.ROOT,</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>AutomaticBean.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.api.AutomaticBean$RelaxedAccessModifierArrayConverter</mutatedClass>
-    <mutatedMethod>convert</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
-    <description>replaced call to java/lang/String::trim with receiver</description>
-    <lineContent>result.add(AccessModifierOption.getInstance(token.trim()));</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>AutomaticBean.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.api.AutomaticBean$RelaxedAccessModifierArrayConverter</mutatedClass>
-    <mutatedMethod>convert</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
-    <description>replaced call to java/lang/String::trim with receiver</description>
-    <lineContent>value.toString().trim(), COMMA_SEPARATOR);</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>AutomaticBean.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.api.AutomaticBean$RelaxedStringArrayConverter</mutatedClass>
-    <mutatedMethod>convert</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
-    <description>replaced call to java/lang/String::trim with receiver</description>
-    <lineContent>value.toString().trim(), COMMA_SEPARATOR);</lineContent>
   </mutation>
 
   <mutation unstable="false">

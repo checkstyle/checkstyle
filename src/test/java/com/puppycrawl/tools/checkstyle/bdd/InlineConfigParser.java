@@ -94,7 +94,7 @@ public final class InlineConfigParser {
     /**
      * Checks in which violation message is not specified in input file and have more than
      * one violation message key.
-     * Until <a>https://github.com/checkstyle/checkstyle/issues/11214</a>
+     * Until <a href="https://github.com/checkstyle/checkstyle/issues/11214">#11214</a>
      */
     private static final Set<String> SUPPRESSED_CHECKS = new HashSet<>(Arrays.asList(
             "com.puppycrawl.tools.checkstyle.checks.whitespace.MethodParamPadCheck",

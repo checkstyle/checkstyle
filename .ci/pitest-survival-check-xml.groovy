@@ -119,7 +119,7 @@ private static int checkPitestReport(String profile, String flag) {
 private static Set<Mutation> getSurvivingMutations(Node mainNode) {
 
     final List<Node> children = mainNode.children()
-    final Set<Mutation> survivingMutations = new TreeSet<>()
+    final Set<Mutation> survivingMutations = new HashSet<>()
 
     children.each { node ->
         final Node mutationNode = node as Node
@@ -142,7 +142,7 @@ private static Set<Mutation> getSurvivingMutations(Node mainNode) {
  */
 private static Set<Mutation> getSuppressedMutations(Node mainNode) {
     final List<Node> children = mainNode.children()
-    final Set<Mutation> suppressedMutations = new TreeSet<>()
+    final Set<Mutation> suppressedMutations = new HashSet<>()
 
     children.each { node ->
         final Node mutationNode = node as Node
@@ -258,14 +258,14 @@ private static int compareMutations(Set<Mutation> survivingMutations,
     }
     else {
         if (!survivingUnsuppressedMutations.isEmpty()) {
-            println "Surviving mutation(s) found:"
+            println "New surviving mutation(s) found:"
             survivingUnsuppressedMutations.each {
                 printMutation(flag, it)
             }
         }
         if (!extraSuppressions.isEmpty()
                 && extraSuppressions.any { !it.isUnstable() }) {
-            println "\nUnnecessary suppressed mutation(s) found:"
+            println "\nUnnecessary suppressed mutation(s) found and should be removed:"
             extraSuppressions.each {
                 if (!it.isUnstable()) {
                     printMutation(flag, it)
@@ -311,7 +311,7 @@ private static void printMutation(String flag, Mutation mutation) {
  */
 private static Set<Mutation> setDifference(final Set<Mutation> setOne,
                                            final Set<Mutation> setTwo) {
-    final Set<Mutation> result = new HashSet<>(setOne)
+    final Set<Mutation> result = new TreeSet<>(setOne)
     result.removeIf { mutation -> setTwo.contains(mutation) }
     return result
 }

@@ -20,7 +20,7 @@ if [ -n "$PR_HEAD_REPO_NAME" ]; then
 fi
 
 # collect issues where full link is used
-grep -IPonr "(after|[Tt]il[l]?) $GITHUB_HOST/[\w.-]+/[\w.-]+/issues/\d{1,5}" . \
+grep -IPonr "(after|[Tt]il[l]?) (<a href=\")?$GITHUB_HOST/[\w.-]+/[\w.-]+/issues/\d{1,5}" . \
   | sed -e 's/:[a-zA-Z].*github.com\//:/' >> $MENTIONED_ISSUES_GREP_OUTPUT
 
 # collect checkstyle issues where only hash sign is used

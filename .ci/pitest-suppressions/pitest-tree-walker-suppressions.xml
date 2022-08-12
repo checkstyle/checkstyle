@@ -143,13 +143,4 @@
     <description>replaced call to java/lang/String::format with argument</description>
     <lineContent>final String message = String.format(Locale.ROOT, &quot;Check &apos;%s&apos; waits for comment type &quot;</lineContent>
   </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>TreeWalkerAuditEvent.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.TreeWalkerAuditEvent</mutatedClass>
-    <mutatedMethod>getColumn</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ReturnValuesMutator</mutator>
-    <description>replaced return of primitive boolean/byte/short/integer value with (x == 1) ? 0 : x + 1</description>
-    <lineContent>return violation.getColumnNo();</lineContent>
-  </mutation>
 </suppressedMutations>

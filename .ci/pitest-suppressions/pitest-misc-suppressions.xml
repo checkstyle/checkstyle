@@ -94,15 +94,6 @@
     <sourceFile>OrderedPropertiesCheck.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.OrderedPropertiesCheck$SequencedProperties</mutatedClass>
     <mutatedMethod>put</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ReturnValuesMutator</mutator>
-    <description>replaced return of object reference value with [see docs for details]</description>
-    <lineContent>return super.put(key, value);</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>OrderedPropertiesCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.OrderedPropertiesCheck$SequencedProperties</mutatedClass>
-    <mutatedMethod>put</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.returns.NullReturnValsMutator</mutator>
     <description>replaced return value with null for com/puppycrawl/tools/checkstyle/checks/OrderedPropertiesCheck$SequencedProperties::put</description>
     <lineContent>return super.put(key, value);</lineContent>
