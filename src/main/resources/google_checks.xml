@@ -98,6 +98,12 @@
                     INSTANCE_INIT, ANNOTATION_DEF, ENUM_DEF, INTERFACE_DEF, RECORD_DEF,
                     COMPACT_CTOR_DEF"/>
     </module>
+    <module name="RightCurly">
+      <property name="id" value="RightCurlyAloneOrSingleline"/>
+      <property name="option" value="alone_or_singleline"/>
+      <property name="tokens"
+                value="OBJBLOCK"/>
+    </module>
     <module name="SuppressionXpathSingleFilter">
       <!-- suppresion is required till https://github.com/checkstyle/checkstyle/issues/7541 -->
       <property name="id" value="RightCurlyAlone"/>

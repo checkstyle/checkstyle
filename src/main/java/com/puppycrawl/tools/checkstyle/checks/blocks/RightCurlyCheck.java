@@ -205,6 +205,32 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * }
  * </pre>
  * <p>
+ * To configure the check with policy {@code alone_or_singleline}
+ * for <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#OBJBLOCK">OBJBLOCK</a>
+ * token:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;RightCurly&quot;&gt;
+ *  &lt;property name=&quot;option&quot; value=&quot;alone_or_singleline&quot;/&gt;
+ *  &lt;property name=&quot;tokens&quot; value=&quot;OBJBLOCK&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * public class Test {
+ *
+ *   Object o1 = new Object() {
+ *   }; int i1 = 0; // violation, rightCurly should have line break after.
+ *
+ *   Object o2 = new Object() {
+ *   }; // OK
+ *
+ *   Object o3 = new Object() {}; // OK
+ * }
+ * </pre>
+ * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
  * <p>
@@ -213,6 +239,9 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <ul>
  * <li>
  * {@code line.alone}
+ * </li>
+ * <li>
+ * {@code line.break.after}
  * </li>
  * <li>
  * {@code line.break.before}
@@ -244,6 +273,12 @@ public class RightCurlyCheck extends AbstractCheck {
      * file.
      */
     public static final String MSG_KEY_LINE_SAME = "line.same";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY_LINE_BREAK_AFTER = "line.break.after";
 
     /**
      * Specify the policy on placement of a right curly brace (<code>'}'</code>).
@@ -292,6 +327,7 @@ public class RightCurlyCheck extends AbstractCheck {
             TokenTypes.INTERFACE_DEF,
             TokenTypes.RECORD_DEF,
             TokenTypes.COMPACT_CTOR_DEF,
+            TokenTypes.OBJBLOCK,
         };
     }
 
@@ -306,7 +342,7 @@ public class RightCurlyCheck extends AbstractCheck {
         final DetailAST rcurly = details.rcurly;
 
         if (rcurly != null) {
-            final String violation = validate(details);
+            final String violation = validate(details, ast);
             if (!violation.isEmpty()) {
                 log(rcurly, violation, "}", rcurly.getColumnNo() + 1);
             }
@@ -317,21 +353,48 @@ public class RightCurlyCheck extends AbstractCheck {
      * Does general validation.
      *
      * @param details for validation.
+     * @param ast a {@code DetailAST} value
      * @return violation message or empty string
      *     if there was no violation during validation.
      */
-    private String validate(Details details) {
+    private String validate(Details details, DetailAST ast) {
         String violation = "";
-        if (shouldHaveLineBreakBefore(option, details)) {
-            violation = MSG_KEY_LINE_BREAK_BEFORE;
+        if (ast.getType() == TokenTypes.OBJBLOCK) {
+            if (shouldHaveLineBreakAfter(option, details)) {
+                violation = MSG_KEY_LINE_BREAK_AFTER;
+            }
         }
-        else if (shouldBeOnSameLine(option, details)) {
-            violation = MSG_KEY_LINE_SAME;
-        }
-        else if (shouldBeAloneOnLine(option, details, getLine(details.rcurly.getLineNo() - 1))) {
-            violation = MSG_KEY_LINE_ALONE;
+        else {
+            if (shouldHaveLineBreakBefore(option, details)) {
+                violation = MSG_KEY_LINE_BREAK_BEFORE;
+            }
+            else if (shouldBeOnSameLine(option, details)) {
+                violation = MSG_KEY_LINE_SAME;
+            }
+            else if (shouldBeAloneOnLine(option, details,
+                    getLine(details.rcurly.getLineNo() - 1))) {
+                violation = MSG_KEY_LINE_ALONE;
+            }
         }
         return violation;
+    }
+
+    /**
+     * Checks whether a right curly followed by semicolon should have a line break after
+     * when ALONE_OR_SINGLELINE option is used.
+     *
+     * @param bracePolicy option for placing the right curly brace.
+     * @param details details for validation.
+     * @return true if a right curly followed by semicolon should have a line break after.
+     */
+    private static boolean shouldHaveLineBreakAfter(RightCurlyOption bracePolicy,
+                                                    Details details) {
+        final DetailAST tokenAfterNextToken = Details.getNextToken(details.nextToken);
+
+        return tokenAfterNextToken != null
+                && bracePolicy == RightCurlyOption.ALONE_OR_SINGLELINE
+                && isRightcurlyFollowedBySemicolon(details)
+                && TokenUtil.areOnSameLine(details.rcurly, tokenAfterNextToken);
     }
 
     /**
@@ -563,6 +626,9 @@ public class RightCurlyCheck extends AbstractCheck {
                 case TokenTypes.LITERAL_FOR:
                     details = getDetailsForLoops(ast);
                     break;
+                case TokenTypes.OBJBLOCK:
+                    details = getDetailsForObjBlock(ast);
+                    break;
                 default:
                     details = getDetailsForOthers(ast);
                     break;
@@ -658,6 +724,19 @@ public class RightCurlyCheck extends AbstractCheck {
                     rcurly = lcurly.getLastChild();
                 }
             }
+            return new Details(lcurly, rcurly, getNextToken(ast), true);
+        }
+
+        /**
+         * Collects validation details for OBJBLOCK.
+         *
+         * @param ast a {@code DetailAST} value
+         * @return an object containing all details to make a validation
+         */
+        private static Details getDetailsForObjBlock(DetailAST ast) {
+            final DetailAST lcurly = ast.getFirstChild();
+            final DetailAST rcurly = ast.getLastChild();
+
             return new Details(lcurly, rcurly, getNextToken(ast), true);
         }
 
