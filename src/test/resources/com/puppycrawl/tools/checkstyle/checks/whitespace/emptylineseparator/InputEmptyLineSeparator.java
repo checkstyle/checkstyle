@@ -11,7 +11,7 @@ tokens = (default)PACKAGE_DEF, IMPORT, STATIC_IMPORT, CLASS_DEF, INTERFACE_DEF, 
 */
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator; //no violation: trailing comment
-import java.io.Serializable; // violation
+import java.io.Serializable; // violation ''import' should be separated from previous line.'
 import java.util.ArrayList; /*no violation: trailing comment*/
 import java.util.HashMap;
 import java.util.List;
@@ -28,15 +28,15 @@ import javax.swing.AbstractAction; /* no violation: no trailing comment
 
 import org.apache.commons.beanutils.locale.converters.ByteLocaleConverter;
 import org.apache.commons.beanutils.BasicDynaBean;
-class InputEmptyLineSeparator // violation
+class InputEmptyLineSeparator // violation ''CLASS_DEF' should be separated from previous line.'
 {
     public static final double FOO_PI = 3.1415;
-    private boolean flag = true; // violation
-    static { // violation
+    private boolean flag = true; // violation ''VARIABLE_DEF' should be separated from previous line.'
+    static { // violation ''STATIC_INIT' should be separated from previous line.'
         //empty static initializer
     }
     // no blank line - fail
-    { // violation
+    { // violation ''INSTANCE_INIT' should be separated from previous line.'
         //empty instance initializer
     }
 
@@ -50,12 +50,12 @@ class InputEmptyLineSeparator // violation
      *
      *
      */
-    private InputEmptyLineSeparator() // violation
+    private InputEmptyLineSeparator() // violation ''CTOR_DEF' should be separated from previous line.'
     {
         //empty
     }
     //separator blank line
-    public int compareTo(Object aObject) // violation
+    public int compareTo(Object aObject) // violation ''METHOD_DEF' should be separated from previous line.'
     {
         int number = 0;
         return 0;
@@ -72,7 +72,7 @@ class InputEmptyLineSeparator // violation
      * @param result
      * @return
      */
-    public static <T> Callable<T> callable(Runnable task, T result) // violation
+    public static <T> Callable<T> callable(Runnable task, T result) // violation ''METHOD_DEF' should be separated from previous line.'
     {
         return null;
     }
@@ -103,7 +103,7 @@ class InputEmptyLineSeparator // violation
     {
         return 666;
     }
-    interface IntEnum { // violation
+    interface IntEnum { // violation ''INTERFACE_DEF' should be separated from previous line.'
     }
 
     class InnerClass {
