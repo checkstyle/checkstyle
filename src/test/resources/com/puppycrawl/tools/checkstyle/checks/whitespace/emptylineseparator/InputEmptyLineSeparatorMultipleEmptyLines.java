@@ -14,28 +14,28 @@ tokens = (default)PACKAGE_DEF, IMPORT, STATIC_IMPORT, CLASS_DEF, INTERFACE_DEF, 
 package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator; // violation
 
 
-import java.util.*; // violation
+import java.util.*; // violation ''import' has more than 1 empty lines before.'
 
 import java.io.*;
 
 
-public class InputEmptyLineSeparatorMultipleEmptyLines // violation
-{
+public class // violation ''CLASS_DEF' has more than 1 empty lines before.'
+InputEmptyLineSeparatorMultipleEmptyLines {
 
 
-    private int counter; // violation
+    private int counter; // violation ''VARIABLE_DEF' has more than 1 empty lines before.'
 
 
 
 
-    private Object obj = null; // violation
+    private Object obj = null; // violation ''VARIABLE_DEF' has more than 1 empty lines before.'
 
     private int k;
 
 
-    private static void foo() {} // violation
+    private static void foo() {} // violation ''METHOD_DEF' has more than 1 empty lines before.'
 
-    private static void foo1() {} // violation
+    private static void foo1() {} // violation ''}' has more than 1 empty lines after.'
 
 
 }

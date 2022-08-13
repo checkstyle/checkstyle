@@ -16,7 +16,7 @@ public class InputEmptyLineSeparatorPostFixCornerCases {
 
     protected void foo1() throws Exception {
         int a = 25;
-        // violation above
+        // violation above 'There is more than 1 empty line after this line.'
 
 
         foo(a);
@@ -30,7 +30,7 @@ public class InputEmptyLineSeparatorPostFixCornerCases {
 
         Object[] defaults = new Object[] {
                 "String One",
-                // violation above
+                // violation above 'There is more than 1 empty line after this line.'
 
 
                 "String Two",
@@ -39,7 +39,7 @@ public class InputEmptyLineSeparatorPostFixCornerCases {
     }
 
     protected void foo2() {
-        Object[] defaults = new Object[] { // violation below
+        Object[] defaults = new Object[] { // violation below '.*more than 1 empty line after.*'
             "String One", 13,
 
 
