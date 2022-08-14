@@ -34,7 +34,7 @@
       </runner>
       <runner id="RUNNER_439" name="" type="Inspection">
         <parameters>
-          <param name="idea.app.home" value="%teamcity.tool.intellij.ideaIU-2021.2.3%" />
+          <param name="idea.app.home" value="%teamcity.tool.intellij.ideaIU-2022.1.3%" />
           <param name="includeExclude.patterns"><![CDATA[-:.ci/pitest-survival-check-xml.groovy
 -:.ci/*.config
 -:.circleci/config.yml
