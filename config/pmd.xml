@@ -318,7 +318,8 @@
   </rule>
   <rule ref="category/java/design.xml/TooManyMethods">
     <properties>
-      <property name="maxmethods" value="20"/>
+      <!-- Should match the property 'maxTotal' of `MethodCount` check. -->
+      <property name="maxmethods" value="34"/>
       <!-- The class PackageObjectFactory has many boilerplate methods.
            JavadocMethodCheck is in the process of being rewritten.
            UnusedLocalVariableCheck has to identify the scope of variables. -->
