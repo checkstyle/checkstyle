@@ -461,12 +461,12 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
                 processVariableDef(ast, nextToken);
                 break;
             case TokenTypes.IMPORT:
-            case TokenTypes.STATIC_IMPORT:
                 processImport(ast, nextToken);
                 break;
             case TokenTypes.PACKAGE_DEF:
                 processPackage(ast, nextToken);
                 break;
+            case TokenTypes.STATIC_IMPORT:
             default:
                 if (nextToken.getType() == TokenTypes.RCURLY) {
                     if (hasNotAllowedTwoEmptyLinesBefore(nextToken)) {
