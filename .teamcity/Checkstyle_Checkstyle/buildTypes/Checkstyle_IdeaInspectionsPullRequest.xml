@@ -104,7 +104,7 @@
           <param name="branchFilter" value="+:*" />
           <param name="enableQueueOptimization" value="true" />
           <param name="quietPeriodMode" value="DO_NOT_USE" />
-          <param name="triggerRules" value="-:comment=*skip TC:**" />
+          <param name="triggerRules" value="-:comment=.*skip TC:**" />
         </parameters>
       </build-trigger>
     </build-triggers>
