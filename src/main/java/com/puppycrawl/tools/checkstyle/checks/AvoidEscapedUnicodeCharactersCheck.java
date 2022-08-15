@@ -175,7 +175,7 @@ public class AvoidEscapedUnicodeCharactersCheck
     public static final String MSG_KEY = "forbid.escaped.unicode.char";
 
     /** Regular expression for Unicode chars. */
-    private static final Pattern UNICODE_REGEXP = Pattern.compile("\\\\u+[a-fA-F0-9]{4}");
+    private static final Pattern UNICODE_REGEXP = Pattern.compile("\\\\u+[a-fA-F\\d]{4}");
 
     /**
      * Regular expression Unicode control characters.
@@ -184,8 +184,8 @@ public class AvoidEscapedUnicodeCharactersCheck
      *     Appendix:Control characters</a>
      */
     private static final Pattern UNICODE_CONTROL = Pattern.compile("\\\\u+"
-            + "(00[0-1][0-9A-Fa-f]"
-            + "|00[8-9][0-9A-Fa-f]"
+            + "(00[0-1][\\dA-Fa-f]"
+            + "|00[8-9][\\dA-Fa-f]"
             + "|00[aA][dD]"
             + "|034[fF]"
             + "|070[fF]"
