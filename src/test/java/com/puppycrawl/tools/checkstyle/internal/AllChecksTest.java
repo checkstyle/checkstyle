@@ -62,15 +62,16 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 public class AllChecksTest extends AbstractModuleTestSupport {
 
     private static final Locale[] ALL_LOCALES = {
-        Locale.GERMAN,
+        Locale.CHINESE,
+        Locale.ENGLISH,
         new Locale("es"),
         new Locale("fi"),
         Locale.FRENCH,
+        Locale.GERMAN,
         Locale.JAPANESE,
         new Locale("pt"),
+        new Locale("ru"),
         new Locale("tr"),
-        Locale.CHINESE,
-        Locale.ENGLISH,
     };
 
     private static final Map<String, Set<String>> CHECKSTYLE_TOKENS_IN_CONFIG_TO_IGNORE =
