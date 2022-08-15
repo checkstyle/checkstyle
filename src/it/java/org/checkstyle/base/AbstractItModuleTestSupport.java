@@ -73,7 +73,7 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
     protected static final String ROOT_MODULE_NAME = "root";
 
     private static final Pattern WARN_PATTERN = CommonUtil
-            .createPattern(".*[ ]*//[ ]*warn[ ]*|/[*]\\*?\\s?warn\\s?[*]/");
+            .createPattern(".* *// *warn *|/[*]\\*?\\s?warn\\s?[*]/");
 
     private final ByteArrayOutputStream stream = new ByteArrayOutputStream();
 
