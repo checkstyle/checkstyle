@@ -368,8 +368,11 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
                 && parent.getFirstChild() != identAst;
         final boolean isConstructorReference = parent.getType() == TokenTypes.METHOD_REF
                 && parent.getLastChild().getType() == TokenTypes.LITERAL_NEW;
+        final boolean isNestedClassInitialization =
+                TokenUtil.isOfType(identAst.getNextSibling(), TokenTypes.LITERAL_NEW)
+                && parent.getType() == TokenTypes.DOT;
 
-        if (!isMethodReferenceMethodName
+        if (isNestedClassInitialization || !isMethodReferenceMethodName
                 && !isConstructorReference
                 && !TokenUtil.isOfType(parent, UNACCEPTABLE_PARENT_OF_IDENT)) {
             checkIdentifierAst(identAst, variablesStack);
