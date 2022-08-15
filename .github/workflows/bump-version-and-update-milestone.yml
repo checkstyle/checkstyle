@@ -7,13 +7,14 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: 'New Version'
+        description: 'New Version (without "-SNAPSHOT")'
         required: true
 permissions:
   contents: write
   pull-requests: write
 jobs:
   printInputs:
+    name: Print Input
     runs-on: ubuntu-latest
     steps:
       - run: |
