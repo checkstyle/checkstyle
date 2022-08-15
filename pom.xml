@@ -232,6 +232,7 @@
     <junit.version>5.9.0</junit.version>
     <forbiddenapis.version>3.3</forbiddenapis.version>
     <json-schema-validator.version>1.2.0</json-schema-validator.version>
+    <error-prone.version>2.15.0</error-prone.version>
   </properties>
 
   <dependencies>
@@ -749,48 +750,18 @@
           <target>${java.version}</target>
           <compilerArgs>
             <arg>-Xpkginfo:always</arg>
+            <arg>-XDcompilePolicy=simple</arg>
+            <arg>-Xplugin:ErrorProne</arg>
+            <arg>-XepExcludedPaths:.*[\\/]resources[\\/].*</arg>
           </compilerArgs>
+          <annotationProcessorPaths>
+            <path>
+              <groupId>com.google.errorprone</groupId>
+              <artifactId>error_prone_core</artifactId>
+              <version>${error-prone.version}</version>
+            </path>
+          </annotationProcessorPaths>
         </configuration>
-        <!-- till https://github.com/checkstyle/checkstyle/issues/2160
-        <executions>
-          <execution>
-            <id>compile-without-error-prone</id>
-            <goals>
-              <goal>testCompile</goal>
-            </goals>
-            <configuration>
-              <testIncludes>
-                <testInclude>**/Input*.java</testInclude>
-              </testIncludes>
-            </configuration>
-          </execution>
-          <execution>
-            <id>compile-with-error-prone</id>
-            <goals>
-              <goal>testCompile</goal>
-            </goals>
-            <configuration>
-              <compilerId>javac-with-errorprone</compilerId>
-              <forceJavacCompilerUse>true</forceJavacCompilerUse>
-              <testExcludes>
-                <testExclude>**/*Input*.java</testExclude>
-              </testExcludes>
-            </configuration>
-          </execution>
-        </executions>
-        <dependencies>
-          <dependency>
-            <groupId>org.codehaus.plexus</groupId>
-            <artifactId>plexus-compiler-javac-errorprone</artifactId>
-            <version>2.6</version>
-          </dependency>
-          <dependency>
-            <groupId>com.google.errorprone</groupId>
-            <artifactId>error_prone_core</artifactId>
-            <version>2.0.5</version>
-          </dependency>
-        </dependencies>
-        -->
       </plugin>
 
       <plugin>
