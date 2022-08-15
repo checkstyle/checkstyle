@@ -53,6 +53,10 @@ public class InputUnusedLocalVariableNestedClasses {
                 = new InputUnusedLocalVariable() { // cross file checking not supported
         };
         obj3.getClass();
+
+        A.B obj4 = new A.B();
+        A.B.innerClass obj5 = obj4.new innerClass();
+        System.out.println(obj5);
     }
 
     static class A {

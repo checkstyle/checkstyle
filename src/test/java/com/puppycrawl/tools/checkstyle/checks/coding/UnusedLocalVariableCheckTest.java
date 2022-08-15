@@ -205,8 +205,8 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
             "24:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "Q"),
             "36:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "variable"),
             "44:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "anotherVariable"),
-            "67:21: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "s"),
-            "68:21: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "n"),
+            "71:21: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "s"),
+            "72:21: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "n"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputUnusedLocalVariableNestedClasses.java"),
