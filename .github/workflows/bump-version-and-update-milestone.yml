@@ -25,16 +25,21 @@ jobs:
       - name: Checkout the latest code
         uses: actions/checkout@v2
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          persist-credentials: false
+          fetch-depth: 0
       - name: Modify File
         run: |
           ./.ci/bump-version.sh ${{ github.event.inputs.version }}
-      - name: Push commit
+      - name: Commit File
         run: |
+          git config remote.origin.url https://github.com/checkstyle/checkstyle.git
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
           git commit -am "minor: Bump release version to ${{ github.event.inputs.version }}"
-          git push
+      - name: Push Commit
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
       - name: GitHub Milestone
         run: |
           .ci/update-github-milestone.sh ${{ github.event.inputs.version }}
