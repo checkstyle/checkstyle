@@ -377,20 +377,13 @@ public final class CheckUtil {
 
     public static String getLineSeparatorForFile(String filepath, Charset charset)
             throws IOException {
-        final boolean[] crFound = {false};
-        new FileText(new File(filepath), charset.name())
+        final boolean crFound = new FileText(new File(filepath), charset.name())
                 .getFullText()
                 .chars()
-                .peek(character -> {
-                    if (character == '\r') {
-                        crFound[0] = true;
-                    }
-                })
-                .filter(character -> character == '\n')
-                .findFirst();
+                .anyMatch(character -> character == '\r');
 
         final String result;
-        if (crFound[0]) {
+        if (crFound) {
             result = CRLF;
         }
         else {
