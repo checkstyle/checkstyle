@@ -337,6 +337,7 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
      * @noinspection ResultOfMethodCallIgnored
      * @noinspectionreason ResultOfMethodCallIgnored - temporary suppression until #11589
      */
+    @SuppressWarnings("CheckReturnValue") // until #11589
     @Test
     public void testNonExistentResource() throws IOException {
         final Configuration config = new DefaultConfiguration("myName");
