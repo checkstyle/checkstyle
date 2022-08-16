@@ -32,9 +32,12 @@ CS_RELEASE_VERSION="$(getCheckstylePomVersion)"
 echo CS_RELEASE_VERSION="$CS_RELEASE_VERSION"
 
 cd .ci-temp/checkstyle
-LATEST_RELEASE_TAG=$(curl -s https://api.github.com/repos/checkstyle/checkstyle/releases/latest \
-                       | jq ".tag_name")
-echo LATEST_RELEASE_TAG="$LATEST_RELEASE_TAG"
+RELEASE_KEY=$( curl -s https://api.github.com/repos/checkstyle/checkstyle/releases \
+| jq '[.[].tag_name] | to_entries | .[] | select(.value=="checkstyle-10.3.1") | .key')
+
+TARGET_RELEASE_KEY="$(($RELEASE_KEY-1))"
+echo RELEASE_KEY="$RELEASE_KEY"
+echo TARGET_RELEASE_KEY="$TARGET_RELEASE_KEY"
 
 cd ../
 BUILDER_RESOURCE_DIR="contribution/releasenotes-builder/src/main/resources/com/github/checkstyle"
