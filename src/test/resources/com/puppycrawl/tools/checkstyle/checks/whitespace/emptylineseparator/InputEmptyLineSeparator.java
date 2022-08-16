@@ -31,7 +31,7 @@ import org.apache.commons.beanutils.BasicDynaBean;
 class InputEmptyLineSeparator // violation ''CLASS_DEF' should be separated from previous line.'
 {
     public static final double FOO_PI = 3.1415;
-    private boolean flag = true; // violation ''VARIABLE_DEF' should be separated from previous line.'
+    private boolean flag = true; // violation ''VARIABLE_DEF'.*separated.*from.*previous.*line.'
     static { // violation ''STATIC_INIT' should be separated from previous line.'
         //empty static initializer
     }
@@ -50,12 +50,12 @@ class InputEmptyLineSeparator // violation ''CLASS_DEF' should be separated from
      *
      *
      */
-    private InputEmptyLineSeparator() // violation ''CTOR_DEF' should be separated from previous line.'
+    private InputEmptyLineSeparator() // violation ''CTOR_DEF'.*separated.*from.*previous.*line.'
     {
         //empty
     }
     //separator blank line
-    public int compareTo(Object aObject) // violation ''METHOD_DEF' should be separated from previous line.'
+    public int compareTo(Object aObject) // violation ''METHOD_DEF'.*separated.*from.*previous.*line.'
     {
         int number = 0;
         return 0;
@@ -72,7 +72,7 @@ class InputEmptyLineSeparator // violation ''CLASS_DEF' should be separated from
      * @param result
      * @return
      */
-    public static <T> Callable<T> callable(Runnable task, T result) // violation ''METHOD_DEF' should be separated from previous line.'
+    public static <T> Callable<T> clb(T r) // violation ''METHOD_DEF'.*separated.*from.*previous.*line.'
     {
         return null;
     }
