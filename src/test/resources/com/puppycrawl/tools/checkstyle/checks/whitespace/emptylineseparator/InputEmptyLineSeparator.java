@@ -55,7 +55,7 @@ class InputEmptyLineSeparator // violation ''CLASS_DEF' should be separated from
         //empty
     }
     //separator blank line
-    public int compareTo(Object aObject) // violation ''METHOD_DEF'.*separated.*from.*previous.*line.'
+    public int compareTo(Object aObject) // violation ''METHOD_DEF'.*separated.*previous.*line.'
     {
         int number = 0;
         return 0;
@@ -72,7 +72,7 @@ class InputEmptyLineSeparator // violation ''CLASS_DEF' should be separated from
      * @param result
      * @return
      */
-    public static <T> Callable<T> clb(T r) // violation ''METHOD_DEF'.*separated.*from.*previous.*line.'
+    public static <T> Callable<T> clb(T r) // violation ''METHOD_DEF'.*separated.*previous.*line.'
     {
         return null;
     }
