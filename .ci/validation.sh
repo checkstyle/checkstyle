@@ -170,11 +170,6 @@ test-ru)
     -Dsurefire.options='-Duser.language=ru -Duser.country=RU -Xms1024m -Xmx2048m'
   ;;
 
-test-ru)
-  mvn -e --no-transfer-progress clean integration-test failsafe:verify \
-    -DargLine='-Duser.language=ru -Duser.country=RU -Xms1024m -Xmx2048m'
-  ;;
-
 versions)
   if [ -v TRAVIS_EVENT_TYPE ] && [ "$TRAVIS_EVENT_TYPE" != "cron" ] ; then exit 0; fi
   mvn -e --no-transfer-progress clean versions:dependency-updates-report \
