@@ -470,6 +470,28 @@
 &lt;/target&gt;
       </source>
 
+      <p>
+        <b>
+          Add a custom JAR with implementation of custom Checks
+          (example sevntu extension below)
+        </b>
+      </p>
+      <source>
+&lt;target name=&quot;checkstyle&quot; description=&quot;Generates a report
+        of code convention violations.&quot; &gt;
+  &lt;checkstyle config=&quot;checkstyle.xml&quot;
+              failOnViolation=&quot;false&quot;&gt;
+    &lt;classpath&gt;
+      &lt;pathelement path=&quot;${classpath}&quot;/&gt;
+      &lt;pathelement location=&quot;lib/sevntu-checks-1.42.0.jar&quot;/&gt;
+    &lt;/classpath&gt;
+
+    &lt;formatter type=&quot;xml&quot; tofile=&quot;checkstyle_report.xml&quot;/&gt;
+    &lt;fileset dir=&quot;src&quot; includes=&quot;**/*.java&quot;/&gt;
+  &lt;/checkstyle&gt;
+&lt;/target&gt;
+      </source>
+
     </section>
   </body>
 </document>
