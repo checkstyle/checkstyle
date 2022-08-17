@@ -32,12 +32,12 @@ class InputEmptyLineSeparator2 // violation ''CLASS_DEF' should be separated fro
 {
     public static final double FOO_PI = 3.1415;
     private boolean flag = true;
-    static { // violation ''VARIABLE_DEF' should be separated from previous line.'
+    static { // violation ''STATIC_INIT' should be separated from previous line.'
         //empty static initializer
     }
     // no blank line - fail
     {
-        //empty instance initializer // violation above ''INSTANCE_INIT' should be separated from previous line.'
+        //empty instance initializer // violation above ''INSTANCE_INIT'.*separated.*from.*previous.*line.'
     }
 
     // one blank line - ok
@@ -50,12 +50,12 @@ class InputEmptyLineSeparator2 // violation ''CLASS_DEF' should be separated fro
      *
      *
      */
-    private InputEmptyLineSeparator2() // violation ''CTOR_DEF' should be separated from previous line.'
+    private InputEmptyLineSeparator2() // violation ''CTOR_DEF'.*separated.*from.*previous.*line.'
     {
         //empty
     }
     //separator blank line
-    public int compareTo(Object aObject) // violation ''METHOD_DEF' should be separated from previous line.'
+    public int compareTo(Object aObject) // violation ''METHOD_DEF'.*separated.*from.*previous.*line.'
     {
         int number = 0;
         return 0;
@@ -72,7 +72,7 @@ class InputEmptyLineSeparator2 // violation ''CLASS_DEF' should be separated fro
      * @param result
      * @return
      */
-    public static <T> Callable<T> callable(Runnable task, T result) // violation ''METHOD_DEF' should be separated from previous line.'
+    public static <T> Callable<T> clb(T r) // violation ''METHOD_DEF'.*separated.*from.*previous.*line.'
     {
         return null;
     }
