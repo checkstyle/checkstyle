@@ -32,9 +32,23 @@ CS_RELEASE_VERSION="$(getCheckstylePomVersion)"
 echo CS_RELEASE_VERSION="$CS_RELEASE_VERSION"
 
 cd .ci-temp/checkstyle
-LATEST_RELEASE_TAG=$(curl -s https://api.github.com/repos/checkstyle/checkstyle/releases/latest \
-                       | jq ".tag_name")
-echo LATEST_RELEASE_TAG="$LATEST_RELEASE_TAG"
+
+curl \
+ https://api.github.com/repos/checkstyle/checkstyle/releases \
+ -o /var/tmp/cs-releases.json
+
+TARGET_RELEASE_NUM=$1
+TARGET_RELEASE_INDEX=$(cat /var/tmp/cs-releases.json | \
+    jq '[.[].tag_name] | to_entries | .[] | select(.value=="checkstyle-'"$TARGET_RELEASE_NUM"'") | .key')
+echo "$TARGET_RELEASE_INDEX"
+PREVIOUS_RELEASE_INDEX=$(($TARGET_RELEASE_INDEX+1))
+echo "$PREVIOUS_RELEASE_INDEX"
+
+END_REF=$(cat /var/tmp/cs-releases.json | jq -r ".[$TARGET_RELEASE_INDEX].tag_name")
+START_REF=$(cat /var/tmp/cs-releases.json | jq -r ".[$PREVIOUS_RELEASE_INDEX].tag_name")
+
+echo START_REF="$START_REF"
+echo END_REF="$END_REF"
 
 cd ../
 BUILDER_RESOURCE_DIR="contribution/releasenotes-builder/src/main/resources/com/github/checkstyle"
@@ -42,7 +56,8 @@ BUILDER_RESOURCE_DIR="contribution/releasenotes-builder/src/main/resources/com/g
 java -jar contribution/releasenotes-builder/target/releasenotes-builder-1.0-all.jar \
      -remoteRepoPath checkstyle/checkstyle \
      -localRepoPath checkstyle \
-     -startRef "$LATEST_RELEASE_TAG" \
+     -startRef "$START_REF" \
+     -endRef "$END_REF" \
      -releaseNumber "$CS_RELEASE_VERSION" \
      -githubAuthToken "$GITHUB_READ_ONLY_TOKEN" \
      -twitterTemplate $BUILDER_RESOURCE_DIR/templates/twitter.template \
