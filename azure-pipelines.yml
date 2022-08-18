@@ -80,6 +80,11 @@ strategy:
       image: 'ubuntu-20.04'
       cmd: "./.ci/validation.sh test-ru"
 
+    # unit tests in Albanian locale (openjdk11)
+    'test-al':
+      image: 'ubuntu-20.04'
+      cmd: "./.ci/validation.sh test-al"
+
     # OpenJDK11 verify
     'OpenJDK11 verify':
       image: 'ubuntu-20.04'
