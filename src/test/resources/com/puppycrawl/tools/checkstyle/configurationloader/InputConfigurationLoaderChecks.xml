@@ -12,7 +12,7 @@
     <module name="TreeWalker">
         <module name="AvoidStarImport"/>
         <module name="MemberName">
-            <property name="format" value="^m_[a-zA-Z0-9]*$"/>
+            <property name="format" value="^m_[a-zA-Z\d]*$"/>
         </module>
         <property name="testName" value="testValue" />
         <module name="ConstantName"/>

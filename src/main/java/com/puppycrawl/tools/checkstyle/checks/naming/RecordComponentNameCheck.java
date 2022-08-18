@@ -30,7 +30,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <li>
  * Property {@code format} - Specifies valid identifiers.
  * Type is {@code java.util.regex.Pattern}.
- * Default value is {@code "^[a-z][a-zA-Z0-9]*$"}.
+ * Default value is {@code "^[a-z][a-zA-Z\d]*$"}.
  * </li>
  * </ul>
  * <p>
@@ -43,9 +43,9 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <pre>
  * record MyRecord1(String value, int otherComponentName) {} // OK
  * record MyRecord2(String... Values) {} // violation, the record component name
- *                                     // should match the regular expression "^[a-z][a-zA-Z0-9]*$"
+ *                                     // should match the regular expression "^[a-z][a-zA-Z\d]*$"
  * record MyRecord3(double my_number) {} // violation, the record component name
- *                                     // should match the regular expression "^[a-z][a-zA-Z0-9]*$"
+ *                                     // should match the regular expression "^[a-z][a-zA-Z\d]*$"
  * </pre>
  * <p>
  * An example of how to configure the check for names that are only letters in lowercase:
@@ -81,7 +81,7 @@ public class RecordComponentNameCheck extends AbstractNameCheck {
 
     /** Creates a new {@code RecordComponentNameCheck} instance. */
     public RecordComponentNameCheck() {
-        super("^[a-z][a-zA-Z0-9]*$");
+        super("^[a-z][a-zA-Z\\d]*$");
     }
 
     @Override

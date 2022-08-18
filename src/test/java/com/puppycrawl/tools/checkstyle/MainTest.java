@@ -484,11 +484,11 @@ public class MainTest {
                 getPath("InputMain.java"));
         final Violation invalidPatternMessageMain = new Violation(1,
                 "com.puppycrawl.tools.checkstyle.checks.naming.messages",
-                "name.invalidPattern", new String[] {"InputMain", "^[a-z0-9]*$"},
+                "name.invalidPattern", new String[] {"InputMain", "^[a-z\\d]*$"},
                 null, getClass(), null);
         final Violation invalidPatternMessageMainInner = new Violation(1,
                 "com.puppycrawl.tools.checkstyle.checks.naming.messages",
-                "name.invalidPattern", new String[] {"InputMainInner", "^[a-z0-9]*$"},
+                "name.invalidPattern", new String[] {"InputMainInner", "^[a-z\\d]*$"},
                 null, getClass(), null);
         final String expectedPath = getFilePath("InputMain.java");
         assertWithMessage("Unexpected output log")
@@ -546,11 +546,11 @@ public class MainTest {
                 new String[] {String.valueOf(2)}, null, getClass(), null);
         final Violation invalidPatternMessageMain = new Violation(1,
                 "com.puppycrawl.tools.checkstyle.checks.naming.messages",
-                "name.invalidPattern", new String[] {"InputMain", "^[a-z0-9]*$"},
+                "name.invalidPattern", new String[] {"InputMain", "^[a-z\\d]*$"},
                 null, getClass(), null);
         final Violation invalidPatternMessageMainInner = new Violation(1,
                 "com.puppycrawl.tools.checkstyle.checks.naming.messages",
-                "name.invalidPattern", new String[] {"InputMainInner", "^[a-z0-9]*$"},
+                "name.invalidPattern", new String[] {"InputMainInner", "^[a-z\\d]*$"},
                 null, getClass(), null);
         final String expectedPath = getFilePath("InputMain.java");
         assertWithMessage("Unexpected output log")
@@ -583,7 +583,7 @@ public class MainTest {
                 new String[] {String.valueOf(1)}, null, getClass(), null);
         final Violation invalidPatternMessageMain = new Violation(1,
                 "com.puppycrawl.tools.checkstyle.checks.naming.messages",
-                "name.invalidPattern", new String[] {"InputMain1", "^[a-z0-9]*$"},
+                "name.invalidPattern", new String[] {"InputMain1", "^[a-z\\d]*$"},
                 null, getClass(), null);
         final String expectedPath = getFilePath("InputMain1.java");
         assertWithMessage("Unexpected output log")

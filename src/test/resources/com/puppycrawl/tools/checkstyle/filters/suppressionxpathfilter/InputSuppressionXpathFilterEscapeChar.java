@@ -4,7 +4,7 @@ file = (file)InputSuppressionXpathFilterEscapeChar.xml
 optional = (default)false
 
 com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenTextCheck
-format = [^a-zA-z0-9]*
+format = [^a-zA-z\\d]*
 ignoreCase = (default)false
 message = (default)
 tokens = CHAR_LITERAL

@@ -30,7 +30,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <li>
  * Property {@code format} - Specifies valid identifiers.
  * Type is {@code java.util.regex.Pattern}.
- * Default value is {@code "^[A-Z][a-zA-Z0-9]*$"}.
+ * Default value is {@code "^[A-Z][a-zA-Z\d]*$"}.
  * </li>
  * <li>
  * Property {@code applyToPublic} - Controls whether to apply the check to public member.
@@ -79,9 +79,9 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <pre>
  * public interface FirstName {} // OK
  * protected class SecondName {} // OK
- * enum Third_Name {} // violation, name 'Third_Name' must match pattern '^[A-Z][a-zA-Z0-9]*$'
+ * enum Third_Name {} // violation, name 'Third_Name' must match pattern '^[A-Z][a-zA-Z\d]*$'
  * private class FourthName_ {} // violation, name 'FourthName_'
- *                              // must match pattern '^[A-Z][a-zA-Z0-9]*$'
+ *                              // must match pattern '^[A-Z][a-zA-Z\d]*$'
  * </pre>
  * <p>
  * An example of how to configure the check for names that begin with
@@ -90,7 +90,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </p>
  * <pre>
  * &lt;module name=&quot;TypeName&quot;&gt;
- *   &lt;property name=&quot;format&quot; value=&quot;^[a-z](_?[a-zA-Z0-9]+)*$&quot;/&gt;
+ *   &lt;property name=&quot;format&quot; value=&quot;^[a-z](_?[a-zA-Z\d]+)*$&quot;/&gt;
  *   &lt;property name=&quot;applyToProtected&quot; value=&quot;false&quot;/&gt;
  *   &lt;property name=&quot;applyToPrivate&quot; value=&quot;false&quot;/&gt;
  * &lt;/module&gt;
@@ -99,7 +99,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <pre>
  * public interface firstName {} // OK
  * public class SecondName {} // violation, name 'SecondName'
- *                            // must match pattern '^[a-z](_?[a-zA-Z0-9]+)*$'
+ *                            // must match pattern '^[a-z](_?[a-zA-Z\d]+)*$'
  * protected class ThirdName {} // OK
  * private class FourthName {} // OK
  * </pre>
@@ -110,7 +110,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <pre>
  * &lt;module name=&quot;TypeName&quot;&gt;
  *   &lt;property name=&quot;format&quot;
- *     value=&quot;^I_[a-zA-Z0-9]*$&quot;/&gt;
+ *     value=&quot;^I_[a-zA-Z\d]*$&quot;/&gt;
  *   &lt;property name=&quot;tokens&quot;
  *     value=&quot;INTERFACE_DEF&quot;/&gt;
  * &lt;/module&gt;
@@ -119,7 +119,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <pre>
  * public interface I_firstName {} // OK
  * interface SecondName {} // violation, name 'SecondName'
- *                         // must match pattern '^I_[a-zA-Z0-9]*$'
+ *                         // must match pattern '^I_[a-zA-Z\d]*$'
  * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
@@ -141,7 +141,7 @@ public class TypeNameCheck
     /**
      * Default pattern for type name.
      */
-    public static final String DEFAULT_PATTERN = "^[A-Z][a-zA-Z0-9]*$";
+    public static final String DEFAULT_PATTERN = "^[A-Z][a-zA-Z\\d]*$";
 
     /**
      * Creates a new {@code TypeNameCheck} instance.

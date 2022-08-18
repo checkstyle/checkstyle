@@ -48,7 +48,7 @@ public class MemberNameCheckTest
     public void testSpecified()
             throws Exception {
 
-        final String pattern = "^m[A-Z][a-zA-Z0-9]*$";
+        final String pattern = "^m[A-Z][a-zA-Z\\d]*$";
 
         final String[] expected = {
             "41:17: " + getCheckMessage(MSG_INVALID_PATTERN, "badMember", pattern),
@@ -62,7 +62,7 @@ public class MemberNameCheckTest
     public void testInnerClass()
             throws Exception {
 
-        final String pattern = "^[a-z][a-zA-Z0-9]*$";
+        final String pattern = "^[a-z][a-zA-Z\\d]*$";
 
         final String[] expected = {
             "63:25: " + getCheckMessage(MSG_INVALID_PATTERN, "ABC", pattern),
@@ -74,7 +74,7 @@ public class MemberNameCheckTest
     @Test
     public void testDefaults() throws Exception {
 
-        final String pattern = "^[a-z][a-zA-Z0-9]*$";
+        final String pattern = "^[a-z][a-zA-Z\\d]*$";
 
         final String[] expected = {
             "21:16: " + getCheckMessage(MSG_INVALID_PATTERN, "_public", pattern),
@@ -152,7 +152,7 @@ public class MemberNameCheckTest
     @Test
     public void testNotPrivate() throws Exception {
 
-        final String pattern = "^[a-z][a-zA-Z0-9]*$";
+        final String pattern = "^[a-z][a-zA-Z\\d]*$";
 
         final String[] expected = {
             "21:16: " + getCheckMessage(MSG_INVALID_PATTERN, "_public", pattern),
@@ -166,7 +166,7 @@ public class MemberNameCheckTest
     @Test
     public void memberNameExtended() throws Exception {
 
-        final String pattern = "^[a-z][a-z0-9][a-zA-Z0-9]*$";
+        final String pattern = "^[a-z][a-z\\d][a-zA-Z\\d]*$";
 
         final String[] expected = {
             "19:16: " + getCheckMessage(MSG_INVALID_PATTERN, "mPublic", pattern),

@@ -1,7 +1,7 @@
 /*
 com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck
 id = ignore
-format = (default)^[a-z][a-zA-Z0-9]*$
+format = (default)^[a-z][a-zA-Z\\d]*$
 applyToPublic = (default)true
 applyToProtected = (default)true
 applyToPackage = (default)true
@@ -9,7 +9,7 @@ applyToPrivate = (default)true
 
 com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck
 id =
-format = (default)^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$
+format = (default)^[A-Z][A-Z\\d]*(_[A-Z\\d]+)*$
 applyToPublic = (default)true
 applyToProtected = (default)true
 applyToPackage = (default)true
@@ -51,10 +51,10 @@ class InputSuppressWarningsFilterWithoutFilter {
     @SuppressWarnings("foo") @interface A { } // violation 'Missing a Javadoc comment'
 
     // include a non-checkstyle suppression; suppression on same line
-    @SuppressWarnings("unused") int I; // violation ''I' must match .* \Q'^[a-z][a-zA-Z0-9]*$'\E'
+    @SuppressWarnings("unused") int I; // violation ''I' must match .* \Q'^[a-z][a-zA-Z\d]*$'\E'
     @SuppressWarnings({"membername"})
-    private int J; // violation 'Name 'J' must match pattern \Q'^[a-z][a-zA-Z0-9]*$'\E'
-    private int K; // violation 'Name 'K' must match pattern \Q'^[a-z][a-zA-Z0-9]*$'\E'
+    private int J; // violation 'Name 'J' must match pattern \Q'^[a-z][a-zA-Z\d]*$'\E'
+    private int K; // violation 'Name 'K' must match pattern \Q'^[a-z][a-zA-Z\d]*$'\E'
 
     // DO NOT REFORMAT: L and X should be on the same line
     @SuppressWarnings(value="membername")

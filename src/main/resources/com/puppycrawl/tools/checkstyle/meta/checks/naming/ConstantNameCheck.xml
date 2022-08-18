@@ -12,7 +12,7 @@
  &lt;/strong&gt;.
  &lt;/p&gt;</description>
          <properties>
-            <property default-value="^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"
+            <property default-value="^[A-Z][A-Z\d]*(_[A-Z\d]+)*$"
                        name="format"
                        type="java.util.regex.Pattern">
                <description>Specifies valid identifiers.</description>

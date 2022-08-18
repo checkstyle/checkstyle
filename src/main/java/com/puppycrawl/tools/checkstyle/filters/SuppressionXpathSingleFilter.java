@@ -105,16 +105,16 @@ import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
  *
  * public class FileThree {
  *   public void MyMethod() {} // violation, name 'MyMethod'
- *                             // must match pattern '^[a-z](_?[a-zA-Z0-9]+)*$'
+ *                             // must match pattern '^[a-z](_?[a-zA-Z\d]+)*$'
  * }
  * </pre>
  * <p>
- * To suppress MethodName check for method names matched pattern 'MyMethod[0-9]':
+ * To suppress MethodName check for method names matched pattern 'MyMethod\d':
  * </p>
  * <pre>
  * &lt;module name=&quot;SuppressionXpathSingleFilter&quot;&gt;
  *   &lt;property name=&quot;checks&quot; value=&quot;MethodName&quot;/&gt;
- *   &lt;property name=&quot;message&quot; value=&quot;MyMethod[0-9]&quot;/&gt;
+ *   &lt;property name=&quot;message&quot; value=&quot;MyMethod\d&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
  * <p>
@@ -125,7 +125,7 @@ import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
  *   public void MyMethod1() {} // OK
  *   public void MyMethod2() {} // OK
  *   public void MyMethodA() {} // violation, name 'MyMethodA' must
- *                              // match pattern '^[a-z](_?[a-zA-Z0-9]+)*$'
+ *                              // match pattern '^[a-z](_?[a-zA-Z\d]+)*$'
  * }
  * </pre>
  * <p>
@@ -134,7 +134,7 @@ import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
  * <pre>
  * &lt;module name=&quot;MethodName&quot;&gt;
  *   &lt;property name=&quot;id&quot; value=&quot;MethodName1&quot;/&gt;
- *   &lt;property name=&quot;format&quot; value=&quot;^[a-z](_?[a-zA-Z0-9]+)*$&quot;/&gt;
+ *   &lt;property name=&quot;format&quot; value=&quot;^[a-z](_?[a-zA-Z\d]+)*$&quot;/&gt;
  * &lt;module/&gt;
  * &lt;module name=&quot;SuppressionXpathSingleFilter&quot;&gt;
  *   &lt;property name=&quot;files&quot; value=&quot;FileOne.java&quot;/&gt;
@@ -150,7 +150,7 @@ import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
  * }
  * public class FileTwo {
  *   public void MyMethod() {} // violation,  name 'MyMethod' must
- *                             //match pattern '^[a-z](_?[a-zA-Z0-9]+)*$'
+ *                             //match pattern '^[a-z](_?[a-zA-Z\d]+)*$'
  * }
  * </pre>
  * <p>
@@ -206,7 +206,7 @@ import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
  *
  * public class FileTwo {
  *   public void MyMethod() {} // violation, name 'MyMethod'
- *                             // must match pattern '^[a-z](_?[a-zA-Z0-9]+)*$'
+ *                             // must match pattern '^[a-z](_?[a-zA-Z\d]+)*$'
  * }
  * </pre>
  * <p>
@@ -231,7 +231,7 @@ import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
  * abstract class FileTwo { // violation of the AbstractClassName check,
  *                          // it should match the pattern "^Abstract.+$"
  *   public void MyMethod() {} // violation, name 'MyMethod'
- *                             // must match pattern '^[a-z](_?[a-zA-Z0-9]+)*$'
+ *                             // must match pattern '^[a-z](_?[a-zA-Z\d]+)*$'
  * }
  * </pre>
  * <p>
@@ -252,7 +252,7 @@ import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
  *   public void MyMethod1() {} // OK
  *   public void MyMethod2() {} // OK
  *   public void MyMethod3() {} // violation, name 'MyMethod3' must
- *                              // match pattern '^[a-z](_?[a-zA-Z0-9]+)*$'
+ *                              // match pattern '^[a-z](_?[a-zA-Z\d]+)*$'
  * }
  * </pre>
  * <p>
@@ -274,7 +274,7 @@ import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
  *   public void testMethod() {
  *     final int testVariable1 = 10; // OK
  *     final int testVariable2 = 10; // violation of the LocalFinalVariableName check,
- *                                   // name 'testVariable2' must match pattern '^[A-Z][A-Z0-9]*$'
+ *                                   // name 'testVariable2' must match pattern '^[A-Z][A-Z\d]*$'
  *   }
  * }
  * </pre>
@@ -378,9 +378,9 @@ import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
  *   }
  *
  *   public void TestMethod2() { // violation of the MethodName check,
- *                               // name 'TestMethod2' must match pattern '^[a-z](_?[a-zA-Z0-9]+)*$'
+ *                               // name 'TestMethod2' must match pattern '^[a-z](_?[a-zA-Z\d]+)*$'
  *     final int num = 10; // violation of the LocalFinalVariableName check,
- *                         // name 'num' must match pattern '^[A-Z][A-Z0-9]*$'
+ *                         // name 'num' must match pattern '^[A-Z][A-Z\d]*$'
  *   }
  * }
  * </pre>
@@ -400,7 +400,7 @@ import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
  * &lt;/module&gt;
  * &lt;module name=&quot;SuppressionXpathSingleFilter&quot;&gt;
  *   &lt;property name=&quot;files&quot; value=&quot;generated-sources&quot;&gt;
- *   &lt;property name=&quot;checks&quot; value=&quot;[a-zA-Z0-9]*&quot;&gt;
+ *   &lt;property name=&quot;checks&quot; value=&quot;[a-zA-Z\d]*&quot;&gt;
  * &lt;/module&gt;
  * </pre>
  * <p>

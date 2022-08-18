@@ -18,7 +18,7 @@
  &lt;a href="https://checkstyle.org/config_naming.html#LambdaParameterName"&gt;LambdaParameterName&lt;/a&gt;.
  &lt;/p&gt;</description>
          <properties>
-            <property default-value="^[a-z][a-zA-Z0-9]*$"
+            <property default-value="^[a-z][a-zA-Z\d]*$"
                        name="format"
                        type="java.util.regex.Pattern">
                <description>Specifies valid identifiers.</description>

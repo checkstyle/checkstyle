@@ -2,14 +2,14 @@
 # Attention, there is no "-x" to avoid problems on Travis
 set -e
 
-if [[ ! $PULL_REQUEST =~ ^([0-9]*)$ ]]; then exit 0; fi
+if [[ ! $PULL_REQUEST =~ ^(\d*)$ ]]; then exit 0; fi
 LINK_COMMITS=https://api.github.com/repos/checkstyle/checkstyle/pulls/$PULL_REQUEST/commits
 COMMITS=$(curl -s -H "Authorization: token $READ_ONLY_TOKEN" "$LINK_COMMITS" \
              | jq '.[0] | .commit.message')
 echo 'Commit messages from github: '"${COMMITS:0:60}"...
 ISSUE_NUMBER=$(echo "$COMMITS" | sed -e 's/^.*Issue //' | sed -e 's/:.*//')
 echo 'Issue number: '"$ISSUE_NUMBER" && RESULT=0
-if [[ $ISSUE_NUMBER =~ ^#[0-9]+$ ]]; then
+if [[ $ISSUE_NUMBER =~ ^#\d+$ ]]; then
     LINK_PR=https://api.github.com/repos/checkstyle/checkstyle/pulls/$PULL_REQUEST
     LINK_ISSUE=https://api.github.com/repos/checkstyle/checkstyle/issues/${ISSUE_NUMBER:1}
     REGEXP=($ISSUE_NUMBER\|https://github.com/checkstyle/checkstyle/issues/${ISSUE_NUMBER:1})

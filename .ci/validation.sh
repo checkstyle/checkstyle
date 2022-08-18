@@ -237,7 +237,7 @@ no-violation-test-josm)
   echo "JOSM revision: ${TESTED}"
   svn -q --force export https://josm.openstreetmap.de/svn/trunk/ -r "${TESTED}" --native-eol LF josm
   cd josm
-  sed -i -E "s/(name=\"checkstyle\" rev=\")([0-9]+\.[0-9]+(-SNAPSHOT)?)/\1${CS_POM_VERSION}/" \
+  sed -i -E "s/(name=\"checkstyle\" rev=\")(\d+\.\d+(-SNAPSHOT)?)/\1${CS_POM_VERSION}/" \
    tools/ivy.xml
   addCheckstyleBundleToAntResolvers
   ant -v checkstyle
@@ -333,7 +333,7 @@ verify-no-exception-configs)
   fail=0
   if [[ $DIFF_TEXT != "" ]]; then
     echo "Diff is detected."
-    if [[ $PULL_REQUEST =~ ^([0-9]+)$ ]]; then
+    if [[ $PULL_REQUEST =~ ^(\d+)$ ]]; then
       LINK_PR=https://api.github.com/repos/checkstyle/checkstyle/pulls/$PULL_REQUEST
       REGEXP="https://github.com/checkstyle/contribution/pull/"
       PR_DESC=$(curl -s -H "Authorization: token $READ_ONLY_TOKEN" "$LINK_PR" \
@@ -560,7 +560,7 @@ sonarqube)
   # SONAR_TOKEN=xxxxxx ./.ci/wercker.sh sonarqube
   # execution on local for non-master:
   # SONAR_TOKEN=xxxxxx PR=xxxxxx WERCKER_GIT_BRANCH=xxxxxx ./.ci/wercker.sh sonarqube
-  if [[ $PR && $PR =~ ^([0-9]*)$ ]]; then
+  if [[ $PR && $PR =~ ^(\d*)$ ]]; then
       SONAR_PR_VARIABLES="-Dsonar.pullrequest.key=$PR"
       SONAR_PR_VARIABLES+=" -Dsonar.pullrequest.branch=$WERCKER_GIT_BRANCH"
       SONAR_PR_VARIABLES+=" -Dsonar.pullrequest.base=master"

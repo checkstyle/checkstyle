@@ -10,7 +10,7 @@
  a local variable.
  &lt;/p&gt;</description>
          <properties>
-            <property default-value="^[a-z][a-zA-Z0-9]*$"
+            <property default-value="^[a-z][a-zA-Z\d]*$"
                        name="format"
                        type="java.util.regex.Pattern">
                <description>Specifies valid identifiers.</description>

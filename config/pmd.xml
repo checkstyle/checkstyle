@@ -91,12 +91,12 @@
   </rule>
   <rule ref="category/java/codestyle.xml/ClassNamingConventions">
     <properties>
-      <property name="classPattern" value="[A-Z][a-zA-Z0-9]*" />
-      <property name="abstractClassPattern" value="Abstract[A-Z][a-zA-Z0-9]*" />
-      <property name="interfacePattern" value="[A-Z][a-zA-Z0-9]*" />
-      <property name="enumPattern" value="[A-Z][a-zA-Z0-9]*" />
-      <property name="annotationPattern" value="[A-Z][a-zA-Z0-9]*" />
-      <property name="utilityClassPattern" value="[A-Z][a-zA-Z0-9]*Util" />
+      <property name="classPattern" value="[A-Z][a-zA-Z\d]*" />
+      <property name="abstractClassPattern" value="Abstract[A-Z][a-zA-Z\d]*" />
+      <property name="interfacePattern" value="[A-Z][a-zA-Z\d]*" />
+      <property name="enumPattern" value="[A-Z][a-zA-Z\d]*" />
+      <property name="annotationPattern" value="[A-Z][a-zA-Z\d]*" />
+      <property name="utilityClassPattern" value="[A-Z][a-zA-Z\d]*Util" />
       <!-- Definitions and XmlLoader.LoadExternalDtdFeatureProvider aren't utility classes.
            AutomaticBean is part of API, we can not change a name.
            JavadocTokenTypes and TokenTypes aren't utility classes. They are

@@ -1,6 +1,6 @@
 /*
 LocalVariableName
-format = ^[a-z]{2,}[a-zA-Z0-9]*$
+format = ^[a-z]{2,}[a-zA-Z\\d]*$
 allowOneCharVarInForLoop = true
 
 

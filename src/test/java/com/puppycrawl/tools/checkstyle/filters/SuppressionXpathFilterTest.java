@@ -39,7 +39,7 @@ import nl.jqno.equalsverifier.Warning;
 
 public class SuppressionXpathFilterTest extends AbstractModuleTestSupport {
 
-    private static final String PATTERN = "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$";
+    private static final String PATTERN = "^[A-Z][A-Z\\d]*(_[A-Z\\d]+)*$";
 
     private static final String[] ALL_MESSAGES = {
         "20:29: " + getCheckMessage(ConstantNameCheck.class,
@@ -171,7 +171,7 @@ public class SuppressionXpathFilterTest extends AbstractModuleTestSupport {
 
     @Test
     public void testFalseEncodeString() throws Exception {
-        final String pattern = "[^a-zA-z0-9]*";
+        final String pattern = "[^a-zA-z\\d]*";
         final String[] expected = {
             "17:24: " + getCheckMessage(IllegalTokenTextCheck.class, MSG_KEY, pattern),
             "19:23: " + getCheckMessage(IllegalTokenTextCheck.class, MSG_KEY, pattern),
@@ -200,7 +200,7 @@ public class SuppressionXpathFilterTest extends AbstractModuleTestSupport {
 
     @Test
     public void testFalseEncodeChar() throws Exception {
-        final String pattern = "[^a-zA-z0-9]*";
+        final String pattern = "[^a-zA-z\\d]*";
         final String[] expected = {
             "17:14: " + getCheckMessage(IllegalTokenTextCheck.class, MSG_KEY, pattern),
             "19:14: " + getCheckMessage(IllegalTokenTextCheck.class, MSG_KEY, pattern),

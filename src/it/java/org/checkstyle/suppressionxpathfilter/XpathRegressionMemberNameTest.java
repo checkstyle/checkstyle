@@ -43,7 +43,7 @@ public class XpathRegressionMemberNameTest extends AbstractXpathTestSupport {
         final File fileToProcess =
                 new File(getPath("SuppressionXpathRegressionMemberName1.java"));
 
-        final String pattern = "^[a-z][a-zA-Z0-9]*$";
+        final String pattern = "^[a-z][a-zA-Z\\d]*$";
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(MemberNameCheck.class);
 
@@ -67,10 +67,10 @@ public class XpathRegressionMemberNameTest extends AbstractXpathTestSupport {
         final File fileToProcess =
                 new File(getPath("SuppressionXpathRegressionMemberName2.java"));
 
-        final String pattern = "^m[A-Z][a-zA-Z0-9]*$";
+        final String pattern = "^m[A-Z][a-zA-Z\\d]*$";
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(MemberNameCheck.class);
-        moduleConfig.addProperty("format", "^m[A-Z][a-zA-Z0-9]*$");
+        moduleConfig.addProperty("format", "^m[A-Z][a-zA-Z\\d]*$");
         moduleConfig.addProperty("applyToProtected", "false");
         moduleConfig.addProperty("applyToPackage", "false");
 
