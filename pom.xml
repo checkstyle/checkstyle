@@ -232,6 +232,7 @@
     <junit.version>5.9.0</junit.version>
     <forbiddenapis.version>3.3</forbiddenapis.version>
     <json-schema-validator.version>1.2.0</json-schema-validator.version>
+    <error-prone.version>2.15.0</error-prone.version>
   </properties>
 
   <dependencies>
@@ -751,46 +752,48 @@
             <arg>-Xpkginfo:always</arg>
           </compilerArgs>
         </configuration>
-        <!-- till https://github.com/checkstyle/checkstyle/issues/2160
         <executions>
           <execution>
-            <id>compile-without-error-prone</id>
-            <goals>
-              <goal>testCompile</goal>
-            </goals>
-            <configuration>
-              <testIncludes>
-                <testInclude>**/Input*.java</testInclude>
-              </testIncludes>
-            </configuration>
-          </execution>
-          <execution>
             <id>compile-with-error-prone</id>
+            <phase>verify</phase>
             <goals>
+              <goal>compile</goal>
               <goal>testCompile</goal>
             </goals>
             <configuration>
-              <compilerId>javac-with-errorprone</compilerId>
-              <forceJavacCompilerUse>true</forceJavacCompilerUse>
-              <testExcludes>
-                <testExclude>**/*Input*.java</testExclude>
-              </testExcludes>
+              <compilerArgs>
+                <arg>-d</arg>
+                <arg>${project.build.directory}/classes-ep</arg>
+                <arg>-Xpkginfo:always</arg>
+                <arg>-XDcompilePolicy=simple</arg>
+                <arg>
+                  -Xplugin:ErrorProne \
+                  -XepExcludedPaths:.*[\\/]resources[\\/].*
+                </arg>
+                <!-- Required on JDK 16 and newer due to https://openjdk.org/jeps/396 -->
+                <arg>
+                  -J--add-exports=jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED \
+                  -J--add-exports=jdk.compiler/com.sun.tools.javac.file=ALL-UNNAMED \
+                  -J--add-exports=jdk.compiler/com.sun.tools.javac.main=ALL-UNNAMED \
+                  -J--add-exports=jdk.compiler/com.sun.tools.javac.model=ALL-UNNAMED \
+                  -J--add-exports=jdk.compiler/com.sun.tools.javac.parser=ALL-UNNAMED \
+                  -J--add-exports=jdk.compiler/com.sun.tools.javac.processing=ALL-UNNAMED \
+                  -J--add-exports=jdk.compiler/com.sun.tools.javac.tree=ALL-UNNAMED \
+                  -J--add-exports=jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED \
+                  -J--add-opens=jdk.compiler/com.sun.tools.javac.code=ALL-UNNAMED \
+                  -J--add-opens=jdk.compiler/com.sun.tools.javac.comp=ALL-UNNAMED \
+                </arg>
+              </compilerArgs>
+              <annotationProcessorPaths>
+                <path>
+                  <groupId>com.google.errorprone</groupId>
+                  <artifactId>error_prone_core</artifactId>
+                  <version>${error-prone.version}</version>
+                </path>
+              </annotationProcessorPaths>
             </configuration>
           </execution>
         </executions>
-        <dependencies>
-          <dependency>
-            <groupId>org.codehaus.plexus</groupId>
-            <artifactId>plexus-compiler-javac-errorprone</artifactId>
-            <version>2.6</version>
-          </dependency>
-          <dependency>
-            <groupId>com.google.errorprone</groupId>
-            <artifactId>error_prone_core</artifactId>
-            <version>2.0.5</version>
-          </dependency>
-        </dependencies>
-        -->
       </plugin>
 
       <plugin>
@@ -2185,6 +2188,18 @@
             <version>${json-schema-validator.version}</version>
             <executions>
               <execution>
+                <phase>none</phase>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>3.10.1</version>
+            <executions>
+              <execution>
+                <!-- Skip error prone -->
+                <id>compile-with-error-prone</id>
                 <phase>none</phase>
               </execution>
             </executions>
