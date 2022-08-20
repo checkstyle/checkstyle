@@ -464,8 +464,8 @@
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl</mutatedClass>
     <mutatedMethod>toString</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to java/util/Objects::hashCode</description>
-    <lineContent>+ &quot;, children=&quot; + Objects.hashCode(children)</lineContent>
+    <description>removed call to java/util/Arrays::hashCode</description>
+    <lineContent>+ &quot;, children=&quot; + Arrays.hashCode(children)</lineContent>
   </mutation>
 
   <mutation unstable="false">
