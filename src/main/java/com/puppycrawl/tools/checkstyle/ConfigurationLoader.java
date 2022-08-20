@@ -335,7 +335,7 @@ public final class ConfigurationLoader {
      * outside inner class for easier testing since inner class requires an instance.
      *
      * <p>Code copied from
-     * <a href="http://cvs.apache.org/viewcvs/jakarta-ant/src/main/org/apache/tools/ant/ProjectHelper.java">
+     * <a href="https://github.com/apache/ant/blob/master/src/main/org/apache/tools/ant/ProjectHelper.java">
      * ant
      * </a>
      *
