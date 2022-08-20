@@ -92,6 +92,23 @@ public class VariableDeclarationUsageDistanceCheckTest extends
     }
 
     @Test
+    public void testIfStatements() throws Exception {
+        final String[] expected = {
+            "18:9: " + getCheckMessage(MSG_KEY, "a", 4, 1),
+            "28:9: " + getCheckMessage(MSG_KEY, "a", 2, 1),
+            "32:9: " + getCheckMessage(MSG_KEY, "b", 2, 1),
+            "38:9: " + getCheckMessage(MSG_KEY, "c", 3, 1),
+            "49:9: " + getCheckMessage(MSG_KEY, "b", 2, 1),
+            "50:9: " + getCheckMessage(MSG_KEY, "c", 3, 1),
+            "51:9: " + getCheckMessage(MSG_KEY, "d", 4, 1),
+            "63:9: " + getCheckMessage(MSG_KEY, "a", 4, 1),
+
+        };
+        verifyWithInlineConfigParser(
+            getPath("InputVariableDeclarationUsageDistanceIfStatements.java"), expected);
+    }
+
+    @Test
     public void testDistance() throws Exception {
         final String[] expected = {
             "83:9: " + getCheckMessage(MSG_KEY, "count", 4, 3),
