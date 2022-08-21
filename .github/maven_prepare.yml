@@ -1,0 +1,32 @@
+#############################################################################
+# GitHub Action to Run Maven Release Prepare.
+#
+#############################################################################
+name: "Maven Release Prepare"
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'New Version'
+        required: true
+permissions:
+  contents: write
+  pull-requests: write
+jobs:
+  prepare:
+    name:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the latest code
+        uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Run Shell Script
+        run: |
+          ./.ci/maven-prepare.sh ${{ github.event.inputs.version }}
+      - name: Commit and Push
+        run: |
+              git config --global user.name 'github-actions[bot]'
+              git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+              git commit -am "minor: Bump project version to ${{ github.event.inputs.version }}"
+              git push
