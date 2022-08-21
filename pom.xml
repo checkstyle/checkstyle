@@ -2146,6 +2146,7 @@
             <excludedLink>https://travis-ci.com/</excludedLink>
             <!-- permanent 403 -->
             <excludedLink>https://docs.github.com/en/rest/checks</excludedLink>
+            <excludedLink>https://www.ietf.org/rfc/rfc4627.txt</excludedLink>
             <!-- until https://github.com/checkstyle/checkstyle/issues/11754 -->
             <excludedLink>https://checkstyle.sourceforge.io/version/6.18</excludedLink>
           </excludedLinks>
