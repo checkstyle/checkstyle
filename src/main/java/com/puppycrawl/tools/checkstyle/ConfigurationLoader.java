@@ -390,7 +390,7 @@ public final class ConfigurationLoader {
      * reference from the second collection.
      *
      * <p>Code copied from
-     * <a href="http://cvs.apache.org/viewcvs/jakarta-ant/src/main/org/apache/tools/ant/ProjectHelper.java">
+     * <a href="https://github.com/apache/ant/blob/master/src/main/org/apache/tools/ant/ProjectHelper.java">
      * ant
      * </a>
      *
