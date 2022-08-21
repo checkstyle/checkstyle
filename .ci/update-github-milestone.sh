@@ -3,7 +3,7 @@ set -e
 
 source ./.ci/util.sh
 
-checkForVariable "READ_ONLY_TOKEN"
+checkForVariable "GITHUB_TOKEN"
 
 VERSION=$1
 
@@ -17,5 +17,5 @@ echo MILESTONE_ID="$MILESTONE_ID"
 
 curl \
   -X PATCH https://api.github.com/repos/checkstyle/checkstyle/milestones/"$MILESTONE_ID" \
-  -H "Authorization: token $READ_ONLY_TOKEN" \
+  -H "Authorization: token $GITHUB_TOKEN" \
   -d "{ \"title\": \"$VERSION\" }"
