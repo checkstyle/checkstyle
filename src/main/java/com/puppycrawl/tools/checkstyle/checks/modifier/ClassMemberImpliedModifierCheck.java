@@ -24,6 +24,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <p>
@@ -210,23 +211,22 @@ public class ClassMemberImpliedModifierCheck
     @Override
     public void visitToken(DetailAST ast) {
         if (isInTypeBlock(ast)) {
-            final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
             switch (ast.getType()) {
                 case TokenTypes.ENUM_DEF:
                     if (violateImpliedStaticOnNestedEnum
-                            && modifiers.findFirstToken(TokenTypes.LITERAL_STATIC) == null) {
+                            && TokenUtil.hasNotModifiers(ast, TokenTypes.LITERAL_STATIC)) {
                         log(ast, MSG_KEY, STATIC_KEYWORD);
                     }
                     break;
                 case TokenTypes.INTERFACE_DEF:
                     if (violateImpliedStaticOnNestedInterface
-                            && modifiers.findFirstToken(TokenTypes.LITERAL_STATIC) == null) {
+                            && TokenUtil.hasNotModifiers(ast, TokenTypes.LITERAL_STATIC)) {
                         log(ast, MSG_KEY, STATIC_KEYWORD);
                     }
                     break;
                 case TokenTypes.RECORD_DEF:
                     if (violateImpliedStaticOnNestedRecord
-                            && modifiers.findFirstToken(TokenTypes.LITERAL_STATIC) == null) {
+                            && TokenUtil.hasNotModifiers(ast, TokenTypes.LITERAL_STATIC)) {
                         log(ast, MSG_KEY, STATIC_KEYWORD);
                     }
                     break;

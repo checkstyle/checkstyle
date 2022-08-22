@@ -220,12 +220,9 @@ public class FinalParametersCheck extends AbstractCheck {
      * @param method method or ctor to check.
      */
     private void visitMethod(final DetailAST method) {
-        final DetailAST modifiers =
-            method.findFirstToken(TokenTypes.MODIFIERS);
-
         // ignore abstract and native methods
-        if (modifiers.findFirstToken(TokenTypes.ABSTRACT) == null
-                && modifiers.findFirstToken(TokenTypes.LITERAL_NATIVE) == null) {
+        if (TokenUtil.hasNotModifiers(method, TokenTypes.ABSTRACT,
+                TokenTypes.LITERAL_NATIVE)) {
             final DetailAST parameters =
                 method.findFirstToken(TokenTypes.PARAMETERS);
             TokenUtil.forEachChild(parameters, TokenTypes.PARAMETER_DEF, this::checkParam);
@@ -256,7 +253,7 @@ public class FinalParametersCheck extends AbstractCheck {
      * @param param parameter to check.
      */
     private void checkParam(final DetailAST param) {
-        if (param.findFirstToken(TokenTypes.MODIFIERS).findFirstToken(TokenTypes.FINAL) == null
+        if (TokenUtil.hasNotModifiers(param, TokenTypes.FINAL)
                 && !isIgnoredParam(param)
                 && !CheckUtil.isReceiverParameter(param)) {
             final DetailAST paramName = param.findFirstToken(TokenTypes.IDENT);

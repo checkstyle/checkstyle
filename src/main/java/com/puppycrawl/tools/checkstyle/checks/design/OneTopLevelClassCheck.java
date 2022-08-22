@@ -172,9 +172,7 @@ public class OneTopLevelClassCheck extends AbstractCheck {
      * @return true if a type has a public access level modifier.
      */
     private static boolean isPublic(DetailAST typeDef) {
-        final DetailAST modifiers =
-                typeDef.findFirstToken(TokenTypes.MODIFIERS);
-        return modifiers.findFirstToken(TokenTypes.LITERAL_PUBLIC) != null;
+        return TokenUtil.hasModifiers(typeDef, TokenTypes.LITERAL_PUBLIC);
     }
 
 }

@@ -23,6 +23,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <p>
@@ -147,10 +148,8 @@ public class LocalFinalVariableNameCheck
 
     @Override
     protected final boolean mustCheckName(DetailAST ast) {
-        final DetailAST modifiersAST =
-            ast.findFirstToken(TokenTypes.MODIFIERS);
         final boolean isFinal = ast.getType() == TokenTypes.RESOURCE
-            || modifiersAST.findFirstToken(TokenTypes.FINAL) != null;
+            || TokenUtil.hasModifiers(ast, TokenTypes.FINAL);
         return isFinal && ScopeUtil.isLocalVariableDef(ast);
     }
 

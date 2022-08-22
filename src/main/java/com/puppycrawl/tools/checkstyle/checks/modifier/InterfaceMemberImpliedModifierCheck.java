@@ -24,6 +24,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <p>
@@ -397,17 +398,15 @@ public class InterfaceMemberImpliedModifierCheck
      * @param ast the method AST
      */
     private void processMethod(DetailAST ast) {
-        final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
         if (violateImpliedPublicMethod
-                && modifiers.findFirstToken(TokenTypes.LITERAL_PRIVATE) == null
-                && modifiers.findFirstToken(TokenTypes.LITERAL_PUBLIC) == null) {
+                && TokenUtil.hasNotModifiers(ast, TokenTypes.LITERAL_PRIVATE,
+                TokenTypes.LITERAL_PUBLIC)) {
             log(ast, MSG_KEY, PUBLIC_ACCESS_MODIFIER);
         }
         if (violateImpliedAbstractMethod
-                && modifiers.findFirstToken(TokenTypes.LITERAL_PRIVATE) == null
-                && modifiers.findFirstToken(TokenTypes.LITERAL_STATIC) == null
-                && modifiers.findFirstToken(TokenTypes.LITERAL_DEFAULT) == null
-                && modifiers.findFirstToken(TokenTypes.ABSTRACT) == null) {
+                && TokenUtil.hasNotModifiers(ast, TokenTypes.LITERAL_PRIVATE,
+                TokenTypes.LITERAL_STATIC, TokenTypes.LITERAL_DEFAULT,
+                TokenTypes.ABSTRACT)) {
             log(ast, MSG_KEY, ABSTRACT_KEYWORD);
         }
     }
@@ -418,17 +417,16 @@ public class InterfaceMemberImpliedModifierCheck
      * @param ast the field AST
      */
     private void processField(DetailAST ast) {
-        final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
         if (violateImpliedPublicField
-                && modifiers.findFirstToken(TokenTypes.LITERAL_PUBLIC) == null) {
+                && TokenUtil.hasNotModifiers(ast, TokenTypes.LITERAL_PUBLIC)) {
             log(ast, MSG_KEY, PUBLIC_ACCESS_MODIFIER);
         }
         if (violateImpliedStaticField
-                && modifiers.findFirstToken(TokenTypes.LITERAL_STATIC) == null) {
+                && TokenUtil.hasNotModifiers(ast, TokenTypes.LITERAL_STATIC)) {
             log(ast, MSG_KEY, STATIC_KEYWORD);
         }
         if (violateImpliedFinalField
-                && modifiers.findFirstToken(TokenTypes.FINAL) == null) {
+                && TokenUtil.hasNotModifiers(ast, TokenTypes.FINAL)) {
             log(ast, MSG_KEY, FINAL_KEYWORD);
         }
     }
@@ -439,13 +437,12 @@ public class InterfaceMemberImpliedModifierCheck
      * @param ast the nested type AST
      */
     private void processNestedType(DetailAST ast) {
-        final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
         if (violateImpliedPublicNested
-                && modifiers.findFirstToken(TokenTypes.LITERAL_PUBLIC) == null) {
+                && TokenUtil.hasNotModifiers(ast, TokenTypes.LITERAL_PUBLIC)) {
             log(ast, MSG_KEY, PUBLIC_ACCESS_MODIFIER);
         }
         if (violateImpliedStaticNested
-                && modifiers.findFirstToken(TokenTypes.LITERAL_STATIC) == null) {
+                && TokenUtil.hasNotModifiers(ast, TokenTypes.LITERAL_STATIC)) {
             log(ast, MSG_KEY, STATIC_KEYWORD);
         }
     }

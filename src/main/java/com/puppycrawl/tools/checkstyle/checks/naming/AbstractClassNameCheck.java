@@ -25,6 +25,7 @@ import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <p>
@@ -239,10 +240,7 @@ public final class AbstractClassNameCheck extends AbstractCheck {
      * @return true if a given class declared as abstract.
      */
     private static boolean isAbstract(DetailAST ast) {
-        final DetailAST abstractAST = ast.findFirstToken(TokenTypes.MODIFIERS)
-            .findFirstToken(TokenTypes.ABSTRACT);
-
-        return abstractAST != null;
+        return TokenUtil.hasModifiers(ast, TokenTypes.ABSTRACT);
     }
 
     /**

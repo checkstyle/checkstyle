@@ -353,4 +353,33 @@ public final class TokenUtil {
                 .collect(BitSet::new, BitSet::set, BitSet::or);
     }
 
+    /**
+     * Checks whether the specified type has all the specified modifiers.
+     *
+     * @param ast the AST node to check
+     * @param modifiersTypes int array of all modifiers types to check.
+     * @return true if AST node has all specified modifiers.
+     */
+    public static boolean hasModifiers(DetailAST ast, int... modifiersTypes) {
+        final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
+
+        return modifiers != null
+                && Arrays.stream(modifiersTypes)
+                .allMatch(modifier -> modifiers.findFirstToken(modifier) != null);
+    }
+
+    /**
+     * Checks whether the specified type has not all the specified modifiers.
+     *
+     * @param ast the AST node to check
+     * @param modifiersTypes int array of all modifiers types to check.
+     * @return true if AST node has not all specified modifiers.
+     */
+    public static boolean hasNotModifiers(DetailAST ast, int... modifiersTypes) {
+        final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
+
+        return modifiers == null
+                || Arrays.stream(modifiersTypes)
+                .allMatch(modifier -> modifiers.findFirstToken(modifier) == null);
+    }
 }
