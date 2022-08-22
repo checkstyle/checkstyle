@@ -5824,10 +5824,42 @@ try (Reader r = new PipedReader(); s2; Reader s3 = new PipedReader() // violatio
         </p>
       </subsection>
 
+      <subsection name="Properties" id="OverloadMethodsDeclarationOrder_Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>modifierGroups</td>
+              <td>custom overload groups, allows for the definitions of multiple overloading method groups.</td>
+              <td><a href="property_types.html#Pattern[]">Pattern[]</a></td>
+              <td><code>{}</code></td>
+              <th>10.4</th>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
       <subsection name="Examples" id="OverloadMethodsDeclarationOrder_Examples">
-        <p>To configure the check:</p>
+        <p>
+          To configure the check:
+        </p>
         <source>
 &lt;module name="OverloadMethodsDeclarationOrder"/&gt;
+        </source>
+        <p>
+          Example of incorrect grouping of overloaded methods:
+        </p>
+        <source>
+public void foo(int i) {} // OK
+public void foo(String s) {} // OK
+public void notFoo() {} // Violation. Has to be after foo(int i, String s)
+public void foo(String s, int i) {}
         </source>
         <p>Example of correct grouping of overloaded methods:</p>
         <source>
@@ -5837,13 +5869,40 @@ public void foo(String s, int i) {}
 public void foo(int i, String s) {}
 public void notFoo() {}
         </source>
-        <p>Example of incorrect grouping of overloaded methods:</p>
+        <p>
+          To configure the check to group static and private methods separately within their own individual groups
+        </p>
+        <source>
+&lt;module name=&quot;OverloadMethodsDeclarationOrder&quot;&gt;
+  &lt;property name=&quot;modifierGroups&quot; value=&quot;static, private&quot;&gt;&lt;/property&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          Example of code with violation
+        </p>
         <source>
 public void foo(int i) {} // OK
 public void foo(String s) {} // OK
-public void notFoo() {} // violation. Have to be after foo(String s, int i)
-public void foo(int i, String s) {}
-public void foo(String s, int i) {}
+public void notFoo() {} // OK
+private void foo(boolean b) {} // OK
+protected void foo(String s, int i) {} // Violation. Has to be after foo(String s)
+private void foo(byte b) {} // Violation. Has to be after foo(boolean b)
+private static void foo(String s) {} // OK
+private static void notFoo(String s) {} // Violation. Has to be after static foo(int i)
+private static void foo(int i) {}
+        </source>
+        <p>
+          Example of compliant code
+        </p>
+        <source>
+public void foo(int i) {}
+public void foo(String s) {}
+public void notFoo() {}
+private void foo(boolean b) {}
+private void foo(String s, int i) {}
+public void notFoo2() {}
+private static void foo(String s) {}
+private static void foo(String s, int i) {}
         </source>
       </subsection>
 
