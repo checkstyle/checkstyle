@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.naming;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <p>
@@ -163,9 +164,8 @@ public class ConstantNameCheck
 
         final DetailAST modifiersAST =
             ast.findFirstToken(TokenTypes.MODIFIERS);
-        final boolean isStaticFinal =
-            modifiersAST.findFirstToken(TokenTypes.LITERAL_STATIC) != null
-                && modifiersAST.findFirstToken(TokenTypes.FINAL) != null
+        final boolean isStaticFinal = TokenUtil.hasModifiers(ast,
+                TokenTypes.LITERAL_STATIC, TokenTypes.FINAL)
             || ScopeUtil.isInAnnotationBlock(ast)
             || ScopeUtil.isInInterfaceBlock(ast);
         if (isStaticFinal && shouldCheckInScope(modifiersAST)

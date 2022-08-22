@@ -355,18 +355,13 @@ public class RedundantModifierCheck
      * @param ast method AST
      */
     private void processMethods(DetailAST ast) {
-        final DetailAST modifiers =
-                        ast.findFirstToken(TokenTypes.MODIFIERS);
         // private method?
-        boolean checkFinal =
-            modifiers.findFirstToken(TokenTypes.LITERAL_PRIVATE) != null;
+        boolean checkFinal = TokenUtil.hasModifiers(ast, TokenTypes.LITERAL_PRIVATE);
         // declared in a final class?
         DetailAST parent = ast.getParent();
         while (parent != null && !checkFinal) {
             if (parent.getType() == TokenTypes.CLASS_DEF) {
-                final DetailAST classModifiers =
-                    parent.findFirstToken(TokenTypes.MODIFIERS);
-                checkFinal = classModifiers.findFirstToken(TokenTypes.FINAL) != null;
+                checkFinal = TokenUtil.hasModifiers(parent, TokenTypes.FINAL);
                 parent = null;
             }
             else if (parent.getType() == TokenTypes.LITERAL_NEW
@@ -375,7 +370,7 @@ public class RedundantModifierCheck
                 parent = null;
             }
             else if (parent.getType() == TokenTypes.ENUM_DEF) {
-                checkFinal = modifiers.findFirstToken(TokenTypes.LITERAL_STATIC) != null;
+                checkFinal = TokenUtil.hasModifiers(ast, TokenTypes.LITERAL_STATIC);
                 parent = null;
             }
             else {
@@ -449,9 +444,7 @@ public class RedundantModifierCheck
      * @return true if class is protected, false otherwise
      */
     private static boolean isClassProtected(DetailAST classDef) {
-        final DetailAST classModifiers =
-                classDef.findFirstToken(TokenTypes.MODIFIERS);
-        return classModifiers.findFirstToken(TokenTypes.LITERAL_PROTECTED) != null;
+        return TokenUtil.hasModifiers(classDef, TokenTypes.LITERAL_PROTECTED);
     }
 
     /**
@@ -462,9 +455,8 @@ public class RedundantModifierCheck
      */
     private static boolean isClassPublic(DetailAST ast) {
         boolean isAccessibleFromPublic = false;
-        final DetailAST modifiersAst = ast.findFirstToken(TokenTypes.MODIFIERS);
         final boolean hasPublicModifier =
-                modifiersAst.findFirstToken(TokenTypes.LITERAL_PUBLIC) != null;
+                TokenUtil.hasModifiers(ast, TokenTypes.LITERAL_PUBLIC);
 
         if (TokenUtil.isRootNode(ast.getParent())) {
             isAccessibleFromPublic = hasPublicModifier;

@@ -35,6 +35,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <p>
@@ -917,8 +918,7 @@ public class VisibilityModifierCheck
      * @return true if current field is final.
      */
     private static boolean isFinalField(DetailAST variableDef) {
-        final DetailAST modifiers = variableDef.findFirstToken(TokenTypes.MODIFIERS);
-        return modifiers.findFirstToken(TokenTypes.FINAL) != null;
+        return TokenUtil.hasModifiers(variableDef, TokenTypes.FINAL);
     }
 
     /**

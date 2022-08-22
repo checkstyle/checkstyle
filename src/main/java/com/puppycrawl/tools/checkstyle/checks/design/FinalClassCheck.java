@@ -214,14 +214,13 @@ public class FinalClassCheck
      */
     private void visitCtor(DetailAST ast) {
         if (!ScopeUtil.isInEnumBlock(ast) && !ScopeUtil.isInRecordBlock(ast)) {
-            final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
             // Can be only of type ClassDesc, preceding if statements guarantee it.
             final ClassDesc desc = (ClassDesc) typeDeclarations.getFirst();
-            if (modifiers.findFirstToken(TokenTypes.LITERAL_PRIVATE) == null) {
-                desc.registerNonPrivateCtor();
+            if (TokenUtil.hasModifiers(ast, TokenTypes.LITERAL_PRIVATE)) {
+                desc.registerPrivateCtor();
             }
             else {
-                desc.registerPrivateCtor();
+                desc.registerNonPrivateCtor();
             }
         }
     }
@@ -527,9 +526,8 @@ public class FinalClassCheck
          */
         /* package */ ClassDesc(String qualifiedName, int depth, DetailAST classAst) {
             super(qualifiedName, depth, classAst);
-            final DetailAST modifiers = classAst.findFirstToken(TokenTypes.MODIFIERS);
-            declaredAsFinal = modifiers.findFirstToken(TokenTypes.FINAL) != null;
-            declaredAsAbstract = modifiers.findFirstToken(TokenTypes.ABSTRACT) != null;
+            declaredAsFinal = TokenUtil.hasModifiers(classAst, TokenTypes.FINAL);
+            declaredAsAbstract = TokenUtil.hasModifiers(classAst, TokenTypes.ABSTRACT);
         }
 
         /** Adds private ctor. */

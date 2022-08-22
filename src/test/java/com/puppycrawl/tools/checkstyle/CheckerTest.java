@@ -82,6 +82,7 @@ import com.puppycrawl.tools.checkstyle.internal.testmodules.TestFileSetCheck;
 import com.puppycrawl.tools.checkstyle.internal.utils.CloseAndFlushTestByteArrayOutputStream;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * CheckerTest.
@@ -1773,8 +1774,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
         @Override
         public void visitToken(DetailAST ast) {
-            if (ast.findFirstToken(TokenTypes.MODIFIERS).findFirstToken(
-                    TokenTypes.BLOCK_COMMENT_BEGIN) != null) {
+            if (TokenUtil.hasModifiers(ast, TokenTypes.BLOCK_COMMENT_BEGIN)) {
                 log(ast, "AST has incorrect structure structure."
                     + " The check does not require comment nodes but there were comment nodes"
                     + " in the AST.");
@@ -1832,8 +1832,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
         @Override
         public void visitToken(DetailAST ast) {
-            if (ast.findFirstToken(TokenTypes.MODIFIERS).findFirstToken(
-                    TokenTypes.BLOCK_COMMENT_BEGIN) == null) {
+            if (TokenUtil.hasNotModifiers(ast, TokenTypes.BLOCK_COMMENT_BEGIN)) {
                 log(ast, "Incorrect AST structure.");
             }
             final int childCount = ast.getChildCount();

@@ -25,6 +25,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <p>
@@ -237,8 +238,7 @@ public class ExplicitInitializationCheck extends AbstractCheck {
             final DetailAST assign = ast.findFirstToken(TokenTypes.ASSIGN);
 
             if (assign != null) {
-                final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
-                skipCase = modifiers.findFirstToken(TokenTypes.FINAL) != null;
+                skipCase = TokenUtil.hasModifiers(ast, TokenTypes.FINAL);
             }
         }
         return skipCase;

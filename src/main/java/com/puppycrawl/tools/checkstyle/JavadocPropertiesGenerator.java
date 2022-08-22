@@ -33,6 +33,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
@@ -171,10 +172,8 @@ public final class JavadocPropertiesGenerator {
             result = arrayDeclarator == null
                     && type.getFirstChild().getType() == TokenTypes.LITERAL_INT;
             if (result) {
-                final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
-                result = modifiers.findFirstToken(TokenTypes.LITERAL_PUBLIC) != null
-                    && modifiers.findFirstToken(TokenTypes.LITERAL_STATIC) != null
-                    && modifiers.findFirstToken(TokenTypes.FINAL) != null;
+                result = TokenUtil.hasModifiers(ast, TokenTypes.LITERAL_PUBLIC,
+                        TokenTypes.LITERAL_STATIC, TokenTypes.FINAL);
             }
         }
         return result;

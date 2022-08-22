@@ -446,10 +446,8 @@ public class HiddenFieldCheck
         // class body in addition to enum constant class bodies)
         // but not attempted as it seems out of the scope of this
         // check.
-        final DetailAST typeMods = ast.findFirstToken(TokenTypes.MODIFIERS);
-        final boolean isStaticInnerType =
-                typeMods != null
-                        && typeMods.findFirstToken(TokenTypes.LITERAL_STATIC) != null;
+        final boolean isStaticInnerType = TokenUtil.hasModifiers(ast,
+                TokenTypes.LITERAL_STATIC);
         final String frameName;
 
         if (type == TokenTypes.CLASS_DEF
@@ -470,13 +468,11 @@ public class HiddenFieldCheck
                 if (child.getType() == TokenTypes.VARIABLE_DEF) {
                     final String name =
                         child.findFirstToken(TokenTypes.IDENT).getText();
-                    final DetailAST mods =
-                        child.findFirstToken(TokenTypes.MODIFIERS);
-                    if (mods.findFirstToken(TokenTypes.LITERAL_STATIC) == null) {
-                        newFrame.addInstanceField(name);
+                    if (TokenUtil.hasModifiers(child, TokenTypes.LITERAL_STATIC)) {
+                        newFrame.addStaticField(name);
                     }
                     else {
-                        newFrame.addStaticField(name);
+                        newFrame.addInstanceField(name);
                     }
                 }
                 child = child.getNextSibling();
@@ -585,9 +581,7 @@ public class HiddenFieldCheck
             else if (parent.getType() == TokenTypes.METHOD_DEF
                         && !ScopeUtil.isInScope(parent, Scope.ANONINNER)
                         || parent.getType() == TokenTypes.VARIABLE_DEF) {
-                final DetailAST mods =
-                    parent.findFirstToken(TokenTypes.MODIFIERS);
-                inStatic = mods.findFirstToken(TokenTypes.LITERAL_STATIC) != null;
+                inStatic = TokenUtil.hasModifiers(parent, TokenTypes.LITERAL_STATIC);
                 break;
             }
             else {
@@ -715,8 +709,7 @@ public class HiddenFieldCheck
         if (ignoreAbstractMethods) {
             final DetailAST method = ast.getParent().getParent();
             if (method.getType() == TokenTypes.METHOD_DEF) {
-                final DetailAST mods = method.findFirstToken(TokenTypes.MODIFIERS);
-                result = mods.findFirstToken(TokenTypes.ABSTRACT) != null;
+                result = TokenUtil.hasModifiers(method, TokenTypes.ABSTRACT);
             }
         }
         return result;
