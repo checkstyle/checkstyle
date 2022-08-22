@@ -147,8 +147,7 @@ public enum JavadocTagInfo {
             final int astType = ast.getType();
 
             return astType == TokenTypes.METHOD_DEF
-                && ast.findFirstToken(TokenTypes.MODIFIERS)
-                    .findFirstToken(TokenTypes.LITERAL_STATIC) == null
+                && TokenUtil.hasNotModifiers(ast, TokenTypes.LITERAL_STATIC)
                 && ScopeUtil.getScope(ast) != Scope.PRIVATE;
         }
 

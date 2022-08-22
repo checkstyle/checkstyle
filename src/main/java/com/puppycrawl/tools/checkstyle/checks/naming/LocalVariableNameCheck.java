@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.naming;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <p>
@@ -215,8 +216,7 @@ public class LocalVariableNameCheck
             result = variableName.length() != 1;
         }
         else {
-            final DetailAST modifiersAST = ast.findFirstToken(TokenTypes.MODIFIERS);
-            final boolean isFinal = modifiersAST.findFirstToken(TokenTypes.FINAL) != null;
+            final boolean isFinal = TokenUtil.hasModifiers(ast, TokenTypes.FINAL);
             result = !isFinal && ScopeUtil.isLocalVariableDef(ast);
         }
         return result;

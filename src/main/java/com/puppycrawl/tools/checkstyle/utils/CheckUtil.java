@@ -93,10 +93,9 @@ public final class CheckUtil {
         boolean equalsMethod = false;
 
         if (ast.getType() == TokenTypes.METHOD_DEF) {
-            final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
             final boolean staticOrAbstract =
-                    modifiers.findFirstToken(TokenTypes.LITERAL_STATIC) != null
-                    || modifiers.findFirstToken(TokenTypes.ABSTRACT) != null;
+                    TokenUtil.hasModifiers(ast, TokenTypes.LITERAL_STATIC)
+                    || TokenUtil.hasModifiers(ast, TokenTypes.ABSTRACT);
 
             if (!staticOrAbstract) {
                 final DetailAST nameNode = ast.findFirstToken(TokenTypes.IDENT);

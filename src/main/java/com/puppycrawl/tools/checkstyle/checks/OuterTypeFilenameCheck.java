@@ -139,8 +139,7 @@ public class OuterTypeFilenameCheck extends AbstractCheck {
     @Override
     public void visitToken(DetailAST ast) {
         if (seenFirstToken) {
-            final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
-            if (modifiers.findFirstToken(TokenTypes.LITERAL_PUBLIC) != null
+            if (TokenUtil.hasModifiers(ast, TokenTypes.LITERAL_PUBLIC)
                     && TokenUtil.isRootNode(ast.getParent())) {
                 hasPublic = true;
             }
