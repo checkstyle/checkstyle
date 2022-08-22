@@ -275,8 +275,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
                 break;
             case TokenTypes.PARAMETER_DEF:
                 if (!isInLambda(ast)
-                        && ast.findFirstToken(TokenTypes.MODIFIERS)
-                            .findFirstToken(TokenTypes.FINAL) == null
+                        && TokenUtil.hasNotModifiers(ast, TokenTypes.FINAL)
                         && !isInAbstractOrNativeMethod(ast)
                         && !ScopeUtil.isInInterfaceBlock(ast)
                         && !isMultipleTypeCatch(ast)
@@ -286,8 +285,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
                 break;
             case TokenTypes.VARIABLE_DEF:
                 if (ast.getParent().getType() != TokenTypes.OBJBLOCK
-                        && ast.findFirstToken(TokenTypes.MODIFIERS)
-                            .findFirstToken(TokenTypes.FINAL) == null
+                        && TokenUtil.hasNotModifiers(ast, TokenTypes.FINAL)
                         && !isVariableInForInit(ast)
                         && shouldCheckEnhancedForLoopVariable(ast)) {
                     insertVariable(ast);
@@ -727,10 +725,10 @@ public class FinalLocalVariableCheck extends AbstractCheck {
         DetailAST parent = ast.getParent();
         while (parent != null && !abstractOrNative) {
             if (parent.getType() == TokenTypes.METHOD_DEF) {
-                final DetailAST modifiers =
-                    parent.findFirstToken(TokenTypes.MODIFIERS);
-                abstractOrNative = modifiers.findFirstToken(TokenTypes.ABSTRACT) != null
-                        || modifiers.findFirstToken(TokenTypes.LITERAL_NATIVE) != null;
+                abstractOrNative = TokenUtil.hasModifiers(parent,
+                        TokenTypes.ABSTRACT)
+                        || TokenUtil.hasModifiers(parent,
+                        TokenTypes.LITERAL_NATIVE);
             }
             parent = parent.getParent();
         }

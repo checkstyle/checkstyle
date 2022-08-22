@@ -27,6 +27,7 @@ import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <p>
@@ -175,13 +176,9 @@ public final class MutableExceptionCheck extends AbstractCheck {
      * @param ast variable def node for check
      */
     private void visitVariableDef(DetailAST ast) {
-        if (checking && ast.getParent().getType() == TokenTypes.OBJBLOCK) {
-            final DetailAST modifiersAST =
-                ast.findFirstToken(TokenTypes.MODIFIERS);
-
-            if (modifiersAST.findFirstToken(TokenTypes.FINAL) == null) {
-                log(ast, MSG_KEY, ast.findFirstToken(TokenTypes.IDENT).getText());
-            }
+        if (checking && ast.getParent().getType() == TokenTypes.OBJBLOCK
+            && TokenUtil.hasNotModifiers(ast, TokenTypes.FINAL)) {
+            log(ast, MSG_KEY, ast.findFirstToken(TokenTypes.IDENT).getText());
         }
     }
 

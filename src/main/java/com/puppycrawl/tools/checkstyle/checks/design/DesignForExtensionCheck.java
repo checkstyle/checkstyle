@@ -440,8 +440,7 @@ public class DesignForExtensionCheck extends AbstractCheck {
      * @return true if a methods is native.
      */
     private static boolean isNativeMethod(DetailAST ast) {
-        final DetailAST mods = ast.findFirstToken(TokenTypes.MODIFIERS);
-        return mods.findFirstToken(TokenTypes.LITERAL_NATIVE) != null;
+        return TokenUtil.hasModifiers(ast, TokenTypes.LITERAL_NATIVE);
     }
 
     /**
@@ -476,13 +475,10 @@ public class DesignForExtensionCheck extends AbstractCheck {
      * @return true if a method can be overridden in a subclass.
      */
     private static boolean canBeOverridden(DetailAST methodDef) {
-        final DetailAST modifiers = methodDef.findFirstToken(TokenTypes.MODIFIERS);
         return ScopeUtil.getSurroundingScope(methodDef).isIn(Scope.PROTECTED)
             && !ScopeUtil.isInInterfaceOrAnnotationBlock(methodDef)
-            && modifiers.findFirstToken(TokenTypes.LITERAL_PRIVATE) == null
-            && modifiers.findFirstToken(TokenTypes.ABSTRACT) == null
-            && modifiers.findFirstToken(TokenTypes.FINAL) == null
-            && modifiers.findFirstToken(TokenTypes.LITERAL_STATIC) == null;
+            && TokenUtil.hasNotModifiers(methodDef, TokenTypes.LITERAL_PRIVATE,
+                TokenTypes.ABSTRACT, TokenTypes.FINAL, TokenTypes.LITERAL_STATIC);
     }
 
     /**
@@ -537,9 +533,8 @@ public class DesignForExtensionCheck extends AbstractCheck {
      * @return true if the containing class can be subclassed.
      */
     private static boolean canBeSubclassed(DetailAST classDef) {
-        final DetailAST modifiers = classDef.findFirstToken(TokenTypes.MODIFIERS);
         return classDef.getType() != TokenTypes.ENUM_DEF
-            && modifiers.findFirstToken(TokenTypes.FINAL) == null
+            && TokenUtil.hasNotModifiers(classDef, TokenTypes.FINAL)
             && hasDefaultOrExplicitNonPrivateCtor(classDef);
     }
 
@@ -562,9 +557,7 @@ public class DesignForExtensionCheck extends AbstractCheck {
             if (candidate.getType() == TokenTypes.CTOR_DEF) {
                 hasDefaultConstructor = false;
 
-                final DetailAST ctorMods =
-                        candidate.findFirstToken(TokenTypes.MODIFIERS);
-                if (ctorMods.findFirstToken(TokenTypes.LITERAL_PRIVATE) == null) {
+                if (TokenUtil.hasNotModifiers(candidate, TokenTypes.LITERAL_PRIVATE)) {
                     hasExplicitNonPrivateCtor = true;
                     break;
                 }

@@ -28,6 +28,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <p>
@@ -288,11 +289,8 @@ public class UncommentedMainCheck
      * @return true if check passed, false otherwise
      */
     private static boolean checkModifiers(DetailAST method) {
-        final DetailAST modifiers =
-            method.findFirstToken(TokenTypes.MODIFIERS);
-
-        return modifiers.findFirstToken(TokenTypes.LITERAL_PUBLIC) != null
-            && modifiers.findFirstToken(TokenTypes.LITERAL_STATIC) != null;
+        return TokenUtil.hasModifiers(method, TokenTypes.LITERAL_PUBLIC,
+               TokenTypes.LITERAL_STATIC);
     }
 
     /**

@@ -23,6 +23,7 @@ import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <p>
@@ -96,8 +97,7 @@ public class MissingCtorCheck extends AbstractCheck {
 
     @Override
     public void visitToken(DetailAST ast) {
-        final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
-        if (modifiers.findFirstToken(TokenTypes.ABSTRACT) == null
+        if (TokenUtil.hasNotModifiers(ast, TokenTypes.ABSTRACT)
                 && ast.findFirstToken(TokenTypes.OBJBLOCK)
                     .findFirstToken(TokenTypes.CTOR_DEF) == null) {
             log(ast, MSG_KEY);

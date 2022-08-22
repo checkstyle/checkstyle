@@ -395,4 +395,79 @@ public class TokenUtilTest {
                 .isFalse();
     }
 
+    @Test
+    public void testAstHasModifiers() {
+        final DetailAstImpl astFinal = new DetailAstImpl();
+        astFinal.setType(TokenTypes.FINAL);
+        final DetailAstImpl astLiteralStatic = new DetailAstImpl();
+        astLiteralStatic.setType(TokenTypes.LITERAL_STATIC);
+        final DetailAstImpl astModifiers = new DetailAstImpl();
+        astModifiers.setType(TokenTypes.MODIFIERS);
+        astModifiers.addChild(astFinal);
+        astModifiers.addChild(astLiteralStatic);
+        final DetailAstImpl astForTest = new DetailAstImpl();
+        astForTest.addChild(astModifiers);
+
+        final boolean result1 = TokenUtil.hasModifiers(astForTest,
+                TokenTypes.FINAL, TokenTypes.LITERAL_STATIC);
+        final boolean result2 = TokenUtil.hasModifiers(astForTest,
+                TokenTypes.FINAL);
+
+        assertWithMessage("Modifiers did not match")
+                .that(result1)
+                .isTrue();
+        assertWithMessage("Modifiers did not match")
+                .that(result2)
+                .isTrue();
+    }
+
+    @Test
+    public void testAstHasModifiersNull() {
+        final DetailAstImpl astForTest = new DetailAstImpl();
+
+        final boolean result1 = TokenUtil.hasModifiers(astForTest,
+                TokenTypes.FINAL);
+
+        assertWithMessage("Modifier was found, but not expected")
+                .that(result1)
+                .isFalse();
+    }
+
+    @Test
+    public void testAstHasNotModifiers() {
+        final DetailAstImpl astFinal = new DetailAstImpl();
+        astFinal.setType(TokenTypes.FINAL);
+        final DetailAstImpl astLiteralStatic = new DetailAstImpl();
+        astLiteralStatic.setType(TokenTypes.LITERAL_STATIC);
+        final DetailAstImpl astModifiers = new DetailAstImpl();
+        astModifiers.setType(TokenTypes.MODIFIERS);
+        astModifiers.addChild(astFinal);
+        astModifiers.addChild(astLiteralStatic);
+        final DetailAstImpl astForTest = new DetailAstImpl();
+        astForTest.addChild(astModifiers);
+
+        final boolean result1 = TokenUtil.hasNotModifiers(astForTest,
+                TokenTypes.LITERAL_PUBLIC, TokenTypes.LITERAL_NATIVE);
+        final boolean result2 = TokenUtil.hasNotModifiers(astForTest,
+                TokenTypes.LITERAL_PUBLIC);
+
+        assertWithMessage("Modifiers did not match")
+                .that(result1)
+                .isTrue();
+        assertWithMessage("Modifiers did not match")
+                .that(result2)
+                .isTrue();
+    }
+
+    @Test
+    public void testAstHasNotModifiersNull() {
+        final DetailAstImpl astForTest = new DetailAstImpl();
+
+        final boolean result1 = TokenUtil.hasNotModifiers(astForTest,
+                TokenTypes.FINAL);
+
+        assertWithMessage("Modifier was found, but not expected")
+                .that(result1)
+                .isTrue();
+    }
 }

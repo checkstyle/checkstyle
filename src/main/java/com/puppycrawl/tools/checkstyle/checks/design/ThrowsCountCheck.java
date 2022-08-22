@@ -25,6 +25,7 @@ import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <p>
@@ -312,8 +313,7 @@ public final class ThrowsCountCheck extends AbstractCheck {
      * @return true, if method, which throws an exception is private.
      */
     private static boolean isInPrivateMethod(DetailAST ast) {
-        final DetailAST methodModifiers = ast.getParent().findFirstToken(TokenTypes.MODIFIERS);
-        return methodModifiers.findFirstToken(TokenTypes.LITERAL_PRIVATE) != null;
+        return TokenUtil.hasModifiers(ast.getParent(), TokenTypes.LITERAL_PRIVATE);
     }
 
 }

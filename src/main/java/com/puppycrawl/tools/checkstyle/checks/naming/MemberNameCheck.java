@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.naming;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <p>
@@ -168,7 +169,7 @@ public class MemberNameCheck
     protected final boolean mustCheckName(DetailAST ast) {
         final DetailAST modifiersAST =
             ast.findFirstToken(TokenTypes.MODIFIERS);
-        final boolean isStatic = modifiersAST.findFirstToken(TokenTypes.LITERAL_STATIC) != null;
+        final boolean isStatic = TokenUtil.hasModifiers(ast, TokenTypes.LITERAL_STATIC);
 
         return !isStatic && !ScopeUtil.isInInterfaceOrAnnotationBlock(ast)
             && !ScopeUtil.isLocalVariableDef(ast)
