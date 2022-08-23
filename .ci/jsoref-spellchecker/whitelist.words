@@ -1054,6 +1054,7 @@ pdf
 Peclipse
 Penable
 perl
+Perror
 pgjdbc
 Pgpg
 pguyot
@@ -1480,8 +1481,10 @@ Xandy
 xar
 xargs
 xcode
+XDcompile
 xdoc
 xdocspagetitle
+Xep
 Xerces
 xf
 xfeff
@@ -1512,6 +1515,7 @@ xpathfilterelement
 xpathmapper
 xpathquerygenerator
 Xpkginfo
+Xplugin
 xright
 xsd
 xsi

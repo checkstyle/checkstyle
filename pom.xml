@@ -232,6 +232,7 @@
     <junit.version>5.9.0</junit.version>
     <forbiddenapis.version>3.3</forbiddenapis.version>
     <json-schema-validator.version>1.2.0</json-schema-validator.version>
+    <error-prone.version>2.15.0</error-prone.version>
   </properties>
 
   <dependencies>
@@ -751,46 +752,6 @@
             <arg>-Xpkginfo:always</arg>
           </compilerArgs>
         </configuration>
-        <!-- till https://github.com/checkstyle/checkstyle/issues/2160
-        <executions>
-          <execution>
-            <id>compile-without-error-prone</id>
-            <goals>
-              <goal>testCompile</goal>
-            </goals>
-            <configuration>
-              <testIncludes>
-                <testInclude>**/Input*.java</testInclude>
-              </testIncludes>
-            </configuration>
-          </execution>
-          <execution>
-            <id>compile-with-error-prone</id>
-            <goals>
-              <goal>testCompile</goal>
-            </goals>
-            <configuration>
-              <compilerId>javac-with-errorprone</compilerId>
-              <forceJavacCompilerUse>true</forceJavacCompilerUse>
-              <testExcludes>
-                <testExclude>**/*Input*.java</testExclude>
-              </testExcludes>
-            </configuration>
-          </execution>
-        </executions>
-        <dependencies>
-          <dependency>
-            <groupId>org.codehaus.plexus</groupId>
-            <artifactId>plexus-compiler-javac-errorprone</artifactId>
-            <version>2.6</version>
-          </dependency>
-          <dependency>
-            <groupId>com.google.errorprone</groupId>
-            <artifactId>error_prone_core</artifactId>
-            <version>2.0.5</version>
-          </dependency>
-        </dependencies>
-        -->
       </plugin>
 
       <plugin>
@@ -2311,6 +2272,111 @@
           <plugin>
             <groupId>org.codehaus.mojo</groupId>
             <artifactId>sonar-maven-plugin</artifactId>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <profile>
+      <id>error-prone-compile</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>3.10.1</version>
+            <executions>
+              <!-- Skip the default-compile execution as we don't want to execute the compile goal twice -->
+              <execution>
+                <id>default-compile</id>
+                <phase>compile</phase>
+                <goals>
+                  <goal>compile</goal>
+                </goals>
+                <configuration>
+                  <skipMain>true</skipMain>
+                </configuration>
+              </execution>
+              <execution>
+                <id>error-prone-compile</id>
+                <phase>compile</phase>
+                <goals>
+                  <goal>compile</goal>
+                </goals>
+                <configuration>
+                  <failOnError>false</failOnError>
+                  <source>${java.version}</source>
+                  <target>${java.version}</target>
+                  <compilerArgs>
+                    <arg>-Xpkginfo:always</arg>
+                    <arg>-XDcompilePolicy=simple</arg>
+                    <arg>
+                      -Xplugin:ErrorProne
+                    </arg>
+                  </compilerArgs>
+                  <annotationProcessorPaths>
+                    <path>
+                      <groupId>com.google.errorprone</groupId>
+                      <artifactId>error_prone_core</artifactId>
+                      <version>${error-prone.version}</version>
+                    </path>
+                  </annotationProcessorPaths>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <profile>
+      <id>error-prone-test-compile</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>3.10.1</version>
+            <executions>
+              <!-- Skip the default-testCompile execution as we don't want to execute the testCompile goal twice -->
+              <execution>
+                <id>default-testCompile</id>
+                <phase>test-compile</phase>
+                <goals>
+                  <goal>testCompile</goal>
+                </goals>
+                <configuration>
+                  <skip>true</skip>
+                </configuration>
+              </execution>
+              <execution>
+                <id>error-prone-test-compile</id>
+                <phase>test-compile</phase>
+                <goals>
+                  <goal>testCompile</goal>
+                </goals>
+                <configuration>
+                  <failOnError>false</failOnError>
+                  <source>${java.version}</source>
+                  <target>${java.version}</target>
+                  <compilerArgs>
+                    <arg>-Xpkginfo:always</arg>
+                    <arg>-XDcompilePolicy=simple</arg>
+                    <arg>
+                      -Xplugin:ErrorProne \
+                      -XepExcludedPaths:.*[\\/]resources[\\/].*
+                    </arg>
+                  </compilerArgs>
+                  <annotationProcessorPaths>
+                    <path>
+                      <groupId>com.google.errorprone</groupId>
+                      <artifactId>error_prone_core</artifactId>
+                      <version>${error-prone.version}</version>
+                    </path>
+                  </annotationProcessorPaths>
+                </configuration>
+              </execution>
+            </executions>
           </plugin>
         </plugins>
       </build>
