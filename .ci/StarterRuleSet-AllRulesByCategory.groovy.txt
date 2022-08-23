@@ -138,7 +138,8 @@ ruleset {
     // it is ok to use duplication, every number cannot be represented by the same logic
     //DuplicateNumberLiteral
 
-    //DuplicateStringLiteral  // it is ok to use simple duplication in scripts
+    // it is ok to use simple duplication in scripts
+    //DuplicateStringLiteral
 
     // rulesets/enhanced.xml
     CloneWithoutCloneable
@@ -270,7 +271,10 @@ ruleset {
     ImportFromSamePackage
     ImportFromSunPackages
     MisorderedStaticImports
-    //NoWildcardImports // it is ok to keep scripts as small as possible in header
+
+    // it is ok to keep scripts as small as possible in header
+    //NoWildcardImports
+
     UnnecessaryGroovyImport {
         doNotApplyToFileNames = 'codenarc.groovy'
     }
@@ -316,7 +320,10 @@ ruleset {
     LoggingSwallowsStacktrace
     MultipleLoggers
     PrintStackTrace
-    //Println // We use groovy as scripted java, usage of std output is required by design
+
+    // We use groovy as scripted java, usage of std output is required by design
+    //Println
+
     SystemErrPrint
     SystemOutPrint
 
@@ -344,7 +351,10 @@ ruleset {
     // rulesets/security.xml
     FileCreateTempFile
     InsecureRandom
-    //JavaIoPackageAccess // we do not care about  EJB container rules
+
+    // we do not care about  EJB container rules
+    //JavaIoPackageAccess
+
     NonFinalPublicField
     NonFinalSubclassOfSensitiveInterface
     ObjectFinalize
@@ -361,10 +371,17 @@ ruleset {
     SerializableClassMustDefineSerialVersionUID
 
     // rulesets/size.xml
-    AbcMetric   // Requires the GMetrics jar
+
+    // Requires the GMetrics jar
+    AbcMetric
+
     ClassSize
-    CrapMetric   // Requires the GMetrics jar and a Cobertura coverage file
-    CyclomaticComplexity   // Requires the GMetrics jar
+
+    // Requires the GMetrics jar and a Cobertura coverage file
+    CrapMetric
+
+    // Requires the GMetrics jar
+    CyclomaticComplexity
     MethodCount
     MethodSize
     NestedBlockDepth
@@ -393,8 +410,12 @@ ruleset {
     UnnecessaryElseStatement
     UnnecessaryFinalOnPrivateMethod
     UnnecessaryFloatInstantiation
-    //UnnecessaryGString // just to be the same as in java, as our primary language
-    //UnnecessaryGetter // we are ok with code to looks like Java
+
+    // just to be the same as in java, as our primary language
+    //UnnecessaryGString
+
+    // we are ok with code to looks like Java
+    //UnnecessaryGetter
     UnnecessaryIfStatement
     UnnecessaryInstanceOfCheck
     UnnecessaryInstantiationToGetClass
