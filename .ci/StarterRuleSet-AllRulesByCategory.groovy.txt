@@ -134,7 +134,10 @@ ruleset {
     // rulesets/dry.xml
     DuplicateListLiteral
     DuplicateMapLiteral
-    DuplicateNumberLiteral
+
+    // it is ok to use duplication, every number cannot be represented by the same logic
+    //DuplicateNumberLiteral
+
     //DuplicateStringLiteral  // it is ok to use simple duplication in scripts
 
     // rulesets/enhanced.xml
@@ -335,7 +338,7 @@ ruleset {
     PropertyName
     VariableName {
         finalRegex = null
-        ignoreVariableNames = 'SEPARATOR'
+        ignoreVariableNames = 'SEPARATOR,PROFILES,USAGE_STRING'
     }
 
     // rulesets/security.xml
@@ -347,7 +350,7 @@ ruleset {
     ObjectFinalize
     PublicFinalizeMethod
     SystemExit {
-        doNotApplyToFileNames = 'pitest-survival-check-xml.groovy'
+        doNotApplyToFileNames = 'pitest-survival-check-xml.groovy,error-prone-check.groovy'
     }
     UnsafeArrayDeclaration
 

@@ -89,6 +89,9 @@
   <!-- this file cannot be line wrapped, It contains a list of suppressions -->
   <suppress id="lineLength" files=".ci[\\/]pitest-suppressions[\\/].*"/>
 
+  <!-- this file cannot be line wrapped, It contains a list of suppressions -->
+  <suppress id="lineLength" files=".ci[\\/]error-prone-suppressions[\\/].*"/>
+
   <!-- this file cannot be line wrapped, it contains cdg pitest licence -->
   <suppress id="lineLength" files="cdg-pitest-licence.txt"/>
 
