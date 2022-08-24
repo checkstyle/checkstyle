@@ -21,7 +21,7 @@ package com.puppycrawl.tools.checkstyle.internal;
 
 import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.methods;
 
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.tngtech.archunit.core.domain.JavaClasses;
@@ -32,7 +32,7 @@ import com.tngtech.archunit.lang.ArchRule;
 
 public class ArchUnitTest {
 
-    @BeforeAll
+    @BeforeEach
     public static void init() {
         System.setProperty(
                 "org.slf4j.simpleLogger.log.com.tngtech.archunit.core.PluginLoader", "off");
