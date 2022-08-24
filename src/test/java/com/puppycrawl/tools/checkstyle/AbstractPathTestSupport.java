@@ -27,7 +27,7 @@ import java.util.Locale;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 
 public abstract class AbstractPathTestSupport {
 
@@ -49,8 +49,8 @@ public abstract class AbstractPathTestSupport {
      * Sets the English locale for all tests.
      * Otherwise, some tests failed in other locales.
      */
-    @BeforeAll
-    public static void setEnglishLocale() {
+    @BeforeEach
+    public void setEnglishLocale() {
         Locale.setDefault(Locale.ENGLISH);
     }
 
