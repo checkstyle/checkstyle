@@ -45,8 +45,6 @@ java -jar contribution/releasenotes-builder/target/releasenotes-builder-1.0-all.
 
 cd ../
 sed -i '12r .ci-temp/xdoc.xml' src/xdocs/releasenotes.xml
-git add . && git commit -m "doc: release notes for $CS_RELEASE_VERSION"
-git push origin master
 
-echo "releasenotes.xml after commit:"
+echo "releasenotes.xml:"
 head "src/xdocs/releasenotes.xml" -n 100
