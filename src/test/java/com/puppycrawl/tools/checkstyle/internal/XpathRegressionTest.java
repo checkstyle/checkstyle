@@ -34,7 +34,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -145,7 +144,7 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
     private Path javaDir;
     private Path inputDir;
 
-    @BeforeAll
+    @BeforeEach
     public static void setUpBeforeClass() throws IOException {
         simpleCheckNames = CheckUtil.getSimpleNames(CheckUtil.getCheckstyleChecks());
 

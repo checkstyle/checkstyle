@@ -26,7 +26,7 @@ import java.io.File;
 import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
 
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
@@ -64,7 +64,7 @@ public class XpathFileGeneratorAuditListenerTest {
     private final CloseAndFlushTestByteArrayOutputStream outStream =
             new CloseAndFlushTestByteArrayOutputStream();
 
-    @BeforeAll
+    @BeforeEach
     public static void constructEvents() throws Exception {
         final TreeWalkerAuditEvent event1 = createTreeWalkerAuditEvent(
                 "InputXpathFileGeneratorAuditListener.java", FIRST_MESSAGE);
