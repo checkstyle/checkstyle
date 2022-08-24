@@ -919,6 +919,8 @@
                     <exclude>com.puppycrawl.tools.checkstyle.meta.ModuleDetails*</exclude>
                     <exclude>com.puppycrawl.tools.checkstyle.meta.JavadocMetadataScraper*</exclude>
                     <exclude>com.puppycrawl.tools.checkstyle.meta.XmlMeta*</exclude>
+                    <!-- Check related classes -->
+                    <exclude>com.puppycrawl.tools.checkstyle.checks.coding.OverloadMethodsDeclarationOrderCheck.OverloadDescriptor</exclude>
                   </excludes>
                   <limits>
                     <limit>
@@ -1296,6 +1298,26 @@
                       <counter>BRANCH</counter>
                       <value>COVEREDRATIO</value>
                       <minimum>0.93</minimum>
+                    </limit>
+                  </limits>
+                </rule>
+                <rule>
+                  <element>CLASS</element>
+                  <includes>
+                    <include>
+                      com.puppycrawl.tools.checkstyle.checks.coding.OverloadMethodsDeclarationOrderCheck.OverloadDescriptor
+                    </include>
+                  </includes>
+                  <limits>
+                    <limit>
+                      <counter>LINE</counter>
+                      <value>COVEREDRATIO</value>
+                      <minimum>0.93</minimum>
+                    </limit>
+                    <limit>
+                      <counter>BRANCH</counter>
+                      <value>COVEREDRATIO</value>
+                      <minimum>0.75</minimum>
                     </limit>
                   </limits>
                 </rule>
