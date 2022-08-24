@@ -28,10 +28,7 @@ import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
 import java.text.MessageFormat;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.Locale;
-import java.util.Map;
 import java.util.MissingResourceException;
 import java.util.Objects;
 import java.util.PropertyResourceBundle;
@@ -53,13 +50,6 @@ public final class Violation
 
     /** A unique serial version identifier. */
     private static final long serialVersionUID = 5675176836184862150L;
-
-    /**
-     * A cache that maps bundle names to ResourceBundles.
-     * Avoids repetitive calls to ResourceBundle.getBundle().
-     */
-    private static final Map<String, ResourceBundle> BUNDLE_CACHE =
-        Collections.synchronizedMap(new HashMap<>());
 
     /** The default severity level if one is not specified. */
     private static final SeverityLevel DEFAULT_SEVERITY = SeverityLevel.ERROR;
@@ -393,7 +383,7 @@ public final class Violation
 
     /** Clears the cache. */
     public static void clearCache() {
-        BUNDLE_CACHE.clear();
+        ResourceBundle.clearCache();
     }
 
     /**
@@ -480,7 +470,7 @@ public final class Violation
                 // the GlobalProperties object. This is because the class loader in
                 // the GlobalProperties is specified by the user for resolving
                 // custom classes.
-                final ResourceBundle resourceBundle = getBundle(bundle);
+                final ResourceBundle resourceBundle = getBundle();
                 final String pattern = resourceBundle.getString(key);
                 final MessageFormat formatter = new MessageFormat(pattern, Locale.ROOT);
                 violation = formatter.format(args);
@@ -512,18 +502,15 @@ public final class Violation
     }
 
     /**
-     * Find a ResourceBundle for a given bundle name. Uses the classloader
+     * Find a ResourceBundle for the violation. Uses the classloader
      * of the class emitting this violation, to be sure to get the correct
      * bundle.
      *
-     * @param bundleName the bundle name
      * @return a ResourceBundle
      */
-    private ResourceBundle getBundle(String bundleName) {
-        return BUNDLE_CACHE.computeIfAbsent(bundleName, name -> {
-            return ResourceBundle.getBundle(
-                name, sLocale, sourceClass.getClassLoader(), new Utf8Control());
-        });
+    private ResourceBundle getBundle() {
+        return ResourceBundle.getBundle(
+                bundle, sLocale, sourceClass.getClassLoader(), new Utf8Control());
     }
 
     /**

@@ -29,7 +29,6 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLStreamHandler;
 import java.util.Locale;
-import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -37,7 +36,6 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.junitpioneer.jupiter.DefaultLocale;
 
-import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import nl.jqno.equalsverifier.EqualsVerifier;
 import nl.jqno.equalsverifier.EqualsVerifierReport;
 
@@ -312,30 +310,6 @@ public class ViolationTest {
         assertWithMessage("Invalid violation key")
             .that(violation.getKey())
             .isEqualTo("empty.statement");
-    }
-
-    @DefaultLocale("fr")
-    @Test
-    public void testCleatBundleCache() {
-        Violation.setLocale(Locale.ROOT);
-        final Violation violation = createSampleViolation();
-
-        assertWithMessage("Invalid violation")
-            .that(violation.getViolation())
-            .isEqualTo("Empty statement.");
-
-        final Map<String, ResourceBundle> bundleCache =
-                TestUtil.getInternalStaticState(Violation.class, "BUNDLE_CACHE");
-
-        assertWithMessage("Invalid bundle cache size")
-            .that(bundleCache)
-            .hasSize(1);
-
-        Violation.setLocale(Locale.CHINA);
-
-        assertWithMessage("Invalid bundle cache size")
-            .that(bundleCache)
-            .isEmpty();
     }
 
     @Test

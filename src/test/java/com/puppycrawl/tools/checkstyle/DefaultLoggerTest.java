@@ -32,30 +32,24 @@ import java.nio.charset.StandardCharsets;
 import java.text.MessageFormat;
 import java.util.Arrays;
 import java.util.Locale;
-import java.util.Map;
 import java.util.ResourceBundle;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
-import org.junitpioneer.jupiter.DefaultLocale;
 
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean.OutputStreamOptions;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import com.puppycrawl.tools.checkstyle.api.Violation;
-import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
 public class DefaultLoggerTest {
 
     private static final Locale DEFAULT_LOCALE = Locale.getDefault();
 
     @AfterEach
-    public void tearDown() throws Exception {
-        final Constructor<?> cons = getConstructor();
-        final Map<String, ResourceBundle> bundleCache =
-                TestUtil.getInternalStaticState(cons.getDeclaringClass(), "BUNDLE_CACHE");
-        bundleCache.clear();
+    public void tearDown() {
+        ResourceBundle.clearCache();
     }
 
     @Test
@@ -259,24 +253,6 @@ public class DefaultLoggerTest {
         assertWithMessage("Invalid country")
                 .that(Arrays.asList(Locale.getISOCountries()))
                 .contains(country);
-    }
-
-    @DefaultLocale("fr")
-    @Test
-    public void testCleatBundleCache() throws Exception {
-        final Constructor<?> cons = getConstructor();
-        cons.setAccessible(true);
-        final Object messageClass = cons.newInstance(DefaultLogger.ADD_EXCEPTION_MESSAGE, null);
-        final Method message = messageClass.getClass().getDeclaredMethod("getMessage");
-        message.setAccessible(true);
-        final Map<String, ResourceBundle> bundleCache =
-                TestUtil.getInternalStaticState(message.getDeclaringClass(), "BUNDLE_CACHE");
-        assertWithMessage("Invalid message")
-            .that(message.invoke(messageClass))
-            .isEqualTo("Une erreur est survenue {0}");
-        assertWithMessage("Invalid bundle cache size")
-            .that(bundleCache)
-            .hasSize(1);
     }
 
     @Test

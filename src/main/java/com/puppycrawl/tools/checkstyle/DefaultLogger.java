@@ -26,10 +26,7 @@ import java.io.Writer;
 import java.nio.charset.StandardCharsets;
 import java.text.MessageFormat;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.Locale;
-import java.util.Map;
 import java.util.ResourceBundle;
 
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
@@ -221,13 +218,6 @@ public class DefaultLogger extends AutomaticBean implements AuditListener {
     private static final class LocalizedMessage {
 
         /**
-         * A cache that maps bundle names to ResourceBundles.
-         * Avoids repetitive calls to ResourceBundle.getBundle().
-         */
-        private static final Map<String, ResourceBundle> BUNDLE_CACHE =
-                Collections.synchronizedMap(new HashMap<>());
-
-        /**
          * The locale to localise messages to.
          **/
         private static final Locale LOCALE = Locale.getDefault();
@@ -278,8 +268,7 @@ public class DefaultLogger extends AutomaticBean implements AuditListener {
             // the GlobalProperties object. This is because the class loader in
             // the GlobalProperties is specified by the user for resolving
             // custom classes.
-            final String bundle = Definitions.CHECKSTYLE_BUNDLE;
-            final ResourceBundle resourceBundle = getBundle(bundle);
+            final ResourceBundle resourceBundle = getBundle();
             final String pattern = resourceBundle.getString(key);
             final MessageFormat formatter = new MessageFormat(pattern, Locale.ROOT);
 
@@ -287,19 +276,16 @@ public class DefaultLogger extends AutomaticBean implements AuditListener {
         }
 
         /**
-         * Find a ResourceBundle for a given bundle name. Uses the classloader
+         * Obtain the ResourceBundle. Uses the classloader
          * of the class emitting this message, to be sure to get the correct
          * bundle.
          *
-         * @param bundleName the bundle name.
          * @return a ResourceBundle.
          */
-        private static ResourceBundle getBundle(String bundleName) {
-            return BUNDLE_CACHE.computeIfAbsent(bundleName, name -> {
-                return ResourceBundle.getBundle(
-                        name, LOCALE, LocalizedMessage.class.getClassLoader(),
-                        new Violation.Utf8Control());
-            });
+        private static ResourceBundle getBundle() {
+            return ResourceBundle.getBundle(
+                    Definitions.CHECKSTYLE_BUNDLE, LOCALE, LocalizedMessage.class.getClassLoader(),
+                    new Violation.Utf8Control());
         }
     }
 }
