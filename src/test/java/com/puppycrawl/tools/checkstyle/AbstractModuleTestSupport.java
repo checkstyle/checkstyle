@@ -40,8 +40,8 @@ import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
 import com.google.common.collect.Maps;
+import com.puppycrawl.tools.checkstyle.LocalizedMessage.Utf8Control;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
-import com.puppycrawl.tools.checkstyle.api.Violation;
 import com.puppycrawl.tools.checkstyle.bdd.InlineConfigParser;
 import com.puppycrawl.tools.checkstyle.bdd.TestInputConfiguration;
 import com.puppycrawl.tools.checkstyle.bdd.TestInputViolation;
@@ -508,7 +508,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
                 messageBundle,
                 Locale.getDefault(),
                 Thread.currentThread().getContextClassLoader(),
-                new Violation.Utf8Control());
+                new Utf8Control());
         final String pattern = resourceBundle.getString(messageKey);
         final MessageFormat formatter = new MessageFormat(pattern, Locale.ROOT);
         return formatter.format(arguments);

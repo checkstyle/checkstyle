@@ -24,19 +24,12 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.Writer;
 import java.nio.charset.StandardCharsets;
-import java.text.MessageFormat;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.Locale;
-import java.util.Map;
-import java.util.ResourceBundle;
 
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
-import com.puppycrawl.tools.checkstyle.api.Violation;
 
 /**
  * Simple plain logger for text output.
@@ -168,6 +161,7 @@ public class DefaultLogger extends AutomaticBean implements AuditListener {
     public void addException(AuditEvent event, Throwable throwable) {
         synchronized (errorWriter) {
             final LocalizedMessage exceptionMessage = new LocalizedMessage(
+                    Definitions.CHECKSTYLE_BUNDLE, Locale.getDefault(), DefaultLogger.class,
                     ADD_EXCEPTION_MESSAGE, event.getFileName());
             errorWriter.println(exceptionMessage.getMessage());
             throwable.printStackTrace(errorWriter);
@@ -176,14 +170,18 @@ public class DefaultLogger extends AutomaticBean implements AuditListener {
 
     @Override
     public void auditStarted(AuditEvent event) {
-        final LocalizedMessage auditStartMessage = new LocalizedMessage(AUDIT_STARTED_MESSAGE);
+        final LocalizedMessage auditStartMessage = new LocalizedMessage(
+                Definitions.CHECKSTYLE_BUNDLE, Locale.getDefault(), DefaultLogger.class,
+                AUDIT_STARTED_MESSAGE);
         infoWriter.println(auditStartMessage.getMessage());
         infoWriter.flush();
     }
 
     @Override
     public void auditFinished(AuditEvent event) {
-        final LocalizedMessage auditFinishMessage = new LocalizedMessage(AUDIT_FINISHED_MESSAGE);
+        final LocalizedMessage auditFinishMessage = new LocalizedMessage(
+                Definitions.CHECKSTYLE_BUNDLE, Locale.getDefault(), DefaultLogger.class,
+                AUDIT_FINISHED_MESSAGE);
         infoWriter.println(auditFinishMessage.getMessage());
         closeStreams();
     }
@@ -210,96 +208,6 @@ public class DefaultLogger extends AutomaticBean implements AuditListener {
         errorWriter.flush();
         if (closeError) {
             errorWriter.close();
-        }
-    }
-
-    /**
-     * Represents a message that can be localised. The translations come from
-     * message.properties files. The underlying implementation uses
-     * java.text.MessageFormat.
-     */
-    private static final class LocalizedMessage {
-
-        /**
-         * A cache that maps bundle names to ResourceBundles.
-         * Avoids repetitive calls to ResourceBundle.getBundle().
-         */
-        private static final Map<String, ResourceBundle> BUNDLE_CACHE =
-                Collections.synchronizedMap(new HashMap<>());
-
-        /**
-         * The locale to localise messages to.
-         **/
-        private static final Locale LOCALE = Locale.getDefault();
-
-        /**
-         * Key for the message format.
-         **/
-        private final String key;
-
-        /**
-         * Arguments for MessageFormat.
-         */
-        private final String[] args;
-
-        /**
-         * Creates a new {@code LocalizedMessage} instance.
-         *
-         * @param key the key to locate the translation.
-         */
-        /* package */ LocalizedMessage(String key) {
-            this.key = key;
-            args = null;
-        }
-
-        /**
-         * Creates a new {@code LocalizedMessage} instance.
-         *
-         * @param key the key to locate the translation.
-         * @param args arguments for the translation.
-         */
-        /* package */ LocalizedMessage(String key, String... args) {
-            this.key = key;
-            if (args == null) {
-                this.args = null;
-            }
-            else {
-                this.args = Arrays.copyOf(args, args.length);
-            }
-        }
-
-        /**
-         * Gets the translated message.
-         *
-         * @return the translated message.
-         */
-        private String getMessage() {
-            // Important to use the default class loader, and not the one in
-            // the GlobalProperties object. This is because the class loader in
-            // the GlobalProperties is specified by the user for resolving
-            // custom classes.
-            final String bundle = Definitions.CHECKSTYLE_BUNDLE;
-            final ResourceBundle resourceBundle = getBundle(bundle);
-            final String pattern = resourceBundle.getString(key);
-            final MessageFormat formatter = new MessageFormat(pattern, Locale.ROOT);
-
-            return formatter.format(args);
-        }
-
-        /**
-         * Find a ResourceBundle for a given bundle name. Uses the classloader
-         * of the class emitting this message, to be sure to get the correct
-         * bundle.
-         *
-         * @param bundleName the bundle name.
-         * @return a ResourceBundle.
-         */
-        private static ResourceBundle getBundle(String bundleName) {
-            return BUNDLE_CACHE.computeIfAbsent(bundleName, name -> {
-                return ResourceBundle.getBundle(
-                        name, LOCALE, LocalizedMessage.class.getClassLoader(),
-                        new Violation.Utf8Control());
-            });
         }
     }
 }
