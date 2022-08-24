@@ -71,7 +71,7 @@
   <suppress checks="ClassDataAbstractionCoupling"
              files="(CheckerTest|AbstractModuleTestSupport|AbstractItModuleTestSupport|
                     |CheckstyleAntTaskTest|
-                    |TranslationCheckTest|ViolationTest|AbstractFileSetCheckTest|
+                    |TranslationCheckTest|LocalizedMessageTest|AbstractFileSetCheckTest|
                     |AbstractCheckTest)\.java"/>
   <suppress checks="ClassDataAbstractionCoupling"
              files="XpathFileGeneratorAuditListenerTest\.java"/>
