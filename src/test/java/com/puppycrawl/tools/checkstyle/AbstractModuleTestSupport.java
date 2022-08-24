@@ -506,7 +506,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
             String messageBundle, String messageKey, Object... arguments) {
         final ResourceBundle resourceBundle = ResourceBundle.getBundle(
                 messageBundle,
-                Locale.getDefault(),
+                Locale.ROOT,
                 Thread.currentThread().getContextClassLoader(),
                 new Violation.Utf8Control());
         final String pattern = resourceBundle.getString(messageKey);
