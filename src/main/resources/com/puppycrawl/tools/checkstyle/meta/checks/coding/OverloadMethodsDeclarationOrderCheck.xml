@@ -9,6 +9,14 @@
  name but different signatures where the signature can differ by the number of
  input parameters or type of input parameters or both.
  &lt;/p&gt;</description>
+         <properties>
+            <property default-value=""
+                       name="modifierGroups"
+                       type="java.util.regex.Pattern[]">
+               <description>custom overload groups,
+ allows for the definitions of multiple overloading method groups.</description>
+            </property>
+         </properties>
          <message-keys>
             <message-key key="overload.methods.declaration"/>
          </message-keys>
