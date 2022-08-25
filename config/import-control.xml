@@ -60,7 +60,7 @@
     <allow class="org.antlr.v4.runtime.CommonToken"/>
   </file>
 
-  <file name="DefaultLogger">
+  <file name="LocalizedMessage">
     <allow class="java.text.MessageFormat"/>
   </file>
 
@@ -116,6 +116,9 @@
     </file>
     <file name="TokenTypes">
       <allow class="org.antlr.v4.runtime.Recognizer"/>
+    </file>
+    <file name="Violation">
+      <allow class="com.puppycrawl.tools.checkstyle.LocalizedMessage"/>
     </file>
   </subpackage>
 
