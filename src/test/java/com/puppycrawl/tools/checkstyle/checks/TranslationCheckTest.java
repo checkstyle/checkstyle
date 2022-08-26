@@ -231,12 +231,12 @@ public class TranslationCheckTest extends AbstractXmlTestSupport {
         assertWithMessage("expected number of errors to fire")
             .that(dispatcher.savedErrors)
             .hasSize(1);
-        final Violation violation = new Violation(1,
+        final Violation violation = new Violation(0,
                 Definitions.CHECKSTYLE_BUNDLE, "general.fileNotFound",
-                null, null, getClass(), null);
+                null, null, TranslationCheck.class, null);
         assertWithMessage("Invalid violation")
-            .that(dispatcher.savedErrors.iterator().next().getViolation())
-            .isEqualTo(violation.getViolation());
+            .that(dispatcher.savedErrors.iterator().next())
+            .isEqualTo(violation);
     }
 
     @Test
@@ -256,12 +256,12 @@ public class TranslationCheckTest extends AbstractXmlTestSupport {
         assertWithMessage("expected number of errors to fire")
             .that(dispatcher.savedErrors.size())
             .isEqualTo(1);
-        final Violation violation = new Violation(1,
+        final Violation violation = new Violation(0,
                 Definitions.CHECKSTYLE_BUNDLE, "general.exception",
-                new String[] {exception.getMessage()}, null, getClass(), null);
+                new String[] {exception.getMessage()}, null, TranslationCheck.class, null);
         assertWithMessage("Invalid violation")
-            .that(dispatcher.savedErrors.iterator().next().getViolation())
-            .isEqualTo(violation.getViolation());
+            .that(dispatcher.savedErrors.iterator().next())
+            .isEqualTo(violation);
     }
 
     @Test
@@ -269,9 +269,9 @@ public class TranslationCheckTest extends AbstractXmlTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(TranslationCheck.class);
         checkConfig.addProperty("baseName", "^bad.*$");
         final String[] expected = {
-            "0: " + new Violation(1, Definitions.CHECKSTYLE_BUNDLE, "general.exception",
-                new String[] {"Malformed \\uxxxx encoding." }, null, getClass(),
-                    null).getViolation(), "1: " + getCheckMessage(MSG_KEY, "test"),
+            "0: " + getCheckMessage(Checker.class, "general.exception",
+                    "Malformed \\uxxxx encoding."),
+            "1: " + getCheckMessage(MSG_KEY, "test"),
         };
         final File[] propertyFiles = {
             new File(getPath("bad.properties")),
@@ -607,9 +607,6 @@ public class TranslationCheckTest extends AbstractXmlTestSupport {
             assertWithMessage("Error message is unexpected")
                     .that(exceptionMessage)
                     .contains("11");
-            assertWithMessage("Error message is unexpected")
-                    .that(exceptionMessage)
-                    .endsWith("[TranslationCheck]");
         }
     }
 
