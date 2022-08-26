@@ -663,24 +663,6 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/checks/TranslationCheck.java</fileName>
-    <specifier>array.initializer</specifier>
-    <message>incompatible types in array initializer.</message>
-    <lineContent>WRONG_LANGUAGE_CODE_KEY, new Object[] {code}, getId(), getClass(), null);</lineContent>
-    <details>
-      found   : @SameLen({&quot;code&quot;, &quot;iter#num0.next()&quot;}) String
-      required: @SameLen({&quot;code&quot;, &quot;[error for expression: iter#num0.next(); error: Invalid &apos;iter#num0.next()&apos; because the expression did not parse. Error message: Lexical error at line 1, column 5.  Encountered: &quot;#&quot; (35), after : &quot;&quot;]&quot;}) Object
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/checks/TranslationCheck.java</fileName>
-    <specifier>expression.unparsable</specifier>
-    <message>Expression invalid in dependent type annotation: [error for expression: iter#num0.next(); error: Invalid &apos;iter#num0.next()&apos; because the expression did not parse. Error message: Lexical error at line 1, column 5.  Encountered: &quot;#&quot; (35), after : &quot;&quot;]</message>
-    <lineContent>WRONG_LANGUAGE_CODE_KEY, new Object[] {code}, getId(), getClass(), null);</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
     <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/checks/annotation/MissingDeprecatedCheck.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter bitIndex of get.</message>
