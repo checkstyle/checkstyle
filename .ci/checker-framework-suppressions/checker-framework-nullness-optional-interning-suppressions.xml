@@ -1279,7 +1279,7 @@
     <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/LocalizedMessage.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter loader of getBundle.</message>
-    <lineContent>return ResourceBundle.getBundle(bundle, locale, sourceClass.getClassLoader(),</lineContent>
+    <lineContent>return ResourceBundle.getBundle(bundle, sLocale, sourceClass.getClassLoader(),</lineContent>
     <details>
       found   : @Initialized @Nullable ClassLoader
       required: @Initialized @NonNull ClassLoader
