@@ -46,9 +46,6 @@ public final class Violation
     /** The default severity level if one is not specified. */
     private static final SeverityLevel DEFAULT_SEVERITY = SeverityLevel.ERROR;
 
-    /** The locale to localise violations to. **/
-    private static Locale sLocale = Locale.getDefault();
-
     /** The line number. **/
     private final int lineNo;
     /** The column number. **/
@@ -359,20 +356,6 @@ public final class Violation
     }
 
     /**
-     * Sets a locale to use for localization.
-     *
-     * @param locale the locale to use for localization
-     */
-    public static void setLocale(Locale locale) {
-        if (Locale.ENGLISH.getLanguage().equals(locale.getLanguage())) {
-            sLocale = Locale.ROOT;
-        }
-        else {
-            sLocale = locale;
-        }
-    }
-
-    /**
      * Indicates whether some other object is "equal to" this one.
      * Suppression on enumeration is needed so code stays consistent.
      *
@@ -451,7 +434,7 @@ public final class Violation
         String violation = getCustomViolation();
 
         if (violation == null) {
-            violation = new LocalizedMessage(bundle, sLocale, sourceClass, key, args).getMessage();
+            violation = new LocalizedMessage(bundle, sourceClass, key, args).getMessage();
         }
         return violation;
     }

@@ -1279,7 +1279,7 @@
     <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/LocalizedMessage.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter loader of getBundle.</message>
-    <lineContent>return ResourceBundle.getBundle(bundle, locale, sourceClass.getClassLoader(),</lineContent>
+    <lineContent>return ResourceBundle.getBundle(bundle, sLocale, sourceClass.getClassLoader(),</lineContent>
     <details>
       found   : @Initialized @Nullable ClassLoader
       required: @Initialized @NonNull ClassLoader
@@ -1320,17 +1320,6 @@
     <details>
       type of expression: @Initialized @Nullable ResourceBundle
       method return type: @Initialized @NonNull ResourceBundle
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/api/Violation.java</fileName>
-    <specifier>return</specifier>
-    <message>incompatible types in return.</message>
-    <lineContent>return violation;</lineContent>
-    <details>
-      type of expression: @Initialized @Nullable String
-      method return type: @Initialized @NonNull String
     </details>
   </checkerFrameworkError>
 
