@@ -40,13 +40,11 @@ import java.util.ResourceBundle.Control;
  */
 public class LocalizedMessage {
 
+    /** The locale to localise messages to. **/
+    private static Locale sLocale = Locale.getDefault();
+
     /** Name of the resource bundle to get messages from. **/
     private final String bundle;
-
-    /**
-     * The locale to localise messages to.
-     **/
-    private final Locale locale;
 
     /** Class of the source for this message. */
     private final Class<?> sourceClass;
@@ -65,15 +63,13 @@ public class LocalizedMessage {
      * Creates a new {@code LocalizedMessage} instance.
      *
      * @param bundle resource bundle name
-     * @param locale The locale to localise messages to.
      * @param sourceClass the Class that is the source of the message
      * @param key the key to locate the translation.
      * @param args arguments for the translation.
      */
-    public LocalizedMessage(String bundle, Locale locale, Class<?> sourceClass, String key,
+    public LocalizedMessage(String bundle, Class<?> sourceClass, String key,
             Object... args) {
         this.bundle = bundle;
-        this.locale = locale;
         this.sourceClass = sourceClass;
         this.key = key;
         if (args == null) {
@@ -81,6 +77,20 @@ public class LocalizedMessage {
         }
         else {
             this.args = Arrays.copyOf(args, args.length);
+        }
+    }
+
+    /**
+     * Sets a locale to use for localization.
+     *
+     * @param locale the locale to use for localization
+     */
+    public static void setLocale(Locale locale) {
+        if (Locale.ENGLISH.getLanguage().equals(locale.getLanguage())) {
+            sLocale = Locale.ROOT;
+        }
+        else {
+            sLocale = locale;
         }
     }
 
@@ -119,7 +129,7 @@ public class LocalizedMessage {
      * @return a ResourceBundle.
      */
     private ResourceBundle getBundle() {
-        return ResourceBundle.getBundle(bundle, locale, sourceClass.getClassLoader(),
+        return ResourceBundle.getBundle(bundle, sLocale, sourceClass.getClassLoader(),
                 new Utf8Control());
     }
 
