@@ -48,7 +48,6 @@ import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.RootModule;
-import com.puppycrawl.tools.checkstyle.api.Violation;
 import com.puppycrawl.tools.checkstyle.utils.ChainedPropertyUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.XpathUtil;
@@ -146,12 +145,12 @@ public final class Main {
         finally {
             // return exit code base on validation of Checker
             if (errorCounter > 0) {
-                final Violation errorCounterViolation = new Violation(1,
-                        Definitions.CHECKSTYLE_BUNDLE, ERROR_COUNTER,
-                        new String[] {String.valueOf(errorCounter)}, null, Main.class, null);
+                final LocalizedMessage errorCounterViolation = new LocalizedMessage(
+                        Definitions.CHECKSTYLE_BUNDLE, Main.class,
+                        ERROR_COUNTER, String.valueOf(errorCounter));
                 // print error count statistic to error output stream,
                 // output stream might be used by validation report content
-                System.err.println(errorCounterViolation.getViolation());
+                System.err.println(errorCounterViolation.getMessage());
             }
         }
         Runtime.getRuntime().exit(exitStatus);
@@ -439,10 +438,10 @@ public final class Main {
             properties.load(stream);
         }
         catch (final IOException ex) {
-            final Violation loadPropertiesExceptionMessage = new Violation(1,
-                    Definitions.CHECKSTYLE_BUNDLE, LOAD_PROPERTIES_EXCEPTION,
-                    new String[] {file.getAbsolutePath()}, null, Main.class, null);
-            throw new CheckstyleException(loadPropertiesExceptionMessage.getViolation(), ex);
+            final LocalizedMessage loadPropertiesExceptionMessage = new LocalizedMessage(
+                    Definitions.CHECKSTYLE_BUNDLE, Main.class,
+                    LOAD_PROPERTIES_EXCEPTION, file.getAbsolutePath());
+            throw new CheckstyleException(loadPropertiesExceptionMessage.getMessage(), ex);
         }
 
         return ChainedPropertyUtil.getResolvedProperties(properties);

@@ -3666,6 +3666,7 @@
                 <param>com.puppycrawl.tools.checkstyle.DefaultContext*</param>
                 <param>com.puppycrawl.tools.checkstyle.DefaultLogger*</param>
                 <param>com.puppycrawl.tools.checkstyle.Definitions*</param>
+                <param>com.puppycrawl.tools.checkstyle.LocalizedMessage*</param>
                 <param>com.puppycrawl.tools.checkstyle.XMLLogger*</param>
                 <param>com.puppycrawl.tools.checkstyle.SarifLogger*</param>
                 <param>com.puppycrawl.tools.checkstyle.MetadataGeneratorLogger*</param>
@@ -3694,6 +3695,7 @@
                 <param>com.puppycrawl.tools.checkstyle.DefaultConfigurationTest</param>
                 <param>com.puppycrawl.tools.checkstyle.DefaultLoggerTest</param>
                 <param>com.puppycrawl.tools.checkstyle.DefinitionsTest</param>
+                <param>com.puppycrawl.tools.checkstyle.LocalizedMessageTest</param>
                 <param>com.puppycrawl.tools.checkstyle.XMLLoggerTest</param>
                 <param>com.puppycrawl.tools.checkstyle.SarifLoggerTest</param>
                 <param>com.puppycrawl.tools.checkstyle.MetadataGeneratorLoggerTest</param>

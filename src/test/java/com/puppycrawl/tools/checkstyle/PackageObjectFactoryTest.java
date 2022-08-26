@@ -156,12 +156,12 @@ public class PackageObjectFactoryTest {
             assertWithMessage("Exception is expected").fail();
         }
         catch (CheckstyleException ex) {
-            final Violation exceptionMessage = new Violation(1,
-                    Definitions.CHECKSTYLE_BUNDLE, UNABLE_TO_INSTANTIATE_EXCEPTION_MESSAGE,
-                    new String[] {name, null}, null, factory.getClass(), null);
+            final LocalizedMessage exceptionMessage = new LocalizedMessage(
+                    Definitions.CHECKSTYLE_BUNDLE, factory.getClass(),
+                    UNABLE_TO_INSTANTIATE_EXCEPTION_MESSAGE, name, null);
             assertWithMessage("Invalid exception message")
                 .that(ex.getMessage())
-                .isEqualTo(exceptionMessage.getViolation());
+                .isEqualTo(exceptionMessage.getMessage());
         }
     }
 
@@ -177,12 +177,12 @@ public class PackageObjectFactoryTest {
                 final String attemptedNames = BASE_PACKAGE + PACKAGE_SEPARATOR + name
                     + STRING_SEPARATOR + name + CHECK_SUFFIX + STRING_SEPARATOR
                     + BASE_PACKAGE + PACKAGE_SEPARATOR + name + CHECK_SUFFIX;
-                final Violation exceptionMessage = new Violation(1,
-                    Definitions.CHECKSTYLE_BUNDLE, UNABLE_TO_INSTANTIATE_EXCEPTION_MESSAGE,
-                    new String[] {name, attemptedNames}, null, factory.getClass(), null);
+                final LocalizedMessage exceptionMessage = new LocalizedMessage(
+                    Definitions.CHECKSTYLE_BUNDLE, factory.getClass(),
+                    UNABLE_TO_INSTANTIATE_EXCEPTION_MESSAGE, name, attemptedNames);
                 assertWithMessage("Invalid exception message")
                     .that(ex.getMessage())
-                    .isEqualTo(exceptionMessage.getViolation());
+                    .isEqualTo(exceptionMessage.getMessage());
             }
         }
     }
@@ -250,12 +250,12 @@ public class PackageObjectFactoryTest {
         catch (CheckstyleException ex) {
             final String optionalNames = barPackage + PACKAGE_SEPARATOR + name
                     + STRING_SEPARATOR + fooPackage + PACKAGE_SEPARATOR + name;
-            final Violation exceptionMessage = new Violation(1,
-                    Definitions.CHECKSTYLE_BUNDLE, AMBIGUOUS_MODULE_NAME_EXCEPTION_MESSAGE,
-                    new String[] {name, optionalNames}, null, getClass(), null);
+            final LocalizedMessage exceptionMessage = new LocalizedMessage(
+                    Definitions.CHECKSTYLE_BUNDLE, getClass(),
+                    AMBIGUOUS_MODULE_NAME_EXCEPTION_MESSAGE, name, optionalNames);
             assertWithMessage("Invalid exception message")
                 .that(ex.getMessage())
-                .isEqualTo(exceptionMessage.getViolation());
+                .isEqualTo(exceptionMessage.getMessage());
         }
     }
 
@@ -278,12 +278,12 @@ public class PackageObjectFactoryTest {
                     + checkName + STRING_SEPARATOR
                     + package1 + PACKAGE_SEPARATOR + checkName + STRING_SEPARATOR
                     + package2 + PACKAGE_SEPARATOR + checkName;
-            final Violation exceptionMessage = new Violation(1,
-                    Definitions.CHECKSTYLE_BUNDLE, UNABLE_TO_INSTANTIATE_EXCEPTION_MESSAGE,
-                    new String[] {name, attemptedNames}, null, getClass(), null);
+            final LocalizedMessage exceptionMessage = new LocalizedMessage(
+                    Definitions.CHECKSTYLE_BUNDLE, getClass(),
+                    UNABLE_TO_INSTANTIATE_EXCEPTION_MESSAGE, name, attemptedNames);
             assertWithMessage("Invalid exception message")
                 .that(ex.getMessage())
-                .isEqualTo(exceptionMessage.getViolation());
+                .isEqualTo(exceptionMessage.getMessage());
         }
     }
 
