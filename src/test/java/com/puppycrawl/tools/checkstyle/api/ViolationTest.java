@@ -29,6 +29,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.junitpioneer.jupiter.DefaultLocale;
 
+import com.puppycrawl.tools.checkstyle.LocalizedMessage;
 import nl.jqno.equalsverifier.EqualsVerifier;
 import nl.jqno.equalsverifier.EqualsVerifierReport;
 
@@ -101,7 +102,7 @@ public class ViolationTest {
     @Test
     public void testMessageInEnglish() {
         final Violation violation = createSampleViolation();
-        Violation.setLocale(Locale.ENGLISH);
+        LocalizedMessage.setLocale(Locale.ENGLISH);
 
         assertWithMessage("Invalid violation")
             .that(violation.getViolation())
@@ -111,7 +112,7 @@ public class ViolationTest {
     @Test
     public void testMessageInFrench() {
         final Violation violation = createSampleViolation();
-        Violation.setLocale(Locale.FRENCH);
+        LocalizedMessage.setLocale(Locale.FRENCH);
 
         assertWithMessage("Invalid violation")
             .that(violation.getViolation())
@@ -121,7 +122,7 @@ public class ViolationTest {
     @DefaultLocale("fr")
     @Test
     public void testEnforceEnglishLanguageBySettingUnitedStatesLocale() {
-        Violation.setLocale(Locale.US);
+        LocalizedMessage.setLocale(Locale.US);
         final Violation violation = createSampleViolation();
 
         assertWithMessage("Invalid violation")
@@ -132,7 +133,7 @@ public class ViolationTest {
     @DefaultLocale("fr")
     @Test
     public void testEnforceEnglishLanguageBySettingRootLocale() {
-        Violation.setLocale(Locale.ROOT);
+        LocalizedMessage.setLocale(Locale.ROOT);
         final Violation violation = createSampleViolation();
 
         assertWithMessage("Invalid violation")
@@ -143,7 +144,7 @@ public class ViolationTest {
     @DefaultLocale("fr")
     @Test
     public void testGetKey() {
-        Violation.setLocale(Locale.US);
+        LocalizedMessage.setLocale(Locale.US);
         final Violation violation = createSampleViolation();
 
         assertWithMessage("Invalid violation key")
@@ -254,7 +255,7 @@ public class ViolationTest {
 
     @AfterEach
     public void tearDown() {
-        Violation.setLocale(DEFAULT_LOCALE);
+        LocalizedMessage.setLocale(DEFAULT_LOCALE);
     }
 
 }

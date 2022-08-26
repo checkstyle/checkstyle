@@ -48,13 +48,13 @@ public class LocalizedMessageTest {
     @Test
     public void testNullArgs() {
         final LocalizedMessage messageClass = new LocalizedMessage(Definitions.CHECKSTYLE_BUNDLE,
-                Locale.getDefault(), DefaultLogger.class, "DefaultLogger.addException", "myfile");
+                DefaultLogger.class, "DefaultLogger.addException", "myfile");
         assertWithMessage("Violation should contain exception info")
                 .that(messageClass.getMessage())
                 .contains("Error auditing myfile");
 
         final LocalizedMessage nullClass = new LocalizedMessage(Definitions.CHECKSTYLE_BUNDLE,
-                Locale.getDefault(), DefaultLogger.class, "DefaultLogger.addException");
+                DefaultLogger.class, "DefaultLogger.addException");
         final String outputForNullArgs = nullClass.getMessage();
         assertWithMessage("Violation should contain exception info")
                 .that(outputForNullArgs)
