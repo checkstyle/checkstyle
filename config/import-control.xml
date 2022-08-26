@@ -136,6 +136,9 @@
     <allow class="com.puppycrawl.tools.checkstyle.FileStatefulCheck"/>
     <allow class="com.puppycrawl.tools.checkstyle.GlobalStatefulCheck"/>
 
+    <file name="TranslationCheck">
+      <allow class="com.puppycrawl.tools.checkstyle.LocalizedMessage"/>
+    </file>
     <subpackage name="imports">
       <allow class="com.puppycrawl.tools.checkstyle.XmlLoader" local-only="true"/>
     </subpackage>
