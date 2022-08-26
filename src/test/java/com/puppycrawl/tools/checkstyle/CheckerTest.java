@@ -491,7 +491,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
             .that(context.get("basedir"))
             .isEqualTo("testBaseDir");
 
-        final Field sLocale = Violation.class.getDeclaredField("sLocale");
+        final Field sLocale = LocalizedMessage.class.getDeclaredField("sLocale");
         sLocale.setAccessible(true);
         final Locale locale = (Locale) sLocale.get(null);
         assertWithMessage("Locale is set to unexpected value")
