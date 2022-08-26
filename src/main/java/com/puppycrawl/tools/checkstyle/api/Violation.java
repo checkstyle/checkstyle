@@ -431,26 +431,15 @@ public final class Violation
      * @return the translated violation
      */
     public String getViolation() {
-        String violation = getCustomViolation();
+        final String violation;
 
-        if (violation == null) {
+        if (customMessage != null) {
+            violation = new MessageFormat(customMessage, Locale.ROOT).format(args);
+        }
+        else {
             violation = new LocalizedMessage(bundle, sourceClass, key, args).getMessage();
         }
-        return violation;
-    }
 
-    /**
-     * Returns the formatted custom violation if one is configured.
-     *
-     * @return the formatted custom violation or {@code null}
-     *          if there is no custom violation
-     */
-    private String getCustomViolation() {
-        String violation = null;
-        if (customMessage != null) {
-            final MessageFormat formatter = new MessageFormat(customMessage, Locale.ROOT);
-            violation = formatter.format(args);
-        }
         return violation;
     }
 
