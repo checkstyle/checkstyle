@@ -1,8 +1,9 @@
-##
-# GitHub Action to Update GitHub Milestone and Upload Jar.
+#############################################################################
+# GitHub Action to Upload '-all' Jar.
+# It is part of .github/workflows/new-milestone-and-issue-in-other-repo.yml
 #
 #############################################################################
-name: "R: GitHub Milestone/ Upload Jar"
+name: "R: GitHub Upload Jar only"
 on:
   workflow_dispatch:
     inputs:
@@ -11,14 +12,12 @@ on:
         required: true
 jobs:
   github:
-    name: Update Github ${{ github.event.inputs.version }}
+    name: Upload '-all' jar to Github for ${{ github.event.inputs.version }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the latest code
         uses: actions/checkout@v2
-      - name: Download xmlstarlet
-        run: |
-          sudo apt-get install xmlstarlet
+
       - name: Run GitHub Update Script
         run: |
-          ./.ci/update-github.sh ${{ github.event.inputs.version }}
+          ./.ci/upload-all-jar.sh ${{ github.event.inputs.version }}
