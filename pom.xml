@@ -1307,7 +1307,7 @@
                   <version>${java.version}</version>
                 </requireJavaVersion>
                 <requireMavenVersion>
-                  <version>3.0.1</version>
+                  <version>3.3.9</version>
                 </requireMavenVersion>
                 <!-- we can not use this as it require same version for all dependencies -->
                 <!--
