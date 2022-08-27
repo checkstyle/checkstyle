@@ -3,6 +3,8 @@ set -e
 
 source ./.ci/util.sh
 
+FILE=github_post.txt
+
 if [[ -z $1 ]]; then
   echo "release number is not set"
   echo "usage: .ci/update-github-page.sh {release number}"
@@ -67,8 +69,12 @@ java -jar contribution/releasenotes-builder/target/releasenotes-builder-1.0-all.
 echo ==============================================
 echo "GITHUB PAGE:"
 echo ==============================================
-CONTENT=$(cat github_post.txt)
+CONTENT=$(cat "$FILE")
 echo "$CONTENT"
+
+if [[ -n $(grep "@" "$FILE" ) ]]; then
+  sed -i "s/@/"'`@`'"/g" "$FILE"
+fi
 
 echo 'Updating content to be be json value friendly'
 UPDATED_CONTENT=$(awk '{printf "%s\\n", $0}' github_post.txt |  sed "s/\`/'/g")
