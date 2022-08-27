@@ -112,6 +112,14 @@ public class IllegalInstantiationCheckTest
     }
 
     @Test
+    public void testJavaLangPackage3() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputIllegalInstantiationLang3.java"),
+                expected);
+    }
+
+    @Test
     public void testNameSimilarToStandardClass() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
