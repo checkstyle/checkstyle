@@ -1,0 +1,21 @@
+#############################################################################
+# GitHub Action to Publish Tweet of release notes.
+#
+#############################################################################
+name: "Publish Tweet for Release notes"
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Target Version without (-SNAPSHOT)'
+        required: true
+jobs:
+  publish:
+    name: Publish releasenotes tweet for ${{ github.event.inputs.version }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the latest code
+        uses: actions/checkout@v2
+      - name: Run Shell Script
+        run: |
+            ./.ci/tweet-releasenotes.sh ${{ github.event.inputs.version }}
