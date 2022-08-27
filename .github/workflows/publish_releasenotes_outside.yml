@@ -1,0 +1,24 @@
+#############################################################################
+# GitHub Action to Publish Release Notes GitHub Page.
+#
+#############################################################################
+name: "Publish Release notes GitHub Page"
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Target Version without (-SNAPSHOT)'
+        required: true
+jobs:
+  publish:
+    name: Publish releasenotes GitHub Page ${{ github.event.inputs.version }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the latest code
+        uses: actions/checkout@v2
+      - name: Download xmlstarlet
+        run: |
+          sudo apt-get install xmlstarlet
+      - name: Run Shell Script
+        run: |
+          ./.ci/publish-releasenotes-githubpage.sh ${{ github.event.inputs.version }}
