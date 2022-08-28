@@ -26,40 +26,32 @@ import static org.junit.jupiter.api.Assumptions.assumeFalse;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Method;
 import java.nio.charset.StandardCharsets;
 import java.text.MessageFormat;
 import java.util.Arrays;
 import java.util.Locale;
-import java.util.Map;
 import java.util.ResourceBundle;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
-import org.junitpioneer.jupiter.DefaultLocale;
 
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean.OutputStreamOptions;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import com.puppycrawl.tools.checkstyle.api.Violation;
-import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
 public class DefaultLoggerTest {
 
     private static final Locale DEFAULT_LOCALE = Locale.getDefault();
 
     @AfterEach
-    public void tearDown() throws Exception {
-        final Constructor<?> cons = getConstructor();
-        final Map<String, ResourceBundle> bundleCache =
-                TestUtil.getInternalStaticState(cons.getDeclaringClass(), "BUNDLE_CACHE");
-        bundleCache.clear();
+    public void tearDown() {
+        ResourceBundle.clearCache();
     }
 
     @Test
-    public void testCtor() throws Exception {
+    public void testCtor() {
         final OutputStream infoStream = new ByteArrayOutputStream();
         final ByteArrayOutputStream errorStream = new ByteArrayOutputStream();
         final DefaultLogger dl = new DefaultLogger(infoStream, OutputStreamOptions.CLOSE,
@@ -67,16 +59,11 @@ public class DefaultLoggerTest {
         dl.addException(new AuditEvent(5000, "myfile"), new IllegalStateException("upsss"));
         dl.auditFinished(new AuditEvent(6000, "myfile"));
         final String output = errorStream.toString(StandardCharsets.UTF_8);
-        final Constructor<?> cons = getConstructor();
-        cons.setAccessible(true);
-        final Object addExceptionMessage = cons.newInstance(DefaultLogger.ADD_EXCEPTION_MESSAGE,
-                new String[] {"myfile"});
-        final Method getMessage = addExceptionMessage.getClass().getDeclaredMethod("getMessage");
-        getMessage.setAccessible(true);
-        final Object returnValue = getMessage.invoke(addExceptionMessage);
+        final LocalizedMessage addExceptionMessage = getAddExceptionMessageClass("myfile");
+        final String message = addExceptionMessage.getMessage();
         assertWithMessage("Invalid exception")
                 .that(output)
-                .contains(returnValue.toString());
+                .contains(message);
         assertWithMessage("Invalid exception class")
                 .that(output)
                 .contains("java.lang.IllegalStateException: upsss");
@@ -151,11 +138,11 @@ public class DefaultLoggerTest {
     }
 
     @Test
-    public void testAddError() throws Exception {
+    public void testAddError() {
         final OutputStream infoStream = new ByteArrayOutputStream();
         final OutputStream errorStream = new ByteArrayOutputStream();
-        final Method auditStartMessage = getAuditStartMessage();
-        final Method auditFinishMessage = getAuditFinishMessage();
+        final String auditStartMessage = getAuditStartMessage();
+        final String auditFinishMessage = getAuditFinishMessage();
         final DefaultLogger dl = new DefaultLogger(infoStream,
                 AutomaticBean.OutputStreamOptions.CLOSE, errorStream,
                 AutomaticBean.OutputStreamOptions.CLOSE);
@@ -164,13 +151,11 @@ public class DefaultLoggerTest {
         dl.addError(new AuditEvent(this, "fileName", new Violation(1, 2, "bundle", "key",
                 null, null, getClass(), "customViolation")));
         dl.auditFinished(null);
-        auditFinishMessage.setAccessible(true);
-        auditStartMessage.setAccessible(true);
         assertWithMessage("expected output")
             .that(infoStream.toString())
-            .isEqualTo(auditStartMessage.invoke(getAuditStartMessageClass())
+            .isEqualTo(auditStartMessage
                         + System.lineSeparator()
-                        + auditFinishMessage.invoke(getAuditFinishMessageClass())
+                        + auditFinishMessage
                         + System.lineSeparator());
         assertWithMessage("expected output")
             .that(errorStream.toString())
@@ -179,11 +164,11 @@ public class DefaultLoggerTest {
     }
 
     @Test
-    public void testAddErrorModuleId() throws Exception {
+    public void testAddErrorModuleId() {
         final OutputStream infoStream = new ByteArrayOutputStream();
         final OutputStream errorStream = new ByteArrayOutputStream();
-        final Method auditFinishMessage = getAuditFinishMessage();
-        final Method auditStartMessage = getAuditStartMessage();
+        final String auditFinishMessage = getAuditFinishMessage();
+        final String auditStartMessage = getAuditStartMessage();
         final DefaultLogger dl = new DefaultLogger(infoStream, OutputStreamOptions.CLOSE,
                 errorStream, OutputStreamOptions.CLOSE);
         dl.finishLocalSetup();
@@ -191,13 +176,11 @@ public class DefaultLoggerTest {
         dl.addError(new AuditEvent(this, "fileName", new Violation(1, 2, "bundle", "key",
                 null, "moduleId", getClass(), "customViolation")));
         dl.auditFinished(null);
-        auditFinishMessage.setAccessible(true);
-        auditStartMessage.setAccessible(true);
         assertWithMessage("expected output")
             .that(infoStream.toString())
-            .isEqualTo(auditStartMessage.invoke(getAuditStartMessageClass())
+            .isEqualTo(auditStartMessage
                         + System.lineSeparator()
-                        + auditFinishMessage.invoke(getAuditFinishMessageClass())
+                        + auditFinishMessage
                         + System.lineSeparator());
         assertWithMessage("expected output")
             .that(errorStream.toString())
@@ -259,46 +242,6 @@ public class DefaultLoggerTest {
         assertWithMessage("Invalid country")
                 .that(Arrays.asList(Locale.getISOCountries()))
                 .contains(country);
-    }
-
-    @DefaultLocale("fr")
-    @Test
-    public void testCleatBundleCache() throws Exception {
-        final Constructor<?> cons = getConstructor();
-        cons.setAccessible(true);
-        final Object messageClass = cons.newInstance(DefaultLogger.ADD_EXCEPTION_MESSAGE, null);
-        final Method message = messageClass.getClass().getDeclaredMethod("getMessage");
-        message.setAccessible(true);
-        final Map<String, ResourceBundle> bundleCache =
-                TestUtil.getInternalStaticState(message.getDeclaringClass(), "BUNDLE_CACHE");
-        assertWithMessage("Invalid message")
-            .that(message.invoke(messageClass))
-            .isEqualTo("Une erreur est survenue {0}");
-        assertWithMessage("Invalid bundle cache size")
-            .that(bundleCache)
-            .hasSize(1);
-    }
-
-    @Test
-    public void testNullArgs() throws Exception {
-        final Constructor<?> cons = getConstructor();
-        cons.setAccessible(true);
-        final Object messageClass = cons.newInstance(DefaultLogger.ADD_EXCEPTION_MESSAGE,
-                new String[] {"myfile"});
-        final Method message = messageClass.getClass().getDeclaredMethod("getMessage");
-        message.setAccessible(true);
-        final String output = (String) message.invoke(messageClass);
-        assertWithMessage("Violation should contain exception info")
-                .that(output)
-                .contains("Error auditing myfile");
-
-        final Object nullClass = cons.newInstance(DefaultLogger.ADD_EXCEPTION_MESSAGE, null);
-        final Method nullMessage = nullClass.getClass().getDeclaredMethod("getMessage");
-        nullMessage.setAccessible(true);
-        final String outputForNullArgs = (String) nullMessage.invoke(nullClass);
-        assertWithMessage("Violation should contain exception info")
-                .that(outputForNullArgs)
-                .contains("Error auditing {0}");
     }
 
     @Test
@@ -363,37 +306,29 @@ public class DefaultLoggerTest {
         }
     }
 
-    private static Constructor<?> getConstructor() throws Exception {
-        final Class<?> message = getDefaultLoggerClass().getDeclaredClasses()[0];
-        return message.getDeclaredConstructor(String.class, String[].class);
+    private static LocalizedMessage getAuditStartMessageClass() {
+        return new LocalizedMessage(Definitions.CHECKSTYLE_BUNDLE,
+                DefaultLogger.class, "DefaultLogger.auditStarted");
     }
 
-    private static Object getAuditStartMessageClass() throws Exception {
-        final Constructor<?> cons = getConstructor();
-        return cons.newInstance("DefaultLogger.auditStarted", null);
+    private static LocalizedMessage getAuditFinishMessageClass() {
+        return new LocalizedMessage(Definitions.CHECKSTYLE_BUNDLE,
+                DefaultLogger.class, "DefaultLogger.auditFinished");
     }
 
-    private static Object getAuditFinishMessageClass() throws Exception {
-        final Constructor<?> cons = getConstructor();
-        return cons.newInstance("DefaultLogger.auditFinished", null);
+    private static LocalizedMessage getAddExceptionMessageClass(Object... arguments) {
+        return new LocalizedMessage(Definitions.CHECKSTYLE_BUNDLE,
+                DefaultLogger.class, "DefaultLogger.addException", arguments);
     }
 
-    private static Method getAuditStartMessage() throws Exception {
-        final Constructor<?> cons = getConstructor();
-        cons.setAccessible(true);
-        final Object auditStartMessageClass = getAuditStartMessageClass();
-        return auditStartMessageClass.getClass().getDeclaredMethod("getMessage");
+    private static String getAuditStartMessage() {
+        final LocalizedMessage auditStartMessage = getAuditStartMessageClass();
+        return auditStartMessage.getMessage();
     }
 
-    private static Method getAuditFinishMessage() throws Exception {
-        final Constructor<?> cons = getConstructor();
-        cons.setAccessible(true);
-        final Object auditFinishMessageClass = getAuditFinishMessageClass();
-        return auditFinishMessageClass.getClass().getDeclaredMethod("getMessage");
-    }
-
-    private static Class<?> getDefaultLoggerClass() throws Exception {
-        return Class.forName("com.puppycrawl.tools.checkstyle.DefaultLogger");
+    private static String getAuditFinishMessage() {
+        final LocalizedMessage auditFinishMessage = getAuditFinishMessageClass();
+        return auditFinishMessage.getMessage();
     }
 
     private static class MockByteArrayOutputStream extends ByteArrayOutputStream {
