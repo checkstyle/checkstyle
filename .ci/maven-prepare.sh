@@ -20,6 +20,12 @@ if [ "$TARGET_VERSION" != "$CURRENT_VERSION" ]; then
   exit 1;
 fi
 
+if [[ $(grep "<section name=\"Release $RELEASE\">" src/xdocs/releasenotes.xml \
+           | cat | wc -l) -eq 0 ]]; then
+  echo "src/xdocs/releasenotes.xml do not have section for $RELEASE"
+  exit 1
+fi
+
 SKIP_TEST="-DskipTests -DskipITs"
 SKIP_CHECKSTYLE="-Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true"
 SKIP_OTHERS="-Dpmd.skip=true -Dspotbugs.skip=true -Djacoco.skip=true -Dxml.skip=true"
