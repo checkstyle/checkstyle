@@ -29,6 +29,7 @@ import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.JavaParser;
+import com.puppycrawl.tools.checkstyle.api.AbstractSyntaxTree;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import net.sf.saxon.om.NodeInfo;
@@ -1172,7 +1173,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
                 TokenTypes.COMPILATION_UNIT)
                 .findFirstToken(TokenTypes.PACKAGE_DEF);
         final DetailAST expectedAnnotationsNode = expectedPackageDefNode.getFirstChild();
-        final DetailAST[] expected = {
+        final AbstractSyntaxTree[] expected = {
             rootNode.getUnderlyingNode(),
             expectedPackageDefNode,
             expectedAnnotationsNode,
@@ -1266,14 +1267,14 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
         final DetailAST[] result = new DetailAST[nodes.size()];
         for (int i = 0; i < nodes.size(); i++) {
             final AbstractNode abstractNode = (AbstractNode) nodes.get(i);
-            result[i] = abstractNode.getUnderlyingNode();
+            result[i] = (DetailAST) abstractNode.getUnderlyingNode();
         }
         return result;
     }
 
-    private static DetailAST getSiblingByType(DetailAST node, int type) {
+    private static DetailAST getSiblingByType(AbstractSyntaxTree node, int type) {
         DetailAST returnValue = null;
-        for (DetailAST ast = node; ast != null; ast = ast.getNextSibling()) {
+        for (DetailAST ast = (DetailAST) node; ast != null; ast = ast.getNextSibling()) {
             if (ast.getType() == type) {
                 returnValue = ast;
                 break;
