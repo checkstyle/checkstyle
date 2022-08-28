@@ -2,7 +2,7 @@
 # GitHub Action to Push Release Notes.
 #
 #############################################################################
-name: "Push Release Notes"
+name: "R: Push Release Notes"
 on:
   workflow_dispatch:
     inputs:

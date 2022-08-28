@@ -2,7 +2,7 @@
 # GitHub Action to bump release version
 #
 #############################################################################
-name: "Bump version and Update Milestone"
+name: "R: Bump version/Update Milestone"
 on:
   workflow_dispatch:
     inputs:
