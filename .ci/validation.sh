@@ -198,6 +198,8 @@ markdownlint)
 no-error-pmd)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo "CS_version: ${CS_POM_VERSION}"
+  mvn -e --no-transfer-progress clean install -Pno-validations
+  echo "Checkout target sources ..."
   checkout_from "https://github.com/pmd/build-tools.git"
   cd .ci-temp/build-tools/
   mvn -e --no-transfer-progress install
@@ -219,6 +221,8 @@ no-error-pmd)
 no-violation-test-configurate)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo "CS_version: ${CS_POM_VERSION}"
+  mvn -e --no-transfer-progress clean install -Pno-validations
+  echo "Checkout target sources ..."
   mkdir -p .ci-temp
   cd .ci-temp
   git clone https://github.com/SpongePowered/Configurate.git
@@ -231,6 +235,8 @@ no-violation-test-configurate)
 no-violation-test-josm)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo "CS_version: ${CS_POM_VERSION}"
+  mvn -e --no-transfer-progress clean install -Pno-validations
+  echo "Checkout target sources ..."
   mkdir -p .ci-temp
   cd .ci-temp
   TESTED=$(wget -q -O - https://josm.openstreetmap.de/wiki/TestedVersion?format=txt)
@@ -256,6 +262,7 @@ no-error-xwiki)
   ANTLR4_VERSION="$(getMavenProperty 'antlr4.version')"
   echo "version:${CS_POM_VERSION} antlr4:${ANTLR4_VERSION}"
   mvn -e --no-transfer-progress clean install -Pno-validations
+  echo "Checkout target sources ..."
   checkout_from "https://github.com/xwiki/xwiki-commons.git"
   cd .ci-temp/xwiki-commons
   # Build custom Checkstyle rules
@@ -300,6 +307,7 @@ no-error-test-sbe)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo version:"$CS_POM_VERSION"
   mvn -e --no-transfer-progress clean install -Pno-validations
+  echo "Checkout target sources ..."
   checkout_from https://github.com/real-logic/simple-binary-encoding.git
   cd .ci-temp/simple-binary-encoding
   sed -i'' \
@@ -591,6 +599,8 @@ sonarqube)
 no-error-pgjdbc)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: "${CS_POM_VERSION}"
+  mvn -e --no-transfer-progress clean install -Pno-validations
+  echo "Checkout target sources ..."
   checkout_from https://github.com/pgjdbc/pgjdbc.git
   cd .ci-temp/pgjdbc
   # pgjdbc easily damage build, we should use stable versions
@@ -604,6 +614,8 @@ no-error-pgjdbc)
 no-error-orekit)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: "${CS_POM_VERSION}"
+  mvn -e --no-transfer-progress clean install -Pno-validations
+  echo "Checkout target sources ..."
   checkout_from https://github.com/Hipparchus-Math/hipparchus.git
   cd .ci-temp/hipparchus
   # checkout to version that Orekit expects
@@ -627,6 +639,8 @@ no-error-orekit)
 no-error-hibernate-search)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: "${CS_POM_VERSION}"
+  mvn -e --no-transfer-progress clean install -Pno-validations
+  echo "Checkout target sources ..."
   checkout_from https://github.com/hibernate/hibernate-search.git
   cd .ci-temp/hibernate-search
   mvn -e --no-transfer-progress clean install -pl build/config -am \
@@ -643,6 +657,7 @@ no-error-checkstyles-sevntu)
   set -e
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: "${CS_POM_VERSION}"
+  mvn -e --no-transfer-progress clean install -Pno-validations
   mvn -e --no-transfer-progress compile verify \
     -Dmaven.sevntu-checkstyle-check.checkstyle.version="${CS_POM_VERSION}" \
     -Dmaven.test.skip=true -Dcheckstyle.ant.skip=true -Dpmd.skip=true -Dspotbugs.skip=true \
@@ -653,6 +668,8 @@ no-error-sevntu-checks)
   set -e
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: "${CS_POM_VERSION}"
+  mvn -e --no-transfer-progress clean install -Pno-validations
+  echo "Checkout target sources ..."
   checkout_from https://github.com/sevntu-checkstyle/sevntu.checkstyle.git
   cd .ci-temp/sevntu.checkstyle/sevntu-checks
   mvn -e --no-transfer-progress -Pno-validations verify  -Dcheckstyle.skip=false \
@@ -666,6 +683,8 @@ no-error-contribution)
   set -e
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: "${CS_POM_VERSION}"
+  mvn -e --no-transfer-progress clean install -Pno-validations
+  echo "Checkout target sources ..."
   checkout_from https://github.com/checkstyle/contribution.git
   cd .ci-temp/contribution
   cd patch-diff-report-tool
@@ -683,6 +702,8 @@ no-error-methods-distance)
   set -e
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: "${CS_POM_VERSION}"
+  mvn -e --no-transfer-progress clean install -Pno-validations
+  echo "Checkout target sources ..."
   checkout_from https://github.com/sevntu-checkstyle/methods-distance.git
   cd .ci-temp/methods-distance
   mvn -e --no-transfer-progress verify -DskipTests -Dcheckstyle-version="${CS_POM_VERSION}" \
@@ -695,6 +716,8 @@ no-error-spring-cloud-gcp)
   set -e
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: "${CS_POM_VERSION}"
+  mvn -e --no-transfer-progress clean install -Pno-validations
+  echo "Checkout target sources ..."
   checkout_from https://github.com/googlecloudplatform/spring-cloud-gcp
   cd .ci-temp/spring-cloud-gcp
   git checkout "7c99f37087ac8f""eb""db""f7e185375a217b744895a4"
@@ -708,6 +731,8 @@ no-error-spring-cloud-gcp)
 no-error-equalsverifier)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: "${CS_POM_VERSION}"
+  mvn -e --no-transfer-progress clean install -Pno-validations
+  echo "Checkout target sources ..."
   checkout_from https://github.com/jqno/equalsverifier.git
   cd .ci-temp/equalsverifier
   mvn -e --no-transfer-progress -Pstatic-analysis-checkstyle compile \
@@ -719,6 +744,8 @@ no-error-equalsverifier)
 no-error-apex-core)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: "${CS_POM_VERSION}"
+  mvn -e --no-transfer-progress clean install -Pno-validations
+  echo "Checkout target sources ..."
   checkout_from https://github.com/checkstyle/apex-core
   cd .ci-temp/apex-core
   mvn -e --no-transfer-progress compile checkstyle:check -Dcheckstyle.version="${CS_POM_VERSION}"
@@ -730,6 +757,8 @@ no-error-strata)
   set -e
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: "${CS_POM_VERSION}"
+  mvn -e --no-transfer-progress clean install -Pno-validations
+  echo "Checkout target sources ..."
   checkout_from https://github.com/OpenGamma/Strata.git
   cd .ci-temp/Strata
   STRATA_CS_POM_VERSION=$(mvn -e --no-transfer-progress -q -Dexec.executable='echo' \
@@ -746,6 +775,8 @@ no-error-spring-integration)
   set -e
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: "${CS_POM_VERSION}"
+  mvn -e --no-transfer-progress clean install -Pno-validations
+  echo "Checkout target sources ..."
   checkout_from https://github.com/spring-projects/spring-integration.git
   cd .ci-temp/spring-integration
   PROP_MAVEN_LOCAL="mavenLocal"
@@ -759,6 +790,8 @@ no-error-spring-integration)
 no-error-htmlunit)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: "${CS_POM_VERSION}"
+  mvn -e --no-transfer-progress clean install -Pno-validations
+  echo "Checkout target sources ..."
   checkout_from https://github.com/HtmlUnit/htmlunit
   cd .ci-temp/htmlunit
   mvn -e --no-transfer-progress compile checkstyle:check -Dcheckstyle.version="${CS_POM_VERSION}"
