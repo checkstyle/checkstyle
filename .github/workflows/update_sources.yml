@@ -23,7 +23,7 @@ jobs:
           sudo apt-get install xmlstarlet
       - name: Run Shell Script
         run: |
-          ./.ci/update-sources.sh ${{ github.event.inputs.version }}
+          ./.ci/update-releasenotesxml.sh ${{ github.event.inputs.version }}
       - name: Commit and Push
         run: |
             git config --global user.name 'github-actions[bot]'
