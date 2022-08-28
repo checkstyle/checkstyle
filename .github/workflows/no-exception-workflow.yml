@@ -20,7 +20,4 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Install checkstyle
-      run: mvn -e --no-transfer-progress clean install -Pno-validations
-
     - run: .ci/no-exception-test.sh openjdk17-with-checks-nonjavadoc-error
