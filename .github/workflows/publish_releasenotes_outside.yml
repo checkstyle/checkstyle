@@ -16,9 +16,6 @@ jobs:
     steps:
       - name: Checkout the latest code
         uses: actions/checkout@v2
-      - name: Download xmlstarlet
-        run: |
-          sudo apt-get install xmlstarlet
       - name: Run Shell Script
         run: |
           ./.ci/publish-releasenotes-githubpage.sh ${{ github.event.inputs.version }}
