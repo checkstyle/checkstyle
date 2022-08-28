@@ -2,7 +2,7 @@
 # GitHub Action to Publish Release Notes GitHub Page.
 #
 #############################################################################
-name: "Publish Release notes GitHub Page"
+name: "R: Publish GitHub Page"
 on:
   workflow_dispatch:
     inputs:

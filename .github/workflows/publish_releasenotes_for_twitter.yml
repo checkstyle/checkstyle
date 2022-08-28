@@ -2,7 +2,7 @@
 # GitHub Action to Publish Tweet of release notes.
 #
 #############################################################################
-name: "Publish Tweet for Release notes"
+name: "R: Publish Tweet"
 on:
   workflow_dispatch:
     inputs:

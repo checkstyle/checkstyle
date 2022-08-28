@@ -2,7 +2,7 @@
 # GitHub Action to Run Maven Release Prepare.
 #
 #############################################################################
-name: "Maven Release Prepare"
+name: "R: Maven Release Prepare"
 on:
   workflow_dispatch:
     inputs:

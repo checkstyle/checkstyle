@@ -2,7 +2,7 @@
 # GitHub Action to Update GitHub Milestone and Upload Jar.
 #
 #############################################################################
-name: "GitHub Milestone and Upload Jar"
+name: "R: GitHub Milestone/ Upload Jar"
 on:
   workflow_dispatch:
     inputs:
