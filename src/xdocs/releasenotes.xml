@@ -10,6 +10,138 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 10.3.3">
+      <div class="releaseDate">28.08.2022</div>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            Translate messages to Russian.
+            Author: zuev kirill
+            <a href="https://github.com/checkstyle/checkstyle/issues/12039">#12039</a>
+          </li>
+          <li>
+            RequireThisCheck not able to handle try-with-resources.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/11821">#11821</a>
+          </li>
+          <li>
+            Sarif support is not extended onto the Ant task defined.
+            Author: jknair0
+            <a href="https://github.com/checkstyle/checkstyle/issues/11985">#11985</a>
+          </li>
+          <li>
+            InvalidJavadocPosition: false positive for the generic constructor
+            without access modifier.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/11605">#11605</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Github action &quot;Publish release notes outside&quot;.
+            Author: github-actions[bot]
+            <a href="https://github.com/checkstyle/checkstyle/issues/12082">#12082</a>
+          </li>
+          <li>
+            Github action to update sources with release notes.
+            Author: github-actions[bot]
+            <a href="https://github.com/checkstyle/checkstyle/issues/12077">#12077</a>
+          </li>
+          <li>
+            Github action &quot;Update Github&quot;.
+            Author: github-actions[bot]
+            <a href="https://github.com/checkstyle/checkstyle/issues/12080">#12080</a>
+          </li>
+          <li>
+            Github action &quot;Release prepare&quot;.
+            Author: github-actions[bot]
+            <a href="https://github.com/checkstyle/checkstyle/issues/12078">#12078</a>
+          </li>
+          <li>
+            Use Error Prone tool to detect issues with code during compile time.
+            Author: Vyom-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/2160">#2160</a>
+          </li>
+          <li>
+            Reuse Plain text release notes from releasenotes-builder in Github
+            release page.
+            Author: github-actions[bot]
+            <a href="https://github.com/checkstyle/checkstyle/issues/11901">#11901</a>
+          </li>
+          <li>
+            update all shell scripts for release automation to check that
+            parameter is definied.
+            Author: github-actions[bot]
+            <a href="https://github.com/checkstyle/checkstyle/issues/12083">#12083</a>
+          </li>
+          <li>
+            Pitest: Kill all surviving mutations.
+            Author: Vyom-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/11720">#11720</a>
+          </li>
+          <li>
+            tweet-releasenotes.sh should be able to generate release notes for
+            any release of past .
+            Author: github-actions[bot]
+            <a href="https://github.com/checkstyle/checkstyle/issues/12011">#12011</a>
+          </li>
+          <li>
+            Enhancements for bump version action.
+            Author: github-actions[bot]
+            <a href="https://github.com/checkstyle/checkstyle/issues/12058">#12058</a>
+          </li>
+          <li>
+            Resolve IDEA violations from Teamcity 2022.04 (Bundled IntelliJ IDEA 2022.1.3).
+            Author: Vyom-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/11865">#11865</a>
+          </li>
+          <li>
+            Kill surviving mutations in pitest-annotation.
+            Author: Vyom-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/12036">#12036</a>
+          </li>
+          <li>
+            create Github action that does version bump and update of milestone.
+            Author: Rahulkhinchi03
+            <a href="https://github.com/checkstyle/checkstyle/issues/11900">#11900</a>
+          </li>
+          <li>
+            doc: remove Travis as main CI.
+            Author: Roman Ivanov
+          </li>
+          <li>
+            TeamCity change in &#39;Open-source projects / Checkstyle /
+            Checkstyle&#39; project: Versioned settings configuration updated.
+            Author: nmancus1
+          </li>
+          <li>
+            Kill surviving mutations in pitest-api.
+            Author: Vyom-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/12017">#12017</a>
+          </li>
+          <li>
+            Use Shellcheck to resolve violations code in Shell Script.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/11637">#11637</a>
+          </li>
+          <li>
+            Adding CheckForVariable function to util.sh.
+            Author: Rahul Khinchi
+            <a href="https://github.com/checkstyle/checkstyle/issues/11758">#11758</a>
+          </li>
+          <li>
+            Solve fb-contrib errors.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/11140">#11140</a>
+          </li>
+          <li>
+            update code base to have javadoc tag to explain noinspection tag content.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/11277">#11277</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 10.3.2">
       <div class="releaseDate">31.07.2022</div>
       <p>Bug fixes:</p>
