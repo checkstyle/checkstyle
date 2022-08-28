@@ -45,7 +45,7 @@ echo "Go to folder where site was build and sources are already at required tag"
 cd target/checkout
 
 echo "Generating web site"
-mvn -e --no-transfer-progress site
+mvn -e --no-transfer-progress site -Pno-validations -Dmaven.javadoc.skip=false
 
 echo "Generating uber jar ...(no clean to keep site resources just in case)"
 mvn -e --no-transfer-progress -Passembly package
