@@ -22,8 +22,10 @@ package com.puppycrawl.tools.checkstyle.meta;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.regex.Pattern;
 
@@ -67,10 +69,11 @@ public final class XmlMetaReader {
      *
      * @param thirdPartyPackages fully qualified third party package names(can be only a
      *                           hint, e.g. for SevNTU it can be com.github.sevntu / com.github)
-     * @return list of module details found in the classpath satisfying the above conditions
+     * @return map of module full qualified name to module details found in the classpath satisfying
+     *         the above conditions
      * @throws IllegalStateException if there was a problem reading the module metadata files
      */
-    public static List<ModuleDetails> readAllModulesIncludingThirdPartyIfAny(
+    public static Map<String, ModuleDetails> readAllModulesIncludingThirdPartyIfAny(
             String... thirdPartyPackages) {
         final Set<String> standardModuleFileNames = new Reflections(
                 "com.puppycrawl.tools.checkstyle.meta", Scanners.Resources)
@@ -83,7 +86,7 @@ public final class XmlMetaReader {
             allMetadataSources.addAll(thirdPartyModuleFileNames);
         }
 
-        final List<ModuleDetails> result = new ArrayList<>(allMetadataSources.size());
+        final Map<String, ModuleDetails> result = new HashMap<>(allMetadataSources.size());
         for (String fileName : allMetadataSources) {
             final ModuleType moduleType;
             if (fileName.endsWith("FileFilter.xml")) {
@@ -104,7 +107,7 @@ public final class XmlMetaReader {
                 throw new IllegalStateException("Problem to read all modules including third "
                         + "party if any. Problem detected at file: " + fileName, ex);
             }
-            result.add(moduleDetails);
+            result.put(moduleDetails.getFullQualifiedName(), moduleDetails);
         }
 
         return result;
