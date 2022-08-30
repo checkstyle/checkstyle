@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace;
 import java.util.Arrays;
 import java.util.Locale;
 
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -176,6 +177,7 @@ public class SeparatorWrapCheck
     public static final String MSG_LINE_NEW = "line.new";
 
     /** Specify policy on how to wrap lines. */
+    @ModuleProperty
     private WrapOption option = WrapOption.EOL;
 
     /**

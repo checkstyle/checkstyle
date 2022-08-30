@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 import java.util.Objects;
 import java.util.regex.Pattern;
 
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -157,15 +158,18 @@ public class IllegalTokenTextCheck
      * Define the message which is used to notify about violations;
      * if empty then the default message is used.
      */
+    @ModuleProperty
     private String message = "";
 
     /** The format string of the regexp. */
     private String formatString = "^$";
 
     /** Define the RegExp for illegal pattern. */
+    @ModuleProperty
     private Pattern format = Pattern.compile(formatString);
 
     /** Control whether to ignore case when matching. */
+    @ModuleProperty
     private boolean ignoreCase;
 
     @Override

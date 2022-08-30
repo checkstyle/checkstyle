@@ -24,6 +24,7 @@ import java.util.Collections;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -159,10 +160,12 @@ public final class IllegalThrowsCheck extends AbstractCheck {
     public static final String MSG_KEY = "illegal.throw";
 
     /** Specify names of methods to ignore. */
+    @ModuleProperty
     private final Set<String> ignoredMethodNames =
         Arrays.stream(new String[] {"finalize", }).collect(Collectors.toSet());
 
     /** Specify throw class names to reject. */
+    @ModuleProperty
     private final Set<String> illegalClassNames = Arrays.stream(
         new String[] {"Error", "RuntimeException", "Throwable", "java.lang.Error",
                       "java.lang.RuntimeException", "java.lang.Throwable", })
@@ -172,6 +175,7 @@ public final class IllegalThrowsCheck extends AbstractCheck {
      * Allow to ignore checking overridden methods (marked with {@code Override}
      * or {@code java.lang.Override} annotation).
      */
+    @ModuleProperty
     private boolean ignoreOverriddenMethods = true;
 
     /**

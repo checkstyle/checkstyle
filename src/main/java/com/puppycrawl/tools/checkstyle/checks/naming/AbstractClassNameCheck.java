@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.naming;
 
 import java.util.regex.Pattern;
 
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -152,6 +153,7 @@ public final class AbstractClassNameCheck extends AbstractCheck {
      * Control whether to ignore checking for the {@code abstract} modifier on
      * classes that match the name.
      */
+    @ModuleProperty
     private boolean ignoreModifier;
 
     /**
@@ -159,9 +161,11 @@ public final class AbstractClassNameCheck extends AbstractCheck {
      * if using the check to identify that match name and do not have the
      * {@code abstract} modifier.
      */
+    @ModuleProperty
     private boolean ignoreName;
 
     /** Specify valid identifiers. */
+    @ModuleProperty
     private Pattern format = Pattern.compile("^Abstract.+$");
 
     /**

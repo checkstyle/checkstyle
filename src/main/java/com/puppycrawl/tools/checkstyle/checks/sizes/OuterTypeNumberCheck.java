@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks.sizes;
 
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -76,6 +77,7 @@ public class OuterTypeNumberCheck extends AbstractCheck {
     public static final String MSG_KEY = "maxOuterTypes";
 
     /** Specify the maximum number of outer types allowed. */
+    @ModuleProperty
     private int max = 1;
     /** Tracks the current depth in types. */
     private int currentDepth;

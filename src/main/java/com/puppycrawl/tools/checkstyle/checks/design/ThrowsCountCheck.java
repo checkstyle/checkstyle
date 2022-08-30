@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.design;
 
 import java.util.Objects;
 
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -201,9 +202,11 @@ public final class ThrowsCountCheck extends AbstractCheck {
     private static final int DEFAULT_MAX = 4;
 
     /** Allow private methods to be ignored. */
+    @ModuleProperty
     private boolean ignorePrivateMethods = true;
 
     /** Specify maximum allowed number of throws statements. */
+    @ModuleProperty
     private int max;
 
     /** Creates new instance of the check. */

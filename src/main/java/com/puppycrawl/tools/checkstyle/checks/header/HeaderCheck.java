@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.header;
 import java.io.File;
 import java.util.BitSet;
 
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
@@ -150,6 +151,7 @@ public class HeaderCheck extends AbstractHeaderCheck {
     public static final String MSG_MISMATCH = "header.mismatch";
 
     /** Specify the line numbers to ignore. */
+    @ModuleProperty
     private BitSet ignoreLines = new BitSet();
 
     /**

@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.sizes;
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -145,12 +146,14 @@ public class RecordComponentNumberCheck extends AbstractCheck {
     private static final int DEFAULT_MAX_COMPONENTS = 8;
 
     /** Specify the maximum number of components allowed in the header of a record definition. */
+    @ModuleProperty
     private int max = DEFAULT_MAX_COMPONENTS;
 
     /**
      * Access modifiers of record definitions where the number
      * of record components should be checked.
      */
+    @ModuleProperty
     private AccessModifierOption[] accessModifiers = {
         AccessModifierOption.PUBLIC,
         AccessModifierOption.PROTECTED,

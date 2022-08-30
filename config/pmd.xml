@@ -348,10 +348,12 @@
       <!-- Main actively uses Checkstyle, logging and command line parsing API.
            Checker collects external resource locations and sets up the configuration.
            CheckstyleAntTask integrates Checkstyle with Ant.
+           Temporary suppression for TranslationCheck.
             -->
       <property name="violationSuppressXPath"
                 value="//ClassOrInterfaceDeclaration[@SimpleName='Main'
-        or @SimpleName='Checker' or @SimpleName='CheckstyleAntTask']"/>
+        or @SimpleName='Checker' or @SimpleName='CheckstyleAntTask'
+        or @SimpleName='TranslationCheck']"/>
     </properties>
   </rule>
   <rule ref="category/java/design.xml/CognitiveComplexity">

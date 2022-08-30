@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.filters;
 
 import java.util.regex.Pattern;
 
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.Filter;
@@ -205,29 +206,35 @@ public class SuppressionSingleFilter extends AutomaticBean implements Filter {
     /**
      * Define the RegExp for matching against the file name associated with an audit event.
      */
+    @ModuleProperty
     private Pattern files;
     /**
      * Define the RegExp for matching against the name of the check associated with an audit event.
      */
+    @ModuleProperty
     private Pattern checks;
     /**
      * Define the RegExp for matching against the message of the check associated with an audit
      * event.
      */
+    @ModuleProperty
     private Pattern message;
     /**
      * Specify a string matched against the ID of the check associated with an audit event.
      */
+    @ModuleProperty
     private String id;
     /**
      * Specify a comma-separated list of values, where each value is an integer or a range of
      * integers denoted by integer-integer.
      */
+    @ModuleProperty
     private String lines;
     /**
      * Specify a comma-separated list of values, where each value is an integer or a range of
      * integers denoted by integer-integer.
      */
+    @ModuleProperty
     private String columns;
 
     /**

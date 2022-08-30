@@ -25,6 +25,7 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 import com.puppycrawl.tools.checkstyle.GlobalStatefulCheck;
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.FileText;
@@ -101,6 +102,7 @@ public class JavadocPackageCheck extends AbstractFileSetCheck {
     private final Set<File> directoriesChecked = ConcurrentHashMap.newKeySet();
 
     /** Allow legacy {@code package.html} file to be used. */
+    @ModuleProperty
     private boolean allowLegacy;
 
     /**

@@ -28,6 +28,7 @@ import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -319,21 +320,25 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
      * Specify distance between declaration of variable and its first usage.
      * Values should be greater than 0.
      */
+    @ModuleProperty
     private int allowedDistance = DEFAULT_DISTANCE;
 
     /**
      * Define RegExp to ignore distance calculation for variables listed in
      * this pattern.
      */
+    @ModuleProperty
     private Pattern ignoreVariablePattern = Pattern.compile("");
 
     /**
      * Allow to calculate the distance between declaration of variable and its
      * first usage in the different scopes.
      */
+    @ModuleProperty
     private boolean validateBetweenScopes;
 
     /** Allow to ignore variables with a 'final' modifier. */
+    @ModuleProperty
     private boolean ignoreFinal = true;
 
     /**

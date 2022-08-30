@@ -24,6 +24,7 @@ import java.util.Set;
 import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
@@ -148,6 +149,7 @@ public class UncommentedMainCheck
      * Specify pattern for qualified names of classes which are allowed to
      * have a {@code main} method.
      */
+    @ModuleProperty
     private Pattern excludedClasses = Pattern.compile("^$");
     /** Current class name. */
     private String currentClass;

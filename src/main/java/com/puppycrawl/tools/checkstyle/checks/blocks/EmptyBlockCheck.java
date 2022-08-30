@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.blocks;
 import java.util.Arrays;
 import java.util.Locale;
 
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -189,6 +190,7 @@ public class EmptyBlockCheck
     public static final String MSG_KEY_BLOCK_EMPTY = "block.empty";
 
     /** Specify the policy on block contents. */
+    @ModuleProperty
     private BlockOption option = BlockOption.STATEMENT;
 
     /**

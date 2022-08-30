@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 import java.io.File;
 
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
@@ -119,6 +120,7 @@ public final class PackageDeclarationCheck extends AbstractCheck {
     private boolean defined;
 
     /** Control whether to check for directory and package name match. */
+    @ModuleProperty
     private boolean matchDirectoryStructure = true;
 
     /**

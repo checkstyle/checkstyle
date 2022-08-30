@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import java.util.Locale;
 
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -166,6 +167,7 @@ public class JavadocContentLocationCheck extends AbstractCheck {
     /**
      * Specify the policy on placement of the Javadoc content.
      */
+    @ModuleProperty
     private JavadocContentLocationOption location = JavadocContentLocationOption.SECOND_LINE;
 
     @Override

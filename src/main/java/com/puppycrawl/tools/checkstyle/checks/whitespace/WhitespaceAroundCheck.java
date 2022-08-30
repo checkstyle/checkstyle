@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -476,22 +477,29 @@ public class WhitespaceAroundCheck extends AbstractCheck {
     public static final String MSG_WS_NOT_FOLLOWED = "ws.notFollowed";
 
     /** Allow empty constructor bodies. */
+    @ModuleProperty
     private boolean allowEmptyConstructors;
     /** Allow empty method bodies. */
+    @ModuleProperty
     private boolean allowEmptyMethods;
     /** Allow empty class, interface and enum bodies. */
+    @ModuleProperty
     private boolean allowEmptyTypes;
     /** Allow empty loop bodies. */
+    @ModuleProperty
     private boolean allowEmptyLoops;
     /** Allow empty lambda bodies. */
+    @ModuleProperty
     private boolean allowEmptyLambdas;
     /** Allow empty catch bodies. */
+    @ModuleProperty
     private boolean allowEmptyCatches;
     /**
      * Ignore whitespace around colon in
      * <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-14.html#jls-14.14.2">
      * enhanced for</a> loop.
      */
+    @ModuleProperty
     private boolean ignoreEnhancedForColon = true;
 
     @Override

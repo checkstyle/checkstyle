@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
@@ -148,6 +149,7 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
     /**
      * Specify how many spaces to use for new indentation level.
      */
+    @ModuleProperty
     private int offset = DEFAULT_INDENTATION;
 
     /**

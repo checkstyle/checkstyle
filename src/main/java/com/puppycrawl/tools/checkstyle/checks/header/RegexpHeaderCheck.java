@@ -26,6 +26,7 @@ import java.util.List;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
@@ -236,6 +237,7 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck {
     private final List<Pattern> headerRegexps = new ArrayList<>();
 
     /** Specify the line numbers to repeat (zero or more times). */
+    @ModuleProperty
     private BitSet multiLines = new BitSet();
 
     /**

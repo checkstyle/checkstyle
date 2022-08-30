@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 import java.util.Arrays;
 import java.util.BitSet;
 
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.PropertyType;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.XdocsPropertyType;
@@ -295,6 +296,7 @@ public class MagicNumberCheck extends AbstractCheck {
      * number literal to the enclosing constant definition.
      */
     @XdocsPropertyType(PropertyType.TOKEN_ARRAY)
+    @ModuleProperty
     private BitSet constantWaiverParentToken = TokenUtil.asBitSet(
         TokenTypes.ASSIGN,
         TokenTypes.ARRAY_INIT,
@@ -312,18 +314,23 @@ public class MagicNumberCheck extends AbstractCheck {
     );
 
     /** Specify non-magic numbers. */
+    @ModuleProperty
     private double[] ignoreNumbers = {-1, 0, 1, 2};
 
     /** Ignore magic numbers in hashCode methods. */
+    @ModuleProperty
     private boolean ignoreHashCodeMethod;
 
     /** Ignore magic numbers in annotation declarations. */
+    @ModuleProperty
     private boolean ignoreAnnotation;
 
     /** Ignore magic numbers in field declarations. */
+    @ModuleProperty
     private boolean ignoreFieldDeclaration;
 
     /** Ignore magic numbers in annotation elements defaults. */
+    @ModuleProperty
     private boolean ignoreAnnotationElementDefaults = true;
 
     @Override

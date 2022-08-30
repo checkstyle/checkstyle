@@ -27,6 +27,7 @@ import java.util.Map;
 import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.PropertyType;
 import com.puppycrawl.tools.checkstyle.XdocsPropertyType;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
@@ -204,16 +205,19 @@ public class MultipleStringLiteralsCheck extends AbstractCheck {
      * contexts like annotations or static initializers from the check.
      */
     @XdocsPropertyType(PropertyType.TOKEN_ARRAY)
+    @ModuleProperty
     private final BitSet ignoreOccurrenceContext = new BitSet();
 
     /**
      * Specify the maximum number of occurrences to allow without generating a warning.
      */
+    @ModuleProperty
     private int allowedDuplicates = 1;
 
     /**
      * Specify RegExp for ignored strings (with quotation marks).
      */
+    @ModuleProperty
     private Pattern ignoreStringsRegexp;
 
     /**

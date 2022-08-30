@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks;
 
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -117,6 +118,7 @@ public class ArrayTypeStyleCheck extends AbstractCheck {
     public static final String MSG_KEY = "array.type.style";
 
     /** Control whether to enforce Java style (true) or C style (false). */
+    @ModuleProperty
     private boolean javaStyle = true;
 
     @Override

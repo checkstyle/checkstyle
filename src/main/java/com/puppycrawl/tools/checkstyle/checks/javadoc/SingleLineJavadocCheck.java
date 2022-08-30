@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import java.util.Set;
 
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
@@ -255,6 +256,7 @@ public class SingleLineJavadocCheck extends AbstractJavadocCheck {
      * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html#CHDBEFIF">
      * block tags</a> which are ignored by the check.
      */
+    @ModuleProperty
     private Set<String> ignoredTags = Set.of();
 
     /**
@@ -262,6 +264,7 @@ public class SingleLineJavadocCheck extends AbstractJavadocCheck {
      * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html#CHDBEFIF">
      * inline tags</a> must be ignored.
      */
+    @ModuleProperty
     private boolean ignoreInlineTags = true;
 
     /**

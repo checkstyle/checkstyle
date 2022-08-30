@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.sizes;
 
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -83,6 +84,7 @@ public class AnonInnerLengthCheck extends AbstractCheck {
     private static final int DEFAULT_MAX = 20;
 
     /** Specify the maximum number of lines allowed. */
+    @ModuleProperty
     private int max = DEFAULT_MAX;
 
     @Override

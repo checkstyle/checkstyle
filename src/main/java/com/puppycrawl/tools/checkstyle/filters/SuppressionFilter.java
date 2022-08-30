@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.filters;
 import java.util.Collections;
 import java.util.Set;
 
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
@@ -222,6 +223,7 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
 public class SuppressionFilter extends AutomaticBean implements Filter, ExternalResourceHolder {
 
     /** Specify the location of the <em>suppressions XML document</em> file. */
+    @ModuleProperty
     private String file;
     /**
      * Control what to do when the file is not existing. If {@code optional} is
@@ -229,6 +231,7 @@ public class SuppressionFilter extends AutomaticBean implements Filter, External
      * On the other hand if optional is {@code true} and file is not found,
      * the filter accept all audit events.
      */
+    @ModuleProperty
     private boolean optional;
     /** Set of individual suppresses. */
     private FilterSet filters = new FilterSet();

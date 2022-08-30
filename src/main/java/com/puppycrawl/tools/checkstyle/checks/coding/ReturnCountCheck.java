@@ -24,6 +24,7 @@ import java.util.Deque;
 import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -304,11 +305,14 @@ public final class ReturnCountCheck extends AbstractCheck {
     private final Deque<Context> contextStack = new ArrayDeque<>();
 
     /** Specify method names to ignore. */
+    @ModuleProperty
     private Pattern format = Pattern.compile("^equals$");
 
     /** Specify maximum allowed number of return statements in non-void methods/lambdas. */
+    @ModuleProperty
     private int max = 2;
     /** Specify maximum allowed number of return statements in void methods/constructors/lambdas. */
+    @ModuleProperty
     private int maxForVoid = 1;
     /** Current method context. */
     private Context context;

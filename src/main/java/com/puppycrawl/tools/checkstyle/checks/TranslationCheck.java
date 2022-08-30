@@ -45,6 +45,7 @@ import org.apache.commons.logging.LogFactory;
 
 import com.puppycrawl.tools.checkstyle.Definitions;
 import com.puppycrawl.tools.checkstyle.GlobalStatefulCheck;
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
@@ -271,11 +272,13 @@ public class TranslationCheck extends AbstractFileSetCheck {
      * Base name</a> of resource bundles which contain message resources.
      * It helps the check to distinguish config and localization resources.
      */
+    @ModuleProperty
     private Pattern baseName;
 
     /**
      * Specify language codes of required translations which must exist in project.
      */
+    @ModuleProperty
     private Set<String> requiredTranslations = new HashSet<>();
 
     /**

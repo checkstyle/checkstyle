@@ -25,6 +25,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.Scope;
@@ -246,8 +247,10 @@ public class DeclarationOrderCheck extends AbstractCheck {
     private Set<String> classFieldNames;
 
     /** Control whether to ignore constructors. */
+    @ModuleProperty
     private boolean ignoreConstructors;
     /** Control whether to ignore modifiers (fields, ...). */
+    @ModuleProperty
     private boolean ignoreModifiers;
 
     @Override

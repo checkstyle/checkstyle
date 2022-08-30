@@ -25,6 +25,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
@@ -182,6 +183,7 @@ public class JavadocBlockTagLocationCheck extends AbstractJavadocCheck {
     /**
      * Specify the javadoc tags to process.
      */
+    @ModuleProperty
     private Set<String> tags;
 
     /**

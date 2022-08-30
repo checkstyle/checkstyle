@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.regexp;
 import java.io.File;
 import java.util.regex.Pattern;
 
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.PropertyType;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.XdocsPropertyType;
@@ -253,19 +254,25 @@ public class RegexpMultilineCheck extends AbstractFileSetCheck {
 
     /** Specify the format of the regular expression to match. */
     @XdocsPropertyType(PropertyType.PATTERN)
+    @ModuleProperty
     private String format = "$.";
     /**
      * Specify the message which is used to notify about violations,
      * if empty then default (hard-coded) message is used.
      */
+    @ModuleProperty
     private String message;
     /** Specify the minimum number of matches required in each file. */
+    @ModuleProperty
     private int minimum;
     /** Specify the maximum number of matches required in each file. */
+    @ModuleProperty
     private int maximum;
     /** Control whether to ignore case when searching. */
+    @ModuleProperty
     private boolean ignoreCase;
     /** Control whether to match expressions across multiple lines. */
+    @ModuleProperty
     private boolean matchAcrossLines;
 
     /** The detector to use. */
