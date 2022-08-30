@@ -25,6 +25,7 @@ import java.util.Deque;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -269,6 +270,7 @@ public final class NPathComplexityCheck extends AbstractCheck {
     private BigInteger currentRangeValue = INITIAL_VALUE;
 
     /** Specify the maximum threshold allowed. */
+    @ModuleProperty
     private int max = DEFAULT_MAX;
 
     /** True, when branch is visited, but not leaved. */

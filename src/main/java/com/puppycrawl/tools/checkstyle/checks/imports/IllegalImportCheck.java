@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -297,6 +298,7 @@ public class IllegalImportCheck
      * list of packages will be interpreted as regular expressions.
      * Note, all properties for match will be used.
      */
+    @ModuleProperty
     private String[] illegalPkgs;
 
     /**
@@ -305,12 +307,14 @@ public class IllegalImportCheck
      * then list of class names will be interpreted as regular expressions.
      * Note, all properties for match will be used.
      */
+    @ModuleProperty
     private String[] illegalClasses;
 
     /**
      * Control whether the {@code illegalPkgs} and {@code illegalClasses}
      * should be interpreted as regular expressions.
      */
+    @ModuleProperty
     private boolean regexp;
 
     /**

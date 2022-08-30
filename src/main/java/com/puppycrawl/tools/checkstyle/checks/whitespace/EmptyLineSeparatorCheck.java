@@ -24,6 +24,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -357,12 +358,15 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
             "empty.line.separator.multiple.lines.inside";
 
     /** Allow no empty line between fields. */
+    @ModuleProperty
     private boolean allowNoEmptyLineBetweenFields;
 
     /** Allow multiple empty lines between class members. */
+    @ModuleProperty
     private boolean allowMultipleEmptyLines = true;
 
     /** Allow multiple empty lines inside class members. */
+    @ModuleProperty
     private boolean allowMultipleEmptyLinesInsideClassMembers = true;
 
     /**

@@ -25,6 +25,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 
@@ -323,21 +324,27 @@ public class IndentationCheck extends AbstractCheck {
     private Set<Integer> incorrectIndentationLines;
 
     /** Specify how far new indentation level should be indented when on the next line. */
+    @ModuleProperty
     private int basicOffset = DEFAULT_INDENTATION;
 
     /** Specify how far a case label should be indented when on next line. */
+    @ModuleProperty
     private int caseIndent = DEFAULT_INDENTATION;
 
     /** Specify how far a braces should be indented when on the next line. */
+    @ModuleProperty
     private int braceAdjustment;
 
     /** Specify how far a throws clause should be indented when on next line. */
+    @ModuleProperty
     private int throwsIndent = DEFAULT_INDENTATION;
 
     /** Specify how far an array initialisation should be indented when on next line. */
+    @ModuleProperty
     private int arrayInitIndent = DEFAULT_INDENTATION;
 
     /** Specify how far continuation line should be indented when line-wrapping is present. */
+    @ModuleProperty
     private int lineWrappingIndentation = DEFAULT_INDENTATION;
 
     /**
@@ -345,6 +352,7 @@ public class IndentationCheck extends AbstractCheck {
      * have to be same as lineWrappingIndentation parameter. If value is false, line wrap indent
      * could be bigger on any value user would like.
      */
+    @ModuleProperty
     private boolean forceStrictCondition;
 
     /**

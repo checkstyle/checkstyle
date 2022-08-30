@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks;
 import java.util.Arrays;
 
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.PropertyType;
 import com.puppycrawl.tools.checkstyle.XdocsPropertyType;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
@@ -333,24 +334,32 @@ public class DescendantTokenCheck extends AbstractCheck {
     public static final String MSG_KEY_SUM_MAX = "descendant.token.sum.max";
 
     /** Specify the minimum depth for descendant counts. */
+    @ModuleProperty
     private int minimumDepth;
     /** Specify the maximum depth for descendant counts. */
+    @ModuleProperty
     private int maximumDepth = Integer.MAX_VALUE;
     /** Specify a minimum count for descendants. */
+    @ModuleProperty
     private int minimumNumber;
     /** Specify a maximum count for descendants. */
+    @ModuleProperty
     private int maximumNumber = Integer.MAX_VALUE;
     /**
      * Control whether the number of tokens found should be calculated from
      * the sum of the individual token counts.
      */
+    @ModuleProperty
     private boolean sumTokenCounts;
     /** Specify set of tokens with limited occurrences as descendants. */
     @XdocsPropertyType(PropertyType.TOKEN_ARRAY)
+    @ModuleProperty
     private int[] limitedTokens = CommonUtil.EMPTY_INT_ARRAY;
     /** Define the violation message when the minimum count is not reached. */
+    @ModuleProperty
     private String minimumMessage;
     /** Define the violation message when the maximum count is exceeded. */
+    @ModuleProperty
     private String maximumMessage;
 
     /**

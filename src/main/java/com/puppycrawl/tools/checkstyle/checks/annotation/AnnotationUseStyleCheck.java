@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.annotation;
 
 import java.util.Locale;
 
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -338,17 +339,20 @@ public final class AnnotationUseStyleCheck extends AbstractCheck {
     /**
      * Define the annotation element styles.
      */
+    @ModuleProperty
     private ElementStyleOption elementStyle = ElementStyleOption.COMPACT_NO_ARRAY;
 
     // defaulting to NEVER because of the strange compiler behavior
     /**
      * Define the policy for trailing comma in arrays.
      */
+    @ModuleProperty
     private TrailingArrayCommaOption trailingArrayComma = TrailingArrayCommaOption.NEVER;
 
     /**
      * Define the policy for ending parenthesis.
      */
+    @ModuleProperty
     private ClosingParensOption closingParens = ClosingParensOption.NEVER;
 
     /**

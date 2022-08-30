@@ -23,6 +23,7 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -168,6 +169,7 @@ public final class OneStatementPerLineCheck extends AbstractCheck {
     /**
      * Enable resources processing.
      */
+    @ModuleProperty
     private boolean treatTryResourcesAsStatement;
 
     /**

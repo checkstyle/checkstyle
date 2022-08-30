@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -206,6 +207,7 @@ public class ArrayTrailingCommaCheck extends AbstractCheck {
     /**
      * Control whether to always check for a trailing comma, even when an array is inline.
      */
+    @ModuleProperty
     private boolean alwaysDemandTrailingComma;
 
     /**

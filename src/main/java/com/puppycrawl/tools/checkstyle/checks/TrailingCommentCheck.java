@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks;
 import java.util.Arrays;
 import java.util.regex.Pattern;
 
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -214,9 +215,11 @@ public class TrailingCommentCheck extends AbstractCheck {
      * Define pattern for text allowed in trailing comments.
      * This pattern will not be applied to multiline comments.
      */
+    @ModuleProperty
     private Pattern legalComment;
 
     /** Specify pattern for strings allowed before the comment. */
+    @ModuleProperty
     private Pattern format = Pattern.compile("^[\\s});]*$");
 
     /**

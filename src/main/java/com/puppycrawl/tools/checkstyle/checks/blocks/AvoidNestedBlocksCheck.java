@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.blocks;
 
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -156,6 +157,7 @@ public class AvoidNestedBlocksCheck extends AbstractCheck {
     /**
      * Allow nested blocks if they are the only child of a switch case.
      */
+    @ModuleProperty
     private boolean allowInSwitchCase;
 
     @Override

@@ -28,6 +28,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
@@ -473,6 +474,7 @@ public class VisibilityModifierCheck
     /**
      * Specify pattern for public members that should be ignored.
      */
+    @ModuleProperty
     private Pattern publicMemberPattern = Pattern.compile("^serialVersionUID$");
 
     /** Set of ignore annotations short names. */
@@ -487,21 +489,27 @@ public class VisibilityModifierCheck
      * Specify annotations canonical names which ignore variables in
      * consideration.
      */
+    @ModuleProperty
     private Set<String> ignoreAnnotationCanonicalNames = DEFAULT_IGNORE_ANNOTATIONS;
 
     /** Control whether protected members are allowed. */
+    @ModuleProperty
     private boolean protectedAllowed;
 
     /** Control whether package visible members are allowed. */
+    @ModuleProperty
     private boolean packageAllowed;
 
     /** Allow immutable fields to be declared as public if defined in final class. */
+    @ModuleProperty
     private boolean allowPublicImmutableFields;
 
     /** Allow final fields to be declared as public. */
+    @ModuleProperty
     private boolean allowPublicFinalFields;
 
     /** Specify immutable classes canonical names. */
+    @ModuleProperty
     private Set<String> immutableClassCanonicalNames = DEFAULT_IMMUTABLE_TYPES;
 
     /**

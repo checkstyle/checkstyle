@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -223,6 +224,7 @@ public class MatchXpathCheck extends AbstractCheck {
     public static final String MSG_KEY = "matchxpath.match";
 
     /** Specify Xpath query. */
+    @ModuleProperty
     private String query = "";
 
     /** Xpath expression. */

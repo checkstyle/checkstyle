@@ -27,6 +27,7 @@ import java.util.Set;
 import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser;
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -344,27 +345,33 @@ public class JavadocStyleCheck
     );
 
     /** Specify the visibility scope where Javadoc comments are checked. */
+    @ModuleProperty
     private Scope scope = Scope.PRIVATE;
 
     /** Specify the visibility scope where Javadoc comments are not checked. */
+    @ModuleProperty
     private Scope excludeScope;
 
     /** Specify the format for matching the end of a sentence. */
+    @ModuleProperty
     private Pattern endOfSentenceFormat = Pattern.compile("([.?!][ \t\n\r\f<])|([.?!]$)");
 
     /**
      * Control whether to check the first sentence for proper end of sentence.
      */
+    @ModuleProperty
     private boolean checkFirstSentence = true;
 
     /**
      * Control whether to check for incomplete HTML tags.
      */
+    @ModuleProperty
     private boolean checkHtml = true;
 
     /**
      * Control whether to check if the Javadoc is missing a describing text.
      */
+    @ModuleProperty
     private boolean checkEmptyJavadoc;
 
     @Override

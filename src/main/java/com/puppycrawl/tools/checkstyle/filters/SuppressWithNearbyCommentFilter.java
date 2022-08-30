@@ -28,6 +28,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.PropertyType;
 import com.puppycrawl.tools.checkstyle.TreeWalkerAuditEvent;
 import com.puppycrawl.tools.checkstyle.TreeWalkerFilter;
@@ -277,32 +278,39 @@ public class SuppressWithNearbyCommentFilter
     private final List<Tag> tags = new ArrayList<>();
 
     /** Control whether to check C style comments ({@code &#47;* ... *&#47;}). */
+    @ModuleProperty
     private boolean checkC = true;
 
     /** Control whether to check C++ style comments ({@code //}). */
     // -@cs[AbbreviationAsWordInName] We can not change it as,
     // check's property is a part of API (used in configurations).
+    @ModuleProperty
     private boolean checkCPP = true;
 
     /** Specify comment pattern to trigger filter to begin suppression. */
+    @ModuleProperty
     private Pattern commentFormat = Pattern.compile(DEFAULT_COMMENT_FORMAT);
 
     /** Specify check pattern to suppress. */
     @XdocsPropertyType(PropertyType.PATTERN)
+    @ModuleProperty
     private String checkFormat = DEFAULT_CHECK_FORMAT;
 
     /** Define message pattern to suppress. */
     @XdocsPropertyType(PropertyType.PATTERN)
+    @ModuleProperty
     private String messageFormat;
 
     /** Specify check ID pattern to suppress. */
     @XdocsPropertyType(PropertyType.PATTERN)
+    @ModuleProperty
     private String idFormat;
 
     /**
      * Specify negative/zero/positive value that defines the number of lines
      * preceding/at/following the suppression comment.
      */
+    @ModuleProperty
     private String influenceFormat = DEFAULT_INFLUENCE_FORMAT;
 
     /**

@@ -26,6 +26,7 @@ import java.util.Map;
 import java.util.Set;
 
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -127,6 +128,7 @@ public class EqualsAvoidNullCheck extends AbstractCheck {
     private static final String LEFT_CURLY = "{";
 
     /** Control whether to ignore {@code String.equalsIgnoreCase(String)} invocations. */
+    @ModuleProperty
     private boolean ignoreEqualsIgnoreCase;
 
     /** Stack of sets of field names, one for each class of a set of nested classes. */

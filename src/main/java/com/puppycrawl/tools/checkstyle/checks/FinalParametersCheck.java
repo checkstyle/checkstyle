@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks;
 
 import java.util.BitSet;
 
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -163,6 +164,7 @@ public class FinalParametersCheck extends AbstractCheck {
     /**
      * Ignore primitive types as parameters.
      */
+    @ModuleProperty
     private boolean ignorePrimitiveTypes;
 
     /**

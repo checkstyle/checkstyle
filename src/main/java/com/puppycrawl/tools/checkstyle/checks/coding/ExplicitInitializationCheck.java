@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -141,6 +142,7 @@ public class ExplicitInitializationCheck extends AbstractCheck {
     /**
      * Control whether only explicit initializations made to null for objects should be checked.
      **/
+    @ModuleProperty
     private boolean onlyObjectReferences;
 
     @Override

@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.naming;
 import java.util.Arrays;
 import java.util.Optional;
 
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
@@ -175,9 +176,11 @@ public class ParameterNameCheck extends AbstractNameCheck {
     /**
      * Allows to skip methods with Override annotation from validation.
      */
+    @ModuleProperty
     private boolean ignoreOverridden;
 
     /** Access modifiers of methods where parameters are checked. */
+    @ModuleProperty
     private AccessModifierOption[] accessModifiers = {
         AccessModifierOption.PUBLIC,
         AccessModifierOption.PROTECTED,

@@ -23,6 +23,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
@@ -506,15 +507,19 @@ public class RegexpCheck extends AbstractCheck {
      * Specify message which is used to notify about violations,
      * if empty then the default (hard-coded) message is used.
      */
+    @ModuleProperty
     private String message;
 
     /** Control whether to ignore matches found within comments. */
+    @ModuleProperty
     private boolean ignoreComments;
 
     /** Control whether the pattern is required or illegal. */
+    @ModuleProperty
     private boolean illegalPattern;
 
     /** Specify the maximum number of violations before the check will abort. */
+    @ModuleProperty
     private int errorLimit = DEFAULT_ERROR_LIMIT;
 
     /**
@@ -523,6 +528,7 @@ public class RegexpCheck extends AbstractCheck {
      * any positive value is used as the maximum number of allowed duplicates,
      * if the limit is exceeded violations will be logged.
      */
+    @ModuleProperty
     private int duplicateLimit;
 
     /** Boolean to say if we should check for duplicates. */
@@ -535,6 +541,7 @@ public class RegexpCheck extends AbstractCheck {
     private int errorCount;
 
     /** Specify the pattern to match against. */
+    @ModuleProperty
     private Pattern format = Pattern.compile("^$", Pattern.MULTILINE);
 
     /** The matcher. */

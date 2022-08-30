@@ -29,6 +29,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.PropertyType;
 import com.puppycrawl.tools.checkstyle.TreeWalkerAuditEvent;
 import com.puppycrawl.tools.checkstyle.TreeWalkerFilter;
@@ -361,29 +362,36 @@ public class SuppressionCommentFilter
     private final List<Tag> tags = new ArrayList<>();
 
     /** Control whether to check C style comments ({@code &#47;* ... *&#47;}). */
+    @ModuleProperty
     private boolean checkC = true;
 
     /** Control whether to check C++ style comments ({@code //}). */
     // -@cs[AbbreviationAsWordInName] we can not change it as,
     // Check property is a part of API (used in configurations)
+    @ModuleProperty
     private boolean checkCPP = true;
 
     /** Specify comment pattern to trigger filter to begin suppression. */
+    @ModuleProperty
     private Pattern offCommentFormat = Pattern.compile(DEFAULT_OFF_FORMAT);
 
     /** Specify comment pattern to trigger filter to end suppression. */
+    @ModuleProperty
     private Pattern onCommentFormat = Pattern.compile(DEFAULT_ON_FORMAT);
 
     /** Specify check pattern to suppress. */
     @XdocsPropertyType(PropertyType.PATTERN)
+    @ModuleProperty
     private String checkFormat = DEFAULT_CHECK_FORMAT;
 
     /** Specify message pattern to suppress. */
     @XdocsPropertyType(PropertyType.PATTERN)
+    @ModuleProperty
     private String messageFormat;
 
     /** Specify check ID pattern to suppress. */
     @XdocsPropertyType(PropertyType.PATTERN)
+    @ModuleProperty
     private String idFormat;
 
     /**

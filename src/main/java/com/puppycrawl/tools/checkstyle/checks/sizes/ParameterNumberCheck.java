@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.sizes;
 
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -119,9 +120,11 @@ public class ParameterNumberCheck
     private static final int DEFAULT_MAX_PARAMETERS = 7;
 
     /** Specify the maximum number of parameters allowed. */
+    @ModuleProperty
     private int max = DEFAULT_MAX_PARAMETERS;
 
     /** Ignore number of parameters for methods with {@code @Override} annotation. */
+    @ModuleProperty
     private boolean ignoreOverriddenMethods;
 
     /**

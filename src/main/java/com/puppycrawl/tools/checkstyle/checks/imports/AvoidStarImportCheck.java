@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.imports;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -194,18 +195,21 @@ public class AvoidStarImportCheck
      * Specify packages where starred class imports are
      * allowed and classes where starred static member imports are allowed.
      */
+    @ModuleProperty
     private final Set<String> excludes = new HashSet<>();
 
     /**
      * Control whether to allow starred class imports like
      * {@code import java.util.*;}.
      */
+    @ModuleProperty
     private boolean allowClassImports;
 
     /**
      * Control whether to allow starred static member imports like
      * {@code import static org.junit.Assert.*;}.
      */
+    @ModuleProperty
     private boolean allowStaticMemberImports;
 
     @Override

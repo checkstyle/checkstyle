@@ -25,6 +25,7 @@ import java.util.Set;
 import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -477,6 +478,7 @@ public class ImportControlCheck extends AbstractCheck implements ExternalResourc
      * It can be a regular file, URL or resource path. It will try loading the path
      * as a URL first, then as a file, and finally as a resource.
      */
+    @ModuleProperty
     private URI file;
 
     /**
@@ -484,6 +486,7 @@ public class ImportControlCheck extends AbstractCheck implements ExternalResourc
      * Files that don't match the pattern will not be checked. The pattern will
      * be matched against the full absolute file path.
      */
+    @ModuleProperty
     private Pattern path = Pattern.compile(".*");
     /** Whether to process the current file. */
     private boolean processCurrentFile;

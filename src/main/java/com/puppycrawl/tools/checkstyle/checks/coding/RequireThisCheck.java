@@ -30,6 +30,7 @@ import java.util.Queue;
 import java.util.Set;
 
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -311,10 +312,13 @@ public class RequireThisCheck extends AbstractCheck {
     private Map<DetailAST, AbstractFrame> frames;
 
     /** Control whether to check references to fields. */
+    @ModuleProperty
     private boolean checkFields = true;
     /** Control whether to check references to methods. */
+    @ModuleProperty
     private boolean checkMethods = true;
     /** Control whether to check only overlapping by variables or arguments. */
+    @ModuleProperty
     private boolean validateOnlyOverlapping = true;
 
     /**

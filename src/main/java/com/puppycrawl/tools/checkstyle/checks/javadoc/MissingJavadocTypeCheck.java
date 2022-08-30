@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import java.util.Set;
 
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -191,8 +192,10 @@ public class MissingJavadocTypeCheck extends AbstractCheck {
     public static final String MSG_JAVADOC_MISSING = "javadoc.missing";
 
     /** Specify the visibility scope where Javadoc comments are checked. */
+    @ModuleProperty
     private Scope scope = Scope.PUBLIC;
     /** Specify the visibility scope where Javadoc comments are not checked. */
+    @ModuleProperty
     private Scope excludeScope;
 
     /**
@@ -200,6 +203,7 @@ public class MissingJavadocTypeCheck extends AbstractCheck {
      * If annotation is present in target sources in multiple forms of qualified
      * name, all forms should be listed in this property.
      */
+    @ModuleProperty
     private Set<String> skipAnnotations = Set.of("Generated");
 
     /**

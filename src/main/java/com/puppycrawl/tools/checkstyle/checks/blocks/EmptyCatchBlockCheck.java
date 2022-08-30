@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.blocks;
 
 import java.util.regex.Pattern;
 
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -242,6 +243,7 @@ public class EmptyCatchBlockCheck extends AbstractCheck {
      * Specify the RegExp for the name of the variable associated with exception.
      * If check meets variable name matching specified value - empty block is suppressed.
      */
+    @ModuleProperty
     private Pattern exceptionVariableName = Pattern.compile("^$");
 
     /**
@@ -249,6 +251,7 @@ public class EmptyCatchBlockCheck extends AbstractCheck {
      * If check meets comment inside empty catch block matching specified format - empty
      * block is suppressed. If it is multi-line comment - only its first line is analyzed.
      */
+    @ModuleProperty
     private Pattern commentFormat = Pattern.compile(".*");
 
     /**

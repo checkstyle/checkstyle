@@ -23,6 +23,7 @@ import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -165,6 +166,7 @@ public class SuppressWarningsCheck extends AbstractCheck {
      * Specify the RegExp to match against warnings. Any warning
      * being suppressed matching this pattern will be flagged.
      */
+    @ModuleProperty
     private Pattern format = Pattern.compile("^\\s*+$");
 
     /**
