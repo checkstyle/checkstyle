@@ -46,6 +46,9 @@
   <allow class="com.puppycrawl.tools.checkstyle.XpathFileGeneratorAuditListener"
          local-only="true"/>
 
+  <!-- Allowed as module properties need to be annotated with @ModuleProperty -->
+  <allow class="com.puppycrawl.tools.checkstyle.ModuleProperty" />
+
   <file name="DetailAstImpl|JavaParser|JavaAstVisitor|CheckstyleParserErrorStrategy" regex="true">
     <allow pkg="org.antlr.v4.runtime"/>
   </file>
