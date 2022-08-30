@@ -228,6 +228,18 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testUnusedLocalVarNestedClasses3() throws Exception {
+        final String[] expected = {
+                "35:17: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "p2"),
+                "52:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "o"),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputUnusedLocalVariableNestedClasses3.java"),
+                expected);
+    }
+
+    @Test
     public void testUnusedLocalVarEnum() throws Exception {
         final String[] expected = {
             "22:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "a"),
