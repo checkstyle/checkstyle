@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -116,6 +117,7 @@ public final class NestedIfDepthCheck extends AbstractCheck {
     public static final String MSG_KEY = "nested.if.depth";
 
     /** Specify maximum allowed nesting depth. */
+    @ModuleProperty
     private int max = 1;
     /** Current nesting depth. */
     private int depth;

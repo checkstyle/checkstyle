@@ -25,6 +25,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
@@ -220,6 +221,7 @@ public class IllegalInstantiationCheck
     private final Set<DetailAST> instantiations = new HashSet<>();
 
     /** Specify fully qualified class names that should not be instantiated. */
+    @ModuleProperty
     private Set<String> classes = new HashSet<>();
 
     /** Name of the package. */

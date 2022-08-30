@@ -26,6 +26,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
@@ -723,27 +724,33 @@ public class CustomImportOrderCheck extends AbstractCheck {
     private final List<ImportDetails> importToGroupList = new ArrayList<>();
 
     /** Specify format of order declaration customizing by user. */
+    @ModuleProperty
     private String customImportOrderRules = "";
 
     /** Specify RegExp for SAME_PACKAGE group imports. */
     private String samePackageDomainsRegExp = "";
 
     /** Specify RegExp for STANDARD_JAVA_PACKAGE group imports. */
+    @ModuleProperty
     private Pattern standardPackageRegExp = Pattern.compile("^(java|javax)\\.");
 
     /** Specify RegExp for THIRD_PARTY_PACKAGE group imports. */
+    @ModuleProperty
     private Pattern thirdPartyPackageRegExp = Pattern.compile(".*");
 
     /** Specify RegExp for SPECIAL_IMPORTS group imports. */
+    @ModuleProperty
     private Pattern specialImportsRegExp = Pattern.compile("^$");
 
     /** Force empty line separator between import groups. */
+    @ModuleProperty
     private boolean separateLineBetweenGroups = true;
 
     /**
      * Force grouping alphabetically,
      * in <a href="https://en.wikipedia.org/wiki/ASCII#Order"> ASCII sort order</a>.
      */
+    @ModuleProperty
     private boolean sortImportsInGroupAlphabetically;
 
     /** Number of first domains for SAME_PACKAGE group. */

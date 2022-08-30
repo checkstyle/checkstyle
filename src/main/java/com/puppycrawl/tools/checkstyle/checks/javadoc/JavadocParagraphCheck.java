@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
@@ -169,6 +170,7 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
     /**
      * Control whether the &lt;p&gt; tag should be placed immediately before the first word.
      */
+    @ModuleProperty
     private boolean allowNewlineParagraph = true;
 
     /**

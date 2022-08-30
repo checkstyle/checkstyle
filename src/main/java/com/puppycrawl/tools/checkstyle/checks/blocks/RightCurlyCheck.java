@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.blocks;
 import java.util.Arrays;
 import java.util.Locale;
 
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -248,6 +249,7 @@ public class RightCurlyCheck extends AbstractCheck {
     /**
      * Specify the policy on placement of a right curly brace (<code>'}'</code>).
      */
+    @ModuleProperty
     private RightCurlyOption option = RightCurlyOption.SAME;
 
     /**

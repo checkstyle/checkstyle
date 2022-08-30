@@ -23,6 +23,7 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -236,15 +237,19 @@ public class JavaNCSSCheck extends AbstractCheck {
      * Specify the maximum allowed number of non commenting lines in a file
      * including all top level and nested classes.
      */
+    @ModuleProperty
     private int fileMaximum = FILE_MAX_NCSS;
 
     /** Specify the maximum allowed number of non commenting lines in a class. */
+    @ModuleProperty
     private int classMaximum = CLASS_MAX_NCSS;
 
     /** Specify the maximum allowed number of non commenting lines in a record. */
+    @ModuleProperty
     private int recordMaximum = RECORD_MAX_NCSS;
 
     /** Specify the maximum allowed number of non commenting lines in a method. */
+    @ModuleProperty
     private int methodMaximum = METHOD_MAX_NCSS;
 
     /** List containing the stacked counters. */

@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
 import java.util.Locale;
 
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -171,9 +172,11 @@ public class MethodParamPadCheck
     /**
      * Allow a line break between the identifier and left parenthesis.
      */
+    @ModuleProperty
     private boolean allowLineBreaks;
 
     /** Specify policy on how to pad method parameter. */
+    @ModuleProperty
     private PadOption option = PadOption.NOSPACE;
 
     @Override

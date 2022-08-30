@@ -24,6 +24,7 @@ import java.util.BitSet;
 import java.util.Optional;
 import java.util.regex.Pattern;
 
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
@@ -270,11 +271,13 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
     /**
      * Specify the regexp for forbidden summary fragments.
      */
+    @ModuleProperty
     private Pattern forbiddenSummaryFragments = CommonUtil.createPattern("^$");
 
     /**
      * Specify the period symbol at the end of first javadoc sentence.
      */
+    @ModuleProperty
     private String period = DEFAULT_PERIOD;
 
     /**

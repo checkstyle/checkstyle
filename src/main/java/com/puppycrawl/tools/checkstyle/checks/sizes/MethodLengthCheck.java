@@ -25,6 +25,7 @@ import java.util.Deque;
 import java.util.Objects;
 import java.util.stream.Stream;
 
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -206,9 +207,11 @@ public class MethodLengthCheck extends AbstractCheck {
     private static final int DEFAULT_MAX_LINES = 150;
 
     /** Control whether to count empty lines and comments. */
+    @ModuleProperty
     private boolean countEmpty = true;
 
     /** Specify the maximum number of lines allowed. */
+    @ModuleProperty
     private int max = DEFAULT_MAX_LINES;
 
     @Override

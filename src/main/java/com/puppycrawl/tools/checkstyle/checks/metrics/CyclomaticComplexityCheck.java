@@ -24,6 +24,7 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -258,12 +259,14 @@ public class CyclomaticComplexityCheck
     private final Deque<BigInteger> valueStack = new ArrayDeque<>();
 
     /** Control whether to treat the whole switch block as a single decision point. */
+    @ModuleProperty
     private boolean switchBlockAsSingleDecisionPoint;
 
     /** The current value. */
     private BigInteger currentValue = INITIAL_VALUE;
 
     /** Specify the maximum threshold allowed. */
+    @ModuleProperty
     private int max = DEFAULT_COMPLEXITY_VALUE;
 
     /**

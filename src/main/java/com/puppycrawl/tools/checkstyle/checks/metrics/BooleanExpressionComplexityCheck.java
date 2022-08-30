@@ -23,6 +23,7 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -172,6 +173,7 @@ public final class BooleanExpressionComplexityCheck extends AbstractCheck {
     /** Stack of contexts. */
     private final Deque<Context> contextStack = new ArrayDeque<>();
     /** Specify the maximum number of boolean operations allowed in one expression. */
+    @ModuleProperty
     private int max;
     /** Current context. */
     private Context context = new Context(false);

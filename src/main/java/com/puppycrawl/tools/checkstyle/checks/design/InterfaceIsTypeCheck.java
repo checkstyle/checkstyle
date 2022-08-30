@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.design;
 
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -113,6 +114,7 @@ public final class InterfaceIsTypeCheck
     public static final String MSG_KEY = "interface.type";
 
     /** Control whether marker interfaces like Serializable are allowed. */
+    @ModuleProperty
     private boolean allowMarkerInterfaces = true;
 
     @Override

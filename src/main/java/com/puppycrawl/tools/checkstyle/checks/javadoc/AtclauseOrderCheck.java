@@ -24,6 +24,7 @@ import java.util.Arrays;
 import java.util.BitSet;
 import java.util.List;
 
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.PropertyType;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.XdocsPropertyType;
@@ -174,6 +175,7 @@ public class AtclauseOrderCheck extends AbstractJavadocCheck {
      * Specify block tags targeted.
      */
     @XdocsPropertyType(PropertyType.TOKEN_ARRAY)
+    @ModuleProperty
     private BitSet target = TokenUtil.asBitSet(
         TokenTypes.CLASS_DEF,
         TokenTypes.INTERFACE_DEF,
@@ -188,6 +190,7 @@ public class AtclauseOrderCheck extends AbstractJavadocCheck {
     /**
      * Specify the order by tags.
      */
+    @ModuleProperty
     private List<String> tagOrder = Arrays.asList(DEFAULT_ORDER);
 
     /**

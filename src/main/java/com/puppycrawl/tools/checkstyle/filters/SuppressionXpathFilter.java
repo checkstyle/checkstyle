@@ -24,6 +24,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.TreeWalkerAuditEvent;
 import com.puppycrawl.tools.checkstyle.TreeWalkerFilter;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
@@ -511,6 +512,7 @@ public class SuppressionXpathFilter extends AutomaticBean implements
     private final Set<TreeWalkerFilter> filters = new HashSet<>();
 
     /** Specify the location of the <em>suppressions XML document</em> file. */
+    @ModuleProperty
     private String file;
     /**
      * Control what to do when the file is not existing.
@@ -518,6 +520,7 @@ public class SuppressionXpathFilter extends AutomaticBean implements
      * On the other hand if optional is true and file is not found,
      * the filter accepts all audit events.
      */
+    @ModuleProperty
     private boolean optional;
 
     /**

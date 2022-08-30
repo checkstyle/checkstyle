@@ -23,6 +23,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.regex.Pattern;
 
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
@@ -274,15 +275,19 @@ public class RegexpOnFilenameCheck extends AbstractFileSetCheck {
     public static final String MSG_MISMATCH = "regexp.filename.mismatch";
 
     /** Specify the regular expression to match the folder path against. */
+    @ModuleProperty
     private Pattern folderPattern;
     /** Specify the regular expression to match the file name against. */
+    @ModuleProperty
     private Pattern fileNamePattern;
     /**
      * Control whether to look for a match or mismatch on the file name,
      * if the fileNamePattern is supplied, otherwise it is applied on the folderPattern.
      */
+    @ModuleProperty
     private boolean match = true;
     /** Control whether to ignore the file extension for the file name match. */
+    @ModuleProperty
     private boolean ignoreFileNameExtensions;
 
     /**

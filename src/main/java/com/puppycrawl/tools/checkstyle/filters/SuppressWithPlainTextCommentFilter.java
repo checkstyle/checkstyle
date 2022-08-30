@@ -31,6 +31,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.PropertyType;
 import com.puppycrawl.tools.checkstyle.XdocsPropertyType;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
@@ -328,21 +329,26 @@ public class SuppressWithPlainTextCommentFilter extends AutomaticBean implements
     private static final String DEFAULT_CHECK_FORMAT = ".*";
 
     /** Specify comment pattern to trigger filter to begin suppression. */
+    @ModuleProperty
     private Pattern offCommentFormat = CommonUtil.createPattern(DEFAULT_OFF_FORMAT);
 
     /** Specify comment pattern to trigger filter to end suppression. */
+    @ModuleProperty
     private Pattern onCommentFormat = CommonUtil.createPattern(DEFAULT_ON_FORMAT);
 
     /** Specify check pattern to suppress. */
     @XdocsPropertyType(PropertyType.PATTERN)
+    @ModuleProperty
     private String checkFormat = DEFAULT_CHECK_FORMAT;
 
     /** Specify message pattern to suppress. */
     @XdocsPropertyType(PropertyType.PATTERN)
+    @ModuleProperty
     private String messageFormat;
 
     /** Specify check ID pattern to suppress. */
     @XdocsPropertyType(PropertyType.PATTERN)
+    @ModuleProperty
     private String idFormat;
 
     /**

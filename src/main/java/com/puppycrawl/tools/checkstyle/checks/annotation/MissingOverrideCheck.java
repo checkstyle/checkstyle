@@ -24,6 +24,7 @@ import java.util.Optional;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -191,6 +192,7 @@ public final class MissingOverrideCheck extends AbstractCheck {
     /**
      * Enable java 5 compatibility mode.
      */
+    @ModuleProperty
     private boolean javaFiveCompatibility;
 
     /**

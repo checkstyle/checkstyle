@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.blocks;
 
 import java.util.Locale;
 
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -248,11 +249,13 @@ public class LeftCurlyCheck
     private static final String OPEN_CURLY_BRACE = "{";
 
     /** Allow to ignore enums when left curly brace policy is EOL. */
+    @ModuleProperty
     private boolean ignoreEnums = true;
 
     /**
      * Specify the policy on placement of a left curly brace (<code>'{'</code>).
      * */
+    @ModuleProperty
     private LeftCurlyOption option = LeftCurlyOption.EOL;
 
     /**

@@ -23,6 +23,7 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -103,6 +104,7 @@ public final class ExecutableStatementCountCheck
     private final Deque<Context> contextStack = new ArrayDeque<>();
 
     /** Specify the maximum threshold allowed. */
+    @ModuleProperty
     private int max;
 
     /** Current method context. */

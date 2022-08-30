@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.modifier;
 
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -234,42 +235,49 @@ public class InterfaceMemberImpliedModifierCheck
      * Control whether to enforce that {@code public} is explicitly coded
      * on interface fields.
      */
+    @ModuleProperty
     private boolean violateImpliedPublicField = true;
 
     /**
      * Control whether to enforce that {@code static} is explicitly coded
      * on interface fields.
      */
+    @ModuleProperty
     private boolean violateImpliedStaticField = true;
 
     /**
      * Control whether to enforce that {@code final} is explicitly coded
      * on interface fields.
      */
+    @ModuleProperty
     private boolean violateImpliedFinalField = true;
 
     /**
      * Control whether to enforce that {@code public} is explicitly coded
      * on interface methods.
      */
+    @ModuleProperty
     private boolean violateImpliedPublicMethod = true;
 
     /**
      * Control whether to enforce that {@code abstract} is explicitly coded
      * on interface methods.
      */
+    @ModuleProperty
     private boolean violateImpliedAbstractMethod = true;
 
     /**
      * Control whether to enforce that {@code public} is explicitly coded
      * on interface nested types.
      */
+    @ModuleProperty
     private boolean violateImpliedPublicNested = true;
 
     /**
      * Control whether to enforce that {@code static} is explicitly coded
      * on interface nested types.
      */
+    @ModuleProperty
     private boolean violateImpliedStaticNested = true;
 
     /**

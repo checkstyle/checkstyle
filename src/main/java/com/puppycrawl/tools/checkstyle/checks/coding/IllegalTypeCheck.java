@@ -26,6 +26,7 @@ import java.util.Set;
 import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.PropertyType;
 import com.puppycrawl.tools.checkstyle.XdocsPropertyType;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
@@ -371,26 +372,32 @@ public final class IllegalTypeCheck extends AbstractCheck {
      * Specify classes that should not be used as types in variable declarations,
      * return values or parameters.
      */
+    @ModuleProperty
     private final Set<String> illegalClassNames = new HashSet<>();
     /** Illegal short classes. */
     private final Set<String> illegalShortClassNames = new HashSet<>();
     /** Define abstract classes that may be used as types. */
+    @ModuleProperty
     private final Set<String> legalAbstractClassNames = new HashSet<>();
     /** Specify methods that should not be checked. */
+    @ModuleProperty
     private final Set<String> ignoredMethodNames = new HashSet<>();
     /**
      * Control whether to check only methods and fields with any of the specified modifiers.
      * This property does not affect method calls nor method references nor record components.
      */
     @XdocsPropertyType(PropertyType.TOKEN_ARRAY)
+    @ModuleProperty
     private BitSet memberModifiers = new BitSet();
 
     /** Specify RegExp for illegal abstract class names. */
+    @ModuleProperty
     private Pattern illegalAbstractClassNameFormat = Pattern.compile("^(.*[.])?Abstract.*$");
 
     /**
      * Control whether to validate abstract class names.
      */
+    @ModuleProperty
     private boolean validateAbstractClassNames;
 
     /** Creates new instance of the check. */

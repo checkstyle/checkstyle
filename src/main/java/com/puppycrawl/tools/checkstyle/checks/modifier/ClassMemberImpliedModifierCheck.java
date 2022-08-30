@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.modifier;
 
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -141,18 +142,21 @@ public class ClassMemberImpliedModifierCheck
      * Control whether to enforce that {@code static} is explicitly coded
      * on nested enums in classes and records.
      */
+    @ModuleProperty
     private boolean violateImpliedStaticOnNestedEnum = true;
 
     /**
      * Control whether to enforce that {@code static} is explicitly coded
      * on nested interfaces in classes and records.
      */
+    @ModuleProperty
     private boolean violateImpliedStaticOnNestedInterface = true;
 
     /**
      * Control whether to enforce that {@code static} is explicitly coded
      * on nested records in classes and records.
      */
+    @ModuleProperty
     private boolean violateImpliedStaticOnNestedRecord = true;
 
     /**

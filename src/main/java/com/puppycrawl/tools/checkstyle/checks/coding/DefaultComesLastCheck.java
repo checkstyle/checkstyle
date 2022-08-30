@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import java.util.Objects;
 
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -151,6 +152,7 @@ public class DefaultComesLastCheck extends AbstractCheck {
             "default.comes.last.in.casegroup";
 
     /** Control whether to allow {@code default} along with {@code case} if they are not last. */
+    @ModuleProperty
     private boolean skipIfLastAndSharedWithCase;
 
     @Override

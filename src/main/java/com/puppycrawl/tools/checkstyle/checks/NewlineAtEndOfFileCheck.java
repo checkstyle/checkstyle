@@ -24,6 +24,7 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.Locale;
 
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.FileText;
@@ -187,6 +188,7 @@ public class NewlineAtEndOfFileCheck
     public static final String MSG_KEY_WRONG_ENDING = "wrong.line.end";
 
     /** Specify the type of line separator. */
+    @ModuleProperty
     private LineSeparatorOption lineSeparator = LineSeparatorOption.LF_CR_CRLF;
 
     @Override
