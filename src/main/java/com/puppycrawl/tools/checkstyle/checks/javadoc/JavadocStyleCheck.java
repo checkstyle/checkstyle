@@ -106,7 +106,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * Property {@code endOfSentenceFormat} - Specify the format for matching
  * the end of a sentence.
  * Type is {@code java.util.regex.Pattern}.
- * Default value is {@code "([.?!][ \t\n\r\f&lt;])|([.?!]$)"}.
+ * Default value is {@code "([.?!。？！][ \t\n\r\f&lt;])|([.?!。？！]$)"}.
  * </li>
  * <li>
  * Property {@code checkEmptyJavadoc} - Control whether to check if the Javadoc
@@ -350,7 +350,7 @@ public class JavadocStyleCheck
     private Scope excludeScope;
 
     /** Specify the format for matching the end of a sentence. */
-    private Pattern endOfSentenceFormat = Pattern.compile("([.?!][ \t\n\r\f<])|([.?!]$)");
+    private Pattern endOfSentenceFormat = Pattern.compile("([.?!。？！][ \t\n\r\f<])|([.?!。？！]$)");
 
     /**
      * Control whether to check the first sentence for proper end of sentence.
