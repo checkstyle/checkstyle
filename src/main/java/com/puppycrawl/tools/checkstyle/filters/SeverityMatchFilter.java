@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.filters;
 
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.Filter;
@@ -69,6 +70,7 @@ public class SeverityMatchFilter
     implements Filter {
 
     /** Specify the severity level of this filter. */
+    @ModuleProperty
     private SeverityLevel severity = SeverityLevel.ERROR;
 
     /**
@@ -78,6 +80,7 @@ public class SeverityMatchFilter
      * if and only if there is not a match between the event's severity level
      * and property severity.
      */
+    @ModuleProperty
     private boolean acceptOnMatch = true;
 
     /**

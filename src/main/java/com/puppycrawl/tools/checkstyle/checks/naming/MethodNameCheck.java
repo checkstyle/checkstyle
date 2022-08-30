@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.naming;
 
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
@@ -205,6 +206,7 @@ public class MethodNameCheck
      * }
      * </pre>
      */
+    @ModuleProperty
     private boolean allowClassName;
 
     /** Creates a new {@code MethodNameCheck} instance. */

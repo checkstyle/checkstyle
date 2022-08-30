@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -216,12 +217,14 @@ public class FallThroughCheck extends AbstractCheck {
     public static final String MSG_FALL_THROUGH_LAST = "fall.through.last";
 
     /** Control whether the last case group must be checked. */
+    @ModuleProperty
     private boolean checkLastCaseGroup;
 
     /**
      * Define the RegExp to match the relief comment that suppresses
      * the warning about a fall through.
      */
+    @ModuleProperty
     private Pattern reliefPattern = Pattern.compile("falls?[ -]?thr(u|ough)");
 
     @Override

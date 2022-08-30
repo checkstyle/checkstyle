@@ -26,6 +26,7 @@ import java.util.Set;
 import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.Scope;
@@ -342,23 +343,28 @@ public class HiddenFieldCheck
     private FieldFrame frame;
 
     /** Define the RegExp for names of variables and parameters to ignore. */
+    @ModuleProperty
     private Pattern ignoreFormat;
 
     /**
      * Allow to ignore the parameter of a property setter method.
      */
+    @ModuleProperty
     private boolean ignoreSetter;
 
     /**
      * Allow to expand the definition of a setter method to include methods
      * that return the class' instance.
      */
+    @ModuleProperty
     private boolean setterCanReturnItsClass;
 
     /** Control whether to ignore constructor parameters. */
+    @ModuleProperty
     private boolean ignoreConstructorParameter;
 
     /** Control whether to ignore parameters of abstract methods. */
+    @ModuleProperty
     private boolean ignoreAbstractMethods;
 
     @Override

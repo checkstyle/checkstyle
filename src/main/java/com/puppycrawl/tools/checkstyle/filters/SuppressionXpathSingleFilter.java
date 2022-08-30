@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.filters;
 
 import java.util.regex.Pattern;
 
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.TreeWalkerAuditEvent;
 import com.puppycrawl.tools.checkstyle.TreeWalkerFilter;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
@@ -418,24 +419,29 @@ public class SuppressionXpathSingleFilter extends AutomaticBean implements
     /**
      * Define a Regular Expression matched against the file name associated with an audit event.
      */
+    @ModuleProperty
     private Pattern files;
     /**
      * Define a Regular Expression matched against the name of the check associated
      * with an audit event.
      */
+    @ModuleProperty
     private Pattern checks;
     /**
      * Define a Regular Expression matched against the message of the check
      * associated with an audit event.
      */
+    @ModuleProperty
     private Pattern message;
     /**
      * Define a string matched against the ID of the check associated with an audit event.
      */
+    @ModuleProperty
     private String id;
     /**
      * Define a string xpath query.
      */
+    @ModuleProperty
     private String query;
 
     /**

@@ -25,6 +25,7 @@ import java.util.EnumMap;
 import java.util.Map;
 
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.Scope;
@@ -207,14 +208,19 @@ public final class MethodCountCheck extends AbstractCheck {
     private final Deque<MethodCounter> counters = new ArrayDeque<>();
 
     /** Specify the maximum number of {@code private} methods allowed. */
+    @ModuleProperty
     private int maxPrivate = DEFAULT_MAX_METHODS;
     /** Specify the maximum number of {@code package} methods allowed. */
+    @ModuleProperty
     private int maxPackage = DEFAULT_MAX_METHODS;
     /** Specify the maximum number of {@code protected} methods allowed. */
+    @ModuleProperty
     private int maxProtected = DEFAULT_MAX_METHODS;
     /** Specify the maximum number of {@code public} methods allowed. */
+    @ModuleProperty
     private int maxPublic = DEFAULT_MAX_METHODS;
     /** Specify the maximum number of methods allowed at all scope levels. */
+    @ModuleProperty
     private int maxTotal = DEFAULT_MAX_METHODS;
 
     @Override

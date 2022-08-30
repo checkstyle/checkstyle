@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.annotation;
 
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -241,18 +242,21 @@ public class AnnotationLocationCheck extends AbstractCheck {
      * Allow single parameterless annotation to be located on the same line as
      * target element.
      */
+    @ModuleProperty
     private boolean allowSamelineSingleParameterlessAnnotation = true;
 
     /**
      * Allow one and only parameterized annotation to be located on the same line as
      * target element.
      */
+    @ModuleProperty
     private boolean allowSamelineParameterizedAnnotation;
 
     /**
      * Allow annotation(s) to be located on the same line as
      * target element.
      */
+    @ModuleProperty
     private boolean allowSamelineMultipleAnnotations;
 
     /**

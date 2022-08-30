@@ -32,6 +32,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
@@ -362,6 +363,7 @@ public class JavadocMethodCheck extends AbstractCheck {
     private String currentClassName;
 
     /** Specify the access modifiers where Javadoc comments are checked. */
+    @ModuleProperty
     private AccessModifierOption[] accessModifiers = {
         AccessModifierOption.PUBLIC,
         AccessModifierOption.PROTECTED,
@@ -372,21 +374,25 @@ public class JavadocMethodCheck extends AbstractCheck {
     /**
      * Control whether to validate {@code throws} tags.
      */
+    @ModuleProperty
     private boolean validateThrows;
 
     /**
      * Control whether to ignore violations when a method has parameters but does
      * not have matching {@code param} tags in the javadoc.
      */
+    @ModuleProperty
     private boolean allowMissingParamTags;
 
     /**
      * Control whether to ignore violations when a method returns non-void type
      * and does not have a {@code return} tag in the javadoc.
      */
+    @ModuleProperty
     private boolean allowMissingReturnTag;
 
     /** Specify annotations that allow missed documentation. */
+    @ModuleProperty
     private Set<String> allowedAnnotations = Set.of("Override");
 
     /**

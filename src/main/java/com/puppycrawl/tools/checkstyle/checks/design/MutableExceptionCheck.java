@@ -24,6 +24,7 @@ import java.util.Deque;
 import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -94,10 +95,12 @@ public final class MutableExceptionCheck extends AbstractCheck {
     /** Stack of checking information for classes. */
     private final Deque<Boolean> checkingStack = new ArrayDeque<>();
     /** Specify pattern for extended class names. */
+    @ModuleProperty
     private Pattern extendedClassNameFormat = Pattern.compile(DEFAULT_FORMAT);
     /** Should we check current class or not. */
     private boolean checking;
     /** Specify pattern for exception class names. */
+    @ModuleProperty
     private Pattern format = extendedClassNameFormat;
 
     /**

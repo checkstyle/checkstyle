@@ -24,6 +24,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
@@ -587,6 +588,7 @@ public class ImportOrderCheck
      * located at the end. Thus, the empty list of type groups (the default value) means one group
      * for all type imports.
      */
+    @ModuleProperty
     private Pattern[] groups = EMPTY_PATTERN_ARRAY;
 
     /**
@@ -597,6 +599,7 @@ public class ImportOrderCheck
      * static imports. This property has effect only when the property {@code option} is set to
      * {@code top} or {@code bottom}.
      */
+    @ModuleProperty
     private Pattern[] staticGroups = EMPTY_PATTERN_ARRAY;
 
     /**
@@ -604,6 +607,7 @@ public class ImportOrderCheck
      * line or comment and aren't separated internally. It doesn't affect separations for static
      * imports.
      */
+    @ModuleProperty
     private boolean separated;
 
     /**
@@ -612,12 +616,14 @@ public class ImportOrderCheck
      * property {@code option} is set to {@code top} or {@code bottom} and when property
      * {@code staticGroups} is enabled.
      */
+    @ModuleProperty
     private boolean separatedStaticGroups;
 
     /**
      * Control whether type imports within each group should be sorted.
      * It doesn't affect sorting for static imports.
      */
+    @ModuleProperty
     private boolean ordered = true;
 
     /**
@@ -625,6 +631,7 @@ public class ImportOrderCheck
      * sorting is in <a href="https://en.wikipedia.org/wiki/ASCII#Order">ASCII sort order</a>.
      * It affects both type imports and static imports.
      */
+    @ModuleProperty
     private boolean caseSensitive = true;
 
     /** Last imported group. */
@@ -650,17 +657,20 @@ public class ImportOrderCheck
      * Control whether <b>static imports</b> located at <b>top</b> or <b>bottom</b> are
      * sorted within the group.
      */
+    @ModuleProperty
     private boolean sortStaticImportsAlphabetically;
 
     /**
      * Control whether to use container ordering (Eclipse IDE term) for static imports
      * or not.
      */
+    @ModuleProperty
     private boolean useContainerOrderingForStatic;
 
     /**
      * Specify policy on the relative order between type imports and static imports.
      */
+    @ModuleProperty
     private ImportOrderOption option = ImportOrderOption.UNDER;
 
     /**

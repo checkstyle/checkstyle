@@ -26,6 +26,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -328,27 +329,33 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
      * targeted identifiers (abbreviations in the classes, interfaces, variables
      * and methods names, ... ).
      */
+    @ModuleProperty
     private int allowedAbbreviationLength =
             DEFAULT_ALLOWED_ABBREVIATIONS_LENGTH;
 
     /**
      * Specify abbreviations that must be skipped for checking.
      */
+    @ModuleProperty
     private Set<String> allowedAbbreviations = new HashSet<>();
 
     /** Allow to skip variables with {@code final} modifier. */
+    @ModuleProperty
     private boolean ignoreFinal = true;
 
     /** Allow to skip variables with {@code static} modifier. */
+    @ModuleProperty
     private boolean ignoreStatic = true;
 
     /** Allow to skip variables with both {@code static} and {@code final} modifiers. */
+    @ModuleProperty
     private boolean ignoreStaticFinal = true;
 
     /**
      * Allow to ignore methods tagged with {@code @Override} annotation (that
      * usually mean inherited name).
      */
+    @ModuleProperty
     private boolean ignoreOverriddenMethods = true;
 
     /**

@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
 import java.util.Locale;
 
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -121,6 +122,7 @@ public class EmptyForIteratorPadCheck
     private static final String SEMICOLON = ";";
 
     /** Specify policy on how to pad an empty for iterator. */
+    @ModuleProperty
     private PadOption option = PadOption.NOSPACE;
 
     /**

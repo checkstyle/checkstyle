@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks;
 
 import java.util.regex.Pattern;
 
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -101,6 +102,7 @@ public class TodoCommentCheck
     /**
      * Specify pattern to match comments against.
      */
+    @ModuleProperty
     private Pattern format = Pattern.compile("TODO:");
 
     @Override

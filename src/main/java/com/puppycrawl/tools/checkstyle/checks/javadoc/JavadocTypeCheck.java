@@ -26,6 +26,7 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -252,25 +253,32 @@ public class JavadocTypeCheck
             Pattern.compile("\\s+");
 
     /** Specify the visibility scope where Javadoc comments are checked. */
+    @ModuleProperty
     private Scope scope = Scope.PRIVATE;
     /** Specify the visibility scope where Javadoc comments are not checked. */
+    @ModuleProperty
     private Scope excludeScope;
     /** Specify the pattern for {@code @author} tag. */
+    @ModuleProperty
     private Pattern authorFormat;
     /** Specify the pattern for {@code @version} tag. */
+    @ModuleProperty
     private Pattern versionFormat;
     /**
      * Control whether to ignore violations when a class has type parameters but
      * does not have matching param tags in the Javadoc.
      */
+    @ModuleProperty
     private boolean allowMissingParamTags;
     /** Control whether to ignore violations when a Javadoc tag is not recognised. */
+    @ModuleProperty
     private boolean allowUnknownTags;
 
     /**
      * Specify annotations that allow missed documentation.
      * Only short names are allowed, e.g. {@code Generated}.
      */
+    @ModuleProperty
     private Set<String> allowedAnnotations = Set.of("Generated");
 
     /**

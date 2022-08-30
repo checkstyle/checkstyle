@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.naming;
 
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
@@ -171,6 +172,7 @@ public class LocalVariableNameCheck
      * initialization expressions</a>
      * in FOR loop if one char variable name is prohibited by {@code format} regexp.
      */
+    @ModuleProperty
     private boolean allowOneCharVarInForLoop;
 
     /** Creates a new {@code LocalVariableNameCheck} instance. */

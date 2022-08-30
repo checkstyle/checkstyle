@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace;
 import java.util.Locale;
 import java.util.function.UnaryOperator;
 
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -214,6 +215,7 @@ public class OperatorWrapCheck
     public static final String MSG_LINE_PREVIOUS = "line.previous";
 
     /** Specify policy on how to wrap lines. */
+    @ModuleProperty
     private WrapOption option = WrapOption.NL;
 
     /**

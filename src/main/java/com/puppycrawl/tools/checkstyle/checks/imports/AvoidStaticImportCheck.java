@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -115,6 +116,7 @@ public class AvoidStaticImportCheck
      * to be excluded like {@code java.lang.System.out} for a variable or
      * {@code java.lang.Math.random} for a method. See notes section for details.
      */
+    @ModuleProperty
     private String[] excludes = CommonUtil.EMPTY_STRING_ARRAY;
 
     @Override

@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.puppycrawl.tools.checkstyle.ModuleProperty;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -207,11 +208,14 @@ public class WriteTagCheck
     /** Compiled regexp to match tag. */
     private Pattern tagRegExp;
     /** Specify the regexp to match tag content. */
+    @ModuleProperty
     private Pattern tagFormat;
 
     /** Specify the name of tag. */
+    @ModuleProperty
     private String tag;
     /** Specify the severity level when tag is found and printed. */
+    @ModuleProperty
     private SeverityLevel tagSeverity = SeverityLevel.INFO;
 
     /**
