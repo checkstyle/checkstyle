@@ -71,4 +71,80 @@ public class InputCheckUtilTest<V, C> {
     public interface Example {
         void method();
     }
+
+    /**
+     * Tests three styles of builder setter (setFoo, withFoo, and foo). The following methods
+     * should not match.
+     */
+    public static class Builder {
+        private String first;
+        private int second;
+        private boolean third;
+        private String fourth;
+        private Builder recursive;
+        private String[] array;
+
+        public Builder withFirst(String first) {
+            this.first = first;
+            return this;
+        }
+        public Builder setSecond(int secondWithOtherName) {
+            second = secondWithOtherName;
+            return this;
+        }
+        public Builder third(boolean third) {
+            this.third = third;
+            return this;
+        }
+
+        public void setFourth(String fourth) {
+            this.fourth = fourth;
+            return;
+        }
+        public Builder misnamed(String first) {
+            this.first = first;
+            return this;
+        }
+        public Builder setRedundant(String first) {
+            first = first;
+            return this;
+        }
+        public Builder setNothing(int second) {
+            second++;
+            return this;
+        }
+        public String setFourthAndReturn(String fourth) {
+            this.fourth = fourth;
+            return fourth;
+        }
+        public Builder tooLong(String first) {
+            this.first = first;
+            this.fourth = first;
+            return this;
+        }
+        public Builder tooShort(String first) {
+            return this;
+        }
+        public Builder setMultiple(String first, int second) {
+            this.first = first;
+            this.second = second;
+            return this;
+        }
+        public Builder setRecursiveWithThis(String first) {
+            this.recursive.first = first;
+            return this;
+        }
+        public Builder setRecursive(String first) {
+            recursive.first = first;
+            return this;
+        }
+        public Builder setArray(String first) {
+            array[0] = first;
+            return this;
+        }
+        public Builder setWithException(String first) throws Exception {
+            this.first = first;
+            return this;
+        }
+    }
 }
