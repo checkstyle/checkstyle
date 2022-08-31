@@ -303,6 +303,8 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testHonorsTokenProperty() throws Exception {
         final String[] expected = {
+            "20:1: " + getCheckMessage(MSG_ORDERING, "java.awt.Button.ABORT"),
+            "21:1: " + getCheckMessage(MSG_ORDERING, "java.awt.Dialog"),
             "22:1: " + getCheckMessage(MSG_ORDERING, "java.awt.Button"),
         };
 
