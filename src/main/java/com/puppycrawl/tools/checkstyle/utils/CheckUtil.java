@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.function.Predicate;
 import java.util.regex.Pattern;
@@ -60,6 +61,9 @@ public final class CheckUtil {
     /** Maximum nodes allowed in a body of setter. */
     private static final int SETTER_BODY_SIZE = 3;
 
+    /** Maximum nodes allowed in a body of builder. */
+    private static final int BUILDER_BODY_SIZE = 4;
+
     /** Maximum nodes allowed in a body of getter. */
     private static final int GETTER_BODY_SIZE = 2;
 
@@ -71,6 +75,12 @@ public final class CheckUtil {
 
     /** Pattern matching names of getter methods. */
     private static final Pattern GETTER_PATTERN = Pattern.compile("^(is|get)[A-Z].*");
+
+    /**
+     * Pattern matching two styles of setter in the builder pattern. The other style
+     * is just the name of the field.
+     */
+    private static final Pattern BUILDER_PATTERN = Pattern.compile("^(with|set)[A-Z].*");
 
     /** Compiled pattern for all system newlines. */
     private static final Pattern ALL_NEW_LINES = Pattern.compile("\\R");
@@ -359,6 +369,90 @@ public final class CheckUtil {
             }
         }
         return setterMethod;
+    }
+
+    /**
+     * Returns whether an AST represents a method in a builder pattern.
+     * A builder method is named like {@code setFoo}, {@code withFoo}, or
+     * {@code foo}. It sets the field and returns an instance of the class.
+     *
+     * @param ast the AST to check with
+     * @return whether the AST represents a method in the builder pattern.
+     */
+    public static boolean isBuilderMethod(final DetailAST ast) {
+        boolean builderMethod = false;
+        // Check have a method with exactly 7 children which are all that
+        // is allowed in a proper builder method which does not throw any
+        // exceptions.
+
+        if (ast.getType() == TokenTypes.METHOD_DEF
+                && ast.getChildCount() == SETTER_GETTER_MAX_CHILDREN) {
+            final DetailAST type = ast.findFirstToken(TokenTypes.TYPE);
+            final boolean noVoidReturnType = type.findFirstToken(TokenTypes.LITERAL_VOID) == null;
+
+            final DetailAST params = ast.findFirstToken(TokenTypes.PARAMETERS);
+            final boolean singleParam = params.getChildCount(TokenTypes.PARAMETER_DEF) == 1;
+
+            if (noVoidReturnType && singleParam) {
+                // Now verify that the body consists of:
+                // EXPR -> ASSIGN of an instance field
+                // SEMI
+                // LITERAL_RETURN -> EXPR -> LITERAL_THIS
+                // RCURLY
+                final DetailAST slist = ast.findFirstToken(TokenTypes.SLIST);
+                if (slist.getChildCount() == BUILDER_BODY_SIZE) {
+                    // Verify this method sets a field on the class.
+                    final DetailAST expr = slist.getFirstChild();
+                    final Optional<String> assignedField = getNameOfAssignedField(expr);
+
+                    // Verify that the method name matches the format setField,
+                    // withField, or field (shadowing the field in the last case).
+                    final String name = type.getNextSibling().getText();
+                    final boolean matchesBuilderFormat = BUILDER_PATTERN.matcher(name).matches()
+                            || assignedField.filter(field -> field.equals(name)).isPresent();
+
+                    if (matchesBuilderFormat) {
+                        // Verify the method returns the instance.
+                        final DetailAST literalReturn = expr.getNextSibling().getNextSibling();
+                        // Because noVoidReturnType is true, the first child is an
+                        // expression.
+                        final DetailAST returned = literalReturn.getFirstChild()
+                            .getFirstChild();
+                        builderMethod = returned.getType() == TokenTypes.LITERAL_THIS;
+                    }
+                }
+            }
+        }
+
+        return builderMethod;
+    }
+
+    /**
+     * Parses the `a` from `this.a = b` or `a = b`.
+     *
+     * @param expr the AST to check (expected to be TokenTypes.EXPR)
+     * @return the name of the field assigned in the given expression, or empty.
+     */
+    private static Optional<String> getNameOfAssignedField(final DetailAST expr) {
+        String name = null;
+        final DetailAST assign = expr.getFirstChild();
+        if (assign.getType() == TokenTypes.ASSIGN) {
+            // this.field or field.
+            final DetailAST dotOrIdent = assign.getFirstChild();
+            if (dotOrIdent.getType() == TokenTypes.DOT) {
+                // this.field.
+                final DetailAST literalThis = dotOrIdent.getFirstChild();
+                if (literalThis.getType() == TokenTypes.LITERAL_THIS) {
+                    name = literalThis.getNextSibling().getText();
+                }
+            }
+            else if (dotOrIdent.getType() == TokenTypes.IDENT) {
+                // Field name without any prefix.
+                name = dotOrIdent.getText();
+            }
+        }
+
+        return Optional.ofNullable(name);
     }
 
     /**

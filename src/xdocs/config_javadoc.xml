@@ -2562,6 +2562,18 @@ public boolean isSomething()
               <td>8.21</td>
             </tr>
             <tr>
+              <td>allowMissingBuilderJavadoc</td>
+              <td>
+                Control whether to allow missing Javadoc on methods using the
+                builder pattern (a setter named like <code>withField</code>,
+                <code>setField</code>, or <code>field</code> that returns an
+                instance of the class).
+              </td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>10.4</td>
+            </tr>
+            <tr>
               <td>ignoreMethodNamesRegex</td>
               <td>ignore method whose names are matching specified regex.</td>
               <td><a href="property_types.html#Pattern">Pattern</a></td>
