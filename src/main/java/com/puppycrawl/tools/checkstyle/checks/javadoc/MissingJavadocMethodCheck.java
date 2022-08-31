@@ -99,6 +99,13 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * Default value is {@code false}.
  * </li>
  * <li>
+ * Property {@code allowMissingBuilderJavadoc} - Control whether to allow missing Javadoc on
+ * methods using the builder pattern (a setter named like {@code withField}, {@code setField}, or
+ * {@code field} that returns an instance of the class).
+ * Type is {@code boolean}.
+ * Default value is {@code false}.
+ * </li>
+ * <li>
  * Property {@code ignoreMethodNamesRegex} - ignore method whose names are matching specified
  * regex.
  * Type is {@code java.util.regex.Pattern}.
@@ -287,6 +294,13 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
      */
     private boolean allowMissingPropertyJavadoc;
 
+    /**
+     * Control whether to allow missing Javadoc on methods using the builder
+     * pattern (a setter named like {@code withField}, {@code setField}, or
+     * {@code field} that returns an instance of the class).
+     */
+    private boolean allowMissingBuilderJavadoc;
+
     /** Ignore method whose names are matching specified regex. */
     private Pattern ignoreMethodNamesRegex;
 
@@ -328,6 +342,17 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
      */
     public void setAllowMissingPropertyJavadoc(final boolean flag) {
         allowMissingPropertyJavadoc = flag;
+    }
+
+    /**
+     * Setter to control whether to allow missing Javadoc on methods using the builder
+     * pattern (a setter named like {@code withField}, {@code setField}, or
+     * {@code field} that returns an instance of the class).
+     *
+     * @param flag a {@code Boolean} value
+     */
+    public void setAllowMissingBuilderJavadoc(final boolean flag) {
+        allowMissingBuilderJavadoc = flag;
     }
 
     /**
@@ -412,6 +437,7 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
     private boolean isMissingJavadocAllowed(final DetailAST ast) {
         return allowMissingPropertyJavadoc
                 && (CheckUtil.isSetterMethod(ast) || CheckUtil.isGetterMethod(ast))
+            || allowMissingBuilderJavadoc && CheckUtil.isBuilderMethod(ast)
             || matchesSkipRegex(ast)
             || isContentsAllowMissingJavadoc(ast);
     }

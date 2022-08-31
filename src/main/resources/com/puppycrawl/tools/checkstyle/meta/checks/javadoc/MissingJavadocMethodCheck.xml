@@ -62,6 +62,13 @@
                <description>Control whether to allow missing Javadoc on
  accessor methods for properties (setters and getters).</description>
             </property>
+            <property default-value="false"
+                       name="allowMissingBuilderJavadoc"
+                       type="boolean">
+               <description>Control whether to allow missing Javadoc on
+ methods using the builder pattern (a setter named like {@code withField}, {@code setField}, or
+ {@code field} that returns an instance of the class).</description>
+            </property>
             <property name="ignoreMethodNamesRegex" type="java.util.regex.Pattern">
                <description>ignore method whose names are matching specified
  regex.</description>
