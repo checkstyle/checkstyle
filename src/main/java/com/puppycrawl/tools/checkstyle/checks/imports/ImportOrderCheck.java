@@ -128,14 +128,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Type is {@code boolean}.
  * Default value is {@code false}.
  * </li>
- * <li>
- * Property {@code tokens} - tokens to check
- * Type is {@code java.lang.String[]}.
- * Validation type is {@code tokenSet}.
- * Default value is:
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STATIC_IMPORT">
- * STATIC_IMPORT</a>.
- * </li>
  * </ul>
  * <p>
  * To configure the check:
@@ -773,17 +765,17 @@ public class ImportOrderCheck
 
     @Override
     public int[] getDefaultTokens() {
-        return getAcceptableTokens();
+        return getRequiredTokens();
     }
 
     @Override
     public int[] getAcceptableTokens() {
-        return new int[] {TokenTypes.IMPORT, TokenTypes.STATIC_IMPORT};
+        return getRequiredTokens();
     }
 
     @Override
     public int[] getRequiredTokens() {
-        return new int[] {TokenTypes.IMPORT};
+        return new int[] {TokenTypes.IMPORT, TokenTypes.STATIC_IMPORT};
     }
 
     @Override
