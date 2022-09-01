@@ -25,10 +25,11 @@ System.exit(exitCode)
  */
 private int parseArgumentAndExecute(String argument, String flag) {
     final Set<String> profiles = getPitestProfiles()
+    final String scriptPath = ".${SEPARATOR}.ci${SEPARATOR}pitest-survival-check-xml.groovy"
     final String usageString = """
-        Usage groovy ./.ci/pitest-survival-check-xml.groovy [profile] [-g | --generate-suppression]
+        Usage groovy ${scriptPath} [profile] [-g | --generate-suppression]
         To see the full list of supported profiles run
-        'groovy ./.ci/pitest-survival-check-xml.groovy --list'
+        'groovy ${scriptPath} --list'
         """.stripIndent()
 
     final int exitCode
@@ -205,7 +206,7 @@ private static Mutation getMutation(Node mutationNode) {
         final String javaExtension = ".java"
         final String mutationFilePath = startingPath + mutationFileName
                 .substring(0, mutationFileName.length() - javaExtension.length())
-                .replaceAll("\\.", SEPARATOR) + javaExtension
+                .replace(".", SEPARATOR) + javaExtension
 
         final File file = new File(mutationFilePath)
         lineContent = XmlUtil.escapeXml(file.readLines().get(lineNumber - 1).trim())
