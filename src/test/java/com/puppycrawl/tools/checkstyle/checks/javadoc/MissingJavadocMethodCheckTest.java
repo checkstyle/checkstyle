@@ -335,6 +335,26 @@ public class MissingJavadocMethodCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testBuilderOff() throws Exception {
+        final String[] expected = {
+            "22:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "28:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "34:5: " + getCheckMessage(MSG_JAVADOC_MISSING)
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputMissingJavadocMethodBuilder.java"), expected);
+    }
+
+    @Test
+    public void testBuilderOn() throws Exception {
+        final String[] expected = {
+            "40:5: " + getCheckMessage(MSG_JAVADOC_MISSING)
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputMissingJavadocMethodBuilder2.java"), expected);
+    }
+
+    @Test
     public void test11684081() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
