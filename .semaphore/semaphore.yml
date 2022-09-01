@@ -79,8 +79,6 @@ blocks:
 
           commands:
             - sem-version java 11
-            - echo "Installing Checkstyle to local maven repo"
-            - mvn -e --no-transfer-progress clean install -Pno-validations
             - echo "eval of CMD is starting";
             - echo "CMD=$CMD";
             - eval $CMD;
