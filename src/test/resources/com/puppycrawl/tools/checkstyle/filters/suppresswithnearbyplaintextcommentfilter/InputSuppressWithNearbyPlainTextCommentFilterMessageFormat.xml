@@ -1,0 +1,45 @@
+<!--
+SuppressWithNearbyPlainTextCommentFilter
+commentFormat = (default)SUPPRESS CHECKSTYLE (\\w+)
+checkFormat = (default).*
+messageFormat = .*tab.*
+idFormat = (default)(null)
+influenceFormat = (default)0
+
+com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheck
+eachLine = true
+fileExtensions = (default)
+
+com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck
+fileExtensions = (default)all files
+ignorePattern = (default)^(package|import) .*
+max = 90
+
+
+-->
+
+<?xml version="1.0"?>
+<!DOCTYPE module PUBLIC
+    "-//Checkstyle//DTD Checkstyle Configuration 1.3//EN"
+    "https://checkstyle.org/dtds/configuration_1_3.dtd">
+
+<module name="Checker">
+    <!-- filtered violation below 'Line contains a tab character' -->
+	<!-- SUPPRESS CHECKSTYLE c --> <property name="severity" value="error"/>
+    <!-- filtered violation below 'Line contains a tab character' -->
+	<property name="tabWidth" value="4"/> <!-- SUPPRESS CHECKSTYLE c -->
+    <module name="TreeWalker">
+        <module name="AnnotationLocation">
+          <property name="tokens" value="ANNOTATION_DEF"/>
+          <property name="tokens" value="ANNOTATION_FIELD_DEF"/>
+          <property name="tokens" value="PACKAGE_DEF"/>
+          <property name="tokens" value="ENUM_CONSTANT_DEF"/>
+          <property name="tokens" value="SOME_LONG_DEF_NAME" />
+          <!-- violation below 'Line is longer than 90 characters (found 96).' -->
+          <property name="allowSamelineSinglePara" value="true"/> <!-- SUPPRESS CHECKSTYLE c -->
+        </module>
+    <!-- filtered violation below 'Line contains a tab character' -->
+	</module> <!-- SUPPRESS CHECKSTYLE c -->
+    <!-- violation below 'Line is longer than 90 characters (found 97).' -->
+    <!-- SUPPRESS CHECKSTYLE c --> <module name="SomeLongModuleNameThatMakesThisRowMoreThan90" />
+</module>

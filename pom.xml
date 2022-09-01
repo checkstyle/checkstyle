@@ -1753,6 +1753,7 @@
 
                 <!-- input files are not java files, bdd need support for other comment types -->
                 <exclude>**/SuppressWithPlainTextCommentFilterTest.class</exclude>
+                <exclude>**/SuppressWithNearbyPlainTextCommentFilterTest.class</exclude>
                 <exclude>**/NewlineAtEndOfFileCheckTest.class</exclude>
 
                 <!-- stay in old way as format of input files is very special -->
