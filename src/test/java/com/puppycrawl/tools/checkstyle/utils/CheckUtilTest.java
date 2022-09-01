@@ -266,6 +266,36 @@ public class CheckUtilTest extends AbstractPathTestSupport {
     }
 
     @Test
+    public void testIsBuilderMethod() throws Exception {
+        final DetailAST objBlock = getNodeFromFile(TokenTypes.OBJBLOCK);
+        final DetailAST builderClass = getNode(objBlock, TokenTypes.CLASS_DEF);
+
+        final DetailAST firstBuilderMethod = getNode(builderClass, TokenTypes.METHOD_DEF);
+        final DetailAST secondBuilderMethod = firstBuilderMethod.getNextSibling();
+        final DetailAST thirdBuilderMethod = secondBuilderMethod.getNextSibling();
+
+        assertWithMessage("Invalid result: AST provided for withFirst is builder method")
+                .that(CheckUtil.isBuilderMethod(firstBuilderMethod))
+                .isTrue();
+        assertWithMessage("Invalid result: AST provided for setSecond is builder method")
+                .that(CheckUtil.isBuilderMethod(secondBuilderMethod))
+                .isTrue();
+        assertWithMessage("Invalid result: AST provided for third is builder method")
+                .that(CheckUtil.isBuilderMethod(thirdBuilderMethod))
+                .isTrue();
+
+        DetailAST notBuilderMethod = thirdBuilderMethod.getNextSibling();
+        while (notBuilderMethod != null) {
+            final DetailAST methodName = notBuilderMethod.findFirstToken(TokenTypes.IDENT);
+            assertWithMessage("Invalid result: AST provided for " + methodName
+                    + " is not builder method")
+                .that(CheckUtil.isBuilderMethod(notBuilderMethod))
+                .isFalse();
+            notBuilderMethod = notBuilderMethod.getNextSibling();
+        }
+    }
+
+    @Test
     public void testGetAccessModifierFromModifiersToken() throws Exception {
         final DetailAST interfaceDef = getNodeFromFile(TokenTypes.INTERFACE_DEF);
         final AccessModifierOption modifierInterface = CheckUtil
@@ -356,7 +386,7 @@ public class CheckUtilTest extends AbstractPathTestSupport {
     public void testIsReceiverParameter() throws Exception {
         final DetailAST objBlock = getNodeFromFile(TokenTypes.OBJBLOCK);
         final DetailAST methodWithReceiverParameter = objBlock.getLastChild().getPreviousSibling()
-                .getPreviousSibling();
+                .getPreviousSibling().getPreviousSibling();
         final DetailAST receiverParameter =
                 getNode(methodWithReceiverParameter, TokenTypes.PARAMETER_DEF);
         final DetailAST simpleParameter =
