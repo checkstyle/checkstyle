@@ -71,4 +71,34 @@ public class InputCheckUtilTest<V, C> {
     public interface Example {
         void method();
     }
+
+    /**
+     * Tests three styles of builder setter (setFoo, withFoo, and foo). The following method
+     * should not match.
+     */
+    public static class Builder {
+        private String first;
+        private int second;
+        private boolean third;
+        private String fourth;
+        private Builder recursive;
+        private String[] array;
+
+        public Builder withFirst(String first) {
+            this.first = first;
+            return this;
+        }
+        public Builder setSecond(int secondWithOtherName) {
+            second = secondWithOtherName;
+            return this;
+        }
+        public Builder third(boolean third) {
+            this.third = third;
+            return this;
+        }
+        public void setFourth(String fourth) {
+            this.fourth = fourth;
+            return;
+        }
+    }
 }
