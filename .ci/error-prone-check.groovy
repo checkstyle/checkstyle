@@ -8,7 +8,8 @@ import java.util.regex.Pattern
 
 @Field static final String SEPARATOR = System.getProperty("file.separator")
 @Field static final Set<String> PROFILES = Set.of("compile", "test-compile")
-@Field static final String USAGE_STRING = "Usage groovy ./.ci/error-prone-check.groovy" +
+@Field static final String USAGE_STRING = "Usage groovy " +
+        ".${SEPARATOR}.ci${SEPARATOR}error-prone-check.groovy" +
         " (compile | test-compile) [-g | --generate-suppression]\n"
 
 int exitCode = 1
@@ -82,7 +83,14 @@ private static int checkErrorProneReport(String profile, String flag) {
  */
 private static List<String> getErrorProneErrors(String profile) {
     final List<String> errorProneErrors = [] as ArrayList
-    final String command = "mvn -e --no-transfer-progress clean" +
+    final String maven
+    if ("\\".equals(SEPARATOR)) {
+        maven = "mvn.cmd"
+    }
+    else {
+        maven = "mvn"
+    }
+    final String command = maven + " -e --no-transfer-progress clean" +
             " ${profile} -Perror-prone-${profile}"
     final Process process = command.execute()
     process.in.eachLine { line ->
@@ -104,8 +112,8 @@ private static List<String> getErrorProneErrors(String profile) {
 private static Set<ErrorProneError> getErrorFromText(List<String> errorsText) {
     final Set<ErrorProneError> errors = new HashSet<>()
     final Pattern errorExtractingPattern = Pattern
-            .compile(".*/(.*\\.java):\\[(\\d+).*\\[(\\w+)\\](.*)");
-    final Pattern filePathExtractingPattern = Pattern.compile("\\[ERROR\\] (.*\\.java)")
+            .compile(".*[\\\\/](.*\\.java):\\[(\\d+).*\\[(\\w+)](.*)");
+    final Pattern filePathExtractingPattern = Pattern.compile("\\[ERROR] (.*\\.java)")
     final int sourceFileGroup = 1
     final int lineNumberGroup = 2
     final int bugPatternGroup = 3
