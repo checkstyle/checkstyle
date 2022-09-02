@@ -1,0 +1,36 @@
+<!--
+SuppressWithNearbyPlainTextCommentFilter
+commentFormat = SUPPRESS CHECKSTYLE (\w+) - ([+-]\d+) Lines
+checkFormat = $1
+messageFormat = .*tab.*
+idFormat = (default)(null)
+influenceFormat = $2
+
+com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheck
+eachLine = true
+fileExtensions = (default)
+
+com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck
+fileExtensions = (default)all files
+ignorePattern = (default)^(package|import) .*
+max = 90
+
+
+-->
+
+<module>
+    <child></child>
+    <!-- filtered violation below 'Line contains a tab character' -->
+	<child></child> <!-- SUPPRESS CHECKSTYLE FileTabCharacterCheck - +3 Lines -->
+	<child></child> <!-- filtered violation 'Line contains a tab character' -->
+	<child></child> <!-- filtered violation 'Line contains a tab character' -->
+	<child></child> <!-- filtered violation 'Line contains a tab character' -->
+	<child></child> <!-- violation 'Line contains a tab character' -->
+    <child></child>
+    <child></child>
+	<child></child> <!-- violation 'Line contains a tab character' -->
+	<child></child> <!-- filtered violation 'Line contains a tab character' -->
+	<child></child> <!-- filtered violation 'Line contains a tab character' -->
+	<child></child> <!-- SUPPRESS CHECKSTYLE FileTabCharacterCheck - -2 Lines -->
+    <!-- filtered violation above 'Line contains a tab character' -->
+</module>
