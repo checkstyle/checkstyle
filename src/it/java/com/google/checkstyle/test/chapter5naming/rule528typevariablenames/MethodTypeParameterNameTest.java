@@ -21,7 +21,7 @@ package com.google.checkstyle.test.chapter5naming.rule528typevariablenames;
 
 import java.util.Map;
 
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
@@ -38,8 +38,8 @@ public class MethodTypeParameterNameTest extends AbstractGoogleModuleTestSupport
         return "com/google/checkstyle/test/chapter5naming/rule528typevariablenames";
     }
 
-    @BeforeAll
-    public static void setConfigurationBuilder() throws CheckstyleException {
+    @BeforeEach
+    public void setConfigurationBuilder() throws CheckstyleException {
         format = getModuleConfig("ClassTypeParameterName").getProperty("format");
     }
 
