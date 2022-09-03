@@ -19,7 +19,11 @@
 
 package com.puppycrawl.tools.checkstyle.internal;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.methods;
+import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.noClasses;
+
+import java.util.List;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -29,8 +33,49 @@ import com.tngtech.archunit.core.domain.JavaModifier;
 import com.tngtech.archunit.core.importer.ClassFileImporter;
 import com.tngtech.archunit.core.importer.ImportOption;
 import com.tngtech.archunit.lang.ArchRule;
+import com.tngtech.archunit.lang.EvaluationResult;
 
 public class ArchUnitTest {
+
+    private static final List<String> API_PACKAGE_SUPPRESSION_DETAILS = List.of(
+        "Constructor <com.puppycrawl.tools.checkstyle.api.FileText.<init>(java.io.File, java.lang"
+            + ".String)> gets field <com.puppycrawl.tools.checkstyle.utils.CommonUtil"
+            + ".EMPTY_STRING_ARRAY>",
+        "Constructor <com.puppycrawl.tools.checkstyle.api.FileText.<init>(java.io.File, java.util"
+            + ".List)> gets field <com.puppycrawl.tools.checkstyle.utils.CommonUtil"
+            + ".EMPTY_STRING_ARRAY>",
+        "Method <com.puppycrawl.tools.checkstyle.api.AbstractCheck.log(com.puppycrawl.tools"
+            + ".checkstyle.api.DetailAST, java.lang.String, [Ljava.lang.Object;)> calls method "
+            + "<com.puppycrawl.tools.checkstyle.utils.CommonUtil.lengthExpandedTabs(java.lang"
+            + ".String, int, int)>",
+        "Method <com.puppycrawl.tools.checkstyle.api.AbstractCheck.log(int, int, java.lang"
+            + ".String, [Ljava.lang.Object;)> calls method <com.puppycrawl.tools.checkstyle.utils"
+            + ".CommonUtil.lengthExpandedTabs(java.lang.String, int, int)>",
+        "Method <com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck.log(int, int, java.lang"
+            + ".String, [Ljava.lang.Object;)> calls method <com.puppycrawl.tools.checkstyle.utils"
+            + ".CommonUtil.lengthExpandedTabs(java.lang.String, int, int)>",
+        "Method <com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck.process(java.io.File, "
+            + "com.puppycrawl.tools.checkstyle.api.FileText)> calls method <com.puppycrawl.tools"
+            + ".checkstyle.utils.CommonUtil.matchesFileExtension(java.io.File, [Ljava.lang"
+            + ".String;)>",
+        "Method <com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck.setFileExtensions"
+            + "([Ljava.lang.String;)> calls method <com.puppycrawl.tools.checkstyle.utils"
+            + ".CommonUtil.startsWithChar(java.lang.String, char)>",
+        "Method <com.puppycrawl.tools.checkstyle.api.AutomaticBean$PatternConverter.convert(java"
+            + ".lang.Class, java.lang.Object)> calls method <com.puppycrawl.tools.checkstyle"
+            + ".utils.CommonUtil.createPattern(java.lang.String)>",
+        "Method <com.puppycrawl.tools.checkstyle.api.AutomaticBean$RelaxedStringArrayConverter"
+            + ".convert(java.lang.Class, java.lang.Object)> gets field <com.puppycrawl.tools"
+            + ".checkstyle.utils.CommonUtil.EMPTY_STRING_ARRAY>",
+        "Method <com.puppycrawl.tools.checkstyle.api.AutomaticBean$UriConverter.convert(java.lang"
+            + ".Class, java.lang.Object)> calls method <com.puppycrawl.tools.checkstyle.utils"
+            + ".CommonUtil.getUriByFilename(java.lang.String)>",
+        "Method <com.puppycrawl.tools.checkstyle.api.AutomaticBean$UriConverter.convert(java.lang"
+            + ".Class, java.lang.Object)> calls method <com.puppycrawl.tools.checkstyle.utils"
+            + ".CommonUtil.isBlank(java.lang.String)>",
+        "Method <com.puppycrawl.tools.checkstyle.api.FileContents.lineIsBlank(int)> calls method "
+            + "<com.puppycrawl.tools.checkstyle.utils.CommonUtil.isBlank(java.lang.String)>"
+    );
 
     @BeforeAll
     public static void init() {
@@ -43,10 +88,6 @@ public class ArchUnitTest {
      * except for those which are annotated with {@code Override}. In the bytecode there is no
      * trace anymore if this method was annotated with {@code Override} or not (limitation of
      * Archunit), eventually we need to make checkstyle's Check on this.
-     *
-     * @noinspection JUnitTestMethodWithNoAssertions
-     * @noinspectionreason JUnitTestMethodWithNoAssertions - asserts in callstack,
-     *      but not in this method
      */
     @Test
     public void nonProtectedCheckMethodsTest() {
@@ -74,4 +115,36 @@ public class ArchUnitTest {
 
         checkMethodsShouldNotBeProtectedRule.check(importedClasses);
     }
+
+    /**
+     * The goal is to ensure all classes in api package are not dependent on classes in util
+     * packages.
+     */
+    @Test
+    public void testClassesInApiDoNotDependOnClassesInUtil() {
+        final JavaClasses apiPackage = new ClassFileImporter()
+            .withImportOption(ImportOption.Predefined.DO_NOT_INCLUDE_TESTS)
+            .importPackages("com.puppycrawl.tools.checkstyle.api");
+
+        final String[] utilPackages = {
+            "com.puppycrawl.tools.checkstyle.utils",
+            "com.puppycrawl.tools.checkstyle.checks.javadoc.utils",
+        };
+
+        final ArchRule classShouldNotDependOnUtilPackages = noClasses()
+            .should()
+            .dependOnClassesThat()
+            .resideInAnyPackage(utilPackages);
+
+        final EvaluationResult result = classShouldNotDependOnUtilPackages.evaluate(apiPackage);
+        final EvaluationResult filtered = result.filterDescriptionsMatching(description -> {
+            return API_PACKAGE_SUPPRESSION_DETAILS.stream()
+                .noneMatch(description::contains);
+        });
+
+        assertWithMessage("api package: " + classShouldNotDependOnUtilPackages.getDescription())
+            .that(filtered.getFailureReport().getDetails())
+            .isEmpty();
+    }
+
 }
