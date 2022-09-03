@@ -17,10 +17,6 @@ jobs:
     steps:
       - name: Download checkstyle
         uses: actions/checkout@v2
-        with:
-          repository: checkstyle/checkstyle
-          ref: master
-          path: checkstyle
 
       - name: Check links
         run: |
