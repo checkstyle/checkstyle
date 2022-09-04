@@ -1,0 +1,26 @@
+#############################################################################
+# GitHub Action to Run Maven Release Perform.
+#
+#############################################################################
+name: "Maven Release Perform"
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'New Version'
+        required: true
+jobs:
+  perform:
+    name: Push perform {{ github.event.inputs.version }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the latest code
+        uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Download xmlstarlet
+        run: |
+          sudo apt-get install xmlstarlet
+      - name: Run Shell Script
+        run: |
+          ./.ci/maven-perform.sh ${{ github.event.inputs.version }}
