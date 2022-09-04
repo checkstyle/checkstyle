@@ -24,9 +24,9 @@ jobs:
           ./.ci/update-github-io.sh ${{ github.event.inputs.version }}
       - name: Commit and Push
         run: |
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          cd . ci-temp/checkstyle.github.io
+          cd .ci-temp/checkstyle.github.io
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
           git add . && git commit -m "release ${{ github.event.inputs.version }}"
           echo "Push site content to remote ..." 
           echo "We do force to avoid history changes as github.io shows only HEAD." 

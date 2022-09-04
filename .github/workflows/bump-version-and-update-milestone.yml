@@ -24,16 +24,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the latest code
-        uses: actions/checkout@v2
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+        uses: actions/checkout@v3
       - name: Modify File
         run: |
           ./.ci/bump-version.sh ${{ github.event.inputs.version }}
       - name: Push commit
         run: |
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
           git commit -am "minor: Bump release version to ${{ github.event.inputs.version }}"
           git push
       - name: GitHub Milestone
