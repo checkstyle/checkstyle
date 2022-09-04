@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Download checkstyle
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: PR linked issues
         id: links
         uses: mondeja/pr-linked-issues-action@v2

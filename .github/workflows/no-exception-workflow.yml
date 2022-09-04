@@ -18,6 +18,6 @@ jobs:
       run: sudo apt install groovy
 
     - name: Checkout repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
     - run: .ci/no-exception-test.sh openjdk17-with-checks-nonjavadoc-error
