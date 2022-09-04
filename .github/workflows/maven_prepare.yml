@@ -15,16 +15,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the latest code
-        uses: actions/checkout@v2
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+        uses: actions/checkout@v3
       - name: Download xmlstarlet
         run: |
           sudo apt-get install xmlstarlet
       - name: Commit and Push Credentials
         run: |
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
       - name: Run Shell Script
         run: |
           ./.ci/maven-prepare.sh ${{ github.event.inputs.version }}
