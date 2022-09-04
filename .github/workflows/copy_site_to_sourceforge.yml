@@ -1,0 +1,25 @@
+#############################################################################
+# GitHub Action to Copy Site to SourceForge.
+#
+#############################################################################
+name: "R: Copy Site to SourceForge"
+on:
+  workflow_dispatch:
+    inputs:
+      release-version:
+        description: 'Release Version without (-SNAPSHOT)'
+        required: true
+      previous-version:
+        description: 'Previous Version without (-SNAPSHOT)'
+        required: true
+jobs:
+  copy-site:
+    name: Copy site to sourceforge for ${{ github.event.inputs.release-version }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the latest code
+        uses: actions/checkout@v2
+      - name: Run Script
+        run: |
+          ./.ci/copy-site-to-sourceforge.sh ${{ github.event.inputs.release-version }} \
+          ${{ github.event.inputs.previous-version }}
