@@ -115,6 +115,8 @@
   <suppress checks="FileTabCharacter"
     files="src[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]filters[\\/]suppresswithplaintextcommentfilter[\\/]Input.*"/>
   <suppress checks="FileTabCharacter"
+    files="src[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]filters[\\/]suppresswithnearbyplaintextcommentfilter[\\/]Input.*"/>
+  <suppress checks="FileTabCharacter"
     files="[\\/]InputRegressionJavaClass1\.java"/>
   <suppress checks="FileTabCharacter"
     files="[\\/]InputComments2\.java"/>

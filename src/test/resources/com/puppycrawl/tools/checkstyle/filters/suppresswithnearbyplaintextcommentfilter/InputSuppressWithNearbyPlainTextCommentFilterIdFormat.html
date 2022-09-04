@@ -1,0 +1,44 @@
+<!--
+SuppressWithNearbyPlainTextCommentFilter
+commentFormat = (default)SUPPRESS CHECKSTYLE (\\w+)
+checkFormat = (default).*
+messageFormat = (default)(null)
+idFormat = ignoreMe
+influenceFormat = (default)0
+
+com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheck
+id = ignoreMe
+eachLine = true
+fileExtensions = (default)
+
+com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck
+fileExtensions = (default)all files
+ignorePattern = (default)^(package|import) .*
+max = (default)80
+
+
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- filtered violation below 'Line contains a tab character' -->
+	<meta charset="UTF-8"> <!-- SUPPRESS CHECKSTYLE a -->
+    <!-- filtered violation below 'Line contains a tab character' -->
+	<title>Title</title> <!-- SUPPRESS CHECKSTYLE a -->
+</head>
+<body>
+    <!-- violation below 'Line is longer than 80 characters (found 83).' -->
+    <div class="really-long-class-name-abcefghijkl"> <!-- SUPPRESS CHECKSTYLE a -->
+        <ul>
+            <!-- filtered violation below 'Line contains a tab character' -->
+			<li>Milk</li> <!-- SUPPRESS CHECKSTYLE a -->
+            <li>Eggs</li>
+            <!-- filtered violation below 'Line contains a tab character' -->
+			<li>Orange juice</li> <!-- SUPPRESS CHECKSTYLE a -->
+    <!-- violation below 'Line is longer than 80 characters (found 84).' -->
+            <li>Long item name abcedfghijklmnopq</li> <!-- SUPPRESS CHECKSTYLE a -->
+        </ul>
+    </div>
+</body>
+</html>
