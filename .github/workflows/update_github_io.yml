@@ -15,9 +15,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the latest code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
         with:
-          fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
       - name: Run Shell Script
         run: |
