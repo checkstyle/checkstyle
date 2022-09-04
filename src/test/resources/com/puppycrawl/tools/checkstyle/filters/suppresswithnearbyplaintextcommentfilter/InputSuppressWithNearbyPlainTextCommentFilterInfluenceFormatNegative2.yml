@@ -1,0 +1,47 @@
+#
+# SuppressWithNearbyPlainTextCommentFilter
+# commentFormat = (default)SUPPRESS CHECKSTYLE (\\w+)
+# checkFormat = (default).*
+# messageFormat = (default)(null)
+# idFormat = (default)(null)
+# influenceFormat = -2
+#
+# com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheck
+# eachLine = true
+# fileExtensions = (default)
+#
+#
+
+jobs:
+
+  no-exception-lucene-and-others-javadoc:
+    # filtered violation below 'Line contains a tab character'
+  	docker: # filtered violation below 'Line contains a tab character'
+    	- image: &default-image checkstyle/jdk-11-groovy-git-mvn:11.0.13__3.0.9__2.25.1__3.6.3
+    steps: # SUPPRESS CHECKSTYLE FileTabCharacterCheck
+      - checkout
+      - run:
+          command: |
+            ./.ci/no-exception-test.sh no-exception-lucene-and-others-javadoc
+      - run:
+          command: ./.ci/validation.sh git-diff
+  no-exception-cassandra-storm-tapestry-javadoc:
+    docker:
+      - image: *default-image
+    steps:
+      - checkout
+      - run:
+          command: |
+            ./.ci/no-exception-test.sh no-exception-cassandra-storm-tapestry-javadoc
+      - run:
+          command: ./.ci/validation.sh git-diff
+	no-exception-hadoop-apache-groovy-scouter-javadoc: # violation 'Line contains a tab character'
+      	docker: # filtered violation 'Line contains a tab character'
+        	- image: *default-image # filtered violation 'Line contains a tab character'
+    steps: # SUPPRESS CHECKSTYLE FileTabCharacterCheck
+    	- checkout # violation 'Line contains a tab character'
+      - run:
+          command: |
+            ./.ci/no-exception-test.sh no-exception-hadoop-apache-groovy-scouter-javadoc
+      - run:
+          command: ./.ci/validation.sh git-diff

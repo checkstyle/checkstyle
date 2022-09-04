@@ -55,6 +55,9 @@
     <property name="offCommentFormat" value="CSOFF\: .*"/>
     <property name="onCommentFormat" value="CSON\: .*"/>
   </module>
+  <module name="SuppressWithNearbyPlainTextCommentFilter">
+    <!-- TO BE DETERMINED IN PULL REQUEST -->
+  </module>
 
   <!-- Headers -->
   <module name="Header">
