@@ -17,7 +17,7 @@ jobs:
       - name: Install groovy
         run: sudo apt install groovy
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Execute Error-Prone on compile phase
         run: groovy ./.ci/error-prone-check.groovy compile
       # Require to compile again in case previous step fails and sources are not compiled

@@ -56,7 +56,7 @@ jobs:
           path: ~/.m2/repository
           key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Generate ${{ matrix.profile }} report
         run: |
           mvn -e --no-transfer-progress -P"${{ matrix.profile }}" clean test-compile \

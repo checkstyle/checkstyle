@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Download checkstyle
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Check links
         run: ./.ci/run-link-check-plugin.sh
