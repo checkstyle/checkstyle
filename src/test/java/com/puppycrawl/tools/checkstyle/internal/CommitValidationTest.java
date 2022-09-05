@@ -92,11 +92,15 @@ public class CommitValidationTest {
     private static final CommitsResolutionMode COMMITS_RESOLUTION_MODE =
             CommitsResolutionMode.BY_LAST_COMMIT_AUTHOR;
 
-    private static List<RevCommit> lastCommits;
+    private static final List<RevCommit> lastCommits = getLastCommits();
 
-    @BeforeAll
-    public static void setUp() throws Exception {
-        lastCommits = getCommitsToCheck();
+    public static List<RevCommit> getLastCommits() {
+        try {
+            return getCommitsToCheck();
+        }
+        catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Test
