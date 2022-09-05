@@ -33,6 +33,7 @@
     <property name="severity" value="ignore"/>
     <property name="acceptOnMatch" value="false"/>
   </module>
+  <module name="SuppressByMessageFilter"/>
   <module name="SuppressionFilter">
     <property name="file" value="${checkstyle.suppressions.file}"/>
   </module>

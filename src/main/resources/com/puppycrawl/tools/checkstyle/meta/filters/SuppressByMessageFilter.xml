@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <filter fully-qualified-name="com.puppycrawl.tools.checkstyle.filters.SuppressByMessageFilter"
+              name="SuppressByMessageFilter"
+              parent="com.puppycrawl.tools.checkstyle.Checker">
+         <description>&lt;p&gt;
+ Filter {@code SuppressByMessageFilter} suppresses audit events for checks whose violation
+ messages match specified regular expression.
+ &lt;/p&gt;
+ &lt;p&gt;
+ Rationale: To allow users to suppress any or all violations for certain identifiers by specifying
+ RegExp in the same configuration module as their other modules.
+ &lt;/p&gt;
+ &lt;p&gt;
+ {@code SuppressByMessageFilter} can suppress violations for checks that have Treewalker or
+ Checker as parent module.
+ &lt;/p&gt;</description>
+         <properties>
+            <property name="checkFormat" type="java.util.regex.Pattern">
+               <description>Define the RegExp for matching against Check name which throws
+ a violation.</description>
+            </property>
+            <property name="messageFormat" type="java.util.regex.Pattern">
+               <description>Define the RegExp for matching against the violation message
+ thrown by a check.</description>
+            </property>
+         </properties>
+      </filter>
+   </module>
+</checkstyle-metadata>
