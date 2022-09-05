@@ -6,9 +6,9 @@ import groovy.xml.XmlUtil
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 
-@Field static final String SEPARATOR = System.getProperty("file.separator")
 @Field static final Set<String> PROFILES = Set.of("compile", "test-compile")
-@Field static final String USAGE_STRING = "Usage groovy ./.ci/error-prone-check.groovy" +
+@Field static final String USAGE_STRING = "Usage groovy " +
+        ".${File.separator}.ci${File.separator}error-prone-check.groovy" +
         " (compile | test-compile) [-g | --generate-suppression]\n"
 
 int exitCode = 1
@@ -58,8 +58,8 @@ private int parseArgumentAndExecute(String argument, String flag) {
 private static int checkErrorProneReport(String profile, String flag) {
     final XmlParser xmlParser = new XmlParser()
     final String suppressedErrorsFileUri =
-            ".${SEPARATOR}.ci${SEPARATOR}" +
-                    "error-prone-suppressions${SEPARATOR}${profile}-phase-suppressions.xml"
+            ".${File.separator}.ci${File.separator}" +
+                    "error-prone-suppressions${File.separator}${profile}-phase-suppressions.xml"
     final List<String> errorProneErrors = getErrorProneErrors(profile)
     Set<ErrorProneError> errors = Collections.emptySet()
     if (!errorProneErrors.isEmpty()) {
@@ -84,7 +84,7 @@ private static List<String> getErrorProneErrors(String profile) {
     final List<String> errorProneErrors = [] as ArrayList
     final String command = "mvn -e --no-transfer-progress clean" +
             " ${profile} -Perror-prone-${profile}"
-    final Process process = command.execute()
+    final Process process = getOsSpecificCmd(command).execute()
     process.in.eachLine { line ->
         if (line.startsWith("[ERROR]")) {
             errorProneErrors.add(line)
@@ -96,6 +96,23 @@ private static List<String> getErrorProneErrors(String profile) {
 }
 
 /**
+ * Get OS specific command.
+ *
+ * @param cmd input command
+ * @return OS specific command
+ */
+private static String getOsSpecificCmd(String cmd) {
+    final String osSpecificCmd
+    if (System.getProperty("os.name").toLowerCase().contains('windows')) {
+        osSpecificCmd = "cmd /c ${cmd}"
+    }
+    else {
+        osSpecificCmd = cmd
+    }
+    return osSpecificCmd
+}
+
+/**
  * Get a set of {@link ErrorProneError} from text.
  *
  * @param errorsText errors in text format
@@ -104,8 +121,8 @@ private static List<String> getErrorProneErrors(String profile) {
 private static Set<ErrorProneError> getErrorFromText(List<String> errorsText) {
     final Set<ErrorProneError> errors = new HashSet<>()
     final Pattern errorExtractingPattern = Pattern
-            .compile(".*/(.*\\.java):\\[(\\d+).*\\[(\\w+)\\](.*)");
-    final Pattern filePathExtractingPattern = Pattern.compile("\\[ERROR\\] (.*\\.java)")
+            .compile(".*[\\\\/](.*\\.java):\\[(\\d+).*\\[(\\w+)](.*)")
+    final Pattern filePathExtractingPattern = Pattern.compile("\\[ERROR] (.*\\.java)")
     final int sourceFileGroup = 1
     final int lineNumberGroup = 2
     final int bugPatternGroup = 3
