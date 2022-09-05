@@ -21,7 +21,7 @@ package com.google.checkstyle.test.chapter5naming.rule528typevariablenames;
 
 import java.util.Map;
 
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
@@ -31,16 +31,20 @@ import com.puppycrawl.tools.checkstyle.api.Configuration;
 public class MethodTypeParameterNameTest extends AbstractGoogleModuleTestSupport {
 
     private static final String MSG_KEY = "name.invalidPattern";
-    private static String format;
+    private static final String format = getFormat();
+
+    private static String getFormat() {
+        try {
+            return getModuleConfig("ClassTypeParameterName").getProperty("format");
+        }
+        catch (CheckstyleException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     @Override
     protected String getPackageLocation() {
         return "com/google/checkstyle/test/chapter5naming/rule528typevariablenames";
-    }
-
-    @BeforeAll
-    public static void setConfigurationBuilder() throws CheckstyleException {
-        format = getModuleConfig("ClassTypeParameterName").getProperty("format");
     }
 
     @Test
