@@ -94,6 +94,94 @@
       </subsection>
     </section>
 
+    <section name="SuppressByMessageFilter">
+      <p>Since Checkstyle 10.3.4</p>
+      <subsection name="Description" id="SuppressByMessageFilter_Description">
+        <p>
+          Filter <code>SuppressByMessageFilter</code> suppresses audit events for
+          checks whose violation messages match specified regular expression.
+        </p>
+        <p>
+          Rationale: To allow users to suppress any or all violations for certain
+          identifiers by specifying RegExp in the same configuration module as
+          their other modules.
+        </p>
+      </subsection>
+      <subsection name="Notes" id="SuppressByMessageFilter_Notes">
+        <p>
+          <code>SuppressByMessageFilter</code> can suppress violations for checks that
+          have Treewalker or Checker as parent module.
+        </p>
+      </subsection>
+      <subsection name="Properties" id="SuppressByMessageFilter_Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>checkFormat</td>
+              <td>
+                Define the RegExp for matching against Check name which
+                throws a violation.
+              </td>
+              <td><a href="property_types.html#Pattern">Pattern</a></td>
+              <td><code>null</code></td>
+              <td>10.3.4</td>
+            </tr>
+            <tr>
+              <td>messageFormat</td>
+              <td>
+                Define the RegExp for matching against the violation
+                message thrown by a check.
+              </td>
+              <td><a href="property_types.html#Pattern">Pattern</a></td>
+              <td><code>null</code></td>
+              <td>10.3.4</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+      <subsection name="Examples" id="SuppressByMessageFilter_Examples">
+        <p>
+          The following configuration will suppress all violations for
+          the <code>RequireThis</code> check.
+        </p>
+        <source>
+&lt;module name=&quot;SuppressByMessageFilter&quot;&gt;
+  &lt;property name=&quot;checkFormat&quot; value=&quot;RequireThisCheck&quot;/&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          The following configuration will suppress all violations for
+          any variable with a single letter identifier.
+        </p>
+        <source>
+&lt;module name=&quot;SuppressByMessageFilter&quot;&gt;
+  &lt;property name=&quot;messageFormat&quot; value=&quot;('[a-z]{1}')&quot;/&gt;
+&lt;/module&gt;
+        </source>
+      </subsection>
+      <subsection name="Example of Usage" id="SuppressByMessageFilter_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressByMessageFilter">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+      <subsection name="Package" id="SuppressByMessageFilter_Package">
+        <p> com.puppycrawl.tools.checkstyle.filters </p>
+      </subsection>
+      <subsection name="Parent Module" id="SuppressByMessageFilter_Parent_Module">
+        <p> <a href="config.html#Checker">Checker</a> </p>
+      </subsection>
+    </section>
+
     <section name="SuppressionCommentFilter">
       <p>Since Checkstyle 3.5</p>
       <subsection name="Description" id="SuppressionCommentFilter_Description">
