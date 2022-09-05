@@ -19,11 +19,14 @@
 
 package com.puppycrawl.tools.checkstyle.internal;
 
+import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.classes;
 import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.methods;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
+import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.tngtech.archunit.core.domain.JavaClasses;
 import com.tngtech.archunit.core.domain.JavaModifier;
 import com.tngtech.archunit.core.importer.ClassFileImporter;
@@ -31,6 +34,10 @@ import com.tngtech.archunit.core.importer.ImportOption;
 import com.tngtech.archunit.lang.ArchRule;
 
 public class ArchUnitTest {
+
+    private static final JavaClasses CHECKS_PACKAGE = new ClassFileImporter()
+        .withImportOption(ImportOption.Predefined.DO_NOT_INCLUDE_TESTS)
+        .importPackages("com.puppycrawl.tools.checkstyle.checks");
 
     @BeforeAll
     public static void init() {
@@ -59,9 +66,6 @@ public class ArchUnitTest {
             "getLogMessageId",
         };
         final String ignoreMethodList = String.join("|", methodsWithOverrideAnnotation);
-        final JavaClasses importedClasses = new ClassFileImporter()
-                .withImportOption(ImportOption.Predefined.DO_NOT_INCLUDE_TESTS)
-                .importPackages("com.puppycrawl.tools.checkstyle.checks");
 
         final ArchRule checkMethodsShouldNotBeProtectedRule =
                 methods().that()
@@ -72,6 +76,26 @@ public class ArchUnitTest {
                 .doNotHaveModifier(JavaModifier.ABSTRACT)
                 .should().notBeProtected();
 
-        checkMethodsShouldNotBeProtectedRule.check(importedClasses);
+        checkMethodsShouldNotBeProtectedRule.check(CHECKS_PACKAGE);
+    }
+
+    /**
+     * Tests that all checks either extend {@link AbstractCheck} or {@link AbstractFileSetCheck}.
+     *
+     * @noinspection JUnitTestMethodWithNoAssertions
+     * @noinspectionreason JUnitTestMethodWithNoAssertions - asserts in callstack,
+     *     but not in this method
+     */
+    @Test
+    public void testChecksShouldExtendAbstractCheckOrAbstractFileSetCheck() {
+        final ArchRule checksShouldExtendAbstractCheckOrAbstractFileSetCheck = classes()
+            .that()
+            .haveSimpleNameEndingWith("Check")
+            .should()
+            .beAssignableTo(AbstractCheck.class)
+            .orShould()
+            .beAssignableTo(AbstractFileSetCheck.class);
+
+        checksShouldExtendAbstractCheckOrAbstractFileSetCheck.check(CHECKS_PACKAGE);
     }
 }
