@@ -138,22 +138,32 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
             "SuppressWarningsHolder"
     );
 
-    private static Set<String> simpleCheckNames;
-    private static Map<String, String> allowedDirectoryAndChecks;
-    private static Set<String> internalModules;
+    private static final Set<String> simpleCheckNames = getSimpleCheckNames();
+    private static final Map<String, String> allowedDirectoryAndChecks =
+        getAllowedDirectoryAndChecks();
+
+    private static final Set<String> internalModules = getInternalModules();
 
     private Path javaDir;
     private Path inputDir;
 
-    @BeforeAll
-    public static void setUpBeforeClass() throws IOException {
-        simpleCheckNames = CheckUtil.getSimpleNames(CheckUtil.getCheckstyleChecks());
+    private static Set<String> getSimpleCheckNames() {
+        try {
+            return CheckUtil.getSimpleNames(CheckUtil.getCheckstyleChecks());
+        }
+        catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
-        allowedDirectoryAndChecks = simpleCheckNames
-                .stream()
-                .collect(Collectors.toMap(id -> id.toLowerCase(Locale.ENGLISH), id -> id));
+    private static Map<String, String> getAllowedDirectoryAndChecks() {
+        return simpleCheckNames
+            .stream()
+            .collect(Collectors.toMap(id -> id.toLowerCase(Locale.ENGLISH), id -> id));
+    }
 
-        internalModules = Definitions.INTERNAL_MODULES.stream()
+    private static Set<String> getInternalModules() {
+        return Definitions.INTERNAL_MODULES.stream()
             .map(moduleName -> {
                 final String[] packageTokens = moduleName.split("\\.");
                 return packageTokens[packageTokens.length - 1];
