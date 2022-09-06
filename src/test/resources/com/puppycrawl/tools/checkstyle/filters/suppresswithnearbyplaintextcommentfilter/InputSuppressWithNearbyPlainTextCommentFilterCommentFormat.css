@@ -1,0 +1,85 @@
+/*
+SuppressWithNearbyPlainTextCommentFilter
+commentFormat = cs (\\w+)
+checkFormat = (default).*
+messageFormat = (default)(null)
+idFormat = (default)(null)
+influenceFormat = (default)0
+
+com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck
+fileExtensions = (default)all files
+ignorePattern = (default)^(package|import) .*
+max = 90
+
+
+*/
+
+.div-1 main {
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+  grid-template-columns: auto auto 1fr auto;
+  /* violation below 'Line is longer than 90 characters (found 94).' */
+  grid-template-areas: "title title title title""bins timespan specific-printers full-screen";
+  padding: 2vh 2vw;
+  font-size: 2rem;
+}
+
+.div-1 main>h1 {
+  text-align: center;
+  text-transform: capitalize;
+  margin: 0;
+  font-weight: 300;
+  grid-area: title;
+}
+
+.div-1 input:focus {
+  outline: 2px solid var(--carnelian);
+}
+
+.div-1 input[type="date"]::-webkit-calendar-picker-indicator {
+  background: transparent;
+  bottom: 0;
+  color: transparent;
+  /* filtered violation below 'Line is longer than 90 characters (found 91).' */
+  /* Some long comment explaining the purpose of some  property */ /* cs LineLengthCheck */
+  cursor: pointer;
+  height: auto;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: auto;
+}
+
+.div-4, .div-3, .div-2 {
+  border-right: 3px solid var(--charcoal);
+}
+
+.div-3 {
+  grid-area: timespan;
+  display: flex;
+  flex-direction: row;
+}
+
+.div-2 {
+  display: grid;
+  /* filtered violation below 'Line is longer than 90 characters (found 93).' */
+  grid-template-area: "area1 area1 bb area1" /* cs LineLengthCheck */ "area3 area3 bb area3";
+  grid-area: specific-printers;
+}
+
+.div-2 .fa {
+  height: 100%;
+}
+
+.div-3>div, .div-2>input {
+  position: relative;
+  height: 100%;
+}
+
+/* filtered violation below 'Line is longer than 90 characters (found 95).' */
+/* long comment should be broken into two rows because the row limit*/ /* cs LineLengthCheck */
+
+.div-3>div .fa-calendar-alt {
+  position: absolute;
+  top: 6px;
+}
