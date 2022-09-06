@@ -55,6 +55,11 @@
     <property name="offCommentFormat" value="CSOFF\: .*"/>
     <property name="onCommentFormat" value="CSON\: .*"/>
   </module>
+  <module name="SuppressWithNearbyTextFilter">
+    <property name="nearbyTextPattern" value='name=\"message\"'/>
+    <property name="rowInfluence" value="1"/>
+    <property name="idPattern" value="lineLengthXml"/>
+  </module>
 
   <!-- Headers -->
   <module name="Header">
