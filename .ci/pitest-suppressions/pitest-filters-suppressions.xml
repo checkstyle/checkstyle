@@ -217,6 +217,24 @@
   </mutation>
 
   <mutation unstable="false">
+    <sourceFile>SuppressWithNearbyTextFilter.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyTextFilter$Suppression</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable eventIdRegexp</description>
+    <lineContent>eventIdRegexp = null;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SuppressWithNearbyTextFilter.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyTextFilter$Suppression</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable eventMessageRegexp</description>
+    <lineContent>eventMessageRegexp = null;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
     <sourceFile>SuppressWithPlainTextCommentFilter.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressWithPlainTextCommentFilter</mutatedClass>
     <mutatedMethod>getSuppression</mutatedMethod>

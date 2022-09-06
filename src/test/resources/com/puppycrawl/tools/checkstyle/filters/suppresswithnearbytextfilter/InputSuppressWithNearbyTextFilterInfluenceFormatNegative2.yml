@@ -1,0 +1,34 @@
+#
+# SuppressWithNearbyTextFilter
+# nearbyTextFormat = (default)SUPPRESS CHECKSTYLE (\\w+)
+# checkFormat = (default).*
+# messageFormat = (default)(null)
+# idFormat = (default)(null)
+# influenceFormat = -2
+#
+# com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck
+# fileExtensions = (default)all files
+# ignorePattern = (default)^(package|import) .*
+# max = (default)80
+#
+# com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck
+# format = this should not appear
+# message = (default)(null)
+# ignoreCase = (default)false
+# minimum = (default)0
+# maximum = (default)0
+# ignoreComments = (default)false
+#
+#
+
+jobs:
+  - some_really_long_job_name_that_ # violation 'Line is longer than 80 characters (found 95).'
+  - some_really_long_job # filtered violation 'Line is longer than 80 characters (found 93).'
+  - some_really_long_job # filtered violation 'Line is longer than 80 characters (found 93).'
+  - some_really_long_job_name_that_should_violate_line_lengt # SUPPRESS CHECKSTYLE LineLengthCheck
+  # filtered violation above 'Line is longer than 80 characters (found 98).'
+
+prop: "this should not appear" # violation 'Line matches the illegal pattern.*'
+prop1: "this should not appear" # filtered violation 'Line matches the illegal pattern .*'
+prop2: "this should not appear" # filtered violation 'Line matches the illegal pattern .*'
+prop3: "this should not appear" # SUPPRESS CHECKSTYLE RegexpSinglelineCheck
