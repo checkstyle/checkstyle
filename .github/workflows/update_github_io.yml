@@ -21,12 +21,19 @@ jobs:
       - name: Run Shell Script
         run: |
           ./.ci/update-github-io.sh ${{ github.event.inputs.version }}
+      - name: Checkout io repo
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.PAT }}
+          repository: checkstyle/checkstyle.github.io
+          path: .ci-temp/checkstyle.github.io
       - name: Commit and Push
         run: |
-          cd .ci-temp/checkstyle.github.io
-          git config user.name 'github-actions[bot]'
-          git config user.email 'github-actions[bot]@users.noreply.github.com'
-          git add . && git commit -m "release ${{ github.event.inputs.version }}"
-          echo "Push site content to remote ..." 
-          echo "We do force to avoid history changes as github.io shows only HEAD." 
-          git push origin --force 
+          git rm -rf *
+          git checkout HEAD -- CNAME
+          cp -R ../checkstyle/target/checkout/target/site/* .
+          git add .
+          git commit -m "release $RELEASE"
+          echo "Push site content to remote ..."
+          echo "We do force to avoid history changes, we do not need history as github.io shows only HEAD."
+          git push origin --force
