@@ -1303,6 +1303,7 @@ suppresswarnings
 suppresswarningsfilter
 suppresswarningsholder
 suppresswithnearbycommentfilter
+suppresswithnearbyplaintextcommentfilter
 suppresswithplaintextcommentfilter
 survenue
 suse
