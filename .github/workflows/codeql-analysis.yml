@@ -16,6 +16,7 @@ permissions:
 
 jobs:
   analyze:
+    if: github.repository == 'checkstyle/checkstyle'
     name: Analyze
     runs-on: ubuntu-latest
 
