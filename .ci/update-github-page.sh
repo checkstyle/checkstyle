@@ -9,8 +9,9 @@ if [[ -z $1 ]]; then
   exit 1
 fi
 TARGET_RELEASE_NUM=$1
+echo TARGET_VERSION="$TARGET_VERSION"
 
-checkForVariable "$GITHUB_TOKEN"
+checkForVariable "GITHUB_TOKEN"
 
 checkout_from https://github.com/checkstyle/contribution
 
