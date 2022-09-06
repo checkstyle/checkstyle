@@ -133,17 +133,12 @@ public final class ConfigurationLoader {
 
     /** Property resolver. **/
     private final PropertyResolver overridePropsResolver;
-    /** The loaded configurations. **/
-    private final Deque<DefaultConfiguration> configStack = new ArrayDeque<>();
 
     /** Flags if modules with the severity 'ignore' should be omitted. */
     private final boolean omitIgnoredModules;
 
     /** The thread mode configuration. */
     private final ThreadModeSettings threadModeSettings;
-
-    /** The Configuration that is being built. */
-    private Configuration configuration;
 
     /**
      * Creates a new {@code ConfigurationLoader} instance.
@@ -316,7 +311,7 @@ public final class ConfigurationLoader {
                     new ConfigurationLoader(overridePropsResolver,
                             omitIgnoreModules, threadModeSettings);
             loader.parseInputSource(configSource);
-            return loader.configuration;
+            return loader.saxHandler.configuration;
         }
         catch (final SAXParseException ex) {
             final String message = String.format(Locale.ROOT, SAX_PARSE_EXCEPTION_FORMAT,
@@ -482,6 +477,12 @@ public final class ConfigurationLoader {
         /** Name of the key attribute. */
         private static final String KEY = "key";
 
+        /** The loaded configurations. **/
+        private final Deque<DefaultConfiguration> configStack = new ArrayDeque<>();
+
+        /** The Configuration that is being built. */
+        private Configuration configuration;
+
         /**
          * Creates a new InternalLoader.
          *
@@ -506,12 +507,12 @@ public final class ConfigurationLoader {
                 final DefaultConfiguration conf =
                     new DefaultConfiguration(name, threadModeSettings);
 
-                if (configuration == null) {
+                if (configStack.isEmpty()) {
+                    // save top config
                     configuration = conf;
                 }
-
-                // add configuration to it's parent
-                if (!configStack.isEmpty()) {
+                else {
+                    // add configuration to it's parent
                     final DefaultConfiguration top =
                         configStack.peek();
                     top.addChild(conf);
