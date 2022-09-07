@@ -89,7 +89,7 @@ EOF
 echo "$JSON"
 
 echo "Updating Github tag page"
- curl \
+curl \
   -X PATCH https://api.github.com/repos/checkstyle/checkstyle/releases/"$RELEASE_ID" \
   -H "Accept: application/vnd.github+json" \
   -H "Authorization: token $GITHUB_TOKEN" \
