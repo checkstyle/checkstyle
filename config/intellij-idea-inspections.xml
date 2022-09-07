@@ -4624,7 +4624,8 @@
     ,com.google.checkstyle.test.base.AbstractModuleTestSupport,verify.*, ,
     ,com.puppycrawl.tools.checkstyle.internal.TestUtil,assert.*, ,
     ,nl.jqno.equalsverifier.EqualsVerifier,verify.*, ,
-    ,org.checkstyle.base.AbstractItModuleTestSupport,verify.*"/>
+    ,org.checkstyle.base.AbstractItModuleTestSupport,verify.*, ,
+    ,com.tngtech.archunit.lang.ArchRule,check"/>
     <option name="assertKeywordIsAssertion" value="false"/>
   </inspection_tool>
   <inspection_tool class="TestNGDataProvider" enabled="true" level="ERROR"
