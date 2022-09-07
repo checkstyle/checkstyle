@@ -261,7 +261,9 @@
            See https://github.com/checkstyle/checkstyle/issues/2285 -->
       <property name="violationSuppressXPath"
                 value="//ClassOrInterfaceDeclaration[@SimpleName='Checker']
-                             //MethodDeclaration[@Name='processFiles']"/>
+                             //MethodDeclaration[@Name='processFiles']
+                      |//ClassOrInterfaceDeclaration[@SimpleName='XpathRegressionTest']
+                             //MethodDeclaration[@Name='getSimpleCheckNames']"/>
     </properties>
   </rule>
   <rule ref="category/java/design.xml/CouplingBetweenObjects">
