@@ -21,3 +21,4 @@ jobs:
           ./.ci/update-github-page.sh ${{ github.event.inputs.version }}
         env:
           GITHUB_TOKEN : ${{ secrets.GITHUB_TOKEN }}
+          BUILDER_GITHUB_TOKEN : ${{ secrets.READ_ONLY_TOKEN_GITHUB }}
