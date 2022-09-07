@@ -8,7 +8,7 @@ if [[ -z $1 ]]; then
   echo "usage: .ci/update-github-page.sh {release number}"
   exit 1
 fi
-TARGET_RELEASE_NUM=$1
+TARGET_VERSION=$1
 echo TARGET_VERSION="$TARGET_VERSION"
 
 checkForVariable "GITHUB_TOKEN"
@@ -38,7 +38,7 @@ curl \
  -H "Authorization: token $GITHUB_TOKEN" \
  -o /var/tmp/cs-releases.json
 
-TARGET_RELEASE_INDEX=$(jq -r --arg tagname "checkstyle-$TARGET_RELEASE_NUM" \
+TARGET_RELEASE_INDEX=$(jq -r --arg tagname "checkstyle-$TARGET_VERSION" \
                'to_entries[] | select(.value.tag_name == $tagname).key' /var/tmp/cs-releases.json)
 echo TARGET_RELEASE_INDEX="$TARGET_RELEASE_INDEX"
 
@@ -60,7 +60,7 @@ java -jar contribution/releasenotes-builder/target/releasenotes-builder-1.0-all.
      -remoteRepoPath checkstyle/checkstyle \
      -startRef "$START_REF" \
      -endRef "$END_REF" \
-     -releaseNumber "$TARGET_RELEASE_NUM" \
+     -releaseNumber "$TARGET_VERSION" \
      -githubAuthToken "$GITHUB_TOKEN" \
      -generateGitHub \
      -gitHubTemplate $BUILDER_RESOURCE_DIR/templates/github_post.template
@@ -80,7 +80,7 @@ echo RELEASE_ID="$RELEASE_ID"
 
 JSON=$(cat <<EOF
 {
-"tag_name": "checkstyle-${TARGET_RELEASE_NUM}",
+"tag_name": "checkstyle-${TARGET_VERSION}",
 "body": "${UPDATED_CONTENT}"
 }
 EOF
