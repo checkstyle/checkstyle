@@ -92,5 +92,5 @@ echo "Updating Github tag page"
 curl \
   -X PATCH https://api.github.com/repos/checkstyle/checkstyle/releases/"$RELEASE_ID" \
   -H "Accept: application/vnd.github+json" \
-  -H "Authorization: token $GITHUB_TOKEN" \
+  -H "Authorization: token $BUILDER_GITHUB_TOKEN" \
   -d "${JSON}"
