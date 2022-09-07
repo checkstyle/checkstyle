@@ -1,0 +1,28 @@
+<!--
+SuppressWithNearbyPlainTextCommentFilter
+commentFormat = SUPPRESS CHECKSTYLE (\w+) - ([+-]\d+) Lines
+checkFormat = $1
+messageFormat = .*tab.*
+idFormat = (default)(null)
+influenceFormat = $2
+
+com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck
+fileExtensions = (default)all files
+ignorePattern = (default)^(package|import) .*
+max = (default)80
+
+
+-->
+
+<module>
+    <child></child> <!-- SUPPRESS CHECKSTYLE LineLengthCheck - +3 Lines -->
+    <child></child> <!-- filtered violation 'Line is longer than 80 characters (found 95).' -->
+    <child></child> <!-- filtered violation 'Line is longer than 80 characters (found 95).' -->
+    <child></child> <!-- filtered violation 'Line is longer than 80 characters (found 95).' -->
+    <child></child> <!-- violation 'Line is longer than 80 characters (found 86).' -->
+
+    <child></child> <!-- violation 'Line is longer than 80 characters (found 86).' -->
+    <child></child> <!-- filtered violation 'Line is longer than 80 characters (found 95).' -->
+    <child></child> <!-- filtered violation 'Line is longer than 80 characters (found 95).' -->
+    <child></child> <!-- SUPPRESS CHECKSTYLE LineLengthCheck - -2 Lines -->
+</module>
