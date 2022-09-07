@@ -56,10 +56,7 @@
     <property name="onCommentFormat" value="CSON\: .*"/>
   </module>
   <module name="SuppressWithNearbyPlainTextCommentFilter">
-    <property name="commentFormat"
-              value="-@cs\[(\w{8,}(\|\w{8,})*)\] \w[\(\)\-\.\'\`\,\:\;\w ]{10,}"/>
-    <property name="checkFormat" value="$1"/>
-    <property name="influenceFormat" value="3"/>
+    <property name="commentFormat" value="SUPPRESS CHECKSTYLE (\w+)"/>
   </module>
 
   <!-- Headers -->
