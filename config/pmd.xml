@@ -258,10 +258,13 @@
   <rule ref="category/java/design.xml/AvoidThrowingRawExceptionTypes">
     <properties>
       <!-- There is no other way to deliver the filename that was under processing.
-           See https://github.com/checkstyle/checkstyle/issues/2285 -->
+           See https://github.com/checkstyle/checkstyle/issues/2285.
+           XpathRegressionTest can throw RuntimeException while initializing static fields. -->
       <property name="violationSuppressXPath"
                 value="//ClassOrInterfaceDeclaration[@SimpleName='Checker']
-                             //MethodDeclaration[@Name='processFiles']"/>
+                             //MethodDeclaration[@Name='processFiles']
+                      |//ClassOrInterfaceDeclaration[@SimpleName='XpathRegressionTest']
+                             //MethodDeclaration[@Name='getSimpleCheckNames']"/>
     </properties>
   </rule>
   <rule ref="category/java/design.xml/CouplingBetweenObjects">
