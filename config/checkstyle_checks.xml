@@ -55,6 +55,9 @@
     <property name="offCommentFormat" value="CSOFF\: .*"/>
     <property name="onCommentFormat" value="CSON\: .*"/>
   </module>
+  <module name="SuppressWithNearbyPlainTextCommentFilter">
+    <property name="commentFormat" value="SUPPRESS CHECKSTYLE (\w+)"/>
+  </module>
 
   <!-- Headers -->
   <module name="Header">

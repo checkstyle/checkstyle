@@ -1,0 +1,40 @@
+<!--
+SuppressWithNearbyPlainTextCommentFilter
+commentFormat = (default)SUPPRESS CHECKSTYLE (\\w+)
+checkFormat = (default).*
+messageFormat = (default)(null)
+idFormat = ignoreMe
+influenceFormat = (default)0
+
+com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck
+id = ignoreMe
+fileExtensions = (default)all files
+ignorePattern = (default)^(package|import) .*
+max = (default)80
+
+com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck
+format = this should not appear
+message = (default)(null)
+ignoreCase = (default)false
+minimum = (default)0
+maximum = (default)0
+ignoreComments = (default)false
+
+
+-->
+
+<!DOCTYPE html>
+<html lang="this should not appear"> <!-- SUPPRESS CHECKSTYLE a -->
+<head>
+</head>
+<body>
+    <!-- violation below 'Line is longer than 80 characters (found 83).' -->
+    <div class="really-long-class-name-abcefghijkl"> <!-- SUPPRESS CHECKSTYLE a -->
+        <ul>
+            <li>Eggs</li>
+    <!-- violation below 'Line is longer than 80 characters (found 84).' -->
+            <li>Long item name abcedfghijklmnopq</li> <!-- SUPPRESS CHECKSTYLE a -->
+        </ul>
+    </div>
+</body>
+</html>
