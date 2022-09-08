@@ -383,6 +383,11 @@
         </exclusion>
       </exclusions>
     </dependency>
+    <dependency>
+      <groupId>org.checkerframework</groupId>
+      <artifactId>checker-qual</artifactId>
+      <version>3.12.0</version>
+    </dependency>
   </dependencies>
 
   <!-- that repositories are required for testing plugin's snapshot version -->
@@ -2380,6 +2385,46 @@
           </plugin>
         </plugins>
       </build>
+    </profile>
+
+    <profile>
+      <id>checker-framework</id>
+      <build>
+        <plugins>
+          <plugin>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>3.10.1</version>
+            <configuration>
+              <fork>true</fork> <!-- Must fork or else JVM arguments are ignored. -->
+              <compilerArguments>
+                <Xmaxerrs>10000</Xmaxerrs>
+                <Xmaxwarns>10000</Xmaxwarns>
+              </compilerArguments>
+              <annotationProcessorPaths>
+                <path>
+                  <groupId>org.checkerframework</groupId>
+                  <artifactId>checker</artifactId>
+                  <version>3.12.0</version>
+                </path>
+              </annotationProcessorPaths>
+              <annotationProcessors>
+                <!-- Add all the checkers you want to enable here -->
+                <annotationProcessor>org.checkerframework.checker.optional.OptionalChecker</annotationProcessor>
+              </annotationProcessors>
+              <compilerArgs>
+                <!-- <arg>-Awarns</arg> --> <!-- -Awarns turns type-checking errors into warnings. -->
+              </compilerArgs>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+      <dependencies>
+        <dependency>
+          <groupId>org.checkerframework</groupId>
+          <artifactId>checker</artifactId>
+          <version>3.12.0</version>
+        </dependency>
+      </dependencies>
     </profile>
 
     <profile>
