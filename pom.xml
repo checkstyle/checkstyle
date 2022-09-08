@@ -346,7 +346,7 @@
     <dependency>
       <groupId>org.eclipse.jgit</groupId>
       <artifactId>org.eclipse.jgit</artifactId>
-      <version>6.2.0.202206071550-r</version>
+      <version>6.3.0.202209071007-r</version>
       <scope>test</scope>
     </dependency>
     <dependency>
