@@ -105,4 +105,15 @@ public class InputVariableDeclarationUsageDistanceCheckSwitchExpressions2 {
         }
         return false;
     }
+
+    void issue11973() {
+        int i = -1; // violation 'Distance between.*'i'.*and.*first usage is 2, but allowed 1.'
+        int x = -1;
+        switch (i) {
+            case 1 -> {
+                x++;
+                i++;
+            }
+        }
+    }
 }
