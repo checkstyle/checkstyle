@@ -314,6 +314,7 @@ public class VariableDeclarationUsageDistanceCheckTest extends
             "78:17: " + getCheckMessage(MSG_KEY, "m", 3, maxDistance),
             "79:17: " + getCheckMessage(MSG_KEY, "n", 2, maxDistance),
             "100:17: " + getCheckMessage(MSG_KEY, "count", 3, maxDistance),
+            "110:9: " + getCheckMessage(MSG_KEY, "i", 2, maxDistance),
         };
 
         final String filename = "InputVariableDeclarationUsageDistanceCheckSwitchExpressions2.java";

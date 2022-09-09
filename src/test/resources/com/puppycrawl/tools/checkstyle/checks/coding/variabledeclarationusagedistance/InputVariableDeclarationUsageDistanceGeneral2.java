@@ -63,4 +63,10 @@ public class InputVariableDeclarationUsageDistanceGeneral2 {
             a.equals("");
         }
     }
+
+    void issue11973() {
+        int i = -1;
+        switch (i) {
+        }
+    }
 }
