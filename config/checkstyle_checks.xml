@@ -55,6 +55,11 @@
     <property name="offCommentFormat" value="CSOFF\: .*"/>
     <property name="onCommentFormat" value="CSON\: .*"/>
   </module>
+  <module name="SuppressWithNearbyTextFilter">
+    <property name="nearbyTextFormat"
+              value="Consider using special escape sequence instead of octal.*Unicode"/>
+    <property name="idFormat" value="lineLengthXml"/>
+  </module>
 
   <!-- Headers -->
   <module name="Header">
