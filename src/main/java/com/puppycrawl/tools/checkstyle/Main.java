@@ -102,7 +102,6 @@ public final class Main {
      *
      * @param args the command line arguments.
      * @throws IOException if there is a problem with files access
-     * @noinspection UseOfSystemOutOrSystemErr, CallToPrintStackTrace, CallToSystemExit
      * @noinspectionreason UseOfSystemOutOrSystemErr - driver class for Checkstyle requires
      *      usage of System.out and System.err
      * @noinspectionreason CallToPrintStackTrace - driver class for Checkstyle must be able to
