@@ -212,28 +212,51 @@ jobs:
       - run:
           command: ./.ci/validation.sh git-diff
 
+  run-inspections:
+    docker:
+      - image: nrmancuso/idea-docker:1.0.0
+    environment:
+      INSPECTIONS_PATH: config/intellij-idea-inspections.xml
+      IDEA_PROPERTIES: config/intellij-idea-inspections.properties
+      REPORT_DIR: inspections-report
+
+    steps:
+      - checkout
+      - run:
+          command: mkdir -p $REPORT_DIR
+      - run:
+          command: |
+            inspect.sh . $INSPECTIONS_PATH $REPORT_DIR \
+              -v2
+            ls -lRt
+              
+
 workflows:
   version: 2
-  no-exception-tests:
+#  no-exception-tests:
+#    jobs:
+#      - no-exception-lucene-and-others-javadoc
+#      - no-exception-cassandra-storm-tapestry-javadoc
+#      - no-exception-hadoop-apache-groovy-scouter-javadoc
+#      - no-exception-only-javadoc
+#      - no-error-xwiki
+#      - no-error-pmd
+#      - no-error-hibernate-search
+#      - no-exception-struts
+#      - no-exception-checkstyle-sevntu
+#      - no-exception-checkstyle-sevntu-javadoc
+#      - no-exception-guava
+#      - no-exception-hibernate-orm
+#      - no-exception-spotbugs
+#      - no-exception-spoon
+#      - no-exception-spring-framework
+#      - no-exception-hbase
+#      - no-exception-Pmd-elasticsearch-lombok-ast
+#      - no-exception-alot-of-projects
+#      - no-warning-imports-guava
+#      - no-warning-imports-java-design-patterns
+#      - sonarqube
+
+  idea:
     jobs:
-      - no-exception-lucene-and-others-javadoc
-      - no-exception-cassandra-storm-tapestry-javadoc
-      - no-exception-hadoop-apache-groovy-scouter-javadoc
-      - no-exception-only-javadoc
-      - no-error-xwiki
-      - no-error-pmd
-      - no-error-hibernate-search
-      - no-exception-struts
-      - no-exception-checkstyle-sevntu
-      - no-exception-checkstyle-sevntu-javadoc
-      - no-exception-guava
-      - no-exception-hibernate-orm
-      - no-exception-spotbugs
-      - no-exception-spoon
-      - no-exception-spring-framework
-      - no-exception-hbase
-      - no-exception-Pmd-elasticsearch-lombok-ast
-      - no-exception-alot-of-projects
-      - no-warning-imports-guava
-      - no-warning-imports-java-design-patterns
-      - sonarqube
+      - run-inspections
