@@ -212,28 +212,63 @@ jobs:
       - run:
           command: ./.ci/validation.sh git-diff
 
+  run-inspections:
+    docker:
+      - image: nrmancuso/idea-docker:1.0.0
+    environment:
+      INSPECTIONS_PATH: ~/project/config/intellij-idea-inspections.xml
+      IDEA_PROPERTIES: ~/project/config/intellij-idea-inspections.properties
+      REPORT_DIR: ~/project/inspections-report
+      TARGET_DIR: ~/project/src
+      PROJECT_DIR: ~/project
+      # IDEA expects this name, do not change it
+      IDE_PROPERTIES_PROPERTY: ~/project/.ci/idea-inspections.properties
+
+    steps:
+      - checkout
+      - run:
+          command: mkdir -p $REPORT_DIR
+          working_directory: ~/project
+      - run:
+          command: |
+            echo "pwd: $(pwd)"
+            echo "ls: $(ls)"
+            idea.sh inspect \
+              $PROJECT_DIR \
+              $INSPECTIONS_PATH \
+              $REPORT_DIR \
+              $TARGET_DIR \
+              -v2
+            ls -lRt $REPORT_DIR
+          no_output_timeout: 25m
+          working_directory: ~/project
+
 workflows:
   version: 2
-  no-exception-tests:
+#  no-exception-tests:
+#    jobs:
+#      - no-exception-lucene-and-others-javadoc
+#      - no-exception-cassandra-storm-tapestry-javadoc
+#      - no-exception-hadoop-apache-groovy-scouter-javadoc
+#      - no-exception-only-javadoc
+#      - no-error-xwiki
+#      - no-error-pmd
+#      - no-error-hibernate-search
+#      - no-exception-struts
+#      - no-exception-checkstyle-sevntu
+#      - no-exception-checkstyle-sevntu-javadoc
+#      - no-exception-guava
+#      - no-exception-hibernate-orm
+#      - no-exception-spotbugs
+#      - no-exception-spoon
+#      - no-exception-spring-framework
+#      - no-exception-hbase
+#      - no-exception-Pmd-elasticsearch-lombok-ast
+#      - no-exception-alot-of-projects
+#      - no-warning-imports-guava
+#      - no-warning-imports-java-design-patterns
+#      - sonarqube
+
+  idea:
     jobs:
-      - no-exception-lucene-and-others-javadoc
-      - no-exception-cassandra-storm-tapestry-javadoc
-      - no-exception-hadoop-apache-groovy-scouter-javadoc
-      - no-exception-only-javadoc
-      - no-error-xwiki
-      - no-error-pmd
-      - no-error-hibernate-search
-      - no-exception-struts
-      - no-exception-checkstyle-sevntu
-      - no-exception-checkstyle-sevntu-javadoc
-      - no-exception-guava
-      - no-exception-hibernate-orm
-      - no-exception-spotbugs
-      - no-exception-spoon
-      - no-exception-spring-framework
-      - no-exception-hbase
-      - no-exception-Pmd-elasticsearch-lombok-ast
-      - no-exception-alot-of-projects
-      - no-warning-imports-guava
-      - no-warning-imports-java-design-patterns
-      - sonarqube
+      - run-inspections
