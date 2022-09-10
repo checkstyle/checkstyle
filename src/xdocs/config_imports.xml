@@ -1927,25 +1927,6 @@ import java.util.stream.IntStream;
               <td><code>false</code></td>
               <td>7.1</td>
             </tr>
-
-            <tr>
-              <td>tokens</td>
-              <td>tokens to check</td>
-
-              <td>
-                subset of tokens
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STATIC_IMPORT">
-                    STATIC_IMPORT</a>
-                  .
-              </td>
-
-              <td>
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STATIC_IMPORT">
-                    STATIC_IMPORT</a>
-                  .
-              </td>
-              <td>3.2</td>
-            </tr>
           </table>
         </div>
       </subsection>
