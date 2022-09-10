@@ -34,6 +34,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
+import org.checkerframework.checker.optional.qual.Present;
+
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 
@@ -300,7 +302,10 @@ public class JavadocMetadataScraper extends AbstractJavadocCheck {
             final DetailNode propertyNameTag = propertyNameNode.get();
             final String propertyName = getTextFromTag(propertyNameTag);
 
-            final DetailNode propertyType = getFirstChildOfMatchingText(nodeLi, TYPE_TAG)
+            @Present final Optional<DetailNode> firstChildOfMatchingText =
+                getFirstChildOfMatchingText(nodeLi, TYPE_TAG);
+
+            final DetailNode propertyType = firstChildOfMatchingText
                 .orElseThrow(() -> {
                     return new MetadataGenerationException(String.format(
                         Locale.ROOT, PROP_TYPE_MISSING, propertyName)
@@ -323,8 +328,11 @@ public class JavadocMetadataScraper extends AbstractJavadocCheck {
                     validationTypeNode));
             }
 
-            final String defaultValue = getFirstChildOfMatchingText(nodeLi, DEFAULT_VALUE_TAG)
-                .map(defaultValueNode -> getPropertyDefaultText(nodeLi, defaultValueNode))
+            @Present final Optional<String> firstChildOfMatchingTextDefaultText =
+                getFirstChildOfMatchingText(nodeLi, DEFAULT_VALUE_TAG)
+                .map(defaultValueNode -> getPropertyDefaultText(nodeLi, defaultValueNode));
+
+            final String defaultValue = firstChildOfMatchingTextDefaultText
                 .orElseThrow(() -> {
                     return new MetadataGenerationException(String.format(
                         Locale.ROOT, PROP_DEFAULT_VALUE_MISSING, propertyName)
@@ -512,11 +520,13 @@ public class JavadocMetadataScraper extends AbstractJavadocCheck {
      * @param pattern pattern to match against
      * @return the first child node matching the condition
      */
-    private static Optional<DetailNode> getFirstChildOfMatchingText(DetailNode node,
-                                                                    Pattern pattern) {
-        return Arrays.stream(node.getChildren())
+    private static @Present Optional<DetailNode> getFirstChildOfMatchingText(DetailNode node,
+                                                                             Pattern pattern) {
+        @Present final Optional<DetailNode> firstChildOfMatchingText =
+            Arrays.stream(node.getChildren())
                 .filter(child -> pattern.matcher(child.getText()).matches())
                 .findFirst();
+        return firstChildOfMatchingText;
     }
 
     /**
