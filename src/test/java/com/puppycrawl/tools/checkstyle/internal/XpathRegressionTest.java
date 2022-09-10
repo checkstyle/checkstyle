@@ -30,11 +30,11 @@ import java.util.HashSet;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
+import java.util.function.Function;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -138,22 +138,32 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
             "SuppressWarningsHolder"
     );
 
-    private static Set<String> simpleCheckNames;
-    private static Map<String, String> allowedDirectoryAndChecks;
-    private static Set<String> internalModules;
+    private static final Set<String> SIMPLE_CHECK_NAMES = getSimpleCheckNames();
+    private static final Map<String, String> ALLOWED_DIRECTORY_AND_CHECKS =
+        getAllowedDirectoryAndChecks();
+
+    private static final Set<String> INTERNAL_MODULES = getInternalModules();
 
     private Path javaDir;
     private Path inputDir;
 
-    @BeforeAll
-    public static void setUpBeforeClass() throws IOException {
-        simpleCheckNames = CheckUtil.getSimpleNames(CheckUtil.getCheckstyleChecks());
+    private static Set<String> getSimpleCheckNames() {
+        try {
+            return CheckUtil.getSimpleNames(CheckUtil.getCheckstyleChecks());
+        }
+        catch (IOException ex) {
+            throw new ExceptionInInitializerError(ex);
+        }
+    }
 
-        allowedDirectoryAndChecks = simpleCheckNames
-                .stream()
-                .collect(Collectors.toMap(id -> id.toLowerCase(Locale.ENGLISH), id -> id));
+    private static Map<String, String> getAllowedDirectoryAndChecks() {
+        return SIMPLE_CHECK_NAMES
+            .stream()
+            .collect(Collectors.toMap(id -> id.toLowerCase(Locale.ENGLISH), Function.identity()));
+    }
 
-        internalModules = Definitions.INTERNAL_MODULES.stream()
+    private static Set<String> getInternalModules() {
+        return Definitions.INTERNAL_MODULES.stream()
             .map(moduleName -> {
                 final String[] packageTokens = moduleName.split("\\.");
                 return packageTokens[packageTokens.length - 1];
@@ -188,7 +198,7 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
         abstractJavadocCheckNames.addAll(REGEXP_JAVADOC_CHECKS);
         final Set<String> abstractJavadocCheckSimpleNames =
                 CheckUtil.getSimpleNames(abstractJavadocCheckNames);
-        abstractJavadocCheckSimpleNames.removeAll(internalModules);
+        abstractJavadocCheckSimpleNames.removeAll(INTERNAL_MODULES);
         assertWithMessage("INCOMPATIBLE_JAVADOC_CHECK_NAMES should contains all descendants "
                     + "of AbstractJavadocCheck")
             .that(abstractJavadocCheckSimpleNames)
@@ -217,7 +227,7 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
 
                 final String check = matcher.group(1);
                 assertWithMessage("Unknown check '" + check + "' in test file: " + filename)
-                        .that(simpleCheckNames.contains(check))
+                        .that(SIMPLE_CHECK_NAMES.contains(check))
                         .isTrue();
 
                 assertWithMessage(
@@ -236,14 +246,14 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
         }
 
         // Ensure that all lists are up-to-date
-        final Set<String> allChecks = new HashSet<>(simpleCheckNames);
+        final Set<String> allChecks = new HashSet<>(SIMPLE_CHECK_NAMES);
         allChecks.removeAll(INCOMPATIBLE_JAVADOC_CHECK_NAMES);
         allChecks.removeAll(INCOMPATIBLE_CHECK_NAMES);
         allChecks.removeAll(Set.of("Regexp", "RegexpSinglelineJava", "NoCodeInFile"));
         allChecks.removeAll(MISSING_CHECK_NAMES);
         allChecks.removeAll(NO_VIOLATION_MODULES);
         allChecks.removeAll(compatibleChecks);
-        allChecks.removeAll(internalModules);
+        allChecks.removeAll(INTERNAL_MODULES);
 
         assertWithMessage("XpathRegressionTest is missing for [" + String.join(", ", allChecks)
                 + "]. Please add them to src/it/java/org/checkstyle/suppressionxpathfilter")
@@ -261,11 +271,11 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
                         .isTrue();
                 final String dirName = dir.toFile().getName();
                 assertWithMessage("Invalid directory name: " + dirName)
-                        .that(allowedDirectoryAndChecks.containsKey(dirName))
+                        .that(ALLOWED_DIRECTORY_AND_CHECKS.containsKey(dirName))
                         .isTrue();
 
                 // input directory must be connected to an existing test
-                final String check = allowedDirectoryAndChecks.get(dirName);
+                final String check = ALLOWED_DIRECTORY_AND_CHECKS.get(dirName);
                 final Path javaPath = javaDir.resolve("XpathRegression" + check + "Test.java");
                 assertWithMessage("Input directory '" + dir
                             + "' is not connected to Java test case: " + javaPath)
@@ -280,7 +290,7 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
 
     private static void validateInputDirectory(Path checkDir) throws IOException {
         final Pattern pattern = Pattern.compile("^SuppressionXpathRegression(.+)\\.java$");
-        final String check = allowedDirectoryAndChecks.get(checkDir.toFile().getName());
+        final String check = ALLOWED_DIRECTORY_AND_CHECKS.get(checkDir.toFile().getName());
 
         try (DirectoryStream<Path> inputPaths = Files.newDirectoryStream(checkDir)) {
             for (Path inputPath : inputPaths) {

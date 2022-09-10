@@ -41,7 +41,6 @@ import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.revwalk.RevCommit;
 import org.eclipse.jgit.revwalk.RevWalk;
 import org.eclipse.jgit.storage.file.FileRepositoryBuilder;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -92,15 +91,10 @@ public class CommitValidationTest {
     private static final CommitsResolutionMode COMMITS_RESOLUTION_MODE =
             CommitsResolutionMode.BY_LAST_COMMIT_AUTHOR;
 
-    private static List<RevCommit> lastCommits;
-
-    @BeforeAll
-    public static void setUp() throws Exception {
-        lastCommits = getCommitsToCheck();
-    }
-
     @Test
-    public void testHasCommits() {
+    public void testHasCommits() throws Exception {
+        final List<RevCommit> lastCommits = getCommitsToCheck();
+
         assertWithMessage("must have at least one commit to validate")
                 .that(lastCommits != null && !lastCommits.isEmpty())
                 .isTrue();
@@ -176,7 +170,8 @@ public class CommitValidationTest {
     }
 
     @Test
-    public void testCommitMessageHasProperStructure() {
+    public void testCommitMessageHasProperStructure() throws Exception {
+        final List<RevCommit> lastCommits = getCommitsToCheck();
         for (RevCommit commit : filterValidCommits(lastCommits)) {
             final String commitMessage = commit.getFullMessage();
             final int error = validateCommitMessage(commitMessage);
