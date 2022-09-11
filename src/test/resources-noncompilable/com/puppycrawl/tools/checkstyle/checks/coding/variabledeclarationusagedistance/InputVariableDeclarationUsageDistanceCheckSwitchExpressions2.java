@@ -11,10 +11,10 @@ ignoreFinal = false
 //non-compiled with javac: Compilable with Java14
 package com.puppycrawl.tools.checkstyle.checks.coding.variabledeclarationusagedistance;
 
-public class InputVariableDeclarationUsageDistanceCheckSwitchExpressions {
+public class InputVariableDeclarationUsageDistanceCheckSwitchExpressions2 {
     int howMany(int k) {
         return switch (k) {
-            case 1 -> {
+            case 1: {
                 int c = 0;
                 int a = 3;
                 int b = 2;
@@ -28,7 +28,8 @@ public class InputVariableDeclarationUsageDistanceCheckSwitchExpressions {
                 a = 7;
                 yield 2;
             }
-            case 2 -> {
+
+            case 2: {
                 int arg = 9; // violation
                 int d = 0;
                 for (int i = 0; i < 10; i++) {
@@ -42,9 +43,11 @@ public class InputVariableDeclarationUsageDistanceCheckSwitchExpressions {
                 for (String st : ar) {
                     System.identityHashCode(st);
                 }
-                yield 3;
+                yield 4;
+
             }
-            case 3 -> {
+
+            case 3: {
                 int blockNumWithSimilarVar = 3;
                 int dist = 0;
                 int index = 0;
@@ -66,9 +69,10 @@ public class InputVariableDeclarationUsageDistanceCheckSwitchExpressions {
                         block++;
                     }
                 }
-                yield 4;
+                yield 56;
+
             }
-            default -> {
+            default: {
                 int b = 0;
                 int c = 0;
                 int m = 0; // violation
@@ -92,18 +96,24 @@ public class InputVariableDeclarationUsageDistanceCheckSwitchExpressions {
         int a = 5;
         int b = 6;
         switch (i) {
-            case 1:
+            case 1 -> {
                 int count; // violation
                 a = a + b;
                 b = a + a;
                 count = b;
-                break;
-            case 2:
-            case 3:
-            case 4:
-            case 5:
-            case 6:
+            }
         }
         return false;
+    }
+
+    void issue11973() {
+        int i = -1; // violation 'Distance between.*'i'.*and.*first usage is 2, but allowed 1.'
+        int x = -1;
+        switch (i) {
+            case 1 -> {
+                x++;
+                i++;
+            }
+        }
     }
 }
