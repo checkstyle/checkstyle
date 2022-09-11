@@ -1623,6 +1623,7 @@
                 <exclude>markdownlint.rb</exclude>
                 <exclude>signatures.txt</exclude>
                 <exclude>signatures-test.txt</exclude>
+                <exclude>archunit-store/**</exclude>
               </excludes>
             </validationSet>
             <validationSet>
