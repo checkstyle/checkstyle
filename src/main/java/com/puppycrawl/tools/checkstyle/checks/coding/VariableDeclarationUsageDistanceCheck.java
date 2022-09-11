@@ -814,13 +814,15 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
                 new ArrayList<>();
 
         // Checking variable usage inside all CASE_GROUP and SWITCH_RULE ast's.
-        TokenUtil.forEachChild(block, currentNode.getType(), node -> {
-            final DetailAST lastNodeInCaseGroup =
-                node.getLastChild();
-            if (isChild(lastNodeInCaseGroup, variable)) {
-                variableUsageExpressions.add(lastNodeInCaseGroup);
-            }
-        });
+        if (currentNode != null) {
+            TokenUtil.forEachChild(block, currentNode.getType(), node -> {
+                final DetailAST lastNodeInCaseGroup =
+                    node.getLastChild();
+                if (isChild(lastNodeInCaseGroup, variable)) {
+                    variableUsageExpressions.add(lastNodeInCaseGroup);
+                }
+            });
+        }
 
         // If variable usage exists in several related blocks, then
         // firstNodeInsideBlock = null, otherwise if variable usage exists
@@ -839,7 +841,8 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
      * SWITCH_RULE ast.
      *
      * @param block the switch block to check.
-     * @return DetailAST of the first CASE_GROUP or SWITCH_RULE.
+     * @return DetailAST of the first CASE_GROUP or SWITCH_RULE,
+     *         otherwise {@code null} if switch block is empty.
      */
     private static DetailAST getFirstCaseGroupOrSwitchRule(DetailAST block) {
         return Optional.ofNullable(block.findFirstToken(TokenTypes.CASE_GROUP))
