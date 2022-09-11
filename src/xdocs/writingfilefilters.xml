@@ -48,9 +48,10 @@
         href="property_types.html#Pattern">Pattern</a>.  In order to
         enable the specification of the file name pattern as a property in a
         configuration file, the <code>BeforeExecutionFileFilter</code> is an <a
-        href="apidocs/com/puppycrawl/tools/checkstyle/api/AutomaticBean.html">AutomaticBean</a>
+        href="apidocs/com/puppycrawl/tools/checkstyle/api/AbstractAutomaticBean.html">
+        AbstractAutomaticBean</a>
         with mutator method <code>setFiles(String)</code> that
-        receives the file name pattern.  An <code>AutomaticBean</code> uses JavaBean
+        receives the file name pattern.  An <code>AbstractAutomaticBean</code> uses JavaBean
         introspection to set JavaBean properties such as <code>files</code>.
       </p>
 
@@ -61,12 +62,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
-import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
+import com.puppycrawl.tools.checkstyle.api.AbstractAutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.BeforeExecutionFileFilter;
 import com.puppycrawl.tools.checkstyle.api.Utils;
 
 public class FilesBeforeExecutionFileFilter
-    extends AutomaticBean
+    extends AbstractAutomaticBean
     implements BeforeExecutionFileFilter
 {
   private Pattern mFileRegexp;

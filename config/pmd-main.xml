@@ -65,4 +65,13 @@
                         //MethodDeclaration[@Name='fillChecksFromCodingPackage']"/>
     </properties>
   </rule>
+  <rule ref="category/java/design.xml/NcssCount">
+    <properties>
+      <!-- A big enough value to satisfy the most cases. -->
+      <property name="methodReportLevel" value="100"/>
+      <property name="violationSuppressXPath"
+              value="//ClassOrInterfaceDeclaration[@SimpleName='Checker']
+                       //MethodDeclaration[@Name='setupChild']"/>
+    </properties>
+  </rule>
 </ruleset>

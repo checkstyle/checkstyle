@@ -8,7 +8,7 @@ writeXmlOutput = false
 package com.puppycrawl.tools.checkstyle.meta.javadocmetadatascraper;
 
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
-import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
+import com.puppycrawl.tools.checkstyle.api.AbstractAutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.Filter;
 import com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder;
 
@@ -102,7 +102,7 @@ import com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder;
  * @since 5.7
  */
 public abstract class InputJavadocMetadataScraperSuppressWarningsFilter
-    extends AutomaticBean
+    extends AbstractAutomaticBean
     implements Filter {
 
 }

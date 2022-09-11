@@ -51,12 +51,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 /**
  * A Java Bean that implements the component lifecycle interfaces by
  * calling the bean's setters for all configuration attributes.
- *
- * @deprecated since 10.3.4. Use {@code AbstractAutomaticBean} instead.
  */
-// -@cs[AbstractClassName] We can not break compatibility with previous versions.
-@Deprecated(since = "10.3.4")
-public abstract class AutomaticBean
+public abstract class AbstractAutomaticBean
     implements Configurable, Contextualizable {
 
     /**

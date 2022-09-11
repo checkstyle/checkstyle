@@ -28,6 +28,7 @@ import java.util.stream.Collectors;
 
 import com.google.common.reflect.ClassPath;
 import com.puppycrawl.tools.checkstyle.TreeWalkerFilter;
+import com.puppycrawl.tools.checkstyle.api.AbstractAutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
@@ -84,14 +85,15 @@ public final class ModuleReflectionUtil {
     }
 
     /**
-     * Checks whether a class extends 'AutomaticBean', is non-abstract, and has a default
+     * Checks whether a class extends 'AbstractAutomaticBean', is non-abstract, and has a default
      * constructor.
      *
      * @param clazz class to check.
      * @return true if a class may be considered a valid production class.
      */
     public static boolean isValidCheckstyleClass(Class<?> clazz) {
-        return AutomaticBean.class.isAssignableFrom(clazz)
+        return (AbstractAutomaticBean.class.isAssignableFrom(clazz)
+                || AutomaticBean.class.isAssignableFrom(clazz))
                 && !Modifier.isAbstract(clazz.getModifiers())
                 && hasDefaultConstructor(clazz)
                 && isNotXpathFileGenerator(clazz);

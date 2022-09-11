@@ -32,9 +32,9 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
 
+import com.puppycrawl.tools.checkstyle.api.AbstractAutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
-import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import com.puppycrawl.tools.checkstyle.api.Violation;
 
@@ -47,7 +47,7 @@ import com.puppycrawl.tools.checkstyle.api.Violation;
  *
  * @see XMLLogger
  */
-public class DefaultLogger extends AutomaticBean implements AuditListener {
+public class DefaultLogger extends AbstractAutomaticBean implements AuditListener {
 
     /**
      * A key pointing to the add exception

@@ -39,8 +39,8 @@ public class ArchUnitTest {
 
     /**
      * Suppression list containing violations from {@code classShouldNotDependOnUtilPackages}
-     * ArchRule. Location of the violation (eg - {@code in (AutomaticBean.java:372)}) has been
-     * omitted as line number can change with modifications to the file.
+     * ArchRule. Location of the violation (eg - {@code in (AbstractAutomaticBean.java:372)})
+     * has been omitted as line number can change with modifications to the file.
      */
     private static final List<String> API_PACKAGE_SUPPRESSION_DETAILS = List.of(
         "Constructor <com.puppycrawl.tools.checkstyle.api.FileText.<init>(java.io.File, java.lang"
@@ -66,18 +66,30 @@ public class ArchUnitTest {
         "Method <com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck.setFileExtensions"
             + "([Ljava.lang.String;)> calls method <com.puppycrawl.tools.checkstyle.utils"
             + ".CommonUtil.startsWithChar(java.lang.String, char)>",
-        "Method <com.puppycrawl.tools.checkstyle.api.AutomaticBean$PatternConverter.convert(java"
-            + ".lang.Class, java.lang.Object)> calls method <com.puppycrawl.tools.checkstyle"
+        "Method <com.puppycrawl.tools.checkstyle.api.AutomaticBean$PatternConverter.convert"
+            + "(java.lang.Class, java.lang.Object)> calls method <com.puppycrawl.tools.checkstyle"
             + ".utils.CommonUtil.createPattern(java.lang.String)>",
-        "Method <com.puppycrawl.tools.checkstyle.api.AutomaticBean$RelaxedStringArrayConverter"
-            + ".convert(java.lang.Class, java.lang.Object)> gets field <com.puppycrawl.tools"
-            + ".checkstyle.utils.CommonUtil.EMPTY_STRING_ARRAY>",
-        "Method <com.puppycrawl.tools.checkstyle.api.AutomaticBean$UriConverter.convert(java.lang"
-            + ".Class, java.lang.Object)> calls method <com.puppycrawl.tools.checkstyle.utils"
-            + ".CommonUtil.getUriByFilename(java.lang.String)>",
-        "Method <com.puppycrawl.tools.checkstyle.api.AutomaticBean$UriConverter.convert(java.lang"
-            + ".Class, java.lang.Object)> calls method <com.puppycrawl.tools.checkstyle.utils"
-            + ".CommonUtil.isBlank(java.lang.String)>",
+        "Method <com.puppycrawl.tools.checkstyle.api.AutomaticBean$RelaxedStringArray"
+            + "Converter.convert(java.lang.Class, java.lang.Object)> gets field <com.puppycrawl"
+            + ".tools.checkstyle.utils.CommonUtil.EMPTY_STRING_ARRAY>",
+        "Method <com.puppycrawl.tools.checkstyle.api.AutomaticBean$UriConverter.convert("
+            + "java.lang.Class, java.lang.Object)> calls method <com.puppycrawl.tools.checkstyle"
+            + ".utils.CommonUtil.getUriByFilename(java.lang.String)>",
+        "Method <com.puppycrawl.tools.checkstyle.api.AutomaticBean$UriConverter.convert"
+            + "(java.lang.Class, java.lang.Object)> calls method <com.puppycrawl.tools.checkstyle"
+            + ".utils.CommonUtil.isBlank(java.lang.String)>",
+        "Method <com.puppycrawl.tools.checkstyle.api.AbstractAutomaticBean$PatternConverter.convert"
+            + "(java.lang.Class, java.lang.Object)> calls method <com.puppycrawl.tools.checkstyle"
+            + ".utils.CommonUtil.createPattern(java.lang.String)>",
+        "Method <com.puppycrawl.tools.checkstyle.api.AbstractAutomaticBean$RelaxedStringArray"
+            + "Converter.convert(java.lang.Class, java.lang.Object)> gets field <com.puppycrawl"
+            + ".tools.checkstyle.utils.CommonUtil.EMPTY_STRING_ARRAY>",
+        "Method <com.puppycrawl.tools.checkstyle.api.AbstractAutomaticBean$UriConverter.convert("
+            + "java.lang.Class, java.lang.Object)> calls method <com.puppycrawl.tools.checkstyle"
+            + ".utils.CommonUtil.getUriByFilename(java.lang.String)>",
+        "Method <com.puppycrawl.tools.checkstyle.api.AbstractAutomaticBean$UriConverter.convert"
+            + "(java.lang.Class, java.lang.Object)> calls method <com.puppycrawl.tools.checkstyle"
+            + ".utils.CommonUtil.isBlank(java.lang.String)>",
         "Method <com.puppycrawl.tools.checkstyle.api.FileContents.lineIsBlank(int)> calls method "
             + "<com.puppycrawl.tools.checkstyle.utils.CommonUtil.isBlank(java.lang.String)>"
     );

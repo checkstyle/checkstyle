@@ -38,6 +38,7 @@ import java.util.stream.Stream;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import com.puppycrawl.tools.checkstyle.api.AbstractAutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
@@ -61,7 +62,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 /**
  * This class provides the functionality to check a set of files.
  */
-public class Checker extends AutomaticBean implements MessageDispatcher, RootModule {
+public class Checker extends AbstractAutomaticBean implements MessageDispatcher, RootModule {
 
     /** Message to use when an exception occurs and should be printed as a violation. */
     public static final String EXCEPTION_MSG = "general.exception";
@@ -472,6 +473,11 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
 
             if (child instanceof AutomaticBean) {
                 final AutomaticBean bean = (AutomaticBean) child;
+                bean.contextualize(childContext);
+                bean.configure(childConf);
+            }
+            else if (child instanceof AbstractAutomaticBean) {
+                final AbstractAutomaticBean bean = (AbstractAutomaticBean) child;
                 bean.contextualize(childContext);
                 bean.configure(childConf);
             }
