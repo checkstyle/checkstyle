@@ -119,7 +119,8 @@
              from the test method.
            In XdocsPagesTest PMD does not find asserts in lambdas.
            All test classes which starts with XpathRegression have asserts inside parent's method.
-           In ArchUnitTest assertion calls are not required as they are called by the library -->
+           In ArchUnitTest, ArchUnitSuperClassTest assertion calls are not required as they
+           are called by the library -->
       <property name="violationSuppressXPath"
                value="//ClassOrInterfaceDeclaration[@SimpleName='AllChecksTest'
                      or @SimpleName='AstRegressionTest'
@@ -133,6 +134,8 @@
                    | //ClassOrInterfaceDeclaration[starts-with(@SimpleName,'XpathRegression')]
                        //MethodDeclaration
                    | //ClassOrInterfaceDeclaration[@SimpleName='ArchUnitTest']
+                       //MethodDeclaration
+                   | //ClassOrInterfaceDeclaration[@SimpleName='ArchUnitSuperClassTest']
                        //MethodDeclaration"/>
     </properties>
   </rule>
@@ -211,6 +214,15 @@
       <property name="violationSuppressXPath"
                value="//ClassOrInterfaceDeclaration[@SimpleName='TestUtil']
                         //MethodDeclaration[@Name='getResultWithLimitedResources']"/>
+    </properties>
+  </rule>
+  <rule ref="category/java/codestyle.xml/LinguisticNaming">
+    <properties>
+      <!-- Method returns ArchCondition instead of boolean which is acceptable as method is used
+       in creating ArchRule. -->
+      <property name="violationSuppressXPath"
+               value="//ClassOrInterfaceDeclaration[@SimpleName='ArchUnitSuperClassTest']
+                        //MethodDeclaration[@Name='haveSuperclass']"/>
     </properties>
   </rule>
 </ruleset>
