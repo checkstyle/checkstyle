@@ -40,6 +40,9 @@
             files="utils[\\/]checkutil[\\/]InputCheckUtilTest.java"/>
 
   <suppress id="StyleValidationCommentInInputs"
+            files="utils[\\/]tokenutil[\\/]InputTokenUtilTestForEachChildMultipleTypes.java"/>
+
+  <suppress id="StyleValidationCommentInInputs"
             files="suppresswarningsholder[\\/].*.java"/>
 
   <suppress id="StyleValidationCommentInInputs"

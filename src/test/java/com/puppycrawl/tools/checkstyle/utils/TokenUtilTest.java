@@ -20,8 +20,10 @@
 package com.puppycrawl.tools.checkstyle.utils;
 
 import static com.google.common.truth.Truth.assertWithMessage;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.findTokenInAstByPredicate;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
 
+import java.io.File;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -32,11 +34,18 @@ import java.util.TreeMap;
 
 import org.junit.jupiter.api.Test;
 
+import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
+import com.puppycrawl.tools.checkstyle.JavaParser;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
-public class TokenUtilTest {
+public class TokenUtilTest extends AbstractPathTestSupport {
+
+    @Override
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/utils/tokenutil";
+    }
 
     @Test
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
@@ -322,6 +331,31 @@ public class TokenUtilTest {
     }
 
     @Test
+    public void testForEachChildMultipleTypes() throws Exception {
+        final DetailAST astForTest = getNodeFromFile(TokenTypes.OBJBLOCK,
+                "InputTokenUtilTestForEachChildMultipleTypes.java");
+        final List<String> children = new ArrayList<>(3);
+        final List<Integer> tokensToMatch = List.of(TokenTypes.CLASS_DEF, TokenTypes.VARIABLE_DEF);
+
+        TokenUtil.forEachChild(astForTest, tokensToMatch, child -> {
+            children.add(child.toString());
+        });
+
+        final List<String> expectedChildren = List.of(
+            "VARIABLE_DEF[5x4]",
+            "CLASS_DEF[8x4]",
+            "VARIABLE_DEF[9x4]"
+        );
+
+        assertWithMessage("Must match three children")
+            .that(children)
+            .hasSize(3);
+        assertWithMessage("Mismatched child node(s)")
+            .that(children)
+            .isEqualTo(expectedChildren);
+    }
+
+    @Test
     public void testIsTypeDeclaration() {
         assertWithMessage("Should return true when valid type passed")
                 .that(TokenUtil.isTypeDeclaration(TokenTypes.CLASS_DEF))
@@ -395,4 +429,19 @@ public class TokenUtilTest {
                 .isFalse();
     }
 
+    private DetailAST getNodeFromFile(int type, String filename) throws Exception {
+        return getNode(JavaParser.parseFile(new File(getPath(filename)),
+            JavaParser.Options.WITH_COMMENTS), type);
+    }
+
+    private static DetailAST getNode(DetailAST root, int type) {
+        final Optional<DetailAST> node = findTokenInAstByPredicate(root,
+            ast -> ast.getType() == type);
+
+        assertWithMessage("Cannot find node of specified type: %s", type)
+            .that(node.isPresent())
+            .isTrue();
+
+        return node.get();
+    }
 }
