@@ -17,6 +17,7 @@ my @excludes=qw(
   /openjdk17-excluded\.files$
   ^cdg-pitest-licence.txt$
   ^.teamcity/
+  ^config/archunit-store/
 );
 my $exclude = join "|", @excludes;
 while (<>) {
