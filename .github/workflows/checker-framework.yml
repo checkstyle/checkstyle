@@ -1,0 +1,36 @@
+name: Checker-Framework
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+jobs:
+  checker-framework:
+    strategy:
+      fail-fast: false
+      matrix:
+        profile:
+          - checker-framework-nullness-optional-interning
+          - checker-framework-methods-resource-fenum
+          - checker-framework-lock-tainting
+          - checker-framework-index
+          - checker-framework-formatter
+          - checker-framework-signature-gui-units-init
+          - checker-framework-regex-property-key-compiler-message
+          - checker-framework-purity-value-returns
+
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: 17
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Execute checker framework
+        run: mvn -e --no-transfer-progress clean compile -P${{ matrix.profile }}
+        env:
+          MAVEN_OPTS: "-Xmx4g"
