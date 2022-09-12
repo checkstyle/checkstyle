@@ -381,6 +381,10 @@
           <groupId>xml-apis</groupId>
           <artifactId>xml-apis</artifactId>
         </exclusion>
+        <exclusion>
+          <groupId>org.slf4j</groupId>
+          <artifactId>slf4j-api</artifactId>
+        </exclusion>
       </exclusions>
     </dependency>
   </dependencies>
@@ -1309,6 +1313,7 @@
                 <requireMavenVersion>
                   <version>3.3.9</version>
                 </requireMavenVersion>
+                <dependencyConvergence/>
                 <!-- we can not use this as it require same version for all dependencies -->
                 <!--
                 <enforceBytecodeVersion>
