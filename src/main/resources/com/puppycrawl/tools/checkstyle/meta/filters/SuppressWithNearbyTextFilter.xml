@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <filter fully-qualified-name="com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyTextFilter"
+               name="SuppressWithNearbyTextFilter"
+               parent="com.puppycrawl.tools.checkstyle.Checker">
+         <description>&lt;p&gt;
+ Filter {@code SuppressWithNearbyTextFilter} uses plain text to suppress
+ nearby audit events. The filter can only suppress checks which have Checker as a
+ parent module and knows nothing about AST.
+ &lt;/p&gt;
+ &lt;p&gt;
+ Rationale: Sometimes there are legitimate reasons for violating a check.
+ When this is a matter of the code in question and not personal preference,
+ the best place to override the policy is in the code itself. Semi-structured
+ comments can be associated with the check. This is sometimes superior to
+ a separate suppressions file, which must be kept up-to-date as the source
+ file is edited.
+ &lt;/p&gt;</description>
+         <properties>
+            <property default-value="SUPPRESS CHECKSTYLE (\w+)"
+                       name="nearbyTextPattern"
+                       type="java.util.regex.Pattern">
+               <description>Specify nearby text
+ pattern to trigger filter to begin suppression.</description>
+            </property>
+            <property default-value=".*"
+                       name="checkPattern"
+                       type="java.util.regex.Pattern">
+               <description>Specify check name pattern to suppress.</description>
+            </property>
+            <property name="messagePattern" type="java.util.regex.Pattern">
+               <description>Specify check violation message pattern to suppress.</description>
+            </property>
+            <property name="idPattern" type="java.util.regex.Pattern">
+               <description>Specify check ID pattern to suppress.</description>
+            </property>
+            <property default-value="0" name="rowInfluence" type="java.lang.String">
+               <description>Specify negative/zero/positive value that
+ defines the number of lines preceding/at/following the suppression comment.</description>
+            </property>
+         </properties>
+      </filter>
+   </module>
+</checkstyle-metadata>
