@@ -20,7 +20,7 @@
 package com.puppycrawl.tools.checkstyle.xpath;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static com.puppycrawl.tools.checkstyle.utils.XpathUtil.getXpathItems;
+import static com.puppycrawl.tools.checkstyle.api.XpathUtil.getXpathItems;
 
 import java.io.File;
 import java.util.List;

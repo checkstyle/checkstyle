@@ -48,9 +48,9 @@ import com.puppycrawl.tools.checkstyle.checks.regexp.RegexpMultilineCheck;
 import com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck;
 import com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.AbstractParenPadCheck;
-import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
-import com.puppycrawl.tools.checkstyle.utils.ModuleReflectionUtil;
-import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
+import com.puppycrawl.tools.checkstyle.api.JavadocUtil;
+import com.puppycrawl.tools.checkstyle.api.ModuleReflectionUtil;
+import com.puppycrawl.tools.checkstyle.api.TokenUtil;
 
 public final class CheckUtil {
 

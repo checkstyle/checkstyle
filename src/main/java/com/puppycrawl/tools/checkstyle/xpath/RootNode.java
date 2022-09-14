@@ -23,7 +23,7 @@ import java.util.List;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.XpathUtil;
+import com.puppycrawl.tools.checkstyle.api.XpathUtil;
 import com.puppycrawl.tools.checkstyle.xpath.iterators.DescendantIterator;
 import net.sf.saxon.Configuration;
 import net.sf.saxon.om.AxisInfo;

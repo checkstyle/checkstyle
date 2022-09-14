@@ -26,8 +26,8 @@ import java.util.TreeMap;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
-import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
+import com.puppycrawl.tools.checkstyle.api.CommonUtil;
+import com.puppycrawl.tools.checkstyle.api.TokenUtil;
 
 /**
  * This class checks line-wrapping into definitions and expressions. The

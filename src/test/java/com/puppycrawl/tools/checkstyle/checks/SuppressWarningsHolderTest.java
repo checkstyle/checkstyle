@@ -49,7 +49,7 @@ import com.puppycrawl.tools.checkstyle.checks.whitespace.AbstractParenPadCheck;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.TypecastParenPadCheck;
 import com.puppycrawl.tools.checkstyle.filters.SuppressWarningsFilter;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.api.CommonUtil;
 
 public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
 

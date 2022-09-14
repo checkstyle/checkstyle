@@ -42,7 +42,7 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.grammar.java.JavaLanguageLexer;
 import com.puppycrawl.tools.checkstyle.grammar.java.JavaLanguageParser;
-import com.puppycrawl.tools.checkstyle.utils.ParserUtil;
+import com.puppycrawl.tools.checkstyle.api.ParserUtil;
 
 /**
  * Helper methods to parse java source files.

@@ -44,7 +44,7 @@ import javax.swing.table.TableCellEditor;
 import javax.swing.tree.TreePath;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.utils.XpathUtil;
+import com.puppycrawl.tools.checkstyle.api.XpathUtil;
 import com.puppycrawl.tools.checkstyle.xpath.AbstractNode;
 import com.puppycrawl.tools.checkstyle.xpath.RootNode;
 import com.puppycrawl.tools.checkstyle.xpath.XpathQueryGenerator;

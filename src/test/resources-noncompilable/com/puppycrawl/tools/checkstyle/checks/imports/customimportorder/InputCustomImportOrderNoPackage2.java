@@ -11,8 +11,8 @@ sortImportsInGroupAlphabetically = true
 */
 
 
-import static com.puppycrawl.tools.checkstyle.utils.AnnotationUtil.containsAnnotation;
-import static com.puppycrawl.tools.checkstyle.utils.AnnotationUtil.getAnnotation;
+import static com.puppycrawl.tools.checkstyle.api.AnnotationUtil.containsAnnotation;
+import static com.puppycrawl.tools.checkstyle.api.AnnotationUtil.getAnnotation;
 
 
 import com.sun.accessibility.internal.resources.*; // violation

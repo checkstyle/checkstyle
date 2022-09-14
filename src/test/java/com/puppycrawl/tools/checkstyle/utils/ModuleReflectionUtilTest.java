@@ -39,6 +39,7 @@ import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.BeforeExecutionFileFilter;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.Filter;
+import com.puppycrawl.tools.checkstyle.api.ModuleReflectionUtil;
 import com.puppycrawl.tools.checkstyle.api.RootModule;
 
 public class ModuleReflectionUtilTest {

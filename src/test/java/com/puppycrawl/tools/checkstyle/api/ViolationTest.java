@@ -20,7 +20,7 @@
 package com.puppycrawl.tools.checkstyle.api;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static com.puppycrawl.tools.checkstyle.utils.CommonUtil.EMPTY_OBJECT_ARRAY;
+import static com.puppycrawl.tools.checkstyle.api.CommonUtil.EMPTY_OBJECT_ARRAY;
 import static org.junit.jupiter.api.Assumptions.assumeFalse;
 
 import java.io.IOException;

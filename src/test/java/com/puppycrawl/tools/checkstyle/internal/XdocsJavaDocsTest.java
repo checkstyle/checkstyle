@@ -68,10 +68,10 @@ import com.puppycrawl.tools.checkstyle.checks.whitespace.WrapOption;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.internal.utils.XdocUtil;
 import com.puppycrawl.tools.checkstyle.internal.utils.XmlUtil;
-import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
-import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
-import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
-import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
+import com.puppycrawl.tools.checkstyle.api.CheckUtil;
+import com.puppycrawl.tools.checkstyle.api.JavadocUtil;
+import com.puppycrawl.tools.checkstyle.api.ScopeUtil;
+import com.puppycrawl.tools.checkstyle.api.TokenUtil;
 
 public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
     private static final Map<String, Class<?>> FULLY_QUALIFIED_CLASS_NAMES =
