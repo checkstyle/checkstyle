@@ -43,7 +43,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck;
-import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
+import com.puppycrawl.tools.checkstyle.api.TokenUtil;
 
 /**
  * Class for scraping module metadata from the corresponding class' class-level javadoc.

@@ -25,7 +25,7 @@ import java.util.stream.Collectors;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.api.CommonUtil;
 import com.puppycrawl.tools.checkstyle.xpath.AbstractNode;
 import com.puppycrawl.tools.checkstyle.xpath.RootNode;
 import net.sf.saxon.Configuration;

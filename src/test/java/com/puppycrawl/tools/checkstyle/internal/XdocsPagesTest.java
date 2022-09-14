@@ -78,7 +78,7 @@ import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.internal.utils.XdocUtil;
 import com.puppycrawl.tools.checkstyle.internal.utils.XmlUtil;
-import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
+import com.puppycrawl.tools.checkstyle.api.TokenUtil;
 
 public class XdocsPagesTest {
 

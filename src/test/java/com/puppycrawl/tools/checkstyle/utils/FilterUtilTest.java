@@ -27,6 +27,8 @@ import java.io.File;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
+import com.puppycrawl.tools.checkstyle.api.FilterUtil;
+
 public class FilterUtilTest {
 
     @TempDir

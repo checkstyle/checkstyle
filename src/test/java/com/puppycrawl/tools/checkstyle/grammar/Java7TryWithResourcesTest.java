@@ -22,7 +22,7 @@ package com.puppycrawl.tools.checkstyle.grammar;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.api.CommonUtil;
 
 /**
  * Tests Java 7 try-with-resources can be parsed.

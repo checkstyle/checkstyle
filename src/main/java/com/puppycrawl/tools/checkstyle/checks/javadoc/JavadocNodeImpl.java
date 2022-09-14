@@ -24,7 +24,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
-import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
+import com.puppycrawl.tools.checkstyle.api.JavadocUtil;
 
 /**
  * Implementation of DetailNode interface that is mutable.

@@ -27,7 +27,7 @@ import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
-import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
+import com.puppycrawl.tools.checkstyle.api.JavadocUtil;
 
 public class IllegalTokenCheckTest
     extends AbstractModuleTestSupport {

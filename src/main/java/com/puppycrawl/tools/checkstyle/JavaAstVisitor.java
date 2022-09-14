@@ -39,7 +39,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.grammar.java.JavaLanguageLexer;
 import com.puppycrawl.tools.checkstyle.grammar.java.JavaLanguageParser;
 import com.puppycrawl.tools.checkstyle.grammar.java.JavaLanguageParserBaseVisitor;
-import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
+import com.puppycrawl.tools.checkstyle.api.TokenUtil;
 
 /**
  * Visitor class used to build Checkstyle's Java AST from the parse tree produced by

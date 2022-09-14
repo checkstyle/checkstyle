@@ -30,10 +30,10 @@ import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
-import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
-import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
+import com.puppycrawl.tools.checkstyle.api.AnnotationUtil;
+import com.puppycrawl.tools.checkstyle.api.CheckUtil;
+import com.puppycrawl.tools.checkstyle.api.CommonUtil;
+import com.puppycrawl.tools.checkstyle.api.ScopeUtil;
 
 /**
  * <p>

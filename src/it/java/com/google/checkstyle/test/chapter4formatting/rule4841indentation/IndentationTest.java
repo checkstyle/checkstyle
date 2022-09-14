@@ -27,7 +27,7 @@ import org.junit.jupiter.api.Test;
 import com.google.checkstyle.test.base.AbstractIndentationTestSupport;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.api.CommonUtil;
 
 public class IndentationTest extends AbstractIndentationTestSupport {
 

@@ -28,8 +28,8 @@ import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagInfo;
-import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
-import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
+import com.puppycrawl.tools.checkstyle.api.AnnotationUtil;
+import com.puppycrawl.tools.checkstyle.api.TokenUtil;
 
 /**
  * <p>

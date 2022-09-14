@@ -27,7 +27,7 @@ import java.util.stream.Collectors;
 
 import com.puppycrawl.tools.checkstyle.TreeWalkerAuditEvent;
 import com.puppycrawl.tools.checkstyle.TreeWalkerFilter;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.api.CommonUtil;
 import com.puppycrawl.tools.checkstyle.xpath.AbstractNode;
 import com.puppycrawl.tools.checkstyle.xpath.RootNode;
 import net.sf.saxon.Configuration;

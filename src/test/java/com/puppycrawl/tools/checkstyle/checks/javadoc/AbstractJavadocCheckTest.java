@@ -46,8 +46,8 @@ import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
-import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
+import com.puppycrawl.tools.checkstyle.api.CommonUtil;
+import com.puppycrawl.tools.checkstyle.api.JavadocUtil;
 
 @ExtendWith(SystemErrGuard.class)
 public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {

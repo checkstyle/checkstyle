@@ -31,7 +31,7 @@ import static com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthes
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.api.CommonUtil;
 
 /**
  * Test fixture for the UnnecessaryParenthesesCheck.

@@ -57,7 +57,7 @@ import com.puppycrawl.tools.checkstyle.api.Violation;
 import com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationLocationCheck;
 import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
-import com.puppycrawl.tools.checkstyle.utils.ModuleReflectionUtil;
+import com.puppycrawl.tools.checkstyle.api.ModuleReflectionUtil;
 
 /**
  * Enter a description of class PackageObjectFactoryTest.java.

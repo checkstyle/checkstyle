@@ -17,18 +17,13 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.puppycrawl.tools.checkstyle.utils;
+package com.puppycrawl.tools.checkstyle.api;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
 
-import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.DetailNode;
-import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
-import com.puppycrawl.tools.checkstyle.api.TextBlock;
-import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.InvalidJavadocTag;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagInfo;

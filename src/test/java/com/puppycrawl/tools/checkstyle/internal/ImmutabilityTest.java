@@ -41,7 +41,7 @@ import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.meta.ModuleDetails;
 import com.puppycrawl.tools.checkstyle.meta.ModulePropertyDetails;
 import com.puppycrawl.tools.checkstyle.meta.XmlMetaReader;
-import com.puppycrawl.tools.checkstyle.utils.ModuleReflectionUtil;
+import com.puppycrawl.tools.checkstyle.api.ModuleReflectionUtil;
 import com.tngtech.archunit.base.DescribedPredicate;
 import com.tngtech.archunit.core.domain.JavaClass;
 import com.tngtech.archunit.core.domain.JavaClasses;
@@ -117,8 +117,8 @@ public class ImmutabilityTest {
      * List of fields not following {@link #testUtilClassesImmutability()} rule.
      */
     private static final Set<String> SUPPRESSED_FIELDS_IN_UTIL_CLASSES = Set.of(
-        "com.puppycrawl.tools.checkstyle.utils.TokenUtil.TOKEN_IDS",
-        "com.puppycrawl.tools.checkstyle.utils.XpathUtil.TOKEN_TYPES_WITH_TEXT_ATTRIBUTE"
+        "com.puppycrawl.tools.checkstyle.api.TokenUtil.TOKEN_IDS",
+        "com.puppycrawl.tools.checkstyle.api.XpathUtil.TOKEN_TYPES_WITH_TEXT_ATTRIBUTE"
     );
 
     /**

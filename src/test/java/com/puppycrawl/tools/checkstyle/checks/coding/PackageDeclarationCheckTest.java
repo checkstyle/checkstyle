@@ -27,7 +27,7 @@ import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.api.CommonUtil;
 import de.thetaphi.forbiddenapis.SuppressForbidden;
 
 public class PackageDeclarationCheckTest extends AbstractModuleTestSupport {

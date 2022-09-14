@@ -39,7 +39,7 @@ import com.puppycrawl.tools.checkstyle.api.Violation;
 import com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocTypeCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.TypeNameCheck;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.api.CommonUtil;
 
 public class SuppressionXpathSingleFilterTest
         extends AbstractModuleTestSupport {

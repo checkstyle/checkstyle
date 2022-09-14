@@ -39,7 +39,7 @@ import com.puppycrawl.tools.checkstyle.TreeWalkerFilter;
 import com.puppycrawl.tools.checkstyle.XmlLoader;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.FilterSet;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.api.CommonUtil;
 
 /**
  * Loads a filter chain of suppressions.

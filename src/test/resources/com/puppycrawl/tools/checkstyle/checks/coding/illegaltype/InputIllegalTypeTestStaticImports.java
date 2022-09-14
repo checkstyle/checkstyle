@@ -15,8 +15,8 @@ tokens = (default)ANNOTATION_FIELD_DEF, CLASS_DEF, INTERFACE_DEF, METHOD_CALL, M
 
 package com.puppycrawl.tools.checkstyle.checks.coding.illegaltype;
 
-import static com.puppycrawl.tools.checkstyle.utils.CheckUtil.isElseIf;
-import static com.puppycrawl.tools.checkstyle.utils.CheckUtil.*;
+import static com.puppycrawl.tools.checkstyle.api.CheckUtil.isElseIf;
+import static com.puppycrawl.tools.checkstyle.api.CheckUtil.*;
 import static com.puppycrawl.tools.checkstyle.checks.coding.illegaltype.InputIllegalType.SomeStaticClass;
 import java.lang.String;
 

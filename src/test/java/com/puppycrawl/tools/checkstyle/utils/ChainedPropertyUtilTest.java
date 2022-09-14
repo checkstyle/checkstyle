@@ -33,6 +33,7 @@ import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.PropertiesExpander;
+import com.puppycrawl.tools.checkstyle.api.ChainedPropertyUtil;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 
 public class ChainedPropertyUtilTest extends AbstractModuleTestSupport {

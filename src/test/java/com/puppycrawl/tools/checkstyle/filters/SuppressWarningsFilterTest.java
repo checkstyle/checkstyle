@@ -30,7 +30,7 @@ import com.puppycrawl.tools.checkstyle.checks.coding.IllegalCatchCheck;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocTypeCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.api.CommonUtil;
 
 public class SuppressWarningsFilterTest
     extends AbstractModuleTestSupport {

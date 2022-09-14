@@ -44,7 +44,7 @@ import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck;
 import com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheck;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.api.CommonUtil;
 import nl.jqno.equalsverifier.EqualsVerifier;
 import nl.jqno.equalsverifier.EqualsVerifierReport;
 

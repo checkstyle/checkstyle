@@ -24,7 +24,7 @@ import java.util.Arrays;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
-import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.api.CommonUtil;
 
 /**
  * Provides common functionality for many FileSetChecks.

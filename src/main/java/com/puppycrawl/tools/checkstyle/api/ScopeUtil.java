@@ -17,13 +17,9 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.puppycrawl.tools.checkstyle.utils;
+package com.puppycrawl.tools.checkstyle.api;
 
 import java.util.Optional;
-
-import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.Scope;
-import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * Contains utility methods for working on scope.
