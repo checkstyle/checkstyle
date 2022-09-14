@@ -91,7 +91,7 @@ strategy:
       cmd: "JAVA_HOME=$JAVA_HOME_11_X64 mvn -e --no-transfer-progress verify"
 
     # MacOS JDK17 verify
-    'MacOS JDK14 verify':
+    'MacOS JDK17 verify':
       image: 'macOS-11'
       cmd: "JAVA_HOME=$JAVA_HOME_17_X64 mvn -e --no-transfer-progress verify"
 
