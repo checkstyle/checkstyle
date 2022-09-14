@@ -87,7 +87,7 @@ strategy:
 
     # MacOS JDK11 verify
     'MacOS JDK11 verify':
-      image: 'macOS-10.15'
+      image: 'macOS-11'
       cmd: "JAVA_HOME=$JAVA_HOME_11_X64 mvn -e --no-transfer-progress verify"
 
     # MacOS JDK17 verify
