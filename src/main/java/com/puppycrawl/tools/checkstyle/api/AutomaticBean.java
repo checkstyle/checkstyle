@@ -384,6 +384,8 @@ public abstract class AutomaticBean
         /** Constant for optimization. */
         private static final AccessModifierOption[] EMPTY_MODIFIER_ARRAY =
                 new AccessModifierOption[0];
+        private static final AccessModifierOption[] ANOTHER_EMPTY_MODIFIER_ARRAY =
+                new AccessModifierOption[0];
 
         @SuppressWarnings("unchecked")
         @Override
