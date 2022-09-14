@@ -24,6 +24,8 @@ import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsCla
 
 import org.junit.jupiter.api.Test;
 
+import com.puppycrawl.tools.checkstyle.api.CodePointUtil;
+
 public class CodePointUtilTest {
 
     @Test

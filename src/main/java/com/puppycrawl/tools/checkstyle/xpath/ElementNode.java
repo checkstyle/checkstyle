@@ -23,8 +23,8 @@ import java.util.List;
 import java.util.Optional;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
-import com.puppycrawl.tools.checkstyle.utils.XpathUtil;
+import com.puppycrawl.tools.checkstyle.api.TokenUtil;
+import com.puppycrawl.tools.checkstyle.api.XpathUtil;
 import com.puppycrawl.tools.checkstyle.xpath.iterators.DescendantIterator;
 import com.puppycrawl.tools.checkstyle.xpath.iterators.FollowingIterator;
 import com.puppycrawl.tools.checkstyle.xpath.iterators.PrecedingIterator;

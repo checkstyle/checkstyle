@@ -19,7 +19,7 @@
 
 package org.checkstyle.base;
 
-import com.puppycrawl.tools.checkstyle.utils.ModuleReflectionUtil;
+import com.puppycrawl.tools.checkstyle.api.ModuleReflectionUtil;
 
 public abstract class AbstractCheckstyleModuleTestSupport extends AbstractItModuleTestSupport {
 

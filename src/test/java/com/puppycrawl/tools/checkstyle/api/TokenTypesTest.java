@@ -31,8 +31,6 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
-
 public class TokenTypesTest {
 
     @Test

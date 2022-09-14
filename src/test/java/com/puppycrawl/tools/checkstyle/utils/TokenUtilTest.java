@@ -35,6 +35,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.api.TokenUtil;
 
 public class TokenUtilTest {
 
@@ -69,7 +70,7 @@ public class TokenUtilTest {
             final String message = expected.getMessage();
             assertWithMessage("Invalid exception message: " + message)
                     .that(message.startsWith("java.lang.IllegalAccessException: ")
-                            && message.contains("com.puppycrawl.tools.checkstyle.utils.TokenUtil")
+                            && message.contains("com.puppycrawl.tools.checkstyle.api.TokenUtil")
                             && message.contains("access a member of class java.lang.Integer"))
                     .isTrue();
         }

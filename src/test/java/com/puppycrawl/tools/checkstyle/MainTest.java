@@ -64,7 +64,7 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Violation;
 import com.puppycrawl.tools.checkstyle.internal.testmodules.TestRootModuleChecker;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
-import com.puppycrawl.tools.checkstyle.utils.ChainedPropertyUtil;
+import com.puppycrawl.tools.checkstyle.api.ChainedPropertyUtil;
 
 @ExtendWith({SystemErrGuard.class, SystemOutGuard.class})
 public class MainTest {

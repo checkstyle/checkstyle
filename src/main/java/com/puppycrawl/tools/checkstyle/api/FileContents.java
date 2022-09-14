@@ -28,8 +28,8 @@ import java.util.Map;
 import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.grammar.CommentListener;
-import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.api.CheckUtil;
+import com.puppycrawl.tools.checkstyle.api.CommonUtil;
 
 /**
  * Represents the contents of a file.

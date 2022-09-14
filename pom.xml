@@ -3840,7 +3840,7 @@
                 <param>com.puppycrawl.tools.checkstyle.XmlLoaderTest</param>
                 <param>com.puppycrawl.tools.checkstyle.JavaParserTest</param>
                 <param>com.puppycrawl.tools.checkstyle.MainTest</param>
-                <param>com.puppycrawl.tools.checkstyle.utils.CheckUtilTest</param>
+                <param>com.puppycrawl.tools.checkstyle.api.CheckUtilTest</param>
                 <!-- these tests are required for xml loader -->
                 <param>com.puppycrawl.tools.checkstyle.filters.SuppressionsLoaderTest</param>
                 <param>com.puppycrawl.tools.checkstyle.ConfigurationLoaderTest</param>
