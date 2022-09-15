@@ -322,6 +322,37 @@ public class TokenUtilTest {
     }
 
     @Test
+    public void testForEachChildMultipleTypes() {
+        final DetailAstImpl astForTest = new DetailAstImpl();
+        final DetailAstImpl child = new DetailAstImpl();
+        final DetailAstImpl firstSibling = new DetailAstImpl();
+        final DetailAstImpl secondSibling = new DetailAstImpl();
+        final DetailAstImpl thirdSibling = new DetailAstImpl();
+        final DetailAstImpl fourthSibling = new DetailAstImpl();
+        firstSibling.setType(TokenTypes.DOT);
+        secondSibling.setType(TokenTypes.IDENT);
+        thirdSibling.setType(TokenTypes.CLASS_DEF);
+        fourthSibling.setType(TokenTypes.LITERAL_SWITCH);
+        thirdSibling.setNextSibling(fourthSibling);
+        secondSibling.setNextSibling(thirdSibling);
+        firstSibling.setNextSibling(secondSibling);
+        child.setNextSibling(firstSibling);
+        astForTest.setFirstChild(child);
+
+        final List<DetailAST> children = new ArrayList<>();
+        TokenUtil.forEachChild(astForTest,
+                List.of(TokenTypes.IDENT, TokenTypes.LITERAL_SWITCH), children::add);
+        final List<DetailAST> expectedChildren = List.of(secondSibling, fourthSibling);
+
+        assertWithMessage("Must match two children")
+            .that(children)
+            .hasSize(2);
+        assertWithMessage("Mismatched child node(s)")
+            .that(children)
+            .isEqualTo(expectedChildren);
+    }
+
+    @Test
     public void testIsTypeDeclaration() {
         assertWithMessage("Should return true when valid type passed")
                 .that(TokenUtil.isTypeDeclaration(TokenTypes.CLASS_DEF))
