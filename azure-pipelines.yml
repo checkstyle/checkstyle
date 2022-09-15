@@ -87,11 +87,11 @@ strategy:
 
     # MacOS JDK11 verify
     'MacOS JDK11 verify':
-      image: 'macOS-10.15'
+      image: 'macOS-11'
       cmd: "JAVA_HOME=$JAVA_HOME_11_X64 mvn -e --no-transfer-progress verify"
 
     # MacOS JDK17 verify
-    'MacOS JDK14 verify':
+    'MacOS JDK17 verify':
       image: 'macOS-11'
       cmd: "JAVA_HOME=$JAVA_HOME_17_X64 mvn -e --no-transfer-progress verify"
 
@@ -111,7 +111,7 @@ strategy:
 
     # lint for .md files, OSX is used because there is problem to install gem on linux
     'markdownlint':
-      image: 'macOS-10.15'
+      image: 'macOS-11'
       cmd: "./.ci/validation.sh markdownlint"
       skipCache: true
       needMdl: true
