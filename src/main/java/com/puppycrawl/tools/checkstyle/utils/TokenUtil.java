@@ -23,6 +23,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.Arrays;
 import java.util.BitSet;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
@@ -241,6 +242,23 @@ public final class TokenUtil {
     public static void forEachChild(DetailAST root, int type, Consumer<DetailAST> action) {
         for (DetailAST ast = root.getFirstChild(); ast != null; ast = ast.getNextSibling()) {
             if (ast.getType() == type) {
+                action.accept(ast);
+            }
+        }
+    }
+
+    /**
+     * Performs an action for each child of {@link DetailAST} root node
+     * which matches any of the given token types.
+     *
+     * @param root root node.
+     * @param types token types to match.
+     * @param action action to perform on the nodes.
+     */
+    public static void forEachChild(DetailAST root,
+                                    List<Integer> types, Consumer<DetailAST> action) {
+        for (DetailAST ast = root.getFirstChild(); ast != null; ast = ast.getNextSibling()) {
+            if (types.contains(ast.getType())) {
                 action.accept(ast);
             }
         }

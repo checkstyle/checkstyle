@@ -309,4 +309,15 @@ public class VariableDeclarationUsageDistanceCheckTest extends
         verifyWithInlineConfigParser(getNonCompilablePath(filename), expected);
     }
 
+    @Test
+    public void testVariableDeclarationUsageDistanceSwitchExpressions2() throws Exception {
+        final int maxDistance = 1;
+        final String[] expected = {
+            "16:9: " + getCheckMessage(MSG_KEY, "i", 2, maxDistance),
+        };
+
+        final String filename = "InputVariableDeclarationUsageDistanceCheckSwitchExpressions2.java";
+        verifyWithInlineConfigParser(getNonCompilablePath(filename), expected);
+    }
+
 }
