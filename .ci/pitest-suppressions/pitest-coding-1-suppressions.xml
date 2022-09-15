@@ -179,13 +179,4 @@
     <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getNextSibling with receiver</description>
     <lineContent>DetailAST exprBetweenBrackets = openingBracket.getNextSibling();</lineContent>
   </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>VariableDeclarationUsageDistanceCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck</mutatedClass>
-    <mutatedMethod>lambda$getFirstCaseGroupOrSwitchRule$2</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
-    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::findFirstToken with receiver</description>
-    <lineContent>.orElseGet(() -&gt; block.findFirstToken(TokenTypes.SWITCH_RULE));</lineContent>
-  </mutation>
 </suppressedMutations>
