@@ -416,6 +416,10 @@ public class ElementNode extends AbstractNode {
         return attributeNode;
     }
 
+    private void foo() {
+        boolean a = XpathUtil.supportsTextAttribute(detailAst);
+    }
+
     /**
      * Returns UnsupportedOperationException exception.
      *
