@@ -249,6 +249,20 @@ public class SuppressWarningsHolder
     }
 
     /**
+     * The method will return the checkAlias part from the String,
+     * so it can become suppressed
+     *
+     * @param alias the name of checkName
+     * @return the checkAlias name
+     */
+    public static String setCheckName(String alias) {
+        if(alias.contains("=")) {
+            return alias.substring(0,alias.lastIndexOf("="));
+        }
+        return alias;
+    }
+
+    /**
      * Checks for a suppression of a check with the given source name and
      * location in the last file processed.
      *
@@ -266,7 +280,7 @@ public class SuppressWarningsHolder
         for (Entry entry : entries) {
             final boolean afterStart = isSuppressedAfterEventStart(line, column, entry);
             final boolean beforeEnd = isSuppressedBeforeEventEnd(line, column, entry);
-            final String checkName = entry.getCheckName();
+            final String checkName = setCheckName(entry.getCheckName());
             final boolean nameMatches =
                 ALL_WARNING_MATCHING_ID.equals(checkName)
                     || checkName.equalsIgnoreCase(checkAlias)
