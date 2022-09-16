@@ -404,15 +404,15 @@ public class ElementNode extends AbstractNode {
      * @return attribute node if possible, otherwise the {@code null} value
      */
     private AttributeNode getAttributeNode() {
-        if (attributeNode == ATTRIBUTE_NODE_UNINITIALIZED) {
-            if (XpathUtil.supportsTextAttribute(detailAst)) {
-                attributeNode = new AttributeNode(TEXT_ATTRIBUTE_NAME,
-                        XpathUtil.getTextAttributeValue(detailAst));
-            }
-            else {
-                attributeNode = null;
-            }
-        }
+//        if (attributeNode == ATTRIBUTE_NODE_UNINITIALIZED) {
+//            if (XpathUtil.supportsTextAttribute(detailAst)) {
+//                attributeNode = new AttributeNode(TEXT_ATTRIBUTE_NAME,
+//                        XpathUtil.getTextAttributeValue(detailAst));
+//            }
+//            else {
+//                attributeNode = null;
+//            }
+//        }
         return attributeNode;
     }
 
