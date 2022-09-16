@@ -530,4 +530,28 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
                 expected);
     }
 
+    @Test
+    public void testWithAlias() throws Exception {
+    final Configuration checkConfig = createModuleConfig(SuppressWarningsHolder.class);
+    final DefaultConfiguration treeWalker = createModuleConfig(TreeWalker.class);
+    final Configuration filter = createModuleConfig(SuppressWarningsFilter.class);
+    final DefaultConfiguration violationCheck = createModuleConfig(ConstantNameCheck.class);
+
+    treeWalker.addChild(checkConfig);
+    treeWalker.addChild(violationCheck);
+
+    final DefaultConfiguration root = createRootConfig(treeWalker);
+    root.addChild(filter);
+
+    final String pattern = "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$";
+    final String[] expected = {
+        "5:31: " + getCheckMessage(ConstantNameCheck.class,
+            AbstractNameCheck.MSG_INVALID_PATTERN, "a", pattern),
+    };
+
+    verify(root,
+            getPath("InputSuppressWarningsHolderAlias.java"),
+            expected);
+    }
+
 }
