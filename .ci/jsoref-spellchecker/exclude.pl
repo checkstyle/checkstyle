@@ -17,6 +17,7 @@ my @excludes=qw(
   /openjdk17-excluded\.files$
   ^cdg-pitest-licence.txt$
   ^.teamcity/
+  ^.ci/checker-framework-suppressions/
 );
 my $exclude = join "|", @excludes;
 while (<>) {

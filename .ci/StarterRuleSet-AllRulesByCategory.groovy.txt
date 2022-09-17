@@ -359,9 +359,6 @@ ruleset {
     NonFinalSubclassOfSensitiveInterface
     ObjectFinalize
     PublicFinalizeMethod
-    SystemExit {
-        doNotApplyToFileNames = 'pitest-survival-check-xml.groovy,error-prone-check.groovy'
-    }
     UnsafeArrayDeclaration
 
     // rulesets/serialization.xml
