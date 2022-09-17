@@ -95,6 +95,7 @@ avoidnestedblocks
 avoidnoargumentsuperconstructorcall
 avoidstarimport
 avoidstaticimport
+Awarns
 aws
 awt
 azurewebsites
@@ -162,6 +163,7 @@ Cacheable
 cachefile
 cacio
 caciocavallosilano
+calledmethods
 callstack
 camelcase
 casegroup
@@ -204,6 +206,7 @@ CHDHJECF
 CHDJBFDB
 checkchmod
 checkconfig
+checkerframework
 checkstyle
 checkstyleanttask
 checkstylemeta
@@ -255,6 +258,7 @@ commerical
 commitish
 commonutil
 Compat
+compilermsgs
 Comspace
 concat
 config
@@ -438,6 +442,7 @@ FDCF
 Fdesign
 FDF
 FEF
+fenum
 ffd
 fff
 FFFD
@@ -538,6 +543,7 @@ Gsp
 GString
 Gtk
 gui
+guieffect
 gwt
 gx
 gz
@@ -607,6 +613,7 @@ Incompatabilities
 indentcontinuationlines
 Inet
 infinispan
+initializedfields
 Inlined
 inlining
 innerassignment
@@ -823,6 +830,7 @@ markdownlint
 Massol
 matchxpath
 mavenbadge
+maxmem
 maxmethods
 mct
 mdl
@@ -830,6 +838,7 @@ MDM
 mebigfatguy
 mega
 membername
+meminitial
 metadata
 methodcount
 methodlength
@@ -914,6 +923,7 @@ newlineatendoffile
 Nfc
 NFF
 Nfo
+nformatter
 Niederhauser
 nikitasavinov
 nio
@@ -1095,6 +1105,7 @@ PRMC
 programpractice
 Proguard
 propertycachefile
+propkey
 prot
 PROTECTE
 protonpack
@@ -1149,8 +1160,10 @@ releasenotesxml
 remkop
 requireemptylinebeforeblocktaggroup
 requirethis
+resourceleak
 Rethrown
 returncount
+returnsreceiver
 reviewdog
 revwalk
 rfc
@@ -1501,6 +1514,8 @@ xg
 Xhenseval
 XHTML
 xm
+Xmaxerrs
+Xmaxwarns
 xml
 XMLHTTP
 xmllogger
