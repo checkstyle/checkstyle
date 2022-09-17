@@ -18,6 +18,7 @@ my @excludes=qw(
   ^cdg-pitest-licence.txt$
   ^.teamcity/
   ^.ci/checker-framework-suppressions/
+  ^config/archunit-store/
 );
 my $exclude = join "|", @excludes;
 while (<>) {
