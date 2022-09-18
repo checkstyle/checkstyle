@@ -26,12 +26,13 @@ import java.io.PrintWriter;
 
 import org.junit.jupiter.api.Test;
 
+import com.puppycrawl.tools.checkstyle.AbstractAutomaticBean.OutputStreamOptions;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
-import com.puppycrawl.tools.checkstyle.api.AutomaticBean.OutputStreamOptions;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import com.puppycrawl.tools.checkstyle.api.Violation;
 import com.puppycrawl.tools.checkstyle.internal.utils.CloseAndFlushTestByteArrayOutputStream;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
 /**
  * Enter a description of class XMLLoggerTest.java.
@@ -126,8 +127,7 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
     @Test
     public void testCloseStream()
             throws Exception {
-        final XMLLogger logger = new XMLLogger(outStream,
-                AutomaticBean.OutputStreamOptions.CLOSE);
+        final XMLLogger logger = new XMLLogger(outStream, OutputStreamOptions.CLOSE);
         logger.auditStarted(null);
         logger.auditFinished(null);
 
@@ -141,8 +141,7 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
     @Test
     public void testNoCloseStream()
             throws Exception {
-        final XMLLogger logger = new XMLLogger(outStream,
-                AutomaticBean.OutputStreamOptions.NONE);
+        final XMLLogger logger = new XMLLogger(outStream, OutputStreamOptions.NONE);
         logger.auditStarted(null);
         logger.auditFinished(null);
 
@@ -373,7 +372,8 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
     @Test
     public void testNullOutputStreamOptions() {
         try {
-            final XMLLogger logger = new XMLLogger(outStream, null);
+            final XMLLogger logger = new XMLLogger(outStream,
+                    (OutputStreamOptions) null);
             // assert required to calm down eclipse's 'The allocated object is never used' violation
             assertWithMessage("Null instance")
                 .that(logger)
@@ -396,6 +396,32 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
         assertWithMessage("instance should not be null")
             .that(logger)
             .isNotNull();
+    }
+
+    /**
+     * We keep this test for 100% coverage. Until #12873.
+     */
+    @Test
+    public void testCtorWithTwoParametersCloseStreamOptions() {
+        final XMLLogger logger = new XMLLogger(outStream, AutomaticBean.OutputStreamOptions.CLOSE);
+        final boolean closeStream = TestUtil.getInternalState(logger, "closeStream");
+
+        assertWithMessage("closeStream should be true")
+                .that(closeStream)
+                .isTrue();
+    }
+
+    /**
+     * We keep this test for 100% coverage. Until #12873.
+     */
+    @Test
+    public void testCtorWithTwoParametersNoneStreamOptions() {
+        final XMLLogger logger = new XMLLogger(outStream, AutomaticBean.OutputStreamOptions.NONE);
+        final boolean closeStream = TestUtil.getInternalState(logger, "closeStream");
+
+        assertWithMessage("closeStream should be false")
+                .that(closeStream)
+                .isFalse();
     }
 
     private static final class TestException extends RuntimeException {
