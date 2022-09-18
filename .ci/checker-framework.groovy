@@ -1,4 +1,3 @@
-import groovy.transform.EqualsAndHashCode
 import groovy.transform.Field
 import groovy.transform.Immutable
 import groovy.util.slurpersupport.GPathResult
@@ -382,7 +381,6 @@ private static Set<CheckerFrameworkError> setDifference(final Set<CheckerFramewo
 /**
  * A class to represent the XML {@code checkerFrameworkError} node.
  */
-@EqualsAndHashCode(excludes = ["lineNumber", "unstable"])
 @Immutable
 class CheckerFrameworkError implements Comparable<CheckerFrameworkError> {
 
@@ -473,4 +471,112 @@ class CheckerFrameworkError implements Comparable<CheckerFrameworkError> {
         return toXmlString
     }
 
+    @Override
+    boolean equals(other) {
+        if (this.is(other)) {
+            return true
+        }
+
+        if (getClass() != other.class) {
+            return false
+        }
+
+        CheckerFrameworkError that = (CheckerFrameworkError) other
+
+        boolean isEqualExceptDetails = fileName == that.fileName &&
+                lineContent == that.lineContent &&
+                specifier == that.specifier
+
+        if (that.isUnstable()) {
+            // do not compare details for unstable suppression
+            return isEqualExceptDetails &&
+                    isFuzzyMatch(message, that.message)
+
+        }
+
+        return isEqualExceptDetails &&
+                message == that.message &&
+                details == that.details
+    }
+
+    @Override
+    int hashCode() {
+        int result
+        result = (fileName != null ? fileName.hashCode() : 0)
+        result = 31 * result + (specifier != null ? specifier.hashCode() : 0)
+        result = 31 * result + (message != null ? message.hashCode() : 0)
+        result = 31 * result + (details != null ? details.hashCode() : 0)
+        result = 31 * result + (lineContent != null ? lineContent.hashCode() : 0)
+        result = 31 * result + (unstable ? 1 : 0)
+        return result
+    }
+
+    /**
+     * Compares given strings and returns true if they are similar. Stolen from
+     * https://github.com/apache/commons-text.
+     *
+     * @param stringOne string to compare
+     * @param stringTwo string to compare
+     * @return true if two strings are similar by our definition
+     */
+    static boolean isFuzzyMatch(String stringOne, String stringTwo) {
+        int averageLength = (int) ((stringOne.length() + stringTwo.length()) / 2)
+        return getFuzzyScore(stringOne, stringTwo) > averageLength / 2
+    }
+
+    /**
+     * Get "fuzzy score" of two strings to see if they are similar.
+     *
+     * @param stringOne string to compare
+     * @param stringTwo string to compare
+     * @return matching score
+     */
+    static int getFuzzyScore(final CharSequence stringOne, final CharSequence stringTwo) {
+        if (stringOne == null || stringTwo == null) {
+            throw new IllegalArgumentException("CharSequences must not be null")
+        }
+
+        // fuzzy logic is case insensitive. We normalize the Strings to lower
+        // case right from the start.
+        final String termLowerCase = stringOne.toString().toLowerCase()
+        final String queryLowerCase = stringTwo.toString().toLowerCase()
+
+        // the resulting score
+        int score = 0
+
+        // the position in the stringOne which will be scanned next for potential
+        // stringTwo character matches
+        int termIndex = 0
+
+        // index of the previously matched character in the stringOne
+        int previousMatchingCharacterIndex = Integer.MIN_VALUE
+
+        for (int queryIndex = 0; queryIndex < queryLowerCase.length(); queryIndex++) {
+            final char queryChar = queryLowerCase.charAt(queryIndex)
+
+            boolean termCharacterMatchFound = false;
+            for (; termIndex < termLowerCase.length()
+                    && !termCharacterMatchFound; termIndex++) {
+                final char termChar = termLowerCase.charAt(termIndex)
+
+                if (queryChar == termChar) {
+                    // simple character matches result in one point
+                    score++
+
+                    // subsequent character matches further improve
+                    // the score.
+                    if (previousMatchingCharacterIndex + 1 == termIndex) {
+                        score += 2
+                    }
+
+                    previousMatchingCharacterIndex = termIndex
+
+                    // we can leave the nested loop. Every character in the
+                    // stringTwo can match at most one character in the stringOne.
+                    termCharacterMatchFound = true
+                }
+            }
+        }
+        return score
+    }
 }
