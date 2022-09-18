@@ -122,7 +122,8 @@ ruleset {
     ImplementationAsType
     Instanceof
     LocaleSetDefault
-    NestedForLoop
+    // Sometimes we need more complex logic, such as fuzzy stirng matching
+    //NestedForLoop
     PrivateFieldCouldBeFinal
     PublicInstanceField
     ReturnsNullInsteadOfEmptyArray
