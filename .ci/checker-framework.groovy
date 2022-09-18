@@ -1,4 +1,3 @@
-import groovy.transform.EqualsAndHashCode
 import groovy.transform.Field
 import groovy.transform.Immutable
 import groovy.util.slurpersupport.GPathResult
@@ -7,6 +6,9 @@ import groovy.xml.XmlUtil
 
 import java.util.regex.Matcher
 import java.util.regex.Pattern
+
+import org.apache.commons.text.similarity.StringsComparator
+import org.apache.commons.text.similarity.EditScript
 
 @Field static final String USAGE_STRING = "Usage groovy " +
         ".${File.separator}.ci${File.separator}checker-framework.groovy" +
@@ -382,7 +384,6 @@ private static Set<CheckerFrameworkError> setDifference(final Set<CheckerFramewo
 /**
  * A class to represent the XML {@code checkerFrameworkError} node.
  */
-@EqualsAndHashCode(excludes = ["lineNumber", "unstable"])
 @Immutable
 class CheckerFrameworkError implements Comparable<CheckerFrameworkError> {
 
@@ -473,4 +474,58 @@ class CheckerFrameworkError implements Comparable<CheckerFrameworkError> {
         return toXmlString
     }
 
+    @Override
+    boolean equals(other) {
+        if (this.is(other)) {
+            return true
+        }
+
+        if (getClass() != other.class) {
+            return false
+        }
+
+        CheckerFrameworkError that = (CheckerFrameworkError) other
+
+        boolean isEqualExceptDetails = fileName == that.fileName &&
+                lineContent == that.lineContent &&
+                specifier == that.specifier
+
+        if (that.isUnstable()) {
+            // do not compare details for unstable suppression
+            return isEqualExceptDetails &&
+                    isFuzzyMatch(message, that.message)
+
+        }
+
+        return isEqualExceptDetails &&
+                message == that.message &&
+                details == that.details
+    }
+
+    @Override
+    int hashCode() {
+        int result
+        result = (fileName != null ? fileName.hashCode() : 0)
+        result = 31 * result + (specifier != null ? specifier.hashCode() : 0)
+        result = 31 * result + (message != null ? message.hashCode() : 0)
+        result = 31 * result + (details != null ? details.hashCode() : 0)
+        result = 31 * result + (lineContent != null ? lineContent.hashCode() : 0)
+        result = 31 * result + (unstable ? 1 : 0)
+        return result
+    }
+
+    /**
+     * Compares given strings and returns true if they are similar.
+     *
+     * @param stringOne string to compare
+     * @param stringTwo string to compare
+     * @return true if two strings are similar by our definition
+     */
+    static boolean isFuzzyMatch(String stringOne, String stringTwo) {
+        StringsComparator cmp = new StringsComparator(stringOne, stringTwo)
+        EditScript<Character> script = cmp.getScript()
+        int mod = script.getModifications()
+        int averageLength = (int) ((stringOne.length() + stringTwo.length()) / 2)
+        return mod > averageLength / 2
+    }
 }
