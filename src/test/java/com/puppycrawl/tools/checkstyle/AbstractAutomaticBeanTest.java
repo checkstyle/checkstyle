@@ -17,7 +17,7 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.puppycrawl.tools.checkstyle.api;
+package com.puppycrawl.tools.checkstyle;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 
@@ -30,12 +30,18 @@ import org.apache.commons.beanutils.ConvertUtilsBean;
 import org.apache.commons.beanutils.Converter;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.DefaultContext;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import com.puppycrawl.tools.checkstyle.api.Scope;
+import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
-public class AutomaticBeanTest {
+public class AbstractAutomaticBeanTest extends AbstractModuleTestSupport {
+
+    @Override
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/api/abstractcheck";
+    }
 
     @Test
     public void testConfigureNoSuchAttribute() {
@@ -194,7 +200,8 @@ public class AutomaticBeanTest {
     @Test
     public void testRegisterIntegralTypes() throws Exception {
         final ConvertUtilsBeanStub convertUtilsBean = new ConvertUtilsBeanStub();
-        TestUtil.invokeStaticMethod(AutomaticBean.class, "registerIntegralTypes", convertUtilsBean);
+        TestUtil.invokeStaticMethod(AbstractAutomaticBean.class,
+                "registerIntegralTypes", convertUtilsBean);
         assertWithMessage("Number of converters registered differs from expected")
                 .that(convertUtilsBean.getRegisterCount())
                 .isEqualTo(81);
@@ -277,7 +284,7 @@ public class AutomaticBeanTest {
         }
     }
 
-    private static final class ConvertUtilsBeanStub extends ConvertUtilsBean {
+    private static class ConvertUtilsBeanStub extends ConvertUtilsBean {
 
         private int registerCount;
 
@@ -295,7 +302,7 @@ public class AutomaticBeanTest {
 
     }
 
-    public static final class TestBean extends AutomaticBean {
+    public static final class TestBean extends AbstractAutomaticBean {
 
         private String privateField;
 
@@ -329,7 +336,7 @@ public class AutomaticBeanTest {
     /**
      * This class has to be public for reflection to access the methods.
      */
-    public static class ConverterBean extends AutomaticBean {
+    public static class ConverterBean extends AbstractAutomaticBean {
 
         private String[] strings;
         private Pattern pattern;
