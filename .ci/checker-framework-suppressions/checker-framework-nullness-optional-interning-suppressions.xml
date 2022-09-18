@@ -74,17 +74,6 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/Checker.java</fileName>
-    <specifier>method.invocation</specifier>
-    <message>call to addListener(com.puppycrawl.tools.checkstyle.api.AuditListener) not allowed on the given receiver.</message>
-    <lineContent>addListener(counter);</lineContent>
-    <details>
-      found   : @UnderInitialization(com.puppycrawl.tools.checkstyle.api.AutomaticBean.class) @NonNull Checker
-      required: @Initialized @NonNull Checker
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
     <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/ConfigurationLoader.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter arg0 of add.</message>
@@ -1136,38 +1125,6 @@
       found   : null (NullType)
       required: @Initialized @NonNull Violation
     </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/api/AutomaticBean.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field configuration</message>
-    <lineContent>private Configuration configuration;</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/api/AutomaticBean.java</fileName>
-    <specifier>return</specifier>
-    <message>incompatible types in return.</message>
-    <lineContent>return result;</lineContent>
-    <details>
-      type of expression: @Initialized @Nullable URI
-      method return type: @Initialized @NonNull Object
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/api/AutomaticBean.java</fileName>
-    <specifier>toarray.nullable.elements.not.newarray</specifier>
-    <message>call of toArray on collection of non-null elements yields an array of possibly-null elements; omit the argument to toArray or make it an explicit array constructor</message>
-    <lineContent>return result.toArray(CommonUtil.EMPTY_STRING_ARRAY);</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/api/AutomaticBean.java</fileName>
-    <specifier>toarray.nullable.elements.not.newarray</specifier>
-    <message>call of toArray on collection of non-null elements yields an array of possibly-null elements; omit the argument to toArray or make it an explicit array constructor</message>
-    <lineContent>return result.toArray(EMPTY_MODIFIER_ARRAY);</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">

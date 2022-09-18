@@ -23,6 +23,7 @@ import java.io.OutputStream;
 
 import com.puppycrawl.tools.checkstyle.DefaultLogger;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
+import com.puppycrawl.tools.checkstyle.api.AutomaticBean.OutputStreamOptions;
 
 /**
  * A brief logger that only display info about errors.
