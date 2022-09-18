@@ -43,7 +43,7 @@
 
     <section name="Debug">
       <p>
-        Open the Check's source file by double-click on it in a source tree as is shown:<br/><br/>
+        Open the Check's source file by double-click on it in a source tree as shown in the figure below. Please note that the path to the file shown in the figure is <code>src/test/java/checks</code><br/><br/>
         <span class="wrapper block">
           <img alt="screenshot" src="images/gui_screenshot_select_check_idea.png"/>
         </span>
