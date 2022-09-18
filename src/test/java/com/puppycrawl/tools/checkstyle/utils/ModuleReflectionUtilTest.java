@@ -31,11 +31,11 @@ import com.puppycrawl.tools.checkstyle.DefaultLogger;
 import com.puppycrawl.tools.checkstyle.TreeWalkerAuditEvent;
 import com.puppycrawl.tools.checkstyle.TreeWalkerFilter;
 import com.puppycrawl.tools.checkstyle.XpathFileGeneratorAstFilter;
+import com.puppycrawl.tools.checkstyle.api.AbstractAutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
-import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.BeforeExecutionFileFilter;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.Filter;
@@ -179,7 +179,7 @@ public class ModuleReflectionUtilTest {
             .isEqualTo(1);
     }
 
-    private static class ValidCheckstyleClass extends AutomaticBean {
+    private static class ValidCheckstyleClass extends AbstractAutomaticBean {
 
         // empty, use default constructor
 
@@ -202,7 +202,7 @@ public class ModuleReflectionUtilTest {
      * @noinspection AbstractClassNeverImplemented
      * @noinspectionreason AbstractClassNeverImplemented - class is only used in testing
      */
-    private abstract static class AbstractInvalidClass extends AutomaticBean {
+    private abstract static class AbstractInvalidClass extends AbstractAutomaticBean {
 
         public abstract void method();
 
@@ -236,7 +236,7 @@ public class ModuleReflectionUtilTest {
 
     }
 
-    private static class FilterClass extends AutomaticBean implements Filter {
+    private static class FilterClass extends AbstractAutomaticBean implements Filter {
 
         @Override
         protected void finishLocalSetup() {
@@ -250,7 +250,7 @@ public class ModuleReflectionUtilTest {
 
     }
 
-    private static class FileFilterModuleClass extends AutomaticBean
+    private static class FileFilterModuleClass extends AbstractAutomaticBean
             implements BeforeExecutionFileFilter {
 
         @Override
@@ -265,7 +265,7 @@ public class ModuleReflectionUtilTest {
 
     }
 
-    private static class RootModuleClass extends AutomaticBean implements RootModule {
+    private static class RootModuleClass extends AbstractAutomaticBean implements RootModule {
 
         @Override
         protected void finishLocalSetup() {
@@ -294,7 +294,8 @@ public class ModuleReflectionUtilTest {
 
     }
 
-    private static class TreeWalkerFilterClass extends AutomaticBean implements TreeWalkerFilter {
+    private static class TreeWalkerFilterClass
+            extends AbstractAutomaticBean implements TreeWalkerFilter {
 
         @Override
         protected void finishLocalSetup() {
@@ -308,7 +309,7 @@ public class ModuleReflectionUtilTest {
 
     }
 
-    private static class AuditListenerClass extends AutomaticBean implements AuditListener {
+    private static class AuditListenerClass extends AbstractAutomaticBean implements AuditListener {
 
         @Override
         protected void finishLocalSetup() {
@@ -353,7 +354,7 @@ public class ModuleReflectionUtilTest {
 
     }
 
-    private static class InvalidNonDefaultConstructorClass extends AutomaticBean {
+    private static class InvalidNonDefaultConstructorClass extends AbstractAutomaticBean {
 
         private int field;
 

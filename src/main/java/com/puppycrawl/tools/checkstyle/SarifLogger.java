@@ -31,6 +31,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import com.puppycrawl.tools.checkstyle.api.AbstractAutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
@@ -41,7 +42,7 @@ import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
  * SARIF stands for the static analysis results interchange format.
  * See <a href="https://sarifweb.azurewebsites.net/">reference</a>
  */
-public class SarifLogger extends AutomaticBean implements AuditListener {
+public class SarifLogger extends AbstractAutomaticBean implements AuditListener {
 
     /** The length of unicode placeholder. */
     private static final int UNICODE_LENGTH = 4;
@@ -110,12 +111,12 @@ public class SarifLogger extends AutomaticBean implements AuditListener {
      */
     public SarifLogger(
         OutputStream outputStream,
-        OutputStreamOptions outputStreamOptions) throws IOException {
+        AutomaticBean.OutputStreamOptions outputStreamOptions) throws IOException {
         if (outputStreamOptions == null) {
             throw new IllegalArgumentException("Parameter outputStreamOptions can not be null");
         }
         writer = new PrintWriter(new OutputStreamWriter(outputStream, StandardCharsets.UTF_8));
-        closeStream = outputStreamOptions == OutputStreamOptions.CLOSE;
+        closeStream = outputStreamOptions == AutomaticBean.OutputStreamOptions.CLOSE;
         report = readResource("/com/puppycrawl/tools/checkstyle/sarif/SarifReport.template");
         resultLineColumn =
             readResource("/com/puppycrawl/tools/checkstyle/sarif/ResultLineColumn.template");

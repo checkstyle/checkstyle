@@ -25,6 +25,7 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.nio.charset.StandardCharsets;
 
+import com.puppycrawl.tools.checkstyle.api.AbstractAutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
@@ -33,7 +34,9 @@ import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
  * Generates <b>suppressions.xml</b> file, based on violations occurred.
  * See issue <a href="https://github.com/checkstyle/checkstyle/issues/102">#102</a>
  */
-public class XpathFileGeneratorAuditListener extends AutomaticBean implements AuditListener {
+public class XpathFileGeneratorAuditListener
+        extends AbstractAutomaticBean
+        implements AuditListener {
 
     /** The " quote character. */
     private static final String QUOTE_CHAR = "\"";
@@ -57,9 +60,9 @@ public class XpathFileGeneratorAuditListener extends AutomaticBean implements Au
      * @param outputStreamOptions if {@code CLOSE} stream should be closed in auditFinished()
      */
     public XpathFileGeneratorAuditListener(OutputStream out,
-                                           OutputStreamOptions outputStreamOptions) {
+                                           AutomaticBean.OutputStreamOptions outputStreamOptions) {
         writer = new PrintWriter(new OutputStreamWriter(out, StandardCharsets.UTF_8));
-        closeStream = outputStreamOptions == OutputStreamOptions.CLOSE;
+        closeStream = outputStreamOptions == AutomaticBean.OutputStreamOptions.CLOSE;
     }
 
     @Override

@@ -857,6 +857,9 @@
                 <rule>
                   <element>CLASS</element>
                   <excludes>
+                    <exclude>
+                      com.puppycrawl.tools.checkstyle.api.AutomaticBean*
+                    </exclude>
                     <!-- Parser related classes -->
                     <exclude>
                       com.puppycrawl.tools.checkstyle.grammar.java.JavaLanguageParser*

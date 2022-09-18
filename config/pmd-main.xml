@@ -65,4 +65,11 @@
                         //MethodDeclaration[@Name='fillChecksFromCodingPackage']"/>
     </properties>
   </rule>
+  <rule ref="category/java/design.xml/AbstractClassWithoutAnyMethod">
+    <properties>
+    <!-- extends AbstractAutomaticBean, will be removed in later version -->
+      <property name="violationSuppressXPath"
+         value="//ClassOrInterfaceDeclaration[@SimpleName='AutomaticBean']"/>
+    </properties>
+  </rule>
 </ruleset>
