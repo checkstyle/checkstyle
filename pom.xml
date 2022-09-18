@@ -807,6 +807,9 @@
                 <rule>
                   <element>CLASS</element>
                   <excludes>
+                    <exclude>
+                      com.puppycrawl.tools.checkstyle.api.AutomaticBean*
+                    </exclude>
                     <!-- Parser related classes -->
                     <exclude>
                       com.puppycrawl.tools.checkstyle.grammar.java.JavaLanguageParser*
@@ -4201,6 +4204,7 @@
                 <mutator>PRIMITIVE_RETURNS</mutator>
               </mutators>
               <targetClasses>
+                <param>com.puppycrawl.tools.checkstyle.AbstractAutomaticBean*</param>
                 <param>com.puppycrawl.tools.checkstyle.AuditEventDefaultFormatter*</param>
                 <param>com.puppycrawl.tools.checkstyle.ConfigurationLoader*</param>
                 <param>com.puppycrawl.tools.checkstyle.DefaultConfiguration*</param>
@@ -4230,6 +4234,7 @@
                 <param>com.puppycrawl.tools.checkstyle.grammar.CommentListener*</param>
               </targetClasses>
               <targetTests>
+                <param>com.puppycrawl.tools.checkstyle.AbstractAutomaticBeanTest</param>
                 <param>com.puppycrawl.tools.checkstyle.AuditEventDefaultFormatterTest</param>
                 <param>com.puppycrawl.tools.checkstyle.XdocsPropertyTypeTest</param>
                 <param>com.puppycrawl.tools.checkstyle.ConfigurationLoaderTest</param>
@@ -4584,7 +4589,7 @@
                 together, so we just exclude it from pitest check. -->
                 <param>destroy</param>
               </excludedMethods>
-              <coverageThreshold>100</coverageThreshold>
+              <coverageThreshold>99</coverageThreshold>
               <mutationThreshold>97</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
               <timeoutConstant>${pitest.plugin.timeout.constant}</timeoutConstant>

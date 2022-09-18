@@ -45,7 +45,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 // -@cs[AbbreviationAsWordInName] We can not change it as,
 // check's name is part of API (used in configurations).
 public class XMLLogger
-    extends AutomaticBean
+    extends AbstractAutomaticBean
     implements AuditListener {
 
     /** Decimal radix. */
@@ -80,8 +80,25 @@ public class XMLLogger
      * @param outputStream the stream to write logs to.
      * @param outputStreamOptions if {@code CLOSE} stream should be closed in auditFinished()
      * @throws IllegalArgumentException if outputStreamOptions is null.
+     * @noinspection deprecation
+     * @noinspectionreason We are forced to keep AutomaticBean compatability
+     *     because of maven-checkstyle-plugin.
      */
-    public XMLLogger(OutputStream outputStream, OutputStreamOptions outputStreamOptions) {
+    public XMLLogger(OutputStream outputStream,
+                     AutomaticBean.OutputStreamOptions outputStreamOptions) {
+        this(outputStream, OutputStreamOptions.valueOf(outputStreamOptions.name()));
+    }
+
+    /**
+     * Creates a new {@code XMLLogger} instance.
+     * Sets the output to a defined stream.
+     *
+     * @param outputStream the stream to write logs to.
+     * @param outputStreamOptions if {@code CLOSE} stream should be closed in auditFinished()
+     * @throws IllegalArgumentException if outputStreamOptions is null.
+     */
+    public XMLLogger(OutputStream outputStream,
+                     OutputStreamOptions outputStreamOptions) {
         writer = new PrintWriter(new OutputStreamWriter(outputStream, StandardCharsets.UTF_8));
         if (outputStreamOptions == null) {
             throw new IllegalArgumentException("Parameter outputStreamOptions can not be null");
