@@ -84,7 +84,7 @@
     <lineContent>sarifLogger = new SarifLogger(Files.newOutputStream(toFile.toPath()),</lineContent>
     <details>
       The type of object is: java.io.OutputStream.
-      Reason for going out of scope: possible exceptional exit due to new SarifLogger(Files.newOutputStream(toFile.toPath()), AutomaticBean.OutputStreamOptions.CLOSE) with exception type java.io.IOException
+      Reason for going out of scope: possible exceptional exit due to new SarifLogger(Files.newOutputStream(toFile.toPath()), OutputStreamOptions.CLOSE) with exception type java.io.IOException
     </details>
   </checkerFrameworkError>
 
@@ -106,7 +106,7 @@
     <lineContent>sarifLogger = new SarifLogger(new LogOutputStream(task, Project.MSG_INFO),</lineContent>
     <details>
       The type of object is: org.apache.tools.ant.taskdefs.LogOutputStream.
-      Reason for going out of scope: possible exceptional exit due to new SarifLogger(new LogOutputStream(task, Project.MSG_INFO), AutomaticBean.OutputStreamOptions.CLOSE) with exception type java.io.IOException
+      Reason for going out of scope: possible exceptional exit due to new SarifLogger(new LogOutputStream(task, Project.MSG_INFO), OutputStreamOptions.CLOSE) with exception type java.io.IOException
     </details>
   </checkerFrameworkError>
 

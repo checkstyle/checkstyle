@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suppressedMutations>
   <mutation unstable="false">
+    <sourceFile>AbstractAutomaticBean.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.AbstractAutomaticBean$RelaxedAccessModifierArrayConverter</mutatedClass>
+    <mutatedMethod>convert</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to java/lang/String::trim with receiver</description>
+    <lineContent>value.toString().trim(), COMMA_SEPARATOR);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>AbstractAutomaticBean.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.AbstractAutomaticBean$RelaxedStringArrayConverter</mutatedClass>
+    <mutatedMethod>convert</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to java/lang/String::trim with receiver</description>
+    <lineContent>value.toString().trim(), COMMA_SEPARATOR);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
     <sourceFile>AuditEventDefaultFormatter.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.AuditEventDefaultFormatter</mutatedClass>
     <mutatedMethod>format</mutatedMethod>
