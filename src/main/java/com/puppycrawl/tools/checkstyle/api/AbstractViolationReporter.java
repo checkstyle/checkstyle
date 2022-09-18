@@ -32,7 +32,7 @@ import java.util.Map;
  *      by demand in subclasses
  */
 public abstract class AbstractViolationReporter
-    extends AutomaticBean {
+    extends AbstractAutomaticBean {
 
     /** The severity level of any violations found. */
     private SeverityLevel severityLevel = SeverityLevel.ERROR;

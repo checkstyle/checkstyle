@@ -25,15 +25,17 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.nio.charset.StandardCharsets;
 
+import com.puppycrawl.tools.checkstyle.api.AbstractAutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
-import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 
 /**
  * Generates <b>suppressions.xml</b> file, based on violations occurred.
  * See issue <a href="https://github.com/checkstyle/checkstyle/issues/102">#102</a>
  */
-public class XpathFileGeneratorAuditListener extends AutomaticBean implements AuditListener {
+public class XpathFileGeneratorAuditListener
+        extends AbstractAutomaticBean
+        implements AuditListener {
 
     /** The " quote character. */
     private static final String QUOTE_CHAR = "\"";
