@@ -857,7 +857,13 @@
                 <rule>
                   <element>CLASS</element>
                   <excludes>
+                    <exclude>com.puppycrawl.tools.checkstyle.TreeWalker*</exclude>
+                    <exclude>com.puppycrawl.tools.checkstyle.Checker*</exclude>
+
                     <!-- Parser related classes -->
+                    <exclude>
+                      com.puppycrawl.tools.checkstyle.api.AutomaticBean*
+                    </exclude>
                     <exclude>
                       com.puppycrawl.tools.checkstyle.grammar.java.JavaLanguageParser*
                     </exclude>
@@ -908,6 +914,42 @@
                       <counter>BRANCH</counter>
                       <value>COVEREDRATIO</value>
                       <minimum>1.00</minimum>
+                    </limit>
+                  </limits>
+                </rule>
+                <rule>
+                  <element>CLASS</element>
+                  <includes>
+                    <include>com.puppycrawl.tools.checkstyle.TreeWalker</include>
+                  </includes>
+                  <limits>
+                    <limit>
+                      <counter>LINE</counter>
+                      <value>COVEREDRATIO</value>
+                      <minimum>0.97</minimum>
+                    </limit>
+                    <limit>
+                      <counter>BRANCH</counter>
+                      <value>COVEREDRATIO</value>
+                      <minimum>0.98</minimum>
+                    </limit>
+                  </limits>
+                </rule>
+                <rule>
+                  <element>CLASS</element>
+                  <includes>
+                    <include>com.puppycrawl.tools.checkstyle.Checker</include>
+                  </includes>
+                  <limits>
+                    <limit>
+                      <counter>LINE</counter>
+                      <value>COVEREDRATIO</value>
+                      <minimum>0.98</minimum>
+                    </limit>
+                    <limit>
+                      <counter>BRANCH</counter>
+                      <value>COVEREDRATIO</value>
+                      <minimum>0.98</minimum>
                     </limit>
                   </limits>
                 </rule>

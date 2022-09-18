@@ -76,8 +76,9 @@
         href="apidocs/com/puppycrawl/tools/checkstyle/api/AuditListener.html">AuditListener</a>
         interface. If the listener has properties that can be set from a
         configuration, the listener must extend <a
-        href="apidocs/com/puppycrawl/tools/checkstyle/api/AutomaticBean.html">AutomaticBean</a>.
-        An <code>AutomaticBean</code> uses JavaBean
+        href="apidocs/com/puppycrawl/tools/checkstyle/api/AbstractAutomaticBean.html">
+        AbstractAutomaticBean</a>.
+        An <code>AbstractAutomaticBean</code> uses JavaBean
         introspection to set JavaBean properties.
       </p>
 
@@ -87,7 +88,7 @@
         stream, and reports the number of violations per audited file and
         the total number of violations. The default output stream is <code>System.out</code>.
         In order to enable the specification of output to a file through property
-        <code>file</code>, the class extends <code>AutomaticBean</code> and defines method
+        <code>file</code>, the class extends <code>AbstractAutomaticBean</code> and defines method
         <code>setFile(String)</code>.
       </p>
 
@@ -101,11 +102,11 @@ import java.io.PrintWriter;
 
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
-import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
+import com.puppycrawl.tools.checkstyle.api.AbstractAutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 
 public class VerboseListener
-    extends AutomaticBean
+    extends AbstractAutomaticBean
     implements AuditListener
 {
   private PrintWriter mWriter = new PrintWriter(System.out);
