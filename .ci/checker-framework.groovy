@@ -382,7 +382,6 @@ private static Set<CheckerFrameworkError> setDifference(final Set<CheckerFramewo
 /**
  * A class to represent the XML {@code checkerFrameworkError} node.
  */
-@EqualsAndHashCode(excludes = ["lineNumber", "unstable"])
 @Immutable
 class CheckerFrameworkError implements Comparable<CheckerFrameworkError> {
 
@@ -473,4 +472,43 @@ class CheckerFrameworkError implements Comparable<CheckerFrameworkError> {
         return toXmlString
     }
 
+    @Override
+    boolean equals(other) {
+        if (this.is(other)){
+            return true
+        }
+
+        if (getClass() != other.class) {
+            return false
+        }
+
+        CheckerFrameworkError that = (CheckerFrameworkError) other
+
+        boolean isEqualExceptDetails = fileName == that.fileName
+            && lineContent == that.lineContent
+            && message == that.message
+            && specifier == that.specifier
+
+        if (that.isUnstable()) {
+            // if suppression details are not stable, we do not check them
+            return isEqualExceptDetails
+
+        }
+        else {
+            return isEqualExceptDetails
+                && details == that.details
+        }
+    }
+
+    @Override
+    int hashCode() {
+        int result
+        result = (fileName != null ? fileName.hashCode() : 0)
+        result = 31 * result + (specifier != null ? specifier.hashCode() : 0)
+        result = 31 * result + (message != null ? message.hashCode() : 0)
+        result = 31 * result + (details != null ? details.hashCode() : 0)
+        result = 31 * result + (lineContent != null ? lineContent.hashCode() : 0)
+        result = 31 * result + (unstable ? 1 : 0)
+        return result
+    }
 }
