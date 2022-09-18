@@ -26,9 +26,9 @@ import java.io.PrintWriter;
 
 import org.junit.jupiter.api.Test;
 
+import com.puppycrawl.tools.checkstyle.api.AbstractAutomaticBean;
+import com.puppycrawl.tools.checkstyle.api.AbstractAutomaticBean.OutputStreamOptions;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
-import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
-import com.puppycrawl.tools.checkstyle.api.AutomaticBean.OutputStreamOptions;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import com.puppycrawl.tools.checkstyle.api.Violation;
 import com.puppycrawl.tools.checkstyle.internal.utils.CloseAndFlushTestByteArrayOutputStream;
@@ -127,7 +127,7 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
     public void testCloseStream()
             throws Exception {
         final XMLLogger logger = new XMLLogger(outStream,
-                AutomaticBean.OutputStreamOptions.CLOSE);
+                AbstractAutomaticBean.OutputStreamOptions.CLOSE);
         logger.auditStarted(null);
         logger.auditFinished(null);
 
@@ -142,7 +142,7 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
     public void testNoCloseStream()
             throws Exception {
         final XMLLogger logger = new XMLLogger(outStream,
-                AutomaticBean.OutputStreamOptions.NONE);
+                AbstractAutomaticBean.OutputStreamOptions.NONE);
         logger.auditStarted(null);
         logger.auditFinished(null);
 
