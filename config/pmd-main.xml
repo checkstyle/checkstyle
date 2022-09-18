@@ -43,4 +43,11 @@
                         //MethodDeclaration[@Name='iterateAxis']"/>
     </properties>
   </rule>
+  <rule ref="category/java/design.xml/AbstractClassWithoutAnyMethod">
+    <properties>
+      <!-- until https://github.com/checkstyle/checkstyle/issues/12873 -->
+      <property name="violationSuppressXPath"
+         value="//ClassOrInterfaceDeclaration[@SimpleName='AutomaticBean']"/>
+    </properties>
+  </rule>
 </ruleset>
