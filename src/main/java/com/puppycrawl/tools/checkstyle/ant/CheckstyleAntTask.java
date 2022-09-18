@@ -42,6 +42,7 @@ import org.apache.tools.ant.types.EnumeratedAttribute;
 import org.apache.tools.ant.types.FileSet;
 import org.apache.tools.ant.types.Path;
 
+import com.puppycrawl.tools.checkstyle.AbstractAutomaticBean.OutputStreamOptions;
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.ConfigurationLoader;
 import com.puppycrawl.tools.checkstyle.DefaultLogger;
@@ -52,7 +53,6 @@ import com.puppycrawl.tools.checkstyle.SarifLogger;
 import com.puppycrawl.tools.checkstyle.ThreadModeSettings;
 import com.puppycrawl.tools.checkstyle.XMLLogger;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
-import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.RootModule;
@@ -460,8 +460,8 @@ public class CheckstyleAntTask extends Task {
             if (formatters.isEmpty()) {
                 final OutputStream debug = new LogOutputStream(this, Project.MSG_DEBUG);
                 final OutputStream err = new LogOutputStream(this, Project.MSG_ERR);
-                listeners[0] = new DefaultLogger(debug, AutomaticBean.OutputStreamOptions.CLOSE,
-                        err, AutomaticBean.OutputStreamOptions.CLOSE);
+                listeners[0] = new DefaultLogger(debug, OutputStreamOptions.CLOSE,
+                        err, OutputStreamOptions.CLOSE);
             }
             else {
                 for (int i = 0; i < formatterCount; i++) {
@@ -678,11 +678,11 @@ public class CheckstyleAntTask extends Task {
             final AuditListener sarifLogger;
             if (toFile == null || !useFile) {
                 sarifLogger = new SarifLogger(new LogOutputStream(task, Project.MSG_INFO),
-                        AutomaticBean.OutputStreamOptions.CLOSE);
+                        OutputStreamOptions.CLOSE);
             }
             else {
                 sarifLogger = new SarifLogger(Files.newOutputStream(toFile.toPath()),
-                        AutomaticBean.OutputStreamOptions.CLOSE);
+                        OutputStreamOptions.CLOSE);
             }
             return sarifLogger;
         }
@@ -700,16 +700,16 @@ public class CheckstyleAntTask extends Task {
             if (toFile == null || !useFile) {
                 defaultLogger = new DefaultLogger(
                     new LogOutputStream(task, Project.MSG_DEBUG),
-                        AutomaticBean.OutputStreamOptions.CLOSE,
+                        OutputStreamOptions.CLOSE,
                         new LogOutputStream(task, Project.MSG_ERR),
-                        AutomaticBean.OutputStreamOptions.CLOSE
+                        OutputStreamOptions.CLOSE
                 );
             }
             else {
                 final OutputStream infoStream = Files.newOutputStream(toFile.toPath());
                 defaultLogger =
-                        new DefaultLogger(infoStream, AutomaticBean.OutputStreamOptions.CLOSE,
-                                infoStream, AutomaticBean.OutputStreamOptions.NONE);
+                        new DefaultLogger(infoStream, OutputStreamOptions.CLOSE,
+                                infoStream, OutputStreamOptions.NONE);
             }
             return defaultLogger;
         }
@@ -725,11 +725,11 @@ public class CheckstyleAntTask extends Task {
             final AuditListener xmlLogger;
             if (toFile == null || !useFile) {
                 xmlLogger = new XMLLogger(new LogOutputStream(task, Project.MSG_INFO),
-                        AutomaticBean.OutputStreamOptions.CLOSE);
+                        OutputStreamOptions.CLOSE);
             }
             else {
                 xmlLogger = new XMLLogger(Files.newOutputStream(toFile.toPath()),
-                        AutomaticBean.OutputStreamOptions.CLOSE);
+                        OutputStreamOptions.CLOSE);
             }
             return xmlLogger;
         }
