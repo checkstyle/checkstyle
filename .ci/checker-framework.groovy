@@ -1,4 +1,3 @@
-import groovy.transform.EqualsAndHashCode
 import groovy.transform.Field
 import groovy.transform.Immutable
 import groovy.util.slurpersupport.GPathResult
@@ -382,7 +381,6 @@ private static Set<CheckerFrameworkError> setDifference(final Set<CheckerFramewo
 /**
  * A class to represent the XML {@code checkerFrameworkError} node.
  */
-@EqualsAndHashCode(excludes = ["lineNumber", "unstable"])
 @Immutable
 class CheckerFrameworkError implements Comparable<CheckerFrameworkError> {
 
@@ -398,6 +396,17 @@ class CheckerFrameworkError implements Comparable<CheckerFrameworkError> {
     List<String> details
     String lineContent
     int lineNumber
+
+    /**
+     * Whether the error is unstable. Unstable errors in suppression list are not flagged as
+     * unnecessary suppressions.
+     *
+     * <p>An error is considered to be unstable when error message changes with each run.
+     * Some error messages contains strings like {@code temp-var-1234}, the numerical part changes
+     * with each run so the error is considered unstable. In such cases numerical values in
+     * {@code details} and {@code message} are replaced with empty string while comparing and
+     * hashing errors.
+     */
     boolean unstable
 
     @Override
@@ -435,17 +444,68 @@ class CheckerFrameworkError implements Comparable<CheckerFrameworkError> {
             return i
         }
 
-        i = getMessage() <=> other.getMessage()
-        if (i != 0) {
-            return i
+        if (this.isUnstable() || other.isUnstable()) {
+            final String messageWithoutLineNumber = getMessage().replaceAll('\\d+', '')
+            final String thatMessageWithoutLineNumber = other.getMessage().replaceAll('\\d+', '')
+            i = messageWithoutLineNumber <=> thatMessageWithoutLineNumber
+            if (i != 0) {
+                return i
+            }
+
+            final List<String> detailsWithoutLineNumber = this.getDetails()*.replaceAll('\\d+', '')
+            final List<String> thatDetailsWithoutLineNumber =
+                    other.getDetails()*.replaceAll('\\d+', '')
+
+            i = detailsWithoutLineNumber.join('') <=> thatDetailsWithoutLineNumber.join('')
+            if (i != 0) {
+                return i
+            }
+        }
+        else {
+            i = getMessage() <=> other.getMessage()
+            if (i != 0) {
+                return i
+            }
+
+            i = getDetails().join('') <=> other.getDetails().join('')
+            if (i != 0) {
+                return i
+            }
         }
 
-        i = getLineContent() <=> other.getLineContent()
-        if (i != 0) {
-            return i
+        return getLineContent() <=> other.getLineContent()
+    }
+
+    @Override
+    boolean equals(Object object) {
+        if (this.is(object)) {
+            return true
+        }
+        if (!(object instanceof CheckerFrameworkError)) {
+            return false
         }
 
-        return this.getDetails().join('') <=> other.getDetails().join('')
+        CheckerFrameworkError that = (CheckerFrameworkError) object
+
+        return this.compareTo(that) == 0
+    }
+
+    @Override
+    int hashCode() {
+        int result
+        if (unstable) {
+            result = (message != null ? message.replaceAll('\\d+', '').hashCode() : 0)
+            result = 31 * result + (details != null ? details*.replaceAll(
+                    '\\d+', '').hashCode() : 0)
+        }
+        else {
+            result = (message != null ? message.hashCode() : 0)
+            result = 31 * result + (details != null ? details.hashCode() : 0)
+        }
+        result = 31 * result + (fileName != null ? fileName.hashCode() : 0)
+        result = 31 * result + (specifier != null ? specifier.hashCode() : 0)
+        result = 31 * result + (lineContent != null ? lineContent.hashCode() : 0)
+        return result
     }
 
     /**
