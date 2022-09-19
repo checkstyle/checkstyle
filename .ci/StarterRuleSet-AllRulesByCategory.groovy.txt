@@ -120,7 +120,12 @@ ruleset {
     EmptyMethodInAbstractClass
     FinalClassWithProtectedMember
     ImplementationAsType
-    Instanceof
+
+    // Using instanceof in equals method is alright
+    Instanceof {
+        ignoreTypeNames = 'CheckerFrameworkError'
+    }
+
     LocaleSetDefault
     NestedForLoop
     PrivateFieldCouldBeFinal
