@@ -350,7 +350,7 @@ ruleset {
     PropertyName
     VariableName {
         finalRegex = null
-        ignoreVariableNames = 'SEPARATOR,PROFILES,USAGE_STRING'
+        ignoreVariableNames = 'PROFILES,USAGE_STRING'
     }
 
     // rulesets/security.xml
