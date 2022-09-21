@@ -21,7 +21,7 @@ guava-with-google-checks)
   groovy ./diff.groovy --listOfProjects projects-to-test-on.properties \
       --patchConfig ../../google_checks.xml \
       --mode single --allowExcludes -xm "-Dcheckstyle.failsOnError=false \
-      -Dcheckstyle.version=${CS_POM_VERSION}" -p "$BRANCH" -r ../../..
+      -p "$BRANCH" -r ../../..
   cd ../..
   removeFolderWithProtectedFiles contribution
   rm google_checks.*
@@ -43,7 +43,7 @@ guava-with-sun-checks)
   groovy ./diff.groovy --listOfProjects projects-to-test-on.properties \
       --patchConfig ../../sun_checks.xml \
       --mode single --allowExcludes -xm "-Dcheckstyle.failsOnError=false \
-      -Dcheckstyle.version=${CS_POM_VERSION}"  -p "$BRANCH" -r ../../..
+      -p "$BRANCH" -r ../../..
   cd ../..
   removeFolderWithProtectedFiles contribution
   rm sun_checks.*
@@ -85,7 +85,7 @@ no-exception-lucene-and-others-javadoc)
   groovy ./diff.groovy --listOfProjects projects-for-no-exception-javadoc.config \
       --patchConfig checks-only-javadoc-error.xml \
       --mode single --allowExcludes -xm "-Dcheckstyle.failsOnError=false \
-      -Dcheckstyle.version=${CS_POM_VERSION}"  -p "$BRANCH" -r ../../..
+      -p "$BRANCH" -r ../../..
   cd ../..
   removeFolderWithProtectedFiles contribution
   ;;
@@ -105,7 +105,7 @@ no-exception-cassandra-storm-tapestry-javadoc)
   groovy ./diff.groovy --listOfProjects projects-for-no-exception-javadoc.config \
       --patchConfig checks-only-javadoc-error.xml \
       --mode single --allowExcludes  -xm "-Dcheckstyle.failsOnError=false \
-      -Dcheckstyle.version=${CS_POM_VERSION}"  -p "$BRANCH" -r ../../..
+      -p "$BRANCH" -r ../../..
   cd ../..
   removeFolderWithProtectedFiles contribution
   ;;
@@ -126,7 +126,7 @@ no-exception-hadoop-apache-groovy-scouter-javadoc)
   groovy ./diff.groovy --listOfProjects projects-for-no-exception-javadoc.config \
       --patchConfig checks-only-javadoc-error.xml \
       --mode single --allowExcludes -xm "-Dcheckstyle.failsOnError=false \
-      -Dcheckstyle.version=${CS_POM_VERSION}"  -p "$BRANCH" -r ../../..
+      -p "$BRANCH" -r ../../..
   cd ../..
   removeFolderWithProtectedFiles contribution
   ;;
@@ -147,7 +147,7 @@ no-exception-only-javadoc)
   groovy ./diff.groovy --listOfProjects projects-to-test-on.properties \
       --patchConfig checks-only-javadoc-error.xml --allowExcludes \
       --mode single -xm "-Dcheckstyle.failsOnError=false \
-      -Dcheckstyle.version=${CS_POM_VERSION}"  -p "$BRANCH" -r ../../..
+      -p "$BRANCH" -r ../../..
   cd ../..
   removeFolderWithProtectedFiles contribution
   ;;
