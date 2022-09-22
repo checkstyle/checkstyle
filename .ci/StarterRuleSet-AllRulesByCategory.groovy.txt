@@ -387,7 +387,11 @@ ruleset {
     MethodCount
     MethodSize
     NestedBlockDepth
-    ParameterCount
+
+    // CheckerFrameworkError needs all the parameters
+    ParameterCount {
+        doNotApplyToFileNames = 'checker-framework.groovy'
+    }
 
     // rulesets/unnecessary.xml
     AddEmptyString
