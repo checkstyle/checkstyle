@@ -1,5 +1,4 @@
 import groovy.transform.Field
-import groovy.transform.Immutable
 import groovy.util.slurpersupport.GPathResult
 import groovy.util.slurpersupport.NodeChildren
 import groovy.xml.XmlUtil
@@ -381,7 +380,6 @@ private static Set<CheckerFrameworkError> setDifference(final Set<CheckerFramewo
 /**
  * A class to represent the XML {@code checkerFrameworkError} node.
  */
-@Immutable
 class CheckerFrameworkError implements Comparable<CheckerFrameworkError> {
 
     /**
@@ -390,12 +388,12 @@ class CheckerFrameworkError implements Comparable<CheckerFrameworkError> {
      */
     private static final int LINE_NUMBER_NOT_PRESENT_VALUE = -1
 
-    String fileName
-    String specifier
-    String message
-    List<String> details
-    String lineContent
-    int lineNumber
+    final String fileName
+    final String specifier
+    final String message
+    final List<String> details
+    final String lineContent
+    final int lineNumber
 
     /**
      * Whether the error is unstable. Unstable errors in suppression list are not flagged as
@@ -407,7 +405,32 @@ class CheckerFrameworkError implements Comparable<CheckerFrameworkError> {
      * {@code details} and {@code message} are replaced with empty string while comparing and
      * hashing errors.
      */
-    boolean unstable
+    final boolean unstable
+
+    final String messageWithoutNumber
+    final List<String> detailsWithoutNumber
+
+    /**
+     * Hash value of detailsWithoutNumber is cached as hashCode of a list is generated in O(n).
+     * Re-calculating hash every time in {@link #hashCode()} will increase the time complexity
+     * of that method.
+     */
+    final int detailsWithoutNumberHashCode
+
+    CheckerFrameworkError(String fileName, String specifier, String message, List<String> details,
+                          String lineContent, int lineNumber, boolean unstable) {
+        this.fileName = fileName
+        this.specifier = specifier
+        this.message = message
+        this.details = Collections.unmodifiableList(details)
+        this.lineContent = lineContent
+        this.lineNumber = lineNumber
+        this.unstable = unstable
+
+        detailsWithoutNumber = details*.replaceAll("\\d+", "")
+        messageWithoutNumber = message.replaceAll("\\d+", "")
+        detailsWithoutNumberHashCode = detailsWithoutNumber.hashCode()
+    }
 
     @Override
     String toString() {
@@ -445,18 +468,12 @@ class CheckerFrameworkError implements Comparable<CheckerFrameworkError> {
         }
 
         if (this.isUnstable() || other.isUnstable()) {
-            final String messageWithoutLineNumber = getMessage().replaceAll('\\d+', '')
-            final String thatMessageWithoutLineNumber = other.getMessage().replaceAll('\\d+', '')
-            i = messageWithoutLineNumber <=> thatMessageWithoutLineNumber
+            i = getMessageWithoutNumber() <=> other.getMessageWithoutNumber()
             if (i != 0) {
                 return i
             }
 
-            final List<String> detailsWithoutLineNumber = this.getDetails()*.replaceAll('\\d+', '')
-            final List<String> thatDetailsWithoutLineNumber =
-                    other.getDetails()*.replaceAll('\\d+', '')
-
-            i = detailsWithoutLineNumber.join('') <=> thatDetailsWithoutLineNumber.join('')
+            i = getDetailsWithoutNumber().join('') <=> other.getDetailsWithoutNumber().join('')
             if (i != 0) {
                 return i
             }
@@ -493,15 +510,8 @@ class CheckerFrameworkError implements Comparable<CheckerFrameworkError> {
     @Override
     int hashCode() {
         int result
-        if (unstable) {
-            result = (message != null ? message.replaceAll('\\d+', '').hashCode() : 0)
-            result = 31 * result + (details != null ? details*.replaceAll(
-                    '\\d+', '').hashCode() : 0)
-        }
-        else {
-            result = (message != null ? message.hashCode() : 0)
-            result = 31 * result + (details != null ? details.hashCode() : 0)
-        }
+        result = (detailsWithoutNumber != null ? detailsWithoutNumberHashCode : 0)
+        result = 31 * result + (messageWithoutNumber != null ? messageWithoutNumber.hashCode() : 0)
         result = 31 * result + (fileName != null ? fileName.hashCode() : 0)
         result = 31 * result + (specifier != null ? specifier.hashCode() : 0)
         result = 31 * result + (lineContent != null ? lineContent.hashCode() : 0)
