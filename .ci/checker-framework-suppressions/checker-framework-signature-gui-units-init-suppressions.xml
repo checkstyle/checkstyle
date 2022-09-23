@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suppressedErrors>
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/DefaultLogger.java</fileName>
+    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/LocalizedMessage.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter baseName of getBundle.</message>
-    <lineContent>name, LOCALE, LocalizedMessage.class.getClassLoader(),</lineContent>
+    <lineContent>return ResourceBundle.getBundle(bundle, locale, sourceClass.getClassLoader(),</lineContent>
     <details>
       found   : @SignatureUnknown String
       required: @BinaryName String
@@ -23,18 +23,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/api/Violation.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter baseName of getBundle.</message>
-    <lineContent>name, sLocale, sourceClass.getClassLoader(), new Utf8Control());</lineContent>
-    <details>
-      found   : @SignatureUnknown String
-      required: @BinaryName String
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/api/Violation.java</fileName>
+    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/LocalizedMessage.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter baseName of toBundleName.</message>
     <lineContent>final String bundleName = toBundleName(baseName, locale);</lineContent>
