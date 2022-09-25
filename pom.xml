@@ -12,7 +12,7 @@
 
   <groupId>com.puppycrawl.tools</groupId>
   <artifactId>checkstyle</artifactId>
-  <version>10.3.4-SNAPSHOT</version>
+  <version>10.3.4</version>
   <packaging>jar</packaging>
 
   <name>checkstyle</name>
@@ -1326,7 +1326,7 @@
                 <requireMavenVersion>
                   <version>3.3.9</version>
                 </requireMavenVersion>
-                <dependencyConvergence/>
+                <dependencyConvergence />
                 <!-- we can not use this as it require same version for all dependencies -->
                 <!--
                 <enforceBytecodeVersion>
