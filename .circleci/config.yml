@@ -212,6 +212,28 @@ jobs:
       - run:
           command: ./.ci/validation.sh git-diff
 
+  run-inspections:
+    docker:
+      - image: nrmancuso/idea-docker:1.0.0
+
+    steps:
+      - checkout
+      - run:
+          command: |
+            export PROJECT_DIR="$(pwd)"
+            export INSPECTIONS_PATH="$(pwd)/config/intellij-idea-inspections.xml"
+            export REPORT_DIR="$(pwd)/inspections-report"
+            export IDEA_PROPERTIES="$(pwd)/config/intellij-idea-inspections.properties"
+            mkdir -p $REPORT_DIR
+            inspect.sh "$PROJECT_DIR" \
+              "$INSPECTIONS_PATH" \
+              "$REPORT_DIR" \
+              -v2
+            
+            ls -lRt $REPORT_DIR
+          no_output_timeout: 25m
+          working_directory: ~/project
+
 workflows:
   version: 2
   no-exception-tests:
@@ -237,3 +259,7 @@ workflows:
       - no-warning-imports-guava
       - no-warning-imports-java-design-patterns
       - sonarqube
+
+  idea:
+    jobs:
+      - run-inspections
