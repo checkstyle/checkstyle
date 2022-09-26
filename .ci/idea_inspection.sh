@@ -37,7 +37,7 @@ rm -rf "$RESULTS_DIR"/*
 echo "Intellij Idea validation is about to start"
 echo "Progress output will be flushed at end. Validation is in progress ..."
 IDEA_OUTPUT=$("$IDEA_PATH"/bin/inspect.sh "$PROJECT_DIR" "$INSPECTIONS_PATH" "$RESULTS_DIR" \
-   -$NOISE_LVL)
+   -$NOISE_LVL -format plain)
 
 if [[ $IDEA_OUTPUT == "Already running" ]]; then
     echo "It might be that Intellij Idea is running, please close it."
