@@ -13,6 +13,10 @@ or set of validation rules (best practices).
 [![][semaphoreci img]][semaphoreci]
 [![][azure img]][azure]
 [![][drone img]][drone]
+[![][error prone img]][error prone]
+[![][pitest img]][pitest]
+[![][checker framework img]][checker framework]
+[![][codenarc img]][codenarc]
 
 [![][codeship img]][codeship]
 [![][dependabot img]][dependabot]
@@ -183,3 +187,15 @@ are in the file named "LICENSE.apache20" in this directory.
 
 [link check]:https://github.com/checkstyle/checkstyle/actions/workflows/run_link_check.yml
 [link check img]:https://github.com/checkstyle/checkstyle/actions/workflows/run_link_check.yml/badge.svg
+
+[error prone]:https://github.com/checkstyle/checkstyle/actions/workflows/error-prone.yml
+[error prone img]:https://github.com/checkstyle/checkstyle/actions/workflows/error-prone.yml/badge.svg
+
+[pitest]:https://github.com/checkstyle/checkstyle/actions/workflows/pitest.yml
+[pitest img]:https://github.com/checkstyle/checkstyle/actions/workflows/pitest.yml/badge.svg
+
+[checker framework]:https://github.com/checkstyle/checkstyle/actions/workflows/checker-framework.yml
+[checker framework img]:https://github.com/checkstyle/checkstyle/actions/workflows/checker-framework.yml/badge.svg
+
+[codenarc]:https://github.com/checkstyle/checkstyle/actions/workflows/codenarc-analysis.yml
+[codenarc img]:https://github.com/checkstyle/checkstyle/actions/workflows/codenarc-analysis.yml/badge.svg
