@@ -46,9 +46,6 @@ public final class Violation
     /** The default severity level if one is not specified. */
     private static final SeverityLevel DEFAULT_SEVERITY = SeverityLevel.ERROR;
 
-    /** The locale to localise violations to. **/
-    private static Locale sLocale = Locale.getDefault();
-
     /** The line number. **/
     private final int lineNo;
     /** The column number. **/
@@ -359,20 +356,6 @@ public final class Violation
     }
 
     /**
-     * Sets a locale to use for localization.
-     *
-     * @param locale the locale to use for localization
-     */
-    public static void setLocale(Locale locale) {
-        if (Locale.ENGLISH.getLanguage().equals(locale.getLanguage())) {
-            sLocale = Locale.ROOT;
-        }
-        else {
-            sLocale = locale;
-        }
-    }
-
-    /**
      * Indicates whether some other object is "equal to" this one.
      * Suppression on enumeration is needed so code stays consistent.
      *
@@ -448,26 +431,15 @@ public final class Violation
      * @return the translated violation
      */
     public String getViolation() {
-        String violation = getCustomViolation();
+        final String violation;
 
-        if (violation == null) {
-            violation = new LocalizedMessage(bundle, sLocale, sourceClass, key, args).getMessage();
-        }
-        return violation;
-    }
-
-    /**
-     * Returns the formatted custom violation if one is configured.
-     *
-     * @return the formatted custom violation or {@code null}
-     *          if there is no custom violation
-     */
-    private String getCustomViolation() {
-        String violation = null;
         if (customMessage != null) {
-            final MessageFormat formatter = new MessageFormat(customMessage, Locale.ROOT);
-            violation = formatter.format(args);
+            violation = new MessageFormat(customMessage, Locale.ROOT).format(args);
         }
+        else {
+            violation = new LocalizedMessage(bundle, sourceClass, key, args).getMessage();
+        }
+
         return violation;
     }
 

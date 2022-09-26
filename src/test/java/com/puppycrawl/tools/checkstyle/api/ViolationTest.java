@@ -21,11 +21,7 @@ package com.puppycrawl.tools.checkstyle.api;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.utils.CommonUtil.EMPTY_OBJECT_ARRAY;
-import static org.junit.jupiter.api.Assumptions.assumeFalse;
 
-import java.util.Locale;
-
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.junitpioneer.jupiter.DefaultLocale;
 
@@ -33,34 +29,6 @@ import nl.jqno.equalsverifier.EqualsVerifier;
 import nl.jqno.equalsverifier.EqualsVerifierReport;
 
 public class ViolationTest {
-
-    private static final Locale DEFAULT_LOCALE = Locale.getDefault();
-
-    /**
-     * Verifies that the language specified with the system property {@code user.language} exists.
-     */
-    @Test
-    public void testLanguageIsValid() {
-        final String language = DEFAULT_LOCALE.getLanguage();
-        assumeFalse(language.isEmpty(), "Locale not set");
-        assertWithMessage("Invalid language")
-                .that(Locale.getISOLanguages())
-                .asList()
-                .contains(language);
-    }
-
-    /**
-     * Verifies that the country specified with the system property {@code user.country} exists.
-     */
-    @Test
-    public void testCountryIsValid() {
-        final String country = DEFAULT_LOCALE.getCountry();
-        assumeFalse(country.isEmpty(), "Locale not set");
-        assertWithMessage("Invalid country")
-                .that(Locale.getISOCountries())
-                .asList()
-                .contains(country);
-    }
 
     @Test
     public void testEqualsAndHashCode() {
@@ -98,41 +66,9 @@ public class ViolationTest {
             .isEqualTo("com.puppycrawl.tools.checkstyle.api.Violation");
     }
 
+    @DefaultLocale("en")
     @Test
     public void testMessageInEnglish() {
-        final Violation violation = createSampleViolation();
-        Violation.setLocale(Locale.ENGLISH);
-
-        assertWithMessage("Invalid violation")
-            .that(violation.getViolation())
-            .isEqualTo("Empty statement.");
-    }
-
-    @Test
-    public void testMessageInFrench() {
-        final Violation violation = createSampleViolation();
-        Violation.setLocale(Locale.FRENCH);
-
-        assertWithMessage("Invalid violation")
-            .that(violation.getViolation())
-            .isEqualTo("Instruction vide.");
-    }
-
-    @DefaultLocale("fr")
-    @Test
-    public void testEnforceEnglishLanguageBySettingUnitedStatesLocale() {
-        Violation.setLocale(Locale.US);
-        final Violation violation = createSampleViolation();
-
-        assertWithMessage("Invalid violation")
-            .that(violation.getViolation())
-            .isEqualTo("Empty statement.");
-    }
-
-    @DefaultLocale("fr")
-    @Test
-    public void testEnforceEnglishLanguageBySettingRootLocale() {
-        Violation.setLocale(Locale.ROOT);
         final Violation violation = createSampleViolation();
 
         assertWithMessage("Invalid violation")
@@ -143,7 +79,6 @@ public class ViolationTest {
     @DefaultLocale("fr")
     @Test
     public void testGetKey() {
-        Violation.setLocale(Locale.US);
         final Violation violation = createSampleViolation();
 
         assertWithMessage("Invalid violation key")
@@ -250,11 +185,6 @@ public class ViolationTest {
         return new Violation(1, column,
                 "com.puppycrawl.tools.checkstyle.checks.coding.messages", "empty.statement",
                 EMPTY_OBJECT_ARRAY, "module", Violation.class, null);
-    }
-
-    @AfterEach
-    public void tearDown() {
-        Violation.setLocale(DEFAULT_LOCALE);
     }
 
 }
