@@ -212,6 +212,17 @@ jobs:
       - run:
           command: ./.ci/validation.sh git-diff
 
+  run-inspections:
+    docker:
+      - image: nrmancuso/idea-docker:1.0.0
+
+    steps:
+      - checkout
+      - run:
+          command: ./.ci/idea_inspection.sh
+          no_output_timeout: 25m
+          working_directory: ~/project
+
 workflows:
   version: 2
   no-exception-tests:
@@ -237,3 +248,7 @@ workflows:
       - no-warning-imports-guava
       - no-warning-imports-java-design-patterns
       - sonarqube
+
+  idea:
+    jobs:
+      - run-inspections
