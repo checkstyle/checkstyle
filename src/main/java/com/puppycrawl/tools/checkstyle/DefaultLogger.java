@@ -26,6 +26,7 @@ import java.io.Writer;
 import java.nio.charset.StandardCharsets;
 import java.util.Locale;
 
+import com.puppycrawl.tools.checkstyle.api.AbstractAutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
@@ -40,7 +41,7 @@ import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
  *
  * @see XMLLogger
  */
-public class DefaultLogger extends AutomaticBean implements AuditListener {
+public class DefaultLogger extends AbstractAutomaticBean implements AuditListener {
 
     /**
      * A key pointing to the add exception
@@ -77,9 +78,11 @@ public class DefaultLogger extends AutomaticBean implements AuditListener {
      * @param outputStream where to log audit events
      * @param outputStreamOptions if {@code CLOSE} that should be closed in auditFinished()
      */
-    public DefaultLogger(OutputStream outputStream, OutputStreamOptions outputStreamOptions) {
+    public DefaultLogger(OutputStream outputStream,
+                         AutomaticBean.OutputStreamOptions outputStreamOptions) {
         // no need to close oS twice
-        this(outputStream, outputStreamOptions, outputStream, OutputStreamOptions.NONE);
+        this(outputStream, outputStreamOptions, outputStream,
+                AutomaticBean.OutputStreamOptions.NONE);
     }
 
     /**
@@ -91,9 +94,9 @@ public class DefaultLogger extends AutomaticBean implements AuditListener {
      * @param errorStreamOptions if {@code CLOSE} error should be closed in auditFinished()
      */
     public DefaultLogger(OutputStream infoStream,
-                         OutputStreamOptions infoStreamOptions,
+                         AutomaticBean.OutputStreamOptions infoStreamOptions,
                          OutputStream errorStream,
-                         OutputStreamOptions errorStreamOptions) {
+                         AutomaticBean.OutputStreamOptions errorStreamOptions) {
         this(infoStream, infoStreamOptions, errorStream, errorStreamOptions,
                 new AuditEventDefaultFormatter());
     }
@@ -111,18 +114,18 @@ public class DefaultLogger extends AutomaticBean implements AuditListener {
      * @noinspectionreason WeakerAccess - we avoid 'protected' when possible
      */
     public DefaultLogger(OutputStream infoStream,
-                         OutputStreamOptions infoStreamOptions,
+                         AutomaticBean.OutputStreamOptions infoStreamOptions,
                          OutputStream errorStream,
-                         OutputStreamOptions errorStreamOptions,
+                         AutomaticBean.OutputStreamOptions errorStreamOptions,
                          AuditEventFormatter messageFormatter) {
         if (infoStreamOptions == null) {
             throw new IllegalArgumentException("Parameter infoStreamOptions can not be null");
         }
-        closeInfo = infoStreamOptions == OutputStreamOptions.CLOSE;
+        closeInfo = infoStreamOptions == AutomaticBean.OutputStreamOptions.CLOSE;
         if (errorStreamOptions == null) {
             throw new IllegalArgumentException("Parameter errorStreamOptions can not be null");
         }
-        closeError = errorStreamOptions == OutputStreamOptions.CLOSE;
+        closeError = errorStreamOptions == AutomaticBean.OutputStreamOptions.CLOSE;
         final Writer infoStreamWriter = new OutputStreamWriter(infoStream, StandardCharsets.UTF_8);
         infoWriter = new PrintWriter(infoStreamWriter);
 

@@ -45,7 +45,7 @@ import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.Definitions;
 import com.puppycrawl.tools.checkstyle.XMLLogger;
-import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
+import com.puppycrawl.tools.checkstyle.api.AutomaticBean.OutputStreamOptions;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
@@ -171,7 +171,7 @@ public class TranslationCheckTest extends AbstractXmlTestSupport {
         final Checker checker = createChecker(checkConfig);
         checker.setBasedir(getPath(""));
         final ByteArrayOutputStream out = new ByteArrayOutputStream();
-        final XMLLogger logger = new XMLLogger(out, AutomaticBean.OutputStreamOptions.NONE);
+        final XMLLogger logger = new XMLLogger(out, OutputStreamOptions.NONE);
         checker.addListener(logger);
 
         final String defaultProps = getPath("InputTranslationCheckFireErrors.properties");

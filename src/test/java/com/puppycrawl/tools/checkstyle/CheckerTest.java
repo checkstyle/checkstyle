@@ -59,6 +59,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
+import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean.OutputStreamOptions;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
@@ -1670,9 +1671,9 @@ public class CheckerTest extends AbstractModuleTestSupport {
         private int fileStartedCount;
 
         public DefaultLoggerWithCounter(OutputStream infoStream,
-                                        OutputStreamOptions infoStreamOptions,
+                                        AutomaticBean.OutputStreamOptions infoStreamOptions,
                                         OutputStream errorStream,
-                                        OutputStreamOptions errorStreamOptions) {
+                                        AutomaticBean.OutputStreamOptions errorStreamOptions) {
             super(infoStream, infoStreamOptions, errorStream, errorStreamOptions);
         }
 

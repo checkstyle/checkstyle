@@ -79,8 +79,10 @@
     <message>call to addListener(com.puppycrawl.tools.checkstyle.api.AuditListener) not allowed on the given receiver.</message>
     <lineContent>addListener(counter);</lineContent>
     <details>
-      found   : @UnderInitialization(com.puppycrawl.tools.checkstyle.api.AutomaticBean.class) @NonNull Checker
-      required: @Initialized @NonNull Checker
+        found :
+        @UnderInitialization(com.puppycrawl.tools.checkstyle.api.AbstractAutomaticBean.class)
+        @NonNull Checker
+        required: @Initialized @NonNull Checker
     </details>
   </checkerFrameworkError>
 

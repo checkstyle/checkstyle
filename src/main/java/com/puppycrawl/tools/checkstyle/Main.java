@@ -531,7 +531,8 @@ public final class Main {
      * @param outputPath output location
      * @return output stream options
      */
-    private static AutomaticBean.OutputStreamOptions getOutputStreamOptions(Path outputPath) {
+    private static
+        AutomaticBean.OutputStreamOptions getOutputStreamOptions(Path outputPath) {
         final AutomaticBean.OutputStreamOptions result;
         if (outputPath == null) {
             result = AutomaticBean.OutputStreamOptions.NONE;

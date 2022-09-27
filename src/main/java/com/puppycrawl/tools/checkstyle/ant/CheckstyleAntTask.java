@@ -485,7 +485,8 @@ public class CheckstyleAntTask extends Task {
             if (formatters.isEmpty()) {
                 final OutputStream debug = new LogOutputStream(this, Project.MSG_DEBUG);
                 final OutputStream err = new LogOutputStream(this, Project.MSG_ERR);
-                listeners[0] = new DefaultLogger(debug, AutomaticBean.OutputStreamOptions.CLOSE,
+                listeners[0] = new DefaultLogger(debug,
+                        AutomaticBean.OutputStreamOptions.CLOSE,
                         err, AutomaticBean.OutputStreamOptions.CLOSE);
             }
             else {
@@ -733,7 +734,8 @@ public class CheckstyleAntTask extends Task {
             else {
                 final OutputStream infoStream = Files.newOutputStream(toFile.toPath());
                 defaultLogger =
-                        new DefaultLogger(infoStream, AutomaticBean.OutputStreamOptions.CLOSE,
+                        new DefaultLogger(infoStream,
+                                AutomaticBean.OutputStreamOptions.CLOSE,
                                 infoStream, AutomaticBean.OutputStreamOptions.NONE);
             }
             return defaultLogger;
