@@ -44,7 +44,7 @@ import org.apache.commons.logging.LogFactory;
 
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
-import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
+import com.puppycrawl.tools.checkstyle.api.AutomaticBean.OutputStreamOptions;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.RootModule;
@@ -498,7 +498,7 @@ public final class Main {
     private static AuditListener createListener(OutputFormat format, Path outputLocation)
             throws IOException {
         final OutputStream out = getOutputStream(outputLocation);
-        final AutomaticBean.OutputStreamOptions closeOutputStreamOption =
+        final OutputStreamOptions closeOutputStreamOption =
                 getOutputStreamOptions(outputLocation);
         return format.createListener(out, closeOutputStreamOption);
     }
@@ -526,18 +526,19 @@ public final class Main {
     }
 
     /**
-     * Create {@link AutomaticBean.OutputStreamOptions} for the given location.
+     * Create {@link OutputStreamOptions} for the given location.
      *
      * @param outputPath output location
      * @return output stream options
      */
-    private static AutomaticBean.OutputStreamOptions getOutputStreamOptions(Path outputPath) {
-        final AutomaticBean.OutputStreamOptions result;
+    private static
+        OutputStreamOptions getOutputStreamOptions(Path outputPath) {
+        final OutputStreamOptions result;
         if (outputPath == null) {
-            result = AutomaticBean.OutputStreamOptions.NONE;
+            result = OutputStreamOptions.NONE;
         }
         else {
-            result = AutomaticBean.OutputStreamOptions.CLOSE;
+            result = OutputStreamOptions.CLOSE;
         }
         return result;
     }
@@ -566,7 +567,7 @@ public final class Main {
          */
         public AuditListener createListener(
             OutputStream out,
-            AutomaticBean.OutputStreamOptions options) throws IOException {
+            OutputStreamOptions options) throws IOException {
             final AuditListener result;
             if (this == XML) {
                 result = new XMLLogger(out, options);

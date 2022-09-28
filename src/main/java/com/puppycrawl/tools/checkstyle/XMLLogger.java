@@ -30,9 +30,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+import com.puppycrawl.tools.checkstyle.api.AbstractAutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
-import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
+import com.puppycrawl.tools.checkstyle.api.AutomaticBean.OutputStreamOptions;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -45,7 +46,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 // -@cs[AbbreviationAsWordInName] We can not change it as,
 // check's name is part of API (used in configurations).
 public class XMLLogger
-    extends AutomaticBean
+    extends AbstractAutomaticBean
     implements AuditListener {
 
     /** Decimal radix. */
@@ -81,7 +82,8 @@ public class XMLLogger
      * @param outputStreamOptions if {@code CLOSE} stream should be closed in auditFinished()
      * @throws IllegalArgumentException if outputStreamOptions is null.
      */
-    public XMLLogger(OutputStream outputStream, OutputStreamOptions outputStreamOptions) {
+    public XMLLogger(OutputStream outputStream,
+                     OutputStreamOptions outputStreamOptions) {
         writer = new PrintWriter(new OutputStreamWriter(outputStream, StandardCharsets.UTF_8));
         if (outputStreamOptions == null) {
             throw new IllegalArgumentException("Parameter outputStreamOptions can not be null");
