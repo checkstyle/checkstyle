@@ -27,7 +27,7 @@ import com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder;
 /**
  * <p>
  * Filter {@code SuppressWarningsFilter} uses annotation
- * {@code SuppressWarnings} to suppress audit events.
+ * {@code @SuppressWarnings} to suppress audit events.
  * </p>
  * <p>
  * Rationale: Same as for {@code SuppressionCommentFilter}. In the contrary to it here,
