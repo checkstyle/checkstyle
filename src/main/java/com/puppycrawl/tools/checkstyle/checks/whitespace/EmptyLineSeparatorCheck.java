@@ -121,9 +121,9 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * ///////////////////////////////////////////////////
  * package com.whitespace; // violation, 'package' should be separated from previous line.
  * import java.io.Serializable; // violation, 'import' should be separated from previous line.
- * class Foo { // violation, 'CLASS_DEF' should be separated from previous line.
- *   public static final int FOO_CONST = 1;
- *   public void foo() {} // violation, 'METHOD_DEF' should be separated from previous line.
+ * class FirstClass { // violation, 'CLASS_DEF' should be separated from previous line.
+ *   int var1 = 1;
+ *   void method() {} // violation, 'METHOD_DEF' should be separated from previous line.
  * }
  * </pre>
  *
@@ -141,10 +141,10 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *
  * import java.io.Serializable;
  *
- * class Foo {
- *   public static final int FOO_CONST = 1;
+ * class FirstClass {
+ *   int var1 = 1;
  *
- *   public void foo() {}
+ *   void method() {}
  * }
  * </pre>
  * <p>
@@ -161,6 +161,16 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * &lt;/module&gt;
  * </pre>
  *
+ * <pre>
+ * class FirstClass {
+ *     int var1 = 1; // ok
+ *     int var2 = 2; // violation, 'VARIABLE_DEF' should be separated from previous line.
+ *
+ *     void method1() {} //ok
+ *     void method2() {} // violation, 'METHOD_DEF' should be separated from previous line.
+ * }
+ * </pre>
+ *
  * <p>
  * To allow no empty line between fields:
  * </p>
@@ -175,10 +185,10 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </p>
  *
  * <pre>
- * class Foo {
- *   int field1; // ok
- *   double field2; // ok
- *   long field3, field4 = 10L, field5; // ok
+ * class FirstClass {
+ *   int var1; // ok
+ *   double var2; // ok
+ *   long var3, var4 = 10L, var5; // ok
  * }
  * </pre>
  * <p>
@@ -198,12 +208,12 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * import java.io.Serializable;
  *
  *
- * class Foo {
- *   public static final int FOO_CONST = 1;
+ * class FirstClass {
+ *   int var1 = 1;
  *
  *
  *
- *   public void foo() {} // OK
+ *   void method() {} // OK
  * }
  * </pre>
  * <p>
@@ -226,12 +236,12 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * import java.io.Serializable; // violation, 'import' has more than 1 empty lines before.
  *
  *
- * class Foo { // violation, 'CLASS_DEF' has more than 1 empty lines before.
- *   public static final int FOO_CONST = 1;
+ * class FirstClass { // violation, 'CLASS_DEF' has more than 1 empty lines before.
+ *   int var1 = 1;
  *
  *
  *
- *   public void foo() {} // violation, 'METHOD_DEF' has more than 1 empty lines before.
+ *   void method() {} // violation, 'METHOD_DEF' has more than 1 empty lines before.
  * }
  * </pre>
  *
@@ -272,13 +282,12 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *
  * package com.puppycrawl.tools.checkstyle.whitespace;
  *
- * class Foo {
+ * class FirstClass {
  *
- *   public void foo() {
+ *   void classMethod() {
  *
  *
- *     System.out.println(1); // violation, There is more than 1 empty line one after another
- *                            // in previous line.
+ *     int var1; // violation, There is more than 1 empty line one after another in previous line.
  *   }
  * }
  * </pre>
@@ -295,11 +304,11 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <pre>
  * package com.puppycrawl.tools.checkstyle.whitespace;
  *
- * class Test {
- *     private int k;
+ * class FirstClass {
+ *     int var1;
  *
  *
- *     private static void foo() {} // violation, 'METHOD_DEF' has more than 1 empty lines before.
+ *     void method() {} // violation, more than one empty line before 'METHOD_DEF'
  *
  * }
  * </pre>
