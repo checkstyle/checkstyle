@@ -72,18 +72,28 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </li>
  * </ul>
  * <p>
- * The main limitation of this check is handling the case where an imported type
- * has the same name as a declaration, such as a member variable.
+ * The main limitation of this check is handling the cases where:
  * </p>
+ * <ul>
+ * <li>
+ * An imported type has the same name as a declaration, such as a member variable.
+ * </li>
+ * <li>
+ * There are two or more imports with the same name.
+ * </li>
+ * </ul>
  * <p>
- * For example, in the following case the import {@code java.awt.Component}
- * will not be flagged as unused:
+ * For example, in the following case all imports will not be flagged as unused:
  * </p>
  * <pre>
  * import java.awt.Component;
+ * import static AstTreeStringPrinter.printFileAst;
+ * import static DetailNodeTreeStringPrinter.printFileAst;
  * class FooBar {
  *   private Object Component; // a bad practice in my opinion
- *   ...
+ *   void method() {
+ *       printFileAst(file); // two imports with the same name
+ *   }
  * }
  * </pre>
  * <ul>
