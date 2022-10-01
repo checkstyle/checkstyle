@@ -6,14 +6,20 @@ import groovy.util.slurpersupport.GPathResult
 import groovy.util.slurpersupport.NodeChildren
 import groovy.xml.XmlUtil
 
-@Field final static String SEPARATOR = System.getProperty("file.separator")
+@Field static final String USAGE_STRING = "Usage groovy .${File.separator}.ci${File.separator}" +
+        "pitest-survival-check-xml.groovy [profile] [-g | --generate-suppression]\n" +
+        "To see the full list of supported profiles run\ngroovy .${File.separator}" +
+        ".ci${File.separator} pitest-survival-check-xml.groovy --list\n"
 
-final int exitCode
+int exitCode = 1
 if (args.length == 2) {
     exitCode = parseArgumentAndExecute(args[0], args[1])
 }
-else {
+else if (args.length == 1) {
     exitCode = parseArgumentAndExecute(args[0], null)
+}
+else {
+    throw new IllegalArgumentException(USAGE_STRING)
 }
 System.exit(exitCode)
 
@@ -25,17 +31,10 @@ System.exit(exitCode)
  */
 private int parseArgumentAndExecute(String argument, String flag) {
     final Set<String> profiles = getPitestProfiles()
-    final String scriptPath = ".${SEPARATOR}.ci${SEPARATOR}pitest-survival-check-xml.groovy"
-    final String usageString = """
-        Usage groovy ${scriptPath} [profile] [-g | --generate-suppression]
-        To see the full list of supported profiles run
-        'groovy ${scriptPath} --list'
-        """.stripIndent()
-
     final int exitCode
     if (profiles.contains(argument)) {
         if (flag != null && flag != "-g" && flag != "--generate-suppression") {
-            final String exceptionMessage = "\nUnexpected flag: ${flag}" + usageString
+            final String exceptionMessage = "\nUnexpected flag: '${flag}' " + USAGE_STRING
             throw new IllegalArgumentException(exceptionMessage)
         }
         exitCode = checkPitestReport(argument, flag)
@@ -47,7 +46,7 @@ private int parseArgumentAndExecute(String argument, String flag) {
         exitCode = 0
     }
     else {
-        final String exceptionMessage = "\nUnexpected argument: ${argument}" + usageString
+        final String exceptionMessage = "\nUnexpected argument: '${argument}' " + USAGE_STRING
         throw new IllegalArgumentException(exceptionMessage)
     }
     return exitCode
@@ -59,7 +58,7 @@ private int parseArgumentAndExecute(String argument, String flag) {
  * @return A set of all available pitest profiles
  */
 private static Set<String> getPitestProfiles() {
-    final GPathResult mainNode = new XmlSlurper().parse(".${SEPARATOR}pom.xml")
+    final GPathResult mainNode = new XmlSlurper().parse(".${File.separator}pom.xml")
     final NodeChildren ids = mainNode.profiles.profile.id as NodeChildren
     final Set<String> profiles = new HashSet<>()
     ids.each { node ->
@@ -83,10 +82,11 @@ private static Set<String> getPitestProfiles() {
 private static int checkPitestReport(String profile, String flag) {
     final XmlParser xmlParser = new XmlParser()
     File mutationReportFile = null
-    final String suppressedMutationFileUri =
-            ".${SEPARATOR}.ci${SEPARATOR}pitest-suppressions${SEPARATOR}${profile}-suppressions.xml"
+    final String suppressedMutationFileUri = ".${File.separator}.ci${File.separator}" +
+            "pitest-suppressions${File.separator}${profile}-suppressions.xml"
 
-    final File pitReports = new File(".${SEPARATOR}target${SEPARATOR}pit-reports")
+    final File pitReports =
+            new File(".${File.separator}target${File.separator}pit-reports")
 
     if (!pitReports.exists()) {
         throw new IllegalStateException(
@@ -202,11 +202,12 @@ private static Mutation getMutation(Node mutationNode) {
     }
     if (lineContent == null) {
         final String mutationFileName = mutationClassPackage + sourceFile
-        final String startingPath = ".${SEPARATOR}src${SEPARATOR}main${SEPARATOR}java${SEPARATOR}"
+        final String startingPath =
+                ".${File.separator}src${File.separator}main${File.separator}java${File.separator}"
         final String javaExtension = ".java"
         final String mutationFilePath = startingPath + mutationFileName
                 .substring(0, mutationFileName.length() - javaExtension.length())
-                .replace(".", SEPARATOR) + javaExtension
+                .replace(".", File.separator) + javaExtension
 
         final File file = new File(mutationFilePath)
         lineContent = XmlUtil.escapeXml(file.readLines().get(lineNumber - 1).trim())

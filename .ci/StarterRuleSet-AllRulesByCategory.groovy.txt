@@ -120,7 +120,12 @@ ruleset {
     EmptyMethodInAbstractClass
     FinalClassWithProtectedMember
     ImplementationAsType
-    Instanceof
+
+    // Using instanceof in equals method is alright
+    Instanceof {
+        ignoreTypeNames = 'CheckerFrameworkError'
+    }
+
     LocaleSetDefault
     NestedForLoop
     PrivateFieldCouldBeFinal
@@ -345,7 +350,7 @@ ruleset {
     PropertyName
     VariableName {
         finalRegex = null
-        ignoreVariableNames = 'SEPARATOR,PROFILES,USAGE_STRING'
+        ignoreVariableNames = 'PROFILES,USAGE_STRING'
     }
 
     // rulesets/security.xml
@@ -359,9 +364,6 @@ ruleset {
     NonFinalSubclassOfSensitiveInterface
     ObjectFinalize
     PublicFinalizeMethod
-    SystemExit {
-        doNotApplyToFileNames = 'pitest-survival-check-xml.groovy,error-prone-check.groovy'
-    }
     UnsafeArrayDeclaration
 
     // rulesets/serialization.xml
