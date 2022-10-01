@@ -10,6 +10,143 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 10.3.4">
+      <div class="releaseDate">25.09.2022</div>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            ImportOrder: tokens property should be not customizable,
+            move STATIC_IMPORT to required tokens
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/12145">#12145</a>
+          </li>
+          <li>
+            IllegalInstantiation: make all tokens should be required, so no need
+            to use custom values in tokens property.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/3955">#3955</a>
+          </li>
+          <li>
+            VariableDeclarationUsageDistance throws NPE on empty switch statements.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/11973">#11973</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Expand ArchUnit Testing.
+            Author: Vyom-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/12099">#12099</a>
+          </li>
+          <li>
+            Enable Checker Framework.
+            Author: Vyom-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/12164">#12164</a>
+          </li>
+          <li>
+            pitest-survival-check-xml.groovy: ArrayIndexOutOfBoundsException.
+            Author: Vyom-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/12132">#12132</a>
+          </li>
+          <li>
+            Add method to ignore unstable checker framework violations.
+            Author: Vyom-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/12210">#12210</a>
+          </li>
+          <li>
+            Add badges for new GitHub actions.
+            Author: Vyom-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/12218">#12218</a>
+          </li>
+          <li>
+            Checkstyle should use `dependencyConvergence` maven-enforcer rule.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/12195">#12195</a>
+          </li>
+          <li>
+            failure to publish github release notes &#39; R: Publish GitHub Page&#39;.
+            Author: Roman Ivanov, Rahul Khinchi
+            <a href="https://github.com/checkstyle/checkstyle/issues/12169">#12169</a>
+          </li>
+          <li>
+            Disable execution of GitHub actions with cron in fork repositories.
+            Author: Rahul Khinchi
+            <a href="https://github.com/checkstyle/checkstyle/issues/12175">#12175</a>
+          </li>
+          <li>
+            Use OS specific command and correct errorExtractingPattern.
+            Author: Vyom-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/12154">#12154</a>
+          </li>
+          <li>
+            updates in Github actions.
+            Author: Rahul Khinchi
+            <a href="https://github.com/checkstyle/checkstyle/issues/12165">#12165</a>
+          </li>
+          <li>
+            execution of &#39;R: Update github.io&#39; with &#39;10.3.3&#39; faililng.
+            Author: Rahul Khinchi
+            <a href="https://github.com/checkstyle/checkstyle/issues/12160">#12160</a>
+          </li>
+          <li>
+            Disable test execution during release.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/11912">#11912</a>
+          </li>
+          <li>
+            no-error-pmd execution is failing if version in not changed to 10.4.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/12129">#12129</a>
+          </li>
+          <li>
+            doc: add &#39;I have read check documentation...&#39; to feature_request.md.
+            Author: Nick Mancuso
+          </li>
+          <li>
+            pitest-survival-check-xml.groovy: IllegalArgumentException: character
+            to be escaped is missing.
+            Author: Vyom-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/12133">#12133</a>
+          </li>
+          <li>
+            Github action &quot;GitHub Milestone and Upload Jar&quot; should do all
+            github actionvities from release.sh.
+            Author: Rahul Khinchi
+            <a href="https://github.com/checkstyle/checkstyle/issues/12113">#12113</a>
+          </li>
+          <li>
+            Github Action &quot;Update github.io&quot;.
+            Author: Rahul Khinchi
+            <a href="https://github.com/checkstyle/checkstyle/issues/12115">#12115</a>
+          </li>
+          <li>
+            update publish Twit action to use secrets.
+            Author: Rahul Khinchi
+            <a href="https://github.com/checkstyle/checkstyle/issues/12116">#12116</a>
+          </li>
+          <li>
+            Minor changes in in shell scripts.
+            Author: Rahul Khinchi
+            <a href="https://github.com/checkstyle/checkstyle/issues/12124">#12124</a>
+          </li>
+          <li>
+            Upgrade Maven required Version for Contributors.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/12111">#12111</a>
+          </li>
+          <li>
+            Github action &quot;Release prepare&quot; should validate presence of xml release notes.
+            Author: Rahul Khinchi
+            <a href="https://github.com/checkstyle/checkstyle/issues/12126">#12126</a>
+          </li>
+          <li>
+            rename update-sources.sh .
+            Author: Rahul Khinchi
+            <a href="https://github.com/checkstyle/checkstyle/issues/12120">#12120</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 10.3.3">
       <div class="releaseDate">28.08.2022</div>
       <p>Bug fixes:</p>
@@ -40,22 +177,22 @@
         <ul>
           <li>
             Github action &quot;Publish release notes outside&quot;.
-            Author: github-actions[bot]
+            Author: Rahul Khinchi
             <a href="https://github.com/checkstyle/checkstyle/issues/12082">#12082</a>
           </li>
           <li>
             Github action to update sources with release notes.
-            Author: github-actions[bot]
+            Author: Rahul Khinchi
             <a href="https://github.com/checkstyle/checkstyle/issues/12077">#12077</a>
           </li>
           <li>
             Github action &quot;Update Github&quot;.
-            Author: github-actions[bot]
+            Author: Rahul Khinchi
             <a href="https://github.com/checkstyle/checkstyle/issues/12080">#12080</a>
           </li>
           <li>
             Github action &quot;Release prepare&quot;.
-            Author: github-actions[bot]
+            Author: Rahul Khinchi
             <a href="https://github.com/checkstyle/checkstyle/issues/12078">#12078</a>
           </li>
           <li>
@@ -66,13 +203,13 @@
           <li>
             Reuse Plain text release notes from releasenotes-builder in Github
             release page.
-            Author: github-actions[bot]
+            Author: Rahul Khinchi
             <a href="https://github.com/checkstyle/checkstyle/issues/11901">#11901</a>
           </li>
           <li>
             update all shell scripts for release automation to check that
             parameter is definied.
-            Author: github-actions[bot]
+            Author: Rahul Khinchi
             <a href="https://github.com/checkstyle/checkstyle/issues/12083">#12083</a>
           </li>
           <li>
@@ -83,12 +220,12 @@
           <li>
             tweet-releasenotes.sh should be able to generate release notes for
             any release of past .
-            Author: github-actions[bot]
+            Author: Rahul Khinchi
             <a href="https://github.com/checkstyle/checkstyle/issues/12011">#12011</a>
           </li>
           <li>
             Enhancements for bump version action.
-            Author: github-actions[bot]
+            Author: Rahul Khinchi
             <a href="https://github.com/checkstyle/checkstyle/issues/12058">#12058</a>
           </li>
           <li>

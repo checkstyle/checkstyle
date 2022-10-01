@@ -12,7 +12,7 @@
 
   <groupId>com.puppycrawl.tools</groupId>
   <artifactId>checkstyle</artifactId>
-  <version>10.3.4-SNAPSHOT</version>
+  <version>10.3.5-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>checkstyle</name>
@@ -206,13 +206,13 @@
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <surefire.options />
     <projectVersion>${project.version}</projectVersion>
-    <antlr4.version>4.10.1</antlr4.version>
+    <antlr4.version>4.11.1</antlr4.version>
     <maven.site.plugin.version>3.12.1</maven.site.plugin.version>
     <maven.spotbugs.plugin.version>4.7.1.1</maven.spotbugs.plugin.version>
     <maven.pmd.plugin.version>3.19.0</maven.pmd.plugin.version>
-    <pmd.version>6.49.0</pmd.version>
+    <pmd.version>6.50.0</pmd.version>
     <maven.jacoco.plugin.version>0.8.8</maven.jacoco.plugin.version>
-    <mockito.version>4.7.0</mockito.version>
+    <mockito.version>4.8.0</mockito.version>
     <saxon.version>11.4</saxon.version>
     <maven.checkstyle.plugin.version>3.2.0</maven.checkstyle.plugin.version>
     <maven.sevntu.checkstyle.plugin.version>1.42.0</maven.sevntu.checkstyle.plugin.version>
@@ -220,19 +220,21 @@
       10.0
     </maven.sevntu-checkstyle-check.checkstyle.version>
     <maven.versions.plugin.version>2.12.0</maven.versions.plugin.version>
+    <maven.compiler.plugin.version>3.10.1</maven.compiler.plugin.version>
     <java.version>11</java.version>
     <pitest.plugin.version>1.9.5</pitest.plugin.version>
     <pitest.plugin.timeout.factor>10</pitest.plugin.timeout.factor>
     <pitest.plugin.output.formats>HTML,XML</pitest.plugin.output.formats>
     <pitest.plugin.timeout.constant>50000</pitest.plugin.timeout.constant>
     <pitest.plugin.threads>4</pitest.plugin.threads>
-    <pitest.junit5.plugin.version>1.0.0</pitest.junit5.plugin.version>
-    <pitest.accelerator.junit5.plugin.version>1.0.1</pitest.accelerator.junit5.plugin.version>
+    <pitest.junit5.plugin.version>1.1.0</pitest.junit5.plugin.version>
+    <pitest.accelerator.junit5.plugin.version>1.0.2</pitest.accelerator.junit5.plugin.version>
     <sonar.test.exclusions>**/test/resources/**/*,**/it/resources/**/*</sonar.test.exclusions>
-    <junit.version>5.9.0</junit.version>
+    <junit.version>5.9.1</junit.version>
     <forbiddenapis.version>3.3</forbiddenapis.version>
     <json-schema-validator.version>1.2.0</json-schema-validator.version>
     <error-prone.version>2.15.0</error-prone.version>
+    <checkerframework.version>3.25.0</checkerframework.version>
   </properties>
 
   <dependencies>
@@ -255,6 +257,12 @@
       <groupId>com.google.guava</groupId>
       <artifactId>guava</artifactId>
       <version>31.1-jre</version>
+      <exclusions>
+        <exclusion>
+          <groupId>org.checkerframework</groupId>
+          <artifactId>checker-qual</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>org.apache.ant</groupId>
@@ -346,13 +354,13 @@
     <dependency>
       <groupId>org.eclipse.jgit</groupId>
       <artifactId>org.eclipse.jgit</artifactId>
-      <version>6.2.0.202206071550-r</version>
+      <version>6.3.0.202209071007-r</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-simple</artifactId>
-      <version>2.0.0</version>
+      <version>2.0.3</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -381,7 +389,16 @@
           <groupId>xml-apis</groupId>
           <artifactId>xml-apis</artifactId>
         </exclusion>
+        <exclusion>
+          <groupId>org.slf4j</groupId>
+          <artifactId>slf4j-api</artifactId>
+        </exclusion>
       </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.checkerframework</groupId>
+      <artifactId>checker-qual</artifactId>
+      <version>${checkerframework.version}</version>
     </dependency>
   </dependencies>
 
@@ -433,7 +450,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-shade-plugin</artifactId>
-          <version>3.3.0</version>
+          <version>3.4.0</version>
         </plugin>
         <plugin>
           <groupId>org.pitest</groupId>
@@ -744,7 +761,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.10.1</version>
+        <version>${maven.compiler.plugin.version}</version>
         <configuration>
           <source>${java.version}</source>
           <target>${java.version}</target>
@@ -1309,6 +1326,7 @@
                 <requireMavenVersion>
                   <version>3.3.9</version>
                 </requireMavenVersion>
+                <dependencyConvergence />
                 <!-- we can not use this as it require same version for all dependencies -->
                 <!--
                 <enforceBytecodeVersion>
@@ -1499,7 +1517,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jar-plugin</artifactId>
-        <version>3.2.2</version>
+        <version>3.3.0</version>
         <configuration>
           <archive>
             <manifest>
@@ -1623,6 +1641,7 @@
                 <exclude>markdownlint.rb</exclude>
                 <exclude>signatures.txt</exclude>
                 <exclude>signatures-test.txt</exclude>
+                <exclude>archunit-store/**</exclude>
               </excludes>
             </validationSet>
             <validationSet>
@@ -2032,7 +2051,7 @@
             <excludedLink>http://mojo.codehaus.org/taglist-maven-plugin</excludedLink>
             <!-- Excluded due to Maven ANTLR4 Plugin's issue #978:
                  https://github.com/antlr/antlr4/issues/978 -->
-            <excludedLink>http://www.antlr.org/antlr4-maven-plugin</excludedLink>
+            <excludedLink>https://www.antlr.org/antlr4-maven-plugin/</excludedLink>
             <!-- Excluded due to Maven Release Plugin's issue #919:
                  https://issues.apache.org/jira/browse/MRELEASE-919 -->
             <excludedLink>https://maven.apache.org/plugins/maven-release-plugin/</excludedLink>
@@ -2284,7 +2303,7 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-compiler-plugin</artifactId>
-            <version>3.10.1</version>
+            <version>${maven.compiler.plugin.version}</version>
             <executions>
               <!-- Skip the default-compile execution as we don't want to execute the compile goal twice -->
               <execution>
@@ -2336,7 +2355,7 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-compiler-plugin</artifactId>
-            <version>3.10.1</version>
+            <version>${maven.compiler.plugin.version}</version>
             <executions>
               <!-- Skip the default-testCompile execution as we don't want to execute the testCompile goal twice -->
               <execution>
@@ -2381,6 +2400,477 @@
         </plugins>
       </build>
     </profile>
+
+    <!-- Start Checker Framework profiles -->
+    <profile>
+      <id>checker-framework-nullness-optional-interning</id>
+      <build>
+        <plugins>
+          <plugin>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>${maven.compiler.plugin.version}</version>
+            <configuration>
+              <!-- Must fork or else JVM arguments are ignored. -->
+              <fork>true</fork>
+              <failOnError>false</failOnError>
+              <meminitial>1024m</meminitial>
+              <maxmem>4048m</maxmem>
+              <compilerArguments>
+                <Xmaxerrs>10000</Xmaxerrs>
+                <Xmaxwarns>10000</Xmaxwarns>
+              </compilerArguments>
+              <annotationProcessorPaths>
+                <path>
+                  <groupId>org.checkerframework</groupId>
+                  <artifactId>checker</artifactId>
+                  <version>${checkerframework.version}</version>
+                </path>
+              </annotationProcessorPaths>
+              <annotationProcessors>
+                <annotationProcessor>org.checkerframework.checker.nullness.NullnessChecker</annotationProcessor>
+                <annotationProcessor>org.checkerframework.checker.optional.OptionalChecker</annotationProcessor>
+                <annotationProcessor>org.checkerframework.checker.interning.InterningChecker</annotationProcessor>
+              </annotationProcessors>
+              <compilerArgs combine.children="append">
+                <!-- -Awarns turns type-checking errors into warnings. -->
+                <arg>-Awarns</arg>
+                <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED</arg>
+                <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.code=ALL-UNNAMED</arg>
+                <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.file=ALL-UNNAMED</arg>
+                <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.main=ALL-UNNAMED</arg>
+                <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.model=ALL-UNNAMED</arg>
+                <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.processing=ALL-UNNAMED</arg>
+                <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.tree=ALL-UNNAMED</arg>
+                <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED</arg>
+                <arg>-J--add-opens=jdk.compiler/com.sun.tools.javac.comp=ALL-UNNAMED</arg>
+              </compilerArgs>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+      <properties>
+        <!-- Needed for animal-sniffer-maven-plugin version 1.19 (version 1.20 is fixed). -->
+        <animal.sniffer.skip>true</animal.sniffer.skip>
+      </properties>
+      <dependencies>
+        <dependency>
+          <groupId>org.checkerframework</groupId>
+          <artifactId>checker</artifactId>
+          <version>3.25.0</version>
+        </dependency>
+      </dependencies>
+    </profile>
+
+    <profile>
+      <id>checker-framework-methods-resource-fenum</id>
+      <build>
+        <plugins>
+          <plugin>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>${maven.compiler.plugin.version}</version>
+            <configuration>
+              <!-- Must fork or else JVM arguments are ignored. -->
+              <fork>true</fork>
+              <failOnError>false</failOnError>
+              <meminitial>1024m</meminitial>
+              <maxmem>4048m</maxmem>
+              <compilerArguments>
+                <Xmaxerrs>10000</Xmaxerrs>
+                <Xmaxwarns>10000</Xmaxwarns>
+              </compilerArguments>
+              <annotationProcessorPaths>
+                <path>
+                  <groupId>org.checkerframework</groupId>
+                  <artifactId>checker</artifactId>
+                  <version>${checkerframework.version}</version>
+                </path>
+              </annotationProcessorPaths>
+              <annotationProcessors>
+                <annotationProcessor>org.checkerframework.checker.calledmethods.CalledMethodsChecker</annotationProcessor>
+                <annotationProcessor>org.checkerframework.checker.resourceleak.ResourceLeakChecker</annotationProcessor>
+                <annotationProcessor>org.checkerframework.checker.fenum.FenumChecker</annotationProcessor>
+              </annotationProcessors>
+              <compilerArgs combine.children="append">
+                <!-- -Awarns turns type-checking errors into warnings. -->
+                <arg>-Awarns</arg>
+                <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED</arg>
+                <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.code=ALL-UNNAMED</arg>
+                <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.file=ALL-UNNAMED</arg>
+                <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.main=ALL-UNNAMED</arg>
+                <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.model=ALL-UNNAMED</arg>
+                <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.processing=ALL-UNNAMED</arg>
+                <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.tree=ALL-UNNAMED</arg>
+                <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED</arg>
+                <arg>-J--add-opens=jdk.compiler/com.sun.tools.javac.comp=ALL-UNNAMED</arg>
+              </compilerArgs>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+      <properties>
+        <!-- Needed for animal-sniffer-maven-plugin version 1.19 (version 1.20 is fixed). -->
+        <animal.sniffer.skip>true</animal.sniffer.skip>
+      </properties>
+      <dependencies>
+        <dependency>
+          <groupId>org.checkerframework</groupId>
+          <artifactId>checker</artifactId>
+          <version>3.25.0</version>
+        </dependency>
+      </dependencies>
+    </profile>
+
+    <profile>
+      <id>checker-framework-lock-tainting</id>
+      <build>
+        <plugins>
+          <plugin>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>${maven.compiler.plugin.version}</version>
+            <configuration>
+              <!-- Must fork or else JVM arguments are ignored. -->
+              <fork>true</fork>
+              <failOnError>false</failOnError>
+              <meminitial>1024m</meminitial>
+              <maxmem>4048m</maxmem>
+              <compilerArguments>
+                <Xmaxerrs>10000</Xmaxerrs>
+                <Xmaxwarns>10000</Xmaxwarns>
+              </compilerArguments>
+              <annotationProcessorPaths>
+                <path>
+                  <groupId>org.checkerframework</groupId>
+                  <artifactId>checker</artifactId>
+                  <version>${checkerframework.version}</version>
+                </path>
+              </annotationProcessorPaths>
+              <annotationProcessors>
+                <annotationProcessor>org.checkerframework.checker.lock.LockChecker</annotationProcessor>
+                <annotationProcessor>org.checkerframework.checker.tainting.TaintingChecker</annotationProcessor>
+              </annotationProcessors>
+              <compilerArgs combine.children="append">
+                <!-- -Awarns turns type-checking errors into warnings. -->
+                <arg>-Awarns</arg>
+                <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED</arg>
+                <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.code=ALL-UNNAMED</arg>
+                <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.file=ALL-UNNAMED</arg>
+                <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.main=ALL-UNNAMED</arg>
+                <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.model=ALL-UNNAMED</arg>
+                <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.processing=ALL-UNNAMED</arg>
+                <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.tree=ALL-UNNAMED</arg>
+                <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED</arg>
+                <arg>-J--add-opens=jdk.compiler/com.sun.tools.javac.comp=ALL-UNNAMED</arg>
+              </compilerArgs>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+      <properties>
+        <!-- Needed for animal-sniffer-maven-plugin version 1.19 (version 1.20 is fixed). -->
+        <animal.sniffer.skip>true</animal.sniffer.skip>
+      </properties>
+      <dependencies>
+        <dependency>
+          <groupId>org.checkerframework</groupId>
+          <artifactId>checker</artifactId>
+          <version>3.25.0</version>
+        </dependency>
+      </dependencies>
+    </profile>
+
+    <profile>
+      <id>checker-framework-index</id>
+      <build>
+        <plugins>
+          <plugin>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>${maven.compiler.plugin.version}</version>
+            <configuration>
+              <!-- Must fork or else JVM arguments are ignored. -->
+              <fork>true</fork>
+              <failOnError>false</failOnError>
+              <meminitial>1024m</meminitial>
+              <maxmem>4048m</maxmem>
+              <compilerArguments>
+                <Xmaxerrs>10000</Xmaxerrs>
+                <Xmaxwarns>10000</Xmaxwarns>
+              </compilerArguments>
+              <annotationProcessorPaths>
+                <path>
+                  <groupId>org.checkerframework</groupId>
+                  <artifactId>checker</artifactId>
+                  <version>${checkerframework.version}</version>
+                </path>
+              </annotationProcessorPaths>
+              <annotationProcessors>
+                <annotationProcessor>org.checkerframework.checker.index.IndexChecker</annotationProcessor>
+              </annotationProcessors>
+              <compilerArgs combine.children="append">
+                <!-- -Awarns turns type-checking errors into warnings. -->
+                <arg>-Awarns</arg>
+                <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED</arg>
+                <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.code=ALL-UNNAMED</arg>
+                <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.file=ALL-UNNAMED</arg>
+                <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.main=ALL-UNNAMED</arg>
+                <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.model=ALL-UNNAMED</arg>
+                <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.processing=ALL-UNNAMED</arg>
+                <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.tree=ALL-UNNAMED</arg>
+                <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED</arg>
+                <arg>-J--add-opens=jdk.compiler/com.sun.tools.javac.comp=ALL-UNNAMED</arg>
+              </compilerArgs>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+      <properties>
+        <!-- Needed for animal-sniffer-maven-plugin version 1.19 (version 1.20 is fixed). -->
+        <animal.sniffer.skip>true</animal.sniffer.skip>
+      </properties>
+      <dependencies>
+        <dependency>
+          <groupId>org.checkerframework</groupId>
+          <artifactId>checker</artifactId>
+          <version>3.25.0</version>
+        </dependency>
+      </dependencies>
+    </profile>
+
+    <profile>
+      <id>checker-framework-formatter</id>
+      <build>
+        <plugins>
+          <plugin>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>${maven.compiler.plugin.version}</version>
+            <configuration>
+              <!-- Must fork or else JVM arguments are ignored. -->
+              <fork>true</fork>
+              <failOnError>false</failOnError>
+              <meminitial>1024m</meminitial>
+              <maxmem>4048m</maxmem>
+              <compilerArguments>
+                <Xmaxerrs>10000</Xmaxerrs>
+                <Xmaxwarns>10000</Xmaxwarns>
+              </compilerArguments>
+              <annotationProcessorPaths>
+                <path>
+                  <groupId>org.checkerframework</groupId>
+                  <artifactId>checker</artifactId>
+                  <version>${checkerframework.version}</version>
+                </path>
+              </annotationProcessorPaths>
+              <annotationProcessors>
+                <annotationProcessor>org.checkerframework.checker.formatter.FormatterChecker</annotationProcessor>
+                <annotationProcessor>org.checkerframework.checker.i18nformatter.I18nFormatterChecker</annotationProcessor>
+              </annotationProcessors>
+              <compilerArgs combine.children="append">
+                <!-- -Awarns turns type-checking errors into warnings. -->
+                <arg>-Awarns</arg>
+                <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED</arg>
+                <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.code=ALL-UNNAMED</arg>
+                <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.file=ALL-UNNAMED</arg>
+                <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.main=ALL-UNNAMED</arg>
+                <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.model=ALL-UNNAMED</arg>
+                <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.processing=ALL-UNNAMED</arg>
+                <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.tree=ALL-UNNAMED</arg>
+                <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED</arg>
+                <arg>-J--add-opens=jdk.compiler/com.sun.tools.javac.comp=ALL-UNNAMED</arg>
+              </compilerArgs>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+      <properties>
+        <!-- Needed for animal-sniffer-maven-plugin version 1.19 (version 1.20 is fixed). -->
+        <animal.sniffer.skip>true</animal.sniffer.skip>
+      </properties>
+      <dependencies>
+        <dependency>
+          <groupId>org.checkerframework</groupId>
+          <artifactId>checker</artifactId>
+          <version>3.25.0</version>
+        </dependency>
+      </dependencies>
+    </profile>
+
+    <profile>
+      <id>checker-framework-signature-gui-units-init</id>
+      <build>
+        <plugins>
+          <plugin>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>${maven.compiler.plugin.version}</version>
+            <configuration>
+              <!-- Must fork or else JVM arguments are ignored. -->
+              <fork>true</fork>
+              <failOnError>false</failOnError>
+              <meminitial>1024m</meminitial>
+              <maxmem>4048m</maxmem>
+              <compilerArguments>
+                <Xmaxerrs>10000</Xmaxerrs>
+                <Xmaxwarns>10000</Xmaxwarns>
+              </compilerArguments>
+              <annotationProcessorPaths>
+                <path>
+                  <groupId>org.checkerframework</groupId>
+                  <artifactId>checker</artifactId>
+                  <version>${checkerframework.version}</version>
+                </path>
+              </annotationProcessorPaths>
+              <annotationProcessors>
+                <annotationProcessor>org.checkerframework.checker.signature.SignatureChecker</annotationProcessor>
+                <annotationProcessor>org.checkerframework.checker.guieffect.GuiEffectChecker</annotationProcessor>
+                <annotationProcessor>org.checkerframework.checker.units.UnitsChecker</annotationProcessor>
+                <annotationProcessor>org.checkerframework.common.initializedfields.InitializedFieldsChecker</annotationProcessor>
+              </annotationProcessors>
+              <compilerArgs combine.children="append">
+                <!-- -Awarns turns type-checking errors into warnings. -->
+                <arg>-Awarns</arg>
+                <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED</arg>
+                <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.code=ALL-UNNAMED</arg>
+                <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.file=ALL-UNNAMED</arg>
+                <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.main=ALL-UNNAMED</arg>
+                <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.model=ALL-UNNAMED</arg>
+                <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.processing=ALL-UNNAMED</arg>
+                <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.tree=ALL-UNNAMED</arg>
+                <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED</arg>
+                <arg>-J--add-opens=jdk.compiler/com.sun.tools.javac.comp=ALL-UNNAMED</arg>
+              </compilerArgs>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+      <properties>
+        <!-- Needed for animal-sniffer-maven-plugin version 1.19 (version 1.20 is fixed). -->
+        <animal.sniffer.skip>true</animal.sniffer.skip>
+      </properties>
+      <dependencies>
+        <dependency>
+          <groupId>org.checkerframework</groupId>
+          <artifactId>checker</artifactId>
+          <version>3.25.0</version>
+        </dependency>
+      </dependencies>
+    </profile>
+
+    <profile>
+      <id>checker-framework-regex-property-key-compiler-message</id>
+      <build>
+        <plugins>
+          <plugin>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>${maven.compiler.plugin.version}</version>
+            <configuration>
+              <!-- Must fork or else JVM arguments are ignored. -->
+              <fork>true</fork>
+              <failOnError>false</failOnError>
+              <meminitial>1024m</meminitial>
+              <maxmem>4048m</maxmem>
+              <compilerArguments>
+                <Xmaxerrs>10000</Xmaxerrs>
+                <Xmaxwarns>10000</Xmaxwarns>
+              </compilerArguments>
+              <annotationProcessorPaths>
+                <path>
+                  <groupId>org.checkerframework</groupId>
+                  <artifactId>checker</artifactId>
+                  <version>${checkerframework.version}</version>
+                </path>
+              </annotationProcessorPaths>
+              <annotationProcessors>
+                <annotationProcessor>org.checkerframework.checker.regex.RegexChecker</annotationProcessor>
+                <annotationProcessor>org.checkerframework.checker.propkey.PropertyKeyChecker</annotationProcessor>
+                <annotationProcessor>org.checkerframework.checker.compilermsgs.CompilerMessagesChecker</annotationProcessor>
+              </annotationProcessors>
+              <compilerArgs combine.children="append">
+                <!-- -Awarns turns type-checking errors into warnings. -->
+                <arg>-Awarns</arg>
+                <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED</arg>
+                <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.code=ALL-UNNAMED</arg>
+                <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.file=ALL-UNNAMED</arg>
+                <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.main=ALL-UNNAMED</arg>
+                <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.model=ALL-UNNAMED</arg>
+                <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.processing=ALL-UNNAMED</arg>
+                <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.tree=ALL-UNNAMED</arg>
+                <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED</arg>
+                <arg>-J--add-opens=jdk.compiler/com.sun.tools.javac.comp=ALL-UNNAMED</arg>
+              </compilerArgs>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+      <properties>
+        <!-- Needed for animal-sniffer-maven-plugin version 1.19 (version 1.20 is fixed). -->
+        <animal.sniffer.skip>true</animal.sniffer.skip>
+      </properties>
+      <dependencies>
+        <dependency>
+          <groupId>org.checkerframework</groupId>
+          <artifactId>checker</artifactId>
+          <version>3.25.0</version>
+        </dependency>
+      </dependencies>
+    </profile>
+
+    <profile>
+      <id>checker-framework-purity-value-returns</id>
+      <build>
+        <plugins>
+          <plugin>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>${maven.compiler.plugin.version}</version>
+            <configuration>
+              <!-- Must fork or else JVM arguments are ignored. -->
+              <fork>true</fork>
+              <failOnError>false</failOnError>
+              <meminitial>1024m</meminitial>
+              <maxmem>4048m</maxmem>
+              <compilerArguments>
+                <Xmaxerrs>10000</Xmaxerrs>
+                <Xmaxwarns>10000</Xmaxwarns>
+              </compilerArguments>
+              <annotationProcessorPaths>
+                <path>
+                  <groupId>org.checkerframework</groupId>
+                  <artifactId>checker</artifactId>
+                  <version>${checkerframework.version}</version>
+                </path>
+              </annotationProcessorPaths>
+              <annotationProcessors>
+                <annotationProcessor>org.checkerframework.framework.util.PurityChecker</annotationProcessor>
+                <annotationProcessor>org.checkerframework.common.value.ValueChecker</annotationProcessor>
+                <annotationProcessor>org.checkerframework.common.returnsreceiver.ReturnsReceiverChecker</annotationProcessor>
+              </annotationProcessors>
+              <compilerArgs combine.children="append">
+                <!-- -Awarns turns type-checking errors into warnings. -->
+                <arg>-Awarns</arg>
+                <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED</arg>
+                <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.code=ALL-UNNAMED</arg>
+                <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.file=ALL-UNNAMED</arg>
+                <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.main=ALL-UNNAMED</arg>
+                <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.model=ALL-UNNAMED</arg>
+                <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.processing=ALL-UNNAMED</arg>
+                <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.tree=ALL-UNNAMED</arg>
+                <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED</arg>
+                <arg>-J--add-opens=jdk.compiler/com.sun.tools.javac.comp=ALL-UNNAMED</arg>
+              </compilerArgs>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+      <properties>
+        <!-- Needed for animal-sniffer-maven-plugin version 1.19 (version 1.20 is fixed). -->
+        <animal.sniffer.skip>true</animal.sniffer.skip>
+      </properties>
+      <dependencies>
+        <dependency>
+          <groupId>org.checkerframework</groupId>
+          <artifactId>checker</artifactId>
+          <version>3.25.0</version>
+        </dependency>
+      </dependencies>
+    </profile>
+    <!-- End Checker Framework profiles -->
 
     <profile>
       <id>pitest-misc</id>
@@ -3732,6 +4222,7 @@
                 <param>com.puppycrawl.tools.checkstyle.DefaultContext*</param>
                 <param>com.puppycrawl.tools.checkstyle.DefaultLogger*</param>
                 <param>com.puppycrawl.tools.checkstyle.Definitions*</param>
+                <param>com.puppycrawl.tools.checkstyle.LocalizedMessage*</param>
                 <param>com.puppycrawl.tools.checkstyle.XMLLogger*</param>
                 <param>com.puppycrawl.tools.checkstyle.SarifLogger*</param>
                 <param>com.puppycrawl.tools.checkstyle.MetadataGeneratorLogger*</param>
@@ -3760,6 +4251,7 @@
                 <param>com.puppycrawl.tools.checkstyle.DefaultConfigurationTest</param>
                 <param>com.puppycrawl.tools.checkstyle.DefaultLoggerTest</param>
                 <param>com.puppycrawl.tools.checkstyle.DefinitionsTest</param>
+                <param>com.puppycrawl.tools.checkstyle.LocalizedMessageTest</param>
                 <param>com.puppycrawl.tools.checkstyle.XMLLoggerTest</param>
                 <param>com.puppycrawl.tools.checkstyle.SarifLoggerTest</param>
                 <param>com.puppycrawl.tools.checkstyle.MetadataGeneratorLoggerTest</param>
@@ -4352,7 +4844,7 @@
         <dependency>
           <groupId>org.eclipse.jdt</groupId>
           <artifactId>org.eclipse.jdt.annotation</artifactId>
-          <version>2.2.600</version>
+          <version>2.2.700</version>
         </dependency>
       </dependencies>
       <build>
