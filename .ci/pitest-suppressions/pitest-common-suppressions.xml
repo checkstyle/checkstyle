@@ -325,17 +325,8 @@
   </mutation>
 
   <mutation unstable="false">
-    <sourceFile>DefaultLogger.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.DefaultLogger$LocalizedMessage</mutatedClass>
-    <mutatedMethod>&lt;init&gt;</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
-    <description>Removed assignment to member variable args</description>
-    <lineContent>args = null;</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>DefaultLogger.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.DefaultLogger$LocalizedMessage</mutatedClass>
+    <sourceFile>LocalizedMessage.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.LocalizedMessage</mutatedClass>
     <mutatedMethod>&lt;init&gt;</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
     <description>replaced call to java/util/Arrays::copyOf with argument</description>
@@ -343,8 +334,8 @@
   </mutation>
 
   <mutation unstable="false">
-    <sourceFile>DefaultLogger.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.DefaultLogger$LocalizedMessage</mutatedClass>
+    <sourceFile>LocalizedMessage.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.LocalizedMessage</mutatedClass>
     <mutatedMethod>&lt;init&gt;</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
     <description>Removed assignment to member variable args</description>
@@ -381,28 +372,10 @@
   <mutation unstable="false">
     <sourceFile>PackageObjectFactory.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.PackageObjectFactory</mutatedClass>
-    <mutatedMethod>createModule</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to java/lang/Object::getClass</description>
-    <lineContent>new String[] {name, attemptedNames}, null, getClass(), null);</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>PackageObjectFactory.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.PackageObjectFactory</mutatedClass>
     <mutatedMethod>createObjectFromFullModuleNames</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
     <description>replaced call to java/util/stream/Stream::sorted with receiver</description>
     <lineContent>.sorted()</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>PackageObjectFactory.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.PackageObjectFactory</mutatedClass>
-    <mutatedMethod>createObjectFromFullModuleNames</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to java/lang/Object::getClass</description>
-    <lineContent>new String[] {name, optionalNames}, null, getClass(), null);</lineContent>
   </mutation>
 
   <mutation unstable="false">

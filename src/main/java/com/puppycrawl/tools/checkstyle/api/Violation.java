@@ -19,24 +19,13 @@
 
 package com.puppycrawl.tools.checkstyle.api;
 
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.Reader;
 import java.io.Serializable;
-import java.net.URL;
-import java.net.URLConnection;
-import java.nio.charset.StandardCharsets;
 import java.text.MessageFormat;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.Locale;
-import java.util.Map;
-import java.util.MissingResourceException;
 import java.util.Objects;
-import java.util.PropertyResourceBundle;
-import java.util.ResourceBundle;
-import java.util.ResourceBundle.Control;
+
+import com.puppycrawl.tools.checkstyle.LocalizedMessage;
 
 /**
  * Represents a violation that can be localised. The translations come from
@@ -53,13 +42,6 @@ public final class Violation
 
     /** A unique serial version identifier. */
     private static final long serialVersionUID = 5675176836184862150L;
-
-    /**
-     * A cache that maps bundle names to ResourceBundles.
-     * Avoids repetitive calls to ResourceBundle.getBundle().
-     */
-    private static final Map<String, ResourceBundle> BUNDLE_CACHE =
-        Collections.synchronizedMap(new HashMap<>());
 
     /** The default severity level if one is not specified. */
     private static final SeverityLevel DEFAULT_SEVERITY = SeverityLevel.ERROR;
@@ -382,18 +364,12 @@ public final class Violation
      * @param locale the locale to use for localization
      */
     public static void setLocale(Locale locale) {
-        clearCache();
         if (Locale.ENGLISH.getLanguage().equals(locale.getLanguage())) {
             sLocale = Locale.ROOT;
         }
         else {
             sLocale = locale;
         }
-    }
-
-    /** Clears the cache. */
-    public static void clearCache() {
-        BUNDLE_CACHE.clear();
     }
 
     /**
@@ -475,23 +451,7 @@ public final class Violation
         String violation = getCustomViolation();
 
         if (violation == null) {
-            try {
-                // Important to use the default class loader, and not the one in
-                // the GlobalProperties object. This is because the class loader in
-                // the GlobalProperties is specified by the user for resolving
-                // custom classes.
-                final ResourceBundle resourceBundle = getBundle(bundle);
-                final String pattern = resourceBundle.getString(key);
-                final MessageFormat formatter = new MessageFormat(pattern, Locale.ROOT);
-                violation = formatter.format(args);
-            }
-            catch (final MissingResourceException ignored) {
-                // If the Check author didn't provide i18n resource bundles
-                // and logs audit event violations directly, this will return
-                // the author's original violation
-                final MessageFormat formatter = new MessageFormat(key, Locale.ROOT);
-                violation = formatter.format(args);
-            }
+            violation = new LocalizedMessage(bundle, sLocale, sourceClass, key, args).getMessage();
         }
         return violation;
     }
@@ -509,53 +469,6 @@ public final class Violation
             violation = formatter.format(args);
         }
         return violation;
-    }
-
-    /**
-     * Find a ResourceBundle for a given bundle name. Uses the classloader
-     * of the class emitting this violation, to be sure to get the correct
-     * bundle.
-     *
-     * @param bundleName the bundle name
-     * @return a ResourceBundle
-     */
-    private ResourceBundle getBundle(String bundleName) {
-        return BUNDLE_CACHE.computeIfAbsent(bundleName, name -> {
-            return ResourceBundle.getBundle(
-                name, sLocale, sourceClass.getClassLoader(), new Utf8Control());
-        });
-    }
-
-    /**
-     * <p>
-     * Custom ResourceBundle.Control implementation which allows explicitly read
-     * the properties files as UTF-8.
-     * </p>
-     */
-    public static class Utf8Control extends Control {
-
-        @Override
-        public ResourceBundle newBundle(String baseName, Locale locale, String format,
-                 ClassLoader loader, boolean reload) throws IOException {
-            // The below is a copy of the default implementation.
-            final String bundleName = toBundleName(baseName, locale);
-            final String resourceName = toResourceName(bundleName, "properties");
-            final URL url = loader.getResource(resourceName);
-            ResourceBundle resourceBundle = null;
-            if (url != null) {
-                final URLConnection connection = url.openConnection();
-                if (connection != null) {
-                    connection.setUseCaches(!reload);
-                    try (Reader streamReader = new InputStreamReader(connection.getInputStream(),
-                            StandardCharsets.UTF_8)) {
-                        // Only this line is changed to make it read property files as UTF-8.
-                        resourceBundle = new PropertyResourceBundle(streamReader);
-                    }
-                }
-            }
-            return resourceBundle;
-        }
-
     }
 
 }
