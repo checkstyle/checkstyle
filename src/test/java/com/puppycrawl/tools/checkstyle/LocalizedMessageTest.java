@@ -213,11 +213,11 @@ public class LocalizedMessageTest {
      * @noinspectionreason CustomClassloader - needed to pass URLs to pretend these are loaded
      *      from the classpath though we can't add/change the files for testing
      */
-    private static class TestUrlsClassLoader extends ClassLoader {
+    private static final class TestUrlsClassLoader extends ClassLoader {
 
         private final URL url;
 
-        /* package */ TestUrlsClassLoader(URL url) {
+        private TestUrlsClassLoader(URL url) {
             this.url = url;
         }
 

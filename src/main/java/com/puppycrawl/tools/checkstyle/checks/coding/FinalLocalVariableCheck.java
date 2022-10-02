@@ -825,7 +825,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
     }
 
     /** Represents information about final local variable candidate. */
-    private static class FinalVariableCandidate {
+    private static final class FinalVariableCandidate {
 
         /** Identifier token. */
         private final DetailAST variableIdent;
@@ -839,7 +839,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
          *
          * @param variableIdent variable identifier.
          */
-        /* package */ FinalVariableCandidate(DetailAST variableIdent) {
+        private FinalVariableCandidate(DetailAST variableIdent) {
             this.variableIdent = variableIdent;
         }
 

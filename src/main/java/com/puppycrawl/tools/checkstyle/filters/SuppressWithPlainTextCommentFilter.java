@@ -530,7 +530,7 @@ public class SuppressWithPlainTextCommentFilter extends AutomaticBean implements
          * @param filter the {@link SuppressWithPlainTextCommentFilter} with the context.
          * @throws IllegalArgumentException if there is an error in the filter regex syntax.
          */
-        /* package */ Suppression(
+        private Suppression(
             String text,
             int lineNo,
             int columnNo,
