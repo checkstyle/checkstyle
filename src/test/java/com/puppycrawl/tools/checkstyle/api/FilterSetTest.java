@@ -102,11 +102,11 @@ public class FilterSetTest {
                 .isFalse();
     }
 
-    private static class DummyFilter implements Filter {
+    private static final class DummyFilter implements Filter {
 
         private final boolean acceptValue;
 
-        /* package */ DummyFilter(boolean accept) {
+        private DummyFilter(boolean accept) {
             acceptValue = accept;
         }
 

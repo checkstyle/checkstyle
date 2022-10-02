@@ -1689,7 +1689,7 @@
     <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/EqualsAvoidNullCheck.java</fileName>
     <specifier>initialization.fields.uninitialized</specifier>
     <message>the constructor does not initialize fields: frameName</message>
-    <lineContent>/* package */ FieldFrame(FieldFrame parent) {</lineContent>
+    <lineContent>private FieldFrame(FieldFrame parent) {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -2258,7 +2258,7 @@
     <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/ReturnCountCheck.java</fileName>
     <specifier>initialization.fields.uninitialized</specifier>
     <message>the constructor does not initialize fields: maxAllowed</message>
-    <lineContent>/* package */ Context(boolean checking) {</lineContent>
+    <lineContent>private Context(boolean checking) {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">

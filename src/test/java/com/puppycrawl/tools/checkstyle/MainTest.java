@@ -1878,11 +1878,11 @@ public class MainTest {
      * Print stream that shouldn't be closed. The purpose of this class is to ensure that
      * {@code System.out} and {@code System.err} are not closed by Checkstyle.
      */
-    private static class ShouldNotBeClosedStream extends PrintStream {
+    private static final class ShouldNotBeClosedStream extends PrintStream {
 
         private boolean isClosed;
 
-        /* package */ ShouldNotBeClosedStream() {
+        private ShouldNotBeClosedStream() {
             super(new ByteArrayOutputStream(), false, StandardCharsets.UTF_8);
         }
 

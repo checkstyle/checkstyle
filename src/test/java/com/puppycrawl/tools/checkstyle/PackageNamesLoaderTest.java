@@ -235,11 +235,11 @@ public class PackageNamesLoaderTest extends AbstractPathTestSupport {
      * @noinspectionreason CustomClassloader - needed to pass URLs to pretend these are loaded
      *      from the classpath though we can't add/change the files for testing
      */
-    private static class TestUrlsClassLoader extends ClassLoader {
+    private static final class TestUrlsClassLoader extends ClassLoader {
 
         private final Enumeration<URL> urls;
 
-        /* package */ TestUrlsClassLoader(Enumeration<URL> urls) {
+        private TestUrlsClassLoader(Enumeration<URL> urls) {
             this.urls = urls;
         }
 

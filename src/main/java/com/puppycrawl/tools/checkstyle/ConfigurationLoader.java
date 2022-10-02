@@ -488,7 +488,7 @@ public final class ConfigurationLoader {
          * @throws SAXException if an error occurs
          * @throws ParserConfigurationException if an error occurs
          */
-        /* package */ InternalLoader()
+        private InternalLoader()
                 throws SAXException, ParserConfigurationException {
             super(createIdToResourceNameMap());
         }
