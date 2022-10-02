@@ -96,7 +96,7 @@ public class XMLLogger
 
     @Override
     public void auditStarted(AuditEvent event) {
-        writer.println("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
+        writer.println("<?xml version=\"1.1\" encoding=\"UTF-8\"?>");
 
         final String version = XMLLogger.class.getPackage().getImplementationVersion();
 
@@ -273,9 +273,7 @@ public class XMLLogger
                     break;
                 default:
                     if (Character.isISOControl(chr)) {
-                        // true escape characters need '&' before, but it also requires XML 1.1
-                        // until https://github.com/checkstyle/checkstyle/issues/5168
-                        sb.append("#x");
+                        sb.append("&#x");
                         sb.append(Integer.toHexString(chr));
                         sb.append(';');
                     }
