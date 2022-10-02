@@ -781,7 +781,7 @@ public class HiddenFieldCheck
     /**
      * Holds the names of static and instance fields of a type.
      */
-    private static class FieldFrame {
+    private static final class FieldFrame {
 
         /** Name of the frame, such name of the class or enum declaration. */
         private final String frameName;
@@ -805,7 +805,7 @@ public class HiddenFieldCheck
          * @param staticType is this a static inner type (class or enum).
          * @param frameName name associated with the frame, which can be a
          */
-        /* package */ FieldFrame(FieldFrame parent, boolean staticType, String frameName) {
+        private FieldFrame(FieldFrame parent, boolean staticType, String frameName) {
             this.parent = parent;
             this.staticType = staticType;
             this.frameName = frameName;
