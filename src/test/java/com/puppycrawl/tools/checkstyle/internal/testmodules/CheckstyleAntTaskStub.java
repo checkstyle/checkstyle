@@ -32,12 +32,12 @@ public class CheckstyleAntTaskStub extends CheckstyleAntTask {
         return Collections.singletonList(new MockFile());
     }
 
-    private static class MockFile extends File {
+    private static final class MockFile extends File {
 
         /** A unique serial version identifier. */
         private static final long serialVersionUID = -2903929010510199407L;
 
-        /* package */ MockFile() {
+        private MockFile() {
             super("mock");
         }
 

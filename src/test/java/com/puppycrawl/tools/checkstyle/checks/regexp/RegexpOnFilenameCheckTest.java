@@ -262,12 +262,12 @@ public class RegexpOnFilenameCheckTest extends AbstractModuleTestSupport {
         verify(createChecker(moduleConfig), new File[] {fileWithoutParent}, path, expected);
     }
 
-    private static class MockFile extends File {
+    private static final class MockFile extends File {
 
         /** A unique serial version identifier. */
         private static final long serialVersionUID = 8361197804062781531L;
 
-        /* package */ MockFile(String path) {
+        private MockFile(String path) {
             super(path);
         }
 

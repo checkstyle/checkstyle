@@ -376,7 +376,7 @@ public final class MethodCountCheck extends AbstractCheck {
      * class. Objects of this class are used on the Stack to count the
      * methods for each class and layer.
      */
-    private static class MethodCounter {
+    private static final class MethodCounter {
 
         /** Maintains the counts. */
         private final Map<Scope, Integer> counts = new EnumMap<>(Scope.class);
@@ -395,7 +395,7 @@ public final class MethodCountCheck extends AbstractCheck {
          *        The surrounding scope definition (class, enum, etc.) which to count all methods
          *        for.
          */
-        /* package */ MethodCounter(DetailAST scopeDefinition) {
+        private MethodCounter(DetailAST scopeDefinition) {
             this.scopeDefinition = scopeDefinition;
         }
 
