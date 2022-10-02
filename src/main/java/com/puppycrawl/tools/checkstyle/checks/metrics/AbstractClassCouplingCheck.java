@@ -328,7 +328,7 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
      * Encapsulates information about class coupling.
      *
      */
-    private class ClassContext {
+    private final class ClassContext {
 
         /**
          * Set of referenced classes.
@@ -347,7 +347,7 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
          * @param className name of the given class.
          * @param ast ast of class definition.
          */
-        /* package */ ClassContext(String className, DetailAST ast) {
+        private ClassContext(String className, DetailAST ast) {
             this.className = className;
             classAst = ast;
         }

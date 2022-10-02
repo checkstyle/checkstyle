@@ -9,22 +9,10 @@
   </description>
 
   <rule ref="category/java/bestpractices.xml">
-    <!-- We do not care about this minor overhead, we are not Android application and we do not
-         want to change visibility of methods. Package-private visibility should be avoided almost
-         always. -->
-    <exclude name="AccessorMethodGeneration"/>
     <!-- The PMD mistakes the AbstractViolationReporter::log() as a debug log. -->
     <exclude name="GuardLogStatement"/>
     <!-- too much false-positives from 6.18.0 -->
     <exclude name="UnusedPrivateMethod"/>
-  </rule>
-  <rule ref="category/java/bestpractices.xml/AccessorClassGeneration">
-    <properties>
-      <!-- The PMD gives false positive for Builder patterns. Fixed in PMD 7. -->
-      <property name="violationSuppressXPath"
-                value="//ClassOrInterfaceDeclaration
-                [@SimpleName='TestInputConfiguration' or @SimpleName='ModuleInputConfiguration']"/>
-    </properties>
   </rule>
   <rule ref="category/java/bestpractices.xml/AvoidPrintStackTrace">
     <properties>

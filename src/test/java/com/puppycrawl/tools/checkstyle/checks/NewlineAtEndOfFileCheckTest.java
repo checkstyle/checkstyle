@@ -212,9 +212,9 @@ public class NewlineAtEndOfFileCheckTest
         }
     }
 
-    private static class ReadZeroRandomAccessFile extends RandomAccessFile {
+    private static final class ReadZeroRandomAccessFile extends RandomAccessFile {
 
-        /* package */ ReadZeroRandomAccessFile(String name, String mode)
+        private ReadZeroRandomAccessFile(String name, String mode)
                 throws FileNotFoundException {
             super(name, mode);
         }

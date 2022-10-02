@@ -398,11 +398,11 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
             .isNotNull();
     }
 
-    private static class TestException extends RuntimeException {
+    private static final class TestException extends RuntimeException {
 
         private static final long serialVersionUID = 1L;
 
-        /* package */ TestException(String msg, Throwable cause) {
+        private TestException(String msg, Throwable cause) {
             super(msg, cause);
         }
 
