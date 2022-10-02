@@ -2996,7 +2996,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         private final IndentComment[] comments;
         private int position;
 
-        /* package */ IndentAudit(IndentComment... comments) {
+        private IndentAudit(IndentComment... comments) {
             this.comments = Arrays.copyOf(comments, comments.length);
         }
 
@@ -3066,7 +3066,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         private final String expectedWarning;
         private final boolean warning;
 
-        /* package */ IndentComment(Matcher match, int lineNumber) {
+        private IndentComment(Matcher match, int lineNumber) {
             this.lineNumber = lineNumber;
             indent = Integer.parseInt(match.group(1));
             if (match.group(2) == null) {

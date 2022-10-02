@@ -379,7 +379,7 @@ public final class PropertyCacheFile {
     /**
      * Class which represents external resource.
      */
-    private static class ExternalResource {
+    private static final class ExternalResource {
 
         /** Location of resource. */
         private final String location;
@@ -392,7 +392,7 @@ public final class PropertyCacheFile {
          * @param location resource location.
          * @param contentHashSum content hash sum.
          */
-        /* package */ ExternalResource(String location, String contentHashSum) {
+        private ExternalResource(String location, String contentHashSum) {
             this.location = location;
             this.contentHashSum = contentHashSum;
         }

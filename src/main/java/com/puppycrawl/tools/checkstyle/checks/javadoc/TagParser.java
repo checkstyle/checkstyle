@@ -282,7 +282,7 @@ class TagParser {
          * @param lineNo line number
          * @param columnNo column number
          */
-        /* package */ Point(int lineNo, int columnNo) {
+        private Point(int lineNo, int columnNo) {
             this.lineNo = lineNo;
             this.columnNo = columnNo;
         }

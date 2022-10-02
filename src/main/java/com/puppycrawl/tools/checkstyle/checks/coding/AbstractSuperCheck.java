@@ -199,7 +199,7 @@ public abstract class AbstractSuperCheck
      * Stack node for a method definition and a record of
      * whether the method has a call to the super method.
      */
-    private static class MethodNode {
+    private static final class MethodNode {
 
         /** Method definition. */
         private final DetailAST method;
@@ -212,7 +212,7 @@ public abstract class AbstractSuperCheck
          *
          * @param ast AST for the method definition.
          */
-        /* package */ MethodNode(DetailAST ast) {
+        private MethodNode(DetailAST ast) {
             method = ast;
             callingSuper = false;
         }

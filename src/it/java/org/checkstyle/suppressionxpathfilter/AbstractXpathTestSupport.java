@@ -226,7 +226,7 @@ public abstract class AbstractXpathTestSupport extends AbstractCheckstyleModuleT
          * @param violationLineNumber line no of the violation produced for the check.
          * @param violationColumnNumber column no of the violation produced for the check.
          */
-        /* package */ ViolationPosition(int violationLineNumber,
+        private ViolationPosition(int violationLineNumber,
                               int violationColumnNumber) {
             this.violationLineNumber = violationLineNumber;
             this.violationColumnNumber = violationColumnNumber;
