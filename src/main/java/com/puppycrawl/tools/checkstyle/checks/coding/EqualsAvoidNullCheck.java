@@ -551,7 +551,7 @@ public class EqualsAvoidNullCheck extends AbstractCheck {
     /**
      * Holds the names of fields of a type.
      */
-    private static class FieldFrame {
+    private static final class FieldFrame {
 
         /** Parent frame. */
         private final FieldFrame parent;
@@ -576,7 +576,7 @@ public class EqualsAvoidNullCheck extends AbstractCheck {
          *
          * @param parent parent frame.
          */
-        /* package */ FieldFrame(FieldFrame parent) {
+        private FieldFrame(FieldFrame parent) {
             this.parent = parent;
         }
 

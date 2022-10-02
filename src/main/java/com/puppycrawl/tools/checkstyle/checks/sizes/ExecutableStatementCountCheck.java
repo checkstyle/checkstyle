@@ -237,7 +237,7 @@ public final class ExecutableStatementCountCheck
     /**
      * Class to encapsulate counting information about one member.
      */
-    private static class Context {
+    private static final class Context {
 
         /** Member AST node. */
         private final DetailAST ast;
@@ -250,7 +250,7 @@ public final class ExecutableStatementCountCheck
          *
          * @param ast member AST node.
          */
-        /* package */ Context(DetailAST ast) {
+        private Context(DetailAST ast) {
             this.ast = ast;
             count = 0;
         }
