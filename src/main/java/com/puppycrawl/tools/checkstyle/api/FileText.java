@@ -84,7 +84,7 @@ public final class FileText {
 
     /**
      * The full text contents of the file.
-     *
+     * <p>
      *
      * @noinspection FieldMayBeFinal
      * @noinspectionreason FieldMayBeFinal - field is not final to ease reaching full test coverage.

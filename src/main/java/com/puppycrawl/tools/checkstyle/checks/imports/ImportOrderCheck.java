@@ -415,12 +415,12 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * being imported. When the result of the comparison is 0 (containers are equal),
  * we compare the fully qualified import names.
  * For e.g. this is what is considered to be container names for the given example:
- *
+ * <p>
  * import static HttpConstants.COLON     =&gt; HttpConstants
  * import static HttpHeaders.addHeader   =&gt; HttpHeaders
  * import static HttpHeaders.setHeader   =&gt; HttpHeaders
  * import static HttpHeaders.Names.DATE  =&gt; HttpHeaders.Names
- *
+ * <p>
  * According to this logic, HttpHeaders.Names should come after HttpHeaders.
  * </p>
  * <p>
@@ -984,7 +984,7 @@ public class ImportOrderCheck
      * </pre>
      * <p>
      * According to this logic, HttpHeaders.Names would come after HttpHeaders.
-     *
+     * <p>
      * For more details, see <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=473629#c3">
      * static imports comparison method</a> in Eclipse.
      * </p>
