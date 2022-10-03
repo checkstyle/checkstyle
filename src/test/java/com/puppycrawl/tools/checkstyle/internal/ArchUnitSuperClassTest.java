@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.internal;
 import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.classes;
 
 import java.util.Locale;
+import java.util.Optional;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
@@ -31,7 +32,6 @@ import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck;
 import com.puppycrawl.tools.checkstyle.utils.ModuleReflectionUtil;
 import com.tngtech.archunit.base.DescribedPredicate;
-import com.tngtech.archunit.base.Optional;
 import com.tngtech.archunit.core.domain.JavaClass;
 import com.tngtech.archunit.core.domain.JavaClasses;
 import com.tngtech.archunit.core.domain.JavaType;
@@ -98,7 +98,7 @@ public class ArchUnitSuperClassTest {
             .importPackages("com.puppycrawl.tools.checkstyle")
             .that(new DescribedPredicate<>("are checkstyle modules") {
                 @Override
-                public boolean apply(JavaClass input) {
+                public boolean test(JavaClass input) {
                     final Class<?> clazz = input.reflect();
                     return ModuleReflectionUtil.isValidCheckstyleClass(clazz)
                         && (ModuleReflectionUtil.isCheckstyleTreeWalkerCheck(clazz)
