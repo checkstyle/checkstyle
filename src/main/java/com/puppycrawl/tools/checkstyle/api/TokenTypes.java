@@ -3633,7 +3633,7 @@ public final class TokenTypes {
     public static final int LOR = JavaLanguageLexer.LOR;
     /**
      * The {@code &&} (conditional AND) operator.
-     *
+     * <p>
      *
      * <p>For example:</p>
      * <pre>
