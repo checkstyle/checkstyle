@@ -38,9 +38,9 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * This class was modeled after documentation located at
  * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html">
  * javadoc</a>
- *
+ * <p>
  * and
- *
+ * <p>
  * <a href="https://www.oracle.com/technical-resources/articles/java/javadoc-tool.html">
  * how to write</a>.
  * </p>
