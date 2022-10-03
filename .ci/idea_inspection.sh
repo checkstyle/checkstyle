@@ -13,7 +13,7 @@
 PROJECT_DIR=$PWD/
 INSPECTIONS_PATH=$PWD/config/intellij-idea-inspections.xml
 RESULTS_DIR=$PWD/target/inspection-results
-NOISE_LVL=v1
+NOISE_LVL=v3
 # we need to export this variable as it is required for idea.sh script
 export IDEA_PROPERTIES=$PWD/config/intellij-idea-inspections.properties
 
