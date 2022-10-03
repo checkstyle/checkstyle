@@ -30,7 +30,7 @@ import javax.swing.event.EventListenerList;
  * A base class for CellEditors, providing default implementations for all
  * methods in the CellEditor interface and support for managing a series
  * of listeners.
- *
+ * <p>
  * <a href=
  * "https://docs.oracle.com/cd/E48246_01/apirefs.1111/e13403/oracle/ide/controls/TreeTableModel.html">
  * Original&nbsp;Source&nbsp;Location</a>
