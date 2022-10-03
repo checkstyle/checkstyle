@@ -23,6 +23,7 @@ checkstyle.iml
 checkstyle.ipr
 checkstyle.iws
 .idea
+!.idea/misc.xml
 
 # Temp files
 *~
