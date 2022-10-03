@@ -137,6 +137,8 @@ jobs:
     steps:
       - checkout
       - run:
+          command: git diff
+      - run:
           command: |
             ./.ci/validation.sh no-exception-spoon
       - run:
