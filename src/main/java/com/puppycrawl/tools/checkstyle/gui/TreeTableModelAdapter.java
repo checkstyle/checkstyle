@@ -33,7 +33,7 @@ import javax.swing.tree.TreePath;
  * the table model interface. The implementation is trivial, with
  * all the event dispatching support provided by the superclass:
  * the AbstractTableModel.
- *
+ * <p>
  * <a href=
  * "https://docs.oracle.com/cd/E48246_01/apirefs.1111/e13403/oracle/ide/controls/TreeTableModel.html">
  * Original&nbsp;Source&nbsp;Location</a>
