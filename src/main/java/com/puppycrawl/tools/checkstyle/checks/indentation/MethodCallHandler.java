@@ -91,7 +91,7 @@ public class MethodCallHandler extends AbstractExpressionHandler {
     /**
      * Checks if ast2 is a chained method call that starts on the same level as ast1 ends.
      * In other words, if the right paren of ast1 is on the same level as the lparen of ast2:
-     *
+     * <p>
      * {@code
      *     value.methodOne(
      *         argument1
