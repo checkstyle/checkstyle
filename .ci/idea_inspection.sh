@@ -13,7 +13,7 @@
 PROJECT_DIR=$PWD/
 INSPECTIONS_PATH=$PWD/config/intellij-idea-inspections.xml
 RESULTS_DIR=$PWD/target/inspection-results
-NOISE_LVL=v1
+NOISE_LVL=v3
 # we need to export this variable as it is required for idea.sh script
 export IDEA_PROPERTIES=$PWD/config/intellij-idea-inspections.properties
 
@@ -37,7 +37,7 @@ rm -rf "$RESULTS_DIR"/*
 echo "Intellij Idea validation is about to start"
 echo "Progress output will be flushed at end. Validation is in progress ..."
 IDEA_OUTPUT=$("$IDEA_PATH"/bin/inspect.sh "$PROJECT_DIR" "$INSPECTIONS_PATH" "$RESULTS_DIR" \
-   -$NOISE_LVL)
+   -$NOISE_LVL -format json)
 
 if [[ $IDEA_OUTPUT == "Already running" ]]; then
     echo "It might be that Intellij Idea is running, please close it."
@@ -45,7 +45,12 @@ if [[ $IDEA_OUTPUT == "Already running" ]]; then
 fi
 
 echo "Checking results ..."
-if [[ $(grep -R "<problems" "$RESULTS_DIR"/ | cat | wc -l ) > 0 ]]; then
+PROBLEM_COUNT=$(grep -R "<problems" "$RESULTS_DIR"/ | cat | wc -l )
+
+if [[ $PROBLEM_COUNT > 0 ]] && [[ "$CIRCLECI" == "true" ]]; then
+    echo "There are inspection problems. Review results in 'ARTIFACTS' tab above."
+    exit 1;
+elif [[ $PROBLEM_COUNT > 0 ]]; then
     echo "There are inspection problems. Review results at $RESULTS_DIR folder. Files:"
     grep -Rl "<problems" "$RESULTS_DIR"/
     exit 1;
