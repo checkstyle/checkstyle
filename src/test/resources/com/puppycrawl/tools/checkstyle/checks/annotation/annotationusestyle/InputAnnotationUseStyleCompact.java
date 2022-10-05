@@ -49,11 +49,13 @@ enum DOGS5 {
     String[] um() default {};
     @Another({""}) //compact
     String[] duh() default {};
-    @Another(value={""}) //expanded // violation
+    // violation below 'Annotation style must be 'COMPACT''
+    @Another(value={""}) //expanded
     DOGS[] pooches();
 }
 
-@Another(value={""}) //expanded // violation
+// violation below 'Annotation style must be 'COMPACT''
+@Another(value={""}) //expanded
 enum E5 {
 
 }
@@ -73,17 +75,20 @@ enum E5 {
 class Closing5 {
     static final String UN_U = "UN_U";
 
-    @SuppressWarnings(value = UN_U) // violation
+    // violation below 'Annotation style must be 'COMPACT''
+    @SuppressWarnings(value = UN_U)
     int d;
 }
 
 @AnnotationWithAnnotationValue(@Another)
 class Example17 {}
-@AnnotationWithAnnotationValue(value = @Another) // violation
+// violation below 'Annotation style must be 'COMPACT''
+@AnnotationWithAnnotationValue(value = @Another)
 class Example18 {}
 @AnnotationWithAnnotationValue(@Another())
 class Example19 {}
-@AnnotationWithAnnotationValue(value = @Another()) // violation
+// violation below 'Annotation style must be 'COMPACT''
+@AnnotationWithAnnotationValue(value = @Another())
 class Example20 {}
 
 class Foo5 {
