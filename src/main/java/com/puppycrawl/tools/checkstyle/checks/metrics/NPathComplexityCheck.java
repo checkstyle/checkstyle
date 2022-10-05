@@ -674,7 +674,7 @@ public final class NPathComplexityCheck extends AbstractCheck {
     /**
      * Class that store range value and expression value.
      */
-    private static class Values {
+    private static final class Values {
 
         /** NP value for range. */
         private final BigInteger rangeValue;
@@ -688,7 +688,7 @@ public final class NPathComplexityCheck extends AbstractCheck {
          * @param valueOfRange NP value for range
          * @param valueOfExpression NP value for expression
          */
-        /* package */ Values(BigInteger valueOfRange, BigInteger valueOfExpression) {
+        private Values(BigInteger valueOfRange, BigInteger valueOfExpression) {
             rangeValue = valueOfRange;
             expressionValue = valueOfExpression;
         }

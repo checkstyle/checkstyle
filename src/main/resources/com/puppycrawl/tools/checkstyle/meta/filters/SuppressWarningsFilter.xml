@@ -6,7 +6,7 @@
                parent="com.puppycrawl.tools.checkstyle.Checker">
          <description>&lt;p&gt;
  Filter {@code SuppressWarningsFilter} uses annotation
- {@code SuppressWarnings} to suppress audit events.
+ {@code @SuppressWarnings} to suppress audit events.
  &lt;/p&gt;
  &lt;p&gt;
  Rationale: Same as for {@code SuppressionCommentFilter}. In the contrary to it here,

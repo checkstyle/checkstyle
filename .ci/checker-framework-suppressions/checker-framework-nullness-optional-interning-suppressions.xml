@@ -178,35 +178,13 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/DefaultLogger.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter loader of getBundle.</message>
-    <lineContent>name, LOCALE, LocalizedMessage.class.getClassLoader(),</lineContent>
-    <details>
-      found   : @Initialized @Nullable ClassLoader
-      required: @Initialized @NonNull ClassLoader
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/DefaultLogger.java</fileName>
-    <specifier>assignment</specifier>
-    <message>incompatible types in assignment.</message>
-    <lineContent>args = null;</lineContent>
-    <details>
-      found   : null (NullType)
-      required: @Initialized @NonNull String @Initialized @NonNull []
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/DefaultLogger.java</fileName>
+    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/LocalizedMessage.java</fileName>
     <specifier>assignment</specifier>
     <message>incompatible types in assignment.</message>
     <lineContent>this.args = null;</lineContent>
     <details>
       found   : null (NullType)
-      required: @Initialized @NonNull String @Initialized @NonNull []
+      required: @Initialized @NonNull Object @Initialized @NonNull []
     </details>
   </checkerFrameworkError>
 
@@ -1298,10 +1276,10 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/api/Violation.java</fileName>
+    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/LocalizedMessage.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter loader of getBundle.</message>
-    <lineContent>name, sLocale, sourceClass.getClassLoader(), new Utf8Control());</lineContent>
+    <lineContent>return ResourceBundle.getBundle(bundle, locale, sourceClass.getClassLoader(),</lineContent>
     <details>
       found   : @Initialized @Nullable ClassLoader
       required: @Initialized @NonNull ClassLoader
@@ -1335,7 +1313,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/api/Violation.java</fileName>
+    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/LocalizedMessage.java</fileName>
     <specifier>return</specifier>
     <message>incompatible types in return.</message>
     <lineContent>return resourceBundle;</lineContent>
@@ -1711,7 +1689,7 @@
     <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/EqualsAvoidNullCheck.java</fileName>
     <specifier>initialization.fields.uninitialized</specifier>
     <message>the constructor does not initialize fields: frameName</message>
-    <lineContent>/* package */ FieldFrame(FieldFrame parent) {</lineContent>
+    <lineContent>private FieldFrame(FieldFrame parent) {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -2280,7 +2258,7 @@
     <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/ReturnCountCheck.java</fileName>
     <specifier>initialization.fields.uninitialized</specifier>
     <message>the constructor does not initialize fields: maxAllowed</message>
-    <lineContent>/* package */ Context(boolean checking) {</lineContent>
+    <lineContent>private Context(boolean checking) {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -2435,13 +2413,6 @@
       found   : @Initialized @Nullable DetailAST
       required: @Initialized @NonNull DetailAST
     </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/VariableDeclarationUsageDistanceCheck.java</fileName>
-    <specifier>introduce.eliminate</specifier>
-    <message>It is bad style to create an Optional just to chain methods to get a value.</message>
-    <lineContent>.orElseGet(() -&gt; block.findFirstToken(TokenTypes.SWITCH_RULE));</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">

@@ -62,7 +62,7 @@ public class ReverseListIteratorTest {
 
     private static class TestNode extends AbstractNode {
 
-        /* package */ TestNode() {
+        private TestNode() {
             super(null);
         }
 

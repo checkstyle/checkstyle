@@ -278,7 +278,7 @@ public class JavaParserTest extends AbstractModuleTestSupport {
         private final List<String> lineComments = new ArrayList<>();
         private final List<String> blockComments = new ArrayList<>();
 
-        /* package */ CountComments(DetailAST root) {
+        private CountComments(DetailAST root) {
             forEachChild(root);
         }
 

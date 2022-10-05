@@ -185,7 +185,7 @@ public class HideUtilityClassConstructorCheck extends AbstractCheck {
     /**
      * Details of class that are required for validation.
      */
-    private static class Details {
+    private static final class Details {
 
         /** Class ast. */
         private final DetailAST ast;
@@ -203,7 +203,7 @@ public class HideUtilityClassConstructorCheck extends AbstractCheck {
          *
          * @param ast class ast
          * */
-        /* package */ Details(DetailAST ast) {
+        private Details(DetailAST ast) {
             this.ast = ast;
         }
 

@@ -1279,7 +1279,7 @@ public class CustomImportOrderCheck extends AbstractCheck {
      * Contains import attributes as line number, import full path, import
      * group.
      */
-    private static class ImportDetails {
+    private static final class ImportDetails {
 
         /** Import full path. */
         private final String importFullPath;
@@ -1305,7 +1305,7 @@ public class CustomImportOrderCheck extends AbstractCheck {
          * @param importAST
          *        import ast
          */
-        /* package */ ImportDetails(String importFullPath, String importGroup, boolean staticImport,
+        private ImportDetails(String importFullPath, String importGroup, boolean staticImport,
                                     DetailAST importAST) {
             this.importFullPath = importFullPath;
             this.importGroup = importGroup;
@@ -1377,7 +1377,7 @@ public class CustomImportOrderCheck extends AbstractCheck {
      * Contains matching attributes assisting in definition of "best matching"
      * group for import.
      */
-    private static class RuleMatchForImport {
+    private static final class RuleMatchForImport {
 
         /** Position of matching string for current best match. */
         private final int matchPosition;
@@ -1396,7 +1396,7 @@ public class CustomImportOrderCheck extends AbstractCheck {
          * @param position
          *        Matching position.
          */
-        /* package */ RuleMatchForImport(String group, int length, int position) {
+        private RuleMatchForImport(String group, int length, int position) {
             this.group = group;
             matchLength = length;
             matchPosition = position;

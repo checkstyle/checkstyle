@@ -456,7 +456,7 @@ public final class ReturnCountCheck extends AbstractCheck {
     /**
      * Class to encapsulate information about one method.
      */
-    private class Context {
+    private final class Context {
 
         /** Whether we should check this method or not. */
         private final boolean checking;
@@ -472,7 +472,7 @@ public final class ReturnCountCheck extends AbstractCheck {
          *
          * @param checking should we check this method or not
          */
-        /* package */ Context(boolean checking) {
+        private Context(boolean checking) {
             this.checking = checking;
         }
 

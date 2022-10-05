@@ -368,8 +368,11 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
                 && parent.getFirstChild() != identAst;
         final boolean isConstructorReference = parent.getType() == TokenTypes.METHOD_REF
                 && parent.getLastChild().getType() == TokenTypes.LITERAL_NEW;
+        final boolean isNestedClassInitialization =
+                TokenUtil.isOfType(identAst.getNextSibling(), TokenTypes.LITERAL_NEW)
+                && parent.getType() == TokenTypes.DOT;
 
-        if (!isMethodReferenceMethodName
+        if (isNestedClassInitialization || !isMethodReferenceMethodName
                 && !isConstructorReference
                 && !TokenUtil.isOfType(parent, UNACCEPTABLE_PARENT_OF_IDENT)) {
             checkIdentifierAst(identAst, variablesStack);
@@ -871,7 +874,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
          *              {@link TokenTypes#LITERAL_FOR} or {@link TokenTypes#OBJBLOCK}
          *              which is enclosing the variable
          */
-        /* package */ VariableDesc(String name, DetailAST typeAst, DetailAST scope) {
+        private VariableDesc(String name, DetailAST typeAst, DetailAST scope) {
             this.name = name;
             this.typeAst = typeAst;
             this.scope = scope;
@@ -946,7 +949,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      * or {@link TokenTypes#ENUM_DEF} or {@link TokenTypes#ANNOTATION_DEF}
      * or {@link TokenTypes#RECORD_DEF} is considered as a type declaration.
      */
-    private static class TypeDeclDesc {
+    private static final class TypeDeclDesc {
 
         /**
          * Complete type declaration name with package name and outer type declaration name.
@@ -975,7 +978,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
          * @param depth depth of nesting
          * @param typeDeclAst type declaration ast node
          */
-        /* package */ TypeDeclDesc(String qualifiedName, int depth,
+        private TypeDeclDesc(String qualifiedName, int depth,
                 DetailAST typeDeclAst) {
             this.qualifiedName = qualifiedName;
             this.depth = depth;
