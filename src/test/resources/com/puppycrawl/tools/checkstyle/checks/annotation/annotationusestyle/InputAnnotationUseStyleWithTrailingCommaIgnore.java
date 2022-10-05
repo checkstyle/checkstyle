@@ -12,14 +12,14 @@ package com.puppycrawl.tools.checkstyle.checks.annotation.annotationusestyle;
 
 public class InputAnnotationUseStyleWithTrailingCommaIgnore
 {
-    @SuppressWarnings({"common",}) // violation
+    @SuppressWarnings({"common",}) // violation 'Annotation style must be 'COMPACT_NO_ARRAY''
     public void foo() {
 
 
         @SuppressWarnings({"common","foo",})
         Object o = new Object() {
 
-            @SuppressWarnings(value={"common",}) // violation
+            @SuppressWarnings(value={"common",}) // violation 'Annotation style must be 'COMPACT_NO_ARRAY''
             public String toString() {
 
                 @SuppressWarnings(value={"leo","herbie",})
@@ -30,13 +30,13 @@ public class InputAnnotationUseStyleWithTrailingCommaIgnore
         };
     }
 
-    @Test3(value={"foo",}, more={"bar",}) // violation
+    @Test3(value={"foo",}, more={"bar",}) // violation 'Annotation style must be 'COMPACT_NO_ARRAY''
     /**
 
     */
     enum P {
 
-        @Pooches3(tokens={Pooches3.class,},other={1,}) // violation
+        @Pooches3(tokens={Pooches3.class,},other={1,}) // violation 'Annotation style must be 'COMPACT_NO_ARRAY''
         L,
 
         /**

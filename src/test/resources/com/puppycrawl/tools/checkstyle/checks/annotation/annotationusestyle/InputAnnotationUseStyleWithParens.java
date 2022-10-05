@@ -9,7 +9,7 @@ trailingArrayComma = ignore
 
 package com.puppycrawl.tools.checkstyle.checks.annotation.annotationusestyle;
 
-@Deprecated // violation
+@Deprecated // violation 'Annotation must have closing parenthesis'
 @SomeArrays(pooches={DOGS.LEO})
 @SuppressWarnings({""})
 public class InputAnnotationUseStyleWithParens
@@ -24,12 +24,12 @@ class Dep2 {
 
 }
 
-@Deprecated // violation
+@Deprecated // violation 'Annotation must have closing parenthesis'
 @SomeArrays(pooches={DOGS.LEO})
 @SuppressWarnings({""})
 enum SON2 {
 
-    @Deprecated // violation
+    @Deprecated // violation 'Annotation must have closing parenthesis'
     @SomeArrays(pooches={DOGS.LEO}, um={""}, duh={"bleh"})
     @APooch(dog=DOGS.HERBIE)
     @Another("") //compact_no_array
@@ -77,9 +77,9 @@ class Closing2 {
     int d;
 }
 
-@AnnotationWithAnnotationValue(@Another) // violation
+@AnnotationWithAnnotationValue(@Another) // violation 'Annotation must have closing parenthesis'
 class Example5 {}
-@AnnotationWithAnnotationValue(value = @Another) // violation
+@AnnotationWithAnnotationValue(value = @Another) // violation 'Annotation must have closing parenthesis'
 class Example6 {}
 @AnnotationWithAnnotationValue(@Another())
 class Example7 {}
