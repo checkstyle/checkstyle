@@ -212,6 +212,25 @@ jobs:
       - run:
           command: ./.ci/validation.sh git-diff
 
+  run-inspections:
+    docker:
+      - image: checkstyle/idea-docker:latest
+
+    steps:
+      - checkout
+      - run:
+          name: Run inspections
+          command: |
+            mkdir -p .idea
+            mv config/intellij-idea-inspections-misc.xml \
+              .idea/misc.xml
+            ls .idea
+            ./.ci/idea_inspection.sh
+          no_output_timeout: 25m
+          working_directory: ~/project
+      - store_artifacts:
+          path: /home/circleci/project/target/inspection-results
+
 workflows:
   version: 2
   no-exception-tests:
@@ -237,3 +256,7 @@ workflows:
       - no-warning-imports-guava
       - no-warning-imports-java-design-patterns
       - sonarqube
+
+  idea:
+    jobs:
+      - run-inspections
