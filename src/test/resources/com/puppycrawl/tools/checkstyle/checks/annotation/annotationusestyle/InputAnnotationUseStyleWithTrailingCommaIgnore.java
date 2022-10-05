@@ -19,7 +19,8 @@ public class InputAnnotationUseStyleWithTrailingCommaIgnore
         @SuppressWarnings({"common","foo",})
         Object o = new Object() {
 
-            @SuppressWarnings(value={"common",}) // violation 'Annotation style must be 'COMPACT_NO_ARRAY''
+            @SuppressWarnings(value= // violation 'Annotation style must be 'COMPACT_NO_ARRAY''
+                     {"common",})
             public String toString() {
 
                 @SuppressWarnings(value={"leo","herbie",})
@@ -30,13 +31,15 @@ public class InputAnnotationUseStyleWithTrailingCommaIgnore
         };
     }
 
-    @Test3(value={"foo",}, more={"bar",}) // violation 'Annotation style must be 'COMPACT_NO_ARRAY''
+    @Test3(value={"foo",}, // violation 'Annotation style must be 'COMPACT_NO_ARRAY''
+            more={"bar",})
     /**
 
     */
     enum P {
 
-        @Pooches3(tokens={Pooches3.class,},other={1,}) // violation 'Annotation style must be 'COMPACT_NO_ARRAY''
+        @Pooches3(tokens= // violation 'Annotation style must be 'COMPACT_NO_ARRAY''
+                {Pooches3.class,},other={1,})
         L,
 
         /**

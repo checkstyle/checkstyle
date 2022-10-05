@@ -36,7 +36,8 @@ enum SON3 {
     ETHAN
 }
 
-@InputAnnotationUseStyleCustomAnnotation6() // violation 'Annotation cannot have closing parenthesis'
+@InputAnnotationUseStyleCustomAnnotation6// violation 'Annotation cannot have closing parenthesis'
+             ()
 enum DOGS3 {
 
     @Deprecated() // violation 'Annotation cannot have closing parenthesis'
@@ -81,9 +82,11 @@ class Closing3 {
 class Example9 {}
 @AnnotationWithAnnotationValue(value = @Another)
 class Example10 {}
-@AnnotationWithAnnotationValue(@Another()) // violation 'Annotation cannot have closing parenthesis'
+@AnnotationWithAnnotationValue(
+         @Another())// violation 'Annotation cannot have closing parenthesis'
 class Example11 {}
-@AnnotationWithAnnotationValue(value = @Another()) // violation 'Annotation cannot have closing parenthesis'
+@AnnotationWithAnnotationValue(value =
+         @Another())// violation 'Annotation cannot have closing parenthesis'
 class Example12 {}
 
 class Foo3 {
