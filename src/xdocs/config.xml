@@ -26,7 +26,7 @@
 
       <ul>
 
-        <li><em>FileSetChecks</em> - modules that take a set of input
+        <li><em>File Set Checks</em> - modules that take a set of input
         files and fire violation messages.</li>
 
         <li><em>Filters</em>
@@ -34,13 +34,15 @@
         - modules that filter audit events,
         including messages, for acceptance.</li>
 
-        <li><em>AuditListeners</em> - modules that report accepted events.</li>
+        <li><em>Audit Listeners</em> - modules that report accepted events.</li>
 
       </ul>
 
       <p>
         Many checks are submodules of the <em>TreeWalker</em>
-        FileSetCheck module. The TreeWalker operates by separately
+        FileSetCheck module. FileSetCheck TreeWalker checks individual
+        Java source files and defines properties that are applicable
+        to checking such files. The TreeWalker operates by separately
         transforming each of the Java source files into an abstract
         syntax tree and then handing the result over to each of its
         submodules which in turn have a look at certain aspects of the
@@ -258,8 +260,8 @@
         Apart from the above mentioned properties, there are a few system
         properties that changes the way how Checkstyle behaves. For example,
         if you want to change the language of the output of Checkstyle, it
-        can be done by changing the property checkstyle.locale.language. All
-        the system properties can be found at the
+        can be done by changing the property<em>checkstyle.locale.language</em>.
+        All the system properties can be found at the
         <a href="config_system_properties.html">system properties</a> page.
       </p>
 
@@ -279,13 +281,13 @@
         </p>
 
         <ul>
-          <li><em>FileSetCheck</em> children: modules that check sets of
+          <li><em>File Set Check</em> children: modules that check sets of
           files.</li>
           <li><em>Filter</em> children: modules that filter audit
           events.</li>
-          <li><em>FileFilter</em> children: modules that filter files
+          <li><em>File Filter</em> children: modules that filter files
           for Checkstyle to process.</li>
-          <li><em>AuditListener</em> children: modules that report
+          <li><em>Audit Listener</em> children: modules that report
           filtered events.</li>
         </ul>
 
@@ -379,9 +381,10 @@
 
       <subsection name="Metadata" id="Checker_Metadata">
         <p>
-          Used to keep metadata in the Checkstyle configuration file. This
+          Use to keep metadata in the Checkstyle configuration file. This
           information is ignored by Checkstyle. This may be useful if you want to
-          store plug-in specific information or any other information in config file.
+          store plug-in specific information or any other information in the config
+          file.
         </p>
         <p>
           To avoid name clashes between different tools/plug-ins you are <b>strongly</b>
@@ -509,7 +512,7 @@
       <subsection name="Description" id="TreeWalker_Description">
         <p>Since Checkstyle 3.0</p>
         <p>
-          FileSetCheck <code>TreeWalker</code> checks
+          File Set Check <code>TreeWalker</code> checks
           individual Java source files and defines properties that are
           applicable to checking such files.
         </p>
@@ -861,7 +864,7 @@
 
     </section>
 
-    <section name="AuditListeners">
+    <section name="Audit Listeners">
 
       <p>
         In addition to an audit reporter for text or XML output, a
