@@ -10,15 +10,6 @@
   </mutation>
 
   <mutation unstable="false">
-    <sourceFile>AbstractParenPadCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.whitespace.AbstractParenPadCheck</mutatedClass>
-    <mutatedMethod>setOption</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
-    <description>replaced call to java/lang/String::trim with receiver</description>
-    <lineContent>option = PadOption.valueOf(optionStr.trim().toUpperCase(Locale.ENGLISH));</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
     <sourceFile>EmptyForInitializerPadCheck.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyForInitializerPadCheck</mutatedClass>
     <mutatedMethod>setOption</mutatedMethod>
