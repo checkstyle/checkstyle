@@ -396,9 +396,8 @@ for (Iterator foo = very.long.line.iterator();
 package com.whitespace; // violation, 'package' should be separated from previous line.
 import java.io.Serializable; // violation, 'import' should be separated from previous line.
 class FirstClass { // violation, 'CLASS_DEF' should be separated from previous line.
-  public int firstClassVariable = 1;
-  public void classMethod() {} // violation, 'METHOD_DEF'
-                               // should be separated from previous line.
+  int var1 = 1;
+  void method() {} // violation, 'METHOD_DEF' should be separated from previous line.
 }
         </source>
         <p>
@@ -415,9 +414,9 @@ package com.puppycrawl.tools.checkstyle.whitespace;
 import java.io.Serializable;
 
 class FirstClass {
-  public int firstClassVariable = 1;
+  int var1 = 1;
 
-  public void classMethod() {}
+  void method() {}
 }
         </source>
         <p>
@@ -445,9 +444,9 @@ class FirstClass {
         </p>
         <source>
 class FirstClass {
-  int firstClassVariable1; // ok
-  double firstClassVariable2; // ok
-  long firstClassVariable3, firstClassVariable4 = 10L, firstClassVariable5; // ok
+  int var1; // ok
+  double var2; // ok
+  long var3, var4 = 10L, var5; // ok
 }
         </source>
         <p>
@@ -464,9 +463,9 @@ package com.puppycrawl.tools.checkstyle.whitespace;&#10;&#10;
 import java.io.Serializable;&#10;
 
 class FirstClass {
-  public int firstClassVariable = 1;&#10;&#10;
+  int var1 = 1;&#10;&#10;
 
-  public void classMethod() {} // OK
+  void method() {} // OK
 }
         </source>
         <p>
@@ -487,9 +486,9 @@ package com.checkstyle.whitespace; // violation, 'package' has more than 1 empty
 import java.io.Serializable; // violation, 'import' has more than 1 empty lines before.&#10;
 
 class FirstClass { // violation, 'CLASS_DEF' has more than 1 empty lines before.
-  public int firstClassVariable = 1;&#10;&#10;
+  int var1 = 1;&#10;&#10;
 
-  public void classMethod() {} // violation, 'METHOD_DEF' has more than 1 empty lines before.
+  void method() {} // violation, 'METHOD_DEF' has more than 1 empty lines before.
 }
         </source>
         <p>
@@ -532,10 +531,9 @@ package com.puppycrawl.tools.checkstyle.whitespace;
 
 class FirstClass {
 
-  public void classMethod() {&#10;
+  void classMethod() {&#10;
 
-    System.out.println(1); // violation, There is more than 1 empty line one after another
-                           // in previous line.
+    int var1; // violation, There is more than 1 empty line one after another in previous line.
   }
 }
         </source>
@@ -552,10 +550,9 @@ class FirstClass {
 package com.puppycrawl.tools.checkstyle.whitespace;
 
 class FirstClass {
-    private int firstClassVariable;&#10;
+    int var1;&#10;
 
-    private void classMethod() {} // violation, more than one empty
-                                  // line before 'METHOD_DEF'
+    void method() {} // violation, more than one empty line before 'METHOD_DEF'
 
 }
         </source>
