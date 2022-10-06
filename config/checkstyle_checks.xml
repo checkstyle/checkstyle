@@ -134,7 +134,7 @@
   </module>
   <module name="RegexpSingleline">
     <property name="id" value="assertThatShouldBeOnSeparateLine"/>
-    <property name="format" value="assertWithMessage\(.*\).that\("/>
+    <property name="format" value="^((?!\*).)*assertWithMessage\(.*\).that\("/>
     <property name="fileExtensions" value="java"/>
     <property name="message"
                 value="Truth''s ''that'' method call should be on separate line"/>
@@ -909,6 +909,10 @@
     <module name="TypecastParenPad"/>
     <module name="WhitespaceAfter"/>
     <module name="WhitespaceAround"/>
+    <module name="ChainedMethodCallWrap">
+      <property name="identifierPattern" value="^assert.*"/>
+      <property name="maxSingleLineCalls" value="2" />
+    </module>
 
   </module>
 
