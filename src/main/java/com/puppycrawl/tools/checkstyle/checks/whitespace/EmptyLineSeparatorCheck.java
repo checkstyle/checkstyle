@@ -122,7 +122,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * package com.whitespace; // violation, 'package' should be separated from previous line.
  * import java.io.Serializable; // violation, 'import' should be separated from previous line.
  * class FirstClass { // violation, 'CLASS_DEF' should be separated from previous line.
- *   public static final int firstClassVariable = 1;
+ *   public int firstClassVariable = 1;
  *   public void classMethod() {} // violation, 'METHOD_DEF'
  *                                // should be separated from previous line.
  * }
@@ -143,7 +143,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * import java.io.Serializable;
  *
  * class FirstClass {
- *   public static final int firstClassVariable = 1;
+ *   public int firstClassVariable = 1;
  *
  *   public void classMethod() {}
  * }
@@ -177,9 +177,9 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *
  * <pre>
  * class FirstClass {
- *   int variable1; // ok
- *   double variable2; // ok
- *   long variable3, variable4 = 10L, variable5; // ok
+ *   int firstClassVariable1; // ok
+ *   double firstClassVariable2; // ok
+ *   long firstClassVariable3, firstClassVariable4 = 10L, firstClassVariable5; // ok
  * }
  * </pre>
  * <p>
@@ -200,7 +200,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *
  *
  * class FirstClass {
- *   public static final int firstClassVariable = 1;
+ *   public int firstClassVariable = 1;
  *
  *
  *
@@ -228,7 +228,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *
  *
  * class FirstClass { // violation, 'CLASS_DEF' has more than 1 empty lines before.
- *   public static final int firstClassVariable = 1;
+ *   public int firstClassVariable = 1;
  *
  *
  *
@@ -297,11 +297,11 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * package com.puppycrawl.tools.checkstyle.whitespace;
  *
  * class FirstClass {
- *     private int variable1;
+ *     private int firstClassVariable;
  *
  *
- *     private static void classMethod() {} // violation, more than one empty
- *                                          // line before 'METHOD_DEF'
+ *     private void classMethod() {} // violation, more than one empty
+ *                                   // line before 'METHOD_DEF'
  *
  * }
  * </pre>
