@@ -147,6 +147,14 @@ public class ParenPadCheckTest
     }
 
     @Test
+    public void testTrimOptionProperty() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputParenPadToCheckTrimFunctionInOptionProperty.java"),
+               expected);
+    }
+
+    @Test
     public void testNospaceWithComplexInput() throws Exception {
         final String[] expected = {
             "55:26: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
