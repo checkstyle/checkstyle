@@ -176,7 +176,7 @@ import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
  * <pre>
  * &lt;module name=&quot;SuppressionXpathSingleFilter&quot;&gt;
  *   &lt;property name=&quot;checks&quot; value=&quot;RedundantModifier&quot;/&gt;
- *   &lt;property name=&quot;query&quot; value=&quot;/INTERFACE_DEF//*&quot;/&gt;
+ *   &lt;property name=&quot;query&quot; value=&quot;//INTERFACE_DEF//*&quot;/&gt;
  * &lt;module/&gt;
  * </pre>
  * <p>
