@@ -200,4 +200,13 @@ public class MethodParamPadCheckTest
         }
     }
 
+    @Test
+    public void testMethodParamPadSetOptionTrim() throws Exception {
+        final String[] expected = {
+            "15:24: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "("),
+            "26:27: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "("),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputMethodParamPadSetOptionTrim.java"), expected);
+    }
 }
