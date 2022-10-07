@@ -150,8 +150,7 @@ public class ParenPadCheckTest
     public void testTrimOptionProperty() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
-                getPath("InputParenPadToCheckTrimFunctionInOptionProperty.java"),
-               expected);
+                getPath("InputParenPadToCheckTrimFunctionInOptionProperty.java"), expected);
     }
 
     @Test
