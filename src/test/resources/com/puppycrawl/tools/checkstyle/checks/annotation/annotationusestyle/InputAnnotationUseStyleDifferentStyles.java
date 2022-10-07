@@ -17,8 +17,8 @@ public class InputAnnotationUseStyleDifferentStyles
 
 }
 
-@SomeArrays(pooches={DOGS.LEO}, // violation 'Annotation style must be 'COMPACT_NO_ARRAY''
-        um={}, duh={"bleh"})
+// violation below 'Annotation style must be 'COMPACT_NO_ARRAY''
+@SomeArrays(pooches={DOGS.LEO},um={}, duh={"bleh"})
 @SuppressWarnings("") //compact_no_array
 @Deprecated() // violation 'Annotation cannot have closing parenthesis'
 class Dep {
@@ -31,8 +31,8 @@ class Dep {
 enum SON {
 
     @Deprecated
-    @SomeArrays(pooches={DOGS.LEO}, // violation 'Annotation style must be 'COMPACT_NO_ARRAY''
-            um={""}, duh={"bleh"})
+    // violation below 'Annotation style must be 'COMPACT_NO_ARRAY''
+    @SomeArrays(pooches={DOGS.LEO},um={""}, duh={"bleh"})
     @APooch(dog=DOGS.HERBIE)
     @Another("") //compact_no_array
     ETHAN

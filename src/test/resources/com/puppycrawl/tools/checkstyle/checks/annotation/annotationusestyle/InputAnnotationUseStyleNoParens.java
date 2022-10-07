@@ -82,11 +82,11 @@ class Closing3 {
 class Example9 {}
 @AnnotationWithAnnotationValue(value = @Another)
 class Example10 {}
-@AnnotationWithAnnotationValue(
-         @Another())// violation 'Annotation cannot have closing parenthesis'
+// violation below 'Annotation cannot have closing parenthesis'
+@AnnotationWithAnnotationValue(@Another())
 class Example11 {}
-@AnnotationWithAnnotationValue(value =
-         @Another())// violation 'Annotation cannot have closing parenthesis'
+// violation below 'Annotation cannot have closing parenthesis'
+@AnnotationWithAnnotationValue(value = @Another())
 class Example12 {}
 
 class Foo3 {

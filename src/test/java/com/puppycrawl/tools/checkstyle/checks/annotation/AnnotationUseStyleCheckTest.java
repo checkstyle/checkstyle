@@ -106,11 +106,11 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "13:1: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "COMPACT_NO_ARRAY"),
             "14:1: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "COMPACT_NO_ARRAY"),
-            "20:1: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "COMPACT_NO_ARRAY"),
+            "21:1: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "COMPACT_NO_ARRAY"),
             "23:1: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_PRESENT),
             "29:1: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "COMPACT_NO_ARRAY"),
             "30:1: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "COMPACT_NO_ARRAY"),
-            "34:5: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "COMPACT_NO_ARRAY"),
+            "35:5: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "COMPACT_NO_ARRAY"),
             "41:1: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_PRESENT),
             "45:5: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_PRESENT),
             "53:5: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "COMPACT_NO_ARRAY"),
@@ -134,7 +134,7 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
             "27:1: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_MISSING),
             "32:5: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_MISSING),
             "80:32: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_MISSING),
-            "83:13: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_MISSING),
+            "83:40: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_MISSING),
             "91:9: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_MISSING),
             "91:31: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_MISSING),
         };
@@ -152,8 +152,8 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
             "22:1: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_PRESENT),
             "39:1: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_PRESENT),
             "43:5: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_PRESENT),
-            "86:10: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_PRESENT),
-            "89:10: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_PRESENT),
+            "86:32: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_PRESENT),
+            "89:40: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_PRESENT),
         };
 
         verifyWithInlineConfigParser(
@@ -198,10 +198,10 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "13:1: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "COMPACT_NO_ARRAY"),
             "14:1: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "COMPACT_NO_ARRAY"),
-            "20:1: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "COMPACT_NO_ARRAY"),
+            "21:1: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "COMPACT_NO_ARRAY"),
             "29:1: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "COMPACT_NO_ARRAY"),
             "30:1: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "COMPACT_NO_ARRAY"),
-            "34:5: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "COMPACT_NO_ARRAY"),
+            "35:5: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "COMPACT_NO_ARRAY"),
             "52:5: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "COMPACT_NO_ARRAY"),
             "54:5: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "COMPACT_NO_ARRAY"),
             "58:1: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "COMPACT_NO_ARRAY"),
@@ -216,9 +216,9 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "12:20: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_MISSING),
             "15:30: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_MISSING),
-            "20:30: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_MISSING),
-            "24:29: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_MISSING),
-            "28:31: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_MISSING),
+            "20:40: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_MISSING),
+            "24:45: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_MISSING),
+            "28:55: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_MISSING),
             "36:22: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_MISSING),
             "36:36: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_MISSING),
             "38:21: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_MISSING),
@@ -276,10 +276,10 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testCommaNeverViolations() throws Exception {
         final String[] expected = {
-            "16:22: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_PRESENT),
-            "21:17: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_PRESENT),
-            "25:21: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_PRESENT),
-            "29:25: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_PRESENT),
+            "16:32: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_PRESENT),
+            "21:42: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_PRESENT),
+            "25:46: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_PRESENT),
+            "29:56: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_PRESENT),
             "37:24: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_PRESENT),
             "37:39: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_PRESENT),
             "43:41: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_PRESENT),

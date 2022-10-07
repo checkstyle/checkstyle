@@ -12,21 +12,21 @@ package com.puppycrawl.tools.checkstyle.checks.annotation.annotationusestyle;
 
 public class InputAnnotationUseStyleWithTrailingCommaNever
 {
-    @SuppressWarnings(
-            {"common",}) // violation 'Annotation array values cannot contain trailing comma'
+    // violation below 'Annotation array values cannot contain trailing comma'
+    @SuppressWarnings({"common",})
     public void foo() {
 
 
-        @SuppressWarnings({"common","foo"
-                ,}) // violation 'Annotation array values cannot contain trailing comma'
+        // violation below 'Annotation array values cannot contain trailing comma'
+        @SuppressWarnings({"common","foo",})
         Object o = new Object() {
 
-            @SuppressWarnings(value={"common"
-                    ,})// violation 'Annotation array values cannot contain trailing comma'
+            // violation below 'Annotation array values cannot contain trailing comma'
+            @SuppressWarnings(value={"common",})
             public String toString() {
 
-                @SuppressWarnings(value={"leo","herbie"
-                        ,})//violation 'Annotation array values cannot contain trailing comma'
+                // violation below 'Annotation array values cannot contain trailing comma'
+                @SuppressWarnings(value={"leo","herbie",})
                 final String pooches = "leo.herbie";
 
                 return pooches;
