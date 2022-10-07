@@ -127,7 +127,7 @@
     <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/ConfigurationLoader.java</fileName>
     <specifier>initialization.fields.uninitialized</specifier>
     <message>the constructor does not initialize fields: configuration</message>
-    <lineContent>private ConfigurationLoader(final PropertyResolver overrideProps,</lineContent>
+    <lineContent>private InternalLoader()</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
