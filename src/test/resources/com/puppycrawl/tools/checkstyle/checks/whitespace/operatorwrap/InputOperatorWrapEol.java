@@ -1,6 +1,6 @@
 /*
 OperatorWrap
-option = EOL
+option = eol
 tokens = ASSIGN,COLON,LAND,LOR,STAR,QUESTION
 
 
