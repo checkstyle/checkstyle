@@ -7,8 +7,8 @@ import groovy.xml.XmlUtil
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 
-@Field static final String USAGE_STRING = "Usage groovy " +
-        ".${File.separator}.ci${File.separator}checker-framework.groovy" +
+@Field final String USAGE_STRING = "Usage groovy " +
+        ".${File.separator}.ci${File.separator}checker.groovy" +
         " [profile] [-g | --generate-suppression]\n"
 
 int exitCode = 1
@@ -63,7 +63,7 @@ private static Set<String> getCheckerFrameworkProfiles() {
     ids.each { node ->
         final GPathResult id = node as GPathResult
         final String idText = id.text()
-        if (idText.startsWith("checker-framework-")) {
+        if (idText.startsWith("checker-")) {
             profiles.add(idText)
         }
     }
@@ -82,7 +82,7 @@ private static int checkCheckerFrameworkReport(String profile, String flag) {
     final XmlParser xmlParser = new XmlParser()
     final String suppressedErrorsFileUri =
             ".${File.separator}.ci${File.separator}" +
-                    "checker-framework-suppressions${File.separator}${profile}-suppressions.xml"
+                    "checker-suppressions${File.separator}${profile}-suppressions.xml"
     final List<String> checkerFrameworkErrors = getCheckerFrameworkErrors(profile)
     Set<CheckerFrameworkError> errors = Collections.emptySet()
     if (!checkerFrameworkErrors.isEmpty()) {

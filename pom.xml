@@ -2403,7 +2403,7 @@
 
     <!-- Start Checker Framework profiles -->
     <profile>
-      <id>checker-framework-nullness-optional-interning</id>
+      <id>checker-nullness-optional-interning</id>
       <build>
         <plugins>
           <plugin>
@@ -2462,7 +2462,7 @@
     </profile>
 
     <profile>
-      <id>checker-framework-methods-resource-fenum</id>
+      <id>checker-methods-resource-fenum</id>
       <build>
         <plugins>
           <plugin>
@@ -2521,7 +2521,7 @@
     </profile>
 
     <profile>
-      <id>checker-framework-lock-tainting</id>
+      <id>checker-lock-tainting</id>
       <build>
         <plugins>
           <plugin>
@@ -2579,7 +2579,7 @@
     </profile>
 
     <profile>
-      <id>checker-framework-index</id>
+      <id>checker-index</id>
       <build>
         <plugins>
           <plugin>
@@ -2636,7 +2636,7 @@
     </profile>
 
     <profile>
-      <id>checker-framework-formatter</id>
+      <id>checker-formatter</id>
       <build>
         <plugins>
           <plugin>
@@ -2694,7 +2694,7 @@
     </profile>
 
     <profile>
-      <id>checker-framework-signature-gui-units-init</id>
+      <id>checker-signature-gui-units-init</id>
       <build>
         <plugins>
           <plugin>
@@ -2754,7 +2754,7 @@
     </profile>
 
     <profile>
-      <id>checker-framework-regex-property-key-compiler-message</id>
+      <id>checker-regex-property-key-compiler-message</id>
       <build>
         <plugins>
           <plugin>
@@ -2813,7 +2813,7 @@
     </profile>
 
     <profile>
-      <id>checker-framework-purity-value-returns</id>
+      <id>checker-purity-value-returns</id>
       <build>
         <plugins>
           <plugin>

@@ -1,4 +1,4 @@
-name: Checker-Framework
+name: Checker
 
 on:
   push:
@@ -7,19 +7,19 @@ on:
   pull_request:
 
 jobs:
-  checker-framework:
+  checker:
     strategy:
       fail-fast: false
       matrix:
         profile:
-          - checker-framework-nullness-optional-interning
-          - checker-framework-methods-resource-fenum
-          - checker-framework-lock-tainting
-          - checker-framework-index
-          - checker-framework-formatter
-          - checker-framework-signature-gui-units-init
-          - checker-framework-regex-property-key-compiler-message
-          - checker-framework-purity-value-returns
+          - checker-nullness-optional-interning
+          - checker-methods-resource-fenum
+          - checker-lock-tainting
+          - checker-index
+          - checker-formatter
+          - checker-signature-gui-units-init
+          - checker-regex-property-key-compiler-message
+          - checker-purity-value-returns
 
     runs-on: ubuntu-latest
     steps:
@@ -32,6 +32,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Execute checker framework
-        run: groovy ./.ci/checker-framework.groovy ${{ matrix.profile }}
+        run: groovy ./.ci/checker.groovy ${{ matrix.profile }}
         env:
+      - name: analyse
           MAVEN_OPTS: "-Xmx4g"
