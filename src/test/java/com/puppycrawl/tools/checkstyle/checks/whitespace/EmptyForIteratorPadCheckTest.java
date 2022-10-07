@@ -107,4 +107,25 @@ public class EmptyForIteratorPadCheckTest
         }
     }
 
+    @Test
+    public void testTrimOptionProperty() throws Exception {
+        final String[] expected = {
+            "20:31: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ";"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyForIteratorPadToCheckTrimFunctionInOptionProperty.java"),
+                expected);
+
+    }
+
+    @Test
+    public void testUppercaseOptionProperty() throws Exception {
+        final String[] expected = {
+            "20:31: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ";"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyForIteratorPadToCheckUppercaseFunctionInOptionProperty.java"),
+                expected);
+
+    }
 }
