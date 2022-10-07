@@ -10,36 +10,45 @@ trailingArrayComma = (default)never
 package com.puppycrawl.tools.checkstyle.checks.annotation.annotationusestyle;
 
 @Deprecated
-@SomeArrays(pooches={DOGS.LEO}) // violation
-@SuppressWarnings({""}) // violation
+// violation below 'Annotation style must be 'COMPACT_NO_ARRAY''
+@SomeArrays(pooches={DOGS.LEO})
+// violation below 'Annotation style must be 'COMPACT_NO_ARRAY''
+@SuppressWarnings({""})
 public class InputAnnotationUseStyleDifferentStyles
 {
 
 }
 
-@SomeArrays(pooches={DOGS.LEO}, um={}, duh={"bleh"}) // violation
+// violation below 'Annotation style must be 'COMPACT_NO_ARRAY''
+@SomeArrays(pooches={DOGS.LEO},um={}, duh={"bleh"})
 @SuppressWarnings("") //compact_no_array
-@Deprecated() // violation
+// violation below 'Annotation cannot have closing parenthesis'
+@Deprecated()
 class Dep {
 
 }
 
 @Deprecated
-@SomeArrays(pooches={DOGS.LEO}) // violation
-@SuppressWarnings({""}) // violation
+// violation below 'Annotation style must be 'COMPACT_NO_ARRAY''
+@SomeArrays(pooches={DOGS.LEO})
+// violation below 'Annotation style must be 'COMPACT_NO_ARRAY''
+@SuppressWarnings({""})
 enum SON {
 
     @Deprecated
-    @SomeArrays(pooches={DOGS.LEO}, um={""}, duh={"bleh"}) // violation
+    // violation below 'Annotation style must be 'COMPACT_NO_ARRAY''
+    @SomeArrays(pooches={DOGS.LEO},um={""}, duh={"bleh"})
     @APooch(dog=DOGS.HERBIE)
     @Another("") //compact_no_array
     ETHAN
 }
 
-@InputAnnotationUseStyleCustomAnnotation3() // violation
+// violation below 'Annotation cannot have closing parenthesis'
+@InputAnnotationUseStyleCustomAnnotation3()
 enum DOGS {
 
-    @Deprecated() // violation
+    // violation below 'Annotation cannot have closing parenthesis'
+    @Deprecated()
     LEO,
     HERBIE
 }
@@ -47,13 +56,16 @@ enum DOGS {
 @interface SomeArrays {
     @Another("") //compact
     String[] um() default {};
-    @Another({""}) //compact // violation
+    // violation below 'Annotation style must be 'COMPACT_NO_ARRAY''
+    @Another({""}) //compact
     String[] duh() default {};
-    @Another(value={""}) //expanded // violation
+    // violation below 'Annotation style must be 'COMPACT_NO_ARRAY''
+    @Another(value={""}) //expanded
     DOGS[] pooches();
 }
 
-@Another(value={""}) //expanded // violation
+// violation below 'Annotation style must be 'COMPACT_NO_ARRAY''
+@Another(value={""}) //expanded
 enum E {
 
 }
@@ -81,9 +93,11 @@ class Closing {
 class Example1 {}
 @AnnotationWithAnnotationValue(value = @Another)
 class Example2 {}
-@AnnotationWithAnnotationValue(@Another()) // violation
+// violation below 'Annotation cannot have closing parenthesis'
+@AnnotationWithAnnotationValue(@Another())
 class Example3 {}
-@AnnotationWithAnnotationValue(value = @Another()) // violation
+// violation below 'Annotation cannot have closing parenthesis'
+@AnnotationWithAnnotationValue(value = @Another())
 class Example4 {}
 
 class Foo {

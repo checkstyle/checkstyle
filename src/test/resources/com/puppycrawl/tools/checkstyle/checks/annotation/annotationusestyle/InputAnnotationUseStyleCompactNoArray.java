@@ -10,14 +10,17 @@ trailingArrayComma = ignore
 package com.puppycrawl.tools.checkstyle.checks.annotation.annotationusestyle;
 
 @Deprecated
-@SomeArrays(pooches={DOGS.LEO}) // violation
-@SuppressWarnings({""}) // violation
+// violation below 'Annotation style must be 'COMPACT_NO_ARRAY''
+@SomeArrays(pooches={DOGS.LEO})
+// violation below 'Annotation style must be 'COMPACT_NO_ARRAY''
+@SuppressWarnings({""})
 public class InputAnnotationUseStyleCompactNoArray
 {
 
 }
 
-@SomeArrays(pooches={DOGS.LEO}, um={}, duh={"bleh"}) // violation
+//violation below 'Annotation style must be 'COMPACT_NO_ARRAY''
+@SomeArrays(pooches={DOGS.LEO},um={}, duh={"bleh"})
 @SuppressWarnings("") //compact_no_array
 @Deprecated()
 class Dep6 {
@@ -25,12 +28,15 @@ class Dep6 {
 }
 
 @Deprecated
-@SomeArrays(pooches={DOGS.LEO}) // violation
-@SuppressWarnings({""}) // violation
+// violation below 'Annotation style must be 'COMPACT_NO_ARRAY''
+@SomeArrays(pooches={DOGS.LEO})
+// violation below 'Annotation style must be 'COMPACT_NO_ARRAY''
+@SuppressWarnings({""})
 enum SON6 {
 
     @Deprecated
-    @SomeArrays(pooches={DOGS.LEO}, um={""}, duh={"bleh"}) // violation
+    // violation below 'Annotation style must be 'COMPACT_NO_ARRAY''
+    @SomeArrays(pooches={DOGS.LEO},um={""}, duh={"bleh"})
     @APooch(dog=DOGS.HERBIE)
     @Another("") //compact_no_array
     ETHAN
@@ -47,13 +53,16 @@ enum DOGS6 {
 @interface SomeArrays6 {
     @Another("") //compact
     String[] um() default {};
-    @Another({""}) //compact // violation
+    // violation below 'Annotation style must be 'COMPACT_NO_ARRAY''
+    @Another({""}) //compact
     String[] duh() default {};
-    @Another(value={""}) //expanded // violation
+    // violation below 'Annotation style must be 'COMPACT_NO_ARRAY''
+    @Another(value={""}) //expanded
     DOGS[] pooches();
 }
 
-@Another(value={""}) //expanded // violation
+// violation below 'Annotation style must be 'COMPACT_NO_ARRAY''
+@Another(value={""}) //expanded
 enum E6 {
 
 }
