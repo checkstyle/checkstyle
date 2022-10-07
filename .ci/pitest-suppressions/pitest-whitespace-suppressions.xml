@@ -156,24 +156,6 @@
   <mutation unstable="false">
     <sourceFile>SeparatorWrapCheck.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.whitespace.SeparatorWrapCheck</mutatedClass>
-    <mutatedMethod>setOption</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
-    <description>replaced call to java/lang/String::toUpperCase with receiver</description>
-    <lineContent>option = WrapOption.valueOf(optionStr.trim().toUpperCase(Locale.ENGLISH));</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>SeparatorWrapCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.whitespace.SeparatorWrapCheck</mutatedClass>
-    <mutatedMethod>setOption</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
-    <description>replaced call to java/lang/String::trim with receiver</description>
-    <lineContent>option = WrapOption.valueOf(optionStr.trim().toUpperCase(Locale.ENGLISH));</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>SeparatorWrapCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.whitespace.SeparatorWrapCheck</mutatedClass>
     <mutatedMethod>visitToken</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
     <description>replaced call to com/puppycrawl/tools/checkstyle/utils/CodePointUtil::trim with argument</description>
