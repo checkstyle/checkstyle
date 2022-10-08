@@ -1,6 +1,6 @@
 /*
 SeparatorWrap
-option = NL
+option = nl
 tokens = DOT
 
 
