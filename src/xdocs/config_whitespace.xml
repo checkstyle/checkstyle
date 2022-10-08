@@ -431,6 +431,15 @@ class FirstClass {
   &lt;property name="tokens" value="VARIABLE_DEF, METHOD_DEF"/&gt;
 &lt;/module&gt;
         </source>
+        <source>
+class FirstClass {
+    int var1 = 1; // ok
+    int var2 = 2; // violation, 'VARIABLE_DEF' should be separated from previous line.
+
+    void method1() {} //ok
+    void method2() {} // violation, 'METHOD_DEF' should be separated from previous line.
+ }
+        </source>
         <p>
           To allow no empty line between fields:
         </p>

@@ -161,6 +161,16 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * &lt;/module&gt;
  * </pre>
  *
+ * <pre>
+ * class FirstClass {
+ *     int var1 = 1; // ok
+ *     int var2 = 2; // violation, 'VARIABLE_DEF' should be separated from previous line.
+ *
+ *     void method1() {} //ok
+ *     void method2() {} // violation, 'METHOD_DEF' should be separated from previous line.
+ * }
+ * </pre>
+ *
  * <p>
  * To allow no empty line between fields:
  * </p>
