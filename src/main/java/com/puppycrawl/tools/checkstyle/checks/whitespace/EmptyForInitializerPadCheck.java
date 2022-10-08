@@ -149,7 +149,7 @@ public class EmptyForInitializerPadCheck
     public void visitToken(DetailAST ast) {
         if (!ast.hasChildren()) {
             // empty for initializer. test pad before semi.
-            final DetailAST semi = ast.getNextSibling();
+            final DetailAST semi = ast;
             final int semiLineIdx = semi.getLineNo() - 1;
             final int[] line = getLineCodePoints(semiLineIdx);
             final int before = semi.getColumnNo() - 1;
