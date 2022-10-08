@@ -69,6 +69,15 @@ public class XdocsMobileWrapperTest {
         }
     }
 
+    /**
+     *
+     * @param node node for iteration over children
+     * @param fileName filename to build message
+     * @param sectionName section name to build message
+     * @noinspection ParameterNameDiffersFromOverriddenParameter
+     * @noinspectionreason ParameterNameDiffersFromOverriddenParameter -
+     *      false positive
+     */
     private static void iterateNode(Node node, String fileName, String sectionName) {
         for (Node child : XmlUtil.getChildrenElements(node)) {
             if (NODES_TO_WRAP.contains(child.getNodeName())) {
