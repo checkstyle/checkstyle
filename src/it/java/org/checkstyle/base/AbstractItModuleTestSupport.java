@@ -376,16 +376,16 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
      * method inside.
      *
      * @param config configuration.
-     * @param fileName file name to verify.
+     * @param messageFileName file name to verify.
      * @param expected an array of expected messages.
      * @param warnsExpected an array of expected warning numbers.
      * @throws Exception if exception occurs during verification process.
      */
-    protected final void verify(Configuration config, String fileName, String[] expected,
+    protected final void verify(Configuration config, String messageFileName, String[] expected,
             Integer... warnsExpected) throws Exception {
         verify(createChecker(config),
-                new File[] {new File(fileName)},
-                fileName, expected, warnsExpected);
+                new File[] {new File(messageFileName)},
+                messageFileName, expected, warnsExpected);
     }
 
     /**

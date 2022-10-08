@@ -218,6 +218,9 @@ public class MainTest {
      *
      * @param systemErr wrapper for {@code System.err}
      * @param systemOut wrapper for {@code System.out}
+     * @noinspection JUnitMalformedDeclaration
+     * @noinspectionreason JUnitMalformedDeclaration - 
+     *      we must test CLI using injected system out/err
      */
     @BeforeEach
     public void setUp(@SysErr Capturable systemErr, @SysOut Capturable systemOut) {
@@ -249,6 +252,14 @@ public class MainTest {
                 .isTrue();
     }
 
+    /**
+     *
+     * @param systemErr wrapper for {@code System.err}
+     * @param systemOut wrapper for {@code System.out}
+     * @noinspection JUnitMalformedDeclaration
+     * @noinspectionreason JUnitMalformedDeclaration - 
+     *      we must test CLI using injected system out/err
+     */
     @Test
     public void testVersionPrint(@SysErr Capturable systemErr, @SysOut Capturable systemOut) {
         assertMainReturnCode(0, "-V");
@@ -260,6 +271,14 @@ public class MainTest {
             .isEqualTo("");
     }
 
+    /**
+     *
+     * @param systemErr wrapper for {@code System.err}
+     * @param systemOut wrapper for {@code System.out}
+     * @noinspection JUnitMalformedDeclaration
+     * @noinspectionreason JUnitMalformedDeclaration -
+     *      we must test CLI using injected system out/err
+     */
     @Test
     public void testUsageHelpPrint(@SysErr Capturable systemErr, @SysOut Capturable systemOut) {
         assertMainReturnCode(0, "-h");
@@ -271,6 +290,14 @@ public class MainTest {
             .isEqualTo("");
     }
 
+    /**
+     *
+     * @param systemErr wrapper for {@code System.err}
+     * @param systemOut wrapper for {@code System.out}
+     * @noinspection JUnitMalformedDeclaration
+     * @noinspectionreason JUnitMalformedDeclaration -
+     *      we must test CLI using injected system out/err
+     */
     @Test
     public void testWrongArgument(@SysErr Capturable systemErr, @SysOut Capturable systemOut) {
         // need to specify a file:
@@ -286,6 +313,14 @@ public class MainTest {
             .isEqualTo(usage);
     }
 
+    /**
+     *
+     * @param systemErr wrapper for {@code System.err}
+     * @param systemOut wrapper for {@code System.out}
+     * @noinspection JUnitMalformedDeclaration
+     * @noinspectionreason JUnitMalformedDeclaration -
+     *      we must test CLI using injected system out/err
+     */
     @Test
     public void testWrongArgumentMissingFiles(@SysErr Capturable systemErr,
             @SysOut Capturable systemOut) {
@@ -301,6 +336,14 @@ public class MainTest {
             .isEqualTo(usage);
     }
 
+    /**
+     *
+     * @param systemErr wrapper for {@code System.err}
+     * @param systemOut wrapper for {@code System.out}
+     * @noinspection JUnitMalformedDeclaration
+     * @noinspectionreason JUnitMalformedDeclaration -
+     *      we must test CLI using injected system out/err
+     */
     @Test
     public void testNoConfigSpecified(@SysErr Capturable systemErr, @SysOut Capturable systemOut) {
         assertMainReturnCode(-1, getPath("InputMain.java"));
@@ -312,6 +355,14 @@ public class MainTest {
             .isEqualTo("");
     }
 
+    /**
+     *
+     * @param systemErr wrapper for {@code System.err}
+     * @param systemOut wrapper for {@code System.out}
+     * @noinspection JUnitMalformedDeclaration
+     * @noinspectionreason JUnitMalformedDeclaration -
+     *      we must test CLI using injected system out/err
+     */
     @Test
     public void testNonExistentTargetFile(@SysErr Capturable systemErr,
             @SysOut Capturable systemOut) {
@@ -324,6 +375,14 @@ public class MainTest {
             .isEqualTo("");
     }
 
+    /**
+     *
+     * @param systemErr wrapper for {@code System.err}
+     * @param systemOut wrapper for {@code System.out}
+     * @noinspection JUnitMalformedDeclaration
+     * @noinspectionreason JUnitMalformedDeclaration -
+     *      we must test CLI using injected system out/err
+     */
     @Test
     public void testExistingTargetFileButWithoutReadAccess(
             @SysErr Capturable systemErr, @SysOut Capturable systemOut) throws IOException {
@@ -343,6 +402,14 @@ public class MainTest {
             .isEqualTo("");
     }
 
+    /**
+     *
+     * @param systemErr wrapper for {@code System.err}
+     * @param systemOut wrapper for {@code System.out}
+     * @noinspection JUnitMalformedDeclaration
+     * @noinspectionreason JUnitMalformedDeclaration -
+     *      we must test CLI using injected system out/err
+     */
     @Test
     public void testNonExistentConfigFile(@SysErr Capturable systemErr,
             @SysOut Capturable systemOut) {
@@ -357,6 +424,14 @@ public class MainTest {
             .isEqualTo("");
     }
 
+    /**
+     *
+     * @param systemErr wrapper for {@code System.err}
+     * @param systemOut wrapper for {@code System.out}
+     * @noinspection JUnitMalformedDeclaration
+     * @noinspectionreason JUnitMalformedDeclaration -
+     *      we must test CLI using injected system out/err
+     */
     @Test
     public void testNonExistentOutputFormat(@SysErr Capturable systemErr,
             @SysOut Capturable systemOut) {
@@ -382,6 +457,14 @@ public class MainTest {
                 .isTrue();
     }
 
+    /**
+     *
+     * @param systemErr wrapper for {@code System.err}
+     * @param systemOut wrapper for {@code System.out}
+     * @noinspection JUnitMalformedDeclaration
+     * @noinspectionreason JUnitMalformedDeclaration -
+     *      we must test CLI using injected system out/err
+     */
     @Test
     public void testExistingTargetFile(@SysErr Capturable systemErr, @SysOut Capturable systemOut) {
         assertMainReturnCode(0, "-c", getPath("InputMainConfig-classname.xml"),
@@ -395,6 +478,14 @@ public class MainTest {
             .isEqualTo("");
     }
 
+    /**
+     *
+     * @param systemErr wrapper for {@code System.err}
+     * @param systemOut wrapper for {@code System.out}
+     * @noinspection JUnitMalformedDeclaration
+     * @noinspectionreason JUnitMalformedDeclaration -
+     *      we must test CLI using injected system out/err
+     */
     @Test
     public void testExistingTargetFileXmlOutput(@SysErr Capturable systemErr,
             @SysOut Capturable systemOut) throws IOException {
@@ -423,6 +514,9 @@ public class MainTest {
      *
      * @param systemErr the system error stream
      * @param systemOut the system output stream
+     * @noinspection JUnitMalformedDeclaration
+     * @noinspectionreason JUnitMalformedDeclaration -
+     *      we must test CLI using injected system out/err
      */
     @Test
     public void testNonClosedSystemStreams(@SysErr Capturable systemErr,
@@ -463,6 +557,14 @@ public class MainTest {
                 .isEqualTo(AutomaticBean.OutputStreamOptions.CLOSE);
     }
 
+    /**
+     *
+     * @param systemErr wrapper for {@code System.err}
+     * @param systemOut wrapper for {@code System.out}
+     * @noinspection JUnitMalformedDeclaration
+     * @noinspectionreason JUnitMalformedDeclaration -
+     *      we must test CLI using injected system out/err
+     */
     @Test
     public void testExistingTargetFilePlainOutput(@SysErr Capturable systemErr,
             @SysOut Capturable systemOut) {
@@ -477,6 +579,14 @@ public class MainTest {
             .isEqualTo("");
     }
 
+    /**
+     *
+     * @param systemErr wrapper for {@code System.err}
+     * @param systemOut wrapper for {@code System.out}
+     * @noinspection JUnitMalformedDeclaration
+     * @noinspectionreason JUnitMalformedDeclaration -
+     *      we must test CLI using injected system out/err
+     */
     @Test
     public void testExistingTargetFileWithViolations(@SysErr Capturable systemErr,
             @SysOut Capturable systemOut) throws IOException {
@@ -506,6 +616,14 @@ public class MainTest {
             .isEqualTo("");
     }
 
+    /**
+     *
+     * @param systemErr wrapper for {@code System.err}
+     * @param systemOut wrapper for {@code System.out}
+     * @noinspection JUnitMalformedDeclaration
+     * @noinspectionreason JUnitMalformedDeclaration -
+     *      we must test CLI using injected system out/err
+     */
     @Test
     public void testViolationsByGoogleAndXpathSuppressions(@SysErr Capturable systemErr,
             @SysOut Capturable systemOut) {
@@ -521,6 +639,14 @@ public class MainTest {
             .isEqualTo("");
     }
 
+    /**
+     *
+     * @param systemErr wrapper for {@code System.err}
+     * @param systemOut wrapper for {@code System.out}
+     * @noinspection JUnitMalformedDeclaration
+     * @noinspectionreason JUnitMalformedDeclaration -
+     *      we must test CLI using injected system out/err
+     */
     @Test
     public void testViolationsByGoogleAndSuppressions(@SysErr Capturable systemErr,
             @SysOut Capturable systemOut) {
@@ -536,6 +662,14 @@ public class MainTest {
             .isEqualTo("");
     }
 
+    /**
+     *
+     * @param systemErr wrapper for {@code System.err}
+     * @param systemOut wrapper for {@code System.out}
+     * @noinspection JUnitMalformedDeclaration
+     * @noinspectionreason JUnitMalformedDeclaration -
+     *      we must test CLI using injected system out/err
+     */
     @Test
     public void testExistingTargetFileWithError(@SysErr Capturable systemErr,
             @SysOut Capturable systemOut) throws Exception {
@@ -572,6 +706,9 @@ public class MainTest {
      * to {@code if (exitStatus > 1)}.
      *
      * @throws Exception should not throw anything
+     * @noinspection JUnitMalformedDeclaration
+     * @noinspectionreason JUnitMalformedDeclaration -
+     *      we must test CLI using injected system out/err
      */
     @Test
     public void testExistingTargetFileWithOneError(@SysErr Capturable systemErr,
@@ -597,6 +734,14 @@ public class MainTest {
             .isEqualTo(addEndOfLine(errorCounterTwoMessage.getViolation()));
     }
 
+    /**
+     *
+     * @param systemErr wrapper for {@code System.err}
+     * @param systemOut wrapper for {@code System.out}
+     * @noinspection JUnitMalformedDeclaration
+     * @noinspectionreason JUnitMalformedDeclaration -
+     *      we must test CLI using injected system out/err
+     */
     @Test
     public void testExistingTargetFileWithOneErrorAgainstSunCheck(@SysErr Capturable systemErr,
             @SysOut Capturable systemOut) throws Exception {
@@ -619,6 +764,14 @@ public class MainTest {
             .isEqualTo(addEndOfLine(errorCounterTwoMessage.getViolation()));
     }
 
+    /**
+     *
+     * @param systemErr wrapper for {@code System.err}
+     * @param systemOut wrapper for {@code System.out}
+     * @noinspection JUnitMalformedDeclaration
+     * @noinspectionreason JUnitMalformedDeclaration -
+     *      we must test CLI using injected system out/err
+     */
     @Test
     public void testExistentTargetFilePlainOutputToNonExistentFile(@SysErr Capturable systemErr,
             @SysOut Capturable systemOut) {
@@ -632,6 +785,14 @@ public class MainTest {
             .isEqualTo("");
     }
 
+    /**
+     *
+     * @param systemErr wrapper for {@code System.err}
+     * @param systemOut wrapper for {@code System.out}
+     * @noinspection JUnitMalformedDeclaration
+     * @noinspectionreason JUnitMalformedDeclaration -
+     *      we must test CLI using injected system out/err
+     */
     @Test
     public void testExistingTargetFilePlainOutputToFile(@SysErr Capturable systemErr,
             @SysOut Capturable systemOut) throws Exception {
@@ -663,6 +824,14 @@ public class MainTest {
                 .isTrue();
     }
 
+    /**
+     *
+     * @param systemErr wrapper for {@code System.err}
+     * @param systemOut wrapper for {@code System.out}
+     * @noinspection JUnitMalformedDeclaration
+     * @noinspectionreason JUnitMalformedDeclaration -
+     *      we must test CLI using injected system out/err
+     */
     @Test
     public void testExistingTargetFilePlainOutputProperties(@SysErr Capturable systemErr,
             @SysOut Capturable systemOut) {
@@ -677,6 +846,14 @@ public class MainTest {
             .isEqualTo("");
     }
 
+    /**
+     *
+     * @param systemErr wrapper for {@code System.err}
+     * @param systemOut wrapper for {@code System.out}
+     * @noinspection JUnitMalformedDeclaration
+     * @noinspectionreason JUnitMalformedDeclaration -
+     *      we must test CLI using injected system out/err
+     */
     @Test
     public void testPropertyFileWithPropertyChaining(@SysErr Capturable systemErr,
             @SysOut Capturable systemOut) {
@@ -692,6 +869,14 @@ public class MainTest {
             .isEqualTo("");
     }
 
+    /**
+     *
+     * @param systemErr wrapper for {@code System.err}
+     * @param systemOut wrapper for {@code System.out}
+     * @noinspection JUnitMalformedDeclaration
+     * @noinspectionreason JUnitMalformedDeclaration -
+     *      we must test CLI using injected system out/err
+     */
     @Test
     public void testPropertyFileWithPropertyChainingUndefinedProperty(@SysErr Capturable systemErr,
             @SysOut Capturable systemOut) {
@@ -707,6 +892,14 @@ public class MainTest {
             .isEqualTo("");
     }
 
+    /**
+     *
+     * @param systemErr wrapper for {@code System.err}
+     * @param systemOut wrapper for {@code System.out}
+     * @noinspection JUnitMalformedDeclaration
+     * @noinspectionreason JUnitMalformedDeclaration -
+     *      we must test CLI using injected system out/err
+     */
     @Test
     public void testExistingTargetFilePlainOutputNonexistentProperties(@SysErr Capturable systemErr,
             @SysOut Capturable systemOut) {
@@ -797,6 +990,14 @@ public class MainTest {
         }
     }
 
+    /**
+     *
+     * @param systemErr wrapper for {@code System.err}
+     * @param systemOut wrapper for {@code System.out}
+     * @noinspection JUnitMalformedDeclaration
+     * @noinspectionreason JUnitMalformedDeclaration -
+     *      we must test CLI using injected system out/err
+     */
     @Test
     public void testExistingDirectoryWithViolations(@SysErr Capturable systemErr,
             @SysOut Capturable systemOut) throws IOException {
@@ -941,6 +1142,14 @@ public class MainTest {
                 .isFalse();
     }
 
+    /**
+     *
+     * @param systemErr wrapper for {@code System.err}
+     * @param systemOut wrapper for {@code System.out}
+     * @noinspection JUnitMalformedDeclaration
+     * @noinspectionreason JUnitMalformedDeclaration -
+     *      we must test CLI using injected system out/err
+     */
     @Test
     public void testPrintTreeOnMoreThanOneFile(@SysErr Capturable systemErr,
             @SysOut Capturable systemOut) {
@@ -953,6 +1162,14 @@ public class MainTest {
             .isEqualTo("");
     }
 
+    /**
+     *
+     * @param systemErr wrapper for {@code System.err}
+     * @param systemOut wrapper for {@code System.out}
+     * @noinspection JUnitMalformedDeclaration
+     * @noinspectionreason JUnitMalformedDeclaration -
+     *      we must test CLI using injected system out/err
+     */
     @Test
     public void testPrintTreeOption(@SysErr Capturable systemErr, @SysOut Capturable systemOut) {
         final String expected = addEndOfLine(
@@ -994,6 +1211,14 @@ public class MainTest {
             .isEqualTo("");
     }
 
+    /**
+     *
+     * @param systemErr wrapper for {@code System.err}
+     * @param systemOut wrapper for {@code System.out}
+     * @noinspection JUnitMalformedDeclaration
+     * @noinspectionreason JUnitMalformedDeclaration -
+     *      we must test CLI using injected system out/err
+     */
     @Test
     public void testPrintXpathOption(@SysErr Capturable systemErr, @SysOut Capturable systemOut) {
         final String expected = addEndOfLine(
@@ -1016,6 +1241,14 @@ public class MainTest {
             .isEqualTo("");
     }
 
+    /**
+     *
+     * @param systemErr wrapper for {@code System.err}
+     * @param systemOut wrapper for {@code System.out}
+     * @noinspection JUnitMalformedDeclaration
+     * @noinspectionreason JUnitMalformedDeclaration -
+     *      we must test CLI using injected system out/err
+     */
     @Test
     public void testPrintXpathCommentNode(@SysErr Capturable systemErr,
             @SysOut Capturable systemOut) {
@@ -1035,6 +1268,14 @@ public class MainTest {
             .isEqualTo("");
     }
 
+    /**
+     *
+     * @param systemErr wrapper for {@code System.err}
+     * @param systemOut wrapper for {@code System.out}
+     * @noinspection JUnitMalformedDeclaration
+     * @noinspectionreason JUnitMalformedDeclaration -
+     *      we must test CLI using injected system out/err
+     */
     @Test
     public void testPrintXpathNodeParentNull(@SysErr Capturable systemErr,
             @SysOut Capturable systemOut) {
@@ -1048,6 +1289,14 @@ public class MainTest {
             .isEqualTo("");
     }
 
+    /**
+     *
+     * @param systemErr wrapper for {@code System.err}
+     * @param systemOut wrapper for {@code System.out}
+     * @noinspection JUnitMalformedDeclaration
+     * @noinspectionreason JUnitMalformedDeclaration -
+     *      we must test CLI using injected system out/err
+     */
     @Test
     public void testPrintXpathFullOption(
             @SysErr Capturable systemErr, @SysOut Capturable systemOut) {
@@ -1070,6 +1319,14 @@ public class MainTest {
             .isEqualTo("");
     }
 
+    /**
+     *
+     * @param systemErr wrapper for {@code System.err}
+     * @param systemOut wrapper for {@code System.out}
+     * @noinspection JUnitMalformedDeclaration
+     * @noinspectionreason JUnitMalformedDeclaration -
+     *      we must test CLI using injected system out/err
+     */
     @Test
     public void testPrintXpathTwoResults(
             @SysErr Capturable systemErr, @SysOut Capturable systemOut) {
@@ -1108,6 +1365,14 @@ public class MainTest {
             .startsWith(exceptionFirstLine);
     }
 
+    /**
+     *
+     * @param systemErr wrapper for {@code System.err}
+     * @param systemOut wrapper for {@code System.out}
+     * @noinspection JUnitMalformedDeclaration
+     * @noinspectionreason JUnitMalformedDeclaration -
+     *      we must test CLI using injected system out/err
+     */
     @Test
     public void testPrintTreeCommentsOption(@SysErr Capturable systemErr,
             @SysOut Capturable systemOut) {
@@ -1159,8 +1424,10 @@ public class MainTest {
      * @param systemErr wrapper for {@code System.err}
      * @param systemOut wrapper for {@code System.out}
      * @throws IOException if I/O exception occurs while reading the test input.
-     * @noinspection RedundantThrows
+     * @noinspection RedundantThrows, JUnitMalformedDeclaration
      * @noinspectionreason RedundantThrows - false positive
+     * @noinspectionreason JUnitMalformedDeclaration -
+     *      we must test CLI using injected system out/err
      */
     @Test
     public void testPrintTreeJavadocOption(@SysErr Capturable systemErr,
@@ -1179,6 +1446,14 @@ public class MainTest {
             .isEqualTo("");
     }
 
+    /**
+     *
+     * @param systemErr wrapper for {@code System.err}
+     * @param systemOut wrapper for {@code System.out}
+     * @noinspection JUnitMalformedDeclaration
+     * @noinspectionreason JUnitMalformedDeclaration -
+     *      we must test CLI using injected system out/err
+     */
     @Test
     public void testPrintSuppressionOption(@SysErr Capturable systemErr,
             @SysOut Capturable systemOut) {
@@ -1198,6 +1473,14 @@ public class MainTest {
             .isEqualTo("");
     }
 
+    /**
+     *
+     * @param systemErr wrapper for {@code System.err}
+     * @param systemOut wrapper for {@code System.out}
+     * @noinspection JUnitMalformedDeclaration
+     * @noinspectionreason JUnitMalformedDeclaration -
+     *      we must test CLI using injected system out/err
+     */
     @Test
     public void testPrintSuppressionAndTabWidthOption(@SysErr Capturable systemErr,
             @SysOut Capturable systemOut) {
@@ -1229,6 +1512,14 @@ public class MainTest {
             .isEqualTo("");
     }
 
+    /**
+     *
+     * @param systemErr wrapper for {@code System.err}
+     * @param systemOut wrapper for {@code System.out}
+     * @noinspection JUnitMalformedDeclaration
+     * @noinspectionreason JUnitMalformedDeclaration -
+     *      we must test CLI using injected system out/err
+     */
     @Test
     public void testPrintSuppressionConflictingOptionsTvsC(@SysErr Capturable systemErr,
             @SysOut Capturable systemOut) {
@@ -1242,6 +1533,14 @@ public class MainTest {
             .isEqualTo("");
     }
 
+    /**
+     *
+     * @param systemErr wrapper for {@code System.err}
+     * @param systemOut wrapper for {@code System.out}
+     * @noinspection JUnitMalformedDeclaration
+     * @noinspectionreason JUnitMalformedDeclaration -
+     *      we must test CLI using injected system out/err
+     */
     @Test
     public void testPrintSuppressionConflictingOptionsTvsP(@SysErr Capturable systemErr,
             @SysOut Capturable systemOut) {
@@ -1256,6 +1555,14 @@ public class MainTest {
             .isEqualTo("");
     }
 
+    /**
+     *
+     * @param systemErr wrapper for {@code System.err}
+     * @param systemOut wrapper for {@code System.out}
+     * @noinspection JUnitMalformedDeclaration
+     * @noinspectionreason JUnitMalformedDeclaration -
+     *      we must test CLI using injected system out/err
+     */
     @Test
     public void testPrintSuppressionConflictingOptionsTvsF(@SysErr Capturable systemErr,
             @SysOut Capturable systemOut) {
@@ -1269,6 +1576,14 @@ public class MainTest {
             .isEqualTo("");
     }
 
+    /**
+     *
+     * @param systemErr wrapper for {@code System.err}
+     * @param systemOut wrapper for {@code System.out}
+     * @noinspection JUnitMalformedDeclaration
+     * @noinspectionreason JUnitMalformedDeclaration -
+     *      we must test CLI using injected system out/err
+     */
     @Test
     public void testPrintSuppressionConflictingOptionsTvsO(@SysErr Capturable systemErr,
             @SysOut Capturable systemOut) throws IOException {
@@ -1284,6 +1599,14 @@ public class MainTest {
             .isEqualTo("");
     }
 
+    /**
+     *
+     * @param systemErr wrapper for {@code System.err}
+     * @param systemOut wrapper for {@code System.out}
+     * @noinspection JUnitMalformedDeclaration
+     * @noinspectionreason JUnitMalformedDeclaration -
+     *      we must test CLI using injected system out/err
+     */
     @Test
     public void testPrintSuppressionOnMoreThanOneFile(@SysErr Capturable systemErr,
             @SysOut Capturable systemOut) {
@@ -1297,6 +1620,14 @@ public class MainTest {
             .isEqualTo("");
     }
 
+    /**
+     *
+     * @param systemErr wrapper for {@code System.err}
+     * @param systemOut wrapper for {@code System.out}
+     * @noinspection JUnitMalformedDeclaration
+     * @noinspectionreason JUnitMalformedDeclaration -
+     *      we must test CLI using injected system out/err
+     */
     @Test
     public void testGenerateXpathSuppressionOptionOne(@SysErr Capturable systemErr,
             @SysOut Capturable systemOut) {
@@ -1411,6 +1742,14 @@ public class MainTest {
             .isEqualTo("");
     }
 
+    /**
+     *
+     * @param systemErr wrapper for {@code System.err}
+     * @param systemOut wrapper for {@code System.out}
+     * @noinspection JUnitMalformedDeclaration
+     * @noinspectionreason JUnitMalformedDeclaration -
+     *      we must test CLI using injected system out/err
+     */
     @Test
     public void testGenerateXpathSuppressionOptionTwo(@SysErr Capturable systemErr,
             @SysOut Capturable systemOut) {
@@ -1454,6 +1793,14 @@ public class MainTest {
             .isEqualTo("");
     }
 
+    /**
+     *
+     * @param systemErr wrapper for {@code System.err}
+     * @param systemOut wrapper for {@code System.out}
+     * @noinspection JUnitMalformedDeclaration
+     * @noinspectionreason JUnitMalformedDeclaration -
+     *      we must test CLI using injected system out/err
+     */
     @Test
     public void testGenerateXpathSuppressionOptionEmptyConfig(@SysErr Capturable systemErr,
             @SysOut Capturable systemOut) {
@@ -1501,6 +1848,14 @@ public class MainTest {
         }
     }
 
+    /**
+     *
+     * @param systemErr wrapper for {@code System.err}
+     * @param systemOut wrapper for {@code System.out}
+     * @noinspection JUnitMalformedDeclaration
+     * @noinspectionreason JUnitMalformedDeclaration -
+     *      we must test CLI using injected system out/err
+     */
     @Test
     public void testGenerateXpathSuppressionOptionDefaultTabWidth(@SysErr Capturable systemErr,
             @SysOut Capturable systemOut) {
@@ -1530,6 +1885,14 @@ public class MainTest {
             .isEqualTo("");
     }
 
+    /**
+     *
+     * @param systemErr wrapper for {@code System.err}
+     * @param systemOut wrapper for {@code System.out}
+     * @noinspection JUnitMalformedDeclaration
+     * @noinspectionreason JUnitMalformedDeclaration -
+     *      we must test CLI using injected system out/err
+     */
     @Test
     public void testGenerateXpathSuppressionOptionCustomTabWidth(@SysErr Capturable systemErr,
             @SysOut Capturable systemOut) {
@@ -1552,8 +1915,10 @@ public class MainTest {
      * @param systemErr wrapper for {@code System.err}
      * @param systemOut wrapper for {@code System.out}
      * @throws IOException if I/O exception occurs while reading the test input.
-     * @noinspection RedundantThrows
+     * @noinspection RedundantThrows, JUnitMalformedDeclaration
      * @noinspectionreason RedundantThrows - false positive
+     * @noinspectionreason JUnitMalformedDeclaration -
+     *      we must test CLI using injected system out/err
      */
     @Test
     public void testPrintFullTreeOption(@SysErr Capturable systemErr, @SysOut Capturable systemOut)
@@ -1573,6 +1938,14 @@ public class MainTest {
             .isEqualTo("");
     }
 
+    /**
+     *
+     * @param systemErr wrapper for {@code System.err}
+     * @param systemOut wrapper for {@code System.out}
+     * @noinspection JUnitMalformedDeclaration
+     * @noinspectionreason JUnitMalformedDeclaration -
+     *      we must test CLI using injected system out/err
+     */
     @Test
     public void testConflictingOptionsTvsC(@SysErr Capturable systemErr,
             @SysOut Capturable systemOut) {
@@ -1585,6 +1958,14 @@ public class MainTest {
             .isEqualTo("");
     }
 
+    /**
+     *
+     * @param systemErr wrapper for {@code System.err}
+     * @param systemOut wrapper for {@code System.out}
+     * @noinspection JUnitMalformedDeclaration
+     * @noinspectionreason JUnitMalformedDeclaration -
+     *      we must test CLI using injected system out/err
+     */
     @Test
     public void testConflictingOptionsTvsP(@SysErr Capturable systemErr,
             @SysOut Capturable systemOut) {
@@ -1598,6 +1979,14 @@ public class MainTest {
             .isEqualTo("");
     }
 
+    /**
+     *
+     * @param systemErr wrapper for {@code System.err}
+     * @param systemOut wrapper for {@code System.out}
+     * @noinspection JUnitMalformedDeclaration
+     * @noinspectionreason JUnitMalformedDeclaration -
+     *      we must test CLI using injected system out/err
+     */
     @Test
     public void testConflictingOptionsTvsF(@SysErr Capturable systemErr,
             @SysOut Capturable systemOut) {
@@ -1610,6 +1999,14 @@ public class MainTest {
             .isEqualTo("");
     }
 
+    /**
+     *
+     * @param systemErr wrapper for {@code System.err}
+     * @param systemOut wrapper for {@code System.out}
+     * @noinspection JUnitMalformedDeclaration
+     * @noinspectionreason JUnitMalformedDeclaration -
+     *      we must test CLI using injected system out/err
+     */
     @Test
     public void testConflictingOptionsTvsS(@SysErr Capturable systemErr,
             @SysOut Capturable systemOut) throws IOException {
@@ -1624,6 +2021,14 @@ public class MainTest {
             .isEqualTo("");
     }
 
+    /**
+     *
+     * @param systemErr wrapper for {@code System.err}
+     * @param systemOut wrapper for {@code System.out}
+     * @noinspection JUnitMalformedDeclaration
+     * @noinspectionreason JUnitMalformedDeclaration -
+     *      we must test CLI using injected system out/err
+     */
     @Test
     public void testConflictingOptionsTvsO(@SysErr Capturable systemErr,
             @SysOut Capturable systemOut) throws IOException {
@@ -1646,6 +2051,14 @@ public class MainTest {
             .isNotEqualTo("");
     }
 
+    /**
+     *
+     * @param systemErr wrapper for {@code System.err}
+     * @param systemOut wrapper for {@code System.out}
+     * @noinspection JUnitMalformedDeclaration
+     * @noinspectionreason JUnitMalformedDeclaration -
+     *      we must test CLI using injected system out/err
+     */
     @Test
     public void testExcludeOption(@SysErr Capturable systemErr, @SysOut Capturable systemOut)
             throws IOException {
@@ -1659,6 +2072,14 @@ public class MainTest {
             .isEqualTo("");
     }
 
+    /**
+     *
+     * @param systemErr wrapper for {@code System.err}
+     * @param systemOut wrapper for {@code System.out}
+     * @noinspection JUnitMalformedDeclaration
+     * @noinspectionreason JUnitMalformedDeclaration -
+     *      we must test CLI using injected system out/err
+     */
     @Test
     public void testExcludeOptionFile(@SysErr Capturable systemErr, @SysOut Capturable systemOut)
             throws IOException {
@@ -1672,6 +2093,14 @@ public class MainTest {
             .isEqualTo("");
     }
 
+    /**
+     *
+     * @param systemErr wrapper for {@code System.err}
+     * @param systemOut wrapper for {@code System.out}
+     * @noinspection JUnitMalformedDeclaration
+     * @noinspectionreason JUnitMalformedDeclaration -
+     *      we must test CLI using injected system out/err
+     */
     @Test
     public void testExcludeRegexpOption(@SysErr Capturable systemErr, @SysOut Capturable systemOut)
             throws IOException {
@@ -1685,6 +2114,14 @@ public class MainTest {
             .isEqualTo("");
     }
 
+    /**
+     *
+     * @param systemErr wrapper for {@code System.err}
+     * @param systemOut wrapper for {@code System.out}
+     * @noinspection JUnitMalformedDeclaration
+     * @noinspectionreason JUnitMalformedDeclaration -
+     *      we must test CLI using injected system out/err
+     */
     @Test
     public void testExcludeRegexpOptionFile(@SysErr Capturable systemErr,
             @SysOut Capturable systemOut) throws IOException {
@@ -1714,6 +2151,14 @@ public class MainTest {
             .isNotEmpty();
     }
 
+    /**
+     *
+     * @param systemErr wrapper for {@code System.err}
+     * @param systemOut wrapper for {@code System.out}
+     * @noinspection JUnitMalformedDeclaration
+     * @noinspectionreason JUnitMalformedDeclaration -
+     *      we must test CLI using injected system out/err
+     */
     @Test
     public void testCustomRootModule(@SysErr Capturable systemErr, @SysOut Capturable systemOut) {
         TestRootModuleChecker.reset();
@@ -1797,6 +2242,14 @@ public class MainTest {
                 .isEmpty();
     }
 
+    /**
+     *
+     * @param systemErr wrapper for {@code System.err}
+     * @param systemOut wrapper for {@code System.out}
+     * @noinspection JUnitMalformedDeclaration
+     * @noinspectionreason JUnitMalformedDeclaration -
+     *      we must test CLI using injected system out/err
+     */
     @Test
     public void testMissingFiles(@SysErr Capturable systemErr, @SysOut Capturable systemOut) {
         assertMainReturnCode(-1);

@@ -82,8 +82,8 @@ public class AllTestsTest {
         });
     }
 
-    private static void walk(Path path, Consumer<Path> action) throws IOException {
-        try (Stream<Path> walk = Files.walk(path)) {
+    private static void walk(Path start, Consumer<Path> action) throws IOException {
+        try (Stream<Path> walk = Files.walk(start)) {
             walk.forEach(action);
         }
     }

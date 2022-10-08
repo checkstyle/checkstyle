@@ -33,6 +33,9 @@ public class BriefUtLogger extends DefaultLogger {
      * Creates BriefLogger object.
      *
      * @param out output stream for info messages and errors.
+     * @noinspection ParameterNameDiffersFromOverriddenParameter
+     * @noinspectionreason ParameterNameDiffersFromOverriddenParameter -
+     *      parameter is used to call overridden method as both arguments
      */
     public BriefUtLogger(OutputStream out) {
         super(out, OutputStreamOptions.CLOSE, out,

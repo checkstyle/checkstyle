@@ -203,14 +203,14 @@ public final class ConfigurationLoader {
     /**
      * Returns the module configurations in a specified file.
      *
-     * @param config location of config file, can be either a URL or a filename
+     * @param path location of config file, can be either a URL or a filename
      * @param overridePropsResolver overriding properties
      * @return the check configurations
      * @throws CheckstyleException if an error occurs
      */
-    public static Configuration loadConfiguration(String config,
+    public static Configuration loadConfiguration(String path,
             PropertyResolver overridePropsResolver) throws CheckstyleException {
-        return loadConfiguration(config, overridePropsResolver, IgnoredModulesOptions.EXECUTE);
+        return loadConfiguration(path, overridePropsResolver, IgnoredModulesOptions.EXECUTE);
     }
 
     /**
