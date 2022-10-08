@@ -101,7 +101,6 @@ public final class InlineConfigParser {
             "com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck",
             "com.puppycrawl.tools.checkstyle.checks.metrics.JavaNCSSCheck",
-            "com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck",
             "com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck",
             "com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.PackageDeclarationCheck",
