@@ -13,7 +13,7 @@
   <suppress id="lineLengthXml" files="[\\/]meta[\\/]"/>
 
   <suppress checks="FileLength"
-             files="TokenTypes.java|IndentationCheckTest.java"
+             files="TokenTypes.java|IndentationCheckTest.java|MainTest.java"
              lines="1"/>
 
   <!-- illegal words are part of Javadoc -->
