@@ -83,6 +83,9 @@ public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
      *
      * @param systemErr wrapper for {@code System.err}
      * @param systemOut wrapper for {@code System.out}
+     * @noinspection JUnitMalformedDeclaration
+     * @noinspectionreason JUnitMalformedDeclaration -
+     *      we must test CLI using injected system out/err
      */
     @BeforeEach
     public void setUp(@SysErr Capturable systemErr, @SysOut Capturable systemOut) {
@@ -98,6 +101,14 @@ public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
             .isTrue();
     }
 
+    /**
+     * Tests JavadocPropertiesGenerator.
+     *
+     * @param systemErr wrapper for {@code System.err}
+     * @param systemOut wrapper for {@code System.out}
+     * @noinspection JUnitMalformedDeclaration
+     * @noinspectionreason we must test CLI using injected system out/err
+     */
     @Test
     public void testNonExistentArgument(@SysErr Capturable systemErr, @SysOut Capturable systemOut)
             throws Exception {
@@ -115,6 +126,14 @@ public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
             .isEqualTo("");
     }
 
+    /**
+     * Tests JavadocPropertiesGenerator.
+     *
+     * @param systemErr wrapper for {@code System.err}
+     * @param systemOut wrapper for {@code System.out}
+     * @noinspection JUnitMalformedDeclaration
+     * @noinspectionreason we must test CLI using injected system out/err
+     */
     @Test
     public void testNoDestfileSpecified(@SysErr Capturable systemErr,
             @SysOut Capturable systemOut) throws Exception {
@@ -130,6 +149,14 @@ public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
             .isEqualTo("");
     }
 
+    /**
+     * Tests JavadocPropertiesGenerator.
+     *
+     * @param systemErr wrapper for {@code System.err}
+     * @param systemOut wrapper for {@code System.out}
+     * @noinspection JUnitMalformedDeclaration
+     * @noinspectionreason we must test CLI using injected system out/err
+     */
     @Test
     public void testNoInputSpecified(@SysErr Capturable systemErr,
             @SysOut Capturable systemOut) throws Exception {
@@ -145,6 +172,14 @@ public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
             .isEqualTo("");
     }
 
+    /**
+     * Tests JavadocPropertiesGenerator.
+     *
+     * @param systemErr wrapper for {@code System.err}
+     * @param systemOut wrapper for {@code System.out}
+     * @noinspection JUnitMalformedDeclaration
+     * @noinspectionreason we must test CLI using injected system out/err
+     */
     @Test
     public void testNotClass(@SysErr Capturable systemErr, @SysOut Capturable systemOut)
             throws Exception {
@@ -158,6 +193,14 @@ public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
             .isEqualTo("");
     }
 
+    /**
+     * Tests JavadocPropertiesGenerator.
+     *
+     * @param systemErr wrapper for {@code System.err}
+     * @param systemOut wrapper for {@code System.out}
+     * @noinspection JUnitMalformedDeclaration
+     * @noinspectionreason we must test CLI using injected system out/err
+     */
     @Test
     public void testNotExistentInputSpecified(@SysErr Capturable systemErr,
             @SysOut Capturable systemOut) {
@@ -189,6 +232,14 @@ public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
             .isEqualTo("");
     }
 
+    /**
+     * Tests JavadocPropertiesGenerator.
+     *
+     * @param systemErr wrapper for {@code System.err}
+     * @param systemOut wrapper for {@code System.out}
+     * @noinspection JUnitMalformedDeclaration
+     * @noinspectionreason we must test CLI using injected system out/err
+     */
     @Test
     public void testInvalidDestinationSpecified(@SysErr Capturable systemErr,
             @SysOut Capturable systemOut) throws Exception {
@@ -222,6 +273,14 @@ public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
             .isEqualTo("");
     }
 
+    /**
+     * Tests JavadocPropertiesGenerator.
+     *
+     * @param systemErr wrapper for {@code System.err}
+     * @param systemOut wrapper for {@code System.out}
+     * @noinspection JUnitMalformedDeclaration
+     * @noinspectionreason we must test CLI using injected system out/err
+     */
     @Test
     public void testCorrect(@SysErr Capturable systemErr, @SysOut Capturable systemOut)
             throws Exception {
@@ -247,6 +306,14 @@ public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
             .isEqualTo(expectedContent);
     }
 
+    /**
+     * Tests JavadocPropertiesGenerator.
+     *
+     * @param systemErr wrapper for {@code System.err}
+     * @param systemOut wrapper for {@code System.out}
+     * @noinspection JUnitMalformedDeclaration
+     * @noinspectionreason we must test CLI using injected system out/err
+     */
     @Test
     public void testEmptyJavadoc(@SysErr Capturable systemErr, @SysOut Capturable systemOut)
             throws Exception {
@@ -264,6 +331,14 @@ public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
             .isEqualTo(0);
     }
 
+    /**
+     * Tests JavadocPropertiesGenerator.
+     *
+     * @param systemErr wrapper for {@code System.err}
+     * @param systemOut wrapper for {@code System.out}
+     * @noinspection JUnitMalformedDeclaration
+     * @noinspectionreason we must test CLI using injected system out/err
+     */
     @Test
     public void testNotConstants(@SysErr Capturable systemErr, @SysOut Capturable systemOut)
             throws Exception {
@@ -281,6 +356,14 @@ public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
             .isEqualTo(0);
     }
 
+    /**
+     * Tests JavadocPropertiesGenerator.
+     *
+     * @param systemErr wrapper for {@code System.err}
+     * @param systemOut wrapper for {@code System.out}
+     * @noinspection JUnitMalformedDeclaration
+     * @noinspectionreason we must test CLI using injected system out/err
+     */
     @Test
     public void testHelp(@SysErr Capturable systemErr, @SysOut Capturable systemOut)
             throws Exception {

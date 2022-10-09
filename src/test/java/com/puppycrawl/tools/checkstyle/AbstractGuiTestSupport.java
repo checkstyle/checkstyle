@@ -48,8 +48,9 @@ public abstract class AbstractGuiTestSupport extends AbstractPathTestSupport {
      * @param name the name of component to find
      * @param <T> the type of component to find
      * @return the component if found, {@code null} otherwise
-     * @noinspection unchecked
+     * @noinspection unchecked, ParameterNameDiffersFromOverriddenParameter
      * @noinspectionreason unchecked - we know that any component is OK to typecast to T
+     * @noinspectionreason ParameterNameDiffersFromOverriddenParameter - false positive
      */
     protected static <T extends Component> T findComponentByName(Component root, String name) {
         Component result = null;

@@ -234,8 +234,8 @@ public class JavadocMetadataScraperTest extends AbstractModuleTestSupport {
         return builder.toString();
     }
 
-    private static void append(StringBuilder builder, String title, Object object) {
-        builder.append(title).append(object).append('\n');
+    private static void append(StringBuilder builder, String str, Object obj) {
+        builder.append(str).append(obj).append('\n');
     }
 
     private static String split(String text, int size) {
