@@ -116,22 +116,4 @@
     <description>replaced call to com/puppycrawl/tools/checkstyle/utils/CodePointUtil::trim with argument</description>
     <lineContent>final int[] substringAfterToken = CodePointUtil.trim(</lineContent>
   </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>SingleSpaceSeparatorCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.whitespace.SingleSpaceSeparatorCheck</mutatedClass>
-    <mutatedMethod>visitEachToken</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getParent</description>
-    <lineContent>final DetailAST parent = node.getParent();</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>SingleSpaceSeparatorCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.whitespace.SingleSpaceSeparatorCheck</mutatedClass>
-    <mutatedMethod>visitEachToken</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
-    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getParent with receiver</description>
-    <lineContent>final DetailAST parent = node.getParent();</lineContent>
-  </mutation>
 </suppressedMutations>
