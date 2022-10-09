@@ -247,6 +247,9 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      * @param fileName file name to verify.
      * @param expected an array of expected messages.
      * @throws Exception if exception occurs during verification process.
+     * @noinspection ParameterNameDiffersFromOverriddenParameter
+     * @noinspectionreason ParameterNameDiffersFromOverriddenParameter -
+     *      parameter is used to call overridden method as both arguments
      */
     protected final void verify(Configuration config, String fileName, String... expected)
             throws Exception {
@@ -264,6 +267,9 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      * @param fileName file name to verify.
      * @param expected an array of expected messages.
      * @throws Exception if exception occurs during verification process.
+     * @noinspection ParameterNameDiffersFromOverriddenParameter
+     * @noinspectionreason ParameterNameDiffersFromOverriddenParameter -
+     *      parameter is used to call overridden method as both arguments
      */
     protected void verify(Checker checker, String fileName, String... expected)
             throws Exception {

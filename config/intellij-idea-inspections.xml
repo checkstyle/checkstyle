@@ -3027,6 +3027,17 @@
     <scope name="Tests" level="ERROR" enabled="false"/>
   </inspection_tool>
   <inspection_tool class="MagicNumberJS" enabled="true" level="ERROR" enabled_by_default="true"/>
+  <inspection_tool class="JUnitMalformedDeclaration"
+                   enabled="true" level="WARNING" enabled_by_default="true">
+    <option name="ignorableAnnotations">
+      <list>
+        <option value="mockit.Mocked" />
+        <option value="org.itsallcode.junit.sysextensions.SystemErrGuard.SysErr" />
+        <option value="org.itsallcode.junit.sysextensions.SystemOutGuard.SysOut" />
+        <option value="org.junit.jupiter.api.io.TempDir" />
+      </list>
+    </option>
+  </inspection_tool>
   <inspection_tool class="MalformedFormatString" enabled="true" level="ERROR"
                    enabled_by_default="true"/>
   <inspection_tool class="MalformedRegex" enabled="true" level="ERROR" enabled_by_default="true"/>
