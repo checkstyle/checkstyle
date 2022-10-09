@@ -63,6 +63,8 @@ public final class XpathIteratorUtil {
      * Iterates Xpath tree nodes and fills the map.
      *
      * @param cur current {@link NodeInfo} node
+     * @noinspection ParameterNameDiffersFromOverriddenParameter
+     * @noinspectionreason ParameterNameDiffersFromOverriddenParameter - false positive
      */
     private static void fillMap(NodeInfo cur) {
         NODES_BY_LOCAL_PART.put(cur.getLocalPart(), cur);

@@ -53,6 +53,15 @@ public final class ConfigurationUtil {
         return ConfigurationLoader.loadConfiguration(path, new PropertiesExpander(props));
     }
 
+    /**
+     * Get a set of child modules from given configuration.
+     *
+     * @param config configuration to get modules from
+     * @return set of child modules
+     * @noinspection ParameterNameDiffersFromOverriddenParameter
+     * @noinspectionreason ParameterNameDiffersFromOverriddenParameter -
+     *      false positive
+     */
     public static Set<Configuration> getModules(Configuration config) {
         final Set<Configuration> result = new HashSet<>();
 
