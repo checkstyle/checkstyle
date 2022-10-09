@@ -3634,7 +3634,6 @@ public final class TokenTypes {
     /**
      * The {@code &&} (conditional AND) operator.
      *
-     *
      * <p>For example:</p>
      * <pre>
      * if (a &amp;&amp; b) {
