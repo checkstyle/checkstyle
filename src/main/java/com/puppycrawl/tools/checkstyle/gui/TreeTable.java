@@ -54,7 +54,6 @@ import net.sf.saxon.trans.XPathException;
  * This example shows how to create a simple TreeTable component,
  * by using a JTree as a renderer (and editor) for the cells in a
  * particular column in the JTable.
- *
  * <a href=
  * "https://docs.oracle.com/cd/E48246_01/apirefs.1111/e13403/oracle/ide/controls/TreeTableModel.html">
  * Original&nbsp;Source&nbsp;Location</a>

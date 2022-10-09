@@ -641,6 +641,15 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
             .isEqualTo("text[0x0]");
     }
 
+    /**
+     * Returns list of files from a given directory.
+     *
+     * @param dir directory to add files from
+     * @return list of files
+     * @noinspection ParameterNameDiffersFromOverriddenParameter
+     * @noinspectionreason ParameterNameDiffersFromOverriddenParameter -
+     *      false positive
+     */
     private static List<File> getAllFiles(File dir) {
         final List<File> result = new ArrayList<>();
 
