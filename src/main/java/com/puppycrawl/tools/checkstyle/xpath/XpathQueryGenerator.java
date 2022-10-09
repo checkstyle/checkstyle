@@ -339,7 +339,7 @@ public class XpathQueryGenerator {
      * with Saxon and encoding outside Ascii range characters.
      *
      * <p>According to
-     * <a href="http://saxon.sourceforge.net/saxon7.1/expressions.html">Saxon documentation</a>:
+     * <a href="https://saxon.sourceforge.net/saxon7.1/expressions.html">Saxon documentation</a>:
      * <br>
      * From Saxon 7.1, string delimiters can be doubled within the string to represent`
      * the delimiter itself: for example select='"He said, ""Go!"""'.

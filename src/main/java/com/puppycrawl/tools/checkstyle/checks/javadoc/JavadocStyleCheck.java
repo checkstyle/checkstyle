@@ -81,7 +81,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * </ul>
  * <p>
  * These checks were patterned after the checks made by the
- * <a href="http://maven-doccheck.sourceforge.net/">DocCheck</a> doclet
+ * <a href="https://maven-doccheck.sourceforge.net">DocCheck</a> doclet
  * available from Sun. Note: Original Sun's DocCheck tool does not exist anymore.
  * </p>
  * <ul>
