@@ -158,11 +158,11 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             .isEqualTo(linesWithWarn.length);
     }
 
-    private void verify(Configuration config, String filePath, String[] expected,
+    private void verify(Configuration config, String fileName, String[] expected,
             final IndentComment... linesWithWarn) throws Exception {
         final Checker checker = createChecker(config);
         checker.addListener(new IndentAudit(linesWithWarn));
-        verify(checker, filePath, expected);
+        verify(checker, fileName, expected);
     }
 
     @Override
