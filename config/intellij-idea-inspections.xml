@@ -3027,6 +3027,18 @@
     <scope name="Tests" level="ERROR" enabled="false"/>
   </inspection_tool>
   <inspection_tool class="MagicNumberJS" enabled="true" level="ERROR" enabled_by_default="true"/>
+  <!-- disabled until #12285 -->
+  <inspection_tool class="JUnitMalformedDeclaration"
+                   enabled="false" level="WARNING" enabled_by_default="true">
+    <option name="ignorableAnnotations">
+      <list>
+        <option value="mockit.Mocked" />
+        <option value="org.itsallcode.junit.sysextensions.SystemErrGuard.SysErr" />
+        <option value="org.itsallcode.junit.sysextensions.SystemOutGuard.SysOut" />
+        <option value="org.junit.jupiter.api.io.TempDir" />
+      </list>
+    </option>
+  </inspection_tool>
   <inspection_tool class="MalformedFormatString" enabled="true" level="ERROR"
                    enabled_by_default="true"/>
   <inspection_tool class="MalformedRegex" enabled="true" level="ERROR" enabled_by_default="true"/>
@@ -3527,7 +3539,8 @@
     <option name="m_ignoreForPropertySetters" value="true"/>
     <option name="m_ignoreForAbstractMethods" value="false"/>
   </inspection_tool>
-  <inspection_tool class="ParameterNameDiffersFromOverriddenParameter" enabled="true"
+  <!-- disabled until #12286 -->
+  <inspection_tool class="ParameterNameDiffersFromOverriddenParameter" enabled="false"
                    level="WARNING" enabled_by_default="true">
     <scope name="Production" level="WARNING" enabled="false">
       <option name="m_ignoreSingleCharacterNames" value="false"/>
