@@ -32,15 +32,6 @@
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck</mutatedClass>
     <mutatedMethod>getViolationAstForPackage</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
-    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getNextSibling with receiver</description>
-    <lineContent>DetailAST nextElement = ast.getNextSibling();</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>EmptyLineSeparatorCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck</mutatedClass>
-    <mutatedMethod>getViolationAstForPackage</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
     <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getLastChild with receiver</description>
     <lineContent>final int lastChildLineNo = ast.getLastChild().getLineNo();</lineContent>
   </mutation>
@@ -52,15 +43,6 @@
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
     <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getLastChild with receiver</description>
     <lineContent>lastToken = token.getLastChild();</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>EmptyLineSeparatorCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck</mutatedClass>
-    <mutatedMethod>isLineEmptyAfterPackage</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
-    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getNextSibling with receiver</description>
-    <lineContent>DetailAST nextElement = ast.getNextSibling();</lineContent>
   </mutation>
 
   <mutation unstable="false">
