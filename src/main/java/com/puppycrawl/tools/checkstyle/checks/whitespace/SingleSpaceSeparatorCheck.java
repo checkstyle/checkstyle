@@ -179,7 +179,7 @@ public class SingleSpaceSeparatorCheck extends AbstractCheck {
      */
     private void visitEachToken(DetailAST node) {
         DetailAST currentNode = node;
-        final DetailAST parent = node.getParent();
+        final DetailAST parent = node;
 
         do {
             final int columnNo = currentNode.getColumnNo() - 1;
