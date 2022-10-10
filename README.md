@@ -5,7 +5,6 @@ or set of validation rules (best practices).
 
 [![][travis img]][travis]
 [![][appveyor img]][appveyor]
-[![][teamcity img]][teamcity]
 [![][circleci img]][circleci]
 [![][cirrusci img]][cirrusci]
 [![][coverage img]][coverage]
