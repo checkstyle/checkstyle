@@ -9,7 +9,7 @@ import java.util.regex.Pattern
 
 @Field static final String USAGE_STRING = "Usage groovy " +
         ".${File.separator}.ci${File.separator}checker-framework.groovy" +
-        " [profile] [-g | --generate-suppression]\n"
+        " [profile] [--list] [-g | --generate-suppression]\n"
 
 int exitCode = 1
 if (args.length == 2) {
