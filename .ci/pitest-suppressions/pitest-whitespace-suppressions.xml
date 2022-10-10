@@ -1,15 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suppressedMutations>
   <mutation unstable="false">
-    <sourceFile>EmptyForInitializerPadCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyForInitializerPadCheck</mutatedClass>
-    <mutatedMethod>visitToken</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
-    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getNextSibling with receiver</description>
-    <lineContent>final DetailAST semi = ast.getNextSibling();</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
     <sourceFile>EmptyLineSeparatorCheck.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck</mutatedClass>
     <mutatedMethod>checkToken</mutatedMethod>
