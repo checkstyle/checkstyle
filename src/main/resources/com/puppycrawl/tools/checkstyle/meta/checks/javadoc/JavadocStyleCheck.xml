@@ -46,7 +46,7 @@
  &lt;/ul&gt;
  &lt;p&gt;
  These checks were patterned after the checks made by the
- &lt;a href="http://maven-doccheck.sourceforge.net/"&gt;DocCheck&lt;/a&gt; doclet
+ &lt;a href="https://maven-doccheck.sourceforge.net"&gt;DocCheck&lt;/a&gt; doclet
  available from Sun. Note: Original Sun's DocCheck tool does not exist anymore.
  &lt;/p&gt;</description>
          <properties>

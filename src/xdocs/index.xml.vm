@@ -541,9 +541,9 @@
               <th>Remarks</th>
             </tr>
             <tr>
-              <td><a href="http://qalab.sourceforge.net/">QALab</a></td>
+              <td><a href="https://qalab.sourceforge.net">QALab</a></td>
               <td>Benoit Xhenseval</td>
-              <td><a href="http://qalab.sourceforge.net/">QALab Home Page</a></td>
+              <td><a href="https://qalab.sourceforge.net">QALab Home Page</a></td>
               <td>Supports tracking Checkstyle statistics over time.</td>
             </tr>
             <tr>

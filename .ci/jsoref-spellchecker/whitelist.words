@@ -865,6 +865,7 @@ mkdir
 mkordas
 MLINKCHECK
 mockfile
+mockit
 mockito
 modifiedcontrolvariable
 modifierorder
