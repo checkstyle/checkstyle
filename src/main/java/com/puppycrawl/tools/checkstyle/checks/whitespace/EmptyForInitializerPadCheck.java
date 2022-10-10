@@ -148,11 +148,9 @@ public class EmptyForInitializerPadCheck
     @Override
     public void visitToken(DetailAST ast) {
         if (!ast.hasChildren()) {
-            // empty for initializer. test pad before semi.
-            final DetailAST semi = ast.getNextSibling();
-            final int semiLineIdx = semi.getLineNo() - 1;
-            final int[] line = getLineCodePoints(semiLineIdx);
-            final int before = semi.getColumnNo() - 1;
+            final int lineIdx = ast.getLineNo() - 1;
+            final int[] line = getLineCodePoints(lineIdx);
+            final int before = ast.getColumnNo() - 1;
             // don't check if semi at beginning of line
             if (!CodePointUtil.hasWhitespaceBefore(before, line)) {
                 if (option == PadOption.NOSPACE
