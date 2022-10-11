@@ -307,17 +307,17 @@ public class DefaultLoggerTest {
     }
 
     private static LocalizedMessage getAuditStartMessageClass() {
-        return new LocalizedMessage(Definitions.CHECKSTYLE_BUNDLE, Locale.getDefault(),
+        return new LocalizedMessage(Definitions.CHECKSTYLE_BUNDLE,
                 DefaultLogger.class, "DefaultLogger.auditStarted");
     }
 
     private static LocalizedMessage getAuditFinishMessageClass() {
-        return new LocalizedMessage(Definitions.CHECKSTYLE_BUNDLE, Locale.getDefault(),
+        return new LocalizedMessage(Definitions.CHECKSTYLE_BUNDLE,
                 DefaultLogger.class, "DefaultLogger.auditFinished");
     }
 
     private static LocalizedMessage getAddExceptionMessageClass(Object... arguments) {
-        return new LocalizedMessage(Definitions.CHECKSTYLE_BUNDLE, Locale.getDefault(),
+        return new LocalizedMessage(Definitions.CHECKSTYLE_BUNDLE,
                 DefaultLogger.class, "DefaultLogger.addException", arguments);
     }
 

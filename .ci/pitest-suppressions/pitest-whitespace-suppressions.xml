@@ -1,69 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suppressedMutations>
   <mutation unstable="false">
-    <sourceFile>AbstractParenPadCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.whitespace.AbstractParenPadCheck</mutatedClass>
-    <mutatedMethod>setOption</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
-    <description>replaced call to java/lang/String::toUpperCase with receiver</description>
-    <lineContent>option = PadOption.valueOf(optionStr.trim().toUpperCase(Locale.ENGLISH));</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>AbstractParenPadCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.whitespace.AbstractParenPadCheck</mutatedClass>
-    <mutatedMethod>setOption</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
-    <description>replaced call to java/lang/String::trim with receiver</description>
-    <lineContent>option = PadOption.valueOf(optionStr.trim().toUpperCase(Locale.ENGLISH));</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>EmptyForInitializerPadCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyForInitializerPadCheck</mutatedClass>
-    <mutatedMethod>setOption</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
-    <description>replaced call to java/lang/String::toUpperCase with receiver</description>
-    <lineContent>option = PadOption.valueOf(optionStr.trim().toUpperCase(Locale.ENGLISH));</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>EmptyForInitializerPadCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyForInitializerPadCheck</mutatedClass>
-    <mutatedMethod>setOption</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
-    <description>replaced call to java/lang/String::trim with receiver</description>
-    <lineContent>option = PadOption.valueOf(optionStr.trim().toUpperCase(Locale.ENGLISH));</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>EmptyForInitializerPadCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyForInitializerPadCheck</mutatedClass>
-    <mutatedMethod>visitToken</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
-    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getNextSibling with receiver</description>
-    <lineContent>final DetailAST semi = ast.getNextSibling();</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>EmptyForIteratorPadCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyForIteratorPadCheck</mutatedClass>
-    <mutatedMethod>setOption</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
-    <description>replaced call to java/lang/String::toUpperCase with receiver</description>
-    <lineContent>option = PadOption.valueOf(optionStr.trim().toUpperCase(Locale.ENGLISH));</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>EmptyForIteratorPadCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyForIteratorPadCheck</mutatedClass>
-    <mutatedMethod>setOption</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
-    <description>replaced call to java/lang/String::trim with receiver</description>
-    <lineContent>option = PadOption.valueOf(optionStr.trim().toUpperCase(Locale.ENGLISH));</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
     <sourceFile>EmptyLineSeparatorCheck.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck</mutatedClass>
     <mutatedMethod>checkToken</mutatedMethod>
@@ -136,33 +73,6 @@
   </mutation>
 
   <mutation unstable="false">
-    <sourceFile>MethodParamPadCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.whitespace.MethodParamPadCheck</mutatedClass>
-    <mutatedMethod>setOption</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
-    <description>replaced call to java/lang/String::trim with receiver</description>
-    <lineContent>option = PadOption.valueOf(optionStr.trim().toUpperCase(Locale.ENGLISH));</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>OperatorWrapCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.whitespace.OperatorWrapCheck</mutatedClass>
-    <mutatedMethod>setOption</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
-    <description>replaced call to java/lang/String::toUpperCase with receiver</description>
-    <lineContent>option = WrapOption.valueOf(optionStr.trim().toUpperCase(Locale.ENGLISH));</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>OperatorWrapCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.whitespace.OperatorWrapCheck</mutatedClass>
-    <mutatedMethod>setOption</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
-    <description>replaced call to java/lang/String::trim with receiver</description>
-    <lineContent>option = WrapOption.valueOf(optionStr.trim().toUpperCase(Locale.ENGLISH));</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
     <sourceFile>ParenPadCheck.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.whitespace.ParenPadCheck</mutatedClass>
     <mutatedMethod>visitResourceSpecification</mutatedMethod>
@@ -187,24 +97,6 @@
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_7</mutator>
     <description>RemoveSwitch 7 mutation</description>
     <lineContent>switch (ast.getType()) {</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>SeparatorWrapCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.whitespace.SeparatorWrapCheck</mutatedClass>
-    <mutatedMethod>setOption</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
-    <description>replaced call to java/lang/String::toUpperCase with receiver</description>
-    <lineContent>option = WrapOption.valueOf(optionStr.trim().toUpperCase(Locale.ENGLISH));</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>SeparatorWrapCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.whitespace.SeparatorWrapCheck</mutatedClass>
-    <mutatedMethod>setOption</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
-    <description>replaced call to java/lang/String::trim with receiver</description>
-    <lineContent>option = WrapOption.valueOf(optionStr.trim().toUpperCase(Locale.ENGLISH));</lineContent>
   </mutation>
 
   <mutation unstable="false">

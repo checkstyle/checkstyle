@@ -136,4 +136,12 @@ public class EmptyForInitializerPadCheckTest
         }
     }
 
+    @Test
+    public void testTrimOptionProperty() throws Exception {
+        final String[] expected = {
+            "15:14: " + getCheckMessage(MSG_NOT_PRECEDED, ";"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyForInitializerPadSetOptionTrim.java"), expected);
+    }
 }

@@ -1,6 +1,6 @@
 /*
 ParenPad
-option = space
+option = \tSPACE
 tokens = (default)ANNOTATION, ANNOTATION_FIELD_DEF, CTOR_CALL, CTOR_DEF, DOT, \
          ENUM_CONSTANT_DEF, EXPR, LITERAL_CATCH, LITERAL_DO, LITERAL_FOR, LITERAL_IF, \
          LITERAL_NEW, LITERAL_SWITCH, LITERAL_SYNCHRONIZED, LITERAL_WHILE, METHOD_CALL, \
@@ -11,14 +11,14 @@ tokens = (default)ANNOTATION, ANNOTATION_FIELD_DEF, CTOR_CALL, CTOR_DEF, DOT, \
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace.parenpad;
 
-public class InputParenPadWithSpace // ok
-{
-    protected InputParenPadWithSpace ( int i )
+public class InputParenPadToCheckTrimFunctionInOptionProperty {
+
+    public InputParenPadToCheckTrimFunctionInOptionProperty ( int i ) // ok
     {
         this ();
         toString ();
     }
-    protected InputParenPadWithSpace ()
+    protected InputParenPadToCheckTrimFunctionInOptionProperty ()
     {
         super ();
     }
@@ -26,7 +26,7 @@ public class InputParenPadWithSpace // ok
     public void enhancedFor ()
     {
         int[] i = new int[2];
-        for ( int j: i ) {
+        for ( int j: i ) { // ok
             System.identityHashCode ( j );
         }
     }
