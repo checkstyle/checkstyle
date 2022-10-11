@@ -234,4 +234,13 @@ public class EmptyBlockCheckTest
                 getNonCompilablePath("InputEmptyBlockSwitchExpressions.java"), expected);
     }
 
+    @Test
+    public void testUppercaseProperty() throws Exception {
+        final String[] expected = {
+            "16:30: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "default"),
+            "22:13: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "default"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyBlockTestUppercaseOptionProperty.java"), expected);
+    }
 }
