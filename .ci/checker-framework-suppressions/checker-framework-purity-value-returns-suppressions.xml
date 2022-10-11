@@ -58,4 +58,19 @@
       void accept(ObjIntConsumer&lt;BitSet&gt; this, BitSet p0, int p1)
     </details>
   </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/utils/TokenUtil.java</fileName>
+    <specifier>methodref.param</specifier>
+    <message>Incompatible parameter type for bitIndex</message>
+    <lineContent>.collect(BitSet::new, BitSet::set, BitSet::or);</lineContent>
+    <details>
+      found   : @IntRangeFromNonNegative int
+      required: int
+      Consequence: method in BitSet
+      void set(BitSet this, @IntRangeFromNonNegative int p0)
+      is not a valid method reference for method in ObjIntConsumer&lt;BitSet&gt;
+      void accept(ObjIntConsumer&lt;BitSet&gt; this, BitSet p0, int p1)
+    </details>
+  </checkerFrameworkError>
 </suppressedErrors>

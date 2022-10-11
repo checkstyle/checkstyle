@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suppressedErrors>
   <checkerFrameworkError unstable="false">
+    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/LocalizedMessage.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter key of getString.</message>
+    <lineContent>final String pattern = resourceBundle.getString(key);</lineContent>
+    <details>
+      found   : @UnknownPropertyKey String
+      required: @PropertyKey String
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
     <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/Main.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter regex of compile.</message>
@@ -115,17 +126,6 @@
     <specifier>argument</specifier>
     <message>incompatible argument for parameter key of setProperty.</message>
     <lineContent>returnValue.setProperty(p.getKey(), p.getValue());</lineContent>
-    <details>
-      found   : @UnknownPropertyKey String
-      required: @PropertyKey String
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/LocalizedMessage.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter key of getString.</message>
-    <lineContent>final String pattern = resourceBundle.getString(key);</lineContent>
     <details>
       found   : @UnknownPropertyKey String
       required: @PropertyKey String
