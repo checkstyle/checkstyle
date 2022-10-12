@@ -914,6 +914,8 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".filters.SuppressWarningsFilter");
         NAME_TO_FULL_MODULE_NAME.put("SuppressWithNearbyCommentFilter",
                 BASE_PACKAGE + ".filters.SuppressWithNearbyCommentFilter");
+        NAME_TO_FULL_MODULE_NAME.put("SuppressWithNearbyTextFilter",
+                BASE_PACKAGE + ".filters.SuppressWithNearbyTextFilter");
     }
 
     /**
