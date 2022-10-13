@@ -330,15 +330,24 @@ verify-no-exception-configs)
     --no-clobber \
     https://raw.githubusercontent.com/checkstyle/contribution/master/checkstyle-tester/checks-only-javadoc-error.xml
   MODULES_WITH_EXTERNAL_FILES="Filter|ImportControl"
-  xmlstarlet sel --net --template -m .//module -v "@name" \
-    -n $working_dir/checks-nonjavadoc-error.xml -n $working_dir/checks-only-javadoc-error.xml \
-    | grep -vE $MODULES_WITH_EXTERNAL_FILES | grep -v "^$" \
-    | sort | uniq | sed "s/Check$//" > $working_dir/web.txt
-  xmlstarlet sel --net --template -m .//module -v "@name" -n config/checkstyle_checks.xml \
+  xmlstarlet fo -D \
+    -n $working_dir/checks-nonjavadoc-error.xml \
+    | xmlstarlet sel --net --template -m .//module -n -v "@name" \
+    | grep -vE $MODULES_WITH_EXTERNAL_FILES | grep -v "^$" > $working_dir/temp.txt
+  xmlstarlet fo -D \
+     -n $working_dir/checks-only-javadoc-error.xml \
+    | xmlstarlet sel --net --template -m .//module -n -v "@name" \
+    | grep -vE $MODULES_WITH_EXTERNAL_FILES | grep -v "^$" >> $working_dir/temp.txt
+  sort $working_dir/temp.txt | uniq | sed "s/Check$//" > $working_dir/web.txt
+
+  xmlstarlet fo -D -n config/checkstyle_checks.xml \
+    | xmlstarlet sel --net --template -m .//module -n -v "@name" \
     | grep -vE $MODULES_WITH_EXTERNAL_FILES | grep -v "^$" \
     | sort | uniq | sed "s/Check$//" > $working_dir/file.txt
+
   DIFF_TEXT=$(diff -u $working_dir/web.txt $working_dir/file.txt | cat)
   fail=0
+
   if [[ $DIFF_TEXT != "" ]]; then
     echo "Diff is detected."
     if [[ $PULL_REQUEST =~ ^([0-9]+)$ ]]; then
@@ -366,6 +375,8 @@ verify-no-exception-configs)
       echo 'Please add new Check to one of such files to let Check participate in auto testing'
       fail=1;
     fi
+  else
+    echo "No Diff detected."
   fi
   removeFolderWithProtectedFiles .ci-temp/verify-no-exception-configs
   sleep 5
