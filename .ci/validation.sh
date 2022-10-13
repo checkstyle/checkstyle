@@ -325,18 +325,24 @@ verify-no-exception-configs)
     --directory-prefix $working_dir \
     --no-clobber \
     https://raw.githubusercontent.com/checkstyle/contribution/master/checkstyle-tester/checks-nonjavadoc-error.xml
+  echo "Test 0"
   wget -q \
     --directory-prefix $working_dir \
     --no-clobber \
     https://raw.githubusercontent.com/checkstyle/contribution/master/checkstyle-tester/checks-only-javadoc-error.xml
   MODULES_WITH_EXTERNAL_FILES="Filter|ImportControl"
+  echo "Test 1"
   xmlstarlet sel --net --template -m .//module -v "@name" \
     -n $working_dir/checks-nonjavadoc-error.xml -n $working_dir/checks-only-javadoc-error.xml \
     | grep -vE $MODULES_WITH_EXTERNAL_FILES | grep -v "^$" \
     | sort | uniq | sed "s/Check$//" > $working_dir/web.txt
+  echo "Test 2"
   xmlstarlet sel --net --template -m .//module -v "@name" -n config/checkstyle_checks.xml \
     | grep -vE $MODULES_WITH_EXTERNAL_FILES | grep -v "^$" \
     | sort | uniq | sed "s/Check$//" > $working_dir/file.txt
+  echo "Test 3"
+  cat $working_dir/web.txt
+  cat $working_dir/file.txt
   DIFF_TEXT=$(diff -u $working_dir/web.txt $working_dir/file.txt | cat)
   fail=0
   if [[ $DIFF_TEXT != "" ]]; then
