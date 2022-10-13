@@ -29,6 +29,10 @@ jobs:
           java-version: 11
       - name: Install groovy
         run: sudo apt install groovy
+      - name: Print Version
+        run: |
+          java --version
+          groovy --version
       - name: Checkout
         uses: actions/checkout@v2
       - name: Execute checker framework

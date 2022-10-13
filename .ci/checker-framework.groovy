@@ -1,3 +1,4 @@
+import groovy.transform.EqualsAndHashCode
 import groovy.transform.Field
 import groovy.transform.Immutable
 import groovy.util.slurpersupport.GPathResult
@@ -181,6 +182,7 @@ private static Set<CheckerFrameworkError> getErrorFromText(List<List<String>> er
             lineNumber = Integer.parseInt(matcher.group(lineNumberGroup))
             specifier = XmlUtil.escapeXml(matcher.group(specifierGroup).trim())
             message = XmlUtil.escapeXml(matcher.group(messageGroup).trim())
+                    .replaceAll("temp-var-\\d+", "temp-var")
 
             final Matcher filePathMatcher = filePathExtractingPattern.matcher(error)
             if (filePathMatcher.find()) {
@@ -193,15 +195,13 @@ private static Set<CheckerFrameworkError> getErrorFromText(List<List<String>> er
                 for (int index = 1; index < errorList.size(); index++) {
                     final String errorDetail = XmlUtil.escapeXml(errorList.get(index).trim())
                     if (!errorDetail.isEmpty()) {
-                        details.add(errorDetail)
+                        details.add(errorDetail.replaceAll("capture#\\d+", "capture"))
                     }
                 }
             }
 
-            // Errors extracted from Checker Framework Report are by default considered stable.
-            final boolean isUnstable = false
             final CheckerFrameworkError checkerFrameworkError = new CheckerFrameworkError(
-                    fileName, specifier, message, details, lineContent, lineNumber, isUnstable)
+                    fileName, specifier, message, details, lineContent, lineNumber)
             errors.add(checkerFrameworkError)
         }
     }
@@ -261,7 +261,7 @@ private static CheckerFrameworkError getError(Node errorNode) {
                 lineContent = childNodeText
                 break
             case "details":
-                final String[] detailsArray = childNodeText.split("\\n")
+                final String[] detailsArray = childNodeText.split("\\r?\\n")
                 detailsArray.each { detail ->
                     final String detailString = detail.trim()
                     if (!detailString.isEmpty()) {
@@ -271,11 +271,7 @@ private static CheckerFrameworkError getError(Node errorNode) {
         }
     }
 
-    final String unstableAttributeValue = errorNode.attribute("unstable")
-    final boolean isUnstable = Boolean.parseBoolean(unstableAttributeValue)
-
-    return new CheckerFrameworkError(fileName, specifier, message, details, lineContent,
-            lineNumber, isUnstable)
+    return new CheckerFrameworkError(fileName, specifier, message, details, lineContent, lineNumber)
 }
 
 /**
@@ -283,8 +279,6 @@ private static CheckerFrameworkError getError(Node errorNode) {
  * (i.e. returns 0) when:
  * <ol>
  *     <li>Surviving and suppressed errors are equal.</li>
- *     <li>There are extra suppressed errors but they are unstable
- *       i.e. {@code unstable="true"}.</li>
  * </ol>
  * The comparison fails when (i.e. returns 1) when:
  * <ol>
@@ -308,10 +302,7 @@ private static int compareErrors(Set<CheckerFrameworkError> actualErrors,
     final int exitCode
     if (actualErrors == suppressedErrors) {
         exitCode = 0
-    }
-    else if (unsuppressedErrors.isEmpty()
-            && !hasOnlyStableErrors(extraSuppressions)) {
-        exitCode = 0
+        println "Build successful with no errors."
     }
     else {
         if (!unsuppressedErrors.isEmpty()) {
@@ -320,33 +311,16 @@ private static int compareErrors(Set<CheckerFrameworkError> actualErrors,
                 printError(flag, it)
             }
         }
-        if (!extraSuppressions.isEmpty()
-                && extraSuppressions.any { !it.isUnstable() }) {
+        if (!extraSuppressions.isEmpty()) {
             println "\nUnnecessary suppressed error(s) found and should be removed:"
             extraSuppressions.each {
-                if (!it.isUnstable()) {
-                    printError(flag, it)
-                }
+                printError(flag, it)
             }
         }
         exitCode = 1
     }
 
-    if (exitCode == 0) {
-        println "Build successful with no errors."
-    }
-
     return exitCode
-}
-
-/**
- * Whether a set has only stable errors.
- *
- * @param errors A set of errors
- * @return {@code true} if a set has only stable errors
- */
-private static boolean hasOnlyStableErrors(Set<CheckerFrameworkError> errors) {
-    return errors.every { !it.isUnstable() }
 }
 
 /**
@@ -381,6 +355,7 @@ private static Set<CheckerFrameworkError> setDifference(final Set<CheckerFramewo
 /**
  * A class to represent the XML {@code checkerFrameworkError} node.
  */
+@EqualsAndHashCode(excludes = "lineNumber")
 @Immutable
 class CheckerFrameworkError implements Comparable<CheckerFrameworkError> {
 
@@ -396,18 +371,6 @@ class CheckerFrameworkError implements Comparable<CheckerFrameworkError> {
     List<String> details
     String lineContent
     int lineNumber
-
-    /**
-     * Whether the error is unstable. Unstable errors in suppression list are not flagged as
-     * unnecessary suppressions.
-     *
-     * <p>An error is considered to be unstable when error message changes with each run.
-     * Some error messages contains strings like {@code temp-var-1234}, the numerical part changes
-     * with each run so the error is considered unstable. In such cases numerical values in
-     * {@code details} and {@code message} are replaced with empty string while comparing and
-     * hashing errors.
-     */
-    boolean unstable
 
     @Override
     String toString() {
@@ -444,68 +407,18 @@ class CheckerFrameworkError implements Comparable<CheckerFrameworkError> {
             return i
         }
 
-        if (this.isUnstable() || other.isUnstable()) {
-            final String messageWithoutLineNumber = getMessage().replaceAll('\\d+', '')
-            final String thatMessageWithoutLineNumber = other.getMessage().replaceAll('\\d+', '')
-            i = messageWithoutLineNumber <=> thatMessageWithoutLineNumber
-            if (i != 0) {
-                return i
-            }
-
-            final List<String> detailsWithoutLineNumber = this.getDetails()*.replaceAll('\\d+', '')
-            final List<String> thatDetailsWithoutLineNumber =
-                    other.getDetails()*.replaceAll('\\d+', '')
-
-            i = detailsWithoutLineNumber.join('') <=> thatDetailsWithoutLineNumber.join('')
-            if (i != 0) {
-                return i
-            }
+        i = getMessage() <=> other.getMessage()
+        if (i != 0) {
+            return i
         }
-        else {
-            i = getMessage() <=> other.getMessage()
-            if (i != 0) {
-                return i
-            }
 
-            i = getDetails().join('') <=> other.getDetails().join('')
-            if (i != 0) {
-                return i
-            }
+        i = getDetails().join('') <=> other.getDetails().join('')
+        if (i != 0) {
+            return i
+
         }
 
         return getLineContent() <=> other.getLineContent()
-    }
-
-    @Override
-    boolean equals(Object object) {
-        if (this.is(object)) {
-            return true
-        }
-        if (!(object instanceof CheckerFrameworkError)) {
-            return false
-        }
-
-        CheckerFrameworkError that = (CheckerFrameworkError) object
-
-        return (this <=> that) == 0
-    }
-
-    @Override
-    int hashCode() {
-        int result
-        if (unstable) {
-            result = (message != null ? message.replaceAll('\\d+', '').hashCode() : 0)
-            result = 31 * result + (details != null ? details*.replaceAll(
-                    '\\d+', '').hashCode() : 0)
-        }
-        else {
-            result = (message != null ? message.hashCode() : 0)
-            result = 31 * result + (details != null ? details.hashCode() : 0)
-        }
-        result = 31 * result + (fileName != null ? fileName.hashCode() : 0)
-        result = 31 * result + (specifier != null ? specifier.hashCode() : 0)
-        result = 31 * result + (lineContent != null ? lineContent.hashCode() : 0)
-        return result
     }
 
     /**
@@ -516,7 +429,7 @@ class CheckerFrameworkError implements Comparable<CheckerFrameworkError> {
     String toXmlString() {
         final List<String> details = getDetails()
         String toXmlString = """
-            <checkerFrameworkError unstable="${isUnstable()}">
+            <checkerFrameworkError>
               <fileName>${getFileName()}</fileName>
               <specifier>${getSpecifier()}</specifier>
               <message>${getMessage()}</message>

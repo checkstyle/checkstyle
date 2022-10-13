@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suppressedErrors>
-  <checkerFrameworkError unstable="false">
+  <checkerFrameworkError>
     <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/utils/CheckUtil.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter radix of parseInt.</message>
@@ -11,7 +11,7 @@
     </details>
   </checkerFrameworkError>
 
-  <checkerFrameworkError unstable="false">
+  <checkerFrameworkError>
     <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/utils/CheckUtil.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter radix of parseLong.</message>
@@ -22,7 +22,7 @@
     </details>
   </checkerFrameworkError>
 
-  <checkerFrameworkError unstable="false">
+  <checkerFrameworkError>
     <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/utils/CheckUtil.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter radix of parseUnsignedInt.</message>
@@ -33,7 +33,7 @@
     </details>
   </checkerFrameworkError>
 
-  <checkerFrameworkError unstable="false">
+  <checkerFrameworkError>
     <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/utils/CheckUtil.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter radix of parseUnsignedLong.</message>
@@ -44,7 +44,7 @@
     </details>
   </checkerFrameworkError>
 
-  <checkerFrameworkError unstable="false">
+  <checkerFrameworkError>
     <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/utils/TokenUtil.java</fileName>
     <specifier>methodref.param</specifier>
     <message>Incompatible parameter type for bitIndex</message>
