@@ -187,6 +187,7 @@ private static List<CheckerFrameworkError> getErrorFromText(List<List<String>> e
             lineNumber = Integer.parseInt(matcher.group(lineNumberGroup))
             specifier = XmlUtil.escapeXml(matcher.group(specifierGroup).trim())
             message = XmlUtil.escapeXml(matcher.group(messageGroup).trim())
+                    .replaceAll("temp-var-\\d+", "temp-var")
 
             final Matcher filePathMatcher = filePathExtractingPattern.matcher(error)
             if (filePathMatcher.find()) {
@@ -199,7 +200,7 @@ private static List<CheckerFrameworkError> getErrorFromText(List<List<String>> e
                 for (int index = 1; index < errorList.size(); index++) {
                     final String errorDetail = XmlUtil.escapeXml(errorList.get(index).trim())
                     if (!errorDetail.isEmpty()) {
-                        details.add(errorDetail)
+                        details.add(errorDetail.replaceAll("capture#\\d+", "capture"))
                     }
                 }
             }
