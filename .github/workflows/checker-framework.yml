@@ -32,6 +32,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Execute checker framework
-        run: groovy ./.ci/checker-framework.groovy ${{ matrix.profile }}
+        run: groovy ./.ci/checker-framework.groovy ${{ matrix.profile }} || true
         env:
           MAVEN_OPTS: "-Xmx4g"
