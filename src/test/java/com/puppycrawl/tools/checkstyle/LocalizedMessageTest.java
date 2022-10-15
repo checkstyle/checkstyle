@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle;
 
 import static com.google.common.truth.Truth.assertWithMessage;
+import static org.junit.jupiter.api.Assumptions.assumeFalse;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -30,7 +31,9 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
+import org.junitpioneer.jupiter.DefaultLocale;
 
 import com.puppycrawl.tools.checkstyle.LocalizedMessage.Utf8Control;
 
@@ -45,16 +48,18 @@ import com.puppycrawl.tools.checkstyle.LocalizedMessage.Utf8Control;
  */
 public class LocalizedMessageTest {
 
+    private static final Locale DEFAULT_LOCALE = Locale.getDefault();
+
     @Test
     public void testNullArgs() {
         final LocalizedMessage messageClass = new LocalizedMessage(Definitions.CHECKSTYLE_BUNDLE,
-                Locale.getDefault(), DefaultLogger.class, "DefaultLogger.addException", "myfile");
+                DefaultLogger.class, "DefaultLogger.addException", "myfile");
         assertWithMessage("Violation should contain exception info")
                 .that(messageClass.getMessage())
                 .contains("Error auditing myfile");
 
         final LocalizedMessage nullClass = new LocalizedMessage(Definitions.CHECKSTYLE_BUNDLE,
-                Locale.getDefault(), DefaultLogger.class, "DefaultLogger.addException");
+                DefaultLogger.class, "DefaultLogger.addException");
         final String outputForNullArgs = nullClass.getMessage();
         assertWithMessage("Violation should contain exception info")
                 .that(outputForNullArgs)
@@ -204,6 +209,74 @@ public class LocalizedMessageTest {
         assertWithMessage("Bundle should be null when stream is null")
                 .that(bundle)
                 .isNull();
+    }
+
+    /**
+     * Verifies that the language specified with the system property {@code user.language} exists.
+     */
+    @Test
+    public void testLanguageIsValid() {
+        final String language = DEFAULT_LOCALE.getLanguage();
+        assumeFalse(language.isEmpty(), "Locale not set");
+        assertWithMessage("Invalid language")
+                .that(Locale.getISOLanguages())
+                .asList()
+                .contains(language);
+    }
+
+    /**
+     * Verifies that the country specified with the system property {@code user.country} exists.
+     */
+    @Test
+    public void testCountryIsValid() {
+        final String country = DEFAULT_LOCALE.getCountry();
+        assumeFalse(country.isEmpty(), "Locale not set");
+        assertWithMessage("Invalid country")
+                .that(Locale.getISOCountries())
+                .asList()
+                .contains(country);
+    }
+
+    @Test
+    public void testMessageInFrench() {
+        final LocalizedMessage violation = createSampleViolation();
+        LocalizedMessage.setLocale(Locale.FRENCH);
+
+        assertWithMessage("Invalid violation")
+            .that(violation.getMessage())
+            .isEqualTo("Instruction vide.");
+    }
+
+    @DefaultLocale("fr")
+    @Test
+    public void testEnforceEnglishLanguageBySettingUnitedStatesLocale() {
+        LocalizedMessage.setLocale(Locale.US);
+        final LocalizedMessage violation = createSampleViolation();
+
+        assertWithMessage("Invalid violation")
+            .that(violation.getMessage())
+            .isEqualTo("Empty statement.");
+    }
+
+    @DefaultLocale("fr")
+    @Test
+    public void testEnforceEnglishLanguageBySettingRootLocale() {
+        LocalizedMessage.setLocale(Locale.ROOT);
+        final LocalizedMessage violation = createSampleViolation();
+
+        assertWithMessage("Invalid violation")
+            .that(violation.getMessage())
+            .isEqualTo("Empty statement.");
+    }
+
+    private static LocalizedMessage createSampleViolation() {
+        return new LocalizedMessage("com.puppycrawl.tools.checkstyle.checks.coding.messages",
+                LocalizedMessage.class, "empty.statement");
+    }
+
+    @AfterEach
+    public void tearDown() {
+        LocalizedMessage.setLocale(DEFAULT_LOCALE);
     }
 
     /**

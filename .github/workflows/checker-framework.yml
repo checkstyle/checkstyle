@@ -27,11 +27,26 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 11
+
       - name: Install groovy
         run: sudo apt install groovy
+
       - name: Checkout
         uses: actions/checkout@v2
+
       - name: Execute checker framework
-        run: groovy ./.ci/checker-framework.groovy ${{ matrix.profile }}
         env:
           MAVEN_OPTS: "-Xmx4g"
+        run: groovy ./.ci/checker-framework.groovy ${{ matrix.profile }} || true
+
+      - name: Git Diff on fail
+        if: failure()
+        run: git diff > target/${{ matrix.profile }}.patch
+
+      - name: Share patch as artifact to apply on local
+        if: failure()
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ matrix.profile }}-patch
+          path: target/${{ matrix.profile }}.patch
+          retention-days: 7

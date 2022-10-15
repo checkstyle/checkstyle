@@ -248,21 +248,6 @@
     <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/api/LineColumn.java</fileName>
     <specifier>override.receiver</specifier>
     <message>Incompatible receiver type</message>
-    <lineContent>public boolean equals(Object other) {</lineContent>
-    <details>
-      found   : @GuardedBy LineColumn
-      required: @GuardSatisfied Object
-      Consequence: method in @GuardedBy LineColumn
-      @GuardedBy boolean equals(@GuardedBy LineColumn this, @GuardedBy Object p0)
-      cannot override method in @GuardedBy Object
-      @GuardedBy boolean equals(@GuardSatisfied Object this, @GuardSatisfied Object p0)
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/api/LineColumn.java</fileName>
-    <specifier>override.receiver</specifier>
-    <message>Incompatible receiver type</message>
     <lineContent>public int compareTo(LineColumn lineColumn) {</lineContent>
     <details>
       found   : @GuardedBy LineColumn
@@ -271,6 +256,21 @@
       @GuardedBy int compareTo(@GuardedBy LineColumn this, @GuardedBy LineColumn p0)
       cannot override method in @GuardedBy Comparable&lt;@GuardedBy LineColumn&gt;
       @GuardedBy int compareTo(@GuardSatisfied Comparable&lt;@GuardedBy LineColumn&gt; this, @GuardedBy LineColumn p0)
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/api/LineColumn.java</fileName>
+    <specifier>override.receiver</specifier>
+    <message>Incompatible receiver type</message>
+    <lineContent>public boolean equals(Object other) {</lineContent>
+    <details>
+      found   : @GuardedBy LineColumn
+      required: @GuardSatisfied Object
+      Consequence: method in @GuardedBy LineColumn
+      @GuardedBy boolean equals(@GuardedBy LineColumn this, @GuardedBy Object p0)
+      cannot override method in @GuardedBy Object
+      @GuardedBy boolean equals(@GuardSatisfied Object this, @GuardSatisfied Object p0)
     </details>
   </checkerFrameworkError>
 
@@ -342,26 +342,18 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/api/Violation.java</fileName>
+    <specifier>method.guarantee.violated</specifier>
+    <message>@Pure method compareTo calls method getViolation with a weaker @ReleasesNoLocks side effect guarantee</message>
+    <lineContent>result = getViolation().compareTo(other.getViolation());</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/api/Violation.java</fileName>
     <specifier>override.param</specifier>
     <message>Incompatible parameter type for object.</message>
     <lineContent>public boolean equals(Object object) {</lineContent>
     <details>
       found   : @GuardedBy Object
-      required: @GuardSatisfied Object
-      Consequence: method in @GuardedBy Violation
-      @GuardedBy boolean equals(@GuardedBy Violation this, @GuardedBy Object p0)
-      cannot override method in @GuardedBy Object
-      @GuardedBy boolean equals(@GuardSatisfied Object this, @GuardSatisfied Object p0)
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/api/Violation.java</fileName>
-    <specifier>override.receiver</specifier>
-    <message>Incompatible receiver type</message>
-    <lineContent>public boolean equals(Object object) {</lineContent>
-    <details>
-      found   : @GuardedBy Violation
       required: @GuardSatisfied Object
       Consequence: method in @GuardedBy Violation
       @GuardedBy boolean equals(@GuardedBy Violation this, @GuardedBy Object p0)
@@ -382,6 +374,21 @@
       @GuardedBy int compareTo(@GuardedBy Violation this, @GuardedBy Violation p0)
       cannot override method in @GuardedBy Comparable&lt;@GuardedBy Violation&gt;
       @GuardedBy int compareTo(@GuardSatisfied Comparable&lt;@GuardedBy Violation&gt; this, @GuardedBy Violation p0)
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/api/Violation.java</fileName>
+    <specifier>override.receiver</specifier>
+    <message>Incompatible receiver type</message>
+    <lineContent>public boolean equals(Object object) {</lineContent>
+    <details>
+      found   : @GuardedBy Violation
+      required: @GuardSatisfied Object
+      Consequence: method in @GuardedBy Violation
+      @GuardedBy boolean equals(@GuardedBy Violation this, @GuardedBy Object p0)
+      cannot override method in @GuardedBy Object
+      @GuardedBy boolean equals(@GuardSatisfied Object this, @GuardSatisfied Object p0)
     </details>
   </checkerFrameworkError>
 
@@ -1001,6 +1008,21 @@
     <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressionCommentFilter.java</fileName>
     <specifier>override.receiver</specifier>
     <message>Incompatible receiver type</message>
+    <lineContent>public int compareTo(Tag object) {</lineContent>
+    <details>
+      found   : @GuardedBy Tag
+      required: @GuardSatisfied Comparable&lt;@GuardedBy Tag&gt;
+      Consequence: method in @GuardedBy Tag
+      @GuardedBy int compareTo(@GuardedBy Tag this, @GuardedBy Tag p0)
+      cannot override method in @GuardedBy Comparable&lt;@GuardedBy Tag&gt;
+      @GuardedBy int compareTo(@GuardSatisfied Comparable&lt;@GuardedBy Tag&gt; this, @GuardedBy Tag p0)
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressionCommentFilter.java</fileName>
+    <specifier>override.receiver</specifier>
+    <message>Incompatible receiver type</message>
     <lineContent>public String toString() {</lineContent>
     <details>
       found   : @GuardedBy Tag
@@ -1024,21 +1046,6 @@
       @GuardedBy boolean equals(@GuardedBy Tag this, @GuardedBy Object p0)
       cannot override method in @GuardedBy Object
       @GuardedBy boolean equals(@GuardSatisfied Object this, @GuardSatisfied Object p0)
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressionCommentFilter.java</fileName>
-    <specifier>override.receiver</specifier>
-    <message>Incompatible receiver type</message>
-    <lineContent>public int compareTo(Tag object) {</lineContent>
-    <details>
-      found   : @GuardedBy Tag
-      required: @GuardSatisfied Comparable&lt;@GuardedBy Tag&gt;
-      Consequence: method in @GuardedBy Tag
-      @GuardedBy int compareTo(@GuardedBy Tag this, @GuardedBy Tag p0)
-      cannot override method in @GuardedBy Comparable&lt;@GuardedBy Tag&gt;
-      @GuardedBy int compareTo(@GuardSatisfied Comparable&lt;@GuardedBy Tag&gt; this, @GuardedBy Tag p0)
     </details>
   </checkerFrameworkError>
 
@@ -1174,6 +1181,36 @@
       void or(@GuardSatisfied BitSet this, @GuardedBy BitSet p0)
       is not a valid method reference for method in @GuardedBy BiConsumer&lt;@GuardedBy BitSet, @GuardedBy BitSet&gt;
       void accept(@GuardedBy BiConsumer&lt;@GuardedBy BitSet, @GuardedBy BitSet&gt; this, @GuardedBy BitSet p0, @GuardedBy BitSet p1)
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/utils/TokenUtil.java</fileName>
+    <specifier>methodref.receiver</specifier>
+    <message>Incompatible receiver type</message>
+    <lineContent>.collect(BitSet::new, BitSet::set, BitSet::or);</lineContent>
+    <details>
+      found   : @GuardSatisfied BitSet
+      required: @GuardedBy BitSet
+      Consequence: method in @GuardedBy BitSet
+      void or(@GuardSatisfied BitSet this, @GuardedBy BitSet p0)
+      is not a valid method reference for method in @GuardedBy BiConsumer&lt;@GuardedBy BitSet, @GuardedBy BitSet&gt;
+      void accept(@GuardedBy BiConsumer&lt;@GuardedBy BitSet, @GuardedBy BitSet&gt; this, @GuardedBy BitSet p0, @GuardedBy BitSet p1)
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/utils/TokenUtil.java</fileName>
+    <specifier>methodref.receiver</specifier>
+    <message>Incompatible receiver type</message>
+    <lineContent>.collect(BitSet::new, BitSet::set, BitSet::or);</lineContent>
+    <details>
+      found   : @GuardSatisfied BitSet
+      required: @GuardedBy BitSet
+      Consequence: method in @GuardedBy BitSet
+      void set(@GuardSatisfied BitSet this, @GuardedBy int p0)
+      is not a valid method reference for method in @GuardedBy ObjIntConsumer&lt;@GuardedBy BitSet&gt;
+      void accept(@GuardedBy ObjIntConsumer&lt;@GuardedBy BitSet&gt; this, @GuardedBy BitSet p0, @GuardedBy int p1)
     </details>
   </checkerFrameworkError>
 

@@ -9,14 +9,11 @@ import java.util.regex.Pattern
 
 @Field static final String USAGE_STRING = "Usage groovy " +
         ".${File.separator}.ci${File.separator}checker-framework.groovy" +
-        " [profile] [-g | --generate-suppression]\n"
+        " [profile] [--list]\n"
 
 int exitCode = 1
-if (args.length == 2) {
-    exitCode = parseArgumentAndExecute(args[0], args[1])
-}
-else if (args.length == 1) {
-    exitCode = parseArgumentAndExecute(args[0], null)
+if (args.length == 1) {
+    exitCode = parseArgumentAndExecute(args[0])
 }
 else {
     throw new IllegalArgumentException(USAGE_STRING)
@@ -29,15 +26,11 @@ System.exit(exitCode)
  * @param argument command line argument
  * @return {@code 0} if command executes successfully, {@code 1} otherwise
  */
-private int parseArgumentAndExecute(String argument, String flag) {
+private int parseArgumentAndExecute(String argument) {
     final int exitCode
     final Set<String> profiles = getCheckerFrameworkProfiles()
     if (profiles.contains(argument)) {
-        if (flag != null && flag != "-g" && flag != "--generate-suppression") {
-            final String exceptionMessage = "Unexpected flag: '${flag}'\n" + USAGE_STRING
-            throw new IllegalArgumentException(exceptionMessage)
-        }
-        exitCode = checkCheckerFrameworkReport(argument, flag)
+        exitCode = checkCheckerFrameworkReport(argument)
     }
     else if (argument == "--list") {
         println "Supported profiles:"
@@ -75,26 +68,39 @@ private static Set<String> getCheckerFrameworkProfiles() {
  * the suppressed errors.
  *
  * @param profile the checker framework profile to execute
- * @param flag command line argument flag to determine output format
  * @return {@code 0} if checker framework report is as expected, {@code 1} otherwise
  */
-private static int checkCheckerFrameworkReport(String profile, String flag) {
+private static int checkCheckerFrameworkReport(String profile) {
     final XmlParser xmlParser = new XmlParser()
     final String suppressedErrorsFileUri =
             ".${File.separator}.ci${File.separator}" +
                     "checker-framework-suppressions${File.separator}${profile}-suppressions.xml"
     final List<String> checkerFrameworkErrors = getCheckerFrameworkErrors(profile)
-    Set<CheckerFrameworkError> errors = Collections.emptySet()
+    List<CheckerFrameworkError> errors = Collections.emptyList()
     if (!checkerFrameworkErrors.isEmpty()) {
         errors = getErrorFromText(checkerFrameworkErrors)
     }
     final File suppressionFile = new File(suppressedErrorsFileUri)
-    Set<CheckerFrameworkError> suppressedErrors = Collections.emptySet()
+    List<CheckerFrameworkError> suppressedErrors = Collections.emptyList()
     if (suppressionFile.exists()) {
         final Node suppressedErrorsNode = xmlParser.parse(suppressedErrorsFileUri)
         suppressedErrors = getSuppressedErrors(suppressedErrorsNode)
     }
-    return compareErrors(errors, suppressedErrors, flag)
+
+    String newSuppresion = '<?xml version="1.0" encoding="UTF-8"?>\n<suppressedErrors>'
+    errors.each {
+        newSuppresion += it.toXmlString() + '\n'
+    }
+    if (errors.isEmpty()) {
+        newSuppresion += "\n"
+    }
+    newSuppresion += "</suppressedErrors>\n"
+    FileWriter writer = new FileWriter(suppressionFile)
+    writer.write(newSuppresion)
+    writer.flush()
+    writer.close()
+
+    return compareErrors(errors, suppressedErrors)
 }
 
 /**
@@ -158,8 +164,8 @@ private static String getOsSpecificCmd(String cmd) {
  * @param errorsText errors in text format
  * @return A set of errors
  */
-private static Set<CheckerFrameworkError> getErrorFromText(List<List<String>> errorsList) {
-    final Set<CheckerFrameworkError> errors = new HashSet<>()
+private static List<CheckerFrameworkError> getErrorFromText(List<List<String>> errorsList) {
+    final List<CheckerFrameworkError> errors = [] as ArrayList
     final Pattern errorExtractingPattern = Pattern
         .compile(".*[\\\\/](checkstyle[\\\\/]src.*\\.java):\\[(\\d+)[^]]*][^\\[]*\\[([^]]*)](.*)")
     final Pattern filePathExtractingPattern = Pattern.compile("\\[WARNING] (.*\\.java)")
@@ -181,6 +187,7 @@ private static Set<CheckerFrameworkError> getErrorFromText(List<List<String>> er
             lineNumber = Integer.parseInt(matcher.group(lineNumberGroup))
             specifier = XmlUtil.escapeXml(matcher.group(specifierGroup).trim())
             message = XmlUtil.escapeXml(matcher.group(messageGroup).trim())
+                    .replaceAll("temp-var-\\d+", "temp-var")
 
             final Matcher filePathMatcher = filePathExtractingPattern.matcher(error)
             if (filePathMatcher.find()) {
@@ -193,7 +200,7 @@ private static Set<CheckerFrameworkError> getErrorFromText(List<List<String>> er
                 for (int index = 1; index < errorList.size(); index++) {
                     final String errorDetail = XmlUtil.escapeXml(errorList.get(index).trim())
                     if (!errorDetail.isEmpty()) {
-                        details.add(errorDetail)
+                        details.add(errorDetail.replaceAll("capture#\\d+", "capture"))
                     }
                 }
             }
@@ -205,7 +212,7 @@ private static Set<CheckerFrameworkError> getErrorFromText(List<List<String>> er
             errors.add(checkerFrameworkError)
         }
     }
-    return errors
+    return errors.sort()
 }
 
 /**
@@ -215,9 +222,9 @@ private static Set<CheckerFrameworkError> getErrorFromText(List<List<String>> er
  * @param mainNode the main {@code suppressedErrors} node
  * @return A set of suppressed errors
  */
-private static Set<CheckerFrameworkError> getSuppressedErrors(Node mainNode) {
+private static List<CheckerFrameworkError> getSuppressedErrors(Node mainNode) {
     final List<Node> children = mainNode.children()
-    final Set<CheckerFrameworkError> suppressedErrors = new HashSet<>()
+    final List<CheckerFrameworkError> suppressedErrors = [] as ArrayList
 
     children.each { node ->
         final Node errorNode = node as Node
@@ -294,15 +301,13 @@ private static CheckerFrameworkError getError(Node errorNode) {
  *
  * @param actualErrors A set of actual errors reported by error prone
  * @param suppressedErrors A set of suppressed errors from suppression file
- * @param flag command line argument flag to determine output format
  * @return {@code 0} if comparison passes successfully
  */
-private static int compareErrors(Set<CheckerFrameworkError> actualErrors,
-                                 Set<CheckerFrameworkError> suppressedErrors,
-                                 String flag) {
-    final Set<CheckerFrameworkError> unsuppressedErrors =
+private static int compareErrors(List<CheckerFrameworkError> actualErrors,
+                                 List<CheckerFrameworkError> suppressedErrors) {
+    final List<CheckerFrameworkError> unsuppressedErrors =
             setDifference(actualErrors, suppressedErrors)
-    final Set<CheckerFrameworkError> extraSuppressions =
+    final List<CheckerFrameworkError> extraSuppressions =
             setDifference(suppressedErrors, actualErrors)
 
     final int exitCode
@@ -317,7 +322,7 @@ private static int compareErrors(Set<CheckerFrameworkError> actualErrors,
         if (!unsuppressedErrors.isEmpty()) {
             println "New surviving error(s) found:"
             unsuppressedErrors.each {
-                printError(flag, it)
+                printError(it)
             }
         }
         if (!extraSuppressions.isEmpty()
@@ -325,7 +330,7 @@ private static int compareErrors(Set<CheckerFrameworkError> actualErrors,
             println "\nUnnecessary suppressed error(s) found and should be removed:"
             extraSuppressions.each {
                 if (!it.isUnstable()) {
-                    printError(flag, it)
+                    printError(it)
                 }
             }
         }
@@ -345,23 +350,17 @@ private static int compareErrors(Set<CheckerFrameworkError> actualErrors,
  * @param errors A set of errors
  * @return {@code true} if a set has only stable errors
  */
-private static boolean hasOnlyStableErrors(Set<CheckerFrameworkError> errors) {
+private static boolean hasOnlyStableErrors(List<CheckerFrameworkError> errors) {
     return errors.every { !it.isUnstable() }
 }
 
 /**
- * Prints the error according to the nature of the flag.
+ * Prints the error.
  *
- * @param flag command line argument flag to determine output format
  * @param error error to print
  */
-private static void printError(String flag, CheckerFrameworkError error) {
-    if (flag != null) {
-        println error.toXmlString()
-    }
-    else {
-        println error
-    }
+private static void printError(CheckerFrameworkError error) {
+    println error.toXmlString()
 }
 
 /**
@@ -371,9 +370,9 @@ private static void printError(String flag, CheckerFrameworkError error) {
  * @param setTwo The second set in the difference
  * @return {@code setOne - setTwo}
  */
-private static Set<CheckerFrameworkError> setDifference(final Set<CheckerFrameworkError> setOne,
-                                                        final Set<CheckerFrameworkError> setTwo) {
-    final Set<CheckerFrameworkError> result = new TreeSet<>(setOne)
+private static List<CheckerFrameworkError> setDifference(final List<CheckerFrameworkError> setOne,
+                                                        final List<CheckerFrameworkError> setTwo) {
+    final List<CheckerFrameworkError> result = new ArrayList<>(setOne)
     result.removeIf { error -> setTwo.contains(error) }
     return result
 }

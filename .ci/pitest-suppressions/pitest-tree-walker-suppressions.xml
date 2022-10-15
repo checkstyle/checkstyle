@@ -3,15 +3,6 @@
   <mutation unstable="false">
     <sourceFile>DetailNodeTreeStringPrinter.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.DetailNodeTreeStringPrinter</mutatedClass>
-    <mutatedMethod>getParseErrorMessage</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to com/puppycrawl/tools/checkstyle/JavadocDetailNodeParser$ParseErrorMessage::getLineNumber</description>
-    <lineContent>parseErrorMessage.getLineNumber(),</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>DetailNodeTreeStringPrinter.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.DetailNodeTreeStringPrinter</mutatedClass>
     <mutatedMethod>parseFile</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
     <description>removed call to java/nio/charset/Charset::name</description>

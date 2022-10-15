@@ -3,46 +3,10 @@
   <mutation unstable="false">
     <sourceFile>EmptyBlockCheck.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.blocks.EmptyBlockCheck</mutatedClass>
-    <mutatedMethod>setOption</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
-    <description>replaced call to java/lang/String::toUpperCase with receiver</description>
-    <lineContent>option = BlockOption.valueOf(optionStr.trim().toUpperCase(Locale.ENGLISH));</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>EmptyBlockCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.blocks.EmptyBlockCheck</mutatedClass>
-    <mutatedMethod>setOption</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
-    <description>replaced call to java/lang/String::trim with receiver</description>
-    <lineContent>option = BlockOption.valueOf(optionStr.trim().toUpperCase(Locale.ENGLISH));</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>EmptyBlockCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.blocks.EmptyBlockCheck</mutatedClass>
     <mutatedMethod>visitToken</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
     <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getText</description>
     <lineContent>ast.getText());</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>LeftCurlyCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck</mutatedClass>
-    <mutatedMethod>setOption</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
-    <description>replaced call to java/lang/String::toUpperCase with receiver</description>
-    <lineContent>option = LeftCurlyOption.valueOf(optionStr.trim().toUpperCase(Locale.ENGLISH));</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>LeftCurlyCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck</mutatedClass>
-    <mutatedMethod>setOption</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
-    <description>replaced call to java/lang/String::trim with receiver</description>
-    <lineContent>option = LeftCurlyOption.valueOf(optionStr.trim().toUpperCase(Locale.ENGLISH));</lineContent>
   </mutation>
 
   <mutation unstable="false">
@@ -79,24 +43,6 @@
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
     <description>removed call to com/puppycrawl/tools/checkstyle/checks/blocks/RightCurlyCheck$Details::getNextToken</description>
     <lineContent>nextToken = Details.getNextToken(nextToken);</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>RightCurlyCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck</mutatedClass>
-    <mutatedMethod>setOption</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
-    <description>replaced call to java/lang/String::toUpperCase with receiver</description>
-    <lineContent>option = RightCurlyOption.valueOf(optionStr.trim().toUpperCase(Locale.ENGLISH));</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>RightCurlyCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck</mutatedClass>
-    <mutatedMethod>setOption</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
-    <description>replaced call to java/lang/String::trim with receiver</description>
-    <lineContent>option = RightCurlyOption.valueOf(optionStr.trim().toUpperCase(Locale.ENGLISH));</lineContent>
   </mutation>
 
   <mutation unstable="false">
