@@ -1,8 +1,8 @@
 /*
 WriteTag
-tag = @tag2
-tagFormat = \S
-tagSeverity = ignore
+tag = @todo2
+tagFormat = \\S
+severity = ignore
 tokens = (default)INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF
 
 
