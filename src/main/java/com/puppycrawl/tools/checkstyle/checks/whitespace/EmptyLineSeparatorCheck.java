@@ -119,34 +119,23 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * ///////////////////////////////////////////////////
  * //HEADER
  * ///////////////////////////////////////////////////
- * package com.whitespace; // violation, 'package' should be separated from previous line.
- * import java.io.Serializable; // violation, 'import' should be separated from previous line.
- * class Foo { // violation, 'CLASS_DEF' should be separated from previous line.
- *   public static final int FOO_CONST = 1;
- *   public void foo() {} // violation, 'METHOD_DEF' should be separated from previous line.
+ * package com.whitespace; // violation , 'package' should be separated from previous line
+ * import java.io.Serializable; // violation , 'import' should be separated from previous line
+ *
+ * class FirstClass {
+ *
+ *   int var1 = 1;
+ *   int var2 = 2; // violation , 'VARIABLE_DEF' should be separated from previous line
+ *
+ *
+ *   int var3 = 3;
+ *
+ *
+ *   void method1() {}
+ *   void method2() {} // violation , 'METHOD_DEF' should be separated from previous line
  * }
  * </pre>
  *
- * <p>
- * Example of declarations with empty line separator
- * that is expected by the Check by default:
- * </p>
- *
- * <pre>
- * ///////////////////////////////////////////////////
- * //HEADER
- * ///////////////////////////////////////////////////
- *
- * package com.puppycrawl.tools.checkstyle.whitespace;
- *
- * import java.io.Serializable;
- *
- * class Foo {
- *   public static final int FOO_CONST = 1;
- *
- *   public void foo() {}
- * }
- * </pre>
  * <p>
  * To check empty line before
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
@@ -156,10 +145,32 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </p>
  *
  * <pre>
- * &lt;module name=&quot;EmptyLineSeparator&quot;&gt;
+ *   &lt;module name=&quot;EmptyLineSeparator&quot;&gt;
  *   &lt;property name=&quot;tokens&quot; value=&quot;VARIABLE_DEF, METHOD_DEF&quot;/&gt;
- * &lt;/module&gt;
+ *   &lt;/module&gt;
  * </pre>
+ *
+ * <pre>
+ * ///////////////////////////////////////////////////
+ * //HEADER
+ * ///////////////////////////////////////////////////
+ * package com.whitespace;
+ * import java.io.Serializable;
+ *
+ * class FirstClass {
+ *
+ *   int var1 = 1;
+ *   int var2 = 2; // violation , 'VARIABLE_DEF' should be separated from previous line
+ *
+ *
+ *   int var3 = 3;
+ *
+ *
+ *   void method1() {}
+ *   void method2() {} // violation , 'METHOD_DEF' should be separated from previous line
+ * }
+ * </pre>
+ *
  *
  * <p>
  * To allow no empty line between fields:
@@ -175,37 +186,26 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </p>
  *
  * <pre>
- * class Foo {
- *   int field1; // ok
- *   double field2; // ok
- *   long field3, field4 = 10L, field5; // ok
- * }
- * </pre>
- * <p>
- * Example of declarations with multiple empty lines between class members (allowed by default):
- * </p>
- *
- * <pre>
  * ///////////////////////////////////////////////////
  * //HEADER
  * ///////////////////////////////////////////////////
+ * package com.whitespace; // violation , 'package' should be separated from previous line
+ * import java.io.Serializable; // violation , 'import' should be separated from previous line
+ *
+ * class FirstClass {
+ *
+ *   int var1 = 1;
+ *   int var2 = 2;
  *
  *
- * package com.puppycrawl.tools.checkstyle.whitespace;
+ *   int var3 = 3;
  *
  *
- *
- * import java.io.Serializable;
- *
- *
- * class Foo {
- *   public static final int FOO_CONST = 1;
- *
- *
- *
- *   public void foo() {} // OK
+ *   void method1() {}
+ *   void method2() {} // violation , 'METHOD_DEF' should be separated from previous line
  * }
  * </pre>
+ *
  * <p>
  * To disallow multiple empty lines between class members:
  * </p>
@@ -218,20 +218,20 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * ///////////////////////////////////////////////////
  * //HEADER
  * ///////////////////////////////////////////////////
+ * package com.whitespace; // violation , 'package' should be separated from previous line
+ * import java.io.Serializable; // violation , 'import' should be separated from previous line
+ *
+ * class FirstClass {
+ *
+ *   int var1 = 1;
+ *   int var2 = 2; // violation , 'VARIABLE_DEF' should be separated from previous line
  *
  *
- * package com.checkstyle.whitespace; // violation, 'package' has more than 1 empty lines before.
+ *   int var3 = 3; // violation , 'VARIABLE_DEF' has more than 1 empty lines before
  *
  *
- * import java.io.Serializable; // violation, 'import' has more than 1 empty lines before.
- *
- *
- * class Foo { // violation, 'CLASS_DEF' has more than 1 empty lines before.
- *   public static final int FOO_CONST = 1;
- *
- *
- *
- *   public void foo() {} // violation, 'METHOD_DEF' has more than 1 empty lines before.
+ *   void method1() {} // violation , 'METHOD_DEF' has more than 1 empty lines before
+ *   void method2() {} // violation , 'METHOD_DEF' should be separated from previous line
  * }
  * </pre>
  *
@@ -269,40 +269,23 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * ///////////////////////////////////////////////////
  * //HEADER
  * ///////////////////////////////////////////////////
+ * package com.whitespace; // violation , 'package' should be separated from previous line
+ * import java.io.Serializable; // violation , 'import' should be separated from previous line
  *
- * package com.puppycrawl.tools.checkstyle.whitespace;
+ * class FirstClass {
  *
- * class Foo {
+ *   int var1 = 1;
+ *   int var2 = 2; // violation , 'VARIABLE_DEF' should be separated from previous line
  *
- *   public void foo() {
+ *
+ *   int var3 = 3;
  *
  *
- *     System.out.println(1); // violation, There is more than 1 empty line one after another
- *                            // in previous line.
- *   }
+ *   void method1() {}
+ *   void method2() {} // violation , 'METHOD_DEF' should be separated from previous line
  * }
  * </pre>
- * <p>
- * To disallow multiple empty lines between class members:
- * </p>
  *
- * <pre>
- * &lt;module name="EmptyLineSeparator"&gt;
- *   &lt;property name="allowMultipleEmptyLines" value="false"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>Example:</p>
- * <pre>
- * package com.puppycrawl.tools.checkstyle.whitespace;
- *
- * class Test {
- *     private int k;
- *
- *
- *     private static void foo() {} // violation, 'METHOD_DEF' has more than 1 empty lines before.
- *
- * }
- * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
