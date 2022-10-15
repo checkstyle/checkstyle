@@ -30,6 +30,12 @@ jobs:
         - DEPLOY="true"
         - USE_MAVEN_REPO="true"
 
+    - jdk: openjdk11
+      env:
+        - DESC="codecov"
+        - USE_MAVEN_REPO="true"
+        - CMD="./.ci/travis.sh jacoco"
+
     # until https://github.com/checkstyle/checkstyle/issues/9984
     # Ensure that all modules are used in no exception configs
     # - env:
