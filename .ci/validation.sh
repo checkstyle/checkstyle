@@ -330,11 +330,13 @@ verify-no-exception-configs)
     --no-clobber \
     https://raw.githubusercontent.com/checkstyle/contribution/master/checkstyle-tester/checks-only-javadoc-error.xml
   MODULES_WITH_EXTERNAL_FILES="Filter|ImportControl"
-  xmlstarlet sel --net --template -m .//module -v "@name" \
+  xmlstarlet -D \
+    | xmlstarlet sel --net --template -m .//module -v "@name" \
     -n $working_dir/checks-nonjavadoc-error.xml -n $working_dir/checks-only-javadoc-error.xml \
     | grep -vE $MODULES_WITH_EXTERNAL_FILES | grep -v "^$" \
     | sort | uniq | sed "s/Check$//" > $working_dir/web.txt
-  xmlstarlet sel --net --template -m .//module -v "@name" -n config/checkstyle_checks.xml \
+  xmlstarlet -D \
+    | xmlstarlet sel --net --template -m .//module -v "@name" -n config/checkstyle_checks.xml \
     | grep -vE $MODULES_WITH_EXTERNAL_FILES | grep -v "^$" \
     | sort | uniq | sed "s/Check$//" > $working_dir/file.txt
   DIFF_TEXT=$(diff -u $working_dir/web.txt $working_dir/file.txt | cat)
