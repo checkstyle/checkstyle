@@ -129,9 +129,12 @@ jacoco)
     jacoco:restore-instrumented-classes \
     jacoco:report@default-report \
     jacoco:check@default-check
-  # BUILD_REASON is variable from CI, if launch is not from CI, we skip this step
-  if [ -n "$BUILD_REASON" ];then
+  # if launch is not from CI, we skip this step
+  if [[ $TRAVIS == 'true' ]]; then
+    echo "Reporting to codecov"
     bash <(curl -s https://codecov.io/bash)
+  else
+    echo "No reporting to codecov outside CI"
   fi
   ;;
 
