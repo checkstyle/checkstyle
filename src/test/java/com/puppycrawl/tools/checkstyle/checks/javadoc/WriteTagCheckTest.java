@@ -58,7 +58,7 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testTag() throws Exception {
         final String[] expected = {
-            "15: " + getCheckMessage(MSG_WRITE_TAG, "@author", "Daniel Grenner // violation"),
+            "15: " + getCheckMessage(MSG_WRITE_TAG, "@author", "must match pattern 'S'"),
         };
         verifyWithInlineConfigParser(getPath("InputWriteTag.java"), expected);
     }
