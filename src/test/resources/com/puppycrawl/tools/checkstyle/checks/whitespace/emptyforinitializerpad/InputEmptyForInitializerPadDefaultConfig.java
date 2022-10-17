@@ -58,4 +58,9 @@ class InputEmptyForInitializerPadDefaultConfig
         ;; ) {
         }
     }
+
+    void method3() {
+for (
+;;) {}
+    }
 }
