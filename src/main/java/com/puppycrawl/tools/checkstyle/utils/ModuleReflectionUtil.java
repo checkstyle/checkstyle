@@ -46,7 +46,7 @@ public final class ModuleReflectionUtil {
     }
 
     /**
-     * Gets checkstyle's modules (directly, not recursively) in the given packages.
+     * Gets checkstyle's modules classes (directly, not recursively) in the given packages.
      *
      * @param packages the collection of package names to use
      * @param loader the class loader used to load Checkstyle package names
@@ -65,32 +65,14 @@ public final class ModuleReflectionUtil {
     }
 
     /**
-     * Checks whether a class may be considered as a checkstyle module. Checkstyle's modules are
-     * non-abstract classes, which are either checkstyle's checks, file sets, filters, file filters,
-     * {@code TreeWalker} filters, audit listener, or root module.
-     *
-     * @param clazz class to check.
-     * @return true if the class may be considered as the checkstyle module.
-     */
-    public static boolean isCheckstyleModule(Class<?> clazz) {
-        return isValidCheckstyleClass(clazz)
-            && (isCheckstyleTreeWalkerCheck(clazz)
-                    || isFileSetModule(clazz)
-                    || isFilterModule(clazz)
-                    || isFileFilterModule(clazz)
-                    || isTreeWalkerFilterModule(clazz)
-                    || isAuditListener(clazz)
-                    || isRootModule(clazz));
-    }
-
-    /**
-     * Checks whether a class extends 'AutomaticBean', is non-abstract, and has a default
-     * constructor.
+     * Checks whether a class may be considered as a checkstyle module.
+     * Checkstyle's modules are classes which extend 'AutomaticBean', is
+     * non-abstract, and has a default constructor.
      *
      * @param clazz class to check.
      * @return true if a class may be considered a valid production class.
      */
-    public static boolean isValidCheckstyleClass(Class<?> clazz) {
+    public static boolean isCheckstyleModule(Class<?> clazz) {
         return AutomaticBean.class.isAssignableFrom(clazz)
                 && !Modifier.isAbstract(clazz.getModifiers())
                 && hasDefaultConstructor(clazz)
