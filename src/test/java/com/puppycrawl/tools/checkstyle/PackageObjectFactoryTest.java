@@ -457,7 +457,7 @@ public class PackageObjectFactoryTest {
 
         try (MockedStatic<ModuleReflectionUtil> utilities =
                      mockStatic(ModuleReflectionUtil.class)) {
-            utilities.when(() -> ModuleReflectionUtil.getCheckstyleModules(packages, classLoader))
+            utilities.when(() -> ModuleReflectionUtil.getValidCheckstyleClasses(packages, classLoader))
                     .thenThrow(new IOException("mock exception"));
 
             final String internalFieldName = "thirdPartyNameToFullModuleNames";
