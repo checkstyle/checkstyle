@@ -100,7 +100,7 @@ public class ArchUnitSuperClassTest {
                 @Override
                 public boolean test(JavaClass input) {
                     final Class<?> clazz = input.reflect();
-                    return ModuleReflectionUtil.isValidCheckstyleClass(clazz)
+                    return ModuleReflectionUtil.isCheckstyleModule(clazz)
                         && (ModuleReflectionUtil.isCheckstyleTreeWalkerCheck(clazz)
                             || ModuleReflectionUtil.isFileSetModule(clazz));
                 }
