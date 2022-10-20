@@ -46,21 +46,21 @@ public final class ModuleReflectionUtil {
     }
 
     /**
-     * Gets checkstyle's modules (directly, not recursively) in the given packages.
+     * Gets valid checkstyle's classes (directly, not recursively) in the given packages.
      *
      * @param packages the collection of package names to use
      * @param loader the class loader used to load Checkstyle package names
-     * @return the set of checkstyle's module classes
+     * @return the set of checkstyle's classes
      * @throws IOException if the attempt to read class path resources failed
      * @see #isCheckstyleModule(Class)
      */
-    public static Set<Class<?>> getCheckstyleModules(
+    public static Set<Class<?>> getValidCheckstyleClasses(
             Collection<String> packages, ClassLoader loader) throws IOException {
         final ClassPath classPath = ClassPath.from(loader);
         return packages.stream()
                 .flatMap(pkg -> classPath.getTopLevelClasses(pkg).stream())
                 .map(ClassPath.ClassInfo::load)
-                .filter(ModuleReflectionUtil::isCheckstyleModule)
+                .filter(ModuleReflectionUtil::isValidCheckstyleClass)
                 .collect(Collectors.toSet());
     }
 
