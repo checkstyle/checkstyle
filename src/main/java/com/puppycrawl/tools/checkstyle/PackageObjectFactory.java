@@ -303,7 +303,7 @@ public class PackageObjectFactory implements ModuleFactory {
     private Map<String, Set<String>> generateThirdPartyNameToFullModuleName(ClassLoader loader) {
         Map<String, Set<String>> returnValue;
         try {
-            returnValue = ModuleReflectionUtil.getCheckstyleModules(packages, loader).stream()
+            returnValue = ModuleReflectionUtil.getValidCheckstyleClasses(packages, loader).stream()
                 .collect(Collectors.groupingBy(Class::getSimpleName,
                     Collectors.mapping(Class::getCanonicalName, Collectors.toSet())));
         }
