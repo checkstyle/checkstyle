@@ -441,7 +441,7 @@ public class PackageObjectFactoryTest {
      * to initialize private field {@code PackageObjectFactory.thirdPartyNameToFullModuleNames}.
      * Since the method and the field both are private, the {@link TestUtil} is required to ensure
      * that the field is changed. Also, the expected exception should be thrown from the static
-     * method {@link ModuleReflectionUtil#getCheckstyleModules}, so {@link Mockito#mockStatic}
+     * method {@link ModuleReflectionUtil#isCheckstyleModule}, so {@link Mockito#mockStatic}
      * is required to mock this exception.
      *
      * @throws Exception when the code tested throws an exception
