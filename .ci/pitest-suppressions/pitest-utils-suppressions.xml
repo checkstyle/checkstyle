@@ -636,7 +636,7 @@
     <mutatedMethod>getCheckstyleModules</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
     <description>replaced call to java/util/stream/Stream::filter with receiver</description>
-    <lineContent>.filter(ModuleReflectionUtil::isCheckstyleModule)</lineContent>
+    <lineContent>.filter(ModuleReflectionUtil::isValidCheckstyleClass)</lineContent>
   </mutation>
 
   <mutation unstable="false">
