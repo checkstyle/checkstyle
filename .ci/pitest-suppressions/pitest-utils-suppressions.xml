@@ -633,10 +633,10 @@
   <mutation unstable="false">
     <sourceFile>ModuleReflectionUtil.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.utils.ModuleReflectionUtil</mutatedClass>
-    <mutatedMethod>getCheckstyleModules</mutatedMethod>
+    <mutatedMethod>getValidCheckstyleClasses</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
     <description>replaced call to java/util/stream/Stream::filter with receiver</description>
-    <lineContent>.filter(ModuleReflectionUtil::isCheckstyleModule)</lineContent>
+    <lineContent>.filter(ModuleReflectionUtil::isValidCheckstyleClass)</lineContent>
   </mutation>
 
   <mutation unstable="false">
