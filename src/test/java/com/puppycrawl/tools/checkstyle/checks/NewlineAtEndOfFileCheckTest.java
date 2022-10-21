@@ -225,4 +225,11 @@ public class NewlineAtEndOfFileCheckTest
         }
     }
 
+    @Test
+    public void testTrimOptionProperty() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputNewlineAtEndOfFileTestTrimProperty.java"),
+                expected);
+    }
 }
