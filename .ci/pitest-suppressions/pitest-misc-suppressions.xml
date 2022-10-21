@@ -37,24 +37,6 @@
   </mutation>
 
   <mutation unstable="false">
-    <sourceFile>NewlineAtEndOfFileCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck</mutatedClass>
-    <mutatedMethod>setLineSeparator</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
-    <description>replaced call to java/lang/String::toUpperCase with receiver</description>
-    <lineContent>.toUpperCase(Locale.ENGLISH));</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>NewlineAtEndOfFileCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck</mutatedClass>
-    <mutatedMethod>setLineSeparator</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
-    <description>replaced call to java/lang/String::trim with receiver</description>
-    <lineContent>Enum.valueOf(LineSeparatorOption.class, lineSeparatorParam.trim()</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
     <sourceFile>OrderedPropertiesCheck.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.OrderedPropertiesCheck</mutatedClass>
     <mutatedMethod>getKeyPattern</mutatedMethod>
