@@ -7,22 +7,18 @@
 set -e
 
 echo "PULL_REQUEST:""$PULL_REQUEST"
-if [[ $PULL_REQUEST =~ ^([0-9]+)$ ]]; then
-  echo "Build is not for Pull Request";
-  sleep 5;
-  exit 0;
-fi
 
 mkdir -p .ci-temp
 if [ -d .ci-temp/contribution ]; then
   cd .ci-temp/contribution/
-  git reset --hard origin/master
-  git pull origin master
-  git fetch --tags
+  git fetch git@github.com:stoyanK7/contribution.git \
+    issue/648-fail-if-release-version-not-match-issue-label
+  git checkout FETCH_HEAD
   cd ../../
 else
   cd .ci-temp/
-  git clone https://github.com/checkstyle/contribution
+  git clone --branch issue/648-fail-if-release-version-not-match-issue-label \
+    git@github.com:stoyanK7/contribution.git
   cd ../
 fi
 cd .ci-temp/contribution/releasenotes-builder
@@ -54,7 +50,7 @@ cd .ci-temp
 java -jar contribution/releasenotes-builder/target/releasenotes-builder-1.0-all.jar \
         -localRepoPath checkstyle -remoteRepoPath checkstyle/checkstyle \
         -startRef "$LATEST_RELEASE_TAG" -releaseNumber "$CS_RELEASE_VERSION" \
-        -githubAuthToken "$READ_ONLY_TOKEN" -generateAll
+        -githubAuthToken "$READ_ONLY_TOKEN" -generateAll -validateVersion
 
 echo ==============================================
 echo
