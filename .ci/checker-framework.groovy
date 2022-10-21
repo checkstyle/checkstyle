@@ -8,9 +8,9 @@ import groovy.xml.XmlUtil
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 
-@Field static final String USAGE_STRING = "Usage groovy " +
+@Field static final String USAGE_STRING = 'Usage groovy ' +
         ".${File.separator}.ci${File.separator}checker-framework.groovy" +
-        " [profile] [--list]\n"
+        ' [profile] [--list]\n'
 
 int exitCode = 1
 if (args.length == 1) {
@@ -27,14 +27,14 @@ System.exit(exitCode)
  * @param argument command line argument
  * @return {@code 0} if command executes successfully, {@code 1} otherwise
  */
-private int parseArgumentAndExecute(String argument) {
+private int parseArgumentAndExecute(final String argument) {
     final int exitCode
     final Set<String> profiles = getCheckerFrameworkProfiles()
     if (profiles.contains(argument)) {
         exitCode = checkCheckerFrameworkReport(argument)
     }
-    else if (argument == "--list") {
-        println "Supported profiles:"
+    else if (argument == '--list') {
+        println 'Supported profiles:'
         profiles.each { println it }
         exitCode = 0
     }
@@ -54,10 +54,10 @@ private static Set<String> getCheckerFrameworkProfiles() {
     final GPathResult mainNode = new XmlSlurper().parse(".${File.separator}pom.xml")
     final NodeChildren ids = mainNode.profiles.profile.id as NodeChildren
     final Set<String> profiles = new HashSet<>()
-    ids.each { node ->
+    ids.each { final node ->
         final GPathResult id = node as GPathResult
         final String idText = id.text()
-        if (idText.startsWith("checker-framework-")) {
+        if (idText.startsWith('checker-framework-')) {
             profiles.add(idText)
         }
     }
@@ -71,12 +71,12 @@ private static Set<String> getCheckerFrameworkProfiles() {
  * @param profile the checker framework profile to execute
  * @return {@code 0} if checker framework report is as expected, {@code 1} otherwise
  */
-private static int checkCheckerFrameworkReport(String profile) {
+private static int checkCheckerFrameworkReport(final String profile) {
     final XmlParser xmlParser = new XmlParser()
     final String suppressedErrorsFileUri =
             ".${File.separator}.ci${File.separator}" +
                     "checker-framework-suppressions${File.separator}${profile}-suppressions.xml"
-    final List<String> checkerFrameworkErrors = getCheckerFrameworkErrors(profile)
+    final List<List<String>> checkerFrameworkErrors = getCheckerFrameworkErrors(profile)
     List<CheckerFrameworkError> errors = Collections.emptyList()
     if (!checkerFrameworkErrors.isEmpty()) {
         errors = getErrorFromText(checkerFrameworkErrors)
@@ -93,10 +93,10 @@ private static int checkCheckerFrameworkReport(String profile) {
         newSuppresion += it.toXmlString() + '\n'
     }
     if (errors.isEmpty()) {
-        newSuppresion += "\n"
+        newSuppresion += '\n'
     }
-    newSuppresion += "</suppressedErrors>\n"
-    FileWriter writer = new FileWriter(suppressionFile)
+    newSuppresion += '</suppressedErrors>\n'
+    final FileWriter writer = new FileWriter(suppressionFile)
     writer.write(newSuppresion)
     writer.flush()
     writer.close()
@@ -110,27 +110,27 @@ private static int checkCheckerFrameworkReport(String profile) {
  * @param profile the checker framework profile to execute
  * @return A set of errors
  */
-private static List<List<String>> getCheckerFrameworkErrors(String profile) {
-    final List<String> checkerFrameworkLines = [] as ArrayList
+private static List<List<String>> getCheckerFrameworkErrors(final String profile) {
+    final List<String> checkerFrameworkLines = new ArrayList<>()
     final String command = "mvn -e --no-transfer-progress clean compile -P${profile}"
     final Process process = getOsSpecificCmd(command).execute()
-    process.in.eachLine { line ->
+    process.in.eachLine { final line ->
         checkerFrameworkLines.add(line)
         println(line)
     }
     process.waitFor()
-    final List<List<String>> checkerFrameworkErrors = [][] as ArrayList
+    final List<List<String>> checkerFrameworkErrors = new ArrayList<>()
     for (int index = 0; index < checkerFrameworkLines.size(); index++) {
         final String line = checkerFrameworkLines.get(index)
-        if (line.startsWith("[WARNING]")) {
-            final List<String> error = [] as ArrayList
+        if (line.startsWith('[WARNING]')) {
+            final List<String> error = new ArrayList<>()
             error.add(line)
             int currentErrorIndex = index + 1
             while (currentErrorIndex < checkerFrameworkLines.size()) {
                 final String currentLine = checkerFrameworkLines.get(currentErrorIndex)
-                if (currentLine.startsWith("[ERROR]")
-                        || currentLine.startsWith("[INFO]")
-                        || currentLine.startsWith("[WARNING]")) {
+                if (currentLine.startsWith('[ERROR]')
+                        || currentLine.startsWith('[INFO]')
+                        || currentLine.startsWith('[WARNING]')) {
                     break
                 }
                 error.add(currentLine)
@@ -148,9 +148,9 @@ private static List<List<String>> getCheckerFrameworkErrors(String profile) {
  * @param cmd input command
  * @return OS specific command
  */
-private static String getOsSpecificCmd(String cmd) {
+private static String getOsSpecificCmd(final String cmd) {
     final String osSpecificCmd
-    if (System.getProperty("os.name").toLowerCase().contains('windows')) {
+    if (System.getProperty('os.name').toLowerCase().contains('windows')) {
         osSpecificCmd = "cmd /c ${cmd}"
     }
     else {
@@ -165,19 +165,19 @@ private static String getOsSpecificCmd(String cmd) {
  * @param errorsText errors in text format
  * @return A set of errors
  */
-private static List<CheckerFrameworkError> getErrorFromText(List<List<String>> errorsList) {
-    final List<CheckerFrameworkError> errors = [] as ArrayList
+private static List<CheckerFrameworkError> getErrorFromText(final List<List<String>> errorsList) {
+    final List<CheckerFrameworkError> errors = new ArrayList<>()
     final Pattern errorExtractingPattern = Pattern
-        .compile(".*[\\\\/](checkstyle[\\\\/]src.*\\.java):\\[(\\d+)[^]]*][^\\[]*\\[([^]]*)](.*)")
-    final Pattern filePathExtractingPattern = Pattern.compile("\\[WARNING] (.*\\.java)")
+        .compile('.*[\\\\/](checkstyle[\\\\/]src.*\\.java):\\[(\\d+)[^]]*][^\\[]*\\[([^]]*)](.*)')
+    final Pattern filePathExtractingPattern = Pattern.compile('\\[WARNING] (.*\\.java)')
     final int fileNameGroup = 1
     final int lineNumberGroup = 2
     final int specifierGroup = 3
     final int messageGroup = 4
-    errorsList.each { errorList ->
+    errorsList.each { final errorList ->
         final String error = errorList.get(0)
         final Matcher matcher = errorExtractingPattern.matcher(error)
-        final List<String> details = [] as ArrayList
+        final List<String> details = new ArrayList<>()
         String fileName = null
         String specifier = null
         String message = null
@@ -188,7 +188,7 @@ private static List<CheckerFrameworkError> getErrorFromText(List<List<String>> e
             lineNumber = Integer.parseInt(matcher.group(lineNumberGroup))
             specifier = XmlUtil.escapeXml(matcher.group(specifierGroup).trim())
             message = XmlUtil.escapeXml(matcher.group(messageGroup).trim())
-                    .replaceAll("temp-var-\\d+", "temp-var")
+                    .replaceAll('temp-var-\\d+', 'temp-var')
 
             final Matcher filePathMatcher = filePathExtractingPattern.matcher(error)
             if (filePathMatcher.find()) {
@@ -201,7 +201,7 @@ private static List<CheckerFrameworkError> getErrorFromText(List<List<String>> e
                 for (int index = 1; index < errorList.size(); index++) {
                     final String errorDetail = XmlUtil.escapeXml(errorList.get(index).trim())
                     if (!errorDetail.isEmpty()) {
-                        details.add(errorDetail.replaceAll("capture#\\d+", "capture"))
+                        details.add(errorDetail.replaceAll('capture#\\d+', 'capture'))
                     }
                 }
             }
@@ -223,11 +223,11 @@ private static List<CheckerFrameworkError> getErrorFromText(List<List<String>> e
  * @param mainNode the main {@code suppressedErrors} node
  * @return A set of suppressed errors
  */
-private static List<CheckerFrameworkError> getSuppressedErrors(Node mainNode) {
+private static List<CheckerFrameworkError> getSuppressedErrors(final Node mainNode) {
     final List<Node> children = mainNode.children()
-    final List<CheckerFrameworkError> suppressedErrors = [] as ArrayList
+    final List<CheckerFrameworkError> suppressedErrors = new ArrayList<>(children.size())
 
-    children.each { node ->
+    children.each { final node ->
         final Node errorNode = node as Node
         suppressedErrors.add(getError(errorNode))
     }
@@ -241,10 +241,10 @@ private static List<CheckerFrameworkError> getSuppressedErrors(Node mainNode) {
  * @param errorNode the {@code error} XML node
  * @return {@link CheckerFrameworkError} object represented by the {@code error} XML node
  */
-private static CheckerFrameworkError getError(Node errorNode) {
+private static CheckerFrameworkError getError(final Node errorNode) {
     final List childNodes = errorNode.children()
 
-    final List<String> details = [] as ArrayList
+    final List<String> details = new ArrayList<>()
     String fileName = null
     String specifier = null
     String message = null
@@ -256,21 +256,21 @@ private static CheckerFrameworkError getError(Node errorNode) {
 
         final String childNodeText = XmlUtil.escapeXml(childNode.text())
         switch (text) {
-            case "fileName":
+            case 'fileName':
                 fileName = childNodeText
                 break
-            case "specifier":
+            case 'specifier':
                 specifier = childNodeText
                 break
-            case "message":
+            case 'message':
                 message = childNodeText
                 break
-            case "lineContent":
+            case 'lineContent':
                 lineContent = childNodeText
                 break
-            case "details":
-                final String[] detailsArray = childNodeText.split("\\n")
-                detailsArray.each { detail ->
+            case 'details':
+                final String[] detailsArray = childNodeText.split('\\n')
+                detailsArray.each { final detail ->
                     final String detailString = detail.trim()
                     if (!detailString.isEmpty()) {
                         details.add(detailString)
@@ -279,7 +279,7 @@ private static CheckerFrameworkError getError(Node errorNode) {
         }
     }
 
-    final String unstableAttributeValue = errorNode.attribute("unstable")
+    final String unstableAttributeValue = errorNode.attribute('unstable')
     final boolean isUnstable = Boolean.parseBoolean(unstableAttributeValue)
 
     return new CheckerFrameworkError(fileName, specifier, message, details, lineContent,
@@ -304,8 +304,8 @@ private static CheckerFrameworkError getError(Node errorNode) {
  * @param suppressedErrors A set of suppressed errors from suppression file
  * @return {@code 0} if comparison passes successfully
  */
-private static int compareErrors(List<CheckerFrameworkError> actualErrors,
-                                 List<CheckerFrameworkError> suppressedErrors) {
+private static int compareErrors(final List<CheckerFrameworkError> actualErrors,
+                                 final List<CheckerFrameworkError> suppressedErrors) {
     final List<CheckerFrameworkError> unsuppressedErrors =
             setDifference(actualErrors, suppressedErrors)
     final List<CheckerFrameworkError> extraSuppressions =
@@ -321,14 +321,14 @@ private static int compareErrors(List<CheckerFrameworkError> actualErrors,
     }
     else {
         if (!unsuppressedErrors.isEmpty()) {
-            println "New surviving error(s) found:"
+            println 'New surviving error(s) found:'
             unsuppressedErrors.each {
                 printError(it)
             }
         }
         if (!extraSuppressions.isEmpty()
                 && extraSuppressions.any { !it.isUnstable() }) {
-            println "\nUnnecessary suppressed error(s) found and should be removed:"
+            println '\nUnnecessary suppressed error(s) found and should be removed:'
             extraSuppressions.each {
                 if (!it.isUnstable()) {
                     printError(it)
@@ -339,7 +339,7 @@ private static int compareErrors(List<CheckerFrameworkError> actualErrors,
     }
 
     if (exitCode == 0) {
-        println "Build successful with no errors."
+        println 'Build successful with no errors.'
     }
 
     return exitCode
@@ -351,7 +351,7 @@ private static int compareErrors(List<CheckerFrameworkError> actualErrors,
  * @param errors A set of errors
  * @return {@code true} if a set has only stable errors
  */
-private static boolean hasOnlyStableErrors(List<CheckerFrameworkError> errors) {
+private static boolean hasOnlyStableErrors(final List<CheckerFrameworkError> errors) {
     return errors.every { !it.isUnstable() }
 }
 
@@ -360,7 +360,7 @@ private static boolean hasOnlyStableErrors(List<CheckerFrameworkError> errors) {
  *
  * @param error error to print
  */
-private static void printError(CheckerFrameworkError error) {
+private static void printError(final CheckerFrameworkError error) {
     println error.toXmlString()
 }
 
@@ -372,9 +372,9 @@ private static void printError(CheckerFrameworkError error) {
  * @return {@code setOne - setTwo}
  */
 private static List<CheckerFrameworkError> setDifference(final List<CheckerFrameworkError> setOne,
-                                                        final List<CheckerFrameworkError> setTwo) {
+                                                         final List<CheckerFrameworkError> setTwo) {
     final List<CheckerFrameworkError> result = new ArrayList<>(setOne)
-    result.removeIf { error -> setTwo.contains(error) }
+    result.removeIf { final error -> setTwo.contains(error) }
     return result
 }
 
@@ -407,15 +407,14 @@ class CheckerFrameworkError implements Comparable<CheckerFrameworkError> {
     @Override
     String toString() {
         String toString = """
-            File Name: "${getFileName()}"
-            Specifier: "${getSpecifier()}"
-            Message: "${getMessage()}"
-            Line Contents: "${getLineContent()}\"""".stripIndent()
-        if (getLineNumber() != LINE_NUMBER_NOT_PRESENT_VALUE) {
-            toString += '\nLine Number: ' + getLineNumber()
+            File Name: "${fileName}"
+            Specifier: "${specifier}"
+            Message: "${message}"
+            Line Contents: "${lineContent}\"""".stripIndent()
+        if (lineNumber != LINE_NUMBER_NOT_PRESENT_VALUE) {
+            toString += '\nLine Number: ' + lineNumber
         }
 
-        final List<String> details = getDetails()
         if (!details.isEmpty()) {
             toString += '\nDetails: ' + details.get(0)
             if (details.size() > 1) {
@@ -429,28 +428,28 @@ class CheckerFrameworkError implements Comparable<CheckerFrameworkError> {
 
     @Override
     int compareTo(CheckerFrameworkError other) {
-        int i = getFileName() <=> other.getFileName()
+        int i = fileName <=> other.fileName
         if (i != 0) {
             return i
         }
 
-        i = getSpecifier() <=> other.getSpecifier()
+        i = specifier <=> other.specifier
         if (i != 0) {
             return i
         }
 
-        i = getMessage() <=> other.getMessage()
+        i = message <=> other.message
         if (i != 0) {
             return i
         }
 
-        i = getDetails().join('') <=> other.getDetails().join('')
+        i = details.join('') <=> other.details.join('')
         if (i != 0) {
             return i
 
         }
 
-        return getLineContent() <=> other.getLineContent()
+        return lineContent <=> other.lineContent
     }
 
     /**
@@ -459,22 +458,21 @@ class CheckerFrameworkError implements Comparable<CheckerFrameworkError> {
      * @return XML format of the checker framework error
      */
     String toXmlString() {
-        final List<String> details = getDetails()
         String toXmlString = """
-            <checkerFrameworkError unstable="${isUnstable()}">
-              <fileName>${getFileName()}</fileName>
-              <specifier>${getSpecifier()}</specifier>
-              <message>${getMessage()}</message>
-              <lineContent>${getLineContent()}</lineContent>
+            <checkerFrameworkError unstable="${unstable}">
+              <fileName>${fileName}</fileName>
+              <specifier>${specifier}</specifier>
+              <message>${message}</message>
+              <lineContent>${lineContent}</lineContent>
             """.stripIndent(10)
         if (!details.isEmpty()) {
-            toXmlString += "    <details>"
-            getDetails().each {
+            toXmlString += '    <details>'
+            details.each {
                 toXmlString += '\n' + ' ' * 6 + it
             }
-            toXmlString += "\n    </details>\n"
+            toXmlString += '\n    </details>\n'
         }
-        toXmlString += "  </checkerFrameworkError>"
+        toXmlString += '  </checkerFrameworkError>'
         return toXmlString
     }
 
