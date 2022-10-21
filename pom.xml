@@ -228,7 +228,7 @@
     <pitest.plugin.timeout.constant>50000</pitest.plugin.timeout.constant>
     <pitest.plugin.threads>4</pitest.plugin.threads>
     <pitest.junit5.plugin.version>1.1.0</pitest.junit5.plugin.version>
-    <pitest.accelerator.junit5.plugin.version>1.0.2</pitest.accelerator.junit5.plugin.version>
+    <pitest.accelerator.junit5.plugin.version>1.0.4</pitest.accelerator.junit5.plugin.version>
     <sonar.test.exclusions>**/test/resources/**/*,**/it/resources/**/*</sonar.test.exclusions>
     <junit.version>5.9.1</junit.version>
     <forbiddenapis.version>3.4</forbiddenapis.version>
