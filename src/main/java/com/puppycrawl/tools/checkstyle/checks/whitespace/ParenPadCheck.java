@@ -254,7 +254,6 @@ public class ParenPadCheck extends AbstractParenPadCheck {
                 break;
             case TokenTypes.DOT:
             case TokenTypes.EXPR:
-            case TokenTypes.QUESTION:
                 processExpression(ast);
                 break;
             case TokenTypes.LITERAL_FOR:
@@ -270,6 +269,7 @@ public class ParenPadCheck extends AbstractParenPadCheck {
             case TokenTypes.RESOURCE_SPECIFICATION:
                 visitResourceSpecification(ast);
                 break;
+            case TokenTypes.QUESTION:
             default:
                 processLeft(ast.findFirstToken(TokenTypes.LPAREN));
                 processRight(ast.findFirstToken(TokenTypes.RPAREN));
