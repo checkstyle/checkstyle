@@ -212,6 +212,14 @@ public class NewlineAtEndOfFileCheckTest
         }
     }
 
+    @Test
+    public void testTrimOptionProperty() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputNewlineAtEndOfFileTestTrimProperty.java"),
+                expected);
+    }
+
     private static final class ReadZeroRandomAccessFile extends RandomAccessFile {
 
         private ReadZeroRandomAccessFile(String name, String mode)
