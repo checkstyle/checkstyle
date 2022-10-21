@@ -575,4 +575,11 @@ public class JavadocStyleCheckTest
                 expected);
     }
 
+    @Test
+    public void testLowerCasePropertyForTag() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocStyleCheckOptionLowercaseProperty.java"), expected);
+    }
 }
