@@ -235,7 +235,10 @@ ruleset {
     ClosureAsLastMethodParameter
     CollectAllIsDeprecated
     ConfusingMultipleReturns
-    ExplicitArrayListInstantiation
+
+    // Disabled as using 'new ArrayList<>()' is easier to read and understand.
+    // ExplicitArrayListInstantiation
+
     ExplicitCallToAndMethod
     ExplicitCallToCompareToMethod
     ExplicitCallToDivMethod
