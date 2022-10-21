@@ -85,15 +85,6 @@
     <sourceFile>ParenPadCheck.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.whitespace.ParenPadCheck</mutatedClass>
     <mutatedMethod>visitToken</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_3</mutator>
-    <description>RemoveSwitch 3 mutation</description>
-    <lineContent>switch (ast.getType()) {</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>ParenPadCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.whitespace.ParenPadCheck</mutatedClass>
-    <mutatedMethod>visitToken</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_7</mutator>
     <description>RemoveSwitch 7 mutation</description>
     <lineContent>switch (ast.getType()) {</lineContent>
