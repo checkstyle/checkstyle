@@ -263,13 +263,13 @@ public class ParenPadCheck extends AbstractParenPadCheck {
             case TokenTypes.ANNOTATION:
             case TokenTypes.ENUM_CONSTANT_DEF:
             case TokenTypes.LITERAL_NEW:
-            case TokenTypes.LITERAL_SYNCHRONIZED:
             case TokenTypes.LAMBDA:
                 visitTokenWithOptionalParentheses(ast);
                 break;
             case TokenTypes.RESOURCE_SPECIFICATION:
                 visitResourceSpecification(ast);
                 break;
+            case TokenTypes.LITERAL_SYNCHRONIZED:
             default:
                 processLeft(ast.findFirstToken(TokenTypes.LPAREN));
                 processRight(ast.findFirstToken(TokenTypes.RPAREN));
