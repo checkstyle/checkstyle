@@ -1,6 +1,8 @@
-/* Config:
+/*
    allowLegacy = "false"
    fileExtensions = "java"
+
+
  */
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocpackage;
