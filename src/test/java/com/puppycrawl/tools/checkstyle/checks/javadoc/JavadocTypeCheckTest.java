@@ -387,4 +387,12 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
                 getPath("InputJavadocTypeInterfaceMemberScopeIsPublic.java"), expected);
     }
 
+    @Test
+    public void testTrimOptionProperty() throws Exception {
+        final String[] expected = {
+            "21:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<D123>"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocTypeTestTrimProperty.java"), expected);
+    }
 }

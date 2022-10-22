@@ -91,24 +91,6 @@
   </mutation>
 
   <mutation unstable="false">
-    <sourceFile>JavadocContentLocationCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocContentLocationCheck</mutatedClass>
-    <mutatedMethod>setLocation</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
-    <description>replaced call to java/lang/String::toUpperCase with receiver</description>
-    <lineContent>location = JavadocContentLocationOption.valueOf(value.trim().toUpperCase(Locale.ENGLISH));</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>JavadocContentLocationCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocContentLocationCheck</mutatedClass>
-    <mutatedMethod>setLocation</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
-    <description>replaced call to java/lang/String::trim with receiver</description>
-    <lineContent>location = JavadocContentLocationOption.valueOf(value.trim().toUpperCase(Locale.ENGLISH));</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
     <sourceFile>JavadocMethodCheck.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck</mutatedClass>
     <mutatedMethod>beginTree</mutatedMethod>
@@ -543,28 +525,10 @@
   <mutation unstable="false">
     <sourceFile>JavadocStyleCheck.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck</mutatedClass>
-    <mutatedMethod>isAllowedTag</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
-    <description>replaced call to java/lang/String::toLowerCase with receiver</description>
-    <lineContent>return ALLOWED_TAGS.contains(tag.getId().toLowerCase(Locale.ENGLISH));</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>JavadocStyleCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck</mutatedClass>
     <mutatedMethod>isExtraHtml</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
     <description>removed conditional - replaced equality check with true</description>
     <lineContent>if (token.equalsIgnoreCase(tag.getId())) {</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>JavadocStyleCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck</mutatedClass>
-    <mutatedMethod>isSingleTag</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
-    <description>replaced call to java/lang/String::toLowerCase with receiver</description>
-    <lineContent>return SINGLE_TAGS.contains(tag.getId().toLowerCase(Locale.ENGLISH));</lineContent>
   </mutation>
 
   <mutation unstable="false">
@@ -763,15 +727,6 @@
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
     <description>replaced call to java/util/stream/Stream::filter with receiver</description>
     <lineContent>.filter(JavadocTag::isParamTag)</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>JavadocTypeCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck</mutatedClass>
-    <mutatedMethod>extractParamNameFromTag</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
-    <description>replaced call to java/lang/String::trim with receiver</description>
-    <lineContent>typeParamName = matchInAngleBrackets.group(1).trim();</lineContent>
   </mutation>
 
   <mutation unstable="false">

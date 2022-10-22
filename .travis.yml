@@ -8,6 +8,12 @@ cache:
   directories:
     - ~/.m2
 
+addons:
+  apt:
+    packages:
+      - xsltproc
+      - xmlstarlet
+
 branches:
   only:
     - master
@@ -30,13 +36,19 @@ jobs:
         - DEPLOY="true"
         - USE_MAVEN_REPO="true"
 
-    # until https://github.com/checkstyle/checkstyle/issues/9984
+    # codecov
+    - jdk: openjdk11
+      env:
+        - DESC="codecov"
+        - USE_MAVEN_REPO="true"
+        - CMD="./.ci/travis.sh jacoco"
+
     # Ensure that all modules are used in no exception configs
-    # - env:
-    #    - DESC="ensure that all modules are used in no exception configs"
-    #    - CMD1="export PULL_REQUEST=$TRAVIS_PULL_REQUEST"
-    #    - CMD2="./.ci/validation.sh verify-no-exception-configs"
-    #    - CMD="$CMD1 && $CMD2"
+    - env:
+        - DESC="ensure that all modules are used in no exception configs"
+        - CMD1="export PULL_REQUEST=$TRAVIS_PULL_REQUEST"
+        - CMD2="./.ci/validation.sh verify-no-exception-configs"
+        - CMD="$CMD1 && $CMD2"
 
 script:
   # manually set JAVA_HOME to overcome issue with travis ci noted at
