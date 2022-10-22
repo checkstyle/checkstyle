@@ -37,14 +37,14 @@ jobs:
       - name: Execute checker framework
         env:
           MAVEN_OPTS: "-Xmx4g"
-        run: groovy ./.ci/checker-framework.groovy ${{ matrix.profile }} || true
+        run: groovy ./.ci/checker-framework.groovy ${{ matrix.profile }}
 
       - name: Git Diff on fail
-        # if: failure()
+        if: failure()
         run: git diff && git diff > target/${{ matrix.profile }}.patch
 
       - name: Share patch as artifact to apply on local
-        # if: failure()
+        if: failure()
         uses: actions/upload-artifact@v2
         with:
           name: ${{ matrix.profile }}-patch
