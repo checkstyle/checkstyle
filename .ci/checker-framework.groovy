@@ -57,7 +57,7 @@ private static Set<String> getCheckerFrameworkProfiles() {
     ids.each { final node ->
         final GPathResult id = node as GPathResult
         final String idText = id.text()
-        if (idText.startsWith('checker-framework-')) {
+        if (idText.startsWith('checker-')) {
             profiles.add(idText)
         }
     }

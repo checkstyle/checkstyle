@@ -1,4 +1,4 @@
-name: Checker-Framework
+name: Checker
 
 on:
   push:
@@ -7,19 +7,20 @@ on:
   pull_request:
 
 jobs:
-  checker-framework:
+  check:
     strategy:
       fail-fast: false
       matrix:
-        profile:
-          - checker-framework-nullness-optional-interning
-          - checker-framework-methods-resource-fenum
-          - checker-framework-lock-tainting
-          - checker-framework-index
-          - checker-framework-formatter
-          - checker-framework-signature-gui-units-init
-          - checker-framework-regex-property-key-compiler-message
-          - checker-framework-purity-value-returns
+        profile: [
+          nullness-optional-interning,
+          methods-resource-fenum,
+          lock-tainting,
+          index,
+          formatter,
+          signature-gui-units-init,
+          regex-property-key-compiler-message,
+          purity-value-returns,
+        ]
 
     runs-on: ubuntu-latest
     steps:
@@ -37,16 +38,16 @@ jobs:
       - name: Execute checker framework
         env:
           MAVEN_OPTS: "-Xmx4g"
-        run: groovy ./.ci/checker-framework.groovy ${{ matrix.profile }}
+        run: groovy ./.ci/checker-framework.groovy checker-${{ matrix.profile }}
 
       - name: Git Diff on fail
         if: failure()
-        run: git diff && git diff > target/${{ matrix.profile }}.patch
+        run: git diff && git diff > target/checker-${{ matrix.profile }}.patch
 
       - name: Share patch as artifact to apply on local
         if: failure()
         uses: actions/upload-artifact@v2
         with:
-          name: ${{ matrix.profile }}-patch
-          path: target/${{ matrix.profile }}.patch
+          name: checker-${{ matrix.profile }}-patch
+          path: target/checker-${{ matrix.profile }}.patch
           retention-days: 7
