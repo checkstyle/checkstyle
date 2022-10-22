@@ -1,4 +1,5 @@
-package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocpackage.bothfiles;       // violation
+// violation below 'Legacy package.html file should be removed'
+package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocpackage.bothfiles;
 
 /* Config:
  * allowLegacy = "false"
