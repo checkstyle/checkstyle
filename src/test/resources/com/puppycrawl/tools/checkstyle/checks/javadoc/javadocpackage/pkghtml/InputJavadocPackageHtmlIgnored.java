@@ -1,7 +1,12 @@
-package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocpackage.pkghtml;      // violation
+/*
+allowLegacy = "false"
+fileExtensions = "java"
 
-/* Config:
- * allowLegacy = "false"
- * fileExtensions = "java"
- */
+
+*/
+
+package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocpackage.pkghtml;
+// violation above 'Missing package-info.java file'
+
+
 class InputJavadocPackageHtmlIgnored {}
