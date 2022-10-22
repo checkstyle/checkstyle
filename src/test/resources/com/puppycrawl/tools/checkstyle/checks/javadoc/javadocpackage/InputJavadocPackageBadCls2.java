@@ -1,9 +1,12 @@
-package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocpackage;      // violation
-
 /* Config:
- * allowLegacy = "true"
- * fileExtensions = "java"
+   allowLegacy = "true"
+   fileExtensions = "java"
  */
+
+package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocpackage;
+// violation above 'Missing package-info.java file'
+
+
 class InputJavadocPackageBadCls2 {
     class X extends Exception {}
     void m() throws X {}
