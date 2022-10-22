@@ -513,6 +513,16 @@ public class ParenPadCheckTest
                 getPath("InputParenPadCheckEmoji.java"), expected);
     }
 
+    @Test
+    public void testParenPadForSynchronized() throws Exception {
+
+        final String[] expected = {
+            "18:29: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputParenPadForSynchronized.java"), expected);
+    }
+
     /**
      * Pitest requires us to specify more concrete lower bound for condition for
      * ParenPadCheck#isAcceptableToken as nodes of first several types like CTOR_DEF,
