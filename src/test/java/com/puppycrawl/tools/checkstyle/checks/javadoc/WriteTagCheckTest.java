@@ -37,7 +37,6 @@ import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.Checker;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
@@ -52,144 +51,101 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testDefaultSettings() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(WriteTagCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputWriteTagDefault.java"), expected);
+        verifyWithInlineConfigParser(getPath("InputWriteTagDefault.java"), expected);
     }
 
     @Test
     public void testTag() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(WriteTagCheck.class);
-        checkConfig.addProperty("tag", "@author");
-        checkConfig.addProperty("tagFormat", "\\S");
         final String[] expected = {
-            "15: " + getCheckMessage(MSG_WRITE_TAG, "@author", "Daniel Grenner // violation"),
+            "15: " + getCheckMessage(MSG_WRITE_TAG, "@author", "must match pattern 'S'"),
         };
-        verify(checkConfig, getPath("InputWriteTag.java"), expected);
+        verifyWithInlineConfigParser(getPath("InputWriteTag.java"), expected);
     }
 
     @Test
     public void testMissingFormat() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(WriteTagCheck.class);
-        checkConfig.addProperty("tag", "@author");
         final String[] expected = {
             "15: " + getCheckMessage(MSG_WRITE_TAG, "@author", "Daniel Grenner // violation"),
         };
-        verify(checkConfig, getPath("InputWriteTagMissingFormat.java"), expected);
+        verifyWithInlineConfigParser(getPath("InputWriteTagMissingFormat.java"), expected);
     }
 
     @Test
     public void testTagIncomplete() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(WriteTagCheck.class);
-        checkConfig.addProperty("tag", "@incomplete");
-        checkConfig.addProperty("tagFormat", "\\S");
         final String[] expected = {
             "16: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete",
                 "This class needs more code... // violation"),
         };
-        verify(checkConfig, getPath("InputWriteTagIncomplete.java"), expected);
+        verifyWithInlineConfigParser(getPath("InputWriteTagIncomplete.java"), expected);
     }
 
     @Test
     public void testDoubleTag() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(WriteTagCheck.class);
-        checkConfig.addProperty("tag", "@doubletag");
-        checkConfig.addProperty("tagFormat", "\\S");
         final String[] expected = {
             "17: " + getCheckMessage(MSG_WRITE_TAG, "@doubletag", "first text  // violation"),
             "18: " + getCheckMessage(MSG_WRITE_TAG, "@doubletag", "second text  // violation"),
         };
-        verify(checkConfig, getPath("InputWriteTagDoubleTag.java"), expected);
+        verifyWithInlineConfigParser(getPath("InputWriteTagDoubleTag.java"), expected);
     }
 
     @Test
     public void testEmptyTag() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(WriteTagCheck.class);
-        checkConfig.addProperty("tag", "@emptytag");
-        checkConfig.addProperty("tagFormat", "");
         final String[] expected = {
             "19: " + getCheckMessage(MSG_WRITE_TAG, "@emptytag", "// violation"),
         };
-        verify(checkConfig, getPath("InputWriteTagEmptyTag.java"), expected);
+        verifyWithInlineConfigParser(getPath("InputWriteTagEmptyTag.java"), expected);
     }
 
     @Test
     public void testMissingTag() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(WriteTagCheck.class);
-        checkConfig.addProperty("tag", "@missingtag");
         final String[] expected = {
             "20: " + getCheckMessage(MSG_MISSING_TAG, "@missingtag"),
         };
-        verify(checkConfig, getPath("InputWriteTagMissingTag.java"), expected);
+        verifyWithInlineConfigParser(getPath("InputWriteTagMissingTag.java"), expected);
     }
 
     @Test
     public void testMethod() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(WriteTagCheck.class);
-        checkConfig.addProperty("tag", "@todo");
-        checkConfig.addProperty("tagFormat", "\\S");
-        checkConfig.addProperty("tokens",
-            "INTERFACE_DEF, CLASS_DEF, METHOD_DEF, CTOR_DEF");
-        checkConfig.addProperty("severity", "ignore");
         final String[] expected = {
             "24: " + getCheckMessage(MSG_WRITE_TAG, "@todo",
                     "Add a constructor comment  // violation"),
             "35: " + getCheckMessage(MSG_WRITE_TAG, "@todo", "Add a comment  // violation"),
         };
-        verify(checkConfig, getPath("InputWriteTagMethod.java"), expected);
+        verifyWithInlineConfigParser(getPath("InputWriteTagMethod.java"), expected);
     }
 
     @Test
     public void testSeverity() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(WriteTagCheck.class);
-        checkConfig.addProperty("tag", "@author");
-        checkConfig.addProperty("tagFormat", "\\S");
-        checkConfig.addProperty("severity", "ignore");
         final String[] expected = {
             "15: " + getCheckMessage(MSG_WRITE_TAG, "@author", "Daniel Grenner  // violation"),
         };
-        verify(checkConfig, getPath("InputWriteTagSeverity.java"), expected);
+        verifyWithInlineConfigParser(getPath("InputWriteTagSeverity.java"), expected);
     }
 
     @Test
     public void testIgnoreMissing() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(WriteTagCheck.class);
-        checkConfig.addProperty("tag", "@todo2");
-        checkConfig.addProperty("tagFormat", "\\S");
-        checkConfig.addProperty("severity", "ignore");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputWriteTagIgnore.java"), expected);
+        verifyWithInlineConfigParser(getPath("InputWriteTagIgnore.java"), expected);
     }
 
     @Test
     public void testRegularEx()
             throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(WriteTagCheck.class);
-        checkConfig.addProperty("tag", "@author");
-        checkConfig.addProperty("tagFormat", "0*");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputWriteTagRegularExpression.java"), expected);
+        verifyWithInlineConfigParser(getPath("InputWriteTagRegularExpression.java"), expected);
     }
 
     @Test
     public void testRegularExError() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(WriteTagCheck.class);
-        checkConfig.addProperty("tag", "@author");
-        checkConfig.addProperty("tagFormat", "ABC");
         final String[] expected = {
             "15: " + getCheckMessage(MSG_TAG_FORMAT, "@author", "ABC"),
         };
-        verify(checkConfig, getPath("InputWriteTagExpressionError.java"), expected);
+        verifyWithInlineConfigParser(getPath("InputWriteTagExpressionError.java"), expected);
     }
 
     @Test
     public void testEnumsAndAnnotations() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(WriteTagCheck.class);
-        checkConfig.addProperty("tag", "@incomplete");
-        checkConfig.addProperty("tagFormat", ".*");
-        checkConfig.addProperty("tagSeverity", "error");
-        checkConfig.addProperty("tokens",
-            "ANNOTATION_DEF, ENUM_DEF, ANNOTATION_FIELD_DEF, ENUM_CONSTANT_DEF");
         final String[] expected = {
             "15: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete",
                     "This enum needs more code... // violation"),
@@ -200,28 +156,19 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
             "29: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete",
                 "This annotation field needs more code... // violation"),
         };
-        verify(checkConfig, getPath("InputWriteTagEnumsAndAnnotations.java"), expected);
+        verifyWithInlineConfigParser(getPath("InputWriteTagEnumsAndAnnotations.java"), expected);
     }
 
     @Test
     public void testNoJavadocs() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(WriteTagCheck.class);
         final String[] expected = {
             "13: " + getCheckMessage(MSG_MISSING_TAG, "null"),
         };
-        verify(checkConfig, getPath("InputWriteTagNoJavadoc.java"), expected);
+        verifyWithInlineConfigParser(getPath("InputWriteTagNoJavadoc.java"), expected);
     }
 
     @Test
     public void testWriteTagRecordsAndCompactCtors() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(WriteTagCheck.class);
-        checkConfig.addProperty("tag", "@incomplete");
-        checkConfig.addProperty("tagSeverity", "error");
-        checkConfig.addProperty("tagFormat", "\\S");
-        checkConfig.addProperty("tokens",
-            "INTERFACE_DEF , CLASS_DEF , ENUM_DEF , ANNOTATION_DEF, RECORD_DEF,"
-                + " COMPACT_CTOR_DEF, CTOR_DEF");
-
         final String[] expected = {
             "14: " + getCheckMessage(MSG_MISSING_TAG, "@incomplete"),
             "16: " + getCheckMessage(MSG_TAG_FORMAT, "@incomplete", "\\S"),
@@ -234,7 +181,7 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
             "48: " + getCheckMessage(MSG_MISSING_TAG, "@incomplete"),
             "51: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete", "// violation"),
         };
-        verify(checkConfig,
+        verifyWithInlineConfigParser(
             getNonCompilablePath("InputWriteTagRecordsAndCompactCtors.java"), expected);
     }
 
