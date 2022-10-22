@@ -523,6 +523,14 @@ public class ParenPadCheckTest
                 getPath("InputParenPadForSynchronized.java"), expected);
     }
 
+    @Test
+    public void testParenPadForEnum() throws Exception {
+
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputParenPadForEnum.java"), expected);
+    }
+
     /**
      * Pitest requires us to specify more concrete lower bound for condition for
      * ParenPadCheck#isAcceptableToken as nodes of first several types like CTOR_DEF,
