@@ -262,8 +262,8 @@ public class ParenPadCheck extends AbstractParenPadCheck {
                 break;
             case TokenTypes.ANNOTATION:
             case TokenTypes.ENUM_CONSTANT_DEF:
-            case TokenTypes.LITERAL_NEW:
             case TokenTypes.LITERAL_SYNCHRONIZED:
+            case TokenTypes.LITERAL_NEW:
             case TokenTypes.LAMBDA:
                 visitTokenWithOptionalParentheses(ast);
                 break;
