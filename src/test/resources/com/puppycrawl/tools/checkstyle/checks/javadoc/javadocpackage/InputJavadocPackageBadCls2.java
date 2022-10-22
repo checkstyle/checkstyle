@@ -1,6 +1,6 @@
 /*
-   allowLegacy = "true"
-   fileExtensions = "java"
+allowLegacy = "true"
+fileExtensions = "java"
 
 
  */
