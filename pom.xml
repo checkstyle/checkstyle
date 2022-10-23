@@ -1496,21 +1496,12 @@
             <configuration>
               <target>
                 <property name="mvn.project.build.directory" value="${project.build.directory}" />
-                <property name="mvn.project.version" value="${project.version}" />
                 <property name="mvn.runtime_classpath" refid="maven.runtime.classpath" />
-                <property name="project.basedir" value="${project.basedir}" />
                 <ant antfile="config/ant-phase-verify.xml" />
               </target>
             </configuration>
           </execution>
         </executions>
-        <dependencies>
-          <dependency>
-            <groupId>org.apache.ant</groupId>
-            <artifactId>ant-nodeps</artifactId>
-            <version>1.8.1</version>
-          </dependency>
-        </dependencies>
       </plugin>
 
       <!-- Ensure the manifest has all the gory details -->
