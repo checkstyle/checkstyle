@@ -49,8 +49,7 @@ public class JavadocPackageCheckTest
         final String[] expected = {
             "1: " + getCheckMessage(MSG_PACKAGE_INFO),
         };
-        verify(
-            checkConfig,
+        verifyWithInlineConfigParser(
             getPath("InputJavadocPackageBadCls.java"),
             expected);
     }
@@ -62,8 +61,7 @@ public class JavadocPackageCheckTest
         final String[] expected = {
             "1: " + getCheckMessage(MSG_PACKAGE_INFO),
         };
-        verify(
-            checkConfig,
+        verifyWithInlineConfigParser(
             getPath("InputJavadocPackageBadCls2.java"),
             expected);
     }
@@ -89,7 +87,7 @@ public class JavadocPackageCheckTest
         final String[] expected = {
             "1: " + getCheckMessage(MSG_LEGACY_PACKAGE_HTML),
         };
-        verify(checkConfig,
+        verifyWithInlineConfigParser(
             getPath("bothfiles" + File.separator + "InputJavadocPackageBothIgnored.java"),
             expected);
     }
@@ -100,7 +98,7 @@ public class JavadocPackageCheckTest
         final String[] expected = {
             "1: " + getCheckMessage(MSG_PACKAGE_INFO),
         };
-        verify(checkConfig,
+        verifyWithInlineConfigParser(
             getPath("pkghtml" + File.separator + "InputJavadocPackageHtmlIgnored.java"), expected);
     }
 
@@ -118,7 +116,7 @@ public class JavadocPackageCheckTest
     public void testAnnotation() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(JavadocPackageCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig,
+        verifyWithInlineConfigParser(
             getPath("annotation"
                     + File.separator + "package-info.java"), expected);
     }
@@ -149,8 +147,7 @@ public class JavadocPackageCheckTest
     public void testNonJava() throws Exception {
         final Configuration checkConfig = createModuleConfig(JavadocPackageCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(
-            checkConfig,
+        verifyWithInlineConfigParser(
             getPath("InputJavadocPackageNotJava.txt"),
             expected);
     }
