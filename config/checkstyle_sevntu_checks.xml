@@ -9,7 +9,7 @@
 
   <!-- Filters -->
   <module name="SuppressionFilter">
-    <property name="file" value="${project.basedir}/config/sevntu_suppressions.xml"/>
+    <property name="file" value="config/sevntu_suppressions.xml"/>
   </module>
 
   <module name="TreeWalker">
