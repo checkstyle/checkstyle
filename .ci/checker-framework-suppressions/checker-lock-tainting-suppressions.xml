@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suppressedErrors>
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/Checker.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/Checker.java</fileName>
     <specifier>methodref.receiver.bound</specifier>
     <message>Incompatible receiver type</message>
     <lineContent>.filter(ExternalResourceHolder.class::isInstance)</lineContent>
@@ -16,21 +16,21 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/DetailAstImpl.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/DetailAstImpl.java</fileName>
     <specifier>method.guarantee.violated</specifier>
     <message>@SideEffectFree method toString calls method getColumnNo with a weaker @ReleasesNoLocks side effect guarantee</message>
     <lineContent>return text + &quot;[&quot; + getLineNo() + &quot;x&quot; + getColumnNo() + &quot;]&quot;;</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/DetailAstImpl.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/DetailAstImpl.java</fileName>
     <specifier>method.guarantee.violated</specifier>
     <message>@SideEffectFree method toString calls method getLineNo with a weaker @ReleasesNoLocks side effect guarantee</message>
     <lineContent>return text + &quot;[&quot; + getLineNo() + &quot;x&quot; + getColumnNo() + &quot;]&quot;;</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/DetailAstImpl.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/DetailAstImpl.java</fileName>
     <specifier>override.receiver</specifier>
     <message>Incompatible receiver type</message>
     <lineContent>public String toString() {</lineContent>
@@ -45,14 +45,14 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/Main.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/Main.java</fileName>
     <specifier>method.guarantee.violated</specifier>
     <message>@SideEffectFree method toString calls method name with a weaker @ReleasesNoLocks side effect guarantee</message>
     <lineContent>return name().toLowerCase(Locale.ROOT);</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/Main.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/Main.java</fileName>
     <specifier>methodref.receiver.bound</specifier>
     <message>Incompatible receiver type</message>
     <lineContent>messages.forEach(System.out::println);</lineContent>
@@ -67,7 +67,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/Main.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/Main.java</fileName>
     <specifier>override.receiver</specifier>
     <message>Incompatible receiver type</message>
     <lineContent>public String toString() {</lineContent>
@@ -82,7 +82,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/PackageObjectFactory.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/PackageObjectFactory.java</fileName>
     <specifier>methodref.receiver</specifier>
     <message>Incompatible receiver type</message>
     <lineContent>.map(Entry::getKey)</lineContent>
@@ -97,7 +97,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/PropertiesExpander.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/PropertiesExpander.java</fileName>
     <specifier>methodref.receiver.bound</specifier>
     <message>Incompatible receiver type</message>
     <lineContent>.collect(Collectors.toMap(Function.identity(), properties::getProperty));</lineContent>
@@ -112,7 +112,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java</fileName>
     <specifier>methodref.receiver</specifier>
     <message>Incompatible receiver type</message>
     <lineContent>.thenComparing(AbstractCheck::hashCode));</lineContent>
@@ -127,7 +127,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java</fileName>
     <specifier>methodref.receiver.bound</specifier>
     <message>Incompatible receiver type</message>
     <lineContent>.filter(ExternalResourceHolder.class::isInstance)</lineContent>
@@ -142,21 +142,21 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/XmlLoader.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/XmlLoader.java</fileName>
     <specifier>method.guarantee.violated</specifier>
     <message>@Pure method resolveEntity calls method getClassLoader with a weaker @ReleasesNoLocks side effect guarantee</message>
     <lineContent>getClass().getClassLoader();</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/XmlLoader.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/XmlLoader.java</fileName>
     <specifier>method.guarantee.violated</specifier>
     <message>@Pure method resolveEntity calls method getResourceAsStream with a weaker @ReleasesNoLocks side effect guarantee</message>
     <lineContent>loader.getResourceAsStream(dtdResourceName);</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/api/BeforeExecutionFileFilterSet.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/BeforeExecutionFileFilterSet.java</fileName>
     <specifier>override.receiver</specifier>
     <message>Incompatible receiver type</message>
     <lineContent>public String toString() {</lineContent>
@@ -171,7 +171,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/api/Comment.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/Comment.java</fileName>
     <specifier>override.receiver</specifier>
     <message>Incompatible receiver type</message>
     <lineContent>public String toString() {</lineContent>
@@ -186,7 +186,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/api/FilterSet.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/FilterSet.java</fileName>
     <specifier>override.receiver</specifier>
     <message>Incompatible receiver type</message>
     <lineContent>public String toString() {</lineContent>
@@ -201,21 +201,21 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/api/FullIdent.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/FullIdent.java</fileName>
     <specifier>method.guarantee.violated</specifier>
     <message>@SideEffectFree method toString calls method getColumnNo with a weaker @ReleasesNoLocks side effect guarantee</message>
     <lineContent>+ &quot;[&quot; + detailAst.getLineNo() + &quot;x&quot; + detailAst.getColumnNo() + &quot;]&quot;;</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/api/FullIdent.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/FullIdent.java</fileName>
     <specifier>method.guarantee.violated</specifier>
     <message>@SideEffectFree method toString calls method getLineNo with a weaker @ReleasesNoLocks side effect guarantee</message>
     <lineContent>+ &quot;[&quot; + detailAst.getLineNo() + &quot;x&quot; + detailAst.getColumnNo() + &quot;]&quot;;</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/api/FullIdent.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/FullIdent.java</fileName>
     <specifier>override.receiver</specifier>
     <message>Incompatible receiver type</message>
     <lineContent>public String toString() {</lineContent>
@@ -230,7 +230,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/api/LineColumn.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/LineColumn.java</fileName>
     <specifier>override.param</specifier>
     <message>Incompatible parameter type for other.</message>
     <lineContent>public boolean equals(Object other) {</lineContent>
@@ -245,7 +245,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/api/LineColumn.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/LineColumn.java</fileName>
     <specifier>override.receiver</specifier>
     <message>Incompatible receiver type</message>
     <lineContent>public int compareTo(LineColumn lineColumn) {</lineContent>
@@ -260,7 +260,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/api/LineColumn.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/LineColumn.java</fileName>
     <specifier>override.receiver</specifier>
     <message>Incompatible receiver type</message>
     <lineContent>public boolean equals(Object other) {</lineContent>
@@ -275,7 +275,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/api/LineColumn.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/LineColumn.java</fileName>
     <specifier>override.receiver</specifier>
     <message>Incompatible receiver type</message>
     <lineContent>public int hashCode() {</lineContent>
@@ -290,14 +290,14 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/api/Scope.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/Scope.java</fileName>
     <specifier>method.guarantee.violated</specifier>
     <message>@SideEffectFree method toString calls method getName with a weaker @ReleasesNoLocks side effect guarantee</message>
     <lineContent>return getName();</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/api/Scope.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/Scope.java</fileName>
     <specifier>override.receiver</specifier>
     <message>Incompatible receiver type</message>
     <lineContent>public String toString() {</lineContent>
@@ -312,14 +312,14 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/api/SeverityLevel.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/SeverityLevel.java</fileName>
     <specifier>method.guarantee.violated</specifier>
     <message>@SideEffectFree method toString calls method getName with a weaker @ReleasesNoLocks side effect guarantee</message>
     <lineContent>return getName();</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/api/SeverityLevel.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/SeverityLevel.java</fileName>
     <specifier>override.receiver</specifier>
     <message>Incompatible receiver type</message>
     <lineContent>public String toString() {</lineContent>
@@ -334,21 +334,21 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/api/Violation.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/Violation.java</fileName>
     <specifier>method.guarantee.violated</specifier>
     <message>@Pure method compareTo calls method getViolation with a weaker @ReleasesNoLocks side effect guarantee</message>
     <lineContent>result = getViolation().compareTo(other.getViolation());</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/api/Violation.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/Violation.java</fileName>
     <specifier>method.guarantee.violated</specifier>
     <message>@Pure method compareTo calls method getViolation with a weaker @ReleasesNoLocks side effect guarantee</message>
     <lineContent>result = getViolation().compareTo(other.getViolation());</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/api/Violation.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/Violation.java</fileName>
     <specifier>override.param</specifier>
     <message>Incompatible parameter type for object.</message>
     <lineContent>public boolean equals(Object object) {</lineContent>
@@ -363,7 +363,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/api/Violation.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/Violation.java</fileName>
     <specifier>override.receiver</specifier>
     <message>Incompatible receiver type</message>
     <lineContent>public int compareTo(Violation other) {</lineContent>
@@ -378,7 +378,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/api/Violation.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/Violation.java</fileName>
     <specifier>override.receiver</specifier>
     <message>Incompatible receiver type</message>
     <lineContent>public boolean equals(Object object) {</lineContent>
@@ -393,7 +393,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/api/Violation.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/Violation.java</fileName>
     <specifier>override.receiver</specifier>
     <message>Incompatible receiver type</message>
     <lineContent>public int hashCode() {</lineContent>
@@ -408,7 +408,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/checks/OrderedPropertiesCheck.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/OrderedPropertiesCheck.java</fileName>
     <specifier>override.receiver</specifier>
     <message>Incompatible receiver type</message>
     <lineContent>public synchronized Object put(Object key, Object value) {</lineContent>
@@ -423,7 +423,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/checks/UniquePropertiesCheck.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/UniquePropertiesCheck.java</fileName>
     <specifier>override.receiver</specifier>
     <message>Incompatible receiver type</message>
     <lineContent>public synchronized Object put(Object key, Object value) {</lineContent>
@@ -438,7 +438,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/checks/annotation/MissingOverrideCheck.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/annotation/MissingOverrideCheck.java</fileName>
     <specifier>methodref.param</specifier>
     <message>Incompatible parameter type for obj</message>
     <lineContent>Stream.iterate(startNode.getLastChild(), Objects::nonNull,</lineContent>
@@ -453,7 +453,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/ModifiedControlVariableCheck.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/ModifiedControlVariableCheck.java</fileName>
     <specifier>methodref.param</specifier>
     <message>Incompatible parameter type for arg0</message>
     <lineContent>return initializedVariables.stream().filter(iteratingVariables::contains)</lineContent>
@@ -468,7 +468,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/ModifiedControlVariableCheck.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/ModifiedControlVariableCheck.java</fileName>
     <specifier>methodref.receiver.bound</specifier>
     <message>Incompatible receiver type</message>
     <lineContent>return initializedVariables.stream().filter(iteratingVariables::contains)</lineContent>
@@ -483,7 +483,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UnusedLocalVariableCheck.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UnusedLocalVariableCheck.java</fileName>
     <specifier>methodref.receiver.bound</specifier>
     <message>Incompatible receiver type</message>
     <lineContent>instAndClassVarDeque.forEach(variablesStack::push);</lineContent>
@@ -498,7 +498,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/checks/design/FinalClassCheck.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/design/FinalClassCheck.java</fileName>
     <specifier>methodref.receiver</specifier>
     <message>Incompatible receiver type</message>
     <lineContent>.map(Map.Entry::getValue)</lineContent>
@@ -513,21 +513,21 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/IndentLevel.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/IndentLevel.java</fileName>
     <specifier>method.guarantee.violated</specifier>
     <message>@SideEffectFree method toString calls method append with a weaker @ReleasesNoLocks side effect guarantee</message>
     <lineContent>sb.append(&quot;, &quot;);</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/IndentLevel.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/IndentLevel.java</fileName>
     <specifier>method.guarantee.violated</specifier>
     <message>@SideEffectFree method toString calls method append with a weaker @ReleasesNoLocks side effect guarantee</message>
     <lineContent>sb.append(i);</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/IndentLevel.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/IndentLevel.java</fileName>
     <specifier>override.receiver</specifier>
     <message>Incompatible receiver type</message>
     <lineContent>public String toString() {</lineContent>
@@ -542,7 +542,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/HtmlTag.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/HtmlTag.java</fileName>
     <specifier>override.receiver</specifier>
     <message>Incompatible receiver type</message>
     <lineContent>public String toString() {</lineContent>
@@ -557,7 +557,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocMethodCheck.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocMethodCheck.java</fileName>
     <specifier>override.receiver</specifier>
     <message>Incompatible receiver type</message>
     <lineContent>public String toString() {</lineContent>
@@ -572,14 +572,14 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocNodeImpl.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocNodeImpl.java</fileName>
     <specifier>method.guarantee.violated</specifier>
     <message>@SideEffectFree method toString calls method getTokenName with a weaker @ReleasesNoLocks side effect guarantee</message>
     <lineContent>+ &quot;, type=&quot; + JavadocUtil.getTokenName(type)</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocNodeImpl.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocNodeImpl.java</fileName>
     <specifier>override.receiver</specifier>
     <message>Incompatible receiver type</message>
     <lineContent>public String toString() {</lineContent>
@@ -594,14 +594,14 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocTag.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocTag.java</fileName>
     <specifier>method.guarantee.violated</specifier>
     <message>@SideEffectFree method toString calls method getName with a weaker @ReleasesNoLocks side effect guarantee</message>
     <lineContent>return &quot;JavadocTag[tag=&apos;&quot; + tagInfo.getName()</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocTag.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocTag.java</fileName>
     <specifier>override.receiver</specifier>
     <message>Incompatible receiver type</message>
     <lineContent>public String toString() {</lineContent>
@@ -616,7 +616,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocTagInfo.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocTagInfo.java</fileName>
     <specifier>override.receiver</specifier>
     <message>Incompatible receiver type</message>
     <lineContent>public String toString() {</lineContent>
@@ -631,7 +631,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/checks/metrics/AbstractClassCouplingCheck.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/metrics/AbstractClassCouplingCheck.java</fileName>
     <specifier>methodref.receiver.bound</specifier>
     <message>Incompatible receiver type</message>
     <lineContent>.forEach(excludeClassesRegexps::add);</lineContent>
@@ -646,14 +646,14 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/checks/naming/AccessModifierOption.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/naming/AccessModifierOption.java</fileName>
     <specifier>method.guarantee.violated</specifier>
     <message>@SideEffectFree method toString calls method getName with a weaker @ReleasesNoLocks side effect guarantee</message>
     <lineContent>return getName();</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/checks/naming/AccessModifierOption.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/naming/AccessModifierOption.java</fileName>
     <specifier>override.receiver</specifier>
     <message>Incompatible receiver type</message>
     <lineContent>public String toString() {</lineContent>
@@ -668,7 +668,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/checks/sizes/MethodLengthCheck.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/sizes/MethodLengthCheck.java</fileName>
     <specifier>methodref.param</specifier>
     <message>Incompatible parameter type for obj</message>
     <lineContent>node.getLastChild(), Objects::nonNull, DetailAST::getPreviousSibling</lineContent>
@@ -683,7 +683,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/filters/CsvFilterElement.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/CsvFilterElement.java</fileName>
     <specifier>override.param</specifier>
     <message>Incompatible parameter type for object.</message>
     <lineContent>public boolean equals(Object object) {</lineContent>
@@ -698,7 +698,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/filters/CsvFilterElement.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/CsvFilterElement.java</fileName>
     <specifier>override.receiver</specifier>
     <message>Incompatible receiver type</message>
     <lineContent>public boolean equals(Object object) {</lineContent>
@@ -713,7 +713,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/filters/CsvFilterElement.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/CsvFilterElement.java</fileName>
     <specifier>override.receiver</specifier>
     <message>Incompatible receiver type</message>
     <lineContent>public int hashCode() {</lineContent>
@@ -728,14 +728,14 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/filters/IntMatchFilterElement.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/IntMatchFilterElement.java</fileName>
     <specifier>method.guarantee.violated</specifier>
     <message>@Pure method hashCode calls method valueOf with a weaker @SideEffectFree side effect guarantee</message>
     <lineContent>return Integer.valueOf(matchValue).hashCode();</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/filters/IntMatchFilterElement.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/IntMatchFilterElement.java</fileName>
     <specifier>override.param</specifier>
     <message>Incompatible parameter type for object.</message>
     <lineContent>public final boolean equals(Object object) {</lineContent>
@@ -750,7 +750,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/filters/IntMatchFilterElement.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/IntMatchFilterElement.java</fileName>
     <specifier>override.receiver</specifier>
     <message>Incompatible receiver type</message>
     <lineContent>public String toString() {</lineContent>
@@ -765,7 +765,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/filters/IntMatchFilterElement.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/IntMatchFilterElement.java</fileName>
     <specifier>override.receiver</specifier>
     <message>Incompatible receiver type</message>
     <lineContent>public final boolean equals(Object object) {</lineContent>
@@ -780,7 +780,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/filters/IntMatchFilterElement.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/IntMatchFilterElement.java</fileName>
     <specifier>override.receiver</specifier>
     <message>Incompatible receiver type</message>
     <lineContent>public final int hashCode() {</lineContent>
@@ -795,7 +795,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/filters/IntRangeFilterElement.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/IntRangeFilterElement.java</fileName>
     <specifier>override.param</specifier>
     <message>Incompatible parameter type for other.</message>
     <lineContent>public boolean equals(Object other) {</lineContent>
@@ -810,7 +810,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/filters/IntRangeFilterElement.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/IntRangeFilterElement.java</fileName>
     <specifier>override.receiver</specifier>
     <message>Incompatible receiver type</message>
     <lineContent>public boolean equals(Object other) {</lineContent>
@@ -825,7 +825,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/filters/IntRangeFilterElement.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/IntRangeFilterElement.java</fileName>
     <specifier>override.receiver</specifier>
     <message>Incompatible receiver type</message>
     <lineContent>public int hashCode() {</lineContent>
@@ -840,7 +840,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressFilterElement.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressFilterElement.java</fileName>
     <specifier>override.param</specifier>
     <message>Incompatible parameter type for other.</message>
     <lineContent>public boolean equals(Object other) {</lineContent>
@@ -855,7 +855,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressFilterElement.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressFilterElement.java</fileName>
     <specifier>override.receiver</specifier>
     <message>Incompatible receiver type</message>
     <lineContent>public boolean equals(Object other) {</lineContent>
@@ -870,7 +870,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressFilterElement.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressFilterElement.java</fileName>
     <specifier>override.receiver</specifier>
     <message>Incompatible receiver type</message>
     <lineContent>public int hashCode() {</lineContent>
@@ -885,7 +885,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressWithNearbyCommentFilter.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressWithNearbyCommentFilter.java</fileName>
     <specifier>override.param</specifier>
     <message>Incompatible parameter type for other.</message>
     <lineContent>public boolean equals(Object other) {</lineContent>
@@ -900,7 +900,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressWithNearbyCommentFilter.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressWithNearbyCommentFilter.java</fileName>
     <specifier>override.receiver</specifier>
     <message>Incompatible receiver type</message>
     <lineContent>public String toString() {</lineContent>
@@ -915,7 +915,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressWithNearbyCommentFilter.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressWithNearbyCommentFilter.java</fileName>
     <specifier>override.receiver</specifier>
     <message>Incompatible receiver type</message>
     <lineContent>public boolean equals(Object other) {</lineContent>
@@ -930,7 +930,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressWithNearbyCommentFilter.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressWithNearbyCommentFilter.java</fileName>
     <specifier>override.receiver</specifier>
     <message>Incompatible receiver type</message>
     <lineContent>public int hashCode() {</lineContent>
@@ -945,7 +945,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressWithPlainTextCommentFilter.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressWithPlainTextCommentFilter.java</fileName>
     <specifier>override.param</specifier>
     <message>Incompatible parameter type for other.</message>
     <lineContent>public boolean equals(Object other) {</lineContent>
@@ -960,7 +960,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressWithPlainTextCommentFilter.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressWithPlainTextCommentFilter.java</fileName>
     <specifier>override.receiver</specifier>
     <message>Incompatible receiver type</message>
     <lineContent>public boolean equals(Object other) {</lineContent>
@@ -975,7 +975,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressWithPlainTextCommentFilter.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressWithPlainTextCommentFilter.java</fileName>
     <specifier>override.receiver</specifier>
     <message>Incompatible receiver type</message>
     <lineContent>public int hashCode() {</lineContent>
@@ -990,7 +990,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressionCommentFilter.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressionCommentFilter.java</fileName>
     <specifier>override.param</specifier>
     <message>Incompatible parameter type for other.</message>
     <lineContent>public boolean equals(Object other) {</lineContent>
@@ -1005,7 +1005,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressionCommentFilter.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressionCommentFilter.java</fileName>
     <specifier>override.receiver</specifier>
     <message>Incompatible receiver type</message>
     <lineContent>public int compareTo(Tag object) {</lineContent>
@@ -1020,7 +1020,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressionCommentFilter.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressionCommentFilter.java</fileName>
     <specifier>override.receiver</specifier>
     <message>Incompatible receiver type</message>
     <lineContent>public String toString() {</lineContent>
@@ -1035,7 +1035,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressionCommentFilter.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressionCommentFilter.java</fileName>
     <specifier>override.receiver</specifier>
     <message>Incompatible receiver type</message>
     <lineContent>public boolean equals(Object other) {</lineContent>
@@ -1050,7 +1050,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressionCommentFilter.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressionCommentFilter.java</fileName>
     <specifier>override.receiver</specifier>
     <message>Incompatible receiver type</message>
     <lineContent>public int hashCode() {</lineContent>
@@ -1065,7 +1065,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressionXpathFilter.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressionXpathFilter.java</fileName>
     <specifier>override.param</specifier>
     <message>Incompatible parameter type for obj.</message>
     <lineContent>public boolean equals(Object obj) {</lineContent>
@@ -1080,7 +1080,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressionXpathFilter.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressionXpathFilter.java</fileName>
     <specifier>override.receiver</specifier>
     <message>Incompatible receiver type</message>
     <lineContent>public boolean equals(Object obj) {</lineContent>
@@ -1095,7 +1095,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressionXpathFilter.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressionXpathFilter.java</fileName>
     <specifier>override.receiver</specifier>
     <message>Incompatible receiver type</message>
     <lineContent>public int hashCode() {</lineContent>
@@ -1110,7 +1110,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/filters/XpathFilterElement.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/XpathFilterElement.java</fileName>
     <specifier>override.param</specifier>
     <message>Incompatible parameter type for other.</message>
     <lineContent>public boolean equals(Object other) {</lineContent>
@@ -1125,7 +1125,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/filters/XpathFilterElement.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/XpathFilterElement.java</fileName>
     <specifier>override.receiver</specifier>
     <message>Incompatible receiver type</message>
     <lineContent>public boolean equals(Object other) {</lineContent>
@@ -1140,7 +1140,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/filters/XpathFilterElement.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/XpathFilterElement.java</fileName>
     <specifier>override.receiver</specifier>
     <message>Incompatible receiver type</message>
     <lineContent>public int hashCode() {</lineContent>
@@ -1155,7 +1155,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/gui/MainFrameModel.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/MainFrameModel.java</fileName>
     <specifier>override.receiver</specifier>
     <message>Incompatible receiver type</message>
     <lineContent>public String toString() {</lineContent>
@@ -1170,7 +1170,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/utils/TokenUtil.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/TokenUtil.java</fileName>
     <specifier>methodref.receiver</specifier>
     <message>Incompatible receiver type</message>
     <lineContent>.collect(BitSet::new, BitSet::set, BitSet::or);</lineContent>
@@ -1185,7 +1185,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/utils/TokenUtil.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/TokenUtil.java</fileName>
     <specifier>methodref.receiver</specifier>
     <message>Incompatible receiver type</message>
     <lineContent>.collect(BitSet::new, BitSet::set, BitSet::or);</lineContent>
@@ -1200,7 +1200,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/utils/TokenUtil.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/TokenUtil.java</fileName>
     <specifier>methodref.receiver</specifier>
     <message>Incompatible receiver type</message>
     <lineContent>.collect(BitSet::new, BitSet::set, BitSet::or);</lineContent>
@@ -1215,7 +1215,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/utils/TokenUtil.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/TokenUtil.java</fileName>
     <specifier>methodref.receiver</specifier>
     <message>Incompatible receiver type</message>
     <lineContent>.collect(BitSet::new, BitSet::set, BitSet::or);</lineContent>
