@@ -116,7 +116,7 @@ public class JavadocPackageCheckTest
     public void testAnnotation() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(JavadocPackageCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig,
+        verifyWithInlineConfigParser(
             getPath("annotation"
                     + File.separator + "package-info.java"), expected);
     }
@@ -147,8 +147,7 @@ public class JavadocPackageCheckTest
     public void testNonJava() throws Exception {
         final Configuration checkConfig = createModuleConfig(JavadocPackageCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(
-            checkConfig,
+        verifyWithInlineConfigParser(
             getPath("InputJavadocPackageNotJava.txt"),
             expected);
     }
