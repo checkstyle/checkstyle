@@ -457,11 +457,7 @@
           <artifactId>pitest-maven</artifactId>
           <version>${pitest.plugin.version}</version>
           <dependencies>
-            <dependency>
-              <groupId>com.groupcdg.pitest</groupId>
-              <artifactId>pitest-accelerator-junit5</artifactId>
-              <version>${pitest.accelerator.junit5.plugin.version}</version>
-            </dependency>
+            
             <dependency>
               <groupId>org.pitest</groupId>
               <artifactId>pitest-junit5-plugin</artifactId>
