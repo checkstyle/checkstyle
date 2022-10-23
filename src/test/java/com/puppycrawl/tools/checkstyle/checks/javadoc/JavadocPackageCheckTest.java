@@ -49,8 +49,7 @@ public class JavadocPackageCheckTest
         final String[] expected = {
             "1: " + getCheckMessage(MSG_PACKAGE_INFO),
         };
-        verify(
-            checkConfig,
+        verifyWithInlineConfigParser(
             getPath("InputJavadocPackageBadCls.java"),
             expected);
     }
@@ -62,8 +61,7 @@ public class JavadocPackageCheckTest
         final String[] expected = {
             "1: " + getCheckMessage(MSG_PACKAGE_INFO),
         };
-        verify(
-            checkConfig,
+        verifyWithInlineConfigParser(
             getPath("InputJavadocPackageBadCls2.java"),
             expected);
     }
@@ -89,7 +87,7 @@ public class JavadocPackageCheckTest
         final String[] expected = {
             "1: " + getCheckMessage(MSG_LEGACY_PACKAGE_HTML),
         };
-        verify(checkConfig,
+        verifyWithInlineConfigParser(
             getPath("bothfiles" + File.separator + "InputJavadocPackageBothIgnored.java"),
             expected);
     }
@@ -100,7 +98,7 @@ public class JavadocPackageCheckTest
         final String[] expected = {
             "1: " + getCheckMessage(MSG_PACKAGE_INFO),
         };
-        verify(checkConfig,
+        verifyWithInlineConfigParser(
             getPath("pkghtml" + File.separator + "InputJavadocPackageHtmlIgnored.java"), expected);
     }
 
