@@ -683,7 +683,7 @@ no-error-sevntu-checks)
   echo "Checkout target sources ..."
   checkout_from https://github.com/sevntu-checkstyle/sevntu.checkstyle.git
   cd .ci-temp/sevntu.checkstyle/sevntu-checks
-  mvn -e --no-transfer-progress -Pno-validations verify  -Dcheckstyle.skip=false \
+  mvn -e --no-transfer-progress -Pno-validations verify  -Dcheckstyle.ant.skip=false \
      -Dcheckstyle.version="${CS_POM_VERSION}" \
      -Dcheckstyle.configLocation=../../../config/checkstyle_checks.xml
   cd ../../
