@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suppressedErrors>
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/utils/CheckUtil.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/CheckUtil.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter radix of parseInt.</message>
     <lineContent>result = Integer.parseInt(txt, radix);</lineContent>
@@ -12,7 +12,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/utils/CheckUtil.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/CheckUtil.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter radix of parseLong.</message>
     <lineContent>result = Long.parseLong(txt, radix);</lineContent>
@@ -23,7 +23,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/utils/CheckUtil.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/CheckUtil.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter radix of parseUnsignedInt.</message>
     <lineContent>result = Integer.parseUnsignedInt(txt, radix);</lineContent>
@@ -34,7 +34,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/utils/CheckUtil.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/CheckUtil.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter radix of parseUnsignedLong.</message>
     <lineContent>result = Long.parseUnsignedLong(txt, radix);</lineContent>
@@ -45,7 +45,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/utils/TokenUtil.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/TokenUtil.java</fileName>
     <specifier>methodref.param</specifier>
     <message>Incompatible parameter type for bitIndex</message>
     <lineContent>.collect(BitSet::new, BitSet::set, BitSet::or);</lineContent>
@@ -60,7 +60,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/utils/TokenUtil.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/TokenUtil.java</fileName>
     <specifier>methodref.param</specifier>
     <message>Incompatible parameter type for bitIndex</message>
     <lineContent>.collect(BitSet::new, BitSet::set, BitSet::or);</lineContent>

@@ -168,7 +168,7 @@ private static String getOsSpecificCmd(final String cmd) {
 private static List<CheckerFrameworkError> getErrorFromText(final List<List<String>> errorsList) {
     final List<CheckerFrameworkError> errors = new ArrayList<>()
     final Pattern errorExtractingPattern = Pattern
-        .compile('.*[\\\\/](checkstyle[\\\\/]src.*\\.java):\\[(\\d+)[^]]*][^\\[]*\\[([^]]*)](.*)')
+        .compile('.*[\\\\/](src[\\\\/].*\\.java):\\[(\\d+)[^]]*][^\\[]*\\[([^]]*)](.*)')
     final Pattern filePathExtractingPattern = Pattern.compile('\\[WARNING] (.*\\.java)')
     final int fileNameGroup = 1
     final int lineNumberGroup = 2
