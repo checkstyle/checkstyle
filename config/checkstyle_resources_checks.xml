@@ -12,7 +12,7 @@
   <!-- Suppressions for resources -->
   <module name="SuppressionFilter">
     <property name="file"
-             value="${project.basedir}/config/checkstyle_resources_suppressions.xml"/>
+             value="config/checkstyle_resources_suppressions.xml"/>
   </module>
   <module name="FileTabCharacter"/>
   <module name="RegexpSingleline">
