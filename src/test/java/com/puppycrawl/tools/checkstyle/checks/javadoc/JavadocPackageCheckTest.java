@@ -47,10 +47,9 @@ public class JavadocPackageCheckTest
     public void testMissing() throws Exception {
         final Configuration checkConfig = createModuleConfig(JavadocPackageCheck.class);
         final String[] expected = {
-            "8: " + getCheckMessage(MSG_PACKAGE_INFO),
+            "1: " + getCheckMessage(MSG_PACKAGE_INFO),
         };
-        verify(
-            checkConfig,
+        verifyWithInlineConfigParser(
             getPath("InputJavadocPackageBadCls.java"),
             expected);
     }
@@ -60,10 +59,9 @@ public class JavadocPackageCheckTest
         final DefaultConfiguration checkConfig = createModuleConfig(JavadocPackageCheck.class);
         checkConfig.addProperty("allowLegacy", "true");
         final String[] expected = {
-            "8: " + getCheckMessage(MSG_PACKAGE_INFO),
+            "1: " + getCheckMessage(MSG_PACKAGE_INFO),
         };
-        verify(
-            checkConfig,
+        verifyWithInlineConfigParser(
             getPath("InputJavadocPackageBadCls2.java"),
             expected);
     }
@@ -74,7 +72,7 @@ public class JavadocPackageCheckTest
         final String path1 = getPath("InputJavadocPackageNoJavadoc.java");
         final String path2 = getPath("InputJavadocPackageBadTag.java");
         final String[] expected = {
-            "8: " + getCheckMessage(MSG_PACKAGE_INFO),
+            "1: " + getCheckMessage(MSG_PACKAGE_INFO),
         };
         verify(
             createChecker(checkConfig),
@@ -87,9 +85,9 @@ public class JavadocPackageCheckTest
     public void testBoth() throws Exception {
         final Configuration checkConfig = createModuleConfig(JavadocPackageCheck.class);
         final String[] expected = {
-            "8: " + getCheckMessage(MSG_LEGACY_PACKAGE_HTML),
+            "1: " + getCheckMessage(MSG_LEGACY_PACKAGE_HTML),
         };
-        verify(checkConfig,
+        verifyWithInlineConfigParser(
             getPath("bothfiles" + File.separator + "InputJavadocPackageBothIgnored.java"),
             expected);
     }
@@ -98,9 +96,9 @@ public class JavadocPackageCheckTest
     public void testHtmlDisallowed() throws Exception {
         final Configuration checkConfig = createModuleConfig(JavadocPackageCheck.class);
         final String[] expected = {
-            "8: " + getCheckMessage(MSG_PACKAGE_INFO),
+            "1: " + getCheckMessage(MSG_PACKAGE_INFO),
         };
-        verify(checkConfig,
+        verifyWithInlineConfigParser(
             getPath("pkghtml" + File.separator + "InputJavadocPackageHtmlIgnored.java"), expected);
     }
 
