@@ -12,7 +12,7 @@
   <!-- Suppressions for resources -->
   <module name="SuppressionFilter">
     <property name="file"
-             value="${project.basedir}/config/checkstyle_input_suppressions.xml"/>
+             value="config/checkstyle_input_suppressions.xml"/>
   </module>
 
   <module name="RegexpSingleline">
