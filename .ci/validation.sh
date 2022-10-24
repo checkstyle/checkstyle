@@ -1048,6 +1048,34 @@ git-diff)
   fi
   ;;
 
+git-no-merge-commits)
+  MERGE_COMMITS=$(git rev-list --merges master.."$PR_HEAD_SHA")
+
+  if [ -n "$MERGE_COMMITS" ]; then
+    for MERGE_COMMIT in $MERGE_COMMITS; do
+      echo "Merge commit found in PR: $MERGE_COMMIT"
+    done
+    echo "To learn how to clean up your commit history, visit:"
+    echo "https://checkstyle.org/beginning_development.html#Starting_Development"
+    exit 1
+  fi
+  ;;
+
+git-check-pull-number)
+  COMMITS="$(git log --format=format:%B master.."$PR_HEAD_SHA")"
+
+  echo "$COMMITS" | while read -r COMMIT ; do
+    if [[ $COMMIT =~ 'Pull #' ]]; then
+      PULL_MESSAGE_NUMBER=$(echo "$COMMIT" | cut -d'#' -f 2 | cut -d':' -f 1)
+      if [[ $PULL_MESSAGE_NUMBER != "$PR_NUMBER" ]]; then
+        echo "Referenced PR and this PR number do not match."
+        echo "Commit message should reference $PR_NUMBER"
+        exit 1
+      fi
+    fi
+  done
+  ;;
+
 *)
   echo "Unexpected argument: $1"
   sleep 5s

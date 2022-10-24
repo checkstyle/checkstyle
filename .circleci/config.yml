@@ -229,6 +229,29 @@ jobs:
       - store_artifacts:
           path: /home/circleci/project/target/inspection-results
 
+  no-merge-commits:
+    docker:
+      - image: cimg/base:2022.10
+    steps:
+      - checkout
+      - run:
+          name: Check for merge commits
+          command: |
+            export PR_HEAD_SHA=$CIRCLE_SHA1
+            ./.ci/validation.sh git-no-merge-commits
+
+  check-pull-number:
+    docker:
+      - image: cimg/base:2022.10
+    steps:
+      - checkout
+      - run:
+          name: Check that 'Pull#XXXX' matches PR number
+          command: |
+            export PR_HEAD_SHA=$CIRCLE_SHA1
+            export PR_NUMBER=$CIRCLE_PR_NUMBER
+            ./.ci/validation.sh git-check-pull-number
+
 workflows:
   version: 2
   no-exception-tests:
@@ -258,3 +281,8 @@ workflows:
   idea:
     jobs:
       - run-inspections
+
+  git-validation:
+    jobs:
+      - no-merge-commits
+      - check-pull-number
