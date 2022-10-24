@@ -1,7 +1,7 @@
 /*
 WriteTag
 tag = @tag2
-tagFormat = \S
+tagFormat = \\S
 tagSeverity = ignore
 tokens = (default)INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF
 
