@@ -248,6 +248,27 @@ jobs:
               exit 1
             fi
 
+  check-pull-number:
+    docker:
+      - image: cimg/base:2022.10
+    steps:
+      - checkout
+      - run:
+          name: Check that 'Pull#XXXX' matches PR number
+          command: |
+            COMMITS="$(git log --format=format:%B master.."$CIRCLE_SHA1")"
+            
+            echo "$COMMITS" | while read -r COMMIT ; do
+              if [[ $COMMIT =~ 'Pull #' ]]; then
+                PULL_MESSAGE_NUMBER=$(echo "$COMMIT" | cut -d'#' -f 2 | cut -d':' -f 1)
+                if [[ $PULL_MESSAGE_NUMBER != "$CIRCLE_PR_NUMBER" ]]; then
+                  echo "Referenced PR and this PR number do not match."
+                  echo "Commit message should reference $CIRCLE_PR_NUMBER"
+                  exit 1
+                fi
+              fi
+            done
+
 workflows:
   version: 2
   no-exception-tests:
@@ -281,3 +302,4 @@ workflows:
   git-validation:
     jobs:
       - no-merge-commits
+      - check-pull-number
