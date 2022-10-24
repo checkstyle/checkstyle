@@ -1061,6 +1061,21 @@ git-no-merge-commits)
   fi
   ;;
 
+git-check-pull-number)
+  COMMITS="$(git log --format=format:%B master.."$PR_HEAD_SHA")"
+
+  echo "$COMMITS" | while read -r COMMIT ; do
+    if [[ $COMMIT =~ 'Pull #' ]]; then
+      PULL_MESSAGE_NUMBER=$(echo "$COMMIT" | cut -d'#' -f 2 | cut -d':' -f 1)
+      if [[ $PULL_MESSAGE_NUMBER != "$PR_NUMBER" ]]; then
+        echo "Referenced PR and this PR number do not match."
+        echo "Commit message should reference $PR_NUMBER"
+        exit 1
+      fi
+    fi
+  done
+  ;;
+
 *)
   echo "Unexpected argument: $1"
   sleep 5s
