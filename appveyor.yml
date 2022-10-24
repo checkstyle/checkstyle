@@ -51,6 +51,10 @@ environment:
     - JAVA_HOME: C:\Program Files\Java\jdk11
       DESC: "site, without verify (JDK11)"
       CMD: "./.ci/validation.cmd site_without_verify"
+      # make sure we keep windows compatibilty in checker script
+    - JAVA_HOME: C:\Program Files\Java\jdk11
+      DESC: "Single checker profile to validate Windows execution."
+      CMD: "groovy ./.ci/checker-framework.groovy checker-signature-gui-units-init"
 
 build_script:
   - ps: |
