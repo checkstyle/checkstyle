@@ -1048,6 +1048,19 @@ git-diff)
   fi
   ;;
 
+git-no-merge-commits)
+  MERGE_COMMITS=$(git rev-list --merges master.."$PR_HEAD_SHA")
+
+  if [ -n "$MERGE_COMMITS" ]; then
+    for MERGE_COMMIT in $MERGE_COMMITS; do
+      echo "Merge commit found in PR: $MERGE_COMMIT"
+    done
+    echo "To learn how to clean up your commit history, visit:"
+    echo "https://checkstyle.org/beginning_development.html#Starting_Development"
+    exit 1
+  fi
+  ;;
+
 *)
   echo "Unexpected argument: $1"
   sleep 5s

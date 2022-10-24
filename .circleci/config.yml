@@ -229,6 +229,17 @@ jobs:
       - store_artifacts:
           path: /home/circleci/project/target/inspection-results
 
+  no-merge-commits:
+    docker:
+      - image: cimg/base:2022.10
+    environment:
+      PR_HEAD_SHA: $CIRCLE_SHA1
+    steps:
+      - checkout
+      - run:
+          name: Check for merge commits
+          command: ./.ci/validation.sh git-no-merge-commits
+
 workflows:
   version: 2
   no-exception-tests:
@@ -258,3 +269,7 @@ workflows:
   idea:
     jobs:
       - run-inspections
+
+  git-validation:
+    jobs:
+      - no-merge-commits
