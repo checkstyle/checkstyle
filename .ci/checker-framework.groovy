@@ -175,6 +175,7 @@ private static List<CheckerFrameworkError> getErrorFromText(final List<List<Stri
     final int specifierGroup = 3
     final int messageGroup = 4
     errorsList.each { final errorList ->
+        println "Error list: " + errorList
         final String error = errorList.get(0)
         final Matcher matcher = errorExtractingPattern.matcher(error)
         final List<String> details = new ArrayList<>()
