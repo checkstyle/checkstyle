@@ -229,6 +229,26 @@ jobs:
       - store_artifacts:
           path: /home/circleci/project/target/inspection-results
 
+  no-merge-commits:
+    docker:
+      - image: cimg/base:2022.10
+    steps:
+      - checkout
+      - run:
+          name: Check for merge commits
+          command: |
+            MERGE_COMMITS=$(git rev-list --merges "origin/master".."origin/$CIRCLE_SHA1")
+            
+            if [ -n "$MERGE_COMMITS" ]; then
+              echo "Error: merge commits found in master..$CIRCLE_SHA1"
+              for MERGE_COMMIT in $MERGE_COMMITS; do
+                echo "$MERGE_COMMIT"
+              done
+              echo "To learn how to clean up your commit history, visit:"
+              echo "https://checkstyle.org/beginning_development.html#Starting_Development"
+              exit 1
+            fi
+
 workflows:
   version: 2
   no-exception-tests:
@@ -258,3 +278,7 @@ workflows:
   idea:
     jobs:
       - run-inspections
+
+  git-validation:
+    jobs:
+      - no-merge-commits
