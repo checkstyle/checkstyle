@@ -32,13 +32,14 @@ task:
     MAVEN_VERSION: "3.8.4"
     PATH: "%PATH%;C:/Program Files/OpenJDK/%OPENJDK_PATH%/bin;\
       C:/ProgramData/chocolatey/lib/maven/apache-maven-%MAVEN_VERSION%/bin;\
-      C:/ProgramData/chocolatey/bin"
+      C:/ProgramData/chocolatey/bin;C:/tools"
   install_script:
     - choco config set cacheLocation %CIRRUS_WORKING_DIR%/.chocolatey
     - choco upgrade -y chocolatey
     - choco install -y --no-progress ant
     - choco install -y --no-progress maven --version %MAVEN_VERSION%
     - choco install -y --no-progress openjdk --version %OPENJDK_VERSION%
+    - choco install -y --no-progress groovy
     # - choco install -y --no-progress xsltproc
     # - choco install -y --no-progress xmlstarlet
   version_script:
@@ -46,8 +47,15 @@ task:
     - ant -version
     - java --version
     - mvn --version
+    - groovy --version
     # - xsltproc --version
     # - xml --version
+  find-where-groovy-is:
+    - cd C:/tools
+    - dir /s
+  validate_checker_windows_script:
+    - cd ci
+    - .ci/validate-checker.cmd
   sevntu_script:
     - cd ci
     - .ci/validation.cmd sevntu
