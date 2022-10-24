@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suppressedErrors>
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/Main.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/Main.java</fileName>
     <specifier>required.method.not.called</specifier>
     <message>@MustCall method close may not have been invoked on out or any of its aliases.</message>
     <lineContent>final OutputStream out = getOutputStream(outputLocation);</lineContent>
@@ -12,7 +12,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/Main.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/Main.java</fileName>
     <specifier>required.method.not.called</specifier>
     <message>@MustCall method close may not have been invoked on temp-var or any of its aliases.</message>
     <lineContent>listener = new XpathFileGeneratorAuditListener(getOutputStream(options.outputPath),</lineContent>
@@ -23,7 +23,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/PackageObjectFactory.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/PackageObjectFactory.java</fileName>
     <specifier>return</specifier>
     <message>incompatible types in return.</message>
     <lineContent>return instance;</lineContent>
@@ -34,7 +34,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/XmlLoader.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/XmlLoader.java</fileName>
     <specifier>required.method.not.called</specifier>
     <message>@MustCall method close may not have been invoked on dtdIs or any of its aliases.</message>
     <lineContent>final InputStream dtdIs =</lineContent>
@@ -45,7 +45,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/ant/CheckstyleAntTask.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/ant/CheckstyleAntTask.java</fileName>
     <specifier>required.method.not.called</specifier>
     <message>@MustCall method close may not have been invoked on debug or any of its aliases.</message>
     <lineContent>final OutputStream debug = new LogOutputStream(this, Project.MSG_DEBUG);</lineContent>
@@ -56,7 +56,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/ant/CheckstyleAntTask.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/ant/CheckstyleAntTask.java</fileName>
     <specifier>required.method.not.called</specifier>
     <message>@MustCall method close may not have been invoked on err or any of its aliases.</message>
     <lineContent>final OutputStream err = new LogOutputStream(this, Project.MSG_ERR);</lineContent>
@@ -67,7 +67,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/ant/CheckstyleAntTask.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/ant/CheckstyleAntTask.java</fileName>
     <specifier>required.method.not.called</specifier>
     <message>@MustCall method close may not have been invoked on infoStream or any of its aliases.</message>
     <lineContent>final OutputStream infoStream = Files.newOutputStream(toFile.toPath());</lineContent>
@@ -78,7 +78,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/ant/CheckstyleAntTask.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/ant/CheckstyleAntTask.java</fileName>
     <specifier>required.method.not.called</specifier>
     <message>@MustCall method close may not have been invoked on temp-var or any of its aliases.</message>
     <lineContent>sarifLogger = new SarifLogger(Files.newOutputStream(toFile.toPath()),</lineContent>
@@ -89,7 +89,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/ant/CheckstyleAntTask.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/ant/CheckstyleAntTask.java</fileName>
     <specifier>required.method.not.called</specifier>
     <message>@MustCall method close may not have been invoked on temp-var or any of its aliases.</message>
     <lineContent>xmlLogger = new XMLLogger(Files.newOutputStream(toFile.toPath()),</lineContent>
@@ -100,7 +100,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/ant/CheckstyleAntTask.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/ant/CheckstyleAntTask.java</fileName>
     <specifier>required.method.not.called</specifier>
     <message>@MustCall method close may not have been invoked on temp-var or any of its aliases.</message>
     <lineContent>sarifLogger = new SarifLogger(new LogOutputStream(task, Project.MSG_INFO),</lineContent>
@@ -111,7 +111,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/ant/CheckstyleAntTask.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/ant/CheckstyleAntTask.java</fileName>
     <specifier>required.method.not.called</specifier>
     <message>@MustCall method close may not have been invoked on temp-var or any of its aliases.</message>
     <lineContent>new LogOutputStream(task, Project.MSG_DEBUG),</lineContent>
@@ -122,7 +122,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/ant/CheckstyleAntTask.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/ant/CheckstyleAntTask.java</fileName>
     <specifier>required.method.not.called</specifier>
     <message>@MustCall method close may not have been invoked on temp-var or any of its aliases.</message>
     <lineContent>new LogOutputStream(task, Project.MSG_ERR),</lineContent>
@@ -133,7 +133,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/ant/CheckstyleAntTask.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/ant/CheckstyleAntTask.java</fileName>
     <specifier>required.method.not.called</specifier>
     <message>@MustCall method close may not have been invoked on temp-var or any of its aliases.</message>
     <lineContent>xmlLogger = new XMLLogger(new LogOutputStream(task, Project.MSG_INFO),</lineContent>
@@ -144,7 +144,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/HandlerFactory.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/HandlerFactory.java</fileName>
     <specifier>return</specifier>
     <message>incompatible types in return.</message>
     <lineContent>return resultHandler;</lineContent>
@@ -155,7 +155,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/HandlerFactory.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/HandlerFactory.java</fileName>
     <specifier>return</specifier>
     <message>incompatible types in return.</message>
     <lineContent>return resultHandler;</lineContent>
@@ -166,7 +166,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/gui/MainFrame.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/MainFrame.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter horizontalAlignment of JLabel.</message>
     <lineContent>final JLabel modesLabel = new JLabel(&quot;Modes:&quot;, SwingConstants.RIGHT);</lineContent>
@@ -177,7 +177,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/meta/XmlMetaReader.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/meta/XmlMetaReader.java</fileName>
     <specifier>required.method.not.called</specifier>
     <message>@MustCall method close may not have been invoked on temp-var or any of its aliases.</message>
     <lineContent>moduleDetails = read(XmlMetaReader.class.getResourceAsStream(&quot;/&quot; + fileName),</lineContent>
@@ -188,7 +188,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/xpath/AbstractNode.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/AbstractNode.java</fileName>
     <specifier>required.method.not.called</specifier>
     <message>@MustCall method close may not have been invoked on axisIterator or any of its aliases.</message>
     <lineContent>AxisIterator axisIterator = iterateAxis(axisNumber);</lineContent>
@@ -199,7 +199,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/xpath/iterators/DescendantIterator.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/iterators/DescendantIterator.java</fileName>
     <specifier>required.method.not.called</specifier>
     <message>@MustCall method close may not have been invoked on temp-var or any of its aliases.</message>
     <lineContent>descendantEnum = SingleNodeIterator.makeIterator(start);</lineContent>
@@ -210,7 +210,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/xpath/iterators/DescendantIterator.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/iterators/DescendantIterator.java</fileName>
     <specifier>required.method.not.called</specifier>
     <message>@MustCall method close may not have been invoked on temp-var or any of its aliases.</message>
     <lineContent>descendantEnum = queue.poll().iterateAxis(AxisInfo.CHILD);</lineContent>
@@ -221,7 +221,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/xpath/iterators/DescendantIterator.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/iterators/DescendantIterator.java</fileName>
     <specifier>required.method.not.called</specifier>
     <message>@MustCall method close may not have been invoked on temp-var or any of its aliases.</message>
     <lineContent>descendantEnum = start.iterateAxis(AxisInfo.CHILD);</lineContent>
@@ -232,7 +232,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/xpath/iterators/FollowingIterator.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/iterators/FollowingIterator.java</fileName>
     <specifier>required.method.not.called</specifier>
     <message>@MustCall method close may not have been invoked on temp-var or any of its aliases.</message>
     <lineContent>ancestorEnum = start.iterateAxis(AxisInfo.ANCESTOR);</lineContent>
@@ -243,7 +243,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/xpath/iterators/FollowingIterator.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/iterators/FollowingIterator.java</fileName>
     <specifier>required.method.not.called</specifier>
     <message>@MustCall method close may not have been invoked on temp-var or any of its aliases.</message>
     <lineContent>descendantEnum = result.iterateAxis(AxisInfo.DESCENDANT);</lineContent>
@@ -254,7 +254,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/xpath/iterators/FollowingIterator.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/iterators/FollowingIterator.java</fileName>
     <specifier>required.method.not.called</specifier>
     <message>@MustCall method close may not have been invoked on temp-var or any of its aliases.</message>
     <lineContent>siblingEnum = parent.iterateAxis(AxisInfo.FOLLOWING_SIBLING);</lineContent>
@@ -265,7 +265,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/xpath/iterators/FollowingIterator.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/iterators/FollowingIterator.java</fileName>
     <specifier>required.method.not.called</specifier>
     <message>@MustCall method close may not have been invoked on temp-var or any of its aliases.</message>
     <lineContent>siblingEnum = start.iterateAxis(AxisInfo.FOLLOWING_SIBLING);</lineContent>
@@ -276,7 +276,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/xpath/iterators/PrecedingIterator.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/iterators/PrecedingIterator.java</fileName>
     <specifier>required.method.not.called</specifier>
     <message>@MustCall method close may not have been invoked on temp-var or any of its aliases.</message>
     <lineContent>descendantEnum = new ReverseDescendantIterator(result);</lineContent>
@@ -287,7 +287,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/xpath/iterators/PrecedingIterator.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/iterators/PrecedingIterator.java</fileName>
     <specifier>required.method.not.called</specifier>
     <message>@MustCall method close may not have been invoked on temp-var or any of its aliases.</message>
     <lineContent>ancestorEnum = start.iterateAxis(AxisInfo.ANCESTOR);</lineContent>
@@ -298,7 +298,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/xpath/iterators/PrecedingIterator.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/iterators/PrecedingIterator.java</fileName>
     <specifier>required.method.not.called</specifier>
     <message>@MustCall method close may not have been invoked on temp-var or any of its aliases.</message>
     <lineContent>previousSiblingEnum = result.iterateAxis(AxisInfo.PRECEDING_SIBLING);</lineContent>
@@ -309,7 +309,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/xpath/iterators/PrecedingIterator.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/iterators/PrecedingIterator.java</fileName>
     <specifier>required.method.not.called</specifier>
     <message>@MustCall method close may not have been invoked on temp-var or any of its aliases.</message>
     <lineContent>previousSiblingEnum = start.iterateAxis(AxisInfo.PRECEDING_SIBLING);</lineContent>
@@ -320,7 +320,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/xpath/iterators/ReverseDescendantIterator.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/iterators/ReverseDescendantIterator.java</fileName>
     <specifier>required.method.not.called</specifier>
     <message>@MustCall method close may not have been invoked on temp-var or any of its aliases.</message>
     <lineContent>pushToStack(queue.poll().iterateAxis(AxisInfo.CHILD));</lineContent>
@@ -331,7 +331,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/xpath/iterators/ReverseDescendantIterator.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/iterators/ReverseDescendantIterator.java</fileName>
     <specifier>required.method.not.called</specifier>
     <message>@MustCall method close may not have been invoked on temp-var or any of its aliases.</message>
     <lineContent>pushToStack(start.iterateAxis(AxisInfo.CHILD));</lineContent>
