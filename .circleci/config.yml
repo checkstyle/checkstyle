@@ -238,7 +238,6 @@ jobs:
           name: Check for merge commits
           command: |
             MERGE_COMMITS=$(git rev-list --merges "origin/master".."origin/$CIRCLE_SHA1")
-            
             if [ -n "$MERGE_COMMITS" ]; then
               echo "Error: merge commits found in master..$CIRCLE_SHA1"
               for MERGE_COMMIT in $MERGE_COMMITS; do
