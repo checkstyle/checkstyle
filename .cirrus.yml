@@ -39,6 +39,7 @@ task:
     - choco install -y --no-progress ant
     - choco install -y --no-progress maven --version %MAVEN_VERSION%
     - choco install -y --no-progress openjdk --version %OPENJDK_VERSION%
+    - choco install -y --no-progress groovy
     # - choco install -y --no-progress xsltproc
     # - choco install -y --no-progress xmlstarlet
   version_script:
@@ -48,6 +49,8 @@ task:
     - mvn --version
     # - xsltproc --version
     # - xml --version
+  validate_checker_windows_script:
+    - .ci/validate-checker.cmd
   sevntu_script:
     - cd ci
     - .ci/validation.cmd sevntu
