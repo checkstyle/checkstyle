@@ -39,6 +39,7 @@ task:
     - choco install -y --no-progress ant
     - choco install -y --no-progress maven --version %MAVEN_VERSION%
     - choco install -y --no-progress openjdk --version %OPENJDK_VERSION%
+    - choco install -y --no-progress groovy
     # - choco install -y --no-progress xsltproc
     # - choco install -y --no-progress xmlstarlet
   version_script:
@@ -57,3 +58,5 @@ task:
   site_without_verify_script:
     - cd ci
     - .ci/validation.cmd site_without_verify
+  validate-checker-windows:
+    - groovy ./.ci/checker-framework.groovy checker-signature-gui-units-init
