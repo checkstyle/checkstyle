@@ -112,7 +112,7 @@ private static int checkCheckerFrameworkReport(final String profile) {
  */
 private static List<List<String>> getCheckerFrameworkErrors(final String profile) {
     final List<String> checkerFrameworkLines = new ArrayList<>()
-    final String command = "mvn -e --no-transfer-progress clean compile -P${profile}"
+    final String command = "mvn -e -X --no-transfer-progress clean compile -P${profile}"
     final Process process = getOsSpecificCmd(command).execute()
     process.in.eachLine { final line ->
         checkerFrameworkLines.add(line)
