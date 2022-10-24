@@ -22,6 +22,7 @@ task:
       env:
         OPENJDK_VERSION: "17.0.0"
         OPENJDK_PATH: "jdk-17"
+        GROOVY_VERSION: "2.4.13"
   env:
     # disable ANSI output for picocli (may affect tests)
     NO_COLOR: "1"
@@ -39,6 +40,7 @@ task:
     - choco install -y --no-progress ant
     - choco install -y --no-progress maven --version %MAVEN_VERSION%
     - choco install -y --no-progress openjdk --version %OPENJDK_VERSION%
+    - choco install -y --no-progress groovy --version %GROOVY_VERSION%
     # - choco install -y --no-progress xsltproc
     # - choco install -y --no-progress xmlstarlet
   version_script:
@@ -57,3 +59,5 @@ task:
   site_without_verify_script:
     - cd ci
     - .ci/validation.cmd site_without_verify
+  validate-checker-windows:
+    - groovy ./.ci/checker-framework.groovy checker-signature-gui-units-init
