@@ -100,7 +100,7 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testMissingTag() throws Exception {
         final String[] expected = {
-            "21: " + getCheckMessage(MSG_MISSING_TAG, "@missingtag"),
+            "20: " + getCheckMessage(MSG_MISSING_TAG, "@missingtag"),
         };
         verifyWithInlineConfigParser(getPath("InputWriteTagMissingTag.java"), expected);
     }
@@ -108,9 +108,9 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testMethod() throws Exception {
         final String[] expected = {
-            "24: " + getCheckMessage(MSG_WRITE_TAG, "@todo",
+            "25: " + getCheckMessage(MSG_WRITE_TAG, "@todo",
                     "Add a constructor comment"),
-            "35: " + getCheckMessage(MSG_WRITE_TAG, "@todo", "Add a comment"),
+            "37: " + getCheckMessage(MSG_WRITE_TAG, "@todo", "Add a comment"),
         };
         verifyWithInlineConfigParser(getPath("InputWriteTagMethod.java"), expected);
     }
