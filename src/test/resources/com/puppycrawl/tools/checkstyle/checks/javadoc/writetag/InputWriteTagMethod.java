@@ -1,7 +1,7 @@
 /*
 WriteTag
 tag = @todo
-tagFormat = \S
+tagFormat = \\S
 tagSeverity = (default)info
 tokens = INTERFACE_DEF, CLASS_DEF, METHOD_DEF, CTOR_DEF
 
@@ -18,10 +18,11 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.writetag;
  * @doubletag second text
  * @emptytag
  */
-class InputWriteTagMethod // ok
+class InputWriteTagMethod
 {
+    // violation 2 lines below , 'Javadoc tag .*'
     /**
-     * @todo Add a constructor comment  // violation
+     * @todo Add a constructor comment
      */
     public InputWriteTagMethod()
     {
@@ -31,8 +32,9 @@ class InputWriteTagMethod // ok
     {
     }
 
+    // violation 2 lines below , 'Javadoc tag .*'
     /**
-     * @todo Add a comment  // violation
+     * @todo Add a comment
      */
     public void anotherMethod()
     {
