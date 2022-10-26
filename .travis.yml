@@ -36,6 +36,14 @@ jobs:
         - DEPLOY="true"
         - USE_MAVEN_REPO="true"
 
+    # sevntu (openjdk11)
+    - jdk: openjdk11
+      env:
+        - DESC="sevntu"
+        - CMD="mvn -e --no-transfer-progress clean verify -Pno-validations,sevntu"
+        - DEPLOY="true"
+        - USE_MAVEN_REPO="true"
+
     # codecov
     - jdk: openjdk11
       env:
