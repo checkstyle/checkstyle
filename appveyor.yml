@@ -39,10 +39,14 @@ environment:
   # We do matrix as AppVeyor could fail to finish simple "mvn -e verify"
   #    if he loose maven cache (happens from time to time)
   matrix:
-    # checkstyle and sevntu.checkstyle (JDK11)
+    # sevntu (JDK11)
     - JAVA_HOME: C:\Program Files\Java\jdk11
-      DESC: "checkstyle and sevntu.checkstyle (JDK11)"
+      DESC: "sevntu (JDK11)"
       CMD: "./.ci/validation.cmd sevntu"
+    # run checkstyle (JDK11)
+    - JAVA_HOME: C:\Program Files\Java\jdk11
+      DESC: "run checkstyle (JDK11)"
+      CMD: "./.ci/validation.cmd run_checkstyle"
     # verify without checkstyle (JDK11)
     - JAVA_HOME: C:\Program Files\Java\jdk11
       DESC: "verify without checkstyle (JDK11)"
