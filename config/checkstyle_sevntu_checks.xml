@@ -7,6 +7,8 @@
 <module name="Checker">
   <!-- All checks are from https://github.com/sevntu-checkstyle/sevntu.checkstyle project -->
 
+  <property name="cacheFile" value="${checkstyle.sevntu.cache.file}"/>
+
   <!-- Filters -->
   <module name="SuppressionFilter">
     <property name="file" value="config/sevntu_suppressions.xml"/>
