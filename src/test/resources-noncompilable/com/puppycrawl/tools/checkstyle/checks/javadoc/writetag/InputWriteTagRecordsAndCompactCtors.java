@@ -1,9 +1,9 @@
 /*
 WriteTag
 tag = @incomplete
-tagFormat = \S
-tagSeverity = (default)info
-tokens = INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF, COMPACT_CTOR_DEF
+tagSeverity = error
+tagFormat = \\S
+tokens = INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF, COMPACT_CTOR_DEF, CTOR_DEF
 
 
 */
@@ -11,22 +11,27 @@ tokens = INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF, COMPACT
 //non-compiled with javac: Compilable with Java14
 package com.puppycrawl.tools.checkstyle.checks.javadoc.writetag;
 
-public class InputWriteTagRecordsAndCompactCtors {
-    /**
-     * @incomplete
-     */
-    class TestClass { // violation
-    }
+// violation below , 'Type Javadoc comment is missing @incomplete tag'
+public class InputWriteTagRecordsAndCompactCtors { // violation
 
     /**
-     * @incomplete .// violation
+     * @incomplete // violation , 'Type Javadoc tag @incomplete must match pattern '\\S''
+     */
+    class TestClass {
+    }
+
+    // violation 2 lines below , 'Javadoc tag .*'
+    /**
+     * @incomplete // violation
      */
     record MyRecord1() {
 
     }
 
-    record MyRecord2(String myString) {
+    // violation below , 'Type Javadoc comment is missing @incomplete tag'
+    record MyRecord2(String myString) { // violation
 
+        // violation 2 lines below , 'Javadoc tag .*'
         /**
          * @incomplete // violation
          */
@@ -34,8 +39,10 @@ public class InputWriteTagRecordsAndCompactCtors {
         }
     }
 
-    record MyRecord3(int x) {
+    // violation below , 'Type Javadoc comment is missing @incomplete tag'
+    record MyRecord3(int x) { // violation
 
+        // violation 2 lines below , 'Javadoc tag .*'
         /**
          * @incomplete // violation
          */
@@ -44,9 +51,12 @@ public class InputWriteTagRecordsAndCompactCtors {
         }
     }
 
-    record MyRecord4(int y) {
-        private record MyRecord5(int z) {
+    // violation below , 'Type Javadoc comment is missing @incomplete tag'
+    record MyRecord4(int y) { // violation
+        // violation below , 'Type Javadoc comment is missing @incomplete tag'
+        private record MyRecord5(int z) { // violation
 
+            // violation 2 lines below , 'Javadoc tag .*'
             /**
              * @incomplete // violation
              */
