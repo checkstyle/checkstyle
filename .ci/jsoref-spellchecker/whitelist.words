@@ -637,6 +637,7 @@ ioe
 ioffset
 IPonr
 IPv
+isfalse
 isindex
 isrutf
 isset
@@ -1111,6 +1112,7 @@ propkey
 prot
 PROTECTE
 protonpack
+Psevntu
 Pstatic
 pubconstr
 pubifc

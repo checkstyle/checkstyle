@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <project name="phase-package" default="execute">
-
-  <condition property="checkstyle.ant.skip">
-    <isset property="checkstyle.ant.skip" />
+  <condition property="run">
+    <or>
+      <not>
+        <isset property="checkstyle.ant.skip"/>
+      </not>
+      <isfalse value="${checkstyle.ant.skip}"/>
+    </or>
   </condition>
 
-  <target name="execute" unless="checkstyle.ant.skip">
+  <target name="execute" if="run">
     <taskdef name="checkstyle"
              classname="com.puppycrawl.tools.checkstyle.ant.CheckstyleAntTask"
              classpath="${mvn.runtime_classpath}"
