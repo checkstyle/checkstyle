@@ -214,7 +214,6 @@
     <maven.jacoco.plugin.version>0.8.8</maven.jacoco.plugin.version>
     <mockito.version>4.8.1</mockito.version>
     <saxon.version>11.4</saxon.version>
-    <maven.checkstyle.plugin.version>3.2.0</maven.checkstyle.plugin.version>
     <maven.sevntu.checkstyle.plugin.version>1.42.0</maven.sevntu.checkstyle.plugin.version>
     <maven.sevntu-checkstyle-check.checkstyle.version>
       10.0
@@ -648,55 +647,6 @@
             <phase>verify</phase>
             <goals>
               <goal>modernizer</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-checkstyle-plugin</artifactId>
-        <version>${maven.checkstyle.plugin.version}</version>
-        <dependencies>
-          <dependency>
-            <groupId>com.github.sevntu-checkstyle</groupId>
-            <artifactId>sevntu-checks</artifactId>
-            <version>${maven.sevntu.checkstyle.plugin.version}</version>
-          </dependency>
-          <dependency>
-            <groupId>com.puppycrawl.tools</groupId>
-            <artifactId>checkstyle</artifactId>
-            <version>${maven.sevntu-checkstyle-check.checkstyle.version}</version>
-          </dependency>
-        </dependencies>
-        <!-- Specifying configuration here will take effect on the execution
-             of "mvn checkstyle:checkstyle",
-             but will not take effect on the execution of "mvn site"  -->
-        <executions>
-          <execution>
-            <id>sevntu-checkstyle-check</id>
-            <phase>verify</phase>
-            <configuration>
-              <configLocation>
-                ${project.basedir}/config/checkstyle_sevntu_checks.xml
-              </configLocation>
-              <failOnViolation>true</failOnViolation>
-              <includeResources>false</includeResources>
-              <includeTestResources>false</includeTestResources>
-              <logViolationsToConsole>true</logViolationsToConsole>
-              <maxAllowedViolations>0</maxAllowedViolations>
-              <violationSeverity>error</violationSeverity>
-              <cacheFile>${project.build.directory}/cachefile_sevntu</cacheFile>
-              <sourceDirectories>
-                <sourceDirectory>${project.basedir}/src</sourceDirectory>
-              </sourceDirectories>
-              <excludes>
-                **/it/resources/**/*,**/it/resources-noncompilable/**/*,
-                ,**/test/resources/**/*,**/test/resources-noncompilable/**/*,
-                **/gen/**
-              </excludes>
-            </configuration>
-            <goals>
-              <goal>check</goal>
             </goals>
           </execution>
         </executions>
@@ -2140,7 +2090,6 @@
       <properties>
         <skipTests>true</skipTests>
         <checkstyle.ant.skip>true</checkstyle.ant.skip>
-        <checkstyle.skip>true</checkstyle.skip>
         <pmd.skip>true</pmd.skip>
         <spotbugs.skip>true</spotbugs.skip>
         <xml.skip>true</xml.skip>
@@ -2169,6 +2118,57 @@
       </build>
     </profile>
 
+    <!-- this must stay as a separate profile as the build plugin has a similar run,
+         but with different dependencies. Maven does not allow 2 similar plugin runs
+         and wrongly combines the 2 which can fail with breaking changes. -->
+    <profile>
+      <id>sevntu</id>
+      <properties>
+        <checkstyle.ant.skip>false</checkstyle.ant.skip>
+      </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-antrun-plugin</artifactId>
+            <executions>
+              <!-- disable non-profile run -->
+              <execution>
+                <id>ant-phase-verify</id>
+                <phase>none</phase>
+              </execution>
+              <!-- profile run -->
+              <execution>
+                <id>ant-phase-verify-sevntu</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>run</goal>
+                </goals>
+                <configuration>
+                  <target>
+                    <property name="mvn.project.build.directory" value="${project.build.directory}" />
+                    <ant antfile="config/ant-phase-verify-sevntu.xml" />
+                  </target>
+                </configuration>
+              </execution>
+            </executions>
+            <dependencies>
+              <dependency>
+                <groupId>com.puppycrawl.tools</groupId>
+                <artifactId>checkstyle</artifactId>
+                <version>${maven.sevntu-checkstyle-check.checkstyle.version}</version>
+              </dependency>
+              <dependency>
+                <groupId>com.github.sevntu-checkstyle</groupId>
+                <artifactId>sevntu-checks</artifactId>
+                <version>${maven.sevntu.checkstyle.plugin.version}</version>
+              </dependency>
+            </dependencies>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
     <profile>
       <!-- To be used during development. Run the command -->
       <!-- mvn -Passembly package -->
@@ -2176,7 +2176,6 @@
       <properties>
         <skipTests>true</skipTests>
         <checkstyle.ant.skip>true</checkstyle.ant.skip>
-        <checkstyle.skip>true</checkstyle.skip>
         <pmd.skip>true</pmd.skip>
         <spotbugs.skip>true</spotbugs.skip>
         <xml.skip>true</xml.skip>
