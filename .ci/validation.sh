@@ -662,9 +662,9 @@ no-error-checkstyles-sevntu)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: "${CS_POM_VERSION}"
   mvn -e --no-transfer-progress clean install -Pno-validations
-  mvn -e --no-transfer-progress compile verify \
+  mvn -e --no-transfer-progress compile verify -Psevntu \
     -Dmaven.sevntu-checkstyle-check.checkstyle.version="${CS_POM_VERSION}" \
-    -Dmaven.test.skip=true -Dcheckstyle.ant.skip=true -Dpmd.skip=true -Dspotbugs.skip=true \
+    -Dmaven.test.skip=true -Dpmd.skip=true -Dspotbugs.skip=true \
     -Djacoco.skip=true -Dforbiddenapis.skip=true -Dxml.skip=true
   ;;
 
