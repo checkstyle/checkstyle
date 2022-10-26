@@ -457,8 +457,9 @@ public class PackageObjectFactoryTest {
 
         try (MockedStatic<ModuleReflectionUtil> utilities =
                      mockStatic(ModuleReflectionUtil.class)) {
-            utilities.when(() -> ModuleReflectionUtil.getCheckstyleModules(packages, classLoader))
-                    .thenThrow(new IOException("mock exception"));
+            utilities.when(() -> {
+                ModuleReflectionUtil.getValidCheckstyleClasses(packages, classLoader);
+            }).thenThrow(new IOException("mock exception"));
 
             final String internalFieldName = "thirdPartyNameToFullModuleNames";
             final Map<String, String> nullMap = TestUtil.getInternalState(objectFactory,
