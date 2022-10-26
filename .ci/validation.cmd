@@ -9,6 +9,12 @@
 SET OPTION=%1
 
 if "%OPTION%" == "sevntu" (
+  call mvn -e --no-transfer-progress verify -Pno-validations,sevntu^
+    || goto :ERROR
+  goto :END_CASE
+)
+
+if "%OPTION%" == "verify_with_checkstyle" (
   call mvn -e --no-transfer-progress verify -DskipTests -DskipITs -Dpmd.skip=true^
     -Dspotbugs.skip=true -Djacoco.skip=true -Dxml.skip=true^
     || goto :ERROR
