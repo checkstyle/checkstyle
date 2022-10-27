@@ -195,7 +195,7 @@ public class VerboseListener
         To incorporate a custom listener in the set of listeners for a
         <code>Checker</code>, include a module element for
         the listener in the <a
-        href="config.html#AuditListeners">configuration file</a>. For
+        href="config.html#Audit_Listeners">configuration file</a>. For
         example, to configure a <code>Checker</code> so
         that it uses custom listener
         <a href="https://github.com/checkstyle/contribution/blob/master/examples/listeners/com/mycompany/listeners/VerboseListener.java">
