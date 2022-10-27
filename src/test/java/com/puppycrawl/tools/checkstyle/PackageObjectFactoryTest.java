@@ -441,7 +441,7 @@ public class PackageObjectFactoryTest {
      * to initialize private field {@code PackageObjectFactory.thirdPartyNameToFullModuleNames}.
      * Since the method and the field both are private, the {@link TestUtil} is required to ensure
      * that the field is changed. Also, the expected exception should be thrown from the static
-     * method {@link ModuleReflectionUtil#getCheckstyleModules}, so {@link Mockito#mockStatic}
+     * method {@link ModuleReflectionUtil#getValidCheckstyleClasses}, so {@link Mockito#mockStatic}
      * is required to mock this exception.
      *
      * @throws Exception when the code tested throws an exception
@@ -457,8 +457,9 @@ public class PackageObjectFactoryTest {
 
         try (MockedStatic<ModuleReflectionUtil> utilities =
                      mockStatic(ModuleReflectionUtil.class)) {
-            utilities.when(() -> ModuleReflectionUtil.getCheckstyleModules(packages, classLoader))
-                    .thenThrow(new IOException("mock exception"));
+            utilities.when(() -> {
+                ModuleReflectionUtil.getValidCheckstyleClasses(packages, classLoader);
+            }).thenThrow(new IOException("mock exception"));
 
             final String internalFieldName = "thirdPartyNameToFullModuleNames";
             final Map<String, String> nullMap = TestUtil.getInternalState(objectFactory,
