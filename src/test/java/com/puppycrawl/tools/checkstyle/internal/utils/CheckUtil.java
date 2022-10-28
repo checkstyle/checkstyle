@@ -181,7 +181,7 @@ public final class CheckUtil {
         final ClassPath classPath = ClassPath.from(loader);
         return classPath.getTopLevelClassesRecursive(packageName).stream()
                 .map(ClassPath.ClassInfo::load)
-                .filter(ModuleReflectionUtil::isCheckstyleModule)
+                .filter(ModuleReflectionUtil::isValidCheckstyleClass)
                 .filter(CheckUtil::isFromAllowedPackages)
                 .collect(Collectors.toSet());
     }
