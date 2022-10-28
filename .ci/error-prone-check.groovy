@@ -2,6 +2,7 @@ import groovy.transform.EqualsAndHashCode
 import groovy.transform.Field
 import groovy.transform.Immutable
 import groovy.xml.XmlUtil
+import groovy.xml.XmlUtil
 
 import java.util.regex.Matcher
 import java.util.regex.Pattern
