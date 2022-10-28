@@ -11,6 +11,7 @@ cache:
 addons:
   apt:
     packages:
+      - groovy
       - xsltproc
       - xmlstarlet
 
@@ -43,6 +44,12 @@ jobs:
         - USE_MAVEN_REPO="true"
         - CMD="./.ci/travis.sh jacoco"
 
+    - jdk: openjdk11
+      env:
+        - DESC="codenarc analysis"
+        - USE_MAVEN_REPO="true"
+        - CMD="./.ci/codenarc.sh"
+
     # Ensure that all modules are used in no exception configs
     - env:
         - DESC="ensure that all modules are used in no exception configs"
@@ -53,11 +60,13 @@ jobs:
 script:
   # manually set JAVA_HOME to overcome issue with travis ci noted at
   # https://github.com/checkstyle/checkstyle/pull/11699#issue-1261272652
-#  - JAVA_HOME='/usr/lib/jvm/adoptopenjdk-11-hotspot-ppc64el'
+  - JAVA_HOME='/usr/lib/jvm/adoptopenjdk-11-hotspot-ppc64el'
+  - groovy --version
   - ./.ci/travis.sh init-m2-repo
   - ./.ci/travis.sh run-command "$CMD"
 #  - ./.ci/travis.sh remove-custom-mvn
 #  - ./.ci/travis.sh remove-adoptium-jdk
+  - ./.ci/codenarc.sh
   - ./.ci/validation.sh git-diff
   - ./.ci/travis.sh ci-temp-check
 
