@@ -11,6 +11,7 @@ cache:
 addons:
   apt:
     packages:
+      - groovy
       - xsltproc
       - xmlstarlet
 
@@ -42,6 +43,11 @@ jobs:
         - DESC="codecov"
         - USE_MAVEN_REPO="true"
         - CMD="./.ci/travis.sh jacoco"
+
+    - jdk: openjdk11
+      env:
+        - DESC="codenarc analysis"
+        - CMD="./.ci/codenarc.sh"
 
     # Ensure that all modules are used in no exception configs
     - env:
