@@ -11,6 +11,7 @@ cache:
 addons:
   apt:
     packages:
+      - groovy
       - xsltproc
       - xmlstarlet
 
@@ -43,12 +44,25 @@ jobs:
         - USE_MAVEN_REPO="true"
         - CMD="./.ci/travis.sh jacoco"
 
+    - jdk: openjdk11
+      env:
+        - DESC="codenarc analysis"
+        - CMD="./.ci/codenarc.sh"
+
     # Ensure that all modules are used in no exception configs
     - env:
         - DESC="ensure that all modules are used in no exception configs"
         - CMD1="export PULL_REQUEST=$TRAVIS_PULL_REQUEST"
         - CMD2="./.ci/validation.sh verify-no-exception-configs"
         - CMD="$CMD1 && $CMD2"
+
+before_script:
+  - |
+    if [[ $TRAVIS_CPU_ARCH == 'ppc64le' ]]; then
+        export JAVA_HOME=/usr/lib/jvm/adoptopenjdk-11-hotspot-ppc64el
+        export PATH=$JAVA_HOME/bin:$PATH
+    fi
+  - groovy --version
 
 script:
   # manually set JAVA_HOME to overcome issue with travis ci noted at
