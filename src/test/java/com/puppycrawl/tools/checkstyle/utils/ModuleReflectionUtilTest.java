@@ -51,31 +51,6 @@ public class ModuleReflectionUtilTest {
     }
 
     @Test
-    public void testIsCheckstyleModule() {
-        assertWithMessage("Should return true when checkstyle module is passed")
-                .that(ModuleReflectionUtil.isCheckstyleModule(CheckClass.class))
-                .isTrue();
-        assertWithMessage("Should return true when checkstyle module is passed")
-                .that(ModuleReflectionUtil.isCheckstyleModule(FileSetModuleClass.class))
-                .isTrue();
-        assertWithMessage("Should return true when checkstyle module is passed")
-                .that(ModuleReflectionUtil.isCheckstyleModule(FilterClass.class))
-                .isTrue();
-        assertWithMessage("Should return true when checkstyle module is passed")
-                .that(ModuleReflectionUtil.isCheckstyleModule(TreeWalkerFilterClass.class))
-                .isTrue();
-        assertWithMessage("Should return true when checkstyle module is passed")
-                .that(ModuleReflectionUtil.isCheckstyleModule(FileFilterModuleClass.class))
-                .isTrue();
-        assertWithMessage("Should return true when checkstyle module is passed")
-                .that(ModuleReflectionUtil.isCheckstyleModule(AuditListenerClass.class))
-                .isTrue();
-        assertWithMessage("Should return true when checkstyle module is passed")
-                .that(ModuleReflectionUtil.isCheckstyleModule(RootModuleClass.class))
-                .isTrue();
-    }
-
-    @Test
     public void testIsValidCheckstyleClass() {
         assertWithMessage("Should return true when valid checkstyle class is passed")
                 .that(ModuleReflectionUtil.isValidCheckstyleClass(ValidCheckstyleClass.class))

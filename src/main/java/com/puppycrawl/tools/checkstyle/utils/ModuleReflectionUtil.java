@@ -65,25 +65,6 @@ public final class ModuleReflectionUtil {
     }
 
     /**
-     * Checks whether a class may be considered as a checkstyle module. Checkstyle's modules are
-     * non-abstract classes, which are either checkstyle's checks, file sets, filters, file filters,
-     * {@code TreeWalker} filters, audit listener, or root module.
-     *
-     * @param clazz class to check.
-     * @return true if the class may be considered as the checkstyle module.
-     */
-    public static boolean isCheckstyleModule(Class<?> clazz) {
-        return isValidCheckstyleClass(clazz)
-            && (isCheckstyleTreeWalkerCheck(clazz)
-                    || isFileSetModule(clazz)
-                    || isFilterModule(clazz)
-                    || isFileFilterModule(clazz)
-                    || isTreeWalkerFilterModule(clazz)
-                    || isAuditListener(clazz)
-                    || isRootModule(clazz));
-    }
-
-    /**
      * Checks whether a class extends 'AutomaticBean', is non-abstract, and has a default
      * constructor.
      *
