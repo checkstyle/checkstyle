@@ -11,6 +11,7 @@ cache:
 addons:
   apt:
     packages:
+      - groovy
       - xsltproc
       - xmlstarlet
 
@@ -50,6 +51,9 @@ jobs:
         - CMD2="./.ci/validation.sh verify-no-exception-configs"
         - CMD="$CMD1 && $CMD2"
 
+before_script:
+  - groovy --version
+
 script:
   # manually set JAVA_HOME to overcome issue with travis ci noted at
   # https://github.com/checkstyle/checkstyle/pull/11699#issue-1261272652
@@ -58,6 +62,7 @@ script:
   - ./.ci/travis.sh run-command "$CMD"
 #  - ./.ci/travis.sh remove-custom-mvn
 #  - ./.ci/travis.sh remove-adoptium-jdk
+  - ./.ci/codenarc.sh
   - ./.ci/validation.sh git-diff
   - ./.ci/travis.sh ci-temp-check
 
