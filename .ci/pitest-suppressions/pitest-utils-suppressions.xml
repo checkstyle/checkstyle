@@ -640,69 +640,6 @@
   </mutation>
 
   <mutation unstable="false">
-    <sourceFile>ModuleReflectionUtil.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.utils.ModuleReflectionUtil</mutatedClass>
-    <mutatedMethod>isCheckstyleModule</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
-    <description>removed conditional - replaced equality check with false</description>
-    <lineContent>&amp;&amp; (isCheckstyleTreeWalkerCheck(clazz)</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>ModuleReflectionUtil.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.utils.ModuleReflectionUtil</mutatedClass>
-    <mutatedMethod>isCheckstyleModule</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
-    <description>removed conditional - replaced equality check with false</description>
-    <lineContent>|| isAuditListener(clazz)</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>ModuleReflectionUtil.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.utils.ModuleReflectionUtil</mutatedClass>
-    <mutatedMethod>isCheckstyleModule</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
-    <description>removed conditional - replaced equality check with false</description>
-    <lineContent>|| isFileFilterModule(clazz)</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>ModuleReflectionUtil.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.utils.ModuleReflectionUtil</mutatedClass>
-    <mutatedMethod>isCheckstyleModule</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
-    <description>removed conditional - replaced equality check with false</description>
-    <lineContent>|| isFileSetModule(clazz)</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>ModuleReflectionUtil.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.utils.ModuleReflectionUtil</mutatedClass>
-    <mutatedMethod>isCheckstyleModule</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
-    <description>removed conditional - replaced equality check with false</description>
-    <lineContent>|| isFilterModule(clazz)</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>ModuleReflectionUtil.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.utils.ModuleReflectionUtil</mutatedClass>
-    <mutatedMethod>isCheckstyleModule</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
-    <description>removed conditional - replaced equality check with true</description>
-    <lineContent>|| isRootModule(clazz));</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>ModuleReflectionUtil.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.utils.ModuleReflectionUtil</mutatedClass>
-    <mutatedMethod>isCheckstyleModule</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
-    <description>removed conditional - replaced equality check with false</description>
-    <lineContent>|| isTreeWalkerFilterModule(clazz)</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
     <sourceFile>ScopeUtil.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.utils.ScopeUtil</mutatedClass>
     <mutatedMethod>getDeclaredScopeFromMods</mutatedMethod>
