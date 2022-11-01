@@ -831,16 +831,62 @@
 
     <section name="SeverityLevel">
       <p>
-        This type represents the severity level of a check violation. The
-        valid options are:
+        This type represents the severity level of a module violation.
+        The following table describes the valid options:
       </p>
 
-      <ul>
-        <li><code>ignore</code></li>
-        <li><code>info</code></li>
-        <li><code>warning</code></li>
-        <li><code>error</code></li>
-      </ul>
+      <div class="wrapper">
+        <table>
+          <tr>
+            <td>Option</td>
+            <td>Definition</td>
+          </tr>
+
+          <tr>
+            <td><code>ignore</code></td>
+            <td>
+              If a violation occurs, modules with this severity are ignored as if they never
+              occurred.
+              Checkstyle Audit Listeners will not display the violation and will not fail the
+              execution.
+              This severity can be used to disable a module in the configuration. However,
+              depending on the setting of
+              <a href="cmdline.html#Command_line_usage"><code>executeIgnoredModules</code></a>
+              when executed, the module may still run and if an exception occurs, the exception
+              will turn into an error and act as one.
+            </td>
+          </tr>
+
+          <tr>
+            <td><code>info</code></td>
+            <td>
+              If a violation occurs, modules with this severity are displayed as informational.
+              Checkstyle will display the violation, but will not fail the execution.
+            </td>
+          </tr>
+
+          <tr>
+            <td><code>warning</code></td>
+            <td>
+              This severity behaves exactly the same as <code>info</code> in Checkstyle.
+              It can be used to let user bring more attention to reviewers of such violations.
+              If executing Checkstyle through Ant,
+              <a href="anttask.html#Parameters"><code>maxWarnings</code></a> can be used to pass
+              the execution until a certain number of warnings are found.
+            </td>
+          </tr>
+
+          <tr>
+            <td><code>error</code></td>
+            <td>
+              If a violation occurs, modules with this severity are displayed as error and should
+              be considered as a failure.
+              Depending on how Checkstyle is executed, there may be some additional settings which
+              can be set to not fail the execution or until a certain number of errors occur.
+            </td>
+          </tr>
+        </table>
+      </div>
     </section>
 
     <section name="String">
