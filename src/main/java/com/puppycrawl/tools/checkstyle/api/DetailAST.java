@@ -97,8 +97,6 @@ public interface DetailAST {
      *      Usage of this method is no longer accepted. We encourage
      *      traversal of subtrees to be written per the needs of each check
      *      to avoid unintended side effects.
-     * @noinspection DeprecatedIsStillUsed
-     * @noinspectionreason DeprecatedIsStillUsed - Method used in unit testing
      */
     @Deprecated(since = "8.43")
     boolean branchContains(int type);
