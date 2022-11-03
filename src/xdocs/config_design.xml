@@ -181,6 +181,40 @@ public abstract class Plant {
         </source>
 
         <p>
+          Example:
+        </p>
+
+        <source>
+public class A {
+
+    @BeforeClass
+    public int beforeAllTests() {} // OK, @BeforeClass is ignored by default
+
+    @AfterClass
+    public int afterAllTests() {}  // OK, @AfterClass is ignored by default
+
+    @Before
+    public int beforeEachTest() {}  // OK, @Before is ignored by default
+
+    @After
+    public int afterEachTest() {}  // OK, @After is ignored by default
+
+    @Test
+    public int testSomething() {}  // OK, @Test is ignored by default
+
+    @Override
+    public int someOldMethod() {}  // Violation, @Override is not ignored by default
+
+    /**
+            This method performs some task
+    */
+    public int someTask() {} // OK, default requiredJavadocPhrase is in comment
+
+    public int someTask2() {} // Violation
+}
+        </source>
+
+        <p>
           To configure the check to allow methods which have @Override and @Test annotations to be
           designed for extension.
         </p>
@@ -191,87 +225,132 @@ public abstract class Plant {
 &lt;/module&gt;
         </source>
 
+        <p>
+            Example:
+        </p>
+
         <source>
 public class A {
-  @Override
-  public int foo() {
-    return 2;
-  }
 
-  public int foo2() {return 8;} // violation
-}
+    @BeforeClass
+    public int beforeAllTests() {} // Violation
 
-public class B {
-  /**
-   * This implementation ...
-     @return some int value.
-   */
-  public int foo() {
-    return 1;
-  }
+    @AfterClass
+    public int afterAllTests() {} // Violation
 
-  public int foo3() {return 3;} // violation
-}
+    @Before
+    public int beforeEachTest() {} // Violation
 
-public class FooTest {
-  @Test
-  public void testFoo() {
-    final B b = new A();
-    assertEquals(2, b.foo());
-  }
+    @After
+    public int afterEachTest() {} // Violation
 
-  public int foo4() {return 4;} // violation
+    @Test
+    public int testSomething() {} // OK
+
+    @Override
+    public int someOldMethod() {} // OK
+
+    /**
+    This method performs some task
+    */
+    public int someTask() {} // OK, default requiredJavadocPhrase is in comment
+
+    public int someTask2() {} // Violation
 }
         </source>
         <p>
           To configure the check to allow methods which contain a specified comment text
-          pattern in their javadoc to be designed for extension.
+          pattern in their javadoc
         </p>
+
         <source>
 &lt;module name=&quot;DesignForExtension&quot;&gt;
   &lt;property name=&quot;requiredJavadocPhrase&quot; value=&quot;This implementation&quot;/&gt;
 &lt;/module&gt;
         </source>
+
+        <p>
+            Example:
+        </p>
+
         <source>
 public class A {
-      /&#42;&#42;
-       &#42; This implementation ...
-       &#42;/
-      public int foo() {return 2;} // ok, required javadoc phrase in comment
 
-      /&#42;&#42;
-       &#42; Do not extend ...
-       &#42;/
-      public int foo2() {return 8;} // violation, required javadoc phrase not in comment
+    @BeforeClass
+    public int beforeAllTests() {} // OK, @BeforeClass is ignored by default
 
-  public int foo3() {return 3;} // violation, required javadoc phrase not in comment
+    @AfterClass
+    public int afterAllTests() {}  // OK, @AfterClass is ignored by default
+
+    @Before
+    public int beforeEachTest() {}  // OK, @Before is ignored by default
+
+    @After
+    public int afterEachTest() {}  // OK, @After is ignored by default
+
+    @Test
+    public int testSomething() {}  // OK, @Test is ignored by default
+
+    @Override
+    public int someOldMethod() {}  // Violation, @Override is not ignored by default
+
+    /**
+            This method performs some task
+    */
+    public int someTask() {} // Violation
+
+    /** This implementation ....
+    */
+    public int someTask2() {} // OK
 }
         </source>
+
         <p>
           To configure the check to allow methods which contain a specified comment text
           pattern in their javadoc which can span multiple lines
-          to be designed for extension.
         </p>
+
         <source>
 &lt;module name=&quot;DesignForExtension&quot;&gt;
   &lt;property name=&quot;requiredJavadocPhrase&quot;
           value=&quot;This[\s\S]*implementation&quot;/&gt;
 &lt;/module&gt;
         </source>
+
+        <p>
+            Example:
+        </p>
+
         <source>
 public class A {
-    /&#42;&#42;
-     &#42; This
-     &#42; implementation ...
-     &#42;/
-    public int foo() {return 2;} // ok, required javadoc phrase in comment
 
-    /&#42;&#42;
-     &#42; Do not extend ...
-     &#42;/
-    public int foo2() {return 8;} // violation, required javadoc phrase not in comment
+    @BeforeClass
+    public int beforeAllTests() {} // OK, @BeforeClass is ignored by default
 
-    public int foo3() {return 3;} // violation, required javadoc phrase not in comment
+    @AfterClass
+    public int afterAllTests() {}  // OK, @AfterClass is ignored by default
+
+    @Before
+    public int beforeEachTest() {}  // OK, @Before is ignored by default
+
+    @After
+    public int afterEachTest() {}  // OK, @After is ignored by default
+
+    @Test
+    public int testSomething() {}  // OK, @Test is ignored by default
+
+    @Override
+    public int someOldMethod() {}  // Violation, @Override is not ignored by default
+
+    /**
+            This method performs some task
+    */
+    public int someTask() {} // Violation
+
+    /**
+            This cool implementation
+    */
+    public int someTask2() {} // OK
 }
         </source>
       </subsection>
