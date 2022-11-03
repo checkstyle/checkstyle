@@ -226,6 +226,7 @@ jobs:
             ./.ci/idea_inspection.sh
           no_output_timeout: 25m
           working_directory: ~/project
+
       - store_artifacts:
           path: /home/circleci/project/target/inspection-results
 
