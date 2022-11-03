@@ -97,8 +97,12 @@ public interface DetailAST {
      *      Usage of this method is no longer accepted. We encourage
      *      traversal of subtrees to be written per the needs of each check
      *      to avoid unintended side effects.
-     * @noinspection DeprecatedIsStillUsed
+     * @noinspection DeprecatedIsStillUsed, RedundantSuppression
      * @noinspectionreason DeprecatedIsStillUsed - Method used in unit testing
+     * @noinspectionreason RedundantSuppression - Inspections shows false positive for
+     *      redundant suppression, see
+     *      <a href="https://github.com/checkstyle/checkstyle/issues/12359">here</a>
+     *      for more details.
      */
     @Deprecated(since = "8.43")
     boolean branchContains(int type);
