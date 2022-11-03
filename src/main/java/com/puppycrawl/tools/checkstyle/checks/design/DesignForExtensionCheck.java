@@ -176,49 +176,86 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * &lt;module name=&quot;DesignForExtension&quot;/&gt;
  * </pre>
  * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * public class A {
+ *
+ *     &#64;BeforeClass
+ *     public int beforeAllTests() {} // OK, @BeforeClass is ignored by default
+ *
+ *     &#64;AfterClass
+ *     public int afterAllTests() {}  // OK, @AfterClass is ignored by default
+ *
+ *     &#64;Before
+ *     public int beforeEachTest() {}  // OK, @Before is ignored by default
+ *
+ *     &#64;After
+ *     public int afterEachTest() {}  // OK, @After is ignored by default
+ *
+ *     &#64;Test
+ *     public int testSomething() {}  // OK, @Test is ignored by default
+ *
+ *     &#64;Override
+ *     public int someOldMethod() {}  // Violation, @Override is not ignored by default
+ *
+ *     &#47;**
+ *  This method performs some task
+ *     *&#47;
+ *     public int someTask() {} // OK, default requiredJavadocPhrase is in comment
+ *
+ *     &#47;**
+ * This implementation ....
+ *     *&#47;
+ *     public int someTask2() {} // Violation
+ * }
+ * </pre>
+ * <p>
  * To configure the check to allow methods which have @Override and @Test annotations
- * to be designed for extension.
  * </p>
  * <pre>
  * &lt;module name=&quot;DesignForExtension&quot;&gt;
  *   &lt;property name=&quot;ignoredAnnotations&quot; value=&quot;Override, Test&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>
+ * Example:
+ * </p>
  * <pre>
  * public class A {
- *   &#64;Override
- *   public int foo() {
- *     return 2;
- *   }
  *
- *   public int foo2() {return 8;} // violation
- * }
+ *     &#64;BeforeClass
+ *     public int beforeAllTests() {} // Violation
  *
- * public class B {
- *   &#47;**
- *    * This implementation ...
- *      &#64;return some int value.
- *    *&#47;
- *   public int foo() {
- *     return 1;
- *   }
+ *     &#64;AfterClass
+ *     public int afterAllTests() {} // Violation
  *
- *   public int foo3() {return 3;} // violation
- * }
+ *     &#64;Before
+ *     public int beforeEachTest() {} // Violation
  *
- * public class FooTest {
- *   &#64;Test
- *   public void testFoo() {
- *     final B b = new A();
- *     assertEquals(2, b.foo());
- *   }
+ *     &#64;After
+ *     public int afterEachTest() {} // Violation
  *
- *   public int foo4() {return 4;} // violation
+ *     &#64;Test
+ *     public int testSomething() {}  // OK
+ *
+ *     &#64;Override
+ *     public int someOldMethod() {}  // OK
+ *
+ *     &#47;**
+ * This method performs some task
+ *     *&#47;
+ *     public int someTask() {} // OK, default requiredJavadocPhrase is in comment
+ *
+ *     &#47;**
+ * This implementation ....
+ *     *&#47;
+ *     public int someTask2() {} // Violation
  * }
  * </pre>
  * <p>
  * To configure the check to allow methods which contain a specified comment text
- * pattern in their javadoc to be designed for extension.
+ * pattern in their javad
  * </p>
  * <pre>
  * &lt;module name=&quot;DesignForExtension&quot;&gt;
@@ -226,25 +263,44 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *     value=&quot;This implementation&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>
+ * Example:
+ * </p>
  * <pre>
  * public class A {
- *   /&#42;&#42;
- *   &#42; This implementation ...
- *   &#42;/
- *   public int foo() {return 2;} // ok, required javadoc phrase in comment
  *
- *   /&#42;&#42;
- *   &#42; Do not extend ...
- *   &#42;/
- *   public int foo2() {return 8;} // violation, required javadoc phrase not in comment
+ *     &#64;BeforeClass
+ *     public int beforeAllTests() {} // OK, @BeforeClass is ignored by default
  *
- *   public int foo3() {return 3;} // violation, required javadoc phrase not in comment
+ *     &#64;AfterClass
+ *     public int afterAllTests() {}  // OK, @AfterClass is ignored by default
+ *
+ *     &#64;Before
+ *     public int beforeEachTest() {}  // OK, @Before is ignored by default
+ *
+ *     &#64;After
+ *     public int afterEachTest() {}  // OK, @After is ignored by default
+ *
+ *     &#64;Test
+ *     public int testSomething() {}  // OK, @Test is ignored by default
+ *
+ *     &#64;Override
+ *     public int someOldMethod() {}  // Violation, @Override is not ignored by default
+ *
+ *     &#47;**
+ *  This method performs some task
+ *     *&#47;
+ *     public int someTask() {} // Violation
+ *
+ *     &#47;**
+ * This implementation ....
+ *     *&#47;
+ *     public int someTask2() {} // OK
  * }
  * </pre>
  * <p>
  * To configure the check to allow methods which contain a specified comment text
  * pattern in their javadoc which can span multiple lines
- * to be designed for extension.
  * </p>
  * <pre>
  * &lt;module name=&quot;DesignForExtension&quot;&gt;
@@ -252,20 +308,39 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *     value=&quot;This[\s\S]*implementation&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>
+ * Example:
+ * </p>
  * <pre>
  * public class A {
- *   /&#42;&#42;
- *   &#42; This
- *   &#42; implementation ...
- *   &#42;/
- *   public int foo() {return 2;} // ok, required javadoc phrase in comment
  *
- *   /&#42;&#42;
- *   &#42; Do not extend ...
- *   &#42;/
- *   public int foo2() {return 8;} // violation, required javadoc phrase not in comment
+ *     &#64;BeforeClass
+ *     public int beforeAllTests() {} // OK, @BeforeClass is ignored by default
  *
- *   public int foo3() {return 3;} // violation, required javadoc phrase not in comment
+ *     &#64;AfterClass
+ *     public int afterAllTests() {}  // OK, @AfterClass is ignored by default
+ *
+ *     &#64;Before
+ *     public int beforeEachTest() {}  // OK, @Before is ignored by default
+ *
+ *     &#64;After
+ *     public int afterEachTest() {}  // OK, @After is ignored by default
+ *
+ *     &#64;Test
+ *     public int testSomething() {}  // OK, @Test is ignored by default
+ *
+ *     &#64;Override
+ *     public int someOldMethod() {}  // Violation, @Override is not ignored by default
+ *
+ *     &#47;**
+ * This method performs some task
+ *     *&#47;
+ *     public int someTask() {} // Violation
+ *
+ *     &#47;**
+ * This cool implementation
+ *     *&#47;
+ *     public int someTask2() {} // OK
  * }
  * </pre>
  * <p>
