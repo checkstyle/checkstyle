@@ -12,28 +12,6 @@
     <!-- placeholder for a new section -->
     <section name="Release 10.4">
       <div class="releaseDate">30.10.2022</div>
-      <p>Breaking backward compatibility:</p>
-        <ul>
-          <li>
-            Checker.localeLanguage property work strange with system property user.language.
-            Author: rnveach
-            <a href="https://github.com/checkstyle/checkstyle/issues/12101">#12101</a>
-          </li>
-          <li>
-            Remove custom cache in Violation.java. It was extra cache for
-            resource bundle cache for messages..
-            Author: rnveach
-            <a href="https://github.com/checkstyle/checkstyle/issues/12102">#12102</a>
-          </li>
-        </ul>
-      <p>Bug fixes:</p>
-        <ul>
-          <li>
-            False Positive: UnusedLocalVariableCheck.
-            Author: Kirill Zuev
-            <a href="https://github.com/checkstyle/checkstyle/issues/11920">#11920</a>
-          </li>
-        </ul>
       <p>Notes:</p>
         <ul>
           <li>
