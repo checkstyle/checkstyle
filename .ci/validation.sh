@@ -330,15 +330,24 @@ verify-no-exception-configs)
     --no-clobber \
     https://raw.githubusercontent.com/checkstyle/contribution/master/checkstyle-tester/checks-only-javadoc-error.xml
   MODULES_WITH_EXTERNAL_FILES="Filter|ImportControl"
-  xmlstarlet sel --net --template -m .//module -v "@name" \
-    -n $working_dir/checks-nonjavadoc-error.xml -n $working_dir/checks-only-javadoc-error.xml \
-    | grep -vE $MODULES_WITH_EXTERNAL_FILES | grep -v "^$" \
-    | sort | uniq | sed "s/Check$//" > $working_dir/web.txt
-  xmlstarlet sel --net --template -m .//module -v "@name" -n config/checkstyle_checks.xml \
+  xmlstarlet fo -D \
+    -n $working_dir/checks-nonjavadoc-error.xml \
+    | xmlstarlet sel --net --template -m .//module -n -v "@name" \
+    | grep -vE $MODULES_WITH_EXTERNAL_FILES | grep -v "^$" > $working_dir/temp.txt
+  xmlstarlet fo -D \
+     -n $working_dir/checks-only-javadoc-error.xml \
+    | xmlstarlet sel --net --template -m .//module -n -v "@name" \
+    | grep -vE $MODULES_WITH_EXTERNAL_FILES | grep -v "^$" >> $working_dir/temp.txt
+  sort $working_dir/temp.txt | uniq | sed "s/Check$//" > $working_dir/web.txt
+
+  xmlstarlet fo -D -n config/checkstyle_checks.xml \
+    | xmlstarlet sel --net --template -m .//module -n -v "@name" \
     | grep -vE $MODULES_WITH_EXTERNAL_FILES | grep -v "^$" \
     | sort | uniq | sed "s/Check$//" > $working_dir/file.txt
+
   DIFF_TEXT=$(diff -u $working_dir/web.txt $working_dir/file.txt | cat)
   fail=0
+
   if [[ $DIFF_TEXT != "" ]]; then
     echo "Diff is detected."
     if [[ $PULL_REQUEST =~ ^([0-9]+)$ ]]; then
@@ -366,6 +375,8 @@ verify-no-exception-configs)
       echo 'Please add new Check to one of such files to let Check participate in auto testing'
       fail=1;
     fi
+  else
+    echo "No Diff detected."
   fi
   removeFolderWithProtectedFiles .ci-temp/verify-no-exception-configs
   sleep 5
@@ -672,7 +683,7 @@ no-error-sevntu-checks)
   echo "Checkout target sources ..."
   checkout_from https://github.com/sevntu-checkstyle/sevntu.checkstyle.git
   cd .ci-temp/sevntu.checkstyle/sevntu-checks
-  mvn -e --no-transfer-progress -Pno-validations verify  -Dcheckstyle.skip=false \
+  mvn -e --no-transfer-progress -Pno-validations verify  -Dcheckstyle.ant.skip=false \
      -Dcheckstyle.version="${CS_POM_VERSION}" \
      -Dcheckstyle.configLocation=../../../config/checkstyle_checks.xml
   cd ../../
@@ -809,8 +820,7 @@ no-exception-struts)
   sed -i'' 's/#apache-struts/apache-struts/' projects-to-test-on.properties
   groovy ./diff.groovy --listOfProjects projects-to-test-on.properties \
       --patchConfig checks-nonjavadoc-error.xml  -p "$BRANCH" -r ../../..  \
-      --allowExcludes --mode single -xm "-Dcheckstyle.failsOnError=false \
-      -Dcheckstyle.version=${CS_POM_VERSION}"
+      --allowExcludes --mode single -xm "-Dcheckstyle.failsOnError=false"
   cd ../../
   removeFolderWithProtectedFiles contribution
   ;;
@@ -828,8 +838,7 @@ no-exception-checkstyle-sevntu)
   sed -i'' 's/#sevntu-checkstyle/sevntu-checkstyle/' projects-to-test-on.properties
   groovy ./diff.groovy --listOfProjects projects-to-test-on.properties \
       --patchConfig checks-nonjavadoc-error.xml  -p "$BRANCH" -r ../../..  \
-      --allowExcludes --mode single -xm "-Dcheckstyle.failsOnError=false \
-      -Dcheckstyle.version=${CS_POM_VERSION}"
+      --allowExcludes --mode single -xm "-Dcheckstyle.failsOnError=false"
   cd ../../
   removeFolderWithProtectedFiles contribution
   ;;
@@ -846,8 +855,7 @@ no-exception-checkstyle-sevntu-javadoc)
   sed -i'' 's/#sevntu-checkstyle/sevntu-checkstyle/' projects-to-test-on.properties
   groovy ./diff.groovy --listOfProjects projects-to-test-on.properties \
       --patchConfig checks-only-javadoc-error.xml  -p "$BRANCH" -r ../../..  \
-      --allowExcludes --mode single -xm "-Dcheckstyle.failsOnError=false \
-      -Dcheckstyle.version=${CS_POM_VERSION}"
+      --allowExcludes --mode single -xm "-Dcheckstyle.failsOnError=false"
   cd ../../
   removeFolderWithProtectedFiles contribution
   ;;
@@ -863,8 +871,7 @@ no-exception-guava)
   sed -i'' 's/#guava/guava/' projects-to-test-on.properties
   groovy ./diff.groovy --listOfProjects projects-to-test-on.properties \
       --patchConfig checks-nonjavadoc-error.xml  -p "$BRANCH" -r ../../..  \
-      --allowExcludes --mode single -xm "-Dcheckstyle.failsOnError=false \
-      -Dcheckstyle.version=${CS_POM_VERSION}"
+      --allowExcludes --mode single -xm "-Dcheckstyle.failsOnError=false"
   cd ../../
   removeFolderWithProtectedFiles contribution
   ;;
@@ -879,8 +886,7 @@ no-exception-hibernate-orm)
   sed -i.'' 's/#hibernate-orm/hibernate-orm/' projects-to-test-on.properties
   groovy ./diff.groovy --listOfProjects projects-to-test-on.properties \
       --patchConfig checks-nonjavadoc-error.xml  -p "$BRANCH" -r ../../..  \
-       --allowExcludes --mode single -xm "-Dcheckstyle.failsOnError=false \
-      -Dcheckstyle.version=${CS_POM_VERSION}"
+       --allowExcludes --mode single -xm "-Dcheckstyle.failsOnError=false"
   cd ../../
   removeFolderWithProtectedFiles contribution
   ;;
@@ -895,8 +901,7 @@ no-exception-spotbugs)
   sed -i.'' 's/#spotbugs/spotbugs/' projects-to-test-on.properties
   groovy ./diff.groovy --listOfProjects projects-to-test-on.properties \
       --patchConfig checks-nonjavadoc-error.xml  -p "$BRANCH" -r ../../..  \
-      --allowExcludes --mode single -xm "-Dcheckstyle.failsOnError=false \
-      -Dcheckstyle.version=${CS_POM_VERSION}"
+      --allowExcludes --mode single -xm "-Dcheckstyle.failsOnError=false"
   cd ../../
   removeFolderWithProtectedFiles contribution
   ;;
@@ -911,8 +916,7 @@ no-exception-spoon)
   sed -i.'' 's/#spoon/spoon/' projects-to-test-on.properties
   groovy ./diff.groovy --listOfProjects projects-to-test-on.properties \
       --patchConfig checks-nonjavadoc-error.xml  -p "$BRANCH" -r ../../..  \
-      --allowExcludes --mode single -xm "-Dcheckstyle.failsOnError=false \
-      -Dcheckstyle.version=${CS_POM_VERSION}"
+      --allowExcludes --mode single -xm "-Dcheckstyle.failsOnError=false"
   cd ../../
   removeFolderWithProtectedFiles contribution
   ;;
@@ -927,8 +931,7 @@ no-exception-spring-framework)
   sed -i.'' 's/#spring-framework/spring-framework/' projects-to-test-on.properties
   groovy ./diff.groovy --listOfProjects projects-to-test-on.properties \
       --patchConfig checks-nonjavadoc-error.xml  -p "$BRANCH" -r ../../..  \
-       --allowExcludes --mode single -xm "-Dcheckstyle.failsOnError=false \
-      -Dcheckstyle.version=${CS_POM_VERSION}"
+       --allowExcludes --mode single -xm "-Dcheckstyle.failsOnError=false"
   cd ../../
   removeFolderWithProtectedFiles contribution
   ;;
@@ -943,8 +946,7 @@ no-exception-hbase)
   sed -i.'' 's/#Hbase/Hbase/' projects-to-test-on.properties
   groovy ./diff.groovy --listOfProjects projects-to-test-on.properties \
       --patchConfig checks-nonjavadoc-error.xml  -p "$BRANCH" -r ../../..  \
-      --allowExcludes --mode single -xm "-Dcheckstyle.failsOnError=false \
-      -Dcheckstyle.version=${CS_POM_VERSION}"
+      --allowExcludes --mode single -xm "-Dcheckstyle.failsOnError=false"
   cd ../../
   removeFolderWithProtectedFiles contribution
   ;;
@@ -961,8 +963,7 @@ no-exception-Pmd-elasticsearch-lombok-ast)
   sed -i.'' 's/#lombok-ast/lombok-ast/' projects-to-test-on.properties
   groovy ./diff.groovy --listOfProjects projects-to-test-on.properties \
       --patchConfig checks-nonjavadoc-error.xml  -p "$BRANCH" -r ../../..  \
-      --allowExcludes --mode single -xm "-Dcheckstyle.failsOnError=false \
-      -Dcheckstyle.version=${CS_POM_VERSION}"
+      --allowExcludes --mode single -xm "-Dcheckstyle.failsOnError=false"
   cd ../../
   removeFolderWithProtectedFiles contribution
   ;;
@@ -982,8 +983,7 @@ no-exception-alot-of-projects)
   sed -i.'' 's/#android-launcher/android-launcher/' projects-to-test-on.properties
   groovy ./diff.groovy --listOfProjects projects-to-test-on.properties \
       --patchConfig checks-nonjavadoc-error.xml  -p "$BRANCH" -r ../../.. \
-      --allowExcludes --mode single -xm "-Dcheckstyle.failsOnError=false \
-      -Dcheckstyle.version=${CS_POM_VERSION}"
+      --allowExcludes --mode single -xm "-Dcheckstyle.failsOnError=false"
   cd ../../
   removeFolderWithProtectedFiles contribution
   ;;
@@ -999,7 +999,7 @@ no-warning-imports-guava)
   cd .ci-temp/contribution/checkstyle-tester
   groovy ./diff.groovy --listOfProjects $PROJECTS --patchConfig $CONFIG \
       --allowExcludes -p "$BRANCH" -r ../../.. \
-      --mode single -xm "-Dcheckstyle.failsOnError=false -Dcheckstyle.version=${CS_POM_VERSION}"
+      --mode single -xm "-Dcheckstyle.failsOnError=false"
   RESULT=$(grep -A 5 "&#160;Warning</td>" $REPORT | cat)
   cd ../../
   removeFolderWithProtectedFiles contribution
@@ -1024,7 +1024,7 @@ no-warning-imports-java-design-patterns)
   cd .ci-temp/contribution/checkstyle-tester
   groovy ./diff.groovy --listOfProjects $PROJECTS --patchConfig $CONFIG \
       --allowExcludes -p "$BRANCH" -r ../../..\
-      --mode single -xm "-Dcheckstyle.version=${CS_POM_VERSION}"
+      --mode single
   RESULT=$(grep -A 5 "&#160;Warning</td>" $REPORT | cat)
   cd ../../
   removeFolderWithProtectedFiles contribution
@@ -1046,6 +1046,34 @@ git-diff)
     git diff | head -n 300
     false
   fi
+  ;;
+
+git-no-merge-commits)
+  MERGE_COMMITS=$(git rev-list --merges master.."$PR_HEAD_SHA")
+
+  if [ -n "$MERGE_COMMITS" ]; then
+    for MERGE_COMMIT in $MERGE_COMMITS; do
+      echo "Merge commit found in PR: $MERGE_COMMIT"
+    done
+    echo "To learn how to clean up your commit history, visit:"
+    echo "https://checkstyle.org/beginning_development.html#Starting_Development"
+    exit 1
+  fi
+  ;;
+
+git-check-pull-number)
+  COMMITS="$(git log --format=format:%B master.."$PR_HEAD_SHA")"
+
+  echo "$COMMITS" | while read -r COMMIT ; do
+    if [[ $COMMIT =~ 'Pull #' ]]; then
+      PULL_MESSAGE_NUMBER=$(echo "$COMMIT" | cut -d'#' -f 2 | cut -d':' -f 1)
+      if [[ $PULL_MESSAGE_NUMBER != "$PR_NUMBER" ]]; then
+        echo "Referenced PR and this PR number do not match."
+        echo "Commit message should reference $PR_NUMBER"
+        exit 1
+      fi
+    fi
+  done
   ;;
 
 *)

@@ -60,14 +60,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Type is {@code java.lang.String[]}.
  * Default value is {@code ""}.
  * </li>
- * <li>
- * Property {@code tokens} - tokens to check
- * Type is {@code java.lang.String[]}.
- * Validation type is {@code tokenSet}.
- * Default value is:
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
- * CLASS_DEF</a>.
- * </li>
  * </ul>
  * <p>
  * To configure the check:
@@ -95,19 +87,12 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </pre>
  * <p>
  * To configure the check to find instantiations of {@code java.lang.Boolean}
- * and {@code java.lang.Integer}. NOTE: Even if property {@code tokens}
- * is completely removed from the following configuration, Checkstyle will produce
- * the same results for violation. This is because if property {@code tokens} is not
- * defined in the configuration, Checkstyle will supply it with list of default tokens
- * {@code CLASS_DEF, LITERAL_NEW, PACKAGE_DEF, IMPORT} for this check. The property is
- * defined in this example only to provide clarity:
+ * and {@code java.lang.Integer}:
  * </p>
  * <pre>
  * &lt;module name=&quot;IllegalInstantiation&quot;&gt;
  *   &lt;property name=&quot;classes&quot; value=&quot;java.lang.Boolean,
  *     java.lang.Integer&quot;/&gt;
- *   &lt;property name=&quot;tokens&quot; value=&quot;CLASS_DEF, LITERAL_NEW,
- *     PACKAGE_DEF, IMPORT&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
  * <p>Example:</p>
@@ -121,41 +106,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *
  *   public void myTest (boolean a, int b) {
  *     Boolean c = new Boolean(a); // OK
- *     java.lang.Boolean d = new java.lang.Boolean(a); // violation, instantiation of
- *                                                     // java.lang.Boolean should be avoided
- *
- *     Integer e = new Integer(b); // violation, instantiation of
- *                                 // java.lang.Integer should be avoided
- *     Integer f = Integer.valueOf(b); // OK
- *   }
- * }
- * </pre>
- * <p>
- * To configure the check to allow violations for local classes vs classes
- * defined in the check, for example {@code java.lang.Boolean}, property
- * {@code tokens} must be defined to not mention {@code CLASS_DEF}, so its
- * value should be {@code LITERAL_NEW, PACKAGE_DEF, IMPORT}:
- * </p>
- * <pre>
- * &lt;module name=&quot;IllegalInstantiation&quot;&gt;
- *   &lt;property name=&quot;classes&quot; value=&quot;java.lang.Boolean,
- *     java.lang.Integer&quot;/&gt;
- *   &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_NEW, PACKAGE_DEF,
- *     IMPORT&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>Example:</p>
- * <pre>
- * public class MyTest {
- *   public class Boolean {
- *     boolean a;
- *
- *     public Boolean (boolean a) { this.a = a; }
- *   }
- *
- *   public void myTest (boolean a, int b) {
- *     Boolean c = new Boolean(a); // violation, instantiation of
- *                                 // java.lang.Boolean should be avoided
  *     java.lang.Boolean d = new java.lang.Boolean(a); // violation, instantiation of
  *                                                     // java.lang.Boolean should be avoided
  *
@@ -227,17 +177,12 @@ public class IllegalInstantiationCheck
 
     @Override
     public int[] getDefaultTokens() {
-        return getAcceptableTokens();
+        return getRequiredTokens();
     }
 
     @Override
     public int[] getAcceptableTokens() {
-        return new int[] {
-            TokenTypes.IMPORT,
-            TokenTypes.LITERAL_NEW,
-            TokenTypes.PACKAGE_DEF,
-            TokenTypes.CLASS_DEF,
-        };
+        return getRequiredTokens();
     }
 
     @Override
@@ -246,6 +191,7 @@ public class IllegalInstantiationCheck
             TokenTypes.IMPORT,
             TokenTypes.LITERAL_NEW,
             TokenTypes.PACKAGE_DEF,
+            TokenTypes.CLASS_DEF,
         };
     }
 

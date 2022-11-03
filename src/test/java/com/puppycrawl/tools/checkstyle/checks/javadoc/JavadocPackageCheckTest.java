@@ -164,12 +164,12 @@ public class JavadocPackageCheckTest
         verify(createChecker(moduleConfig), new File[] {fileWithoutParent}, path, expected);
     }
 
-    private static class MockFile extends File {
+    private static final class MockFile extends File {
 
         /** A unique serial version identifier. */
         private static final long serialVersionUID = 7550724727327435271L;
 
-        /* package */ MockFile(String path) {
+        private MockFile(String path) {
             super(path);
         }
 

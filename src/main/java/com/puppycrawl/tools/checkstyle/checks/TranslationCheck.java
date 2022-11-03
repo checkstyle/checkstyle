@@ -45,6 +45,7 @@ import org.apache.commons.logging.LogFactory;
 
 import com.puppycrawl.tools.checkstyle.Definitions;
 import com.puppycrawl.tools.checkstyle.GlobalStatefulCheck;
+import com.puppycrawl.tools.checkstyle.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
@@ -318,11 +319,9 @@ public class TranslationCheck extends AbstractFileSetCheck {
     private void validateUserSpecifiedLanguageCodes(Set<String> languageCodes) {
         for (String code : languageCodes) {
             if (!isValidLanguageCode(code)) {
-                final Violation msg = new Violation(1, TRANSLATION_BUNDLE,
-                        WRONG_LANGUAGE_CODE_KEY, new Object[] {code}, getId(), getClass(), null);
-                final String exceptionMessage = String.format(Locale.ROOT,
-                        "%s [%s]", msg.getViolation(), TranslationCheck.class.getSimpleName());
-                throw new IllegalArgumentException(exceptionMessage);
+                final LocalizedMessage msg = new LocalizedMessage(TRANSLATION_BUNDLE,
+                        getClass(), WRONG_LANGUAGE_CODE_KEY, code);
+                throw new IllegalArgumentException(msg.getMessage());
             }
         }
     }
@@ -640,7 +639,7 @@ public class TranslationCheck extends AbstractFileSetCheck {
     }
 
     /** Class which represents a resource bundle. */
-    private static class ResourceBundle {
+    private static final class ResourceBundle {
 
         /** Bundle base name. */
         private final String baseName;
@@ -658,7 +657,7 @@ public class TranslationCheck extends AbstractFileSetCheck {
          * @param path common path of files which are included in the resource bundle.
          * @param extension common extension of files which are included in the resource bundle.
          */
-        /* package */ ResourceBundle(String baseName, String path, String extension) {
+        private ResourceBundle(String baseName, String path, String extension) {
             this.baseName = baseName;
             this.path = path;
             this.extension = extension;

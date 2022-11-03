@@ -183,4 +183,13 @@ public class OperatorWrapCheckTest
         }
     }
 
+    @Test
+    public void testTrimOptionProperty() throws Exception {
+        final String[] expected = {
+            "18:21: " + getCheckMessage(MSG_LINE_PREVIOUS, ":"),
+            "19:21: " + getCheckMessage(MSG_LINE_PREVIOUS, "?"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputOperatorWrapWithTrimOptionProperty.java"), expected);
+    }
 }

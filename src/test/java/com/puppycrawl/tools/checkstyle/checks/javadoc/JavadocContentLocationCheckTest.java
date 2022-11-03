@@ -99,4 +99,13 @@ public class JavadocContentLocationCheckTest extends AbstractModuleTestSupport {
                 getPath("InputJavadocContentLocationTrailingSpace.java"), expected);
     }
 
+    @Test
+    public void testTrimOptionProperty() throws Exception {
+        final String[] expected = {
+            "12:5: " + getCheckMessage(MSG_JAVADOC_CONTENT_FIRST_LINE),
+            "21:5: " + getCheckMessage(MSG_JAVADOC_CONTENT_FIRST_LINE),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocContentLocationTrimOptionProperty.java"), expected);
+    }
 }

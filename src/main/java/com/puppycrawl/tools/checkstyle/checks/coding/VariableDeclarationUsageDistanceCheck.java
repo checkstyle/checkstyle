@@ -809,18 +809,8 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
      */
     private static DetailAST getFirstNodeInsideSwitchBlock(
             DetailAST block, DetailAST variable) {
-        final DetailAST currentNode = getFirstCaseGroupOrSwitchRule(block);
         final List<DetailAST> variableUsageExpressions =
-                new ArrayList<>();
-
-        // Checking variable usage inside all CASE_GROUP and SWITCH_RULE ast's.
-        TokenUtil.forEachChild(block, currentNode.getType(), node -> {
-            final DetailAST lastNodeInCaseGroup =
-                node.getLastChild();
-            if (isChild(lastNodeInCaseGroup, variable)) {
-                variableUsageExpressions.add(lastNodeInCaseGroup);
-            }
-        });
+                getVariableUsageExpressionsInsideSwitchBlock(block, variable);
 
         // If variable usage exists in several related blocks, then
         // firstNodeInsideBlock = null, otherwise if variable usage exists
@@ -835,15 +825,32 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
     }
 
     /**
-     * Helper method for getFirstNodeInsideSwitchBlock to return the first CASE_GROUP or
-     * SWITCH_RULE ast.
+     * Helper method for getFirstNodeInsideSwitchBlock to return all variable
+     * usage expressions inside a given switch block.
      *
      * @param block the switch block to check.
-     * @return DetailAST of the first CASE_GROUP or SWITCH_RULE.
+     * @param variable variable which is checked for in switch block.
+     * @return List of usages or empty list if none are found.
      */
-    private static DetailAST getFirstCaseGroupOrSwitchRule(DetailAST block) {
-        return Optional.ofNullable(block.findFirstToken(TokenTypes.CASE_GROUP))
-            .orElseGet(() -> block.findFirstToken(TokenTypes.SWITCH_RULE));
+    private static List<DetailAST> getVariableUsageExpressionsInsideSwitchBlock(DetailAST block,
+                                                                            DetailAST variable) {
+        final Optional<DetailAST> firstToken = TokenUtil.findFirstTokenByPredicate(block, child -> {
+            return child.getType() == TokenTypes.SWITCH_RULE
+                    || child.getType() == TokenTypes.CASE_GROUP;
+        });
+
+        final List<DetailAST> variableUsageExpressions = new ArrayList<>();
+
+        firstToken.ifPresent(token -> {
+            TokenUtil.forEachChild(block, token.getType(), child -> {
+                final DetailAST lastNodeInCaseGroup = child.getLastChild();
+                if (isChild(lastNodeInCaseGroup, variable)) {
+                    variableUsageExpressions.add(lastNodeInCaseGroup);
+                }
+            });
+        });
+
+        return variableUsageExpressions;
     }
 
     /**

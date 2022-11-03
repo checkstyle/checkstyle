@@ -1927,25 +1927,6 @@ import java.util.stream.IntStream;
               <td><code>false</code></td>
               <td>7.1</td>
             </tr>
-
-            <tr>
-              <td>tokens</td>
-              <td>tokens to check</td>
-
-              <td>
-                subset of tokens
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STATIC_IMPORT">
-                    STATIC_IMPORT</a>
-                  .
-              </td>
-
-              <td>
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STATIC_IMPORT">
-                    STATIC_IMPORT</a>
-                  .
-              </td>
-              <td>3.2</td>
-            </tr>
           </table>
         </div>
       </subsection>
@@ -2214,13 +2195,17 @@ public class SomeClass { }
           the container of the static import, container is the type enclosing the static element
           being imported. When the result of the comparison is 0 (containers are equal),
           we compare the fully qualified import names.
+        </p>
+        <p>
           For e.g. this is what is considered to be container names for the given example:
-
-          import static HttpConstants.COLON     =&gt; HttpConstants
-          import static HttpHeaders.addHeader   =&gt; HttpHeaders
-          import static HttpHeaders.setHeader   =&gt; HttpHeaders
-          import static HttpHeaders.Names.DATE  =&gt; HttpHeaders.Names
-
+        </p>
+        <source>
+import static HttpConstants.COLON     =&gt; HttpConstants
+import static HttpHeaders.addHeader   =&gt; HttpHeaders
+import static HttpHeaders.setHeader   =&gt; HttpHeaders
+import static HttpHeaders.Names.DATE  =&gt; HttpHeaders.Names
+        </source>
+        <p>
           According to this logic, HttpHeaders.Names should come after HttpHeaders.
         </p>
         <p>
@@ -2507,19 +2492,28 @@ public class MyClass{ };
           </li>
         </ul>
         <p>
-          The main limitation of this check is handling the case where
-          an imported type has the same name as a declaration, such as a
-          member variable.
+          The main limitation of this check is handling the cases where:
         </p>
+        <ul>
+          <li>
+            An imported type has the same name as a declaration, such as a member variable.
+          </li>
+          <li>
+            There are two or more imports with the same name.
+          </li>
+        </ul>
         <p>
-          For example, in the following case the import <code>java.awt.Component</code>
-          will not be flagged as unused:
+          For example, in the following case all imports will not be flagged as unused:
         </p>
         <source>
 import java.awt.Component;
+import static AstTreeStringPrinter.printFileAst;
+import static DetailNodeTreeStringPrinter.printFileAst;
 class FooBar {
   private Object Component; // a bad practice in my opinion
-  ...
+  void method() {
+      printFileAst(file); // two imports with the same name
+  }
 }
         </source>
       </subsection>

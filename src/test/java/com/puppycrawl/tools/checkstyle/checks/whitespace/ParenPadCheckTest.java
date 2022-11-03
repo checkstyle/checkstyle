@@ -147,6 +147,13 @@ public class ParenPadCheckTest
     }
 
     @Test
+    public void testTrimOptionProperty() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputParenPadToCheckTrimFunctionInOptionProperty.java"), expected);
+    }
+
+    @Test
     public void testNospaceWithComplexInput() throws Exception {
         final String[] expected = {
             "55:26: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
@@ -504,6 +511,24 @@ public class ParenPadCheckTest
         };
         verifyWithInlineConfigParser(
                 getPath("InputParenPadCheckEmoji.java"), expected);
+    }
+
+    @Test
+    public void testParenPadForSynchronized() throws Exception {
+
+        final String[] expected = {
+            "18:29: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputParenPadForSynchronized.java"), expected);
+    }
+
+    @Test
+    public void testParenPadForEnum() throws Exception {
+
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputParenPadForEnum.java"), expected);
     }
 
     /**

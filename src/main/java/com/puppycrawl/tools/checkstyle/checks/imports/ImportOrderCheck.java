@@ -128,14 +128,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Type is {@code boolean}.
  * Default value is {@code false}.
  * </li>
- * <li>
- * Property {@code tokens} - tokens to check
- * Type is {@code java.lang.String[]}.
- * Validation type is {@code tokenSet}.
- * Default value is:
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STATIC_IMPORT">
- * STATIC_IMPORT</a>.
- * </li>
  * </ul>
  * <p>
  * To configure the check:
@@ -422,13 +414,17 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * the container of the static import, container is the type enclosing the static element
  * being imported. When the result of the comparison is 0 (containers are equal),
  * we compare the fully qualified import names.
+ * </p>
+ * <p>
  * For e.g. this is what is considered to be container names for the given example:
- *
+ * </p>
+ * <pre>
  * import static HttpConstants.COLON     =&gt; HttpConstants
  * import static HttpHeaders.addHeader   =&gt; HttpHeaders
  * import static HttpHeaders.setHeader   =&gt; HttpHeaders
  * import static HttpHeaders.Names.DATE  =&gt; HttpHeaders.Names
- *
+ * </pre>
+ * <p>
  * According to this logic, HttpHeaders.Names should come after HttpHeaders.
  * </p>
  * <p>
@@ -773,17 +769,17 @@ public class ImportOrderCheck
 
     @Override
     public int[] getDefaultTokens() {
-        return getAcceptableTokens();
+        return getRequiredTokens();
     }
 
     @Override
     public int[] getAcceptableTokens() {
-        return new int[] {TokenTypes.IMPORT, TokenTypes.STATIC_IMPORT};
+        return getRequiredTokens();
     }
 
     @Override
     public int[] getRequiredTokens() {
-        return new int[] {TokenTypes.IMPORT};
+        return new int[] {TokenTypes.IMPORT, TokenTypes.STATIC_IMPORT};
     }
 
     @Override
@@ -992,7 +988,6 @@ public class ImportOrderCheck
      * </pre>
      * <p>
      * According to this logic, HttpHeaders.Names would come after HttpHeaders.
-     *
      * For more details, see <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=473629#c3">
      * static imports comparison method</a> in Eclipse.
      * </p>

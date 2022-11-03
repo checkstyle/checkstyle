@@ -512,4 +512,13 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
         }
     }
 
+    @Test
+    public void testTrimOptionProperty() throws Exception {
+        final String[] expected = {
+            "13:12: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 12),
+            "20:16: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 16),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputLeftCurlyWithTrimOptionProperty.java"), expected);
+    }
 }

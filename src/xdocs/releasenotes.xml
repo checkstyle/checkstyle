@@ -10,6 +10,328 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 10.4">
+      <div class="releaseDate">30.10.2022</div>
+      <p>Breaking backward compatibility:</p>
+        <ul>
+          <li>
+            Checker.localeLanguage property work strange with system property user.language.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/12101">#12101</a>
+          </li>
+          <li>
+            Remove custom cache in Violation.java. It was extra cache for
+            resource bundle cache for messages..
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/12102">#12102</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            False Positive: UnusedLocalVariableCheck.
+            Author: Kirill Zuev
+            <a href="https://github.com/checkstyle/checkstyle/issues/11920">#11920</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Overview Section is quite confusing.
+            Author: NitishKumar06
+            <a href="https://github.com/checkstyle/checkstyle/issues/12228">#12228</a>
+          </li>
+          <li>
+            Move codenarc to non GitHub CI.
+            Author: Vyom-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/11747">#11747</a>
+          </li>
+          <li>
+            CI: validate PR number when commit is for PR.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/12319">#12319</a>
+          </li>
+          <li>
+            Create CI task to fail PR if merge commit exists.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/12259">#12259</a>
+          </li>
+          <li>
+            checker-framework.groovy depends too much on name of repo.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/12311">#12311</a>
+          </li>
+          <li>
+            Resolve Switch case mutation for ParenPad.
+            Author: Kevin222004
+            <a href="https://github.com/checkstyle/checkstyle/issues/12327">#12327</a>
+          </li>
+          <li>
+            Rename all &#39;Checker-Framework / checker-..&#39; actions .
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/12229">#12229</a>
+          </li>
+          <li>
+            Resolve Pitest suppression for ParenPad.
+            Author: Kevin222004
+            <a href="https://github.com/checkstyle/checkstyle/issues/12282">#12282</a>
+          </li>
+          <li>
+            Resolve Pitest suppression for Javadoc profile.
+            Author: Kevin222004
+            <a href="https://github.com/checkstyle/checkstyle/issues/12315">#12315</a>
+          </li>
+          <li>
+            Resolve Pitest suppression for misc profile.
+            Author: Kevin222004
+            <a href="https://github.com/checkstyle/checkstyle/issues/12314">#12314</a>
+          </li>
+          <li>
+            dependency: bump mockito-inline from 4.8.0 to 4.8.1.
+            Author: Vyom-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/12312">#12312</a>
+          </li>
+          <li>
+            UnusedImports doc: add limitation regarding same-name imports.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/12224">#12224</a>
+          </li>
+          <li>
+            Update doc for EmptyLineSeparator.
+            Author: shubh
+            <a href="https://github.com/checkstyle/checkstyle/issues/7619">#7619</a>
+          </li>
+          <li>
+            Update verify-no-exception-configs validation.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/9984">#9984</a>
+          </li>
+          <li>
+            Pitest/Checker: Drop New/Unnecessary Displays And Switch to Git Diff.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/12243">#12243</a>
+          </li>
+          <li>
+            Add example of custom jars to Ant Documentation.
+            Author: Navjyoth NA Thakur
+            <a href="https://github.com/checkstyle/checkstyle/issues/5389">#5389</a>
+          </li>
+          <li>
+            Resolve Pitest suppression for block profile.
+            Author: Kevin222004
+            <a href="https://github.com/checkstyle/checkstyle/issues/12296">#12296</a>
+          </li>
+          <li>
+            Resolve Pitest suppression for EmptyForInitializerPad-2.
+            Author: Kevin222004
+            <a href="https://github.com/checkstyle/checkstyle/issues/12275">#12275</a>
+          </li>
+          <li>
+            doc: Update SuppressionXpathSingleFilter example (related to #3095).
+            Author: Piotr Findeisen
+          </li>
+          <li>
+            doc: remove teamcity badge but keep links in case we will restore it.
+            Author: Roman Ivanov
+          </li>
+          <li>
+            Create IDEA Inspections Docker image for CircleCI.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/12087">#12087</a>
+          </li>
+          <li>
+            Specify violation messages in input files..
+            Author: shubh
+            <a href="https://github.com/checkstyle/checkstyle/issues/11214">#11214</a>
+          </li>
+          <li>
+            Resolve Pitest suppression for SeperatorWrapCheck.
+            Author: Kevin222004
+            <a href="https://github.com/checkstyle/checkstyle/issues/12267">#12267</a>
+          </li>
+          <li>
+            Resolve Pitest suppression for EmptyForInitializerPadCheck.
+            Author: Kevin222004
+            <a href="https://github.com/checkstyle/checkstyle/issues/12265">#12265</a>
+          </li>
+          <li>
+            Resolve Pitest suppression for MethodParamPadCheck .
+            Author: Kevin222004
+            <a href="https://github.com/checkstyle/checkstyle/issues/12264">#12264</a>
+          </li>
+          <li>
+            Resolve Pitest suppression for OperatorWrapCheck.
+            Author: Kevin222004
+            <a href="https://github.com/checkstyle/checkstyle/issues/12266">#12266</a>
+          </li>
+          <li>
+            Resolve  Pitest suppression for AbstractParenPadCheck - 2.
+            Author: Kevin222004
+            <a href="https://github.com/checkstyle/checkstyle/issues/12260">#12260</a>
+          </li>
+          <li>
+            Resolve Pitest suppression for EmptyForIteratorPadCheck.
+            Author: Kevin222004
+            <a href="https://github.com/checkstyle/checkstyle/issues/12261">#12261</a>
+          </li>
+          <li>
+            Resolve Pitest suppression for AbstractParenPadCheck.
+            Author: Kevin
+            <a href="https://github.com/checkstyle/checkstyle/issues/12251">#12251</a>
+          </li>
+          <li>
+            Remove changes needed for PMD Accessor violations from Java 11 improvements.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/12241">#12241</a>
+          </li>
+          <li>
+            Minor word missing in checkstyle docs.
+            Author: NitishKumar06
+            <a href="https://github.com/checkstyle/checkstyle/issues/12203">#12203</a>
+          </li>
+          <li>
+            doc: fix formatting mistake.
+            Author: stoyanK7
+          </li>
+        </ul>
+    </section>
+    <section name="Release 10.3.4">
+      <div class="releaseDate">25.09.2022</div>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            ImportOrder: tokens property should be not customizable,
+            move STATIC_IMPORT to required tokens
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/12145">#12145</a>
+          </li>
+          <li>
+            IllegalInstantiation: make all tokens should be required, so no need
+            to use custom values in tokens property.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/3955">#3955</a>
+          </li>
+          <li>
+            VariableDeclarationUsageDistance throws NPE on empty switch statements.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/11973">#11973</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Expand ArchUnit Testing.
+            Author: Vyom-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/12099">#12099</a>
+          </li>
+          <li>
+            Enable Checker Framework.
+            Author: Vyom-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/12164">#12164</a>
+          </li>
+          <li>
+            pitest-survival-check-xml.groovy: ArrayIndexOutOfBoundsException.
+            Author: Vyom-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/12132">#12132</a>
+          </li>
+          <li>
+            Add method to ignore unstable checker framework violations.
+            Author: Vyom-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/12210">#12210</a>
+          </li>
+          <li>
+            Add badges for new GitHub actions.
+            Author: Vyom-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/12218">#12218</a>
+          </li>
+          <li>
+            Checkstyle should use `dependencyConvergence` maven-enforcer rule.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/12195">#12195</a>
+          </li>
+          <li>
+            failure to publish github release notes &#39; R: Publish GitHub Page&#39;.
+            Author: Roman Ivanov, Rahul Khinchi
+            <a href="https://github.com/checkstyle/checkstyle/issues/12169">#12169</a>
+          </li>
+          <li>
+            Disable execution of GitHub actions with cron in fork repositories.
+            Author: Rahul Khinchi
+            <a href="https://github.com/checkstyle/checkstyle/issues/12175">#12175</a>
+          </li>
+          <li>
+            Use OS specific command and correct errorExtractingPattern.
+            Author: Vyom-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/12154">#12154</a>
+          </li>
+          <li>
+            updates in Github actions.
+            Author: Rahul Khinchi
+            <a href="https://github.com/checkstyle/checkstyle/issues/12165">#12165</a>
+          </li>
+          <li>
+            execution of &#39;R: Update github.io&#39; with &#39;10.3.3&#39; faililng.
+            Author: Rahul Khinchi
+            <a href="https://github.com/checkstyle/checkstyle/issues/12160">#12160</a>
+          </li>
+          <li>
+            Disable test execution during release.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/11912">#11912</a>
+          </li>
+          <li>
+            no-error-pmd execution is failing if version in not changed to 10.4.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/12129">#12129</a>
+          </li>
+          <li>
+            doc: add &#39;I have read check documentation...&#39; to feature_request.md.
+            Author: Nick Mancuso
+          </li>
+          <li>
+            pitest-survival-check-xml.groovy: IllegalArgumentException: character
+            to be escaped is missing.
+            Author: Vyom-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/12133">#12133</a>
+          </li>
+          <li>
+            Github action &quot;GitHub Milestone and Upload Jar&quot; should do all
+            github actionvities from release.sh.
+            Author: Rahul Khinchi
+            <a href="https://github.com/checkstyle/checkstyle/issues/12113">#12113</a>
+          </li>
+          <li>
+            Github Action &quot;Update github.io&quot;.
+            Author: Rahul Khinchi
+            <a href="https://github.com/checkstyle/checkstyle/issues/12115">#12115</a>
+          </li>
+          <li>
+            update publish Twit action to use secrets.
+            Author: Rahul Khinchi
+            <a href="https://github.com/checkstyle/checkstyle/issues/12116">#12116</a>
+          </li>
+          <li>
+            Minor changes in in shell scripts.
+            Author: Rahul Khinchi
+            <a href="https://github.com/checkstyle/checkstyle/issues/12124">#12124</a>
+          </li>
+          <li>
+            Upgrade Maven required Version for Contributors.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/12111">#12111</a>
+          </li>
+          <li>
+            Github action &quot;Release prepare&quot; should validate presence of xml release notes.
+            Author: Rahul Khinchi
+            <a href="https://github.com/checkstyle/checkstyle/issues/12126">#12126</a>
+          </li>
+          <li>
+            rename update-sources.sh .
+            Author: Rahul Khinchi
+            <a href="https://github.com/checkstyle/checkstyle/issues/12120">#12120</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 10.3.3">
       <div class="releaseDate">28.08.2022</div>
       <p>Bug fixes:</p>
@@ -40,22 +362,22 @@
         <ul>
           <li>
             Github action &quot;Publish release notes outside&quot;.
-            Author: github-actions[bot]
+            Author: Rahul Khinchi
             <a href="https://github.com/checkstyle/checkstyle/issues/12082">#12082</a>
           </li>
           <li>
             Github action to update sources with release notes.
-            Author: github-actions[bot]
+            Author: Rahul Khinchi
             <a href="https://github.com/checkstyle/checkstyle/issues/12077">#12077</a>
           </li>
           <li>
             Github action &quot;Update Github&quot;.
-            Author: github-actions[bot]
+            Author: Rahul Khinchi
             <a href="https://github.com/checkstyle/checkstyle/issues/12080">#12080</a>
           </li>
           <li>
             Github action &quot;Release prepare&quot;.
-            Author: github-actions[bot]
+            Author: Rahul Khinchi
             <a href="https://github.com/checkstyle/checkstyle/issues/12078">#12078</a>
           </li>
           <li>
@@ -66,13 +388,13 @@
           <li>
             Reuse Plain text release notes from releasenotes-builder in Github
             release page.
-            Author: github-actions[bot]
+            Author: Rahul Khinchi
             <a href="https://github.com/checkstyle/checkstyle/issues/11901">#11901</a>
           </li>
           <li>
             update all shell scripts for release automation to check that
             parameter is definied.
-            Author: github-actions[bot]
+            Author: Rahul Khinchi
             <a href="https://github.com/checkstyle/checkstyle/issues/12083">#12083</a>
           </li>
           <li>
@@ -83,12 +405,12 @@
           <li>
             tweet-releasenotes.sh should be able to generate release notes for
             any release of past .
-            Author: github-actions[bot]
+            Author: Rahul Khinchi
             <a href="https://github.com/checkstyle/checkstyle/issues/12011">#12011</a>
           </li>
           <li>
             Enhancements for bump version action.
-            Author: github-actions[bot]
+            Author: Rahul Khinchi
             <a href="https://github.com/checkstyle/checkstyle/issues/12058">#12058</a>
           </li>
           <li>

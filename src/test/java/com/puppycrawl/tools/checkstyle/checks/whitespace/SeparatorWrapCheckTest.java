@@ -131,4 +131,12 @@ public class SeparatorWrapCheckTest
             getPath("InputSeparatorWrapWithEmoji.java"), expected);
     }
 
+    @Test
+    public void testTrimOptionProperty() throws Exception {
+        final String[] expected = {
+            "18:44: " + getCheckMessage(MSG_LINE_NEW, "::"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputSeparatorWrapSetOptionTrim.java"), expected);
+    }
 }

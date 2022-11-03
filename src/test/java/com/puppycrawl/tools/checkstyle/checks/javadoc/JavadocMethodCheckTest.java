@@ -439,6 +439,7 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
                 + "JavadocMethodCheck$Token");
         final Constructor<?> tokenConstructor = tokenType.getDeclaredConstructor(String.class,
                 int.class, int.class);
+        tokenConstructor.setAccessible(true);
         final Object token = tokenConstructor.newInstance("tokenName", 1, 1);
         final Method toString = token.getClass().getDeclaredMethod("toString");
         final String result = (String) toString.invoke(token);

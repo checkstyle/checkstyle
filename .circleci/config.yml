@@ -212,6 +212,46 @@ jobs:
       - run:
           command: ./.ci/validation.sh git-diff
 
+  run-inspections:
+    docker:
+      - image: checkstyle/idea-docker:jdk11-idea2022.2.2
+
+    steps:
+      - checkout
+      - run:
+          name: Run inspections
+          command: |
+            mkdir .idea
+            cp config/intellij-idea-inspections-misc.xml .idea/misc.xml
+            ./.ci/idea_inspection.sh
+          no_output_timeout: 25m
+          working_directory: ~/project
+      - store_artifacts:
+          path: /home/circleci/project/target/inspection-results
+
+  no-merge-commits:
+    docker:
+      - image: cimg/base:2022.10
+    steps:
+      - checkout
+      - run:
+          name: Check for merge commits
+          command: |
+            export PR_HEAD_SHA=$CIRCLE_SHA1
+            ./.ci/validation.sh git-no-merge-commits
+
+  check-pull-number:
+    docker:
+      - image: cimg/base:2022.10
+    steps:
+      - checkout
+      - run:
+          name: Check that 'Pull#XXXX' matches PR number
+          command: |
+            export PR_HEAD_SHA=$CIRCLE_SHA1
+            export PR_NUMBER=$CIRCLE_PR_NUMBER
+            ./.ci/validation.sh git-check-pull-number
+
 workflows:
   version: 2
   no-exception-tests:
@@ -237,3 +277,12 @@ workflows:
       - no-warning-imports-guava
       - no-warning-imports-java-design-patterns
       - sonarqube
+
+  idea:
+    jobs:
+      - run-inspections
+
+  git-validation:
+    jobs:
+      - no-merge-commits
+      - check-pull-number

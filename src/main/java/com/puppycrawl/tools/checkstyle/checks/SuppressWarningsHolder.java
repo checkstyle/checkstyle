@@ -595,7 +595,7 @@ public class SuppressWarningsHolder
     }
 
     /** Records a particular suppression for a region of a file. */
-    private static class Entry {
+    private static final class Entry {
 
         /** The source name of the suppressed check. */
         private final String checkName;
@@ -617,7 +617,7 @@ public class SuppressWarningsHolder
          * @param lastLine the last line of the suppression region
          * @param lastColumn the last column of the suppression region
          */
-        /* package */ Entry(String checkName, int firstLine, int firstColumn,
+        private Entry(String checkName, int firstLine, int firstColumn,
             int lastLine, int lastColumn) {
             this.checkName = checkName;
             this.firstLine = firstLine;

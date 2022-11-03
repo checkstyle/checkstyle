@@ -1170,7 +1170,7 @@ public class JavadocMethodCheck extends AbstractCheck {
     /**
      * Represents text element with location in the text.
      */
-    private static class Token {
+    private static final class Token {
 
         /** Token's column number. */
         private final int columnNo;
@@ -1186,7 +1186,7 @@ public class JavadocMethodCheck extends AbstractCheck {
          * @param lineNo token's line number
          * @param columnNo token's column number
          */
-        /* package */ Token(String text, int lineNo, int columnNo) {
+        private Token(String text, int lineNo, int columnNo) {
             this.text = text;
             this.lineNo = lineNo;
             this.columnNo = columnNo;
@@ -1197,7 +1197,7 @@ public class JavadocMethodCheck extends AbstractCheck {
          *
          * @param fullIdent full ident to convert.
          */
-        /* package */ Token(FullIdent fullIdent) {
+        private Token(FullIdent fullIdent) {
             text = fullIdent.getText();
             lineNo = fullIdent.getLineNo();
             columnNo = fullIdent.getColumnNo();
@@ -1221,7 +1221,7 @@ public class JavadocMethodCheck extends AbstractCheck {
     }
 
     /** Stores useful information about declared exception. */
-    private static class ExceptionInfo {
+    private static final class ExceptionInfo {
 
         /** AST node representing this exception. */
         private final DetailAST ast;
@@ -1237,7 +1237,7 @@ public class JavadocMethodCheck extends AbstractCheck {
          * @param ast AST node representing this exception
          * @param classInfo class info
          */
-        /* package */ ExceptionInfo(DetailAST ast, ClassInfo classInfo) {
+        private ExceptionInfo(DetailAST ast, ClassInfo classInfo) {
             this.ast = ast;
             this.classInfo = classInfo;
         }

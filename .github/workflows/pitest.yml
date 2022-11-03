@@ -7,40 +7,40 @@ on:
   pull_request:
 
 jobs:
-  pitest:
+  test:
     strategy:
       matrix:
         profile:
-          - pitest-annotation
-          - pitest-ant
-          - pitest-api
-          - pitest-blocks
-          - pitest-coding-1
-          - pitest-coding-2
-          - pitest-coding-require-this-check
-          - pitest-common
-          - pitest-common-2
-          - pitest-design
-          - pitest-filters
-          - pitest-header
-          - pitest-imports
-          - pitest-indentation
-          - pitest-javadoc
-          - pitest-main
-          - pitest-metrics
-          - pitest-misc
-          - pitest-modifier
-          - pitest-naming
-          - pitest-packagenamesloader
-          - pitest-regexp
-          - pitest-sizes
-          - pitest-tree-walker
-          - pitest-utils
-          - pitest-whitespace
-          - pitest-xpath
-          - pitest-java-ast-visitor
+          - annotation
+          - ant
+          - api
+          - blocks
+          - coding-1
+          - coding-2
+          - coding-require-this-check
+          - common
+          - common-2
+          - design
+          - filters
+          - header
+          - imports
+          - indentation
+          - javadoc
+          - main
+          - metrics
+          - misc
+          - modifier
+          - naming
+          - packagenamesloader
+          - regexp
+          - sizes
+          - tree-walker
+          - utils
+          - whitespace
+          - xpath
+          - java-ast-visitor
         # GUI package needs better test coverage before adding to execution.
-        # - pitest-gui
+        # - gui
     runs-on: ubuntu-latest
     continue-on-error: true
     steps:
@@ -59,11 +59,11 @@ jobs:
         uses: actions/checkout@v3
       - name: Generate ${{ matrix.profile }} report
         run: |
-          mvn -e --no-transfer-progress -P"${{ matrix.profile }}" clean test-compile \
+          mvn -e --no-transfer-progress -P"pitest-${{ matrix.profile }}" clean test-compile \
           org.pitest:pitest-maven:mutationCoverage
       - name: Check ${{ matrix.profile }} report
         run: |
-          groovy ./.ci/pitest-survival-check-xml.groovy ${{ matrix.profile }}
+          groovy ./.ci/pitest-survival-check-xml.groovy pitest-${{ matrix.profile }}
       - name: Stage results
         if: failure() || github.ref == 'refs/heads/master'
         run: |
@@ -72,6 +72,6 @@ jobs:
         if: failure() || github.ref == 'refs/heads/master'
         uses: actions/upload-artifact@v2
         with:
-          name: ${{ matrix.profile }}-coverage-report
+          name: pitest-${{ matrix.profile }}-coverage-report
           path: staging
           retention-days: 7

@@ -532,7 +532,7 @@ public class SuppressWithNearbyCommentFilter
          * @param filter the {@code SuppressWithNearbyCommentFilter} with the context
          * @throws IllegalArgumentException if unable to parse expanded text.
          */
-        /* package */ Tag(String text, int line, SuppressWithNearbyCommentFilter filter) {
+        private Tag(String text, int line, SuppressWithNearbyCommentFilter filter) {
             this.text = text;
 
             // Expand regexp for check and message

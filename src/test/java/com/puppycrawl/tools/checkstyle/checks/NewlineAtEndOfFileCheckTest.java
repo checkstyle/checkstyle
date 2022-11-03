@@ -212,9 +212,17 @@ public class NewlineAtEndOfFileCheckTest
         }
     }
 
-    private static class ReadZeroRandomAccessFile extends RandomAccessFile {
+    @Test
+    public void testTrimOptionProperty() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputNewlineAtEndOfFileTestTrimProperty.java"),
+                expected);
+    }
 
-        /* package */ ReadZeroRandomAccessFile(String name, String mode)
+    private static final class ReadZeroRandomAccessFile extends RandomAccessFile {
+
+        private ReadZeroRandomAccessFile(String name, String mode)
                 throws FileNotFoundException {
             super(name, mode);
         }

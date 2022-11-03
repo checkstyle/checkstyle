@@ -336,7 +336,7 @@ public final class BooleanExpressionComplexityCheck extends AbstractCheck {
      * Represents context (method/expression) in which we check complexity.
      *
      */
-    private class Context {
+    private final class Context {
 
         /**
          * Should we perform check in current context or not.
@@ -351,7 +351,7 @@ public final class BooleanExpressionComplexityCheck extends AbstractCheck {
          *
          * @param checking should we check in current context or not.
          */
-        /* package */ Context(boolean checking) {
+        private Context(boolean checking) {
             this.checking = checking;
             count = 0;
         }

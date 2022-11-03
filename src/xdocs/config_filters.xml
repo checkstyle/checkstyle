@@ -1562,7 +1562,7 @@ public class FileOne {}
           <pre>
 &lt;module name="SuppressionXpathSingleFilter"&gt;
   &lt;property name="checks" value="RedundantModifier"/&gt;
-  &lt;property name="query" value="/INTERFACE_DEF//*"/&gt;
+  &lt;property name="query" value="//INTERFACE_DEF//*"/&gt;
 &lt;module/&gt;
           </pre>
         </div>
@@ -1839,7 +1839,7 @@ public class TestClass {
       <subsection name="Description" id="SuppressWarningsFilter_Description">
         <p>
           Filter <code>SuppressWarningsFilter</code> uses annotation
-          {@code SuppressWarnings} to suppress audit events.
+          <code>@SuppressWarnings</code> to suppress audit events.
         </p>
         <p>
           Rationale: Same as for

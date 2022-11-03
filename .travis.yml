@@ -8,6 +8,13 @@ cache:
   directories:
     - ~/.m2
 
+addons:
+  apt:
+    packages:
+      - groovy
+      - xsltproc
+      - xmlstarlet
+
 branches:
   only:
     - master
@@ -15,7 +22,6 @@ branches:
 install:
   - ./.ci/travis.sh install-adoptium-jdk
   - ./.ci/travis.sh install-custom-mvn
-  - sudo apt install shellcheck
 
 jobs:
   fast_finish: true
@@ -31,93 +37,32 @@ jobs:
         - DEPLOY="true"
         - USE_MAVEN_REPO="true"
 
-    # until https://github.com/checkstyle/checkstyle/issues/9984
+    # codecov
+    - jdk: openjdk11
+      env:
+        - DESC="codecov"
+        - USE_MAVEN_REPO="true"
+        - CMD="./.ci/travis.sh jacoco"
+
+    - jdk: openjdk11
+      env:
+        - DESC="codenarc analysis"
+        - CMD="./.ci/codenarc.sh"
+
     # Ensure that all modules are used in no exception configs
-    # - env:
-    #    - DESC="ensure that all modules are used in no exception configs"
-    #    - CMD1="export PULL_REQUEST=$TRAVIS_PULL_REQUEST"
-    #    - CMD2="./.ci/validation.sh verify-no-exception-configs"
-    #    - CMD="$CMD1 && $CMD2"
+    - env:
+        - DESC="ensure that all modules are used in no exception configs"
+        - CMD1="export PULL_REQUEST=$TRAVIS_PULL_REQUEST"
+        - CMD2="./.ci/validation.sh verify-no-exception-configs"
+        - CMD="$CMD1 && $CMD2"
 
-#    - jdk: openjdk11
-#      env:
-#        - DESC="NoErrorTest - Postgresql JDBC Driver"
-#        - CMD1="mvn -e --no-transfer-progress clean install -Pno-validations"
-#        - CMD2="./.ci/validation.sh no-error-pgjdbc"
-#        - CMD="$CMD1 && $CMD2"
-#        - USE_MAVEN_REPO="true"
-
-#    - jdk: openjdk11
-#      env:
-#        - DESC="NoErrorTest - Orekit"
-#        - CMD1="mvn -e --no-transfer-progress clean install -Pno-validations"
-#        - CMD2="./.ci/validation.sh no-error-orekit"
-#        - CMD="$CMD1 && $CMD2"
-#        - USE_MAVEN_REPO="true"
-
-#    - env:
-#        - DESC="NoErrorTest - Hibernate Search"
-#        - CUSTOM_ADOPTIUM_JDK="temurin-17-jdk"
-#        - CUSTOM_MVN_VERSION="3.8.4"
-#        - M2_HOME="$PWD/apache-maven-${CUSTOM_MVN_VERSION}"
-#        - PATH="$M2_HOME/bin:$PATH"
-#        - CMD1="mvn -e --no-transfer-progress clean install -Pno-validations"
-#        - CMD2="./.ci/validation.sh no-error-hibernate-search"
-#        - CMD="$CMD1 && $CMD2"
-#        - USE_MAVEN_REPO="true"
-
-#    - env:
-#        - DESC="Shellcheck"
-#        - CMD="shellcheck ./.ci/*.sh && shellcheck release.sh"
-#        - USE_MAVEN_REPO="false"
-
-#    - jdk: openjdk11
-#      env:
-#        - DESC="NoErrorTest - checkstyle's sevntu"
-#        - CMD1="mvn -e --no-transfer-progress clean install -Pno-validations"
-#        - CMD2="./.ci/validation.sh no-error-checkstyles-sevntu"
-#        - CMD="$CMD1 && $CMD2"
-#        - USE_MAVEN_REPO="true"
-
-#    - jdk: openjdk11
-#      env:
-#        - DESC="NoErrorTest - sevntu-checks"
-#        - CMD1="mvn -e --no-transfer-progress clean install -Pno-validations"
-#        - CMD2="./.ci/validation.sh no-error-sevntu-checks"
-#        - CMD="$CMD1 && $CMD2"
-#        - USE_MAVEN_REPO="true"
-
-#    - jdk: openjdk11
-#      env:
-#        - DESC="NoErrorTest - contribution"
-#        - CMD1="mvn -e --no-transfer-progress clean install -Pno-validations"
-#        - CMD2="./.ci/validation.sh no-error-contribution"
-#        - CMD="$CMD1 && $CMD2"
-#        - USE_MAVEN_REPO="true"
-
-#    - jdk: openjdk11
-#      env:
-#        - DESC="NoErrorTest - methods distance"
-#        - CMD1="mvn -e --no-transfer-progress clean install -Pno-validations"
-#        - CMD2="./.ci/validation.sh no-error-methods-distance"
-#        - CMD="$CMD1 && $CMD2"
-#        - USE_MAVEN_REPO="true"
-
-#    - jdk: openjdk11
-#      env:
-#        - DESC="NoErrorTest - Spring Cloud GCP"
-#        - CMD1="mvn -e --no-transfer-progress clean install -Pno-validations"
-#        - CMD2="./.ci/validation.sh no-error-spring-cloud-gcp"
-#        - CMD="$CMD1 && $CMD2"
-#        - USE_MAVEN_REPO="true"
-
-#    - jdk: openjdk11
-#      env:
-#        - DESC="NoErrorTest - EqualsVerifier"
-#        - CMD1="mvn -e --no-transfer-progress clean install -Pno-validations"
-#        - CMD2="./.ci/validation.sh no-error-equalsverifier"
-#        - CMD="$CMD1 && $CMD2"
-#        - USE_MAVEN_REPO="true"
+before_script:
+  - |
+    if [[ $TRAVIS_CPU_ARCH == 'ppc64le' ]]; then
+        export JAVA_HOME=/usr/lib/jvm/adoptopenjdk-11-hotspot-ppc64el
+        export PATH=$JAVA_HOME/bin:$PATH
+    fi
+  - groovy --version
 
 script:
   # manually set JAVA_HOME to overcome issue with travis ci noted at

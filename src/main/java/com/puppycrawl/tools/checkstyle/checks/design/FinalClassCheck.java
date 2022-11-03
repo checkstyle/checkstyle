@@ -459,7 +459,7 @@ public class FinalClassCheck
          * @param depth Depth of nesting of type declaration
          * @param typeDeclarationAst Type declaration ast node
          */
-        /* package */ TypeDeclarationDescription(String qualifiedName, int depth,
+        private TypeDeclarationDescription(String qualifiedName, int depth,
                                           DetailAST typeDeclarationAst) {
             this.qualifiedName = qualifiedName;
             this.depth = depth;
@@ -525,7 +525,7 @@ public class FinalClassCheck
          *  @param depth class nesting level
          *  @param classAst classAst node
          */
-        /* package */ ClassDesc(String qualifiedName, int depth, DetailAST classAst) {
+        private ClassDesc(String qualifiedName, int depth, DetailAST classAst) {
             super(qualifiedName, depth, classAst);
             final DetailAST modifiers = classAst.findFirstToken(TokenTypes.MODIFIERS);
             declaredAsFinal = modifiers.findFirstToken(TokenTypes.FINAL) != null;

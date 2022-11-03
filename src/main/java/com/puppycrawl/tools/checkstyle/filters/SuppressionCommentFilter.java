@@ -634,7 +634,7 @@ public class SuppressionCommentFilter
          * @param filter the {@code SuppressionCommentFilter} with the context
          * @throws IllegalArgumentException if unable to parse expanded text.
          */
-        /* package */ Tag(int line, int column, String text, TagType tagType,
+        private Tag(int line, int column, String text, TagType tagType,
                    SuppressionCommentFilter filter) {
             this.line = line;
             this.column = column;
