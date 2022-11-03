@@ -219,6 +219,15 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Print versions
+          command: |
+            echo "Maven version:"
+            mvn --version
+            echo "Java version:"
+            java --version
+            echo "IDEA version:"
+            echo $IDEA_VERSION
+      - run:
           name: Run inspections
           command: |
             mkdir .idea
