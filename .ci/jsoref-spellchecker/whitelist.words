@@ -830,6 +830,7 @@ markdownlint
 Massol
 matchxpath
 mavenbadge
+maxdepth
 maxmem
 maxmethods
 mct
@@ -878,6 +879,7 @@ mozilla
 MRELEASE
 mstudman
 MTAGLIST
+mtime
 MUI
 multicharacter
 multiline
