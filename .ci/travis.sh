@@ -138,6 +138,10 @@ jacoco)
   fi
   ;;
 
+quarterly-cache-cleanup)
+  find ~/.m2 -mtime +90 -exec rm {} \;
+  ;;
+
 *)
   echo "Unexpected argument: $1"
   sleep 5s
