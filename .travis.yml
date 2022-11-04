@@ -74,6 +74,7 @@ script:
 #  - ./.ci/travis.sh remove-adoptium-jdk
   - ./.ci/validation.sh git-diff
   - ./.ci/travis.sh ci-temp-check
+  - ./.ci/travis.sh monthly-cache-cleanup
 
 after_success:
   - ./.ci/travis.sh run-command-after-success
