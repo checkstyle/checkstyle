@@ -62,10 +62,19 @@ jobs:
       COMMAND: "./.ci/validation.sh"
     steps: &common_steps
       - checkout
+      - restore_cache:
+          name: Restore Maven repo cache
+          keys:
+            - mvn-packages-{{ checksum "pom.xml" }}
       - run:
           command: $COMMAND << parameters.args >>
       - run:
           command: ./.ci/validation.sh git-diff
+      - save_cache:
+          name: Save Maven repo cache
+          key: mvn-packages-{{ checksum "pom.xml" }}
+          paths:
+            - .m2
 
   no-exception:
     docker:
