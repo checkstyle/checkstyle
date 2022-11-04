@@ -215,6 +215,10 @@ jobs:
   run-inspections:
     docker:
       - image: checkstyle/idea-docker:jdk11-idea2022.2.2
+    environment:
+      MAVEN_OPTS: "-Xmx6144m"
+      JAVA_OPTS: "-Xms6144m -Xmx6144m"
+    resource_class: large
 
     steps:
       - checkout
