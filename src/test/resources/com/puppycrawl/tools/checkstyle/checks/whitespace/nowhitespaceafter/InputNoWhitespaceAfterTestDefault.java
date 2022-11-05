@@ -307,4 +307,12 @@ class SpecialCasesInForLoop
 
     int someStuff8
     []; // violation
+
+    Object o;
+
+    void some() {
+        Object oo = new Object[4];
+        this.o = ((Object[]) oo)[1];
+        this.o = ((java.lang.Object[]) oo)[1];
+    }
 }
