@@ -105,6 +105,98 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *      }
  * </pre>
  * <p>
+ * To configure the check so that it only checks for Given Pattern in class-name:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;MutableException&quot;&gt;
+ *   &lt;property name=&quot;format&quot; value=&quot;.*Exception$&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ *      class FirstClass extends Exception {
+ *          private int errorCode; // OK
+ *
+ *          public FirstClass() {
+ *              errorCode = 1;
+ *          }
+ *      }
+ *
+ *      class MyException extends Exception {
+ *          private int errorCode; // violation , The field 'errorCode' must be declared final
+ *
+ *          public MyException() {
+ *              errorCode = 2;
+ *          }
+ *      }
+ *
+ *      class DemoThrowable extends Throwable {
+ *          final int errorCode; // OK
+ *          String message; // OK
+ *
+ *          public DemoThrowable(int errorCode, String message) {
+ *              this.errorCode = errorCode;
+ *              this.message = message;
+ *          }
+ *      }
+ *
+ *      class CustomException extends Throwable { } // OK
+ *
+ *      class ViolationException extends java.lang.Exception {
+ *          int errorCode; // violation, The field 'errorCode' must be declared final
+ *
+ *          public ViolationException(int errorCode) {
+ *              this.errorCode = errorCode;
+ *          }
+ *      }
+ * </pre>
+ * <p>
+ * To configure the check so that it only checks for Given Pattern In SuperClassName:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;MutableException&quot;&gt;
+ *   &lt;property name=&quot;extendedClassNameFormat&quot; value=&quot;.*Throwable$&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ *      class FirstClass extends Exception {
+ *          private int errorCode; // OK
+ *
+ *          public FirstClass() {
+ *              errorCode = 1;
+ *          }
+ *      }
+ *
+ *      class MyException extends Exception {
+ *          private int errorCode; // OK
+ *
+ *          public MyException() {
+ *              errorCode = 2;
+ *          }
+ *      }
+ *
+ *      class DemoThrowable extends Throwable {
+ *          final int errorCode; // OK
+ *          String message; // violation, The field 'message' must be declared final
+ *
+ *          public DemoThrowable(int errorCode, String message) {
+ *              this.errorCode = errorCode;
+ *              this.message = message;
+ *          }
+ *      }
+ *
+ *      class CustomException extends Throwable { } // OK
+ *
+ *      class ViolationException extends java.lang.Exception {
+ *          int errorCode; // OK
+ *
+ *          public ViolationException(int errorCode) {
+ *              this.errorCode = errorCode;
+ *          }
+ *      }
+ * </pre>
+ * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
  * <p>
