@@ -78,22 +78,22 @@ public class ModuleReflectionUtilTest {
     @Test
     public void testIsValidCheckstyleClass() {
         assertWithMessage("Should return true when valid checkstyle class is passed")
-                .that(ModuleReflectionUtil.isValidCheckstyleClass(ValidCheckstyleClass.class))
+                .that(ModuleReflectionUtil.isCheckstyleModule(ValidCheckstyleClass.class))
                 .isTrue();
         assertWithMessage("Should return false when invalid class is passed")
                 .that(
-                    ModuleReflectionUtil.isValidCheckstyleClass(InvalidNonAutomaticBeanClass.class))
+                    ModuleReflectionUtil.isCheckstyleModule(InvalidNonAutomaticBeanClass.class))
                 .isFalse();
         assertWithMessage("Should return false when invalid class is passed")
-                .that(ModuleReflectionUtil.isValidCheckstyleClass(AbstractInvalidClass.class))
+                .that(ModuleReflectionUtil.isCheckstyleModule(AbstractInvalidClass.class))
                 .isFalse();
         assertWithMessage("Should return false when invalid class is passed")
                 .that(ModuleReflectionUtil
-                    .isValidCheckstyleClass(InvalidNonDefaultConstructorClass.class))
+                    .isCheckstyleModule(InvalidNonDefaultConstructorClass.class))
                 .isFalse();
         assertWithMessage("Should return false when forced invalid class is passed")
                 .that(
-                    ModuleReflectionUtil.isValidCheckstyleClass(XpathFileGeneratorAstFilter.class))
+                    ModuleReflectionUtil.isCheckstyleModule(XpathFileGeneratorAstFilter.class))
                 .isFalse();
     }
 
