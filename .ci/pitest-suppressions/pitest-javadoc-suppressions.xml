@@ -165,10 +165,10 @@
   <mutation unstable="false">
     <sourceFile>JavadocMethodCheck.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck</mutatedClass>
-    <mutatedMethod>getParameters</mutatedMethod>
+    <mutatedMethod>collectParamNames</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
     <description>removed conditional - replaced equality check with true</description>
-    <lineContent>if (child.getType() == TokenTypes.PARAMETER_DEF) {</lineContent>
+    <lineContent>if (child.getType() == nodeType) {</lineContent>
   </mutation>
 
   <mutation unstable="false">
