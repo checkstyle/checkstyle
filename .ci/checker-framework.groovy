@@ -113,27 +113,37 @@ private static int checkCheckerFrameworkReport(final String profile) {
 private static List<List<String>> getCheckerFrameworkErrors(final String profile) {
     final List<String> checkerFrameworkLines = new ArrayList<>()
     final String command = "mvn -e --no-transfer-progress clean compile -P${profile}"
-    final Process process = getOsSpecificCmd(command).execute()
-    process.in.eachLine { final line ->
-        checkerFrameworkLines.add(line)
-        println(line)
+    final ProcessBuilder processBuilder = new ProcessBuilder(getOsSpecificCmd(command).split(' '))
+    processBuilder.redirectErrorStream(true)
+    final Process process = processBuilder.start()
+
+    final BufferedReader reader = new BufferedReader(new InputStreamReader(process.inputStream))
+    String lineFromReader = reader.readLine()
+    while (lineFromReader != null) {
+        println(lineFromReader)
+        if (!(lineFromReader.startsWith('[ERROR]') || lineFromReader.startsWith('[INFO]'))) {
+            checkerFrameworkLines.add(lineFromReader.replace('[WARNING]', '').trim())
+        }
+        lineFromReader = reader.readLine()
     }
     process.waitFor()
+
     final List<List<String>> checkerFrameworkErrors = new ArrayList<>()
     for (int index = 0; index < checkerFrameworkLines.size(); index++) {
         final String line = checkerFrameworkLines.get(index)
-        if (line.startsWith('[WARNING]')) {
+        final String fileMatchingPattern = '.*src[\\\\/].*\\.java.*'
+        if (line.matches(fileMatchingPattern)) {
             final List<String> error = new ArrayList<>()
             error.add(line)
             int currentErrorIndex = index + 1
             while (currentErrorIndex < checkerFrameworkLines.size()) {
-                final String currentLine = checkerFrameworkLines.get(currentErrorIndex)
-                if (currentLine.startsWith('[ERROR]')
-                        || currentLine.startsWith('[INFO]')
-                        || currentLine.startsWith('[WARNING]')) {
+                final String currentLine = checkerFrameworkLines.get(currentErrorIndex).trim()
+                if (currentLine.matches(fileMatchingPattern)) {
                     break
                 }
-                error.add(currentLine)
+                if (!currentLine.isEmpty()) {
+                    error.add(currentLine)
+                }
                 currentErrorIndex++
             }
             checkerFrameworkErrors.add(error)
@@ -169,7 +179,7 @@ private static List<CheckerFrameworkError> getErrorFromText(final List<List<Stri
     final List<CheckerFrameworkError> errors = new ArrayList<>()
     final Pattern errorExtractingPattern = Pattern
         .compile('.*[\\\\/](src[\\\\/].*\\.java):\\[(\\d+)[^]]*][^\\[]*\\[([^]]*)](.*)')
-    final Pattern filePathExtractingPattern = Pattern.compile('\\[WARNING] (.*\\.java)')
+    final Pattern filePathExtractingPattern = Pattern.compile('(.*src[\\\\/].*\\.java)')
     final int fileNameGroup = 1
     final int lineNumberGroup = 2
     final int specifierGroup = 3
@@ -184,7 +194,7 @@ private static List<CheckerFrameworkError> getErrorFromText(final List<List<Stri
         String lineContent = null
         int lineNumber = 0
         if (matcher.matches()) {
-            fileName = matcher.group(fileNameGroup)
+            fileName = matcher.group(fileNameGroup).replace('\\', '/')
             lineNumber = Integer.parseInt(matcher.group(lineNumberGroup))
             specifier = XmlUtil.escapeXml(matcher.group(specifierGroup).trim())
             message = XmlUtil.escapeXml(matcher.group(messageGroup).trim())
