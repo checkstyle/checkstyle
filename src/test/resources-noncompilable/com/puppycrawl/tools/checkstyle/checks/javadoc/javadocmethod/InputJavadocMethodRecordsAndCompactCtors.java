@@ -13,7 +13,7 @@ tokens = METHOD_DEF, CTOR_DEF, ANNOTATION_FIELD_DEF, COMPACT_CTOR_DEF, RECORD_DE
 //non-compiled with javac: Compilable with Java14
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocmethod;
 
-public class InputJavadocMethodRecordsAndCompactCtors {
+class InputJavadocMethodRecordsAndCompactCtors {
     // methods
     public record MyRecord() {
         /**
@@ -62,7 +62,7 @@ public class InputJavadocMethodRecordsAndCompactCtors {
     }
 
     // Record component, compact ctor
-    public record MyThirdRecord(String myString) {
+    public record MyThirdRecord(String myString) { // violation
         /**
          * exception is explitly thrown in code missed in javadoc
          *
@@ -91,6 +91,20 @@ public class InputJavadocMethodRecordsAndCompactCtors {
             if (myString.charAt(0) == 0) {
                 throw new IllegalArgumentException("cannot have char with code 0"); // violation
             }
+        }
+    }
+}
+
+interface Interface {
+
+    public record Record(int field) {
+        /**
+         * Constructor.
+         *
+         * @param field Some field.
+         */
+        public Record {
+            System.out.println(field);
         }
     }
 }
