@@ -521,4 +521,14 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
                 getPath("InputLeftCurlyWithTrimOptionProperty.java"), expected);
     }
+
+    @Test
+    public void testForEnumConstantDef() throws Exception {
+        final String[] expected = {
+            "14:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
+            "19:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputLeftCurlyEnumConstantDef.java"), expected);
+    }
 }
