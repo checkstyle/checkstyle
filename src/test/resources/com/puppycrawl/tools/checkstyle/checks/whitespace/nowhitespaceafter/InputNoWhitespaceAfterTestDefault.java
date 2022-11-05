@@ -308,3 +308,20 @@ class SpecialCasesInForLoop
     int someStuff8
     []; // violation
 }
+
+class QualifiedAssignment {
+
+    Object o;
+    static Object o1;
+
+    void some() {
+        Object oo = new Object[4];
+        Object[] oo2 = new Object[4];
+        this.o = ((Object[]) oo)[1];
+        this.o = ((java.lang.Object[]) oo)[1];
+        this.o = oo2[1];
+        QualifiedAssignment.o1 = ((Object[]) oo)[1];
+        QualifiedAssignment.o1 = ((java.lang.Object[]) oo)[1];
+        QualifiedAssignment.o1 = oo2[1];
+    }
+}
