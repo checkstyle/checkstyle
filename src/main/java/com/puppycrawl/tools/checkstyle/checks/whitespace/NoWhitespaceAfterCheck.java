@@ -570,8 +570,11 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
      * @return dot preceding the left bracket
      */
     private static DetailAST getPrecedingDot(DetailAST leftBracket) {
-        final DetailAST referencedClassDot =
-                leftBracket.getParent().findFirstToken(TokenTypes.DOT);
+        final DetailAST parent = leftBracket.getParent();
+        DetailAST referencedClassDot = null;
+        if (parent.getType() != TokenTypes.ASSIGN) {
+            referencedClassDot = parent.findFirstToken(TokenTypes.DOT);
+        }
         final DetailAST referencedMemberDot = leftBracket.findFirstToken(TokenTypes.DOT);
         return Optional.ofNullable(referencedMemberDot).orElse(referencedClassDot);
 
