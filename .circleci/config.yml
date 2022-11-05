@@ -13,10 +13,19 @@ commands:
         default: ""
     steps:
       - checkout
+      - restore_cache:
+          name: Restore Maven repo cache
+          keys:
+            - mvn-cache-{{ checksum "pom.xml" }}
       - run:
           command: << parameters.script-name >> << parameters.args >>
       - run:
           command: ./.ci/validation.sh git-diff
+      - save_cache:
+          name: Save Maven repo cache
+          key: mvn-cache-{{ checksum "pom.xml" }}
+          paths:
+            - .m2
 
 jobs:
 
