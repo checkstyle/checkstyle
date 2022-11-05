@@ -506,13 +506,12 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
         final DetailAST previousElement;
         final DetailAST ident = getIdentLastToken(parent.getParent());
         final DetailAST lastTypeNode = getTypeLastNode(ast);
-        final boolean isTypeCast = parent.getParent().getType() == TokenTypes.TYPECAST;
         // sometimes there are ident-less sentences
         // i.e. "(Object[]) null", but in casual case should be
         // checked whether ident or lastTypeNode has preceding position
         // determining if it is java style or C style
 
-        if (ident == null || isTypeCast || ident.getLineNo() > ast.getLineNo()) {
+        if (ident == null || ident.getLineNo() > ast.getLineNo()) {
             previousElement = lastTypeNode;
         }
         else if (ident.getLineNo() < ast.getLineNo()) {
@@ -544,9 +543,9 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
      */
     private static DetailAST getIdentLastToken(DetailAST ast) {
         final DetailAST result;
-        final DetailAST dot = getPrecedingDot(ast);
+        final Optional<DetailAST> dot = getPrecedingDot(ast);
         // method call case
-        if (dot == null || ast.getFirstChild().getType() == TokenTypes.METHOD_CALL) {
+        if (dot.isEmpty() || ast.getFirstChild().getType() == TokenTypes.METHOD_CALL) {
             final DetailAST methodCall = ast.findFirstToken(TokenTypes.METHOD_CALL);
             if (methodCall == null) {
                 result = ast.findFirstToken(TokenTypes.IDENT);
@@ -557,7 +556,7 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
         }
         // qualified name case
         else {
-            result = dot.getFirstChild().getNextSibling();
+            result = dot.get().getFirstChild().getNextSibling();
         }
         return result;
     }
@@ -569,11 +568,24 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
      * @param leftBracket the ast we are checking
      * @return dot preceding the left bracket
      */
-    private static DetailAST getPrecedingDot(DetailAST leftBracket) {
-        final DetailAST referencedClassDot =
-                leftBracket.getParent().findFirstToken(TokenTypes.DOT);
+    private static Optional<DetailAST> getPrecedingDot(DetailAST leftBracket) {
         final DetailAST referencedMemberDot = leftBracket.findFirstToken(TokenTypes.DOT);
-        return Optional.ofNullable(referencedMemberDot).orElse(referencedClassDot);
+        final Optional<DetailAST> result = Optional.ofNullable(referencedMemberDot);
+        return result.or(() -> getReferencedClassDot(leftBracket));
+    }
 
+    /**
+     * Gets the dot preceding a class reference.
+     *
+     * @param leftBracket the ast we are checking
+     * @return dot preceding the left bracket
+     */
+    private static Optional<DetailAST> getReferencedClassDot(DetailAST leftBracket) {
+        final DetailAST parent = leftBracket.getParent();
+        Optional<DetailAST> classDot = Optional.empty();
+        if (parent.getType() != TokenTypes.ASSIGN) {
+            classDot = Optional.ofNullable(parent.findFirstToken(TokenTypes.DOT));
+        }
+        return classDot;
     }
 }
