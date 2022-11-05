@@ -66,6 +66,44 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <pre>
  * &lt;module name=&quot;MutableException&quot;/&gt;
  * </pre>
+ * <p>Example:</p>
+ * <pre>
+ *      class FirstClass extends Exception {
+ *          private int errorCode; // OK Does not extend any class
+ *
+ *          public FirstClass() {
+ *              errorCode = 1;
+ *          }
+ *      }
+ *
+ *      class MyException extends Exception {
+ *          private int errorCode; // violation , The field 'errorCode' must be declared final
+ *
+ *          public MyException() {
+ *              errorCode = 2;
+ *          }
+ *      }
+ *
+ *      class DemoThrowable extends Throwable {
+ *          final int errorCode; // OK
+ *          String message; // violation, The field 'message' must be declared final
+ *
+ *          public DemoThrowable(int errorCode, String message) {
+ *              this.errorCode = errorCode;
+ *              this.message = message;
+ *          }
+ *      }
+ *
+ *      class CustomException extends Throwable { } // OK
+ *
+ *      class ViolationException extends java.lang.Exception {
+ *          int errorCode; // violation, The field 'errorCode' must be declared final
+ *
+ *          public ViolationException(int errorCode) {
+ *              this.errorCode = errorCode;
+ *          }
+ *      }
+ * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
