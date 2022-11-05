@@ -506,13 +506,12 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
         final DetailAST previousElement;
         final DetailAST ident = getIdentLastToken(parent.getParent());
         final DetailAST lastTypeNode = getTypeLastNode(ast);
-        final boolean isTypeCast = parent.getParent().getType() == TokenTypes.TYPECAST;
         // sometimes there are ident-less sentences
         // i.e. "(Object[]) null", but in casual case should be
         // checked whether ident or lastTypeNode has preceding position
         // determining if it is java style or C style
 
-        if (ident == null || isTypeCast || ident.getLineNo() > ast.getLineNo()) {
+        if (ident == null || ident.getLineNo() > ast.getLineNo()) {
             previousElement = lastTypeNode;
         }
         else if (ident.getLineNo() < ast.getLineNo()) {
@@ -570,10 +569,17 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
      * @return dot preceding the left bracket
      */
     private static DetailAST getPrecedingDot(DetailAST leftBracket) {
-        final DetailAST referencedClassDot =
-                leftBracket.getParent().findFirstToken(TokenTypes.DOT);
         final DetailAST referencedMemberDot = leftBracket.findFirstToken(TokenTypes.DOT);
-        return Optional.ofNullable(referencedMemberDot).orElse(referencedClassDot);
-
+        DetailAST result = null;
+        if (referencedMemberDot == null) {
+            final DetailAST parent = leftBracket.getParent();
+            if (parent.getType() != TokenTypes.ASSIGN) {
+                result = parent.findFirstToken(TokenTypes.DOT);
+            }
+        }
+        else {
+            result = referencedMemberDot;
+        }
+        return result;
     }
 }
