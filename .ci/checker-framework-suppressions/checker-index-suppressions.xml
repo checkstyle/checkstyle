@@ -2703,7 +2703,7 @@
     <message>incompatible argument for parameter beginIndex of substring.</message>
     <lineContent>+ moduleFilePath.substring(indexOfCheckstyle + 1) + xmlExtension;</lineContent>
     <details>
-      found   : @LTLengthOf(value={&quot;&quot;checkstyle&quot;&quot;, &quot;checkstyleString&quot;, &quot;moduleFilePath&quot;, &quot;moduleFilePath&quot;}, offset={&quot;-moduleFilePath.indexOf(checkstyleString) - 2&quot;, &quot;-moduleFilePath.indexOf(checkstyleString) - 2&quot;, &quot;-12&quot;, &quot;-checkstyleString.length() - 2&quot;}) int
+      found   : @LTLengthOf(value={&quot;checkstyleString&quot;, &quot;moduleFilePath&quot;, &quot;moduleFilePath&quot;}, offset={&quot;-moduleFilePath.indexOf(checkstyleString) - 2&quot;, &quot;-12&quot;, &quot;-checkstyleString.length() - 2&quot;}) int
       required: @LTEqLengthOf(&quot;moduleFilePath&quot;) int
     </details>
   </checkerFrameworkError>
@@ -2714,7 +2714,7 @@
     <message>incompatible argument for parameter endIndex of substring.</message>
     <lineContent>+ moduleFilePath.substring(0, indexOfCheckstyle) + &quot;/meta/&quot;</lineContent>
     <details>
-      found   : @LTLengthOf(value={&quot;&quot;checkstyle&quot;&quot;, &quot;checkstyleString&quot;, &quot;moduleFilePath&quot;, &quot;moduleFilePath&quot;}, offset={&quot;-moduleFilePath.indexOf(checkstyleString) - 1&quot;, &quot;-moduleFilePath.indexOf(checkstyleString) - 1&quot;, &quot;-11&quot;, &quot;-checkstyleString.length() - 1&quot;}) int
+      found   : @LTLengthOf(value={&quot;checkstyleString&quot;, &quot;moduleFilePath&quot;, &quot;moduleFilePath&quot;}, offset={&quot;-moduleFilePath.indexOf(checkstyleString) - 1&quot;, &quot;-11&quot;, &quot;-checkstyleString.length() - 1&quot;}) int
       required: @LTEqLengthOf(&quot;moduleFilePath&quot;) int
     </details>
   </checkerFrameworkError>
