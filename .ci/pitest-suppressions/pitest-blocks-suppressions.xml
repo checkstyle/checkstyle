@@ -9,7 +9,7 @@
     <lineContent>ast.getText());</lineContent>
   </mutation>
 
-    <mutation unstable="false">
+  <mutation unstable="false">
     <sourceFile>LeftCurlyCheck.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck</mutatedClass>
     <mutatedMethod>visitToken</mutatedMethod>
