@@ -840,6 +840,8 @@
           <tr>
             <td>Option</td>
             <td>Definition</td>
+            <td><a href="cmdline.html">CLI</a></td>
+            <td><a href="anttask.html">Ant task</a></td>
           </tr>
 
           <tr>
@@ -847,13 +849,21 @@
             <td>
               If a violation occurs, modules with this severity are ignored as if they never
               occurred.
-              This severity can be used to disable a module in the configuration. However,
+              This severity can be used to disable a module in the configuration.
+            </td>
+            <td>
+              Such violation not printed in output, however,
               depending on the setting of
               <a href="cmdline.html#Command_line_usage"><code>executeIgnoredModules</code></a>
               when executed, the module may still run and if an exception occurs, the exception
               will turn into an error and act as one.
-              Checkstyle Audit Listeners will not display any violations even with this option
-              enabled.
+            </td>
+            <td>
+              Such violation not printed in output, however,
+              depending on the setting of
+              <a href="anttask.html#Parameters"><code>executeIgnoredModules</code></a>
+              when executed, the module may still run and if an exception occurs, the exception
+              will turn into an error and act as one.
             </td>
           </tr>
 
@@ -861,7 +871,12 @@
             <td><code>info</code></td>
             <td>
               If a violation occurs, modules with this severity are displayed as informational.
-              Checkstyle will display the violation, but will not fail the execution.
+            </td>
+            <td>
+              Displays the violation, but not fail the execution.
+            </td>
+            <td>
+              Displays the violation, but not fail the execution.
             </td>
           </tr>
 
@@ -870,7 +885,12 @@
             <td>
               This severity behaves exactly the same as <code>info</code> in Checkstyle.
               It can be used to let user bring more attention to reviewers of such violations.
-              If executing Checkstyle through Ant,
+            </td>
+            <td>
+              Displays the violation, but not fail the execution.
+            </td>
+            <td>
+              Displays the violation, might fail the execution.<br/>
               <a href="anttask.html#Parameters"><code>maxWarnings</code></a> can be used to pass
               the execution until a certain number of warnings are found.
             </td>
@@ -881,10 +901,14 @@
             <td>
               If a violation occurs, modules with this severity are displayed as error and should
               be considered as a failure.
-              Depending on how Checkstyle is executed, there may be some additional settings
-              in our <a href="cmdline.html#Command_line_usage">command line</a> and
-              <a href="anttask.html">ANT</a> which can be set to not fail the execution or until
-              a certain number of errors occur.
+            </td>
+            <td>
+              Displays the violation, fail the execution.
+            </td>
+            <td>
+              Displays the violation, might fail the execution.<br/>
+              <a href="anttask.html#Parameters"><code>maxErrors</code></a> can be used to pass
+              the execution until a certain number of error are found.
             </td>
           </tr>
         </table>
