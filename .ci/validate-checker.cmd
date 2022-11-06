@@ -1,2 +1,2 @@
 @echo on
-groovy ./.ci/checker-framework.groovy checker-signature-gui-units-init
+mvn -X -e --no-transfer-progress clean compile -Pchecker-signature-gui-units-init
