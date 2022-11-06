@@ -829,7 +829,8 @@ class BadException extends java.lang.Exception {
         </div>
 
         <p>
-          To configure the check so that it only checks for class names that match pattern:
+          To configure the check so that it only checks for class names
+          that match pattern:
         </p>
         <source>
 &lt;module name=&quot;MutableException&quot;&gt;
