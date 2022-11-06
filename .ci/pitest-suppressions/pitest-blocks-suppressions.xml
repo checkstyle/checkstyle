@@ -9,6 +9,15 @@
     <lineContent>ast.getText());</lineContent>
   </mutation>
 
+    <mutation unstable="false">
+    <sourceFile>LeftCurlyCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck</mutatedClass>
+    <mutatedMethod>visitToken</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_17</mutator>
+    <description>RemoveSwitch 17 mutation</description>
+    <lineContent>switch (ast.getType()) {</lineContent>
+  </mutation>
+
   <mutation unstable="false">
     <sourceFile>NeedBracesCheck.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.blocks.NeedBracesCheck</mutatedClass>
