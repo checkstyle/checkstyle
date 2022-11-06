@@ -818,10 +818,10 @@ class MyThrowable extends Throwable {
   }
 }
 
-class ViolationException extends java.lang.Exception {
+class BadException extends java.lang.Exception {
   int code; // violation, The field 'code' must be declared final
 
-  public ViolationException(int code) {
+  public BadException(int code) {
     this.code = code;
   }
 }
@@ -829,7 +829,7 @@ class ViolationException extends java.lang.Exception {
         </div>
 
         <p>
-          To configure the check so that it only checks for Given Pattern in class-name:
+          To configure the check so that it only checks for class names that match pattern:
         </p>
         <source>
 &lt;module name=&quot;MutableException&quot;&gt;
@@ -865,10 +865,10 @@ class MyThrowable extends Throwable {
   }
 }
 
-class ViolationException extends java.lang.Exception {
+class BadException extends java.lang.Exception {
   int code; // violation, The field 'code' must be declared final
 
-  public ViolationException(int code) {
+  public BadException(int code) {
     this.code = code;
   }
 }
@@ -876,7 +876,8 @@ class ViolationException extends java.lang.Exception {
         </div>
 
         <p>
-          To configure the check so that it only checks for Given Pattern In ExtendedClassName:
+          To configure the check so that it only checks for type names used in 'extends'
+          that match pattern:
         </p>
         <source>
 &lt;module name=&quot;MutableException&quot;&gt;
@@ -912,10 +913,10 @@ class MyThrowable extends Throwable {
   }
 }
 
-class ViolationException extends java.lang.Exception {
+class BadException extends java.lang.Exception {
   int code; // OK, Extended-Class-Name doesn't match with Given pattern
 
-  public ViolationException(int code) {
+  public BadException(int code) {
     this.code = code;
   }
 }

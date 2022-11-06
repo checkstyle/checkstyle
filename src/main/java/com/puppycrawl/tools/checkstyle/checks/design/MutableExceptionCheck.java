@@ -94,16 +94,16 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *    }
  * }
  *
- * class ViolationException extends java.lang.Exception {
+ * class BadException extends java.lang.Exception {
  *   int code; // violation, The field 'code' must be declared final
  *
- *   public ViolationException(int code) {
+ *   public BadException(int code) {
  *     this.code = code;
  *   }
  * }
  * </pre>
  * <p>
- * To configure the check so that it only checks for Given Pattern in class-name:
+ * To configure the check so that it only checks for class names that match pattern:
  * </p>
  * <pre>
  * &lt;module name=&quot;MutableException&quot;&gt;
@@ -138,16 +138,17 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *   }
  * }
  *
- * class ViolationException extends java.lang.Exception {
+ * class BadException extends java.lang.Exception {
  *   int code; // violation, The field 'code' must be declared final
  *
- *   public ViolationException(int code) {
+ *   public BadException(int code) {
  *     this.code = code;
  *   }
  * }
  * </pre>
  * <p>
- * To configure the check so that it only checks for Given Pattern In SuperClassName:
+ * To configure the check so that it only checks for type names used in 'extends'
+ * that match pattern:
  * </p>
  * <pre>
  * &lt;module name=&quot;MutableException&quot;&gt;
@@ -182,10 +183,10 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *   }
  * }
  *
- * class ViolationException extends java.lang.Exception {
+ * class BadException extends java.lang.Exception {
  *   int code; // OK, Extended-Class-Name doesn't match with Given pattern
  *
- *   public ViolationException(int code) {
+ *   public BadException(int code) {
  *     this.code = code;
  *   }
  * }
