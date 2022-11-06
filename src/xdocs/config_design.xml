@@ -793,7 +793,7 @@ public interface Test2 { // violation
         <div class="wrapper">
           <source>
 class FirstClass extends Exception {
-  private int code; // OK, Class-Name doesn't match with default pattern
+  private int code; // OK, class name doesn't match with default pattern
 
   public FirstClass() {
     code = 1;
@@ -809,7 +809,7 @@ class MyException extends Exception {
 }
 
 class MyThrowable extends Throwable {
-  final int code;
+  final int code; // OK
   String message; // violation, The field 'message' must be declared final
 
   public MyThrowable(int code, String message) {
@@ -841,7 +841,7 @@ class BadException extends java.lang.Exception {
         <div class="wrapper">
           <source>
 class FirstClass extends Exception {
-  private int code; // OK, Class-Name doesn't match with Given pattern
+  private int code; // OK, class name doesn't match with given pattern
 
   public FirstClass() {
     code = 1;
@@ -857,8 +857,8 @@ class MyException extends Exception {
 }
 
 class MyThrowable extends Throwable {
-  final int code; // OK
-  String message; // OK
+  final int code; // OK, class name doesn't match with given pattern
+  String message; // OK, class name doesn't match with given pattern
 
   public MyThrowable(int code, String message) {
     this.code = code;
@@ -889,7 +889,7 @@ class BadException extends java.lang.Exception {
         <div class="wrapper">
           <source>
 class FirstClass extends Exception {
-  private int code; // OK, Extended-Class-Name doesn't match with Given pattern
+  private int code; // OK, extended class name doesn't match with given pattern
 
   public FirstClass() {
     code = 1;
@@ -897,7 +897,7 @@ class FirstClass extends Exception {
 }
 
 class MyException extends Exception {
-  private int code; // OK, Extended-Class-Name doesn't match with Given pattern
+  private int code; // OK, extended class name doesn't match with given pattern
 
   public MyException() {
     code = 2;
@@ -915,7 +915,7 @@ class MyThrowable extends Throwable {
 }
 
 class BadException extends java.lang.Exception {
-  int code; // OK, Extended-Class-Name doesn't match with Given pattern
+  int code; // OK, extended class name doesn't match with given pattern
 
   public BadException(int code) {
     this.code = code;

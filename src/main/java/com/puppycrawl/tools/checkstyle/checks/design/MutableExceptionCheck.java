@@ -69,7 +69,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <p>Example:</p>
  * <pre>
  * class FirstClass extends Exception {
- *   private int code; // OK, Class-Name doesn't match with default pattern
+ *   private int code; // OK, class name doesn't match with default pattern
  *
  *   public FirstClass() {
  *     code = 1;
@@ -85,7 +85,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * }
  *
  * class MyThrowable extends Throwable {
- *    final int code;
+ *    final int code; // OK
  *    String message; // violation, The field 'message' must be declared final
  *
  *    public MyThrowable(int code, String message) {
@@ -114,7 +114,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <p>Example:</p>
  * <pre>
  * class FirstClass extends Exception {
- *   private int code; // OK, Class-Name doesn't match with Given pattern
+ *   private int code; // OK, class name doesn't match with given pattern
  *
  *   public FirstClass() {
  *     code = 1;
@@ -130,8 +130,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * }
  *
  * class MyThrowable extends Throwable {
- *   final int code; // OK
- *   String message; // OK
+ *   final int code; // OK, class name doesn't match with given pattern
+ *   String message; // OK, class name doesn't match with given pattern
  *
  *   public MyThrowable(int code, String message) {
  *     this.code = code;
@@ -159,7 +159,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <p>Example:</p>
  * <pre>
  * class FirstClass extends Exception {
- *   private int code; // OK, Extended-Class-Name doesn't match with Given pattern
+ *   private int code; // OK, extended class name doesn't match with given pattern
  *
  *   public FirstClass() {
  *     code = 1;
@@ -167,7 +167,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * }
  *
  * class MyException extends Exception {
- *   private int code; // OK, Extended-Class-Name doesn't match with Given pattern
+ *   private int code; // OK, extended class name doesn't match with given pattern
  *
  *   public MyException() {
  *     code = 2;
@@ -185,7 +185,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * }
  *
  * class BadException extends java.lang.Exception {
- *   int code; // OK, Extended-Class-Name doesn't match with Given pattern
+ *   int code; // OK, extended class name doesn't match with given pattern
  *
  *   public BadException(int code) {
  *     this.code = code;
