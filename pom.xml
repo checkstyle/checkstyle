@@ -234,7 +234,7 @@
     <forbiddenapis.version>3.4</forbiddenapis.version>
     <json-schema-validator.version>1.2.0</json-schema-validator.version>
     <error-prone.version>2.15.0</error-prone.version>
-    <checkerframework.version>3.25.0</checkerframework.version>
+    <checkerframework.version>3.26.0</checkerframework.version>
   </properties>
 
   <dependencies>
