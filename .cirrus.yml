@@ -49,6 +49,7 @@ task:
     - java --version
     - mvn --version
     - groovy --version
+    - echo %JAVA_HOME%
     # - xsltproc --version
     # - xml --version
   validate_checker_windows_script:
