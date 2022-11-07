@@ -27,21 +27,20 @@ blocks:
               cache store m2 $HOME/.m2
             fi
       jobs:
-        # NonDex supports only Java 8 till https://github.com/TestingResearchIllinois/NonDex/pull/155
-        # - name: NonDex (openjdk11)
-        #   priority:
-        #     - value: 90
-        #       when: true
-        #   matrix:
-        #     - env_var: CMD
-        #       values:
-        #         - .ci/validation.sh nondex
-        #   commands:
-        #     - sem-version java 11
-        #     - echo "eval of CMD is starting";
-        #     - echo "CMD=$CMD";
-        #     - eval $CMD;
-        #     - echo "eval of CMD is completed";
+        - name: NonDex (openjdk11)
+          priority:
+            - value: 90
+              when: true
+          matrix:
+            - env_var: CMD
+              values:
+                - .ci/validation.sh nondex
+          commands:
+            - sem-version java 11
+            - echo "eval of CMD is starting";
+            - echo "CMD=$CMD";
+            - eval $CMD;
+            - echo "eval of CMD is completed";
 
         - name: Validation (openjdk11, fast pool)
           matrix:
