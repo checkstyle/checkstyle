@@ -23,6 +23,7 @@ task:
         OPENJDK_VERSION: "17.0.0"
         OPENJDK_PATH: "jdk-17"
         GROOVY_VERSION: "3.0.11"
+        JAVA_HOME: "C:/Program Files/OpenJDK/jdk-17"
   env:
     # disable ANSI output for picocli (may affect tests)
     NO_COLOR: "1"
@@ -49,6 +50,7 @@ task:
     - java --version
     - mvn --version
     - groovy --version
+    - echo %JAVA_HOME%
     # - xsltproc --version
     # - xml --version
   validate_checker_windows_script:
