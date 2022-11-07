@@ -103,8 +103,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * }
  * </pre>
  * <p>
- * To configure the check so that it only checks for class names
- * that match pattern:
+ * To configure the check so that it checks for class name that ends
+ * with 'Exception':
  * </p>
  * <pre>
  * &lt;module name=&quot;MutableException&quot;&gt;
@@ -148,8 +148,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * }
  * </pre>
  * <p>
- * To configure the check so that it only checks for type names used in 'extends'
- * that match pattern:
+ * To configure the check so that it checks for type name that is used in
+ * 'extends' and ends with 'Throwable':
  * </p>
  * <pre>
  * &lt;module name=&quot;MutableException&quot;&gt;
