@@ -88,6 +88,7 @@ nondex)
   mvn -e --no-transfer-progress --fail-never clean nondex:nondex -DargLine='-Xms1024m -Xmx2048m' \
     -Dtest=!JavadocPropertiesGeneratorTest#testNonExistentArgument
   mkdir -p .ci-temp
+  cat .nondex/*
   cat "$(grep -RlE 'td class=.x' .nondex/ | cat)" < /dev/null > .ci-temp/output.txt
   RESULT=$(cat .ci-temp/output.txt | wc -c)
   cat .ci-temp/output.txt
