@@ -20,11 +20,11 @@ public class InputDescendantTokenIllegalTokens7
     public void methodWithPreviouslyIllegalTokens()
     {
         int i = 0;
-        switch (i) // violation
+        switch (i) // violation 'Using 'LITERAL_SWITCH' is not allowed.'
         {
             default:
-                i--; // violation
-                i++; // violation
+                i--; // violation 'Using 'POST_DEC' is not allowed.'
+                i++; // violation 'Using 'POST_INC' is not allowed.'
                 break;
         }
     }

@@ -29,5 +29,5 @@ public class InputDescendantTokenIllegalTokens8
         }
     }
 
-    public native void nativeMethod(); // violation
+    public native void nativeMethod(); // violation 'Using 'LITERAL_NATIVE' is not allowed'
 }
