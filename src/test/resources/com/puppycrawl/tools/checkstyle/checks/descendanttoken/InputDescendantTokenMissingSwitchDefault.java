@@ -29,7 +29,7 @@ public class InputDescendantTokenMissingSwitchDefault {
 class bad_test {
     public void foo() {
         int i = 1;
-        switch (i) { // violation
+        switch (i) { // violation 'switch without "default" clause.'
         case 1: i++; break;
         case 2: i--; break;
         }
