@@ -28,8 +28,6 @@ public class InputDescendantTokenIllegalTokens2
                 break;
         }
     }
-
-    // violation below 'Count of 1 for 'LITERAL_NATIVE' descendant
-    // 'LITERAL_NATIVE' exceeds maximum count 0.'
+    // violation below 'Count of 1 for 'LITERAL_NATIVE' descendant 'LITERAL_NATIVE' exceeds .* 0.'
     public native void nativeMethod();
 }
