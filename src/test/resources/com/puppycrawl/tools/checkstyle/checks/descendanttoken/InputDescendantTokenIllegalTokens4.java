@@ -20,7 +20,9 @@ public class InputDescendantTokenIllegalTokens4
     public void methodWithPreviouslyIllegalTokens()
     {
         int i = 0;
-        switch (i) // violation
+        // violation below 'Count of 1 for 'LITERAL_SWITCH' descendant
+        // 'LITERAL_DEFAULT' is less than minimum count 2.'
+        switch (i)
         {
             default:
                 i--;
