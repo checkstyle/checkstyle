@@ -495,7 +495,7 @@ public class LeftCurlyCheck
      * @param braceLine line content
      */
     private void validateEol(DetailAST brace, String braceLine) {
-        if (CommonUtil.hasWhitespaceBefore(brace.getColumnNo(), braceLine)) {
+        if (CommonUtil.validComment(brace.getColumnNo(), braceLine)) {
             log(brace, MSG_KEY_LINE_PREVIOUS, OPEN_CURLY_BRACE, brace.getColumnNo() + 1);
         }
         if (!hasLineBreakAfter(brace)) {
