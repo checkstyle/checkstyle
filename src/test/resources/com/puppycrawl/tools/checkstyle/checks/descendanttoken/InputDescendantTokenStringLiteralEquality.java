@@ -29,7 +29,7 @@ public class InputDescendantTokenStringLiteralEquality
             // flagged, should use equals
         }
 
-        if ("Oliver" == "Oliver") // violation 'Literal Strings .* compared using equals(), not '==''
+        if ("Oliver" == "Oliver") // violation 'Lit.* Strings .* compared using equals(), not '==''
         {
             // doesn't make much sense because this can be evaluated
             // to true at compile-time, but is flagged anyway
