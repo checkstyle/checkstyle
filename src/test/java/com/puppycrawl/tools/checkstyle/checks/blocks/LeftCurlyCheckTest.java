@@ -531,4 +531,17 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
                 getPath("InputLeftCurlyEnumConstantDef.java"), expected);
     }
+
+    @Test
+    public void newTest() throws Exception {
+        final String[] expected = {
+            "19:34: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 34),
+            "22:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
+            "26:33: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 33),
+            "31:24: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 24),
+            "36:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputLeftCurlyNew.java"), expected);
+    }
 }
