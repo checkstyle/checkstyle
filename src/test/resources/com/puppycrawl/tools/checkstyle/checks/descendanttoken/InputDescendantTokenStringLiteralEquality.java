@@ -19,17 +19,17 @@ public class InputDescendantTokenStringLiteralEquality
 {
     void foo(String name)
     {
-        if (name == "Lars") // violation
+        if (name == "Lars") // violation 'Literal Strings .* be compared using equals(), not '==''
         {
             // flagged, should use equals
         }
 
-        if ("Oleg" == name) // violation
+        if ("Oleg" == name) // violation 'Literal Strings .* be compared using equals(), not '==''
         {
             // flagged, should use equals
         }
 
-        if ("Oliver" == "Oliver") // violation
+        if ("Oliver" == "Oliver") // violation 'Literal Strings .* compared using equals(), not '==''
         {
             // doesn't make much sense because this can be evaluated
             // to true at compile-time, but is flagged anyway
