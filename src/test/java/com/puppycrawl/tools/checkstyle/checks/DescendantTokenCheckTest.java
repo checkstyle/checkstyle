@@ -68,7 +68,7 @@ public class DescendantTokenCheckTest extends AbstractModuleTestSupport {
     public void testMinimumNumber()
             throws Exception {
         final String[] expected = {
-            "23:9: " + getCheckMessage(MSG_KEY_MIN, 1, 2, "LITERAL_SWITCH", "LITERAL_DEFAULT"),
+            "24:9: " + getCheckMessage(MSG_KEY_MIN, 1, 2, "LITERAL_SWITCH", "LITERAL_DEFAULT"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputDescendantTokenIllegalTokens4.java"), expected);
@@ -226,7 +226,7 @@ public class DescendantTokenCheckTest extends AbstractModuleTestSupport {
     public void testWithSumLessThenMinDefMsg() throws Exception {
 
         final String[] expected = {
-            "31:44: " + getCheckMessage(MSG_KEY_SUM_MIN, 0, 3, "EQUAL"),
+            "32:44: " + getCheckMessage(MSG_KEY_SUM_MIN, 0, 3, "EQUAL"),
             "37:32: " + getCheckMessage(MSG_KEY_SUM_MIN, 2, 3, "EQUAL"),
             "37:50: " + getCheckMessage(MSG_KEY_SUM_MIN, 2, 3, "EQUAL"),
             "38:33: " + getCheckMessage(MSG_KEY_SUM_MIN, 2, 3, "NOT_EQUAL"),
