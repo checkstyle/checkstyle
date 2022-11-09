@@ -1,216 +1,33 @@
-version: 2
-jobs:
+version: 2.1
 
-  no-exception-lucene-and-others-javadoc:
-    docker:
-      - image: &default-image checkstyle/jdk-11-groovy-git-mvn:11.0.13__3.0.9__2.25.1__3.6.3
+commands:
+  run-maven-script:
+    parameters:
+      script-name:
+        description: "name of script"
+        type: string
+        default: ""
+      args:
+        description: "arguments to script"
+        type: string
+        default: ""
     steps:
       - checkout
+      - restore_cache:
+          name: Restore Maven repo cache
+          keys:
+            - mvn-cache-{{ checksum "pom.xml" }}
       - run:
-          command: |
-            ./.ci/no-exception-test.sh no-exception-lucene-and-others-javadoc
-      - run:
-          command: ./.ci/validation.sh git-diff
-  no-exception-cassandra-storm-tapestry-javadoc:
-    docker:
-      - image: *default-image
-    steps:
-      - checkout
-      - run:
-          command: |
-            ./.ci/no-exception-test.sh no-exception-cassandra-storm-tapestry-javadoc
+          command: << parameters.script-name >> << parameters.args >>
       - run:
           command: ./.ci/validation.sh git-diff
-  no-exception-hadoop-apache-groovy-scouter-javadoc:
-    docker:
-      - image: *default-image
-    steps:
-      - checkout
-      - run:
-          command: |
-            ./.ci/no-exception-test.sh no-exception-hadoop-apache-groovy-scouter-javadoc
-      - run:
-          command: ./.ci/validation.sh git-diff
-  no-exception-only-javadoc:
-    docker:
-      - image: *default-image
-    steps:
-      - checkout
-      - run:
-          command: |
-            ./.ci/no-exception-test.sh no-exception-only-javadoc
-      - run:
-          command: ./.ci/validation.sh git-diff
-  no-error-xwiki:
-    docker:
-      - image: *default-image
-    steps:
-      - checkout
-      - run:
-          command: |
-            ./.ci/validation.sh no-error-xwiki
-      - run:
-          command: ./.ci/validation.sh git-diff
-  no-error-pmd:
-    docker:
-      - image: *default-image
-    steps:
-      - checkout
-      - run:
-          command: |
-            ./.ci/validation.sh no-error-pmd
-      - run:
-          command: ./.ci/validation.sh git-diff
-  no-error-hibernate-search:
-    docker:
-      - image: cimg/openjdk:18.0.1
-    steps:
-      - checkout
-      - run:
-          command: |
-            ./.ci/validation.sh no-error-hibernate-search
-      - run:
-          command: ./.ci/validation.sh git-diff
-  no-exception-struts:
-    docker:
-      - image: *default-image
-    steps:
-      - checkout
-      - run:
-          command: |
-            ./.ci/validation.sh no-exception-struts
-      - run:
-          command: ./.ci/validation.sh git-diff
-  no-exception-checkstyle-sevntu:
-    docker:
-      - image: *default-image
-    steps:
-      - checkout
-      - run:
-          command: |
-            ./.ci/validation.sh no-exception-checkstyle-sevntu
-      - run:
-          command: ./.ci/validation.sh git-diff
-  no-exception-checkstyle-sevntu-javadoc:
-    docker:
-      - image: *default-image
-    steps:
-      - checkout
-      - run:
-          command: |
-            ./.ci/validation.sh no-exception-checkstyle-sevntu-javadoc
-      - run:
-          command: ./.ci/validation.sh git-diff
-  no-exception-guava:
-    docker:
-      - image: *default-image
-    steps:
-      - checkout
-      - run:
-          command: |
-            ./.ci/validation.sh no-exception-guava
-      - run:
-          command: ./.ci/validation.sh git-diff
-  no-exception-hibernate-orm:
-    docker:
-      - image: *default-image
-    steps:
-      - checkout
-      - run:
-          command: |
-            ./.ci/validation.sh no-exception-hibernate-orm
-      - run:
-          command: ./.ci/validation.sh git-diff
-  no-exception-spotbugs:
-    docker:
-      - image: *default-image
-    steps:
-      - checkout
-      - run:
-          command: |
-            ./.ci/validation.sh no-exception-spotbugs
-      - run:
-          command: ./.ci/validation.sh git-diff
-  no-exception-spoon:
-    docker:
-      - image: *default-image
-    steps:
-      - checkout
-      - run:
-          command: |
-            ./.ci/validation.sh no-exception-spoon
-      - run:
-          command: ./.ci/validation.sh git-diff
-  no-exception-spring-framework:
-    docker:
-      - image: *default-image
-    steps:
-      - checkout
-      - run:
-          command: |
-            ./.ci/validation.sh no-exception-spring-framework
-      - run:
-          command: ./.ci/validation.sh git-diff
-  no-exception-hbase:
-    docker:
-      - image: *default-image
-    steps:
-      - checkout
-      - run:
-          command: |
-            ./.ci/validation.sh no-exception-hbase
-      - run:
-          command: ./.ci/validation.sh git-diff
-  no-exception-Pmd-elasticsearch-lombok-ast:
-    docker:
-      - image: *default-image
-    steps:
-      - checkout
-      - run:
-          command: |
-            ./.ci/validation.sh no-exception-Pmd-elasticsearch-lombok-ast
-      - run:
-          command: ./.ci/validation.sh git-diff
-  no-exception-alot-of-projects:
-    docker:
-      - image: *default-image
-    steps:
-      - checkout
-      - run:
-          command: |
-            ./.ci/validation.sh no-exception-alot-of-projects
-      - run:
-          command: ./.ci/validation.sh git-diff
-  no-warning-imports-guava:
-    docker:
-      - image: *default-image
-    steps:
-      - checkout
-      - run:
-          command: |
-            ./.ci/validation.sh no-warning-imports-guava
-      - run:
-          command: ./.ci/validation.sh git-diff
-  no-warning-imports-java-design-patterns:
-    docker:
-      - image: *default-image
-    steps:
-      - checkout
-      - run:
-          command: |
-            ./.ci/validation.sh no-warning-imports-java-design-patterns
-      - run:
-          command: ./.ci/validation.sh git-diff
-  sonarqube:
-    docker:
-      - image: *default-image
-    steps:
-      - checkout
-      - run:
-          command: |
-            ./.ci/validation.sh sonarqube
-      - run:
-          command: ./.ci/validation.sh git-diff
+      - save_cache:
+          name: Save Maven repo cache
+          key: mvn-cache-{{ checksum "pom.xml" }}
+          paths:
+            - .m2
+
+jobs:
 
   run-inspections:
     docker:
@@ -238,54 +55,88 @@ jobs:
       - store_artifacts:
           path: /home/circleci/project/target/inspection-results
 
-  no-merge-commits:
+  validate-with-maven-script:
+    parameters: &script_parameters
+      image-name:
+        type: string
+        default: "cimg/openjdk:11.0.16"
+        description: "docker image to use"
+      script-name:
+        description: "name of script"
+        type: string
+        default: ""
+      args:
+        type: string
+        default: ""
+        description: "argument to provide to validation.sh"
     docker:
-      - image: cimg/base:2022.10
+      - image: << parameters.image-name >>
     steps:
-      - checkout
-      - run:
-          name: Check for merge commits
-          command: |
-            export PR_HEAD_SHA=$CIRCLE_SHA1
-            ./.ci/validation.sh git-no-merge-commits
+      - run-maven-script:
+          script-name: << parameters.script-name >>
+          args: << parameters.args >>
 
-  check-pull-number:
+  validate-with-script:
+    parameters: *script_parameters
     docker:
-      - image: cimg/base:2022.10
+      - image: << parameters.image-name >>
     steps:
       - checkout
       - run:
-          name: Check that 'Pull#XXXX' matches PR number
+          name: run << parameters.script-name >>
           command: |
+            export PULL_REQUEST=$CIRCLE_PR_NUMBER
             export PR_HEAD_SHA=$CIRCLE_SHA1
             export PR_NUMBER=$CIRCLE_PR_NUMBER
-            ./.ci/validation.sh git-check-pull-number
+            << parameters.script-name >> << parameters.args >>
 
 workflows:
-  version: 2
-  no-exception-tests:
+  test:
     jobs:
-      - no-exception-lucene-and-others-javadoc
-      - no-exception-cassandra-storm-tapestry-javadoc
-      - no-exception-hadoop-apache-groovy-scouter-javadoc
-      - no-exception-only-javadoc
-      - no-error-xwiki
-      - no-error-pmd
-      - no-error-hibernate-search
-      - no-exception-struts
-      - no-exception-checkstyle-sevntu
-      - no-exception-checkstyle-sevntu-javadoc
-      - no-exception-guava
-      - no-exception-hibernate-orm
-      - no-exception-spotbugs
-      - no-exception-spoon
-      - no-exception-spring-framework
-      - no-exception-hbase
-      - no-exception-Pmd-elasticsearch-lombok-ast
-      - no-exception-alot-of-projects
-      - no-warning-imports-guava
-      - no-warning-imports-java-design-patterns
-      - sonarqube
+      - validate-with-maven-script:
+          name: "no-error-hibernate-search"
+          image-name: "cimg/openjdk:18.0.1"
+          script-name: "./.ci/validation.sh"
+          args: "no-error-hibernate-search"
+      - validate-with-maven-script:
+          matrix:
+            parameters:
+              image-name: [ "checkstyle/jdk-11-groovy-git-mvn:11.0.13__3.0.9__2.25.1__3.6.3" ]
+              script-name: [ "./.ci/no-exception-test.sh" ]
+              args: [
+                "no-exception-lucene-and-others-javadoc",
+                "no-exception-cassandra-storm-tapestry-javadoc",
+                "no-exception-hadoop-apache-groovy-scouter-javadoc",
+                "no-exception-only-javadoc",
+              ]
+      - validate-with-maven-script:
+          matrix:
+            parameters:
+              script-name: [ "./.ci/validation.sh" ]
+              args: [
+                "no-error-xwiki",
+                "no-error-pmd",
+                "no-exception-struts",
+                "no-exception-checkstyle-sevntu",
+                "no-exception-checkstyle-sevntu-javadoc",
+                "no-exception-guava",
+                "no-exception-hibernate-orm",
+                "no-exception-spotbugs",
+                "no-exception-spoon",
+                "no-exception-spring-framework",
+                "no-exception-hbase",
+                "no-exception-Pmd-elasticsearch-lombok-ast",
+                "no-exception-alot-of-projects",
+                "no-warning-imports-guava",
+                "no-warning-imports-java-design-patterns",
+                "sonarqube",
+                "checkstyle-and-sevntu",
+                "spotbugs-and-pmd",
+                "site",
+                "release-dry-run",
+                "assembly-run-all-jar",
+                "no-error-test-sbe",
+              ]
 
   idea:
     jobs:
@@ -293,5 +144,64 @@ workflows:
 
   git-validation:
     jobs:
-      - no-merge-commits
-      - check-pull-number
+      - validate-with-script:
+          name: "git-no-merge-commits"
+          script-name: "./.ci/validation.sh"
+          args: "git-no-merge-commits"
+      - validate-with-script:
+          name: "git-check-pull-number"
+          script-name: "./.ci/validation.sh"
+          args: "git-check-pull-number"
+
+  cli-validation:
+    jobs:
+      - validate-with-script:
+          name: "checkchmod"
+          script-name: "./.ci/checkchmod.sh"
+      - validate-with-script:
+          name: "releasenotes-gen"
+          script-name: "./.ci/releasenotes-gen.sh"
+
+  javac-validation:
+    jobs:
+      - validate-with-script:
+          name: "check-since-version"
+          script-name: "./.ci/validation.sh"
+          args: "check-since-version"
+      - validate-with-script:
+          name: "javac11"
+          script-name: "./.ci/validation.sh"
+          args: "javac11"
+      - validate-with-script:
+          name: "javac14"
+          image-name: "cimg/openjdk:14.0.2"
+          script-name: "./.ci/validation.sh"
+          args: "javac14"
+      - validate-with-script:
+          name: "javac15"
+          script-name: "./.ci/validation.sh"
+          image-name: "cimg/openjdk:15.0.2"
+          args: "javac15"
+      - validate-with-script:
+          name: "javac16"
+          image-name: "cimg/openjdk:16.0.2"
+
+          script-name: "./.ci/validation.sh"
+          args: "javac16"
+      - validate-with-script:
+          name: "javac17"
+          image-name: "cimg/openjdk:17.0.5"
+          script-name: "./.ci/validation.sh"
+          args: "javac17"
+
+  site-validation:
+    jobs:
+      - validate-with-maven-script:
+          name: "jdk14 assembly site"
+          image-name: "cimg/openjdk:14.0.2"
+          script-name: "./.ci/validation.sh"
+          args: "jdk14-assembly-site"
+      - validate-with-maven-script:
+          name: "jdk11 assembly site"
+          script-name: "./.ci/validation.sh"
+          args: "assembly-site"
