@@ -165,6 +165,27 @@ public final class CommonUtil {
     }
 
     /**
+     * Return whether the LeftCurly would be on previous line or not.
+     *
+     * @param index index to check up to
+     * @param line the line to check
+     * @return true if leftCurly needs to be on previous line
+     */
+    public static boolean validComment(int index, String line) {
+        final String str = line.substring(0, index).trim();
+        final boolean result;
+        if ("".equals(str)) {
+            result = true;
+        }
+        else {
+            final Pattern pattern1 = Pattern.compile("/\\*(.|[\\r\\n])[^/\\*]*\\*/");
+            final Matcher match = pattern1.matcher(str);
+            result = match.matches();
+        }
+        return result;
+    }
+
+    /**
      * Returns the length of a string ignoring all trailing whitespace.
      * It is a pity that there is not a trim() like
      * method that only removed the trailing whitespace.
