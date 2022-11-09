@@ -74,7 +74,7 @@ jobs:
     steps:
       - run-maven-script:
           script-name: << parameters.script-name >>
-          args: << parameters.args >>
+          args: "${CIRCLE_JOB}"
 
   validate-with-script:
     parameters: *script_parameters
