@@ -1076,6 +1076,11 @@ git-check-pull-number)
   done
   ;;
 
+assembly-site)
+  mvn -e --no-transfer-progress package -Passembly
+  mvn -e --no-transfer-progress site -Dlinkcheck.skip=true
+  ;;
+
 *)
   echo "Unexpected argument: $1"
   sleep 5s
