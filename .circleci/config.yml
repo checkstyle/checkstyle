@@ -2,7 +2,7 @@ version: 2.1
 
 commands:
   run-maven-script:
-    parameters:
+    parameters: &script-parameters
       script-name:
         description: "name of script"
         type: string
@@ -55,29 +55,6 @@ jobs:
       - store_artifacts:
           path: /home/circleci/project/target/inspection-results
 
-  no-merge-commits:
-    docker:
-      - image: cimg/base:2022.10
-    steps:
-      - checkout
-      - run:
-          name: Check for merge commits
-          command: |
-            export PR_HEAD_SHA=$CIRCLE_SHA1
-            ./.ci/validation.sh git-no-merge-commits
-
-  check-pull-number:
-    docker:
-      - image: cimg/base:2022.10
-    steps:
-      - checkout
-      - run:
-          name: Check that 'Pull#XXXX' matches PR number
-          command: |
-            export PR_HEAD_SHA=$CIRCLE_SHA1
-            export PR_NUMBER=$CIRCLE_PR_NUMBER
-            ./.ci/validation.sh git-check-pull-number
-
   validation:
     docker:
       - image: &default-image checkstyle/jdk-11-groovy-git-mvn:11.0.13__3.0.9__2.25.1__3.6.3
@@ -104,18 +81,50 @@ jobs:
           script-name: "./.ci/no-exception-test.sh"
           args: << parameters.args >>
 
-  no-error-hibernate-search:
+  validate-with-image:
+    parameters:
+      image-name:
+        type: string
+        default: ""
+        description: "docker image to use"
+      args:
+        type: string
+        default: ""
+        description: "argument to provide to validation.sh"
     docker:
-      - image: cimg/openjdk:18.0.1
+      - image: << parameters.image-name >>
     steps:
       - run-maven-script:
           script-name: "./.ci/validation.sh"
-          args: "no-error-hibernate-search"
+          args: << parameters.args >>
+
+  run-script:
+    docker:
+      - image: cimg/base:2022.10
+    parameters:
+      script-name:
+        description: "name of script"
+        type: string
+        default: ""
+      args:
+        description: "arguments to script"
+        type: string
+        default: ""
+    steps:
+      - run:
+          name: run << parameters.script-name >>
+          command: |
+            export PULL_REQUEST=$CIRCLE_PR_NUMBER
+            export PR_HEAD_SHA=$CIRCLE_SHA1
+            export PR_NUMBER=$CIRCLE_PR_NUMBER
+            << parameters.script-name >> << parameters.args >>
 
 workflows:
   test:
     jobs:
-      - no-error-hibernate-search
+      - validate-with-image:
+          image-name: "cimg/openjdk:18.0.1"
+          args: "no-error-hibernate-search"
       - no-exception:
           matrix:
             parameters:
@@ -145,6 +154,12 @@ workflows:
                 "no-warning-imports-guava",
                 "no-warning-imports-java-design-patterns",
                 "sonarqube",
+                "checkstyle-and-sevntu",
+                "spotbugs-and-pmd",
+                "site",
+                "release-dry-run",
+                "assembly-run-all-jar",
+                "no-error-test-sbe"
               ]
 
   idea:
@@ -153,5 +168,47 @@ workflows:
 
   git-validation:
     jobs:
-      - no-merge-commits
-      - check-pull-number
+      - run-script:
+          script-name: "./.ci/validation.sh"
+          args: "no-merge-commits"
+      - run-script:
+          script-name: "./.ci/validation.sh"
+          args: "check-pull-number"
+
+  cli-validation:
+    jobs:
+      - run-script:
+          script-name: "./.ci/checkchmod.sh"
+      - run-script:
+          script-name: "./.ci/releasenotes-gen.sh"
+
+  javac-validation:
+    jobs:
+      - validate-with-image:
+          image-name: "cimg/openjdk:11.0.16"
+          args: "check-since-version"
+      - validate-with-image:
+          image-name: "cimg/openjdk:11.0.16"
+          args: "javac11"
+      - validate-with-image:
+          image-name: "cimg/openjdk:14.0.2"
+          args: "javac14"
+      - validate-with-image:
+          image-name: "cimg/openjdk:15.0.2"
+          args: "javac15"
+      - validate-with-image:
+          image-name: "cimg/openjdk:16.0.2"
+          args: "javac16"
+      - validate-with-image:
+          image-name: "cimg/openjdk:17.0.5"
+          args: "javac17"
+
+  site-validation:
+    jobs:
+      - validate-with-image:
+          name: "jdk14 assembly site"
+          image-name: "cimg/openjdk:14.0.2"
+          args: "jdk14-assembly-site"
+      - validate-with-image:
+          image-name: "cimg/openjdk:11.0.16"
+          args: "assembly-site"
