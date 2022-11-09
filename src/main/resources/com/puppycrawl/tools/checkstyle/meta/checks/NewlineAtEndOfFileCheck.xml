@@ -13,7 +13,7 @@
  command does not show previous lines as changed.
  &lt;/p&gt;
  &lt;p&gt;
- Example (line 36 should not be in diff):
+ Example:
  &lt;/p&gt;
  &lt;pre&gt;
  &amp;#64;&amp;#64; -32,4 +32,5 &amp;#64;&amp;#64; ForbidWildcardAsReturnTypeCheck.returnTypeClassNamesIgnoreRegex
