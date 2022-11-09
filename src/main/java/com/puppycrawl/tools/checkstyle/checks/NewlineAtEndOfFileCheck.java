@@ -38,7 +38,7 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * command does not show previous lines as changed.
  * </p>
  * <p>
- * Example (line 36 should not be in diff):
+ * Example:
  * </p>
  * <pre>
  * &#64;&#64; -32,4 +32,5 &#64;&#64; ForbidWildcardAsReturnTypeCheck.returnTypeClassNamesIgnoreRegex
