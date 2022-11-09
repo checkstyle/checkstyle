@@ -69,6 +69,7 @@ jobs:
         type: string
         default: ""
         description: "argument to provide to validation.sh"
+    name: test
     docker:
       - image: << parameters.image-name >>
     steps:
@@ -101,6 +102,7 @@ workflows:
       - validate-with-maven-script:
           matrix:
             parameters:
+              image-name: [ "checkstyle/jdk-11-groovy-git-mvn:11.0.13__3.0.9__2.25.1__3.6.3" ]
               script-name: [ "./.ci/no-exception-test.sh" ]
               args: [
                 "no-exception-lucene-and-others-javadoc",
