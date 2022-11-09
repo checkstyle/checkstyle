@@ -136,9 +136,10 @@ workflows:
                 "no-exception-hadoop-apache-groovy-scouter-javadoc",
                 "no-exception-only-javadoc",
               ]
-      - validation:
+      - run-maven-script:
           matrix:
             parameters:
+              script-name: [ "./.ci/validation.sh" ]
               args: [
                 "no-error-xwiki",
                 "no-error-pmd",
@@ -171,13 +172,13 @@ workflows:
   git-validation:
     jobs:
       - run-script:
-          name: "no-merge-commits"
+          name: "git-no-merge-commits"
           script-name: "./.ci/validation.sh"
-          args: "no-merge-commits"
+          args: "git-no-merge-commits"
       - run-script:
-          name: "check-pull-number"
+          name: "git-check-pull-number"
           script-name: "./.ci/validation.sh"
-          args: "check-pull-number"
+          args: "git-check-pull-number"
 
   cli-validation:
     jobs:
