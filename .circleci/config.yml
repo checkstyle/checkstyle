@@ -112,6 +112,20 @@ jobs:
           script-name: "./.ci/validation.sh"
           args: "no-error-hibernate-search"
 
+  validate-version:
+    parameters:
+      image-name:
+        type: string
+        default: ""
+        description: "docker image to use"
+    docker:
+      - image: << parameters.image-name >>
+    steps:
+      - run-maven-script:
+          script-name: "./.ci/validation.sh"
+          args: "javac11
+    
+
 workflows:
   test:
     jobs:
@@ -145,6 +159,11 @@ workflows:
                 "no-warning-imports-guava",
                 "no-warning-imports-java-design-patterns",
                 "sonarqube",
+                "checkstyle-and-sevntu",
+                "spotbugs-and-pmd",
+                "site",
+                "release-dry-run",
+                "assembly-run-all-jar",
               ]
 
   idea:
@@ -155,3 +174,8 @@ workflows:
     jobs:
       - no-merge-commits
       - check-pull-number
+
+  validate-versions:
+    jobs:
+      - validate-version:
+          image-name: "cimg/openjdk:11.0.16"
