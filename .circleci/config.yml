@@ -77,21 +77,18 @@ workflows:
     jobs:
       # no-exception script
       - validate-with-maven-script:
-          name: "no-exception-lucene-and-others-javadoc"
-          image-name: &custom_img "checkstyle/jdk-11-groovy-git-mvn:11.0.13__3.0.9__2.25.1__3.6.3"
-          script-name: &no-exception-script "./.ci/no-exception-test.sh"
-      - validate-with-maven-script:
-          name: "no-exception-cassandra-storm-tapestry-javadoc"
-          image-name: *custom_img
-          script-name: *no-exception-script
-      - validate-with-maven-script:
-          name: "no-exception-hadoop-apache-groovy-scouter-javadoc"
-          image-name: *custom_img
-          script-name: *no-exception-script
-      - validate-with-maven-script:
-          name: "no-exception-only-javadoc"
-          image-name: *custom_img
-          script-name: *no-exception-script
+          matrix:
+            parameters:
+              name: [
+                "no-exception-lucene-and-others-javadoc",
+                "no-exception-cassandra-storm-tapestry-javadoc",
+                "no-exception-hadoop-apache-groovy-scouter-javadoc",
+                "no-exception-only-javadoc",
+              ]
+              script-name: [ "./.ci/no-exception-test.sh" ]
+              image-name: [
+                  &custom_img "checkstyle/jdk-11-groovy-git-mvn:11.0.13__3.0.9__2.25.1__3.6.3"
+              ]
 
       # validation script
       - validate-with-maven-script:
@@ -99,89 +96,33 @@ workflows:
           image-name: "cimg/openjdk:18.0.1"
           script-name: &validation_script "./.ci/validation.sh"
       - validate-with-maven-script:
-          name: "no-error-pmd"
-          image-name: *custom_img
-          script-name: *validation_script
-      - validate-with-maven-script:
-          name: "no-exception-struts"
-          image-name: *custom_img
-          script-name: *validation_script
-      - validate-with-maven-script:
-          name: "no-exception-checkstyle-sevntu"
-          image-name: *custom_img
-          script-name: *validation_script
-      - validate-with-maven-script:
-          name: "no-exception-checkstyle-sevntu-javadoc"
-          image-name: *custom_img
-          script-name: *validation_script
-      - validate-with-maven-script:
-          name: "no-exception-guava"
-          image-name: *custom_img
-          script-name: *validation_script
-      - validate-with-maven-script:
-          name: "no-exception-hibernate-orm"
-          image-name: *custom_img
-          script-name: *validation_script
-      - validate-with-maven-script:
-          name: "no-exception-spotbugs"
-          image-name: *custom_img
-          script-name: *validation_script
-      - validate-with-maven-script:
-          name: "no-exception-spoon"
-          image-name: *custom_img
-          script-name: *validation_script
-      - validate-with-maven-script:
-          name: "no-exception-spring-framework"
-          image-name: *custom_img
-          script-name: *validation_script
-      - validate-with-maven-script:
-          name: "no-exception-hbase"
-          image-name: *custom_img
-          script-name: *validation_script
-      - validate-with-maven-script:
-          name: "no-exception-Pmd-elasticsearch-lombok-ast"
-          image-name: *custom_img
-          script-name: *validation_script
-      - validate-with-maven-script:
-          name: "no-exception-alot-of-projects"
-          image-name: *custom_img
-          script-name: *validation_script
-      - validate-with-maven-script:
-          name: "no-warning-imports-guava"
-          image-name: *custom_img
-          script-name: *validation_script
-      - validate-with-maven-script:
-          name:  "no-warning-imports-java-design-patterns"
-          image-name: *custom_img
-          script-name: *validation_script
-      - validate-with-maven-script:
-          name: "sonarqube"
-          image-name: *custom_img
-          script-name: *validation_script
-      - validate-with-maven-script:
-          name: "checkstyle-and-sevntu"
-          image-name: *custom_img
-          script-name: *validation_script
-      - validate-with-maven-script:
-          name: "spotbugs-and-pmd"
-          image-name: *custom_img
-          script-name: *validation_script
-      - validate-with-maven-script:
-          name: "site"
-          image-name: *custom_img
-          script-name: *validation_script
-      - validate-with-maven-script:
-          name: "release-dry-run"
-          image-name: *custom_img
-          script-name: *validation_script
-      - validate-with-maven-script:
-          name:  "assembly-run-all-jar"
-          image-name: *custom_img
-          script-name: *validation_script
-      - validate-with-maven-script:
-          name: "no-error-test-sbe"
-          image-name: *custom_img
-          script-name: *validation_script
+          matrix:
+            parameters:
+              name: [
+                "no-error-pmd",
+                "no-exception-struts",
+                "no-exception-checkstyle-sevntu",
+                "no-exception-checkstyle-sevntu-javadoc",
+                "no-exception-guava",
+                "no-exception-hibernate-orm",
+                "no-exception-spotbugs",
+                "no-exception-spoon",
+                "no-exception-spring-framework",
+                "no-exception-hbase",
+                "no-exception-Pmd-elasticsearch-lombok-ast",
+                "no-exception-alot-of-projects",
+                "no-warning-imports-guava",
+                "no-warning-imports-java-design-patterns",
+                "sonarqube",
+                "checkstyle-and-sevntu",
+                "spotbugs-and-pmd",
+                "site",
+                "release-dry-run",
+                "assembly-run-all-jar",
+                "no-error-test-sbe",
+              ]
+              script-name: [ *validation_script ]
+              image-name: [ *custom_img ]
 
   idea:
     jobs:
@@ -233,9 +174,10 @@ workflows:
   site-validation:
     jobs:
       - validate-with-maven-script:
-          name: "jdk14-assembly-site"
-          image-name: "cimg/openjdk:14.0.2"
-          script-name: "./.ci/validation.sh"
-      - validate-with-maven-script:
-          name: "assembly-site"
-          script-name: "./.ci/validation.sh"
+          matrix:
+            parameters:
+              name: [
+                "jdk14-assembly-site",
+                "assembly-site",
+              ]
+              script-name: [ "./.ci/validation.sh" ]
