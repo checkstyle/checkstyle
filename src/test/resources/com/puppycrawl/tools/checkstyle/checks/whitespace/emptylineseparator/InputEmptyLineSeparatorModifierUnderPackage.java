@@ -11,5 +11,5 @@ tokens = (default)PACKAGE_DEF, IMPORT, STATIC_IMPORT, CLASS_DEF, INTERFACE_DEF, 
 */
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator;
-public class InputEmptyLineSeparatorModifierUnderPackage { // violation
-}
+public class // violation ''CLASS_DEF' should be separated from previous line.'
+InputEmptyLineSeparatorModifierUnderPackage {}
