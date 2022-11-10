@@ -233,9 +233,10 @@ workflows:
   site-validation:
     jobs:
       - validate-with-maven-script:
-          name: "jdk14-assembly-site"
-          image-name: "cimg/openjdk:14.0.2"
-          script-name: "./.ci/validation.sh"
-      - validate-with-maven-script:
-          name: "assembly-site"
-          script-name: "./.ci/validation.sh"
+          matrix:
+            parameters:
+              name: [
+                "jdk14-assembly-site",
+                "assembly-site",
+              ]
+              script-name: "./.ci/validation.sh"
