@@ -1802,9 +1802,6 @@
                 <exclude>**/SuppressWarningsHolderTest.class</exclude>
 
                 <!-- test should be updated -->
-                <exclude>**/ImportControlCheckTest.class</exclude>
-
-                <!-- test should be updated -->
                 <exclude>**/AbstractCheckTest.class</exclude>
 
                 <!-- tests need to be updated -->
