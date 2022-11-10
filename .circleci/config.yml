@@ -1,32 +1,5 @@
 version: 2.1
 
-commands:
-  run-maven-script:
-    parameters:
-      script-name:
-        description: "name of script"
-        type: string
-        default: ""
-      args:
-        description: "arguments to script"
-        type: string
-        default: ""
-    steps:
-      - checkout
-      - restore_cache:
-          name: Restore Maven repo cache
-          keys:
-            - mvn-cache-{{ checksum "pom.xml" }}
-      - run:
-          command: << parameters.script-name >> << parameters.args >>
-      - run:
-          command: ./.ci/validation.sh git-diff
-      - save_cache:
-          name: Save Maven repo cache
-          key: mvn-cache-{{ checksum "pom.xml" }}
-          paths:
-            - .m2
-
 jobs:
 
   run-inspections:
@@ -55,97 +28,160 @@ jobs:
       - store_artifacts:
           path: /home/circleci/project/target/inspection-results
 
-  no-merge-commits:
+  validate-with-maven-script:
+    description: "Runs a maven script using the job name as the argument."
+    parameters: &script_parameters
+      image-name:
+        type: string
+        default: "cimg/openjdk:11.0.16"
+        description: "docker image to use"
+      script-name:
+        description: "name of script"
+        type: string
+        default: ""
     docker:
-      - image: cimg/base:2022.10
+      - image: << parameters.image-name >>
     steps:
       - checkout
+      - restore_cache:
+          name: Restore Maven repo cache
+          keys:
+            - mvn-cache-{{ checksum "pom.xml" }}
       - run:
-          name: Check for merge commits
-          command: |
-            export PR_HEAD_SHA=$CIRCLE_SHA1
-            ./.ci/validation.sh git-no-merge-commits
+          command: << parameters.script-name >> ${CIRCLE_JOB}
+      - run:
+          command: ./.ci/validation.sh git-diff
+      - save_cache:
+          name: Save Maven repo cache
+          key: mvn-cache-{{ checksum "pom.xml" }}
+          paths:
+            - .m2
 
-  check-pull-number:
+  validate-with-script:
+    description: "Runs a non-maven script using the job name as the argument."
+    parameters: *script_parameters
     docker:
-      - image: cimg/base:2022.10
+      - image: << parameters.image-name >>
     steps:
       - checkout
       - run:
-          name: Check that 'Pull#XXXX' matches PR number
+          name: run << parameters.script-name >>
           command: |
+            export PULL_REQUEST=$CIRCLE_PR_NUMBER
             export PR_HEAD_SHA=$CIRCLE_SHA1
             export PR_NUMBER=$CIRCLE_PR_NUMBER
-            ./.ci/validation.sh git-check-pull-number
-
-  validation:
-    docker:
-      - image: &default-image checkstyle/jdk-11-groovy-git-mvn:11.0.13__3.0.9__2.25.1__3.6.3
-    parameters:
-      args:
-        type: string
-        default: ""
-        description: "argument to provide to validation.sh"
-    steps:
-      - run-maven-script:
-          script-name: "./.ci/validation.sh"
-          args: << parameters.args >>
-
-  no-exception:
-    docker:
-      - image: *default-image
-    parameters:
-      args:
-        type: string
-        default: ""
-        description: "argument to provide to no-exception-test.sh"
-    steps:
-      - run-maven-script:
-          script-name: "./.ci/no-exception-test.sh"
-          args: << parameters.args >>
-
-  no-error-hibernate-search:
-    docker:
-      - image: cimg/openjdk:18.0.1
-    steps:
-      - run-maven-script:
-          script-name: "./.ci/validation.sh"
-          args: "no-error-hibernate-search"
+            << parameters.script-name >> ${CIRCLE_JOB}
 
 workflows:
   test:
     jobs:
-      - no-error-hibernate-search
-      - no-exception:
-          matrix:
-            parameters:
-              args: [
-                "no-exception-lucene-and-others-javadoc",
-                "no-exception-cassandra-storm-tapestry-javadoc",
-                "no-exception-hadoop-apache-groovy-scouter-javadoc",
-                "no-exception-only-javadoc",
-              ]
-      - validation:
-          matrix:
-            parameters:
-              args: [
-                "no-error-xwiki",
-                "no-error-pmd",
-                "no-exception-struts",
-                "no-exception-checkstyle-sevntu",
-                "no-exception-checkstyle-sevntu-javadoc",
-                "no-exception-guava",
-                "no-exception-hibernate-orm",
-                "no-exception-spotbugs",
-                "no-exception-spoon",
-                "no-exception-spring-framework",
-                "no-exception-hbase",
-                "no-exception-Pmd-elasticsearch-lombok-ast",
-                "no-exception-alot-of-projects",
-                "no-warning-imports-guava",
-                "no-warning-imports-java-design-patterns",
-                "sonarqube",
-              ]
+      # no-exception script
+      - validate-with-maven-script:
+          name: "no-exception-lucene-and-others-javadoc"
+          image-name: &custom_img "checkstyle/jdk-11-groovy-git-mvn:11.0.13__3.0.9__2.25.1__3.6.3"
+          script-name: &no-exception-script "./.ci/no-exception-test.sh"
+      - validate-with-maven-script:
+          name: "no-exception-cassandra-storm-tapestry-javadoc"
+          image-name: *custom_img
+          script-name: *no-exception-script
+      - validate-with-maven-script:
+          name: "no-exception-hadoop-apache-groovy-scouter-javadoc"
+          image-name: *custom_img
+          script-name: *no-exception-script
+      - validate-with-maven-script:
+          name: "no-exception-only-javadoc"
+          image-name: *custom_img
+          script-name: *no-exception-script
+
+      # validation script
+      - validate-with-maven-script:
+          name: "no-error-xwiki"
+          image-name: "cimg/openjdk:18.0.1"
+          script-name: &validation_script "./.ci/validation.sh"
+      - validate-with-maven-script:
+          name: "no-error-pmd"
+          image-name: *custom_img
+          script-name: *validation_script
+      - validate-with-maven-script:
+          name: "no-exception-struts"
+          image-name: *custom_img
+          script-name: *validation_script
+      - validate-with-maven-script:
+          name: "no-exception-checkstyle-sevntu"
+          image-name: *custom_img
+          script-name: *validation_script
+      - validate-with-maven-script:
+          name: "no-exception-checkstyle-sevntu-javadoc"
+          image-name: *custom_img
+          script-name: *validation_script
+      - validate-with-maven-script:
+          name: "no-exception-guava"
+          image-name: *custom_img
+          script-name: *validation_script
+      - validate-with-maven-script:
+          name: "no-exception-hibernate-orm"
+          image-name: *custom_img
+          script-name: *validation_script
+      - validate-with-maven-script:
+          name: "no-exception-spotbugs"
+          image-name: *custom_img
+          script-name: *validation_script
+      - validate-with-maven-script:
+          name: "no-exception-spoon"
+          image-name: *custom_img
+          script-name: *validation_script
+      - validate-with-maven-script:
+          name: "no-exception-spring-framework"
+          image-name: *custom_img
+          script-name: *validation_script
+      - validate-with-maven-script:
+          name: "no-exception-hbase"
+          image-name: *custom_img
+          script-name: *validation_script
+      - validate-with-maven-script:
+          name: "no-exception-Pmd-elasticsearch-lombok-ast"
+          image-name: *custom_img
+          script-name: *validation_script
+      - validate-with-maven-script:
+          name: "no-exception-alot-of-projects"
+          image-name: *custom_img
+          script-name: *validation_script
+      - validate-with-maven-script:
+          name: "no-warning-imports-guava"
+          image-name: *custom_img
+          script-name: *validation_script
+      - validate-with-maven-script:
+          name:  "no-warning-imports-java-design-patterns"
+          image-name: *custom_img
+          script-name: *validation_script
+      - validate-with-maven-script:
+          name: "sonarqube"
+          image-name: *custom_img
+          script-name: *validation_script
+      - validate-with-maven-script:
+          name: "checkstyle-and-sevntu"
+          image-name: *custom_img
+          script-name: *validation_script
+      - validate-with-maven-script:
+          name: "spotbugs-and-pmd"
+          image-name: *custom_img
+          script-name: *validation_script
+      - validate-with-maven-script:
+          name: "site"
+          image-name: *custom_img
+          script-name: *validation_script
+      - validate-with-maven-script:
+          name: "release-dry-run"
+          image-name: *custom_img
+          script-name: *validation_script
+      - validate-with-maven-script:
+          name:  "assembly-run-all-jar"
+          image-name: *custom_img
+          script-name: *validation_script
+      - validate-with-maven-script:
+          name: "no-error-test-sbe"
+          image-name: *custom_img
+          script-name: *validation_script
 
   idea:
     jobs:
@@ -153,5 +189,54 @@ workflows:
 
   git-validation:
     jobs:
-      - no-merge-commits
-      - check-pull-number
+      - validate-with-script:
+          name: "git-no-merge-commits"
+          script-name: "./.ci/validation.sh"
+      - validate-with-script:
+          name: "git-check-pull-number"
+          script-name: "./.ci/validation.sh"
+
+  cli-validation:
+    jobs:
+      - validate-with-script:
+          name: "checkchmod"
+          script-name: "./.ci/checkchmod.sh"
+      - validate-with-script:
+          name: "releasenotes-gen"
+          script-name: "./.ci/releasenotes-gen.sh"
+
+  javac-validation:
+    jobs:
+      - validate-with-script:
+          name: "check-since-version"
+          script-name: "./.ci/validation.sh"
+      - validate-with-script:
+          name: "javac11"
+          script-name: "./.ci/validation.sh"
+      - validate-with-script:
+          name: "javac14"
+          image-name: "cimg/openjdk:14.0.2"
+          script-name: "./.ci/validation.sh"
+      - validate-with-script:
+          name: "javac15"
+          script-name: "./.ci/validation.sh"
+          image-name: "cimg/openjdk:15.0.2"
+      - validate-with-script:
+          name: "javac16"
+          image-name: "cimg/openjdk:16.0.2"
+          script-name: "./.ci/validation.sh"
+      - validate-with-script:
+          name: "javac17"
+          image-name: "cimg/openjdk:17.0.5"
+          script-name: "./.ci/validation.sh"
+
+  site-validation:
+    jobs:
+      - validate-with-maven-script:
+          matrix:
+            parameters:
+              name: [
+                "jdk14-assembly-site",
+                "assembly-site",
+              ]
+              script-name: [ "./.ci/validation.sh" ]
