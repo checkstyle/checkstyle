@@ -82,10 +82,8 @@ public final class TestInputConfiguration {
         return Collections.unmodifiableList(filteredViolations);
     }
 
-    public DefaultConfiguration createConfiguration() {
+    public DefaultConfiguration createConfiguration(DefaultConfiguration treeWalker) {
         final DefaultConfiguration root = new DefaultConfiguration(ROOT_MODULE_NAME);
-        final DefaultConfiguration treeWalker =
-                new DefaultConfiguration(TreeWalker.class.getName());
         root.addProperty("charset", StandardCharsets.UTF_8.name());
         childrenModules
                 .stream()
