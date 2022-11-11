@@ -20,6 +20,8 @@
 package com.puppycrawl.tools.checkstyle.checks.blocks;
 
 import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
@@ -495,12 +497,27 @@ public class LeftCurlyCheck
      * @param braceLine line content
      */
     private void validateEol(DetailAST brace, String braceLine) {
-        if (CommonUtil.hasWhitespaceBefore(brace.getColumnNo(), braceLine)) {
+        if (CommonUtil.hasWhitespaceBefore(brace.getColumnNo(), braceLine)
+                || hasOnlyBlockCommentsBefore(brace.getColumnNo(), braceLine)) {
             log(brace, MSG_KEY_LINE_PREVIOUS, OPEN_CURLY_BRACE, brace.getColumnNo() + 1);
         }
         if (!hasLineBreakAfter(brace)) {
             log(brace, MSG_KEY_LINE_BREAK_AFTER, OPEN_CURLY_BRACE, brace.getColumnNo() + 1);
         }
+    }
+
+    /**
+     * Return whether the LeftCurly would be on previous line or not.
+     *
+     * @param index index to check up to
+     * @param line the line to check
+     * @return true if leftCurly needs to be on previous line
+     */
+    public static boolean hasOnlyBlockCommentsBefore(int index, String line) {
+        final String str = line.substring(0, index).trim();
+        final Pattern pattern1 = Pattern.compile("/\\*(.|[\\r\\n])[^\\*/][^/\\*]*\\*/");
+        final Matcher match = pattern1.matcher(str);
+        return match.matches();
     }
 
     /**
