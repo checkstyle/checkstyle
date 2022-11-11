@@ -212,8 +212,10 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
         Collections.sort(violationsWithoutFilters);
         verifyViolations(configWithoutFilters, filePath, violationsWithoutFilters);
         verify(configWithoutFilters, filePath, expectedUnfiltered);
+        final DefaultConfiguration treeWalker =
+                new DefaultConfiguration(TreeWalker.class.getName());
         final DefaultConfiguration configWithFilters =
-                testInputConfiguration.createConfiguration();
+                testInputConfiguration.createConfiguration(treeWalker);
         verifyViolations(configWithFilters, filePath, testInputConfiguration.getViolations());
         verify(configWithFilters, filePath, expectedFiltered);
     }
@@ -231,8 +233,32 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
             throws Exception {
         final TestInputConfiguration testInputConfiguration =
                 InlineConfigParser.parse(filePath);
+        final DefaultConfiguration treeWalker =
+                new DefaultConfiguration(TreeWalker.class.getName());
         final DefaultConfiguration parsedConfig =
-                testInputConfiguration.createConfiguration();
+                testInputConfiguration.createConfiguration(treeWalker);
+        verifyViolations(parsedConfig, filePath, testInputConfiguration.getViolations());
+        verify(parsedConfig, filePath, expected);
+    }
+
+    /**
+     * Performs verification of the file with the given file path using specified configuration,
+     * and the array expected messages. Also performs verification of the config specified in
+     * input file. Also set the treeWalker configuration given as argument
+     *
+     * @param filePath file path to verify.
+     * @param expected an array of expected messages.
+     * @param treeWalker TreeWalker Configuration
+     * @throws Exception if exception occurs during verification process.
+     */
+    protected final void verifyWithInlineConfigParser(String filePath,
+                                                      DefaultConfiguration treeWalker,
+                                                      String... expected)
+            throws Exception {
+        final TestInputConfiguration testInputConfiguration =
+                InlineConfigParser.parse(filePath);
+        final DefaultConfiguration parsedConfig =
+                testInputConfiguration.createConfiguration(treeWalker);
         verifyViolations(parsedConfig, filePath, testInputConfiguration.getViolations());
         verify(parsedConfig, filePath, expected);
     }
