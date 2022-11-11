@@ -421,7 +421,11 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
             "11:1: " + getCheckMessage(MSG_DISALLOWED, "java.awt.Image"),
         };
 
-        verifyWithInlineConfigParser(getPath("InputImportControlFileNameNoExtension"), expected);
+        final DefaultConfiguration treewalkerConfig = createModuleConfig(TreeWalker.class);
+        treewalkerConfig.addProperty("fileExtensions", "");
+
+        verifyWithInlineConfigParser(
+                getPath("InputImportControlFileNameNoExtension"), treewalkerConfig, expected);
     }
 
     /**
