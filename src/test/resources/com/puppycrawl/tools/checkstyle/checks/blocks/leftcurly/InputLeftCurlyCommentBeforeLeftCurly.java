@@ -1,0 +1,86 @@
+/*
+LeftCurly
+option = eol
+ignoreEnums = (default)true
+tokens = (default)ANNOTATION_DEF, CLASS_DEF, CTOR_DEF, ENUM_CONSTANT_DEF, \
+         ENUM_DEF, INTERFACE_DEF, LAMBDA, LITERAL_CASE, LITERAL_CATCH, \
+         LITERAL_DEFAULT, LITERAL_DO, LITERAL_ELSE, LITERAL_FINALLY, LITERAL_FOR, \
+         LITERAL_IF, LITERAL_SWITCH, LITERAL_SYNCHRONIZED, LITERAL_TRY, LITERAL_WHILE, \
+         METHOD_DEF, OBJBLOCK, STATIC_INIT, RECORD_DEF, COMPACT_CTOR_DEF
+
+
+*/
+
+package com.puppycrawl.tools.checkstyle.checks.blocks.leftcurly;
+
+import java.io.IOException;
+
+public class InputLeftCurlyCommentBeforeLeftCurly {
+
+    void method1 ()
+    /* violation not reported */ { } // violation ''{' at column 34 should be on the previous line'
+
+    void method2 ()
+    { } // violation ''{' at column 5 should be on the previous line'
+
+    void method3() {
+        if(4>2)
+            /* I am emoji 🤣  */ { // violation ''{' at column 33 should be on the previous line'
+        }
+    }
+
+    InputLeftCurlyCommentBeforeLeftCurly()
+    /* I am comment */ { // violation ''{' at column 24 should be on the previous line'
+        System.out.println("Hello CheckStyle");
+    }
+
+    InputLeftCurlyCommentBeforeLeftCurly(String name)
+    { // violation ''{' at column 5 should be on the previous line'
+        System.out.println("I am int" + name);
+    }
+
+    InputLeftCurlyCommentBeforeLeftCurly(int a) { // ok
+    }
+
+    private void some() throws Exception {
+        try {
+            throw new IOException();
+        } catch (IOException | NullPointerException | ArithmeticException ex) //ok
+         /* warn */ { // violation ''{' at column 21 should be on the previous line'
+        }
+    }
+
+    private void some2() throws Exception {
+        try {
+            throw new IOException();
+        } catch (IOException | NullPointerException | ArithmeticException ex) { //ok
+
+        }
+    }
+
+    public void array() {
+        Integer[] array = null;
+        /*50*/ for/*51*/ (/*52*/Integer/*53*/ i/*54*/:/*55*/ array/*56*/)/*57*/ {/*58*/ // ok
+            /*59*/
+        }/*60*/
+    }
+}
+
+class checks
+        implements check
+        /* CheckStyle */ { // violation ''{' at column 26 should be on the previous line'
+}
+
+interface check {
+}
+
+/*15*/ class /*16*/InputAstTreeStringPrinterFullOfBlockComments /*49*/{/*17*/ // ok
+    /*1*/public/*2*/ static/**/ String/*2*/ main/*2*/(/*4*/String/*2*/[/*2*/]/*2*/ args/*2*/)/**/ {
+    /*31*/String /*32*/line /*33*/= /*34*/"/*I'm NOT comment*/blabla"/*35*/;/*36*/
+    /*3*/String/*8*/./*3*/CASE_INSENSITIVE_ORDER/*0*/./*1*/equals/*2*/(/*3*/line/*4*/)/*4*/;/*6*/
+    Integer[] array = null;
+    /*50*/for/*51*/ (/*52*/Integer/*53*/ i/*54*/:/*55*/ array/*56*/)/*57*/ {/*58*/
+    }/*60*/
+    return line;
+    }/*47*/
+}/*48*/
