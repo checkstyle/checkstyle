@@ -29,7 +29,6 @@ import java.util.Set;
 
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.TreeWalker;
 
 public final class TestInputConfiguration {
 
@@ -56,6 +55,8 @@ public final class TestInputConfiguration {
             "com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheck"
     ));
 
+    private static ModuleInputConfiguration treeWalkerModuleInputConfiguration;
+
     private final List<ModuleInputConfiguration> childrenModules;
 
     private final List<TestInputViolation> violations;
@@ -70,6 +71,10 @@ public final class TestInputConfiguration {
         this.filteredViolations = filteredViolations;
     }
 
+    public ModuleInputConfiguration getTreeWalkerModuleInputConfiguration() {
+        return treeWalkerModuleInputConfiguration;
+    }
+
     public List<ModuleInputConfiguration> getChildrenModules() {
         return Collections.unmodifiableList(childrenModules);
     }
@@ -82,10 +87,8 @@ public final class TestInputConfiguration {
         return Collections.unmodifiableList(filteredViolations);
     }
 
-    public DefaultConfiguration createConfiguration() {
+    public DefaultConfiguration createConfiguration(DefaultConfiguration treeWalker) {
         final DefaultConfiguration root = new DefaultConfiguration(ROOT_MODULE_NAME);
-        final DefaultConfiguration treeWalker =
-                new DefaultConfiguration(TreeWalker.class.getName());
         root.addProperty("charset", StandardCharsets.UTF_8.name());
         childrenModules
                 .stream()
@@ -102,10 +105,8 @@ public final class TestInputConfiguration {
         return root;
     }
 
-    public DefaultConfiguration createConfigurationWithoutFilters() {
+    public DefaultConfiguration createConfigurationWithoutFilters(DefaultConfiguration treeWalker) {
         final DefaultConfiguration root = new DefaultConfiguration(ROOT_MODULE_NAME);
-        final DefaultConfiguration treeWalker =
-                new DefaultConfiguration(TreeWalker.class.getName());
         root.addProperty("charset", StandardCharsets.UTF_8.name());
         childrenModules
                 .stream()
@@ -153,6 +154,10 @@ public final class TestInputConfiguration {
 
         public List<ModuleInputConfiguration> getChildrenModules() {
             return Collections.unmodifiableList(childrenModules);
+        }
+
+        public void setTreeWalkerModuleInputConfiguration(ModuleInputConfiguration config) {
+            treeWalkerModuleInputConfiguration = config;
         }
     }
 }
