@@ -10,6 +10,10 @@ case $1 in
 
 init-m2-repo)
   if [[ $RUN_JOB == 1 ]]; then
+    MVN_REPO=$(mvn help:evaluate -Dexpression=settings.localRepository -q -DforceStdout);
+    cat $M2_HOME/conf/settings.xml
+    cat ~/.m2/settings.xml
+    echo "Maven Repo Located At: " "$MVN_REPO"
     MVN_SETTINGS=${TRAVIS_HOME}/.m2/settings.xml
     if [[ -f ${MVN_SETTINGS} ]]; then
       if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
@@ -105,7 +109,6 @@ deploy-snapshot)
       mvn -e --no-transfer-progress -s config/deploy-settings.xml -Pno-validations deploy;
       echo "deploy to maven snapshot repository is finished";
   fi
-  sleep 5s
   ;;
 
 ci-temp-check)
