@@ -18,13 +18,13 @@ if [ ! -e "$dict" ]; then
   # english.words is taken from rpm:
   # https://rpmfind.net/linux/fedora/linux/development/rawhide/Everything/aarch64/os/Packages/w/"
   # "words-.*.noarch.rpm"
-  curl -k https://checkstyle.sourceforge.io/reports/english.words -o $dict
+  curl --fail-with-body -k https://checkstyle.sourceforge.io/reports/english.words -o $dict
 fi
 
 if [ ! -e "$word_splitter" ]; then
   echo "Retrieve w"
   w_location='https://raw.githubusercontent.com/jsoref/spelling/master/w'
-  curl -s "$w_location" |\
+  curl --fail-with-body -s "$w_location" |\
     perl -p -n -e "s</usr/share/dict/words><$dict>" > "$word_splitter"
   get_word_splitter_status="${PIPESTATUS[0]} ${PIPESTATUS[1]}"
   if [ "$get_word_splitter_status" != '0 0' ]; then
