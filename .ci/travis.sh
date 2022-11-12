@@ -12,6 +12,9 @@ init-m2-repo)
   if [[ $RUN_JOB == 1 ]]; then
     MVN_REPO=$(mvn help:evaluate -Dexpression=settings.localRepository -q -DforceStdout);
     echo "Maven Repo Located At: " "$MVN_REPO"
+    mvn -e  --no-transfer-progress -B help:evaluate -X
+    cat /opt/mvn/conf/settings.xml
+    cat /home/travis/.m2/settings.xml
     MVN_SETTINGS=${TRAVIS_HOME}/.m2/settings.xml
     if [[ -f ${MVN_SETTINGS} ]]; then
       if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
