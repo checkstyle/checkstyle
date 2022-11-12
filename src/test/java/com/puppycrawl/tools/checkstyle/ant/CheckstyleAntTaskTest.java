@@ -40,7 +40,6 @@ import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.Project;
 import org.apache.tools.ant.types.FileSet;
 import org.apache.tools.ant.types.Path;
-import org.apache.tools.ant.types.Reference;
 import org.apache.tools.ant.types.resources.FileResource;
 import org.junit.jupiter.api.Test;
 
@@ -54,7 +53,6 @@ import com.puppycrawl.tools.checkstyle.internal.testmodules.CheckstyleAntTaskLog
 import com.puppycrawl.tools.checkstyle.internal.testmodules.CheckstyleAntTaskStub;
 import com.puppycrawl.tools.checkstyle.internal.testmodules.MessageLevelPair;
 import com.puppycrawl.tools.checkstyle.internal.testmodules.TestRootModuleChecker;
-import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
 public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
 
@@ -741,74 +739,6 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         assertWithMessage("Listener instance has unexpected type")
                 .that(formatter.createListener(null))
                 .isInstanceOf(SarifLogger.class);
-    }
-
-    @Test
-    public void testSetClasspath() {
-        final CheckstyleAntTask antTask = new CheckstyleAntTask();
-        final Project project = new Project();
-        final String path1 = "firstPath";
-        final String path2 = "secondPath";
-        antTask.setClasspath(new Path(project, path1));
-        antTask.setClasspath(new Path(project, path2));
-
-        final Path classpath = TestUtil.getInternalState(antTask, "classpath");
-        final String classpathString = classpath.toString();
-        assertWithMessage("Classpath should not be null")
-                .that(classpath)
-                .isNotNull();
-        assertWithMessage("Classpath does not contain provided path")
-                .that(classpathString)
-                .contains(path1);
-        assertWithMessage("Classpath does not contain provided path")
-                .that(classpathString)
-                .contains(path2);
-    }
-
-    @Test
-    public void testSetClasspathRef() {
-        final CheckstyleAntTask antTask = new CheckstyleAntTask();
-        antTask.setClasspathRef(new Reference(new Project(), "id"));
-
-        assertWithMessage("Classpath should not be null")
-                .that(TestUtil.<Path>getInternalState(antTask, "classpath"))
-                .isNotNull();
-    }
-
-    /** This test is created to satisfy pitest, it is hard to emulate Reference by Id. */
-    @Test
-    public void testSetClasspathRef1() {
-        final CheckstyleAntTask antTask = new CheckstyleAntTask();
-        final Project project = new Project();
-        antTask.setClasspath(new Path(project, "firstPath"));
-        antTask.setClasspathRef(new Reference(project, "idXX"));
-
-        assertWithMessage("Classpath should not be null")
-                .that(TestUtil.<Path>getInternalState(antTask, "classpath"))
-                .isNotNull();
-
-        final Path classpath = TestUtil.getInternalState(antTask, "classpath");
-        final BuildException ex = assertThrows(BuildException.class,
-                classpath::list,
-                "BuildException is expected");
-        assertWithMessage("unexpected exception message")
-                .that(ex.getMessage())
-                .isEqualTo("Reference idXX not found.");
-    }
-
-    @Test
-    public void testCreateClasspath() {
-        final CheckstyleAntTask antTask = new CheckstyleAntTask();
-
-        assertWithMessage("Invalid classpath")
-                .that(antTask.createClasspath().toString())
-                .isEmpty();
-
-        antTask.setClasspath(new Path(new Project(), "/path"));
-
-        assertWithMessage("Invalid classpath")
-                .that(antTask.createClasspath().toString())
-                .isEmpty();
     }
 
     @Test
