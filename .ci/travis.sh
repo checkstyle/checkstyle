@@ -10,6 +10,8 @@ case $1 in
 
 init-m2-repo)
   if [[ $RUN_JOB == 1 ]]; then
+    MVN_REPO=$(mvn help:evaluate -Dexpression=settings.localRepository -q -DforceStdout);
+    echo "Maven Repo Located At: " "$MVN_REPO"
     MVN_SETTINGS=${TRAVIS_HOME}/.m2/settings.xml
     if [[ -f ${MVN_SETTINGS} ]]; then
       if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
@@ -139,7 +141,12 @@ jacoco)
   ;;
 
 quarterly-cache-cleanup)
-  find ~/.m2 -maxdepth 4 -type d -mtime +90 -exec rm -rf {} \;
+  MVN_REPO=$(mvn help:evaluate -Dexpression=settings.localRepository -q -DforceStdout);
+  if [[ -d ${MVN_REPO} ]]; then
+    find $MVN_REPO -maxdepth 4 -type d -mtime +90 -exec rm -rf {} \;
+  else
+    echo "Failed to find correct maven cache to clean. Quietly exiting."
+  fi
   ;;
 
 *)
