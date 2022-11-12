@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # set checkstyle sonar profile
-curl -X POST -u admin:admin \
+curl --fail-with-body -X POST -u admin:admin \
     -F 'backup=@config/default_sonar_profile.xml' -v http://localhost:9000/api/profiles/restore
 
 # execute inspection
@@ -16,7 +16,7 @@ mvn -e --no-transfer-progress sonar:sonar -P sonar -Dsonar.language=java \
 # get and parse response from sonar
 # give some time to sonar for report processing
 sleep "60"
-curl -u admin:admin \
+curl --fail-with-body -u admin:admin \
    -v http://localhost:9000/api/issues/search?componentRoots=com.puppycrawl.tools:checkstyle \
         > response.json
 

@@ -353,7 +353,7 @@ verify-no-exception-configs)
     if [[ $PULL_REQUEST =~ ^([0-9]+)$ ]]; then
       LINK_PR=https://api.github.com/repos/checkstyle/checkstyle/pulls/$PULL_REQUEST
       REGEXP="https://github.com/checkstyle/contribution/pull/"
-      PR_DESC=$(curl -s -H "Authorization: token $READ_ONLY_TOKEN" "$LINK_PR" \
+      PR_DESC=$(curl --fail-with-body -s -H "Authorization: token $READ_ONLY_TOKEN" "$LINK_PR" \
                   | jq '.body' | grep $REGEXP | cat )
       echo 'PR Description grepped:'"${PR_DESC:0:180}"
       if [[ -z $PR_DESC ]]; then
@@ -600,7 +600,7 @@ sonarqube)
   checkout_from https://github.com/viesure/blog-sonar-build-breaker.git
   sed -i'' "s|our.sonar.server|sonarcloud.io|" \
     .ci-temp/blog-sonar-build-breaker/sonar_break_build.sh
-  sed -i'' "s|curl |curl -k |" \
+  sed -i'' "s|curl |curl --fail-with-body -k |" \
     .ci-temp/blog-sonar-build-breaker/sonar_break_build.sh
   export SONAR_API_TOKEN=$SONAR_TOKEN
   .ci-temp/blog-sonar-build-breaker/sonar_break_build.sh
