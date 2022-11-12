@@ -191,24 +191,6 @@
           </tr>
 
           <tr>
-            <td>classpath</td>
-            <td>
-              The classpath to use when looking up classes. Defaults to the
-              current classpath.
-            </td>
-            <td>No</td>
-          </tr>
-
-          <tr>
-            <td>classpathref</td>
-            <td>
-              The classpath to use when looking up classes, given as a reference
-              to a path defined elsewhere.
-            </td>
-            <td>No</td>
-          </tr>
-
-          <tr>
             <td>executeIgnoredModules</td>
             <td>
               For efficiency, Checkstyle does not invoke modules with a configured severity of
@@ -472,25 +454,12 @@
 
       <p>
         <b>
-          Run checkstyle with a custom JAR with implementation of custom Checks
-          (example sevntu extension below)
+          To run checkstyle with a custom JAR with implementation of custom Checks
+          be sure the custom JAR is found on the classpath. An example can be found at
+          <a href="https://github.com/sevntu-checkstyle/checkstyle-samples/tree/master/ant-project">
+          checkstyle-samples</a>.
         </b>
       </p>
-      <source>
-&lt;target name=&quot;checkstyle&quot; description=&quot;Generates a report
-        of code convention violations.&quot; &gt;
-  &lt;checkstyle config=&quot;checkstyle.xml&quot;
-              failOnViolation=&quot;false&quot;&gt;
-    &lt;classpath&gt;
-      &lt;pathelement path=&quot;${classpath}&quot;/&gt;
-      &lt;pathelement location=&quot;lib/sevntu-checks-1.42.0.jar&quot;/&gt;
-    &lt;/classpath&gt;
-
-    &lt;formatter type=&quot;xml&quot; tofile=&quot;checkstyle_report.xml&quot;/&gt;
-    &lt;fileset dir=&quot;src&quot; includes=&quot;**/*.java&quot;/&gt;
-  &lt;/checkstyle&gt;
-&lt;/target&gt;
-      </source>
 
     </section>
   </body>
