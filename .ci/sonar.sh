@@ -15,7 +15,7 @@ mvn -e --no-transfer-progress sonar:sonar -P sonar -Dsonar.language=java \
 
 # get and parse response from sonar
 # give some time to sonar for report processing
-sleep "60"
+sleep 60s
 curl --fail-with-body -u admin:admin \
    -v http://localhost:9000/api/issues/search?componentRoots=com.puppycrawl.tools:checkstyle \
         > response.json
