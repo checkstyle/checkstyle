@@ -31,7 +31,7 @@ init-m2-repo)
 install-adoptium-jdk)
   if [[ -n "${CUSTOM_ADOPTIUM_JDK}" ]]; then
     echo "Installing ${CUSTOM_ADOPTIUM_JDK}...";
-    curl -s https://packages.adoptium.net/artifactory/api/gpg/key/public |
+    curl --fail-with-body -s https://packages.adoptium.net/artifactory/api/gpg/key/public |
       sudo tee /usr/share/keyrings/adoptium.asc
     echo "deb [signed-by=/usr/share/keyrings/adoptium.asc] \
       https://packages.adoptium.net/artifactory/deb $(lsb_release --short --codename) main" |
@@ -132,7 +132,7 @@ jacoco)
   # if launch is not from CI, we skip this step
   if [[ $TRAVIS == 'true' ]]; then
     echo "Reporting to codecov"
-    bash <(curl -s https://codecov.io/bash)
+    bash <(curl --fail-with-body -s https://codecov.io/bash)
   else
     echo "No reporting to codecov outside CI"
   fi
