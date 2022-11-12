@@ -85,7 +85,7 @@ if [ -z "$new_output" ]; then
   echo "$diff_output"
   echo "EOF"
   rm $dict
-  sleep 5
+  sleep 5s
   exit 1
 fi
 echo "New misspellings found, please review:"
@@ -95,5 +95,5 @@ echo "patch $whitelist_path <<EOF"
 echo "$diff_output"
 echo "EOF"
 rm $dict
-sleep 5
+sleep 5s
 exit 1
