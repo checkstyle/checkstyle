@@ -108,7 +108,6 @@ deploy-snapshot)
       mvn -e --no-transfer-progress -s config/deploy-settings.xml -Pno-validations deploy;
       echo "deploy to maven snapshot repository is finished";
   fi
-  sleep 5s
   ;;
 
 ci-temp-check)
