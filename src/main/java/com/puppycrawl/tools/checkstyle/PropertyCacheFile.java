@@ -144,7 +144,10 @@ public final class PropertyCacheFile {
     public void persist() throws IOException {
         final Path path = Paths.get(fileName);
         final Path directory = path.getParent();
-        if (directory != null) {
+
+        // createDirectories throws an error if the target directory exists and is a
+        // symbolic link, skip call if the directory already exists
+        if (directory != null && !directory.toFile().isDirectory()) {
             Files.createDirectories(directory);
         }
         try (OutputStream out = Files.newOutputStream(path)) {
