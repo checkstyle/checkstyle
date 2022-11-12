@@ -189,6 +189,30 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
     }
 
     /**
+     * Return TreeWalker By Processing TestInputConfiguration, if TreeWalker config
+     * in TestInputConfiguration is not null then we will set the
+     * properties of TreeWalker.
+     *
+     * @param testInputConfiguration TestInputConfiguration
+     * @return processed TreeWalker
+     * @throws Exception if exception occurs while reading property
+     */
+    private DefaultConfiguration processTreeWalkerModuleFromFile(
+            TestInputConfiguration testInputConfiguration) throws Exception {
+        final DefaultConfiguration treeWalker = new DefaultConfiguration(
+                TreeWalker.class.getName());
+        if (testInputConfiguration.getTreeWalkerModuleInputConfiguration() != null) {
+            final DefaultConfiguration treeWalkerModule = testInputConfiguration
+                    .getTreeWalkerModuleInputConfiguration()
+                    .createConfiguration();
+            for (String key : treeWalkerModule.getPropertyNames()) {
+                treeWalker.addProperty(key, treeWalkerModule.getProperty(key));
+            }
+        }
+        return treeWalker;
+    }
+
+    /**
      * Performs verification of the file with the given file path using specified configuration
      * and the array of expected messages. Also performs verification of the config with filters
      * specified in the input file.
@@ -204,8 +228,10 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
             throws Exception {
         final TestInputConfiguration testInputConfiguration =
                 InlineConfigParser.parseWithFilteredViolations(filePath);
+        final DefaultConfiguration treeWalker = processTreeWalkerModuleFromFile(
+                testInputConfiguration);
         final DefaultConfiguration configWithoutFilters =
-                testInputConfiguration.createConfigurationWithoutFilters();
+                testInputConfiguration.createConfigurationWithoutFilters(treeWalker);
         final List<TestInputViolation> violationsWithoutFilters =
                 new ArrayList<>(testInputConfiguration.getViolations());
         violationsWithoutFilters.addAll(testInputConfiguration.getFilteredViolations());
@@ -213,7 +239,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
         verifyViolations(configWithoutFilters, filePath, violationsWithoutFilters);
         verify(configWithoutFilters, filePath, expectedUnfiltered);
         final DefaultConfiguration configWithFilters =
-                testInputConfiguration.createConfiguration();
+                testInputConfiguration.createConfiguration(treeWalker);
         verifyViolations(configWithFilters, filePath, testInputConfiguration.getViolations());
         verify(configWithFilters, filePath, expectedFiltered);
     }
@@ -231,8 +257,10 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
             throws Exception {
         final TestInputConfiguration testInputConfiguration =
                 InlineConfigParser.parse(filePath);
+        final DefaultConfiguration treeWalker = processTreeWalkerModuleFromFile(
+                testInputConfiguration);
         final DefaultConfiguration parsedConfig =
-                testInputConfiguration.createConfiguration();
+                testInputConfiguration.createConfiguration(treeWalker);
         verifyViolations(parsedConfig, filePath, testInputConfiguration.getViolations());
         verify(parsedConfig, filePath, expected);
     }

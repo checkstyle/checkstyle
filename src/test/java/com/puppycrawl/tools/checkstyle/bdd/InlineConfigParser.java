@@ -91,6 +91,9 @@ public final class InlineConfigParser {
     /** The String "(null)". */
     private static final String NULL_STRING = "(null)";
 
+    private static final String TREE_WALKER_MODULE_NAME =
+            "com.puppycrawl.tools.checkstyle.TreeWalker";
+
     /**
      * Checks in which violation message is not specified in input file and have more than
      * one violation message key.
@@ -184,7 +187,13 @@ public final class InlineConfigParser {
                     new ModuleInputConfiguration.Builder();
             setModuleName(moduleInputConfigBuilder, inputFilePath, lines.get(lineNo));
             setProperties(moduleInputConfigBuilder, inputFilePath, lines, lineNo + 1);
-            testInputConfigBuilder.addChildModule(moduleInputConfigBuilder.build());
+            if (TREE_WALKER_MODULE_NAME.equals(lines.get(lineNo))) {
+                testInputConfigBuilder.setTreeWalkerModuleInputConfiguration(
+                        moduleInputConfigBuilder.build());
+            }
+            else {
+                testInputConfigBuilder.addChildModule(moduleInputConfigBuilder.build());
+            }
             do {
                 lineNo++;
             } while (lines.get(lineNo).isEmpty() || !lines.get(lineNo - 1).isEmpty());
