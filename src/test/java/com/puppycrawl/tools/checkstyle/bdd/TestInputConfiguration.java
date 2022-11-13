@@ -82,11 +82,22 @@ public final class TestInputConfiguration {
         return Collections.unmodifiableList(filteredViolations);
     }
 
+    public DefaultConfiguration getTreeWalker() {
+        DefaultConfiguration treeWalker = new DefaultConfiguration(TreeWalker.class.getName());
+        for (ModuleInputConfiguration moduleInputConfiguration : childrenModules) {
+            if (treeWalker.getName().equals(moduleInputConfiguration.getModuleName())) {
+                treeWalker = moduleInputConfiguration.createConfiguration();
+                childrenModules.remove(moduleInputConfiguration);
+                break;
+            }
+        }
+        return treeWalker;
+    }
+
     public DefaultConfiguration createConfiguration() {
         final DefaultConfiguration root = new DefaultConfiguration(ROOT_MODULE_NAME);
-        final DefaultConfiguration treeWalker =
-                new DefaultConfiguration(TreeWalker.class.getName());
         root.addProperty("charset", StandardCharsets.UTF_8.name());
+        final DefaultConfiguration treeWalker = getTreeWalker();
         childrenModules
                 .stream()
                 .map(ModuleInputConfiguration::createConfiguration)
@@ -104,9 +115,8 @@ public final class TestInputConfiguration {
 
     public DefaultConfiguration createConfigurationWithoutFilters() {
         final DefaultConfiguration root = new DefaultConfiguration(ROOT_MODULE_NAME);
-        final DefaultConfiguration treeWalker =
-                new DefaultConfiguration(TreeWalker.class.getName());
         root.addProperty("charset", StandardCharsets.UTF_8.name());
+        final DefaultConfiguration treeWalker = getTreeWalker();
         childrenModules
                 .stream()
                 .map(ModuleInputConfiguration::createConfiguration)
