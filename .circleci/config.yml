@@ -79,19 +79,19 @@ workflows:
       - validate-with-maven-script:
           name: "no-exception-lucene-and-others-javadoc"
           image-name: &custom_img "checkstyle/jdk-11-groovy-git-mvn:11.0.13__3.0.9__2.25.1__3.6.3"
-          command: "/.ci/no-exception-test.sh no-exception-lucene-and-others-javadoc"
+          command: "./.ci/no-exception-test.sh no-exception-lucene-and-others-javadoc"
       - validate-with-maven-script:
           name: "no-exception-cassandra-storm-tapestry-javadoc"
           image-name: *custom_img
-          command: "/.ci/no-exception-test.sh no-exception-cassandra-storm-tapestry-javadoc"
+          command: "./.ci/no-exception-test.sh no-exception-cassandra-storm-tapestry-javadoc"
       - validate-with-maven-script:
           name: "no-exception-hadoop-apache-groovy-scouter-javadoc"
           image-name: *custom_img
-          command: "/.ci/no-exception-test.sh no-exception-hadoop-apache-groovy-scouter-javadoc"
+          command: "./.ci/no-exception-test.sh no-exception-hadoop-apache-groovy-scouter-javadoc"
       - validate-with-maven-script:
           name: "no-exception-only-javadoc"
           image-name: *custom_img
-          command: "/.ci/no-exception-test.sh no-exception-only-javadoc"
+          command: "./.ci/no-exception-test.sh no-exception-only-javadoc"
 
       # validation script
       - validate-with-maven-script:
@@ -113,7 +113,7 @@ workflows:
       - validate-with-maven-script:
           name: "no-exception-checkstyle-sevntu-javadoc"
           image-name: *custom_img
-          command: "./.ci/validation.sh no-exception-checkstyle-sevntu-javadoci"
+          command: "./.ci/validation.sh no-exception-checkstyle-sevntu-javadoc"
       - validate-with-maven-script:
           name: "no-exception-guava"
           image-name: *custom_img
