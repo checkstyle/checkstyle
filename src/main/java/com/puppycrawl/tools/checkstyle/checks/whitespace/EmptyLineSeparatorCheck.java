@@ -57,6 +57,21 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </p>
  * <ul>
  * <li>
+ * Property {@code requireEmptyLineAfterBlockStart} - Require an empty line after block start,
+ * so before the first class member in a block.
+ * For empty blocks, this check is superseded by allowNoEmptyLineBeforeBlockEnd.
+ * Type is {@code boolean}.
+ * Default value is {@code false}.
+ * </li>
+ * <li>
+ * Property {@code allowNoEmptyLineBeforeBlockEnd} - Allow no empty line before block end,
+ * so after the last class member in a block.
+ * For empty blocks, this check supersedes requireEmptyLineAfterBlockStart.
+ * This requires RCURLY in the tokens.
+ * Type is {@code boolean}.
+ * Default value is {@code false}.
+ * </li>
+ * <li>
  * Property {@code allowNoEmptyLineBetweenFields} - Allow no empty line between fields.
  * Type is {@code boolean}.
  * Default value is {@code false}.
@@ -330,6 +345,9 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <li>
  * {@code empty.line.separator.multiple.lines.inside}
  * </li>
+ * <li>
+ * {@code no.empty.line.separator}
+ * </li>
  * </ul>
  *
  * @since 5.8
@@ -342,6 +360,14 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
      * file.
      */
     public static final String MSG_SHOULD_BE_SEPARATED = "empty.line.separator";
+
+    /**
+     * A key is pointing to the warning message no.empty.line.separator in "messages.properties"
+     * file.
+     *
+     * @since 10.0
+     */
+    public static final String MSG_SHOULD_NOT_BE_SEPARATED = "no.empty.line.separator";
 
     /**
      * A key is pointing to the warning message empty.line.separator.multiple.lines
@@ -372,6 +398,41 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
 
     /** Allow multiple empty lines inside class members. */
     private boolean allowMultipleEmptyLinesInsideClassMembers = true;
+
+    /**
+     * Require an empty line after block start, so before the first class member in a block.
+     * For empty blocks, this check is superseded by allowNoEmptyLineBeforeBlockEnd.
+     */
+    private boolean requireEmptyLineAfterBlockStart;
+
+    /**
+     * Allow no empty line before block end, so after the last class member in a block.
+     * For empty blocks, this check supersedes requireEmptyLineAfterBlockStart.
+     * This requires RCURLY in the tokens.
+     */
+    private boolean allowNoEmptyLineBeforeBlockEnd;
+
+    /**
+     * Setter to require an empty line after block start, so before the first class member in a
+     * block.
+     * For empty blocks, this check is superseded by allowNoEmptyLineBeforeBlockEnd.
+     *
+     * @param require Whether to require an empty line after block start.
+     */
+    public final void setRequireEmptyLineAfterBlockStart(boolean require) {
+        requireEmptyLineAfterBlockStart = require;
+    }
+
+    /**
+     * Setter to allow no empty line before block end, so after the last class member in a block.
+     * For empty blocks, this check supersedes requireEmptyLineAfterBlockStart.
+     * This requires RCURLY in the tokens.
+     *
+     * @param allow Whether to disallow an empty line before block end.
+     */
+    public void setAllowNoEmptyLineBeforeBlockEnd(boolean allow) {
+        allowNoEmptyLineBeforeBlockEnd = allow;
+    }
 
     /**
      * Setter to allow no empty line between fields.
@@ -408,11 +469,6 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
 
     @Override
     public int[] getDefaultTokens() {
-        return getAcceptableTokens();
-    }
-
-    @Override
-    public int[] getAcceptableTokens() {
         return new int[] {
             TokenTypes.PACKAGE_DEF,
             TokenTypes.IMPORT,
@@ -431,28 +487,59 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
     }
 
     @Override
+    public int[] getAcceptableTokens() {
+        final int[] defaultTokens = getDefaultTokens();
+        final int[] acceptableTokens = new int[defaultTokens.length + 1];
+        System.arraycopy(defaultTokens, 0, acceptableTokens, 0, defaultTokens.length);
+        acceptableTokens[defaultTokens.length] = TokenTypes.RCURLY;
+        return acceptableTokens;
+    }
+
+    @Override
     public int[] getRequiredTokens() {
         return CommonUtil.EMPTY_INT_ARRAY;
     }
 
     @Override
     public void visitToken(DetailAST ast) {
-        checkComments(ast);
-        if (hasMultipleLinesBefore(ast)) {
-            log(ast, MSG_MULTIPLE_LINES, ast.getText());
+        if (ast.getType() != TokenTypes.RCURLY) {
+            checkComments(ast);
+            if (hasMultipleLinesBefore(ast)) {
+                log(ast, MSG_MULTIPLE_LINES, ast.getText());
+            }
+            if (!allowMultipleEmptyLinesInsideClassMembers) {
+                processMultipleLinesInside(ast);
+            }
+            if (ast.getType() == TokenTypes.PACKAGE_DEF) {
+                checkCommentInModifiers(ast);
+            }
         }
-        if (!allowMultipleEmptyLinesInsideClassMembers) {
-            processMultipleLinesInside(ast);
+        DetailAST previousToken = ast.getPreviousSibling();
+        // We need to work around some weirdness in the AST.
+        // Contrary to intuition, RCURLY is a child of LCURLY and not a sibling.
+        // So if we start from RCURLY and we want to track back to previous until we reach LCURLY,
+        // we need to track back previous sibling until we hit null
+        // then go up in the AST at most once to find LCURLY.
+        // Regardless of whether it is there, we stop looking after that.
+        if (previousToken == null) {
+            previousToken = ast.getParent();
         }
-        if (ast.getType() == TokenTypes.PACKAGE_DEF) {
-            checkCommentInModifiers(ast);
+        else {
+            while (TokenUtil.isCommentType(previousToken.getType())) {
+                final DetailAST candidate = previousToken.getPreviousSibling();
+                if (candidate == null) {
+                    previousToken = previousToken.getParent();
+                    break;
+                }
+                previousToken = candidate;
+            }
         }
         DetailAST nextToken = ast.getNextSibling();
         while (nextToken != null && TokenUtil.isCommentType(nextToken.getType())) {
             nextToken = nextToken.getNextSibling();
         }
-        if (nextToken != null) {
-            checkToken(ast, nextToken);
+        if (nextToken != null || ast.getType() == TokenTypes.RCURLY) {
+            checkToken(ast, nextToken, previousToken);
         }
     }
 
@@ -461,12 +548,13 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
      *
      * @param ast token to validate
      * @param nextToken next sibling of the token
+     * @param previousToken previous sibling of the token
      */
-    private void checkToken(DetailAST ast, DetailAST nextToken) {
+    private void checkToken(DetailAST ast, DetailAST nextToken, DetailAST previousToken) {
         final int astType = ast.getType();
         switch (astType) {
             case TokenTypes.VARIABLE_DEF:
-                processVariableDef(ast, nextToken);
+                processVariableDef(ast, nextToken, previousToken);
                 break;
             case TokenTypes.IMPORT:
             case TokenTypes.STATIC_IMPORT:
@@ -475,18 +563,47 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
             case TokenTypes.PACKAGE_DEF:
                 processPackage(ast, nextToken);
                 break;
+            case TokenTypes.RCURLY:
+                processBlockEnd(ast);
+                break;
             default:
-                if (nextToken.getType() == TokenTypes.RCURLY) {
-                    if (hasNotAllowedTwoEmptyLinesBefore(nextToken)) {
-                        final DetailAST result = getLastElementBeforeEmptyLines(ast,
-                                nextToken.getLineNo());
-                        log(result, MSG_MULTIPLE_LINES_AFTER, result.getText());
-                    }
-                }
-                else if (!hasEmptyLineAfter(ast)) {
-                    log(nextToken, MSG_SHOULD_BE_SEPARATED,
-                        nextToken.getText());
-                }
+                processDefault(ast, nextToken, previousToken);
+        }
+    }
+
+    /**
+     * Checks a default token that does not have a specific processing method.
+     *
+     * @param ast the token to check, not {@code null}.
+     * @param nextToken the next token, not {@code null}.
+     * @param previousToken the previous token, not {@code null}.
+     */
+    private void processDefault(DetailAST ast, DetailAST nextToken, DetailAST previousToken) {
+        if (requireEmptyLineAfterBlockStart
+            && previousToken.getType() == TokenTypes.LCURLY
+            && !hasEmptyLineAfter(previousToken)) {
+            log(ast, MSG_SHOULD_BE_SEPARATED, ast.getText());
+        }
+        if (nextToken.getType() == TokenTypes.RCURLY) {
+            if (hasNotAllowedTwoEmptyLinesBefore(nextToken)) {
+                final DetailAST result = getLastElementBeforeEmptyLines(ast,
+                    nextToken.getLineNo());
+                log(result, MSG_MULTIPLE_LINES_AFTER, result.getText());
+            }
+        }
+        else if (!hasEmptyLineAfter(ast)) {
+            log(nextToken, MSG_SHOULD_BE_SEPARATED, nextToken.getText());
+        }
+    }
+
+    /**
+     * Process a right curly, signalling the end of a block.
+     *
+     * @param rightCurly a block end token, not {@code null}.
+     */
+    private void processBlockEnd(DetailAST rightCurly) {
+        if (allowNoEmptyLineBeforeBlockEnd && hasEmptyLineBefore(rightCurly)) {
+            log(rightCurly, MSG_SHOULD_NOT_BE_SEPARATED, rightCurly.getText());
         }
     }
 
@@ -719,8 +836,14 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
      *
      * @param ast token
      * @param nextToken next Token
+     * @param previousToken previous token
      */
-    private void processVariableDef(DetailAST ast, DetailAST nextToken) {
+    private void processVariableDef(DetailAST ast, DetailAST nextToken, DetailAST previousToken) {
+        if (requireEmptyLineAfterBlockStart
+                && previousToken.getType() == TokenTypes.LCURLY
+                && !hasEmptyLineAfter(previousToken)) {
+            log(ast, MSG_SHOULD_BE_SEPARATED, ast.getText());
+        }
         if (isTypeField(ast) && !hasEmptyLineAfter(ast)
                 && isViolatingEmptyLineBetweenFieldsPolicy(nextToken)) {
             log(nextToken, MSG_SHOULD_BE_SEPARATED,
@@ -831,9 +954,15 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
      * @return true if token have empty line after.
      */
     private boolean hasEmptyLineAfter(DetailAST token) {
-        DetailAST lastToken = token.getLastChild().getLastChild();
-        if (lastToken == null) {
-            lastToken = token.getLastChild();
+        DetailAST lastToken = token;
+        for (int index = 0; index < 2; index++) {
+            final DetailAST candidate = lastToken.getLastChild();
+            if (candidate != null) {
+                lastToken = candidate;
+            }
+            else {
+                break;
+            }
         }
         DetailAST nextToken = token.getNextSibling();
         if (TokenUtil.isCommentType(nextToken.getType())) {

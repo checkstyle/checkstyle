@@ -180,6 +180,9 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                 "ELLIPSIS",
                 // these are covered by GenericWhitespaceCheck
                 "WILDCARD_TYPE", "GENERIC_END", "GENERIC_START").collect(Collectors.toSet()));
+        CHECKSTYLE_TOKENS_IN_CONFIG_TO_IGNORE.put("EmptyLineSeparator", Stream.of(
+                // non-default token, excluded for backward compatibility
+                "RCURLY").collect(Collectors.toSet()));
 
         // google
         GOOGLE_TOKENS_IN_CONFIG_TO_IGNORE.put("AnnotationLocation", Stream.of(
@@ -251,6 +254,9 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                 // whitespace is necessary between a type annotation and ellipsis
                 // according '4.6.2 Horizontal whitespace point 9'
                 "ELLIPSIS").collect(Collectors.toSet()));
+        GOOGLE_TOKENS_IN_CONFIG_TO_IGNORE.put("EmptyLineSeparator", Stream.of(
+                // non-default token, excluded for backward compatibility
+                "RCURLY").collect(Collectors.toSet()));
         INTERNAL_MODULES = Definitions.INTERNAL_MODULES.stream()
                 .map(moduleName -> {
                     final String[] packageTokens = moduleName.split("\\.");
