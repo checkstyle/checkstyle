@@ -292,6 +292,28 @@ for (Iterator foo = very.long.line.iterator();
               <th>since</th>
             </tr>
             <tr>
+              <td>requireEmptyLineAfterBlockStart</td>
+              <td>
+                Require an empty line after block start, so before the first class member in a
+                block.
+                For empty blocks, this check is superseded by allowNoEmptyLineBeforeBlockEnd.
+              </td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>10.0</td>
+            </tr>
+            <tr>
+              <td>allowNoEmptyLineBeforeBlockEnd</td>
+              <td>
+                Allow no empty line before block end, so after the last class member in a block.
+                For empty blocks, this check supersedes requireEmptyLineAfterBlockStart.
+                This requires RCURLY in the tokens.
+              </td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>10.0</td>
+            </tr>
+            <tr>
               <td>allowNoEmptyLineBetweenFields</td>
               <td>Allow no empty line between fields.</td>
               <td><a href="property_types.html#boolean">boolean</a></td>
@@ -342,6 +364,8 @@ for (Iterator foo = very.long.line.iterator();
                     RECORD_DEF</a>
                 , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMPACT_CTOR_DEF">
                     COMPACT_CTOR_DEF</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RCURLY">
+                    RCURLY</a>
                     .
               </td>
               <td>
@@ -594,6 +618,10 @@ class FirstClass {
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22empty.line.separator.multiple.lines.inside%22">
             empty.line.separator.multiple.lines.inside</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22no.empty.line.separator%22">
+             no.empty.line.separator</a>
           </li>
         </ul>
         <p>

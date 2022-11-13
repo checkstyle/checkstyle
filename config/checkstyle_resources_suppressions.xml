@@ -944,5 +944,8 @@
     files="[\\/]it[\\/]resources[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter5naming[\\/]rule525nonconstantfieldnames[\\/]InputMemberNameSimple\.java"/>
   <suppress checks="FileLength"
     files="[\\/]it[\\/]resources[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter6programpractice[\\/]rule64finalizers[\\/]InputNoFinalizeExtend\.java"/>
+  <!-- The whole point is to check a file without package declaration (in the default package) -->
+  <suppress checks="PackageDeclaration"
+            files="[\\/]src[\\/]test[\\/]resources[\\/]InputEmptyLineSeparatorDefaultPackageEmptyLineBeforeClassDef.java"/>
 
 </suppressions>
