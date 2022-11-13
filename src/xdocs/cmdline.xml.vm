@@ -145,8 +145,8 @@ java -D&lt;property&gt;=&lt;value&gt;  \
 
       <p>
         Note that the <code>-n packageNamesFile</code>
-        option has been dropped for Checkstyle 5.0, because of
-        significant changes regarding package name file handling. See <a href="config.html#Packages"> for details.</a>
+        option has been dropped for Checkstyle 5.0, because of significant changes regarding
+        package name file handling. See <a href="config.html#Packages">this link</a> for details.
       </p>
 
       <p>
