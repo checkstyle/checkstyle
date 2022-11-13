@@ -152,4 +152,5 @@
   <suppress id="properCurlCommand" files=".ci[\\/]validation\.sh"/>
   <!-- azure does not support this curl command -->
   <suppress id="properCurlCommand" files=".ci[\\/]test-spelling-unknown-words\.sh"/>
+  <suppress id="properCurlCommand" files=".ci[\\/]run-link-check-plugin\.sh"/>
 </suppressions>
