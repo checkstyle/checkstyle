@@ -8,6 +8,7 @@
   <!-- can't split long messages between lines -->
   <suppress id="lineLengthXml" files="google_checks\.xml" lines="58,127"/>
   <!-- don't validate generated files -->
+  <suppress id="lineLengthXml" files="releasenotes_old_8\-0_8\-34\.xml"/>
   <suppress id="lineLengthXml" files="releasenotes_old_6\-0_7\-8\.xml"/>
   <suppress id="lineLengthXml" files="releasenotes_old_1\-0_5\-9\.xml"/>
   <suppress id="lineLengthXml" files="[\\/]meta[\\/]"/>
@@ -91,6 +92,7 @@
   <suppress checks="ExecutableStatementCount" files="HandlerFactory\.java"/>
 
   <suppress id="noSourceforgeNetLinks" files="[\\/]releasenotes.xml"/>
+  <suppress id="noSourceforgeNetLinks" files="[\\/]releasenotes_old_8\-0_8\-34\.xml"/>
   <suppress id="noSourceforgeIoLinks" files="[\\/]index.xml.vm"/>
 
   <!-- usage of div class="wrap-content" render even indented content properly -->
