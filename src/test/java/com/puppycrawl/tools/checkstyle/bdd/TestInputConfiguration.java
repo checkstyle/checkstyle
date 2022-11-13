@@ -56,6 +56,8 @@ public final class TestInputConfiguration {
             "com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheck"
     ));
 
+    private static ModuleInputConfiguration treeWalkerModuleInputConfiguration;
+
     private final List<ModuleInputConfiguration> childrenModules;
 
     private final List<TestInputViolation> violations;
@@ -84,9 +86,13 @@ public final class TestInputConfiguration {
 
     public DefaultConfiguration createConfiguration() {
         final DefaultConfiguration root = new DefaultConfiguration(ROOT_MODULE_NAME);
-        final DefaultConfiguration treeWalker =
-                new DefaultConfiguration(TreeWalker.class.getName());
         root.addProperty("charset", StandardCharsets.UTF_8.name());
+        DefaultConfiguration treeWalkerModule = new DefaultConfiguration(
+                TreeWalker.class.getName());
+        if (treeWalkerModuleInputConfiguration != null) {
+            treeWalkerModule = treeWalkerModuleInputConfiguration.createConfiguration();
+        }
+        final DefaultConfiguration treeWalker = treeWalkerModule;
         childrenModules
                 .stream()
                 .map(ModuleInputConfiguration::createConfiguration)
@@ -104,9 +110,13 @@ public final class TestInputConfiguration {
 
     public DefaultConfiguration createConfigurationWithoutFilters() {
         final DefaultConfiguration root = new DefaultConfiguration(ROOT_MODULE_NAME);
-        final DefaultConfiguration treeWalker =
-                new DefaultConfiguration(TreeWalker.class.getName());
         root.addProperty("charset", StandardCharsets.UTF_8.name());
+        DefaultConfiguration treeWalkerModule = new DefaultConfiguration(
+                TreeWalker.class.getName());
+        if (treeWalkerModuleInputConfiguration != null) {
+            treeWalkerModule = treeWalkerModuleInputConfiguration.createConfiguration();
+        }
+        final DefaultConfiguration treeWalker = treeWalkerModule;
         childrenModules
                 .stream()
                 .map(ModuleInputConfiguration::createConfiguration)
@@ -125,6 +135,9 @@ public final class TestInputConfiguration {
 
     public static final class Builder {
 
+        private static final String TREE_WALKER_MODULE_NAME =
+            "com.puppycrawl.tools.checkstyle.TreeWalker";
+
         private final List<ModuleInputConfiguration> childrenModules = new ArrayList<>();
 
         private final List<TestInputViolation> violations = new ArrayList<>();
@@ -132,7 +145,12 @@ public final class TestInputConfiguration {
         private final List<TestInputViolation> filteredViolations = new ArrayList<>();
 
         public void addChildModule(ModuleInputConfiguration childModule) {
-            childrenModules.add(childModule);
+            if (TREE_WALKER_MODULE_NAME.equals(childModule.getModuleName())) {
+                treeWalkerModuleInputConfiguration = childModule;
+            }
+            else {
+                childrenModules.add(childModule);
+            }
         }
 
         public void addViolation(int violationLine, String violationMessage) {
