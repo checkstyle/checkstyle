@@ -715,7 +715,7 @@ no-error-methods-distance)
   echo CS_version: "${CS_POM_VERSION}"
   mvn -e --no-transfer-progress clean install -Pno-validations
   echo "Checkout target sources ..."
-  checkout_from https://github.com/sevntu-checkstyle/methods-distance.git
+  checkout_from https://github.com/stoyanK7/methods-distance.git
   cd .ci-temp/methods-distance
   mvn -e --no-transfer-progress verify -DskipTests -Dcheckstyle-version="${CS_POM_VERSION}" \
      -Dcheckstyle.configLocation=../../config/checkstyle_checks.xml

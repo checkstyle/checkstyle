@@ -26,7 +26,7 @@ import java.util.Set;
 
 import com.puppycrawl.tools.checkstyle.TreeWalkerAuditEvent;
 import com.puppycrawl.tools.checkstyle.TreeWalkerFilter;
-import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
+import com.puppycrawl.tools.checkstyle.api.AbstractAutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.ExternalResourceHolder;
 import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
@@ -504,7 +504,7 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  *
  * @since 8.6
  */
-public class SuppressionXpathFilter extends AutomaticBean implements
+public class SuppressionXpathFilter extends AbstractAutomaticBean implements
         TreeWalkerFilter, ExternalResourceHolder {
 
     /** Set of individual xpath suppresses. */
