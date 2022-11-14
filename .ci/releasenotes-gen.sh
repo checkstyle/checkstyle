@@ -9,7 +9,7 @@ set -e
 echo "PULL_REQUEST:""$PULL_REQUEST"
 if [[ $PULL_REQUEST =~ ^([0-9]+)$ ]]; then
   echo "Build is not for Pull Request";
-  sleep 5;
+  sleep 5s;
   exit 0;
 fi
 
