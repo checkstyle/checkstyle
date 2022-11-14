@@ -12,7 +12,6 @@ TARGET_VERSION=$1
 echo TARGET_VERSION="$TARGET_VERSION"
 
 checkForVariable "GITHUB_TOKEN"
-checkForVariable "BUILDER_GITHUB_TOKEN"
 
 checkout_from https://github.com/checkstyle/contribution
 
@@ -62,7 +61,7 @@ java -jar contribution/releasenotes-builder/target/releasenotes-builder-1.0-all.
      -startRef "$START_REF" \
      -endRef "$END_REF" \
      -releaseNumber "$TARGET_VERSION" \
-     -githubAuthToken "$BUILDER_GITHUB_TOKEN" \
+     -githubAuthToken "$GITHUB_TOKEN" \
      -generateGitHub \
      -gitHubTemplate $BUILDER_RESOURCE_DIR/templates/github_post.template
 
@@ -92,5 +91,5 @@ echo "Updating Github tag page"
 curl --fail-with-body \
   -X PATCH https://api.github.com/repos/checkstyle/checkstyle/releases/"$RELEASE_ID" \
   -H "Accept: application/vnd.github+json" \
-  -H "Authorization: token $BUILDER_GITHUB_TOKEN" \
+  -H "Authorization: token $GITHUB_TOKEN" \
   -d "${JSON}"
