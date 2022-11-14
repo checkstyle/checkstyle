@@ -92,7 +92,7 @@ nondex)
   RESULT=$(cat .ci-temp/output.txt | wc -c)
   cat .ci-temp/output.txt
   echo 'Size of output:'"$RESULT"
-  if [[ $RESULT != 0 ]]; then sleep 5s; false; fi
+  if [[ $RESULT != 0 ]]; then false; fi
   rm .ci-temp/output.txt
   ;;
 
@@ -115,7 +115,6 @@ pr-age)
   if (( $COMMITS_SINCE_MASTER > $MAX_ALLOWED ));
   then
     echo "This PR is too old and should be rebased on origin/master."
-    sleep 5s
     false
   fi
   ;;
@@ -184,7 +183,6 @@ versions)
     echo "New plugin versions:"
     grep -B 4 -A 7 "<nextVersion>" target/plugin-updates-report.xml | cat
     echo "Verification is failed."
-    sleep 5s
     false
   else
     echo "No new versions found"
@@ -487,7 +485,6 @@ check-since-version)
     CS_RELEASE_VERSION=$(echo "$CS_POM_VERSION" | cut -d '-' -f 1)
     echo "CS Release version: $CS_RELEASE_VERSION"
     echo "Grep for @since $CS_RELEASE_VERSION"
-    sleep 5s
     grep "* @since $CS_RELEASE_VERSION" "$NEW_CHECK_FILE"
   else
     echo "No new Check, all is good."
