@@ -20,10 +20,19 @@
 package com.puppycrawl.tools.checkstyle.checks.naming;
 
 import static com.google.common.truth.Truth.assertWithMessage;
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.MSG_EXPECTED_TAG;
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.MSG_RETURN_EXPECTED;
 
 import org.junit.jupiter.api.Test;
 
-public class AccessModifierOptionTest {
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+
+public class AccessModifierOptionTest extends AbstractModuleTestSupport {
+
+    @Override
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/checks/naming/accessmodifieroption";
+    }
 
     @Test
     public void testDefaultCase() {
@@ -55,6 +64,17 @@ public class AccessModifierOptionTest {
         assertWithMessage("Case mismatch.")
                 .that(AccessModifierOption.PRIVATE.toString())
                 .isEqualTo("private");
+    }
+
+    @Test
+    public void testTrimProperty() throws Exception {
+        final String[] expected = {
+                "25: " + getCheckMessage(MSG_RETURN_EXPECTED),
+                "32: " + getCheckMessage(MSG_RETURN_EXPECTED),
+                "41:33: " + getCheckMessage(MSG_EXPECTED_TAG,"@throws","Exception"),
+        };
+        verifyWithInlineConfigParser(getPath("InputAccessModifierOption.java"),expected);
+
     }
 
 }
