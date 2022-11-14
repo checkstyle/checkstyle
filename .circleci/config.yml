@@ -201,9 +201,6 @@ workflows:
       - validate-with-script:
           name: "checkchmod"
           command: "./.ci/checkchmod.sh"
-      - validate-with-script:
-          name: "releasenotes-gen"
-          command: "./.ci/releasenotes-gen.sh"
 
   javac-validation:
     jobs:
