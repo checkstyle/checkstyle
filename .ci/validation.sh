@@ -612,10 +612,10 @@ no-error-pgjdbc)
   echo CS_version: "${CS_POM_VERSION}"
   mvn -e --no-transfer-progress clean install -Pno-validations
   echo "Checkout target sources ..."
-  checkout_from https://github.com/rnveach/pgjdbc.git
+  checkout_from https://github.com/pgjdbc/pgjdbc.git
   cd .ci-temp/pgjdbc
   # pgjdbc easily damage build, we should use stable versions
-  git checkout cs_issue_12392
+  git checkout "135be5a439503""3a4ba23a1dd70ad76e0bd443a8d"
   ./gradlew --no-parallel --no-daemon checkstyleAll \
             -PenableMavenLocal -Pcheckstyle.version="${CS_POM_VERSION}"
   cd ../
