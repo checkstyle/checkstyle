@@ -997,13 +997,6 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/ant/CheckstyleAntTask.java</fileName>
     <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field classpath</message>
-    <lineContent>private Path classpath;</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/ant/CheckstyleAntTask.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
     <message>the default constructor does not initialize field config</message>
     <lineContent>private String config;</lineContent>
   </checkerFrameworkError>
