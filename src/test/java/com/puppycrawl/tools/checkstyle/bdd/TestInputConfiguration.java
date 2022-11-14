@@ -82,11 +82,21 @@ public final class TestInputConfiguration {
         return Collections.unmodifiableList(filteredViolations);
     }
 
+    public DefaultConfiguration initializeTreeWalker() {
+        final DefaultConfiguration treeWalker;
+        if (childrenModules.get(0).getModuleName().equals(TreeWalker.class.getName())) {
+            treeWalker = childrenModules.get(0).createConfiguration();
+        }
+        else {
+            treeWalker = new DefaultConfiguration(TreeWalker.class.getName());
+        }
+        return treeWalker;
+    }
+
     public DefaultConfiguration createConfiguration() {
         final DefaultConfiguration root = new DefaultConfiguration(ROOT_MODULE_NAME);
-        final DefaultConfiguration treeWalker =
-                new DefaultConfiguration(TreeWalker.class.getName());
         root.addProperty("charset", StandardCharsets.UTF_8.name());
+        final DefaultConfiguration treeWalker = initializeTreeWalker();
         childrenModules
                 .stream()
                 .map(ModuleInputConfiguration::createConfiguration)
@@ -94,7 +104,7 @@ public final class TestInputConfiguration {
                     if (CHECKER_CHILDREN.contains(moduleConfig.getName())) {
                         root.addChild(moduleConfig);
                     }
-                    else {
+                    else if (!treeWalker.getName().equals(moduleConfig.getName())) {
                         treeWalker.addChild(moduleConfig);
                     }
                 });
@@ -104,9 +114,8 @@ public final class TestInputConfiguration {
 
     public DefaultConfiguration createConfigurationWithoutFilters() {
         final DefaultConfiguration root = new DefaultConfiguration(ROOT_MODULE_NAME);
-        final DefaultConfiguration treeWalker =
-                new DefaultConfiguration(TreeWalker.class.getName());
         root.addProperty("charset", StandardCharsets.UTF_8.name());
+        final DefaultConfiguration treeWalker = initializeTreeWalker();
         childrenModules
                 .stream()
                 .map(ModuleInputConfiguration::createConfiguration)
@@ -115,7 +124,7 @@ public final class TestInputConfiguration {
                     if (CHECKER_CHILDREN.contains(moduleConfig.getName())) {
                         root.addChild(moduleConfig);
                     }
-                    else {
+                    else if (!treeWalker.getName().equals(moduleConfig.getName())) {
                         treeWalker.addChild(moduleConfig);
                     }
                 });
