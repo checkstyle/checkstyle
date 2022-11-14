@@ -73,7 +73,7 @@ CONTENT=$(cat github_post.txt)
 echo "$CONTENT"
 
 echo 'Updating content to be be json value friendly'
-UPDATED_CONTENT=$(awk '{printf "%s\\n", $0}' github_post.txt |  sed "s/\`/'/g")
+UPDATED_CONTENT=$(awk '{printf "%s\\n", $0}' github_post.txt |  sed "s/[\`\"]/'/g")
 echo "$UPDATED_CONTENT"
 
 RELEASE_ID=$(cat /var/tmp/cs-releases.json | jq -r ".[$TARGET_RELEASE_INDEX].id")
