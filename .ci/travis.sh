@@ -144,7 +144,7 @@ quarterly-cache-cleanup)
   MVN_REPO=$(mvn -e --no-transfer-progress help:evaluate -Dexpression=settings.localRepository \
     -q -DforceStdout);
   if [[ -d ${MVN_REPO} ]]; then
-    find "$MVN_REPO" -maxdepth 4 -type d -mtime +90 -exec rm -rf {} \;
+    find "$MVN_REPO" -maxdepth 4 -type d -mtime +90 -exec rm -rf {} \; || true;
   else
     echo "Failed to find correct maven cache to clean. Quietly exiting."
   fi
