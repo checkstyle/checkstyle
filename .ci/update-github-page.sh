@@ -72,24 +72,24 @@ CONTENT=$(cat github_post.txt)
 echo "$CONTENT"
 
 echo 'Updating content to be be json value friendly'
-UPDATED_CONTENT=$(awk '{printf "%s\\n", $0}' github_post.txt |  sed "s/\`/'/g")
+UPDATED_CONTENT=$(awk '{printf "%s\\n", $0}' github_post.txt | sed "s/\`/'/g" | jq -Rsa .)
 echo "$UPDATED_CONTENT"
 
 RELEASE_ID=$(cat /var/tmp/cs-releases.json | jq -r ".[$TARGET_RELEASE_INDEX].id")
 echo RELEASE_ID="$RELEASE_ID"
 
-JSON=$(cat <<EOF
+cat <<EOF > body.json
 {
 "tag_name": "checkstyle-${TARGET_VERSION}",
-"body": "${UPDATED_CONTENT}"
+"body": ${UPDATED_CONTENT}
 }
 EOF
-)
-echo "$JSON"
+echo "JSON Body"
+cat body.json
 
 echo "Updating Github tag page"
 curl --fail-with-body \
   -X PATCH https://api.github.com/repos/checkstyle/checkstyle/releases/"$RELEASE_ID" \
   -H "Accept: application/vnd.github+json" \
   -H "Authorization: token $GITHUB_TOKEN" \
-  -d "${JSON}"
+  --data @body.json
