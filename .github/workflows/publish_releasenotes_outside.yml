@@ -13,12 +13,13 @@ jobs:
   publish:
     name: Publish releasenotes GitHub Page ${{ github.event.inputs.version }}
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: Checkout the latest code
         uses: actions/checkout@v3
       - name: Run Shell Script
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           ./.ci/update-github-page.sh ${{ github.event.inputs.version }}
-        env:
-          GITHUB_TOKEN : ${{ secrets.GITHUB_TOKEN }}
-          BUILDER_GITHUB_TOKEN : ${{ secrets.READ_ONLY_TOKEN_GITHUB }}
