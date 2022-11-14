@@ -1817,9 +1817,6 @@
                 <exclude>**/SuppressionFilterTest.class</exclude>
 
                 <!-- tests should be updated -->
-                <exclude>**/WriteTagCheckTest.class</exclude>
-
-                <!-- tests should be updated -->
                 <exclude>**/AbstractJavadocCheckTest.class</exclude>
 
                 <!-- tests should be updated -->
