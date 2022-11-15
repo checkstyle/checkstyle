@@ -63,7 +63,7 @@ public enum AccessModifierOption {
      * @return the AccessModifier associated with given access modifier name.
      */
     public static AccessModifierOption getInstance(String modifierName) {
-        return valueOf(AccessModifierOption.class, modifierName.trim().toUpperCase(Locale.ENGLISH));
+        return valueOf(AccessModifierOption.class, modifierName.toUpperCase(Locale.ENGLISH));
     }
 
 }
