@@ -423,17 +423,12 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testFileNameNoExtension() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(ImportControlCheck.class);
-        checkConfig.addProperty("file",
-                getResourcePath("InputImportControlFileNameNoExtension.xml"));
-        final DefaultConfiguration treewalkerConfig = createModuleConfig(TreeWalker.class);
-        treewalkerConfig.addProperty("fileExtensions", "");
-        treewalkerConfig.addChild(checkConfig);
         final String[] expected = {
-            "11:1: " + getCheckMessage(MSG_DISALLOWED, "java.awt.Image"),
+            "13:1: " + getCheckMessage(MSG_DISALLOWED, "java.awt.Image"),
         };
 
-        verify(treewalkerConfig, getPath("InputImportControlFileNameNoExtension"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputImportControlFileNameNoExtension"), expected);
     }
 
     /**
