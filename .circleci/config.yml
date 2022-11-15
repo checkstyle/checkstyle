@@ -43,6 +43,8 @@ jobs:
       - image: << parameters.image-name >>
     steps:
       - checkout
+      - run:
+          command: apt-get install -y jq
       - restore_cache:
           name: Restore Maven repo cache
           keys:
