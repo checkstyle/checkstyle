@@ -6,5 +6,4 @@
   service: system
   steps:
     # -  command: ./.ci/validation.sh site
-    -  command: ./.ci/validation.sh nondex
     -  command: ls -la
