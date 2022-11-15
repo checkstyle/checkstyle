@@ -158,5 +158,6 @@
   <suppress id="properCurlCommand" files=".ci[\\/]run-link-check-plugin\.sh"/>
   <!-- other images that do not support newer curl commands -->
   <suppress id="properCurlCommand" files=".ci[\\/]sonar_break_build\.sh"/>
+  <suppress id="properCurlCommand" files=".ci[\\/]no_old_refs\.sh"/>
 
 </suppressions>
