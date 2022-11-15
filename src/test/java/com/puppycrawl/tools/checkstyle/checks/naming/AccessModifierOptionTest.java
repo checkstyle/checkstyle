@@ -57,20 +57,4 @@ public class AccessModifierOptionTest {
                 .isEqualTo("private");
     }
 
-    @Test
-    public void testGetInstance() throws Exception {
-        assertWithMessage("Case mismatch.")
-                .that(AccessModifierOption.getInstance(" " + "public"))
-                .isEqualTo(AccessModifierOption.PUBLIC);
-        assertWithMessage("Case mismatch.")
-                .that(AccessModifierOption.getInstance(" " + "protected"))
-                .isEqualTo(AccessModifierOption.PROTECTED);
-        assertWithMessage("Case mismatch.")
-                .that(AccessModifierOption.getInstance(" " + "package"))
-                .isEqualTo(AccessModifierOption.PACKAGE);
-        assertWithMessage("Case mismatch.")
-                .that(AccessModifierOption.getInstance(" " + "private"))
-                .isEqualTo(AccessModifierOption.PRIVATE);
-    }
-
 }
