@@ -156,4 +156,7 @@
   <!-- azure does not support this curl command -->
   <suppress id="properCurlCommand" files=".ci[\\/]test-spelling-unknown-words\.sh"/>
   <suppress id="properCurlCommand" files=".ci[\\/]run-link-check-plugin\.sh"/>
+  <!-- other images that do not support newer curl commands -->
+  <suppress id="properCurlCommand" files=".ci[\\/]sonar_break_build\.sh"/>
+
 </suppressions>
