@@ -2,53 +2,60 @@
 
 set -e
 
-PREV_RELEASE=$1
-RELEASE=$2
+RELEASE=$1
 
-echo "PREVIOUS RELEASE version:""$PREV_RELEASE"
 echo "RELEASE version:""$RELEASE"
 
 if [[ -z $RELEASE ]]; then
   echo "Problem to calculate release version."
   exit 1
 fi
-if [[ -z $PREV_RELEASE ]]; then
+
+echo "Creating shell for $SF_USER@shell.sourceforge.net"
+ssh -i ~/.ssh/private_sourceforge_key -t "$SF_USER"@shell.sourceforge.net create
+
+echo "Creating .ci-temp if it does not exist"
+mkdir -p .ci-temp
+cd .ci-temp
+rm -fr checkstyle.github.io
+
+echo "Cloning checkstyle.github.io repo"
+git clone https://github.com/checkstyle/checkstyle.github.io.git
+
+echo "Cleaning up git files"
+rm -rf checkstyle.github.io/.git
+rm -rf checkstyle.github.io/CNAME
+
+echo "Archiving"
+tar cfz checkstyle.github.io.tar.gz checkstyle.github.io
+
+echo "Uploading to sourceforge"
+scp -i ~/.ssh/private_sourceforge_key checkstyle.github.io.tar.gz \
+  "$SF_USER"@shell.sourceforge.net:/home/project-web/checkstyle
+
+echo "Using shell for $SF_USER@shell.sourceforge.net"
+ssh -i ~/.ssh/private_sourceforge_key -t "$SF_USER"@shell.sourceforge.net << 'EOF'
+
+cd /home/project-web/checkstyle
+
+echo "Extracting previous release version"
+PREVIOUS_RELEASE_VERSION_SPAN=$(grep "projectVersion" htdocs/index.html)
+REGEX="<span id=\"projectVersion\">Version: (.*)<\/span>"
+[[ $PREVIOUS_RELEASE_VERSION_SPAN =~ $REGEX ]]
+PREV_RELEASE="${BASH_REMATCH[1]}"
+echo "PREVIOUS RELEASE version:""$PREV_RELEASE"
+if [[ -z "$PREV_RELEASE" ]]
+then
   echo "Problem to calculate previous release version."
   exit 1
 fi
 
-SF_USER=romanivanov
-#############################
-echo "Please provide password for $SF_USER,checkstyle@shell.sourceforge.net"
-echo "exit" | ssh -t $SF_USER,checkstyle@shell.sourceforge.net create
-
-#####
-
-mkdir -p .ci-temp
-cd .ci-temp
-rm -fr checkstyle.github.io
-echo "Clone by ssh only to avoid passwords on push"
-git clone git@github.com:checkstyle/checkstyle.github.io.git
-echo "clean up git files"
-rm -rf checkstyle.github.io/.git
-rm -rf checkstyle.github.io/CNAME
-echo "Archiving ..."
-tar cfz checkstyle.github.io.tar.gz checkstyle.github.io
-echo "Uploading to sourceforge ..."
-scp checkstyle.github.io.tar.gz \
-  $SF_USER,checkstyle@shell.sourceforge.net:/home/project-web/checkstyle/
-
-#############################
-
-ssh $SF_USER,checkstyle@shell.sourceforge.net << EOF
-
-echo "Swap html content"
-cd /home/project-web/checkstyle
+echo "Swapping html content"
 tar -xzvf checkstyle.github.io.tar.gz
 mv htdocs htdocs-$PREV_RELEASE
 mv checkstyle.github.io htdocs
 
-echo "create .htaccess for dtds redirection"
+echo "Creating .htaccess for dtds redirection"
 cat <<HTACCESS >> htdocs/.htaccess
 Redirect 301 "/dtds" "https://checkstyle.org/dtds"
 RedirectMatch 301 "/version/.*/dtds/(.*)" "https://checkstyle.org/dtds/\$1"
@@ -56,9 +63,10 @@ HTACCESS
 chmod o+r htdocs/.htaccess
 
 ln -s /home/project-web/checkstyle/reports htdocs/reports
-echo "remove dtds folder from unsecure web site"
+echo "Removing dtds folder from unsecure web site"
 rm -r htdocs/dtds
-echo "restore folder with links to old releases"
+
+echo "Restoring folder with links to old releases"
 mv htdocs-$PREV_RELEASE/version htdocs
 
 echo "Archiving"
@@ -78,7 +86,7 @@ tar -xzvf htdocs-archive/htdocs-$PREV_RELEASE.tar.gz -C htdocs-version/ --same-o
 --exclude="releasenotes_old_6-0_7-8.html" --exclude="releasenotes_old_1-0_5-9.html" \
 --exclude="dependencies.html"
 
-echo "Make a link to make it accessible from web"
-ln -f -s \$(pwd)/htdocs-version/htdocs-$PREV_RELEASE \$(pwd)/htdocs/version/$PREV_RELEASE
+echo "Making a link to make it accessible from web"
+ln -f -s $(pwd)/htdocs-version/htdocs-"$PREV_RELEASE" $(pwd)/htdocs/version/"$PREV_RELEASE"
 
 EOF
