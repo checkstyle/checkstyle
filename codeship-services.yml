@@ -1,5 +1,5 @@
 system:
-  image: checkstyle/maven-builder-image:latest
+  image: checkstyle/jdk-11-groovy-git-mvn:11.0.13__3.0.9__2.25.1__3.6.3
   volumes:
     - .:/usr/local/checkstyle
   encrypted_env_file:
