@@ -52,6 +52,9 @@
   <suppress checks="NewlineAtEndOfFile"
             files="config[\\/]archunit-store[\\/]slices_should_be_free_of_cycles_suppressions"/>
 
+  <!-- encrypted file is generated, we should not append newline -->
+  <suppress checks="NewlineAtEndOfFile" files="codeship.encrypted"/>
+
   <!-- till https://issues.apache.org/jira/browse/MRELEASE-1008 -->
   <suppress id="lineLength" files="pom.xml"/>
   <!-- this file cannot be line wraped -->
@@ -108,6 +111,9 @@
 
   <!-- We will preserve formatting of archived release notes -->
   <suppress id="lineLength" files="[\\/]releasenotes_old_8\-0_8\-34\.xml"/>
+
+  <!-- encrypted secrets cannot be line wrapped -->
+  <suppress id="lineLength" files="codeship.encrypted"/>
 
   <!-- apply check numberOfTestCasesInXpath only for files in suppressionxpathfilter directory -->
   <suppress id="numberOfTestCasesInXpath"
