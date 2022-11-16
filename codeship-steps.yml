@@ -6,5 +6,4 @@
   service: system
   steps:
     -  command: ls -la
-    -  command: if [ -z $READ_ONLY_TOKEN ]; then echo "token not found" && false; fi;
     -  command: ./.ci/releasenotes-gen.sh
