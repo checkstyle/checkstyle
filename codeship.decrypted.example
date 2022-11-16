@@ -1,0 +1,4 @@
+# In order to generate encrypted file, run:
+# 'jet encrypt codeship codeship.encrypted'.
+# Your 'codeship' file should look like the following:
+GITHUB_TOKEN=<paste token here>
