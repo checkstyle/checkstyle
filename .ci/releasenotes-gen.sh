@@ -6,6 +6,12 @@
 
 set -e
 
+if [ -z "$READ_ONLY_TOKEN" ]; then
+  echo "'READ_ONLY_TOKEN' not found, exiting..."
+  sleep 5s;
+  exit 1;
+fi
+
 echo "PULL_REQUEST:""$PULL_REQUEST"
 if [[ $PULL_REQUEST =~ ^([0-9]+)$ ]]; then
   echo "Build is not for Pull Request";
