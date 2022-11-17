@@ -22,6 +22,8 @@ or set of validation rules (best practices).
 [![][mavenbadge img]][mavenbadge]
 [![][sonar img]][sonar]
 
+[![][release notes/version img]][release notes/version]
+
 [![][closed issues img]][closed issues]
 [![][link check img]][link check]
 
@@ -182,6 +184,9 @@ are in the file named "LICENSE.apache20" in this directory.
 
 [closed issues]:https://github.com/checkstyle/checkstyle/actions/workflows/no_old_refs.yml
 [closed issues img]:https://github.com/checkstyle/checkstyle/actions/workflows/no_old_refs.yml/badge.svg
+
+[release notes/version]:https://github.com/checkstyle/checkstyle/actions/workflows/releasenotes-gen.yml
+[release notes/version img]:https://github.com/checkstyle/checkstyle/actions/workflows/releasenotes-gen.yml
 
 [link check]:https://github.com/checkstyle/checkstyle/actions/workflows/run_link_check.yml
 [link check img]:https://github.com/checkstyle/checkstyle/actions/workflows/run_link_check.yml/badge.svg
