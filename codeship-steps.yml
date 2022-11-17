@@ -6,4 +6,3 @@
   service: system
   steps:
     -  command: ls -la
-    -  command: ./.ci/releasenotes-gen.sh
