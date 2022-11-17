@@ -34,7 +34,7 @@ fi
 
 cd .ci-temp/checkstyle
 
-curl \
+curl --fail-with-body \
  https://api.github.com/repos/checkstyle/checkstyle/releases \
  -H "Authorization: token $GITHUB_TOKEN" \
  -o /var/tmp/cs-releases.json
@@ -89,7 +89,7 @@ EOF
 echo "$JSON"
 
 echo "Updating Github tag page"
-curl \
+curl --fail-with-body \
   -X PATCH https://api.github.com/repos/checkstyle/checkstyle/releases/"$RELEASE_ID" \
   -H "Accept: application/vnd.github+json" \
   -H "Authorization: token $BUILDER_GITHUB_TOKEN" \

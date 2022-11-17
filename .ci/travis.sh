@@ -10,6 +10,9 @@ case $1 in
 
 init-m2-repo)
   if [[ $RUN_JOB == 1 ]]; then
+    MVN_REPO=$(mvn -e --no-transfer-progress help:evaluate -Dexpression=settings.localRepository \
+      -q -DforceStdout);
+    echo "Maven Repo Located At: " "$MVN_REPO"
     MVN_SETTINGS=${TRAVIS_HOME}/.m2/settings.xml
     if [[ -f ${MVN_SETTINGS} ]]; then
       if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
@@ -31,7 +34,7 @@ init-m2-repo)
 install-adoptium-jdk)
   if [[ -n "${CUSTOM_ADOPTIUM_JDK}" ]]; then
     echo "Installing ${CUSTOM_ADOPTIUM_JDK}...";
-    curl -s https://packages.adoptium.net/artifactory/api/gpg/key/public |
+    curl --fail-with-body -s https://packages.adoptium.net/artifactory/api/gpg/key/public |
       sudo tee /usr/share/keyrings/adoptium.asc
     echo "deb [signed-by=/usr/share/keyrings/adoptium.asc] \
       https://packages.adoptium.net/artifactory/deb $(lsb_release --short --codename) main" |
@@ -105,7 +108,6 @@ deploy-snapshot)
       mvn -e --no-transfer-progress -s config/deploy-settings.xml -Pno-validations deploy;
       echo "deploy to maven snapshot repository is finished";
   fi
-  sleep 5s
   ;;
 
 ci-temp-check)
@@ -132,9 +134,19 @@ jacoco)
   # if launch is not from CI, we skip this step
   if [[ $TRAVIS == 'true' ]]; then
     echo "Reporting to codecov"
-    bash <(curl -s https://codecov.io/bash)
+    bash <(curl --fail-with-body -s https://codecov.io/bash)
   else
     echo "No reporting to codecov outside CI"
+  fi
+  ;;
+
+quarterly-cache-cleanup)
+  MVN_REPO=$(mvn -e --no-transfer-progress help:evaluate -Dexpression=settings.localRepository \
+    -q -DforceStdout);
+  if [[ -d ${MVN_REPO} ]]; then
+    find "$MVN_REPO" -maxdepth 4 -type d -mtime +90 -exec rm -rf {} \; || true;
+  else
+    echo "Failed to find correct maven cache to clean. Quietly exiting."
   fi
   ;;
 

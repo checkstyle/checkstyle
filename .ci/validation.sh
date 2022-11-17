@@ -88,11 +88,11 @@ nondex)
   mvn -e --no-transfer-progress --fail-never clean nondex:nondex -DargLine='-Xms1024m -Xmx2048m' \
     -Dtest=!JavadocPropertiesGeneratorTest#testNonExistentArgument
   mkdir -p .ci-temp
-  cat "$(grep -RlE 'td class=.x' .nondex/ | cat)" < /dev/null > .ci-temp/output.txt
+  grep -RlE 'td class=.x' .nondex/ | cat > .ci-temp/output.txt
   RESULT=$(cat .ci-temp/output.txt | wc -c)
   cat .ci-temp/output.txt
   echo 'Size of output:'"$RESULT"
-  if [[ $RESULT != 0 ]]; then sleep 5s; false; fi
+  if [[ $RESULT != 0 ]]; then false; fi
   rm .ci-temp/output.txt
   ;;
 
@@ -115,7 +115,6 @@ pr-age)
   if (( $COMMITS_SINCE_MASTER > $MAX_ALLOWED ));
   then
     echo "This PR is too old and should be rebased on origin/master."
-    sleep 5s
     false
   fi
   ;;
@@ -184,7 +183,6 @@ versions)
     echo "New plugin versions:"
     grep -B 4 -A 7 "<nextVersion>" target/plugin-updates-report.xml | cat
     echo "Verification is failed."
-    sleep 5s
     false
   else
     echo "No new versions found"
@@ -353,7 +351,7 @@ verify-no-exception-configs)
     if [[ $PULL_REQUEST =~ ^([0-9]+)$ ]]; then
       LINK_PR=https://api.github.com/repos/checkstyle/checkstyle/pulls/$PULL_REQUEST
       REGEXP="https://github.com/checkstyle/contribution/pull/"
-      PR_DESC=$(curl -s -H "Authorization: token $READ_ONLY_TOKEN" "$LINK_PR" \
+      PR_DESC=$(curl --fail-with-body -s -H "Authorization: token $READ_ONLY_TOKEN" "$LINK_PR" \
                   | jq '.body' | grep $REGEXP | cat )
       echo 'PR Description grepped:'"${PR_DESC:0:180}"
       if [[ -z $PR_DESC ]]; then
@@ -487,7 +485,6 @@ check-since-version)
     CS_RELEASE_VERSION=$(echo "$CS_POM_VERSION" | cut -d '-' -f 1)
     echo "CS Release version: $CS_RELEASE_VERSION"
     echo "Grep for @since $CS_RELEASE_VERSION"
-    sleep 5s
     grep "* @since $CS_RELEASE_VERSION" "$NEW_CHECK_FILE"
   else
     echo "No new Check, all is good."
@@ -597,14 +594,8 @@ sonarqube)
   echo "report-task.txt:"
   cat target/sonar/report-task.txt
   echo "Verification of sonar gate status"
-  checkout_from https://github.com/viesure/blog-sonar-build-breaker.git
-  sed -i'' "s|our.sonar.server|sonarcloud.io|" \
-    .ci-temp/blog-sonar-build-breaker/sonar_break_build.sh
-  sed -i'' "s|curl |curl -k |" \
-    .ci-temp/blog-sonar-build-breaker/sonar_break_build.sh
   export SONAR_API_TOKEN=$SONAR_TOKEN
-  .ci-temp/blog-sonar-build-breaker/sonar_break_build.sh
-  removeFolderWithProtectedFiles .ci-temp/blog-sonar-build-breaker
+  .ci/sonar_break_build.sh
   ;;
 
 no-error-pgjdbc)
@@ -1074,6 +1065,11 @@ git-check-pull-number)
       fi
     fi
   done
+  ;;
+
+assembly-site)
+  mvn -e --no-transfer-progress package -Passembly
+  mvn -e --no-transfer-progress site -Dlinkcheck.skip=true
   ;;
 
 *)

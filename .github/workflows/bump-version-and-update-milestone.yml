@@ -32,10 +32,10 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email 'github-actions[bot]@users.noreply.github.com'
-          git commit -am "minor: Bump release version to ${{ github.event.inputs.version }}"
+          git commit -am "minor: Bump version to ${{ github.event.inputs.version }}-SNAPSHOT"
           git push
       - name: GitHub Milestone
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
         run: |
           .ci/update-github-milestone.sh ${{ github.event.inputs.version }}
-        env:
-          READ_ONLY_TOKEN: ${{ github.token }}

@@ -1802,9 +1802,6 @@
                 <exclude>**/SuppressWarningsHolderTest.class</exclude>
 
                 <!-- test should be updated -->
-                <exclude>**/ImportControlCheckTest.class</exclude>
-
-                <!-- test should be updated -->
                 <exclude>**/AbstractCheckTest.class</exclude>
 
                 <!-- tests need to be updated -->
@@ -1833,7 +1830,7 @@
       <plugin>
         <groupId>edu.illinois</groupId>
         <artifactId>nondex-maven-plugin</artifactId>
-        <version>1.1.2</version>
+        <version>2.1</version>
       </plugin>
 
       <plugin>

@@ -9,8 +9,8 @@ tokens = PACKAGE_DEF
 */
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator;
-/** // violation
- * violation expected at line above.
+/** // violation ''/\*' should be separated from previous line.'
+ *
  *
  */
 import java.util.Arrays;

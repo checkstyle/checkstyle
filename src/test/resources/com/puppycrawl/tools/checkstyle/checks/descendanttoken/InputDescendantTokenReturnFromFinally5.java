@@ -28,7 +28,8 @@ public class InputDescendantTokenReturnFromFinally5 {
         try {
             System.currentTimeMillis();
         } finally {
-            if (System.currentTimeMillis() == 0) { // violation
+            // violation below 'Total count of 0 is less than minimum count 3 under 'EQUAL'.'
+            if (System.currentTimeMillis() == 0) {
                 return; // return from if statement
             }
         }

@@ -327,12 +327,14 @@ detailastimpl
 detailnodetreestringprinter
 devops
 Dexec
+Dexpression
 dfa
 DFFF
 Dfile
 dfn
 Dfoo
 Dforbiddenapis
+Dforce
 Dgpg
 Dhttp
 Diachenko
@@ -830,6 +832,7 @@ markdownlint
 Massol
 matchxpath
 mavenbadge
+maxdepth
 maxmem
 maxmethods
 mct
@@ -878,6 +881,7 @@ mozilla
 MRELEASE
 mstudman
 MTAGLIST
+mtime
 MUI
 multicharacter
 multiline
@@ -1125,6 +1129,7 @@ py
 qa
 qalab
 qaplug
+qualitygates
 Qube
 qux
 qw

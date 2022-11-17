@@ -15,7 +15,6 @@ or set of validation rules (best practices).
 [![][error prone img]][error prone]
 [![][pitest img]][pitest]
 [![][checker framework img]][checker framework]
-[![][codenarc img]][codenarc]
 
 [![][codeship img]][codeship]
 [![][dependabot img]][dependabot]
@@ -195,6 +194,3 @@ are in the file named "LICENSE.apache20" in this directory.
 
 [checker framework]:https://github.com/checkstyle/checkstyle/actions/workflows/checker-framework.yml
 [checker framework img]:https://github.com/checkstyle/checkstyle/actions/workflows/checker-framework.yml/badge.svg
-
-[codenarc]:https://github.com/checkstyle/checkstyle/actions/workflows/codenarc-analysis.yml
-[codenarc img]:https://github.com/checkstyle/checkstyle/actions/workflows/codenarc-analysis.yml/badge.svg

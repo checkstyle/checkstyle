@@ -22,12 +22,12 @@ mvn -e --no-transfer-progress -Passembly package
 
 echo "Publishing 'all' jar to Github"
 UPLOAD_LINK=https://uploads.github.com/repos/checkstyle/checkstyle/releases
-RELEASE_ID=$(curl -s -X GET \
+RELEASE_ID=$(curl --fail-with-body -s -X GET \
   https://api.github.com/repos/checkstyle/checkstyle/releases/tags/checkstyle-"$TARGET_VERSION" \
   | jq ".id")
 
 
-curl -i -H "Authorization: token $GITHUB_TOKEN" \
+curl --fail-with-body -i -H "Authorization: token $GITHUB_TOKEN" \
   -H "Content-Type: application/zip" \
   --data-binary @"target/checkout/target/checkstyle-$TARGET_VERSION-all.jar" \
   -X POST "$UPLOAD_LINK"/"$RELEASE_ID"/assets?name=checkstyle-"$TARGET_VERSION"-all.jar

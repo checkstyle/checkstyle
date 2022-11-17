@@ -38,7 +38,8 @@ for MENTIONED_ISSUES_GREP_OUTPUT_LINE in $(cat $MENTIONED_ISSUES_GREP_OUTPUT); d
 
   LINK="$GITHUB_HOST/$MAIN_REPO/blob/$DEFAULT_BRANCH/$FILE_PATH#L$LINE_NUMBER"
 
-  STATE=$(curl -s -H "Authorization: token $GITHUB_TOKEN" "$API_GITHUB_PREFIX/$ISSUE" \
+  STATE=$(curl -s -H \
+   "Authorization: token $GITHUB_TOKEN" "$API_GITHUB_PREFIX/$ISSUE" \
    | jq '.state' | xargs)
   if [ "$STATE" = "closed" ]; then
     echo "$LINK" >> $CLOSED_ISSUES

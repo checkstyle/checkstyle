@@ -6,10 +6,16 @@
 
 set -e
 
+if [ -z "$READ_ONLY_TOKEN" ]; then
+  echo "'READ_ONLY_TOKEN' not found, exiting..."
+  sleep 5s;
+  exit 1;
+fi
+
 echo "PULL_REQUEST:""$PULL_REQUEST"
 if [[ $PULL_REQUEST =~ ^([0-9]+)$ ]]; then
   echo "Build is not for Pull Request";
-  sleep 5;
+  sleep 5s;
   exit 0;
 fi
 
@@ -54,7 +60,7 @@ cd .ci-temp
 java -jar contribution/releasenotes-builder/target/releasenotes-builder-1.0-all.jar \
         -localRepoPath checkstyle -remoteRepoPath checkstyle/checkstyle \
         -startRef "$LATEST_RELEASE_TAG" -releaseNumber "$CS_RELEASE_VERSION" \
-        -githubAuthToken "$READ_ONLY_TOKEN" -generateAll
+        -githubAuthToken "$READ_ONLY_TOKEN" -generateAll -validateVersion
 
 echo ==============================================
 echo
