@@ -1,0 +1,20 @@
+name: "Run release note generation"
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download checkstyle
+        uses: actions/checkout@v3
+
+      - name: Generate release notes
+        with:
+          env:
+            READ_ONLY_TOKEN: ${{ secrets.READ_ONLY_TOKEN_GITHUB }}
+        run: |
+          ./.ci/releasenotes-gen.sh
