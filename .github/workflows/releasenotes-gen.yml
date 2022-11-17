@@ -1,0 +1,27 @@
+name: "Run release note generation"
+
+on:
+  push:
+    branches:
+      - master
+      # temporary to test
+      - test-github-action
+  pull-request:
+    branches:
+      - test-github-action
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download checkstyle
+        uses: actions/checkout@v3
+        # temporary hack to test
+        with:
+          ref: master
+
+      - name: Generate release notes
+        with:
+          env:
+            READ_ONLY_TOKEN: ${{ secrets.READ_ONLY_TOKEN_GITHUB }}
+        run: ./.ci/releasenotes-gen.sh
