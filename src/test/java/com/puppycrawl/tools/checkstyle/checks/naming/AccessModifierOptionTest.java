@@ -57,4 +57,8 @@ public class AccessModifierOptionTest {
                 .isEqualTo("private");
     }
 
+    @Test
+    public void testTrimProperty() throws Exception {
+
+    }
 }
