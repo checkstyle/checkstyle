@@ -495,13 +495,34 @@ public class LeftCurlyCheck
      * @param braceLine line content
      */
     private void validateEol(DetailAST brace, String braceLine) {
-        if (CommonUtil.hasWhitespaceBefore(brace.getColumnNo(), braceLine)) {
+        if (CommonUtil.hasWhitespaceBefore(brace.getColumnNo(), braceLine)
+                || hasOnlyBlockCommentsBefore(brace.getColumnNo(), braceLine)) {
             log(brace, MSG_KEY_LINE_PREVIOUS, OPEN_CURLY_BRACE, brace.getColumnNo() + 1);
         }
         if (!hasLineBreakAfter(brace)) {
             log(brace, MSG_KEY_LINE_BREAK_AFTER, OPEN_CURLY_BRACE, brace.getColumnNo() + 1);
         }
     }
+
+    /**
+     * Return whether the leftCurly should be on previos line or not
+     *
+     * @param column index of LeftCurly
+     * @param braceLine the line to check
+     * @return true if violation is expected
+     */
+    public boolean hasOnlyBlockCommentsBefore(int column ,String braceLine) {
+        boolean result = true;
+        String str = braceLine.substring(0,column+1).replaceAll("/\\*.*?\\*/", "");
+            int index = str.lastIndexOf('{');
+            for(int i=0;i<index;i++) {
+                if(!Character.isWhitespace(str.charAt(i))) {
+                    result = false;
+                    break;
+                }
+            }
+            return result;
+        }
 
     /**
      * Validate token on new Line position.
