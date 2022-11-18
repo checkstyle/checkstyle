@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks.blocks;
 
 import java.util.Locale;
+import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
@@ -495,7 +496,10 @@ public class LeftCurlyCheck
      * @param braceLine line content
      */
     private void validateEol(DetailAST brace, String braceLine) {
-        if (CommonUtil.hasWhitespaceBefore(brace.getColumnNo(), braceLine)) {
+        final String line = Pattern.compile("(?://.*)|(/\\*(?:.|[\\n\\r])*?\\*/)")
+                        .matcher(braceLine)
+                        .replaceAll(result -> " ".repeat(result.end()));
+        if (CommonUtil.hasWhitespaceBefore(brace.getColumnNo(), line)) {
             log(brace, MSG_KEY_LINE_PREVIOUS, OPEN_CURLY_BRACE, brace.getColumnNo() + 1);
         }
         if (!hasLineBreakAfter(brace)) {
