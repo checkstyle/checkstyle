@@ -206,7 +206,7 @@
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <surefire.options />
     <projectVersion>${project.version}</projectVersion>
-    <antlr4.version>4.11.1</antlr4.version>
+    <antlr4.version>4.10.1</antlr4.version>
     <maven.site.plugin.version>3.12.1</maven.site.plugin.version>
     <maven.spotbugs.plugin.version>4.7.2.1</maven.spotbugs.plugin.version>
     <maven.pmd.plugin.version>3.19.0</maven.pmd.plugin.version>

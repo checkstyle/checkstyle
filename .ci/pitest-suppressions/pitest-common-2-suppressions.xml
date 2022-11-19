@@ -180,13 +180,4 @@
     <lineContent>inputSource = super.resolveEntity(publicId, systemId);</lineContent>
   </mutation>
 
-  <!-- until https://github.com/checkstyle/checkstyle/issues/12186 -->
-  <mutation unstable="false">
-    <sourceFile>JavaParser.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.JavaParser</mutatedClass>
-    <mutatedMethod>parse</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator</mutator>
-    <description>removed call to com/puppycrawl/tools/checkstyle/grammar/java/JavaLanguageLexer::removeErrorListeners</description>
-    <lineContent>lexer.removeErrorListeners();</lineContent>
-  </mutation>
 </suppressedMutations>
