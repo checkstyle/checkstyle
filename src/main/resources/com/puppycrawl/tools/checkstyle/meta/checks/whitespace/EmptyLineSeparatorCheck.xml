@@ -26,6 +26,21 @@
  &lt;/p&gt;</description>
          <properties>
             <property default-value="false"
+                       name="requireEmptyLineAfterBlockStart"
+                       type="boolean">
+               <description>Require an empty line after block start,
+ so before the first class member in a block.
+ For empty blocks, this check is superseded by allowNoEmptyLineBeforeBlockEnd.</description>
+            </property>
+            <property default-value="false"
+                       name="allowNoEmptyLineBeforeBlockEnd"
+                       type="boolean">
+               <description>Allow no empty line before block end,
+ so after the last class member in a block.
+ For empty blocks, this check supersedes requireEmptyLineAfterBlockStart.
+ This requires RCURLY in the tokens.</description>
+            </property>
+            <property default-value="false"
                        name="allowNoEmptyLineBetweenFields"
                        type="boolean">
                <description>Allow no empty line between fields.</description>
@@ -51,6 +66,7 @@
             <message-key key="empty.line.separator.multiple.lines"/>
             <message-key key="empty.line.separator.multiple.lines.after"/>
             <message-key key="empty.line.separator.multiple.lines.inside"/>
+            <message-key key="no.empty.line.separator"/>
          </message-keys>
       </check>
    </module>
