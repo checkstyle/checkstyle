@@ -22,7 +22,7 @@ if [ -z "$CE_TASK_ID" ]; then
   exit 1
 fi
 
-TASK_URL="$SONAR_SERVER/api/ce/task\?id=$CE_TASK_ID"
+TASK_URL="$SONAR_SERVER/api/ce/task?id=$CE_TASK_ID"
 HTTP_STATUS=$(curl -s -o /dev/null -w '%{http_code}' \
     -u "$SONAR_API_TOKEN": "$TASK_URL")
 
