@@ -41,7 +41,7 @@
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck$Details</mutatedClass>
     <mutatedMethod>getDetails</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_1</mutator>
-    <description>RemoveSwitch 1 mutation</description>
+    <description>RemoveSwitch 1 (case value 84)</description>
     <lineContent>switch (ast.getType()) {</lineContent>
   </mutation>
 
@@ -50,7 +50,7 @@
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck$Details</mutatedClass>
     <mutatedMethod>getDetails</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_10</mutator>
-    <description>RemoveSwitch 10 mutation</description>
+    <description>RemoveSwitch 10 (case value 93)</description>
     <lineContent>switch (ast.getType()) {</lineContent>
   </mutation>
 
@@ -59,7 +59,7 @@
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck$Details</mutatedClass>
     <mutatedMethod>getDetails</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_11</mutator>
-    <description>RemoveSwitch 11 mutation</description>
+    <description>RemoveSwitch 11 (case value 94)</description>
     <lineContent>switch (ast.getType()) {</lineContent>
   </mutation>
 
@@ -68,7 +68,7 @@
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck$Details</mutatedClass>
     <mutatedMethod>getDetails</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_14</mutator>
-    <description>RemoveSwitch 14 mutation</description>
+    <description>RemoveSwitch 14 (case value 97)</description>
     <lineContent>switch (ast.getType()) {</lineContent>
   </mutation>
 
@@ -77,7 +77,7 @@
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck$Details</mutatedClass>
     <mutatedMethod>getDetails</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_3</mutator>
-    <description>RemoveSwitch 3 mutation</description>
+    <description>RemoveSwitch 3 (case value 86)</description>
     <lineContent>switch (ast.getType()) {</lineContent>
   </mutation>
 
@@ -86,7 +86,7 @@
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck$Details</mutatedClass>
     <mutatedMethod>getDetails</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_4</mutator>
-    <description>RemoveSwitch 4 mutation</description>
+    <description>RemoveSwitch 4 (case value 87)</description>
     <lineContent>switch (ast.getType()) {</lineContent>
   </mutation>
 
@@ -95,7 +95,7 @@
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck$Details</mutatedClass>
     <mutatedMethod>getDetails</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_5</mutator>
-    <description>RemoveSwitch 5 mutation</description>
+    <description>RemoveSwitch 5 (case value 88)</description>
     <lineContent>switch (ast.getType()) {</lineContent>
   </mutation>
 
@@ -104,7 +104,7 @@
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck$Details</mutatedClass>
     <mutatedMethod>getDetails</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_6</mutator>
-    <description>RemoveSwitch 6 mutation</description>
+    <description>RemoveSwitch 6 (case value 89)</description>
     <lineContent>switch (ast.getType()) {</lineContent>
   </mutation>
 
@@ -113,7 +113,7 @@
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck$Details</mutatedClass>
     <mutatedMethod>getDetails</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_7</mutator>
-    <description>RemoveSwitch 7 mutation</description>
+    <description>RemoveSwitch 7 (case value 90)</description>
     <lineContent>switch (ast.getType()) {</lineContent>
   </mutation>
 
@@ -122,7 +122,7 @@
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck$Details</mutatedClass>
     <mutatedMethod>getDetails</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_8</mutator>
-    <description>RemoveSwitch 8 mutation</description>
+    <description>RemoveSwitch 8 (case value 91)</description>
     <lineContent>switch (ast.getType()) {</lineContent>
   </mutation>
 
@@ -131,7 +131,7 @@
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck$Details</mutatedClass>
     <mutatedMethod>getDetails</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_9</mutator>
-    <description>RemoveSwitch 9 mutation</description>
+    <description>RemoveSwitch 9 (case value 92)</description>
     <lineContent>switch (ast.getType()) {</lineContent>
   </mutation>
 

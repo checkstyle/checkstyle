@@ -104,7 +104,7 @@
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck</mutatedClass>
     <mutatedMethod>calculateDistanceBetweenScopes</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_4</mutator>
-    <description>RemoveSwitch 4 mutation</description>
+    <description>RemoveSwitch 4 (case value 85)</description>
     <lineContent>switch (blockWithVariableUsage.getType()) {</lineContent>
   </mutation>
 
@@ -113,7 +113,7 @@
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck</mutatedClass>
     <mutatedMethod>getDistToVariableUsageInChildNode</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_1</mutator>
-    <description>RemoveSwitch 1 mutation</description>
+    <description>RemoveSwitch 1 (case value 10)</description>
     <lineContent>switch (examineNode.getType()) {</lineContent>
   </mutation>
 
@@ -122,7 +122,7 @@
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck</mutatedClass>
     <mutatedMethod>getDistToVariableUsageInChildNode</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_6</mutator>
-    <description>RemoveSwitch 6 mutation</description>
+    <description>RemoveSwitch 6 (case value 91)</description>
     <lineContent>switch (examineNode.getType()) {</lineContent>
   </mutation>
 
