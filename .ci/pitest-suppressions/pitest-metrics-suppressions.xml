@@ -59,7 +59,7 @@
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck</mutatedClass>
     <mutatedMethod>leaveToken</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_0</mutator>
-    <description>RemoveSwitch 0 mutation</description>
+    <description>RemoveSwitch 0 (case value 8)</description>
     <lineContent>switch (ast.getType()) {</lineContent>
   </mutation>
 
@@ -68,7 +68,7 @@
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck</mutatedClass>
     <mutatedMethod>leaveToken</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_3</mutator>
-    <description>RemoveSwitch 3 mutation</description>
+    <description>RemoveSwitch 3 (case value 203)</description>
     <lineContent>switch (ast.getType()) {</lineContent>
   </mutation>
 
@@ -104,7 +104,7 @@
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.metrics.JavaNCSSCheck</mutatedClass>
     <mutatedMethod>isExpressionCountable</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_2</mutator>
-    <description>RemoveSwitch 2 mutation</description>
+    <description>RemoveSwitch 2 (case value 83)</description>
     <lineContent>switch (parentType) {</lineContent>
   </mutation>
 
@@ -113,7 +113,7 @@
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.metrics.JavaNCSSCheck</mutatedClass>
     <mutatedMethod>isExpressionCountable</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_3</mutator>
-    <description>RemoveSwitch 3 mutation</description>
+    <description>RemoveSwitch 3 (case value 84)</description>
     <lineContent>switch (parentType) {</lineContent>
   </mutation>
 
@@ -122,7 +122,7 @@
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.metrics.JavaNCSSCheck</mutatedClass>
     <mutatedMethod>isExpressionCountable</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_4</mutator>
-    <description>RemoveSwitch 4 mutation</description>
+    <description>RemoveSwitch 4 (case value 85)</description>
     <lineContent>switch (parentType) {</lineContent>
   </mutation>
 
@@ -131,7 +131,7 @@
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.metrics.JavaNCSSCheck</mutatedClass>
     <mutatedMethod>isExpressionCountable</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_5</mutator>
-    <description>RemoveSwitch 5 mutation</description>
+    <description>RemoveSwitch 5 (case value 91)</description>
     <lineContent>switch (parentType) {</lineContent>
   </mutation>
 
@@ -140,7 +140,7 @@
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.metrics.JavaNCSSCheck</mutatedClass>
     <mutatedMethod>isExpressionCountable</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_6</mutator>
-    <description>RemoveSwitch 6 mutation</description>
+    <description>RemoveSwitch 6 (case value 92)</description>
     <lineContent>switch (parentType) {</lineContent>
   </mutation>
 

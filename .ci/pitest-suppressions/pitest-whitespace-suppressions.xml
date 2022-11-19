@@ -5,7 +5,7 @@
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck</mutatedClass>
     <mutatedMethod>checkToken</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_3</mutator>
-    <description>RemoveSwitch 3 mutation</description>
+    <description>RemoveSwitch 3 (case value 152)</description>
     <lineContent>switch (astType) {</lineContent>
   </mutation>
 
