@@ -569,26 +569,28 @@ jdk14-assembly-site)
   mvn -e --no-transfer-progress site -Pno-validations
   ;;
 
-# executed only in wercker for security reasons
 sonarqube)
   # token could be generated at https://sonarcloud.io/account/security/
   # execution on local for master:
-  # SONAR_TOKEN=xxxxxx ./.ci/wercker.sh sonarqube
+  # SONAR_TOKEN=xxxxxx ./.ci/validation.sh sonarqube
   # execution on local for non-master:
-  # SONAR_TOKEN=xxxxxx PR=xxxxxx WERCKER_GIT_BRANCH=xxxxxx ./.ci/wercker.sh sonarqube
-  if [[ $PR && $PR =~ ^([0-9]*)$ ]]; then
-      SONAR_PR_VARIABLES="-Dsonar.pullrequest.key=$PR"
-      SONAR_PR_VARIABLES+=" -Dsonar.pullrequest.branch=$WERCKER_GIT_BRANCH"
+  # SONAR_TOKEN=xxxxxx PR_NUMBER=xxxxxx PR_BRANCH_NAME=xxxxxx ./.ci/validation.sh sonarqube
+  checkForVariable "SONAR_TOKEN"
+
+  if [[ $PR_NUMBER =~ ^([0-9]+)$ ]]; then
+      SONAR_PR_VARIABLES="-Dsonar.pullrequest.key=$PR_NUMBER"
+      SONAR_PR_VARIABLES+=" -Dsonar.pullrequest.branch=$PR_BRANCH_NAME"
       SONAR_PR_VARIABLES+=" -Dsonar.pullrequest.base=master"
       echo "SONAR_PR_VARIABLES: ""$SONAR_PR_VARIABLES"
   fi
-  if [[ -z $SONAR_TOKEN ]]; then echo "SONAR_TOKEN is not set"; sleep 5s; exit 1; fi
+
   export MAVEN_OPTS='-Xmx2000m'
   # until https://github.com/checkstyle/checkstyle/issues/11637
   # shellcheck disable=SC2086
-  mvn -e --no-transfer-progress -Pno-validations clean package sonar:sonar $SONAR_PR_VARIABLES \
+  mvn -e --no-transfer-progress -Pno-validations clean package sonar:sonar \
+       $SONAR_PR_VARIABLES \
        -Dsonar.host.url=https://sonarcloud.io \
-       -Dsonar.login=$SONAR_TOKEN \
+       -Dsonar.login="$SONAR_TOKEN" \
        -Dsonar.projectKey=org.checkstyle:checkstyle \
        -Dsonar.organization=checkstyle
   echo "report-task.txt:"
