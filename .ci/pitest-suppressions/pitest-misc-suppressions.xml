@@ -149,7 +149,7 @@
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder</mutatedClass>
     <mutatedMethod>getStringExpr</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_0</mutator>
-    <description>RemoveSwitch 0 mutation</description>
+    <description>RemoveSwitch 0 (case value 58)</description>
     <lineContent>switch (firstChild.getType()) {</lineContent>
   </mutation>
 
@@ -158,7 +158,7 @@
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder</mutatedClass>
     <mutatedMethod>getStringExpr</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_1</mutator>
-    <description>RemoveSwitch 1 mutation</description>
+    <description>RemoveSwitch 1 (case value 59)</description>
     <lineContent>switch (firstChild.getType()) {</lineContent>
   </mutation>
 
