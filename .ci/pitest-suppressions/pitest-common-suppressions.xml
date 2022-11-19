@@ -410,7 +410,7 @@
     <mutatedClass>com.puppycrawl.tools.checkstyle.SarifLogger</mutatedClass>
     <mutatedMethod>renderSeverityLevel</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_3</mutator>
-    <description>RemoveSwitch 3 mutation</description>
+    <description>RemoveSwitch 3 (case value 4)</description>
     <lineContent>switch (severityLevel) {</lineContent>
   </mutation>
 

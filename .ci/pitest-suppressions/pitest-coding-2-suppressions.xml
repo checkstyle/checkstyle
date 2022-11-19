@@ -5,7 +5,7 @@
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.ExplicitInitializationCheck</mutatedClass>
     <mutatedMethod>isZero</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_1</mutator>
-    <description>RemoveSwitch 1 mutation</description>
+    <description>RemoveSwitch 1 (case value 138)</description>
     <lineContent>switch (type) {</lineContent>
   </mutation>
 
@@ -14,7 +14,7 @@
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.ExplicitInitializationCheck</mutatedClass>
     <mutatedMethod>isZero</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_2</mutator>
-    <description>RemoveSwitch 2 mutation</description>
+    <description>RemoveSwitch 2 (case value 139)</description>
     <lineContent>switch (type) {</lineContent>
   </mutation>
 
@@ -23,7 +23,7 @@
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.ExplicitInitializationCheck</mutatedClass>
     <mutatedMethod>isZero</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_5</mutator>
-    <description>RemoveSwitch 5 mutation</description>
+    <description>RemoveSwitch 5 (case value 142)</description>
     <lineContent>switch (type) {</lineContent>
   </mutation>
 
@@ -86,7 +86,7 @@
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck</mutatedClass>
     <mutatedMethod>leaveToken</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_2</mutator>
-    <description>RemoveSwitch 2 mutation</description>
+    <description>RemoveSwitch 2 (case value 8)</description>
     <lineContent>switch (ast.getType()) {</lineContent>
   </mutation>
 
@@ -176,7 +176,7 @@
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck</mutatedClass>
     <mutatedMethod>leaveToken</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_10</mutator>
-    <description>RemoveSwitch 10 mutation</description>
+    <description>RemoveSwitch 10 (case value 102)</description>
     <lineContent>switch (ast.getType()) {</lineContent>
   </mutation>
 
@@ -185,7 +185,7 @@
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck</mutatedClass>
     <mutatedMethod>leaveToken</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_11</mutator>
-    <description>RemoveSwitch 11 mutation</description>
+    <description>RemoveSwitch 11 (case value 103)</description>
     <lineContent>switch (ast.getType()) {</lineContent>
   </mutation>
 
@@ -194,7 +194,7 @@
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck</mutatedClass>
     <mutatedMethod>leaveToken</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_12</mutator>
-    <description>RemoveSwitch 12 mutation</description>
+    <description>RemoveSwitch 12 (case value 104)</description>
     <lineContent>switch (ast.getType()) {</lineContent>
   </mutation>
 
@@ -203,7 +203,7 @@
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck</mutatedClass>
     <mutatedMethod>leaveToken</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_13</mutator>
-    <description>RemoveSwitch 13 mutation</description>
+    <description>RemoveSwitch 13 (case value 105)</description>
     <lineContent>switch (ast.getType()) {</lineContent>
   </mutation>
 
@@ -212,7 +212,7 @@
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck</mutatedClass>
     <mutatedMethod>leaveToken</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_14</mutator>
-    <description>RemoveSwitch 14 mutation</description>
+    <description>RemoveSwitch 14 (case value 106)</description>
     <lineContent>switch (ast.getType()) {</lineContent>
   </mutation>
 
@@ -221,7 +221,7 @@
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck</mutatedClass>
     <mutatedMethod>leaveToken</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_15</mutator>
-    <description>RemoveSwitch 15 mutation</description>
+    <description>RemoveSwitch 15 (case value 107)</description>
     <lineContent>switch (ast.getType()) {</lineContent>
   </mutation>
 
@@ -230,7 +230,7 @@
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck</mutatedClass>
     <mutatedMethod>leaveToken</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_16</mutator>
-    <description>RemoveSwitch 16 mutation</description>
+    <description>RemoveSwitch 16 (case value 108)</description>
     <lineContent>switch (ast.getType()) {</lineContent>
   </mutation>
 
@@ -239,7 +239,7 @@
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck</mutatedClass>
     <mutatedMethod>leaveToken</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_2</mutator>
-    <description>RemoveSwitch 2 mutation</description>
+    <description>RemoveSwitch 2 (case value 26)</description>
     <lineContent>switch (ast.getType()) {</lineContent>
   </mutation>
 
@@ -248,7 +248,7 @@
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck</mutatedClass>
     <mutatedMethod>leaveToken</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_7</mutator>
-    <description>RemoveSwitch 7 mutation</description>
+    <description>RemoveSwitch 7 (case value 99)</description>
     <lineContent>switch (ast.getType()) {</lineContent>
   </mutation>
 
@@ -257,7 +257,7 @@
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck</mutatedClass>
     <mutatedMethod>leaveToken</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_8</mutator>
-    <description>RemoveSwitch 8 mutation</description>
+    <description>RemoveSwitch 8 (case value 100)</description>
     <lineContent>switch (ast.getType()) {</lineContent>
   </mutation>
 
@@ -266,7 +266,7 @@
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck</mutatedClass>
     <mutatedMethod>leaveToken</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_9</mutator>
-    <description>RemoveSwitch 9 mutation</description>
+    <description>RemoveSwitch 9 (case value 101)</description>
     <lineContent>switch (ast.getType()) {</lineContent>
   </mutation>
 
@@ -275,7 +275,7 @@
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck</mutatedClass>
     <mutatedMethod>visitToken</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_10</mutator>
-    <description>RemoveSwitch 10 mutation</description>
+    <description>RemoveSwitch 10 (case value 102)</description>
     <lineContent>switch (ast.getType()) {</lineContent>
   </mutation>
 
@@ -284,7 +284,7 @@
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck</mutatedClass>
     <mutatedMethod>visitToken</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_11</mutator>
-    <description>RemoveSwitch 11 mutation</description>
+    <description>RemoveSwitch 11 (case value 103)</description>
     <lineContent>switch (ast.getType()) {</lineContent>
   </mutation>
 
@@ -293,7 +293,7 @@
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck</mutatedClass>
     <mutatedMethod>visitToken</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_12</mutator>
-    <description>RemoveSwitch 12 mutation</description>
+    <description>RemoveSwitch 12 (case value 104)</description>
     <lineContent>switch (ast.getType()) {</lineContent>
   </mutation>
 
@@ -302,7 +302,7 @@
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck</mutatedClass>
     <mutatedMethod>visitToken</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_13</mutator>
-    <description>RemoveSwitch 13 mutation</description>
+    <description>RemoveSwitch 13 (case value 105)</description>
     <lineContent>switch (ast.getType()) {</lineContent>
   </mutation>
 
@@ -311,7 +311,7 @@
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck</mutatedClass>
     <mutatedMethod>visitToken</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_14</mutator>
-    <description>RemoveSwitch 14 mutation</description>
+    <description>RemoveSwitch 14 (case value 106)</description>
     <lineContent>switch (ast.getType()) {</lineContent>
   </mutation>
 
@@ -320,7 +320,7 @@
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck</mutatedClass>
     <mutatedMethod>visitToken</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_15</mutator>
-    <description>RemoveSwitch 15 mutation</description>
+    <description>RemoveSwitch 15 (case value 107)</description>
     <lineContent>switch (ast.getType()) {</lineContent>
   </mutation>
 
@@ -329,7 +329,7 @@
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck</mutatedClass>
     <mutatedMethod>visitToken</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_16</mutator>
-    <description>RemoveSwitch 16 mutation</description>
+    <description>RemoveSwitch 16 (case value 108)</description>
     <lineContent>switch (ast.getType()) {</lineContent>
   </mutation>
 
@@ -338,7 +338,7 @@
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck</mutatedClass>
     <mutatedMethod>visitToken</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_2</mutator>
-    <description>RemoveSwitch 2 mutation</description>
+    <description>RemoveSwitch 2 (case value 26)</description>
     <lineContent>switch (ast.getType()) {</lineContent>
   </mutation>
 
@@ -347,7 +347,7 @@
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck</mutatedClass>
     <mutatedMethod>visitToken</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_7</mutator>
-    <description>RemoveSwitch 7 mutation</description>
+    <description>RemoveSwitch 7 (case value 99)</description>
     <lineContent>switch (ast.getType()) {</lineContent>
   </mutation>
 
@@ -356,7 +356,7 @@
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck</mutatedClass>
     <mutatedMethod>visitToken</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_8</mutator>
-    <description>RemoveSwitch 8 mutation</description>
+    <description>RemoveSwitch 8 (case value 100)</description>
     <lineContent>switch (ast.getType()) {</lineContent>
   </mutation>
 
@@ -365,7 +365,7 @@
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck</mutatedClass>
     <mutatedMethod>visitToken</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_9</mutator>
-    <description>RemoveSwitch 9 mutation</description>
+    <description>RemoveSwitch 9 (case value 101)</description>
     <lineContent>switch (ast.getType()) {</lineContent>
   </mutation>
 

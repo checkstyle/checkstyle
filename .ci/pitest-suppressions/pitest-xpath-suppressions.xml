@@ -23,7 +23,7 @@
     <mutatedClass>com.puppycrawl.tools.checkstyle.xpath.ElementNode</mutatedClass>
     <mutatedMethod>iterateAxis</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_8</mutator>
-    <description>RemoveSwitch 8 mutation</description>
+    <description>RemoveSwitch 8 (case value 8)</description>
     <lineContent>switch (axisNumber) {</lineContent>
   </mutation>
 
@@ -95,7 +95,7 @@
     <mutatedClass>com.puppycrawl.tools.checkstyle.xpath.RootNode</mutatedClass>
     <mutatedMethod>iterateAxis</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_1</mutator>
-    <description>RemoveSwitch 1 mutation</description>
+    <description>RemoveSwitch 1 (case value 1)</description>
     <lineContent>switch (axisNumber) {</lineContent>
   </mutation>
 
@@ -104,7 +104,7 @@
     <mutatedClass>com.puppycrawl.tools.checkstyle.xpath.RootNode</mutatedClass>
     <mutatedMethod>iterateAxis</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_2</mutator>
-    <description>RemoveSwitch 2 mutation</description>
+    <description>RemoveSwitch 2 (case value 2)</description>
     <lineContent>switch (axisNumber) {</lineContent>
   </mutation>
 
@@ -113,7 +113,7 @@
     <mutatedClass>com.puppycrawl.tools.checkstyle.xpath.RootNode</mutatedClass>
     <mutatedMethod>iterateAxis</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_5</mutator>
-    <description>RemoveSwitch 5 mutation</description>
+    <description>RemoveSwitch 5 (case value 5)</description>
     <lineContent>switch (axisNumber) {</lineContent>
   </mutation>
 
@@ -122,7 +122,7 @@
     <mutatedClass>com.puppycrawl.tools.checkstyle.xpath.RootNode</mutatedClass>
     <mutatedMethod>iterateAxis</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_8</mutator>
-    <description>RemoveSwitch 8 mutation</description>
+    <description>RemoveSwitch 8 (case value 8)</description>
     <lineContent>switch (axisNumber) {</lineContent>
   </mutation>
 
