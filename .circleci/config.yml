@@ -89,6 +89,7 @@ jobs:
 workflows:
   test:
     jobs:
+      - sonarqube
       # no-exception-test script
       - validate-with-maven-script:
           name: "no-exception-lucene-and-others-javadoc"
