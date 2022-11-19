@@ -72,6 +72,20 @@ jobs:
             export PR_NUMBER=$CIRCLE_PR_NUMBER
             << parameters.command >>
 
+  sonarqube:
+    docker:
+      - image: checkstyle/jdk-11-groovy-git-mvn:11.0.13__3.0.9__2.25.1__3.6.3
+
+    steps:
+      - checkout
+      - run: apt-get install -y jq
+      - run:
+          name: Run sonarqube
+          command: |
+            export PR_NUMBER=$CIRCLE_PR_NUMBER
+            export PR_BRANCH_NAME=$CIRCLE_BRANCH
+            ./.ci/validation.sh sonarqube
+
 workflows:
   test:
     jobs:
@@ -154,10 +168,6 @@ workflows:
           name: "no-warning-imports-java-design-patterns"
           image-name: *custom_img
           command: "./.ci/validation.sh no-warning-imports-java-design-patterns"
-#      - validate-with-maven-script:
-#          name: "sonarqube"
-#          image-name: *custom_img
-#          command: "./.ci/validation.sh sonarqube"
       - validate-with-maven-script:
           name: "checkstyle-and-sevntu"
           image-name: *custom_img
