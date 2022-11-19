@@ -589,12 +589,11 @@ sonarqube)
   fi
 
   export MAVEN_OPTS='-Xmx2000m'
-  # until https://github.com/checkstyle/checkstyle/issues/11637
-  # shellcheck disable=SC2086
+
   mvn -e --no-transfer-progress -Pno-validations clean package sonar:sonar \
-       "$SONAR_PR_VARIABLES" \
+       $SONAR_PR_VARIABLES \
        -Dsonar.host.url=https://sonarcloud.io \
-       -Dsonar.login=$SONAR_TOKEN \
+       -Dsonar.login="$SONAR_TOKEN" \
        -Dsonar.projectKey=org.checkstyle:checkstyle \
        -Dsonar.organization=checkstyle
   echo "report-task.txt:"
