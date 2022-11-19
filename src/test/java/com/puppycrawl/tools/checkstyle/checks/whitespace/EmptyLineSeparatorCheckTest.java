@@ -26,6 +26,8 @@ import static com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparat
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck.MSG_SHOULD_BE_SEPARATED;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck.MSG_SHOULD_NOT_BE_SEPARATED;
 
+import java.io.File;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
@@ -141,7 +143,7 @@ public class EmptyLineSeparatorCheckTest
         final String path =
                 getPath("InputEmptyLineSeparatorDefaultPackageEmptyLineBeforeClassDef.java");
         verifyWithInlineConfigParser(
-                path.replace(getPackageLocation() + "/", ""),
+                path.replace(getPackageLocation() + File.separatorChar, ""),
                 expected);
     }
 
