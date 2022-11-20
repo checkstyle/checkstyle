@@ -210,6 +210,15 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testTrimProperty() throws Exception {
+        final String[] expected = {
+                "27: " + getCheckMessage(MSG_RETURN_EXPECTED),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocMethodAccessModifier.java"), expected);
+    }
+
+    @Test
     public void testScopeAnonInnerPrivate() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
