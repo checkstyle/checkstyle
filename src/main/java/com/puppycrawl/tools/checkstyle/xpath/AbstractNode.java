@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle.xpath;
 import java.util.Collections;
 import java.util.List;
 
-import com.puppycrawl.tools.checkstyle.api.AbstractSyntaxTree;
 import net.sf.saxon.Configuration;
 import net.sf.saxon.event.Receiver;
 import net.sf.saxon.om.AtomicSequence;
@@ -69,7 +68,7 @@ public abstract class AbstractNode implements NodeInfo {
      *
      * @return underlying node
      */
-    public abstract AbstractSyntaxTree getUnderlyingNode();
+    public abstract Object getUnderlyingNode();
 
     /**
      * Getter method for node depth.

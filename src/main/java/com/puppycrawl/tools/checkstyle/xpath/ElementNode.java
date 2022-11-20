@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle.xpath;
 
 import java.util.List;
 
-import com.puppycrawl.tools.checkstyle.api.AbstractSyntaxTree;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 import com.puppycrawl.tools.checkstyle.utils.XpathUtil;
@@ -116,7 +115,7 @@ public class ElementNode extends AbstractElementNode {
      * @return underlying node
      */
     @Override
-    public AbstractSyntaxTree getUnderlyingNode() {
+    public Object getUnderlyingNode() {
         return detailAst;
     }
 

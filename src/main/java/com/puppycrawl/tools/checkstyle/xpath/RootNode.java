@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle.xpath;
 
 import java.util.List;
 
-import com.puppycrawl.tools.checkstyle.api.AbstractSyntaxTree;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.XpathUtil;
@@ -100,7 +99,7 @@ public class RootNode extends AbstractRootNode {
      * @return underlying node
      */
     @Override
-    public AbstractSyntaxTree getUnderlyingNode() {
+    public Object getUnderlyingNode() {
         return detailAst;
     }
 

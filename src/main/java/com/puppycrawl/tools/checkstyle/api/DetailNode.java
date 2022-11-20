@@ -26,7 +26,7 @@ package com.puppycrawl.tools.checkstyle.api;
  * @see com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl
  * @see com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck
  */
-public interface DetailNode extends AbstractSyntaxTree {
+public interface DetailNode {
 
     /**
      * Node type.

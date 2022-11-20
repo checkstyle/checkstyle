@@ -26,7 +26,7 @@ package com.puppycrawl.tools.checkstyle.api;
  *
  * @see <a href="https://www.antlr.org/">ANTLR Website</a>
  */
-public interface DetailAST extends AbstractSyntaxTree {
+public interface DetailAST {
 
     /**
      * Returns the number of child nodes one level below this node. That is,

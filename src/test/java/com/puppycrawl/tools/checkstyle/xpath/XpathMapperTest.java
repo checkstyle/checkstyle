@@ -29,7 +29,6 @@ import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.JavaParser;
-import com.puppycrawl.tools.checkstyle.api.AbstractSyntaxTree;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import net.sf.saxon.om.NodeInfo;
@@ -1173,7 +1172,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
                 TokenTypes.COMPILATION_UNIT)
                 .findFirstToken(TokenTypes.PACKAGE_DEF);
         final DetailAST expectedAnnotationsNode = expectedPackageDefNode.getFirstChild();
-        final AbstractSyntaxTree[] expected = {
+        final Object[] expected = {
             rootNode.getUnderlyingNode(),
             expectedPackageDefNode,
             expectedAnnotationsNode,
@@ -1272,7 +1271,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
         return result;
     }
 
-    private static DetailAST getSiblingByType(AbstractSyntaxTree node, int type) {
+    private static DetailAST getSiblingByType(Object node, int type) {
         DetailAST returnValue = null;
         for (DetailAST ast = (DetailAST) node; ast != null; ast = ast.getNextSibling()) {
             if (ast.getType() == type) {
