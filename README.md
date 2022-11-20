@@ -186,7 +186,7 @@ are in the file named "LICENSE.apache20" in this directory.
 [closed issues img]:https://github.com/checkstyle/checkstyle/actions/workflows/no_old_refs.yml/badge.svg
 
 [release notes/version]:https://github.com/checkstyle/checkstyle/actions/workflows/releasenotes-gen.yml
-[release notes/version img]:https://github.com/checkstyle/checkstyle/actions/workflows/releasenotes-gen.svg
+[release notes/version img]:https://github.com/checkstyle/checkstyle/actions/workflows/releasenotes-gen.yml/badge.svg
 
 [link check]:https://github.com/checkstyle/checkstyle/actions/workflows/run_link_check.yml
 [link check img]:https://github.com/checkstyle/checkstyle/actions/workflows/run_link_check.yml/badge.svg
