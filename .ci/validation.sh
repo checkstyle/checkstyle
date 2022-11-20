@@ -572,7 +572,7 @@ jdk14-assembly-site)
 sonarqube)
   # token could be generated at https://sonarcloud.io/account/security/
   # execution on local for master:
-  # SONAR_TOKEN=xxxxxx ./.ci/wercker.sh sonarqube
+  # SONAR_TOKEN=xxxxxx ./.ci/validation.sh sonarqube
   # execution on local for non-master:
   # SONAR_TOKEN=xxxxxx PR_NUMBER=xxxxxx PR_BRANCH_NAME=xxxxxx ./.ci/validation.sh sonarqube
   if [[ $PR_NUMBER =~ ^([0-9]+)$ ]]; then
@@ -592,9 +592,9 @@ sonarqube)
   # until https://github.com/checkstyle/checkstyle/issues/11637
   # shellcheck disable=SC2086
   mvn -e --no-transfer-progress -Pno-validations clean package sonar:sonar \
-       "$SONAR_PR_VARIABLES" \
+       $SONAR_PR_VARIABLES \
        -Dsonar.host.url=https://sonarcloud.io \
-       -Dsonar.login=$SONAR_TOKEN \
+       -Dsonar.login="$SONAR_TOKEN" \
        -Dsonar.projectKey=org.checkstyle:checkstyle \
        -Dsonar.organization=checkstyle
   echo "report-task.txt:"

@@ -87,6 +87,12 @@ jobs:
             ./.ci/validation.sh sonarqube
 
 workflows:
+  sonarqube:
+    jobs:
+      - sonarqube:
+          context:
+            - sonarqube
+
   test:
     jobs:
       # no-exception-test script
