@@ -82,15 +82,6 @@
   </mutation>
 
   <mutation unstable="false">
-    <sourceFile>SeparatorWrapCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.whitespace.SeparatorWrapCheck</mutatedClass>
-    <mutatedMethod>visitToken</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
-    <description>replaced call to com/puppycrawl/tools/checkstyle/utils/CodePointUtil::trim with argument</description>
-    <lineContent>final int[] substringAfterToken = CodePointUtil.trim(</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
     <sourceFile>SingleSpaceSeparatorCheck.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.whitespace.SingleSpaceSeparatorCheck</mutatedClass>
     <mutatedMethod>visitEachToken</mutatedMethod>
