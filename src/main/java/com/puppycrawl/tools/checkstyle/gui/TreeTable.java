@@ -214,6 +214,7 @@ public final class TreeTable extends JTable {
                               .stream()
                               .map(AbstractNode.class::cast)
                               .map(AbstractNode::getUnderlyingNode)
+                              .map(DetailAST.class::cast)
                               .collect(Collectors.toCollection(ArrayDeque::new));
                 updateTreeTable(xpath, nodes);
             }
