@@ -11,7 +11,6 @@ or set of validation rules (best practices).
 [![][snyk img]][snyk]
 [![][semaphoreci img]][semaphoreci]
 [![][azure img]][azure]
-[![][drone img]][drone]
 [![][error prone img]][error prone]
 [![][pitest img]][pitest]
 [![][checker framework img]][checker framework]
@@ -178,9 +177,6 @@ are in the file named "LICENSE.apache20" in this directory.
 
 [dependabot]:https://dependabot.com
 [dependabot img]:https://api.dependabot.com/badges/status?host=github&repo=checkstyle/checkstyle
-
-[drone]:https://cloud.drone.io/checkstyle/checkstyle
-[drone img]:https://cloud.drone.io/api/badges/checkstyle/checkstyle/status.svg
 
 [closed issues]:https://github.com/checkstyle/checkstyle/actions/workflows/no_old_refs.yml
 [closed issues img]:https://github.com/checkstyle/checkstyle/actions/workflows/no_old_refs.yml/badge.svg
