@@ -27,6 +27,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Set;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.regex.MatchResult;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -505,6 +506,11 @@ public class JavadocMethodCheck extends AbstractCheck {
     // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/11166
     @SuppressWarnings("deprecation")
     private void processAST(DetailAST ast) {
+        final AtomicInteger atomicInteger1 = new AtomicInteger(4);
+        final AtomicInteger atomicInteger2 = new AtomicInteger(8);
+        if (atomicInteger1.equals(atomicInteger2)) {
+            final String myString = "hello there";
+        }
         if (shouldCheck(ast)) {
             final FileContents contents = getFileContents();
             final TextBlock textBlock = contents.getJavadocBefore(ast.getLineNo());
