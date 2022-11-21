@@ -1,7 +1,7 @@
 /*
 SeparatorWrap
-option = nl
 tokens = COMMA
+option = nl
 
 */
 
@@ -9,14 +9,20 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace.separatorwrap;
 
 public class InputSeparatorWrapForTestComma2 {
 
-    public void badCase() {
-        // violation below '',' should be on a new line.'
-        final String[] ENUM = { "SCHEDULED", "PROGRESS",
-                "SUSPENDED", "COMPLETED", "DISCONTINUED" };
+    String s;
+
+    // violation below '',' should be on a new line.'
+    int a,  
+            b;
+
+    // violation below '',' should be on a new line.'
+    public void foo(int a,  
+                    int b) {
+        int r
+            , t; // OK
     }
 
-    public void goodCase() {
-        final String[] ENUM = { "SCHEDULED", "PROGRESS" // OK
-                , "SUSPENDED", "COMPLETED", "DISCONTINUED" };
+    public void bar(int p
+            , int q) {  // OK
     }
 }
