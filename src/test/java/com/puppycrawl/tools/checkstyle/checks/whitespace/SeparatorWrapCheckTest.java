@@ -139,4 +139,14 @@ public class SeparatorWrapCheckTest
         verifyWithInlineConfigParser(
                 getPath("InputSeparatorWrapSetOptionTrim.java"), expected);
     }
+
+    @Test
+    public void testCommaOnNewLine() throws Exception {
+        final String[] expected = {
+            "16:10: " + getCheckMessage(MSG_LINE_NEW, ","),
+            "21:26: " + getCheckMessage(MSG_LINE_NEW, ","),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputSeparatorWrapForTestTrailingWhitespace.java"), expected);
+    }
 }
