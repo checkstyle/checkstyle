@@ -27,6 +27,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Optional;
 import java.util.function.Function;
+import java.util.function.ToIntFunction;
 
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
@@ -224,6 +225,7 @@ public class FinalClassCheck
                 desc.registerPrivateCtor();
             }
         }
+
     }
 
     @Override
@@ -271,7 +273,7 @@ public class FinalClassCheck
                                                            ClassDesc currentClass) {
         final String superClassName = getSuperClassName(currentClass.getTypeDeclarationAst());
         if (superClassName != null) {
-            final Function<ClassDesc, Integer> nestedClassCountProvider = classDesc -> {
+            final ToIntFunction<ClassDesc> nestedClassCountProvider = classDesc -> {
                 return CheckUtil.typeDeclarationNameMatchingCount(qualifiedClassName,
                                                                   classDesc.getQualifiedName());
             };
@@ -294,7 +296,7 @@ public class FinalClassCheck
                                                          String outerTypeDeclName) {
         final String superClassName = CheckUtil.getShortNameOfAnonInnerClass(literalNewAst);
 
-        final Function<ClassDesc, Integer> anonClassCountProvider = classDesc -> {
+        final ToIntFunction<ClassDesc> anonClassCountProvider = classDesc -> {
             return getAnonSuperTypeMatchingCount(outerTypeDeclName, classDesc.getQualifiedName());
         };
         getNearestClassWithSameName(superClassName, anonClassCountProvider)
@@ -342,9 +344,9 @@ public class FinalClassCheck
      *      pitest to fail
      */
     private Optional<ClassDesc> getNearestClassWithSameName(String className,
-        Function<ClassDesc, Integer> countProvider) {
+        ToIntFunction<ClassDesc> countProvider) {
         final String dotAndClassName = PACKAGE_SEPARATOR.concat(className);
-        final Comparator<ClassDesc> longestMatch = Comparator.comparingInt(countProvider::apply);
+        final Comparator<ClassDesc> longestMatch = Comparator.comparingInt(countProvider);
         return innerClasses.entrySet().stream()
                 .filter(entry -> entry.getKey().endsWith(dotAndClassName))
                 .map(Map.Entry::getValue)
