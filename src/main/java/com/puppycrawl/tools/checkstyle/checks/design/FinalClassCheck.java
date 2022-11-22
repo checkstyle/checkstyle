@@ -225,6 +225,7 @@ public class FinalClassCheck
                 desc.registerPrivateCtor();
             }
         }
+
     }
 
     @Override
