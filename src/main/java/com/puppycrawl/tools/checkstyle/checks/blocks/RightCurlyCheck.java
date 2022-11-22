@@ -462,11 +462,11 @@ public class RightCurlyCheck extends AbstractCheck {
         DetailAST nextToken = details.nextToken;
 
         while (nextToken != null && nextToken.getType() == TokenTypes.LITERAL_ELSE) {
-            nextToken = Details.getNextToken(nextToken);
+
         }
 
         if (nextToken != null && nextToken.getType() == TokenTypes.DO_WHILE) {
-            final DetailAST doWhileSemi = nextToken.getParent().getLastChild();
+            final DetailAST doWhileSemi = nextToken.getParent();
             nextToken = Details.getNextToken(doWhileSemi);
         }
 
@@ -620,7 +620,7 @@ public class RightCurlyCheck extends AbstractCheck {
 
             if (nextToken == null) {
                 shouldCheckLastRcurly = true;
-                nextToken = getNextToken(ast);
+                nextToken = ast;
                 lcurly = ast.getLastChild();
             }
             else {
