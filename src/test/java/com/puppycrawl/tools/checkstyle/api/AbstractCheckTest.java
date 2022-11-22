@@ -29,6 +29,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Set;
 import java.util.SortedSet;
 
 import org.junit.jupiter.api.Test;
@@ -397,7 +398,8 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testTokensAreUnmodifiable() {
         final DummyAbstractCheck check = new DummyAbstractCheck();
-        assertThrows(UnsupportedOperationException.class, () -> check.getTokenNames().add(""));
+        final Set<String> tokenNameSet = check.getTokenNames();
+        assertThrows(UnsupportedOperationException.class, () -> tokenNameSet.add(""));
     }
 
     public static final class DummyAbstractCheck extends AbstractCheck {
