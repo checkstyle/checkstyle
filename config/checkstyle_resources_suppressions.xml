@@ -85,7 +85,7 @@
   <suppress id="noTrailingWhitespace"
     files="[\\/]InputRegexpSinglelineJavaTrailingComment10\.java"/>
   
-  <!-- avoid trailing whitespace because it's intentional -->
+  <!-- Input file contains trailing whitespace to kill pitest mutation -->
   <suppress id="noTrailingWhitespace" 
     files="separatorwrap[\\/]InputSeparatorWrapForTestTrailingWhitespace\.java"/>
 
