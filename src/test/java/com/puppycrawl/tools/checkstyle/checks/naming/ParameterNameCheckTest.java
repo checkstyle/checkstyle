@@ -167,4 +167,11 @@ public class ParameterNameCheckTest
                 getPath("InputParameterNameLambda.java"), expected);
     }
 
+    @Test
+    public void testWhitespaceInConfig() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputParameterNameWhitespaceInConfig.java"), expected);
+    }
+
 }
