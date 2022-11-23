@@ -1074,6 +1074,16 @@ assembly-site)
   mvn -e --no-transfer-progress site -Dlinkcheck.skip=true
   ;;
 
+yamllint)
+  sudo add-apt-repository -y ppa:adrienverge/ppa
+  sudo apt update
+  sudo apt install -y yamllint
+  echo "output option #1:"
+  yamllint -c config/yamllint.yaml .
+  echo "output option #2:"
+  yamllint -f parsable -c config/yamllint.yaml .
+  ;;
+
 *)
   echo "Unexpected argument: $1"
   sleep 5s
