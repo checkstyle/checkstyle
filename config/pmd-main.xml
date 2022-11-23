@@ -25,17 +25,6 @@
                         //FieldDeclaration//VariableDeclarator[@Name='fullText']"/>
     </properties>
   </rule>
-  <rule ref="category/java/bestpractices.xml/UnusedPrivateField">
-    <properties>
-      <!-- Some fields with picocli annotations will be only used by
-       the picocli and not by the application.
-       They may appear unused by static code analysis tools. -->
-      <property name="ignoredAnnotations"
-               value="picocli.CommandLine.Option
-                     |picocli.CommandLine.Parameters
-                     |picocli.CommandLine.Spec"/>
-    </properties>
-  </rule>
   <rule ref="category/java/errorprone.xml/CloseResource">
     <properties>
       <property name="allowedResourceTypes"
