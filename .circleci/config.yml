@@ -218,6 +218,9 @@ workflows:
       - validate-with-script:
           name: "checkchmod"
           command: "./.ci/checkchmod.sh"
+      - validate-with-script:
+          name: "yamllint"
+          command: "./.ci/validation.sh yamllint"
 
   javac-validation:
     jobs:
