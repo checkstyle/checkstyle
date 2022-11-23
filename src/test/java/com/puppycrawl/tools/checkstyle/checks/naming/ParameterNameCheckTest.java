@@ -69,6 +69,17 @@ public class ParameterNameCheckTest
     }
 
     @Test
+    public void testWhitespaceInAccessModifierProperty() throws Exception {
+        final String pattern = "^h$";
+        final String[] expected = {
+            "14:69: " + getCheckMessage(MSG_INVALID_PATTERN, "parameter1", pattern),
+            "18:31: " + getCheckMessage(MSG_INVALID_PATTERN, "parameter2", pattern),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputParameterNameWhitespaceInAccessModifierProperty.java"), expected);
+    }
+
+    @Test
     public void testDefault()
             throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
