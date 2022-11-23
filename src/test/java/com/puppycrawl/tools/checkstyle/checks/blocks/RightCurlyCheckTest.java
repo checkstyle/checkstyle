@@ -105,7 +105,6 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
             "184:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
             "189:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
             "190:53: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 53),
-            "221:12: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 12),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRightCurlyLeftTestAlone.java"), expected);
@@ -649,5 +648,24 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
         };
         verifyWithInlineConfigParser(
                 getPath("InputRightCurlyWithUppercaseOptionProperty.java"), expected);
+    }
+
+    @Test
+    public void testRightCurlyWithIfElseAlone() throws Exception {
+        final String[] expected = {
+            "19:12: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 12),
+            "27:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputRightCurlyTestIfElseAlone.java"), expected);
+    }
+
+    @Test
+    public void testRightCurlyDefault() throws Exception {
+        final String[] expected = {
+            "21:9: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", 9),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputRightCurlyTestDefault.java"), expected);
     }
 }
