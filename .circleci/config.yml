@@ -218,6 +218,10 @@ workflows:
       - validate-with-script:
           name: "checkchmod"
           command: "./.ci/checkchmod.sh"
+      - validate-with-script:
+          name: "yamllint"
+          image-name: "cimg/base:2022.11"
+          command: "./.ci/validation.sh yamllint"
 
   javac-validation:
     jobs:
