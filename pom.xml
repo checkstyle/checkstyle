@@ -4571,6 +4571,10 @@
                 <param>com.puppycrawl.tools.checkstyle.filters.SuppressWithPlainTextCommentFilterTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheckTest</param>
+                <!-- kills mutation in AutomaticBean -->
+                <param>com.puppycrawl.tools.checkstyle.checks.naming.ParameterNameCheckTest</param>
+                <!-- kills mutation in AutomaticBean -->
+                <param>com.puppycrawl.tools.checkstyle.checks.coding.IllegalTypeCheckTest</param>
               </targetTests>
               <excludedTestClasses>
                 <param>*.Input*</param>
