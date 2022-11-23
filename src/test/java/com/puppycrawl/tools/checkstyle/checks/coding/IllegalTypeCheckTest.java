@@ -390,6 +390,14 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testTrailingWhitespaceInConfig() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputIllegalTypeWhitespaceInConfig.java"),
+                expected);
+    }
+
+    @Test
     public void testTokensNotNull() {
         final IllegalTypeCheck check = new IllegalTypeCheck();
         assertWithMessage("Acceptable tokens should not be null")
