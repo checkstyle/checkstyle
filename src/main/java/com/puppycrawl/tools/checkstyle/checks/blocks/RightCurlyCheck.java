@@ -620,7 +620,7 @@ public class RightCurlyCheck extends AbstractCheck {
 
             if (nextToken == null) {
                 shouldCheckLastRcurly = true;
-                nextToken = getNextToken(ast);
+                nextToken = ast;
                 lcurly = ast.getLastChild();
             }
             else {
