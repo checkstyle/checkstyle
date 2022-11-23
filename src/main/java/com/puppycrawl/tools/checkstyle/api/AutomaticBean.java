@@ -361,7 +361,7 @@ public abstract class AutomaticBean
         @Override
         public Object convert(Class type, Object value) {
             final StringTokenizer tokenizer = new StringTokenizer(
-                value.toString(), COMMA_SEPARATOR);
+                value.toString().trim(), COMMA_SEPARATOR);
             final List<String> result = new ArrayList<>();
 
             while (tokenizer.hasMoreTokens()) {
@@ -390,7 +390,7 @@ public abstract class AutomaticBean
         public Object convert(Class type, Object value) {
             // Converts to a String and trims it for the tokenizer.
             final StringTokenizer tokenizer = new StringTokenizer(
-                value.toString(), COMMA_SEPARATOR);
+                value.toString().trim(), COMMA_SEPARATOR);
             final List<AccessModifierOption> result = new ArrayList<>();
 
             while (tokenizer.hasMoreTokens()) {
