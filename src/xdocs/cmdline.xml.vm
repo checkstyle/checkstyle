@@ -168,10 +168,26 @@ java -D&lt;property&gt;=&lt;value&gt;  \
     <section name="Download and Run">
       <p>
         It is possible to run Checkstyle directly from the JAR file using
-        the <code>-jar</code> option. Download latest
+        the <code>-jar</code> option.
+      </p>
+      <p>
+        Follow the steps mentioned below to run Checkstyle locally:
+      </p>
+      <p>
+        1. Download latest
         <a href="https://github.com/checkstyle/checkstyle/releases/download/checkstyle-${projectVersion}/checkstyle-${projectVersion}-all.jar">
-        checkstyle-${projectVersion}-all.jar</a>.
-        An example of run would be:
+           checkstyle-${projectVersion}-all.jar</a>.
+           It is recommended to use configuration files that are embedded in jar files, but latest
+           configuration files can be found here:
+        <a href=
+           "https://raw.githubusercontent.com/checkstyle/checkstyle/master/src/main/resources/sun_checks.xml">
+             sun_checks.xml</a>
+        <a href=
+           "https://raw.githubusercontent.com/checkstyle/checkstyle/master/src/main/resources/google_checks.xml">
+             google_checks.xml</a>
+      </p>
+      <p>
+        2. Run Checkstyle using either of the commands:
       </p>
       <div class="wrap-content">
         <source>
@@ -179,16 +195,6 @@ java -D&lt;property&gt;=&lt;value&gt;  \
           java -jar checkstyle-${projectVersion}-all.jar -c /google_checks.xml MyClass.java
         </source>
       </div>
-      <p>
-        It is recommended to use configuration files that are embedded in jar files, but latest
-        configuration files are there:
-        <a href=
-          "https://raw.githubusercontent.com/checkstyle/checkstyle/master/src/main/resources/sun_checks.xml">
-            sun_checks.xml</a>
-        <a href=
-          "https://raw.githubusercontent.com/checkstyle/checkstyle/master/src/main/resources/google_checks.xml">
-            google_checks.xml</a>
-      </p>
       <p>
         To run <a href="writingchecks.html#The_Checkstyle_SDK_Gui">Checkstyle UI viewer</a>
         for AST tree directly from the JAR file using
