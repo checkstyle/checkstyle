@@ -1632,6 +1632,7 @@
                 <exclude>signatures.txt</exclude>
                 <exclude>signatures-test.txt</exclude>
                 <exclude>archunit-store/**</exclude>
+                <exlude>yamllint.yaml</exlude>
               </excludes>
             </validationSet>
             <validationSet>
