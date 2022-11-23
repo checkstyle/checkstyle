@@ -1635,6 +1635,7 @@
                 <exclude>archunit-store/**</exclude>
                 <exclude>jsoref-spellchecker/**</exclude>
                 <exclude>projects-to-test/**</exclude>
+                <exclude>yamllint.yaml</exclude>
               </excludes>
             </validationSet>
             <validationSet>
