@@ -1172,7 +1172,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
                 TokenTypes.COMPILATION_UNIT)
                 .findFirstToken(TokenTypes.PACKAGE_DEF);
         final DetailAST expectedAnnotationsNode = expectedPackageDefNode.getFirstChild();
-        final Object[] expected = {
+        final DetailAST[] expected = {
             rootNode.getUnderlyingNode(),
             expectedPackageDefNode,
             expectedAnnotationsNode,
@@ -1265,15 +1265,15 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
     private static DetailAST[] convertToArray(List<NodeInfo> nodes) {
         final DetailAST[] result = new DetailAST[nodes.size()];
         for (int i = 0; i < nodes.size(); i++) {
-            final AbstractNode abstractNode = (AbstractNode) nodes.get(i);
-            result[i] = (DetailAST) abstractNode.getUnderlyingNode();
+            final ElementNode abstractNode = (ElementNode) nodes.get(i);
+            result[i] = abstractNode.getUnderlyingNode();
         }
         return result;
     }
 
-    private static DetailAST getSiblingByType(Object node, int type) {
+    private static DetailAST getSiblingByType(DetailAST node, int type) {
         DetailAST returnValue = null;
-        for (DetailAST ast = (DetailAST) node; ast != null; ast = ast.getNextSibling()) {
+        for (DetailAST ast = node; ast != null; ast = ast.getNextSibling()) {
             if (ast.getType() == type) {
                 returnValue = ast;
                 break;

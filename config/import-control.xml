@@ -206,7 +206,7 @@
     <file name="TreeTable" regex="true">
       <allow class="java.util.stream.Collectors"/>
       <allow class="com.puppycrawl.tools.checkstyle.utils.XpathUtil"/>
-      <allow class="com.puppycrawl.tools.checkstyle.xpath.AbstractNode"/>
+      <allow class="com.puppycrawl.tools.checkstyle.xpath.ElementNode"/>
       <allow class="com.puppycrawl.tools.checkstyle.xpath.RootNode"/>
       <allow class="net.sf.saxon.trans.XPathException"/>
     </file>
