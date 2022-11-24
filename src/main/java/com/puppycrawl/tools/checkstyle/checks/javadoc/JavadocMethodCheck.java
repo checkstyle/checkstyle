@@ -555,10 +555,14 @@ public class JavadocMethodCheck extends AbstractCheck {
                 final boolean reportExpectedTags = !hasInheritDocTag
                     && !AnnotationUtil.containsAnnotation(ast, allowedAnnotations);
 
-                // COMPACT_CTOR_DEF has no parameters
-                if (ast.getType() != TokenTypes.COMPACT_CTOR_DEF) {
-                    checkParamTags(tags, ast, reportExpectedTags);
+                final List<DetailAST> params;
+                if (ast.getType() == TokenTypes.COMPACT_CTOR_DEF) {
+                    params = getRecordParameters(ast);
                 }
+                else {
+                    params = getParameters(ast);
+                }
+                checkParamTags(tags, params, ast, reportExpectedTags);
                 final List<ExceptionInfo> throwed =
                     combineExceptionInfo(getThrows(ast), getThrowed(ast));
                 checkThrowsTags(tags, throwed, reportExpectedTags);
@@ -708,11 +712,34 @@ public class JavadocMethodCheck extends AbstractCheck {
      */
     private static List<DetailAST> getParameters(DetailAST ast) {
         final DetailAST params = ast.findFirstToken(TokenTypes.PARAMETERS);
+        return collectParamNames(params, TokenTypes.PARAMETER_DEF);
+    }
+
+    /**
+     * Computes the parameter nodes for a record constructor.
+     *
+     * @param compactCtor the compact constructor node.
+     * @return the list of parameter nodes for compact constructor node.
+     */
+    private static List<DetailAST> getRecordParameters(DetailAST compactCtor) {
+        final DetailAST componentsAst = compactCtor.getParent().getParent()
+            .findFirstToken(TokenTypes.RECORD_COMPONENTS);
+        return collectParamNames(componentsAst, TokenTypes.RECORD_COMPONENT_DEF);
+    }
+
+    /**
+     * Collects all ident nodes for given parameter type.
+     *
+     * @param ast node to start
+     * @param nodeType parameter node type
+     * @return list of ident parameter nodes
+     */
+    private static List<DetailAST> collectParamNames(DetailAST ast, int nodeType) {
         final List<DetailAST> returnValue = new ArrayList<>();
 
-        DetailAST child = params.getFirstChild();
+        DetailAST child = ast.getFirstChild();
         while (child != null) {
-            if (child.getType() == TokenTypes.PARAMETER_DEF) {
+            if (child.getType() == nodeType) {
                 final DetailAST ident = child.findFirstToken(TokenTypes.IDENT);
                 if (ident != null) {
                     returnValue.add(ident);
@@ -885,15 +912,15 @@ public class JavadocMethodCheck extends AbstractCheck {
      * Checks a set of tags for matching parameters.
      *
      * @param tags the tags to check
+     * @param params the params to check
      * @param parent the node which takes the parameters
      * @param reportExpectedTags whether we should report if do not find
      *            expected tag
      */
     private void checkParamTags(final List<JavadocTag> tags,
+                                List<DetailAST> params,
             final DetailAST parent, boolean reportExpectedTags) {
-        final List<DetailAST> params = getParameters(parent);
-        final List<DetailAST> typeParams = CheckUtil
-                .getTypeParameters(parent);
+        final List<DetailAST> typeParams = CheckUtil.getTypeParameters(parent);
 
         // Loop over the tags, checking to see they exist in the params.
         final ListIterator<JavadocTag> tagIt = tags.listIterator();
