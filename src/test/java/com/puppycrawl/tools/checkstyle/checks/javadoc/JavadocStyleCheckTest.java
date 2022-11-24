@@ -296,11 +296,19 @@ public class JavadocStyleCheckTest
     }
 
     @Test
-    public void testOnInputWithNoJavadoc() throws Exception {
+    public void testOnInputWithNoJavadoc1() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
-                getPath("InputJavadocStyleNoJavadoc.java"), expected);
+                getPath("InputJavadocStyleNoJavadoc1.java"), expected);
+    }
+
+    @Test
+    public void testOnInputWithNoJavadoc2() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocStyleNoJavadoc2.java"), expected);
     }
 
     @Test
