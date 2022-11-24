@@ -1265,7 +1265,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
     private static DetailAST[] convertToArray(List<NodeInfo> nodes) {
         final DetailAST[] result = new DetailAST[nodes.size()];
         for (int i = 0; i < nodes.size(); i++) {
-            final AbstractNode abstractNode = (AbstractNode) nodes.get(i);
+            final ElementNode abstractNode = (ElementNode) nodes.get(i);
             result[i] = abstractNode.getUnderlyingNode();
         }
         return result;

@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle.xpath;
 
 import java.util.List;
 
-import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import net.sf.saxon.om.NodeInfo;
 import net.sf.saxon.tree.iter.AxisIterator;
 import net.sf.saxon.type.Type;
@@ -180,7 +179,7 @@ public class AttributeNode extends AbstractNode {
      * @return underlying node
      */
     @Override
-    public DetailAST getUnderlyingNode() {
+    public Object getUnderlyingNode() {
         throw throwUnsupportedOperationException();
     }
 
