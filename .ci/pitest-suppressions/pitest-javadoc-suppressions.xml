@@ -1133,13 +1133,4 @@
     <description>removed conditional - replaced comparison check with false</description>
     <lineContent>while (toPoint.getLineNo() &lt; text.length &amp;&amp; !text[toPoint.getLineNo()]</lineContent>
   </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>WriteTagCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheck</mutatedClass>
-    <mutatedMethod>setTagSeverity</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
-    <description>Removed assignment to member variable tagSeverity</description>
-    <lineContent>tagSeverity = severity;</lineContent>
-  </mutation>
 </suppressedMutations>
