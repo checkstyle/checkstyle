@@ -192,7 +192,7 @@ class InputNoWhitespaceAfterTestDefault
     /** bug 806243 (NoWhitespaceBeforeCheck violation for anonymous inner class) */
     void bug806243()
     {
-        Object o = new InputNoWhitespaceAfterTestDefault() {
+        Object o = new InputNoWhitespaceAfterTestAssignment() {
             private int j ;
             //           ^ whitespace
         };
