@@ -29,7 +29,6 @@ import java.util.Collections;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.FileText;
@@ -45,9 +44,8 @@ public class JavadocPackageCheckTest
 
     @Test
     public void testMissing() throws Exception {
-        final Configuration checkConfig = createModuleConfig(JavadocPackageCheck.class);
         final String[] expected = {
-            "1: " + getCheckMessage(MSG_PACKAGE_INFO),
+            "9: " + getCheckMessage(MSG_PACKAGE_INFO),
         };
         verifyWithInlineConfigParser(
             getPath("InputJavadocPackageBadCls.java"),
@@ -56,10 +54,8 @@ public class JavadocPackageCheckTest
 
     @Test
     public void testMissingWithAllowLegacy() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(JavadocPackageCheck.class);
-        checkConfig.addProperty("allowLegacy", "true");
         final String[] expected = {
-            "1: " + getCheckMessage(MSG_PACKAGE_INFO),
+            "9: " + getCheckMessage(MSG_PACKAGE_INFO),
         };
         verifyWithInlineConfigParser(
             getPath("InputJavadocPackageBadCls2.java"),
@@ -72,20 +68,20 @@ public class JavadocPackageCheckTest
         final String path1 = getPath("InputJavadocPackageNoJavadoc.java");
         final String path2 = getPath("InputJavadocPackageBadTag.java");
         final String[] expected = {
-            "1: " + getCheckMessage(MSG_PACKAGE_INFO),
+            "9: " + getCheckMessage(MSG_PACKAGE_INFO),
         };
-        verify(
-            createChecker(checkConfig),
-            new File[] {new File(path1), new File(path2)},
-            path1,
-            expected);
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocPackageNoJavadoc.java"),
+                expected);
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocPackageBadTag.java"),
+                expected);
     }
 
     @Test
     public void testBoth() throws Exception {
-        final Configuration checkConfig = createModuleConfig(JavadocPackageCheck.class);
         final String[] expected = {
-            "1: " + getCheckMessage(MSG_LEGACY_PACKAGE_HTML),
+            "9: " + getCheckMessage(MSG_LEGACY_PACKAGE_HTML),
         };
         verifyWithInlineConfigParser(
             getPath("bothfiles" + File.separator + "InputJavadocPackageBothIgnored.java"),
@@ -94,30 +90,30 @@ public class JavadocPackageCheckTest
 
     @Test
     public void testHtmlDisallowed() throws Exception {
-        final Configuration checkConfig = createModuleConfig(JavadocPackageCheck.class);
         final String[] expected = {
-            "1: " + getCheckMessage(MSG_PACKAGE_INFO),
+            "9: " + getCheckMessage(MSG_PACKAGE_INFO),
         };
         verifyWithInlineConfigParser(
-            getPath("pkghtml" + File.separator + "InputJavadocPackageHtmlIgnored.java"), expected);
+            getPath("pkghtml" + File.separator + "InputJavadocPackageHtmlIgnored.java"),
+                expected);
     }
 
     @Test
     public void testHtmlAllowed() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(JavadocPackageCheck.class);
-        checkConfig.addProperty("allowLegacy", "true");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(createChecker(checkConfig),
-            getPath("pkghtml" + File.separator + "InputJavadocPackageHtmlIgnored2.java"),
-            getPath("pkghtml" + File.separator + "package-info.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("pkghtml" + File.separator + "InputJavadocPackageHtmlIgnored2.java"),
+                expected);
+        verifyWithInlineConfigParser(
+                getPath("noparentfile" + File.separator + "package-info.java"),
+                expected);
     }
 
     @Test
     public void testAnnotation() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(JavadocPackageCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
-            getPath("annotation"
+            getPath( "annotation"
                     + File.separator + "package-info.java"), expected);
     }
 
@@ -145,7 +141,6 @@ public class JavadocPackageCheckTest
 
     @Test
     public void testNonJava() throws Exception {
-        final Configuration checkConfig = createModuleConfig(JavadocPackageCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
             getPath("InputJavadocPackageNotJava.txt"),
@@ -154,11 +149,10 @@ public class JavadocPackageCheckTest
 
     @Test
     public void testWithFileWithoutParent() throws Exception {
-        final DefaultConfiguration moduleConfig = createModuleConfig(JavadocPackageCheck.class);
-        final String path = getPath("annotation" + File.separator + "package-info.java");
-        final File fileWithoutParent = new MockFile(path);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(createChecker(moduleConfig), new File[] {fileWithoutParent}, path, expected);
+        verifyWithInlineConfigParser(
+                getPath("annotation" + File.separator + "package-info.java"),
+                expected);
     }
 
     private static final class MockFile extends File {

@@ -1,11 +1,13 @@
-package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocpackage;
 /*
-allowLegacy = "false"
-fileExtensions = "java"
+JavadocPackage
+allowLegacy = false
+fileExtensions = java
 
 
 */
-// violation 7 lines above 'Missing package-info.java file'
+
+package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocpackage;
+// violation above 'Missing package-info.java file'
 
 /**
  * The following is a bad tag.
