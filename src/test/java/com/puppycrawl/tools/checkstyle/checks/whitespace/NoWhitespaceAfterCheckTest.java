@@ -64,6 +64,13 @@ public class NoWhitespaceAfterCheckTest
     }
 
     @Test
+    public void testAssignment() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputNoWhitespaceAfterTestAssignment.java"), expected);
+    }
+
+    @Test
     public void testDotAllowLineBreaks() throws Exception {
         final String[] expected = {
             "9:13: " + getCheckMessage(MSG_KEY, "."),
