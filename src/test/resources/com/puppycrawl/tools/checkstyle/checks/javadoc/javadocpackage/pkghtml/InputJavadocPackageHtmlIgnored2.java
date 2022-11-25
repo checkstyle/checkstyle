@@ -1,6 +1,7 @@
 /*
-allowLegacy = "true"
-fileExtensions = "java
+JavadocPackage
+allowLegacy = true
+fileExtensions = java
 
 
 */
