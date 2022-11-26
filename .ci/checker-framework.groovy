@@ -74,7 +74,7 @@ private static Set<String> getCheckerFrameworkProfiles() {
 private static int checkCheckerFrameworkReport(final String profile) {
     final XmlParser xmlParser = new XmlParser()
     final String suppressedErrorsFileUri =
-            ".${File.separator}.ci${File.separator}" +
+            ".${File.separator}config${File.separator}" +
                     "checker-framework-suppressions${File.separator}${profile}-suppressions.xml"
     final List<List<String>> checkerFrameworkErrors = getCheckerFrameworkErrors(profile)
     List<CheckerFrameworkError> errors = Collections.emptyList()
