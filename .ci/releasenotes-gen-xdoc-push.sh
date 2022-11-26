@@ -26,7 +26,7 @@ CS_RELEASE_VERSION="$(getCheckstylePomVersion)"
 echo CS_RELEASE_VERSION="$CS_RELEASE_VERSION"
 
 cd .ci-temp/checkstyle
-LATEST_RELEASE_TAG=$(curl --fail-with-body -s \
+LATEST_RELEASE_TAG=$(curl -s \
                        https://api.github.com/repos/checkstyle/checkstyle/releases/latest \
                        | jq ".tag_name")
 echo LATEST_RELEASE_TAG="$LATEST_RELEASE_TAG"
