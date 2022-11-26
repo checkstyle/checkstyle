@@ -649,4 +649,14 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
                 getPath("InputRightCurlyWithUppercaseOptionProperty.java"), expected);
     }
+
+    @Test
+    public void testRightCurlyWithIfElseAlone() throws Exception {
+        final String[] expected = {
+            "19:12: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 12),
+            "27:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputRightCurlyTestIfElseAlone.java"), expected);
+    }
 }
