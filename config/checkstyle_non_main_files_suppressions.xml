@@ -160,5 +160,12 @@
   <suppress id="properCurlCommand" files=".ci[\\/]sonar_break_build\.sh"/>
   <suppress id="properCurlCommand" files=".ci[\\/]no_old_refs\.sh"/>
   <suppress id="properCurlCommand" files=".ci[\\/]pr-description\.sh"/>
+  <suppress id="properCurlCommand" files=".ci[\\/]close-create-milestone\.sh"/>
+  <suppress id="properCurlCommand" files=".ci[\\/]tweet-releasenotes\.sh"/>
+  <suppress id="properCurlCommand" files=".ci[\\/]upload-all-jar\.sh"/>
+  <suppress id="properCurlCommand" files=".ci[\\/]update-github-page\.sh"/>
+  <suppress id="properCurlCommand" files=".ci[\\/]update-github-milestone\.sh"/>
+  <suppress id="properCurlCommand" files=".ci[\\/]releasenotes-gen-xdoc-push\.sh"/>
+  <suppress id="properCurlCommand" files=".ci[\\/]creation-of-issue-in-other-repos\.sh"/>
 
 </suppressions>
