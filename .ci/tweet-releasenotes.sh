@@ -29,8 +29,7 @@ fi
 
 cd .ci-temp/checkstyle
 
-curl --fail-with-body \
- https://api.github.com/repos/checkstyle/checkstyle/releases \
+curl https://api.github.com/repos/checkstyle/checkstyle/releases \
  -H "Authorization: token $GITHUB_READ_ONLY_TOKEN" \
  -o /var/tmp/cs-releases.json
 

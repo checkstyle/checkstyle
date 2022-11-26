@@ -7,10 +7,10 @@ source ./.ci/util.sh
 checkForVariable "GITHUB_TOKEN"
 
 echo "Close previous milestone at github"
-MILESTONE_ID=$(curl --fail-with-body -s \
+MILESTONE_ID=$(curl -s \
                 -X GET https://api.github.com/repos/checkstyle/checkstyle/milestones?state=open \
                 | jq ".[0] | .number")
-curl --fail-with-body -i -H "Authorization: token $GITHUB_TOKEN" \
+curl -i -H "Authorization: token $GITHUB_TOKEN" \
   -d "{ \"state\": \"closed\" }" \
   -X PATCH https://api.github.com/repos/checkstyle/checkstyle/milestones/"$MILESTONE_ID"
 
@@ -26,7 +26,7 @@ LAST_SUNDAY_DAY=$(cal -d "$(date -d "next month" +"%Y-%m")" \
 LAST_SUNDAY_DATETIME=$(date -d "next month" +"%Y-%m")"-$LAST_SUNDAY_DAY""T08:00:00Z"
 echo "$LAST_SUNDAY_DATETIME"
 
-curl --fail-with-body -i -H "Authorization: token $GITHUB_TOKEN" \
+curl -i -H "Authorization: token $GITHUB_TOKEN" \
   -d "{ \"title\": \"$CURRENT_VERSION\", \
         \"state\": \"open\", \
         \"description\": \"\", \

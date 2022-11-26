@@ -351,7 +351,7 @@ verify-no-exception-configs)
     if [[ $PULL_REQUEST =~ ^([0-9]+)$ ]]; then
       LINK_PR=https://api.github.com/repos/checkstyle/checkstyle/pulls/$PULL_REQUEST
       REGEXP="https://github.com/checkstyle/contribution/pull/"
-      PR_DESC=$(curl --fail-with-body -s -H "Authorization: token $READ_ONLY_TOKEN" "$LINK_PR" \
+      PR_DESC=$(curl -s -H "Authorization: token $READ_ONLY_TOKEN" "$LINK_PR" \
                   | jq '.body' | grep $REGEXP | cat )
       echo 'PR Description grepped:'"${PR_DESC:0:180}"
       if [[ -z $PR_DESC ]]; then
