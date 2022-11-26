@@ -659,13 +659,4 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
                 getPath("InputRightCurlyTestIfElseAlone.java"), expected);
     }
-
-    @Test
-    public void testRightCurlyDefault() throws Exception {
-        final String[] expected = {
-            "21:9: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", 9),
-        };
-        verifyWithInlineConfigParser(
-                getPath("InputRightCurlyTestDefault.java"), expected);
-    }
 }
