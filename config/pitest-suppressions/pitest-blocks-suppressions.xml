@@ -138,15 +138,6 @@
   <mutation unstable="false">
     <sourceFile>RightCurlyCheck.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck$Details</mutatedClass>
-    <mutatedMethod>getDetailsForIfElse</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to com/puppycrawl/tools/checkstyle/checks/blocks/RightCurlyCheck$Details::getNextToken</description>
-    <lineContent>nextToken = getNextToken(ast);</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>RightCurlyCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck$Details</mutatedClass>
     <mutatedMethod>getDetailsForOthers</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
     <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getFirstChild with receiver</description>
