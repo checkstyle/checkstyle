@@ -1633,6 +1633,7 @@
                 <exclude>signatures-test.txt</exclude>
                 <exclude>archunit-store/**</exclude>
                 <exclude>jsoref-spellchecker/**</exclude>
+                <exclude>projects-to-test/**</exclude>
               </excludes>
             </validationSet>
             <validationSet>
