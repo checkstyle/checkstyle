@@ -37,7 +37,6 @@ import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import com.puppycrawl.tools.checkstyle.api.Violation;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class SuppressionFilterTest extends AbstractModuleTestSupport {
 
@@ -170,11 +169,11 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
         checkerConfig.addProperty("cacheFile", cacheFile.getPath());
 
         final String filePath = File.createTempFile("file", ".java", temporaryFolder).getPath();
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verify(checkerConfig, filePath, expected);
         // One more time to use cache.
-        verify(checkerConfig, filePath, expected);
+        execute(checkerConfig, filePath);
+        // One more time to use cache.
+        execute(checkerConfig, filePath);
     }
 
     @Test
@@ -204,9 +203,8 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
 
         final String pathToEmptyFile =
                 File.createTempFile("file", ".java", temporaryFolder).getPath();
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verify(firstCheckerConfig, pathToEmptyFile, expected);
+        execute(firstCheckerConfig, pathToEmptyFile);
 
         // One more time to use cache.
         final DefaultConfiguration secondFilterConfig =
@@ -217,7 +215,7 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
         final DefaultConfiguration secondCheckerConfig = createRootConfig(secondFilterConfig);
         secondCheckerConfig.addProperty("cacheFile", cacheFile.getPath());
 
-        verify(secondCheckerConfig, pathToEmptyFile, expected);
+        execute(secondCheckerConfig, pathToEmptyFile);
     }
 
     private static boolean isConnectionAvailableAndStable(String url) throws Exception {
