@@ -4,7 +4,7 @@ set -e
 source ./.ci/util.sh
 
 mkdir -p .ci-temp
-cp .ci/release-settings.xml .ci-temp/
+cp config/release-settings.xml .ci-temp/
 
 checkForVariable "SONATYPE_USER"
 checkForVariable "SONATYPE_PWD"
