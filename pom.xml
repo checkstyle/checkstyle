@@ -1810,9 +1810,6 @@
                 <!-- this class contain forbidden verify method -->
                 <exclude>**/AbstractModuleTestSupport.class</exclude>
 
-                <!-- test need to be updated -->
-                <exclude>**/SuppressionFilterTest.class</exclude>
-
                 <!-- tests should be updated -->
                 <exclude>**/AbstractJavadocCheckTest.class</exclude>
 
