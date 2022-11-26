@@ -82,7 +82,7 @@ private static Set<String> getPitestProfiles() {
 private static int checkPitestReport(String profile, String flag) {
     final XmlParser xmlParser = new XmlParser()
     File mutationReportFile = null
-    final String suppressedMutationFileUri = ".${File.separator}.ci${File.separator}" +
+    final String suppressedMutationFileUri = ".${File.separator}config${File.separator}" +
             "pitest-suppressions${File.separator}${profile}-suppressions.xml"
 
     final File pitReports =

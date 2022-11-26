@@ -5,7 +5,7 @@
 # plus `fchurn` which uses `dn` mostly rolled together.
 set -e
 
-spellchecker='.ci/jsoref-spellchecker'
+spellchecker='config/jsoref-spellchecker'
 temp='.ci-temp'
 whitelist_path="$spellchecker/whitelist.words"
 dict="$temp/english.words"

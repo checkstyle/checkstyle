@@ -58,7 +58,7 @@ private int parseArgumentAndExecute(String argument, String flag) {
 private static int checkErrorProneReport(String profile, String flag) {
     final XmlParser xmlParser = new XmlParser()
     final String suppressedErrorsFileUri =
-            ".${File.separator}.ci${File.separator}" +
+            ".${File.separator}config${File.separator}" +
                     "error-prone-suppressions${File.separator}${profile}-phase-suppressions.xml"
     final List<String> errorProneErrors = getErrorProneErrors(profile)
     Set<ErrorProneError> errors = Collections.emptySet()
