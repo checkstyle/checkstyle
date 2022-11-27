@@ -89,7 +89,7 @@
          files="config[\\/]intellij-idea-inspection-scope.xml"/>
 
   <!-- we must use full paths in file pattern property value -->
-  <suppress id="lineLength" files=".ci[\\/]openjdk17-excluded.files"/>
+  <suppress id="lineLength" files="config[\\/]openjdk17-excluded.files"/>
 
   <!-- this file cannot be line wrapped, It contains a list of suppressions -->
   <suppress id="lineLength" files="config[\\/]pitest-suppressions[\\/].*"/>

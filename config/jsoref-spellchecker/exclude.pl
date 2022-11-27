@@ -14,9 +14,9 @@ my @excludes=qw(
   /releasenotes_old.*\.xml$
   /releasenotes\.xml$
   /.*_..\.translation[^/]*$
-  /openjdk17-excluded\.files$
   ^cdg-pitest-licence.txt$
   ^.teamcity/
+  ^config/openjdk17-excluded\.files$
   ^config/checker-framework-suppressions/
   ^config/archunit-store/
   ^codeship.encrypted$
