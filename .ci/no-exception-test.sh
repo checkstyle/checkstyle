@@ -56,8 +56,10 @@ openjdk17-with-checks-nonjavadoc-error)
   sed -i.'' 's/value=\"error\"/value=\"ignore\"/' \
         .ci-temp/contribution/checkstyle-tester/checks-nonjavadoc-error.xml
   cd .ci-temp/contribution/checkstyle-tester
-  cp ../../../.ci/openjdk-projects-to-test-on.config openjdk-projects-to-test-on.config
-  sed -i '/  <!-- Filters -->/r ../../../.ci/openjdk17-excluded.files' checks-nonjavadoc-error.xml
+  cp ../../../config/projects-to-test/openjdk-projects-to-test-on.config \
+      openjdk-projects-to-test-on.config
+  sed -i '/  <!-- Filters -->/r ../../../config/projects-to-test/openjdk17-excluded.files' \
+      checks-nonjavadoc-error.xml
   export MAVEN_OPTS="-Xmx2048m"
   groovy ./diff.groovy --listOfProjects openjdk-projects-to-test-on.config \
       --mode single --allowExcludes \
@@ -74,7 +76,7 @@ no-exception-lucene-and-others-javadoc)
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
   echo 'CS_POM_VERSION='"${CS_POM_VERSION}"
   checkout_from https://github.com/checkstyle/contribution
-  cp .ci/projects-for-no-exception-javadoc.config .ci-temp/contribution/checkstyle-tester
+  cp config/projects-to-test/projects-for-no-exception-javadoc.config .ci-temp/contribution/checkstyle-tester
   cd .ci-temp/contribution/checkstyle-tester
   sed -i'' 's/^guava/#guava/' projects-for-no-exception-javadoc.config
   sed -i'' 's/#infinispan/infinispan/' projects-for-no-exception-javadoc.config
@@ -95,7 +97,7 @@ no-exception-cassandra-storm-tapestry-javadoc)
   echo 'CS_POM_VERSION='"${CS_POM_VERSION}"
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
   checkout_from https://github.com/checkstyle/contribution
-  cp .ci/projects-for-no-exception-javadoc.config .ci-temp/contribution/checkstyle-tester
+  cp config/projects-to-test/projects-for-no-exception-javadoc.config .ci-temp/contribution/checkstyle-tester
   cd .ci-temp/contribution/checkstyle-tester
   sed -i'' 's/^guava/#guava/' projects-for-no-exception-javadoc.config
   sed -i'' 's/#tapestry-5/tapestry-5/' projects-for-no-exception-javadoc.config
@@ -115,7 +117,7 @@ no-exception-hadoop-apache-groovy-scouter-javadoc)
   echo 'CS_POM_VERSION='"${CS_POM_VERSION}"
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
   checkout_from https://github.com/checkstyle/contribution
-  cp .ci/projects-for-no-exception-javadoc.config .ci-temp/contribution/checkstyle-tester
+  cp config/projects-to-test/projects-for-no-exception-javadoc.config .ci-temp/contribution/checkstyle-tester
   cd .ci-temp/contribution/checkstyle-tester
   sed -i'' 's/^guava/#guava/' projects-for-no-exception-javadoc.config
   sed -i'' 's/#apache-commons/apache-commons/' projects-for-no-exception-javadoc.config
