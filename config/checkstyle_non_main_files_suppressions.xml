@@ -167,5 +167,6 @@
   <suppress id="properCurlCommand" files=".ci[\\/]update-github-milestone\.sh"/>
   <suppress id="properCurlCommand" files=".ci[\\/]releasenotes-gen-xdoc-push\.sh"/>
   <suppress id="properCurlCommand" files=".ci[\\/]creation-of-issue-in-other-repos\.sh"/>
+  <suppress id="properCurlCommand" files="release\.sh"/>
 
 </suppressions>
