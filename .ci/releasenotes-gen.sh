@@ -78,11 +78,6 @@ echo "GitHub post:"
 echo ==============================================
 cat github_post.txt
 echo ==============================================
-echo
-echo "Plain text post:"
-echo ==============================================
-cat mailing_list.txt
-echo ==============================================
 cd checkstyle/src/xdocs
 echo
 echo "releasenotes.xml after commit:"
