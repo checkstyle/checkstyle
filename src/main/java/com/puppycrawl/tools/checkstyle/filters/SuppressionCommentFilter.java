@@ -658,7 +658,7 @@ public class SuppressionCommentFilter
                 tagCheckRegexp = Pattern.compile(format);
 
                 if (filter.messageFormat == null) {
-                    tagMessageRegexp = null;
+//                    tagMessageRegexp = null;
                 }
                 else {
                     format = CommonUtil.fillTemplateWithStringsByRegexp(
