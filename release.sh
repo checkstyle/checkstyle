@@ -35,11 +35,12 @@ SKIP_CHECKSTYLE="-Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true"
 SKIP_OTHERS="-Dpmd.skip=true -Dspotbugs.skip=true -Djacoco.skip=true -Dxml.skip=true"
 
 echo "Version bump in pom.xml (release:prepare) ..."
-mvn -e --no-transfer-progress -Pgpg release:prepare -B -Darguments="$SKIP_TEST $SKIP_CHECKSTYLE \
-  $SKIP_OTHERS"
+mvn -e --no-transfer-progress -Pgpg release:prepare -B \
+  -Darguments="$SKIP_TEST $SKIP_CHECKSTYLE $SKIP_OTHERS"
 
 echo "Deployment of jars to maven central (release:perform) ..."
-mvn -e --no-transfer-progress -Pgpg release:perform -Darguments="$SKIP_CHECKSTYLE"
+mvn -e --no-transfer-progress -Pgpg release:perform \
+  -Darguments="$SKIP_TEST $SKIP_CHECKSTYLE $SKIP_OTHERS"
 
 echo "Go to folder where site was build and sources are already at required tag"
 cd target/checkout
