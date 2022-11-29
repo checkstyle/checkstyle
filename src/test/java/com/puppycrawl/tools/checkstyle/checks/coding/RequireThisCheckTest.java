@@ -472,6 +472,16 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testRecordsWithCheckFields() throws Exception {
+        final String[] expected = {
+            "16:9: " + getCheckMessage(MSG_VARIABLE, "a", ""),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputRequireThisRecordsWithCheckFields.java"),
+                expected);
+    }
+
+    @Test
     public void testLocalClassesInsideLambdas() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
