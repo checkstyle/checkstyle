@@ -20,6 +20,8 @@ jobs:
         run: |
           sudo apt-get install xmlstarlet
       - name: Run Shell Script
+        env:
+          READ_ONLY_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           ./.ci/update-releasenotesxml.sh ${{ github.event.inputs.version }}
       - name: Commit and Push
