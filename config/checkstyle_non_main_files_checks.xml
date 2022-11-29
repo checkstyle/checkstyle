@@ -15,6 +15,16 @@
   </module>
   <!-- Miscellaneous -->
   <module name="NewlineAtEndOfFile" />
+
+  <module name="RegexpOnFilename">
+    <property name="id" value="executablesLocation"/>
+    <property name="folderPattern" value="[\\/].ci([\\/]|$)"/>
+    <property name="fileNamePattern" value="\.(bat|cmd|groovy|sh|md)$"/>
+    <property name="match" value="false"/>
+    <message key="regexp.filename.mismatch"
+      value="CI folder should only contain executables files"/>
+  </module>
+
   <module name="RegexpSingleline">
     <property name="id" value="lineLength"/>
     <!-- catch lines above 100 symbols -->
