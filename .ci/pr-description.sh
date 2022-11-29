@@ -1,7 +1,7 @@
 #!/bin/bash
 # Attention, there is no "-x" to avoid problems on Travis
 set -e
-
+# test
 if [[ ! $PULL_REQUEST =~ ^([0-9]*)$ ]]; then exit 0; fi
 LINK_COMMITS=https://api.github.com/repos/checkstyle/checkstyle/pulls/$PULL_REQUEST/commits
 COMMITS=$(curl -s -H "Authorization: token $READ_ONLY_TOKEN" "$LINK_COMMITS" \
