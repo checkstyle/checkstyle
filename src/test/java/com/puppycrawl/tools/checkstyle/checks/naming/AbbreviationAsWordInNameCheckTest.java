@@ -467,4 +467,14 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
                 expected);
     }
 
+    @Test
+    public void testInputAbbreviationAsWordInNameTypeWithUnderScore() throws Exception {
+        final String[] expected = {
+            "14:10: " + getWarningMessage("getNONE_Test", 4),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputAbbreviationAsWordInNameType7.java"), expected);
+    }
+
 }
