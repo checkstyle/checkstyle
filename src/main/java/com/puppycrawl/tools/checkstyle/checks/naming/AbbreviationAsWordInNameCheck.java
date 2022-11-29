@@ -297,6 +297,38 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * }
  * </pre>
  * <p>
+ * To configure to check variables, enforce
+ * no abbreviations (essentially camel case) except for
+ * words like 'ORDERS', 'OBSERVATION', 'UNDERSCORE', 'TEST'.
+ * </p>
+ * <p>Configuration:</p>
+ * <pre>
+ * &lt;module name="AbbreviationAsWordInName"&gt;
+ *     &lt;property name="allowedAbbreviations" value="ORDER, TEST"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * public class Test {
+ *    void getTEST() {
+ *    } // OK
+ *
+ *    void getORDER_OBSERVATION() {} // violation, at most 4 consecutive capital letters allowed
+ *
+ *    void getUNDERSCORE() {} // violation, at most 4 consecutive capital letters allowed
+ *
+ *    void getTEST_OBSERVATION() {} // violation, at most 4 consecutive capital letters allowed
+ *
+ *    void getTEST_UNDERSCORE() {} // violation, at most 4 consecutive capital letters allowed
+ *
+ *    void getORDER() {} // OK
+ *
+ *    void getOBSERVATION() {} // violation, at most 4 consecutive capital letters allowed
+ *
+ *    void getORDER_UNDERSCORE() {} // violation, at most 4 consecutive capital letters allowed
+ * }
+ * </pre>
+ * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
  * <p>
@@ -583,7 +615,13 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
             else if (abbrStarted) {
                 abbrStarted = false;
 
-                final int endIndex = index - 1;
+                final int endIndex;
+                if (Character.isLetterOrDigit(symbol)) {
+                    endIndex = index - 1;
+                }
+                else {
+                    endIndex = index;
+                }
                 result = getAbbreviationIfIllegal(str, beginIndex, endIndex);
                 if (result != null) {
                     break;
