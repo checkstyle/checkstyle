@@ -1562,10 +1562,18 @@ public class RequireThisCheck extends AbstractCheck {
         public boolean hasFinalField(final DetailAST instanceMember) {
             boolean result = false;
             for (DetailAST member : instanceMembers) {
-                final DetailAST mods = member.getParent().findFirstToken(TokenTypes.MODIFIERS);
-                final boolean finalMod = mods.findFirstToken(TokenTypes.FINAL) != null;
-                if (finalMod && isAstSimilar(member, instanceMember)) {
+                final DetailAST parent = member.getParent();
+                if (parent.getType() == TokenTypes.RECORD_COMPONENT_DEF) {
                     result = true;
+                }
+                else {
+                    final DetailAST mods = parent.findFirstToken(TokenTypes.MODIFIERS);
+                    final boolean finalMod = mods.findFirstToken(TokenTypes.FINAL) != null;
+                    if (finalMod && isAstSimilar(member, instanceMember)) {
+                        result = true;
+                    }
+                }
+                if (result) {
                     break;
                 }
             }
