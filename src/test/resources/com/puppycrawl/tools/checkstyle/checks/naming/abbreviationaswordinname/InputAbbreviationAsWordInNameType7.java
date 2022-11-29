@@ -10,19 +10,19 @@ package com.puppycrawl.tools.checkstyle.checks.naming.abbreviationaswordinname;
 
 public class InputAbbreviationAsWordInNameType7 {
     void getTEST() {
-    }
+    } // OK
 
-    void getORDER_OBSERVATION() {}
+    void getORDER_OBSERVATION() {} // ok
 
-    void getUNDERSCORE() {}
+    void getUNDERSCORE() {} // ok
 
-    void getTEST_OBSERVATION() {}
+    void getTEST_OBSERVATION() {} // ok
 
-    void getTEST_UNDERSCORE() {}
+    void getTEST_UNDERSCORE() {} // ok
 
-    void getORDER() {}
+    void getORDER() {} // ok
 
-    void getOBSERVATION() {}
+    void getOBSERVATION() {} // ok
 
-    void getORDER_UNDERSCORE() {}
+    void getORDER_UNDERSCORE() {} // ok
 }
