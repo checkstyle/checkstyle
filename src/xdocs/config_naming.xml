@@ -346,6 +346,38 @@ public class MyClass {
     public static final int MAX_ALLOWED = 4;  // violation
 }
         </source>
+        <p>
+          To configure to check variables, enforce
+          no abbreviations (essentially camel case) except for
+          words like 'ORDERS', 'OBSERVATION', 'UNDERSCORE', 'TEST'.
+        </p>
+        <p>Configuration:</p>
+        <source>
+&lt;module name="AbbreviationAsWordInName"&gt;
+    &lt;property name="allowedAbbreviations" value="ORDER, OBSERVATION, UNDERSCORE, TEST"/&gt;
+&lt;/module&gt;
+        </source>
+        <p>Example:</p>
+        <source>
+public class InputAbbreviationAsWordInNameType7 {
+    void getTEST() {
+    } // OK
+
+    void getORDER_OBSERVATION() {} // OK
+
+    void getUNDERSCORE() {} // OK
+
+    void getTEST_OBSERVATION() {} // OK
+
+    void getTEST_UNDERSCORE() {} // OK
+
+    void getORDER() {} // OK
+
+    void getOBSERVATION() {} // OK
+
+    void getORDER_UNDERSCORE() {} // OK
+}
+        </source>
       </subsection>
 
       <subsection name="Example of Usage" id="AbbreviationAsWordInName_Example_of_Usage">
