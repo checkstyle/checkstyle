@@ -304,28 +304,28 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <p>Configuration:</p>
  * <pre>
  * &lt;module name="AbbreviationAsWordInName"&gt;
- *     &lt;property name="allowedAbbreviations" value="ORDER, OBSERVATION, UNDERSCORE, TEST"/&gt;
+ *     &lt;property name="allowedAbbreviations" value="ORDER, TEST"/&gt;
  * &lt;/module&gt;
  * </pre>
  * <p>Example:</p>
  * <pre>
- * public class InputAbbreviationAsWordInNameType7 {
+ * public class Test {
  *    void getTEST() {
  *    } // OK
  *
- *    void getORDER_OBSERVATION() {} // OK
+ *    void getORDER_OBSERVATION() {} // violation, at most 4 consecutive capital letters allowed
  *
- *    void getUNDERSCORE() {} // OK
+ *    void getUNDERSCORE() {} // violation, at most 4 consecutive capital letters allowed
  *
- *    void getTEST_OBSERVATION() {} // OK
+ *    void getTEST_OBSERVATION() {} // violation, at most 4 consecutive capital letters allowed
  *
- *    void getTEST_UNDERSCORE() {} // OK
+ *    void getTEST_UNDERSCORE() {} // violation, at most 4 consecutive capital letters allowed
  *
  *    void getORDER() {} // OK
  *
- *    void getOBSERVATION() {} // OK
+ *    void getOBSERVATION() {} // violation, at most 4 consecutive capital letters allowed
  *
- *    void getORDER_UNDERSCORE() {} // OK
+ *    void getORDER_UNDERSCORE() {} // violation, at most 4 consecutive capital letters allowed
  * }
  * </pre>
  * <p>
