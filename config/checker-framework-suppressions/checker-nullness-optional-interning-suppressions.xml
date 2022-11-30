@@ -2060,13 +2060,6 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/OverloadMethodsDeclarationOrderCheck.java</fileName>
-    <specifier>unboxing.of.nullable</specifier>
-    <message>unboxing a possibly-null reference methodLineNumberMap.get(methodName)</message>
-    <lineContent>methodLineNumberMap.get(methodName);</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/ParameterAssignmentCheck.java</fileName>
     <specifier>initialization.field.uninitialized</specifier>
     <message>the default constructor does not initialize field parameterNames</message>
