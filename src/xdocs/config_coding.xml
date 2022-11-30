@@ -5763,26 +5763,98 @@ try (Reader r = new PipedReader(); s2; Reader s3 = new PipedReader() // violatio
         </p>
       </subsection>
 
+      <subsection name="Properties" id="OverloadMethodsDeclarationOrder_Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>modifierGroups</td>
+              <td>control how different types of overloaded methods can be grouped by their
+                  modifiers.</td>
+              <td><a href="property_types.html#Pattern[]">Pattern[]</a></td>
+              <td><code>{}</code></td>
+              <th>10.4</th>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
       <subsection name="Examples" id="OverloadMethodsDeclarationOrder_Examples">
-        <p>To configure the check:</p>
+        <p>
+          To configure the check:
+        </p>
         <source>
 &lt;module name="OverloadMethodsDeclarationOrder"/&gt;
         </source>
+        <p>
+          Example of incorrect grouping of overloaded methods:
+        </p>
+        <source>
+public void foo() {} // OK
+public final void foo(int i) {} // OK
+void notFoo() {} // OK
+public static void foo(long l) {} // Violation, should be after 'foo(int i)'
+protected void foo(String s) {} // OK
+void foo(byte b) {} // OK
+private static void foo(String s, int i) { } // OK
+public void foo(String a, String b) {} // OK
+private void notFoo(int i) {} // Violation, should be after 'notFoo()'
+public final void foo(long x, long y) {} // Violation, should be after 'foo(String a, String b)'
+        </source>
         <p>Example of correct grouping of overloaded methods:</p>
         <source>
-public void foo(int i) {}
-public void foo(String s) {}
-public void foo(String s, int i) {}
-public void foo(int i, String s) {}
-public void notFoo() {}
-        </source>
-        <p>Example of incorrect grouping of overloaded methods:</p>
-        <source>
 public void foo(int i) {} // OK
-public void foo(String s) {} // OK
-public void notFoo() {} // violation. Have to be after foo(String s, int i)
-public void foo(int i, String s) {}
-public void foo(String s, int i) {}
+void foo(String s) {} // OK
+private void foo(String s, int i) {} // OK
+public void foo(int i, String s) {} // OK
+public void notFoo() {} // OK
+private void notFoo(int x) {} // OK
+        </source>
+        <p>
+          To configure the check to group static and private methods separately within their own
+          individual groups
+        </p>
+        <source>
+&lt;module name=&quot;OverloadMethodsDeclarationOrder&quot;&gt;
+  &lt;property name=&quot;modifierGroups&quot;
+  value=&quot;.*static.*, ^public .*, (protected|package), private&quot;&gt;&lt;/property&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          Example of code with violation
+        </p>
+        <source>
+public void foo() {} // OK
+public final void foo(int i) {} // OK
+void notFoo() {} // OK
+public static void foo(long l) {} // OK
+protected void foo(String s) {} // OK
+void foo(byte b) {} // OK
+private static void foo(String s, int i) { } // Violation, should be after 'foo(long l)'
+public void foo(String a, String b) {} // Violation, should be after 'foo()'
+private void notFoo(int i) {} // OK
+public final void foo(long x, long y) {} // Violation, should be after 'foo(int i)'
+        </source>
+        <p>
+          Example of compliant code
+        </p>
+        <source>
+public void foo() {} // OK
+public void foo(String a, String b) {} // OK
+public final void foo(int i) {} // OK
+public final void foo(long x, long y) {} // OK
+void notFoo() {} // OK
+public static void foo(long l) {} // OK
+private static void foo(String s, int i) { } // OK
+protected void foo(String s) {} // OK
+void foo(byte b) {} // OK
+private void notFoo(int i) {} // OK
         </source>
       </subsection>
 
