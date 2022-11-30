@@ -61,6 +61,114 @@ public class OverloadMethodsDeclarationOrderCheckTest
     }
 
     @Test
+    public void testOverloadMethodsDeclarationOrderRecords2() throws Exception {
+
+        final String[] expected = {
+            "21:9: " + getCheckMessage(MSG_KEY, 16),
+            "30:9: " + getCheckMessage(MSG_KEY, 25),
+            "33:9: " + getCheckMessage(MSG_KEY, 27),
+        };
+        verifyWithInlineConfigParser(
+            getNonCompilablePath("InputOverloadMethodsDeclarationOrderRecords2.java"),
+            expected);
+    }
+
+    @Test
+    public void testBackwardsCompatibilityCatchAllGroup() throws Exception {
+        final String[] expected = {
+            "20:5: " + getCheckMessage(MSG_KEY, 15),
+            "35:9: " + getCheckMessage(MSG_KEY, 30),
+            "48:5: " + getCheckMessage(MSG_KEY, 45),
+            "80:5: " + getCheckMessage(MSG_KEY, 75),
+        };
+
+        verifyWithInlineConfigParser(
+            getPath("InputOverloadMethodsDeclarationOrder2.java"),
+            expected
+        );
+    }
+
+    @Test
+    public void testBackwardsCompatibilityEmptyModifiers() throws Exception {
+        final String[] expected = {
+            "20:5: " + getCheckMessage(MSG_KEY, 15),
+            "35:9: " + getCheckMessage(MSG_KEY, 30),
+            "48:5: " + getCheckMessage(MSG_KEY, 45),
+            "80:5: " + getCheckMessage(MSG_KEY, 75),
+        };
+
+        verifyWithInlineConfigParser(
+            getPath("InputOverloadMethodsDeclarationOrder2.java"),
+            expected
+        );
+    }
+
+    @Test
+    public void testOverloadMethodsDeclarationOrderStaticGrouped() throws Exception {
+        final String[] expected = {
+            "29:5: " + getCheckMessage(MSG_KEY, 24),
+            "37:5: " + getCheckMessage(MSG_KEY, 34),
+            "39:5: " + getCheckMessage(MSG_KEY, 35),
+            "47:5: " + getCheckMessage(MSG_KEY, 44),
+            "49:5: " + getCheckMessage(MSG_KEY, 45),
+            "57:5: " + getCheckMessage(MSG_KEY, 54),
+            "61:5: " + getCheckMessage(MSG_KEY, 58),
+            "68:5: " + getCheckMessage(MSG_KEY, 65),
+            "79:5: " + getCheckMessage(MSG_KEY, 74),
+            "92:5: " + getCheckMessage(MSG_KEY, 87),
+            "105:5: " + getCheckMessage(MSG_KEY, 102),
+        };
+        verifyWithInlineConfigParser(
+            getPath("InputOverloadMethodsDeclarationOrder3.java"), expected);
+    }
+
+    @Test
+    public void testOverloadMethodsDeclarationOrderAbstractAndPublicOrProtectedAndStatic()
+            throws Exception {
+        final String[] expected = {
+            "28:5: " + getCheckMessage(MSG_KEY, 25),
+            "30:5: " + getCheckMessage(MSG_KEY, 23),
+            "34:5: " + getCheckMessage(MSG_KEY, 26),
+            "44:5: " + getCheckMessage(MSG_KEY, 40),
+        };
+        verifyWithInlineConfigParser(
+            getPath("InputOverloadMethodsDeclarationOrder4.java"), expected);
+    }
+
+    @Test
+    public void testOverloadMethodsDeclarationOrderOrderMatters() throws Exception {
+        final String[] expected = {
+            "16:5: " + getCheckMessage(MSG_KEY, 11),
+            "19:5: " + getCheckMessage(MSG_KEY, 16),
+            "22:5: " + getCheckMessage(MSG_KEY, 19),
+            "30:5: " + getCheckMessage(MSG_KEY, 27),
+            "34:5: " + getCheckMessage(MSG_KEY, 30),
+            "36:5: " + getCheckMessage(MSG_KEY, 32),
+        };
+        verifyWithInlineConfigParser(
+            getPath("InputOverloadMethodsDeclarationOrder5.java"), expected);
+    }
+
+    @Test
+    public void testOverloadMethodsDeclarationOrderComplexRegex() throws Exception {
+        final String[] expected = {
+            "29:5: " + getCheckMessage(MSG_KEY, 26),
+            "39:5: " + getCheckMessage(MSG_KEY, 33),
+            "47:5: " + getCheckMessage(MSG_KEY, 44),
+            "56:5: " + getCheckMessage(MSG_KEY, 51),
+            "64:5: " + getCheckMessage(MSG_KEY, 61),
+            "77:5: " + getCheckMessage(MSG_KEY, 70),
+            "80:5: " + getCheckMessage(MSG_KEY, 74),
+            "92:5: " + getCheckMessage(MSG_KEY, 84),
+            "95:5: " + getCheckMessage(MSG_KEY, 88),
+            "103:5: " + getCheckMessage(MSG_KEY, 100),
+            "106:5: " + getCheckMessage(MSG_KEY, 103),
+        };
+        verifyWithInlineConfigParser(
+            getPath("InputOverloadMethodsDeclarationOrder6.java"), expected);
+    }
+
+    @Test
     public void testTokensNotNull() {
         final OverloadMethodsDeclarationOrderCheck check =
             new OverloadMethodsDeclarationOrderCheck();
