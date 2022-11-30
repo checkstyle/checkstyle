@@ -310,22 +310,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <p>Example:</p>
  * <pre>
  * public class Test {
- *    void getTEST() {
- *    } // OK
- *
  *    void getORDER_OBSERVATION() {} // violation, at most 4 consecutive capital letters allowed
- *
- *    void getUNDERSCORE() {} // violation, at most 4 consecutive capital letters allowed
- *
- *    void getTEST_OBSERVATION() {} // violation, at most 4 consecutive capital letters allowed
- *
- *    void getTEST_UNDERSCORE() {} // violation, at most 4 consecutive capital letters allowed
- *
- *    void getORDER() {} // OK
- *
- *    void getOBSERVATION() {} // violation, at most 4 consecutive capital letters allowed
- *
- *    void getORDER_UNDERSCORE() {} // violation, at most 4 consecutive capital letters allowed
  * }
  * </pre>
  * <p>
