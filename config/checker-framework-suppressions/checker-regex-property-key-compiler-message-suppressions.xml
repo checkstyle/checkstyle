@@ -188,6 +188,17 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/OverloadMethodsDeclarationOrderCheck.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter regex of compile.</message>
+    <lineContent>final Pattern pattern = Pattern.compile(trimmed);</lineContent>
+    <details>
+      found   : String
+      required: @Regex String
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/design/MutableExceptionCheck.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter regex of compile.</message>

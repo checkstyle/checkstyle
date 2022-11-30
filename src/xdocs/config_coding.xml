@@ -5763,26 +5763,88 @@ try (Reader r = new PipedReader(); s2; Reader s3 = new PipedReader() // violatio
         </p>
       </subsection>
 
+      <subsection name="Properties" id="OverloadMethodsDeclarationOrder_Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>modifierGroups</td>
+              <td>custom overload groups, allows for the definitions of multiple overloading method
+                groups.</td>
+              <td><a href="property_types.html#Pattern[]">Pattern[]</a></td>
+              <td><code>{}</code></td>
+              <th>10.4</th>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
       <subsection name="Examples" id="OverloadMethodsDeclarationOrder_Examples">
-        <p>To configure the check:</p>
+        <p>
+          To configure the check:
+        </p>
         <source>
 &lt;module name="OverloadMethodsDeclarationOrder"/&gt;
         </source>
-        <p>Example of correct grouping of overloaded methods:</p>
-        <source>
-public void foo(int i) {}
-public void foo(String s) {}
-public void foo(String s, int i) {}
-public void foo(int i, String s) {}
-public void notFoo() {}
-        </source>
-        <p>Example of incorrect grouping of overloaded methods:</p>
+        <p>
+          Example of incorrect grouping of overloaded methods:
+        </p>
         <source>
 public void foo(int i) {} // OK
 public void foo(String s) {} // OK
-public void notFoo() {} // violation. Have to be after foo(String s, int i)
-public void foo(int i, String s) {}
-public void foo(String s, int i) {}
+public void notFoo() {} // Violation, should be after 'foo(int i, String s)'
+public void foo(String s, int i) {} // OK
+        </source>
+        <p>Example of correct grouping of overloaded methods:</p>
+        <source>
+public void foo(int i) {} // OK
+public void foo(String s) {} // OK
+public void foo(String s, int i) {} // OK
+public void foo(int i, String s) {} // OK
+public void notFoo() {} // OK
+        </source>
+        <p>
+          To configure the check to group static and private methods separately within their own
+          individual groups
+        </p>
+        <source>
+&lt;module name=&quot;OverloadMethodsDeclarationOrder&quot;&gt;
+  &lt;property name=&quot;modifierGroups&quot;
+  value=&quot;static, private&quot;&gt;&lt;/property&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          Example of code with violation
+        </p>
+        <source>
+public void foo(int i) {} // OK
+public void foo(String s) {} // OK
+public void notFoo() {} // OK
+private void foo(boolean b) {} // OK
+protected void foo(String s, int i) {} // Violation, should be after 'foo(String s)'
+private void foo(byte b) {} // Violation, should be after 'foo(boolean b)'
+private static void foo(String s) {} // OK
+private static void notFoo(String s) {} // Violation, should be after 'static foo(int i)'
+private static void foo(int i) {} // OK
+        </source>
+        <p>
+          Example of compliant code
+        </p>
+        <source>
+public void foo(int i) {} // OK
+public void foo(String s) {} // OK
+public void notFoo() {} // OK
+private void foo(boolean b) {} // OK
+private void foo(String s, int i) {} // OK
+public void notFoo2() {} // OK
+private static void foo(String s) {} // OK
+private static void foo(String s, int i) {} // OK
         </source>
       </subsection>
 
