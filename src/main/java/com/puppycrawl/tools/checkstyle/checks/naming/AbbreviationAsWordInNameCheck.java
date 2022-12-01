@@ -40,6 +40,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <a href="https://checkstyle.org/styleguides/google-java-style-20180523/javaguide.html#s5.3-camel-case">
  * Google Style Guide</a> to get to know how to avoid long abbreviations in names.
  * </p>
+ * <p>'_' is considered as word separator in identifier name.</p>
  * <p>
  * {@code allowedAbbreviationLength} specifies how many consecutive capital letters are
  * allowed in the identifier.
@@ -294,6 +295,23 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *     public final int customerID = 2;          // violation
  *     public static int nextID = 3;             // OK, ignored
  *     public static final int MAX_ALLOWED = 4;  // violation
+ * }
+ * </pre>
+ * <p>
+ * To configure to check variables, enforce
+ * no abbreviations (essentially camel case) except for
+ * words like 'ORDER', 'TEST'.
+ * </p>
+ * <p>Configuration:</p>
+ * <pre>
+ * &lt;module name="AbbreviationAsWordInName"&gt;
+ *     &lt;property name="allowedAbbreviations" value="ORDER, TEST"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * public class Test {
+ *    void getORDER_TEST() {} // OK, both abbreviations are allowed
  * }
  * </pre>
  * <p>
@@ -583,7 +601,13 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
             else if (abbrStarted) {
                 abbrStarted = false;
 
-                final int endIndex = index - 1;
+                final int endIndex;
+                if (Character.isLetterOrDigit(symbol)) {
+                    endIndex = index - 1;
+                }
+                else {
+                    endIndex = index;
+                }
                 result = getAbbreviationIfIllegal(str, beginIndex, endIndex);
                 if (result != null) {
                     break;
