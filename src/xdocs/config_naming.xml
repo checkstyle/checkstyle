@@ -37,6 +37,8 @@
           to get to know how to avoid long abbreviations in names.
         </p>
 
+        <p>'_' is considered as word separator in identifier name.</p>
+
         <p>
           <code>allowedAbbreviationLength</code> specifies how many consecutive capital letters are
           allowed in the identifier.
@@ -344,6 +346,23 @@ public class MyClass {
     public final int customerID = 2;          // violation
     public static int nextID = 3;             // OK, ignored
     public static final int MAX_ALLOWED = 4;  // violation
+}
+        </source>
+        <p>
+          To configure to check variables, enforce
+          no abbreviations (essentially camel case) except for
+          words like 'ORDER', 'TEST'.
+        </p>
+        <p>Configuration:</p>
+        <source>
+&lt;module name="AbbreviationAsWordInName"&gt;
+    &lt;property name="allowedAbbreviations" value="ORDER, TEST"/&gt;
+&lt;/module&gt;
+        </source>
+        <p>Example:</p>
+        <source>
+public class Test {
+    void getORDER_TEST() {} // OK, both abbreviations are allowed
 }
         </source>
       </subsection>
