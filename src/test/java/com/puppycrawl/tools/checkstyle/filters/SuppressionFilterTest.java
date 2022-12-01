@@ -28,6 +28,7 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
@@ -40,6 +41,13 @@ import com.puppycrawl.tools.checkstyle.api.Violation;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class SuppressionFilterTest extends AbstractModuleTestSupport {
+
+    private static final String FORMAT = "TODO$";
+    private static final String MESSAGE = getCheckMessage(RegexpSinglelineCheck.class,
+            "regexp.exceeded", FORMAT);
+    private static final String[] ALL_MESSAGES = {
+            "25: " + MESSAGE,
+    };
 
     @TempDir
     public File temporaryFolder;
@@ -170,11 +178,11 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
         checkerConfig.addProperty("cacheFile", cacheFile.getPath());
 
         final String filePath = File.createTempFile("file", ".java", temporaryFolder).getPath();
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verify(checkerConfig, filePath, expected);
+        final String[] suppressed = CommonUtil.EMPTY_STRING_ARRAY;
+        verifySuppressedWithParser(filePath, suppressed);
         // One more time to use cache.
-        verify(checkerConfig, filePath, expected);
+        verifySuppressedWithParser(filePath, suppressed);
     }
 
     @Test
@@ -204,9 +212,10 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
 
         final String pathToEmptyFile =
                 File.createTempFile("file", ".java", temporaryFolder).getPath();
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verify(firstCheckerConfig, pathToEmptyFile, expected);
+//        execute(firstCheckerConfig, pathToEmptyFile);
+        final String[] suppressed = CommonUtil.EMPTY_STRING_ARRAY;
+        verifySuppressedWithParser(pathToEmptyFile,suppressed);
 
         // One more time to use cache.
         final DefaultConfiguration secondFilterConfig =
@@ -217,7 +226,7 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
         final DefaultConfiguration secondCheckerConfig = createRootConfig(secondFilterConfig);
         secondCheckerConfig.addProperty("cacheFile", cacheFile.getPath());
 
-        verify(secondCheckerConfig, pathToEmptyFile, expected);
+        verifySuppressedWithParser(pathToEmptyFile,suppressed);
     }
 
     private static boolean isConnectionAvailableAndStable(String url) throws Exception {
@@ -270,6 +279,12 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
         suppressionFilter.setOptional(optional);
         suppressionFilter.finishLocalSetup();
         return suppressionFilter;
+    }
+
+    private void verifySuppressedWithParser(String fileName, String... suppressed)
+            throws Exception {
+        verifyFilterWithInlineConfigParser(fileName, ALL_MESSAGES,
+                removeSuppressed(ALL_MESSAGES, suppressed));
     }
 
 }
