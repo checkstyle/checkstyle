@@ -37,6 +37,8 @@
           to get to know how to avoid long abbreviations in names.
         </p>
 
+        <p>'_' is considered as word separator in identifier name.</p>
+
         <p>
           <code>allowedAbbreviationLength</code> specifies how many consecutive capital letters are
           allowed in the identifier.
@@ -360,7 +362,7 @@ public class MyClass {
         <p>Example:</p>
         <source>
 public class Test {
-    void getORDER_TEST() {} // OK, ignored
+    void getORDER_TEST() {} // OK, both abbreviations are allowed
 }
         </source>
       </subsection>

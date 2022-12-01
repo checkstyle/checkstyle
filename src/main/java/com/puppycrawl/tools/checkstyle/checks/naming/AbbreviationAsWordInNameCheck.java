@@ -40,6 +40,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <a href="https://checkstyle.org/styleguides/google-java-style-20180523/javaguide.html#s5.3-camel-case">
  * Google Style Guide</a> to get to know how to avoid long abbreviations in names.
  * </p>
+ * <p>'_' is considered as word separator in identifier name.</p>
  * <p>
  * {@code allowedAbbreviationLength} specifies how many consecutive capital letters are
  * allowed in the identifier.
@@ -310,7 +311,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <p>Example:</p>
  * <pre>
  * public class Test {
- *    void getORDER_TEST() {} // OK, ignored
+ *    void getORDER_TEST() {} // OK, both abbreviations are allowed
  * }
  * </pre>
  * <p>
