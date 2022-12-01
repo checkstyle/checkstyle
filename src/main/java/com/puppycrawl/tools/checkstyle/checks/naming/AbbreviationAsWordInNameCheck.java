@@ -299,7 +299,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <p>
  * To configure to check variables, enforce
  * no abbreviations (essentially camel case) except for
- * words like 'ORDERS', 'TEST'.
+ * words like 'ORDER', 'TEST'.
  * </p>
  * <p>Configuration:</p>
  * <pre>
