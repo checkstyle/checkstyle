@@ -299,7 +299,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <p>
  * To configure to check variables, enforce
  * no abbreviations (essentially camel case) except for
- * words like 'ORDERS', 'OBSERVATION', 'UNDERSCORE', 'TEST'.
+ * words like 'ORDERS', 'TEST'.
  * </p>
  * <p>Configuration:</p>
  * <pre>
@@ -310,7 +310,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <p>Example:</p>
  * <pre>
  * public class Test {
- *    void getORDER_OBSERVATION() {} // violation, at most 4 consecutive capital letters allowed
+ *    void getORDER_TEST() {} // OK, ignored
  * }
  * </pre>
  * <p>

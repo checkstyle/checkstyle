@@ -349,7 +349,7 @@ public class MyClass {
         <p>
           To configure to check variables, enforce
           no abbreviations (essentially camel case) except for
-          words like 'ORDERS', 'OBSERVATION', 'UNDERSCORE', 'TEST'.
+          words like 'ORDERS', 'TEST'.
         </p>
         <p>Configuration:</p>
         <source>
@@ -360,7 +360,7 @@ public class MyClass {
         <p>Example:</p>
         <source>
 public class Test {
-    void getORDER_OBSERVATION() {} // violation, at most 4 consecutive capital letters allowed
+    void getORDER_TEST() {} // OK, ignored
 }
         </source>
       </subsection>

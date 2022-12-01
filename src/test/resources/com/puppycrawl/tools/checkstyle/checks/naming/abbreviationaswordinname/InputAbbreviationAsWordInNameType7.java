@@ -9,16 +9,19 @@ allowedAbbreviations = ORDER, OBSERVATION, UNDERSCORE, TEST
 package com.puppycrawl.tools.checkstyle.checks.naming.abbreviationaswordinname;
 
 public class InputAbbreviationAsWordInNameType7 {
-    private int HBCK_LOCK_PATH; // violation
+    // violation below 'Abb.* in name '.*' must contain no more than '4' consecutive cap.* let.*.'
+    private int HBCK_LOCK_PATH;
 
-    Boolean[] BOOL_VALS = { false, true }; // violation
+    // violation below 'Abb.* in name '.*' must contain no more than '4' consecutive cap.* let.*.'
+    Boolean[] BOOL_VALS = { false, true };
 
     void getTEST() {
     } // ok
 
     void getORDER_OBSERVATION() {} // ok
 
-    void getNONE_Test() {} // violation
+    // violation below 'Abb.* in name '.*' must contain no more than '4' consecutive cap.* let.*.'
+    void getNONE_Test() {}
 
     void getCLR_Test() {} // ok
 
@@ -35,7 +38,8 @@ public class InputAbbreviationAsWordInNameType7 {
     void getORDER_UNDERSCORE() {} // ok
 
     int getCLRTest() { // ok
-        int LINE_SEP = 1; // violation
+        // violation below 'Abb.* in name '.*' must contain no more than '4' conse.* cap.* let.*.'
+        int LINE_SEP = 1;
         return LINE_SEP;
     }
 }
