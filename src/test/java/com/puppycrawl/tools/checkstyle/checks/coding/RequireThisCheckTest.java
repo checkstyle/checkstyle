@@ -472,6 +472,26 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testRecordsWithCheckFields() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputRequireThisRecordsWithCheckFields.java"),
+                expected);
+    }
+
+    @Test
+    public void testRecordsWithCheckFieldsOverlap() throws Exception {
+        final String[] expected = {
+            "20:20: " + getCheckMessage(MSG_VARIABLE, "a", ""),
+            "39:20: " + getCheckMessage(MSG_VARIABLE, "a", ""),
+            "46:16: " + getCheckMessage(MSG_VARIABLE, "a", ""),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputRequireThisRecordsWithCheckFieldsOverlap.java"),
+                expected);
+    }
+
+    @Test
     public void testLocalClassesInsideLambdas() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
