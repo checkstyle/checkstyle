@@ -283,12 +283,11 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
      * @return true if whitespace after ast should be checked
      */
     private static boolean shouldCheckWhitespaceAfter(DetailAST ast) {
-        boolean checkWhitespace = true;
         final DetailAST previousSibling = ast.getPreviousSibling();
-        if (previousSibling != null && previousSibling.getType() == TokenTypes.ANNOTATIONS) {
-            checkWhitespace = false;
-        }
-        return checkWhitespace;
+        final boolean isSynchronizedMethod = ast.getType() == TokenTypes.LITERAL_SYNCHRONIZED
+                        && ast.getFirstChild() == null;
+        return !isSynchronizedMethod
+                && (previousSibling == null || previousSibling.getType() != TokenTypes.ANNOTATIONS);
     }
 
     /**
