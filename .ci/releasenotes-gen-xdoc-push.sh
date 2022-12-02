@@ -4,6 +4,16 @@ set -e
 source ./.ci/util.sh
 checkForVariable "READ_ONLY_TOKEN"
 
+if [[ -z $1 ]]; then
+  SCRIPT=$(basename "$0")
+  echo "version is not set"
+  echo "Usage: $SCRIPT <version>"
+  exit 1
+fi
+
+TARGET_VERSION=$1
+echo TARGET_VERSION="$TARGET_VERSION"
+
 checkout_from https://github.com/checkstyle/contribution
 
 cd .ci-temp/contribution/releasenotes-builder
@@ -22,9 +32,6 @@ else
   cd ../
 fi
 
-CS_RELEASE_VERSION="$(getCheckstylePomVersion)"
-echo CS_RELEASE_VERSION="$CS_RELEASE_VERSION"
-
 cd .ci-temp/checkstyle
 LATEST_RELEASE_TAG=$(curl -s \
                        https://api.github.com/repos/checkstyle/checkstyle/releases/latest \
@@ -39,7 +46,7 @@ java -jar contribution/releasenotes-builder/target/releasenotes-builder-1.0-all.
      -localRepoPath checkstyle \
      -remoteRepoPath checkstyle/checkstyle \
      -startRef "$LATEST_RELEASE_TAG" \
-     -releaseNumber "$CS_RELEASE_VERSION" \
+     -releaseNumber "$TARGET_VERSION" \
      -githubAuthToken "$READ_ONLY_TOKEN" \
      -generateXdoc \
      -xdocTemplate $BUILDER_RESOURCE_DIR/templates/xdoc_freemarker.template
