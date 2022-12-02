@@ -106,6 +106,13 @@ public class JavadocPackageCheckTest
             getPath("annotation"
                     + File.separator + "package-info.java"), expected);
     }
+    @Test
+    public void testCheckProcessedDirectory() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+            getPath("noparentfile" + File.separator + "package-info.java"),
+            expected);
+    }
 
     /**
      * Using direct call to check here because there is no other way
