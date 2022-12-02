@@ -1818,10 +1818,6 @@
 
                 <!-- tests should be updated -->
                 <exclude>**/AbstractJavadocCheckTest.class</exclude>
-
-                <!-- tests should be updated -->
-                <exclude>**/JavadocPackageCheckTest.class</exclude>
-
               </excludes>
             </configuration>
           </execution>
