@@ -74,7 +74,9 @@
   </module>
 
   <!-- Miscellaneous -->
-  <module name="NewlineAtEndOfFile"/>
+  <module name="NewlineAtEndOfFile">
+    <property name="lineSeparator" value="system"/>
+  </module>
   <module name="Translation">
     <property name="requiredTranslations" value="de, es, fi, fr, ja, pt, ru, tr, zh"/>
   </module>
