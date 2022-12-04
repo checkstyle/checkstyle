@@ -6,7 +6,7 @@ source ./.ci/util.sh
 
 if [[ -z $1 ]]; then
   echo "version is not set"
-  echo "Usage: update-github-milestone.sh <version>"
+  echo "Usage: $BASH_SOURCE <version>"
   exit 1
 fi
 

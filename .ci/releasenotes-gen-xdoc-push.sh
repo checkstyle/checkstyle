@@ -5,9 +5,8 @@ source ./.ci/util.sh
 checkForVariable "READ_ONLY_TOKEN"
 
 if [[ -z $1 ]]; then
-  SCRIPT=$(basename "$0")
   echo "version is not set"
-  echo "Usage: $SCRIPT <version>"
+  echo "Usage: $BASH_SOURCE <version>"
   exit 1
 fi
 
