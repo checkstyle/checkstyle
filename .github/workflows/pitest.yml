@@ -5,6 +5,7 @@ on:
     branches:
       - master
   pull_request:
+    branches: '*'
 
 jobs:
   test:
@@ -39,8 +40,8 @@ jobs:
           - whitespace
           - xpath
           - java-ast-visitor
-        # GUI package needs better test coverage before adding to execution.
-        # - gui
+          # GUI package needs better test coverage before adding to execution.
+          # - gui
     runs-on: ubuntu-latest
     continue-on-error: true
     steps:

@@ -1,13 +1,13 @@
 version: 2
 updates:
-- package-ecosystem: maven
-  directory: "/"
-  schedule:
-    interval: daily
-  open-pull-requests-limit: 10
-  ignore:
-  - dependency-name: org.apache.maven.plugins:maven-release-plugin
-    versions:
-    - "> 2.1"
-  commit-message:
-    prefix: dependency
+  - package-ecosystem: maven
+    directory: "/"
+    schedule:
+      interval: daily
+    open-pull-requests-limit: 10
+    ignore:
+      - dependency-name: org.apache.maven.plugins:maven-release-plugin
+        versions:
+          - "> 2.1"
+    commit-message:
+      prefix: dependency

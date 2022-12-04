@@ -9,7 +9,7 @@
 #####################################################################################
 on:
   issue_comment:
-    types: [created, edited]
+    types: [ created, edited ]
 name: Automatic Rebase
 
 permissions:
