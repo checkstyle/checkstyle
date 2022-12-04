@@ -67,11 +67,11 @@ before_script:
 script:
   # manually set JAVA_HOME to overcome issue with travis ci noted at
   # https://github.com/checkstyle/checkstyle/pull/11699#issue-1261272652
-#  - JAVA_HOME='/usr/lib/jvm/adoptopenjdk-11-hotspot-ppc64el'
+  # - JAVA_HOME='/usr/lib/jvm/adoptopenjdk-11-hotspot-ppc64el'
   - ./.ci/travis.sh init-m2-repo
   - ./.ci/travis.sh run-command "$CMD"
-#  - ./.ci/travis.sh remove-custom-mvn
-#  - ./.ci/travis.sh remove-adoptium-jdk
+  # - ./.ci/travis.sh remove-custom-mvn
+  # - ./.ci/travis.sh remove-adoptium-jdk
   - ./.ci/validation.sh git-diff
   - ./.ci/travis.sh ci-temp-check
   - ./.ci/travis.sh quarterly-cache-cleanup

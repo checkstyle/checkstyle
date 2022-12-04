@@ -5,4 +5,4 @@
   # tag: master
   service: system
   steps:
-    -  command: ls -la
+    - command: ls -la

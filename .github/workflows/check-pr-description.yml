@@ -10,12 +10,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-    - name: Do action
-      env:
-        READ_ONLY_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
-        PULL_REQUEST: '${{ github.event.number }}'
-      run: |
-        ./.ci/pr-description.sh
+      - name: Do action
+        env:
+          READ_ONLY_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
+          PULL_REQUEST: '${{ github.event.number }}'
+        run: |
+          ./.ci/pr-description.sh

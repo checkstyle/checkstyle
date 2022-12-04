@@ -4,17 +4,17 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/java
 
 schedules:
-- cron: "1 0 * * 0"
-  displayName: Weekly weekend build
-  branches:
-    include:
-    - master
+  - cron: "1 0 * * 0"
+    displayName: Weekly weekend build
+    branches:
+      include:
+        - master
 
 trigger:
-- master
+  - master
 
 pr:
-- master
+  - master
 
 strategy:
   matrix:
@@ -130,46 +130,46 @@ variables:
   BUILD_REASON: $[variables['Build.Reason']]
 
 steps:
-- bash: |
-    apt-fast install -y xmlstarlet
-  condition: |
-      and(
-           ne(variables['Agent.OS'], 'Darwin'),
-           eq(variables.NEED_XMLSTARLET, 'true')
-         )
+  - bash: |
+      apt-fast install -y xmlstarlet
+    condition: |
+        and(
+             ne(variables['Agent.OS'], 'Darwin'),
+             eq(variables.NEED_XMLSTARLET, 'true')
+           )
 
-- bash: |
-    gem install mdl
-  condition: eq(variables.NEED_MDL, 'true')
+  - bash: |
+      gem install mdl
+    condition: eq(variables.NEED_MDL, 'true')
 
-- task: JavaToolInstaller@0
-  inputs:
-    versionSpec: 11
-    jdkArchitectureOption: 'X64'
-    jdkSourceOption: 'PreInstalled'
+  - task: JavaToolInstaller@0
+    inputs:
+      versionSpec: 11
+      jdkArchitectureOption: 'X64'
+      jdkSourceOption: 'PreInstalled'
 
-- task: Cache@2
-  inputs:
-    key: 'maven | "$(Agent.OS)" | **/pom.xml'
-    restoreKeys: |
-      maven | "$(Agent.OS)"
-      maven
-    path: $(MAVEN_CACHE_FOLDER)
-  displayName: Cache Maven local repo
-  condition: ne(variables.SKIP_CACHE, 'true')
+  - task: Cache@2
+    inputs:
+      key: 'maven | "$(Agent.OS)" | **/pom.xml'
+      restoreKeys: |
+        maven | "$(Agent.OS)"
+        maven
+      path: $(MAVEN_CACHE_FOLDER)
+    displayName: Cache Maven local repo
+    condition: ne(variables.SKIP_CACHE, 'true')
 
-- bash: |
-    set -e
-    echo "ON_CRON_ONLY:"$ON_CRON_ONLY
-    echo "BUILD_REASON:"$BUILD_REASON
-    echo "cmd: "$(cmd)
-    eval "$(cmd)"
-    ./.ci/validation.sh git-diff
-  condition: |
-      or (
-          ne(variables.ON_CRON_ONLY, 'true'),
-          and(
-               eq(variables.ON_CRON_ONLY, 'true'),
-               eq(variables['Build.Reason'], 'Schedule')
-             )
-         )
+  - bash: |
+      set -e
+      echo "ON_CRON_ONLY:"$ON_CRON_ONLY
+      echo "BUILD_REASON:"$BUILD_REASON
+      echo "cmd: "$(cmd)
+      eval "$(cmd)"
+      ./.ci/validation.sh git-diff
+    condition: |
+        or (
+            ne(variables.ON_CRON_ONLY, 'true'),
+            and(
+                 eq(variables.ON_CRON_ONLY, 'true'),
+                 eq(variables['Build.Reason'], 'Schedule')
+               )
+           )
