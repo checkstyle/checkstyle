@@ -4,7 +4,7 @@ set -e
 
 if [[ -z $1 ]]; then
   echo "version is not set"
-  echo "Usage: maven-prepare.sh <version>"
+  echo "Usage: $(basename "$0") <version>"
   exit 1
 fi
 

@@ -5,7 +5,7 @@ source ./.ci/util.sh
 
 if [[ -z $1 ]]; then
   echo "release number is not set"
-  echo "usage: .ci/update-github-page.sh {release number}"
+  echo "usage: $(basename "$0") {release number}"
   exit 1
 fi
 TARGET_VERSION=$1
