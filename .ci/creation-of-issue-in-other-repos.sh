@@ -8,7 +8,7 @@ checkForVariable "GITHUB_TOKEN"
 
 if [[ -z $1 ]]; then
   echo "version is not set"
-  echo "Usage: creation-of-issue-in-other-repos.sh <version>"
+  echo "Usage: $(basename "$0") <version>"
   exit 1
 fi
 

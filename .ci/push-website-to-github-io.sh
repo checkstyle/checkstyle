@@ -5,7 +5,7 @@ source ./.ci/util.sh
 
 if [[ -z $1 ]]; then
   echo "version is not set"
-  echo "Usage: push-website-to-github-io.sh <version>"
+  echo "Usage: $(basename "$0") <version>"
   exit 1
 fi
 
