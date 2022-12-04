@@ -87,6 +87,21 @@ jobs:
             export SONAR_API_TOKEN=$SONAR_TOKEN
             ./.ci/validation.sh sonarqube
 
+  yamllint:
+    docker:
+      - image: cimg/base:2022.11
+
+    steps:
+      - checkout
+      - run:
+          name: Install dependencies
+          command: |
+            sudo apt update
+            sudo apt install -y yamllint
+      - run:
+          name: Run yamllint
+          command: yamllint -f parsable -c config/yamllint.yaml .
+
 workflows:
   sonarqube:
     jobs:
@@ -218,6 +233,7 @@ workflows:
       - validate-with-script:
           name: "checkchmod"
           command: "./.ci/checkchmod.sh"
+      - yamllint
 
   javac-validation:
     jobs:
