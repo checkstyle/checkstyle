@@ -48,10 +48,10 @@ fi
 echo "Checking results ..."
 PROBLEM_COUNT=$(grep -R "<problems" "$RESULTS_DIR"/ | cat | wc -l )
 
-if [[ $PROBLEM_COUNT > 0 ]] && [[ "$CIRCLECI" == "true" ]]; then
+if [[ $PROBLEM_COUNT -gt 0 ]] && [[ "$CIRCLECI" == "true" ]]; then
     echo "There are inspection problems. Review results in 'ARTIFACTS' tab above."
     exit 1;
-elif [[ $PROBLEM_COUNT > 0 ]]; then
+elif [[ $PROBLEM_COUNT -gt 0 ]]; then
     echo "There are inspection problems. Review results at $RESULTS_DIR folder. Files:"
     grep -Rl "<problems" "$RESULTS_DIR"/
     exit 1;
