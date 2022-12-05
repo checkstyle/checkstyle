@@ -69,7 +69,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/Checker.java</fileName>
     <specifier>initialization.fields.uninitialized</specifier>
-    <message>the constructor does not initialize fields: basedir, moduleFactory, moduleClassLoader, childContext, cacheFile</message>
+    <message>the constructor does not initialize fields: basedir, locale, moduleFactory, moduleClassLoader, childContext, cacheFile</message>
     <lineContent>public Checker() {</lineContent>
   </checkerFrameworkError>
 
@@ -164,6 +164,13 @@
       type of expression: @Initialized @Nullable Object
       method return type: @Initialized @NonNull Object
     </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/DefaultLogger.java</fileName>
+    <specifier>initialization.fields.uninitialized</specifier>
+    <message>the constructor does not initialize fields: locale</message>
+    <lineContent>public DefaultLogger(OutputStream infoStream,</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -685,14 +692,14 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/PackageObjectFactory.java</fileName>
     <specifier>initialization.fields.uninitialized</specifier>
     <message>the constructor does not initialize fields: thirdPartyNameToFullModuleNames</message>
-    <lineContent>public PackageObjectFactory(Set&lt;String&gt; packageNames, ClassLoader moduleClassLoader,</lineContent>
+    <lineContent>public PackageObjectFactory(Locale locale, Set&lt;String&gt; packageNames,</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/PackageObjectFactory.java</fileName>
     <specifier>initialization.fields.uninitialized</specifier>
     <message>the constructor does not initialize fields: thirdPartyNameToFullModuleNames, moduleLoadOption</message>
-    <lineContent>public PackageObjectFactory(String packageName, ClassLoader moduleClassLoader) {</lineContent>
+    <lineContent>public PackageObjectFactory(Locale locale, String packageName, ClassLoader moduleClassLoader) {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -1088,6 +1095,13 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/AbstractCheck.java</fileName>
+    <specifier>initialization.field.uninitialized</specifier>
+    <message>the default constructor does not initialize field locale</message>
+    <lineContent>private Locale locale;</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/AbstractCheck.java</fileName>
     <specifier>type.argument</specifier>
     <message>incompatible type argument for type parameter T of ThreadLocal.</message>
     <lineContent>private final ThreadLocal&lt;FileContext&gt; context = ThreadLocal.withInitial(FileContext::new);</lineContent>
@@ -1131,6 +1145,13 @@
     <specifier>initialization.field.uninitialized</specifier>
     <message>the default constructor does not initialize field fileExtensions</message>
     <lineContent>private String[] fileExtensions;</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/AbstractFileSetCheck.java</fileName>
+    <specifier>initialization.field.uninitialized</specifier>
+    <message>the default constructor does not initialize field locale</message>
+    <lineContent>private Locale locale;</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">

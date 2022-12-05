@@ -136,7 +136,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final File tempFile = File.createTempFile("junit", null, temporaryFolder);
         checker.process(Collections.singletonList(tempFile));
         final SortedSet<Violation> violations = new TreeSet<>();
-        violations.add(new Violation(1, 0, "a Bundle", "message.key",
+        violations.add(new Violation(1, 0, Locale.getDefault(), "a Bundle", "message.key",
                 new Object[] {"arg"}, null, getClass(), null));
         checker.fireErrors("Some File Name", violations);
 
@@ -200,7 +200,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
         auditAdapter.resetListener();
         final SortedSet<Violation> violations = new TreeSet<>();
-        violations.add(new Violation(1, 0, "a Bundle", "message.key",
+        violations.add(new Violation(1, 0, Locale.getDefault(), "a Bundle", "message.key",
                 new Object[] {"arg"}, null, getClass(), null));
         checker.fireErrors("Some File Name", violations);
         assertWithMessage("Checker.fireErrors() doesn't call listener")
@@ -260,7 +260,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
         aa2.resetListener();
         final SortedSet<Violation> violations = new TreeSet<>();
-        violations.add(new Violation(1, 0, "a Bundle", "message.key",
+        violations.add(new Violation(1, 0, Locale.getDefault(), "a Bundle", "message.key",
                 new Object[] {"arg"}, null, getClass(), null));
         checker.fireErrors("Some File Name", violations);
         assertWithMessage("Checker.fireErrors() doesn't call listener")
@@ -279,6 +279,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final TestBeforeExecutionFileFilter filter = new TestBeforeExecutionFileFilter();
 
         checker.addBeforeExecutionFileFilter(filter);
+        checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
+        checker.finishLocalSetup();
 
         filter.resetFilter();
         checker.process(Collections.singletonList(new File("dummy.java")));
@@ -294,6 +296,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checker.finishLocalSetup();
         final TestBeforeExecutionFileFilter filter = new TestBeforeExecutionFileFilter();
         final TestBeforeExecutionFileFilter f2 = new TestBeforeExecutionFileFilter();
+        checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
+        checker.finishLocalSetup();
         checker.addBeforeExecutionFileFilter(filter);
         checker.addBeforeExecutionFileFilter(f2);
         checker.removeBeforeExecutionFileFilter(filter);
@@ -318,7 +322,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
         filter.resetFilter();
         final SortedSet<Violation> violations = new TreeSet<>();
-        violations.add(new Violation(1, 0, "a Bundle", "message.key",
+        violations.add(new Violation(1, 0, Locale.getDefault(), "a Bundle", "message.key",
                 new Object[] {"arg"}, null, getClass(), null));
         checker.fireErrors("Some File Name", violations);
         assertWithMessage("Checker.fireErrors() doesn't call filter")
@@ -339,7 +343,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
         f2.resetFilter();
         final SortedSet<Violation> violations = new TreeSet<>();
-        violations.add(new Violation(1, 0, "a Bundle", "message.key",
+        violations.add(new Violation(1, 0, Locale.getDefault(), "a Bundle", "message.key",
                 new Object[] {"arg"}, null, getClass(), null));
         checker.fireErrors("Some File Name", violations);
         assertWithMessage("Checker.fireErrors() doesn't call filter")
@@ -433,7 +437,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checker.setBasedir("some");
         checker.setSeverity("ignore");
 
-        final PackageObjectFactory factory = new PackageObjectFactory(
+        final PackageObjectFactory factory = new PackageObjectFactory(Locale.getDefault(),
             new HashSet<>(), Thread.currentThread().getContextClassLoader());
         checker.setModuleFactory(factory);
 
@@ -486,7 +490,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final Checker checker = new Checker();
         final ClassLoader contextClassLoader = Thread.currentThread().getContextClassLoader();
         checker.setModuleClassLoader(contextClassLoader);
-        final PackageObjectFactory factory = new PackageObjectFactory(
+        final PackageObjectFactory factory = new PackageObjectFactory(Locale.getDefault(),
             new HashSet<>(), contextClassLoader);
         checker.setModuleFactory(factory);
         checker.setBasedir("testBaseDir");
@@ -506,9 +510,9 @@ public class CheckerTest extends AbstractModuleTestSupport {
             .that(context.get("basedir"))
             .isEqualTo("testBaseDir");
 
-        final Field sLocale = LocalizedMessage.class.getDeclaredField("sLocale");
+        final Field sLocale = Checker.class.getDeclaredField("locale");
         sLocale.setAccessible(true);
-        final Locale locale = (Locale) sLocale.get(null);
+        final Locale locale = (Locale) sLocale.get(checker);
         assertWithMessage("Locale is set to unexpected value")
             .that(locale)
             .isEqualTo(Locale.ITALY);
@@ -517,7 +521,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
     @Test
     public void testSetupChildExceptions() throws CheckstyleException {
         final Checker checker = new Checker();
-        final PackageObjectFactory factory = new PackageObjectFactory(
+        final PackageObjectFactory factory = new PackageObjectFactory(Locale.getDefault(),
             new HashSet<>(), Thread.currentThread().getContextClassLoader());
         checker.setModuleFactory(factory);
         checker.finishLocalSetup();
@@ -557,7 +561,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
     @Test
     public void testSetupChildListener() throws Exception {
         final Checker checker = new Checker();
-        final PackageObjectFactory factory = new PackageObjectFactory(
+        final PackageObjectFactory factory = new PackageObjectFactory(Locale.getDefault(),
             new HashSet<>(), Thread.currentThread().getContextClassLoader());
         checker.setModuleFactory(factory);
         checker.finishLocalSetup();
@@ -575,7 +579,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
     @Test
     public void testDestroyCheckerWithWrongCacheFileNameLength() throws Exception {
         final Checker checker = new Checker();
-        final PackageObjectFactory factory = new PackageObjectFactory(
+        final PackageObjectFactory factory = new PackageObjectFactory(Locale.getDefault(),
             new HashSet<>(), Thread.currentThread().getContextClassLoader());
         checker.setModuleFactory(factory);
         checker.configure(new DefaultConfiguration("default config"));
@@ -638,7 +642,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
     @Test
     public void testWithCacheWithNoViolation() throws Exception {
         final Checker checker = new Checker();
-        final PackageObjectFactory factory = new PackageObjectFactory(
+        final PackageObjectFactory factory = new PackageObjectFactory(Locale.getDefault(),
             new HashSet<>(), Thread.currentThread().getContextClassLoader());
         checker.setModuleFactory(factory);
         checker.configure(createModuleConfig(TranslationCheck.class));
@@ -1485,7 +1489,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
     public void testAddAuditListenerAsChild() throws Exception {
         final Checker checker = new Checker();
         final DebugAuditAdapter auditAdapter = new DebugAuditAdapter();
-        final PackageObjectFactory factory = new PackageObjectFactory(
+        final PackageObjectFactory factory = new PackageObjectFactory(Locale.getDefault(),
                 new HashSet<>(), Thread.currentThread().getContextClassLoader()) {
             @Override
             public Object createModule(String name) throws CheckstyleException {
@@ -1510,7 +1514,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
     public void testAddBeforeExecutionFileFilterAsChild() throws Exception {
         final Checker checker = new Checker();
         final TestBeforeExecutionFileFilter fileFilter = new TestBeforeExecutionFileFilter();
-        final PackageObjectFactory factory = new PackageObjectFactory(
+        final PackageObjectFactory factory = new PackageObjectFactory(Locale.getDefault(),
                 new HashSet<>(), Thread.currentThread().getContextClassLoader()) {
             @Override
             public Object createModule(String name) throws CheckstyleException {
@@ -1534,7 +1538,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
     public void testFileSetCheckInitWhenAddedAsChild() throws Exception {
         final Checker checker = new Checker();
         final DummyFileSet fileSet = new DummyFileSet();
-        final PackageObjectFactory factory = new PackageObjectFactory(
+        final PackageObjectFactory factory = new PackageObjectFactory(Locale.getDefault(),
                 new HashSet<>(), Thread.currentThread().getContextClassLoader()) {
             @Override
             public Object createModule(String name) throws CheckstyleException {

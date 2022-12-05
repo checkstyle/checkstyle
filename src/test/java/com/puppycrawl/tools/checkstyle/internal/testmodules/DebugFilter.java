@@ -20,9 +20,11 @@
 package com.puppycrawl.tools.checkstyle.internal.testmodules;
 
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
+import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Filter;
 
-public final class DebugFilter implements Filter {
+public final class DebugFilter extends AutomaticBean implements Filter {
 
     private boolean called;
 
@@ -38,6 +40,11 @@ public final class DebugFilter implements Filter {
 
     public void resetFilter() {
         called = false;
+    }
+
+    @Override
+    protected void finishLocalSetup() throws CheckstyleException {
+        // no code
     }
 
 }

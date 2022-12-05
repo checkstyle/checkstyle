@@ -31,7 +31,6 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.junitpioneer.jupiter.DefaultLocale;
 
@@ -48,18 +47,17 @@ import com.puppycrawl.tools.checkstyle.LocalizedMessage.Utf8Control;
  */
 public class LocalizedMessageTest {
 
-    private static final Locale DEFAULT_LOCALE = Locale.getDefault();
-
     @Test
     public void testNullArgs() {
-        final LocalizedMessage messageClass = new LocalizedMessage(Definitions.CHECKSTYLE_BUNDLE,
-                DefaultLogger.class, "DefaultLogger.addException", "myfile");
+        final LocalizedMessage messageClass = new LocalizedMessage(Locale.getDefault(),
+                Definitions.CHECKSTYLE_BUNDLE, DefaultLogger.class, "DefaultLogger.addException",
+                "myfile");
         assertWithMessage("Violation should contain exception info")
                 .that(messageClass.getMessage())
                 .contains("Error auditing myfile");
 
-        final LocalizedMessage nullClass = new LocalizedMessage(Definitions.CHECKSTYLE_BUNDLE,
-                DefaultLogger.class, "DefaultLogger.addException");
+        final LocalizedMessage nullClass = new LocalizedMessage(Locale.getDefault(),
+                Definitions.CHECKSTYLE_BUNDLE, DefaultLogger.class, "DefaultLogger.addException");
         final String outputForNullArgs = nullClass.getMessage();
         assertWithMessage("Violation should contain exception info")
                 .that(outputForNullArgs)
@@ -216,7 +214,7 @@ public class LocalizedMessageTest {
      */
     @Test
     public void testLanguageIsValid() {
-        final String language = DEFAULT_LOCALE.getLanguage();
+        final String language = Locale.getDefault().getLanguage();
         assumeFalse(language.isEmpty(), "Locale not set");
         assertWithMessage("Invalid language")
                 .that(Locale.getISOLanguages())
@@ -229,7 +227,7 @@ public class LocalizedMessageTest {
      */
     @Test
     public void testCountryIsValid() {
-        final String country = DEFAULT_LOCALE.getCountry();
+        final String country = Locale.getDefault().getCountry();
         assumeFalse(country.isEmpty(), "Locale not set");
         assertWithMessage("Invalid country")
                 .that(Locale.getISOCountries())
@@ -239,8 +237,7 @@ public class LocalizedMessageTest {
 
     @Test
     public void testMessageInFrench() {
-        final LocalizedMessage violation = createSampleViolation();
-        LocalizedMessage.setLocale(Locale.FRENCH);
+        final LocalizedMessage violation = createSampleViolation(Locale.FRENCH);
 
         assertWithMessage("Invalid violation")
             .that(violation.getMessage())
@@ -249,34 +246,18 @@ public class LocalizedMessageTest {
 
     @DefaultLocale("fr")
     @Test
-    public void testEnforceEnglishLanguageBySettingUnitedStatesLocale() {
-        LocalizedMessage.setLocale(Locale.US);
-        final LocalizedMessage violation = createSampleViolation();
-
-        assertWithMessage("Invalid violation")
-            .that(violation.getMessage())
-            .isEqualTo("Empty statement.");
-    }
-
-    @DefaultLocale("fr")
-    @Test
     public void testEnforceEnglishLanguageBySettingRootLocale() {
-        LocalizedMessage.setLocale(Locale.ROOT);
-        final LocalizedMessage violation = createSampleViolation();
+        final LocalizedMessage violation = createSampleViolation(Locale.ROOT);
 
         assertWithMessage("Invalid violation")
             .that(violation.getMessage())
             .isEqualTo("Empty statement.");
     }
 
-    private static LocalizedMessage createSampleViolation() {
-        return new LocalizedMessage("com.puppycrawl.tools.checkstyle.checks.coding.messages",
-                LocalizedMessage.class, "empty.statement");
-    }
-
-    @AfterEach
-    public void tearDown() {
-        LocalizedMessage.setLocale(DEFAULT_LOCALE);
+    private static LocalizedMessage createSampleViolation(Locale locale) {
+        return new LocalizedMessage(locale,
+                "com.puppycrawl.tools.checkstyle.checks.coding.messages", LocalizedMessage.class,
+                "empty.statement");
     }
 
     /**

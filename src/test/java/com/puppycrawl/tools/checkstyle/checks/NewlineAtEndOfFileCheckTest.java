@@ -30,6 +30,7 @@ import java.io.RandomAccessFile;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
@@ -181,6 +182,7 @@ public class NewlineAtEndOfFileCheckTest
         final DefaultConfiguration checkConfig = createModuleConfig(NewlineAtEndOfFileCheck.class);
         final NewlineAtEndOfFileCheck check = new NewlineAtEndOfFileCheck();
         check.configure(checkConfig);
+        check.setLocale(Locale.getDefault());
         final List<String> lines = new ArrayList<>(1);
         lines.add("txt");
         final File impossibleFile = new File("");
