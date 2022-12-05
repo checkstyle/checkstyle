@@ -8,18 +8,15 @@ cache:
   directories:
     - ~/.m2
 
-addons:
-  apt:
-    packages:
-      - groovy
-      - xsltproc
-      - xmlstarlet
-
 branches:
   only:
     - master
 
+before_install:
+  - sudo apt update
+
 install:
+  - sudo apt install -y groovy xsltproc xmlstarlet
   - ./.ci/travis.sh install-adoptium-jdk
   - ./.ci/travis.sh install-custom-mvn
 
