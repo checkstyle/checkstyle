@@ -66,6 +66,10 @@ import com.puppycrawl.tools.checkstyle.api.SeverityLevelCounter;
  */
 public class CheckstyleAntTask extends Task {
 
+    /** Text for exception message. */
+    private static final String EXCEPTION_MSG =
+        "Unable to create Root Module: config {%s}, classpath {%s}.";
+
     /** Poor man's enum for an xml formatter. */
     private static final String E_XML = "xml";
     /** Poor man's enum for a plain formatter. */
@@ -304,6 +308,10 @@ public class CheckstyleAntTask extends Task {
             }
             realExecute(version);
         }
+        catch (final CheckstyleException ex) {
+            throw new BuildException(String.format(Locale.ROOT, EXCEPTION_MSG, config, classpath),
+                    ex);
+        }
         finally {
             final long endTime = System.currentTimeMillis();
             log("Total execution took " + (endTime - startTime) + TIME_SUFFIX,
@@ -315,8 +323,9 @@ public class CheckstyleAntTask extends Task {
      * Helper implementation to perform execution.
      *
      * @param checkstyleVersion Checkstyle compile version.
+     * @throws CheckstyleException if there is an error.
      */
-    private void realExecute(String checkstyleVersion) {
+    private void realExecute(String checkstyleVersion) throws CheckstyleException {
         // Create the root module
         RootModule rootModule = null;
         try {
@@ -419,7 +428,7 @@ public class CheckstyleAntTask extends Task {
             final ClassLoader moduleClassLoader =
                 Checker.class.getClassLoader();
 
-            final ModuleFactory factory = new PackageObjectFactory(
+            final ModuleFactory factory = new PackageObjectFactory(Locale.getDefault(),
                     Checker.class.getPackage().getName() + ".", moduleClassLoader);
 
             rootModule = (RootModule) factory.createModule(configuration.getName());
@@ -427,8 +436,8 @@ public class CheckstyleAntTask extends Task {
             rootModule.configure(configuration);
         }
         catch (final CheckstyleException ex) {
-            throw new BuildException(String.format(Locale.ROOT, "Unable to create Root Module: "
-                    + "config {%s}, classpath {%s}.", config, classpath), ex);
+            throw new BuildException(String.format(Locale.ROOT, EXCEPTION_MSG, config, classpath),
+                    ex);
         }
         return rootModule;
     }
