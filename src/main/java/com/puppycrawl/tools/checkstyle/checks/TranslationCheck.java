@@ -319,7 +319,7 @@ public class TranslationCheck extends AbstractFileSetCheck {
     private void validateUserSpecifiedLanguageCodes(Set<String> languageCodes) {
         for (String code : languageCodes) {
             if (!isValidLanguageCode(code)) {
-                final LocalizedMessage msg = new LocalizedMessage(TRANSLATION_BUNDLE,
+                final LocalizedMessage msg = new LocalizedMessage(getLocale(), TRANSLATION_BUNDLE,
                         getClass(), WRONG_LANGUAGE_CODE_KEY, code);
                 throw new IllegalArgumentException(msg.getMessage());
             }
@@ -627,6 +627,7 @@ public class TranslationCheck extends AbstractFileSetCheck {
         final Violation message =
             new Violation(
                 0,
+                getLocale(),
                 Definitions.CHECKSTYLE_BUNDLE,
                 key,
                 args,

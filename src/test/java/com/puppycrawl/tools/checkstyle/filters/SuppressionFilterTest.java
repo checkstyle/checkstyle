@@ -27,6 +27,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Locale;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
@@ -68,7 +69,7 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
         final boolean optional = false;
         final SuppressionFilter filter = createSuppressionFilter(fileName, optional);
 
-        final Violation message = new Violation(1, 1, null, "msg", null,
+        final Violation message = new Violation(1, 1, Locale.getDefault(), null, "msg", null,
                 SeverityLevel.ERROR, null, getClass(), null);
         final AuditEvent ev = new AuditEvent(this, "ATest.java", message);
 

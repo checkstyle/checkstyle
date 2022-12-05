@@ -26,6 +26,7 @@ import java.io.File;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 
 import org.junit.jupiter.api.Test;
 
@@ -479,7 +480,8 @@ public class SuppressWithNearbyCommentFilterTest
         final SuppressWithNearbyCommentFilter filter = new SuppressWithNearbyCommentFilter();
         final FileContents contents = null;
         final TreeWalkerAuditEvent auditEvent = new TreeWalkerAuditEvent(contents, null,
-                new Violation(1, null, null, null, null, Object.class, null), null);
+                new Violation(1, Locale.getDefault(), null, null, null, null, Object.class, null),
+                null);
         assertWithMessage("Filter should accept audit event")
                 .that(filter.accept(auditEvent))
                 .isTrue();
@@ -775,7 +777,8 @@ public class SuppressWithNearbyCommentFilterTest
                 new FileText(new File(filename), Arrays.asList(lines)));
         contents.reportSingleLineComment(1, 0);
         final TreeWalkerAuditEvent dummyEvent = new TreeWalkerAuditEvent(contents, filename,
-                new Violation(1, null, null, null, null, Object.class, null), null);
+                new Violation(1, Locale.getDefault(), null, null, null, null, Object.class, null),
+                null);
         filter.accept(dummyEvent);
         return TestUtil.getInternalState(filter, "tags");
     }
