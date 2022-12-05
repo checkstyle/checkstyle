@@ -467,4 +467,17 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
                 expected);
     }
 
+    @Test
+    public void testInputAbbreviationAsWordInNameTypeWithUnderScore() throws Exception {
+        final String[] expected = {
+            "13:17: " + getWarningMessage("HBCK_LOCK_PATH", 4),
+            "16:15: " + getWarningMessage("BOOL_VALS", 4),
+            "24:10: " + getWarningMessage("getNONE_Test", 4),
+            "42:13: " + getWarningMessage("LINE_SEP", 4),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputAbbreviationAsWordInNameType7.java"), expected);
+    }
+
 }
