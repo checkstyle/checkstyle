@@ -7,7 +7,6 @@ disable=SC2035 # (info): Use ./glob or -- glob so names with dashes won't become
 disable=SC2016 # (info): Expressions don't expand in single quotes, use double quotes for that.
 disable=SC2185 # (info): Some finds don't have a default path. Specify '.' explicitly.
 disable=SC2155 # (warning): Declare and assign separately to avoid masking return values.
-disable=SC2071 # (error): > is for string comparisons. Use -gt instead.
 disable=SC2034 # (warning): RUN_JOB appears unused. Verify use (or export if used externally).
 disable=SC2216 # (warning): Piping to 'true', a command that doesn't read stdin.
 disable=SC2013 # (info): To read lines rather than words, pipe/redirect to a 'while read' loop.
