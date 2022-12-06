@@ -10,6 +10,55 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 10.5.1">
+      <div class="releaseDate">06.12.2022</div>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            Null pointer exception with records in RequireThisCheck.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/11807">#11807</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Use Shellcheck to resolve violations code in Shell Script.
+            Author: Arin Modi
+            <a href="https://github.com/checkstyle/checkstyle/issues/11637">#11637</a>
+          </li>
+          <li>
+            All scripts that print example of execution should not have hardcoded name in message .
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/12496">#12496</a>
+          </li>
+          <li>
+            &#39;R: Push Release Notes&#39; makes xml section version as snapshot .
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/12488">#12488</a>
+          </li>
+          <li>
+            &#39;R: Push Release Notes&#39; failing on push.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/12479">#12479</a>
+          </li>
+          <li>
+            Remove &#39;releasenotes.xml after commit:&#39;.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/12468">#12468</a>
+          </li>
+          <li>
+            &#39;R: Push Release Notes&#39; failing.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/12464">#12464</a>
+          </li>
+          <li>
+            Create CI task to enforce &#39;.ci&#39; directory contains only script files.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/12463">#12463</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 10.5.0">
       <div class="releaseDate">27.11.2022</div>
       <p>New:</p>
