@@ -14,7 +14,9 @@
              value="config/checkstyle_non_main_files_suppressions.xml"/>
   </module>
   <!-- Miscellaneous -->
-  <module name="NewlineAtEndOfFile" />
+  <module name="NewlineAtEndOfFile">
+    <property name="lineSeparator" value="lf"/>
+  </module>
 
   <module name="RegexpOnFilename">
     <property name="id" value="executablesLocation"/>
