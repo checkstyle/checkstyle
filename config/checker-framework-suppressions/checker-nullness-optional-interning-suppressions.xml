@@ -74,17 +74,6 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/Checker.java</fileName>
-    <specifier>method.invocation</specifier>
-    <message>call to addListener(com.puppycrawl.tools.checkstyle.api.AuditListener) not allowed on the given receiver.</message>
-    <lineContent>addListener(counter);</lineContent>
-    <details>
-      found   : @UnderInitialization(com.puppycrawl.tools.checkstyle.api.AutomaticBean.class) @NonNull Checker
-      required: @Initialized @NonNull Checker
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/ConfigurationLoader.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter arg0 of add.</message>
