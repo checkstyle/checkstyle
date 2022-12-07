@@ -36,7 +36,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * {@code allowLineBreaks} to {@code false}.
  * </p>
  * <p>
- * The check processes
+ * Note: This check processes
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ARRAY_DECLARATOR">
  * ARRAY_DECLARATOR</a> and
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INDEX_OP">
@@ -47,10 +47,11 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ARRAY_DECLARATOR">
  * ARRAY_DECLARATOR</a> and
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INDEX_OP">
- * INDEX_OP</a> will be ignored.
+ * INDEX_OP</a> will be ignored. If the annotation is between the type and the array, the check will skip
+ * validation for spaces.
  * </p>
  * <p>
- * If the annotation is between the type and the array, the check will skip validation for spaces
+ * Example:
  * </p>
  * <pre>
  * public void foo(final char @NotNull [] param) {} // No violation

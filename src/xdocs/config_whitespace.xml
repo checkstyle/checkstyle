@@ -1329,7 +1329,7 @@ import static java.math.BigInteger.ZERO;
           false</code>.
         </p>
         <p>
-          The check processes
+          Note: This check processes
           <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ARRAY_DECLARATOR">
               ARRAY_DECLARATOR</a>
           and
@@ -1344,11 +1344,11 @@ import static java.math.BigInteger.ZERO;
           and
           <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INDEX_OP">
                 INDEX_OP</a>
-          will be ignored.
+          will be ignored. If the annotation is between the type and the array, the check will
+          skip validation for spaces.
         </p>
         <p>
-         If the annotation is between the type and the array, the check will skip validation for
-         spaces
+          Example:
         </p>
         <source>
 public void foo(final char @NotNull [] param) {} // No violation
