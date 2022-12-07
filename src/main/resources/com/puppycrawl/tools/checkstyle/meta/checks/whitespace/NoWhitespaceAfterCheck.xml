@@ -30,6 +30,24 @@
  &lt;/p&gt;
  &lt;pre&gt;
  public void foo(final char @NotNull [] param) {} // No violation
+ &lt;/pre&gt;
+ &lt;p&gt;
+ This check processes the
+ &lt;a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_SYNCHRONIZED"&gt;
+ LITERAL_SYNCHRONIZED&lt;/a&gt; token only when it appears as a part of a
+ &lt;a href="https://docs.oracle.com/javase/specs/jls/se19/html/jls-14.html#jls-14.19"&gt;
+ synchronized statement&lt;/a&gt;.
+ &lt;/p&gt;
+ &lt;p&gt;
+ Example:
+ &lt;/p&gt;
+ &lt;pre&gt;
+ void m1() {
+     synchronized(this) {} // ok
+     synchronized (this) {} // violation
+ }
+ synchronized &amp;lt;T&amp;gt; void m2() {} // ok
+ synchronized&amp;lt;T&amp;gt; void m3() {} // ok
  &lt;/pre&gt;</description>
          <properties>
             <property default-value="true" name="allowLineBreaks" type="boolean">

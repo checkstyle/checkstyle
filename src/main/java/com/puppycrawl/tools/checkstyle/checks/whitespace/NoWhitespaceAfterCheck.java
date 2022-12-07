@@ -36,7 +36,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * {@code allowLineBreaks} to {@code false}.
  * </p>
  * <p>
- * The check processes
+ * Note: This check processes
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ARRAY_DECLARATOR">
  * ARRAY_DECLARATOR</a> and
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INDEX_OP">
@@ -47,13 +47,32 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ARRAY_DECLARATOR">
  * ARRAY_DECLARATOR</a> and
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INDEX_OP">
- * INDEX_OP</a> will be ignored.
+ * INDEX_OP</a> will be ignored. If the annotation is between the type and the array, the check will skip
+ * validation for spaces.
  * </p>
  * <p>
- * If the annotation is between the type and the array, the check will skip validation for spaces
+ * Example:
  * </p>
  * <pre>
  * public void foo(final char @NotNull [] param) {} // No violation
+ * </pre>
+ * <p>
+ * Note: This check processes the
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_SYNCHRONIZED">
+ * LITERAL_SYNCHRONIZED</a> token only when it appears as a part of a
+ * <a href="https://docs.oracle.com/javase/specs/jls/se19/html/jls-14.html#jls-14.19">
+ * synchronized statement</a>.
+ * </p>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * void m1() {
+ *     synchronized(this) {} // ok
+ *     synchronized (this) {} // violation
+ * }
+ * synchronized &lt;T&gt; void m2() {} // ok
+ * synchronized&lt;T&gt; void m3() {} // ok
  * </pre>
  * <ul>
  * <li>
@@ -283,12 +302,11 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
      * @return true if whitespace after ast should be checked
      */
     private static boolean shouldCheckWhitespaceAfter(DetailAST ast) {
-        boolean checkWhitespace = true;
         final DetailAST previousSibling = ast.getPreviousSibling();
-        if (previousSibling != null && previousSibling.getType() == TokenTypes.ANNOTATIONS) {
-            checkWhitespace = false;
-        }
-        return checkWhitespace;
+        final boolean isSynchronizedMethod = ast.getType() == TokenTypes.LITERAL_SYNCHRONIZED
+                        && ast.getFirstChild() == null;
+        return !isSynchronizedMethod
+                && (previousSibling == null || previousSibling.getType() != TokenTypes.ANNOTATIONS);
     }
 
     /**
