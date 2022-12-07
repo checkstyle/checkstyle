@@ -21,8 +21,10 @@ package com.puppycrawl.tools.checkstyle.internal.testmodules;
 
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
+import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 
-public final class DebugAuditAdapter implements AuditListener {
+public final class DebugAuditAdapter extends AutomaticBean implements AuditListener {
 
     /** Keeps track whether this {@code AuditListener} was called. */
     private boolean called;
@@ -55,6 +57,11 @@ public final class DebugAuditAdapter implements AuditListener {
     public void resetListener() {
         called = false;
         passedEvent = false;
+    }
+
+    @Override
+    protected void finishLocalSetup() throws CheckstyleException {
+        // no code
     }
 
     @Override
