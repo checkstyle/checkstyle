@@ -28,13 +28,14 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.api.TreeStringPrinter;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * Class for printing AST to String.
  */
-public final class AstTreeStringPrinter {
+public final class AstTreeStringPrinter implements TreeStringPrinter {
 
     /** Newline pattern. */
     private static final Pattern NEWLINE = Pattern.compile("\n");
@@ -46,9 +47,9 @@ public final class AstTreeStringPrinter {
     /** OS specific line separator. */
     private static final String LINE_SEPARATOR = System.lineSeparator();
 
-    /** Prevent instances. */
-    private AstTreeStringPrinter() {
-        // no code
+    @Override
+    public String printFileAst(File file) throws IOException, CheckstyleException {
+        return printFileAst(file, JavaParser.Options.WITHOUT_COMMENTS);
     }
 
     /**

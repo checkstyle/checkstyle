@@ -29,20 +29,21 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
+import com.puppycrawl.tools.checkstyle.api.TreeStringPrinter;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 import com.puppycrawl.tools.checkstyle.utils.ParserUtil;
 
 /**
  * Parses file as javadoc DetailNode tree and prints to system output stream.
  */
-public final class DetailNodeTreeStringPrinter {
+public final class DetailNodeTreeStringPrinter implements TreeStringPrinter {
 
     /** OS specific line separator. */
     private static final String LINE_SEPARATOR = System.getProperty("line.separator");
 
-    /** Prevent instances. */
-    private DetailNodeTreeStringPrinter() {
-        // no code
+    @Override
+    public String printFileAst(File file) throws IOException {
+        return printFileAstEx(file);
     }
 
     /**
@@ -52,7 +53,7 @@ public final class DetailNodeTreeStringPrinter {
      * @return parse tree as a string
      * @throws IOException if the file could not be read.
      */
-    public static String printFileAst(File file) throws IOException {
+    public static String printFileAstEx(File file) throws IOException {
         return printTree(parseFile(file), "", "");
     }
 

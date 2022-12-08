@@ -357,7 +357,9 @@
       <!-- Till https://github.com/checkstyle/checkstyle/issues/10064 -->
       <property name="violationSuppressXPath"
                 value="//ClassOrInterfaceDeclaration[@SimpleName='XdocsPagesTest']
-                    //MethodDeclaration[@Name='getModulePropertyExpectedValue']"/>
+                    //MethodDeclaration[@Name='getModulePropertyExpectedValue']
+                  | //ClassOrInterfaceDeclaration[@SimpleName='Main']
+                    //MethodDeclaration[@Name='runCli']"/>
     </properties>
   </rule>
 
