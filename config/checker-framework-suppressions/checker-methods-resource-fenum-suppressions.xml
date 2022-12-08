@@ -2,6 +2,17 @@
 <suppressedErrors>
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/Main.java</fileName>
+    <specifier>method.invocation</specifier>
+    <message>call to printFileAst(java.io.File) not allowed on the given receiver.</message>
+    <lineContent>.printFileAst(file);</lineContent>
+    <details>
+      found   : @FenumTop TreeStringPrinter
+      required: @FenumUnqualified TreeStringPrinter
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/Main.java</fileName>
     <specifier>required.method.not.called</specifier>
     <message>@MustCall method close may not have been invoked on out or any of its aliases.</message>
     <lineContent>final OutputStream out = getOutputStream(outputLocation);</lineContent>

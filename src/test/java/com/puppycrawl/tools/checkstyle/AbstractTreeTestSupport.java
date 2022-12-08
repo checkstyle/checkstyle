@@ -110,7 +110,7 @@ public abstract class AbstractTreeTestSupport extends AbstractPathTestSupport {
                                             String actualJavadocFilename) throws Exception {
         final String expectedContents = readFile(expectedTextPrintFilename);
 
-        final String actualContents = toLfLineEnding(DetailNodeTreeStringPrinter.printFileAst(
+        final String actualContents = toLfLineEnding(DetailNodeTreeStringPrinter.printFileAstEx(
                 new File(actualJavadocFilename)));
 
         assertWithMessage("Generated tree from the javadoc file should match the pre-defined tree")
