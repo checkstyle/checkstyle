@@ -9,8 +9,13 @@
 SET OPTION=%1
 
 if "%OPTION%" == "sevntu" (
-  call mvn -e --no-transfer-progress verify -DskipTests -DskipITs -Dpmd.skip=true^
-    -Dspotbugs.skip=true -Djacoco.skip=true -Dxml.skip=true^
+  call mvn -e --no-transfer-progress verify -Pno-validations,sevntu^
+    || goto :ERROR
+  goto :END_CASE
+)
+
+if "%OPTION%" == "run_checkstyle" (
+  call mvn -e --no-transfer-progress clean compile antrun:run@ant-phase-verify^
     || goto :ERROR
   goto :END_CASE
 )
