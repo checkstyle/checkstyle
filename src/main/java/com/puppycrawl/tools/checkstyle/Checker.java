@@ -138,7 +138,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
      * The instance needs to be contextualized and configured.
      */
     public Checker() {
-        addListener(counter);
+        listeners.add(counter);
         log = LogFactory.getLog(Checker.class);
     }
 
@@ -470,11 +470,9 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
         try {
             child = moduleFactory.createModule(name);
 
-            if (child instanceof AutomaticBean) {
-                final AutomaticBean bean = (AutomaticBean) child;
-                bean.contextualize(childContext);
-                bean.configure(childConf);
-            }
+            final AutomaticBean bean = (AutomaticBean) child;
+            bean.contextualize(childContext);
+            bean.configure(childConf);
         }
         catch (final CheckstyleException ex) {
             throw new CheckstyleException("cannot initialize module " + name
