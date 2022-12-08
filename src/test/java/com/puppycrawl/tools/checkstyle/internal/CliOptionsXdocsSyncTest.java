@@ -52,7 +52,18 @@ public class CliOptionsXdocsSyncTest {
         final Set<String> cmdOptions = getListById(sections.item(2), "CLI_Options");
         for (String option : cmdOptions) {
             final String text = option.trim().replaceAll("\\s+", " ");
-            cmdDesc.put(text.substring(0, 2), text.substring(text.indexOf(" - ") + 3));
+            final int descSplit = text.indexOf(" - ");
+            final int firstSpace = text.indexOf(' ');
+            int commandSplit = text.indexOf(',');
+
+            if (commandSplit == -1 || commandSplit > descSplit) {
+                commandSplit = descSplit;
+            }
+            if (commandSplit > firstSpace) {
+                commandSplit = firstSpace;
+            }
+
+            cmdDesc.put(text.substring(0, commandSplit), text.substring(descSplit + 3));
         }
 
         final Class<?> cliOptions = Class.forName("com.puppycrawl.tools.checkstyle"
@@ -90,7 +101,7 @@ public class CliOptionsXdocsSyncTest {
         final Node usageSource = XmlUtil.getFirstChildElement(sections.item(2));
         final String usageText = XmlUtil.getFirstChildElement(usageSource).getTextContent();
 
-        final Set<String> shortParamsXdoc = getParameters(usageText, "-[a-zA-CE-X]\\b");
+        final Set<String> shortParamsXdoc = getParameters(usageText, "-[a-zA-CE-X]{1,2}\\b");
         final Set<String> longParamsXdoc = getParameters(usageText, "-(-\\w+)+");
 
         final Class<?> cliOptions = Class.forName("com.puppycrawl.tools.checkstyle"

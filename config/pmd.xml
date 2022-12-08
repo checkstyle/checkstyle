@@ -354,10 +354,9 @@
   <rule ref="category/java/design.xml/CognitiveComplexity">
     <properties>
       <property name="reportLevel" value="22"/>
-      <!-- Till https://github.com/checkstyle/checkstyle/issues/10064 -->
       <property name="violationSuppressXPath"
-                value="//ClassOrInterfaceDeclaration[@SimpleName='XdocsPagesTest']
-                    //MethodDeclaration[@Name='getModulePropertyExpectedValue']"/>
+                value="//ClassOrInterfaceDeclaration[@SimpleName='Main']
+                    //MethodDeclaration[@Name='runCli']"/>
     </properties>
   </rule>
 

@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
 
 import java.io.File;
 import java.nio.charset.StandardCharsets;
@@ -39,13 +38,6 @@ public class AstTreeStringPrinterTest extends AbstractTreeTestSupport {
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/asttreestringprinter";
-    }
-
-    @Test
-    public void testIsProperUtilsClass() throws ReflectiveOperationException {
-        assertWithMessage("Constructor is not private")
-                .that(isUtilsClassHasPrivateConstructor(AstTreeStringPrinter.class))
-                .isTrue();
     }
 
     @Test

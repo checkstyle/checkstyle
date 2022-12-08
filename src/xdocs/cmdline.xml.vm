@@ -35,6 +35,7 @@ java -D&lt;property&gt;=&lt;value&gt;  \
      [-f &lt;format&gt;] [-p &lt;propertiesFile&gt;] [-o &lt;file&gt;] \
      [-s &lt;line:column&gt;] [-g | --generate-xpath-suppression] [-w | --tabWidth &lt;length&gt;] \
      [-t | --tree] [-T | --treeWithComments] [-J | --treeWithJavadoc] [-j | --javadocTree] \
+     [-pc | --printWithCustomTree &lt;customTreePrinterClass&gt;] \
      [-V | --version] [-b | --branch-matching-xpath &lt;xpathQuery&gt;] [-h | --help] \
      [-e | --exclude &lt;excludedPath&gt;] [-E | --executeIgnoredModules] [-d | --debug] \
      [-x | --exclude-regexp &lt;excludedPathPattern&gt;] \ file...
@@ -115,6 +116,10 @@ java -D&lt;property&gt;=&lt;value&gt;  \
           The file have to contain <b>only Javadoc comment content</b> without including '/**' and
           '*/' at the beginning and at the end respectively. The option
           cannot be used other options and requires exactly one file to run on to be specified.
+        </li>
+        <li>
+          <code>-pc, --printWithCustomTree customTreePrinterClass</code> - Prints Tree based on the
+          provided custom class.
         </li>
         <li>
           <code>-d, --debug</code> - Prints all debug logging of CheckStyle utility.

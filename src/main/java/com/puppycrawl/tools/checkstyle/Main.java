@@ -23,6 +23,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.reflect.InvocationTargetException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -48,6 +49,7 @@ import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.RootModule;
+import com.puppycrawl.tools.checkstyle.api.TreeStringPrinter;
 import com.puppycrawl.tools.checkstyle.utils.ChainedPropertyUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.XpathUtil;
@@ -286,31 +288,29 @@ public final class Main {
 
         // create config helper object
         if (options.printAst) {
-            // print AST
-            final File file = filesToProcess.get(0);
-            final String stringAst = AstTreeStringPrinter.printFileAst(file,
-                    JavaParser.Options.WITHOUT_COMMENTS);
-            System.out.print(stringAst);
+            callTreeStringPrinter(filesToProcess.get(0), AstTreeStringPrinter.class);
+        }
+        else if (options.printAstWithComments) {
+            callTreeStringPrinter(filesToProcess.get(0), AstWithCommentsTreeStringPrinter.class);
+        }
+        else if (options.printJavadocTree) {
+            callTreeStringPrinter(filesToProcess.get(0), DetailNodeTreeStringPrinter.class);
+        }
+        else if (options.printTreeWithJavadoc) {
+            callTreeStringPrinter(filesToProcess.get(0), AstAndDetailNodeTreeStringPrinter.class);
+        }
+        else if (Objects.nonNull(options.customTreePrinterClass)) {
+            try {
+                callTreeStringPrinter(filesToProcess.get(0),
+                        Class.forName(options.customTreePrinterClass));
+            }
+            catch (ClassNotFoundException | IOException | CheckstyleException ex) {
+                throw new CheckstyleException("Unable to work with custom tree printer", ex);
+            }
         }
         else if (Objects.nonNull(options.xpath)) {
             final String branch = XpathUtil.printXpathBranch(options.xpath, filesToProcess.get(0));
             System.out.print(branch);
-        }
-        else if (options.printAstWithComments) {
-            final File file = filesToProcess.get(0);
-            final String stringAst = AstTreeStringPrinter.printFileAst(file,
-                    JavaParser.Options.WITH_COMMENTS);
-            System.out.print(stringAst);
-        }
-        else if (options.printJavadocTree) {
-            final File file = filesToProcess.get(0);
-            final String stringAst = DetailNodeTreeStringPrinter.printFileAst(file);
-            System.out.print(stringAst);
-        }
-        else if (options.printTreeWithJavadoc) {
-            final File file = filesToProcess.get(0);
-            final String stringAst = AstTreeStringPrinter.printJavaAndJavadocTree(file);
-            System.out.print(stringAst);
         }
         else if (hasSuppressionLineColumnNumber) {
             final File file = filesToProcess.get(0);
@@ -339,6 +339,29 @@ public final class Main {
         }
 
         return result;
+    }
+
+    /**
+     * Calls the {@link TreeStringPrinter} class's method with the provided file.
+     *
+     * @param file The file to parse.
+     * @param clss The custom implementation of {@link TreeStringPrinter} to use for printing.
+     * @throws IOException Failed to open a file
+     * @throws CheckstyleException error while parsing the file
+     */
+    private static void callTreeStringPrinter(File file, Class<?> clss)
+            throws IOException, CheckstyleException {
+        final String output;
+        try {
+            output = ((TreeStringPrinter) clss.getDeclaredConstructor().newInstance())
+                    .printFileAst(file);
+        }
+        catch (NoSuchMethodException | InvocationTargetException | InstantiationException
+                | IllegalAccessException ex) {
+            throw new CheckstyleException("Unable to work with custom tree printer", ex);
+        }
+
+        System.out.print(output);
     }
 
     /**
@@ -753,6 +776,11 @@ public final class Main {
                         + "be used with other options and requires exactly one file to run on to "
                         + "be specified.")
         private boolean printTreeWithJavadoc;
+
+        /** Option that controls whether to print the custom AST of the file. */
+        @Option(names = {"-pc", "--printWithCustomTree"},
+            description = "Prints Tree based on the provided custom class.")
+        private String customTreePrinterClass;
 
         /** Option that controls whether to print debug info. */
         @Option(names = {"-d", "--debug"},
