@@ -41,7 +41,6 @@ import org.apache.tools.ant.taskdefs.LogOutputStream;
 import org.apache.tools.ant.types.EnumeratedAttribute;
 import org.apache.tools.ant.types.FileSet;
 import org.apache.tools.ant.types.Path;
-import org.apache.tools.ant.types.Reference;
 
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.ConfigurationLoader;
@@ -87,9 +86,6 @@ public class CheckstyleAntTask extends Task {
 
     /** Contains the Properties to override. */
     private final List<Property> overrideProps = new ArrayList<>();
-
-    /** Class path to locate class files. */
-    private Path classpath;
 
     /** Name of file to check. */
     private String fileName;
@@ -196,41 +192,6 @@ public class CheckstyleAntTask extends Task {
      */
     public void addProperty(Property property) {
         overrideProps.add(property);
-    }
-
-    /**
-     * Set the class path.
-     *
-     * @param classpath the path to locate classes
-     */
-    public void setClasspath(Path classpath) {
-        if (this.classpath == null) {
-            this.classpath = classpath;
-        }
-        else {
-            this.classpath.append(classpath);
-        }
-    }
-
-    /**
-     * Set the class path from a reference defined elsewhere.
-     *
-     * @param classpathRef the reference to an instance defining the classpath
-     */
-    public void setClasspathRef(Reference classpathRef) {
-        createClasspath().setRefid(classpathRef);
-    }
-
-    /**
-     * Creates classpath.
-     *
-     * @return a created path for locating classes
-     */
-    public Path createClasspath() {
-        if (classpath == null) {
-            classpath = new Path(getProject());
-        }
-        return classpath.createPath();
     }
 
     /**
@@ -428,7 +389,7 @@ public class CheckstyleAntTask extends Task {
         }
         catch (final CheckstyleException ex) {
             throw new BuildException(String.format(Locale.ROOT, "Unable to create Root Module: "
-                    + "config {%s}, classpath {%s}.", config, classpath), ex);
+                    + "config {%s}.", config), ex);
         }
         return rootModule;
     }
