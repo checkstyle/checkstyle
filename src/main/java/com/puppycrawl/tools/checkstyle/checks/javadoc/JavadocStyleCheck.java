@@ -19,17 +19,14 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
-import java.util.ArrayDeque;
-import java.util.Deque;
-import java.util.List;
-import java.util.Locale;
-import java.util.Set;
+import java.util.*;
 import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.Comment;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
@@ -147,7 +144,9 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
  * RECORD_DEF</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMPACT_CTOR_DEF">
- * COMPACT_CTOR_DEF</a>.
+ * COMPACT_CTOR_DEF</a>,
+ * <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMMENT_CONTENT">
+ * COMMENT_CONTENT</a>.
  * </li>
  * </ul>
  * <p>
@@ -387,6 +386,7 @@ public class JavadocStyleCheck
             TokenTypes.VARIABLE_DEF,
             TokenTypes.RECORD_DEF,
             TokenTypes.COMPACT_CTOR_DEF,
+            TokenTypes.COMMENT_CONTENT
         };
     }
 
@@ -395,20 +395,117 @@ public class JavadocStyleCheck
         return CommonUtil.EMPTY_INT_ARRAY;
     }
 
-    // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/11166
-    @SuppressWarnings("deprecation")
+    @Override
+    public boolean isCommentNodesRequired() {
+        return  true;
+    }
+
     @Override
     public void visitToken(DetailAST ast) {
         if (shouldCheck(ast)) {
-            final FileContents contents = getFileContents();
             // Need to start searching for the comment before the annotations
             // that may exist. Even if annotations are not defined on the
             // package, the ANNOTATIONS AST is defined.
-            final TextBlock textBlock =
-                contents.getJavadocBefore(ast.getFirstChild().getLineNo());
+            final TextBlock textBlock;
+
+            if (ast.getType() == TokenTypes.PACKAGE_DEF) {
+                textBlock = getJavaDocForPackage(ast);
+            } else {
+                textBlock = getJavaDoc(ast);
+            }
 
             checkComment(ast, textBlock);
         }
+    }
+
+    /**
+     * Get The Javadoc For Package Token
+     *
+     * @param ast as Package Token
+     * @return TextBlock of Javadoc comment
+     */
+    private TextBlock getJavaDocForPackage(DetailAST ast) {
+        TextBlock textBlock = getJavaDoc(ast);
+
+        if (textBlock == null && ast.getPreviousSibling() != null
+            && ast.getPreviousSibling().getFirstChild() != null
+            && ast.getPreviousSibling().getFirstChild().getText().trim().length() > 0
+            && ast.getPreviousSibling().getFirstChild().getText().trim().charAt(0) == '*') {
+            textBlock = generateTextBlock(ast.getPreviousSibling().getFirstChild());
+        }
+
+        return  textBlock;
+    }
+
+    /**
+     * Generate The TextBlock From Given Comment
+     *
+     * @param comment as DetailAst of The Found JavaDoc Comment
+     * @return TextBlock of Javadoc comment
+     */
+    private TextBlock generateTextBlock(DetailAST comment) {
+        if (comment == null || comment.getType() != TokenTypes.COMMENT_CONTENT) return null;
+
+        int startColNo = comment.getParent().getColumnNo();
+        int endColNo = comment.getNextSibling().getColumnNo();
+        int endLineNo = comment.getNextSibling().getLineNo();
+
+        String[] comments = comment.getText().split("\n");
+        comments[0] = "/*" + comments[0];
+
+        if (comments.length == 1) {
+            endColNo += 2;
+        }
+        else {
+            endColNo += 1;
+        }
+
+        String[] modifiedComments;
+
+        if (comments.length == 1) {
+            comments[0] = comments[0] + "*/";
+            modifiedComments = comments;
+        }
+        else {
+            modifiedComments = new String[comments.length];
+            System.arraycopy(comments, 0, modifiedComments, 0, comments.length - 1);
+            modifiedComments[comments.length - 1] = "*/";
+        }
+
+
+        return new Comment(modifiedComments, startColNo, endLineNo, endColNo);
+    }
+
+    /**
+     * Find The Javadoc comments Associated With given ast
+     *
+     * @param ast a given node
+     * @return TextBlock of Javadoc comment
+     */
+    private TextBlock getJavaDoc(DetailAST ast) {
+        DetailAST temp = ast.getFirstChild();
+        DetailAST comment = null;
+
+        while (temp != null && temp.getFirstChild() == null) {
+            temp = temp.getNextSibling();
+        }
+
+        while (temp != null) {
+            DetailAST toVisit = temp.getFirstChild();
+            if (temp.getType() == TokenTypes.COMMENT_CONTENT
+                && temp.getText().trim().length() > 0
+                && temp.getText().trim().charAt(0) == '*') {
+                comment = temp;
+                break;
+            }
+            while(temp != null && toVisit == null && temp.getParent().getType() != ast.getType()) {
+                toVisit = temp.getNextSibling();
+                temp = temp.getParent();
+            }
+            temp = toVisit;
+        }
+
+        return generateTextBlock(comment);
     }
 
     /**
@@ -419,6 +516,8 @@ public class JavadocStyleCheck
      */
     private boolean shouldCheck(final DetailAST ast) {
         boolean check = false;
+
+        if (ast.getType() == TokenTypes.COMMENT_CONTENT) return false;
 
         if (ast.getType() == TokenTypes.PACKAGE_DEF) {
             check = CheckUtil.isPackageInfo(getFilePath());
