@@ -61,6 +61,7 @@ public class JavadocStyleCheckTest
             TokenTypes.VARIABLE_DEF,
             TokenTypes.RECORD_DEF,
             TokenTypes.COMPACT_CTOR_DEF,
+            TokenTypes.COMMENT_CONTENT
         };
 
         assertWithMessage("Default acceptable tokens are invalid")
