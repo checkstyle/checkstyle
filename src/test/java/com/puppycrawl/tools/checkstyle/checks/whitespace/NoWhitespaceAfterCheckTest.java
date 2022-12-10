@@ -354,6 +354,17 @@ public class NoWhitespaceAfterCheckTest
                 getPath("InputNoWhitespaceAfterWithEmoji.java"), expected);
     }
 
+    @Test
+    public void testNoWhitespaceAfterSynchronized() throws Exception {
+        final String[] expected = {
+            "18:9: " + getCheckMessage(MSG_KEY, "synchronized"),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputNoWhitespaceAfterSynchronized.java"),
+                expected);
+    }
+
     /**
      * Creates MOCK lexical token and returns AST node for this token.
      *
