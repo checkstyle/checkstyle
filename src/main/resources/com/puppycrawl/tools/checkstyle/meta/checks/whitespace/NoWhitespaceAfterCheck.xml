@@ -26,11 +26,16 @@
  INDEX_OP&lt;/a&gt; will be ignored.
  &lt;/p&gt;
  &lt;p&gt;
- If the annotation is between the type and the array, the check will skip validation for spaces
+ If the annotation is between the type and the array, like {@code char @NotNull [] param},
+ the check will skip validation for spaces.
  &lt;/p&gt;
- &lt;pre&gt;
- public void foo(final char @NotNull [] param) {} // No violation
- &lt;/pre&gt;</description>
+ &lt;p&gt;
+ Note: This check processes the
+ &lt;a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_SYNCHRONIZED"&gt;
+ LITERAL_SYNCHRONIZED&lt;/a&gt; token only when it appears as a part of a
+ &lt;a href="https://docs.oracle.com/javase/specs/jls/se19/html/jls-14.html#jls-14.19"&gt;
+ synchronized statement&lt;/a&gt;, i.e. {@code synchronized(this) {}}.
+ &lt;/p&gt;</description>
          <properties>
             <property default-value="true" name="allowLineBreaks" type="boolean">
                <description>Control whether whitespace is allowed
