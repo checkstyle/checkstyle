@@ -105,4 +105,7 @@ public class InputJavadocStyleDefaultSettingsTwo
          */
         value2, // ok
     }
+
+    //* Just For Coverage
+    private void method20() {} // ok
 }
