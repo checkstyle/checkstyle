@@ -1347,12 +1347,10 @@ import static java.math.BigInteger.ZERO;
           will be ignored.
         </p>
         <p>
-         If the annotation is between the type and the array, the check will skip validation for
-         spaces
+          If the annotation is between the type and the array,
+          like <code>char @NotNull [] param</code>, the check will skip
+          validation for spaces.
         </p>
-        <source>
-public void foo(final char @NotNull [] param) {} // No violation
-        </source>
         <p>
          Note: This check processes the
           <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_SYNCHRONIZED">
