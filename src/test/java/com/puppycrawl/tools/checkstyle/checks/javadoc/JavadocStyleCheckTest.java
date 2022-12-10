@@ -61,6 +61,7 @@ public class JavadocStyleCheckTest
             TokenTypes.VARIABLE_DEF,
             TokenTypes.RECORD_DEF,
             TokenTypes.COMPACT_CTOR_DEF,
+            TokenTypes.COMMENT_CONTENT,
         };
 
         assertWithMessage("Default acceptable tokens are invalid")
@@ -589,5 +590,41 @@ public class JavadocStyleCheckTest
 
         verifyWithInlineConfigParser(
                 getPath("InputJavadocStyleCheckOptionLowercaseProperty.java"), expected);
+    }
+
+    @Test
+    public void packageInfoAnnotation2() throws Exception {
+        final String[] expected = {
+            "17:1: " + getCheckMessage(MSG_JAVADOC_MISSING),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("pkginfo" + File.separator + "annotation2" + File.separator
+                   + "package-info.java"),
+               expected);
+    }
+
+    @Test
+    public void packageInvalidFormat2() throws Exception {
+        final String[] expected = {
+            "17:1: " + getCheckMessage(MSG_JAVADOC_MISSING),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("pkginfo" + File.separator + "invalidformat2" + File.separator
+                   + "package-info.java"),
+               expected);
+    }
+
+    @Test
+    public void packageInvalidFormat3() throws Exception {
+        final String[] expected = {
+            "17:1: " + getCheckMessage(MSG_JAVADOC_MISSING),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("pkginfo" + File.separator + "invalidformat3" + File.separator
+                   + "package-info.java"),
+               expected);
     }
 }

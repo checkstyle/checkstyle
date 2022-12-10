@@ -256,7 +256,7 @@ public class FileContentsTest {
     }
 
     /*
-     * This method is deprecated due to usage of deprecated FileContents#inPackageInfo
+     * This method is deprecated due to usage of deprecated FileContents#inPackageInfo.
      * we keep this method until https://github.com/checkstyle/checkstyle/issues/11723
      */
     @Deprecated(since = "10.2")
@@ -272,7 +272,7 @@ public class FileContentsTest {
     }
 
     /*
-     * This method is deprecated due to usage of deprecated FileContents#inPackageInfo
+     * This method is deprecated due to usage of deprecated FileContents#inPackageInfo.
      * we keep this method until https://github.com/checkstyle/checkstyle/issues/11723
      */
     @Deprecated(since = "10.2")
