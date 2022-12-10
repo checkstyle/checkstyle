@@ -50,11 +50,9 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * INDEX_OP</a> will be ignored.
  * </p>
  * <p>
- * If the annotation is between the type and the array, the check will skip validation for spaces
+ * If the annotation is between the type and the array, like {@code char @NotNull [] param},
+ * the check will skip validation for spaces.
  * </p>
- * <pre>
- * public void foo(final char @NotNull [] param) {} // No violation
- * </pre>
  * <p>
  * Note: This check processes the
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_SYNCHRONIZED">
