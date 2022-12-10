@@ -29,6 +29,10 @@ import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck.M
 
 import java.io.File;
 
+import com.puppycrawl.tools.checkstyle.DetailAstImpl;
+import com.puppycrawl.tools.checkstyle.api.Comment;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
@@ -61,11 +65,46 @@ public class JavadocStyleCheckTest
             TokenTypes.VARIABLE_DEF,
             TokenTypes.RECORD_DEF,
             TokenTypes.COMPACT_CTOR_DEF,
+            TokenTypes.COMMENT_CONTENT
         };
 
         assertWithMessage("Default acceptable tokens are invalid")
             .that(actual)
             .isEqualTo(expected);
+    }
+
+    @Test
+    public void testGetJavaDoc() {
+        final JavadocStyleCheck javadocStyleCheck = new JavadocStyleCheck();
+
+        final TextBlock expected = new Comment(
+            new String[] {"/** This Javadoc is missing an ending period */"},
+           3,23, 49
+        );
+
+        String docText = "* This Javadoc is missing an ending period ";
+
+        DetailAstImpl parent =
+                createDetailAST(TokenTypes.VARIABLE_DEF, "VARIABLE_DEF", 24, 3);
+        DetailAstImpl child1 =
+                createDetailAST(TokenTypes.MODIFIERS, "MODIFIERS", 24, 3);
+        DetailAstImpl child2 =
+                createDetailAST(TokenTypes.BLOCK_COMMENT_BEGIN, "/*", 23, 3);
+        DetailAstImpl child3 =
+                createDetailAST(TokenTypes.COMMENT_CONTENT, docText, 23, 5);
+        DetailAstImpl child3Sibling =
+                createDetailAST(TokenTypes.BLOCK_COMMENT_END, "*/", 23, 47);
+
+        parent.setFirstChild(child1);
+        child1.setFirstChild(child2);
+        child2.setFirstChild(child3);
+        child3.setNextSibling(child3Sibling);
+
+        final TextBlock actual = javadocStyleCheck.getJavaDoc(parent);
+
+        assertWithMessage("TextBlock Differ")
+            .that(actual.toString())
+            .isEqualTo(expected.toString());
     }
 
     @Test
@@ -589,5 +628,14 @@ public class JavadocStyleCheckTest
 
         verifyWithInlineConfigParser(
                 getPath("InputJavadocStyleCheckOptionLowercaseProperty.java"), expected);
+    }
+
+    private static DetailAstImpl createDetailAST(int type, String text, int startLine, int startCol) {
+        final DetailAstImpl detailAST = new DetailAstImpl();
+        detailAST.setType(type);
+        detailAST.setText(text);
+        detailAST.setLineNo(startLine);
+        detailAST.setColumnNo(startCol);
+        return detailAST;
     }
 }
