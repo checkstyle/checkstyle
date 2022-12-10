@@ -867,6 +867,7 @@ arguments
 pattern
     : guardedPattern
     | primaryPattern
+    | recordPattern
     ;
 
 guardedPattern
@@ -889,12 +890,25 @@ primaryPattern
       // Set of production rules below should mirror `pattern` production rule
       // above. We do not reuse `pattern` production rule here to avoid a bunch
       // of nested `PATTERN_DEF` nodes, as we also do for expressions.
-      (guardedPattern | primaryPattern)
+      (guardedPattern | primaryPattern | recordPattern )
       RPAREN                                                               #parenPattern
+    | recordPattern                                                        #recordPatternDef
     ;
 
 typePattern
     : mods+=modifier* type=typeType[true] id
+    ;
+
+recordPattern
+    : type=typeType[true] recordStructurePattern id?
+    ;
+
+recordStructurePattern
+    : LPAREN recordComponentPatternList* RPAREN
+    ;
+
+recordComponentPatternList
+    : primaryPattern (COMMA primaryPattern)*
     ;
 
 permittedSubclassesAndInterfaces
