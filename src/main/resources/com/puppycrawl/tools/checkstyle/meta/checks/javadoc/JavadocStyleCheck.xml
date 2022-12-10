@@ -76,7 +76,7 @@
             <property default-value="true" name="checkHtml" type="boolean">
                <description>Control whether to check for incomplete HTML tags.</description>
             </property>
-            <property default-value="ANNOTATION_DEF,ANNOTATION_FIELD_DEF,CLASS_DEF,CTOR_DEF,ENUM_CONSTANT_DEF,ENUM_DEF,INTERFACE_DEF,METHOD_DEF,PACKAGE_DEF,VARIABLE_DEF,RECORD_DEF,COMPACT_CTOR_DEF"
+            <property default-value="ANNOTATION_DEF,ANNOTATION_FIELD_DEF,CLASS_DEF,CTOR_DEF,ENUM_CONSTANT_DEF,ENUM_DEF,INTERFACE_DEF,METHOD_DEF,PACKAGE_DEF,VARIABLE_DEF,RECORD_DEF,COMPACT_CTOR_DEF,COMMENT_CONTENT"
                        name="tokens"
                        type="java.lang.String[]"
                        validation-type="tokenSet">
