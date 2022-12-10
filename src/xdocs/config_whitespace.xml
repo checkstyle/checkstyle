@@ -1353,6 +1353,13 @@ import static java.math.BigInteger.ZERO;
         <source>
 public void foo(final char @NotNull [] param) {} // No violation
         </source>
+        <p>
+         Note: This check processes the
+          <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_SYNCHRONIZED">
+         LITERAL_SYNCHRONIZED</a> token only when it appears as a part of a
+          <a href="https://docs.oracle.com/javase/specs/jls/se19/html/jls-14.html#jls-14.19">
+            synchronized statement</a>, i.e. <code>synchronized(this) {}</code>.
+        </p>
       </subsection>
 
       <subsection name="Properties" id="NoWhitespaceAfter_Properties">

@@ -55,6 +55,13 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <pre>
  * public void foo(final char @NotNull [] param) {} // No violation
  * </pre>
+ * <p>
+ * Note: This check processes the
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_SYNCHRONIZED">
+ * LITERAL_SYNCHRONIZED</a> token only when it appears as a part of a
+ * <a href="https://docs.oracle.com/javase/specs/jls/se19/html/jls-14.html#jls-14.19">
+ * synchronized statement</a>, i.e. {@code synchronized(this) {}}.
+ * </p>
  * <ul>
  * <li>
  * Property {@code allowLineBreaks} - Control whether whitespace is allowed
@@ -284,7 +291,10 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
      */
     private static boolean shouldCheckWhitespaceAfter(DetailAST ast) {
         final DetailAST previousSibling = ast.getPreviousSibling();
-        return previousSibling == null || previousSibling.getType() != TokenTypes.ANNOTATIONS;
+        final boolean isSynchronizedMethod = ast.getType() == TokenTypes.LITERAL_SYNCHRONIZED
+                        && ast.getFirstChild() == null;
+        return !isSynchronizedMethod
+                && (previousSibling == null || previousSibling.getType() != TokenTypes.ANNOTATIONS);
     }
 
     /**
