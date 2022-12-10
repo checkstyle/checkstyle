@@ -867,6 +867,7 @@ arguments
 pattern
     : guardedPattern
     | primaryPattern
+    | recordPattern
     ;
 
 guardedPattern
@@ -881,10 +882,23 @@ primaryPattern
       // of nested `PATTERN_DEF` nodes, as we also do for expressions.
       (guardedPattern | primaryPattern)
       RPAREN                                                               #parenPattern
+    | recordPattern                                                        #recordPatternDef
     ;
 
 typePattern
     : mods+=modifier* type=typeType[true] id
+    ;
+
+recordPattern
+    : type=typeType[true] recordStructurePattern id?
+    ;
+
+recordStructurePattern
+    : LPAREN recordComponentPatternList* RPAREN
+    ;
+
+recordComponentPatternList
+    : primaryPattern (COMMA primaryPattern)*
     ;
 
 permittedSubclassesAndInterfaces
