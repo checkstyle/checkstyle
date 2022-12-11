@@ -111,4 +111,8 @@ public class InputJavadocStyleDefaultSettingsFour
      }</code></pre>
      */
     public void test3() {} // ok
+
+    /*     */
+    //*
+    public void demo() {}
 }

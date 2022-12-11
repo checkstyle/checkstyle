@@ -32,6 +32,8 @@ import java.io.File;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.DetailAstImpl;
+import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -61,11 +63,29 @@ public class JavadocStyleCheckTest
             TokenTypes.VARIABLE_DEF,
             TokenTypes.RECORD_DEF,
             TokenTypes.COMPACT_CTOR_DEF,
+            TokenTypes.COMMENT_CONTENT,
         };
 
         assertWithMessage("Default acceptable tokens are invalid")
             .that(actual)
             .isEqualTo(expected);
+    }
+
+    @Test
+    public void testTempNull() throws Exception {
+        final DetailAstImpl parent = new DetailAstImpl();
+        parent.setType(TokenTypes.VARIABLE_DEF);
+        parent.setText("VARIABLE_DEF");
+        parent.setLineNo(24);
+        parent.setColumnNo(4);
+
+        final JavadocStyleCheck javadocStyleCheck = new JavadocStyleCheck();
+        final TextBlock textBlock = javadocStyleCheck.getJavaDoc(parent);
+
+        assertWithMessage("Default acceptable tokens are invalid")
+            .that(textBlock)
+            .isEqualTo(null);
+
     }
 
     @Test
@@ -589,5 +609,53 @@ public class JavadocStyleCheckTest
 
         verifyWithInlineConfigParser(
                 getPath("InputJavadocStyleCheckOptionLowercaseProperty.java"), expected);
+    }
+
+    @Test
+    public void packageInfoAnnotation2() throws Exception {
+        final String[] expected = {
+            "17:1: " + getCheckMessage(MSG_JAVADOC_MISSING),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("pkginfo" + File.separator + "annotation2" + File.separator
+                   + "package-info.java"),
+               expected);
+    }
+
+    @Test
+    public void packageInvalidFormat2() throws Exception {
+        final String[] expected = {
+            "17:1: " + getCheckMessage(MSG_JAVADOC_MISSING),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("pkginfo" + File.separator + "invalidformat2" + File.separator
+                   + "package-info.java"),
+               expected);
+    }
+
+    @Test
+    public void packageInvalidFormat3() throws Exception {
+        final String[] expected = {
+            "17:1: " + getCheckMessage(MSG_JAVADOC_MISSING),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("pkginfo" + File.separator + "invalidformat3" + File.separator
+                   + "package-info.java"),
+               expected);
+    }
+
+    @Test
+    public void packageInvalidFormat4() throws Exception {
+        final String[] expected = {
+            "17:1: " + getCheckMessage(MSG_JAVADOC_MISSING),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("pkginfo" + File.separator + "invalidformat4" + File.separator
+                   + "package-info.java"),
+               expected);
     }
 }
