@@ -627,6 +627,13 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/Main.java</fileName>
     <specifier>initialization.field.uninitialized</specifier>
+    <message>the default constructor does not initialize field customTreePrinterClass</message>
+    <lineContent>private String customTreePrinterClass;</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/Main.java</fileName>
+    <specifier>initialization.field.uninitialized</specifier>
     <message>the default constructor does not initialize field files</message>
     <lineContent>private List&lt;File&gt; files;</lineContent>
   </checkerFrameworkError>
