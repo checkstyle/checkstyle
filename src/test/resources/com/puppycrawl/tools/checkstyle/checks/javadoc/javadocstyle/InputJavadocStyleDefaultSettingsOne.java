@@ -117,4 +117,3 @@ public class InputJavadocStyleDefaultSettingsOne // ok
      */
     private void method12() {} // ok
 }
-

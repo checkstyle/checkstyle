@@ -55,7 +55,7 @@ public class DefaultConfigurationTest {
     }
 
     /*
-     * This method is deprecated due to usage of deprecated DefaultConfiguration#addAttribute
+     * This method is deprecated due to usage of deprecated DefaultConfiguration#addAttribute.
      * we keep this method until https://github.com/checkstyle/checkstyle/issues/11722
      */
     @Deprecated(since = "10.2")
