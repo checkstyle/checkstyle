@@ -77,9 +77,10 @@ public class MainTest {
           "Usage: checkstyle [-dEghjJtTV] [-b=<xpath>] [-c=<configurationFile>] "
                   + "[-f=<format>]%n"
                   + "                  [-o=<outputPath>] [-p=<propertiesFile>] "
-                  + "[-s=<suppressionLineColumnNumber>]%n"
-                  + "                  [-w=<tabWidth>] [-e=<exclude>]... [-x=<excludeRegex>]... "
-                  + "<files>...%n"
+                  + "[-pc=<customTreePrinterClass>]%n"
+                  + "                  [-s=<suppressionLineColumnNumber>] [-w=<tabWidth>] "
+                  + "[-e=<exclude>]...%n"
+                  + "                  [-x=<excludeRegex>]... <files>...%n"
                   + "Checkstyle verifies that the specified source code files adhere to the"
                   + " specified rules. By default,%n"
                   + "violations are reported to standard out in plain format. Checkstyle requires"
@@ -139,6 +140,8 @@ public class MainTest {
                   + " run on to be specified.%n"
                   + "  -o=<outputPath>           Sets the output file. Defaults to stdout.%n"
                   + "  -p=<propertiesFile>       Sets the property files to load.%n"
+                  + "      -pc, --printWithCustomTree=<customTreePrinterClass>%n"
+                  + "                            Prints Tree based on the provided custom class.%n"
                   + "  -s=<suppressionLineColumnNumber>%n"
                   + "                            Prints xpath suppressions at the file's line and"
                   + " column position.%n"
@@ -1579,7 +1582,7 @@ public class MainTest {
         assertMainReturnCode(-1, "-c", "/google_checks.xml", "-t", getPath(""));
         assertWithMessage("Unexpected output log")
             .that(systemOut.getCapturedData())
-            .isEqualTo("Option '-t' cannot be used with other options." + System.lineSeparator());
+            .isEqualTo("Tree Options cannot be used with other options." + System.lineSeparator());
         assertWithMessage("Unexpected system error log")
             .that(systemErr.getCapturedData())
             .isEqualTo("");
@@ -1592,7 +1595,7 @@ public class MainTest {
                 getPath(""));
         assertWithMessage("Unexpected output log")
             .that(systemOut.getCapturedData())
-            .isEqualTo("Option '-t' cannot be used with other options." + System.lineSeparator());
+            .isEqualTo("Tree Options cannot be used with other options." + System.lineSeparator());
         assertWithMessage("Unexpected system error log")
             .that(systemErr.getCapturedData())
             .isEqualTo("");
@@ -1604,7 +1607,7 @@ public class MainTest {
         assertMainReturnCode(-1, "-f", "plain", "-t", getPath(""));
         assertWithMessage("Unexpected output log")
             .that(systemOut.getCapturedData())
-            .isEqualTo("Option '-t' cannot be used with other options." + System.lineSeparator());
+            .isEqualTo("Tree Options cannot be used with other options." + System.lineSeparator());
         assertWithMessage("Unexpected system error log")
             .that(systemErr.getCapturedData())
             .isEqualTo("");
@@ -1618,7 +1621,7 @@ public class MainTest {
         assertMainReturnCode(-1, "-s", outputPath, "-t", getPath(""));
         assertWithMessage("Unexpected output log")
             .that(systemOut.getCapturedData())
-            .isEqualTo("Option '-t' cannot be used with other options." + System.lineSeparator());
+            .isEqualTo("Tree Options cannot be used with other options." + System.lineSeparator());
         assertWithMessage("Unexpected system error log")
             .that(systemErr.getCapturedData())
             .isEqualTo("");
@@ -1632,7 +1635,7 @@ public class MainTest {
         assertMainReturnCode(-1, "-o", outputPath, "-t", getPath(""));
         assertWithMessage("Unexpected output log")
             .that(systemOut.getCapturedData())
-            .isEqualTo("Option '-t' cannot be used with other options." + System.lineSeparator());
+            .isEqualTo("Tree Options cannot be used with other options." + System.lineSeparator());
         assertWithMessage("Unexpected system error log")
             .that(systemErr.getCapturedData())
             .isEqualTo("");
@@ -1848,6 +1851,26 @@ public class MainTest {
         assertWithMessage("listener is DefaultLogger")
                 .that(listener instanceof DefaultLogger)
                 .isTrue();
+    }
+
+    @Test
+    public void testCustomPrinterNonExistentClass(@SysErr Capturable systemErr) {
+        assertMainReturnCode(-2, "-pc", "NonExistentClass", getPath("InputMain.java"));
+        final String cause = "com.puppycrawl.tools.checkstyle.api.CheckstyleException:"
+                + " Unable to work with custom tree printer";
+        assertWithMessage("Unexpected system error log")
+                .that(systemErr.getCapturedData())
+                .startsWith(cause);
+    }
+
+    @Test
+    public void testCustomPrinterCastException(@SysErr Capturable systemErr) {
+        assertMainReturnCode(-2, "-pc", Main.class.getName(), getPath("InputMain.java"));
+        final String cause = "com.puppycrawl.tools.checkstyle.api.CheckstyleException:"
+                + " Unable to work with custom tree printer";
+        assertWithMessage("Unexpected system error log")
+                .that(systemErr.getCapturedData())
+                .startsWith(cause);
     }
 
     /**
