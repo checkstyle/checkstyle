@@ -75,9 +75,12 @@ public class PackageObjectFactoryTest {
             assertWithMessage("Exception is expected but got " + test).fail();
         }
         catch (IllegalArgumentException ex) {
+            final LocalizedMessage nullLoaderMessage = new LocalizedMessage(
+                    Definitions.CHECKSTYLE_BUNDLE, factory.getClass(),
+                    NULL_LOADER_MESSAGE,null,null);
             assertWithMessage("Invalid exception message")
                 .that(ex.getMessage())
-                .isEqualTo(NULL_LOADER_MESSAGE);
+                .isEqualTo(nullLoaderMessage.getMessage());
         }
     }
 
@@ -88,9 +91,12 @@ public class PackageObjectFactoryTest {
             assertWithMessage("Exception is expected but got " + test).fail();
         }
         catch (IllegalArgumentException ex) {
+            final LocalizedMessage nullLoaderMessage = new LocalizedMessage(
+                    Definitions.CHECKSTYLE_BUNDLE, factory.getClass(),
+                    NULL_LOADER_MESSAGE,null,null);
             assertWithMessage("Invalid exception message")
                 .that(ex.getMessage())
-                .isEqualTo(NULL_LOADER_MESSAGE);
+                .isEqualTo(nullLoaderMessage.getMessage());
         }
     }
 
@@ -102,9 +108,12 @@ public class PackageObjectFactoryTest {
             assertWithMessage("Exception is expected but got " + test).fail();
         }
         catch (IllegalArgumentException ex) {
+            final LocalizedMessage nullPackageMessage = new LocalizedMessage(
+                    Definitions.CHECKSTYLE_BUNDLE, factory.getClass(),
+                    NULL_PACKAGE_MESSAGE,null,null);
             assertWithMessage("Invalid exception message")
                 .that(ex.getMessage())
-                .isEqualTo(NULL_PACKAGE_MESSAGE);
+                .isEqualTo(nullPackageMessage.getMessage());
         }
     }
 
@@ -116,9 +125,12 @@ public class PackageObjectFactoryTest {
             assertWithMessage("Exception is expected but got " + test).fail();
         }
         catch (IllegalArgumentException ex) {
+            final LocalizedMessage nullPackageMessage = new LocalizedMessage(
+                    Definitions.CHECKSTYLE_BUNDLE, factory.getClass(),
+                    NULL_PACKAGE_MESSAGE,null,null);
             assertWithMessage("Invalid exception message")
                 .that(ex.getMessage())
-                .isEqualTo(NULL_PACKAGE_MESSAGE);
+                .isEqualTo(nullPackageMessage.getMessage());
         }
     }
 
@@ -131,9 +143,12 @@ public class PackageObjectFactoryTest {
             assertWithMessage("Exception is expected but got " + test).fail();
         }
         catch (IllegalArgumentException ex) {
+            final LocalizedMessage nullPackageMessage = new LocalizedMessage(
+                    Definitions.CHECKSTYLE_BUNDLE, factory.getClass(),
+                    NULL_PACKAGE_MESSAGE,null,null);
             assertWithMessage("Invalid exception message")
                 .that(ex.getMessage())
-                .isEqualTo(NULL_PACKAGE_MESSAGE);
+                .isEqualTo(nullPackageMessage.getMessage());
         }
     }
 
