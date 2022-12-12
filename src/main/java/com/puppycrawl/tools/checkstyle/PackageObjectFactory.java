@@ -85,10 +85,10 @@ public class PackageObjectFactory implements ModuleFactory {
     public static final String PACKAGE_SEPARATOR = ".";
 
     /** Exception message when null class loader is given. */
-    public static final String NULL_LOADER_MESSAGE = "moduleClassLoader must not be null";
+    public static final String NULL_LOADER_MESSAGE = "PackageObjectFactory.nullLoaderMessage";
 
     /** Exception message when null package name is given. */
-    public static final String NULL_PACKAGE_MESSAGE = "package name must not be null";
+    public static final String NULL_PACKAGE_MESSAGE = "PackageObjectFactory.nullPackageMessage";
 
     /** Separator to use in strings. */
     public static final String STRING_SEPARATOR = ", ";
@@ -135,10 +135,16 @@ public class PackageObjectFactory implements ModuleFactory {
     public PackageObjectFactory(Set<String> packageNames, ClassLoader moduleClassLoader,
             ModuleLoadOption moduleLoadOption) {
         if (moduleClassLoader == null) {
-            throw new IllegalArgumentException(NULL_LOADER_MESSAGE);
+            final LocalizedMessage nullLoaderMessage = new LocalizedMessage(
+                    Definitions.CHECKSTYLE_BUNDLE,getClass(), NULL_LOADER_MESSAGE,  null,
+                    null);
+            throw new IllegalArgumentException(nullLoaderMessage.getMessage());
         }
         if (packageNames.contains(null)) {
-            throw new IllegalArgumentException(NULL_PACKAGE_MESSAGE);
+            final LocalizedMessage nullPackageMessage = new LocalizedMessage(
+                    Definitions.CHECKSTYLE_BUNDLE,getClass(), NULL_PACKAGE_MESSAGE,  null,
+                    null);
+            throw new IllegalArgumentException(nullPackageMessage.getMessage());
         }
 
         // create a copy of the given set, but retain ordering
@@ -157,10 +163,16 @@ public class PackageObjectFactory implements ModuleFactory {
      */
     public PackageObjectFactory(String packageName, ClassLoader moduleClassLoader) {
         if (moduleClassLoader == null) {
-            throw new IllegalArgumentException(NULL_LOADER_MESSAGE);
+            final LocalizedMessage nullLoaderMessage = new LocalizedMessage(
+                    Definitions.CHECKSTYLE_BUNDLE,getClass(), NULL_LOADER_MESSAGE,  null,
+                    null);
+            throw new IllegalArgumentException(nullLoaderMessage.getMessage());
         }
         if (packageName == null) {
-            throw new IllegalArgumentException(NULL_PACKAGE_MESSAGE);
+            final LocalizedMessage nullPackageMessage = new LocalizedMessage(
+                    Definitions.CHECKSTYLE_BUNDLE,getClass(), NULL_PACKAGE_MESSAGE,  null,
+                    null);
+            throw new IllegalArgumentException(nullPackageMessage.getMessage());
         }
 
         packages = Collections.singleton(packageName);
