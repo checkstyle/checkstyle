@@ -23,7 +23,6 @@ import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck.MSG_EMPTY;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck.MSG_EXTRA_HTML;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck.MSG_INCOMPLETE_TAG;
-import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck.MSG_JAVADOC_MISSING;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck.MSG_NO_PERIOD;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck.MSG_UNCLOSED_HTML;
 
@@ -480,17 +479,6 @@ public class JavadocStyleCheckTest
         verifyWithInlineConfigParser(
                 getPath("pkginfo" + File.separator + "annotation" + File.separator
                    + "package-info.java"),
-               expected);
-    }
-
-    @Test
-    public void packageInfoMissing() throws Exception {
-        final String[] expected = {
-            "16:1: " + getCheckMessage(MSG_JAVADOC_MISSING),
-        };
-
-        verifyWithInlineConfigParser(
-                getPath("bothfiles" + File.separator + "package-info.java"),
                expected);
     }
 
