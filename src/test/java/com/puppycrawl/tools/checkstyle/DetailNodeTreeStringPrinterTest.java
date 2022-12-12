@@ -23,7 +23,6 @@ import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser.MSG_JAVADOC_MISSED_HTML_CLOSE;
 import static com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser.MSG_JAVADOC_PARSE_RULE_ERROR;
 import static com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser.MSG_JAVADOC_WRONG_SINGLETON_TAG;
-import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
 
 import java.io.File;
 
@@ -40,13 +39,6 @@ public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
     }
 
     @Test
-    public void testIsProperUtilsClass() throws ReflectiveOperationException {
-        assertWithMessage("Constructor is not private")
-                .that(isUtilsClassHasPrivateConstructor(DetailNodeTreeStringPrinter.class))
-                .isTrue();
-    }
-
-    @Test
     public void testParseFile() throws Exception {
         verifyJavadocTree(getPath("ExpectedDetailNodeTreeStringPrinterJavadocComment.txt"),
                 getPath("InputDetailNodeTreeStringPrinterJavadocComment.javadoc"));
@@ -57,7 +49,7 @@ public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
         final File file = new File(
                 getPath("InputDetailNodeTreeStringPrinterJavadocWithError.javadoc"));
         try {
-            DetailNodeTreeStringPrinter.printFileAst(file);
+            DetailNodeTreeStringPrinter.printFileAstEx(file);
             assertWithMessage("Javadoc parser didn't fail on missing end tag").fail();
         }
         catch (IllegalArgumentException ex) {
@@ -138,7 +130,7 @@ public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
                 getPath("InputDetailNodeTreeStringPrinter"
                         + "UnescapedJavaCodeWithGenericsInJavadoc.javadoc"));
         try {
-            DetailNodeTreeStringPrinter.printFileAst(file);
+            DetailNodeTreeStringPrinter.printFileAstEx(file);
             assertWithMessage("Exception is expected").fail();
         }
         catch (IllegalArgumentException ex) {
@@ -156,7 +148,7 @@ public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
         final File file = new File(
                 getPath("InputDetailNodeTreeStringPrinterNoViableAltException.javadoc"));
         try {
-            DetailNodeTreeStringPrinter.printFileAst(file);
+            DetailNodeTreeStringPrinter.printFileAstEx(file);
             assertWithMessage("Exception is expected").fail();
         }
         catch (IllegalArgumentException ex) {
@@ -175,7 +167,7 @@ public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
         final File file = new File(
                 getPath("InputDetailNodeTreeStringPrinterHtmlTagCloseBeforeTagOpen.javadoc"));
         try {
-            DetailNodeTreeStringPrinter.printFileAst(file);
+            DetailNodeTreeStringPrinter.printFileAstEx(file);
             assertWithMessage("Exception is expected").fail();
         }
         catch (IllegalArgumentException ex) {
@@ -194,7 +186,7 @@ public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
         final File file = new File(
                 getPath("InputDetailNodeTreeStringPrinterWrongHtmlTagOrder.javadoc"));
         try {
-            DetailNodeTreeStringPrinter.printFileAst(file);
+            DetailNodeTreeStringPrinter.printFileAstEx(file);
             assertWithMessage("Exception is expected").fail();
         }
         catch (IllegalArgumentException ex) {
@@ -212,7 +204,7 @@ public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
         final File file = new File(
                 getPath("InputDetailNodeTreeStringPrinterOmittedStartTagForHtmlElement.javadoc"));
         try {
-            DetailNodeTreeStringPrinter.printFileAst(file);
+            DetailNodeTreeStringPrinter.printFileAstEx(file);
             assertWithMessage("Exception is expected").fail();
         }
         catch (IllegalArgumentException ex) {

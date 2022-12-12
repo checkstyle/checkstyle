@@ -23,6 +23,17 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/Main.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter className of forName.</message>
+    <lineContent>Class.forName(options.customTreePrinterClass));</lineContent>
+    <details>
+      found   : @SignatureUnknown String
+      required: @ClassGetName String
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/PackageObjectFactory.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter name of forName.</message>
