@@ -31,8 +31,7 @@
  a previous open tag.
  &lt;/li&gt;
  &lt;li&gt;
- Check that a package Javadoc comment is well-formed (as described above) and
- NOT missing from any package-info.java files.
+ Check that a package Javadoc comment is well-formed (as described above).
  &lt;/li&gt;
  &lt;li&gt;
  Check for allowed HTML tags. The list of allowed HTML tags is
