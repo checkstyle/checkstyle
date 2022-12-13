@@ -113,12 +113,20 @@ private static int checkCheckerFrameworkReport(final String profile) {
 private static List<List<String>> getCheckerFrameworkErrors(final String profile) {
     final List<String> checkerFrameworkLines = new ArrayList<>()
     final String command = "mvn -e --no-transfer-progress clean compile -P${profile}"
-    final Process process = getOsSpecificCmd(command).execute()
-    process.in.eachLine { final line ->
-        checkerFrameworkLines.add(line)
-        println(line)
+    final ProcessBuilder processBuilder = new ProcessBuilder(getOsSpecificCmd(command).split(' '))
+    processBuilder.redirectErrorStream(true)
+    final Process process = processBuilder.start()
+
+    final BufferedReader reader = new BufferedReader(new InputStreamReader(process.inputStream))
+    String lineFromReader = reader.readLine()
+    while (lineFromReader != null) {
+        println(lineFromReader)
+        checkerFrameworkLines.add(lineFromReader)
+        lineFromReader = reader.readLine()
     }
     process.waitFor()
+    reader.close()
+
     final List<List<String>> checkerFrameworkErrors = new ArrayList<>()
     for (int index = 0; index < checkerFrameworkLines.size(); index++) {
         final String line = checkerFrameworkLines.get(index)
