@@ -184,7 +184,7 @@ private static List<CheckerFrameworkError> getErrorFromText(final List<List<Stri
         String lineContent = null
         int lineNumber = 0
         if (matcher.matches()) {
-            fileName = matcher.group(fileNameGroup)
+            fileName = matcher.group(fileNameGroup).replace('\\', '/')
             lineNumber = Integer.parseInt(matcher.group(lineNumberGroup))
             specifier = XmlUtil.escapeXml(matcher.group(specifierGroup).trim())
             message = XmlUtil.escapeXml(matcher.group(messageGroup).trim())
