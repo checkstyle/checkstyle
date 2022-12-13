@@ -23,7 +23,6 @@ import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck.MSG_EMPTY;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck.MSG_EXTRA_HTML;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck.MSG_INCOMPLETE_TAG;
-import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck.MSG_JAVADOC_MISSING;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck.MSG_NO_PERIOD;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck.MSG_UNCLOSED_HTML;
 
@@ -485,12 +484,30 @@ public class JavadocStyleCheckTest
 
     @Test
     public void packageInfoMissing() throws Exception {
-        final String[] expected = {
-            "16:1: " + getCheckMessage(MSG_JAVADOC_MISSING),
-        };
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
                 getPath("bothfiles" + File.separator + "package-info.java"),
+               expected);
+    }
+
+    @Test
+    public void packageInfoMissingPeriod() throws Exception {
+        final String[] expected = {
+            "16: " + getCheckMessage(MSG_NO_PERIOD),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("missingperiod" + File.separator + "package-info.java"),
+               expected);
+    }
+
+    @Test
+    public void testNothing() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocStyleNothing.java"),
                expected);
     }
 

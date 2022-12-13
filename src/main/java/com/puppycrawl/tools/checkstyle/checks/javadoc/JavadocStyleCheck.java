@@ -66,8 +66,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * a previous open tag.
  * </li>
  * <li>
- * Check that a package Javadoc comment is well-formed (as described above) and
- * NOT missing from any package-info.java files.
+ * Check that a package Javadoc comment is well-formed (as described above).
  * </li>
  * <li>
  * Check for allowed HTML tags. The list of allowed HTML tags is
@@ -288,9 +287,6 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * {@code javadoc.incompleteTag}
  * </li>
  * <li>
- * {@code javadoc.missing}
- * </li>
- * <li>
  * {@code javadoc.noPeriod}
  * </li>
  * <li>
@@ -303,9 +299,6 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 @StatelessCheck
 public class JavadocStyleCheck
     extends AbstractCheck {
-
-    /** Message property key for the Missing Javadoc message. */
-    public static final String MSG_JAVADOC_MISSING = "javadoc.missing";
 
     /** Message property key for the Empty Javadoc message. */
     public static final String MSG_EMPTY = "javadoc.empty";
@@ -447,16 +440,7 @@ public class JavadocStyleCheck
      * @see #checkHtmlTags(DetailAST, TextBlock)
      */
     private void checkComment(final DetailAST ast, final TextBlock comment) {
-        if (comment == null) {
-            // checking for missing docs in JavadocStyleCheck is not consistent
-            // with the rest of CheckStyle...  Even though, I didn't think it
-            // made sense to make another check just to ensure that the
-            // package-info.java file actually contains package Javadocs.
-            if (CheckUtil.isPackageInfo(getFilePath())) {
-                log(ast, MSG_JAVADOC_MISSING);
-            }
-        }
-        else {
+        if (comment != null) {
             if (checkFirstSentence) {
                 checkFirstSentenceEnding(ast, comment);
             }
