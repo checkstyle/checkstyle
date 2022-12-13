@@ -1,6 +1,6 @@
 /*
 JavadocStyle
-scope = (default)private
+scope = nothing
 excludeScope = (default)null
 checkFirstSentence = (default)true
 endOfSentenceFormat = (default)([.?!][ \t\n\r\f<])|([.?!]$)
@@ -13,4 +13,8 @@ tokens = (default)ANNOTATION_DEF, ANNOTATION_FIELD_DEF, CLASS_DEF, CTOR_DEF, \
 
 */
 
-package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocstyle.bothfiles;
+/** Desc but no period */ // ok
+package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocstyle;
+
+public class InputJavadocStyleNothing {
+}
