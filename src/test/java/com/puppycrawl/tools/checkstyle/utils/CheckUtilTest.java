@@ -443,6 +443,16 @@ public class CheckUtilTest extends AbstractPathTestSupport {
             .isEqualTo(expected);
     }
 
+    @Test
+    public void testIsPackageInfo() {
+        assertWithMessage("Result is expected")
+            .that(CheckUtil.isPackageInfo("Bland.java"))
+            .isEqualTo(false);
+        assertWithMessage("Result is expected")
+            .that(CheckUtil.isPackageInfo("package-info.java"))
+            .isEqualTo(true);
+    }
+
     private DetailAST getNodeFromFile(int type) throws Exception {
         return getNode(JavaParser.parseFile(new File(getPath("InputCheckUtilTest.java")),
             JavaParser.Options.WITH_COMMENTS), type);
