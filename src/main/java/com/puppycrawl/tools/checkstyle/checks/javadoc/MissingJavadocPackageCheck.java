@@ -30,7 +30,7 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 
 /**
  * <p>
- * Checks for missing Javadoc comments in package-info.java files.
+ * Checks for missing package definition Javadoc comments in package-info.java files.
  * </p>
  * <p>
  * Rationale: description and other related documentation for a package can be written up
@@ -38,6 +38,10 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * See <a
  * href="https://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html#packagecomment"
  * >link</a> for more info.
+ * </p>
+ * <p>
+ * This check specifically only validates package definitions. It will not validate any methods or
+ * interfaces declared in the package-info.java file.
  * </p>
  * <p>
  * To configure the check:
