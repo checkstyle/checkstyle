@@ -13,4 +13,16 @@ tokens = (default)ANNOTATION_DEF, ANNOTATION_FIELD_DEF, CLASS_DEF, CTOR_DEF, \
 
 */
 
-package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocstyle.bothfiles; // violation
+/** Example */ // violation
+@Example
+package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocstyle.bothfiles;
+
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
+@Retention(RetentionPolicy.CLASS)
+@Target(ElementType.PACKAGE)
+@interface Example {
+}
