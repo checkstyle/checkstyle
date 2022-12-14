@@ -1967,10 +1967,12 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
 
     @Override
     public DetailAstImpl visitGuardedPattern(JavaLanguageParser.GuardedPatternContext ctx) {
-        final DetailAstImpl logicalAnd = create(ctx.LAND());
-        logicalAnd.addChild(visit(ctx.primaryPattern()));
-        logicalAnd.addChild(visit(ctx.expr()));
-        return logicalAnd;
+        final TerminalNode guard = Optional.ofNullable(ctx.LAND())
+                        .orElseGet(ctx::LITERAL_WHEN);
+        final DetailAstImpl guardAstNode = create(guard);
+        guardAstNode.addChild(visit(ctx.primaryPattern()));
+        guardAstNode.addChild(visit(ctx.expr()));
+        return guardAstNode;
     }
 
     @Override
