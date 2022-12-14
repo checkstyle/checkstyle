@@ -56,12 +56,34 @@ openjdk17-with-checks-nonjavadoc-error)
   sed -i.'' 's/value=\"error\"/value=\"ignore\"/' \
         .ci-temp/contribution/checkstyle-tester/checks-nonjavadoc-error.xml
   cd .ci-temp/contribution/checkstyle-tester
-  cp ../../../config/projects-to-test/openjdk-projects-to-test-on.config \
-      openjdk-projects-to-test-on.config
+  cp ../../../config/projects-to-test/openjdk-17-projects-to-test-on.config \
+      openjdk-17-projects-to-test-on.config
   sed -i '/  <!-- Filters -->/r ../../../config/projects-to-test/openjdk17-excluded.files' \
       checks-nonjavadoc-error.xml
   export MAVEN_OPTS="-Xmx2048m"
-  groovy ./diff.groovy --listOfProjects openjdk-projects-to-test-on.config \
+  groovy ./diff.groovy --listOfProjects openjdk-17-projects-to-test-on.config \
+      --mode single --allowExcludes \
+      --patchConfig checks-nonjavadoc-error.xml \
+      --localGitRepo  "$LOCAL_GIT_REPO" \
+      --patchBranch "$BRANCH" -xm "-Dcheckstyle.failsOnError=false"
+
+  cd ../../
+  removeFolderWithProtectedFiles contribution
+  ;;
+
+openjdk19-with-checks-nonjavadoc-error)
+  LOCAL_GIT_REPO=$(pwd)
+  BRANCH=$(git rev-parse --abbrev-ref HEAD)
+  checkout_from https://github.com/checkstyle/contribution
+  sed -i.'' 's/value=\"error\"/value=\"ignore\"/' \
+        .ci-temp/contribution/checkstyle-tester/checks-nonjavadoc-error.xml
+  cd .ci-temp/contribution/checkstyle-tester
+  cp ../../../config/projects-to-test/openjdk-19-projects-to-test-on.config \
+      openjdk-19-projects-to-test-on.config
+  sed -i '/  <!-- Filters -->/r ../../../config/projects-to-test/openjdk19-excluded.files' \
+      checks-nonjavadoc-error.xml
+  export MAVEN_OPTS="-Xmx2048m"
+  groovy ./diff.groovy --listOfProjects openjdk-19-projects-to-test-on.config \
       --mode single --allowExcludes \
       --patchConfig checks-nonjavadoc-error.xml \
       --localGitRepo  "$LOCAL_GIT_REPO" \
