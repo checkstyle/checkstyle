@@ -175,6 +175,10 @@
   <suppress checks="PackageDeclarationCheck"
             files="[\\/]InputAstTreeStringPrinterTextBlocksEscapesAreOneChar\.java"/>
 
+    <!-- AST regression testing requires complicated input, we should not limit the length of input files -->
+  <suppress checks="FileLength"
+    files="[\\/]test[\\/](resources|resources-noncompilable)[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]grammar[\\/]*[\\/]*\.java"/>
+
   <!-- Until https://github.com/checkstyle/checkstyle/issues/11163 -->
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]javadoc[\\/]javadocstyle[\\/]InputJavadocStyle10\.java"/>
@@ -791,24 +795,6 @@
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]naming[\\/]abbreviationaswordinname[\\/]InputAbbreviationAsWordInNameType6\.java"/>
   <suppress checks="FileLength"
-    files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]grammar[\\/]InputRegressionJavaClass1\.java"/>
-  <suppress checks="FileLength"
-    files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]grammar[\\/]antlr4[\\/]InputAntlr4AstRegressionCassandraInputWithComments\.java"/>
-  <suppress checks="FileLength"
-    files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]grammar[\\/]antlr4[\\/]InputAntlr4AstRegressionCommentsOnAnnotationsAndEnums\.java"/>
-  <suppress checks="FileLength"
-    files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]grammar[\\/]antlr4[\\/]InputAntlr4AstRegressionTrickySwitch\.java"/>
-  <suppress checks="FileLength"
-    files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]grammar[\\/]antlr4[\\/]InputAntlr4AstRegressionKeywordsAndOperators\.java"/>
-  <suppress checks="FileLength"
-    files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]grammar[\\/]antlr4[\\/]InputRegressionJavaClass1\.java"/>
-  <suppress checks="FileLength"
-    files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]grammar[\\/]antlr4[\\/]InputAntlr4AstRegressionTrickySwitchWithComments\.java"/>
-  <suppress checks="FileLength"
-    files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]grammar[\\/]antlr4[\\/]InputAntlr4AstRegressionFallThroughDefault\.java"/>
-  <suppress checks="FileLength"
-    files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]grammar[\\/]antlr4[\\/]InputAntlr4AstRegressionNewTypeTree\.java"/>
-  <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]meta[\\/]javadocmetadatascraper[\\/]InputJavadocMetadataScraperAnnotationUseStyleCheck\.java"/>
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]xpath[\\/]xpathmapper[\\/]InputXpathMapperStringConcat\.java"/>
@@ -854,16 +840,6 @@
     files="[\\/]test[\\/]resources-noncompilable[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]metrics[\\/]cyclomaticcomplexity[\\/]InputCyclomaticComplexityRecords\.java"/>
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources-noncompilable[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]metrics[\\/]javancss[\\/]InputJavaNCSSRecordsAndCompactCtors\.java"/>
-  <suppress checks="FileLength"
-    files="[\\/]test[\\/]resources-noncompilable[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]grammar[\\/]java14[\\/]InputJava14TextBlocks\.java"/>
-  <suppress checks="FileLength"
-    files="[\\/]test[\\/]resources-noncompilable[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]grammar[\\/]java14[\\/]InputJava14SwitchExpression\.java"/>
-  <suppress checks="FileLength"
-    files="[\\/]test[\\/]resources-noncompilable[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]grammar[\\/]java14[\\/]InputJava14InstanceofWithPatternMatching\.java"/>
-  <suppress checks="FileLength"
-    files="[\\/]test[\\/]resources-noncompilable[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]grammar[\\/]java14[\\/]InputJava14Records\.java"/>
-  <suppress checks="FileLength"
-    files="[\\/]test[\\/]resources-noncompilable[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]grammar[\\/]antlr4[\\/]InputAntlr4AstRegressionUncommon\.java"/>
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources-noncompilable[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]javaparser[\\/]InputJavaParserFullJavaIdentifierSupport\.java"/>
   <suppress checks="FileLength"
