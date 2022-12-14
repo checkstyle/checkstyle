@@ -17,6 +17,7 @@ my @excludes=qw(
   ^cdg-pitest-licence.txt$
   ^.teamcity/
   ^config/projects-to-test/openjdk17-excluded\.files$
+  ^config/projects-to-test/openjdk19-excluded\.files$
   ^config/checker-framework-suppressions/
   ^config/archunit-store/
   ^codeship.encrypted$
