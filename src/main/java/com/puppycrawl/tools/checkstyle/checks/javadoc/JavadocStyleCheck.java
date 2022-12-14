@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
@@ -29,8 +30,8 @@ import java.util.regex.Pattern;
 import com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
+import com.puppycrawl.tools.checkstyle.api.Comment;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -147,7 +148,9 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
  * RECORD_DEF</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMPACT_CTOR_DEF">
- * COMPACT_CTOR_DEF</a>.
+ * COMPACT_CTOR_DEF</a>,
+ * <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMMENT_CONTENT">
+ * COMMENT_CONTENT</a>.
  * </li>
  * </ul>
  * <p>
@@ -367,6 +370,16 @@ public class JavadocStyleCheck
      */
     private boolean checkEmptyJavadoc;
 
+    /**
+     * Control whether the visitToken running First Time.
+     */
+    public boolean isFirstRun = true;
+
+    /**
+     * HashMap For Storing Comments Associated With Each Token
+     */
+    public final HashMap<String, DetailAST> comments = new HashMap<>();
+
     @Override
     public int[] getDefaultTokens() {
         return getAcceptableTokens();
@@ -387,7 +400,26 @@ public class JavadocStyleCheck
             TokenTypes.VARIABLE_DEF,
             TokenTypes.RECORD_DEF,
             TokenTypes.COMPACT_CTOR_DEF,
+            TokenTypes.COMMENT_CONTENT,
         };
+    }
+
+    /**
+     * Check weather the given token is in acceptable token or not
+     *
+     * @param ast Token
+     * @return true or false
+     */
+    private boolean isNewToken(DetailAST ast) {
+        int[] tokens = getAcceptableTokens();
+
+        for (int token : tokens) {
+            if (token == ast.getType()) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     @Override
@@ -395,20 +427,178 @@ public class JavadocStyleCheck
         return CommonUtil.EMPTY_INT_ARRAY;
     }
 
-    // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/11166
-    @SuppressWarnings("deprecation")
+    @Override
+    public boolean isCommentNodesRequired() {
+        return true;
+    }
+
     @Override
     public void visitToken(DetailAST ast) {
+        if (isFirstRun) {
+            isFirstRun = false;
+            storeComments(ast);
+        }
+
         if (shouldCheck(ast)) {
-            final FileContents contents = getFileContents();
             // Need to start searching for the comment before the annotations
             // that may exist. Even if annotations are not defined on the
             // package, the ANNOTATIONS AST is defined.
-            final TextBlock textBlock =
-                contents.getJavadocBefore(ast.getFirstChild().getLineNo());
-
+            final TextBlock textBlock = getJavaDoc(ast);
             checkComment(ast, textBlock);
         }
+    }
+
+    /**
+     * Traverse The Entire Tree and Store The Comments
+     *
+     * @param ast as starting point of tree
+     */
+    public void storeComments(DetailAST ast) {
+        while (ast.getParent() != null) {
+            ast = ast.getParent();
+        }
+
+        DetailAST temp = ast;
+        DetailAST token = temp;
+        DetailAST lastComment = null;
+
+        while (temp != null) {
+            DetailAST toVisit = temp.getFirstChild();
+
+            if (isNewToken(temp) && temp.getType() != TokenTypes.COMMENT_CONTENT) {
+                if (lastComment != null
+                        && lastComment.getLineNo() < token.getLineNo()) {
+                    String key = token.getText() + " - " + token.getLineNo() + " - "
+                                    + token.getColumnNo();
+                    comments.put(key, lastComment);
+                    lastComment = null;
+                }
+                token = temp;
+            }
+            else {
+                if (temp.getType() == TokenTypes.COMMENT_CONTENT) {
+                    if (temp.getParent().getType() == TokenTypes.BLOCK_COMMENT_BEGIN
+                            && temp.getText().length() > 0
+                            && temp.getText().charAt(0) == '*') {
+                        if (token.getLineNo() > temp.getLineNo()) {
+                            String key = token.getText() + " - " + token.getLineNo() + " - "
+                                    + token.getColumnNo();
+                            comments.put(key, temp);
+                            lastComment = null;
+                        }
+                        else if(lastComment != null
+                                && lastComment.getLineNo() < token.getLineNo()) {
+                            String key = token.getText() + " - " + token.getLineNo() + " - "
+                                    + token.getColumnNo();
+                            comments.put(key, lastComment);
+                            lastComment = temp;
+                        }else {
+                            lastComment = temp;
+                        }
+                    }
+                }
+            }
+
+            while(toVisit == null && temp != null) {
+                toVisit = temp.getNextSibling();
+                temp = temp.getParent();
+            }
+
+            temp = toVisit;
+        }
+    }
+
+    /**
+     * Get The Javadoc For Package Token.
+     *
+     * @param ast as Package Token
+     * @return TextBlock of Javadoc comment
+     */
+    private TextBlock getJavaDocForPackage(DetailAST ast) {
+        TextBlock textBlock = null;
+
+        if (ast.getPreviousSibling() != null
+            && ast.getPreviousSibling().getType() == TokenTypes.BLOCK_COMMENT_BEGIN) {
+            final String text = ast.getPreviousSibling().getFirstChild().getText();
+            if (text.length() > 0 && text.charAt(0) == '*') {
+                textBlock = generateTextBlock(ast.getPreviousSibling().getFirstChild());
+            }
+        }
+
+        return textBlock;
+    }
+
+    /**
+     * Generate The TextBlock From Given Comment.
+     *
+     * @param comment as DetailAst of The Found JavaDoc Comment
+     * @return TextBlock of Javadoc comment
+     */
+    public TextBlock generateTextBlock(DetailAST comment) {
+        final TextBlock textBlock;
+
+        if (comment == null) {
+            textBlock = null;
+        }
+        else {
+            final int startColNo = comment.getParent().getColumnNo();
+            final int endLineNo = comment.getNextSibling().getLineNo();
+            int endColNo = comment.getNextSibling().getColumnNo();
+
+            final String[] comments = comment.getText().split("\n");
+            comments[0] = "/*" + comments[0];
+
+            if (comments.length == 1) {
+                endColNo += 2;
+            }
+            else {
+                endColNo += 1;
+            }
+
+            final String[] modifiedComments;
+            final String lastSentence = comments[comments.length - 1];
+
+            if (comments.length == 1) {
+                comments[0] = comments[0] + "*/";
+                modifiedComments = comments;
+            }
+            else if (!lastSentence.isEmpty() && !lastSentence.isBlank()) {
+                comments[comments.length - 1] += " */";
+                modifiedComments = comments;
+            }
+            else {
+                modifiedComments = new String[comments.length];
+                System.arraycopy(comments, 0, modifiedComments, 0, comments.length - 1);
+                modifiedComments[comments.length - 1] = "*/";
+            }
+
+            textBlock = new Comment(modifiedComments, startColNo, endLineNo, endColNo);
+        }
+
+        return textBlock;
+    }
+
+    /**
+     * Find The Javadoc comments Associated With given ast.
+     *
+     * @param ast a given node
+     * @return TextBlock of Javadoc comment
+     */
+    public TextBlock getJavaDoc(DetailAST ast) {
+        String key = ast.getText() + " - " + ast.getLineNo() + " - "
+                                + ast.getColumnNo();
+
+        TextBlock textBlock = null;
+
+        if (comments.containsKey(key)) {
+            textBlock = generateTextBlock(comments.get(key));
+        }
+
+        if (textBlock == null && ast.getType() == TokenTypes.PACKAGE_DEF) {
+            textBlock = getJavaDocForPackage(ast);
+        }
+
+        return textBlock;
     }
 
     /**
@@ -420,19 +610,21 @@ public class JavadocStyleCheck
     private boolean shouldCheck(final DetailAST ast) {
         boolean check = false;
 
-        if (ast.getType() == TokenTypes.PACKAGE_DEF) {
-            check = CheckUtil.isPackageInfo(getFilePath());
-        }
-        else if (!ScopeUtil.isInCodeBlock(ast)) {
-            final Scope customScope = ScopeUtil.getScope(ast);
-            final Scope surroundingScope = ScopeUtil.getSurroundingScope(ast);
+        if (ast.getType() != TokenTypes.COMMENT_CONTENT) {
+            if (ast.getType() == TokenTypes.PACKAGE_DEF) {
+                check = CheckUtil.isPackageInfo(getFilePath());
+            }
+            else if (!ScopeUtil.isInCodeBlock(ast)) {
+                final Scope customScope = ScopeUtil.getScope(ast);
+                final Scope surroundingScope = ScopeUtil.getSurroundingScope(ast);
 
-            check = customScope.isIn(scope)
-                    && (surroundingScope == null || surroundingScope.isIn(scope))
-                    && (excludeScope == null
+                check = customScope.isIn(scope)
+                        && (surroundingScope == null || surroundingScope.isIn(scope))
+                        && (excludeScope == null
                         || !customScope.isIn(excludeScope)
                         || surroundingScope != null
-                            && !surroundingScope.isIn(excludeScope));
+                        && !surroundingScope.isIn(excludeScope));
+            }
         }
         return check;
     }
@@ -515,7 +707,6 @@ public class JavadocStyleCheck
         final StringBuilder builder = new StringBuilder(1024);
         for (final String line : comments) {
             final int textStart = findTextStart(line);
-
             if (textStart != -1) {
                 if (line.charAt(textStart) == '@') {
                     // we have found the tag section
