@@ -52,7 +52,7 @@ public class InputMissingSwitchDefaultCaseLabelElements {
         }
 
         switch(o) { // ok
-            case String s && s.length() > 2 ->
+            case String s when s.length() > 2 ->
                 System.out.println("The string longer than 2 chars");
             default -> System.out.println("default!");
         }

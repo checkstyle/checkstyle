@@ -7,7 +7,7 @@ public class InputAntlr4AstRegressionPatternMatchingInSwitch {
         String result = switch (value) {
             case null -> "It's null...";
             case String s -> "It's a string: " + s;
-            case Integer i && i > 50 -> "It's an integer: " + i.toString();
+            case Integer i when i > 50 -> "It's an integer: " + i.toString();
             case Object v -> "It's something else: " + v.toString();
         };
         System.out.println(result);
@@ -51,7 +51,7 @@ public class InputAntlr4AstRegressionPatternMatchingInSwitch {
     static void m2(Object o) {
         switch (o) {
             case String s && s.length() > 4 -> System.out.println(s);
-            case Integer i && i > 40 -> System.out.println("Integer");
+            case Integer i when i > 40 -> System.out.println("Integer");
             default -> {
             }
         }
@@ -64,7 +64,7 @@ public class InputAntlr4AstRegressionPatternMatchingInSwitch {
                 }
                 System.out.println("Character");
             }
-            case Integer i && (i > 2) ->
+            case Integer i when i 2 ->
                 throw new IllegalStateException("Invalid Integer argument of value " + i);
             default -> {
                 break;
@@ -111,7 +111,7 @@ public class InputAntlr4AstRegressionPatternMatchingInSwitch {
                 System.out.println("The rest (including null)");
         }
         // example of parenthesized pattern in instanceof
-        if (o instanceof (String s && s.length() > 1)) {
+        if (o instanceof (String s when s.length() > 1)) {
         }
     }
 }
