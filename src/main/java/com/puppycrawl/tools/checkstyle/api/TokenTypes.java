@@ -6215,6 +6215,63 @@ public final class TokenTypes {
     public static final int PATTERN_DEF =
         JavaLanguageLexer.PATTERN_DEF;
 
+    /**
+     * A when clause. Appears as part of a switch label in a guarded pattern definition.
+     *
+     * <p>For example:</p>
+     * <pre>
+     * return switch (o) {
+     *     case Integer i when i &gt;= 0 -&gt; i;
+     *     default -&gt; 2;
+     * };
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * LITERAL_RETURN -&gt; return
+     *  `--EXPR -&gt; EXPR
+     *      `--LITERAL_SWITCH -&gt; switch
+     *          |--LPAREN -&gt; (
+     *          |--EXPR -&gt; EXPR
+     *          |   `--IDENT -&gt; o
+     *          |--RPAREN -&gt; )
+     *          |--LCURLY -&gt; {
+     *          |--SWITCH_RULE -&gt; SWITCH_RULE
+     *          |   |--LITERAL_CASE -&gt; case
+     *          |   |   `--PATTERN_DEF -&gt; PATTERN_DEF
+     *          |   |       `--LITERAL_WHEN -&gt; when
+     *          |   |           |--PATTERN_VARIABLE_DEF -&gt; PATTERN_VARIABLE_DEF
+     *          |   |           |   |--MODIFIERS -&gt; MODIFIERS
+     *          |   |           |   |--TYPE -&gt; TYPE
+     *          |   |           |   |   `--IDENT -&gt; Integer
+     *          |   |           |   `--IDENT -&gt; i
+     *          |   |           `--GE -&gt; &gt;=
+     *          |   |               |--IDENT -&gt; i
+     *          |   |               `--NUM_INT -&gt; 0
+     *          |   |--LAMBDA -&gt; -&gt;
+     *          |   |--EXPR -&gt; EXPR
+     *          |   |   `--IDENT -&gt; i
+     *          |   `--SEMI -&gt; ;
+     *          |--SWITCH_RULE -&gt; SWITCH_RULE
+     *          |   |--LITERAL_DEFAULT -&gt; default
+     *          |   |--LAMBDA -&gt; -&gt;
+     *          |   |--EXPR -&gt; EXPR
+     *          |   |   `--NUM_INT -&gt; 2
+     *          |   `--SEMI -&gt; ;
+     *          `--RCURLY -&gt; }
+     * </pre>
+     *
+     * @see <a href="https://docs.oracle.com/javase/specs/jls/se17/html/jls-14.html#jls-14.30">
+     * Java Language Specification, &sect;14.30</a>
+     * @see #LITERAL_SWITCH
+     * @see #PATTERN_VARIABLE_DEF
+     * @see #LITERAL_INSTANCEOF
+     * @see #SWITCH_RULE
+     *
+     * @since 10.6
+     */
+    public static final int LITERAL_WHEN =
+        JavaLanguageLexer.LITERAL_WHEN;
+
     /** Prevent instantiation. */
     private TokenTypes() {
     }
