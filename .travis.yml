@@ -7,6 +7,12 @@ language: java
 cache:
   directories:
     - ~/.m2
+    - ~/.ivy2
+
+addons:
+ apt:
+   packages:
+     - ant
 
 branches:
   only:
@@ -53,6 +59,11 @@ jobs:
       env:
         - DESC="codenarc analysis"
         - CMD="./.ci/codenarc.sh"
+
+    - jdk: openjdk11
+      env:
+        - DESC="no-exception-samples-ant"
+        - CMD="./.ci/no-exception-test.sh no-exception-samples-ant"
 
     # Ensure that all modules are used in no exception configs
     - env:
