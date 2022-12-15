@@ -22,10 +22,10 @@ jobs:
       - name: Set Current Year
         id: CURRENT_YEAR
         run: |
-          echo "::set-output name=year::$(date +'%Y')"
+          echo "year=$(date +'%Y')" >> "$GITHUB_OUTPUT"
       - name: Modify Files
         run: |
-          ./.ci/bump-license-year.sh $(expr ${{ env.YEAR }} - 1) ${{ env.YEAR }} .
+          ./.ci/bump-license-year.sh $(("${{ env.YEAR }}" - 1)) ${{ env.YEAR }} .
         env:
           YEAR: ${{ steps.CURRENT_YEAR.outputs.year }}
       - name: Push commit
