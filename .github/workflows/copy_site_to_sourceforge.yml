@@ -20,7 +20,7 @@ jobs:
       - name: Configure SSH
         run: |
           mkdir -p ~/.ssh/
-          eval `ssh-agent -s`
+          eval "$(ssh-agent -s)"
           echo "${{ secrets.SSH_KEY }}" > ~/.ssh/private_sourceforge_key
           chmod 400 ~/.ssh/private_sourceforge_key
           ssh-add ~/.ssh/private_sourceforge_key
