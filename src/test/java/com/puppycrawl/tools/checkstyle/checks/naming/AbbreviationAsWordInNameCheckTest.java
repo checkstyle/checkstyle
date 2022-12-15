@@ -467,4 +467,17 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
                 expected);
     }
 
+    @Test
+    public void testInputAbbreviationAsWordInNameTypeSnakeStyle() throws Exception {
+        final String[] expected = {
+            "13:20: " + getWarningMessage("FLAG_IS_FIRST_RUN", 4),
+            "16:17: " + getWarningMessage("HBCKL_LOCK_PATH", 4),
+            "21:17: " + getWarningMessage("__DEMOS__TESTS_VAR", 4),
+            "52:21: " + getWarningMessage("getIsFIRST_Run", 4),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputAbbreviationAsWordInNameTypeSnakeStyle.java"), expected);
+    }
+
 }
