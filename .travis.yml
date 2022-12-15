@@ -7,6 +7,7 @@ language: java
 cache:
   directories:
     - ~/.m2
+    - ~/.ivy2
 
 branches:
   only:
@@ -16,7 +17,7 @@ before_install:
   - sudo apt update
 
 install:
-  - sudo apt install -y groovy xsltproc xmlstarlet
+  - sudo apt install -y groovy xsltproc xmlstarlet ant
   - ./.ci/travis.sh install-adoptium-jdk
   - ./.ci/travis.sh install-custom-mvn
 
@@ -53,6 +54,11 @@ jobs:
       env:
         - DESC="codenarc analysis"
         - CMD="./.ci/codenarc.sh"
+
+    - jdk: openjdk11
+      env:
+        - DESC="no-exception-samples-ant"
+        - CMD="./.ci/no-exception-test.sh no-exception-samples-ant"
 
     # Ensure that all modules are used in no exception configs
     - env:
