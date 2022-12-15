@@ -157,6 +157,20 @@ no-exception-only-javadoc)
   removeFolderWithProtectedFiles contribution
   ;;
 
+no-exception-samples-ant)
+  CS_POM_VERSION="$(getCheckstylePomVersion)"
+  echo 'CS_POM_VERSION='"${CS_POM_VERSION}"
+  mvn -e --no-transfer-progress -B install -Pno-validations
+  checkout_from https://github.com/sevntu-checkstyle/checkstyle-samples
+  cd .ci-temp/checkstyle-samples/ant-project
+
+  sed -i -e "/<dependencies>/,/<\/dependencies>/ "`
+    `"s|name=\"checkstyle\" rev=\".*\""`
+    `"|name=\"checkstyle\" rev=\"$VERSION\"|g" ivy.xml
+
+  ant checkstyle
+  ;;
+
 
   *)
   echo "Unexpected argument: $1"
