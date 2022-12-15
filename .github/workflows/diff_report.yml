@@ -67,30 +67,29 @@ jobs:
         run: |
           grep "^Diff Regression projects:" text | cat > temp
           sed 's/Diff Regression projects: //' temp > projects_link
-          echo ::set-output name=projects_link::$(cat projects_link)
+          echo "projects_link=$(cat projects_link)" >> "$GITHUB_OUTPUT"
 
           grep "^Diff Regression config:" text | cat > temp
           sed 's/Diff Regression config: //' temp > config_link
-          echo ::set-output name=config_link::$(cat config_link)
+          echo "config_link=$(cat config_link)" >> "$GITHUB_OUTPUT"
 
           grep "^New module config:" text | cat > temp
           sed 's/New module config: //' temp > new_module_config_link
-          echo ::set-output name=new_module_config_link::$(cat new_module_config_link)
+          echo "new_module_config_link=$(cat new_module_config_link)" >> "$GITHUB_OUTPUT"
 
           grep "^Diff Regression patch config:" text | cat > temp
           sed 's/Diff Regression patch config: //' temp > patch_config_link
-          echo ::set-output name=patch_config_link::$(cat patch_config_link)
+          echo "patch_config_link=$(cat patch_config_link)" >> "$GITHUB_OUTPUT"
 
           grep "^Report label:" text | cat > temp
           sed 's/Report label: //' temp > report_label
-          echo ::set-output name=report_label::$(cat report_label)
+          echo "report_label=$(cat report_label)" >> "$GITHUB_OUTPUT"
 
       - name: Set branch
         id: branch
         run: |
-          echo ::set-output name=ref::$(cat branch)
-          echo ::set-output name=commit_sha::$(cat commit_sha | cut -c 1-7)
-
+          echo "ref=$(cat branch)" >> "$GITHUB_OUTPUT"
+          echo "commit_sha=$(< commit_sha cut -c 1-7)" >> "$GITHUB_OUTPUT"
   make_report:
     runs-on: ubuntu-latest
     needs: parse_body
@@ -162,7 +161,7 @@ jobs:
       - name: Prepare environment
         run: |
           mv project.properties ./contribution/checkstyle-tester/
-          mv *.xml ./contribution/checkstyle-tester/
+          mv ./*.xml ./contribution/checkstyle-tester/
           sudo apt install groovy
 
       - name: Configure AWS Credentials
@@ -183,15 +182,15 @@ jobs:
           BASE_BRANCH="upstream/master"
           export MAVEN_OPTS="-Xmx2048m"
           if [ -f new_module_config.xml ]; then
-            groovy diff.groovy -r $REPO -p $REF -pc new_module_config.xml -m single\
+            groovy diff.groovy -r "$REPO" -p "$REF" -pc new_module_config.xml -m single\
               -l project.properties -xm "-Dcheckstyle.failsOnError=false"\
               --allowExcludes
           elif [ -f patch_config.xml ]; then
-            groovy diff.groovy -r $REPO -b $BASE_BRANCH -p $REF -bc diff_config.xml\
+            groovy diff.groovy -r "$REPO" -b "$BASE_BRANCH" -p "$REF" -bc diff_config.xml\
               -pc patch_config.xml -l project.properties -xm "-Dcheckstyle.failsOnError=false"\
               --allowExcludes
           else
-            groovy diff.groovy -r $REPO -b $BASE_BRANCH -p $REF -c diff_config.xml\
+            groovy diff.groovy -r "$REPO" -b "$BASE_BRANCH" -p "$REF" -c diff_config.xml\
               -l project.properties -xm "-Dcheckstyle.failsOnError=false"\
               --allowExcludes
           fi
@@ -205,15 +204,15 @@ jobs:
          FOLDER="${{needs.parse_body.outputs.commit_sha}}_$TIME"
          DIFF="./contribution/checkstyle-tester/reports/diff"
          LINK="https://${{env.AWS_BUCKET_NAME}}.s3.${{env.AWS_REGION}}.amazonaws.com"
-         aws s3 cp $DIFF s3://${{env.AWS_BUCKET_NAME}}/$FOLDER/reports/diff/ --recursive
+         aws s3 cp $DIFF "s3://${{env.AWS_BUCKET_NAME}}/$FOLDER/reports/diff/" --recursive
          if [ -n "$LABEL" ]; then
            echo "$LABEL: " > message
          fi
-         echo $LINK/$FOLDER/reports/diff/index.html >> message
+         echo "$LINK/$FOLDER/reports/diff/index.html" >> message
 
       - name: Set output
         id: out
-        run: echo ::set-output name=message::$(cat message)
+        run: echo "message=$(cat message)" >> "$GITHUB_OUTPUT"
 
   # should be always last step
   send_message:
@@ -231,7 +230,7 @@ jobs:
            API_LINK="https://api.github.com/repos/checkstyle/checkstyle/actions/runs/"
            API_LINK="${API_LINK}${{github.run_id}}/jobs"
            wget $API_LINK -O info.json
-           jq '.jobs' info.json > jobs
+           jq '.jobs' info.json > "jobs"
            jq '.[] | select(.conclusion == "failure") | .name' jobs > job_name
            jq '.[] | select(.conclusion == "failure") | .steps' jobs > steps
            jq '.[] | select(.conclusion == "failure") | .name' steps > step_name
@@ -243,7 +242,7 @@ jobs:
 
       - name: Set message
         id: out
-        run: echo ::set-output name=message::$(cat message)
+        run: echo "message=$(cat message)" >> "$GITHUB_OUTPUT"
 
       - name: Comment PR
         uses: checkstyle/contribution/comment-action@master
