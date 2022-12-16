@@ -757,6 +757,9 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-deploy-plugin</artifactId>
         <version>3.0.0</version>
+        <configuration>
+          <altDeploymentRepository>internal.repo::default::file://${cs.maven.directory}</altDeploymentRepository>
+        </configuration>
       </plugin>
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
