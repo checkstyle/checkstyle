@@ -286,6 +286,7 @@ davidwalsh
 DBFF
 Dcheckstyle
 dcm
+Dconnection
 Ddry
 declarationorder
 defau
@@ -346,6 +347,7 @@ dsm
 Dsonar
 Dspotbugs
 Dstrict
+Dtag
 Dtest
 Dubinin
 Duser
