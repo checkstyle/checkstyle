@@ -161,9 +161,7 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testNoJavadocs() throws Exception {
-        final String[] expected = {
-            "13: " + getCheckMessage(MSG_MISSING_TAG, "null"),
-        };
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(getPath("InputWriteTagNoJavadoc.java"), expected);
     }
 

@@ -279,6 +279,10 @@ public class WriteTagCheck
     @SuppressWarnings("deprecation")
     @Override
     public void visitToken(DetailAST ast) {
+        if (null == tag) {
+            // By default no tag is configured. Avoid confusing error messages in that case.
+            return;
+        }
         final FileContents contents = getFileContents();
         final int lineNo = ast.getLineNo();
         final TextBlock cmt =
