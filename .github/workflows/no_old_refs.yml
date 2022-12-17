@@ -40,15 +40,16 @@ jobs:
           LINKED_ISSUES_FORMATTED=/tmp/linked_issues
           CHECKSTYLE_ISSUE_URL="https:\/\/github.com\/checkstyle\/checkstyle\/issues\/"
           if [ -n "$LINKED_ISSUES" ]; then
+            # shellcheck disable=SC2001
             echo $LINKED_ISSUES | sed -e 's/,/\n/g' >> $LINKED_ISSUES_FORMATTED
             sed -i "s/^/$CHECKSTYLE_ISSUE_URL/" $LINKED_ISSUES_FORMATTED
           fi
-          echo "::set-output name=linked-issues-formatted::$LINKED_ISSUES_FORMATTED"
+          echo "linked-issues-formatted=$LINKED_ISSUES_FORMATTED" >> "$GITHUB_OUTPUT"
       - name: Check Issues
         env:
           GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
           LINKED_ISSUES: '${{ steps.format-linked-issues.outputs.linked-issues-formatted }}'
           PR_HEAD_REPO_NAME: "${{ github.event.pull_request.head.repo.full_name }}"
-          GITHUB_HEAD_REF: "${{ github.head.ref }}"
+          GITHUB_HEAD_REF: "${{ github.head_ref }}"
         run: |
           ./.ci/no_old_refs.sh
