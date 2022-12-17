@@ -52,8 +52,8 @@ jobs:
       - name: Set branch
         id: branch
         run: |
-          echo ::set-output name=ref::$(cat branch | xargs)
-          echo ::set-output name=commit_sha::$(cat commit_sha | xargs | cut -c 1-7)
+          run: echo "ref=$(xargs < branch)" >> "$GITHUB_OUTPUT"
+          run: echo "commit_sha=$(xargs < commit_sha | cut -c 1-7)" >> "$GITHUB_OUTPUT"
 
   generate_site:
     needs: parse_pr_info
@@ -101,12 +101,12 @@ jobs:
           FOLDER="${{needs.parse_pr_info.outputs.commit_sha}}_$TIME"
           SITE="./checkstyle/target/site"
           LINK="https://${{env.AWS_BUCKET_NAME}}.s3.${{env.AWS_REGION}}.amazonaws.com"
-          aws s3 cp $SITE s3://${{env.AWS_BUCKET_NAME}}/$FOLDER/ --recursive
-          echo $LINK/$FOLDER/index.html > message
+          aws s3 cp "$SITE" "s3://${{env.AWS_BUCKET_NAME}}/$FOLDER/" --recursive
+          echo "$LINK/$FOLDER/index.html" > message
 
       - name: Set output
         id: out
-        run: echo ::set-output name=message::$(cat message)
+        run: echo "message=$(cat message)" >> "$GITHUB_OUTPUT"
 
   # should be always last step
   send_message:
@@ -123,7 +123,7 @@ jobs:
             API_LINK="https://api.github.com/repos/checkstyle/checkstyle/actions/runs/"
             API_LINK="${API_LINK}${{github.run_id}}/jobs"
             wget $API_LINK -O info.json
-            jq '.jobs' info.json > jobs
+            jq '.jobs' info.json > "jobs"
             jq '.[] | select(.conclusion == "failure") | .name' jobs > job_name
             jq '.[] | select(.conclusion == "failure") | .steps' jobs > steps
             jq '.[] | select(.conclusion == "failure") | .name' steps > step_name
@@ -135,7 +135,7 @@ jobs:
 
       - name: Set message
         id: out
-        run: echo ::set-output name=message::$(cat message)
+        run: echo "message=$(cat message)" >> "$GITHUB_OUTPUT"
 
       - name: Comment PR
         uses: checkstyle/contribution/comment-action@master
