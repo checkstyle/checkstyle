@@ -24,6 +24,7 @@ import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.findTokenI
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -441,6 +442,20 @@ public class CheckUtilTest extends AbstractPathTestSupport {
         assertWithMessage("Result is not expected")
             .that(actual)
             .isEqualTo(expected);
+    }
+
+    @Test
+    public void testIsPackageInfo() throws IOException {
+        assertWithMessage("Result is expected")
+            .that(CheckUtil.isPackageInfo(getPath("package-info.java")))
+            .isEqualTo(true);
+    }
+
+    @Test
+    public void testIsPackageInfoBad() throws IOException {
+        assertWithMessage("Result is expected")
+            .that(CheckUtil.isPackageInfo(getPath("InputCheckUtilPackage.java")))
+            .isEqualTo(false);
     }
 
     private DetailAST getNodeFromFile(int type) throws Exception {
