@@ -564,6 +564,20 @@ javac17)
   fi
   ;;
 
+javac19)
+  files=($(grep -Rl --include='*.java' ': Compilable with Java19' \
+        src/test/resources-noncompilable || true))
+  if [[  ${#files[@]} -eq 0 ]]; then
+    echo "No Java19 files to process"
+  else
+      mkdir -p target
+      for file in "${files[@]}"
+      do
+        javac --release 19 --enable-preview -d target "${file}"
+      done
+  fi
+  ;;
+
 jdk14-assembly-site)
   mvn -e --no-transfer-progress package -Passembly
   mvn -e --no-transfer-progress site -Pno-validations
