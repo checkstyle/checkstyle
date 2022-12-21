@@ -27,7 +27,8 @@
   <suppress checks="AbstractClassNameCheck"
              files="AbstractCheckTest.java|AbstractClassNameCheckTest.java|
                     |AbstractJavadocCheckTest.java|
-                    |AbstractViolationReporterTest.java|AbstractFileSetCheckTest.java"/>
+                    |AbstractViolationReporterTest.java|AbstractFileSetCheckTest.java|
+                    |AbstractAutomaticBeanTest.java"/>
 
   <!-- Tone down the checking for test code -->
   <suppress checks="ExecutableStatementCount|JavaNCSS"
