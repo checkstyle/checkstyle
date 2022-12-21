@@ -19,8 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.filters;
 
+import com.puppycrawl.tools.checkstyle.api.AbstractAutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
-import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.Filter;
 import com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder;
 
@@ -120,7 +120,7 @@ import com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder;
  * @since 5.7
  */
 public class SuppressWarningsFilter
-    extends AutomaticBean
+    extends AbstractAutomaticBean
     implements Filter {
 
     @Override

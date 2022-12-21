@@ -25,6 +25,7 @@ import java.io.PrintWriter;
 import java.io.Writer;
 import java.nio.charset.StandardCharsets;
 
+import com.puppycrawl.tools.checkstyle.api.AbstractAutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
@@ -39,7 +40,7 @@ import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
  *
  * @see XMLLogger
  */
-public class DefaultLogger extends AutomaticBean implements AuditListener {
+public class DefaultLogger extends AbstractAutomaticBean implements AuditListener {
 
     /**
      * A key pointing to the add exception
@@ -76,9 +77,22 @@ public class DefaultLogger extends AutomaticBean implements AuditListener {
      * @param outputStream where to log audit events
      * @param outputStreamOptions if {@code CLOSE} that should be closed in auditFinished()
      */
-    public DefaultLogger(OutputStream outputStream, OutputStreamOptions outputStreamOptions) {
+    public DefaultLogger(OutputStream outputStream,
+                         AutomaticBean.OutputStreamOptions outputStreamOptions) {
+        this(outputStream, OutputStreamOptions.values()[outputStreamOptions.ordinal()]);
+    }
+
+    /**
+     * Creates a new {@code DefaultLogger} instance.
+     *
+     * @param outputStream where to log audit events
+     * @param outputStreamOptions if {@code CLOSE} that should be closed in auditFinished()
+     */
+    public DefaultLogger(OutputStream outputStream,
+                         AbstractAutomaticBean.OutputStreamOptions outputStreamOptions) {
         // no need to close oS twice
-        this(outputStream, outputStreamOptions, outputStream, OutputStreamOptions.NONE);
+        this(outputStream, outputStreamOptions, outputStream,
+                OutputStreamOptions.NONE);
     }
 
     /**
@@ -134,6 +148,15 @@ public class DefaultLogger extends AutomaticBean implements AuditListener {
             errorWriter = new PrintWriter(errorStreamWriter);
         }
         formatter = messageFormatter;
+    }
+
+    /**
+     * Getter for closeInfo. This is temporary.
+     *
+     * @return close info value.
+     */
+    public boolean getCloseInfo() {
+        return closeInfo;
     }
 
     @Override

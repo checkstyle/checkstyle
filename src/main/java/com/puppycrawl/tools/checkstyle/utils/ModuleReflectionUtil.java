@@ -28,10 +28,10 @@ import java.util.stream.Collectors;
 
 import com.google.common.reflect.ClassPath;
 import com.puppycrawl.tools.checkstyle.TreeWalkerFilter;
+import com.puppycrawl.tools.checkstyle.api.AbstractAutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
-import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.BeforeExecutionFileFilter;
 import com.puppycrawl.tools.checkstyle.api.Filter;
 import com.puppycrawl.tools.checkstyle.api.RootModule;
@@ -73,7 +73,7 @@ public final class ModuleReflectionUtil {
      * @return true if a class may be considered a valid production class.
      */
     public static boolean isCheckstyleModule(Class<?> clazz) {
-        return AutomaticBean.class.isAssignableFrom(clazz)
+        return AbstractAutomaticBean.class.isAssignableFrom(clazz)
                 && !Modifier.isAbstract(clazz.getModifiers())
                 && hasDefaultConstructor(clazz)
                 && isNotXpathFileGenerator(clazz);
