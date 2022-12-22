@@ -312,23 +312,53 @@ public class JavadocStyleCheckTest
     }
 
     @Test
-    public void testScopePublic()
+    public void testJavadocStyleScopePublicOne()
             throws Exception {
         final String[] expected = {
             "75: " + getCheckMessage(MSG_NO_PERIOD),
             "76:31: " + getCheckMessage(MSG_EXTRA_HTML, "</code> // violation"),
-            "77: " + getCheckMessage(MSG_INCOMPLETE_TAG, "    * should fail <"),
-            "175: " + getCheckMessage(MSG_EMPTY),
-            "193: " + getCheckMessage(MSG_EMPTY),
-            "198: " + getCheckMessage(MSG_NO_PERIOD),
-            "292:21: " + getCheckMessage(MSG_EXTRA_HTML, "</string> // violation"),
-            "334: " + getCheckMessage(MSG_NO_PERIOD),
-            "338: " + getCheckMessage(MSG_NO_PERIOD),
-            "370: " + getCheckMessage(MSG_NO_PERIOD),
+            "77: " + getCheckMessage(MSG_INCOMPLETE_TAG, "    * should fail <")
         };
 
         verifyWithInlineConfigParser(
-                getPath("InputJavadocStyle5.java"), expected);
+                getPath("InputJavadocStyleScopePublicOne.java"), expected);
+    }
+
+    @Test
+    public void testJavaDocStyleScopePublicTwo()
+            throws Exception {
+        final String[] expected = {
+            "76: " + getCheckMessage(MSG_EMPTY),
+            "94: " + getCheckMessage(MSG_EMPTY),
+            "99: " + getCheckMessage(MSG_NO_PERIOD),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocStyleScopePublicTwo.java"), expected);
+    }
+
+    @Test
+    public void testJavaDocStyleScopePublicThree()
+            throws Exception {
+        final String[] expected = {
+            "103:21: " + getCheckMessage(MSG_EXTRA_HTML, "</string> // violation")
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocStyleScopePublicThree.java"), expected);
+    }
+
+    @Test
+    public void testJavaDocStyleScopePublicFour()
+            throws Exception {
+        final String[] expected = {
+            "50: " + getCheckMessage(MSG_NO_PERIOD),
+            "54: " + getCheckMessage(MSG_NO_PERIOD),
+            "86: " + getCheckMessage(MSG_NO_PERIOD)
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocStyleScopePublicFour.java"), expected);
     }
 
     @Test
