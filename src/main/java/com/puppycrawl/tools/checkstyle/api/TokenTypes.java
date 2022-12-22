@@ -6267,7 +6267,7 @@ public final class TokenTypes {
      * @see #LITERAL_INSTANCEOF
      * @see #SWITCH_RULE
      *
-     * @since 10.7.0
+     * @since 10.6
      */
     public static final int LITERAL_WHEN =
         JavaLanguageLexer.LITERAL_WHEN;
