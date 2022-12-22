@@ -870,8 +870,18 @@ pattern
     ;
 
 guardedPattern
-    : primaryPattern LAND expr
+    : primaryPattern guard expr
     ;
+
+/**
+ * We do not need to enforce what the compiler already does; namely, the '&&' syntax
+ * in case labels was only supported as a preview feature in JDK18 and will fail compilation
+ * now. Guarded patterns in expressions still uses '&&', while case labels now use 'when'.
+ * We can allow both alternatives here, since this will help us to maintain backwards
+ * compatibility and avoid more alternatives/ complexity of maintaining two
+ * separate pattern grammars for case labels and expressions.
+ */
+guard: ( LAND | LITERAL_WHEN );
 
 primaryPattern
     : typePattern                                                          #patternVariableDef
@@ -898,4 +908,5 @@ id  : LITERAL_RECORD
     | LITERAL_SEALED
     | LITERAL_PERMITS
     | IDENT
+    | LITERAL_WHEN
     ;
