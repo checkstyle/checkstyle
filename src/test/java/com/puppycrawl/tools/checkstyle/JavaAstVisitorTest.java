@@ -85,7 +85,8 @@ public class JavaAstVisitorTest extends AbstractModuleTestSupport {
             "visitFieldAccessNoIdent",
             "visitClassType",
             "visitClassOrInterfaceTypeExtended",
-            "visitQualifiedNameExtended"
+            "visitQualifiedNameExtended",
+            "visitGuard"
     );
 
     @Override
