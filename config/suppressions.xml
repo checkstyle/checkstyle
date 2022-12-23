@@ -105,7 +105,6 @@
   <suppress id="noUsageOfGetFileContentsMethod" files="ImportControlCheck.java"/>
   <suppress id="noUsageOfGetFileContentsMethod" files="UnusedImportsCheck.java"/>
   <suppress id="noUsageOfGetFileContentsMethod" files="JavadocMethodCheck.java"/>
-  <suppress id="noUsageOfGetFileContentsMethod" files="JavadocStyleCheck.java"/>
   <suppress id="noUsageOfGetFileContentsMethod" files="JavadocTypeCheck.java"/>
   <suppress id="noUsageOfGetFileContentsMethod" files="JavadocVariableCheck.java"/>
   <suppress id="noUsageOfGetFileContentsMethod" files="MissingJavadocMethodCheck.java"/>
