@@ -29,13 +29,14 @@ import java.util.regex.Pattern;
 import com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
+import com.puppycrawl.tools.checkstyle.api.Comment;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 
 /**
@@ -147,7 +148,9 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
  * RECORD_DEF</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMPACT_CTOR_DEF">
- * COMPACT_CTOR_DEF</a>.
+ * COMPACT_CTOR_DEF</a>,
+ * <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMMENT_CONTENT">
+ * COMMENT_CONTENT</a>.
  * </li>
  * </ul>
  * <p>
@@ -387,7 +390,38 @@ public class JavadocStyleCheck
             TokenTypes.VARIABLE_DEF,
             TokenTypes.RECORD_DEF,
             TokenTypes.COMPACT_CTOR_DEF,
+            TokenTypes.COMMENT_CONTENT,
         };
+    }
+
+    /**
+     * For Checking is ast part of acceptable token.
+     *
+     * @param ast AST Token to check
+     * @return true if ast is part of acceptable token otherwise false
+     */
+    private boolean isNewToken(DetailAST ast) {
+        final int[] tokens = getAcceptableTokens();
+
+        boolean flag = false;
+
+        for (int token : tokens) {
+            if (token == ast.getType()) {
+                flag = true;
+                break;
+            }
+        }
+
+        if (!flag) {
+            flag = ast.getType() == TokenTypes.OBJBLOCK;
+        }
+
+        return flag;
+    }
+
+    @Override
+    public boolean isCommentNodesRequired() {
+        return true;
     }
 
     @Override
@@ -395,20 +429,229 @@ public class JavadocStyleCheck
         return CommonUtil.EMPTY_INT_ARRAY;
     }
 
-    // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/11166
-    @SuppressWarnings("deprecation")
     @Override
     public void visitToken(DetailAST ast) {
         if (shouldCheck(ast)) {
-            final FileContents contents = getFileContents();
             // Need to start searching for the comment before the annotations
             // that may exist. Even if annotations are not defined on the
             // package, the ANNOTATIONS AST is defined.
-            final TextBlock textBlock =
-                contents.getJavadocBefore(ast.getFirstChild().getLineNo());
+            final TextBlock textBlock;
+            final boolean isPackageToken = ast.getType() == TokenTypes.PACKAGE_DEF;
+
+            if (isPackageToken) {
+                textBlock = getJavaDocForPackage(ast);
+            }
+            else {
+                textBlock = getJavaDoc(ast);
+            }
 
             checkComment(ast, textBlock);
         }
+    }
+
+    /**
+     * Get The Javadoc For Package Token.
+     *
+     * @param ast as First AST Token
+     * @return TextBlock of Javadoc Comment
+     */
+    private TextBlock getJavaDocForPackage(DetailAST ast) {
+        DetailAST temp = ast;
+        String comment = null;
+        final int commentDetailsSize = 4;
+        int[] commentDetails = new int[commentDetailsSize];
+
+        while (temp.getPreviousSibling() != null) {
+            temp = temp.getPreviousSibling();
+        }
+
+        while (true) {
+            DetailAST toVisit = temp.getFirstChild();
+
+            if (temp.getType() == TokenTypes.BLOCK_COMMENT_BEGIN
+                    && JavadocUtil.isJavadocComment(temp)) {
+                final DetailAST end = temp.getFirstChild().getNextSibling();
+                comment = JavadocUtil.getJavadocCommentContent(temp);
+                commentDetails = commentLineDetails(temp, end);
+            }
+
+            if (temp.getType() == TokenTypes.PACKAGE_DEF) {
+                break;
+            }
+
+            while (toVisit == null) {
+                toVisit = temp.getNextSibling();
+                temp = temp.getParent();
+            }
+
+            temp = toVisit;
+        }
+
+        TextBlock textBlock = generateTextBlock(comment, commentDetails);
+
+        if (textBlock == null) {
+            textBlock = getJavaDoc(ast);
+        }
+
+        return textBlock;
+    }
+
+    /**
+     * Generate The TextBlock From Given Comment.
+     *
+     * @param comment as Javadoc Comment String
+     * @param commentDetails as Line Number and Column Number Details
+     *        commentDetails[0] as Start Line Number
+     *        commentDetails[1] as Start Column Number
+     *        commentDetails[2] as End Line Number
+     *        commentDetails[3] as End Column Number
+     * @return TextBlock of Javadoc comment
+     */
+    public TextBlock generateTextBlock(String comment, int... commentDetails) {
+        final TextBlock textBlock;
+
+        if (comment == null) {
+            textBlock = null;
+        }
+        else {
+            final int endColNoIndex = 3;
+            int endCol = commentDetails[endColNoIndex];
+            final String[] comments = comment.split("\n");
+            comments[0] = "/**" + comments[0];
+            endCol++;
+
+            final int tempEndLine = commentDetails[0] + (comments.length - 1);
+
+            if (tempEndLine == commentDetails[2]) {
+                comments[comments.length - 1] += "*/";
+                if (comments.length == 1) {
+                    endCol++;
+                }
+                textBlock = new Comment(comments, commentDetails[1], commentDetails[2], endCol);
+            }
+            else {
+                final String[] modifiedComments = new String[comments.length + 1];
+                System.arraycopy(comments, 0, modifiedComments, 0, comments.length);
+                modifiedComments[comments.length] = "*/";
+                textBlock = new Comment(modifiedComments, commentDetails[1],
+                        commentDetails[2], endCol);
+            }
+        }
+
+        return textBlock;
+    }
+
+    /**
+     * Check Is block a New Token Of Acceptable Token and Update To Visit Accordingly.
+     *
+     * @param block as AST Token To Check
+     * @param toVisit as AST Token To Update
+     * @param key as Unique Id of Main Token
+     * @return toVisit as Updated Token
+     */
+    private DetailAST checkNewToken(DetailAST block, DetailAST toVisit, String key) {
+        DetailAST newToVisit = toVisit;
+        if (isNewToken(block)) {
+            final String tempKey = block.getType() + "-" + block.getLineNo() + "-"
+                    + block.getColumnNo();
+            if (!tempKey.equals(key)) {
+                newToVisit = null;
+            }
+        }
+
+        return newToVisit;
+    }
+
+    /**
+     * Checking Terminating Condition.
+     *
+     * @param block as AST To Check
+     * @param toVisit as Next Child of block
+     * @param key as Unique Id of Main Token
+     * @return true or false
+     */
+    public boolean checkLastChildCondition(DetailAST block, DetailAST toVisit, String key) {
+        boolean flag = false;
+        if (toVisit == null) {
+            final String parentKey = block.getParent().getType() + "-"
+                    + block.getParent().getLineNo() + "-" + block.getParent().getColumnNo();
+
+            if (parentKey.equals(key) && block.getNextSibling() == null) {
+                flag = true;
+            }
+        }
+        return flag;
+    }
+
+    /**
+     * Find The Javadoc comments Associated With given ast.
+     *
+     * @param ast a given node
+     * @return TextBlock of Javadoc comment
+     */
+    private TextBlock getJavaDoc(DetailAST ast) {
+        DetailAST temp = ast;
+        String comment = "";
+        final int commentDetailsSize = 4;
+        int[] commentDetails = new int[commentDetailsSize];
+        final String key = ast.getType() + "-" + ast.getLineNo() + "-" + ast.getColumnNo();
+
+        while (temp != null) {
+            DetailAST toVisit = temp.getFirstChild();
+
+            toVisit = checkNewToken(temp, toVisit, key);
+
+            if (checkLastChildCondition(temp, toVisit, key)) {
+                break;
+            }
+
+            if (temp.getType() == TokenTypes.BLOCK_COMMENT_BEGIN) {
+                final DetailAST end = temp.getFirstChild().getNextSibling();
+                if (JavadocUtil.isJavadocComment(temp)) {
+                    comment = JavadocUtil.getJavadocCommentContent(temp);
+                    commentDetails = commentLineDetails(temp, end);
+                }
+                else if (end.getLineNo() != ast.getLineNo()
+                        || end.getColumnNo() < ast.getColumnNo()) {
+                    comment = "";
+                    commentDetails = new int[commentDetailsSize];
+                }
+            }
+
+            while (toVisit == null && temp != null) {
+                toVisit = temp.getNextSibling();
+                temp = temp.getParent();
+            }
+
+            temp = toVisit;
+
+        }
+
+        TextBlock textBlock = null;
+
+        if (!comment.isEmpty()) {
+            textBlock = generateTextBlock(comment, commentDetails);
+        }
+
+        return textBlock;
+    }
+
+    /**
+     * To Get The Line Number and Column Number For Javadoc Comment.
+     *
+     * @param startBlock as Start of Javadoc
+     * @param endBlock as End Of Javadoc
+     * @return Array of Details
+     */
+    public int[] commentLineDetails(DetailAST startBlock, DetailAST endBlock) {
+        final int startColNo = startBlock.getColumnNo();
+        final int endLineNo = endBlock.getLineNo();
+        final int endColNo = startBlock.getFirstChild().getNextSibling().getColumnNo();
+        final int startLine = startBlock.getLineNo();
+
+        return new int[] {
+            startLine, startColNo, endLineNo, endColNo,
+        };
     }
 
     /**
@@ -420,19 +663,21 @@ public class JavadocStyleCheck
     private boolean shouldCheck(final DetailAST ast) {
         boolean check = false;
 
-        if (ast.getType() == TokenTypes.PACKAGE_DEF) {
-            check = CheckUtil.isPackageInfo(getFilePath());
-        }
-        else if (!ScopeUtil.isInCodeBlock(ast)) {
-            final Scope customScope = ScopeUtil.getScope(ast);
-            final Scope surroundingScope = ScopeUtil.getSurroundingScope(ast);
+        if (ast.getType() != TokenTypes.COMMENT_CONTENT) {
+            if (ast.getType() == TokenTypes.PACKAGE_DEF) {
+                check = CheckUtil.isPackageInfo(getFilePath());
+            }
+            else if (!ScopeUtil.isInCodeBlock(ast)) {
+                final Scope customScope = ScopeUtil.getScope(ast);
+                final Scope surroundingScope = ScopeUtil.getSurroundingScope(ast);
 
-            check = customScope.isIn(scope)
-                    && (surroundingScope == null || surroundingScope.isIn(scope))
-                    && (excludeScope == null
+                check = customScope.isIn(scope)
+                        && (surroundingScope == null || surroundingScope.isIn(scope))
+                        && (excludeScope == null
                         || !customScope.isIn(excludeScope)
                         || surroundingScope != null
-                            && !surroundingScope.isIn(excludeScope));
+                        && !surroundingScope.isIn(excludeScope));
+            }
         }
         return check;
     }

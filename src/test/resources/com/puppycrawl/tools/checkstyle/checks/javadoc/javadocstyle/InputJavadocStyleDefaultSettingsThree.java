@@ -111,4 +111,8 @@ public class InputJavadocStyleDefaultSettingsThree
      * /a>
      */
     void tagClosedInNextLine() {} // ok
+
+    /** demo
+     * hello. */
+    void method24() { }
 }

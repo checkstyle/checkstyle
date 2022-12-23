@@ -1626,6 +1626,8 @@ public class TestClass {
                   RECORD_DEF</a>
                 ,<a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMPACT_CTOR_DEF">
                   COMPACT_CTOR_DEF</a>
+                ,<a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMMENT_CONTENT">
+                  COMMENT_CONTENT</a>
                   .
               </td>
               <td>
@@ -1653,6 +1655,8 @@ public class TestClass {
                   RECORD_DEF</a>
                 ,<a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMPACT_CTOR_DEF">
                   COMPACT_CTOR_DEF</a>
+                ,<a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMMENT_CONTENT">
+                  COMMENT_CONTENT</a>
                   .
               </td>
               <td>3.2</td>
