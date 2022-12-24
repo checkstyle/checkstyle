@@ -71,4 +71,16 @@ public class Java19AstRegressionTest extends AbstractTreeTestSupport {
         verifyAst(getPath("ExpectedRecordPatternsPreview.txt"),
                 getNonCompilablePath("InputRecordPatternsPreview.java"));
     }
+
+    @Test
+    public void testGenericRecordDecomposition() throws Exception {
+        verifyAst(getNonCompilablePath("ExpectedGenericRecordDeconstructionPattern.txt"),
+                getNonCompilablePath("InputGenericRecordDeconstructionPattern.java"));
+    }
+
+    @Test
+    public void testGuardsWithExtraParenthesis() throws Exception {
+        verifyAst(getNonCompilablePath("ExpectedJava19GuardsWithExtraParenthesis.txt"),
+                getNonCompilablePath("InputJava19GuardsWithExtraParenthesis.java"));
+    }
 }
