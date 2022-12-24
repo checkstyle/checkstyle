@@ -1947,16 +1947,18 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
         return lparen;
     }
 
+    // can we remove this method entirely?
     @Override
     public DetailAstImpl visitPattern(JavaLanguageParser.PatternContext ctx) {
-        final ParserRuleContext primaryPattern = ctx.primaryPattern();
+        final JavaLanguageParser.InnerPatternContext innerPattern = ctx.innerPattern();
+        final ParserRuleContext primaryPattern = innerPattern.primaryPattern();
         final boolean isSimpleTypePattern = primaryPattern != null
                 && primaryPattern.getChild(0) instanceof JavaLanguageParser.TypePatternContext;
 
         final DetailAstImpl pattern;
         if (isSimpleTypePattern) {
             // For simple type pattern like 'Integer i`, we do not add `PATTERN_DEF` parent
-            pattern = visit(ctx.primaryPattern());
+            pattern = visit(innerPattern.primaryPattern());
         }
         else {
             pattern = createImaginary(TokenTypes.PATTERN_DEF);
@@ -1966,11 +1968,16 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
     }
 
     @Override
+    public DetailAstImpl visitInnerPattern(JavaLanguageParser.InnerPatternContext ctx) {
+        return flattenedTree(ctx);
+    }
+
+    @Override
     public DetailAstImpl visitGuardedPattern(JavaLanguageParser.GuardedPatternContext ctx) {
-        final DetailAstImpl logicalAnd = create(ctx.LAND());
-        logicalAnd.addChild(visit(ctx.primaryPattern()));
-        logicalAnd.addChild(visit(ctx.expr()));
-        return logicalAnd;
+        final DetailAstImpl guardAstNode = flattenedTree(ctx.guard());
+        guardAstNode.addChild(visit(ctx.primaryPattern()));
+        guardAstNode.addChild(visit(ctx.expr()));
+        return guardAstNode;
     }
 
     @Override
