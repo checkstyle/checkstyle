@@ -382,6 +382,11 @@ public class LeftCurlyCheck
         }
     }
 
+    @Override
+    public boolean isCommentNodesRequired() {
+        return true;
+    }
+
     /**
      * Gets the brace of a switch statement/ expression member.
      *
@@ -495,7 +500,7 @@ public class LeftCurlyCheck
      * @param braceLine line content
      */
     private void validateEol(DetailAST brace, String braceLine) {
-        if (CommonUtil.hasWhitespaceBefore(brace.getColumnNo(), braceLine)) {
+        if (previousLine(brace, braceLine)) {
             log(brace, MSG_KEY_LINE_PREVIOUS, OPEN_CURLY_BRACE, brace.getColumnNo() + 1);
         }
         if (!hasLineBreakAfter(brace)) {
@@ -536,7 +541,12 @@ public class LeftCurlyCheck
     private boolean hasLineBreakAfter(DetailAST leftCurly) {
         DetailAST nextToken = null;
         if (leftCurly.getType() == TokenTypes.SLIST) {
-            nextToken = leftCurly.getFirstChild();
+            if (leftCurly.getFirstChild().getType() == TokenTypes.SINGLE_LINE_COMMENT
+                    || leftCurly.getFirstChild().getType() == TokenTypes.BLOCK_COMMENT_BEGIN) {
+                nextToken = leftCurly.getFirstChild().getNextSibling();
+            }
+            else { nextToken = leftCurly.getFirstChild();
+            }
         }
         else {
             if (!ignoreEnums
@@ -549,4 +559,66 @@ public class LeftCurlyCheck
                 || !TokenUtil.areOnSameLine(leftCurly, nextToken);
     }
 
+    /**
+     * Checks if left curly belongs to previous line or not.
+     *
+     * @param brace brace AST
+     * @param braceLine line on which brace exists
+     * @return true if the property is violated
+     */
+    private boolean previousLine(DetailAST brace, String braceLine) {
+        DetailAST currNode = brace.getPreviousSibling();
+        boolean ans = true;
+//        int currNodeLine = currNode.getLineNo();
+
+
+
+        if (currNode == null) {
+            currNode = brace.getParent();
+            if (currNode.getType() == TokenTypes.OBJBLOCK
+                    || currNode.getType() == TokenTypes.SLIST) {
+                previousLine(currNode, braceLine);
+            }
+        }
+
+        if (currNode != null) {
+            if (currNode.getLineNo() == brace.getLineNo()) {
+
+                if (currNode.getType() != TokenTypes.BLOCK_COMMENT_BEGIN) {
+                    ans = false;
+                }
+                else {
+                    if (CommonUtil.hasWhitespaceBefore(currNode.getColumnNo() - 1, braceLine)) {
+                        ans = true;
+                    } else {
+                        if (currNode.getPreviousSibling() != null
+                                && currNode.getPreviousSibling().getType() != TokenTypes.BLOCK_COMMENT_BEGIN) {
+                            ans = false;
+                        }
+                        else if (currNode.getPreviousSibling() == null) {
+                            previousLine(brace.getParent(), braceLine);
+                        }
+                        previousLine(currNode, braceLine);
+
+                    }
+                }
+            }
+            else {
+                if (currNode.getType() == TokenTypes.BLOCK_COMMENT_BEGIN) {
+                   ans = true;
+                }
+                if (currNode.getPreviousSibling() != null && currNode.getPreviousSibling().hasChildren()
+                        && currNode.getPreviousSibling().getLastChild().getLineNo() == brace.getLineNo()) {
+                    ans = false;
+                }
+                else {
+                    if(CommonUtil.hasWhitespaceBefore(brace.getColumnNo()-1, braceLine)) {
+                        ans = true;
+                    }
+                }
+            }
+        }
+
+        return ans;
+    }
 }
