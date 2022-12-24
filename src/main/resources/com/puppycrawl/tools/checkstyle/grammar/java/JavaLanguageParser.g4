@@ -865,6 +865,10 @@ arguments
     ;
 
 pattern
+    : innerPattern
+    ;
+
+innerPattern
     : guardedPattern
     | primaryPattern
     | recordPattern
@@ -886,12 +890,7 @@ guard: ( LAND | LITERAL_WHEN );
 
 primaryPattern
     : typePattern                                                          #patternVariableDef
-    | LPAREN
-      // Set of production rules below should mirror `pattern` production rule
-      // above. We do not reuse `pattern` production rule here to avoid a bunch
-      // of nested `PATTERN_DEF` nodes, as we also do for expressions.
-      (guardedPattern | primaryPattern | recordPattern )
-      RPAREN                                                               #parenPattern
+    | LPAREN innerPattern RPAREN                                           #parenPattern
     | recordPattern                                                        #recordPatternDef
     ;
 
@@ -900,15 +899,15 @@ typePattern
     ;
 
 recordPattern
-    : type=typeType[true] recordStructurePattern id?
+    : mods+=modifier* type=typeType[true] recordStructurePattern id?
     ;
 
 recordStructurePattern
-    : LPAREN recordComponentPatternList* RPAREN
+    : LPAREN recordComponentPatternList? RPAREN
     ;
 
 recordComponentPatternList
-    : primaryPattern (COMMA primaryPattern)*
+    : innerPattern (COMMA innerPattern)*
     ;
 
 permittedSubclassesAndInterfaces
