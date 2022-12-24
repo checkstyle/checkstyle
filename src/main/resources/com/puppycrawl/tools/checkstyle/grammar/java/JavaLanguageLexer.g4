@@ -205,6 +205,7 @@ LITERAL_YIELD:           'yield';
 LITERAL_NON_SEALED:      'non-sealed';
 LITERAL_SEALED:          'sealed';
 LITERAL_PERMITS:         'permits';
+LITERAL_WHEN:            'when';
 
 // Literals
 DECIMAL_LITERAL_LONG:    ('0' | [1-9] (Digits? | '_'+ Digits)) [lL];
