@@ -18,6 +18,7 @@ before_install:
 
 install:
   - sudo apt install -y groovy xsltproc xmlstarlet ant
+  - sudo apt-install -y build-essential nghttp2 libnghttp2-dev libssl-dev
   - ./.ci/travis.sh install-adoptium-jdk
   - ./.ci/travis.sh install-custom-mvn
 
