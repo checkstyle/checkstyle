@@ -535,7 +535,16 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
     @Test
     public void commentBeforeLeftCurly() throws Exception {
         final String[] expected = {
+            "24:34: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 34),
+            "27:24: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 24),
             "32:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
+            "40:21: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 21),
+            "45:36: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 36),
+            "58:36: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 36),
+            "73:26: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 26),
+            "87:22: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 22),
+            "90:32: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 32),
+
         };
         verifyWithInlineConfigParser(
                 getPath("InputLeftCurlyCommentBeforeLeftCurly.java"), expected);
@@ -544,10 +553,24 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
     @Test
     public void commentBeforeLeftCurly2() throws Exception {
         final String[] expected = {
+            "28:16: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 16),
+            "32:16: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 16),
+            "39:15: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 15),
+            "45:32: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 32),
             "54:9: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 9),
             "66:29: " + getCheckMessage(MSG_KEY_LINE_BREAK_AFTER, "{", 29),
         };
         verifyWithInlineConfigParser(
                 getPath("InputLeftCurlyCommentBeforeLeftCurly2.java"), expected);
     }
+
+    @Test
+    public void commentTestForLineBreakAfter() throws Exception {
+        final String[] expected = {
+            "28:19: " + getCheckMessage(MSG_KEY_LINE_BREAK_AFTER, "{", 19),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputLeftCurlyHasLineBreakAfterWithComment.java"), expected);
+    }
+
 }
