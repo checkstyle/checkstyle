@@ -107,6 +107,17 @@ public class JavaNCSSCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testForMutation() throws Exception {
+        final String[] expected = {
+            "13:1: " + getCheckMessage(MSG_CLASS, 84, 80),
+            "16:5: " + getCheckMessage(MSG_CLASS, 83, 80),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavaNCSSResolveMutation.java"),
+                expected);
+    }
+
+    @Test
     public void testGetAcceptableTokens() {
         final JavaNCSSCheck javaNcssCheckObj = new JavaNCSSCheck();
         final int[] actual = javaNcssCheckObj.getAcceptableTokens();
