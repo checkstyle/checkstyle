@@ -458,7 +458,7 @@
               <td/>
             </tr>
             <tr>
-              <td><a href="https://www.sonarqube.org/">SonarQube</a></td>
+              <td><a href="https://www.sonarsource.com/products/sonarqube/">SonarQube</a></td>
               <td>Freddy Mallet (initial author)</td>
               <td><a href="https://github.com/checkstyle/sonar-checkstyle">
                   Checkstyle SonarQube repository</a></td>

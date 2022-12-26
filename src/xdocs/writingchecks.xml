@@ -713,7 +713,7 @@ public class MethodLimitCheck extends AbstractCheck
         features that are available in advanced IDEs like Eclipse,
         <a href="https://www.jetbrains.com/idea/">IntelliJ IDEA</a>,
         <a href="https://spotbugs.github.io/">SpotBugs</a>,
-        <a href="https://www.sonarqube.org">Sonarqube</a>.
+        <a href="https://www.sonarsource.com/products/sonarqube/">Sonarqube</a>.
       </p>
 
       <p>
