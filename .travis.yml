@@ -13,6 +13,10 @@ branches:
   only:
     - master
 
+git:
+  lfs_skip_smudge: true
+  depth: 1
+
 before_install:
   - sudo apt update
 
