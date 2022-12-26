@@ -25,7 +25,6 @@ import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.noClasses;
 
 import java.util.List;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import com.tngtech.archunit.core.domain.JavaClasses;
@@ -81,12 +80,6 @@ public class ArchUnitTest {
         "Method <com.puppycrawl.tools.checkstyle.api.FileContents.lineIsBlank(int)> calls method "
             + "<com.puppycrawl.tools.checkstyle.utils.CommonUtil.isBlank(java.lang.String)>"
     );
-
-    @BeforeAll
-    public static void init() {
-        System.setProperty(
-                "org.slf4j.simpleLogger.log.com.tngtech.archunit.core.PluginLoader", "off");
-    }
 
     /**
      * The goal is to ensure all classes of a specific name pattern have non-protected methods,
