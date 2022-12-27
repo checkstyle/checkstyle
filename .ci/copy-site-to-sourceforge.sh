@@ -2,6 +2,8 @@
 
 set -e
 
+source ./.ci/util.sh
+
 RELEASE=$1
 
 echo "RELEASE version:""$RELEASE"
@@ -10,6 +12,8 @@ if [[ -z $RELEASE ]]; then
   echo "Problem to calculate release version."
   exit 1
 fi
+
+checkForVariable "SF_USER"
 
 echo "Creating shell for $SF_USER@shell.sourceforge.net"
 ssh -i ~/.ssh/private_sourceforge_key -t "$SF_USER"@shell.sourceforge.net create
