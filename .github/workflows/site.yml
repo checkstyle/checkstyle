@@ -52,8 +52,8 @@ jobs:
       - name: Set branch
         id: branch
         run: |
-          run: echo "ref=$(xargs < branch)" >> "$GITHUB_OUTPUT"
-          run: echo "commit_sha=$(xargs < commit_sha | cut -c 1-7)" >> "$GITHUB_OUTPUT"
+          echo "ref=$(xargs < branch)" >> "$GITHUB_OUTPUT"
+          echo "commit_sha=$(xargs < commit_sha | cut -c 1-7)" >> "$GITHUB_OUTPUT"
 
   generate_site:
     needs: parse_pr_info
