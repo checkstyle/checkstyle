@@ -21,10 +21,10 @@ import java.util.regex.Pattern;
 public class InputLeftCurlyCommentBeforeLeftCurly {
 
     void method1 ()
-    /* violation not reported */ { } // ok until #11410
+    /* violation not reported */ { } // violation ''{' at column 34 should be on the previous line'
 
     InputLeftCurlyCommentBeforeLeftCurly()
-    /* I am comment */ { // ok until #11410
+    /* I am comment */ { // violation ''{' at column 24 should be on the previous line'
         System.out.println("Hello CheckStyle");
     }
 
@@ -37,12 +37,12 @@ public class InputLeftCurlyCommentBeforeLeftCurly {
         try {
             throw new IOException();
         } catch (IOException | NullPointerException | ArithmeticException ex) //ok
-         /* warn */ { // ok until #11410
+         /* warn */ { // violation ''{' at column 21 should be on the previous line'
         }
     }
 
     public void multipleBlock()
-    /*CheckStyle*/ /* Checkstyle*/ { // ok until #11410
+    /*CheckStyle*/ /* Checkstyle*/ { // violation ''{' at column 36 should be on the previous line'
     }
 
     private class Node {
@@ -55,7 +55,7 @@ public class InputLeftCurlyCommentBeforeLeftCurly {
         }
 
         public Node(int value, Node next)
-        /*********** comment ****/ { // ok until #11410
+        /*********** comment ****/ { // violation ''{' at column 36 should be on the previous line'
             this.value = value;
             this.next = next;
         }
@@ -63,14 +63,14 @@ public class InputLeftCurlyCommentBeforeLeftCurly {
 
     public void array() {
         Integer[] array = null;
-        /*50*/ for/*51*/ (/*52*/Integer/*53*/ i/*54*/:/*55*/ array/*56*/)/*57*/ {/*58*/ // ok
+        /*50*/ for/*51*/ (/*52*/Integer/*53*/ i/*54*/:/*55*/ array/*56*/)/*57*/ {/*58*/
             /*59*/
         }/*60*/
     }
 }
 
 class checks implements check
-        /* CheckStyle */ { // ok until #11410
+        /* CheckStyle */ { // violation ''{' at column 26 should be on the previous line'
 
     public static Set<String> processJavadocTag() {
         final Set<String> references = new HashSet<>();
@@ -84,10 +84,10 @@ class checks implements check
 
     class C {
         void method1 ()
-            /* 😂🥳 */ { } // ok until #11410
+            /* 😂🥳 */ { } // violation ''{' at column 22 should be on the previous line'
 
         void method2 ()
-        /* 🥳🥳🥳🥳 */ /* 🥳🥳🥳🥳🥳 */ { } // ok until #11410
+        /* 🥳🥳🥳🥳 */ /* 🥳🥳🥳🥳🥳 */ { } // violation ''{' at column 32 should be on the previous line'
         }
 
     private void method() { // ok
