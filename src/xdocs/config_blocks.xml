@@ -811,6 +811,33 @@ class Test
 }
         </source>
         <p>
+          Config for <code>eol</code> policy:
+        </p>
+        <source>
+&lt;module name=&quot;LeftCurly&quot;&gt;
+  &lt;property name=&quot;option&quot; value=&quot;eol&quot;/&gt;
+&lt;/module&gt;
+        </source>
+        <source>
+class Test {
+
+  void method() { /&#42; comment &#42;/ int a; // violation ''{' should have line break after'
+  }
+
+  void method1() { /&#42; BlockComment ok &#42;/
+  }
+
+  void method2()
+  /&#42; BlockComment &#42;/ { // violation '{' should be on the previous line
+  }
+
+  void method3() /&#42; BlockComment
+    comment &#42;/ { // ok
+  }
+
+}
+        </source>
+        <p>
           To configure the check to apply the <code>nl</code> policy to
           type blocks:
         </p>

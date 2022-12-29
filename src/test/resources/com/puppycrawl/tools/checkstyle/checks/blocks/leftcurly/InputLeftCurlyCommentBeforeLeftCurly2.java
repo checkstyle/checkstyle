@@ -15,8 +15,13 @@ package com.puppycrawl.tools.checkstyle.checks.blocks.leftcurly;
 
 import org.junit.jupiter.api.function.ThrowingConsumer;
 
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.Socket;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.*;
 import java.util.List;
 
@@ -25,29 +30,29 @@ public class InputLeftCurlyCommentBeforeLeftCurly2 {
     private long[] countList;
 
     void method1() /* comment
-    comment */ { // ok until #11410
+    comment */ { // ok
     }
 
     void method2() /********
-    comment */ {  // ok
+    comment */ { // ok
         if (!Arrays.equals(this.countList, countList)
-            /* || !Arrays.equals(this.whereCreated, other.whereCreated) */ ) { // ok
+            /* || !Arrays.equals(this.whereCreated, other.whereCreated) */ ) {
         }
     }
 
     void method3() /*****
-    ********/ { } // ok until #11410
+    ********/ { } // ok
 
 
-    InputLeftCurlyCommentBeforeLeftCurly2() /**************/ { } // ok
+    InputLeftCurlyCommentBeforeLeftCurly2() /**************/ { }
 
     InputLeftCurlyCommentBeforeLeftCurly2(int data) /*
-     ****** comment *********/ { } // ok until #11410
+     ****** comment *********/ { } // ok
 }
 
 class Class {
     private
-    class Node /************/{
+    class Node /************/{ // ok
         int data;
         Node next;
         Node(int data) /* comment */
@@ -91,5 +96,20 @@ class Nothing {
         else if (line.regionMatches(index, "*/", 0, 2)) {
             index++;
         }
+    }
+
+    private static Integer[] getLinesWithWarnAndCheckComments(String aFileName,
+                                                              final int tabWidth)
+            throws IOException {
+        final List<Integer> result = new ArrayList<>();
+        try (BufferedReader br = Files.newBufferedReader(
+                Paths.get(aFileName), StandardCharsets.UTF_8)) {
+            int lineNumber = 1;
+        }
+        return result.toArray(new Integer[0]);
+    }
+
+    void MethodTest() /* comment */
+    /* comment */ { // violation '{' at column 19 should be on the previous line'
     }
 }
