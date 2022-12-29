@@ -124,6 +124,33 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * }
  * </pre>
  * <p>
+ * Config for {@code eol} policy:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;LeftCurly&quot;&gt;
+ *   &lt;property name=&quot;option&quot; value=&quot;eol&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <pre>
+ * class Test {
+ *
+ *   void method() { /&#42; comment &#42;/ int a; // violation ''{' should have line break after'
+ *   }
+ *
+ *   void method1() { /&#42; BlockComment ok &#42;/
+ *   }
+ *
+ *   void method2()
+ *   /&#42; BlockComment &#42;/ { // violation '{' should be on the previous line
+ *   }
+ *
+ *   void method3() /&#42; BlockComment
+ *   comment &#42;/ { // ok
+ *   }
+ *
+ * }
+ * </pre>
+ * <p>
  * To configure the check to apply the {@code nl} policy to type blocks:
  * </p>
  * <pre>
@@ -382,6 +409,11 @@ public class LeftCurlyCheck
         }
     }
 
+    @Override
+    public boolean isCommentNodesRequired() {
+        return true;
+    }
+
     /**
      * Gets the brace of a switch statement/ expression member.
      *
@@ -495,7 +527,7 @@ public class LeftCurlyCheck
      * @param braceLine line content
      */
     private void validateEol(DetailAST brace, String braceLine) {
-        if (CommonUtil.hasWhitespaceBefore(brace.getColumnNo(), braceLine)) {
+        if (previousLine(brace, braceLine)) {
             log(brace, MSG_KEY_LINE_PREVIOUS, OPEN_CURLY_BRACE, brace.getColumnNo() + 1);
         }
         if (!hasLineBreakAfter(brace)) {
@@ -536,7 +568,13 @@ public class LeftCurlyCheck
     private boolean hasLineBreakAfter(DetailAST leftCurly) {
         DetailAST nextToken = null;
         if (leftCurly.getType() == TokenTypes.SLIST) {
-            nextToken = leftCurly.getFirstChild();
+            if (leftCurly.getFirstChild().getType() == TokenTypes.SINGLE_LINE_COMMENT
+                    || leftCurly.getFirstChild().getType() == TokenTypes.BLOCK_COMMENT_BEGIN) {
+                nextToken = leftCurly.getNextSibling();
+            }
+            else {
+                nextToken = leftCurly.getFirstChild();
+            }
         }
         else {
             if (!ignoreEnums
@@ -549,4 +587,40 @@ public class LeftCurlyCheck
                 || !TokenUtil.areOnSameLine(leftCurly, nextToken);
     }
 
+    /**
+     * Checks if left curly belongs to previous line or not.
+     *
+     * @param brace brace AST
+     * @param braceLine line on which brace exists
+     * @return true if the property is violated
+     */
+    private boolean previousLine(DetailAST brace, String braceLine) {
+        final DetailAST currNode = brace.getPreviousSibling();
+        boolean ans = true;
+
+        if (currNode != null && currNode.getLineNo() == brace.getLineNo()) {
+            if (currNode.getType() == TokenTypes.BLOCK_COMMENT_BEGIN) {
+                if (CommonUtil.hasWhitespaceBefore(currNode.getColumnNo() - 1, braceLine)) {
+                    ans = true;
+                }
+                else {
+                    if (currNode.getPreviousSibling() != null
+                            && currNode.getPreviousSibling().getType()
+                            != TokenTypes.BLOCK_COMMENT_BEGIN) {
+                        ans = false;
+                    }
+                    else if (currNode.getPreviousSibling() == null) {
+                        ans = false;
+                    }
+                }
+            }
+            else {
+                ans = false;
+            }
+        }
+        else {
+            ans = CommonUtil.hasWhitespaceBefore(brace.getColumnNo(), braceLine);
+        }
+        return ans;
+    }
 }
