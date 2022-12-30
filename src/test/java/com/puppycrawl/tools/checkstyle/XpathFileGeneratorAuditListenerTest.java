@@ -25,6 +25,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
+import java.util.Locale;
 
 import org.junit.jupiter.api.Test;
 
@@ -141,9 +142,8 @@ public class XpathFileGeneratorAuditListenerTest {
         final XpathFileGeneratorAuditListener logger =
                 new XpathFileGeneratorAuditListener(out, AutomaticBean.OutputStreamOptions.CLOSE);
         logger.auditStarted(null);
-        final Violation violation =
-                new Violation(1, 1,
-                        "messages.properties", null, null, null, getClass(), null);
+        final Violation violation = new Violation(1, 1, Locale.getDefault(), "messages.properties",
+                null, null, null, getClass(), null);
         final AuditEvent ev = new AuditEvent(this, "Test.java", violation);
 
         try {
@@ -273,9 +273,8 @@ public class XpathFileGeneratorAuditListenerTest {
 
     private AuditEvent createAuditEvent(String fileName, int lineNumber, int columnNumber,
                                         Class<?> sourceClass) {
-        final Violation violation =
-                new Violation(lineNumber, columnNumber, "messages.properties", null,
-                        null, null, sourceClass, null);
+        final Violation violation = new Violation(lineNumber, columnNumber, Locale.getDefault(),
+                "messages.properties", null, null, null, sourceClass, null);
 
         return new AuditEvent(this,
                 getPath(fileName), violation);
@@ -291,7 +290,7 @@ public class XpathFileGeneratorAuditListenerTest {
                                                                    String moduleId,
                                                                    Class<?> sourceClass) {
         return new Violation(lineNumber, columnNumber, tokenType,
-                "messages.properties", null, null,
+                Locale.getDefault(), "messages.properties", null, null,
                 SeverityLevel.ERROR, moduleId, sourceClass, null);
     }
 

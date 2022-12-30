@@ -47,8 +47,9 @@ public interface RootModule extends Configurable {
      * Add the listener that will be used to receive events from the audit.
      *
      * @param listener the nosy thing
+     * @throws CheckstyleException if there is an error configuring the filter.
      */
-    void addListener(AuditListener listener);
+    void addListener(AuditListener listener) throws CheckstyleException;
 
     /**
      * Sets the classloader used to load Checkstyle core and custom module

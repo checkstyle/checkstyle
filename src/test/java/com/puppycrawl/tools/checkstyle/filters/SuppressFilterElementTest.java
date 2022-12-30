@@ -21,6 +21,8 @@ package com.puppycrawl.tools.checkstyle.filters;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 
+import java.util.Locale;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -51,7 +53,7 @@ public class SuppressFilterElementTest {
     @Test
     public void testDecideViolation() {
         final Violation violation =
-            new Violation(1, 0, "", "", null, null, getClass(), null);
+            new Violation(1, 0, Locale.getDefault(), "", "", null, null, getClass(), null);
         final AuditEvent ev = new AuditEvent(this, "ATest.java", violation);
         // deny because there are matches on file and check names
         assertWithMessage("Names match")
@@ -62,7 +64,7 @@ public class SuppressFilterElementTest {
     @Test
     public void testDecideByMessage() {
         final Violation violation =
-            new Violation(1, 0, "", "", null, null, getClass(), "Test");
+            new Violation(1, 0, Locale.getDefault(), "", "", null, null, getClass(), "Test");
         final AuditEvent ev = new AuditEvent(this, "ATest.java", violation);
         final SuppressFilterElement filter1 =
                 new SuppressFilterElement(null, null, "Test", null, null, null);
@@ -79,7 +81,7 @@ public class SuppressFilterElementTest {
     @Test
     public void testDecideByLine() {
         final Violation violation =
-            new Violation(10, 10, "", "", null, null, getClass(), null);
+            new Violation(10, 10, Locale.getDefault(), "", "", null, null, getClass(), null);
         final AuditEvent ev = new AuditEvent(this, "ATest.java", violation);
         final SuppressFilterElement filter1 =
                 new SuppressFilterElement("Test", "Test", null, null, "1-10", null);
@@ -102,7 +104,7 @@ public class SuppressFilterElementTest {
     @Test
     public void testDecideByColumn() {
         final Violation violation =
-            new Violation(10, 10, "", "", null, null, getClass(), null);
+            new Violation(10, 10, Locale.getDefault(), "", "", null, null, getClass(), null);
         final AuditEvent ev = new AuditEvent(this, "ATest.java", violation);
         final SuppressFilterElement filter1 =
                 new SuppressFilterElement("Test", "Test", null, null, null, "1-10");
@@ -121,7 +123,7 @@ public class SuppressFilterElementTest {
     @Test
     public void testDecideByFileNameAndModuleMatchingFileNameNull() {
         final Violation message =
-                new Violation(10, 10, "", "", null, null, getClass(), null);
+                new Violation(10, 10, Locale.getDefault(), "", "", null, null, getClass(), null);
         final AuditEvent ev = new AuditEvent(this, null, message);
         assertWithMessage("Filter should accept valid event")
                 .that(filter.accept(ev))
@@ -138,8 +140,8 @@ public class SuppressFilterElementTest {
 
     @Test
     public void testDecideByFileNameAndModuleMatchingModuleNull() {
-        final Violation violation =
-                new Violation(10, 10, "", "", null, "MyModule", getClass(), null);
+        final Violation violation = new Violation(10, 10, Locale.getDefault(), "", "", null,
+                "MyModule", getClass(), null);
         final AuditEvent ev = new AuditEvent(this, "ATest.java", violation);
         assertWithMessage("Filter should not accept invalid event")
                 .that(filter.accept(ev))
@@ -148,8 +150,8 @@ public class SuppressFilterElementTest {
 
     @Test
     public void testDecideByFileNameAndModuleMatchingModuleEqual() {
-        final Violation violation =
-                new Violation(10, 10, "", "", null, "MyModule", getClass(), null);
+        final Violation violation = new Violation(10, 10, Locale.getDefault(), "", "", null,
+                "MyModule", getClass(), null);
         final AuditEvent ev = new AuditEvent(this, "ATest.java", violation);
         final SuppressFilterElement myFilter =
                 new SuppressFilterElement("Test", "Test", null, "MyModule", null, null);
@@ -161,8 +163,8 @@ public class SuppressFilterElementTest {
 
     @Test
     public void testDecideByFileNameAndModuleMatchingModuleNotEqual() {
-        final Violation message =
-                new Violation(10, 10, "", "", null, "TheirModule", getClass(), null);
+        final Violation message = new Violation(10, 10, Locale.getDefault(), "", "", null,
+                "TheirModule", getClass(), null);
         final AuditEvent ev = new AuditEvent(this, "ATest.java", message);
         final SuppressFilterElement myFilter =
                 new SuppressFilterElement("Test", "Test", null, "MyModule", null, null);
@@ -175,7 +177,7 @@ public class SuppressFilterElementTest {
     @Test
     public void testDecideByFileNameAndModuleMatchingRegExpNotMatch() {
         final Violation message =
-                new Violation(10, 10, "", "", null, null, getClass(), null);
+                new Violation(10, 10, Locale.getDefault(), "", "", null, null, getClass(), null);
         final AuditEvent ev = new AuditEvent(this, "T1est", message);
         assertWithMessage("Filter should accept valid event")
                 .that(filter.accept(ev))
@@ -185,7 +187,7 @@ public class SuppressFilterElementTest {
     @Test
     public void testDecideByFileNameAndModuleMatchingRegExpMatch() {
         final Violation message =
-                new Violation(10, 10, "", "", null, null, getClass(), null);
+                new Violation(10, 10, Locale.getDefault(), "", "", null, null, getClass(), null);
         final AuditEvent ev = new AuditEvent(this, "TestSUFFIX", message);
         final SuppressFilterElement myFilter =
                 new SuppressFilterElement("Test", null, null, null, null, null);
@@ -197,7 +199,7 @@ public class SuppressFilterElementTest {
     @Test
     public void testDecideByFileNameAndModuleMatchingCheckRegExpNotMatch() {
         final Violation message =
-                new Violation(10, 10, "", "", null, null, getClass(), null);
+                new Violation(10, 10, Locale.getDefault(), "", "", null, null, getClass(), null);
         final AuditEvent ev = new AuditEvent(this, "ATest.java", message);
         final SuppressFilterElement myFilter = new SuppressFilterElement("Test",
                 "NON_EXISTENT_CHECK", null, "MyModule", null, null);
@@ -209,7 +211,7 @@ public class SuppressFilterElementTest {
     @Test
     public void testDecideByFileNameAndModuleMatchingCheckRegExpMatch() {
         final Violation message =
-                new Violation(10, 10, "", "", null, null, getClass(), null);
+                new Violation(10, 10, Locale.getDefault(), "", "", null, null, getClass(), null);
         final AuditEvent ev = new AuditEvent(this, "ATest.java", message);
         final SuppressFilterElement myFilter = new SuppressFilterElement("Test",
                 getClass().getCanonicalName(), null, null, null, null);
@@ -222,7 +224,7 @@ public class SuppressFilterElementTest {
     @Test
     public void testDecideByFileNameAndSourceNameCheckRegExpNotMatch() {
         final Violation message =
-                new Violation(10, 10, "", "", null, null, getClass(), null);
+                new Violation(10, 10, Locale.getDefault(), "", "", null, null, getClass(), null);
         final AuditEvent ev = new AuditEvent(this, "ATest.java", message);
         final SuppressFilterElement myFilter =
                 new SuppressFilterElement("Test", TreeWalkerTest.class.getCanonicalName(),

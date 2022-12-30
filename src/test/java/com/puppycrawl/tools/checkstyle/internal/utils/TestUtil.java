@@ -168,7 +168,7 @@ public final class TestUtil {
     public static PackageObjectFactory getPackageObjectFactory() throws CheckstyleException {
         final ClassLoader cl = TestUtil.class.getClassLoader();
         final Set<String> packageNames = PackageNamesLoader.getPackageNames(cl);
-        return new PackageObjectFactory(packageNames, cl);
+        return new PackageObjectFactory(Locale.getDefault(), packageNames, cl);
     }
 
     /**
