@@ -741,6 +741,21 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
                 .isInstanceOf(SarifLogger.class);
     }
 
+    /**
+     * Testing deprecated method.
+     *
+     * @noinspection DeprecatedIsStillUsed
+     * @noinspectionreason DeprecatedIsStillUsed - until #12556
+     */
+    @Test
+    public void testCreateClasspath() {
+        final CheckstyleAntTask antTask = new CheckstyleAntTask();
+
+        assertWithMessage("Invalid classpath")
+                .that(antTask.createClasspath().toString())
+                .isEmpty();
+    }
+
     @Test
     public void testDestroyed() throws IOException {
         TestRootModuleChecker.reset();
