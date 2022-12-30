@@ -17,6 +17,8 @@
   <!-- Disallow hamcrest and only allow Truth -->
   <disallow pkg="org.hamcrest.CoreMatchers"/>
   <disallow pkg="org.hamcrest.MatcherAssert"/>
+  <!-- Disallow @BeforeAll, see https://github.com/checkstyle/checkstyle/issues/12100 -->
+  <disallow class="org.junit.jupiter.api.BeforeAll"/>
   <!-- Disallow Junit assert in favor of Truth asserts in few exceptions -->
   <allow class="org.junit.jupiter.api.Assertions.assertThrows"/>
   <allow class="org.junit.jupiter.api.Assertions.assertDoesNotThrow"/>
