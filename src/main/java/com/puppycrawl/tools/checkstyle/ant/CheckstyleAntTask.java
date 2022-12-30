@@ -195,6 +195,18 @@ public class CheckstyleAntTask extends Task {
     }
 
     /**
+     * Creates classpath.
+     *
+     * @return a created path for locating classes
+     * @deprecated left in implementation until #12556 only to allow users to migrate to new gradle
+     *     plugins. This method will be removed in Checkstyle 11.x.x .
+     */
+    @Deprecated(since = "10.6.0")
+    public Path createClasspath() {
+        return new Path(getProject());
+    }
+
+    /**
      * Sets file to be checked.
      *
      * @param file the file to be checked
