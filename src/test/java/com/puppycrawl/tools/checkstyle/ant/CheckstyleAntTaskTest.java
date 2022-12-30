@@ -742,6 +742,15 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
     }
 
     @Test
+    public void testCreateClasspath() {
+        final CheckstyleAntTask antTask = new CheckstyleAntTask();
+
+        assertWithMessage("Invalid classpath")
+                .that(antTask.createClasspath().toString())
+                .isEmpty();
+    }
+
+    @Test
     public void testDestroyed() throws IOException {
         TestRootModuleChecker.reset();
 
