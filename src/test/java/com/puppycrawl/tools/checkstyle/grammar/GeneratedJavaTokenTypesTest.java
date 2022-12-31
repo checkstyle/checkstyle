@@ -19,12 +19,20 @@
 
 package com.puppycrawl.tools.checkstyle.grammar;
 
+import static com.google.common.truth.Truth.assertThat;
 import static com.google.common.truth.Truth.assertWithMessage;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Objects;
+import java.util.Set;
+import java.util.stream.Collectors;
 
+import org.antlr.v4.runtime.Vocabulary;
+import org.antlr.v4.runtime.VocabularyImpl;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.grammar.java.JavaLanguageLexer;
@@ -701,6 +709,9 @@ public class GeneratedJavaTokenTypesTest {
         assertWithMessage(message)
              .that(JavaLanguageLexer.PATTERN_DEF)
              .isEqualTo(213);
+        assertWithMessage(message)
+             .that(JavaLanguageLexer.LITERAL_WHEN)
+             .isEqualTo(214);
 
         final int tokenCount = (int) Arrays.stream(JavaLanguageLexer.class.getDeclaredFields())
                 .filter(GeneratedJavaTokenTypesTest::isPublicStaticFinalInt)
@@ -711,7 +722,46 @@ public class GeneratedJavaTokenTypesTest {
                         + " 'GeneratedJavaTokenTypesTest' and verified"
                         + " that their old numbering didn't change")
             .that(tokenCount)
-            .isEqualTo(225);
+            .isEqualTo(226);
+    }
+
+    /**
+     * This test was created to make sure that new tokens are added to the 'tokens'
+     * block in the lexer grammar. If a new token is not added at the end of the list,
+     * it will become "mixed in" with the unused tokens and cause
+     * Collections#lastIndexOfSubList to return a -1 and fail the test.
+     */
+    @Test
+    public void testTokenHasBeenAddedToTokensBlockInLexerGrammar() {
+        final VocabularyImpl vocabulary = (VocabularyImpl) JavaLanguageLexer.VOCABULARY;
+        final String[] nullableSymbolicNames = vocabulary.getSymbolicNames();
+        final List<String> allTokenNames = Arrays.stream(nullableSymbolicNames)
+                .filter(Objects::nonNull)
+                .collect(Collectors.toList());
+
+        // This is the last tokens that we expect in the list, always.
+        final List<String> unusedTokenNames = List.of(
+                // reserved keywords that are not part of the language
+                "LITERAL_CONST", "LITERAL_GOTO",
+
+                // Lexer tokens that are not part of our API (they are used as components of
+                // parser rules, but the token name is changed).
+                "DECIMAL_LITERAL_LONG", "DECIMAL_LITERAL", "HEX_LITERAL_LONG",
+                "HEX_LITERAL", "OCT_LITERAL_LONG", "OCT_LITERAL", "BINARY_LITERAL_LONG",
+			    "BINARY_LITERAL"
+        );
+
+        // Get the starting index of the sublist of tokens, or -1 if sublist
+        // is not present.
+        final int lastIndexOfSublist =
+                Collections.lastIndexOfSubList(allTokenNames, unusedTokenNames);
+        final int expectedNumberOfUsedTokens = allTokenNames.size() - unusedTokenNames.size();
+        final String message = "New tokens must be added to the 'tokens' block in the" +
+                " lexer grammar.";
+
+        assertWithMessage(message)
+                .that(expectedNumberOfUsedTokens)
+                .isEqualTo(lastIndexOfSublist);
     }
 
     /**
