@@ -9,6 +9,10 @@ on:
       version:
         description: 'Target Version without (-SNAPSHOT)'
         required: true
+
+permissions:
+  contents: write
+
 jobs:
   creation:
     name: Creation-New Milestone/Issue" for ${{ github.event.inputs.version }}
@@ -17,13 +21,19 @@ jobs:
       - name: Checkout the latest code
         uses: actions/checkout@v3
       - name: Close/Create Milestone
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
         run: |
           ./.ci/close-create-milestone.sh
 
       - name: Upload '-all' jar
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
         run: |
           ./.ci/upload-all-jar.sh ${{ github.event.inputs.version }}
 
       - name: Creation of issue in other Repositories
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
         run: |
           ./.ci/creation-of-issue-in-other-repos.sh ${{ github.event.inputs.version }}
