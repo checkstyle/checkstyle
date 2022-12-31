@@ -46,6 +46,7 @@ import com.puppycrawl.tools.checkstyle.api.BeforeExecutionFileFilterSet;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.Context;
+import com.puppycrawl.tools.checkstyle.api.Contextualizable;
 import com.puppycrawl.tools.checkstyle.api.ExternalResourceHolder;
 import com.puppycrawl.tools.checkstyle.api.FileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.FileText;
@@ -96,6 +97,9 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
     @XdocsPropertyType(PropertyType.LOCALE_LANGUAGE)
     private String localeLanguage = Locale.getDefault().getLanguage();
 
+    /** Locale to report messages. */
+    private Locale locale;
+
     /** The factory for instantiating submodules. */
     private ModuleFactory moduleFactory;
 
@@ -138,7 +142,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
      * The instance needs to be contextualized and configured.
      */
     public Checker() {
-        addListener(counter);
+        listeners.add(counter);
         log = LogFactory.getLog(Checker.class);
     }
 
@@ -337,7 +341,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
         }
         catch (final IOException ioe) {
             log.debug("IOException occurred.", ioe);
-            fileMessages.add(new Violation(1,
+            fileMessages.add(new Violation(1, locale,
                     Definitions.CHECKSTYLE_BUNDLE, EXCEPTION_MSG,
                     new String[] {ioe.getMessage()}, null, getClass(), null));
         }
@@ -354,7 +358,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
 
             ex.printStackTrace(pw);
 
-            fileMessages.add(new Violation(1,
+            fileMessages.add(new Violation(1, locale,
                     Definitions.CHECKSTYLE_BUNDLE, EXCEPTION_MSG,
                     new String[] {sw.getBuffer().toString()},
                     null, getClass(), null));
@@ -430,8 +434,12 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
 
     @Override
     protected void finishLocalSetup() throws CheckstyleException {
-        final Locale locale = new Locale(localeLanguage, localeCountry);
-        LocalizedMessage.setLocale(locale);
+        if (Locale.ENGLISH.getLanguage().equals(localeLanguage)) {
+            locale = Locale.ROOT;
+        }
+        else {
+            locale = new Locale(localeLanguage, localeCountry);
+        }
 
         if (moduleFactory == null) {
             if (moduleClassLoader == null) {
@@ -442,7 +450,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
 
             final Set<String> packageNames = PackageNamesLoader
                     .getPackageNames(moduleClassLoader);
-            moduleFactory = new PackageObjectFactory(packageNames,
+            moduleFactory = new PackageObjectFactory(locale, packageNames,
                     moduleClassLoader);
         }
 
@@ -452,6 +460,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
         context.add("severity", severity.getName());
         context.add("basedir", basedir);
         context.add("tabWidth", String.valueOf(tabWidth));
+        context.add("locale", locale);
         childContext = context;
     }
 
@@ -470,11 +479,9 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
         try {
             child = moduleFactory.createModule(name);
 
-            if (child instanceof AutomaticBean) {
-                final AutomaticBean bean = (AutomaticBean) child;
-                bean.contextualize(childContext);
-                bean.configure(childConf);
-            }
+            final AutomaticBean bean = (AutomaticBean) child;
+            bean.contextualize(childContext);
+            bean.configure(childConf);
         }
         catch (final CheckstyleException ex) {
             throw new CheckstyleException("cannot initialize module " + name
@@ -483,19 +490,20 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
         if (child instanceof FileSetCheck) {
             final FileSetCheck fsc = (FileSetCheck) child;
             fsc.init();
-            addFileSetCheck(fsc);
+            fsc.setMessageDispatcher(this);
+            fileSetChecks.add(fsc);
         }
         else if (child instanceof BeforeExecutionFileFilter) {
             final BeforeExecutionFileFilter filter = (BeforeExecutionFileFilter) child;
-            addBeforeExecutionFileFilter(filter);
+            beforeExecutionFileFilters.addBeforeExecutionFileFilter(filter);
         }
         else if (child instanceof Filter) {
             final Filter filter = (Filter) child;
-            addFilter(filter);
+            filters.addFilter(filter);
         }
         else if (child instanceof AuditListener) {
             final AuditListener listener = (AuditListener) child;
-            addListener(listener);
+            listeners.add(listener);
         }
         else {
             throw new CheckstyleException(name
@@ -508,9 +516,13 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
      * that is executed in process().
      *
      * @param fileSetCheck the additional FileSetCheck
+     * @throws CheckstyleException if there is an error configuring the filter.
      */
-    public void addFileSetCheck(FileSetCheck fileSetCheck) {
+    public void addFileSetCheck(FileSetCheck fileSetCheck) throws CheckstyleException {
         fileSetCheck.setMessageDispatcher(this);
+        if (childContext != null) {
+            fileSetCheck.contextualize(childContext);
+        }
         fileSetChecks.add(fileSetCheck);
     }
 
@@ -518,8 +530,13 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
      * Adds a before execution file filter to the end of the event chain.
      *
      * @param filter the additional filter
+     * @throws CheckstyleException if there is an error configuring the filter.
      */
-    public void addBeforeExecutionFileFilter(BeforeExecutionFileFilter filter) {
+    public void addBeforeExecutionFileFilter(BeforeExecutionFileFilter filter)
+            throws CheckstyleException {
+        if (childContext != null && filter instanceof Contextualizable) {
+            ((Contextualizable) filter).contextualize(childContext);
+        }
         beforeExecutionFileFilters.addBeforeExecutionFileFilter(filter);
     }
 
@@ -527,13 +544,20 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
      * Adds a filter to the end of the audit event filter chain.
      *
      * @param filter the additional filter
+     * @throws CheckstyleException if there is an error configuring the filter.
      */
-    public void addFilter(Filter filter) {
+    public void addFilter(Filter filter) throws CheckstyleException {
+        if (childContext != null && filter instanceof Contextualizable) {
+            ((Contextualizable) filter).contextualize(childContext);
+        }
         filters.addFilter(filter);
     }
 
     @Override
-    public final void addListener(AuditListener listener) {
+    public final void addListener(AuditListener listener) throws CheckstyleException {
+        if (childContext != null && listener instanceof Contextualizable) {
+            ((Contextualizable) listener).contextualize(childContext);
+        }
         listeners.add(listener);
     }
 

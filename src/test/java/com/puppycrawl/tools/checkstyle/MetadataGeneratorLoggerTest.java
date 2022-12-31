@@ -24,6 +24,7 @@ import static com.google.common.truth.Truth.assertWithMessage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.Locale;
 
 import org.junit.jupiter.api.Test;
 
@@ -41,7 +42,7 @@ public class MetadataGeneratorLoggerTest {
         final MetadataGeneratorLogger logger = new MetadataGeneratorLogger(outputStream,
                 AutomaticBean.OutputStreamOptions.CLOSE);
         final AuditEvent event = new AuditEvent(this, "fileName",
-                new Violation(1, 2, "bundle", "key",
+                new Violation(1, 2, Locale.getDefault(), "bundle", "key",
                         null, SeverityLevel.IGNORE, null, getClass(), "customViolation"));
         logger.finishLocalSetup();
         logger.addError(event);
