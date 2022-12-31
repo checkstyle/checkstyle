@@ -52,8 +52,11 @@ ANALYSIS_URL="$SONAR_SERVER/api/qualitygates/project_status?analysisId=$ANALYSIS
 STATUS=$(curl -X GET -s -u "$SONAR_API_TOKEN": "$ANALYSIS_URL" \
     | jq -r .projectStatus.status)
 
+DASHBOARD_URL=$(cat $SONAR_RESULT | sed -n 's/dashboardUrl=\(.*\)/\1/p')
+
 if [ "$STATUS" = "ERROR" ]; then
   echo "Quality gate failed."
+  echo "See sonar dashboard at '${DASHBOARD_URL}' for failures."
   exit 1
 fi
 
