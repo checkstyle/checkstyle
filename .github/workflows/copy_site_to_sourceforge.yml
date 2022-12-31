@@ -21,7 +21,7 @@ jobs:
         run: |
           mkdir -p ~/.ssh/
           eval "$(ssh-agent -s)"
-          echo "${{ secrets.SSH_KEY }}" > ~/.ssh/private_sourceforge_key
+          echo "${{ secrets.SF_SSH_KEY }}" > ~/.ssh/private_sourceforge_key
           chmod 400 ~/.ssh/private_sourceforge_key
           ssh-add ~/.ssh/private_sourceforge_key
           ssh-keyscan -t ed25519 shell.sourceforge.net >> ~/.ssh/known_hosts
