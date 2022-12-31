@@ -304,6 +304,11 @@ public class CheckstyleAntTask extends Task {
             }
             realExecute(version);
         }
+        catch (final CheckstyleException ex) {
+            throw new BuildException(String.format(Locale.ROOT,
+                    "Unable to create Root Module: config {%s}, classpath {%s}.", config,
+                    classpath), ex);
+        }
         finally {
             final long endTime = System.currentTimeMillis();
             log("Total execution took " + (endTime - startTime) + TIME_SUFFIX,
@@ -315,8 +320,9 @@ public class CheckstyleAntTask extends Task {
      * Helper implementation to perform execution.
      *
      * @param checkstyleVersion Checkstyle compile version.
+     * @throws CheckstyleException if there is an error.
      */
-    private void realExecute(String checkstyleVersion) {
+    private void realExecute(String checkstyleVersion) throws CheckstyleException {
         // Create the root module
         RootModule rootModule = null;
         try {
@@ -397,39 +403,33 @@ public class CheckstyleAntTask extends Task {
      * Creates new instance of the root module.
      *
      * @return new instance of the root module
-     * @throws BuildException if the root module could not be created.
+     * @throws CheckstyleException if the root module could not be created.
      */
-    private RootModule createRootModule() {
+    private RootModule createRootModule() throws CheckstyleException {
         final RootModule rootModule;
-        try {
-            final Properties props = createOverridingProperties();
-            final ThreadModeSettings threadModeSettings =
-                    ThreadModeSettings.SINGLE_THREAD_MODE_INSTANCE;
-            final ConfigurationLoader.IgnoredModulesOptions ignoredModulesOptions;
-            if (executeIgnoredModules) {
-                ignoredModulesOptions = ConfigurationLoader.IgnoredModulesOptions.EXECUTE;
-            }
-            else {
-                ignoredModulesOptions = ConfigurationLoader.IgnoredModulesOptions.OMIT;
-            }
-
-            final Configuration configuration = ConfigurationLoader.loadConfiguration(config,
-                    new PropertiesExpander(props), ignoredModulesOptions, threadModeSettings);
-
-            final ClassLoader moduleClassLoader =
-                Checker.class.getClassLoader();
-
-            final ModuleFactory factory = new PackageObjectFactory(
-                    Checker.class.getPackage().getName() + ".", moduleClassLoader);
-
-            rootModule = (RootModule) factory.createModule(configuration.getName());
-            rootModule.setModuleClassLoader(moduleClassLoader);
-            rootModule.configure(configuration);
+        final Properties props = createOverridingProperties();
+        final ThreadModeSettings threadModeSettings =
+                ThreadModeSettings.SINGLE_THREAD_MODE_INSTANCE;
+        final ConfigurationLoader.IgnoredModulesOptions ignoredModulesOptions;
+        if (executeIgnoredModules) {
+            ignoredModulesOptions = ConfigurationLoader.IgnoredModulesOptions.EXECUTE;
         }
-        catch (final CheckstyleException ex) {
-            throw new BuildException(String.format(Locale.ROOT, "Unable to create Root Module: "
-                    + "config {%s}, classpath {%s}.", config, classpath), ex);
+        else {
+            ignoredModulesOptions = ConfigurationLoader.IgnoredModulesOptions.OMIT;
         }
+
+        final Configuration configuration = ConfigurationLoader.loadConfiguration(config,
+                new PropertiesExpander(props), ignoredModulesOptions, threadModeSettings);
+
+        final ClassLoader moduleClassLoader =
+            Checker.class.getClassLoader();
+
+        final ModuleFactory factory = new PackageObjectFactory(Locale.getDefault(),
+                Checker.class.getPackage().getName() + ".", moduleClassLoader);
+
+        rootModule = (RootModule) factory.createModule(configuration.getName());
+        rootModule.setModuleClassLoader(moduleClassLoader);
+        rootModule.configure(configuration);
         return rootModule;
     }
 

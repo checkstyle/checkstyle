@@ -24,6 +24,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -96,6 +97,9 @@ public class PackageObjectFactory implements ModuleFactory {
     /** Map of Checkstyle module names to their fully qualified names. */
     private static final Map<String, String> NAME_TO_FULL_MODULE_NAME = new HashMap<>();
 
+    /** Locale to report messages. */
+    private final Locale locale;
+
     /** Package names to prepend to class names. */
     private final Set<String> packages;
 
@@ -115,25 +119,28 @@ public class PackageObjectFactory implements ModuleFactory {
     /**
      * Creates a new {@code PackageObjectFactory} instance.
      *
+     * @param locale Locale to report messages.
      * @param packageNames package names to use
      * @param moduleClassLoader class loader used to load Checkstyle
      *          core and custom modules
      */
-    public PackageObjectFactory(Set<String> packageNames, ClassLoader moduleClassLoader) {
-        this(packageNames, moduleClassLoader, ModuleLoadOption.SEARCH_REGISTERED_PACKAGES);
+    public PackageObjectFactory(Locale locale, Set<String> packageNames,
+            ClassLoader moduleClassLoader) {
+        this(locale, packageNames, moduleClassLoader, ModuleLoadOption.SEARCH_REGISTERED_PACKAGES);
     }
 
     /**
      * Creates a new {@code PackageObjectFactory} instance.
      *
+     * @param locale Locale to report messages.
      * @param packageNames package names to use
      * @param moduleClassLoader class loader used to load Checkstyle
      *          core and custom modules
      * @param moduleLoadOption loading option
      * @throws IllegalArgumentException if moduleClassLoader is null or packageNames contains null
      */
-    public PackageObjectFactory(Set<String> packageNames, ClassLoader moduleClassLoader,
-            ModuleLoadOption moduleLoadOption) {
+    public PackageObjectFactory(Locale locale, Set<String> packageNames,
+            ClassLoader moduleClassLoader, ModuleLoadOption moduleLoadOption) {
         if (moduleClassLoader == null) {
             throw new IllegalArgumentException(NULL_LOADER_MESSAGE);
         }
@@ -141,6 +148,7 @@ public class PackageObjectFactory implements ModuleFactory {
             throw new IllegalArgumentException(NULL_PACKAGE_MESSAGE);
         }
 
+        this.locale = locale;
         // create a copy of the given set, but retain ordering
         packages = new LinkedHashSet<>(packageNames);
         this.moduleClassLoader = moduleClassLoader;
@@ -150,12 +158,13 @@ public class PackageObjectFactory implements ModuleFactory {
     /**
      * Creates a new {@code PackageObjectFactory} instance.
      *
+     * @param locale Locale to report messages.
      * @param packageName The package name to use
      * @param moduleClassLoader class loader used to load Checkstyle
      *          core and custom modules
      * @throws IllegalArgumentException if moduleClassLoader is null or packageNames is null
      */
-    public PackageObjectFactory(String packageName, ClassLoader moduleClassLoader) {
+    public PackageObjectFactory(Locale locale, String packageName, ClassLoader moduleClassLoader) {
         if (moduleClassLoader == null) {
             throw new IllegalArgumentException(NULL_LOADER_MESSAGE);
         }
@@ -163,6 +172,7 @@ public class PackageObjectFactory implements ModuleFactory {
             throw new IllegalArgumentException(NULL_PACKAGE_MESSAGE);
         }
 
+        this.locale = locale;
         packages = Collections.singleton(packageName);
         this.moduleClassLoader = moduleClassLoader;
     }
@@ -208,7 +218,7 @@ public class PackageObjectFactory implements ModuleFactory {
                         + STRING_SEPARATOR + nameCheck + STRING_SEPARATOR
                         + joinPackageNamesWithClassName(nameCheck, packages);
             }
-            final LocalizedMessage exceptionMessage = new LocalizedMessage(
+            final LocalizedMessage exceptionMessage = new LocalizedMessage(locale,
                 Definitions.CHECKSTYLE_BUNDLE, getClass(),
                 UNABLE_TO_INSTANTIATE_EXCEPTION_MESSAGE, name, attemptedNames);
             throw new CheckstyleException(exceptionMessage.getMessage());
@@ -284,7 +294,7 @@ public class PackageObjectFactory implements ModuleFactory {
             final String optionalNames = fullModuleNames.stream()
                     .sorted()
                     .collect(Collectors.joining(STRING_SEPARATOR));
-            final LocalizedMessage exceptionMessage = new LocalizedMessage(
+            final LocalizedMessage exceptionMessage = new LocalizedMessage(locale,
                     Definitions.CHECKSTYLE_BUNDLE, getClass(),
                     AMBIGUOUS_MODULE_NAME_EXCEPTION_MESSAGE, name, optionalNames);
             throw new CheckstyleException(exceptionMessage.getMessage());

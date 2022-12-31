@@ -41,7 +41,7 @@ import java.util.ResourceBundle.Control;
 public class LocalizedMessage {
 
     /** The locale to localise messages to. **/
-    private static Locale sLocale = Locale.getDefault();
+    private final Locale sLocale;
 
     /** Name of the resource bundle to get messages from. **/
     private final String bundle;
@@ -62,13 +62,15 @@ public class LocalizedMessage {
     /**
      * Creates a new {@code LocalizedMessage} instance.
      *
+     * @param locale Locale to report messages.
      * @param bundle resource bundle name
      * @param sourceClass the Class that is the source of the message
      * @param key the key to locate the translation.
      * @param args arguments for the translation.
      */
-    public LocalizedMessage(String bundle, Class<?> sourceClass, String key,
+    public LocalizedMessage(Locale locale, String bundle, Class<?> sourceClass, String key,
             Object... args) {
+        sLocale = locale;
         this.bundle = bundle;
         this.sourceClass = sourceClass;
         this.key = key;
@@ -77,20 +79,6 @@ public class LocalizedMessage {
         }
         else {
             this.args = Arrays.copyOf(args, args.length);
-        }
-    }
-
-    /**
-     * Sets a locale to use for localization.
-     *
-     * @param locale the locale to use for localization
-     */
-    public static void setLocale(Locale locale) {
-        if (Locale.ENGLISH.getLanguage().equals(locale.getLanguage())) {
-            sLocale = Locale.ROOT;
-        }
-        else {
-            sLocale = locale;
         }
     }
 

@@ -56,6 +56,7 @@ public class DefaultLoggerTest {
         final ByteArrayOutputStream errorStream = new ByteArrayOutputStream();
         final DefaultLogger dl = new DefaultLogger(infoStream, OutputStreamOptions.CLOSE,
                 errorStream, OutputStreamOptions.CLOSE);
+        dl.setLocale(Locale.getDefault());
         dl.addException(new AuditEvent(5000, "myfile"), new IllegalStateException("upsss"));
         dl.auditFinished(new AuditEvent(6000, "myfile"));
         final String output = errorStream.toString(StandardCharsets.UTF_8);
@@ -73,6 +74,7 @@ public class DefaultLoggerTest {
     public void testCtorWithTwoParameters() {
         final OutputStream infoStream = new ByteArrayOutputStream();
         final DefaultLogger dl = new DefaultLogger(infoStream, OutputStreamOptions.CLOSE);
+        dl.setLocale(Locale.getDefault());
         dl.addException(new AuditEvent(5000, "myfile"), new IllegalStateException("upsss"));
         dl.auditFinished(new AuditEvent(6000, "myfile"));
         final String output = infoStream.toString();
@@ -85,6 +87,7 @@ public class DefaultLoggerTest {
     public void testCtorWithNullParameter() {
         final OutputStream infoStream = new ByteArrayOutputStream();
         final DefaultLogger dl = new DefaultLogger(infoStream, OutputStreamOptions.CLOSE);
+        dl.setLocale(Locale.getDefault());
         dl.addException(new AuditEvent(5000), new IllegalStateException("upsss"));
         dl.auditFinished(new AuditEvent(6000));
         final String output = infoStream.toString();
@@ -98,6 +101,7 @@ public class DefaultLoggerTest {
         final OutputStream infoStream = new ByteArrayOutputStream();
         final DefaultLogger dl = new DefaultLogger(infoStream,
                 AutomaticBean.OutputStreamOptions.NONE);
+        dl.setLocale(Locale.getDefault());
         dl.addException(new AuditEvent(5000, "myfile"), new IllegalStateException("upsss"));
         dl.auditFinished(new AuditEvent(6000, "myfile"));
         assertWithMessage("Message should contain exception info")
@@ -147,9 +151,10 @@ public class DefaultLoggerTest {
                 AutomaticBean.OutputStreamOptions.CLOSE, errorStream,
                 AutomaticBean.OutputStreamOptions.CLOSE);
         dl.finishLocalSetup();
+        dl.setLocale(Locale.getDefault());
         dl.auditStarted(null);
-        dl.addError(new AuditEvent(this, "fileName", new Violation(1, 2, "bundle", "key",
-                null, null, getClass(), "customViolation")));
+        dl.addError(new AuditEvent(this, "fileName", new Violation(1, 2, Locale.getDefault(),
+                "bundle", "key", null, null, getClass(), "customViolation")));
         dl.auditFinished(null);
         assertWithMessage("expected output")
             .that(infoStream.toString())
@@ -172,9 +177,10 @@ public class DefaultLoggerTest {
         final DefaultLogger dl = new DefaultLogger(infoStream, OutputStreamOptions.CLOSE,
                 errorStream, OutputStreamOptions.CLOSE);
         dl.finishLocalSetup();
+        dl.setLocale(Locale.getDefault());
         dl.auditStarted(null);
-        dl.addError(new AuditEvent(this, "fileName", new Violation(1, 2, "bundle", "key",
-                null, "moduleId", getClass(), "customViolation")));
+        dl.addError(new AuditEvent(this, "fileName", new Violation(1, 2, Locale.getDefault(),
+                "bundle", "key", null, "moduleId", getClass(), "customViolation")));
         dl.auditFinished(null);
         assertWithMessage("expected output")
             .that(infoStream.toString())
@@ -196,10 +202,10 @@ public class DefaultLoggerTest {
             infoStream, AutomaticBean.OutputStreamOptions.CLOSE,
             errorStream, AutomaticBean.OutputStreamOptions.CLOSE);
         defaultLogger.finishLocalSetup();
+        defaultLogger.setLocale(Locale.getDefault());
         defaultLogger.auditStarted(null);
-        final Violation ignorableViolation = new Violation(1, 2, "bundle", "key",
-                                                           null, SeverityLevel.IGNORE, null,
-                                                           getClass(), "customViolation");
+        final Violation ignorableViolation = new Violation(1, 2, Locale.getDefault(), "bundle",
+                "key", null, SeverityLevel.IGNORE, null, getClass(), "customViolation");
         defaultLogger.addError(new AuditEvent(this, "fileName", ignorableViolation));
         defaultLogger.auditFinished(null);
         assertWithMessage("No violation was expected")
@@ -213,6 +219,7 @@ public class DefaultLoggerTest {
         final DefaultLogger dl = new DefaultLogger(infoStream,
                 AutomaticBean.OutputStreamOptions.CLOSE);
         dl.finishLocalSetup();
+        dl.setLocale(Locale.getDefault());
         dl.auditStarted(null);
         dl.auditFinished(null);
         assertWithMessage("instance should not be null")
@@ -259,6 +266,7 @@ public class DefaultLoggerTest {
                 final DefaultLogger dl = new DefaultLogger(
                         infoStream, OutputStreamOptions.CLOSE,
                         errorStream, OutputStreamOptions.CLOSE);
+                dl.setLocale(Locale.getDefault());
                 dl.auditStarted(null);
                 dl.addException(new AuditEvent(5000, "myfile"),
                         new IllegalStateException("upsss"));
@@ -295,6 +303,7 @@ public class DefaultLoggerTest {
             final DefaultLogger defaultLogger = new DefaultLogger(
                 infoStream, OutputStreamOptions.NONE,
                 errorStream, OutputStreamOptions.NONE);
+            defaultLogger.setLocale(Locale.getDefault());
             defaultLogger.auditStarted(null);
             defaultLogger.auditFinished(null);
             assertWithMessage("Info stream should be open")
@@ -307,17 +316,17 @@ public class DefaultLoggerTest {
     }
 
     private static LocalizedMessage getAuditStartMessageClass() {
-        return new LocalizedMessage(Definitions.CHECKSTYLE_BUNDLE,
+        return new LocalizedMessage(Locale.getDefault(), Definitions.CHECKSTYLE_BUNDLE,
                 DefaultLogger.class, "DefaultLogger.auditStarted");
     }
 
     private static LocalizedMessage getAuditFinishMessageClass() {
-        return new LocalizedMessage(Definitions.CHECKSTYLE_BUNDLE,
+        return new LocalizedMessage(Locale.getDefault(), Definitions.CHECKSTYLE_BUNDLE,
                 DefaultLogger.class, "DefaultLogger.auditFinished");
     }
 
     private static LocalizedMessage getAddExceptionMessageClass(Object... arguments) {
-        return new LocalizedMessage(Definitions.CHECKSTYLE_BUNDLE,
+        return new LocalizedMessage(Locale.getDefault(), Definitions.CHECKSTYLE_BUNDLE,
                 DefaultLogger.class, "DefaultLogger.addException", arguments);
     }
 

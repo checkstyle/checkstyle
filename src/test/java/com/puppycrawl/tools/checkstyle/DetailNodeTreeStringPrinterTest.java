@@ -26,6 +26,7 @@ import static com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser.MSG_JAVADO
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
 
 import java.io.File;
+import java.util.Locale;
 
 import org.junit.jupiter.api.Test;
 
@@ -82,7 +83,7 @@ public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
         final String actual = TestUtil.invokeStaticMethod(DetailNodeTreeStringPrinter.class,
                 "getParseErrorMessage",
                 new ParseErrorMessage(35, MSG_JAVADOC_MISSED_HTML_CLOSE, 7, "xyz"));
-        final LocalizedMessage violation = new LocalizedMessage(
+        final LocalizedMessage violation = new LocalizedMessage(Locale.getDefault(),
                 "com.puppycrawl.tools.checkstyle.checks.javadoc.messages",
                 DetailNodeTreeStringPrinter.class,
                 MSG_JAVADOC_MISSED_HTML_CLOSE,
@@ -101,7 +102,7 @@ public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
                 "getParseErrorMessage",
                 new ParseErrorMessage(10, MSG_JAVADOC_PARSE_RULE_ERROR,
                         9, "no viable alternative at input ' xyz'", "SOME_JAVADOC_ELEMENT"));
-        final LocalizedMessage violation = new LocalizedMessage(
+        final LocalizedMessage violation = new LocalizedMessage(Locale.getDefault(),
                 "com.puppycrawl.tools.checkstyle.checks.javadoc.messages",
                 DetailNodeTreeStringPrinter.class,
                 MSG_JAVADOC_PARSE_RULE_ERROR,
@@ -119,7 +120,7 @@ public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
                 "getParseErrorMessage",
                 new ParseErrorMessage(100, MSG_JAVADOC_WRONG_SINGLETON_TAG,
                         9, "tag"));
-        final LocalizedMessage violation = new LocalizedMessage(
+        final LocalizedMessage violation = new LocalizedMessage(Locale.getDefault(),
                 "com.puppycrawl.tools.checkstyle.checks.javadoc.messages",
                 DetailNodeTreeStringPrinter.class,
                 MSG_JAVADOC_WRONG_SINGLETON_TAG,
