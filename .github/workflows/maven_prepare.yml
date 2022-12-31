@@ -30,3 +30,6 @@ jobs:
       - name: Run Shell Script
         run: |
           ./.ci/maven-prepare.sh ${{ github.event.inputs.version }}
+      - name: Push commit
+        run: |
+          git push
