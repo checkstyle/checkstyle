@@ -9,6 +9,10 @@ on:
       version:
         description: 'Target Version without (-SNAPSHOT)'
         required: true
+
+permissions:
+  contents: write
+
 jobs:
   prepare:
     name: Prepare Release ${{ github.event.inputs.version }}
