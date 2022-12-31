@@ -60,11 +60,7 @@ jobs:
         uses: actions/checkout@v3
       - name: Generate ${{ matrix.profile }} report
         run: |
-          mvn -e --no-transfer-progress -P"pitest-${{ matrix.profile }}" clean test-compile \
-          org.pitest:pitest-maven:mutationCoverage
-      - name: Check ${{ matrix.profile }} report
-        run: |
-          groovy ./.ci/pitest-survival-check-xml.groovy pitest-${{ matrix.profile }}
+          ./.ci/pitest.sh "pitest-${{ matrix.profile }}" --generate-suppression
       - name: Stage results
         if: failure() || github.ref == 'refs/heads/master'
         run: |
