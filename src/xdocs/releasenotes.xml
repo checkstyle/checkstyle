@@ -10,6 +10,113 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 10.6.0">
+      <div class="releaseDate">31.12.2022</div>
+      <p>Breaking backward compatibility:</p>
+        <ul>
+          <li>
+            Simplify JavadocStyleCheck: remove functionality for missing package-info Javadoc.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/12520">#12520</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            Inconsistent allowedAbbreviations when a method contains an underscore.
+            Author: Arin Modi
+            <a href="https://github.com/checkstyle/checkstyle/issues/12409">#12409</a>
+          </li>
+          <li>
+            NoWhitespaceAfter false positive on synchronized method.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/12486">#12486</a>
+          </li>
+          <li>
+            Null pointer exception with records in RequireThisCheck.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/11807">#11807</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Resolve pitest for profile metrics.
+            Author: Kevin222004
+            <a href="https://github.com/checkstyle/checkstyle/issues/12333">#12333</a>
+          </li>
+          <li>
+            Review usages of `BeforeAll` in tests.
+            Author: Vyom-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/12100">#12100</a>
+          </li>
+          <li>
+            Create CI task to lint github actions.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/12501">#12501</a>
+          </li>
+          <li>
+            Run regression testing in CI over openjdk19.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/12519">#12519</a>
+          </li>
+          <li>
+            Replace backward slash with forward slash while creating `CheckerFrameworkError` object
+            in `checker-framework.groovy`.
+            Author: Vyom-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/12524">#12524</a>
+          </li>
+          <li>
+            Convert sevntu-checkstyle-check to ant run.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/5385">#5385</a>
+          </li>
+          <li>
+            doc: remove &#39;pre&#39; tags from description.
+            Author: Nick Mancuso
+          </li>
+          <li>
+            Create YAML linting CI task.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/12435">#12435</a>
+          </li>
+          <li>
+            Use Shellcheck to resolve violations code in Shell Script.
+            Author: Arin Modi
+            <a href="https://github.com/checkstyle/checkstyle/issues/11637">#11637</a>
+          </li>
+          <li>
+            All scripts that print example of execution should not have hardcoded name in message .
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/12496">#12496</a>
+          </li>
+          <li>
+            &#39;R: Push Release Notes&#39; makes xml section version as snapshot .
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/12488">#12488</a>
+          </li>
+          <li>
+            &#39;R: Push Release Notes&#39; failing on push.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/12479">#12479</a>
+          </li>
+          <li>
+            Remove &#39;releasenotes.xml after commit:&#39;.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/12468">#12468</a>
+          </li>
+          <li>
+            &#39;R: Push Release Notes&#39; failing.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/12464">#12464</a>
+          </li>
+          <li>
+            Create CI task to enforce &#39;.ci&#39; directory contains only script files.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/12463">#12463</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 10.5.0">
       <div class="releaseDate">27.11.2022</div>
       <p>New:</p>
