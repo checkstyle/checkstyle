@@ -864,6 +864,11 @@ arguments
     : LPAREN expressionList? RPAREN
     ;
 
+/**
+ * We do for patterns as we do for expressions; namely we have one parent
+ * 'PATTERN_DEF' node, then have all nested pattern definitions inside of
+ * the parent node.
+ */
 pattern
     : innerPattern
     ;
@@ -899,11 +904,7 @@ typePattern
     ;
 
 recordPattern
-    : mods+=modifier* type=typeType[true] recordStructurePattern id?
-    ;
-
-recordStructurePattern
-    : LPAREN recordComponentPatternList? RPAREN
+    : mods+=modifier* type=typeType[true] LPAREN recordComponentPatternList? RPAREN id?
     ;
 
 recordComponentPatternList

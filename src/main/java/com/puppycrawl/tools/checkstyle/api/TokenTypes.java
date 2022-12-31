@@ -6272,6 +6272,12 @@ public final class TokenTypes {
     public static final int LITERAL_WHEN =
         JavaLanguageLexer.LITERAL_WHEN;
 
+    public static final int RECORD_PATTERN_DEF =
+        JavaLanguageLexer.RECORD_PATTERN_DEF;
+
+    public static final int RECORD_PATTERN_COMPONENTS =
+            JavaLanguageLexer.RECORD_PATTERN_COMPONENTS;
+
     /** Prevent instantiation. */
     private TokenTypes() {
     }
