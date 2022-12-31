@@ -10,6 +10,10 @@ on:
       version:
         description: 'Target Version without (-SNAPSHOT)'
         required: true
+
+permissions:
+  contents: write
+
 jobs:
   github:
     name: Upload '-all' jar to Github for ${{ github.event.inputs.version }}
@@ -19,5 +23,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Run GitHub Update Script
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
         run: |
           ./.ci/upload-all-jar.sh ${{ github.event.inputs.version }}
