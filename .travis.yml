@@ -60,6 +60,12 @@ jobs:
         - DESC="no-exception-samples-ant"
         - CMD="./.ci/no-exception-test.sh no-exception-samples-ant"
 
+    - jdk: openjdk11
+      env:
+        - DESC="no-exception-samples-maven"
+        - CMD="./.ci/no-exception-test.sh no-exception-samples-maven"
+
+
     # Ensure that all modules are used in no exception configs
     - env:
         - DESC="ensure that all modules are used in no exception configs"

@@ -197,6 +197,25 @@ no-exception-samples-ant)
   ;;
 
 
+no-exception-samples-maven)
+  CS_POM_VERSION="$(getCheckstylePomVersion)"
+  echo 'CS_POM_VERSION='"${CS_POM_VERSION}"
+  mvn -e --no-transfer-progress -B install -Pno-validations
+  checkout_from https://github.com/sevntu-checkstyle/checkstyle-samples
+  cd .ci-temp/checkstyle-samples
+  ./.ci/bump-cs-version-in-maven-project.sh $CS_POM_VERSION
+
+  cd maven-project
+  mvn -e --no-transfer-progress checkstyle:checkstyle
+  mvn -e --no-transfer-progress -f pom-google-custom-suppression.xml clean checkstyle:checkstyle
+  grep "error" target/checkstyle-result.xml
+  mvn -e --no-transfer-progress -f pom-google.xml clean checkstyle:checkstyle -Pgithub-maven-repo
+  mvn -e --no-transfer-progress site
+
+  cd ../..
+  removeFolderWithProtectedFiles checkstyle-samples
+  ;;
+
   *)
   echo "Unexpected argument: $1"
   sleep 5s
