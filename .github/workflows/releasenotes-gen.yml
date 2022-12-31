@@ -1,6 +1,7 @@
 name: "Generate release notes"
 
 on:
+  workflow_dispatch: null
   push:
     branches:
       - master
