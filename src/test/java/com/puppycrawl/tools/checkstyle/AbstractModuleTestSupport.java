@@ -238,6 +238,30 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
     }
 
     /**
+     * Performs verification of two files with the given file paths using specified
+     * configuration and the array expected messages. Also performs verification of the config
+     * specified in the input file.
+     *
+     * @param filePath1 file path of first file to verify.
+     * @param filePath2 file path of second file to verify.
+     * @param expected an array of expected messages.
+     * @throws Exception if exception occurs during verification process.
+     */
+    protected final void verifyWithInlineConfigParser(String filePath1,
+                                                      String filePath2,
+                                                      String... expected)
+            throws Exception {
+        final TestInputConfiguration testInputConfiguration =
+                InlineConfigParser.parse(filePath1);
+        final DefaultConfiguration parsedConfig =
+                testInputConfiguration.createConfiguration();
+        verifyViolations(parsedConfig, filePath1, testInputConfiguration.getViolations());
+        verifyViolations(parsedConfig, filePath2, testInputConfiguration.getViolations());
+        verify(parsedConfig, filePath1, expected);
+        verify(parsedConfig, filePath2, expected);
+    }
+
+    /**
      * Performs verification of the file with the given file name. Uses specified configuration.
      * Expected messages are represented by the array of strings.
      * This implementation uses overloaded
