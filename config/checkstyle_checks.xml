@@ -909,6 +909,10 @@
     <module name="TypecastParenPad"/>
     <module name="WhitespaceAfter"/>
     <module name="WhitespaceAround"/>
+    <module name="ChainedMethodCallWrap">
+      <property name="identifierPattern" value="^assert.*"/>
+      <property name="maxSingleLineCalls" value="2" />
+    </module>
 
   </module>
 
