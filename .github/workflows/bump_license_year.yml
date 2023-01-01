@@ -20,14 +20,11 @@ jobs:
       - name: Checkout the latest code
         uses: actions/checkout@v3
       - name: Set Current Year
-        id: CURRENT_YEAR
         run: |
-          echo "year=$(date +'%Y')" >> "$GITHUB_OUTPUT"
+          echo "YEAR=$(date +'%Y')" >> "$GITHUB_ENV"
       - name: Modify Files
         run: |
           ./.ci/bump-license-year.sh $(("${{ env.YEAR }}" - 1)) ${{ env.YEAR }} .
-        env:
-          YEAR: ${{ steps.CURRENT_YEAR.outputs.year }}
       - name: Push commit
         run: |
           git config user.name 'github-actions[bot]'
