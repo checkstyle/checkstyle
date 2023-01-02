@@ -368,7 +368,7 @@ verify-no-exception-configs)
     else
       diff -u $working_dir/web.txt $working_dir/file.txt | cat
       echo 'file config/checkstyle_checks.xml contains Check that is not present at:'
-      echo 'https://github.com/checkstyle/contribution/blob/master/checkstyle-tester/checks-nonjavadoc-error.xml'
+      echo 'https://raw.githubusercontent.com/checkstyle/contribution/master/checkstyle-tester/checks-nonjavadoc-error.xml'
       echo 'https://github.com/checkstyle/contribution/blob/master/checkstyle-tester/checks-only-javadoc-error.xml'
       echo 'Please add new Check to one of such files to let Check participate in auto testing'
       fail=1;
@@ -704,7 +704,10 @@ no-error-contribution)
   echo CS_version: "${CS_POM_VERSION}"
   mvn -e --no-transfer-progress clean install -Pno-validations
   echo "Checkout target sources ..."
-  checkout_from https://github.com/checkstyle/contribution.git
+  checkout_from https://github.com/rnveach/contribution
+  cd .ci-temp/contribution
+  git checkout issue_273
+  cd ../..
   cd .ci-temp/contribution
   cd patch-diff-report-tool
   mvn -e --no-transfer-progress verify -DskipTests -Dcheckstyle.version="${CS_POM_VERSION}" \
@@ -810,13 +813,16 @@ no-exception-struts)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
   echo CS_version: "${CS_POM_VERSION}"
-  checkout_from https://github.com/checkstyle/contribution
+  checkout_from https://github.com/rnveach/contribution
+  cd .ci-temp/contribution
+  git checkout issue_273
+  cd ../..
   cd .ci-temp/contribution/checkstyle-tester
   sed -i'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i'' 's/#apache-struts/apache-struts/' projects-to-test-on.properties
   groovy ./diff.groovy --listOfProjects projects-to-test-on.properties \
       --patchConfig checks-nonjavadoc-error.xml  -p "$BRANCH" -r ../../..  \
-      --allowExcludes --mode single -xm "-Dcheckstyle.failsOnError=false"
+      --allowExcludes --mode single --continueOnError
   cd ../../
   removeFolderWithProtectedFiles contribution
   ;;
@@ -827,14 +833,17 @@ no-exception-checkstyle-sevntu)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
   echo CS_version: "${CS_POM_VERSION}"
-  checkout_from https://github.com/checkstyle/contribution
+  checkout_from https://github.com/rnveach/contribution
+  cd .ci-temp/contribution
+  git checkout issue_273
+  cd ../..
   cd .ci-temp/contribution/checkstyle-tester
   sed -i'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i'' 's/#local-checkstyle/local-checkstyle/' projects-to-test-on.properties
   sed -i'' 's/#sevntu-checkstyle/sevntu-checkstyle/' projects-to-test-on.properties
   groovy ./diff.groovy --listOfProjects projects-to-test-on.properties \
       --patchConfig checks-nonjavadoc-error.xml  -p "$BRANCH" -r ../../..  \
-      --allowExcludes --mode single -xm "-Dcheckstyle.failsOnError=false"
+      --allowExcludes --mode single --continueOnError
   cd ../../
   removeFolderWithProtectedFiles contribution
   ;;
@@ -844,14 +853,17 @@ no-exception-checkstyle-sevntu-javadoc)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
   echo CS_version: "${CS_POM_VERSION}"
-  checkout_from https://github.com/checkstyle/contribution
+  checkout_from https://github.com/rnveach/contribution
+  cd .ci-temp/contribution
+  git checkout issue_273
+  cd ../..
   cd .ci-temp/contribution/checkstyle-tester
   sed -i'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i'' 's/#local-checkstyle/local-checkstyle/' projects-to-test-on.properties
   sed -i'' 's/#sevntu-checkstyle/sevntu-checkstyle/' projects-to-test-on.properties
   groovy ./diff.groovy --listOfProjects projects-to-test-on.properties \
       --patchConfig checks-only-javadoc-error.xml  -p "$BRANCH" -r ../../..  \
-      --allowExcludes --mode single -xm "-Dcheckstyle.failsOnError=false"
+      --allowExcludes --mode single --continueOnError
   cd ../../
   removeFolderWithProtectedFiles contribution
   ;;
@@ -861,13 +873,16 @@ no-exception-guava)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: "${CS_POM_VERSION}"
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
-  checkout_from https://github.com/checkstyle/contribution
+  checkout_from https://github.com/rnveach/contribution
+  cd .ci-temp/contribution
+  git checkout issue_273
+  cd ../..
   cd .ci-temp/contribution/checkstyle-tester
   sed -i'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i'' 's/#guava/guava/' projects-to-test-on.properties
   groovy ./diff.groovy --listOfProjects projects-to-test-on.properties \
       --patchConfig checks-nonjavadoc-error.xml  -p "$BRANCH" -r ../../..  \
-      --allowExcludes --mode single -xm "-Dcheckstyle.failsOnError=false"
+      --allowExcludes --mode single --continueOnError
   cd ../../
   removeFolderWithProtectedFiles contribution
   ;;
@@ -876,13 +891,16 @@ no-exception-hibernate-orm)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: "${CS_POM_VERSION}"
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
-  checkout_from https://github.com/checkstyle/contribution
+  checkout_from https://github.com/rnveach/contribution
+  cd .ci-temp/contribution
+  git checkout issue_273
+  cd ../..
   cd .ci-temp/contribution/checkstyle-tester
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i.'' 's/#hibernate-orm/hibernate-orm/' projects-to-test-on.properties
   groovy ./diff.groovy --listOfProjects projects-to-test-on.properties \
       --patchConfig checks-nonjavadoc-error.xml  -p "$BRANCH" -r ../../..  \
-       --allowExcludes --mode single -xm "-Dcheckstyle.failsOnError=false"
+       --allowExcludes --mode single --continueOnError
   cd ../../
   removeFolderWithProtectedFiles contribution
   ;;
@@ -891,13 +909,16 @@ no-exception-spotbugs)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
   echo CS_version: "${CS_POM_VERSION}"
-  checkout_from https://github.com/checkstyle/contribution
+  checkout_from https://github.com/rnveach/contribution
+  cd .ci-temp/contribution
+  git checkout issue_273
+  cd ../..
   cd .ci-temp/contribution/checkstyle-tester
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i.'' 's/#spotbugs/spotbugs/' projects-to-test-on.properties
   groovy ./diff.groovy --listOfProjects projects-to-test-on.properties \
       --patchConfig checks-nonjavadoc-error.xml  -p "$BRANCH" -r ../../..  \
-      --allowExcludes --mode single -xm "-Dcheckstyle.failsOnError=false"
+      --allowExcludes --mode single --continueOnError
   cd ../../
   removeFolderWithProtectedFiles contribution
   ;;
@@ -906,13 +927,16 @@ no-exception-spoon)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
   echo CS_version: "${CS_POM_VERSION}"
-  checkout_from https://github.com/checkstyle/contribution
+  checkout_from https://github.com/rnveach/contribution
+  cd .ci-temp/contribution
+  git checkout issue_273
+  cd ../..
   cd .ci-temp/contribution/checkstyle-tester
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i.'' 's/#spoon/spoon/' projects-to-test-on.properties
   groovy ./diff.groovy --listOfProjects projects-to-test-on.properties \
       --patchConfig checks-nonjavadoc-error.xml  -p "$BRANCH" -r ../../..  \
-      --allowExcludes --mode single -xm "-Dcheckstyle.failsOnError=false"
+      --allowExcludes --mode single --continueOnError
   cd ../../
   removeFolderWithProtectedFiles contribution
   ;;
@@ -921,13 +945,16 @@ no-exception-spring-framework)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
   echo CS_version: "${CS_POM_VERSION}"
-  checkout_from https://github.com/checkstyle/contribution
+  checkout_from https://github.com/rnveach/contribution
+  cd .ci-temp/contribution
+  git checkout issue_273
+  cd ../..
   cd .ci-temp/contribution/checkstyle-tester
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i.'' 's/#spring-framework/spring-framework/' projects-to-test-on.properties
   groovy ./diff.groovy --listOfProjects projects-to-test-on.properties \
       --patchConfig checks-nonjavadoc-error.xml  -p "$BRANCH" -r ../../..  \
-       --allowExcludes --mode single -xm "-Dcheckstyle.failsOnError=false"
+       --allowExcludes --mode single --continueOnError
   cd ../../
   removeFolderWithProtectedFiles contribution
   ;;
@@ -936,13 +963,16 @@ no-exception-hbase)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: "${CS_POM_VERSION}"
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
-  checkout_from https://github.com/checkstyle/contribution
+  checkout_from https://github.com/rnveach/contribution
+  cd .ci-temp/contribution
+  git checkout issue_273
+  cd ../..
   cd .ci-temp/contribution/checkstyle-tester
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i.'' 's/#Hbase/Hbase/' projects-to-test-on.properties
   groovy ./diff.groovy --listOfProjects projects-to-test-on.properties \
       --patchConfig checks-nonjavadoc-error.xml  -p "$BRANCH" -r ../../..  \
-      --allowExcludes --mode single -xm "-Dcheckstyle.failsOnError=false"
+      --allowExcludes --mode single --continueOnError
   cd ../../
   removeFolderWithProtectedFiles contribution
   ;;
@@ -951,7 +981,10 @@ no-exception-Pmd-elasticsearch-lombok-ast)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
   echo CS_version: "${CS_POM_VERSION}"
-  checkout_from https://github.com/checkstyle/contribution
+  checkout_from https://github.com/rnveach/contribution
+  cd .ci-temp/contribution
+  git checkout issue_273
+  cd ../..
   cd .ci-temp/contribution/checkstyle-tester
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i.'' 's/#pmd/pmd/' projects-to-test-on.properties
@@ -959,7 +992,7 @@ no-exception-Pmd-elasticsearch-lombok-ast)
   sed -i.'' 's/#lombok-ast/lombok-ast/' projects-to-test-on.properties
   groovy ./diff.groovy --listOfProjects projects-to-test-on.properties \
       --patchConfig checks-nonjavadoc-error.xml  -p "$BRANCH" -r ../../..  \
-      --allowExcludes --mode single -xm "-Dcheckstyle.failsOnError=false"
+      --allowExcludes --mode single --continueOnError
   cd ../../
   removeFolderWithProtectedFiles contribution
   ;;
@@ -968,7 +1001,10 @@ no-exception-alot-of-projects)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: "${CS_POM_VERSION}"
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
-  checkout_from https://github.com/checkstyle/contribution
+  checkout_from https://github.com/rnveach/contribution
+  cd .ci-temp/contribution
+  git checkout issue_273
+  cd ../..
   cd .ci-temp/contribution/checkstyle-tester
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i.'' 's/#RxJava/RxJava/' projects-to-test-on.properties
@@ -979,7 +1015,7 @@ no-exception-alot-of-projects)
   sed -i.'' 's/#android-launcher/android-launcher/' projects-to-test-on.properties
   groovy ./diff.groovy --listOfProjects projects-to-test-on.properties \
       --patchConfig checks-nonjavadoc-error.xml  -p "$BRANCH" -r ../../.. \
-      --allowExcludes --mode single -xm "-Dcheckstyle.failsOnError=false"
+      --allowExcludes --mode single --continueOnError
   cd ../../
   removeFolderWithProtectedFiles contribution
   ;;
@@ -991,11 +1027,14 @@ no-warning-imports-guava)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
   echo CS_version: "${CS_POM_VERSION}"
-  checkout_from https://github.com/checkstyle/contribution
+  checkout_from https://github.com/rnveach/contribution
+  cd .ci-temp/contribution
+  git checkout issue_273
+  cd ../..
   cd .ci-temp/contribution/checkstyle-tester
   groovy ./diff.groovy --listOfProjects $PROJECTS --patchConfig $CONFIG \
       --allowExcludes -p "$BRANCH" -r ../../.. \
-      --mode single -xm "-Dcheckstyle.failsOnError=false"
+      --mode single --continueOnError
   RESULT=$(grep -A 5 "&#160;Warning</td>" $REPORT | cat)
   cd ../../
   removeFolderWithProtectedFiles contribution
@@ -1016,7 +1055,10 @@ no-warning-imports-java-design-patterns)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
   echo CS_version: "${CS_POM_VERSION}"
-  checkout_from https://github.com/checkstyle/contribution
+  checkout_from https://github.com/rnveach/contribution
+  cd .ci-temp/contribution
+  git checkout issue_273
+  cd ../..
   cd .ci-temp/contribution/checkstyle-tester
   groovy ./diff.groovy --listOfProjects $PROJECTS --patchConfig $CONFIG \
       --allowExcludes -p "$BRANCH" -r ../../..\
