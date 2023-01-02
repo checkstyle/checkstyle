@@ -52,7 +52,10 @@ guava-with-sun-checks)
 openjdk17-with-checks-nonjavadoc-error)
   LOCAL_GIT_REPO=$(pwd)
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
-  checkout_from https://github.com/checkstyle/contribution
+  checkout_from https://github.com/rnveach/contribution
+  cd .ci-temp/contribution
+  git checkout issue_661
+  cd ../..
   sed -i.'' 's/value=\"error\"/value=\"ignore\"/' \
         .ci-temp/contribution/checkstyle-tester/checks-nonjavadoc-error.xml
   cd .ci-temp/contribution/checkstyle-tester
@@ -74,7 +77,10 @@ openjdk17-with-checks-nonjavadoc-error)
 openjdk19-with-checks-nonjavadoc-error)
   LOCAL_GIT_REPO=$(pwd)
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
-  checkout_from https://github.com/checkstyle/contribution
+  checkout_from https://github.com/rnveach/contribution
+  cd .ci-temp/contribution
+  git checkout issue_661
+  cd ../..
   sed -i.'' 's/value=\"error\"/value=\"ignore\"/' \
         .ci-temp/contribution/checkstyle-tester/checks-nonjavadoc-error.xml
   cd .ci-temp/contribution/checkstyle-tester
