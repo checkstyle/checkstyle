@@ -322,7 +322,7 @@ verify-no-exception-configs)
   wget -q \
     --directory-prefix $working_dir \
     --no-clobber \
-    https://raw.githubusercontent.com/checkstyle/contribution/master/checkstyle-tester/checks-nonjavadoc-error.xml
+    https://raw.githubusercontent.com/checkstyle/contribution/512c1f4ac0df55938e50636f0ecd06d0b60f03f4/checkstyle-tester/checks-nonjavadoc-error.xml
   wget -q \
     --directory-prefix $working_dir \
     --no-clobber \
@@ -368,7 +368,7 @@ verify-no-exception-configs)
     else
       diff -u $working_dir/web.txt $working_dir/file.txt | cat
       echo 'file config/checkstyle_checks.xml contains Check that is not present at:'
-      echo 'https://github.com/checkstyle/contribution/blob/master/checkstyle-tester/checks-nonjavadoc-error.xml'
+      echo 'https://raw.githubusercontent.com/checkstyle/contribution/512c1f4ac0df55938e50636f0ecd06d0b60f03f4/checkstyle-tester/checks-nonjavadoc-error.xml'
       echo 'https://github.com/checkstyle/contribution/blob/master/checkstyle-tester/checks-only-javadoc-error.xml'
       echo 'Please add new Check to one of such files to let Check participate in auto testing'
       fail=1;
@@ -808,7 +808,10 @@ no-exception-struts)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
   echo CS_version: "${CS_POM_VERSION}"
-  checkout_from https://github.com/checkstyle/contribution
+  checkout_from https://github.com/rnveach/contribution
+  cd .ci-temp/contribution
+  git checkout issue_661
+  cd ../..
   cd .ci-temp/contribution/checkstyle-tester
   sed -i'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i'' 's/#apache-struts/apache-struts/' projects-to-test-on.properties
@@ -825,7 +828,10 @@ no-exception-checkstyle-sevntu)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
   echo CS_version: "${CS_POM_VERSION}"
-  checkout_from https://github.com/checkstyle/contribution
+  checkout_from https://github.com/rnveach/contribution
+  cd .ci-temp/contribution
+  git checkout issue_661
+  cd ../..
   cd .ci-temp/contribution/checkstyle-tester
   sed -i'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i'' 's/#local-checkstyle/local-checkstyle/' projects-to-test-on.properties
@@ -859,7 +865,10 @@ no-exception-guava)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: "${CS_POM_VERSION}"
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
-  checkout_from https://github.com/checkstyle/contribution
+  checkout_from https://github.com/rnveach/contribution
+  cd .ci-temp/contribution
+  git checkout issue_661
+  cd ../..
   cd .ci-temp/contribution/checkstyle-tester
   sed -i'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i'' 's/#guava/guava/' projects-to-test-on.properties
@@ -874,7 +883,10 @@ no-exception-hibernate-orm)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: "${CS_POM_VERSION}"
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
-  checkout_from https://github.com/checkstyle/contribution
+  checkout_from https://github.com/rnveach/contribution
+  cd .ci-temp/contribution
+  git checkout issue_661
+  cd ../..
   cd .ci-temp/contribution/checkstyle-tester
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i.'' 's/#hibernate-orm/hibernate-orm/' projects-to-test-on.properties
@@ -889,7 +901,10 @@ no-exception-spotbugs)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
   echo CS_version: "${CS_POM_VERSION}"
-  checkout_from https://github.com/checkstyle/contribution
+  checkout_from https://github.com/rnveach/contribution
+  cd .ci-temp/contribution
+  git checkout issue_661
+  cd ../..
   cd .ci-temp/contribution/checkstyle-tester
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i.'' 's/#spotbugs/spotbugs/' projects-to-test-on.properties
@@ -904,7 +919,10 @@ no-exception-spoon)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
   echo CS_version: "${CS_POM_VERSION}"
-  checkout_from https://github.com/checkstyle/contribution
+  checkout_from https://github.com/rnveach/contribution
+  cd .ci-temp/contribution
+  git checkout issue_661
+  cd ../..
   cd .ci-temp/contribution/checkstyle-tester
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i.'' 's/#spoon/spoon/' projects-to-test-on.properties
@@ -919,7 +937,10 @@ no-exception-spring-framework)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
   echo CS_version: "${CS_POM_VERSION}"
-  checkout_from https://github.com/checkstyle/contribution
+  checkout_from https://github.com/rnveach/contribution
+  cd .ci-temp/contribution
+  git checkout issue_661
+  cd ../..
   cd .ci-temp/contribution/checkstyle-tester
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i.'' 's/#spring-framework/spring-framework/' projects-to-test-on.properties
@@ -934,7 +955,10 @@ no-exception-hbase)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: "${CS_POM_VERSION}"
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
-  checkout_from https://github.com/checkstyle/contribution
+  checkout_from https://github.com/rnveach/contribution
+  cd .ci-temp/contribution
+  git checkout issue_661
+  cd ../..
   cd .ci-temp/contribution/checkstyle-tester
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i.'' 's/#Hbase/Hbase/' projects-to-test-on.properties
@@ -949,7 +973,10 @@ no-exception-Pmd-elasticsearch-lombok-ast)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
   echo CS_version: "${CS_POM_VERSION}"
-  checkout_from https://github.com/checkstyle/contribution
+  checkout_from https://github.com/rnveach/contribution
+  cd .ci-temp/contribution
+  git checkout issue_661
+  cd ../..
   cd .ci-temp/contribution/checkstyle-tester
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i.'' 's/#pmd/pmd/' projects-to-test-on.properties
@@ -966,7 +993,10 @@ no-exception-alot-of-projects)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: "${CS_POM_VERSION}"
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
-  checkout_from https://github.com/checkstyle/contribution
+  checkout_from https://github.com/rnveach/contribution
+  cd .ci-temp/contribution
+  git checkout issue_661
+  cd ../..
   cd .ci-temp/contribution/checkstyle-tester
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i.'' 's/#RxJava/RxJava/' projects-to-test-on.properties
