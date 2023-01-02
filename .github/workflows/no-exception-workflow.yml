@@ -1,8 +1,11 @@
 name: "no-exception testing"
 
 on:
+  push:
+    branches:
+      - master
   pull_request:
-    branches: [ master ]
+    branches: '*'
 
 jobs:
   # this execution should stay on GitHub actions due to time/ memory limits in other CI
