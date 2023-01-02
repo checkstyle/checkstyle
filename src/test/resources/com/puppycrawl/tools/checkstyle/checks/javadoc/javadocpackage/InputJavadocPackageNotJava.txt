@@ -1,1 +1,6 @@
+/*
+JavadocPackage
+
+*/
+
 test, no violation
