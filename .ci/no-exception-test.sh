@@ -20,7 +20,7 @@ guava-with-google-checks)
   export MAVEN_OPTS="-Xmx2048m"
   groovy ./diff.groovy --listOfProjects projects-to-test-on.properties \
       --patchConfig ../../google_checks.xml \
-      --mode single --allowExcludes -xm "-Dcheckstyle.failsOnError=false" \
+      --mode single --allowExcludes -ce \
       -p "$BRANCH" -r ../../..
   cd ../..
   removeFolderWithProtectedFiles contribution
@@ -42,7 +42,7 @@ guava-with-sun-checks)
   export MAVEN_OPTS="-Xmx2048m"
   groovy ./diff.groovy --listOfProjects projects-to-test-on.properties \
       --patchConfig ../../sun_checks.xml \
-      --mode single --allowExcludes -xm "-Dcheckstyle.failsOnError=false" \
+      --mode single --allowExcludes -ce \
       -p "$BRANCH" -r ../../..
   cd ../..
   removeFolderWithProtectedFiles contribution
@@ -52,7 +52,10 @@ guava-with-sun-checks)
 openjdk17-with-checks-nonjavadoc-error)
   LOCAL_GIT_REPO=$(pwd)
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
-  checkout_from https://github.com/checkstyle/contribution
+  checkout_from https://github.com/rnveach/contribution
+  cd .ci-temp/contribution
+  git checkout issue_273
+  cd ../..
   sed -i.'' 's/value=\"error\"/value=\"ignore\"/' \
         .ci-temp/contribution/checkstyle-tester/checks-nonjavadoc-error.xml
   cd .ci-temp/contribution/checkstyle-tester
@@ -65,7 +68,7 @@ openjdk17-with-checks-nonjavadoc-error)
       --mode single --allowExcludes \
       --patchConfig checks-nonjavadoc-error.xml \
       --localGitRepo  "$LOCAL_GIT_REPO" \
-      --patchBranch "$BRANCH" -xm "-Dcheckstyle.failsOnError=false"
+      --patchBranch "$BRANCH" -ce
 
   cd ../../
   removeFolderWithProtectedFiles contribution
@@ -74,7 +77,10 @@ openjdk17-with-checks-nonjavadoc-error)
 openjdk19-with-checks-nonjavadoc-error)
   LOCAL_GIT_REPO=$(pwd)
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
-  checkout_from https://github.com/checkstyle/contribution
+  checkout_from https://github.com/rnveach/contribution
+  cd .ci-temp/contribution
+  git checkout issue_273
+  cd ../..
   sed -i.'' 's/value=\"error\"/value=\"ignore\"/' \
         .ci-temp/contribution/checkstyle-tester/checks-nonjavadoc-error.xml
   cd .ci-temp/contribution/checkstyle-tester
@@ -87,7 +93,7 @@ openjdk19-with-checks-nonjavadoc-error)
       --mode single --allowExcludes \
       --patchConfig checks-nonjavadoc-error.xml \
       --localGitRepo  "$LOCAL_GIT_REPO" \
-      --patchBranch "$BRANCH" -xm "-Dcheckstyle.failsOnError=false"
+      --patchBranch "$BRANCH" -ce
 
   cd ../../
   removeFolderWithProtectedFiles contribution
@@ -109,7 +115,7 @@ no-exception-lucene-and-others-javadoc)
   export MAVEN_OPTS="-Xmx2048m"
   groovy ./diff.groovy --listOfProjects projects-for-no-exception-javadoc.config \
       --patchConfig checks-only-javadoc-error.xml \
-      --mode single --allowExcludes -xm "-Dcheckstyle.failsOnError=false" \
+      --mode single --allowExcludes -ce \
       -p "$BRANCH" -r ../../..
   cd ../..
   removeFolderWithProtectedFiles contribution
@@ -130,7 +136,7 @@ no-exception-cassandra-storm-tapestry-javadoc)
   export MAVEN_OPTS="-Xmx2048m"
   groovy ./diff.groovy --listOfProjects projects-for-no-exception-javadoc.config \
       --patchConfig checks-only-javadoc-error.xml \
-      --mode single --allowExcludes  -xm "-Dcheckstyle.failsOnError=false" \
+      --mode single --allowExcludes  -ce \
       -p "$BRANCH" -r ../../..
   cd ../..
   removeFolderWithProtectedFiles contribution
@@ -152,7 +158,7 @@ no-exception-hadoop-apache-groovy-scouter-javadoc)
   export MAVEN_OPTS="-Xmx2048m"
   groovy ./diff.groovy --listOfProjects projects-for-no-exception-javadoc.config \
       --patchConfig checks-only-javadoc-error.xml \
-      --mode single --allowExcludes -xm "-Dcheckstyle.failsOnError=false" \
+      --mode single --allowExcludes -ce \
       -p "$BRANCH" -r ../../..
   cd ../..
   removeFolderWithProtectedFiles contribution
@@ -173,7 +179,7 @@ no-exception-only-javadoc)
   export MAVEN_OPTS="-Xmx2048m"
   groovy ./diff.groovy --listOfProjects projects-to-test-on.properties \
       --patchConfig checks-only-javadoc-error.xml --allowExcludes \
-      --mode single -xm "-Dcheckstyle.failsOnError=false" \
+      --mode single -ce \
       -p "$BRANCH" -r ../../..
   cd ../..
   removeFolderWithProtectedFiles contribution
