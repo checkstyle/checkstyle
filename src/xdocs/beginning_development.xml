@@ -23,7 +23,16 @@
         Prepare development environment in Ubuntu</a>.<br/>
         2. Fork Checkstyle upstream project. As it is described
         <a href="https://help.github.com/articles/fork-a-repo/"> here</a><br/>
-        3. Checkout the current source code from: https://github.com/you_user_name/checkstyle/<br/>
+        3. Before cloning do this command in terminal
+        </p>
+      <div class="wrap-content">
+        <source>
+            git config core.autocrlf
+        </source>
+      </div>
+
+      <p>
+        4. Checkout the current source code from: https://github.com/you_user_name/checkstyle/<br/>
         by running
       </p>
       <div class="wrap-content">
@@ -32,7 +41,7 @@
         </source>
       </div>
       <p>
-        4. Before opening project in IDE do build in terminal by running in repository root folder
+        5. Before opening project in IDE do build in terminal by running in repository root folder
       </p>
       <div class="wrap-content">
         <source>
