@@ -140,7 +140,8 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <p>Example:</p>
  * <pre>
  * &#47;**
- * * &#64;author 	xyz  // violation, No tabs or whitespaces before author name
+ * * &#64;author 	
+                  xyz  // violation, no newline,tabs,spaces before xyz
  * * &#64;author xyz // OK
  * *&#47;
  * public class test{
