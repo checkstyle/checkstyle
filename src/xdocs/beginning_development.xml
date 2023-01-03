@@ -17,12 +17,14 @@
     </section>
     <section name="Before development">
       <p>
+         
         1. Ensure that Git, Java JDK >= 11 until JDK 17, maven >= 3.3.9 are installed.<br/>
         You can find information about development environment preparation here:
         <a href="https://github.com/sevntu-checkstyle/sevntu.checkstyle/wiki/Prepare-Development-Environment-in-Ubuntu-12.04">
         Prepare development environment in Ubuntu</a>.<br/>
         2. Fork Checkstyle upstream project. As it is described
         <a href="https://help.github.com/articles/fork-a-repo/"> here</a><br/>
+        For windows users only(step 3)- <br/>
         3. Before cloning do this command in terminal
         </p>
       <div class="wrap-content">
