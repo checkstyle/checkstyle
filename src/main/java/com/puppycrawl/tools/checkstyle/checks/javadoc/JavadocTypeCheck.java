@@ -137,6 +137,15 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *   &lt;property name="authorFormat" value="\S"/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * &#47;**
+ * * &#64;author 	xyz  // violation, No tabs or whitespaces before author name
+ * * &#64;author xyz // OK
+ * *&#47;
+ * public class test{
+ * }
+ * </pre>
  * <p>
  * To configure the check for a CVS revision version tag:
  * </p>
