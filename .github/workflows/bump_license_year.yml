@@ -6,6 +6,8 @@
 #############################################################################
 name: "Bump license year"
 on:
+  workflow_dispatch:
+    branches: [ master ]
   schedule:
     - cron: "0 0 1 1 *"
 permissions:
