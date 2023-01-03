@@ -97,6 +97,16 @@
         <a href="https://github.com/checkstyle/checkstyle/milestones">milestones</a>.
       </p>
       <p>
+        Checkstyle is following Romantic Semantic Versioning:
+        <b>First</b>.<b>Second</b>.<b>Third</b>
+        <br/>
+        <b>First</b> digit means that some very noticable breaking compatibility happened
+           or major conceptual change<br/>
+        <b>Second</b> digit means that there are some breaking compatibility happened
+           or new features/modules introduced.<br/>
+        <b>Third</b> digit means that just defects are fixed.
+      </p>
+      <p>
         Checkstyle is not using Semantic Versioning
         (<a href="https://github.com/checkstyle/checkstyle/issues/3709">reasons in issue #3709</a>)
       </p>
