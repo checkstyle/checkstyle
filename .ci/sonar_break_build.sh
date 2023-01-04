@@ -15,7 +15,7 @@ if [ ! -f $SONAR_RESULT ]; then
   exit 1
 fi
 
-CE_TASK_ID=$(sed -n 's/ceTaskId=\(.*\)/\1/p' < $SONAR_RESULT)
+CE_TASK_ID=$(echo $SONAR_RESULT | sed -n 's/ceTaskId=\(.*\)/\1/p')
 
 if [ -z "$CE_TASK_ID" ]; then
   echo "ceTaskId is not set from sonar build"
