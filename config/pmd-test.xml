@@ -140,7 +140,9 @@
                    | //ClassOrInterfaceDeclaration[@SimpleName='ArchUnitSuperClassTest']
                        //MethodDeclaration
                    | //ClassOrInterfaceDeclaration[@SimpleName='ArchUnitCyclesCheckTest']
-                       //MethodDeclaration"/>
+                       //MethodDeclaration
+                   | //ClassOrInterfaceDeclaration[@SimpleName='SuppressionFilterTest']
+                       //MethodDeclaration[starts-with(@Name, 'testUseCache')]"/>
     </properties>
   </rule>
 
