@@ -361,7 +361,7 @@ public class RedundantModifierCheck
         boolean checkFinal =
             modifiers.findFirstToken(TokenTypes.LITERAL_PRIVATE) != null;
         // declared in a final class?
-        DetailAST parent = ast.getParent();
+        DetailAST parent = ast;
         while (parent != null && !checkFinal) {
             if (parent.getType() == TokenTypes.CLASS_DEF) {
                 final DetailAST classModifiers =
