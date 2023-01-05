@@ -485,4 +485,14 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
                 getPath("InputAbbreviationAsWordInNameTypeSnakeStyle.java"), expected);
     }
 
+    @Test
+    public void testAnnotation() throws Exception {
+        final String[] expected = {
+            "16:12: " + getWarningMessage("readMETHOD", 4),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputAbbreviationAsWordInNameAnnotation.java"), expected);
+    }
+
 }
