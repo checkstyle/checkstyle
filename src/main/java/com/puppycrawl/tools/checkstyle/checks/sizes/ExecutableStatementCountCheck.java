@@ -212,7 +212,7 @@ public final class ExecutableStatementCountCheck
      */
     private void visitSlist(DetailAST ast) {
         final DetailAST contextAST = context.getAST();
-        DetailAST parent = ast.getParent();
+        DetailAST parent = ast;
         while (parent != null && !isContainerNode(parent)) {
             parent = parent.getParent();
         }
@@ -252,7 +252,6 @@ public final class ExecutableStatementCountCheck
          */
         private Context(DetailAST ast) {
             this.ast = ast;
-            count = 0;
         }
 
         /**
