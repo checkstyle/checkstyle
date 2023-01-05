@@ -272,14 +272,13 @@ public class MethodLengthCheck extends AbstractCheck {
         final Deque<DetailAST> nodes = new ArrayDeque<>();
         nodes.add(ast);
         final BitSet usedLines = new BitSet();
-        final int startLineNo = ast.getLineNo();
         while (!nodes.isEmpty()) {
             final DetailAST node = nodes.removeFirst();
-            final int lineIndex = node.getLineNo() - startLineNo;
+            final int lineIndex = node.getLineNo();
             // text block requires special treatment,
             // since it is the only non-comment token that can span more than one line
             if (node.getType() == TokenTypes.TEXT_BLOCK_LITERAL_BEGIN) {
-                final int endLineIndex = node.getLastChild().getLineNo() - startLineNo;
+                final int endLineIndex = node.getLastChild().getLineNo();
                 usedLines.set(lineIndex, endLineIndex + 1);
             }
             else {
