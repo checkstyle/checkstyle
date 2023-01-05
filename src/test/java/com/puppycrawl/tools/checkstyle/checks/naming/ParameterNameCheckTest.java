@@ -22,10 +22,13 @@ package com.puppycrawl.tools.checkstyle.checks.naming;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
 
+import java.lang.reflect.Field;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class ParameterNameCheckTest
@@ -183,6 +186,20 @@ public class ParameterNameCheckTest
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputParameterNameWhitespaceInConfig.java"), expected);
+    }
+
+    @Test
+    public void testSetAccessModifiers() throws Exception {
+        final AccessModifierOption[] input = {
+            AccessModifierOption.PACKAGE
+        };
+        final ParameterNameCheck check = new ParameterNameCheck();
+        check.setAccessModifiers(input);
+
+        final Field field = TestUtil.getClassDeclaredField(ParameterNameCheck.class, "accessModifiers");
+        assertWithMessage("check creates its own instance of access modifier array")
+            .that(System.identityHashCode(field.get(check)))
+            .isNotEqualTo(System.identityHashCode(input));
     }
 
 }
