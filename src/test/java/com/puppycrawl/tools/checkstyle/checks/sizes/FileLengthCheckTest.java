@@ -47,6 +47,13 @@ public class FileLengthCheckTest
     }
 
     @Test
+    public void testAlarmDefault() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputFileLengthDefault.java"), expected);
+    }
+
+    @Test
     public void testFileLengthEqualToMaxLength() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
