@@ -168,6 +168,7 @@ public class SingleSpaceSeparatorCheck extends AbstractCheck {
     @Override
     public void beginTree(DetailAST rootAST) {
         if (rootAST != null) {
+            System.out.println(rootAST);
             visitEachToken(rootAST);
         }
     }
