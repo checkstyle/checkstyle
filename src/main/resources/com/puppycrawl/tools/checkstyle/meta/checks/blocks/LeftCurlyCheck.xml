@@ -6,6 +6,7 @@
               parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Checks for the placement of left curly braces (&lt;code&gt;'{'&lt;/code&gt;) for code blocks.
+ Check is comment-aware, but ignores trailing comments following a left curly brace.
  &lt;/p&gt;</description>
          <properties>
             <property default-value="eol"
