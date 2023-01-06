@@ -141,6 +141,16 @@ public class EmptyLineSeparatorCheckTest
     }
 
     @Test
+    public void testStaticImport() throws Exception {
+        final String[] expected = {
+            "17:1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "CLASS_DEF"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyLineSeparatorStaticImport.java"),
+            expected);
+    }
+
+    @Test
     public void testBlockCommentNotSeparatedFromPackage() throws Exception {
         final String[] expected = {
             "14:1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "/*"),
@@ -590,6 +600,34 @@ public class EmptyLineSeparatorCheckTest
         };
         verifyWithInlineConfigParser(
                 getPath("InputEmptyLineSeparatorWithEmoji.java"),
+                expected);
+    }
+
+    @Test
+    public void testMultipleLines() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyLineSeparatorMultipleLines.java"),
+                expected);
+    }
+
+    @Test
+    public void testMultipleLines2() throws Exception {
+        final String[] expected = {
+            "15:1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "CLASS_DEF"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyLineSeparatorMultipleLines2.java"),
+                expected);
+    }
+
+    @Test
+    public void testMultipleLines3() throws Exception {
+        final String[] expected = {
+            "24:5: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "VARIABLE_DEF"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputEmptyLineSeparatorMultipleLines3.java"),
                 expected);
     }
 
