@@ -26,6 +26,8 @@ import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class RecordComponentNumberCheckTest extends AbstractModuleTestSupport {
@@ -153,4 +155,20 @@ public class RecordComponentNumberCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputRecordComponentNumberPrivateModifier.java"), expected);
     }
+
+    @Test
+    public void testSetAccessModifiers() throws Exception {
+        final AccessModifierOption[] input = {
+            AccessModifierOption.PACKAGE,
+        };
+        final RecordComponentNumberCheck check = new RecordComponentNumberCheck();
+        check.setAccessModifiers(input);
+
+        assertWithMessage("check creates its own instance of access modifier array")
+            .that(System.identityHashCode(
+                TestUtil.getClassDeclaredField(RecordComponentNumberCheck.class, "accessModifiers")
+                        .get(check)))
+            .isNotEqualTo(System.identityHashCode(input));
+    }
+
 }
