@@ -110,6 +110,13 @@ public class OuterTypeNumberCheckTest extends AbstractModuleTestSupport {
                 getNonCompilablePath("InputOuterTypeNumberRecords.java"), expected);
     }
 
+    /**
+     * Checks if the private field {@code currentDepth} and {@code outerNum} is
+     * properly cleared during the start of processing the next file in the
+     * check as they are file specific values.
+     *
+     * @throws Exception if there is an error.
+     */
     @Test
     public void testClearState() throws Exception {
         final OuterTypeNumberCheck check = new OuterTypeNumberCheck();

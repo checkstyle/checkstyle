@@ -156,6 +156,14 @@ public class RecordComponentNumberCheckTest extends AbstractModuleTestSupport {
                 getNonCompilablePath("InputRecordComponentNumberPrivateModifier.java"), expected);
     }
 
+    /**
+     * Checks that the check when given an array, creates it's own instance of
+     * the array and is not re-using and possible overwriting the one given to
+     * it. Without this, pitest says {@code Arrays.copyOf} is not needed, but it
+     * is needed for other style checks.
+     *
+     * @throws Exception if an error occurs.
+     */
     @Test
     public void testSetAccessModifiers() throws Exception {
         final AccessModifierOption[] input = {
