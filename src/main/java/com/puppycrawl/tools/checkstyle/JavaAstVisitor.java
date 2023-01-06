@@ -558,9 +558,8 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
         for (ParserRuleContext extendedContext : ctx.extended) {
             final DetailAstImpl dot = create(extendedContext.start);
             DetailAstPair.makeAstRoot(currentAST, dot);
-            final List<ParseTree> childList = extendedContext
-                    .children.subList(1, extendedContext.children.size());
-            childList.forEach(child -> DetailAstPair.addAstChild(currentAST, visit(child)));
+            extendedContext.children
+                .forEach(child -> DetailAstPair.addAstChild(currentAST, visit(child)));
         }
 
         // Create imaginary 'TYPE' parent if specified
@@ -1336,7 +1335,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
             superSuffixParent = bop;
         }
         else {
-            DetailAstImpl firstChild = superSuffixParent.getFirstChild();
+            DetailAstImpl firstChild = superSuffixParent;
             while (firstChild.getFirstChild() != null) {
                 firstChild = firstChild.getFirstChild();
             }
