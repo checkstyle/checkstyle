@@ -24,6 +24,7 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.Writer;
 import java.nio.charset.StandardCharsets;
+import java.util.Locale;
 
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
@@ -69,6 +70,9 @@ public class DefaultLogger extends AutomaticBean implements AuditListener {
 
     /** Formatter for the log message. */
     private final AuditEventFormatter formatter;
+
+    /** Locale to report messages. */
+    private Locale locale;
 
     /**
      * Creates a new {@code DefaultLogger} instance.
@@ -159,7 +163,7 @@ public class DefaultLogger extends AutomaticBean implements AuditListener {
     @Override
     public void addException(AuditEvent event, Throwable throwable) {
         synchronized (errorWriter) {
-            final LocalizedMessage exceptionMessage = new LocalizedMessage(
+            final LocalizedMessage exceptionMessage = new LocalizedMessage(locale,
                     Definitions.CHECKSTYLE_BUNDLE, DefaultLogger.class,
                     ADD_EXCEPTION_MESSAGE, event.getFileName());
             errorWriter.println(exceptionMessage.getMessage());
@@ -169,7 +173,7 @@ public class DefaultLogger extends AutomaticBean implements AuditListener {
 
     @Override
     public void auditStarted(AuditEvent event) {
-        final LocalizedMessage auditStartMessage = new LocalizedMessage(
+        final LocalizedMessage auditStartMessage = new LocalizedMessage(locale,
                 Definitions.CHECKSTYLE_BUNDLE, DefaultLogger.class,
                 AUDIT_STARTED_MESSAGE);
         infoWriter.println(auditStartMessage.getMessage());
@@ -178,7 +182,7 @@ public class DefaultLogger extends AutomaticBean implements AuditListener {
 
     @Override
     public void auditFinished(AuditEvent event) {
-        final LocalizedMessage auditFinishMessage = new LocalizedMessage(
+        final LocalizedMessage auditFinishMessage = new LocalizedMessage(locale,
                 Definitions.CHECKSTYLE_BUNDLE, DefaultLogger.class,
                 AUDIT_FINISHED_MESSAGE);
         infoWriter.println(auditFinishMessage.getMessage());
@@ -208,5 +212,14 @@ public class DefaultLogger extends AutomaticBean implements AuditListener {
         if (closeError) {
             errorWriter.close();
         }
+    }
+
+    /**
+     * Setter for locale.
+     *
+     * @param locale Locale to report messages.
+     */
+    public void setLocale(Locale locale) {
+        this.locale = locale;
     }
 }

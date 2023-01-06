@@ -25,6 +25,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.charset.StandardCharsets;
+import java.util.Locale;
 
 import org.junit.jupiter.api.Test;
 
@@ -80,7 +81,7 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
                 AutomaticBean.OutputStreamOptions.CLOSE);
         logger.auditStarted(null);
         final Violation violation =
-                new Violation(1, 1,
+                new Violation(1, 1, Locale.getDefault(),
                         "messages.properties", "ruleId", null, SeverityLevel.ERROR, null,
                         getClass(), "found an error");
         final AuditEvent ev = new AuditEvent(this, "Test.java", violation);
@@ -97,7 +98,7 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
                 AutomaticBean.OutputStreamOptions.CLOSE);
         logger.auditStarted(null);
         final Violation violation =
-                new Violation(1, 1,
+                new Violation(1, 1, Locale.getDefault(),
                         "messages.properties", "ruleId", null, SeverityLevel.WARNING, null,
                         getClass(), "found an error");
         final AuditEvent ev = new AuditEvent(this, "Test.java", violation);
@@ -114,12 +115,12 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
                 AutomaticBean.OutputStreamOptions.CLOSE);
         logger.auditStarted(null);
         final Violation violation =
-                new Violation(1, 1,
+                new Violation(1, 1, Locale.getDefault(),
                         "messages.properties", "ruleId", null, SeverityLevel.INFO, null,
                         getClass(), "found an error");
         final AuditEvent ev = new AuditEvent(this, "Test.java", violation);
         final Violation violation2 =
-                new Violation(1, 1,
+                new Violation(1, 1, Locale.getDefault(),
                         "messages.properties", "ruleId2", null, SeverityLevel.IGNORE, null,
                         getClass(), "found another error");
         final AuditEvent ev2 = new AuditEvent(this, "Test.java", violation2);
@@ -139,7 +140,7 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
                 AutomaticBean.OutputStreamOptions.CLOSE);
         logger.auditStarted(null);
         final Violation message =
-                new Violation(1, 1,
+                new Violation(1, 1, Locale.getDefault(),
                         "messages.properties", "null", null, null,
                         getClass(), "found an error");
         final AuditEvent ev = new AuditEvent(this, null, message);
@@ -156,12 +157,12 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
                 AutomaticBean.OutputStreamOptions.CLOSE);
         logger.auditStarted(null);
         final Violation violation =
-                new Violation(1, 1,
+                new Violation(1, 1, Locale.getDefault(),
                         "messages.properties", "null", null, null,
                         getClass(), "found an error");
         final AuditEvent ev = new AuditEvent(this, null, violation);
         final Violation violation2 =
-                new Violation(1, 1,
+                new Violation(1, 1, Locale.getDefault(),
                         "messages.properties", "null", null, null,
                         getClass(), "found an error");
         final AuditEvent ev2 = new AuditEvent(this, "Test.java", violation2);
@@ -181,7 +182,7 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
             AutomaticBean.OutputStreamOptions.CLOSE);
         logger.auditStarted(null);
         final Violation violation =
-            new Violation(1, 0,
+            new Violation(1, 0, Locale.getDefault(),
                 "messages.properties", "ruleId", null, null,
                 getClass(), "found an error");
         final AuditEvent ev = new AuditEvent(this, "Test.java", violation);
@@ -198,7 +199,7 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
                 AutomaticBean.OutputStreamOptions.CLOSE);
         logger.auditStarted(null);
         final Violation violation =
-                new Violation(1, 1,
+                new Violation(1, 1, Locale.getDefault(),
                         "messages.properties", "null", null, null,
                         getClass(), "found an error");
         final AuditEvent ev = new AuditEvent(this, null, violation);

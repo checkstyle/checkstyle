@@ -35,6 +35,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -260,7 +261,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
     @Test
     public void testSetupChildExceptions() {
         final TreeWalker treeWalker = new TreeWalker();
-        final PackageObjectFactory factory = new PackageObjectFactory(
+        final PackageObjectFactory factory = new PackageObjectFactory(Locale.getDefault(),
                 new HashSet<>(), Thread.currentThread().getContextClassLoader());
         treeWalker.setModuleFactory(factory);
 
@@ -316,7 +317,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
     @Test
     public void testProcessNonJavaFiles() throws Exception {
         final TreeWalker treeWalker = new TreeWalker();
-        final PackageObjectFactory factory = new PackageObjectFactory(
+        final PackageObjectFactory factory = new PackageObjectFactory(Locale.getDefault(),
             new HashSet<>(), Thread.currentThread().getContextClassLoader());
         treeWalker.setModuleFactory(factory);
         treeWalker.configure(new DefaultConfiguration("default config"));
@@ -357,7 +358,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
     public void testWithCacheWithNoViolation() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(HiddenFieldCheck.class);
         final Checker checker = createChecker(checkConfig);
-        final PackageObjectFactory factory = new PackageObjectFactory(
+        final PackageObjectFactory factory = new PackageObjectFactory(Locale.getDefault(),
             new HashSet<>(), Thread.currentThread().getContextClassLoader());
         checker.setModuleFactory(factory);
         final File file = File.createTempFile("file", ".java", temporaryFolder);
@@ -370,7 +371,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
     public void testProcessWithParserThrowable() throws Exception {
         final TreeWalker treeWalker = new TreeWalker();
         treeWalker.configure(createModuleConfig(TypeNameCheck.class));
-        final PackageObjectFactory factory = new PackageObjectFactory(
+        final PackageObjectFactory factory = new PackageObjectFactory(Locale.getDefault(),
             new HashSet<>(), Thread.currentThread().getContextClassLoader());
         treeWalker.setModuleFactory(factory);
         treeWalker.setupChild(createModuleConfig(TypeNameCheck.class));
@@ -394,7 +395,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
     public void testProcessWithRecognitionException() throws Exception {
         final TreeWalker treeWalker = new TreeWalker();
         treeWalker.configure(createModuleConfig(TypeNameCheck.class));
-        final PackageObjectFactory factory = new PackageObjectFactory(
+        final PackageObjectFactory factory = new PackageObjectFactory(Locale.getDefault(),
             new HashSet<>(), Thread.currentThread().getContextClassLoader());
         treeWalker.setModuleFactory(factory);
         treeWalker.setupChild(createModuleConfig(TypeNameCheck.class));
@@ -429,7 +430,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
     @Test
     public void testBehaviourWithZeroChecks() throws Exception {
         final TreeWalker treeWalker = new TreeWalker();
-        final PackageObjectFactory factory = new PackageObjectFactory(
+        final PackageObjectFactory factory = new PackageObjectFactory(Locale.getDefault(),
                 new HashSet<>(), Thread.currentThread().getContextClassLoader());
         treeWalker.setModuleFactory(factory);
         // create file that should throw exception
@@ -448,7 +449,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         final TreeWalker treeWalker = new TreeWalker();
         treeWalker.configure(createModuleConfig(TypeNameCheck.class));
         treeWalker.configure(createModuleConfig(CommentsIndentationCheck.class));
-        final PackageObjectFactory factory = new PackageObjectFactory(
+        final PackageObjectFactory factory = new PackageObjectFactory(Locale.getDefault(),
                 new HashSet<>(), Thread.currentThread().getContextClassLoader());
         treeWalker.setModuleFactory(factory);
         treeWalker.setupChild(createModuleConfig(TypeNameCheck.class));
@@ -474,7 +475,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
     @Test
     public void testSetupChild() throws Exception {
         final TreeWalker treeWalker = new TreeWalker();
-        final PackageObjectFactory factory = new PackageObjectFactory(
+        final PackageObjectFactory factory = new PackageObjectFactory(Locale.getDefault(),
                 new HashSet<>(), Thread.currentThread().getContextClassLoader());
         treeWalker.setModuleFactory(factory);
         treeWalker.setTabWidth(99);

@@ -101,6 +101,7 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
         final DefaultContext checkContext = new DefaultContext();
         checkContext.add("severity", getSeverity());
         checkContext.add("tabWidth", String.valueOf(getTabWidth()));
+        checkContext.add("locale", getLocale());
         childContext = checkContext;
     }
 

@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.api;
 
 import java.io.File;
 import java.util.Arrays;
+import java.util.Locale;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
@@ -61,6 +62,9 @@ public abstract class AbstractFileSetCheck
      * Default is uninitialized as the value is inherited from the parent module.
      */
     private int tabWidth;
+
+    /** Locale to report messages. */
+    private Locale locale;
 
     /**
      * Called to process a file that matches the specified file extensions.
@@ -202,6 +206,24 @@ public abstract class AbstractFileSetCheck
     }
 
     /**
+     * Getter for locale.
+     *
+     * @return The locale.
+     */
+    protected final Locale getLocale() {
+        return locale;
+    }
+
+    /**
+     * Setter for locale.
+     *
+     * @param locale Locale to report messages.
+     */
+    public final void setLocale(Locale locale) {
+        this.locale = locale;
+    }
+
+    /**
      * Adds the sorted set of {@link Violation} to the message collector.
      *
      * @param violations the sorted set of {@link Violation}.
@@ -214,6 +236,7 @@ public abstract class AbstractFileSetCheck
     public final void log(int line, String key, Object... args) {
         context.get().violations.add(
                 new Violation(line,
+                        locale,
                         getMessageBundle(),
                         key,
                         args,
@@ -232,6 +255,7 @@ public abstract class AbstractFileSetCheck
         fileContext.violations.add(
                 new Violation(lineNo,
                         col,
+                        locale,
                         getMessageBundle(),
                         key,
                         args,

@@ -25,6 +25,7 @@ import java.io.File;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
 
@@ -252,24 +253,24 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
         populateHolder("all", 100, 100, 350, 350);
 
         final Checker source = new Checker();
-        final Violation firstViolationForTest =
-            new Violation(100, 10, null, null, null, "id", MemberNameCheck.class, "msg");
+        final Violation firstViolationForTest = new Violation(100, 10, Locale.getDefault(), null,
+                null, null, "id", MemberNameCheck.class, "msg");
         final AuditEvent firstEventForTest =
             new AuditEvent(source, "fileName", firstViolationForTest);
         assertWithMessage("Event is suppressed")
                 .that(SuppressWarningsHolder.isSuppressed(firstEventForTest))
                 .isFalse();
 
-        final Violation secondViolationForTest =
-            new Violation(100, 150, null, null, null, "id", MemberNameCheck.class, "msg");
+        final Violation secondViolationForTest = new Violation(100, 150, Locale.getDefault(), null,
+                null, null, "id", MemberNameCheck.class, "msg");
         final AuditEvent secondEventForTest =
             new AuditEvent(source, "fileName", secondViolationForTest);
         assertWithMessage("Event is not suppressed")
                 .that(SuppressWarningsHolder.isSuppressed(secondEventForTest))
                 .isTrue();
 
-        final Violation thirdViolationForTest =
-            new Violation(200, 1, null, null, null, "id", MemberNameCheck.class, "msg");
+        final Violation thirdViolationForTest = new Violation(200, 1, Locale.getDefault(), null,
+                null, null, "id", MemberNameCheck.class, "msg");
         final AuditEvent thirdEventForTest =
             new AuditEvent(source, "fileName", thirdViolationForTest);
         assertWithMessage("Event is not suppressed")
@@ -473,8 +474,8 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
 
     private static AuditEvent createAuditEvent(String moduleId, int line, int column) {
         final Checker source = new Checker();
-        final Violation violation = new Violation(line, column, null, null, null,
-                moduleId, MemberNameCheck.class, "violation");
+        final Violation violation = new Violation(line, column, Locale.getDefault(), null, null,
+                null, moduleId, MemberNameCheck.class, "violation");
         return new AuditEvent(source, "filename", violation);
     }
 

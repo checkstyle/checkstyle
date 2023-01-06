@@ -29,6 +29,7 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.NoSuchFileException;
 import java.util.Collections;
+import java.util.Locale;
 import java.util.SortedSet;
 
 import org.junit.jupiter.api.Test;
@@ -125,6 +126,7 @@ public class OrderedPropertiesCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(OrderedPropertiesCheck.class);
         final OrderedPropertiesCheck check = new OrderedPropertiesCheck();
         check.configure(checkConfig);
+        check.setLocale(Locale.getDefault());
         final String fileName =
                 getPath("InputOrderedPropertiesCheckNotExisting.properties");
         final File file = new File(fileName);
@@ -160,6 +162,7 @@ public class OrderedPropertiesCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(OrderedPropertiesCheck.class);
         final OrderedPropertiesCheck check = new OrderedPropertiesCheck();
         check.configure(checkConfig);
+        check.setLocale(Locale.getDefault());
         final String fileName =
                 getPath("InputOrderedProperties2EmptyValue.properties");
         final File file = new File(fileName);

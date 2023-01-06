@@ -26,6 +26,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -517,8 +518,8 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
 
     @Test
     public void testConstructorWithTreeWalkerAuditEvent() {
-        final Violation violation = new Violation(12, 1, "messages.properties", null,
-                null, null, null, null, null);
+        final Violation violation = new Violation(12, 1, Locale.getDefault(), "messages.properties",
+                null, null, null, null, null, null);
         final TreeWalkerAuditEvent event = new TreeWalkerAuditEvent(new FileContents(fileText),
                 "InputXpathQueryGenerator", violation, rootAst);
         final XpathQueryGenerator queryGenerator =

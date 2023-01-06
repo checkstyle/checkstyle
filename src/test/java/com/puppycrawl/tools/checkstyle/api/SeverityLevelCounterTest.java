@@ -21,6 +21,8 @@ package com.puppycrawl.tools.checkstyle.api;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 
+import java.util.Locale;
+
 import org.junit.jupiter.api.Test;
 
 public class SeverityLevelCounterTest {
@@ -48,11 +50,11 @@ public class SeverityLevelCounterTest {
                 .isEqualTo(0);
         // not counted
         counter.addError(new AuditEvent(this, "ATest.java", null));
-        counter.addError(new AuditEvent(this, "ATest.java", new Violation(1, 2, 0, null,
-                null, null, SeverityLevel.INFO, null, null, null)));
+        counter.addError(new AuditEvent(this, "ATest.java", new Violation(1, 2, 0,
+                Locale.getDefault(), null, null, null, SeverityLevel.INFO, null, null, null)));
         // counted
-        counter.addError(new AuditEvent(this, "ATest.java", new Violation(1, 2, 0, null,
-                null, null, SeverityLevel.ERROR, null, null, null)));
+        counter.addError(new AuditEvent(this, "ATest.java", new Violation(1, 2, 0,
+                Locale.getDefault(), null, null, null, SeverityLevel.ERROR, null, null, null)));
         assertWithMessage("Invalid severity level count")
                 .that(counter.getCount())
                 .isEqualTo(1);

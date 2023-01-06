@@ -31,6 +31,7 @@ import java.lang.reflect.Field;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.Collections;
+import java.util.Locale;
 import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
@@ -221,6 +222,7 @@ public class TranslationCheckTest extends AbstractXmlTestSupport {
         final TestMessageDispatcher dispatcher = new TestMessageDispatcher();
         check.configure(checkConfig);
         check.setMessageDispatcher(dispatcher);
+        check.setLocale(Locale.getDefault());
 
         final Set<String> keys = TestUtil.invokeMethod(check, "getTranslationKeys",
                 new File(".no.such.file"));
@@ -231,7 +233,7 @@ public class TranslationCheckTest extends AbstractXmlTestSupport {
         assertWithMessage("expected number of errors to fire")
             .that(dispatcher.savedErrors)
             .hasSize(1);
-        final Violation violation = new Violation(0,
+        final Violation violation = new Violation(0, Locale.getDefault(),
                 Definitions.CHECKSTYLE_BUNDLE, "general.fileNotFound",
                 null, null, TranslationCheck.class, null);
         assertWithMessage("Invalid violation")
@@ -249,6 +251,7 @@ public class TranslationCheckTest extends AbstractXmlTestSupport {
         final TestMessageDispatcher dispatcher = new TestMessageDispatcher();
         check.configure(checkConfig);
         check.setMessageDispatcher(dispatcher);
+        check.setLocale(Locale.getDefault());
 
         final Exception exception = new IOException("test exception");
         TestUtil.invokeMethod(check, "logException", exception, new File(""));
@@ -256,7 +259,7 @@ public class TranslationCheckTest extends AbstractXmlTestSupport {
         assertWithMessage("expected number of errors to fire")
             .that(dispatcher.savedErrors.size())
             .isEqualTo(1);
-        final Violation violation = new Violation(0,
+        final Violation violation = new Violation(0, Locale.getDefault(),
                 Definitions.CHECKSTYLE_BUNDLE, "general.exception",
                 new String[] {exception.getMessage()}, null, TranslationCheck.class, null);
         assertWithMessage("Invalid violation")
@@ -596,6 +599,7 @@ public class TranslationCheckTest extends AbstractXmlTestSupport {
     @Test
     public void testWrongUserSpecifiedLanguageCodes() {
         final TranslationCheck check = new TranslationCheck();
+        check.setLocale(Locale.getDefault());
         try {
             check.setRequiredTranslations("11");
             assertWithMessage(

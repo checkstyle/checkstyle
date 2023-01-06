@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.api;
 
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
@@ -56,6 +57,9 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
      * the parent module.
      */
     private int tabWidth;
+
+    /** Locale to report messages. */
+    private Locale locale;
 
     /**
      * Returns the default token a check is interested in. Only used if the
@@ -225,11 +229,30 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
         this.tabWidth = tabWidth;
     }
 
+    /**
+     * Getter for locale.
+     *
+     * @return The locale.
+     */
+    protected final Locale getLocale() {
+        return locale;
+    }
+
+    /**
+     * Setter for locale.
+     *
+     * @param locale Locale to report messages.
+     */
+    public final void setLocale(Locale locale) {
+        this.locale = locale;
+    }
+
     @Override
     public final void log(int line, String key, Object... args) {
         context.get().violations.add(
             new Violation(
                 line,
+                locale,
                 getMessageBundle(),
                 key,
                 args,
@@ -248,6 +271,7 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
             new Violation(
                 lineNo,
                 col,
+                locale,
                 getMessageBundle(),
                 key,
                 args,
@@ -280,6 +304,7 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
                         col,
                         ast.getColumnNo(),
                         ast.getType(),
+                        locale,
                         getMessageBundle(),
                         key,
                         args,

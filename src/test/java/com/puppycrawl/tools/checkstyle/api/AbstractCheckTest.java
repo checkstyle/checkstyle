@@ -28,6 +28,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.SortedSet;
@@ -237,6 +238,32 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testGetLocale() {
+        final AbstractCheck check = new AbstractCheck() {
+            @Override
+            public int[] getDefaultTokens() {
+                return CommonUtil.EMPTY_INT_ARRAY;
+            }
+
+            @Override
+            public int[] getAcceptableTokens() {
+                return getDefaultTokens();
+            }
+
+            @Override
+            public int[] getRequiredTokens() {
+                return getDefaultTokens();
+            }
+        };
+        final Locale locale = Locale.FRENCH;
+        check.setLocale(locale);
+
+        assertWithMessage("Invalid locale")
+                .that(check.getLocale())
+                .isEqualTo(locale);
+    }
+
+    @Test
     public void testFileContents() {
         final AbstractCheck check = new AbstractCheck() {
             @Override
@@ -318,6 +345,7 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
     public void testLineColumnLog() throws Exception {
         final ViolationCheck check = new ViolationCheck();
         check.configure(new DefaultConfiguration("check"));
+        check.setLocale(Locale.getDefault());
         final File file = new File("fileName");
         final FileText theText = new FileText(file, Collections.singletonList("test123"));
 
@@ -354,6 +382,7 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
     public void testAstLog() throws Exception {
         final ViolationAstCheck check = new ViolationAstCheck();
         check.configure(new DefaultConfiguration("check"));
+        check.setLocale(Locale.getDefault());
         final File file = new File("fileName");
         final FileText theText = new FileText(file, Collections.singletonList("test123"));
 

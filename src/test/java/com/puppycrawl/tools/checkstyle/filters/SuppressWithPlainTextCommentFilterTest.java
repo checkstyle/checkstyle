@@ -29,6 +29,7 @@ import static com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacter
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.Locale;
 
 import org.junit.jupiter.api.Test;
 
@@ -526,7 +527,7 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
 
     @Test
     public void testAcceptThrowsIllegalStateExceptionAsFileNotFound() {
-        final Violation message = new Violation(1, 1, 1, TokenTypes.CLASS_DEF,
+        final Violation message = new Violation(1, 1, 1, TokenTypes.CLASS_DEF, Locale.getDefault(),
             "messages.properties", "key", null, SeverityLevel.ERROR, null, getClass(), null);
         final String fileName = "nonexisting_file";
         final AuditEvent auditEvent = new AuditEvent(this, fileName, message);
@@ -648,9 +649,9 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
     @Test
     public void testFilterWithDirectory() throws IOException {
         final SuppressWithPlainTextCommentFilter filter = new SuppressWithPlainTextCommentFilter();
-        final AuditEvent event = new AuditEvent(this, getPath(""), new Violation(1, 1,
-                "bundle", "key", null, SeverityLevel.ERROR, "moduleId", getClass(),
-                "customMessage"));
+        final AuditEvent event = new AuditEvent(this, getPath(""),
+                new Violation(1, 1, Locale.getDefault(), "bundle", "key", null, SeverityLevel.ERROR,
+                        "moduleId", getClass(), "customMessage"));
 
         assertWithMessage("filter should accept directory")
                 .that(filter.accept(event))

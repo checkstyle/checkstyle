@@ -26,6 +26,7 @@ import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MS
 
 import java.io.File;
 import java.nio.charset.StandardCharsets;
+import java.util.Locale;
 import java.util.regex.PatternSyntaxException;
 
 import org.junit.jupiter.api.Test;
@@ -308,7 +309,7 @@ public class SuppressionXpathSingleFilterTest
                 createSuppressionXpathSingleFilter("InputSuppressionXpathSingleFilterComplexQuery",
                         "Test", null, null, xpath);
         final Violation message =
-                new Violation(3, 0, TokenTypes.CLASS_DEF, "",
+                new Violation(3, 0, TokenTypes.CLASS_DEF, Locale.getDefault(), "",
                         "", null, null, "id19",
                         getClass(), null);
         final FileContents fileContents = new FileContents(new FileText(

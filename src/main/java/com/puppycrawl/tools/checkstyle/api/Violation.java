@@ -75,6 +75,9 @@ public final class Violation
      */
     private final Object[] args;
 
+    /** Locale to report messages. */
+    private final Locale locale;
+
     /** Name of the resource bundle to get violations from. **/
     private final String bundle;
 
@@ -91,6 +94,7 @@ public final class Violation
      * @param columnNo column number associated with the violation
      * @param columnCharIndex column char index associated with the violation
      * @param tokenType token type of the event associated with violation. See {@link TokenTypes}
+     * @param locale Locale to report messages.
      * @param bundle resource bundle name
      * @param key the key to locate the translation
      * @param args arguments for the translation
@@ -107,6 +111,7 @@ public final class Violation
                             int columnNo,
                             int columnCharIndex,
                             int tokenType,
+                            Locale locale,
                             String bundle,
                             String key,
                             Object[] args,
@@ -126,6 +131,7 @@ public final class Violation
         else {
             this.args = Arrays.copyOf(args, args.length);
         }
+        this.locale = locale;
         this.bundle = bundle;
         this.severityLevel = severityLevel;
         this.moduleId = moduleId;
@@ -139,6 +145,7 @@ public final class Violation
      * @param lineNo line number associated with the violation
      * @param columnNo column number associated with the violation
      * @param tokenType token type of the event associated with violation. See {@link TokenTypes}
+     * @param locale Locale to report messages.
      * @param bundle resource bundle name
      * @param key the key to locate the translation
      * @param args arguments for the translation
@@ -154,6 +161,7 @@ public final class Violation
     public Violation(int lineNo,
                             int columnNo,
                             int tokenType,
+                            Locale locale,
                             String bundle,
                             String key,
                             Object[] args,
@@ -161,8 +169,8 @@ public final class Violation
                             String moduleId,
                             Class<?> sourceClass,
                             String customMessage) {
-        this(lineNo, columnNo, columnNo, tokenType, bundle, key, args, severityLevel, moduleId,
-                sourceClass, customMessage);
+        this(lineNo, columnNo, columnNo, tokenType, locale, bundle, key, args, severityLevel,
+                moduleId, sourceClass, customMessage);
     }
 
     /**
@@ -170,6 +178,7 @@ public final class Violation
      *
      * @param lineNo line number associated with the violation
      * @param columnNo column number associated with the violation
+     * @param locale Locale to report messages.
      * @param bundle resource bundle name
      * @param key the key to locate the translation
      * @param args arguments for the translation
@@ -184,6 +193,7 @@ public final class Violation
     // -@cs[ParameterNumber] Class is immutable, we need that amount of arguments.
     public Violation(int lineNo,
                             int columnNo,
+                            Locale locale,
                             String bundle,
                             String key,
                             Object[] args,
@@ -191,7 +201,7 @@ public final class Violation
                             String moduleId,
                             Class<?> sourceClass,
                             String customMessage) {
-        this(lineNo, columnNo, 0, bundle, key, args, severityLevel, moduleId, sourceClass,
+        this(lineNo, columnNo, 0, locale, bundle, key, args, severityLevel, moduleId, sourceClass,
                 customMessage);
     }
 
@@ -200,6 +210,7 @@ public final class Violation
      *
      * @param lineNo line number associated with the violation
      * @param columnNo column number associated with the violation
+     * @param locale Locale to report messages.
      * @param bundle resource bundle name
      * @param key the key to locate the translation
      * @param args arguments for the translation
@@ -213,6 +224,7 @@ public final class Violation
     // -@cs[ParameterNumber] Class is immutable, we need that amount of arguments.
     public Violation(int lineNo,
                             int columnNo,
+                            Locale locale,
                             String bundle,
                             String key,
                             Object[] args,
@@ -221,6 +233,7 @@ public final class Violation
                             String customMessage) {
         this(lineNo,
                 columnNo,
+             locale,
              bundle,
              key,
              args,
@@ -234,6 +247,7 @@ public final class Violation
      * Creates a new {@code Violation} instance.
      *
      * @param lineNo line number associated with the violation
+     * @param locale Locale to report messages.
      * @param bundle resource bundle name
      * @param key the key to locate the translation
      * @param args arguments for the translation
@@ -247,6 +261,7 @@ public final class Violation
      */
     // -@cs[ParameterNumber] Class is immutable, we need that amount of arguments.
     public Violation(int lineNo,
+                            Locale locale,
                             String bundle,
                             String key,
                             Object[] args,
@@ -254,7 +269,7 @@ public final class Violation
                             String moduleId,
                             Class<?> sourceClass,
                             String customMessage) {
-        this(lineNo, 0, bundle, key, args, severityLevel, moduleId,
+        this(lineNo, 0, locale, bundle, key, args, severityLevel, moduleId,
                 sourceClass, customMessage);
     }
 
@@ -263,6 +278,7 @@ public final class Violation
      * defaults to 0.
      *
      * @param lineNo line number associated with the violation
+     * @param locale Locale to report messages.
      * @param bundle name of a resource bundle that contains audit event violations
      * @param key the key to locate the translation
      * @param args arguments for the translation
@@ -270,15 +286,17 @@ public final class Violation
      * @param sourceClass the name of the source for the violation
      * @param customMessage optional custom violation overriding the default
      */
+    // -@cs[ParameterNumber] Class is immutable, we need that amount of arguments.
     public Violation(
         int lineNo,
+        Locale locale,
         String bundle,
         String key,
         Object[] args,
         String moduleId,
         Class<?> sourceClass,
         String customMessage) {
-        this(lineNo, 0, bundle, key, args, DEFAULT_SEVERITY, moduleId,
+        this(lineNo, 0, locale, bundle, key, args, DEFAULT_SEVERITY, moduleId,
                 sourceClass, customMessage);
     }
 
@@ -380,6 +398,7 @@ public final class Violation
                 && Objects.equals(severityLevel, violation.severityLevel)
                 && Objects.equals(moduleId, violation.moduleId)
                 && Objects.equals(key, violation.key)
+                && Objects.equals(locale, violation.locale)
                 && Objects.equals(bundle, violation.bundle)
                 && Objects.equals(sourceClass, violation.sourceClass)
                 && Objects.equals(customMessage, violation.customMessage)
@@ -389,7 +408,7 @@ public final class Violation
     @Override
     public int hashCode() {
         return Objects.hash(lineNo, columnNo, columnCharIndex, tokenType, severityLevel, moduleId,
-                key, bundle, sourceClass, customMessage, Arrays.hashCode(args));
+                key, locale, bundle, sourceClass, customMessage, Arrays.hashCode(args));
     }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -437,7 +456,7 @@ public final class Violation
             violation = new MessageFormat(customMessage, Locale.ROOT).format(args);
         }
         else {
-            violation = new LocalizedMessage(bundle, sourceClass, key, args).getMessage();
+            violation = new LocalizedMessage(locale, bundle, sourceClass, key, args).getMessage();
         }
 
         return violation;

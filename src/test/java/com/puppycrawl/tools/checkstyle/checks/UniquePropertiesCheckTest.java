@@ -34,6 +34,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.SortedSet;
 
@@ -135,6 +136,7 @@ public class UniquePropertiesCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(UniquePropertiesCheck.class);
         final UniquePropertiesCheck check = new UniquePropertiesCheck();
         check.configure(checkConfig);
+        check.setLocale(Locale.getDefault());
         final String fileName =
                 getPath("InputUniquePropertiesCheckNotExisting.properties");
         final File file = new File(fileName);

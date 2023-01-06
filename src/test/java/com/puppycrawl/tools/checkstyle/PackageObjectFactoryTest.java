@@ -42,6 +42,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
@@ -65,13 +66,14 @@ import com.puppycrawl.tools.checkstyle.utils.ModuleReflectionUtil;
  */
 public class PackageObjectFactoryTest {
 
-    private final PackageObjectFactory factory = new PackageObjectFactory(
+    private final PackageObjectFactory factory = new PackageObjectFactory(Locale.getDefault(),
             BASE_PACKAGE, Thread.currentThread().getContextClassLoader());
 
     @Test
     public void testCtorNullLoaderException1() {
         try {
-            final Object test = new PackageObjectFactory(new HashSet<>(), null);
+            final Object test = new PackageObjectFactory(Locale.getDefault(), new HashSet<>(),
+                    null);
             assertWithMessage("Exception is expected but got " + test).fail();
         }
         catch (IllegalArgumentException ex) {
@@ -84,7 +86,7 @@ public class PackageObjectFactoryTest {
     @Test
     public void testCtorNullLoaderException2() {
         try {
-            final Object test = new PackageObjectFactory("test", null);
+            final Object test = new PackageObjectFactory(Locale.getDefault(), "test", null);
             assertWithMessage("Exception is expected but got " + test).fail();
         }
         catch (IllegalArgumentException ex) {
@@ -98,7 +100,8 @@ public class PackageObjectFactoryTest {
     public void testCtorNullPackageException1() {
         final ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
         try {
-            final Object test = new PackageObjectFactory(Collections.singleton(null), classLoader);
+            final Object test = new PackageObjectFactory(Locale.getDefault(),
+                    Collections.singleton(null), classLoader);
             assertWithMessage("Exception is expected but got " + test).fail();
         }
         catch (IllegalArgumentException ex) {
@@ -112,7 +115,8 @@ public class PackageObjectFactoryTest {
     public void testCtorNullPackageException2() {
         final ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
         try {
-            final Object test = new PackageObjectFactory((String) null, classLoader);
+            final Object test = new PackageObjectFactory(Locale.getDefault(), (String) null,
+                    classLoader);
             assertWithMessage("Exception is expected but got " + test).fail();
         }
         catch (IllegalArgumentException ex) {
@@ -126,8 +130,8 @@ public class PackageObjectFactoryTest {
     public void testCtorNullPackageException3() {
         final ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
         try {
-            final Object test = new PackageObjectFactory(Collections.singleton(null), classLoader,
-                    TRY_IN_ALL_REGISTERED_PACKAGES);
+            final Object test = new PackageObjectFactory(Locale.getDefault(),
+                    Collections.singleton(null), classLoader, TRY_IN_ALL_REGISTERED_PACKAGES);
             assertWithMessage("Exception is expected but got " + test).fail();
         }
         catch (IllegalArgumentException ex) {
@@ -156,7 +160,7 @@ public class PackageObjectFactoryTest {
             assertWithMessage("Exception is expected").fail();
         }
         catch (CheckstyleException ex) {
-            final LocalizedMessage exceptionMessage = new LocalizedMessage(
+            final LocalizedMessage exceptionMessage = new LocalizedMessage(Locale.getDefault(),
                     Definitions.CHECKSTYLE_BUNDLE, factory.getClass(),
                     UNABLE_TO_INSTANTIATE_EXCEPTION_MESSAGE, name, null);
             assertWithMessage("Invalid exception message")
@@ -178,7 +182,7 @@ public class PackageObjectFactoryTest {
                     + STRING_SEPARATOR + name + CHECK_SUFFIX + STRING_SEPARATOR
                     + BASE_PACKAGE + PACKAGE_SEPARATOR + name + CHECK_SUFFIX;
                 final LocalizedMessage exceptionMessage = new LocalizedMessage(
-                    Definitions.CHECKSTYLE_BUNDLE, factory.getClass(),
+                    Locale.getDefault(), Definitions.CHECKSTYLE_BUNDLE, factory.getClass(),
                     UNABLE_TO_INSTANTIATE_EXCEPTION_MESSAGE, name, attemptedNames);
                 assertWithMessage("Invalid exception message")
                     .that(ex.getMessage())
@@ -195,7 +199,7 @@ public class PackageObjectFactoryTest {
         final String fullName = packageName + PACKAGE_SEPARATOR + name;
         final ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
         final PackageObjectFactory objectFactory =
-                new PackageObjectFactory(packageName, classLoader);
+                new PackageObjectFactory(Locale.getDefault(), packageName, classLoader);
         final Object instance1 = objectFactory.createModule(name);
         assertWithMessage("Invalid canonical name")
             .that(instance1.getClass().getCanonicalName())
@@ -213,7 +217,7 @@ public class PackageObjectFactoryTest {
         final String fullName = BASE_PACKAGE + PACKAGE_SEPARATOR + moduleName;
         final ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
         final PackageObjectFactory objectFactory =
-                new PackageObjectFactory(packageName, classLoader);
+                new PackageObjectFactory(Locale.getDefault(), packageName, classLoader);
         final Object instance = objectFactory.createModule(moduleName);
         assertWithMessage("Invalid canonical name")
             .that(instance.getClass().getCanonicalName())
@@ -228,7 +232,7 @@ public class PackageObjectFactoryTest {
             + "naming" + PACKAGE_SEPARATOR + moduleName + CHECK_SUFFIX;
         final ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
         final PackageObjectFactory objectFactory =
-                new PackageObjectFactory(packageName, classLoader);
+                new PackageObjectFactory(Locale.getDefault(), packageName, classLoader);
         final Object instance = objectFactory.createModule(moduleName);
         assertWithMessage("Invalid canonical name")
             .that(instance.getClass().getCanonicalName())
@@ -240,7 +244,7 @@ public class PackageObjectFactoryTest {
         final String barPackage = BASE_PACKAGE + ".packageobjectfactory.bar";
         final String fooPackage = BASE_PACKAGE + ".packageobjectfactory.foo";
         final ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-        final PackageObjectFactory objectFactory = new PackageObjectFactory(
+        final PackageObjectFactory objectFactory = new PackageObjectFactory(Locale.getDefault(),
                 new LinkedHashSet<>(Arrays.asList(barPackage, fooPackage)), classLoader);
         final String name = "FooCheck";
         try {
@@ -250,7 +254,7 @@ public class PackageObjectFactoryTest {
         catch (CheckstyleException ex) {
             final String optionalNames = barPackage + PACKAGE_SEPARATOR + name
                     + STRING_SEPARATOR + fooPackage + PACKAGE_SEPARATOR + name;
-            final LocalizedMessage exceptionMessage = new LocalizedMessage(
+            final LocalizedMessage exceptionMessage = new LocalizedMessage(Locale.getDefault(),
                     Definitions.CHECKSTYLE_BUNDLE, getClass(),
                     AMBIGUOUS_MODULE_NAME_EXCEPTION_MESSAGE, name, optionalNames);
             assertWithMessage("Invalid exception message")
@@ -264,7 +268,7 @@ public class PackageObjectFactoryTest {
         final String package1 = BASE_PACKAGE + ".wrong1";
         final String package2 = BASE_PACKAGE + ".wrong2";
         final ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-        final PackageObjectFactory objectFactory = new PackageObjectFactory(
+        final PackageObjectFactory objectFactory = new PackageObjectFactory(Locale.getDefault(),
                 new LinkedHashSet<>(Arrays.asList(package1, package2)), classLoader);
         final String name = "FooCheck";
         final String checkName = name + CHECK_SUFFIX;
@@ -278,7 +282,7 @@ public class PackageObjectFactoryTest {
                     + checkName + STRING_SEPARATOR
                     + package1 + PACKAGE_SEPARATOR + checkName + STRING_SEPARATOR
                     + package2 + PACKAGE_SEPARATOR + checkName;
-            final LocalizedMessage exceptionMessage = new LocalizedMessage(
+            final LocalizedMessage exceptionMessage = new LocalizedMessage(Locale.getDefault(),
                     Definitions.CHECKSTYLE_BUNDLE, getClass(),
                     UNABLE_TO_INSTANTIATE_EXCEPTION_MESSAGE, name, attemptedNames);
             assertWithMessage("Invalid exception message")
@@ -292,7 +296,7 @@ public class PackageObjectFactoryTest {
         final String package1 = BASE_PACKAGE + ".wrong1";
         final String package2 = BASE_PACKAGE + ".wrong2";
         final ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-        final PackageObjectFactory objectFactory = new PackageObjectFactory(
+        final PackageObjectFactory objectFactory = new PackageObjectFactory(Locale.getDefault(),
                 new LinkedHashSet<>(Arrays.asList(package1, package2)), classLoader,
                 TRY_IN_ALL_REGISTERED_PACKAGES);
         final String name = "FooCheck";
@@ -307,7 +311,7 @@ public class PackageObjectFactoryTest {
                     + checkName + STRING_SEPARATOR
                     + package1 + PACKAGE_SEPARATOR + checkName + STRING_SEPARATOR
                     + package2 + PACKAGE_SEPARATOR + checkName;
-            final Violation exceptionMessage = new Violation(1,
+            final Violation exceptionMessage = new Violation(1, Locale.getDefault(),
                     Definitions.CHECKSTYLE_BUNDLE, UNABLE_TO_INSTANTIATE_EXCEPTION_MESSAGE,
                     new String[] {name, attemptedNames}, null, getClass(), null);
             assertWithMessage("Invalid exception message")
@@ -334,6 +338,7 @@ public class PackageObjectFactoryTest {
         final Method createModuleByBruteForce = PackageObjectFactory.class.getDeclaredMethod(
                 "createModuleByTryInEachPackage", String.class);
         final PackageObjectFactory packageObjectFactory = new PackageObjectFactory(
+            Locale.getDefault(),
             new HashSet<>(Arrays.asList(BASE_PACKAGE, BASE_PACKAGE + ".checks.annotation")),
             Thread.currentThread().getContextClassLoader(), TRY_IN_ALL_REGISTERED_PACKAGES);
         createModuleByBruteForce.setAccessible(true);
@@ -348,6 +353,7 @@ public class PackageObjectFactoryTest {
     public void testCreateCheckWithPartialPackageNameByBruteForce() throws Exception {
         final String checkName = "checks.annotation.AnnotationLocation";
         final PackageObjectFactory packageObjectFactory = new PackageObjectFactory(
+            Locale.getDefault(),
             new HashSet<>(Collections.singletonList(BASE_PACKAGE)),
             Thread.currentThread().getContextClassLoader(), TRY_IN_ALL_REGISTERED_PACKAGES);
         final AnnotationLocationCheck check = (AnnotationLocationCheck) packageObjectFactory
@@ -452,8 +458,8 @@ public class PackageObjectFactoryTest {
         final String packageName = "java.lang";
         final ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
         final Set<String> packages = Collections.singleton(packageName);
-        final PackageObjectFactory objectFactory = new PackageObjectFactory(packages, classLoader,
-                TRY_IN_ALL_REGISTERED_PACKAGES);
+        final PackageObjectFactory objectFactory = new PackageObjectFactory(Locale.getDefault(),
+                packages, classLoader, TRY_IN_ALL_REGISTERED_PACKAGES);
 
         try (MockedStatic<ModuleReflectionUtil> utilities =
                      mockStatic(ModuleReflectionUtil.class)) {
@@ -484,8 +490,8 @@ public class PackageObjectFactoryTest {
     public void testCreateObjectWithNameContainingPackageSeparator() throws Exception {
         final ClassLoader classLoader = ClassLoader.getSystemClassLoader();
         final Set<String> packages = Collections.singleton(BASE_PACKAGE);
-        final PackageObjectFactory objectFactory =
-            new PackageObjectFactory(packages, classLoader, TRY_IN_ALL_REGISTERED_PACKAGES);
+        final PackageObjectFactory objectFactory = new PackageObjectFactory(Locale.getDefault(),
+                packages, classLoader, TRY_IN_ALL_REGISTERED_PACKAGES);
 
         final Object object = objectFactory.createModule(MockClass.class.getName());
         assertWithMessage("Object should be an instance of MockClass")
@@ -497,8 +503,8 @@ public class PackageObjectFactoryTest {
     public void testCreateModuleWithTryInAllRegisteredPackages() {
         final ClassLoader classLoader = ClassLoader.getSystemClassLoader();
         final Set<String> packages = Collections.singleton(BASE_PACKAGE);
-        final PackageObjectFactory objectFactory =
-            new PackageObjectFactory(packages, classLoader, SEARCH_REGISTERED_PACKAGES);
+        final PackageObjectFactory objectFactory = new PackageObjectFactory(Locale.getDefault(),
+                packages, classLoader, SEARCH_REGISTERED_PACKAGES);
         final CheckstyleException ex = assertThrows(CheckstyleException.class, () -> {
             objectFactory.createModule("PackageObjectFactoryTest$MockClass");
         });

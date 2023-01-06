@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.Locale;
 
 import com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser.ParseErrorMessage;
 import com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser.ParseStatus;
@@ -91,6 +92,7 @@ public final class DetailNodeTreeStringPrinter {
      */
     private static String getParseErrorMessage(ParseErrorMessage parseErrorMessage) {
         final LocalizedMessage message = new LocalizedMessage(
+                Locale.getDefault(),
                 "com.puppycrawl.tools.checkstyle.checks.javadoc.messages",
                 DetailNodeTreeStringPrinter.class,
                 parseErrorMessage.getMessageKey(),

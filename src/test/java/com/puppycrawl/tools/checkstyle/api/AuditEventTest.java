@@ -21,6 +21,8 @@ package com.puppycrawl.tools.checkstyle.api;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 
+import java.util.Locale;
+
 import org.junit.jupiter.api.Test;
 
 public class AuditEventTest {
@@ -45,7 +47,7 @@ public class AuditEventTest {
 
     @Test
     public void testFullConstructor() {
-        final Violation message = new Violation(1, 2, 3, "bundle", "key", null,
+        final Violation message = new Violation(1, 2, 3, Locale.getDefault(), "bundle", "key", null,
                 SeverityLevel.ERROR, "moduleId", getClass(), "customMessage");
         final AuditEvent event = new AuditEvent(getClass(), "fileName", message);
 

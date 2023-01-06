@@ -146,6 +146,7 @@ public final class Main {
             // return exit code base on validation of Checker
             if (errorCounter > 0) {
                 final LocalizedMessage errorCounterViolation = new LocalizedMessage(
+                        Locale.getDefault(),
                         Definitions.CHECKSTYLE_BUNDLE, Main.class,
                         ERROR_COUNTER, String.valueOf(errorCounter));
                 // print error count statistic to error output stream,
@@ -439,7 +440,7 @@ public final class Main {
         }
         catch (final IOException ex) {
             final LocalizedMessage loadPropertiesExceptionMessage = new LocalizedMessage(
-                    Definitions.CHECKSTYLE_BUNDLE, Main.class,
+                    Locale.getDefault(), Definitions.CHECKSTYLE_BUNDLE, Main.class,
                     LOAD_PROPERTIES_EXCEPTION, file.getAbsolutePath());
             throw new CheckstyleException(loadPropertiesExceptionMessage.getMessage(), ex);
         }
@@ -459,7 +460,7 @@ public final class Main {
      */
     private static RootModule getRootModule(String name, ClassLoader moduleClassLoader)
             throws CheckstyleException {
-        final ModuleFactory factory = new PackageObjectFactory(
+        final ModuleFactory factory = new PackageObjectFactory(Locale.getDefault(),
                 Checker.class.getPackage().getName(), moduleClassLoader);
 
         return (RootModule) factory.createModule(name);

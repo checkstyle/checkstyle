@@ -26,6 +26,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
@@ -67,6 +68,7 @@ public class AbstractFileSetCheckTest extends AbstractModuleTestSupport {
         final DummyFileSetCheck check = new DummyFileSetCheck();
         check.configure(new DefaultConfiguration("filesetcheck"));
         check.setFileExtensions("tmp");
+        check.setLocale(Locale.getDefault());
         final File firstFile = new File("inputAbstractFileSetCheck.tmp");
         final SortedSet<Violation> firstFileMessages =
             check.process(firstFile, new FileText(firstFile, Collections.emptyList()));
@@ -111,6 +113,7 @@ public class AbstractFileSetCheckTest extends AbstractModuleTestSupport {
         final ExceptionFileSetCheck check = new ExceptionFileSetCheck();
         check.configure(new DefaultConfiguration("filesetcheck"));
         check.setFileExtensions("tmp");
+        check.setLocale(Locale.getDefault());
         final File firstFile = new File("inputAbstractFileSetCheck.tmp");
 
         final FileText fileText = new FileText(firstFile, Collections.emptyList());
@@ -187,6 +190,7 @@ public class AbstractFileSetCheckTest extends AbstractModuleTestSupport {
     public void testLineColumnLog() throws Exception {
         final ViolationFileSetCheck check = new ViolationFileSetCheck();
         check.configure(new DefaultConfiguration("filesetcheck"));
+        check.setLocale(Locale.getDefault());
         final File file = new File(getPath("InputAbstractFileSetLineColumn.txt"));
         final FileText theText = new FileText(file.getAbsoluteFile(),
                 StandardCharsets.UTF_8.name());
@@ -230,6 +234,7 @@ public class AbstractFileSetCheckTest extends AbstractModuleTestSupport {
     public void testMultiFileFireErrors() throws Exception {
         final MultiFileViolationFileSetCheck check = new MultiFileViolationFileSetCheck();
         check.configure(new DefaultConfiguration("filesetcheck"));
+        check.setLocale(Locale.getDefault());
         final ViolationDispatcher dispatcher = new ViolationDispatcher();
         check.setMessageDispatcher(dispatcher);
 
