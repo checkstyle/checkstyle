@@ -862,7 +862,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
 
     /**
      * Checks, whether there are empty lines within the specified line range. Line numbering is
-     * started from 1 for parameter values
+     * started from 1 for parameter values.
      *
      * @param startLine number of the first line in the range
      * @param endLine number of the second line in the range

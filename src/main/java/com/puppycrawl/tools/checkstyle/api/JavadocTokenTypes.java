@@ -1417,7 +1417,7 @@ public final class JavadocTokenTypes {
      *                        |--HTML_TAG_NAME[1x38] : [b]
      *                        |--END[1x39] : [>]
      *            |--TEXT[1x40] : [ problems occur]
-     * }
+     * }.
      * </pre>
      */
     public static final int DESCRIPTION = JavadocParser.RULE_description + RULE_TYPES_OFFSET;

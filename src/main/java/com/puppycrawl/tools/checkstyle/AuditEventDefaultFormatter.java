@@ -29,7 +29,7 @@ import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
  * Default log message format is:
  * [SEVERITY LEVEL] filePath:lineNo:columnNo: message. [CheckName]
  * When the module id of the message has been set, the format is:
- * [SEVERITY LEVEL] filePath:lineNo:columnNo: message. [ModuleId]
+ * [SEVERITY LEVEL] filePath:lineNo:columnNo: message [ModuleId].
  */
 public class AuditEventDefaultFormatter implements AuditEventFormatter {
 

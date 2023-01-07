@@ -815,7 +815,7 @@ public class VisibilityModifierCheck
      * has final modifier and either a primitive type or instance of class
      * known to be immutable (such as String, ImmutableCollection from Guava, etc.).
      * Classes known to be immutable are listed in
-     * {@link VisibilityModifierCheck#immutableClassCanonicalNames}
+     * {@link VisibilityModifierCheck#immutableClassCanonicalNames}.
      *
      * @param variableDef Field in consideration.
      * @return true if field is immutable.

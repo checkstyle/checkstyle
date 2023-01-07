@@ -28,7 +28,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 /**
  * <p>
  * Checks for over-complicated boolean return statements.
- * For example the following code
+ * For example the following code:
  * </p>
  * <pre>
  * if (valid())
@@ -174,7 +174,7 @@ public class SimplifyBooleanReturnCheck
      * <pre>
      * return true/false;
      * </pre>
-     * or
+     * or :
      * <pre>
      * {
      *   return true/false;
@@ -196,7 +196,7 @@ public class SimplifyBooleanReturnCheck
     /**
      * Returns if an AST is a return statement with a boolean literal.
      *
-     * <p>Returns {@code true} iff ast represents
+     * <p>Returns {@code true} iff ast represents:
      * <pre>
      * return true/false;
      * </pre>

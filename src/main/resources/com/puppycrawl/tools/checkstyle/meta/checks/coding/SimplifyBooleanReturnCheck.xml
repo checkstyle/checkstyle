@@ -6,7 +6,7 @@
               parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Checks for over-complicated boolean return statements.
- For example the following code
+ For example the following code:
  &lt;/p&gt;
  &lt;pre&gt;
  if (valid())

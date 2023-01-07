@@ -236,7 +236,7 @@ public class InnerAssignmentCheck
 
     /**
      * Determines if ast is in the body of a flow control statement without
-     * braces. An example of such a statement would be
+     * braces. An example of such a statement would be.
      * <pre>
      * if (y &lt; 0)
      *     x = y;

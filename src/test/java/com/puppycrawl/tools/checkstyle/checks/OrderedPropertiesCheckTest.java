@@ -48,7 +48,7 @@ public class OrderedPropertiesCheckTest extends AbstractModuleTestSupport {
 
     /**
      * Tests the ordinal work of a check.
-     * Test of sub keys, repeating key pairs in wrong order
+     * Test of sub keys, repeating key pairs in wrong order.
      */
     @Test
     public void testDefault() throws Exception {

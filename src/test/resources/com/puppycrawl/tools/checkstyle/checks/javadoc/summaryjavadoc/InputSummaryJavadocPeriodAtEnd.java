@@ -12,7 +12,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.summaryjavadoc;
 
 public class InputSummaryJavadocPeriodAtEnd {
     /**
-     * JAXB 1.0 only default validation event handler
+     * JAXB 1.0 only default validation event handler.
      */
     public static final byte NUL = 0;
     // violation below 'Summary javadoc is missing.'

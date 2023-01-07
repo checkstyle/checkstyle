@@ -199,7 +199,7 @@ public class AvoidEscapedUnicodeCharactersCheck
     /**
      * Regular expression for all escaped chars.
      * See <a href="https://docs.oracle.com/javase/specs/jls/se15/html/jls-3.html#jls-3.10.7">
-     * EscapeSequence</a>
+     * EscapeSequence</a>.
      */
     private static final Pattern ALL_ESCAPED_CHARS = Pattern.compile("^("
             + UNICODE_REGEXP.pattern()

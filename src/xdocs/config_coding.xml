@@ -1022,7 +1022,7 @@ case 2 -&gt; x = 32;
       <subsection name="Description" id="EmptyStatement_Description">
         <p>
           Detects empty statements (standalone <code>";"</code> semicolon).
-          Empty statements often introduce bugs that are hard to spot
+          Empty statements often introduce bugs that are hard to spot:
         </p>
       </subsection>
 
@@ -6721,7 +6721,7 @@ public class Test {
       <subsection name="Description" id="SimplifyBooleanReturn_Description">
         <p>
           Checks for over-complicated boolean return statements. For example
-          the following code
+          the following code:
         </p>
         <source>
 if (valid())
