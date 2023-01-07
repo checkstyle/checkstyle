@@ -677,7 +677,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
      * @return true, if there is an element.
      */
     private static boolean isLineEmptyAfterPackage(DetailAST ast) {
-        DetailAST nextElement = ast.getNextSibling();
+        DetailAST nextElement = ast;
         final int lastChildLineNo = ast.getLastChild().getLineNo();
         while (nextElement.getLineNo() < lastChildLineNo + 1
                 && nextElement.getNextSibling() != null) {
