@@ -298,7 +298,7 @@ public class ParenPadCheck extends AbstractParenPadCheck {
      * @param ast the token to check.
      */
     private void visitResourceSpecification(DetailAST ast) {
-        processLeft(ast.findFirstToken(TokenTypes.LPAREN));
+        processLeft(ast);
         final DetailAST rparen = ast.findFirstToken(TokenTypes.RPAREN);
         if (!hasPrecedingSemiColon(rparen)) {
             processRight(rparen);
