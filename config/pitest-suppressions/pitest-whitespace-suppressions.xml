@@ -73,15 +73,6 @@
   </mutation>
 
   <mutation unstable="false">
-    <sourceFile>ParenPadCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.whitespace.ParenPadCheck</mutatedClass>
-    <mutatedMethod>visitResourceSpecification</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
-    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::findFirstToken with receiver</description>
-    <lineContent>processLeft(ast.findFirstToken(TokenTypes.LPAREN));</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
     <sourceFile>SingleSpaceSeparatorCheck.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.whitespace.SingleSpaceSeparatorCheck</mutatedClass>
     <mutatedMethod>visitEachToken</mutatedMethod>
