@@ -619,16 +619,14 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
      * @param emptyLines list of empty lines.
      * @return list of empty lines to log.
      */
-    private static List<Integer> getEmptyLinesToLog(List<Integer> emptyLines) {
+    private static List<Integer> getEmptyLinesToLog(Iterable<Integer> emptyLines) {
         final List<Integer> emptyLinesToLog = new ArrayList<>();
-        if (emptyLines.size() >= 2) {
-            int previousEmptyLineNo = emptyLines.get(0);
-            for (int emptyLineNo : emptyLines) {
-                if (previousEmptyLineNo + 1 == emptyLineNo) {
-                    emptyLinesToLog.add(previousEmptyLineNo);
-                }
-                previousEmptyLineNo = emptyLineNo;
+        int previousEmptyLineNo = -1;
+        for (int emptyLineNo : emptyLines) {
+            if (previousEmptyLineNo + 1 == emptyLineNo) {
+                emptyLinesToLog.add(previousEmptyLineNo);
             }
+            previousEmptyLineNo = emptyLineNo;
         }
         return emptyLinesToLog;
     }

@@ -12,15 +12,6 @@
   <mutation unstable="false">
     <sourceFile>EmptyLineSeparatorCheck.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck</mutatedClass>
-    <mutatedMethod>getEmptyLinesToLog</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to java/lang/Integer::intValue</description>
-    <lineContent>int previousEmptyLineNo = emptyLines.get(0);</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>EmptyLineSeparatorCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck</mutatedClass>
     <mutatedMethod>getViolationAstForPackage</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
     <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getNextSibling with receiver</description>
