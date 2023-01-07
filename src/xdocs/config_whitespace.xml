@@ -23,7 +23,7 @@
           Checks the padding of an empty for initializer; that is whether
           a white space is required at an empty for initializer, or such white
           space is forbidden.  No check occurs if there is a line wrap at the
-          initializer, as in
+          initializer, as in:
         </p>
 
         <source>
@@ -140,7 +140,7 @@ for (
           Checks the padding of an empty for iterator; that is whether a white
           space is required at an empty for iterator, or such white space is
           forbidden. No check occurs if there is a line wrap at the iterator,
-          as in
+          as in:
         </p>
         <source>
 for (Iterator foo = very.long.line.iterator();
@@ -3192,7 +3192,7 @@ public void myTest() {
       <subsection name="Description" id="WhitespaceAround_Description">
         <p>
         Checks that a token is surrounded by whitespace. Empty constructor,
-        method, class, enum, interface, loop bodies (blocks), lambdas of the form
+        method, class, enum, interface, loop bodies (blocks), lambdas of the form :
         </p>
 
         <source>public MyClass() {}      // empty constructor

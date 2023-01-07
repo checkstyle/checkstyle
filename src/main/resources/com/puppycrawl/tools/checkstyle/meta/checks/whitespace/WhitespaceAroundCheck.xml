@@ -6,7 +6,7 @@
               parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Checks that a token is surrounded by whitespace. Empty constructor,
- method, class, enum, interface, loop bodies (blocks), lambdas of the form
+ method, class, enum, interface, loop bodies (blocks), lambdas of the form :
  &lt;/p&gt;
  &lt;pre&gt;
  public MyClass() {}      // empty constructor

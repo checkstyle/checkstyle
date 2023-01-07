@@ -77,7 +77,7 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
     /** Context of child components. */
     private Context childContext;
 
-    /** A factory for creating submodules (i.e. the Checks) */
+    /** A factory for creating submodules (i.e. the Checks). */
     private ModuleFactory moduleFactory;
 
     /**

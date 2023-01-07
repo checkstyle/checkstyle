@@ -257,4 +257,28 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
                 getPath("inputs/package-info.java"), expected);
     }
 
+    @Test
+    public void testDot() throws Exception {
+        final String[] expected = {
+            "14: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "21: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "36: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "60: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputSummaryJavadocPeriodAtEnd2.java"), expected);
+    }
+
+    @Test
+    public void testDotJapanese() throws Exception {
+        final String[] expected = {
+            "14: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "24: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "39: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputSummaryJavadocPeriodAtEndJapanese.java"), expected);
+    }
 }

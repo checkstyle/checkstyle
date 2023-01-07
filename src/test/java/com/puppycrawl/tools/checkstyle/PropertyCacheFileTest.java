@@ -332,7 +332,7 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
 
     /**
      * Temp comment.
-     * until #11589
+     * until #11589.
      *
      * @noinspection ResultOfMethodCallIgnored
      * @noinspectionreason ResultOfMethodCallIgnored - temporary suppression until #11589
