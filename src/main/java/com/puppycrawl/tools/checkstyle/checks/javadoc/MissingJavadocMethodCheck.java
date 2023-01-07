@@ -433,7 +433,7 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
 
     /**
      * Checks if the given method name matches the regex. In that case
-     * we skip enforcement of javadoc for this method
+     * we skip enforcement of javadoc for this method.
      *
      * @param methodDef {@link TokenTypes#METHOD_DEF METHOD_DEF}
      * @return true if given method name matches the regex.

@@ -473,7 +473,7 @@ public class JavadocDetailNodeParser {
      * <tbody>
      * <thead>
      * <tfoot>
-     * }
+     * }.
      *
      * @param exception {@code NoViableAltException} object catched while parsing javadoc
      * @return returns appropriate {@link Token} if a HTML close tag is missed;

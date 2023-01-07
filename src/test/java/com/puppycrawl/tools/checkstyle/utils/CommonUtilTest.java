@@ -534,7 +534,7 @@ public class CommonUtilTest extends AbstractPathTestSupport {
      * Without fix, the assertion will fail because the URL under test
      * "com/puppycrawl/tools/checkstyle/utils/commonutil/InputCommonUtilTest_resource.txt"
      * will be interpreted relative to the current package
-     * "com/puppycrawl/tools/checkstyle/utils/"
+     * "com/puppycrawl/tools/checkstyle/utils/".
      */
     @Test
     public void testGetUriByFilenameFindsResourceRelativeToRootClasspath() throws Exception {

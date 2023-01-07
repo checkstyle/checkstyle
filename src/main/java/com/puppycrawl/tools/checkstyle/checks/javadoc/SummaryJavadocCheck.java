@@ -347,12 +347,23 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
         }
     }
 
+    /**
+     * Check whether Period is there or not at the end of
+     * summary.
+     *
+     * @param summaryLine summary text
+     * @return whether there is period or not
+     */
     public boolean checkPeriodAtEnd(String summaryLine) {
         boolean ans = false;
-        if(summaryLine.contains(period)) {
-            if(summaryLine.lastIndexOf(period) == summaryLine.length()-1
-                    || summaryLine.lastIndexOf('*') == summaryLine.length()-1) {
+        if (summaryLine.contains(period)) {
+            if (summaryLine.lastIndexOf(period) == summaryLine.length() - 1
+                    || summaryLine.lastIndexOf('*') == summaryLine.length() - 1
+                    || summaryLine.lastIndexOf(':') == summaryLine.length() - 1) {
                 ans = true;
+            }
+            else {
+                ans = false;
             }
         }
         return ans;

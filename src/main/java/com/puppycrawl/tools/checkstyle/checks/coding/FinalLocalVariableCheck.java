@@ -707,7 +707,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
      * for (int i = 0, j = 0; i < j; i++) { . . . }
      * }
      * </p>
-     * {@code i, j} are defined in {@link TokenTypes#FOR_INIT for-loop init}
+     * {@code i, j} are defined in {@link TokenTypes#FOR_INIT for-loop init}.
      *
      * @param variableDef variable definition node.
      * @return true if variable is defined in {@link TokenTypes#FOR_INIT for-loop init}

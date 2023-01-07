@@ -259,10 +259,11 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testDot() throws Exception {
-     final String[] expected = {
+        final String[] expected = {
             "14: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
-            "24: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
-            "39: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "21: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "36: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "60: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
         };
 
         verifyWithInlineConfigParser(
@@ -270,8 +271,8 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testDotJPY() throws Exception {
-     final String[] expected = {
+    public void testDotJapanese() throws Exception {
+        final String[] expected = {
             "14: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
             "24: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
             "39: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),

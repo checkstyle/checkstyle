@@ -56,3 +56,29 @@ class Test4 {
         return;
     }
 }
+
+/** // violation
+ * Replaces {@code ${xxx}} style constructions in the given value
+ * with the string value of the corresponding data types. This method must remain
+ * outside inner class for easier testing since inner class requires an instance.
+ *
+ * <p>Code copied from
+ * <a href="https://github.com/apache/ant/blob/master/src/main/org/apache/tools/ant/ProjectHelper.java">
+ * ant.
+ * </a>
+ */
+class extra {
+}
+
+/**
+ * Replaces {@code ${xxx}} style constructions in the given value
+ * with the string value of the corresponding data types. This method must remain
+ * outside inner class for easier testing since inner class requires an instance.
+ *
+ * <p>Code copied from:
+ * <a href="https://github.com/apache/ant/blob/master/src/main/org/apache/tools/ant/ProjectHelper.java">
+ * ant.
+ * </a>
+ */
+class extra1 {
+}
