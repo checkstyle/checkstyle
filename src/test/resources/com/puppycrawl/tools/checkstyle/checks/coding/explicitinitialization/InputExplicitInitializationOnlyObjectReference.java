@@ -95,4 +95,5 @@ class Doubles1 {
     final double nan = Double.NaN;
     private short shortVariable = 0;
     private byte bite = 0;
+    double d = 0d;
 }
