@@ -693,7 +693,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
      * @return Violation ast.
      */
     private static DetailAST getViolationAstForPackage(DetailAST ast) {
-        DetailAST nextElement = ast.getNextSibling();
+        DetailAST nextElement = ast;
         final int lastChildLineNo = ast.getLastChild().getLineNo();
         while (nextElement.getLineNo() < lastChildLineNo + 1) {
             nextElement = nextElement.getNextSibling();
