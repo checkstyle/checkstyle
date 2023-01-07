@@ -337,7 +337,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
         else if (!period.isEmpty()) {
             final String firstSentence = getFirstSentence(ast);
             final int endOfSentence = firstSentence.lastIndexOf(period);
-            if (!summaryDoc.contains(period)) {
+            if (!checkPeriodAtEnd(summaryDoc)) {
                 log(ast.getLineNumber(), MSG_SUMMARY_FIRST_SENTENCE);
             }
             if (endOfSentence != -1
@@ -345,6 +345,17 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
                 log(ast.getLineNumber(), MSG_SUMMARY_JAVADOC);
             }
         }
+    }
+
+    public boolean checkPeriodAtEnd(String summaryLine) {
+        boolean ans = false;
+        if(summaryLine.contains(period)) {
+            if(summaryLine.lastIndexOf(period) == summaryLine.length()-1
+                    || summaryLine.lastIndexOf('*') == summaryLine.length()-1) {
+                ans = true;
+            }
+        }
+        return ans;
     }
 
     /**
