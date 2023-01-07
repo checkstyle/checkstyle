@@ -410,7 +410,7 @@ public class AnnotationLocationCheck extends AbstractCheck {
      * the value of {@link AnnotationLocationCheck#allowSamelineParameterizedAnnotation};
      * 2) checks parameterless annotation location considering
      * the value of {@link AnnotationLocationCheck#allowSamelineSingleParameterlessAnnotation};
-     * 3) checks annotation location;
+     * 3) checks annotation location.
      *
      * @param annotation annotation node.
      * @param hasParams whether an annotation has parameters.

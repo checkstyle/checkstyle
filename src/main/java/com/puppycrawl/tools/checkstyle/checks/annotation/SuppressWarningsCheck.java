@@ -317,7 +317,7 @@ public class SuppressWarningsCheck extends AbstractCheck {
      * <pre>
      * Input String = "unchecked"
      * </pre>
-     * Output String = unchecked
+     * Output String = unchecked .
      *
      * @param warning the warning string
      * @return the string without two quotes

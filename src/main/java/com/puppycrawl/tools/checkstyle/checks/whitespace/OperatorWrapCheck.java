@@ -465,7 +465,7 @@ public class OperatorWrapCheck
      *   (condition && (condition
      *     || condition2 || condition3) && condition4
      *     && condition3)
-     * }
+     * }.
      *
      * @param node the node to adjust
      * @param step the node transformer, should be {@link DetailAST#getPreviousSibling}

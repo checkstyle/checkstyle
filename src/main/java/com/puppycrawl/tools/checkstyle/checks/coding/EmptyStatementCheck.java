@@ -27,7 +27,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 /**
  * <p>
  * Detects empty statements (standalone {@code ";"} semicolon).
- * Empty statements often introduce bugs that are hard to spot
+ * Empty statements often introduce bugs that are hard to spot:
  * </p>
  * <p>
  * To configure the check:

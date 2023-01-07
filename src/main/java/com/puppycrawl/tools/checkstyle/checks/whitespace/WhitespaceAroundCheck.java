@@ -28,7 +28,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 /**
  * <p>
  * Checks that a token is surrounded by whitespace. Empty constructor,
- * method, class, enum, interface, loop bodies (blocks), lambdas of the form
+ * method, class, enum, interface, loop bodies (blocks), lambdas of the form :
  * </p>
  * <pre>
  * public MyClass() {}      // empty constructor
@@ -774,7 +774,7 @@ public class WhitespaceAroundCheck extends AbstractCheck {
     }
 
     /**
-     * Check for "})" or "};" or "},". Happens with anon-inners
+     * Check for "})" or "};" or "},". Happens with anon-inners.
      *
      * @param currentType token
      * @param nextChar next symbol
@@ -958,7 +958,7 @@ public class WhitespaceAroundCheck extends AbstractCheck {
 
     /**
      * Test if the given {@code DetailAST} is part of an empty block.
-     * An example empty block might look like the following
+     * An example empty block might look like the following.
      * <pre>   class Foo {}</pre>
      *
      * @param ast ast the {@code DetailAST} to test.

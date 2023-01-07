@@ -270,7 +270,7 @@ public final class ConfigurationLoader {
     /**
      * Returns the module configurations from a specified input source.
      * Note that if the source does wrap an open byte or character
-     * stream, clients are required to close that stream by themselves
+     * stream, clients are required to close that stream by themselves.
      *
      * @param configSource the input stream to the Checkstyle configuration
      * @param overridePropsResolver overriding properties
@@ -290,7 +290,7 @@ public final class ConfigurationLoader {
     /**
      * Returns the module configurations from a specified input source.
      * Note that if the source does wrap an open byte or character
-     * stream, clients are required to close that stream by themselves
+     * stream, clients are required to close that stream by themselves.
      *
      * @param configSource the input stream to the Checkstyle configuration
      * @param overridePropsResolver overriding properties
@@ -330,9 +330,9 @@ public final class ConfigurationLoader {
      * with the string value of the corresponding data types. This method must remain
      * outside inner class for easier testing since inner class requires an instance.
      *
-     * <p>Code copied from
+     * <p>Code copied from:
      * <a href="https://github.com/apache/ant/blob/master/src/main/org/apache/tools/ant/ProjectHelper.java">
-     * ant
+     * ant.
      * </a>
      *
      * @param value The string to be scanned for property references. Must
@@ -385,7 +385,7 @@ public final class ConfigurationLoader {
      * {@code null} entries in the first collection indicate a property
      * reference from the second collection.
      *
-     * <p>Code copied from
+     * <p>Code copied from:
      * <a href="https://github.com/apache/ant/blob/master/src/main/org/apache/tools/ant/ProjectHelper.java">
      * ant
      * </a>

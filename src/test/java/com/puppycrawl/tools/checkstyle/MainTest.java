@@ -449,7 +449,7 @@ public class MainTest {
      * pitest mutation survival at Main#getOutputStreamOptions.
      * No ability to test it by out general tests.
      * It is hard test that inner stream is closed, so pure UT is created to validate result
-     * of private method Main.getOutputStreamOptions
+     * of private method Main.getOutputStreamOptions.
      *
      * @throws Exception if there is an error.
      */
