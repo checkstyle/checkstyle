@@ -1,4 +1,7 @@
 /*
+com.puppycrawl.tools.checkstyle.filters.SuppressionXpathSingleFilter
+query = //LPAREN
+
 ParenPad
 option = (default)nospace
 tokens = (default)ANNOTATION, ANNOTATION_FIELD_DEF, CTOR_CALL, CTOR_DEF, DOT, \
@@ -11,14 +14,12 @@ tokens = (default)ANNOTATION, ANNOTATION_FIELD_DEF, CTOR_CALL, CTOR_DEF, DOT, \
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace.parenpad;
 
-class InputParenPadTryWithResources {
+class InputParenPadTryWithResourcesAndSuppression {
     private void tryWithResources() throws Exception {
         try (AutoCloseable a = null) {} // ok
         try (AutoCloseable a = null; AutoCloseable b = null) {} // ok
         try (AutoCloseable a = null; AutoCloseable b = null; ) {} // ok
         try (AutoCloseable a = null; AutoCloseable b = null; ) {} // ok
-        try (AutoCloseable a = null ) {} // violation
-        try (AutoCloseable a = null; AutoCloseable b = null ) {} // violation
-        try ( AutoCloseable a = null) {} // violation
+        try ( AutoCloseable a = null) {} // filtered violation
     }
 }

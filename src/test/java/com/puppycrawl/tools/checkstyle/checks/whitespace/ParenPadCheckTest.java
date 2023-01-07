@@ -442,9 +442,21 @@ public class ParenPadCheckTest
         final String[] expected = {
             "20:37: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
             "21:61: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
+            "22:13: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
         };
         verifyWithInlineConfigParser(
                 getPath("InputParenPadTryWithResources.java"), expected);
+    }
+
+    @Test
+    public void testTryWithResourcesAndSuppression() throws Exception {
+        final String[] expectedFiltered = CommonUtil.EMPTY_STRING_ARRAY;
+        final String[] expectedUnfiltered = {
+            "23:13: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
+        };
+        verifyFilterWithInlineConfigParser(
+                getPath("InputParenPadTryWithResourcesAndSuppression.java"), expectedUnfiltered,
+                expectedFiltered);
     }
 
     @Test
