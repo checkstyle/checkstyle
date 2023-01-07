@@ -25,12 +25,21 @@ import static com.puppycrawl.tools.checkstyle.checks.whitespace.GenericWhitespac
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.GenericWhitespaceCheck.MSG_WS_NOT_PRECEDED;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.GenericWhitespaceCheck.MSG_WS_PRECEDED;
 
+import java.io.File;
+import java.nio.charset.StandardCharsets;
+import java.util.Optional;
+
 import org.antlr.v4.runtime.CommonToken;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
+import com.puppycrawl.tools.checkstyle.JavaParser;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.FileContents;
+import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class GenericWhitespaceCheckTest
@@ -162,6 +171,29 @@ public class GenericWhitespaceCheckTest
         };
         verifyWithInlineConfigParser(
                 getPath("InputGenericWhitespaceWithEmoji.java"), expected);
+    }
+
+    @Test
+    public void testClearState() throws Exception {
+        final GenericWhitespaceCheck check = new GenericWhitespaceCheck();
+        final FileText fileText = new FileText(
+                new File(getPath("InputGenericWhitespaceDefault.java")),
+                StandardCharsets.UTF_8.name());
+        check.setFileContents(new FileContents(fileText));
+        final DetailAST root = JavaParser.parseFileText(fileText,
+                JavaParser.Options.WITHOUT_COMMENTS);
+        final Optional<DetailAST> genericStart = TestUtil.findTokenInAstByPredicate(root,
+            ast -> ast.getType() == TokenTypes.GENERIC_START);
+
+        assertWithMessage("Ast should contain GENERIC_START")
+                .that(genericStart.isPresent())
+                .isTrue();
+        assertWithMessage("State is not cleared on beginTree")
+                .that(
+                    TestUtil.isStatefulFieldClearedDuringBeginTree(check, genericStart.get(),
+                            "depth",
+                            depth -> ((Number) depth).intValue() == 0))
+                .isTrue();
     }
 
     @Test
