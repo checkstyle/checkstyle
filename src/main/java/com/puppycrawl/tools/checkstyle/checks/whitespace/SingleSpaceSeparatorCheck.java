@@ -179,7 +179,6 @@ public class SingleSpaceSeparatorCheck extends AbstractCheck {
      */
     private void visitEachToken(DetailAST node) {
         DetailAST currentNode = node;
-        final DetailAST parent = node.getParent();
 
         do {
             final int columnNo = currentNode.getColumnNo() - 1;
@@ -199,7 +198,7 @@ public class SingleSpaceSeparatorCheck extends AbstractCheck {
                 currentNode = currentNode.getFirstChild();
             }
             else {
-                while (currentNode.getNextSibling() == null && currentNode.getParent() != parent) {
+                while (currentNode.getNextSibling() == null && currentNode.getParent() != null) {
                     currentNode = currentNode.getParent();
                 }
                 currentNode = currentNode.getNextSibling();
