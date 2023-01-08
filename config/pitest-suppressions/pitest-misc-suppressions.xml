@@ -109,15 +109,6 @@
   </mutation>
 
   <mutation unstable="false">
-    <sourceFile>RecordComponentNumberCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.sizes.RecordComponentNumberCheck</mutatedClass>
-    <mutatedMethod>setAccessModifiers</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
-    <description>replaced call to java/util/Arrays::copyOf with argument</description>
-    <lineContent>Arrays.copyOf(accessModifiers, accessModifiers.length);</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
     <sourceFile>SuppressWarningsHolder.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder</mutatedClass>
     <mutatedMethod>addSuppressions</mutatedMethod>
