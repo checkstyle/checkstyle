@@ -542,9 +542,6 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
 
     /**
      * Tests if the given {@code DetailAST} is surrounded by parentheses.
-     * In short, does {@code ast} have a previous sibling whose type is
-     * {@code TokenTypes.LPAREN} and a next sibling whose type is {@code
-     * TokenTypes.RPAREN}.
      *
      * @param ast the {@code DetailAST} to check if it is surrounded by
      *        parentheses.
@@ -552,10 +549,15 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
      *         parentheses.
      */
     private static boolean isSurrounded(DetailAST ast) {
-        // if previous sibling is left parenthesis,
-        // next sibling can't be other than right parenthesis
         final DetailAST prev = ast.getPreviousSibling();
-        return prev != null && prev.getType() == TokenTypes.LPAREN;
+        final DetailAST parent = ast.getParent();
+        final boolean isPreviousSiblingLeftParenthesis = prev != null
+                && prev.getType() == TokenTypes.LPAREN;
+        final boolean isMethodCallWithUnnecessaryParenthesis =
+                parent.getType() == TokenTypes.METHOD_CALL
+                && parent.getPreviousSibling() != null
+                && parent.getPreviousSibling().getType() == TokenTypes.LPAREN;
+        return isPreviousSiblingLeftParenthesis || isMethodCallWithUnnecessaryParenthesis;
     }
 
     /**
