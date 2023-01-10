@@ -10,15 +10,6 @@
   </mutation>
 
   <mutation unstable="false">
-    <sourceFile>NeedBracesCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.blocks.NeedBracesCheck</mutatedClass>
-    <mutatedMethod>isSingleLineIf</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
-    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::findFirstToken with receiver</description>
-    <lineContent>final DetailAST ifCondition = literalIf.findFirstToken(TokenTypes.EXPR);</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
     <sourceFile>RightCurlyCheck.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck</mutatedClass>
     <mutatedMethod>isBlockAloneOnSingleLine</mutatedMethod>

@@ -127,4 +127,9 @@ class InputNeedBracesTestItWithAllowsOn
 
     /** Empty method block. **/
     public void emptyImplementation() {}
+
+    public void method() {
+        if (true
+            || true || true) return;
+    }
 }
