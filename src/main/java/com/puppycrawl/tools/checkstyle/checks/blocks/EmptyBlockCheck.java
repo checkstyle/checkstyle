@@ -260,8 +260,7 @@ public class EmptyBlockCheck
                 }
                 if (emptyBlock) {
                     log(leftCurly,
-                        MSG_KEY_BLOCK_NO_STATEMENT,
-                        ast.getText());
+                        MSG_KEY_BLOCK_NO_STATEMENT);
                 }
             }
             else if (!hasText(leftCurly)) {
