@@ -258,4 +258,23 @@ public class UnnecessaryParenthesesCheckTest extends AbstractModuleTestSupport {
                 getPath("InputUnnecessaryParenthesesIfStatement2.java"), expected);
     }
 
+    @Test
+    public void testIdentifier() throws Exception {
+        final String[] expected = {
+            "22:17: " + getCheckMessage(MSG_IDENT, "test"),
+            "31:18: " + getCheckMessage(MSG_ASSIGN),
+            "32:13: " + getCheckMessage(MSG_IDENT, "square"),
+            "46:22: " + getCheckMessage(MSG_IDENT, "clazz"),
+            "56:18: " + getCheckMessage(MSG_IDENT, "test"),
+            "57:22: " + getCheckMessage(MSG_IDENT, "clazz"),
+            "75:18: " + getCheckMessage(MSG_EXPR),
+            "76:17: " + getCheckMessage(MSG_EXPR),
+            "77:25: " + getCheckMessage(MSG_EXPR),
+            "82:48: " + getCheckMessage(MSG_IDENT, "get"),
+            "100:34: " + getCheckMessage(MSG_IDENT, "isComment"),
+
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputUnnecessaryParenthesesIdentifier.java"), expected);
+    }
 }
