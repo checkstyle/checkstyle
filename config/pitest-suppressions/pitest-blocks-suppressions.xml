@@ -20,24 +20,6 @@
 
   <mutation unstable="false">
     <sourceFile>RightCurlyCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck</mutatedClass>
-    <mutatedMethod>isBlockAloneOnSingleLine</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
-    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getLastChild with receiver</description>
-    <lineContent>final DetailAST doWhileSemi = nextToken.getParent().getLastChild();</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>RightCurlyCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck</mutatedClass>
-    <mutatedMethod>isBlockAloneOnSingleLine</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to com/puppycrawl/tools/checkstyle/checks/blocks/RightCurlyCheck$Details::getNextToken</description>
-    <lineContent>nextToken = Details.getNextToken(nextToken);</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>RightCurlyCheck.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck$Details</mutatedClass>
     <mutatedMethod>getDetails</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_1</mutator>
@@ -133,14 +115,5 @@
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_9</mutator>
     <description>RemoveSwitch 9 (case value 92)</description>
     <lineContent>switch (ast.getType()) {</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>RightCurlyCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck$Details</mutatedClass>
-    <mutatedMethod>getDetailsForOthers</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
-    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getFirstChild with receiver</description>
-    <lineContent>lcurly = child.getFirstChild();</lineContent>
   </mutation>
 </suppressedMutations>
