@@ -1075,6 +1075,36 @@ assembly-site)
   mvn -e --no-transfer-progress site -Dlinkcheck.skip=true
   ;;
 
+jacoco)
+  export MAVEN_OPTS='-Xmx2000m'
+  mvn -e --no-transfer-progress clean test \
+    jacoco:restore-instrumented-classes \
+    jacoco:report@default-report \
+    jacoco:check@default-check
+  # if launch is not from CI, we skip this step
+  if [[ $CI == 'true' ]]; then
+    echo "Reporting to codecov"
+    bash <(curl --fail-with-body -s https://codecov.io/bash)
+  else
+    echo "No reporting to codecov outside CI"
+  fi
+  ;;
+
+ci-temp-check)
+    fail=0
+    mkdir -p .ci-temp
+    if [ -z "$(ls -A .ci-temp)" ]; then
+        echo "Folder .ci-temp/ is empty."
+    else
+        echo "Folder .ci-temp/ is not empty. Verification failed."
+        echo "Contents of .ci-temp/:"
+        fail=1
+    fi
+    ls -A .ci-temp
+    sleep 5s
+    exit $fail
+  ;;
+
 *)
   echo "Unexpected argument: $1"
   sleep 5s
