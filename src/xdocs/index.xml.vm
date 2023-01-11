@@ -147,7 +147,7 @@
         </table>
       </div>
       <p>
-        Checkstyle currently is confirmed to be build by all JDKs from 8 through 17.
+        Checkstyle currently is confirmed to be build by all JDKs from 11 through 17.
         Most recent JDKs may be supported. Please
         <a href="https://checkstyle.org/report_issue.html">report an issue</a>
         if there is any problems with most recent JDKs.
