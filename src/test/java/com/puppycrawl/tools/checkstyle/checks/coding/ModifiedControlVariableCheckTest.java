@@ -131,6 +131,38 @@ public class ModifiedControlVariableCheckTest
         }
     }
 
+    @Test
+    public void testMutation() throws Exception {
+
+        final String[] expected = {
+            "15:15: " + getCheckMessage(MSG_KEY, "i"),
+            "16:15: " + getCheckMessage(MSG_KEY, "k"),
+            "23:15: " + getCheckMessage(MSG_KEY, "i"),
+            "24:15: " + getCheckMessage(MSG_KEY, "k"),
+            "31:15: " + getCheckMessage(MSG_KEY, "i"),
+            "32:15: " + getCheckMessage(MSG_KEY, "k"),
+            "39:15: " + getCheckMessage(MSG_KEY, "i"),
+            "40:15: " + getCheckMessage(MSG_KEY, "k"),
+            "47:15: " + getCheckMessage(MSG_KEY, "i"),
+            "48:15: " + getCheckMessage(MSG_KEY, "k"),
+            "55:15: " + getCheckMessage(MSG_KEY, "i"),
+            "56:15: " + getCheckMessage(MSG_KEY, "k"),
+            "63:15: " + getCheckMessage(MSG_KEY, "i"),
+            "64:15: " + getCheckMessage(MSG_KEY, "k"),
+            "71:15: " + getCheckMessage(MSG_KEY, "i"),
+            "72:15: " + getCheckMessage(MSG_KEY, "k"),
+            "79:15: " + getCheckMessage(MSG_KEY, "i"),
+            "80:15: " + getCheckMessage(MSG_KEY, "k"),
+            "87:15: " + getCheckMessage(MSG_KEY, "i"),
+            "88:15: " + getCheckMessage(MSG_KEY, "k"),
+            "95:14: " + getCheckMessage(MSG_KEY, "i"),
+            "96:14: " + getCheckMessage(MSG_KEY, "k"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputModifiedControlVariableKillMutation.java"),
+                expected);
+    }
+
     /**
      * We cannot reproduce situation when visitToken is called and leaveToken is not.
      * So, we have to use reflection to be sure that even in such situation
