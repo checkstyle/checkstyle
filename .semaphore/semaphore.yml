@@ -103,3 +103,4 @@ blocks:
             - eval $CMD;
             - echo "eval of CMD is completed";
             - ./.ci/validation.sh git-diff
+            - ./.ci/validation.sh ci-temp-check

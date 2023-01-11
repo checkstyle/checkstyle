@@ -165,6 +165,7 @@ steps:
       echo "cmd: "$(cmd)
       eval "$(cmd)"
       ./.ci/validation.sh git-diff
+      ./.ci/validation.sh ci-temp-check
     condition: |
         or (
             ne(variables.ON_CRON_ONLY, 'true'),

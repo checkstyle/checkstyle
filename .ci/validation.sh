@@ -1090,6 +1090,21 @@ jacoco)
   fi
   ;;
 
+ci-temp-check)
+    fail=0
+    mkdir -p .ci-temp
+    if [ -z "$(ls -A .ci-temp)" ]; then
+        echo "Folder .ci-temp/ is empty."
+    else
+        echo "Folder .ci-temp/ is not empty. Verification failed."
+        echo "Contents of .ci-temp/:"
+        fail=1
+    fi
+    ls -A .ci-temp
+    sleep 5s
+    exit $fail
+  ;;
+
 *)
   echo "Unexpected argument: $1"
   sleep 5s

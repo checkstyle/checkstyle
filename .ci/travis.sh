@@ -110,21 +110,6 @@ deploy-snapshot)
   fi
   ;;
 
-ci-temp-check)
-    fail=0
-    mkdir -p .ci-temp
-    if [ -z "$(ls -A .ci-temp)" ]; then
-        echo "Folder .ci-temp/ is empty."
-    else
-        echo "Folder .ci-temp/ is not empty. Verification failed."
-        echo "Contents of .ci-temp/:"
-        fail=1
-    fi
-    ls -A .ci-temp
-    sleep 5s
-    exit $fail
-  ;;
-
 quarterly-cache-cleanup)
   MVN_REPO=$(mvn -e --no-transfer-progress help:evaluate -Dexpression=settings.localRepository \
     -q -DforceStdout);
