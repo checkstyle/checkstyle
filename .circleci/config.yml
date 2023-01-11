@@ -50,7 +50,9 @@ jobs:
       - run:
           command: << parameters.command >>
       - run:
-          command: ./.ci/validation.sh git-diff
+          command: |
+            ./.ci/validation.sh git-diff
+            ./.ci/validation.sh ci-temp-check
       - save_cache:
           name: Save Maven repo cache
           key: mvn-cache-{{ checksum "pom.xml" }}
