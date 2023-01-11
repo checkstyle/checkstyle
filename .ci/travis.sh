@@ -125,21 +125,6 @@ ci-temp-check)
     exit $fail
   ;;
 
-jacoco)
-  export MAVEN_OPTS='-Xmx2000m'
-  mvn -e --no-transfer-progress clean test \
-    jacoco:restore-instrumented-classes \
-    jacoco:report@default-report \
-    jacoco:check@default-check
-  # if launch is not from CI, we skip this step
-  if [[ $TRAVIS == 'true' ]]; then
-    echo "Reporting to codecov"
-    bash <(curl --fail-with-body -s https://codecov.io/bash)
-  else
-    echo "No reporting to codecov outside CI"
-  fi
-  ;;
-
 quarterly-cache-cleanup)
   MVN_REPO=$(mvn -e --no-transfer-progress help:evaluate -Dexpression=settings.localRepository \
     -q -DforceStdout);
