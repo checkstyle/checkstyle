@@ -3,7 +3,6 @@
 Checkstyle is a tool for checking Java source code for adherence to a Code Standard
 or set of validation rules (best practices).
 
-[![][travis img]][travis]
 [![][appveyor img]][appveyor]
 [![][circleci img]][circleci]
 [![][cirrusci img]][cirrusci]
@@ -105,9 +104,6 @@ directory.
 The software uses the Picocli Library
 (https://github.com/remkop/picocli/). Its license terms
 are in the file named "LICENSE.apache20" in this directory.
-
-[travis]:https://travis-ci.com/github/checkstyle/checkstyle/builds
-[travis img]:https://api.travis-ci.com/checkstyle/checkstyle.svg
 
 [appveyor]:https://ci.appveyor.com/project/checkstyle/checkstyle/history
 [appveyor img]:https://ci.appveyor.com/api/projects/status/rw6bw3dl9kph6ucc?svg=true
