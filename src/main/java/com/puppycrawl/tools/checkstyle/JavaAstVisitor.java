@@ -2218,7 +2218,6 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
                     pair.child.setNextSibling(ast);
                 }
                 pair.child = ast;
-                pair.advanceChildToEnd();
             }
         }
     }
