@@ -2113,17 +2113,6 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/RequireThisCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter arg1 of put.</message>
-    <lineContent>frames.put(ast, frameStack.poll());</lineContent>
-    <details>
-      found   : @Initialized @Nullable AbstractFrame
-      required: @Initialized @NonNull AbstractFrame
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/RequireThisCheck.java</fileName>
-    <specifier>argument</specifier>
     <message>incompatible argument for parameter frame of collectMethodDeclarations.</message>
     <lineContent>collectMethodDeclarations(frameStack, ast, frame);</lineContent>
     <details>
