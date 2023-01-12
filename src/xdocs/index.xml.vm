@@ -97,8 +97,27 @@
         <a href="https://github.com/checkstyle/checkstyle/milestones">milestones</a>.
       </p>
       <p>
-        Checkstyle is not using Semantic Versioning
-        (<a href="https://github.com/checkstyle/checkstyle/issues/3709">reasons in issue #3709</a>)
+        Checkstyle is following
+        <a href="https://dafoster.net/articles/2015/03/14/semantic-versioning-vs-romantic-versioning/">
+          Hybrid Romantic and Semantic Versioning</a>: This is in the form of
+          "<b>First</b>.<b>Second</b>.<b>Third</b>"
+      </p>
+      <p>
+        <b>First</b> digit is representing Romantic version.
+           When it is the only number increasing, the maintainers marked it as
+           a noticeably large breaking compatibility
+           or major conceptual change occurred from their perspective.<br/>
+        <b>Second</b> digit is Semantic version which is a combination of major and minor.
+           When it is the only number increasing, it means that
+           either some breaking compatibility happened
+           or new features/modules were introduced.<br/>
+        <b>Third</b> digit is Semantic version which is the patch version.
+           When it is the only number increasing, it means that only defects are fixed.
+      </p>
+      <p>
+        Checkstyle is not using <a href="https://semver.org/">Semantic Versioning</a>
+        due to reason that is explained at
+        <a href="https://github.com/checkstyle/checkstyle/issues/3709">issue #3709</a>.
       </p>
     </section>
 
