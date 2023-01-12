@@ -534,7 +534,7 @@ public class RequireThisCheck extends AbstractCheck {
      */
     private static boolean isInCompactConstructor(DetailAST ast) {
         boolean isInCompactCtor = false;
-        DetailAST parent = ast.getParent();
+        DetailAST parent = ast;
         while (parent != null) {
             if (parent.getType() == TokenTypes.COMPACT_CTOR_DEF) {
                 isInCompactCtor = true;
@@ -609,7 +609,7 @@ public class RequireThisCheck extends AbstractCheck {
             case TokenTypes.LITERAL_NEW:
                 if (isAnonymousClassDef(ast)) {
                     frameStack.addFirst(new AnonymousClassFrame(frame,
-                            ast.getFirstChild().toString()));
+                            ast.toString()));
                 }
                 break;
             case TokenTypes.LITERAL_TRY:
@@ -689,7 +689,7 @@ public class RequireThisCheck extends AbstractCheck {
                 break;
             case TokenTypes.LITERAL_NEW:
                 if (isAnonymousClassDef(ast)) {
-                    frames.put(ast, frameStack.poll());
+                    frameStack.remove();
                 }
                 break;
             case TokenTypes.LITERAL_TRY:
@@ -886,28 +886,14 @@ public class RequireThisCheck extends AbstractCheck {
      * @param ident ident token.
      * @return true if field can be referenced from a static context.
      */
-    private boolean canBeReferencedFromStaticContext(DetailAST ident) {
-        AbstractFrame variableDeclarationFrame = findFrame(ident, false);
-        while (variableDeclarationFrame.getType() == FrameType.BLOCK_FRAME
-            || variableDeclarationFrame.getType() == FrameType.FOR_FRAME) {
-            variableDeclarationFrame = variableDeclarationFrame.getParent();
-        }
-
+    private static boolean canBeReferencedFromStaticContext(DetailAST ident) {
         boolean staticContext = false;
 
-        if (variableDeclarationFrame.getType() == FrameType.CLASS_FRAME) {
-            final DetailAST codeBlockDefinition = getCodeBlockDefinitionToken(ident);
-            if (codeBlockDefinition != null) {
-                final DetailAST modifiers = codeBlockDefinition.getFirstChild();
-                staticContext = codeBlockDefinition.getType() == TokenTypes.STATIC_INIT
-                    || modifiers.findFirstToken(TokenTypes.LITERAL_STATIC) != null;
-            }
-        }
-        else {
-            final DetailAST frameNameIdent = variableDeclarationFrame.getFrameNameIdent();
-            final DetailAST definitionToken = frameNameIdent.getParent();
-            staticContext = definitionToken.findFirstToken(TokenTypes.MODIFIERS)
-                .findFirstToken(TokenTypes.LITERAL_STATIC) != null;
+        final DetailAST codeBlockDefinition = getCodeBlockDefinitionToken(ident);
+        if (codeBlockDefinition != null) {
+            final DetailAST modifiers = codeBlockDefinition.getFirstChild();
+            staticContext = codeBlockDefinition.getType() == TokenTypes.STATIC_INIT
+                || modifiers.findFirstToken(TokenTypes.LITERAL_STATIC) != null;
         }
         return !staticContext;
     }
@@ -920,7 +906,7 @@ public class RequireThisCheck extends AbstractCheck {
      *         definition was not found.
      */
     private static DetailAST getCodeBlockDefinitionToken(DetailAST ident) {
-        DetailAST parent = ident.getParent();
+        DetailAST parent = ident;
         while (parent != null
                && parent.getType() != TokenTypes.METHOD_DEF
                && parent.getType() != TokenTypes.STATIC_INIT) {
@@ -1215,7 +1201,7 @@ public class RequireThisCheck extends AbstractCheck {
      */
     private static boolean isLambdaParameter(DetailAST ast) {
         DetailAST parent;
-        for (parent = ast.getParent(); parent != null; parent = parent.getParent()) {
+        for (parent = ast; parent != null; parent = parent.getParent()) {
             if (parent.getType() == TokenTypes.LAMBDA) {
                 break;
             }
