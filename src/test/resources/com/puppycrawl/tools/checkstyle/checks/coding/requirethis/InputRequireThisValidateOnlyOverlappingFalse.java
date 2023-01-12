@@ -499,3 +499,21 @@ class Issue7306 {
         test.forEach(add::add); // violation
     }
 }
+class AnotherOverlappingFalse {
+    private String name;
+
+    public void bind() {
+        new Object() {
+            @Override
+            public String toString() {
+                String name = null;
+
+                if ( true ) {
+                    name = String.format(Locale.US, name);
+                }
+
+                return name;
+            }
+        };
+    }
+}
