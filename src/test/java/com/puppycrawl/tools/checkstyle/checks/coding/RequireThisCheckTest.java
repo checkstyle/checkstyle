@@ -253,6 +253,17 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testValidateOnlyOverlappingFalseLeaves() throws Exception {
+        final String[] expected = {
+            "26:31: " + getCheckMessage(MSG_METHOD, "id", ""),
+            "36:16: " + getCheckMessage(MSG_VARIABLE, "_a", ""),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputRequireThisValidateOnlyOverlappingFalseLeaves.java"),
+                expected);
+    }
+
+    @Test
     public void testValidateOnlyOverlappingTrue() throws Exception {
         final String[] expected = {
             "29:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
