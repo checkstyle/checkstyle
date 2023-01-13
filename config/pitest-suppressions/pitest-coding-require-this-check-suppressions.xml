@@ -74,26 +74,6 @@
 
   <mutation unstable="false">
     <sourceFile>RequireThisCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck$CatchFrame</mutatedClass>
-    <mutatedMethod>getIfContains</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
-    <description>removed conditional - replaced equality check with true</description>
-    <lineContent>else if (getParent().getType() == FrameType.TRY_WITH_RESOURCES_FRAME) {</lineContent>
-  </mutation>
-
-
-  <mutation unstable="false">
-    <sourceFile>RequireThisCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck$CatchFrame</mutatedClass>
-    <mutatedMethod>getIfContains</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
-    <description>removed conditional - replaced equality check with true</description>
-    <lineContent>if (!lookForMethod</lineContent>
-  </mutation>
-
-
-  <mutation unstable="false">
-    <sourceFile>RequireThisCheck.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck$ClassFrame</mutatedClass>
     <mutatedMethod>getIfContains</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
