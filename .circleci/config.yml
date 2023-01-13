@@ -69,6 +69,9 @@ jobs:
       - run:
           name: run << parameters.command >>
           command: |
+            sudo apt update
+            sleep 5
+            sudo apt install -y xmlstarlet
             export PULL_REQUEST=$CIRCLE_PR_NUMBER
             export PR_HEAD_SHA=$CIRCLE_SHA1
             export PR_NUMBER=$CIRCLE_PR_NUMBER
@@ -236,6 +239,9 @@ workflows:
           name: "checkchmod"
           command: "./.ci/checkchmod.sh"
       - yamllint
+      - validate-with-script:
+          name: "check-wildcards-on-pitest-target-classes"
+          command: "./.ci/validation.sh check-wildcards-on-pitest-target-classes"
 
   javac-validation:
     jobs:
