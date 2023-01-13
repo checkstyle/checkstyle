@@ -38,6 +38,19 @@ public class AttributeNodeTest {
     }
 
     @Test
+    public void testGetNamespaceUri() {
+        try {
+            attributeNode.getNamespaceUri();
+            assertWithMessage("Exception is excepted").fail();
+        }
+        catch (UnsupportedOperationException ex) {
+            assertWithMessage("Invalid exception message")
+                .that(ex.getMessage())
+                .isEqualTo("Operation is not supported");
+        }
+    }
+
+    @Test
     public void testCompareOrder() {
         try {
             attributeNode.compareOrder(null);
