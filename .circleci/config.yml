@@ -236,6 +236,9 @@ workflows:
           name: "checkchmod"
           command: "./.ci/checkchmod.sh"
       - yamllint
+      - validate-with-script:
+          name: "check-wildcards-on-pitest-target-classes"
+          command: "./.ci/checkchmod.sh"
 
   javac-validation:
     jobs:
