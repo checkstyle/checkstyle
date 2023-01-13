@@ -1105,6 +1105,25 @@ ci-temp-check)
     exit $fail
   ;;
 
+check-wildcards-on-pitest-target-classes)
+  ALL_PITEST_TARGET_CLASSES=$(xmlstarlet sel \
+    -N x=http://maven.apache.org/POM/4.0.0 \
+    -t -v "/x:project/x:profiles/x:profile//x:targetClasses/x:param" \
+    -n pom.xml)
+
+  PITEST_TARGET_CLASSES_NO_ASTERISK=$(echo "$ALL_PITEST_TARGET_CLASSES" \
+    | grep -v ".*\*\$" | grep -v -e '^\s*$')
+
+  MATCH_COUNT=$(echo "$PITEST_TARGET_CLASSES_NO_ASTERISK" | wc -l)
+
+  if [[ "$MATCH_COUNT" -gt 0 ]]; then
+    echo "The following pitest target class names need to have asterisks appended to them:"
+    echo "$PITEST_TARGET_CLASSES_NO_ASTERISK"
+  fi
+
+  exit "$MATCH_COUNT"
+  ;;
+
 *)
   echo "Unexpected argument: $1"
   sleep 5s
