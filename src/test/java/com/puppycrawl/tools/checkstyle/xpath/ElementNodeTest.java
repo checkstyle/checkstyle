@@ -35,6 +35,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.xpath.iterators.DescendantIterator;
 import net.sf.saxon.om.AxisInfo;
+import net.sf.saxon.om.NamespaceUri;
 import net.sf.saxon.om.NodeInfo;
 import net.sf.saxon.tree.iter.ArrayIterator;
 import net.sf.saxon.tree.iter.AxisIterator;
@@ -182,7 +183,7 @@ public class ElementNodeTest extends AbstractPathTestSupport {
         final ElementNode elementNode = new ElementNode(rootNode, rootNode, detailAST, 1, 0);
 
         assertWithMessage("Invalid text attribute")
-            .that(elementNode.getAttributeValue(null, "text"))
+            .that(elementNode.getAttributeValue((NamespaceUri) null, "text"))
             .isEqualTo("HelloWorld");
     }
 
@@ -210,7 +211,7 @@ public class ElementNodeTest extends AbstractPathTestSupport {
         final ElementNode elementNode = new ElementNode(rootNode, rootNode, detailAST, 1, 0);
 
         assertWithMessage("Must be null")
-            .that(elementNode.getAttributeValue(null, "text"))
+            .that(elementNode.getAttributeValue((NamespaceUri) null, "text"))
             .isNull();
     }
 
@@ -223,7 +224,7 @@ public class ElementNodeTest extends AbstractPathTestSupport {
         final ElementNode elementNode = new ElementNode(rootNode, rootNode, detailAST, 1, 0);
 
         assertWithMessage("Must be null")
-            .that(elementNode.getAttributeValue(null, "somename"))
+            .that(elementNode.getAttributeValue((NamespaceUri) null, "somename"))
             .isNull();
     }
 
