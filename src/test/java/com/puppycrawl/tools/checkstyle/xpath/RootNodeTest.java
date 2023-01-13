@@ -33,7 +33,6 @@ import com.puppycrawl.tools.checkstyle.JavaParser;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import net.sf.saxon.om.AxisInfo;
-import net.sf.saxon.om.NamespaceBinding;
 import net.sf.saxon.om.NodeInfo;
 import net.sf.saxon.tree.iter.AxisIterator;
 import net.sf.saxon.tree.iter.EmptyIterator;
@@ -199,9 +198,8 @@ public class RootNodeTest extends AbstractPathTestSupport {
 
     @Test
     public void testGetDeclaredNamespaces() {
-        final NamespaceBinding[] namespaceBindings = {new NamespaceBinding("prefix", "uri")};
         try {
-            rootNode.getDeclaredNamespaces(namespaceBindings);
+            rootNode.getDeclaredNamespaces(null);
             assertWithMessage("Exception is excepted").fail();
         }
         catch (UnsupportedOperationException ex) {

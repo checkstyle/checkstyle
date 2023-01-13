@@ -29,6 +29,7 @@ import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.xpath.AbstractNode;
+import net.sf.saxon.om.NamespaceUri;
 import net.sf.saxon.om.NodeInfo;
 import net.sf.saxon.om.TreeInfo;
 
@@ -111,7 +112,7 @@ public class ReverseListIteratorTest {
         }
 
         @Override
-        public String getAttributeValue(String uri, String local) {
+        public String getAttributeValue(NamespaceUri uri, String local) {
             return null;
         }
 
