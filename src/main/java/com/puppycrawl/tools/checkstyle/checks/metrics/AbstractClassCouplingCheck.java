@@ -160,7 +160,6 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
     public void setExcludeClassesRegexps(String... from) {
         Arrays.stream(from)
                 .map(CommonUtil::createPattern)
-                .distinct()
                 .forEach(excludeClassesRegexps::add);
     }
 
