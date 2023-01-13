@@ -26,6 +26,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import net.sf.saxon.om.AxisInfo;
+import net.sf.saxon.om.NamespaceUri;
 import net.sf.saxon.tree.iter.AxisIterator;
 
 public class AttributeNodeTest {
@@ -35,6 +36,13 @@ public class AttributeNodeTest {
     @BeforeEach
     public void init() {
         attributeNode = new AttributeNode("name", "value");
+    }
+
+    @Test
+    public void testGetNamespaceUri() {
+        assertWithMessage("Attribute node shouldn't have children")
+            .that(attributeNode.getNamespaceUri())
+            .isEqualTo(NamespaceUri.NULL);
     }
 
     @Test
