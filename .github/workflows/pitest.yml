@@ -54,7 +54,9 @@ jobs:
         with:
           java-version: 11
       - name: Install groovy
-        run: sudo apt install groovy
+        run: |
+          sudo apt update
+          sudo apt install groovy
       - name: Setup local maven cache
         uses: actions/cache@v2
         with:
@@ -62,17 +64,27 @@ jobs:
           key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Generate ${{ matrix.profile }} report
+      - name: Generate pitest-${{ matrix.profile }} report
         run: |
-          ./.ci/pitest.sh "pitest-${{ matrix.profile }}" --generate-suppression
+          ./.ci/pitest.sh "pitest-${{ matrix.profile }}"
+      - name: Patch command for pitest-${{ matrix.profile }}
+        if: failure()
+        run: |
+          printf "\nTo patch suppression list run:\n\n"
+          GIT_DIFF=$(git diff)
+          printf "patch -p1 << EOF\n%s\nEOF" "$GIT_DIFF"
+          exit 1
       - name: Stage results
         if: failure() || github.ref == 'refs/heads/master'
         run: |
           mkdir staging && cp -r target/pit-reports/ staging
+          git diff && git diff > target/pitest-${{ matrix.profile }}.patch
       - name: Archive code coverage results
         if: failure() || github.ref == 'refs/heads/master'
         uses: actions/upload-artifact@v2
         with:
           name: pitest-${{ matrix.profile }}-coverage-report
-          path: staging
+          path: |
+            staging
+            target/pitest-${{ matrix.profile }}.patch
           retention-days: 7
