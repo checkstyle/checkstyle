@@ -28,6 +28,7 @@ import com.puppycrawl.tools.checkstyle.xpath.iterators.FollowingIterator;
 import com.puppycrawl.tools.checkstyle.xpath.iterators.PrecedingIterator;
 import com.puppycrawl.tools.checkstyle.xpath.iterators.ReverseListIterator;
 import net.sf.saxon.om.AxisInfo;
+import net.sf.saxon.om.NamespaceUri;
 import net.sf.saxon.om.NodeInfo;
 import net.sf.saxon.tree.iter.ArrayIterator;
 import net.sf.saxon.tree.iter.AxisIterator;
@@ -147,7 +148,7 @@ public abstract class AbstractElementNode extends AbstractNode {
      * @return attribute value or null if the attribute was not found
      */
     @Override
-    public String getAttributeValue(String namespace, String localPart) {
+    public String getAttributeValue(NamespaceUri namespace, String localPart) {
         final String result;
         if (TEXT_ATTRIBUTE_NAME.equals(localPart)) {
             result = Optional.ofNullable(getAttributeNode())

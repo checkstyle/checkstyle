@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.xpath;
 
 import java.util.List;
 
+import net.sf.saxon.om.NamespaceUri;
 import net.sf.saxon.om.NodeInfo;
 import net.sf.saxon.tree.iter.AxisIterator;
 import net.sf.saxon.type.Type;
@@ -70,7 +71,7 @@ public class AttributeNode extends AbstractNode {
      * @return attribute value
      */
     @Override
-    public String getAttributeValue(String namespace, String localPart) {
+    public String getAttributeValue(NamespaceUri namespace, String localPart) {
         throw throwUnsupportedOperationException();
     }
 

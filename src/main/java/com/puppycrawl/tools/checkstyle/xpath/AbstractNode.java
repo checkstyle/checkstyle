@@ -27,6 +27,7 @@ import net.sf.saxon.event.Receiver;
 import net.sf.saxon.om.AtomicSequence;
 import net.sf.saxon.om.NamespaceBinding;
 import net.sf.saxon.om.NamespaceMap;
+import net.sf.saxon.om.NamespaceUri;
 import net.sf.saxon.om.NodeInfo;
 import net.sf.saxon.om.TreeInfo;
 import net.sf.saxon.pattern.NodePredicate;
@@ -385,6 +386,14 @@ public abstract class AbstractNode implements NodeInfo {
      */
     @Override
     public final void copy(Receiver receiver, int index, Location location) {
+        throw createUnsupportedOperationException();
+    }
+
+    /**
+     * Get Namespace URI. Throws {@code UnsupportedOperationException}.
+     */
+    @Override
+    public NamespaceUri getNamespaceUri() {
         throw createUnsupportedOperationException();
     }
 
