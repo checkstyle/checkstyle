@@ -353,7 +353,6 @@ public final class BooleanExpressionComplexityCheck extends AbstractCheck {
          */
         private Context(boolean checking) {
             this.checking = checking;
-            count = 0;
         }
 
         /**
