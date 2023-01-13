@@ -27,6 +27,7 @@ import net.sf.saxon.event.Receiver;
 import net.sf.saxon.om.AtomicSequence;
 import net.sf.saxon.om.NamespaceBinding;
 import net.sf.saxon.om.NamespaceMap;
+import net.sf.saxon.om.NamespaceUri;
 import net.sf.saxon.om.NodeInfo;
 import net.sf.saxon.om.TreeInfo;
 import net.sf.saxon.pattern.NodePredicate;
@@ -115,6 +116,16 @@ public abstract class AbstractNode implements NodeInfo {
     @Override
     public boolean hasFingerprint() {
         return false;
+    }
+
+    /**
+     * Get the URI part of the name of this node.
+     *
+     * @return The URI of the namespace of this node.
+     */
+    @Override
+    public NamespaceUri getNamespaceUri() {
+        return NamespaceUri.NULL;
     }
 
     /**
