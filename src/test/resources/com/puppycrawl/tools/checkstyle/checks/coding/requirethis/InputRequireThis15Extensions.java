@@ -43,3 +43,31 @@ interface TestRequireThisEnum
         SATURDAY
     }
 }
+class NestedClass {
+    protected RuntimeException exception = new RuntimeException() {};
+
+    public void anonEx2() {
+        RuntimeException exception = new RuntimeException();
+        try {
+            //some code
+            String re = "lol";
+        } catch (Exception e) {
+            throw exception;
+        }
+    }
+}
+class Basic {
+    abstract class Awaiter extends Thread {
+        private volatile Throwable result = null;
+        protected void result(Throwable result) { this.result = result; }
+    }
+
+    private Awaiter awaiter() {
+        return new Awaiter() {
+            public void run() {
+                try {}
+                catch (Throwable result) { result(result); }
+            }
+        };
+    }
+}
