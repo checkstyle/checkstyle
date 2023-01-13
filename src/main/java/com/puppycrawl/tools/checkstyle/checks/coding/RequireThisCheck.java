@@ -1573,9 +1573,6 @@ public class RequireThisCheck extends AbstractCheck {
                         result = true;
                     }
                 }
-                if (result) {
-                    break;
-                }
             }
             return result;
         }
@@ -1596,7 +1593,7 @@ public class RequireThisCheck extends AbstractCheck {
         protected AbstractFrame getIfContains(DetailAST identToFind, boolean lookForMethod) {
             AbstractFrame frame = null;
 
-            if (lookForMethod && containsMethod(identToFind)
+            if (containsMethod(identToFind)
                 || containsFieldOrVariable(identToFind)) {
                 frame = this;
             }
