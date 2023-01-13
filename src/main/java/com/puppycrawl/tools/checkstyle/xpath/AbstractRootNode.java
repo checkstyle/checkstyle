@@ -23,6 +23,7 @@ import com.puppycrawl.tools.checkstyle.xpath.iterators.DescendantIterator;
 import net.sf.saxon.Configuration;
 import net.sf.saxon.om.AxisInfo;
 import net.sf.saxon.om.GenericTreeInfo;
+import net.sf.saxon.om.NamespaceUri;
 import net.sf.saxon.om.NodeInfo;
 import net.sf.saxon.tree.iter.ArrayIterator;
 import net.sf.saxon.tree.iter.AxisIterator;
@@ -69,7 +70,7 @@ public abstract class AbstractRootNode extends AbstractNode {
      * @return attribute value
      */
     @Override
-    public String getAttributeValue(String namespace, String localPart) {
+    public String getAttributeValue(NamespaceUri namespace, String localPart) {
         throw throwUnsupportedOperationException();
     }
 
