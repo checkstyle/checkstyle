@@ -476,12 +476,10 @@ public class VisibilityModifierCheck
     private Pattern publicMemberPattern = Pattern.compile("^serialVersionUID$");
 
     /** Set of ignore annotations short names. */
-    private Set<String> ignoreAnnotationShortNames =
-            getClassShortNames(DEFAULT_IGNORE_ANNOTATIONS);
+    private Set<String> ignoreAnnotationShortNames;
 
     /** Set of immutable classes short names. */
-    private Set<String> immutableClassShortNames =
-        getClassShortNames(DEFAULT_IMMUTABLE_TYPES);
+    private Set<String> immutableClassShortNames;
 
     /**
      * Specify annotations canonical names which ignore variables in
@@ -661,7 +659,7 @@ public class VisibilityModifierCheck
      */
     private void visitImport(DetailAST importAst) {
         if (!isStarImport(importAst)) {
-            final DetailAST type = importAst.getFirstChild();
+            final DetailAST type = importAst;
             final String canonicalName = getCanonicalName(type);
             final String shortName = getClassShortName(canonicalName);
 
@@ -825,7 +823,7 @@ public class VisibilityModifierCheck
         if (isFinalField(variableDef)) {
             final DetailAST type = variableDef.findFirstToken(TokenTypes.TYPE);
             final boolean isCanonicalName = isCanonicalName(type);
-            final String typeName = getTypeName(type, isCanonicalName);
+            final String typeName = getTypeName(type);
             if (immutableClassShortNames.contains(typeName)
                     || isCanonicalName && immutableClassCanonicalNames.contains(typeName)) {
                 final DetailAST typeArgs = getGenericTypeArgs(type, isCanonicalName);
@@ -885,8 +883,7 @@ public class VisibilityModifierCheck
         DetailAST type = typeArgs.findFirstToken(TokenTypes.TYPE_ARGUMENT);
         DetailAST sibling;
         do {
-            final boolean isCanonicalName = isCanonicalName(type);
-            final String typeName = getTypeName(type, isCanonicalName);
+            final String typeName = getTypeName(type);
             typeClassNames.add(typeName);
             sibling = type.getNextSibling();
             type = sibling.getNextSibling();
@@ -927,17 +924,10 @@ public class VisibilityModifierCheck
      * else - short type's name.
      *
      * @param type {@link TokenTypes#TYPE TYPE} node.
-     * @param isCanonicalName is given name canonical.
      * @return String representation of given type's name.
      */
-    private static String getTypeName(DetailAST type, boolean isCanonicalName) {
-        final String typeName;
-        if (isCanonicalName) {
-            typeName = getCanonicalName(type);
-        }
-        else {
-            typeName = type.getFirstChild().getText();
-        }
+    private static String getTypeName(DetailAST type) {
+        final String typeName = getCanonicalName(type);
         return typeName;
     }
 
@@ -963,7 +953,7 @@ public class VisibilityModifierCheck
      */
     private static String getCanonicalName(DetailAST type) {
         final StringBuilder canonicalNameBuilder = new StringBuilder(256);
-        DetailAST toVisit = type.getFirstChild();
+        DetailAST toVisit = type;
         while (toVisit != null) {
             toVisit = getNextSubTreeNode(toVisit, type);
             if (toVisit != null && toVisit.getType() == TokenTypes.IDENT) {
