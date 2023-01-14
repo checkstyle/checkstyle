@@ -156,4 +156,14 @@ public class CyclomaticComplexityCheckTest
                 getPath("InputCyclomaticComplexitySwitchBlocks4.java"), expected);
     }
 
+    @Test
+    public void testDefaultMax() throws Exception {
+        final String[] expected = {
+            "14:5: " + getCheckMessage(MSG_KEY, 12, 10),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputCyclomaticComplexitySwitchBlocks5.java"), expected);
+    }
+
 }

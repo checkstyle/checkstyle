@@ -114,4 +114,23 @@ public class BooleanExpressionComplexityCheckTest extends AbstractModuleTestSupp
                 expected);
     }
 
+    @Test
+    public void testLeaves() throws Exception {
+
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("InputBooleanExpressionComplexityLeaves.java"), expected);
+    }
+
+    @Test
+    public void testRecordLeaves() throws Exception {
+
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputBooleanExpressionComplexityRecordLeaves.java"),
+                expected);
+    }
+
 }
