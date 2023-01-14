@@ -85,15 +85,6 @@
     <sourceFile>RightCurlyCheck.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck$Details</mutatedClass>
     <mutatedMethod>getDetails</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_6</mutator>
-    <description>RemoveSwitch 6 (case value 89)</description>
-    <lineContent>switch (ast.getType()) {</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>RightCurlyCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck$Details</mutatedClass>
-    <mutatedMethod>getDetails</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_7</mutator>
     <description>RemoveSwitch 7 (case value 90)</description>
     <lineContent>switch (ast.getType()) {</lineContent>
