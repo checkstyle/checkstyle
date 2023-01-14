@@ -132,6 +132,10 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
                 .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check, ast, "expressionValues",
                         expressionValues -> ((Collection<Context>) expressionValues).isEmpty()))
                 .isTrue();
+        assertWithMessage("Stateful field is not cleared after beginTree")
+                .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check, ast, "branchVisited",
+                        branchVisited -> !(boolean) branchVisited))
+                .isTrue();
     }
 
     @Test
@@ -210,6 +214,32 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
 
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputNPathComplexityCheckSwitchExpression.java"),
+            expected);
+    }
+
+    @Test
+    public void testBranchVisited() throws Exception {
+
+        final String[] expected = {
+            "13:3: " + getCheckMessage(MSG_KEY, 37, 20),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputNPathComplexityCheckBranchVisited.java"),
+            expected);
+    }
+
+    @Test
+    public void testCount() throws Exception {
+
+        final String[] expected = {
+            "11:5: " + getCheckMessage(MSG_KEY, 30, 20),
+            "22:5: " + getCheckMessage(MSG_KEY, 72, 20),
+            "67:5: " + getCheckMessage(MSG_KEY, 23, 20),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputNPathComplexityCheckCount.java"),
             expected);
     }
 
