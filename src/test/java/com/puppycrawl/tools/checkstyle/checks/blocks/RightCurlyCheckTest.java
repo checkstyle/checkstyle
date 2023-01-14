@@ -659,4 +659,27 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
                 getPath("InputRightCurlyTestIfElseAlone.java"), expected);
     }
+
+    @Test
+    public void testSwitchCase() throws Exception {
+        final String[] expected = {
+            "20:24: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 24),
+            "27:27: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 27),
+            "51:46: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 46),
+            "69:68: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 68),
+            "75:74: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 74),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputRightCurlyTestSwitchCase.java"), expected);
+    }
+
+    @Test
+    public void testSwitchCase2() throws Exception {
+        final String[] expected = {
+            "20:24: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 24),
+            "27:27: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 27),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputRightCurlyTestSwitchCase2.java"), expected);
+    }
 }
