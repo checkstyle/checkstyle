@@ -23,6 +23,7 @@ import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.metrics.NPathComplexityCheck.MSG_KEY;
 
 import java.io.File;
+import java.math.BigInteger;
 import java.util.Collection;
 import java.util.Optional;
 import java.util.SortedSet;
@@ -131,6 +132,11 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
         assertWithMessage("Stateful field is not cleared after beginTree")
                 .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check, ast, "expressionValues",
                         expressionValues -> ((Collection<Context>) expressionValues).isEmpty()))
+                .isTrue();
+        assertWithMessage("Stateful field is not cleared after beginTree")
+                .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check, ast,
+                        "currentRangeValue",
+                        currentRangeValue -> currentRangeValue.equals(BigInteger.ZERO)))
                 .isTrue();
     }
 
@@ -341,6 +347,7 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
         astTernary.addChild(astTernaryTrue);
 
         final NPathComplexityCheck npathComplexityCheckObj = new NPathComplexityCheck();
+        npathComplexityCheckObj.beginTree(null);
 
         // visiting first ast, set expressionSpatialRange to [2,2 - 4,4]
         npathComplexityCheckObj.visitToken(astIf);
