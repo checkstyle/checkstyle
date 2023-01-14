@@ -175,6 +175,10 @@
   <suppress checks="PackageDeclarationCheck"
             files="[\\/]InputAstTreeStringPrinterTextBlocksEscapesAreOneChar\.java"/>
 
+  <!-- intentional problem for testing -->
+  <suppress checks="FileLength"
+    files="[\\/]InputJavaNCSSRecordsMax\.java"/>
+
   <!-- Until https://github.com/checkstyle/checkstyle/issues/11163 -->
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]javadoc[\\/]javadocstyle[\\/]InputJavadocStyle10\.java"/>
