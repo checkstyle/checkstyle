@@ -118,6 +118,18 @@ public class JavaNCSSCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testRecordMax() throws Exception {
+        final String[] expected = {
+            "14:1: " + getCheckMessage(MSG_CLASS, 152, 80),
+            "15:5: " + getCheckMessage(MSG_RECORD, 151, 150),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputJavaNCSSRecordsMax.java"),
+                expected);
+    }
+
+    @Test
     public void testGetAcceptableTokens() {
         final JavaNCSSCheck javaNcssCheckObj = new JavaNCSSCheck();
         final int[] actual = javaNcssCheckObj.getAcceptableTokens();
