@@ -248,10 +248,7 @@ public class HideUtilityClassConstructorCheck extends AbstractCheck {
          */
         public void invoke() {
             final DetailAST objBlock = ast.findFirstToken(TokenTypes.OBJBLOCK);
-            hasNonStaticMethodOrField = false;
-            hasNonPrivateStaticMethodOrField = false;
             hasDefaultCtor = true;
-            hasPublicCtor = false;
             DetailAST child = objBlock.getFirstChild();
 
             while (child != null) {
