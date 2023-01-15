@@ -102,6 +102,8 @@ public class DesignForExtensionCheckTest
                 + getCheckMessage(MSG_KEY, "InputDesignForExtensionIgnoredAnnotations", "setAge"),
             "169:5: "
                 + getCheckMessage(MSG_KEY, "InputDesignForExtensionIgnoredAnnotations", "foo24"),
+            "176:5: "
+                + getCheckMessage(MSG_KEY, "InputDesignForExtensionIgnoredAnnotations", "dontUse4"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputDesignForExtensionIgnoredAnnotations.java"), expected);
