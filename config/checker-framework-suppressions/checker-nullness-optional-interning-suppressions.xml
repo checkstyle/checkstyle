@@ -2745,6 +2745,20 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/design/VisibilityModifierCheck.java</fileName>
+    <specifier>initialization.field.uninitialized</specifier>
+    <message>the default constructor does not initialize field ignoreAnnotationShortNames</message>
+    <lineContent>private Set&lt;String&gt; ignoreAnnotationShortNames;</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/design/VisibilityModifierCheck.java</fileName>
+    <specifier>initialization.field.uninitialized</specifier>
+    <message>the default constructor does not initialize field immutableClassShortNames</message>
+    <lineContent>private Set&lt;String&gt; immutableClassShortNames;</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/design/VisibilityModifierCheck.java</fileName>
     <specifier>return</specifier>
     <message>incompatible types in return.</message>
     <lineContent>return matchingAnnotation;</lineContent>

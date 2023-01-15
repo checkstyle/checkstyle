@@ -94,7 +94,7 @@ public class InnerTypeLastCheck extends AbstractCheck {
     );
 
     /** Meet a root class. */
-    private boolean rootClass = true;
+    private boolean rootClass;
 
     @Override
     public int[] getDefaultTokens() {
@@ -127,7 +127,7 @@ public class InnerTypeLastCheck extends AbstractCheck {
             rootClass = false;
         }
         else {
-            DetailAST nextSibling = ast.getNextSibling();
+            DetailAST nextSibling = ast;
             while (nextSibling != null) {
                 if (!ScopeUtil.isInCodeBlock(ast)
                         && CLASS_MEMBER_TOKENS.get(nextSibling.getType())) {
