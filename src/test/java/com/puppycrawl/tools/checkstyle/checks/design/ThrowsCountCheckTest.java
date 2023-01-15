@@ -117,4 +117,19 @@ public class ThrowsCountCheckTest extends AbstractModuleTestSupport {
                 getPath("InputThrowsCountMethodWithAnnotation.java"), expected);
     }
 
+    @Test
+    public void testOverriding() throws Exception {
+        final String[] expected = {
+            "17:20: " + getCheckMessage(MSG_KEY, 1, 0),
+            "21:20: " + getCheckMessage(MSG_KEY, 1, 0),
+            "25:20: " + getCheckMessage(MSG_KEY, 5, 0),
+            "31:20: " + getCheckMessage(MSG_KEY, 5, 0),
+            "37:20: " + getCheckMessage(MSG_KEY, 6, 0),
+            "46:28: " + getCheckMessage(MSG_KEY, 5, 0),
+            "67:43: " + getCheckMessage(MSG_KEY, 5, 0),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputThrowsCount4.java"), expected);
+    }
+
 }
