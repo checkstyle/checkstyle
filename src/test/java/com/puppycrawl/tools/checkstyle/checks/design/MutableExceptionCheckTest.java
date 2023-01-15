@@ -97,6 +97,17 @@ public class MutableExceptionCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testNested() throws Exception {
+
+        final String[] expected = {
+            "15:9: " + getCheckMessage(MSG_KEY, "code"),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputMutableExceptionNested.java"), expected);
+    }
+
+    @Test
     public void testGetAcceptableTokens() {
         final MutableExceptionCheck obj = new MutableExceptionCheck();
         final int[] expected = {TokenTypes.CLASS_DEF, TokenTypes.VARIABLE_DEF};
