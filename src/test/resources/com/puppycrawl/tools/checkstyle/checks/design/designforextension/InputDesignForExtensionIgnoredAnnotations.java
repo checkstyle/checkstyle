@@ -170,6 +170,13 @@ public class InputDesignForExtensionIgnoredAnnotations {
         foo1();
     }
 
+    /**
+     * @deprecated
+     */
+    <T> T dontUse4() { // violation
+        return null;
+    }
+
     public @interface MyAnnotation { }
 }
 class InputDesignForExtensionsLocalAnnotations {
