@@ -266,7 +266,7 @@ public final class NPathComplexityCheck extends AbstractCheck {
     private final TokenEnd processingTokenEnd = new TokenEnd();
 
     /** NP value for current range. */
-    private BigInteger currentRangeValue = INITIAL_VALUE;
+    private BigInteger currentRangeValue;
 
     /** Specify the maximum threshold allowed. */
     private int max = DEFAULT_MAX;
@@ -428,7 +428,7 @@ public final class NPathComplexityCheck extends AbstractCheck {
     private void visitConditional(DetailAST ast, int basicBranchingFactor) {
         int expressionValue = basicBranchingFactor;
         DetailAST bracketed;
-        for (bracketed = ast.findFirstToken(TokenTypes.LPAREN).getNextSibling();
+        for (bracketed = ast.findFirstToken(TokenTypes.LPAREN);
                 bracketed.getType() != TokenTypes.RPAREN;
                 bracketed = bracketed.getNextSibling()) {
             expressionValue += countConditionalOperators(bracketed);
