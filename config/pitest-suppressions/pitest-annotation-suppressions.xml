@@ -9,6 +9,7 @@
     <lineContent>switch (elementStyle) {</lineContent>
   </mutation>
 
+  <!-- this is a test -->
   <mutation unstable="false">
     <sourceFile>SuppressWarningsCheck.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.annotation.SuppressWarningsCheck</mutatedClass>
@@ -18,12 +19,4 @@
     <lineContent>switch (fChild.getType()) {</lineContent>
   </mutation>
 
-  <mutation unstable="false">
-    <sourceFile>SuppressWarningsCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.annotation.SuppressWarningsCheck</mutatedClass>
-    <mutatedMethod>visitToken</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_1</mutator>
-    <description>RemoveSwitch 1 (case value 59)</description>
-    <lineContent>switch (fChild.getType()) {</lineContent>
-  </mutation>
 </suppressedMutations>
