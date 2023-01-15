@@ -9,6 +9,7 @@
     <lineContent>switch (elementStyle) {</lineContent>
   </mutation>
 
+  <!-- this is a test -->
   <mutation unstable="false">
     <sourceFile>SuppressWarningsCheck.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.annotation.SuppressWarningsCheck</mutatedClass>
