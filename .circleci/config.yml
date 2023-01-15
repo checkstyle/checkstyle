@@ -71,7 +71,7 @@ jobs:
           command: |
             sudo apt update
             sleep 5
-            sudo apt install -y xmlstarlet
+            # sudo apt install -y xmlstarlet
             export PULL_REQUEST=$CIRCLE_PR_NUMBER
             export PR_HEAD_SHA=$CIRCLE_SHA1
             export PR_NUMBER=$CIRCLE_PR_NUMBER
