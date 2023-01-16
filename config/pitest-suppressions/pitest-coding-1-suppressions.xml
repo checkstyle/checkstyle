@@ -19,21 +19,12 @@
   </mutation>
 
   <mutation unstable="false">
-    <sourceFile>DeclarationOrderCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck</mutatedClass>
-    <mutatedMethod>processModifiersState</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
-    <description>Removed assignment to member variable declarationAccess</description>
-    <lineContent>state.declarationAccess = Scope.PUBLIC;</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
     <sourceFile>DefaultComesLastCheck.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.DefaultComesLastCheck</mutatedClass>
     <mutatedMethod>findNextSibling</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
     <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getNextSibling</description>
-    <lineContent>node = node.getNextSibling();</lineContent>
+    <lineContent>node = node1.getNextSibling();</lineContent>
   </mutation>
 
   <mutation unstable="false">
