@@ -239,7 +239,7 @@ java -D&lt;property&gt;=&lt;value&gt;  \
       </p>
       <div class="wrap-content">
         <source>
-          mvn clean package -Passembly
+          mvn clean package -Passembly,no-validations
           java -jar target/checkstyle-X.X-SNAPSHOT-all.jar -c /sun_checks.xml MyClass.java
         </source>
       </div>

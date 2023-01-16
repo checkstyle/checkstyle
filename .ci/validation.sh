@@ -436,7 +436,7 @@ release-dry-run)
   ;;
 
 assembly-run-all-jar)
-  mvn -e --no-transfer-progress clean package -Passembly
+  mvn -e --no-transfer-progress clean package -Passembly,no-validations
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo version:"$CS_POM_VERSION"
   mkdir -p .ci-temp
@@ -579,7 +579,7 @@ javac19)
   ;;
 
 jdk14-assembly-site)
-  mvn -e --no-transfer-progress package -Passembly
+  mvn -e --no-transfer-progress package -Passembly,no-validations
   mvn -e --no-transfer-progress site -Pno-validations
   ;;
 
@@ -1073,7 +1073,7 @@ git-check-pull-number)
   ;;
 
 assembly-site)
-  mvn -e --no-transfer-progress package -Passembly
+  mvn -e --no-transfer-progress package -Passembly,no-validations
   mvn -e --no-transfer-progress site -Dlinkcheck.skip=true
   ;;
 

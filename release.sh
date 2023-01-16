@@ -49,7 +49,7 @@ echo "Generating web site"
 mvn -e --no-transfer-progress site -Pno-validations -Dmaven.javadoc.skip=false
 
 echo "Generating uber jar ...(no clean to keep site resources just in case)"
-mvn -e --no-transfer-progress -Passembly package
+mvn -e --no-transfer-progress -Passembly,no-validations package
 
 echo "Come back repo folder"
 cd ../../
