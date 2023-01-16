@@ -1107,6 +1107,27 @@ ci-temp-check)
     exit $fail
   ;;
 
+  check-github-workflows-concurrency)
+    GITHUB_WORKFLOW_FILES=$(find .github/workflows -maxdepth 1 -not -type d -name "*.y*ml")
+
+    FILES_NO_CONCURRENCY=()
+    for f in $GITHUB_WORKFLOW_FILES; do
+      if ! grep -wq "concurrency:" "$f"; then
+            FILES_NO_CONCURRENCY+=( $f )
+      fi
+    done
+
+    if [[ ${#FILES_NO_CONCURRENCY[@]} -gt 0 ]]; then
+      echo "The following Github workflows are missing a concurrency block:"
+    fi
+
+    for value in "${FILES_NO_CONCURRENCY[@]}"; do
+      echo "$value"
+    done
+
+    exit ${#FILES_NO_CONCURRENCY[@]}
+    ;;
+
 *)
   echo "Unexpected argument: $1"
   sleep 5s

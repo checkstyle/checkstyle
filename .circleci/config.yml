@@ -235,6 +235,9 @@ workflows:
       - validate-with-script:
           name: "checkchmod"
           command: "./.ci/checkchmod.sh"
+      - validate-with-script:
+          name: "check-github-workflows-concurrency"
+          command: "./.ci/validation.sh check-github-workflows-concurrency"
       - yamllint
 
   javac-validation:
