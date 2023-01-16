@@ -9,6 +9,11 @@ on:
       release-version:
         description: 'Release Version without (-SNAPSHOT)'
         required: true
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   copy-site:
     name: Copy site to sourceforge for ${{ github.event.inputs.release-version }}

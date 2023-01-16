@@ -9,6 +9,11 @@ on:
       version:
         description: 'Target Version without (-SNAPSHOT)'
         required: true
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   update:
     name: update github.io ${{ github.event.inputs.version }}
