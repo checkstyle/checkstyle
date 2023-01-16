@@ -53,7 +53,7 @@ blocks:
                 - .ci/no-exception-test.sh no-exception-samples-ant
                 - .ci/validation.sh nondex
                 # until https://github.com/checkstyle/checkstyle/issues/9807
-                # - mvn -e --no-transfer-progress clean package -Passembly
+                # - mvn -e --no-transfer-progress clean package -Passembly,no-validations
                 #    && .ci/validation.sh no-violation-test-josm
           commands:
             - sem-version java 11
