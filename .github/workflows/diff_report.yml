@@ -106,19 +106,20 @@ jobs:
           PATCH_CONFIG_LINK: ${{ needs.parse_body.outputs.patch_config_link }}
           LINK_FROM_PR: ${{ needs.parse_body.outputs.projects_link }}
         run: |
-         LINK="${LINK_FROM_PR:-$DEFAULT_PROJECTS_LINK}"
-         wget -q "$LINK" -O project.properties
-         if [ -n "$NEW_MODULE_CONFIG_LINK" ]; then
-           wget -q "$NEW_MODULE_CONFIG_LINK" -O new_module_config.xml
-         fi
-
-         if [ -n "$DIFF_CONFIG_LINK" ]; then
-           wget -q "$DIFF_CONFIG_LINK" -O diff_config.xml
-         fi
-
-         if [ -n "$PATCH_CONFIG_LINK" ]; then
-           wget -q "$PATCH_CONFIG_LINK" -O patch_config.xml
-         fi
+          LINK="${LINK_FROM_PR:-$DEFAULT_PROJECTS_LINK}"
+          echo "LINK: ${LINK}"
+          wget -q "$LINK" -O project.properties
+          if [ -n "$NEW_MODULE_CONFIG_LINK" ]; then
+            wget -q "$NEW_MODULE_CONFIG_LINK" -O new_module_config.xml
+          fi
+          
+          if [ -n "$DIFF_CONFIG_LINK" ]; then
+            wget -q "$DIFF_CONFIG_LINK" -O diff_config.xml
+          fi
+          
+          if [ -n "$PATCH_CONFIG_LINK" ]; then
+            wget -q "$PATCH_CONFIG_LINK" -O patch_config.xml
+          fi
 
       # fetch-depth - number of commits to fetch.
       # 0 indicates all history for all branches and tags.
