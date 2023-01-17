@@ -19,6 +19,7 @@ env:
   DEFAULT_PROJECTS_LINK: "https://raw.githubusercontent.com/checkstyle/contribution/master/checkstyle-tester/projects-to-test-on-for-github-action.properties"
   USER_LOGIN: ${{ github.event.issue.user.login }}
 
+# test
 on:
   issue_comment:
     types: [ created, edited ]
