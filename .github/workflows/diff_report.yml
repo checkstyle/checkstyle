@@ -86,7 +86,9 @@ jobs:
           echo "report_label=$(cat report_label)" >> "$GITHUB_OUTPUT"
 
           echo "GITHUB_OUTPUT:"
-          echo "$GITHUB_OUTPUT"
+          # need to 'echo' to see output in Github CI
+          # shellcheck disable=SC2005
+          echo "$(cat "$GITHUB_OUTPUT")"
 
       - name: Set branch
         id: branch
