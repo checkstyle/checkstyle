@@ -264,10 +264,12 @@ private static int printComparisonToConsole(Set<Mutation> survivingMutations,
     final int exitCode
     if (survivingMutations == suppressedMutations) {
         exitCode = 0
+        println 'No new surviving mutation(s) found.'
     }
     else if (survivingUnsuppressedMutations.isEmpty()
             && !hasOnlyStableMutations(extraSuppressions)) {
         exitCode = 0
+        println 'No new surviving mutation(s) found.'
     }
     else {
         if (!survivingUnsuppressedMutations.isEmpty()) {
