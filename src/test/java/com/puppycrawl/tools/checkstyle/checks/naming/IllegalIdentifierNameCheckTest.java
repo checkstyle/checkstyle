@@ -74,7 +74,7 @@ public class IllegalIdentifierNameCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testIllegalIdentifierNameDefault() throws Exception {
 
-        final String format = "(?i)^(?!(record|yield|var|permits|sealed|_)$).+$";
+        final String format = "(?i)^(?!(record|yield|var|permits|sealed|when|_)$).+$";
 
         final String[] expected = {
             "21:25: " + getCheckMessage(MSG_INVALID_PATTERN, "record", format),
@@ -131,7 +131,7 @@ public class IllegalIdentifierNameCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testIllegalIdentifierNameUnderscore() throws Exception {
-        final String format = "(?i)^(?!(record|yield|var|permits|sealed|_)$).+$";
+        final String format = "(?i)^(?!(record|yield|var|permits|sealed|when|_)$).+$";
 
         final String[] expected = {
             "18:12: " + getCheckMessage(MSG_INVALID_PATTERN, "_", format),
@@ -142,7 +142,7 @@ public class IllegalIdentifierNameCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testIllegalIdentifierNameLambda() throws Exception {
-        final String format = "(?i)^(?!(record|yield|var|permits|sealed|_)$).+$";
+        final String format = "(?i)^(?!(record|yield|var|permits|sealed|when|_)$).+$";
 
         final String[] expected = {
             "19:39: " + getCheckMessage(MSG_INVALID_PATTERN, "var", format),
@@ -153,5 +153,22 @@ public class IllegalIdentifierNameCheckTest extends AbstractModuleTestSupport {
         };
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputIllegalIdentifierNameLambda.java"), expected);
+    }
+
+    @Test
+    public void testIllegalIdentifierNameWhen() throws Exception {
+        final String format = "(?i)^(?!(record|yield|var|permits|sealed|when|_)$).+$";
+
+        final String[] expected = {
+            "16:9: " + getCheckMessage(MSG_INVALID_PATTERN, "When", format),
+            "17:9: " + getCheckMessage(MSG_INVALID_PATTERN, "when", format),
+            "23:29: " + getCheckMessage(MSG_INVALID_PATTERN, "when", format),
+            "32:13: " + getCheckMessage(MSG_INVALID_PATTERN, "when", format),
+            "38:26: " + getCheckMessage(MSG_INVALID_PATTERN, "when", format),
+            "45:22: " + getCheckMessage(MSG_INVALID_PATTERN, "when", format),
+            "55:12: " + getCheckMessage(MSG_INVALID_PATTERN, "when", format),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputIllegalIdentifierNameWhen.java"), expected);
     }
 }
