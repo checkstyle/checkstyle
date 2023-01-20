@@ -79,6 +79,7 @@ public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
      * <p>Configures the environment for each test.</p>
      * <ul>
      * <li>Start output capture for {@link System#err} and {@link System#out}</li>
+     * <li>Turn off colors for picocli to not conflict with tests if they are auto turned on.</li>
      * </ul>
      *
      * @param systemErr wrapper for {@code System.err}
@@ -88,6 +89,8 @@ public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
     public void setUp(@SysErr Capturable systemErr, @SysOut Capturable systemOut) {
         systemErr.captureMuted();
         systemOut.captureMuted();
+
+        System.setProperty("picocli.ansi", "false");
     }
 
     @Test

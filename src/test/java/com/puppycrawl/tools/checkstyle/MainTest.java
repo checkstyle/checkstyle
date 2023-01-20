@@ -213,6 +213,7 @@ public class MainTest {
      * <p>Configures the environment for each test.</p>
      * <ul>
      * <li>Restore original logging level and HANDLERS to prevent bleeding into other tests;</li>
+     * <li>Turn off colors for picocli to not conflict with tests if they are auto turned on.</li>
      * <li>Start output capture for {@link System#err} and {@link System#out}</li>
      * </ul>
      *
@@ -223,6 +224,8 @@ public class MainTest {
     public void setUp(@SysErr Capturable systemErr, @SysOut Capturable systemOut) {
         systemErr.captureMuted();
         systemOut.captureMuted();
+
+        System.setProperty("picocli.ansi", "false");
 
         LOG.setLevel(ORIGINAL_LOG_LEVEL);
 
