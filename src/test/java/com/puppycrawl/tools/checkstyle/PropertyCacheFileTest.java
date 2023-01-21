@@ -331,11 +331,11 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
     }
 
     /**
-     * Temp comment.
-     * until #11589
+     * Test functionality when toByteArray throws an exception.
      *
      * @noinspection ResultOfMethodCallIgnored
-     * @noinspectionreason ResultOfMethodCallIgnored - temporary suppression until #11589
+     * @noinspectionreason ResultOfMethodCallIgnored - Setup for mockito to only
+     *                     mock toByteArray to throw exception.
      */
     @Test
     public void testNonExistentResource() throws IOException {
