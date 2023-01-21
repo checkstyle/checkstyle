@@ -760,18 +760,6 @@ no-error-equalsverifier)
   removeFolderWithProtectedFiles equalsverifier
   ;;
 
-no-error-apex-core)
-  CS_POM_VERSION="$(getCheckstylePomVersion)"
-  echo CS_version: "${CS_POM_VERSION}"
-  mvn -e --no-transfer-progress clean install -Pno-validations
-  echo "Checkout target sources ..."
-  checkout_from https://github.com/checkstyle/apex-core
-  cd .ci-temp/apex-core
-  mvn -e --no-transfer-progress compile checkstyle:check -Dcheckstyle.version="${CS_POM_VERSION}"
-  cd ../
-  removeFolderWithProtectedFiles apex-core
-  ;;
-
 no-error-strata)
   set -e
   CS_POM_VERSION="$(getCheckstylePomVersion)"
