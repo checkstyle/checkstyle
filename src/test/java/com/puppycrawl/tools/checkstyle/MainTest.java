@@ -1860,7 +1860,7 @@ public class MainTest {
      * @noinspection CallToSystemExit, ResultOfMethodCallIgnored
      * @noinspectionreason CallToSystemExit - test helper method requires workaround to
      *      verify exit code
-     * @noinspectionreason ResultOfMethodCallIgnored - temporary suppression until #11589
+     * @noinspectionreason ResultOfMethodCallIgnored - Setup for mockito for which method to mock.
      */
     private static void assertMainReturnCode(int expectedExitCode, String... arguments) {
         final Runtime mock = mock(Runtime.class);
