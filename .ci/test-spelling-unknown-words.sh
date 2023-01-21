@@ -9,11 +9,12 @@ spellchecker='config/jsoref-spellchecker'
 temp='.ci-temp'
 whitelist_path="$spellchecker/whitelist.words"
 dict="$temp/english.words"
-word_splitter="$spellchecker/spelling-unknown-word-splitter.pl"
-run_output="$spellchecker/unknown.words"
+word_splitter="$temp/spelling-unknown-word-splitter.pl"
+run_output="$temp/unknown.words"
+
+mkdir -p $temp
 
 if [ ! -e "$dict" ]; then
-  mkdir -p $temp
   echo "Retrieve cached english.words from checkstyle.sourceforge.io"
   # english.words is taken from rpm:
   # https://rpmfind.net/linux/fedora/linux/development/rawhide/Everything/aarch64/os/Packages/w/"
