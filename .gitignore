@@ -40,11 +40,6 @@ replay_pid*
 # temp folder for files/folders of ci validations
 .ci-temp
 
-#side effect of jsoref-spellchecker tools usage
-config/jsoref-spellchecker/spelling-unknown-word-splitter.pl
-config/jsoref-spellchecker/unknown.words
-config/jsoref-spellchecker/english.words
-
 # antlr4 grammar generates these
 **/gen
 **/JavaLanguageLexer.tokens
