@@ -342,7 +342,7 @@ java -D&lt;property&gt;=&lt;value&gt;  \
       </div>
       <p>
         <b>Note</b>: Custom modules should be specified with the class'
-        <a href="writingchecks.html#Integrate_your_Check">full classpath</a>
+        <a href="writingchecks.html#Integrating_Checks">full classpath</a>
         in the configuration file and the compiled class be located in the custom
         JAR for Checkstyle to find.
       </p>
