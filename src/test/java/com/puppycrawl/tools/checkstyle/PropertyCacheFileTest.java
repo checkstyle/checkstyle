@@ -330,13 +330,6 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
             .hasSize(1);
     }
 
-    /**
-     * Temp comment.
-     * until #11589
-     *
-     * @noinspection ResultOfMethodCallIgnored
-     * @noinspectionreason ResultOfMethodCallIgnored - temporary suppression until #11589
-     */
     @Test
     public void testNonExistentResource() throws IOException {
         final Configuration config = new DefaultConfiguration("myName");
