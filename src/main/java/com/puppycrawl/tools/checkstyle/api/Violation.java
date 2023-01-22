@@ -390,7 +390,18 @@ public final class Violation
         if (lineNo == other.lineNo) {
             if (columnNo == other.columnNo) {
                 if (Objects.equals(moduleId, other.moduleId)) {
-                    result = getViolation().compareTo(other.getViolation());
+                    if (Objects.equals(sourceClass, other.sourceClass)) {
+                        result = getViolation().compareTo(other.getViolation());
+                    }
+                    else if (sourceClass == null) {
+                        result = -1;
+                    }
+                    else if (other.sourceClass == null) {
+                        result = 1;
+                    }
+                    else {
+                        result = sourceClass.getName().compareTo(other.sourceClass.getName());
+                    }
                 }
                 else if (moduleId == null) {
                     result = -1;
