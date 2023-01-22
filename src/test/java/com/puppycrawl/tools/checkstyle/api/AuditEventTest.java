@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.api;
 
 import static com.google.common.truth.Truth.assertWithMessage;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
@@ -41,6 +42,16 @@ public class AuditEventTest {
         assertWithMessage("invalid severity")
                 .that(event.getSeverityLevel())
                 .isEqualTo(SeverityLevel.INFO);
+    }
+
+    @Test
+    public void testNoSource() {
+        final IllegalArgumentException ex = assertThrows(IllegalArgumentException.class,
+                () -> new AuditEvent(null),
+                "IllegalArgumentException expected");
+        assertWithMessage("Invalid exception message")
+            .that(ex.getMessage())
+            .isEqualTo("null source");
     }
 
     @Test
