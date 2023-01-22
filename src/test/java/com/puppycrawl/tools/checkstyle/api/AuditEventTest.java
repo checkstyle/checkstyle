@@ -44,6 +44,19 @@ public class AuditEventTest {
     }
 
     @Test
+    public void testNoSource() {
+        try {
+            new AuditEvent(null);
+            assertWithMessage("An exception is expected").fail();
+        }
+        catch (IllegalArgumentException ex) {
+            assertWithMessage("Invalid exception message")
+                .that(ex.getMessage())
+                .isEqualTo("null source");
+        }
+    }
+
+    @Test
     public void testFullConstructor() {
         final Violation message = new Violation(1, 2, 3, "bundle", "key", null,
                 SeverityLevel.ERROR, "moduleId", getClass(), "customMessage");
