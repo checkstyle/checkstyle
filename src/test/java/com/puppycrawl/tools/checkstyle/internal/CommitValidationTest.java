@@ -96,8 +96,8 @@ public class CommitValidationTest {
         final List<RevCommit> lastCommits = getCommitsToCheck();
 
         assertWithMessage("must have at least one commit to validate")
-                .that(lastCommits != null && !lastCommits.isEmpty())
-                .isTrue();
+                .that(lastCommits)
+                .isNotEmpty();
     }
 
     @Test

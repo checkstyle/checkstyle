@@ -305,9 +305,8 @@ public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
         }
         catch (IllegalArgumentException ex) {
             assertWithMessage("Invalid error message")
-                    .that(ex.getMessage()
-                            .contains("mismatched input '<EOF>' expecting JAVADOC_INLINE_TAG_END"))
-                    .isTrue();
+                    .that(ex.getMessage())
+                    .contains("mismatched input '<EOF>' expecting JAVADOC_INLINE_TAG_END");
         }
         final long size = FileUtils.sizeOf(DESTFILE);
         assertWithMessage("File '" + DESTFILE + "' must be empty")
@@ -342,9 +341,8 @@ public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
         }
         catch (CheckstyleException ex) {
             assertWithMessage("Invalid error message")
-                    .that(ex.getMessage()
-                            .contains("InputJavadocPropertiesGeneratorParseError.java"))
-                    .isTrue();
+                    .that(ex.getMessage())
+                    .contains("InputJavadocPropertiesGeneratorParseError.java");
 
             final Throwable cause = ex.getCause();
             assertWithMessage("Invalid error message")

@@ -598,8 +598,8 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
         }
         catch (IllegalStateException ex) {
             assertWithMessage("invalid exception message")
-                    .that(ex.getMessage().endsWith(": null"))
-                    .isTrue();
+                    .that(ex.getMessage())
+                    .endsWith(": null");
         }
     }
 

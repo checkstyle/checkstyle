@@ -75,8 +75,8 @@ public class RootNodeTest extends AbstractPathTestSupport {
             .hasSize(1);
         final NodeInfo firstNode = nodes.get(0);
         assertWithMessage("Should return true, because selected node is RootNode")
-                .that(firstNode instanceof RootNode)
-                .isTrue();
+                .that(firstNode)
+                .isInstanceOf(RootNode.class);
         assertWithMessage("Result node should have same reference as expected")
             .that(rootNode)
             .isEqualTo(firstNode);

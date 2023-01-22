@@ -381,8 +381,8 @@ public class MainTest {
         final String cause = "com.puppycrawl.tools.checkstyle.api.CheckstyleException:"
                 + " cannot initialize module TreeWalker - ";
         assertWithMessage("Unexpected system error log")
-                .that(systemErr.getCapturedData().startsWith(cause))
-                .isTrue();
+                .that(systemErr.getCapturedData())
+                .startsWith(cause);
     }
 
     @Test
@@ -731,8 +731,8 @@ public class MainTest {
         final String errorOutput = "com.puppycrawl.tools.checkstyle.api."
             + "CheckstyleException: unable to parse configuration stream - ";
         assertWithMessage("Unexpected system error log")
-                .that(systemErr.getCapturedData().startsWith(errorOutput))
-                .isTrue();
+                .that(systemErr.getCapturedData())
+                .startsWith(errorOutput);
     }
 
     @Test
@@ -743,8 +743,8 @@ public class MainTest {
                 + "CheckstyleException: cannot initialize module RegexpSingleline"
                 + " - RegexpSingleline is not allowed as a child in RegexpSingleline";
         assertWithMessage("Unexpected system error log")
-                .that(systemErr.getCapturedData().startsWith(errorOutput))
-                .isTrue();
+                .that(systemErr.getCapturedData())
+                .startsWith(errorOutput);
     }
 
     @Test
@@ -756,8 +756,8 @@ public class MainTest {
                 + "cannot initialize module JavadocMethod - "
                 + "JavadocVariable is not allowed as a child in JavadocMethod";
         assertWithMessage("Unexpected system error log")
-                .that(systemErr.getCapturedData().startsWith(errorOutput))
-                .isTrue();
+                .that(systemErr.getCapturedData())
+                .startsWith(errorOutput);
     }
 
     @Test
@@ -795,8 +795,8 @@ public class MainTest {
                     .that(samePrefix || sameSuffix)
                     .isTrue();
             assertWithMessage("Invalid violation")
-                    .that(causeMessage.contains(".'"))
-                    .isTrue();
+                    .that(causeMessage)
+                    .contains(".'");
         }
     }
 
@@ -917,8 +917,8 @@ public class MainTest {
                 + "CheckstyleException: Exception was thrown while processing "
                 + new File(getNonCompilablePath("InputMainIncorrectClass.java")).getPath());
         assertWithMessage("Unexpected system error log")
-                .that(systemErr.getCapturedData().contains(exceptionMessage))
-                .isTrue();
+                .that(systemErr.getCapturedData())
+                .contains(exceptionMessage);
     }
 
     @Test
@@ -1754,10 +1754,9 @@ public class MainTest {
                         + "TestRootModuleCheckerCheck");
         assertWithMessage(
                 "Unexpected system error log")
-                        .that(systemErr.getCapturedData()
-                                .startsWith(checkstylePackage + "api.CheckstyleException: "
-                                        + unableToInstantiateExceptionMessage.getMessage()))
-                        .isTrue();
+                        .that(systemErr.getCapturedData())
+                        .startsWith(checkstylePackage + "api.CheckstyleException: "
+                                + unableToInstantiateExceptionMessage.getMessage());
         assertWithMessage("Invalid checker state")
                 .that(TestRootModuleChecker.isProcessed())
                 .isFalse();
@@ -1771,8 +1770,8 @@ public class MainTest {
         final String cause = "com.puppycrawl.tools.checkstyle.api.CheckstyleException:"
                 + " cannot initialize module TreeWalker - ";
         assertWithMessage("Unexpected system error log")
-                .that(systemErr.getCapturedData().startsWith(cause))
-                .isTrue();
+                .that(systemErr.getCapturedData())
+                .startsWith(cause);
     }
 
     @Test
@@ -1784,11 +1783,11 @@ public class MainTest {
                 + " cannot initialize module TreeWalker - ";
         final String causeDetail = "it is not a boolean";
         assertWithMessage("Unexpected system error log")
-                .that(systemErr.getCapturedData().startsWith(cause))
-                .isTrue();
+                .that(systemErr.getCapturedData())
+                .startsWith(cause);
         assertWithMessage("Unexpected system error log")
-                .that(systemErr.getCapturedData().contains(causeDetail))
-                .isTrue();
+                .that(systemErr.getCapturedData())
+                .contains(causeDetail);
     }
 
     @Test
@@ -1829,8 +1828,8 @@ public class MainTest {
         final AuditListener listener = Main.OutputFormat.XML.createListener(out,
                 AutomaticBean.OutputStreamOptions.CLOSE);
         assertWithMessage("listener is XMLLogger")
-                .that(listener instanceof XMLLogger)
-                .isTrue();
+                .that(listener)
+                .isInstanceOf(XMLLogger.class);
     }
 
     @Test
@@ -1839,8 +1838,8 @@ public class MainTest {
         final AuditListener listener = Main.OutputFormat.SARIF.createListener(out,
                 AutomaticBean.OutputStreamOptions.CLOSE);
         assertWithMessage("listener is SarifLogger")
-                .that(listener instanceof SarifLogger)
-                .isTrue();
+                .that(listener)
+                .isInstanceOf(SarifLogger.class);
     }
 
     @Test
@@ -1849,8 +1848,8 @@ public class MainTest {
         final AuditListener listener = Main.OutputFormat.PLAIN.createListener(out,
                 AutomaticBean.OutputStreamOptions.CLOSE);
         assertWithMessage("listener is DefaultLogger")
-                .that(listener instanceof DefaultLogger)
-                .isTrue();
+                .that(listener)
+                .isInstanceOf(DefaultLogger.class);
     }
 
     /**

@@ -335,8 +335,8 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
             final String messageStart = "unable to parse";
 
             assertWithMessage("Invalid exception message, should start with: " + messageStart)
-                    .that(ex.getMessage().startsWith(messageStart))
-                    .isTrue();
+                    .that(ex.getMessage())
+                    .startsWith(messageStart);
         }
     }
 

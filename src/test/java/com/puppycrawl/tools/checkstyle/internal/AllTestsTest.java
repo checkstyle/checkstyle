@@ -226,8 +226,8 @@ public class AllTestsTest {
 
                     assertWithMessage("Test must be named after a production class "
                                + "and must be in the same package of the production class: " + path)
-                            .that(classes != null && classes.contains(fileName))
-                            .isTrue();
+                            .that(classes)
+                            .contains(fileName);
                 }
             }
         }

@@ -76,8 +76,8 @@ public class XdocsMobileWrapperTest {
                         + child.getNodeName() + "' in '" + node.getNodeName()
                         + "' needs a wrapping <span> or <div> with the class 'wrapper'.";
                 assertWithMessage(wrapperMessage)
-                        .that("div".equals(node.getNodeName()) || "span".equals(node.getNodeName()))
-                        .isTrue();
+                        .that(node.getNodeName())
+                        .isAnyOf("div", "span");
                 assertWithMessage(wrapperMessage)
                         .that(node.hasAttributes())
                         .isTrue();
@@ -86,8 +86,8 @@ public class XdocsMobileWrapperTest {
                         .isNotNull();
                 assertWithMessage(wrapperMessage)
                         .that(node.getAttributes().getNamedItem("class")
-                                .getNodeValue().contains("wrapper"))
-                        .isTrue();
+                                .getNodeValue())
+                        .contains("wrapper");
 
                 if ("table".equals(child.getNodeName())) {
                     iterateNode(child, fileName, sectionName);
