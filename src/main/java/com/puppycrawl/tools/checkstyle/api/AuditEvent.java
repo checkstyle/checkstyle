@@ -19,8 +19,6 @@
 
 package com.puppycrawl.tools.checkstyle.api;
 
-import java.util.EventObject;
-
 /**
  * Raw event for audit.
  * <p>
@@ -37,11 +35,10 @@ import java.util.EventObject;
  *
  * @see AuditListener
  */
-public final class AuditEvent
-    extends EventObject {
+public final class AuditEvent {
 
-    /** Record a version. */
-    private static final long serialVersionUID = -3774725606973812736L;
+    /** The object on which the Event initially occurred. */
+    private final Object source;
     /** Filename event associated with. **/
     private final String fileName;
     /** Violation associated with the event. **/
@@ -74,9 +71,18 @@ public final class AuditEvent
      * @param violation the actual violation
      */
     public AuditEvent(Object src, String fileName, Violation violation) {
-        super(src);
+        source = src;
         this.fileName = fileName;
         this.violation = violation;
+    }
+
+    /**
+     * The object on which the Event initially occurred.
+     *
+     * @return the object on which the Event initially occurred
+     */
+    public Object getSource() {
+        return source;
     }
 
     /**
