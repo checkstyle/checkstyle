@@ -25,6 +25,8 @@ import static com.puppycrawl.tools.checkstyle.utils.CommonUtil.EMPTY_OBJECT_ARRA
 import org.junit.jupiter.api.Test;
 import org.junitpioneer.jupiter.DefaultLocale;
 
+import com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationLocationCheck;
+import com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationOnSameLineCheck;
 import nl.jqno.equalsverifier.EqualsVerifier;
 import nl.jqno.equalsverifier.EqualsVerifierReport;
 
@@ -132,6 +134,23 @@ public class ViolationTest {
     }
 
     @Test
+    public void testCompareToWithDifferentClass() {
+        final Violation message1 = createSampleViolationWithClass(AnnotationLocationCheck.class);
+        final Violation message2 = createSampleViolationWithClass(AnnotationOnSameLineCheck.class);
+        final Violation messageNull = createSampleViolationWithClass(null);
+
+        assertWithMessage("Invalid comparing result")
+                .that(message1.compareTo(messageNull) > 0)
+                .isTrue();
+        assertWithMessage("Invalid comparing result")
+                .that(messageNull.compareTo(message1) < 0)
+                .isTrue();
+        assertWithMessage("Invalid comparing result")
+                .that(message1.compareTo(message2) < 0)
+                .isTrue();
+    }
+
+    @Test
     public void testCompareToWithDifferentLines() {
         final Violation message1 = createSampleViolationWithLine(1);
         final Violation message1a = createSampleViolationWithLine(1);
@@ -169,6 +188,11 @@ public class ViolationTest {
 
     private static Violation createSampleViolation() {
         return createSampleViolationWithId("module");
+    }
+
+    private static Violation createSampleViolationWithClass(Class<?> clss) {
+        return new Violation(1, "com.puppycrawl.tools.checkstyle.checks.coding.messages",
+                "empty.statement", EMPTY_OBJECT_ARRAY, null, clss, null);
     }
 
     private static Violation createSampleViolationWithId(String id) {
