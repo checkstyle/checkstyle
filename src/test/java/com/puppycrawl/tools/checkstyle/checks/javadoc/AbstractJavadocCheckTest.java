@@ -300,8 +300,8 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
                     + "\"RETURN_LITERAL\" was not found in "
                     + "Acceptable javadoc tokens list in check";
             assertWithMessage("Invalid exception, should start with: " + expected)
-                    .that(ex.getMessage().startsWith(expected))
-                    .isTrue();
+                    .that(ex.getMessage())
+                    .startsWith(expected);
         }
     }
 
@@ -333,8 +333,8 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
                     + JavadocTokenTypes.RETURN_LITERAL + "\" from required"
                     + " javadoc tokens was not found in default javadoc tokens list in check";
             assertWithMessage("Invalid exception, should start with: " + expected)
-                    .that(ex.getMessage().startsWith(expected))
-                    .isTrue();
+                    .that(ex.getMessage())
+                    .startsWith(expected);
         }
     }
 
@@ -346,8 +346,8 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputAbstractJavadocLeaveToken.java"), expected);
         assertWithMessage("Javadoc visit count should be greater than zero")
-                .that(JavadocVisitLeaveCheck.visitCount > 0)
-                .isTrue();
+                .that(JavadocVisitLeaveCheck.visitCount)
+                .isGreaterThan(0);
         assertWithMessage("Javadoc visit and leave count should be equal")
             .that(JavadocVisitLeaveCheck.leaveCount)
             .isEqualTo(JavadocVisitLeaveCheck.visitCount);

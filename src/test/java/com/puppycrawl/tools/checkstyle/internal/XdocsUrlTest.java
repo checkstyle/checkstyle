@@ -139,14 +139,10 @@ public class XdocsUrlTest {
                 assertWithMessage(moduleNameErrorMsg)
                         .that(moduleFileNames)
                         .isNotNull();
-                boolean match = false;
                 final String checkNameWithSuffix = checkNameInAttribute + SUFFIX_CHECK;
-                if (moduleFileNames.contains(checkNameWithSuffix)) {
-                    match = true;
-                }
                 assertWithMessage(checkNameModuleErrorMsg)
-                        .that(match)
-                        .isTrue();
+                        .that(moduleFileNames)
+                        .contains(checkNameWithSuffix);
             }
         }
     }
