@@ -251,9 +251,8 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         }
         catch (CheckstyleException exception) {
             assertWithMessage("Error message is unexpected")
-                    .that(exception.getMessage()
-                            .contains("TreeWalker is not allowed as a parent of"))
-                    .isTrue();
+                    .that(exception.getMessage())
+                    .contains("TreeWalker is not allowed as a parent of");
         }
     }
 
@@ -308,8 +307,8 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         }
         catch (CheckstyleException ex) {
             assertWithMessage("Error message is unexpected")
-                    .that(ex.getMessage().contains("isCommentNodesRequired"))
-                    .isTrue();
+                    .that(ex.getMessage())
+                    .contains("isCommentNodesRequired");
         }
     }
 
@@ -385,8 +384,8 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         }
         catch (CheckstyleException exception) {
             assertWithMessage("Error message is unexpected")
-                    .that(exception.getMessage().contains("occurred while parsing file"))
-                    .isTrue();
+                    .that(exception.getMessage())
+                    .contains("occurred while parsing file");
         }
     }
 
@@ -409,9 +408,8 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         }
         catch (CheckstyleException exception) {
             assertWithMessage("Error message is unexpected")
-                    .that(exception.getMessage()
-                            .contains("IllegalStateException occurred while parsing file"))
-                    .isTrue();
+                    .that(exception.getMessage())
+                    .contains("IllegalStateException occurred while parsing file");
         }
     }
 
@@ -466,8 +464,8 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         catch (CheckstyleException exception) {
             final String message = "IllegalStateException occurred while parsing file";
             assertWithMessage("Error message is unexpected")
-                    .that(exception.getMessage().contains(message))
-                    .isTrue();
+                    .that(exception.getMessage())
+                    .contains(message);
         }
     }
 

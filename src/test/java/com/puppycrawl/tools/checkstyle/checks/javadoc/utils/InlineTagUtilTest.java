@@ -111,8 +111,8 @@ public class InlineTagUtilTest {
         }
         catch (IllegalArgumentException ex) {
             assertWithMessage("Unexpected error message")
-                    .that(ex.getMessage().contains("newline"))
-                    .isTrue();
+                    .that(ex.getMessage())
+                    .contains("newline");
         }
     }
 
@@ -124,8 +124,8 @@ public class InlineTagUtilTest {
         }
         catch (IllegalArgumentException ex) {
             assertWithMessage("Invalid error message")
-                    .that(ex.getMessage().contains("newline"))
-                    .isTrue();
+                    .that(ex.getMessage())
+                    .contains("newline");
         }
     }
 

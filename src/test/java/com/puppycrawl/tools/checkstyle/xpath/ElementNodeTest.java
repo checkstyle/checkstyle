@@ -135,8 +135,8 @@ public class ElementNodeTest extends AbstractPathTestSupport {
             .that(root.getTokenType())
             .isEqualTo(TokenTypes.COMPILATION_UNIT);
         assertWithMessage("Should return true, because selected node is RootNode")
-                .that(root instanceof RootNode)
-                .isTrue();
+                .that(root)
+                .isInstanceOf(RootNode.class);
     }
 
     @Test
@@ -235,13 +235,13 @@ public class ElementNodeTest extends AbstractPathTestSupport {
         final ElementNode elementNode = new ElementNode(rootNode, rootNode, detailAST, 1, 0);
         try (AxisIterator iterator = elementNode.iterateAxis(AxisInfo.CHILD)) {
             assertWithMessage("Invalid iterator")
-                    .that(iterator instanceof EmptyIterator)
-                    .isTrue();
+                    .that(iterator)
+                    .isInstanceOf(EmptyIterator.class);
         }
         try (AxisIterator iterator = elementNode.iterateAxis(AxisInfo.DESCENDANT)) {
             assertWithMessage("Invalid iterator")
-                    .that(iterator instanceof EmptyIterator)
-                    .isTrue();
+                    .that(iterator)
+                    .isInstanceOf(EmptyIterator.class);
         }
     }
 
@@ -255,13 +255,13 @@ public class ElementNodeTest extends AbstractPathTestSupport {
         final ElementNode elementNode = new ElementNode(rootNode, rootNode, detailAST, 1, 0);
         try (AxisIterator iterator = elementNode.iterateAxis(AxisInfo.CHILD)) {
             assertWithMessage("Invalid iterator")
-                    .that(iterator instanceof ArrayIterator)
-                    .isTrue();
+                    .that(iterator)
+                    .isInstanceOf(ArrayIterator.class);
         }
         try (AxisIterator iterator = elementNode.iterateAxis(AxisInfo.DESCENDANT)) {
             assertWithMessage("Invalid iterator")
-                    .that(iterator instanceof DescendantIterator)
-                    .isTrue();
+                    .that(iterator)
+                    .isInstanceOf(DescendantIterator.class);
         }
     }
 
@@ -278,13 +278,13 @@ public class ElementNodeTest extends AbstractPathTestSupport {
         final AbstractNode elementNode = parentNode.getChildren().get(0);
         try (AxisIterator iterator = elementNode.iterateAxis(AxisInfo.FOLLOWING_SIBLING)) {
             assertWithMessage("Invalid iterator")
-                    .that(iterator instanceof EmptyIterator)
-                    .isTrue();
+                    .that(iterator)
+                    .isInstanceOf(EmptyIterator.class);
         }
         try (AxisIterator iterator = elementNode.iterateAxis(AxisInfo.PRECEDING_SIBLING)) {
             assertWithMessage("Invalid iterator")
-                    .that(iterator instanceof EmptyIterator)
-                    .isTrue();
+                    .that(iterator)
+                    .isInstanceOf(EmptyIterator.class);
         }
     }
 }

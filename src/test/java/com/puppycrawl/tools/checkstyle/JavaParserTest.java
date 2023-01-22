@@ -133,8 +133,8 @@ public class JavaParserTest extends AbstractModuleTestSupport {
             .that(commentContent.getColumnNo())
             .isEqualTo(2);
         assertWithMessage("Unexpected comment content")
-                .that(commentContent.getText().startsWith(" inline comment"))
-                .isTrue();
+                .that(commentContent.getText())
+                .startsWith(" inline comment");
     }
 
     @Test
@@ -173,8 +173,8 @@ public class JavaParserTest extends AbstractModuleTestSupport {
             .that(commentContent.getColumnNo())
             .isEqualTo(6);
         assertWithMessage("Unexpected comment content")
-                .that(commentContent.getText().startsWith(" indented comment"))
-                .isTrue();
+                .that(commentContent.getText())
+                .startsWith(" indented comment");
     }
 
     @Test

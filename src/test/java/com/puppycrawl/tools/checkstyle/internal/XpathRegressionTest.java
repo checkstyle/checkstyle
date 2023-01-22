@@ -227,8 +227,8 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
 
                 final String check = matcher.group(1);
                 assertWithMessage("Unknown check '" + check + "' in test file: " + filename)
-                        .that(SIMPLE_CHECK_NAMES.contains(check))
-                        .isTrue();
+                        .that(SIMPLE_CHECK_NAMES)
+                        .contains(check);
 
                 assertWithMessage(
                             "Check '" + check + "' is now tested. Please update the todo list in"
@@ -271,8 +271,8 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
                         .isTrue();
                 final String dirName = dir.toFile().getName();
                 assertWithMessage("Invalid directory name: " + dirName)
-                        .that(ALLOWED_DIRECTORY_AND_CHECKS.containsKey(dirName))
-                        .isTrue();
+                        .that(ALLOWED_DIRECTORY_AND_CHECKS)
+                        .containsKey(dirName);
 
                 // input directory must be connected to an existing test
                 final String check = ALLOWED_DIRECTORY_AND_CHECKS.get(dirName);
@@ -305,8 +305,8 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
                     final String remaining = matcher.group(1);
                     assertWithMessage("Check name '" + check
                                 + "' should be included in input file: " + inputPath)
-                            .that(remaining.startsWith(check))
-                            .isTrue();
+                            .that(remaining)
+                            .startsWith(check);
                 }
             }
         }

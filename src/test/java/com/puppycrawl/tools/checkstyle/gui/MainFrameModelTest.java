@@ -196,8 +196,8 @@ public class MainFrameModelTest extends AbstractModuleTestSupport {
 
         final String testDataFileNameWithoutPostfix = FILE_NAME_TEST_DATA.replace(".java", "");
         assertWithMessage("Invalid model text: " + model.getText())
-                .that(model.getText().contains(testDataFileNameWithoutPostfix))
-                .isTrue();
+                .that(model.getText())
+                .contains(testDataFileNameWithoutPostfix);
 
         final File expectedLastDirectory = new File(getPath(""));
         assertWithMessage("Invalid model last directory")
