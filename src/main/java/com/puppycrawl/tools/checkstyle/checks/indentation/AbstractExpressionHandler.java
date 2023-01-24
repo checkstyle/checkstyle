@@ -431,7 +431,7 @@ public abstract class AbstractExpressionHandler {
 
         DetailAST curNode = ast;
         DetailAST realStart = ast;
-        while (curNode != null) {
+        do {
             if (curNode.getLineNo() < realStart.getLineNo()
                     || curNode.getLineNo() == realStart.getLineNo()
                     && curNode.getColumnNo() < realStart.getColumnNo()) {
@@ -443,7 +443,7 @@ public abstract class AbstractExpressionHandler {
                 curNode = curNode.getParent();
             }
             curNode = toVisit;
-        }
+        } while (curNode != null);
         return realStart;
     }
 
