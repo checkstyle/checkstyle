@@ -70,34 +70,36 @@ jobs:
         run: |
           grep "^Diff Regression projects:" text | cat > temp
           sed 's/Diff Regression projects: //' temp > projects_link
-          echo "projects_link=$(cat projects_link)" >> "$GITHUB_OUTPUT"
+          echo "::set-output name=projects_link::$(cat projects_link)"
 
           grep "^Diff Regression config:" text | cat > temp
           sed 's/Diff Regression config: //' temp > config_link
-          echo "config_link=$(cat config_link)" >> "$GITHUB_OUTPUT"
+          echo "::set-output name=config_link::$(cat config_link)"
 
           grep "^New module config:" text | cat > temp
           sed 's/New module config: //' temp > new_module_config_link
-          echo "new_module_config_link=$(cat new_module_config_link)" >> "$GITHUB_OUTPUT"
+          echo "::set-output name=new_module_config_link::$(cat new_module_config_link)"
 
           grep "^Diff Regression patch config:" text | cat > temp
           sed 's/Diff Regression patch config: //' temp > patch_config_link
-          echo "patch_config_link=$(cat patch_config_link)" >> "$GITHUB_OUTPUT"
+          echo "::set-output name=patch_config_link::$(cat patch_config_link)"
 
           grep "^Report label:" text | cat > temp
           sed 's/Report label: //' temp > report_label
-          echo "report_label=$(cat report_label)" >> "$GITHUB_OUTPUT"
+          echo "::set-output name=report_label::$(cat report_label)"
+
+      - name: Set branch
+        id: branch
+        run: |
+          echo "::set-output name=ref::$(cat branch)"
+          # shellcheck disable=SC2002
+          echo "::set-output name=commit_sha::$(cat commit_sha | cut -c 1-7)"
 
           echo "GITHUB_OUTPUT:"
           # need to 'echo' to see output in Github CI
           # shellcheck disable=SC2005
           echo "$(cat "$GITHUB_OUTPUT")"
 
-      - name: Set branch
-        id: branch
-        run: |
-          echo "ref=$(cat branch)" >> "$GITHUB_OUTPUT"
-          echo "commit_sha=$(< commit_sha cut -c 1-7)" >> "$GITHUB_OUTPUT"
   make_report:
     runs-on: ubuntu-latest
     needs: parse_body
@@ -115,7 +117,6 @@ jobs:
           LINK_FROM_PR: ${{ needs.parse_body.outputs.projects_link }}
         run: |
           LINK="${LINK_FROM_PR:-$DEFAULT_PROJECTS_LINK}"
-          echo "PROJECTS LINK: ${LINK}"
           wget -q "$LINK" -O project.properties
           if [ -n "$NEW_MODULE_CONFIG_LINK" ]; then
             wget -q "$NEW_MODULE_CONFIG_LINK" -O new_module_config.xml
@@ -221,7 +222,7 @@ jobs:
 
       - name: Set output
         id: out
-        run: echo "message=$(cat message)" >> "$GITHUB_OUTPUT"
+        run: echo "::set-output name=message::$(cat message)"
 
   # should be always last step
   send_message:
@@ -251,7 +252,7 @@ jobs:
 
       - name: Set message
         id: out
-        run: echo "message=$(cat message)" >> "$GITHUB_OUTPUT"
+        run: echo "::set-output name=message::$(cat message)"
 
       - name: Comment PR
         uses: checkstyle/contribution/comment-action@master
