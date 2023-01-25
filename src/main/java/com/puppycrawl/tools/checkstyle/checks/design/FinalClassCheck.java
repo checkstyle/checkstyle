@@ -171,7 +171,7 @@ public class FinalClassCheck
             case TokenTypes.INTERFACE_DEF:
             case TokenTypes.RECORD_DEF:
                 final TypeDeclarationDescription description = new TypeDeclarationDescription(
-                    extractQualifiedTypeName(ast), typeDeclarations.size(), ast);
+                    extractQualifiedTypeName(ast), 0, ast);
                 typeDeclarations.push(description);
                 break;
 
