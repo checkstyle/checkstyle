@@ -28,8 +28,8 @@ RELEASE_ID=$(curl -s -X GET \
 
 
 curl -i -H "Authorization: token $GITHUB_TOKEN" \
-  -H "Content-Type: application/zip" \
-  --data-binary @"target/checkout/target/checkstyle-$TARGET_VERSION-all.jar" \
+  -H "Content-Type: application/java-archive" \
+  --data-binary @"target/checkstyle-$TARGET_VERSION-all.jar" \
   -X POST "$UPLOAD_LINK"/"$RELEASE_ID"/assets?name=checkstyle-"$TARGET_VERSION"-all.jar
 
 echo "Jar Published for $TARGET_VERSION"
