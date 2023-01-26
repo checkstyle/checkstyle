@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+set -e -x
 
 source ./.ci/util.sh
 
@@ -1127,6 +1127,22 @@ ci-temp-check)
 
     exit ${#FILES_NO_CONCURRENCY[@]}
     ;;
+
+check-wildcards-on-pitest-target-classes)
+  ALL_CLASSES=$(xmlstarlet sel \
+    -N x=http://maven.apache.org/POM/4.0.0 \
+    -t -v "/x:project/x:profiles/x:profile//x:targetClasses/x:param" \
+    -n pom.xml)
+
+  CLASSES_NO_WILDCARD=$(echo "$ALL_CLASSES" | grep -v ".*\*\$" | grep -v -e '^\s*$' || echo)
+  CLASSES_NO_WILDCARD_COUNT=$(echo "$CLASSES_NO_WILDCARD" | grep -v -e '^\s*$' | wc -l)
+
+  if [[ "$CLASSES_NO_WILDCARD_COUNT" -gt 0 ]]; then
+    echo "Append asterisks to the following pitest target classes in pom.xml:"
+    echo "$CLASSES_NO_WILDCARD"
+  fi
+  exit "$CLASSES_NO_WILDCARD_COUNT"
+  ;;
 
 *)
   echo "Unexpected argument: $1"
