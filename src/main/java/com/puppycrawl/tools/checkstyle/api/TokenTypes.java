@@ -6267,10 +6267,16 @@ public final class TokenTypes {
      * @see #LITERAL_INSTANCEOF
      * @see #SWITCH_RULE
      *
-     * @since 10.7.0
+     * @since 10.6
      */
     public static final int LITERAL_WHEN =
         JavaLanguageLexer.LITERAL_WHEN;
+
+    public static final int RECORD_PATTERN_DEF =
+        JavaLanguageLexer.RECORD_PATTERN_DEF;
+
+    public static final int RECORD_PATTERN_COMPONENTS =
+            JavaLanguageLexer.RECORD_PATTERN_COMPONENTS;
 
     /** Prevent instantiation. */
     private TokenTypes() {
