@@ -7,12 +7,12 @@ source ./.ci/util.sh
 checkForVariable "GITHUB_TOKEN"
 
 echo "Close previous milestone at github"
-MILESTONE_ID=$(curl -s \
+MILESTONE_NUMBER=$(curl -s \
                 -X GET https://api.github.com/repos/checkstyle/checkstyle/milestones?state=open \
                 | jq ".[0] | .number")
 curl -i -H "Authorization: token $GITHUB_TOKEN" \
   -d "{ \"state\": \"closed\" }" \
-  -X PATCH https://api.github.com/repos/checkstyle/checkstyle/milestones/"$MILESTONE_ID"
+  -X PATCH https://api.github.com/repos/checkstyle/checkstyle/milestones/"$MILESTONE_NUMBER"
 
 
 echo "Creation of new milestone ..."
