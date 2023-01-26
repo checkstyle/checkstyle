@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -367,7 +367,7 @@ public class SuppressWithNearbyTextFilter
      * @param absolutePath absolute path to the currently processed file.
      */
     private void setCurrentFileAbsolutePath(String absolutePath) {
-        currentFileAbsolutePath = absolutePath;
+        currentFileAbsolutePath = absolutePath; // TODO: removed assignment
     }
 
     @Override
@@ -377,11 +377,11 @@ public class SuppressWithNearbyTextFilter
         if (event.getViolation() != null) {
             final String eventFileTextAbsolutePath = event.getFileName();
 
-            if (!currentFileAbsolutePath.equals(eventFileTextAbsolutePath)) {
+            if (!currentFileAbsolutePath.equals(eventFileTextAbsolutePath)) {  // TODO: If (true)
                 final FileText currentFileText = getFileText(eventFileTextAbsolutePath);
 
                 if (currentFileText != null) {
-                    setCurrentFileAbsolutePath(currentFileText.getFile().getAbsolutePath());
+                    setCurrentFileAbsolutePath(currentFileText.getFile().getAbsolutePath()); // TODO: removed call
                     collectSuppressions(currentFileText);
                 }
             }
@@ -425,7 +425,7 @@ public class SuppressWithNearbyTextFilter
      * @param fileText {@link FileText} instance.
      */
     private void collectSuppressions(FileText fileText) {
-        suppressions.clear();
+        suppressions.clear(); // TODO: removed call
 
         for (int lineNo = 0; lineNo < fileText.size(); lineNo++) {
             final Optional<Suppression> suppression = getSuppression(fileText, lineNo);

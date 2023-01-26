@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -169,6 +169,37 @@ public class SuppressWithNearbyTextFilterTest
 
         verifyFilterWithInlineConfigParser(
             getPath("InputSuppressWithNearbyTextFilterIdPattern.html"),
+            violationMessages, removeSuppressed(violationMessages, suppressedMessages)
+        );
+    }
+
+    @Test
+    public void testTwoFilesOneAfterAnother() throws Exception {
+        final int expectedLineLength = 90;
+        final String pattern = "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$";
+
+        final String[] violationMessages = {
+            "29: " + getLineLengthCheckMessage(expectedLineLength, 94),
+            "30: " + getLineLengthCheckMessage(expectedLineLength, 97),
+            "31: " + getLineLengthCheckMessage(expectedLineLength, 97),
+            "41: " + getLineLengthCheckMessage(expectedLineLength, 94),
+            "44:22: " + getCheckMessage(ConstantNameCheck.class,
+                    MSG_INVALID_PATTERN, "badConstant", pattern),
+            "47:22: " + getCheckMessage(ConstantNameCheck.class,
+                    MSG_INVALID_PATTERN, "badConstant1", pattern),
+        };
+
+        final String[] suppressedMessages = {
+            "30: " + getLineLengthCheckMessage(expectedLineLength, 97),
+            "31: " + getLineLengthCheckMessage(expectedLineLength, 97),
+            "41: " + getLineLengthCheckMessage(expectedLineLength, 94),
+            "47:22: " + getCheckMessage(ConstantNameCheck.class,
+                    MSG_INVALID_PATTERN, "badConstant1", pattern),
+        };
+
+        verifyFilterWithInlineConfigParser(
+            getPath("InputSuppressWithNearbyTextFilterDefaultConfig.java"),
+            getPath("InputSuppressWithNearbyTextFilterDefaultConfig2.java"),
             violationMessages, removeSuppressed(violationMessages, suppressedMessages)
         );
     }
