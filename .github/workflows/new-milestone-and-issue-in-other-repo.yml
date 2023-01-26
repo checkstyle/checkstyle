@@ -12,6 +12,7 @@ on:
 
 permissions:
   contents: write
+  issues: write
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
@@ -24,6 +25,11 @@ jobs:
     steps:
       - name: Checkout the latest code
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Download xmlstarlet and ncal
+        run: |
+          sudo apt-get install xmlstarlet ncal
       - name: Close/Create Milestone
         env:
           GITHUB_TOKEN: ${{ github.token }}
@@ -38,6 +44,6 @@ jobs:
 
       - name: Creation of issue in other Repositories
         env:
-          GITHUB_TOKEN: ${{ github.token }}
+          GITHUB_TOKEN: ${{ secrets.ISSUES_WRITE_TOKEN }}
         run: |
           ./.ci/creation-of-issue-in-other-repos.sh ${{ github.event.inputs.version }}
