@@ -28,7 +28,9 @@ permissions:
   pull-requests: write
 
 # allow diff reports to run concurrently
-concurrency: null
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
 
 jobs:
   # Parse PR Body, search for links to .properties and .xml files
