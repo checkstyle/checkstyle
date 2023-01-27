@@ -16,6 +16,11 @@ jobs:
     steps:
       - name: Download checkstyle
         uses: actions/checkout@v3
+      - name: Setup local maven cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
 
       - name: Generate release notes
         env:

@@ -27,6 +27,11 @@ jobs:
       - name: Download xmlstarlet
         run: |
           sudo apt-get install xmlstarlet
+      - name: Setup local maven cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
       - name: Commit and Push Credentials
         run: |
           git config user.name 'github-actions[bot]'
