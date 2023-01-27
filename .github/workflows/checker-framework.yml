@@ -40,6 +40,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      - name: Setup local maven cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
+
       - name: Execute checker framework
         env:
           MAVEN_OPTS: "-Xmx4g"
