@@ -24,6 +24,11 @@ jobs:
         with:
           repository: checkstyle/checkstyle
           fetch-depth: 0
+      - name: Setup local maven cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
       - name: Run Shell Script
         run: |
           ./.ci/generate-website.sh ${{ github.event.inputs.version }}

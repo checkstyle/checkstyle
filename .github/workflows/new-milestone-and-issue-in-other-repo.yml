@@ -30,6 +30,11 @@ jobs:
       - name: Download xmlstarlet and ncal
         run: |
           sudo apt-get install xmlstarlet ncal
+      - name: Setup local maven cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
       - name: Close/Create Milestone
         env:
           GITHUB_TOKEN: ${{ github.token }}
