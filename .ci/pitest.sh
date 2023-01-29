@@ -18,12 +18,16 @@ case $1 in
   PROFILES=$(list_profiles "${0}");
 
   if [[ $(echo "$PROFILES" | grep -w -- "${1}" | cat) != "" ]]; then
+    set +e
     mvn -e --no-transfer-progress -P"$1" clean test-compile org.pitest:pitest-maven:mutationCoverage
+    EXIT_CODE=$?
+    set -e
     if [[ "$2" != "" ]]; then
       groovy ./.ci/pitest-survival-check-xml.groovy "$1" "$2"
     else
       groovy ./.ci/pitest-survival-check-xml.groovy "$1"
     fi
+    exit $EXIT_CODE
   else
     echo "Unexpected argument: $*"
     echo "Usage $0 <profile> <extra argument for pitest-survival-check-xml.groovy>"
