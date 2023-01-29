@@ -32,7 +32,7 @@ if [ ! -f "$ECJ_PATH" ]; then
     OPTIONS_DIFF=$(diff --unified cs.opt ecj.opt | cat)
     if [ "${OPTIONS_DIFF}" != "" ] ; then
         echo "JDT compiler options diff:"
-        echo "${OPTIONS_DIFF}"
+        OPTIONS_DIFF
         echo please update "config/org.eclipse.jdt.core.prefs" file
         exit 1
     fi
