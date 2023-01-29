@@ -3647,7 +3647,7 @@
                 <param>destroy</param>
               </excludedMethods>
               <coverageThreshold>100</coverageThreshold>
-              <mutationThreshold>96</mutationThreshold>
+              <mutationThreshold>100</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
               <timeoutConstant>${pitest.plugin.timeout.constant}</timeoutConstant>
               <threads>${pitest.plugin.threads}</threads>
