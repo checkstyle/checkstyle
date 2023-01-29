@@ -220,6 +220,9 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <li>
  * {@code line.same}
  * </li>
+ * <li>
+ * {@code line.break.after}
+ * </li>
  * </ul>
  *
  * @since 3.0
@@ -244,6 +247,12 @@ public class RightCurlyCheck extends AbstractCheck {
      * file.
      */
     public static final String MSG_KEY_LINE_SAME = "line.same";
+
+     /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY_LINE_BREAK_AFTER = "line.break.after";
 
     /**
      * Specify the policy on placement of a right curly brace (<code>'}'</code>).
@@ -330,6 +339,9 @@ public class RightCurlyCheck extends AbstractCheck {
         }
         else if (shouldBeAloneOnLine(option, details, getLine(details.rcurly.getLineNo() - 1))) {
             violation = MSG_KEY_LINE_ALONE;
+        }
+        else if(isRightcurlyFollowedBySemicolonHasLineBreakAfter(option, details)) {
+            violation = MSG_KEY_LINE_BREAK_AFTER;
         }
         return violation;
     }
@@ -498,6 +510,16 @@ public class RightCurlyCheck extends AbstractCheck {
         }
         return !TokenUtil.areOnSameLine(rightCurly, previousToken);
     }
+
+      private static boolean isRightcurlyFollowedBySemicolonHasLineBreakAfter(RightCurlyOption
+                                                                              bracePolicy,
+                                                                              Details details) {
+        DetailAST tokenAfterTheNextToken = Details.getNextToken(details.nextToken);
+
+          return tokenAfterTheNextToken != null && bracePolicy == RightCurlyOption.ALONE_OR_SINGLELINE
+                  && isRightcurlyFollowedBySemicolon(details)
+                  && TokenUtil.areOnSameLine(details.rcurly, tokenAfterTheNextToken);
+      }
 
     /**
      * Structure that contains all details for validation.
