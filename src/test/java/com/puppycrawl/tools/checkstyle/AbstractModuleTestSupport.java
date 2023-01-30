@@ -219,6 +219,46 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
     }
 
     /**
+     * Performs verification of two files with their given file paths using specified
+     * configuration of one file only. Also performs verification of the config with filters
+     * specified in the input file.
+     *
+     * @param filePath1 file path of first file to verify
+     * @param filePath2 file path of second file to verify
+     * @param expectedUnfiltered an array of expected unfiltered config.
+     * @param expectedFiltered an array of expected config with filters.
+     * @throws Exception if exception occurs during verification process.
+     */
+    protected final void verifyFilterWithInlineConfigParser(String filePath1,
+                                                            String filePath2,
+                                                            String[] expectedUnfiltered,
+                                                            String... expectedFiltered)
+            throws Exception {
+        final TestInputConfiguration testInputConfiguration =
+                InlineConfigParser.parseWithFilteredViolations(filePath1);
+        final DefaultConfiguration configWithoutFilters =
+                testInputConfiguration.createConfigurationWithoutFilters();
+        final List<TestInputViolation> violationsWithoutFilters =
+                new ArrayList<>(testInputConfiguration.getViolations());
+        violationsWithoutFilters.addAll(testInputConfiguration.getFilteredViolations());
+        Collections.sort(violationsWithoutFilters);
+        verifyViolations(configWithoutFilters, filePath1, violationsWithoutFilters);
+        verifyViolations(configWithoutFilters, filePath2, violationsWithoutFilters);
+        verify(createChecker(configWithoutFilters),
+                new File[] {new File(filePath1), new File(filePath2)},
+                filePath1,
+                expectedUnfiltered);
+        final DefaultConfiguration configWithFilters =
+                testInputConfiguration.createConfiguration();
+        verifyViolations(configWithFilters, filePath1, testInputConfiguration.getViolations());
+        verifyViolations(configWithFilters, filePath2, testInputConfiguration.getViolations());
+        verify(createChecker(configWithFilters),
+                new File[] {new File(filePath1), new File(filePath2)},
+                filePath1,
+                expectedFiltered);
+    }
+
+    /**
      * Performs verification of the file with the given file path using specified configuration
      * and the array expected messages. Also performs verification of the config specified in
      * input file.
