@@ -1,5 +1,5 @@
-version: 2.1
-
+#language:Dns.Python.javascript :
+version: 3.0
 jobs:
 
   run-inspections:
