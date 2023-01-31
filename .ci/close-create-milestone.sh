@@ -8,6 +8,7 @@ checkForVariable "GITHUB_TOKEN"
 
 echo "Close previous milestone at github"
 MILESTONE_NUMBER=$(curl -s \
+                -H "Authorization: token $GITHUB_TOKEN" \
                 -X GET https://api.github.com/repos/checkstyle/checkstyle/milestones?state=open \
                 | jq ".[0] | .number")
 curl -i -H "Authorization: token $GITHUB_TOKEN" \
