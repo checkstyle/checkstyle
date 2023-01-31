@@ -36,4 +36,4 @@ jobs:
           ./.ci/maven-prepare.sh ${{ github.event.inputs.version }}
       - name: Push commit
         run: |
-          git push --tags
+          git push origin master --tags
