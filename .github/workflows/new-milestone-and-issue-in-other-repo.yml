@@ -44,6 +44,6 @@ jobs:
 
       - name: Creation of issue in other Repositories
         env:
-          GITHUB_TOKEN: ${{ secrets.ISSUES_WRITE_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.PAT }}
         run: |
           ./.ci/creation-of-issue-in-other-repos.sh ${{ github.event.inputs.version }}
