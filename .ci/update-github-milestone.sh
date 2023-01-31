@@ -17,6 +17,7 @@ echo TARGET_VERSION="$TARGET_VERSION"
 
 echo "Updating milestone at github"
 MILESTONE_ID=$(curl -s \
+                -H "Authorization: token $GITHUB_TOKEN" \
                 -X GET https://api.github.com/repos/checkstyle/checkstyle/milestones?state=open \
                 | jq ".[0] | .number")
 
