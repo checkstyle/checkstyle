@@ -22,8 +22,8 @@ package com.puppycrawl.tools.checkstyle.filters;
 import java.util.Collections;
 import java.util.Set;
 
+import com.puppycrawl.tools.checkstyle.api.AbstractAutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
-import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.ExternalResourceHolder;
 import com.puppycrawl.tools.checkstyle.api.Filter;
@@ -219,7 +219,9 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  *
  * @since 3.2
  */
-public class SuppressionFilter extends AutomaticBean implements Filter, ExternalResourceHolder {
+public class SuppressionFilter
+        extends AbstractAutomaticBean
+        implements Filter, ExternalResourceHolder {
 
     /** Specify the location of the <em>suppressions XML document</em> file. */
     private String file;

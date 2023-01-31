@@ -35,9 +35,9 @@ import java.util.ResourceBundle;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
+import com.puppycrawl.tools.checkstyle.api.AbstractAutomaticBean.OutputStreamOptions;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
-import com.puppycrawl.tools.checkstyle.api.AutomaticBean.OutputStreamOptions;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import com.puppycrawl.tools.checkstyle.api.Violation;
 
@@ -54,7 +54,8 @@ public class DefaultLoggerTest {
     public void testCtor() {
         final OutputStream infoStream = new ByteArrayOutputStream();
         final ByteArrayOutputStream errorStream = new ByteArrayOutputStream();
-        final DefaultLogger dl = new DefaultLogger(infoStream, OutputStreamOptions.CLOSE,
+        final DefaultLogger dl = new DefaultLogger(infoStream,
+                OutputStreamOptions.CLOSE,
                 errorStream, OutputStreamOptions.CLOSE);
         dl.addException(new AuditEvent(5000, "myfile"), new IllegalStateException("upsss"));
         dl.auditFinished(new AuditEvent(6000, "myfile"));
@@ -72,7 +73,8 @@ public class DefaultLoggerTest {
     @Test
     public void testCtorWithTwoParameters() {
         final OutputStream infoStream = new ByteArrayOutputStream();
-        final DefaultLogger dl = new DefaultLogger(infoStream, OutputStreamOptions.CLOSE);
+        final DefaultLogger dl = new DefaultLogger(infoStream,
+                AutomaticBean.OutputStreamOptions.CLOSE);
         dl.addException(new AuditEvent(5000, "myfile"), new IllegalStateException("upsss"));
         dl.auditFinished(new AuditEvent(6000, "myfile"));
         final String output = infoStream.toString();
@@ -82,9 +84,32 @@ public class DefaultLoggerTest {
     }
 
     @Test
+    public void testCtorWithTwoParametersCloseStreamOptions() {
+        final OutputStream infoStream = new ByteArrayOutputStream();
+        final DefaultLogger dl = new DefaultLogger(infoStream,
+                AutomaticBean.OutputStreamOptions.CLOSE);
+
+        assertWithMessage("closeInfo should be true")
+                .that(dl.getCloseInfo())
+                .isTrue();
+    }
+
+    @Test
+    public void testCtorWithTwoParametersNoneStreamOptions() {
+        final OutputStream infoStream = new ByteArrayOutputStream();
+        final DefaultLogger dl = new DefaultLogger(infoStream,
+                AutomaticBean.OutputStreamOptions.NONE);
+
+        assertWithMessage("closeInfo should be false")
+                .that(dl.getCloseInfo())
+                .isFalse();
+    }
+
+    @Test
     public void testCtorWithNullParameter() {
         final OutputStream infoStream = new ByteArrayOutputStream();
-        final DefaultLogger dl = new DefaultLogger(infoStream, OutputStreamOptions.CLOSE);
+        final DefaultLogger dl = new DefaultLogger(infoStream,
+                AutomaticBean.OutputStreamOptions.CLOSE);
         dl.addException(new AuditEvent(5000), new IllegalStateException("upsss"));
         dl.auditFinished(new AuditEvent(6000));
         final String output = infoStream.toString();
@@ -109,7 +134,7 @@ public class DefaultLoggerTest {
     public void testNullInfoStreamOptions() {
         final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         final IllegalArgumentException ex = assertThrows(IllegalArgumentException.class,
-                () -> new DefaultLogger(outputStream, null),
+                () -> new DefaultLogger(outputStream, (OutputStreamOptions) null),
                 "IllegalArgumentException expected");
         assertWithMessage("Invalid error message")
                 .that(ex)
@@ -144,8 +169,8 @@ public class DefaultLoggerTest {
         final String auditStartMessage = getAuditStartMessage();
         final String auditFinishMessage = getAuditFinishMessage();
         final DefaultLogger dl = new DefaultLogger(infoStream,
-                AutomaticBean.OutputStreamOptions.CLOSE, errorStream,
-                AutomaticBean.OutputStreamOptions.CLOSE);
+                OutputStreamOptions.CLOSE, errorStream,
+                OutputStreamOptions.CLOSE);
         dl.finishLocalSetup();
         dl.auditStarted(null);
         dl.addError(new AuditEvent(this, "fileName", new Violation(1, 2, "bundle", "key",
@@ -169,7 +194,8 @@ public class DefaultLoggerTest {
         final OutputStream errorStream = new ByteArrayOutputStream();
         final String auditFinishMessage = getAuditFinishMessage();
         final String auditStartMessage = getAuditStartMessage();
-        final DefaultLogger dl = new DefaultLogger(infoStream, OutputStreamOptions.CLOSE,
+        final DefaultLogger dl = new DefaultLogger(infoStream,
+                OutputStreamOptions.CLOSE,
                 errorStream, OutputStreamOptions.CLOSE);
         dl.finishLocalSetup();
         dl.auditStarted(null);
@@ -193,8 +219,8 @@ public class DefaultLoggerTest {
         final OutputStream infoStream = new ByteArrayOutputStream();
         final OutputStream errorStream = new ByteArrayOutputStream();
         final DefaultLogger defaultLogger = new DefaultLogger(
-            infoStream, AutomaticBean.OutputStreamOptions.CLOSE,
-            errorStream, AutomaticBean.OutputStreamOptions.CLOSE);
+            infoStream, OutputStreamOptions.CLOSE,
+            errorStream, OutputStreamOptions.CLOSE);
         defaultLogger.finishLocalSetup();
         defaultLogger.auditStarted(null);
         final Violation ignorableViolation = new Violation(1, 2, "bundle", "key",
@@ -211,7 +237,7 @@ public class DefaultLoggerTest {
     public void testFinishLocalSetup() {
         final OutputStream infoStream = new ByteArrayOutputStream();
         final DefaultLogger dl = new DefaultLogger(infoStream,
-                AutomaticBean.OutputStreamOptions.CLOSE);
+                OutputStreamOptions.CLOSE);
         dl.finishLocalSetup();
         dl.auditStarted(null);
         dl.auditFinished(null);

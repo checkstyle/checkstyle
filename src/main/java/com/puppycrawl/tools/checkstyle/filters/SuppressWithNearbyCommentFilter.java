@@ -32,7 +32,7 @@ import com.puppycrawl.tools.checkstyle.PropertyType;
 import com.puppycrawl.tools.checkstyle.TreeWalkerAuditEvent;
 import com.puppycrawl.tools.checkstyle.TreeWalkerFilter;
 import com.puppycrawl.tools.checkstyle.XdocsPropertyType;
-import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
+import com.puppycrawl.tools.checkstyle.api.AbstractAutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
@@ -260,7 +260,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * @since 5.0
  */
 public class SuppressWithNearbyCommentFilter
-    extends AutomaticBean
+    extends AbstractAutomaticBean
     implements TreeWalkerFilter {
 
     /** Format to turn checkstyle reporting off. */

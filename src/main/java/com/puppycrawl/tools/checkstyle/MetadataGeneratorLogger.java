@@ -25,15 +25,15 @@ import java.io.PrintWriter;
 import java.io.Writer;
 import java.nio.charset.StandardCharsets;
 
+import com.puppycrawl.tools.checkstyle.api.AbstractAutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
-import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 
 /**
  * Simple logger for metadata generator util.
  */
-public class MetadataGeneratorLogger extends AutomaticBean implements AuditListener {
+public class MetadataGeneratorLogger extends AbstractAutomaticBean implements AuditListener {
 
     /**
      * Where to write error messages.

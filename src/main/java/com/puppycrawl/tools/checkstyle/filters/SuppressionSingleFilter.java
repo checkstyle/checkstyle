@@ -21,8 +21,8 @@ package com.puppycrawl.tools.checkstyle.filters;
 
 import java.util.regex.Pattern;
 
+import com.puppycrawl.tools.checkstyle.api.AbstractAutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
-import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.Filter;
 
 /**
@@ -196,7 +196,7 @@ import com.puppycrawl.tools.checkstyle.api.Filter;
  *
  * @since 8.23
  */
-public class SuppressionSingleFilter extends AutomaticBean implements Filter {
+public class SuppressionSingleFilter extends AbstractAutomaticBean implements Filter {
 
     /**
      * SuppressFilterElement instance.
