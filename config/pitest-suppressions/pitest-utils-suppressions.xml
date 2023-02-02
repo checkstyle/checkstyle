@@ -454,24 +454,6 @@
     <sourceFile>CheckUtil.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.utils.CheckUtil</mutatedClass>
     <mutatedMethod>parseDouble</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_1</mutator>
-    <description>RemoveSwitch 1 (case value 138)</description>
-    <lineContent>switch (type) {</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>CheckUtil.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.utils.CheckUtil</mutatedClass>
-    <mutatedMethod>parseDouble</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_2</mutator>
-    <description>RemoveSwitch 2 (case value 139)</description>
-    <lineContent>switch (type) {</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>CheckUtil.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.utils.CheckUtil</mutatedClass>
-    <mutatedMethod>parseDouble</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
     <description>replaced call to java/lang/String::substring with receiver</description>
     <lineContent>txt = txt.substring(1);</lineContent>
