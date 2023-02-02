@@ -16,7 +16,7 @@ fi
 checkForVariable "SF_USER"
 
 echo "Creating shell for $SF_USER@shell.sourceforge.net"
-ssh -i ~/.ssh/private_sourceforge_key -t "$SF_USER"@shell.sourceforge.net create
+ssh -i ~/.ssh/private_sourceforge_key "$SF_USER"@shell.sourceforge.net create
 
 echo "Creating .ci-temp if it does not exist"
 mkdir -p .ci-temp
@@ -35,10 +35,10 @@ tar cfz checkstyle.github.io.tar.gz checkstyle.github.io
 
 echo "Uploading to sourceforge"
 scp -i ~/.ssh/private_sourceforge_key checkstyle.github.io.tar.gz \
-  "$SF_USER"@shell.sourceforge.net:/home/project-web/checkstyle
+  "$SF_USER"@web.sourceforge.net:/home/project-web/checkstyle
 
 echo "Using shell for $SF_USER@shell.sourceforge.net"
-ssh -i ~/.ssh/private_sourceforge_key -t "$SF_USER"@shell.sourceforge.net << 'EOF'
+ssh -i ~/.ssh/private_sourceforge_key "$SF_USER"@shell.sourceforge.net << 'EOF'
 
 cd /home/project-web/checkstyle
 
