@@ -81,31 +81,6 @@
     </properties>
   </rule>
 
-  <rule ref="category/java/design.xml/ExcessiveMethodLength">
-    <properties>
-      <!-- GeneratedJavaTokenTypesTest.testTokenNumbering' is simple but long as it rechecks
-             each token one by one. Same goes for GeneratedJavadocTokenTypesTest#testTokenNumbers.
-           ParenPadCheckTest.testNospaceWithComplexInput is intended to keep all in one method.
-           JavadocTokenTypesTest.TokenValues contains several asserts as it checks each
-             token explicitly.
-          MainTest.testGenerateXpathSuppressionOptionOne requires a very long 'expected' string
-      -->
-      <property name="violationSuppressXPath"
-               value="//ClassOrInterfaceDeclaration[@SimpleName='GeneratedJavaTokenTypesTest']
-                        //MethodDeclaration[@Name='testTokenNumbering']
-                    | //ClassOrInterfaceDeclaration[@SimpleName='ParenPadCheckTest']
-                        //MethodDeclaration[@Name='testNospaceWithComplexInput']
-                    | //ClassOrInterfaceDeclaration[@SimpleName='ParenPadTest']
-                        //MethodDeclaration[@Name='testMethodParen']
-                    | //ClassOrInterfaceDeclaration[@SimpleName='JavadocTokenTypesTest']
-                        //MethodDeclaration[@Name='testTokenValues']
-                    | //ClassOrInterfaceDeclaration[@SimpleName='GeneratedJavadocTokenTypesTest']
-                        //MethodDeclaration[@Name='testTokenNumbers']
-                    | //ClassOrInterfaceDeclaration[@SimpleName='MainTest']
-                        //MethodDeclaration[@Name='testGenerateXpathSuppressionOptionOne']"/>
-    </properties>
-  </rule>
-
   <rule ref="category/java/bestpractices.xml/JUnitTestsShouldIncludeAssert">
     <!-- PMD cannot find assert if it is located in private method of this class called from
            the test method or method of another class. -->
@@ -120,7 +95,9 @@
            In XdocsPagesTest PMD does not find asserts in lambdas.
            All test classes which starts with XpathRegression have asserts inside parent's method.
            In ArchUnitTest, ArchUnitSuperClassTest, ImmutabilityTest, ArchUnitCyclesCheckTest
-           assertion calls are not required as they are called by the library -->
+           assertion calls are not required as they are called by the library.
+           In MainTest PMD does not find asserts in lambdas called in the method
+             invokeAndWait. -->
       <property name="violationSuppressXPath"
                value="//ClassOrInterfaceDeclaration[@SimpleName='AllChecksTest'
                      or @SimpleName='AstRegressionTest'
@@ -142,7 +119,9 @@
                    | //ClassOrInterfaceDeclaration[@SimpleName='ArchUnitCyclesCheckTest']
                        //MethodDeclaration
                    | //ClassOrInterfaceDeclaration[@SimpleName='SuppressionFilterTest']
-                       //MethodDeclaration[starts-with(@Name, 'testUseCache')]"/>
+                       //MethodDeclaration[starts-with(@Name, 'testUseCache')]
+                   | //ClassOrInterfaceDeclaration[@SimpleName='MainTest']
+                       //MethodDeclaration[starts-with(@Name, 'testMain')]"/>
     </properties>
   </rule>
 
@@ -212,6 +191,11 @@
                      //MethodDeclaration[@Name='verifyOutput']
                  | //ClassOrInterfaceDeclaration[@SimpleName='CommonUtilTest']
                      //MethodDeclaration[@Name='testClose']"/>
+    </properties>
+  </rule>
+  <rule ref="category/java/errorprone.xml/TestClassWithoutTestCases">
+    <properties>
+      <property name="testClassPattern" value="^[^$]*Test(s|Case)?$"/>
     </properties>
   </rule>
   <rule ref="category/java/multithreading.xml/DoNotUseThreads">
