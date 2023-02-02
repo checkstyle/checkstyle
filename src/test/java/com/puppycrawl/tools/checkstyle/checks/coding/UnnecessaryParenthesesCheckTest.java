@@ -277,4 +277,49 @@ public class UnnecessaryParenthesesCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
                 getPath("InputUnnecessaryParenthesesIdentifier.java"), expected);
     }
+
+    @Test
+    public void testOperator1() throws Exception {
+        final String[] expected = {
+            "20:17: " + getCheckMessage(MSG_EXPR),
+            "22:17: " + getCheckMessage(MSG_EXPR),
+            "24:17: " + getCheckMessage(MSG_EXPR),
+            "26:17: " + getCheckMessage(MSG_EXPR),
+            "28:17: " + getCheckMessage(MSG_EXPR),
+            "30:17: " + getCheckMessage(MSG_EXPR),
+            "32:17: " + getCheckMessage(MSG_EXPR),
+            "34:17: " + getCheckMessage(MSG_EXPR),
+            "36:17: " + getCheckMessage(MSG_EXPR),
+            "38:17: " + getCheckMessage(MSG_EXPR),
+            "40:17: " + getCheckMessage(MSG_EXPR),
+            "42:17: " + getCheckMessage(MSG_EXPR),
+            "47:14: " + getCheckMessage(MSG_EXPR),
+            "48:18: " + getCheckMessage(MSG_EXPR),
+            "50:14: " + getCheckMessage(MSG_EXPR),
+            "51:18: " + getCheckMessage(MSG_EXPR),
+            "53:14: " + getCheckMessage(MSG_EXPR),
+            "54:18: " + getCheckMessage(MSG_EXPR),
+            "56:14: " + getCheckMessage(MSG_EXPR),
+            "57:18: " + getCheckMessage(MSG_EXPR),
+            "59:14: " + getCheckMessage(MSG_EXPR),
+            "60:18: " + getCheckMessage(MSG_EXPR),
+            "62:14: " + getCheckMessage(MSG_EXPR),
+            "63:18: " + getCheckMessage(MSG_EXPR),
+            "65:14: " + getCheckMessage(MSG_EXPR),
+            "66:18: " + getCheckMessage(MSG_EXPR),
+            "68:14: " + getCheckMessage(MSG_EXPR),
+            "69:18: " + getCheckMessage(MSG_EXPR),
+            "71:14: " + getCheckMessage(MSG_EXPR),
+            "72:18: " + getCheckMessage(MSG_EXPR),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputUnnecessaryParenthesesOperator.java"), expected);
+    }
+
+    @Test
+    public void testOperator2() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputUnnecessaryParenthesesOperator2.java"), expected);
+    }
 }

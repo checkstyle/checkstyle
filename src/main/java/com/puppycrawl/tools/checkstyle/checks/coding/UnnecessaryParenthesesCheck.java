@@ -176,7 +176,13 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#POST_INC">
  * POST_INC</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#POST_DEC">
- * POST_DEC</a>.
+ * POST_DEC</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BXOR">
+ * BXOR</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BOR">
+ * BOR</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BAND">
+ * BAND</a>.
  * </li>
  * </ul>
  * <p>
@@ -351,6 +357,9 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
         TokenTypes.LE,
         TokenTypes.EQUAL,
         TokenTypes.NOT_EQUAL,
+        TokenTypes.BXOR,
+        TokenTypes.BOR,
+        TokenTypes.BAND,
     };
 
     /** Token types for unary and postfix operators. */
@@ -417,6 +426,9 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
             TokenTypes.BNOT,
             TokenTypes.POST_INC,
             TokenTypes.POST_DEC,
+            TokenTypes.BXOR,
+            TokenTypes.BOR,
+            TokenTypes.BAND,
         };
     }
 
@@ -464,6 +476,9 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
             TokenTypes.BNOT,
             TokenTypes.POST_INC,
             TokenTypes.POST_DEC,
+            TokenTypes.BXOR,
+            TokenTypes.BOR,
+            TokenTypes.BAND,
         };
     }
 
@@ -612,6 +627,13 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
         final boolean isConditional = TokenUtil.isOfType(type, CONDITIONALS_AND_RELATIONAL);
         boolean result = TokenUtil.isOfType(parentType, CONDITIONALS_AND_RELATIONAL);
         if (isConditional) {
+            if (parentType == TokenTypes.BAND || parentType == TokenTypes.BXOR
+                    || parentType == TokenTypes.BOR) {
+                result = ast.getPreviousSibling()
+                        .getPreviousSibling() != null
+                    && ast.getPreviousSibling().getPreviousSibling().getType()
+                        == TokenTypes.LPAREN;
+            }
             if (type == TokenTypes.LOR) {
                 result = result && !TokenUtil.isOfType(parentType, TokenTypes.LAND);
             }
