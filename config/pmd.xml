@@ -163,8 +163,6 @@
     <!-- That rule is not practical, no options to allow some magic numbers,
          we will use our implementation. -->
     <exclude name="AvoidLiteralsInIfCondition"/>
-    <!-- It is not our goal for now to keep all Serializable, maybe in the future. -->
-    <exclude name="BeanMembersShouldSerialize"/>
     <!-- We need compare by ref as Tree structure is immutable, we can easily
          rely on refs. -->
     <exclude name="CompareObjectsWithEquals"/>

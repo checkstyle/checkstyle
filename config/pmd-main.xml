@@ -13,16 +13,13 @@
 
   <rule ref="category/java/design.xml/ImmutableField">
     <properties>
-      <!-- Fields with these annotations will have their value injected by picocli.
-           These fields should not be marked final. -->
-      <property name="ignoredAnnotations"
-               value="picocli.CommandLine$Option
-                     |picocli.CommandLine$Parameters"/>
       <!-- final modifier prevent us from reaching full test coverage,
-             we value full coverage more than final modifier. -->
+             we value full coverage more than final modifier.
+           Picocli fields will have their value injected and should not be marked final. -->
       <property name="violationSuppressXPath"
                value="//ClassOrInterfaceDeclaration[@SimpleName='FileText']
-                        //FieldDeclaration//VariableDeclarator[@Name='fullText']"/>
+                        //FieldDeclaration//VariableDeclarator[@Name='fullText']
+                    | //ClassOrInterfaceDeclaration[@SimpleName='CliOptions']"/>
     </properties>
   </rule>
   <rule ref="category/java/errorprone.xml/CloseResource">
@@ -44,14 +41,6 @@
                         //MethodDeclaration[@Name='getListeners' or @Name='createDefaultLogger']
                     | //ClassOrInterfaceDeclaration[@SimpleName='AbstractNode']
                         //MethodDeclaration[@Name='iterateAxis']"/>
-    </properties>
-  </rule>
-  <rule ref="category/java/design.xml/ExcessiveMethodLength">
-    <properties>
-      <!-- unfortunate cases -->
-      <property name="violationSuppressXPath"
-               value="//ClassOrInterfaceDeclaration[@SimpleName='PackageObjectFactory']
-                        //MethodDeclaration[@Name='fillChecksFromCodingPackage']"/>
     </properties>
   </rule>
 </ruleset>
