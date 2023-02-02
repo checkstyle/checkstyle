@@ -27,7 +27,9 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 
 /**
  * <p>
- * Checks that the block tag is followed by description.
+ * Checks that the description is provided for corresponding method's or constructor's
+ * Parameters and Tags ( throws, deprecated, return, etc ),
+ * The description must be provided in javadoc comment.
  * </p>
  * <ul>
  * <li>
@@ -67,16 +69,19 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * <pre>
  * class Test
  * {
+ * // OK for parameter "a" because it's description is provided.
+ * // Violation for parameter "ans" and "deprecated" and "throws" tags,
+ * // because their description is not provided.
  * &#47;**
- * * Violation for param "b" and at tags "deprecated", "throws".
- * * &#64;param a Some javadoc // OK
- * * &#64;param b
+ * * &#64;param a Multiplying a with 10.
+ * * &#64;param ans
  * * &#64;deprecated
  * * &#64;throws Exception
  * *&#47;
- * public int method(String a, int b) throws Exception
+ * public int method(int a, int ans) throws Exception
  * {
- * return 1;
+ * ans = a * 10;
+ * return ans;
  * }
  * }
  * </pre>
@@ -94,16 +99,19 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * <pre>
  * class Test
  * {
+ * // OK for parameter "a" because it's description is provided.
+ * // Violation for parameter "ans" because it's description is not provided.
+ * // "deprecated" and "throws" tags are ignored.
  * &#47;**
- * * Violation for param "b". Tags "deprecated", "throws" are ignored.
- * * &#64;param a Some javadoc // OK
- * * &#64;param b
+ * * &#64;param a Multiplying a with 10.
+ * * &#64;param ans
  * * &#64;deprecated
  * * &#64;throws Exception
  * *&#47;
- * public int method(String a, int b) throws Exception
+ * public int method(int a, int ans) throws Exception
  * {
- * return 1;
+ * ans = a * 10;
+ * return ans;
  * }
  * }
  * </pre>

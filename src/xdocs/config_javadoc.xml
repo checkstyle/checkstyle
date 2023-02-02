@@ -3064,7 +3064,9 @@ class Class3 {}
       <p>Since Checkstyle 6.0</p>
       <subsection name="Description" id="NonEmptyAtclauseDescription_Description">
         <p>
-          Checks that the block tag is followed by description.
+          Checks that the description is provided for corresponding method's or constructor's
+          Parameters and Tags ( throws, deprecated, return, etc ),
+          The description must be provided in javadoc comment.
         </p>
       </subsection>
 
@@ -3138,16 +3140,19 @@ class Class3 {}
         <source>
 class Test
 {
+  // OK for parameter "a" because it's description is provided.
+  // Violation for parameter "ans" and "deprecated" and "throws" tags,
+  // because their description is not provided.
   /**
-  * Violation for param "b" and at tags "deprecated", "throws".
-  * <code>@param</code> a Some javadoc // OK
-  * <code>@param</code> b
+  * <code>@param</code> a Multiplying a with 10.
+  * <code>@param</code> ans
   * <code>@deprecated</code>
   * <code>@throws</code> Exception
   */
-  public int method(String a, int b) throws Exception
+  public int method(int a, int ans) throws Exception
   {
-    return 1;
+    ans = a * 10;
+    return ans;
   }
 }
         </source>
@@ -3166,16 +3171,19 @@ class Test
         <source>
 class Test
 {
+  // OK for parameter "a" because it's description is provided.
+  // Violation for parameter "ans" because it's description is not provided.
+  // "deprecated" and "throws" tags are ignored.
   /**
-  * Violation for param "b". Tags "deprecated", "throws" are ignored.
-  * <code>@param</code> a Some javadoc // OK
-  * <code>@param</code> b
+  * <code>@param</code> a Multiplying a with 10.
+  * <code>@param</code> ans
   * <code>@deprecated</code>
   * <code>@throws</code> Exception
   */
-  public int method(String a, int b) throws Exception
+  public int method(int a, int ans) throws Exception
   {
-    return 1;
+    ans = a * 10;
+    return ans;
   }
 }
         </source>
