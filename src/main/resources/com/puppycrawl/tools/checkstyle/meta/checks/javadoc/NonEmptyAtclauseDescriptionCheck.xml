@@ -5,7 +5,9 @@
               name="NonEmptyAtclauseDescription"
               parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
- Checks that the block tag is followed by description.
+ Checks that the description is provided for corresponding method's or constructor's
+ Parameters and Tags ( throws, deprecated, return, etc ),
+ The description must be provided in javadoc comment.
  &lt;/p&gt;</description>
          <properties>
             <property default-value="false"
