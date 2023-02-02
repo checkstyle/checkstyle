@@ -102,7 +102,7 @@ public class XdocsUrlTest {
     public void testXdocsUrl() throws Exception {
         final SAXParserFactory parserFactory = SAXParserFactory.newInstance();
         final SAXParser parser = parserFactory.newSAXParser();
-        final CheckTest checkHandler = new CheckTest();
+        final DummyHandler checkHandler = new DummyHandler();
         try (InputStream input = Files.newInputStream(AVAILABLE_CHECKS_PATH)) {
             parser.parse(input, checkHandler);
         }
@@ -147,7 +147,7 @@ public class XdocsUrlTest {
         }
     }
 
-    public static final class CheckTest extends DefaultHandler {
+    public static final class DummyHandler extends DefaultHandler {
 
         private static final String SPLIT_CHECK_NAME_IN_ATTRIBUTE = "#";
 
