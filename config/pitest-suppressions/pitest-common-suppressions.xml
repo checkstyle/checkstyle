@@ -406,15 +406,6 @@
   </mutation>
 
   <mutation unstable="false">
-    <sourceFile>SarifLogger.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.SarifLogger</mutatedClass>
-    <mutatedMethod>renderSeverityLevel</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_3</mutator>
-    <description>RemoveSwitch 3 (case value 4)</description>
-    <lineContent>switch (severityLevel) {</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
     <sourceFile>XMLLogger.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.XMLLogger</mutatedClass>
     <mutatedMethod>auditStarted</mutatedMethod>

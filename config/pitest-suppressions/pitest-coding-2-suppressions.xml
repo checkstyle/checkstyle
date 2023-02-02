@@ -1,24 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suppressedMutations>
   <mutation unstable="false">
-    <sourceFile>ExplicitInitializationCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.ExplicitInitializationCheck</mutatedClass>
-    <mutatedMethod>isZero</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_1</mutator>
-    <description>RemoveSwitch 1 (case value 138)</description>
-    <lineContent>switch (type) {</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>ExplicitInitializationCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.ExplicitInitializationCheck</mutatedClass>
-    <mutatedMethod>isZero</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_2</mutator>
-    <description>RemoveSwitch 2 (case value 139)</description>
-    <lineContent>switch (type) {</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
     <sourceFile>FallThroughCheck.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck</mutatedClass>
     <mutatedMethod>checkTry</mutatedMethod>
