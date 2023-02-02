@@ -33,6 +33,7 @@ blocks:
 
         - name: codenarc analysis
           commands:
+            - rm -rf $HOME/.m2
             - ./.ci/codenarc.sh
 
         - name: ensure that all modules are used in no exception configs
