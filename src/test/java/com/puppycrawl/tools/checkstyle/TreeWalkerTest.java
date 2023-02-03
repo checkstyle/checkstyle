@@ -521,6 +521,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
 
         final String[] expected = {
             "6:9: " + getCheckMessage(WhitespaceAfterCheck.class, "ws.notFollowed", "if"),
+            "6:9: " + getCheckMessage(WhitespaceAroundCheck.class, "ws.notFollowed", "if"),
         };
 
         verify(treeWalkerConfig,
