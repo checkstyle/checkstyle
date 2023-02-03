@@ -21,7 +21,7 @@ init-m2-repo)
         xmlstarlet ed --inplace -d "//mirrors" "$MVN_SETTINGS"
       fi
     fi
-    if [[ $USE_MAVEN_REPO == 'true' && ! -d "~/.m2" ]]; then
+    if [[ $USE_MAVEN_REPO == 'true' && ! -d "$HOME/.m2" ]]; then
      echo "Maven local repo cache is not found, initializing it ..."
      mvn -e --no-transfer-progress -B install -Pno-validations;
      mvn -e --no-transfer-progress clean;
