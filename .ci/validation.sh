@@ -42,7 +42,7 @@ check-missing-pitests)
 
   list=($(cat pom.xml | \
     xmlstarlet sel --ps -N pom="http://maven.apache.org/POM/4.0.0" \
-    -t -v '//pom:profile[./pom:id[contains(text(),'pitest')]]//pom:targetClasses/pom:param'))
+    -t -v '//pom:profile[./pom:id[contains(text(),'"'pitest'"')]]//pom:targetClasses/pom:param'))
 
   #  Temporary skip for Metadata generator related files for
   #  https://github.com/checkstyle/checkstyle/issues/8761
