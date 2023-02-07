@@ -32,7 +32,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 /**
  * <p>
  * Checks the placement of right curly braces ({@code '}'}) for code blocks. This check supports
- * if-else, try-catch-finally blocks, while-loops, for-loops,
+ * if-else, try-catch-finally blocks, switch statements and expressions, while-loops, for-loops,
  * method definitions, class definitions, constructor definitions,
  * instance, static initialization blocks, annotation definitions and enum definitions.
  * For right curly brace of expression blocks of arrays, lambdas and class instances
@@ -292,6 +292,7 @@ public class RightCurlyCheck extends AbstractCheck {
             TokenTypes.INTERFACE_DEF,
             TokenTypes.RECORD_DEF,
             TokenTypes.COMPACT_CTOR_DEF,
+            TokenTypes.LITERAL_SWITCH,
         };
     }
 
@@ -559,11 +560,27 @@ public class RightCurlyCheck extends AbstractCheck {
                 case TokenTypes.LITERAL_DO:
                     details = getDetailsForDoLoops(ast);
                     break;
+                case TokenTypes.LITERAL_SWITCH:
+                    details = getDetailsForSwitch(ast);
+                    break;
                 default:
                     details = getDetailsForOthers(ast);
                     break;
             }
             return details;
+        }
+
+        /**
+         * Collect all the requirement to check violation for switch statements and expressions.
+         *
+         * @param ast Node which pointing to Token Switch case
+         * @return object containing all details to make a validation
+         */
+        private static Details getDetailsForSwitch(DetailAST ast) {
+            final DetailAST lcurly = ast.findFirstToken(TokenTypes.LCURLY);
+            final DetailAST rcurly = ast.getLastChild();
+            final DetailAST nextToken = getNextToken(ast);
+            return new Details(lcurly, rcurly, nextToken, true);
         }
 
         /**
@@ -695,6 +712,11 @@ public class RightCurlyCheck extends AbstractCheck {
             DetailAST parent = ast;
             while (next == null && parent != null) {
                 next = parent.getNextSibling();
+                if (next != null && (next.getType() == TokenTypes.SEMI
+                        || next.getType() == TokenTypes.RPAREN)
+                        && ast.getType() == TokenTypes.LITERAL_SWITCH) {
+                    next = next.getNextSibling();
+                }
                 parent = parent.getParent();
             }
             return next;
