@@ -185,36 +185,29 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * &lt;/module&gt;
  * </pre>
  * <pre>
- * public class A {
- *   &#64;Override
- *   public int foo() {
- *     return 2;
- *   }
- *
- *   public int foo2() {return 8;} // violation
- * }
- *
- * public class B {
- *   &#47;**
- *    * This implementation ...
- *      &#64;return some int value.
- *    *&#47;
- *   public int foo() {
- *     return 1;
- *   }
- *
- *   public int foo3() {return 3;} // violation
- * }
- *
- * public class FooTest {
- *   &#64;Test
- *   public void testFoo() {
- *     final B b = new A();
- *     assertEquals(2, b.foo());
- *   }
- *
- *   public int foo4() {return 4;} // violation
- * }
+
+
+public class ExampleClass {
+  
+  @Override
+  public void extendableMethod() {
+    // Implementation of the method
+    System.out.println("This method can be overridden by subclasses.");
+  }
+  
+  @Test
+  public void testMethod() {
+    // Implementation of the test method
+    System.out.println("This method is a test method and will be executed as part of a test suite.");
+  }
+  
+  public static void main(String[] args) {
+    ExampleClass obj = new ExampleClass();
+    obj.extendableMethod();
+    obj.testMethod();
+  }
+}
+
  * </pre>
  * <p>
  * To configure the check to allow methods which contain a specified comment text
@@ -226,21 +219,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *     value=&quot;This implementation&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
- * <pre>
- * public class A {
- *   /&#42;&#42;
- *   &#42; This implementation ...
- *   &#42;/
- *   public int foo() {return 2;} // ok, required javadoc phrase in comment
- *
- *   /&#42;&#42;
- *   &#42; Do not extend ...
- *   &#42;/
- *   public int foo2() {return 8;} // violation, required javadoc phrase not in comment
- *
- *   public int foo3() {return 3;} // violation, required javadoc phrase not in comment
- * }
- * </pre>
+ 
  * <p>
  * To configure the check to allow methods which contain a specified comment text
  * pattern in their javadoc which can span multiple lines
@@ -252,22 +231,8 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *     value=&quot;This[\s\S]*implementation&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
- * <pre>
- * public class A {
- *   /&#42;&#42;
- *   &#42; This
- *   &#42; implementation ...
- *   &#42;/
- *   public int foo() {return 2;} // ok, required javadoc phrase in comment
- *
- *   /&#42;&#42;
- *   &#42; Do not extend ...
- *   &#42;/
- *   public int foo2() {return 8;} // violation, required javadoc phrase not in comment
- *
- *   public int foo3() {return 3;} // violation, required javadoc phrase not in comment
- * }
- * </pre>
+ * 
+ * 
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
