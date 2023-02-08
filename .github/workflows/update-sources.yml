@@ -28,9 +28,6 @@ jobs:
         with:
           path: ~/.m2/repository
           key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
-      - name: Download xmlstarlet
-        run: |
-          sudo apt-get install xmlstarlet
       - name: Run Shell Script
         env:
           READ_ONLY_TOKEN: ${{ secrets.GITHUB_TOKEN }}

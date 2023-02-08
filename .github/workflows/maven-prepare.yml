@@ -24,9 +24,6 @@ jobs:
     steps:
       - name: Checkout the latest code
         uses: actions/checkout@v3
-      - name: Download xmlstarlet
-        run: |
-          sudo apt-get install xmlstarlet
       - name: Setup local maven cache
         uses: actions/cache@v2
         with:
