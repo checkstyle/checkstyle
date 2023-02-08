@@ -2349,6 +2349,13 @@ messages.properties: Key 'ok' missing.
   &lt;property name=&quot;fileExtensions&quot; value=&quot;properties, translations&quot;/&gt;
 &lt;/module&gt;
         </source>
+        <p>Example:</p>
+          <source>
+              public class FirstClass {} /*OK*/
+              private class SecondClass {} /*OK*/
+              class ThirdClass {} /*OK,Default translation is present*/
+              protected class FourthClass {} /*OK*/
+          </source>
         <p>
           Note, that files with the same path and base name but which have different
           extensions will be considered as files that belong to different resource bundles.
@@ -2362,6 +2369,13 @@ messages.properties: Key 'ok' missing.
   &lt;property name=&quot;baseName&quot; value=&quot;^ButtonLabels.*$&quot;/&gt;
 &lt;/module&gt;
         </source>
+        <p>Example:</p>
+          <source>
+              public class FirstClass {} /*OK*/
+              private class SecondClass {} /*OK*/
+              protected class ThirdClass {} /*OK*/
+              class FourthClass {} /*OK*/
+          </source>
 
         <p>
           To configure the check to check existence of Japanese and French translations:
@@ -2391,6 +2405,13 @@ messages_home.properties
 messages_home_es_US.properties
 messages_home_fr_CA_UNIX.properties
         </source>
+        <p>Example:</p>
+          <source>
+              public class FirstClass {} /*violation,should match pattern "^$"*/
+              private class SecondClass {} /*OK*/
+              protected class ThirdClass {} /*OK*/
+              class FourthClass {} /*OK*/
+          </source>
         <p>
           Than the check will rise the following violation:
           "0: Properties file 'messages_home_de.properties' is missing."
