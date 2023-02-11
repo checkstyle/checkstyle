@@ -359,7 +359,7 @@ public final class TreeTable extends JTable {
      * TreeTableCellEditor implementation. Component returned is the
      * JTree.
      */
-    private class TreeTableCellEditor extends BaseCellEditor implements
+    private final class TreeTableCellEditor extends BaseCellEditor implements
             TableCellEditor {
 
         @Override

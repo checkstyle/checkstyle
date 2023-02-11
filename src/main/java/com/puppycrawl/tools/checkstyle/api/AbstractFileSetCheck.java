@@ -258,7 +258,7 @@ public abstract class AbstractFileSetCheck
     /**
      * The actual context holder.
      */
-    private static class FileContext {
+    private static final class FileContext {
 
         /** The sorted set for collecting violations. */
         private final SortedSet<Violation> violations = new TreeSet<>();

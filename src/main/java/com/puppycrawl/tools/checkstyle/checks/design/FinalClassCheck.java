@@ -253,12 +253,29 @@ public class FinalClassCheck
      * @return true if given class should be declared as final otherwise false
      */
     private static boolean shouldBeDeclaredAsFinal(ClassDesc desc) {
+        final boolean privateClassDefaultCtor = isPrivateWithDefaultCtor(desc,
+                desc.getTypeDeclarationAst());
         return desc.isWithPrivateCtor()
                 && !(desc.isDeclaredAsAbstract()
                     || desc.isSuperClassOfAnonymousInnerClass())
                 && !desc.isDeclaredAsFinal()
                 && !desc.isWithNonPrivateCtor()
-                && !desc.isWithNestedSubclass();
+                && !desc.isWithNestedSubclass()
+                || privateClassDefaultCtor;
+    }
+
+    /**
+     * Check if class is private and with default constructor.
+     *
+     * @param desc description of class
+     * @param ast class
+     * @return true if class is private and with default constructor
+     */
+    private static boolean isPrivateWithDefaultCtor(ClassDesc desc, DetailAST ast) {
+        return !desc.withPrivateCtor && !desc.withNonPrivateCtor
+                && !desc.declaredAsFinal
+                && ast.getFirstChild().getFirstChild() != null && !desc.declaredAsAbstract
+                && ast.getFirstChild().getFirstChild().getType() == TokenTypes.LITERAL_PRIVATE;
     }
 
     /**

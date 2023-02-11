@@ -333,7 +333,7 @@ public class XMLLogger
     /**
      * The registered file messages.
      */
-    private static class FileMessages {
+    private static final class FileMessages {
 
         /** The file error events. */
         private final List<AuditEvent> errors = Collections.synchronizedList(new ArrayList<>());
