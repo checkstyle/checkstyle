@@ -336,7 +336,7 @@
     <dependency>
       <groupId>nl.jqno.equalsverifier</groupId>
       <artifactId>equalsverifier</artifactId>
-      <version>3.13</version>
+      <version>3.13.1</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -756,7 +756,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-deploy-plugin</artifactId>
-        <version>3.0.0</version>
+        <version>3.1.0</version>
       </plugin>
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
@@ -3000,7 +3000,7 @@
                 <param>*.Input*</param>
               </excludedTestClasses>
               <coverageThreshold>100</coverageThreshold>
-              <mutationThreshold>99</mutationThreshold>
+              <mutationThreshold>100</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
               <timeoutConstant>${pitest.plugin.timeout.constant}</timeoutConstant>
               <threads>${pitest.plugin.threads}</threads>
