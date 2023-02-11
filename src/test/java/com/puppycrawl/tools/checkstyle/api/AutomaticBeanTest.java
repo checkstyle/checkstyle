@@ -277,7 +277,7 @@ public class AutomaticBeanTest {
         }
     }
 
-    private static class ConvertUtilsBeanStub extends ConvertUtilsBean {
+    private static final class ConvertUtilsBeanStub extends ConvertUtilsBean {
 
         private int registerCount;
 

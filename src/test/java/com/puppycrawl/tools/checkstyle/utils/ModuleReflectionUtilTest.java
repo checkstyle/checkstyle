@@ -179,7 +179,7 @@ public class ModuleReflectionUtilTest {
             .isEqualTo(1);
     }
 
-    private static class ValidCheckstyleClass extends AutomaticBean {
+    private static final class ValidCheckstyleClass extends AutomaticBean {
 
         // empty, use default constructor
 
@@ -190,7 +190,7 @@ public class ModuleReflectionUtilTest {
 
     }
 
-    private static class InvalidNonAutomaticBeanClass {
+    private static final class InvalidNonAutomaticBeanClass {
 
         // empty, use default constructor
 
@@ -208,7 +208,7 @@ public class ModuleReflectionUtilTest {
 
     }
 
-    private static class CheckClass extends AbstractCheck {
+    private static final class CheckClass extends AbstractCheck {
 
         @Override
         public int[] getDefaultTokens() {
@@ -227,7 +227,7 @@ public class ModuleReflectionUtilTest {
 
     }
 
-    private static class FileSetModuleClass extends AbstractFileSetCheck {
+    private static final class FileSetModuleClass extends AbstractFileSetCheck {
 
         @Override
         protected void processFiltered(File file, FileText fileText) {
@@ -236,7 +236,7 @@ public class ModuleReflectionUtilTest {
 
     }
 
-    private static class FilterClass extends AutomaticBean implements Filter {
+    private static final class FilterClass extends AutomaticBean implements Filter {
 
         @Override
         protected void finishLocalSetup() {
@@ -250,7 +250,7 @@ public class ModuleReflectionUtilTest {
 
     }
 
-    private static class FileFilterModuleClass extends AutomaticBean
+    private static final class FileFilterModuleClass extends AutomaticBean
             implements BeforeExecutionFileFilter {
 
         @Override
@@ -265,7 +265,7 @@ public class ModuleReflectionUtilTest {
 
     }
 
-    private static class RootModuleClass extends AutomaticBean implements RootModule {
+    private static final class RootModuleClass extends AutomaticBean implements RootModule {
 
         @Override
         protected void finishLocalSetup() {
@@ -294,7 +294,8 @@ public class ModuleReflectionUtilTest {
 
     }
 
-    private static class TreeWalkerFilterClass extends AutomaticBean implements TreeWalkerFilter {
+    private static final class TreeWalkerFilterClass
+            extends AutomaticBean implements TreeWalkerFilter {
 
         @Override
         protected void finishLocalSetup() {
@@ -308,7 +309,7 @@ public class ModuleReflectionUtilTest {
 
     }
 
-    private static class AuditListenerClass extends AutomaticBean implements AuditListener {
+    private static final class AuditListenerClass extends AutomaticBean implements AuditListener {
 
         @Override
         protected void finishLocalSetup() {
@@ -347,7 +348,7 @@ public class ModuleReflectionUtilTest {
 
     }
 
-    private static class NotCheckstyleCheck {
+    private static final class NotCheckstyleCheck {
 
         // empty, use default constructor
 
