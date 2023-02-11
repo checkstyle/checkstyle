@@ -1441,12 +1441,12 @@ class Test {
   &lt;property name=&quot;packageAllowed&quot; value=&quot;true&quot;/&gt;
 &lt;/module&gt;
         </source>
-      <source>
+        <source>
         public class FirstClass {} /*OK*/
         private class SecondClass {} /*OK*/
         class ThirdClass {} /*OK*/
         protected class FourthClass {} /*OK*/
-      </source>
+        </source>
 
         <p>
           To configure the check so that it allows no public members:
@@ -1456,7 +1456,7 @@ class Test {
   &lt;property name=&quot;publicMemberPattern&quot; value=&quot;^$&quot;/&gt;
 &lt;/module&gt;
         </source>
-                <source>
+        <source>
         public class FirstClass {} /*violation,should match pattern "^$"*/
         private class SecondClass {} /*OK*/
         class ThirdClass {} /*OK*/
