@@ -2094,7 +2094,7 @@ public class Test {
             <tr>
               <td>allowedAnnotations</td>
               <td>
-                Specify annotations that allow missed documentation.
+                Specify annotations that allow tag violations.
                 Only short names are allowed, e.g. <code>Generated</code>.
               </td>
               <td><a href="property_types.html#String.5B.5D">String[]</a></td>
@@ -2144,6 +2144,33 @@ public class Test {
         <source>
 &lt;module name="JavadocType"/&gt;
         </source>
+        <p>Example:</p>
+        <source>
+/**
+ * @author a
+ * @version $Revision1$
+ */
+public class ClassA { // OK
+    /** */
+    private class ClassB {} // OK
+}
+
+/**
+ * @author
+ * @version abc
+ */
+public class ClassC {} // OK
+
+/** */
+public class ClassD&lt;T&gt; {} // violation, as param tag for &lt;T&gt; is missing
+
+/** */
+private class ClassE&lt;T&gt; {} // violation, as param tag for &lt;T&gt; is missing
+
+/** */
+@Generated
+public class ClassF&lt;T&gt; {} // OK
+        </source>
 
         <p>
           To configure the check for <code>public</code> scope:
@@ -2152,6 +2179,33 @@ public class Test {
 &lt;module name="JavadocType"&gt;
   &lt;property name="scope" value="public"/&gt;
 &lt;/module&gt;
+        </source>
+        <p>Example:</p>
+        <source>
+/**
+ * @author a
+ * @version $Revision1$
+ */
+public class ClassA { // OK
+    /** */
+    private class ClassB {} // OK
+}
+
+/**
+ * @author
+ * @version abc
+ */
+public class ClassC {} // OK
+
+/** */
+public class ClassD&lt;T&gt; {} // violation, as param tag for &lt;T&gt; is missing
+
+/** */
+private class ClassE&lt;T&gt; {} // OK
+
+/** */
+@Generated
+public class ClassF&lt;T&gt; {} // OK
         </source>
 
         <p>
@@ -2162,6 +2216,33 @@ public class Test {
   &lt;property name="authorFormat" value="\S"/&gt;
 &lt;/module&gt;
         </source>
+        <p>Example:</p>
+        <source>
+/**
+ * @author a
+ * @version $Revision1$
+ */
+public class ClassA { // OK
+    /** */
+    private class ClassB {} // OK, as author tag check is ignored for inner class
+}
+
+/**
+ * @author // To reproduce, remove this comment but keep the trailing whitespace
+ * @version abc
+ */
+public class ClassC {} // violation, as author format with only whitespace or new line is invalid
+
+/** */
+public class ClassD&lt;T&gt; {} // violations, as param and author tags are missing
+
+/** */
+private class ClassE&lt;T&gt; {} // violations, as param and author tags are missing
+
+/** */
+@Generated
+public class ClassF&lt;T&gt; {} // OK
+        </source>
 
         <p>
           To configure the check for a CVS revision version tag:
@@ -2170,6 +2251,33 @@ public class Test {
 &lt;module name="JavadocType"&gt;
   &lt;property name="versionFormat" value="\$Revision.*\$"/&gt;
 &lt;/module&gt;
+        </source>
+        <p>Example:</p>
+        <source>
+/**
+ * @author a
+ * @version $Revision1$
+ */
+public class ClassA { // OK
+    /** */
+    private class ClassB {} // OK, as version tag check is ignored for inner class
+}
+
+/**
+* @author
+* @version abc
+*/
+public class ClassC {} // violation, as version format is invalid
+
+/** */
+public class ClassD&lt;T&gt; {} // violations, as param and version tags are missing
+
+/** */
+private class ClassE&lt;T&gt; {} // violations, as param and version tags are missing
+
+/** */
+@Generated
+public class ClassF&lt;T&gt; {} // OK
         </source>
 
         <p>
@@ -2181,23 +2289,53 @@ public class Test {
   &lt;property name="excludeScope" value="package"/&gt;
 &lt;/module&gt;
         </source>
+        <p>Example:</p>
+        <source>
+/**
+ * @author a
+ * @version $Revision1$
+ */
+public class ClassA { // OK
+    /** */
+    private class ClassB {} // OK
+}
 
-        <p>
-          Example that allows missing comments for classes annotated with
+/**
+* @author
+* @version abc
+*/
+public class ClassC {} // OK
+
+/** */
+public class ClassD&lt;T&gt; {} // OK
+
+/** */
+private class ClassE&lt;T&gt; {} // violation, as param tag for &lt;T&gt; is missing
+
+/** */
+@Generated
+public class ClassF&lt;T&gt; {} // OK
+        </source>
+
+        <p>To configure a check that allows tag violations for classes annotated with
           <code>@SpringBootApplication</code> and <code>@Configuration</code>:
         </p>
-        <source>
-@SpringBootApplication // no violations about missing comment on class
-public class Application {}
-
-@Configuration // no violations about missing comment on class
-class DatabaseConfiguration {}
-        </source>
-        <p>Use following configuration:</p>
         <source>
 &lt;module name="JavadocType"&gt;
   &lt;property name="allowedAnnotations" value="SpringBootApplication,Configuration"/&gt;
 &lt;/module&gt;
+        </source>
+        <p>
+          Example:
+        </p>
+        <source>
+/** */
+@SpringBootApplication // no tag violations on class
+public class Application&lt;T&gt; {}
+
+/** */
+@Configuration // no tag violations on class
+class DatabaseConfiguration&lt;T&gt; {}
         </source>
       </subsection>
 
