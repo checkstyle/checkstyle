@@ -1425,6 +1425,13 @@ class Test {
         <source>
 &lt;module name=&quot;VisibilityModifier&quot;/&gt;
         </source>
+        <p>Example</p>
+        <source>
+        public class FirstClass {} /*OK*/
+        private class SecondClass {} /*OK*/
+        class ThirdClass {} /*OK,Default VisibilityModifier is present */
+        protected class FourthClass {} /*OK*/
+        </source>
 
         <p>
           To configure the check so that it allows package visible members:
@@ -1434,6 +1441,12 @@ class Test {
   &lt;property name=&quot;packageAllowed&quot; value=&quot;true&quot;/&gt;
 &lt;/module&gt;
         </source>
+        <source>
+        public class FirstClass {} /*OK*/
+        private class SecondClass {} /*OK*/
+        class ThirdClass {} /*OK*/
+        protected class FourthClass {} /*OK*/
+        </source>
 
         <p>
           To configure the check so that it allows no public members:
@@ -1442,6 +1455,12 @@ class Test {
 &lt;module name=&quot;VisibilityModifier&quot;&gt;
   &lt;property name=&quot;publicMemberPattern&quot; value=&quot;^$&quot;/&gt;
 &lt;/module&gt;
+        </source>
+        <source>
+        public class FirstClass {} /*violation,should match pattern "^$"*/
+        private class SecondClass {} /*OK*/
+        class ThirdClass {} /*OK*/
+        protected class FourthClass {} /*OK*/
         </source>
         <p>
           To configure the Check so that it allows public immutable fields
