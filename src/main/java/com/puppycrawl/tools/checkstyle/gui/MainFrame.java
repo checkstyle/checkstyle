@@ -212,7 +212,7 @@ public class MainFrame extends JFrame {
     /**
      * Handler for file selection action events.
      */
-    private class FileSelectionAction extends AbstractAction {
+    private final class FileSelectionAction extends AbstractAction {
 
         /** A unique serial version identifier. */
         private static final long serialVersionUID = 1762396148873280589L;
@@ -235,7 +235,7 @@ public class MainFrame extends JFrame {
     /**
      * Handler for reload action events.
      */
-    private class ReloadAction extends AbstractAction {
+    private final class ReloadAction extends AbstractAction {
 
         /** A unique serial version identifier. */
         private static final long serialVersionUID = -890320994114628011L;
@@ -250,7 +250,7 @@ public class MainFrame extends JFrame {
     /**
      * Handler for Expand and Collapse events.
      */
-    private class ExpandCollapseAction extends AbstractAction {
+    private final class ExpandCollapseAction extends AbstractAction {
 
         /** A unique serial version identifier. */
         private static final long serialVersionUID = -890320994114628011L;
@@ -265,7 +265,7 @@ public class MainFrame extends JFrame {
     /**
      * Handler for Find Node by Xpath Event.
      */
-    private class FindNodeByXpathAction extends AbstractAction {
+    private final class FindNodeByXpathAction extends AbstractAction {
 
         /** A unique serial version identifier. */
         private static final long serialVersionUID = -890320994114628011L;
@@ -280,7 +280,7 @@ public class MainFrame extends JFrame {
     /**
      * Filter for Java files.
      */
-    private static class JavaFileFilter extends FileFilter {
+    private static final class JavaFileFilter extends FileFilter {
 
         @Override
         public boolean accept(File file) {
