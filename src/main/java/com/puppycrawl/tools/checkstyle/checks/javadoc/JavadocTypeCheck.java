@@ -94,7 +94,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </li>
  * <li>
  * Property {@code allowedAnnotations} - Specify annotations that allow
- * missed documentation. Only short names are allowed, e.g. {@code Generated}.
+ * tag violations. Only short names are allowed, e.g. {@code Generated}.
  * Type is {@code java.lang.String[]}.
  * Default value is {@code Generated}.
  * </li>
@@ -122,12 +122,70 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * &lt;module name="JavadocType"/&gt;
  * </pre>
  * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * &#47;**
+ *  * &#64;author a
+ *  * &#64;version $Revision1$
+ *  *&#47;
+ * public class ClassA { // OK
+ *     &#47;** *&#47;
+ *     private class ClassB {} // OK
+ * }
+ *
+ * &#47;**
+ *  * &#64;author
+ *  * &#64;version abc
+ *  *&#47;
+ * public class ClassC {} // OK
+ *
+ * &#47;** *&#47;
+ * public class ClassD<T> {} // violation, as param tag for <T> is missing
+ *
+ * &#47;** *&#47;
+ * private class ClassE<T> {} // violation, as param tag for <T> is missing
+ *
+ * &#47;** *&#47;
+ * &#64;Generated
+ * public class ClassF<T> {} // OK
+ * </pre>
+ * <p>
  * To configure the check for {@code public} scope:
  * </p>
  * <pre>
  * &lt;module name="JavadocType"&gt;
  *   &lt;property name="scope" value="public"/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * &#47;**
+ *  * &#64;author a
+ *  * &#64;version $Revision1$
+ *  *&#47;
+ * public class ClassA { // OK
+ *     &#47;** *&#47;
+ *     private class ClassB {} // OK
+ * }
+ *
+ * &#47;**
+ *  * &#64;author
+ *  * &#64;version abc
+ *  *&#47;
+ * public class ClassC {} // OK
+ *
+ * &#47;** *&#47;
+ * public class ClassD<T> {} // violation, as param tag for <T> is missing
+ *
+ * &#47;** *&#47;
+ * private class ClassE<T> {} // OK
+ *
+ * &#47;** *&#47;
+ * &#64;Generated
+ * public class ClassF<T> {} // OK
  * </pre>
  * <p>
  * To configure the check for an {@code @author} tag:
@@ -138,12 +196,70 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * &lt;/module&gt;
  * </pre>
  * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * &#47;**
+ *  * &#64;author a
+ *  * &#64;version $Revision1$
+ *  *&#47;
+ * public class ClassA { // OK
+ *     &#47;** *&#47;
+ *     private class ClassB {} // OK, as author tag check is ignored for inner class
+ * }
+ *
+ * &#47;**
+ *  * &#64;author // To reproduce, remove this comment but keep the trailing whitespace
+ *  * &#64;version abc
+ *  *&#47;
+ * public class ClassC {} // violation, as author format with only whitespace or new line is invalid
+ *
+ * &#47;** *&#47;
+ * public class ClassD<T> {} // violations, as param tags for <T> and author are missing
+ *
+ * &#47;** *&#47;
+ * private class ClassE<T> {} // violations, as param tags for <T> and author are missing
+ *
+ * &#47;** *&#47;
+ * &#64;Generated
+ * public class ClassF<T> {} // OK
+ * </pre>
+ * <p>
  * To configure the check for a CVS revision version tag:
  * </p>
  * <pre>
  * &lt;module name="JavadocType"&gt;
  *   &lt;property name="versionFormat" value="\$Revision.*\$"/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * &#47;**
+ *  * &#64;author a
+ *  * &#64;version $Revision1$
+ *  *&#47;
+ * public class ClassA { // OK
+ *     &#47;** *&#47;
+ *     private class ClassB {} // OK, as version tag check is ignored for inner class
+ * }
+ *
+ * &#47;**
+ *  * &#64;author
+ *  * &#64;version abc
+ *  *&#47;
+ * public class ClassC {} // violation, as version format is invalid
+ *
+ * &#47;** *&#47;
+ * public class ClassD<T> {} // violations, as param tags for <T> and version are missing
+ *
+ * &#47;** *&#47;
+ * private class ClassE<T> {} // violations, as param tags for <T> and version are missing
+ *
+ * &#47;** *&#47;
+ * &#64;Generated
+ * public class ClassF<T> {} // OK
  * </pre>
  * <p>
  * To configure the check for {@code private} classes only:
@@ -155,23 +271,53 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * &lt;/module&gt;
  * </pre>
  * <p>
- * Example that allows missing comments for classes annotated with
- * {@code @SpringBootApplication} and {@code @Configuration}:
+ * Example:
  * </p>
  * <pre>
- * &#64;SpringBootApplication // no violations about missing comment on class
- * public class Application {}
+ *  * &#64;author a
+ *  * &#64;version $Revision1$
+ *  *&#47;
+ * public class ClassA { // OK
+ *     &#47;** *&#47;
+ *     private class ClassB {} // OK
+ * }
  *
- * &#64;Configuration // no violations about missing comment on class
- * class DatabaseConfiguration {}
+ * &#47;**
+ *  * &#64;author
+ *  * &#64;version abc
+ *  *&#47;
+ * public class ClassC {} // OK
+ *
+ * &#47;** *&#47;
+ * public class ClassD<T> {} // OK
+ *
+ * &#47;** *&#47;
+ * private class ClassE<T> {} // violation, as param tag for <T> is missing
+ *
+ * &#47;** *&#47;
+ * &#64;Generated
+ * public class ClassF<T> {} // OK
  * </pre>
  * <p>
- * Use following configuration:
+ * To configure a check that allows tag violations for classes annotated
+ * with {@code @SpringBootApplication} and {@code @Configuration}:
  * </p>
  * <pre>
  * &lt;module name="JavadocType"&gt;
  *   &lt;property name="allowedAnnotations" value="SpringBootApplication,Configuration"/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * &#47;** *&#47;
+ * &#64;SpringBootApplication // no tag violations on class
+ * public class Application<T> {}
+ *
+ * &#47;** *&#47;
+ * &#64;Configuration // no tag violations on class
+ * class DatabaseConfiguration<T> {}
  * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
