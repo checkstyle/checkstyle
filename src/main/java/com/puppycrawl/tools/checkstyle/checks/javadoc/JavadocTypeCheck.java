@@ -122,12 +122,40 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * &lt;module name="JavadocType"/&gt;
  * </pre>
  * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * &#47;**
+ *  * &#64;unknownTag value // violation
+ *  *&#47;
+ * public class PublicClass {}
+ *
+ * &#47;**
+ *  * &#64;unknownTag value // violation
+ *  *&#47;
+ * private class PrivateClass {}
+ * </pre>
+ * <p>
  * To configure the check for {@code public} scope:
  * </p>
  * <pre>
  * &lt;module name="JavadocType"&gt;
  *   &lt;property name="scope" value="public"/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * &#47;**
+ *  * &#64;unknownTag value // violation
+ *  *&#47;
+ * public class PublicClass {}
+ *
+ * &#47;**
+ *  * &#64;unknownTag value // OK
+ *  *&#47;
+ * private class PrivateClass {} // OK
  * </pre>
  * <p>
  * To configure the check for an {@code @author} tag:
@@ -138,12 +166,60 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * &lt;/module&gt;
  * </pre>
  * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * &#47;**
+ *  * &#64;author a // OK
+ *  *&#47;
+ * public class ClassA { // OK
+ *     &#47;**
+ *      *&#47;
+ *     private class ClassB {} // OK, since author format check is ignored for inner class
+ * }
+ *
+ * &#47;**
+ *  *&#47;
+ * public class ClassC {} // violation, author tag is missing
+ *
+ * &#47;**
+ *  * &#64;author // with tailing whitespace, without this single line comment
+ *  *&#47;
+ * public class ClassD {} // violation, author format with only whitespace or new line is invalid
+ *
+ * public class ClassE {} // OK, since it does not have JavaDoc
+ * </pre>
+ * <p>
  * To configure the check for a CVS revision version tag:
  * </p>
  * <pre>
  * &lt;module name="JavadocType"&gt;
  *   &lt;property name="versionFormat" value="\$Revision.*\$"/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * &#47;**
+ *  * &#64;version 1.0 // OK
+ *  *&#47;
+ * public class ClassA { // OK
+ *     &#47;**
+ *      *&#47;
+ *     private class ClassB {} // OK, since version format check is ignored for inner class
+ * }
+ *
+ * &#47;**
+ *  *&#47;
+ * public class ClassC {} // violation, version tag is missing
+ *
+ * &#47;**
+ *  * &#64;version abc
+ *  *&#47;
+ * public class ClassD {} // violation, version format is invalid
+ *
+ * public class ClassE {} // OK, since it does not have JavaDoc
  * </pre>
  * <p>
  * To configure the check for {@code private} classes only:
@@ -155,23 +231,53 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * &lt;/module&gt;
  * </pre>
  * <p>
- * Example that allows missing comments for classes annotated with
- * {@code @SpringBootApplication} and {@code @Configuration}:
+ * Example:
  * </p>
  * <pre>
- * &#64;SpringBootApplication // no violations about missing comment on class
- * public class Application {}
+ * &#47;**
+ *  * &#64;unknownTag value // OK
+ *  *&#47;
+ * public class PublicClass {} // OK
  *
- * &#64;Configuration // no violations about missing comment on class
- * class DatabaseConfiguration {}
+ * &#47;**
+ *  * &#64;unknownTag value // OK
+ *  *&#47;
+ * protected class ProtectedClass {} // OK
+ *
+ * &#47;**
+ *  * &#64;unknownTag value // OK
+ *  *&#47;
+ * class PackagePrivateClass {} // OK
+ *
+ * &#47;**
+ *  * &#64;unknownTag value // violation
+ *  *&#47;
+ * private class PrivateClass {}
  * </pre>
  * <p>
- * Use following configuration:
+ * To configure a check that allows tag violations for classes annotated
+ * with {@code @SpringBootApplication} and {@code @Configuration}:
  * </p>
  * <pre>
  * &lt;module name="JavadocType"&gt;
  *   &lt;property name="allowedAnnotations" value="SpringBootApplication,Configuration"/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * &#47;**
+ *  * &#64;unknownTag value // OK
+ *  *&#47;
+ * &#64;SpringBootApplication // no violations about unknown tag on class
+ * public class Application {}
+ *
+ * &#47;**
+ *  * &#64;unknownTag value // OK
+ *  *&#47;
+ * &#64;Configuration // no violations about unknown tag on class
+ * class DatabaseConfiguration {}
  * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
