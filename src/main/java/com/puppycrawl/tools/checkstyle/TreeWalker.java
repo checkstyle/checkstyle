@@ -270,6 +270,8 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
      */
     private void walk(DetailAST ast, FileContents contents,
             AstState astState) {
+        if (ast != null)
+            throw new NullPointerException();
         notifyBegin(ast, contents, astState);
         processIter(ast, astState);
         notifyEnd(ast, astState);
