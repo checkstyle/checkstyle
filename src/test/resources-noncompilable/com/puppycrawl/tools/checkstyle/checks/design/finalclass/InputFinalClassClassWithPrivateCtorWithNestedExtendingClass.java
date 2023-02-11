@@ -10,17 +10,18 @@ package com.puppycrawl.tools.checkstyle.checks.design.finalclass;
 public class InputFinalClassClassWithPrivateCtorWithNestedExtendingClass {
     class A {
         private A() {}
-        private class ExtendA extends A {}
+        private final class ExtendA extends A {}
     }
 
     class B {
         private B() {}
-        private class ExtendB extends com.puppycrawl.tools.checkstyle.checks.design.finalclass.
+        private final class ExtendB
+                extends com.puppycrawl.tools.checkstyle.checks.design.finalclass.
             InputFinalClassClassWithPrivateCtorWithNestedExtendingClass.B {}
     }
 
     class C { // violation
         private C() {}
-        private class ExtendC extends com.nonexistent.packages.C {}
+        private final class ExtendC extends com.nonexistent.packages.C {}
     }
 }
