@@ -2144,6 +2144,18 @@ public class Test {
         <source>
 &lt;module name="JavadocType"/&gt;
         </source>
+        <p>Example:</p>
+        <source>
+/**
+ * @unknownTag value // violation
+ */
+public class PublicClass {}
+
+/**
+ * @unknownTag value // violation
+ */
+private class PrivateClass {}
+        </source>
 
         <p>
           To configure the check for <code>public</code> scope:
@@ -2152,6 +2164,18 @@ public class Test {
 &lt;module name="JavadocType"&gt;
   &lt;property name="scope" value="public"/&gt;
 &lt;/module&gt;
+        </source>
+        <p>Example:</p>
+        <source>
+/**
+ * @unknownTag value // violation
+ */
+public class PublicClass {}
+
+/**
+ * @unknownTag value // OK
+ */
+private class PrivateClass {} // OK
         </source>
 
         <p>
@@ -2162,6 +2186,23 @@ public class Test {
   &lt;property name="authorFormat" value="\S"/&gt;
 &lt;/module&gt;
         </source>
+        <p>Example:</p>
+        <source>
+/**
+ * @author a // OK
+ */
+public class ClassA { // OK
+    /**
+     */
+    private class ClassB {} // OK, since author format check is ignored for inner class
+}
+
+/**
+ */
+public class ClassC {} // violation, author tag is missing
+
+public class ClassD {} // OK, since it does not have JavaDoc
+        </source>
 
         <p>
           To configure the check for a CVS revision version tag:
@@ -2170,6 +2211,28 @@ public class Test {
 &lt;module name="JavadocType"&gt;
   &lt;property name="versionFormat" value="\$Revision.*\$"/&gt;
 &lt;/module&gt;
+        </source>
+        <p>Example:</p>
+        <source>
+/**
+ * @version 1.0 // OK
+ */
+public class ClassA { // OK
+    /**
+     */
+    private class ClassB {} // OK, since version format check is ignored for inner class
+}
+
+/**
+ */
+public class ClassC {} // violation, version tag is missing
+
+/**
+ * @version abc // violation, version format is invalid
+ */
+public class ClassD {}
+
+public class ClassE {} // OK, since it does not have JavaDoc
         </source>
 
         <p>
@@ -2181,23 +2244,52 @@ public class Test {
   &lt;property name="excludeScope" value="package"/&gt;
 &lt;/module&gt;
         </source>
+        <p>Example:</p>
+        <source>
+/**
+ * @unknownTag value // OK
+ */
+public class PublicClass {} // OK
 
-        <p>
-          Example that allows missing comments for classes annotated with
+/**
+ * @unknownTag value // OK
+ */
+protected class ProtectedClass {} // OK
+
+/**
+ * @unknownTag value // OK
+ */
+class PackagePrivateClass {} // OK
+
+/**
+ * @unknownTag value // violation
+ */
+private class PrivateClass {}
+        </source>
+
+        <p>To configure a check that allows tag violations for classes annotated with
           <code>@SpringBootApplication</code> and <code>@Configuration</code>:
         </p>
-        <source>
-@SpringBootApplication // no violations about missing comment on class
-public class Application {}
-
-@Configuration // no violations about missing comment on class
-class DatabaseConfiguration {}
-        </source>
-        <p>Use following configuration:</p>
         <source>
 &lt;module name="JavadocType"&gt;
   &lt;property name="allowedAnnotations" value="SpringBootApplication,Configuration"/&gt;
 &lt;/module&gt;
+        </source>
+        <p>
+          Example:
+        </p>
+        <source>
+/**
+ * @unknownTag value // OK
+ */
+@SpringBootApplication // no violations about missing comment on class
+public class Application {}
+
+/**
+ * @unknownTag value // OK
+ */
+@Configuration // no violations about missing comment on class
+class DatabaseConfiguration {}
         </source>
       </subsection>
 
