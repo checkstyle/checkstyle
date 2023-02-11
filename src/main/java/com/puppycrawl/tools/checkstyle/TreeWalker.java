@@ -267,11 +267,13 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
      * @param ast the root AST
      * @param contents the contents of the file the AST was generated from.
      * @param astState state of AST.
+     * @throws NullPointerException test.
      */
     private void walk(DetailAST ast, FileContents contents,
             AstState astState) {
-        if (ast != null)
-            throw new NullPointerException();
+        if (ast != null) {
+            throw new NullPointerException("test");
+        }
         notifyBegin(ast, contents, astState);
         processIter(ast, astState);
         notifyEnd(ast, astState);
