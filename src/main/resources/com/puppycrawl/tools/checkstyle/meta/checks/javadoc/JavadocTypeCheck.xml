@@ -18,6 +18,9 @@
  as they should be redundant because of outer class.
  &lt;/p&gt;
  &lt;p&gt;
+ Does not perform checks for type definitions that do not have any Javadoc comments.
+ &lt;/p&gt;
+ &lt;p&gt;
  Error messages about type parameters and record components for which no param tags are present
  can be suppressed by defining property {@code allowMissingParamTags}.
  &lt;/p&gt;</description>
@@ -49,7 +52,7 @@
                        name="allowedAnnotations"
                        type="java.lang.String[]">
                <description>Specify annotations that allow
- missed documentation. Only short names are allowed, e.g. {@code Generated}.</description>
+ skipping validation at all. Only short names are allowed, e.g. {@code Generated}.</description>
             </property>
             <property default-value="INTERFACE_DEF,CLASS_DEF,ENUM_DEF,ANNOTATION_DEF,RECORD_DEF"
                        name="tokens"
