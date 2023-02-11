@@ -78,7 +78,7 @@ public class FinalClassCheckTest
     @Test
     public void testClassWithPrivateCtorAndNestedExtendingSubclass() throws Exception {
         final String[] expected = {
-            "22:5: " + getCheckMessage(MSG_KEY, "C"),
+            "23:5: " + getCheckMessage(MSG_KEY, "C"),
         };
         verifyWithInlineConfigParser(
                 getNonCompilablePath(
@@ -267,4 +267,21 @@ public class FinalClassCheckTest
                 .isTrue();
     }
 
+    @Test
+    public void testPrivateClassWithDefaultCtor() throws Exception {
+        final String[] expected = {
+            "11:5: " + getCheckMessage(MSG_KEY, "some1"),
+            "14:5: " + getCheckMessage(MSG_KEY, "some2"),
+            "19:1: " + getCheckMessage(MSG_KEY, "some"),
+            "24:5: " + getCheckMessage(MSG_KEY, "some1"),
+            "26:5: " + getCheckMessage(MSG_KEY, "some3"),
+            "31:5: " + getCheckMessage(MSG_KEY, "paperSetter"),
+            "36:5: " + getCheckMessage(MSG_KEY, "paper"),
+            "44:5: " + getCheckMessage(MSG_KEY, "Node"),
+            "51:5: " + getCheckMessage(MSG_KEY, "some1"),
+            "55:1: " + getCheckMessage(MSG_KEY, "some2"),
+        };
+        verifyWithInlineConfigParser(getPath("InputFinalClassPrivateCtor.java"),
+                                     expected);
+    }
 }

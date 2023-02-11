@@ -256,7 +256,7 @@ public class PackageNamesLoaderTest extends AbstractPathTestSupport {
      * @noinspectionreason CustomClassloader - needed to throw an exception to
      *      test a catch statement
      */
-    private static class TestIoExceptionClassLoader extends ClassLoader {
+    private static final class TestIoExceptionClassLoader extends ClassLoader {
         @Override
         public Enumeration<URL> getResources(String name) throws IOException {
             throw new IOException("test");
