@@ -258,7 +258,23 @@ public class FinalClassCheck
                     || desc.isSuperClassOfAnonymousInnerClass())
                 && !desc.isDeclaredAsFinal()
                 && !desc.isWithNonPrivateCtor()
-                && !desc.isWithNestedSubclass();
+                && !desc.isWithNestedSubclass()
+                || isPrivateWithDefaultCtor(desc, desc.getTypeDeclarationAst());
+    }
+
+    /**
+     * Check if class is private and with default constructor.
+     *
+     * @param desc description of class
+     * @param ast class
+     * @return true if class is private and with default constructor
+     */
+    private static boolean isPrivateWithDefaultCtor(ClassDesc desc, DetailAST ast) {
+        return !desc.withPrivateCtor && !desc.withNonPrivateCtor
+                && !desc.declaredAsFinal
+                && ast.getFirstChild().getFirstChild() != null
+                && !desc.declaredAsAbstract
+                && ast.getFirstChild().getFirstChild().getType() == TokenTypes.LITERAL_PRIVATE;
     }
 
     /**
