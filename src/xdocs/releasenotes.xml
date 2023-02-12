@@ -10,6 +10,112 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 10.7.1">
+      <div class="releaseDate">12.02.2023</div>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Issue #xxx: Make action to be triggered by tag with name &#39;prepare/10.3.1&#39;.
+            Author: stoyanK7
+          </li>
+          <li>
+            Issue #12647: ensure groovy script runs when pitest fails
+.
+            Author: Vyom-Yadav
+            <a href="https://github.com/stoyanK7/checkstyle/issues/12647">#12647</a>
+          </li>
+          <li>
+            Issue #12591: resolves annotation pitest suppressions.
+            Author: rnveach
+            <a href="https://github.com/stoyanK7/checkstyle/issues/12591">#12591</a>
+          </li>
+          <li>
+            Issue #12379: Checker false violation removals on other failures
+.
+            Author: Roman Ivanov
+            <a href="https://github.com/stoyanK7/checkstyle/issues/12379">#12379</a>
+          </li>
+          <li>
+            Issue #12608: Validation for next version in GitHub action
+.
+            Author: stoyanK7
+            <a href="https://github.com/stoyanK7/checkstyle/issues/12608">#12608</a>
+          </li>
+          <li>
+            Issue #12153: pitest-survival-check-xml.groovy prints nothing when there are no
+            differences
+.
+            Author: Vyom-Yadav
+            <a href="https://github.com/stoyanK7/checkstyle/issues/12153">#12153</a>
+          </li>
+          <li>
+            Issue #12613: pitest-survival-check-xml.groovy should automatically update list of
+            suppressions
+.
+            Author: Vyom-Yadav
+            <a href="https://github.com/stoyanK7/checkstyle/issues/12613">#12613</a>
+          </li>
+          <li>
+            Issue #11637: Resolve shellcheck SC2088
+.
+            Author: Kevin222004
+            <a href="https://github.com/stoyanK7/checkstyle/issues/11637">#11637</a>
+          </li>
+          <li>
+            Issue #12717: Remove admins from white list on commit validation
+.
+            Author: stoyanK7
+            <a href="https://github.com/stoyanK7/checkstyle/issues/12717">#12717</a>
+          </li>
+          <li>
+            Issue #12079: Github action &quot;Release perform&quot;
+.
+            Author: stoyanK7
+            <a href="https://github.com/stoyanK7/checkstyle/issues/12079">#12079</a>
+          </li>
+          <li>
+            Issue #12625: validate wildcards on target classes
+.
+            Author: Nick Mancuso
+            <a href="https://github.com/stoyanK7/checkstyle/issues/12625">#12625</a>
+          </li>
+          <li>
+            Issue 12705: remove .m2 for codenarc execution to make it more stable on download.
+            Author: Roman Ivanov
+          </li>
+          <li>
+            Issue #12574: Github action to copy to sourceforge does not work
+.
+            Author: stoyanK7
+            <a href="https://github.com/stoyanK7/checkstyle/issues/12574">#12574</a>
+          </li>
+          <li>
+            Issue #12571: update all release action to have &#39;Setup local maven cache&#39; step
+            to optimize download of artifacts
+.
+            Author: stoyanK7
+            <a href="https://github.com/stoyanK7/checkstyle/issues/12571">#12571</a>
+          </li>
+          <li>
+            Issue #12694: Push &#39;all&#39; jar action is not working and not failing execution
+.
+            Author: stoyanK7
+            <a href="https://github.com/stoyanK7/checkstyle/issues/12694">#12694</a>
+          </li>
+          <li>
+            Issue #12570: action &#39;R: Close/Create Milestone&#39; use PAT as finegrained secrets
+            are not available for orgs repos
+.
+            Author: stoyanK7, Roman Ivanov
+            <a href="https://github.com/stoyanK7/checkstyle/issues/12570">#12570</a>
+          </li>
+          <li>
+            Issue #12641: removes code for the design profile.
+            Author: rnveach
+            <a href="https://github.com/stoyanK7/checkstyle/issues/12641">#12641</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 10.7.0">
       <div class="releaseDate">31.01.2023</div>
       <p>Breaking backward compatibility:</p>
