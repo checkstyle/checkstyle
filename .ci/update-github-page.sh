@@ -27,13 +27,13 @@ if [ -d .ci-temp/checkstyle ]; then
   cd ../../
 else
   cd .ci-temp/
-  git clone https://github.com/checkstyle/checkstyle
+  git clone https://github.com/stoyanK7/checkstyle
   cd ../
 fi
 
 cd .ci-temp/checkstyle
 
-curl https://api.github.com/repos/checkstyle/checkstyle/releases \
+curl https://api.github.com/repos/stoyanK7/checkstyle/releases \
  -H "Authorization: token $GITHUB_TOKEN" \
  -o /var/tmp/cs-releases.json
 
@@ -88,7 +88,7 @@ cat body.json
 
 echo "Updating Github tag page"
 curl \
-  -X PATCH https://api.github.com/repos/checkstyle/checkstyle/releases/"$RELEASE_ID" \
+  -X PATCH https://api.github.com/repos/stoyanK7/checkstyle/releases/"$RELEASE_ID" \
   -H "Accept: application/vnd.github+json" \
   -H "Authorization: token $GITHUB_TOKEN" \
   --data @body.json

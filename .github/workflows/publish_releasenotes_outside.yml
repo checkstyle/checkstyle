@@ -9,6 +9,11 @@ on:
       version:
         description: 'Target Version without (-SNAPSHOT)'
         required: true
+  workflow_call:
+    inputs:
+      version:
+        type: string
+        required: true
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
@@ -16,7 +21,7 @@ concurrency:
 
 jobs:
   publish:
-    name: Publish releasenotes GitHub Page ${{ github.event.inputs.version }}
+    name: Publish releasenotes GitHub Page ${{ inputs.version }}
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -32,4 +37,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          ./.ci/update-github-page.sh ${{ github.event.inputs.version }}
+          ./.ci/update-github-page.sh ${{ inputs.version }}

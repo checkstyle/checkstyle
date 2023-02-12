@@ -24,7 +24,7 @@ cd .ci-temp
 rm -fr checkstyle.github.io
 
 echo "Cloning checkstyle.github.io repo"
-git clone https://github.com/checkstyle/checkstyle.github.io.git
+git clone https://github.com/stoyanK7/checkstyle.github.io.git
 
 echo "Cleaning up git files"
 rm -rf checkstyle.github.io/.git
@@ -35,12 +35,12 @@ tar cfz checkstyle.github.io.tar.gz checkstyle.github.io
 
 echo "Uploading to sourceforge"
 scp -i ~/.ssh/private_sourceforge_key checkstyle.github.io.tar.gz \
-  "$SF_USER"@web.sourceforge.net:/home/project-web/checkstyle
+  "$SF_USER"@web.sourceforge.net:/home/project-web/stoyank7-checkstyle
 
 echo "Using shell for $SF_USER@shell.sourceforge.net"
 ssh -i ~/.ssh/private_sourceforge_key "$SF_USER"@shell.sourceforge.net << 'EOF'
 
-cd /home/project-web/checkstyle
+cd /home/project-web/stoyank7-checkstyle
 
 echo "Extracting previous release version"
 PREVIOUS_RELEASE_VERSION_SPAN=$(grep "projectVersion" htdocs/index.html)
@@ -66,7 +66,7 @@ RedirectMatch 301 "/version/.*/dtds/(.*)" "https://checkstyle.org/dtds/\$1"
 HTACCESS
 chmod o+r htdocs/.htaccess
 
-ln -s /home/project-web/checkstyle/reports htdocs/reports
+ln -s /home/project-web/stoyank7-checkstyle/reports htdocs/reports
 echo "Removing dtds folder from unsecure web site"
 rm -r htdocs/dtds
 

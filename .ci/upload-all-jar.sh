@@ -21,10 +21,10 @@ echo "Generating uber jar ...(no clean to keep site resources just in case)"
 mvn -e --no-transfer-progress -Passembly,no-validations package
 
 echo "Publishing 'all' jar to Github"
-UPLOAD_LINK=https://uploads.github.com/repos/checkstyle/checkstyle/releases
+UPLOAD_LINK=https://uploads.github.com/repos/stoyanK7/checkstyle/releases
 RELEASE_ID=$(curl -s -X GET \
   -H "Authorization: token $GITHUB_TOKEN" \
-  https://api.github.com/repos/checkstyle/checkstyle/releases/tags/checkstyle-"$TARGET_VERSION" \
+  https://api.github.com/repos/stoyanK7/checkstyle/releases/tags/checkstyle-"$TARGET_VERSION" \
   | jq ".id")
 
 

@@ -9,6 +9,11 @@ on:
       version:
         description: 'Target Version without (-SNAPSHOT)'
         required: true
+  workflow_call:
+    inputs:
+      version:
+        type: string
+        required: true
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
@@ -16,7 +21,7 @@ concurrency:
 
 jobs:
   publish:
-    name: Publish releasenotes tweet for ${{ github.event.inputs.version }}
+    name: Publish releasenotes tweet for ${{ inputs.version }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the latest code
@@ -30,7 +35,7 @@ jobs:
           key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
       - name: Run Shell Script
         run: |
-          ./.ci/tweet-releasenotes.sh ${{ github.event.inputs.version }}
+          ./.ci/tweet-releasenotes.sh ${{ inputs.version }}
         env:
           GITHUB_READ_ONLY_TOKEN: ${{ secrets.READ_ONLY_TOKEN_GITHUB }}
           TWITTER_CONSUMER_KEY: ${{ secrets.TWITTER_CONSUMER_KEY }}

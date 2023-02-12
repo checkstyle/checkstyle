@@ -13,7 +13,7 @@ fi
 TARGET_VERSION=$1
 echo TARGET_VERSION="$TARGET_VERSION"
 
-checkout_from https://github.com/checkstyle/contribution
+checkout_from https://github.com/stoyanK7/contribution
 
 cd .ci-temp/contribution/releasenotes-builder
 mvn -e --no-transfer-progress clean compile package
@@ -27,13 +27,13 @@ if [ -d .ci-temp/checkstyle ]; then
   cd ../../
 else
   cd .ci-temp/
-  git clone https://github.com/checkstyle/checkstyle
+  git clone https://github.com/stoyanK7/checkstyle
   cd ../
 fi
 
 cd .ci-temp/checkstyle
 LATEST_RELEASE_TAG=$(curl -s -H "Authorization: token $READ_ONLY_TOKEN" \
-                       https://api.github.com/repos/checkstyle/checkstyle/releases/latest \
+                       https://api.github.com/repos/stoyanK7/checkstyle/releases/latest \
                        | jq ".tag_name")
 echo LATEST_RELEASE_TAG="$LATEST_RELEASE_TAG"
 
@@ -43,7 +43,7 @@ BUILDER_RESOURCE_DIR="contribution/releasenotes-builder/src/main/resources/com/g
 
 java -jar contribution/releasenotes-builder/target/releasenotes-builder-1.0-all.jar \
      -localRepoPath checkstyle \
-     -remoteRepoPath checkstyle/checkstyle \
+     -remoteRepoPath stoyanK7/checkstyle \
      -startRef "$LATEST_RELEASE_TAG" \
      -releaseNumber "$TARGET_VERSION" \
      -githubAuthToken "$READ_ONLY_TOKEN" \

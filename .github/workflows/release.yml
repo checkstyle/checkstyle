@@ -1,0 +1,69 @@
+#############################################################################
+# GitHub Action to run all phases of the release.
+#
+#############################################################################
+name: "Release"
+on:
+  push:
+    branches:
+      - master
+# TODO: change to manual trigger
+# TODO: change all "10.7.1" to ${{ inputs.version }}
+#  workflow_dispatch:
+#    inputs:
+#      version:
+#        description: 'Target version without (-SNAPSHOT)'
+#        required: true
+
+jobs:
+  update-sources:
+    uses: ./.github/workflows/update_sources.yml
+    with:
+      version: "10.7.1"
+    permissions:
+      contents: write
+  maven-prepare:
+    uses: ./.github/workflows/maven_prepare.yml
+    needs: update-sources
+    with:
+      version: "10.7.1"
+    permissions:
+      contents: write
+  maven-release-perform:
+    uses: ./.github/workflows/maven_release_perform.yml
+    needs: maven-prepare
+    with:
+      version: "10.7.1"
+    secrets: inherit
+    permissions:
+      contents: read
+  new-milestone-and-issue-in-other-repo:
+    uses: ./.github/workflows/new-milestone-and-issue-in-other-repo.yml
+    needs: maven-release-perform
+    with:
+      version: "10.7.1"
+    permissions:
+      contents: write
+      issues: write
+  publish-releasenotes-outside:
+    uses: ./.github/workflows/publish_releasenotes_outside.yml
+    needs: maven-release-perform
+    with:
+      version: "10.7.1"
+    permissions:
+      contents: write
+  publish-releasenotes-for-twitter:
+    uses: ./.github/workflows/publish_releasenotes_for_twitter.yml
+    needs: maven-release-perform
+    with:
+      version: "10.7.1"
+  update-github-io:
+    uses: ./.github/workflows/update_github_io.yml
+    needs: maven-release-perform
+    with:
+      version: "10.7.1"
+  copy-site-to-sourceforge:
+    uses: ./.github/workflows/copy_site_to_sourceforge.yml
+    needs: update-github-io
+    with:
+      version: "10.7.1"

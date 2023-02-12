@@ -9,6 +9,12 @@ on:
       release-version:
         description: 'Release Version without (-SNAPSHOT)'
         required: true
+  workflow_call:
+    inputs:
+      version:
+        type: string
+        required: true
+
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
@@ -38,4 +44,4 @@ jobs:
         env:
           SF_USER: ${{ secrets.SF_USER }}
         run: |
-          ./.ci/copy-site-to-sourceforge.sh ${{ github.event.inputs.release-version }}
+          ./.ci/copy-site-to-sourceforge.sh ${{ inputs.release-version }}

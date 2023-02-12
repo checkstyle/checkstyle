@@ -18,13 +18,13 @@ echo TARGET_VERSION="$TARGET_VERSION"
 echo "Updating milestone at github"
 MILESTONE_ID=$(curl -s \
                 -H "Authorization: token $GITHUB_TOKEN" \
-                -X GET https://api.github.com/repos/checkstyle/checkstyle/milestones?state=open \
+                -X GET https://api.github.com/repos/stoyanK7/checkstyle/milestones?state=open \
                 | jq ".[0] | .number")
 
 echo TARGET_VERSION="$TARGET_VERSION"
 echo MILESTONE_ID="$MILESTONE_ID"
 
 curl \
-  -X PATCH https://api.github.com/repos/checkstyle/checkstyle/milestones/"$MILESTONE_ID" \
+  -X PATCH https://api.github.com/repos/stoyanK7/checkstyle/milestones/"$MILESTONE_ID" \
   -H "Authorization: token $GITHUB_TOKEN" \
   -d "{ \"title\": \"$TARGET_VERSION\" }"
