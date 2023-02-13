@@ -55,6 +55,9 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * as they should be redundant because of outer class.
  * </p>
  * <p>
+ * Does not perform checks for type definitions that do not have any Javadoc comments.
+ * </p>
+ * <p>
  * Error messages about type parameters and record components for which no param tags are present
  * can be suppressed by defining property {@code allowMissingParamTags}.
  * </p>
@@ -94,7 +97,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </li>
  * <li>
  * Property {@code allowedAnnotations} - Specify annotations that allow
- * missed documentation. Only short names are allowed, e.g. {@code Generated}.
+ * tag violations. Only short names are allowed, e.g. {@code Generated}.
  * Type is {@code java.lang.String[]}.
  * Default value is {@code Generated}.
  * </li>
@@ -122,12 +125,70 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * &lt;module name="JavadocType"/&gt;
  * </pre>
  * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * &#47;**
+ *  * &#64;author a
+ *  * &#64;version $Revision1$
+ *  *&#47;
+ * public class ClassA { // OK
+ *     &#47;** *&#47;
+ *     private class ClassB {} // OK
+ * }
+ *
+ * &#47;**
+ *  * &#64;author
+ *  * &#64;version abc
+ *  *&#47;
+ * public class ClassC {} // OK
+ *
+ * &#47;** *&#47;
+ * public class ClassD&lt;T&gt; {} // violation, as param tag for &lt;T&gt; is missing
+ *
+ * &#47;** *&#47;
+ * private class ClassE&lt;T&gt; {} // violation, as param tag for &lt;T&gt; is missing
+ *
+ * &#47;** *&#47;
+ * &#64;Generated
+ * public class ClassF&lt;T&gt; {} // OK
+ * </pre>
+ * <p>
  * To configure the check for {@code public} scope:
  * </p>
  * <pre>
  * &lt;module name="JavadocType"&gt;
  *   &lt;property name="scope" value="public"/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * &#47;**
+ *  * &#64;author a
+ *  * &#64;version $Revision1$
+ *  *&#47;
+ * public class ClassA { // OK
+ *     &#47;** *&#47;
+ *     private class ClassB {} // OK
+ * }
+ *
+ * &#47;**
+ *  * &#64;author
+ *  * &#64;version abc
+ *  *&#47;
+ * public class ClassC {} // OK
+ *
+ * &#47;** *&#47;
+ * public class ClassD&lt;T&gt; {} // violation, as param tag for &lt;T&gt; is missing
+ *
+ * &#47;** *&#47;
+ * private class ClassE&lt;T&gt; {} // OK
+ *
+ * &#47;** *&#47;
+ * &#64;Generated
+ * public class ClassF&lt;T&gt; {} // OK
  * </pre>
  * <p>
  * To configure the check for an {@code @author} tag:
@@ -138,12 +199,70 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * &lt;/module&gt;
  * </pre>
  * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * &#47;**
+ *  * &#64;author a
+ *  * &#64;version $Revision1$
+ *  *&#47;
+ * public class ClassA { // OK
+ *     &#47;** *&#47;
+ *     private class ClassB {} // OK, as author tag check is ignored for inner class
+ * }
+ *
+ * &#47;**
+ *  * &#64;author // To reproduce, remove this comment but keep the trailing whitespace
+ *  * &#64;version abc
+ *  *&#47;
+ * public class ClassC {} // violation, as author format with only whitespace or new line is invalid
+ *
+ * &#47;** *&#47;
+ * public class ClassD&lt;T&gt; {} // violations, as param and author tags are missing
+ *
+ * &#47;** *&#47;
+ * private class ClassE&lt;T&gt; {} // violations, as param and author tags are missing
+ *
+ * &#47;** *&#47;
+ * &#64;Generated
+ * public class ClassF&lt;T&gt; {} // OK
+ * </pre>
+ * <p>
  * To configure the check for a CVS revision version tag:
  * </p>
  * <pre>
  * &lt;module name="JavadocType"&gt;
  *   &lt;property name="versionFormat" value="\$Revision.*\$"/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * &#47;**
+ *  * &#64;author a
+ *  * &#64;version $Revision1$
+ *  *&#47;
+ * public class ClassA { // OK
+ *     &#47;** *&#47;
+ *     private class ClassB {} // OK, as version tag check is ignored for inner class
+ * }
+ *
+ * &#47;**
+ *  * &#64;author
+ *  * &#64;version abc
+ *  *&#47;
+ * public class ClassC {} // violation, as version format is invalid
+ *
+ * &#47;** *&#47;
+ * public class ClassD&lt;T&gt; {} // violations, as param and version tags are missing
+ *
+ * &#47;** *&#47;
+ * private class ClassE&lt;T&gt; {} // violations, as param and version tags are missing
+ *
+ * &#47;** *&#47;
+ * &#64;Generated
+ * public class ClassF&lt;T&gt; {} // OK
  * </pre>
  * <p>
  * To configure the check for {@code private} classes only:
@@ -155,23 +274,54 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * &lt;/module&gt;
  * </pre>
  * <p>
- * Example that allows missing comments for classes annotated with
- * {@code @SpringBootApplication} and {@code @Configuration}:
+ * Example:
  * </p>
  * <pre>
- * &#64;SpringBootApplication // no violations about missing comment on class
- * public class Application {}
+ * &#47;**
+ *  * &#64;author a
+ *  * &#64;version $Revision1$
+ *  *&#47;
+ * public class ClassA { // OK
+ *     &#47;** *&#47;
+ *     private class ClassB {} // OK
+ * }
  *
- * &#64;Configuration // no violations about missing comment on class
- * class DatabaseConfiguration {}
+ * &#47;**
+ *  * &#64;author
+ *  * &#64;version abc
+ *  *&#47;
+ * public class ClassC {} // OK
+ *
+ * &#47;** *&#47;
+ * public class ClassD&lt;T&gt; {} // OK
+ *
+ * &#47;** *&#47;
+ * private class ClassE&lt;T&gt; {} // violation, as param tag for &lt;T&gt; is missing
+ *
+ * &#47;** *&#47;
+ * &#64;Generated
+ * public class ClassF&lt;T&gt; {} // OK
  * </pre>
  * <p>
- * Use following configuration:
+ * To configure a check that allows tag violations for classes annotated
+ * with {@code @SpringBootApplication} and {@code @Configuration}:
  * </p>
  * <pre>
  * &lt;module name="JavadocType"&gt;
  *   &lt;property name="allowedAnnotations" value="SpringBootApplication,Configuration"/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * &#47;** *&#47;
+ * &#64;SpringBootApplication // no tag violations on class
+ * public class Application&lt;T&gt; {}
+ *
+ * &#47;** *&#47;
+ * &#64;Configuration // no tag violations on class
+ * class DatabaseConfiguration&lt;T&gt; {}
  * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
@@ -268,7 +418,7 @@ public class JavadocTypeCheck
     private boolean allowUnknownTags;
 
     /**
-     * Specify annotations that allow missed documentation.
+     * Specify annotations that allow tag violations.
      * Only short names are allowed, e.g. {@code Generated}.
      */
     private Set<String> allowedAnnotations = Set.of("Generated");
@@ -329,7 +479,7 @@ public class JavadocTypeCheck
     }
 
     /**
-     * Setter to specify annotations that allow missed documentation.
+     * Setter to specify annotations that allow tag violations.
      * Only short names are allowed, e.g. {@code Generated}.
      *
      * @param userAnnotations user's value.
