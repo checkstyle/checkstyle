@@ -5,7 +5,7 @@
 ::
 :: Example:
 :: SET IDEA_PATH=C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2017.2.1\bin\idea.bat
-:: .ci\idea_inspection.bat
+:: .ci\idea-inspection.bat
 ::----------------------------------------------------------------------
 
 SET PROJECT_DIR=%CD%\

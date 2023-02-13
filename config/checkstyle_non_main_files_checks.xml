@@ -33,6 +33,15 @@
     <message key="regexp.filename.mismatch"
              value="Filename should be in kebab-case."/>
   </module>
+  <module name="RegexpOnFilename">
+    <property name="id" value="kebabCaseFileNamingInCiFolder"/>
+    <property name="folderPattern" value="[\\/].ci([\\/]|$)"/>
+    <property name="fileNamePattern" value="^[a-z][a-z0-9]*(\-[a-z0-9]+)*\.[a-z]+$"/>
+    <property name="match" value="false"/>
+    <property name="fileExtensions" value="sh, cmd, bat, groovy"/>
+    <message key="regexp.filename.mismatch"
+             value="Filename should be in kebab-case."/>
+  </module>
 
   <module name="RegexpSingleline">
     <property name="id" value="lineLength"/>
