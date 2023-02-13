@@ -158,8 +158,8 @@
   <suppress id="properCurlCommand" files=".ci[\\/]test-spelling-unknown-words\.sh"/>
   <suppress id="properCurlCommand" files=".ci[\\/]run-link-check-plugin\.sh"/>
   <!-- other images that do not support newer curl commands until #12451 -->
-  <suppress id="properCurlCommand" files=".ci[\\/]sonar_break_build\.sh"/>
-  <suppress id="properCurlCommand" files=".ci[\\/]no_old_refs\.sh"/>
+  <suppress id="properCurlCommand" files=".ci[\\/]sonar-break-build\.sh"/>
+  <suppress id="properCurlCommand" files=".ci[\\/]no-old-refs\.sh"/>
   <suppress id="properCurlCommand" files=".ci[\\/]pr-description\.sh"/>
   <suppress id="properCurlCommand" files=".ci[\\/]close-create-milestone\.sh"/>
   <suppress id="properCurlCommand" files=".ci[\\/]tweet-releasenotes\.sh"/>
