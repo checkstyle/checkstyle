@@ -1441,6 +1441,7 @@ class Test {
   &lt;property name=&quot;packageAllowed&quot; value=&quot;true&quot;/&gt;
 &lt;/module&gt;
         </source>
+        <p>Example</p>
         <source>
         public class FirstClass {} /*OK*/
         private class SecondClass {} /*OK*/
@@ -1456,6 +1457,7 @@ class Test {
   &lt;property name=&quot;publicMemberPattern&quot; value=&quot;^$&quot;/&gt;
 &lt;/module&gt;
         </source>
+        <p>Example</p>
         <source>
         public class FirstClass {} /*violation,should match pattern "^$"*/
         private class SecondClass {} /*OK*/
