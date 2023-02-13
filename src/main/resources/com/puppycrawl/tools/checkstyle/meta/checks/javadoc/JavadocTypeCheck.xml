@@ -49,7 +49,7 @@
                        name="allowedAnnotations"
                        type="java.lang.String[]">
                <description>Specify annotations that allow
- missed documentation. Only short names are allowed, e.g. {@code Generated}.</description>
+ tag violations. Only short names are allowed, e.g. {@code Generated}.</description>
             </property>
             <property default-value="INTERFACE_DEF,CLASS_DEF,ENUM_DEF,ANNOTATION_DEF,RECORD_DEF"
                        name="tokens"
