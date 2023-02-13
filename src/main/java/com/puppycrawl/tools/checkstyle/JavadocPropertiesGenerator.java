@@ -321,7 +321,7 @@ public final class JavadocPropertiesGenerator {
      */
     @Command(name = "java com.puppycrawl.tools.checkstyle.JavadocPropertiesGenerator",
             mixinStandardHelpOptions = true)
-    private static class CliOptions {
+    private static final class CliOptions {
 
         /**
          * The command line option to specify the output file.
