@@ -57,4 +57,4 @@ jobs:
           PR_HEAD_REPO_NAME: "${{ github.event.pull_request.head.repo.full_name }}"
           GITHUB_HEAD_REF: "${{ github.head_ref }}"
         run: |
-          ./.ci/no_old_refs.sh
+          ./.ci/no-old-refs.sh

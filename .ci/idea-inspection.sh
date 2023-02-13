@@ -4,10 +4,10 @@
 # IntelliJ IDEA inspections for checkstyle.
 #
 # Example Mac OS:
-# IDEA_PATH="/Applications/IntelliJ IDEA.app/Contents/MacOS/idea" ./.ci/idea_inspection.sh
+# IDEA_PATH="/Applications/IntelliJ IDEA.app/Contents/MacOS/idea" ./.ci/idea-inspection.sh
 #
 # Example Linux:
-# export IDEA_PATH=$HOME/java/idea-IU-172.4574.11 && ./.ci/idea_inspection.sh
+# export IDEA_PATH=$HOME/java/idea-IU-172.4574.11 && ./.ci/idea-inspection.sh
 #################################################
 
 PROJECT_DIR=$PWD/
