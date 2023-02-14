@@ -178,14 +178,14 @@ are in the file named "LICENSE.apache20" in this directory.
 [dependabot]:https://dependabot.com
 [dependabot img]:https://api.dependabot.com/badges/status?host=github&repo=checkstyle/checkstyle
 
-[closed issues]:https://github.com/checkstyle/checkstyle/actions/workflows/no_old_refs.yml
-[closed issues img]:https://github.com/checkstyle/checkstyle/actions/workflows/no_old_refs.yml/badge.svg
+[closed issues]:https://github.com/checkstyle/checkstyle/actions/workflows/no-old-refs.yml
+[closed issues img]:https://github.com/checkstyle/checkstyle/actions/workflows/no-old-refs.yml/badge.svg
 
 [release notes/version]:https://github.com/checkstyle/checkstyle/actions/workflows/releasenotes-gen.yml
 [release notes/version img]:https://github.com/checkstyle/checkstyle/actions/workflows/releasenotes-gen.yml/badge.svg
 
-[link check]:https://github.com/checkstyle/checkstyle/actions/workflows/run_link_check.yml
-[link check img]:https://github.com/checkstyle/checkstyle/actions/workflows/run_link_check.yml/badge.svg
+[link check]:https://github.com/checkstyle/checkstyle/actions/workflows/run-link-check.yml
+[link check img]:https://github.com/checkstyle/checkstyle/actions/workflows/run-link-check.yml/badge.svg
 
 [error prone]:https://github.com/checkstyle/checkstyle/actions/workflows/error-prone.yml
 [error prone img]:https://github.com/checkstyle/checkstyle/actions/workflows/error-prone.yml/badge.svg
