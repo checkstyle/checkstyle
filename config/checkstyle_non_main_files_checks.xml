@@ -25,7 +25,7 @@
       value="CI folder should only contain executables files"/>
   </module>
   <module name="RegexpOnFilename">
-    <property name="id" value="regexpOnGithubWorkflows"/>
+    <property name="id" value="kebabCaseFileNamingInGithubWorkflowsFolder"/>
     <property name="folderPattern" value="[\\/].github[\\/]workflows([\\/]|$)"/>
     <property name="fileNamePattern" value="^[a-z][a-z0-9]*(\-[a-z0-9]+)*\.[a-z]+$"/>
     <property name="match" value="false"/>
