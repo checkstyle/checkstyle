@@ -9,6 +9,11 @@ on:
       version:
         description: 'Target Version without (-SNAPSHOT)'
         required: true
+  workflow_call:
+    inputs:
+      version:
+        type: string
+        required: true
 
 permissions:
   contents: write
@@ -24,6 +29,9 @@ jobs:
     steps:
       - name: Checkout the latest code
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          ref: master
       - name: Setup local maven cache
         uses: actions/cache@v2
         with:

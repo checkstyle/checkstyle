@@ -9,6 +9,11 @@ on:
       version:
         description: 'Release Version without (-SNAPSHOT)'
         required: true
+  workflow_call:
+    inputs:
+      version:
+        type: string
+        required: true
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
