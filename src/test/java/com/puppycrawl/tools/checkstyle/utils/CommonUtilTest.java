@@ -617,7 +617,7 @@ public class CommonUtilTest extends AbstractPathTestSupport {
         }
     }
 
-    private static class TestCloseable implements Closeable {
+    private static final class TestCloseable implements Closeable {
 
         private boolean closed;
 

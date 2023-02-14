@@ -20,10 +20,12 @@
 package com.puppycrawl.tools.checkstyle.checks.design;
 
 import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Deque;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.function.Function;
@@ -258,7 +260,30 @@ public class FinalClassCheck
                     || desc.isSuperClassOfAnonymousInnerClass())
                 && !desc.isDeclaredAsFinal()
                 && !desc.isWithNonPrivateCtor()
-                && !desc.isWithNestedSubclass();
+                && !desc.isWithNestedSubclass()
+                    || isPrivateWithDefaultCtor(desc);
+    }
+
+    /**
+     * Check if class is private and with default constructor.
+     *
+     * @param desc description of class
+     * @return true if class is private and with default constructor
+     */
+    private static boolean isPrivateWithDefaultCtor(ClassDesc desc) {
+        final DetailAST descAst = desc.getTypeDeclarationAst();
+        DetailAST modifierChild = descAst.getFirstChild().getFirstChild();
+        final List<Integer> list = new ArrayList<>();
+
+        while (modifierChild != null) {
+            list.add(modifierChild.getType());
+            modifierChild = modifierChild.getNextSibling();
+        }
+
+        return !desc.withPrivateCtor && !desc.withNonPrivateCtor
+                && !desc.declaredAsFinal
+                && !desc.declaredAsAbstract
+                && list.contains(TokenTypes.LITERAL_PRIVATE);
     }
 
     /**

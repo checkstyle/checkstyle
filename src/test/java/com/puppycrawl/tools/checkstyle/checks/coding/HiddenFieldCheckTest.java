@@ -495,7 +495,7 @@ public class HiddenFieldCheckTest
                 .isTrue();
     }
 
-    private static class CheckIfStatefulFieldCleared implements Predicate<Object> {
+    private static final class CheckIfStatefulFieldCleared implements Predicate<Object> {
 
         @Override
         public boolean test(Object frame) {

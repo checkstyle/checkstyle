@@ -295,7 +295,7 @@ public abstract class AutomaticBean
     }
 
     /** A converter that converts a string to a pattern. */
-    private static class PatternConverter implements Converter {
+    private static final class PatternConverter implements Converter {
 
         @SuppressWarnings("unchecked")
         @Override
@@ -306,7 +306,7 @@ public abstract class AutomaticBean
     }
 
     /** A converter that converts strings to severity level. */
-    private static class SeverityLevelConverter implements Converter {
+    private static final class SeverityLevelConverter implements Converter {
 
         @SuppressWarnings("unchecked")
         @Override
@@ -317,7 +317,7 @@ public abstract class AutomaticBean
     }
 
     /** A converter that converts strings to scope. */
-    private static class ScopeConverter implements Converter {
+    private static final class ScopeConverter implements Converter {
 
         @SuppressWarnings("unchecked")
         @Override
@@ -328,7 +328,7 @@ public abstract class AutomaticBean
     }
 
     /** A converter that converts strings to uri. */
-    private static class UriConverter implements Converter {
+    private static final class UriConverter implements Converter {
 
         @SuppressWarnings("unchecked")
         @Override
@@ -355,7 +355,7 @@ public abstract class AutomaticBean
      * characters like '*' or '_'. The normal ArrayConverter class has problems
      * with these characters.
      */
-    private static class RelaxedStringArrayConverter implements Converter {
+    private static final class RelaxedStringArrayConverter implements Converter {
 
         @SuppressWarnings("unchecked")
         @Override
@@ -379,7 +379,7 @@ public abstract class AutomaticBean
      * This implementation does not care whether the array elements contain characters like '_'.
      * The normal {@link ArrayConverter} class has problems with this character.
      */
-    private static class RelaxedAccessModifierArrayConverter implements Converter {
+    private static final class RelaxedAccessModifierArrayConverter implements Converter {
 
         /** Constant for optimization. */
         private static final AccessModifierOption[] EMPTY_MODIFIER_ARRAY =

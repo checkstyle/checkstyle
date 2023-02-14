@@ -626,7 +626,7 @@ public final class Main {
             + "reported to standard out in plain format. Checkstyle requires a configuration "
             + "XML file that configures the checks to apply.",
             mixinStandardHelpOptions = true)
-    private static class CliOptions {
+    private static final class CliOptions {
 
         /** Width of CLI help option. */
         private static final int HELP_WIDTH = 100;
