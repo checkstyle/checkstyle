@@ -16,7 +16,7 @@ concurrency:
 
 jobs:
   perform:
-    name: Release perform {{ github.event.inputs.version }}
+    name: Release perform {{ inputs.version }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the latest code
@@ -42,4 +42,4 @@ jobs:
           ./.ci/prepare-settings.sh
       - name: Run Shell Script
         run: |
-          ./.ci/maven-release-perform.sh ${{ github.event.inputs.version }}
+          ./.ci/maven-release-perform.sh ${{ inputs.version }}
