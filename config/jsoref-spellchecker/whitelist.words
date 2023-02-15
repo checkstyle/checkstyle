@@ -492,6 +492,7 @@ githubusercontent
 Gjs
 globbing
 GMetrics
+gnupg
 google
 googleapis
 googleblog
@@ -1031,6 +1032,7 @@ pguyot
 php
 picocli
 pid
+pinentry
 PIPESTATUS
 pitest
 pkga
