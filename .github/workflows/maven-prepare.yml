@@ -19,7 +19,7 @@ concurrency:
 
 jobs:
   prepare:
-    name: Prepare Release ${{ github.event.inputs.version }}
+    name: Prepare Release ${{ inputs.version }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the latest code
@@ -35,7 +35,7 @@ jobs:
           git config user.email 'github-actions[bot]@users.noreply.github.com'
       - name: Run Shell Script
         run: |
-          ./.ci/maven-prepare.sh ${{ github.event.inputs.version }}
+          ./.ci/maven-prepare.sh ${{ inputs.version }}
       - name: Push commit
         run: |
           git push origin master --tags

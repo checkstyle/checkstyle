@@ -20,7 +20,7 @@ concurrency:
 
 jobs:
   creation:
-    name: Creation-New Milestone/Issue" for ${{ github.event.inputs.version }}
+    name: Creation-New Milestone/Issue" for ${{ inputs.version }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the latest code
@@ -45,10 +45,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ github.token }}
         run: |
-          ./.ci/upload-all-jar.sh ${{ github.event.inputs.version }}
+          ./.ci/upload-all-jar.sh ${{ inputs.version }}
 
       - name: Creation of issue in other Repositories
         env:
           GITHUB_TOKEN: ${{ secrets.PAT }}
         run: |
-          ./.ci/creation-of-issue-in-other-repos.sh ${{ github.event.inputs.version }}
+          ./.ci/creation-of-issue-in-other-repos.sh ${{ inputs.version }}
