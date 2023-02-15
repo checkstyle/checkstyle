@@ -629,7 +629,7 @@ public final class NPathComplexityCheck extends AbstractCheck {
      * Coordinates of token end. Used to prevent inline ternary
      * operator from being processed twice.
      */
-    private static class TokenEnd {
+    private static final class TokenEnd {
 
         /** End line of token. */
         private int endLineNo;
