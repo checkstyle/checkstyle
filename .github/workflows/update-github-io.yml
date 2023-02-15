@@ -16,7 +16,7 @@ concurrency:
 
 jobs:
   update:
-    name: update github.io ${{ github.event.inputs.version }}
+    name: update github.io ${{ inputs.version }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the latest code
@@ -31,7 +31,7 @@ jobs:
           key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
       - name: Run Shell Script
         run: |
-          ./.ci/generate-website.sh ${{ github.event.inputs.version }}
+          ./.ci/generate-website.sh ${{ inputs.version }}
       - name: Checkout checkstyle.github.io repo
         uses: actions/checkout@v3
         with:
@@ -40,4 +40,4 @@ jobs:
           path: .ci-temp/checkstyle.github.io/
       - name: Commit and Push to checkstyle.github.io repo
         run: |
-          ./.ci/push-website-to-github-io.sh ${{ github.event.inputs.version }}
+          ./.ci/push-website-to-github-io.sh ${{ inputs.version }}

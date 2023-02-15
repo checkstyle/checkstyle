@@ -20,7 +20,7 @@ concurrency:
 
 jobs:
   github:
-    name: Upload '-all' jar to Github for ${{ github.event.inputs.version }}
+    name: Upload '-all' jar to Github for ${{ inputs.version }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the latest code
@@ -35,4 +35,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ github.token }}
         run: |
-          ./.ci/upload-all-jar.sh ${{ github.event.inputs.version }}
+          ./.ci/upload-all-jar.sh ${{ inputs.version }}
