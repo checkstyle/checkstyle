@@ -558,7 +558,7 @@ public class JavadocDetailNodeParser {
     /**
      * Custom error listener for JavadocParser that prints user readable errors.
      */
-    private static class DescriptiveErrorListener extends BaseErrorListener {
+    private static final class DescriptiveErrorListener extends BaseErrorListener {
 
         /**
          * Offset is line number of beginning of the Javadoc comment. Log

@@ -88,13 +88,13 @@ public class AuditEventDefaultFormatterTest {
                 .isEqualTo(54);
     }
 
-    private static class TestModuleCheck {
+    private static final class TestModuleCheck {
 
         // no code
 
     }
 
-    private static class TestModule {
+    private static final class TestModule {
 
         // no code
 
