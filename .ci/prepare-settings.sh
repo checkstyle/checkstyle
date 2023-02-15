@@ -20,7 +20,7 @@ replace SONATYPE_PWD "$SONATYPE_PWD"
 replace GPG_PASSPHRASE "$GPG_PASSPHRASE"
 replace GPG_KEY "$GPG_KEY"
 
-
+mkdir -p ~/.m2
 TEMP_SETTING=./.ci-temp/release-settings.xml
 SETTING=~/.m2/settings.xml
 
@@ -34,4 +34,5 @@ if [ -f "$SETTING" ]; then
     echo "no backup is required as content is same"
   fi
 fi
+
 cp "$TEMP_SETTING" "$SETTING"
