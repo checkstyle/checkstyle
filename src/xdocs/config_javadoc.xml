@@ -2032,6 +2032,10 @@ public class Test {
           classes, as they should be redundant because of outer class.
         </p>
         <p>
+          Does not perform checks for type definitions that do not have
+          any Javadoc comments.
+        </p>
+        <p>
           Error messages about type parameters and record components for which no
           param tags are present can be suppressed by defining property
           <code>allowMissingParamTags</code>.
@@ -2094,7 +2098,7 @@ public class Test {
             <tr>
               <td>allowedAnnotations</td>
               <td>
-                Specify annotations that allow missed documentation.
+                Specify annotations that allow tag violations.
                 Only short names are allowed, e.g. <code>Generated</code>.
               </td>
               <td><a href="property_types.html#String.5B.5D">String[]</a></td>
@@ -2144,6 +2148,34 @@ public class Test {
         <source>
 &lt;module name="JavadocType"/&gt;
         </source>
+        <p>Example:</p>
+        <source>
+/**
+ * @author a
+ * @version $Revision1$
+ */
+public class ClassA { // OK
+    /** */
+    private class ClassB {} // OK
+}
+
+/**
+ * @author
+ * @version abc
+ * @unknownTag value // violation
+ */
+public class ClassC {} // OK
+
+/** */
+public class ClassD&lt;T&gt; {} // violation, as param tag for &lt;T&gt; is missing
+
+/** */
+private class ClassE&lt;T&gt; {} // violation, as param tag for &lt;T&gt; is missing
+
+/** */
+@Generated
+public class ClassF&lt;T&gt; {} // OK
+        </source>
 
         <p>
           To configure the check for <code>public</code> scope:
@@ -2152,6 +2184,34 @@ public class Test {
 &lt;module name="JavadocType"&gt;
   &lt;property name="scope" value="public"/&gt;
 &lt;/module&gt;
+        </source>
+        <p>Example:</p>
+        <source>
+/**
+ * @author a
+ * @version $Revision1$
+ */
+public class ClassA { // OK
+    /** */
+    private class ClassB {} // OK
+}
+
+/**
+ * @author
+ * @version abc
+ * @unknownTag value // violation
+ */
+public class ClassC {} // OK
+
+/** */
+public class ClassD&lt;T&gt; {} // violation, as param tag for &lt;T&gt; is missing
+
+/** */
+private class ClassE&lt;T&gt; {} // OK
+
+/** */
+@Generated
+public class ClassF&lt;T&gt; {} // OK
         </source>
 
         <p>
@@ -2162,6 +2222,34 @@ public class Test {
   &lt;property name="authorFormat" value="\S"/&gt;
 &lt;/module&gt;
         </source>
+        <p>Example:</p>
+        <source>
+/**
+ * @author a
+ * @version $Revision1$
+ */
+public class ClassA { // OK
+    /** */
+    private class ClassB {} // OK, as author tag check is ignored for inner class
+}
+
+/**
+ * @author
+ * @version abc
+ * @unknownTag value // violation
+ */
+public class ClassC {} // violation, as author format with only whitespace or new line is invalid
+
+/** */
+public class ClassD {} // violation, as author tag is missing
+
+/** */
+private class ClassE {} // violation, as author tag is missing
+
+/** */
+@Generated
+public class ClassF&lt;T&gt; {} // OK
+        </source>
 
         <p>
           To configure the check for a CVS revision version tag:
@@ -2170,6 +2258,34 @@ public class Test {
 &lt;module name="JavadocType"&gt;
   &lt;property name="versionFormat" value="\$Revision.*\$"/&gt;
 &lt;/module&gt;
+        </source>
+        <p>Example:</p>
+        <source>
+/**
+ * @author a
+ * @version $Revision1$
+ */
+public class ClassA { // OK
+    /** */
+    private class ClassB {} // OK, as version tag check is ignored for inner class
+}
+
+/**
+ * @author
+ * @version abc
+ * @unknownTag value // violation
+ */
+public class ClassC {} // violation, as version format is invalid
+
+/** */
+public class ClassD {} // violation, as version tag is missing
+
+/** */
+private class ClassE {} // violation, as version tag is missing
+
+/** */
+@Generated
+public class ClassF&lt;T&gt; {} // OK
         </source>
 
         <p>
@@ -2181,23 +2297,128 @@ public class Test {
   &lt;property name="excludeScope" value="package"/&gt;
 &lt;/module&gt;
         </source>
+        <p>Example:</p>
+        <source>
+/**
+ * @author a
+ * @version $Revision1$
+ */
+public class ClassA { // OK
+    /** */
+    private class ClassB {} // OK
+}
+
+/**
+ * @author
+ * @version abc
+ * @unknownTag value // OK
+ */
+public class ClassC {} // OK
+
+/** */
+public class ClassD&lt;T&gt; {} // OK
+
+/** */
+private class ClassE&lt;T&gt; {} // violation, as param tag for &lt;T&gt; is missing
+
+/** */
+@Generated
+public class ClassF&lt;T&gt; {} // OK
+        </source>
 
         <p>
-          Example that allows missing comments for classes annotated with
-          <code>@SpringBootApplication</code> and <code>@Configuration</code>:
+          To configure the check that allows missing <code>@param</code> tags:
         </p>
         <source>
-@SpringBootApplication // no violations about missing comment on class
-public class Application {}
-
-@Configuration // no violations about missing comment on class
-class DatabaseConfiguration {}
+&lt;module name="JavadocType"&gt;
+  &lt;property name="allowMissingParamTags" value="true"/&gt;
+&lt;/module&gt;
         </source>
-        <p>Use following configuration:</p>
+        <p>Example:</p>
+        <source>
+/**
+ * @author a
+ * @version $Revision1$
+ */
+public class ClassA { // OK
+    /** */
+    private class ClassB {} // OK
+}
+
+/**
+ * @author
+ * @version abc
+ * @unknownTag value // violation
+ */
+public class ClassC {} // OK
+
+/** */
+public class ClassD&lt;T&gt; {} // OK, as missing param tag is allowed
+
+/** */
+private class ClassE&lt;T&gt; {} // OK, as missing param tag is allowed
+
+/** */
+@Generated
+public class ClassF&lt;T&gt; {} // OK
+        </source>
+
+        <p>
+            To configure the check that allows unknown tags:
+        </p>
+        <source>
+&lt;module name="JavadocType"&gt;
+  &lt;property name="allowUnknownTags" value="true"/&gt;
+&lt;/module&gt;
+        </source>
+        <p>Example:</p>
+        <source>
+/**
+ * @author a
+ * @version $Revision1$
+ */
+public class ClassA { // OK
+  /** */
+  private class ClassB {} // OK
+}
+
+/**
+ * @author
+ * @version abc
+ * @unknownTag value // OK, as unknown tag is allowed
+ */
+public class ClassC {} // OK
+
+/** */
+public class ClassD {} // OK
+
+/** */
+private class ClassE {} // OK
+
+/** */
+@Generated
+public class ClassF&lt;T&gt; {} // OK
+        </source>
+
+        <p>To configure a check that allows tag violations for classes annotated with
+          <code>@SpringBootApplication</code> and <code>@Configuration</code>:
+        </p>
         <source>
 &lt;module name="JavadocType"&gt;
   &lt;property name="allowedAnnotations" value="SpringBootApplication,Configuration"/&gt;
 &lt;/module&gt;
+        </source>
+        <p>
+          Example:
+        </p>
+        <source>
+/** */
+@SpringBootApplication // no violations about missing param tag on class
+public class Application&lt;T&gt; {}
+
+/** */
+@Configuration // no violations about missing param tag on class
+class DatabaseConfiguration&lt;T&gt; {}
         </source>
       </subsection>
 
