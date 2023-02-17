@@ -339,7 +339,7 @@ public class XpathFileGeneratorAuditListenerTest {
             .isEqualTo(expected);
     }
 
-    private static class TestByteArrayOutputStream extends ByteArrayOutputStream {
+    private static final class TestByteArrayOutputStream extends ByteArrayOutputStream {
 
         private int closeCount;
         private int flushCount;
