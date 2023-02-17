@@ -50,7 +50,7 @@
   <!-- ArchUnit store is automatically updated by ArchUnit which
        does not add new line at the end. -->
   <suppress checks="NewlineAtEndOfFile"
-            files="config[\\/]archunit-store[\\/]slices_should_be_free_of_cycles_suppressions"/>
+            files="config[\\/]archunit-store[\\/]slices-should-be-free-of-cycles-suppressions"/>
 
   <!-- till https://issues.apache.org/jira/browse/MRELEASE-1008 -->
   <suppress id="lineLength" files="pom.xml"/>

@@ -283,7 +283,7 @@ public class A {
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+DesignForExtension">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+DesignForExtension">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -374,7 +374,7 @@ class TestAnonymousInnerClasses { // OK, class has an anonymous inner class.
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+FinalClass">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+FinalClass">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -492,7 +492,7 @@ class UtilityClass { // violation, class only has a static field
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+HideUtilityClassConstructor">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+HideUtilityClassConstructor">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -566,7 +566,7 @@ class Test3 {
       <subsection name="Example of Usage" id="InnerTypeLast_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+InnerTypeLast">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+InnerTypeLast">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -695,7 +695,7 @@ public interface Test2 { // violation
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+InterfaceIsType">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+InterfaceIsType">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -928,7 +928,7 @@ class BadException extends java.lang.Exception {
       <subsection name="Example of Usage" id="MutableException_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MutableException">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+MutableException">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -1036,7 +1036,7 @@ public class Foo { // OK, only one top-level class
             Google Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+OneTopLevelClass">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+OneTopLevelClass">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -1242,7 +1242,7 @@ class Test {
       <subsection name="Example of Usage" id="ThrowsCount_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ThrowsCount">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+ThrowsCount">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -1678,7 +1678,7 @@ public class InputPublicImmutable {
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+VisibilityModifier">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+VisibilityModifier">
             Checkstyle Style</a>
           </li>
         </ul>

@@ -134,7 +134,7 @@ public final class Person {
       <subsection name="Example of Usage" id="ClassMemberImpliedModifier_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ClassMemberImpliedModifier">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+ClassMemberImpliedModifier">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -381,7 +381,7 @@ public interface RoadFeature {
       <subsection name="Example of Usage" id="InterfaceMemberImpliedModifier_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+InterfaceMemberImpliedModifier">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+InterfaceMemberImpliedModifier">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -498,7 +498,7 @@ public interface RoadFeature {
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ModifierOrder">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+ModifierOrder">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -758,7 +758,7 @@ public class ClassExtending extends ClassExample {
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+RedundantModifier">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+RedundantModifier">
             Checkstyle Style</a>
           </li>
         </ul>
