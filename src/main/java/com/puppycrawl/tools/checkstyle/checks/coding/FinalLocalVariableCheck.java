@@ -791,7 +791,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
     /**
      * Holder for the scope data.
      */
-    private static class ScopeData {
+    private static final class ScopeData {
 
         /** Contains variable definitions. */
         private final Map<String, FinalVariableCandidate> scope = new HashMap<>();
