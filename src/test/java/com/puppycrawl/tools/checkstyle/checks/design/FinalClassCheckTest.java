@@ -78,7 +78,7 @@ public class FinalClassCheckTest
     @Test
     public void testClassWithPrivateCtorAndNestedExtendingSubclass() throws Exception {
         final String[] expected = {
-            "22:5: " + getCheckMessage(MSG_KEY, "C"),
+            "23:5: " + getCheckMessage(MSG_KEY, "C"),
         };
         verifyWithInlineConfigParser(
                 getNonCompilablePath(
