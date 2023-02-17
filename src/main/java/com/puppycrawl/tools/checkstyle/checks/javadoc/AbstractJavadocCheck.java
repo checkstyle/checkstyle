@@ -405,7 +405,7 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
     /**
      * The file context holder.
      */
-    private static class FileContext {
+    private static final class FileContext {
 
         /**
          * Parses content of Javadoc comment as DetailNode tree.
