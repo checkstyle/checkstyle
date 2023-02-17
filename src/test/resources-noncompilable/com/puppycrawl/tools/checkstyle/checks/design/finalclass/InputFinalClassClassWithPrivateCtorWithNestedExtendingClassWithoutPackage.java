@@ -8,11 +8,11 @@ FinalClass
 public class InputFinalClassClassWithPrivateCtorWithNestedExtendingClassWithoutPackage {
     class A {
         private A() {}
-        private class ExtendA extends A {}
+        private final class ExtendA extends A {}
     }
 
     class C { // violation
         private C() {}
-        private class ExtendC extends com.nonexistent.packages.C {}
+        private final class ExtendC extends com.nonexistent.packages.C {}
     }
 }
