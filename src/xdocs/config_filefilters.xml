@@ -100,7 +100,7 @@
               Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+BeforeExecutionExclusionFileFilter">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+BeforeExecutionExclusionFileFilter">
             Checkstyle Style</a>
           </li>
         </ul>

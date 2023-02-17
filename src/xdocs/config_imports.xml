@@ -212,7 +212,7 @@ import java.net.*;                // OK
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+AvoidStarImport">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+AvoidStarImport">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -333,7 +333,7 @@ import java.util.*;                        // OK
       <subsection name="Example of Usage" id="AvoidStaticImport_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+AvoidStaticImport">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+AvoidStaticImport">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -961,7 +961,7 @@ import android.*;
             Google Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+CustomImportOrder">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+CustomImportOrder">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -1267,7 +1267,7 @@ public class InputIllegalImport { }
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+IllegalImport">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+IllegalImport">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -1751,7 +1751,7 @@ import java.util.stream.IntStream;
       <subsection name="Example of Usage" id="ImportControl_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ImportControl">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+ImportControl">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -2317,7 +2317,7 @@ public class SomeClass { }
       <subsection name="Example of Usage" id="ImportOrder_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ImportOrder">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+ImportOrder">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -2410,7 +2410,7 @@ public class MyClass{ };
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+RedundantImport">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+RedundantImport">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -2555,7 +2555,7 @@ class FooBar {
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+UnusedImports">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+UnusedImports">
             Checkstyle Style</a>
           </li>
         </ul>

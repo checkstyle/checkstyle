@@ -255,7 +255,7 @@ public boolean equals(Object obj) { return true; }
             Google Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+AnnotationLocation">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+AnnotationLocation">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -451,7 +451,7 @@ class Bar implements Foo {
       <subsection name="Example of Usage" id="AnnotationOnSameLine_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+AnnotationOnSameLine">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+AnnotationOnSameLine">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -659,7 +659,7 @@ class TestTwo {
       <subsection name="Example of Usage" id="AnnotationUseStyle_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+AnnotationUseStyle">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+AnnotationUseStyle">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -833,7 +833,7 @@ public static final int CONST = 12; // violation, tight HTML rules not obeyed
       <subsection name="Example of Usage" id="MissingDeprecated_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingDeprecated">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingDeprecated">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -1024,7 +1024,7 @@ class Test5 {
       <subsection name="Example of Usage" id="MissingOverride_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingOverride">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingOverride">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -1099,7 +1099,7 @@ package com.example.annotations.packageannotation; //ok
       <subsection name="Example of Usage" id="PackageAnnotation_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+PackageAnnotation">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+PackageAnnotation">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -1285,7 +1285,7 @@ package com.example.annotations.packageannotation; //ok
       <subsection name="Example of Usage" id="SuppressWarnings_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressWarnings">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressWarnings">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -1441,7 +1441,7 @@ class Test {
       <subsection name="Example of Usage" id="SuppressWarningsHolder_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressWarningsHolder">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressWarningsHolder">
             Checkstyle Style</a>
           </li>
           <li>

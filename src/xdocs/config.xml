@@ -493,7 +493,7 @@
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+Checker">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+Checker">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -613,7 +613,7 @@
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+TreeWalker">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+TreeWalker">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -1021,8 +1021,8 @@
         that checks the coding conventions.
         Example of all Checks/Modules usage could be found at checkstyle's code convention at file
         <a
-          href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml">
-          checkstyle_checks.xml
+          href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle-checks.xml">
+          checkstyle-checks.xml
         </a>
       </p>
 

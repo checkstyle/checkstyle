@@ -145,7 +145,7 @@ class Invalid implements Serializable
             Google Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+AtclauseOrder">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+AtclauseOrder">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -236,7 +236,7 @@ public class TestClass {
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+InvalidJavadocPosition">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+InvalidJavadocPosition">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -389,7 +389,7 @@ public int field;
       <subsection name="Example of Usage" id="JavadocBlockTagLocation_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocBlockTagLocation">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocBlockTagLocation">
               Checkstyle Style</a>
           </li>
         </ul>
@@ -569,7 +569,7 @@ public void method();
       <subsection name="Example of Usage" id="JavadocContentLocation_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocContentLocation">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocContentLocation">
               Checkstyle Style</a>
           </li>
         </ul>
@@ -893,7 +893,7 @@ public Runnable printLater(String s) {
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocMethod">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocMethod">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -1043,7 +1043,7 @@ class Code {}
       <subsection name="Example of Usage" id="JavadocMissingLeadingAsterisk_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocMissingLeadingAsterisk">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocMissingLeadingAsterisk">
               Checkstyle Style</a>
           </li>
         </ul>
@@ -1160,7 +1160,7 @@ class TestClass {
         id="JavadocMissingWhitespaceAfterAsterisk_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocMissingWhitespaceAfterAsterisk">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocMissingWhitespaceAfterAsterisk">
               Checkstyle Style</a>
           </li>
         </ul>
@@ -1275,7 +1275,7 @@ class TestClass {
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocPackage">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocPackage">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -1428,7 +1428,7 @@ public class TestClass {
             Google Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocParagraph">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocParagraph">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -1804,7 +1804,7 @@ public class Test {
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocStyle">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocStyle">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -1967,7 +1967,7 @@ public class Test {
             Google Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocTagContinuationIndentation">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocTagContinuationIndentation">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -2431,7 +2431,7 @@ class DatabaseConfiguration&lt;T&gt; {}
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocType">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocType">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -2657,7 +2657,7 @@ private int logger; // OK
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocVariable">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocVariable">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -2962,7 +2962,7 @@ public class Test {
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingJavadocMethod">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingJavadocMethod">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -3037,7 +3037,7 @@ package com.checkstyle.api; // violation
       <subsection name="Example of Usage" id="MissingJavadocPackage_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingJavadocPackage">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingJavadocPackage">
                 Checkstyle Style</a>
           </li>
         </ul>
@@ -3251,7 +3251,7 @@ class Class3 {}
             Google Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingJavadocType">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingJavadocType">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -3419,7 +3419,7 @@ class Test
             Google Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NonEmptyAtclauseDescription">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+NonEmptyAtclauseDescription">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -3540,7 +3540,7 @@ public boolean testMethod(int firstParam) {
                 Google Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+RequireEmptyLineBeforeBlockTagGroup">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+RequireEmptyLineBeforeBlockTagGroup">
                 Checkstyle Style</a>
           </li>
         </ul>
@@ -3822,7 +3822,7 @@ public int foobar() {
             Google Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SingleLineJavadoc">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+SingleLineJavadoc">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -4051,7 +4051,7 @@ public class Test {
             Google Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SummaryJavadoc">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+SummaryJavadoc">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -4291,7 +4291,7 @@ public class Test {
       <subsection name="Example of Usage" id="WriteTag_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+WriteTag">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+WriteTag">
             Checkstyle Style</a>
           </li>
         </ul>
