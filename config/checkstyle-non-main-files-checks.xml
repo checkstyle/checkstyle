@@ -11,7 +11,7 @@
   <!-- Suppressions for resources -->
   <module name="SuppressionFilter">
     <property name="file"
-             value="config/checkstyle_non_main_files_suppressions.xml"/>
+             value="config/checkstyle-non-main-files-suppressions.xml"/>
   </module>
   <!-- Miscellaneous -->
   <module name="NewlineAtEndOfFile" />
@@ -39,6 +39,16 @@
     <property name="fileNamePattern" value="^[a-z][a-z0-9]*(\-[a-z0-9]+)*\.[a-z]+$"/>
     <property name="match" value="false"/>
     <property name="fileExtensions" value="sh, cmd, bat, groovy"/>
+    <message key="regexp.filename.mismatch"
+             value="Filename should be in kebab-case."/>
+  </module>
+  <module name="RegexpOnFilename">
+    <property name="id" value="kebabCaseFileNamingInConfigFolder"/>
+    <property name="folderPattern" value="[\\/]config([\\/]|$)"/>
+    <property name="fileNamePattern" value="^[a-z][a-z0-9]*(\-[a-z0-9\.]+)*\.[a-z]+$"/>
+    <property name="match" value="false"/>
+    <property name="fileExtensions"
+              value="xml, xsd, config, words, files, properties, header, pl, yaml, txt, rb"/>
     <message key="regexp.filename.mismatch"
              value="Filename should be in kebab-case."/>
   </module>

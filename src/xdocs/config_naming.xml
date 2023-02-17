@@ -378,7 +378,7 @@ public class MyClass {
             Google Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+AbbreviationAsWordInName">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+AbbreviationAsWordInName">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -531,7 +531,7 @@ class FourthClass {} // OK, no "abstract" modifier
       <subsection name="Example of Usage" id="AbstractClassName_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+AbstractClassName">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+AbstractClassName">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -686,7 +686,7 @@ public class MyTest {
             </a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+CatchParameterName">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+CatchParameterName">
               Checkstyle Style
             </a>
           </li>
@@ -801,7 +801,7 @@ class MyClass5&lt;RequestT&gt; {} // OK
             Google Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ClassTypeParameterName">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+ClassTypeParameterName">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -964,7 +964,7 @@ class MyClass {
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ConstantName">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+ConstantName">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -1203,7 +1203,7 @@ public class TestClass {
       <subsection name="Example of Usage" id="IllegalIdentifierName_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+IllegalIdentifierName">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+IllegalIdentifierName">
               Checkstyle Style
             </a>
           </li>
@@ -1301,7 +1301,7 @@ interface ThirdInterface&lt;type&gt; {} // violation, name 'type' must
             Google Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+InterfaceTypeParameterName">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+InterfaceTypeParameterName">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -1404,7 +1404,7 @@ class MyClass {
               Google Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LambdaParameterName">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+LambdaParameterName">
               Checkstyle Style</a>
           </li>
         </ul>
@@ -1552,7 +1552,7 @@ class MyClass {
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LocalFinalVariableName">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+LocalFinalVariableName">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -1742,7 +1742,7 @@ class MyClass {
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LocalVariableName">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+LocalVariableName">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -1916,7 +1916,7 @@ class MyClass {
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MemberName">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+MemberName">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -2137,7 +2137,7 @@ class MyClass {
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MethodName">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+MethodName">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -2240,7 +2240,7 @@ class MyClass {
             Google Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MethodTypeParameterName">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+MethodTypeParameterName">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -2360,7 +2360,7 @@ package com._checkstyle.checks_; // violation, name 'com._checkstyle.checks_' mu
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+PackageName">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+PackageName">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -2557,7 +2557,7 @@ class MyClass {
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ParameterName">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+ParameterName">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -2688,7 +2688,7 @@ class MyClass {
             </a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+PatternVariableName">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+PatternVariableName">
               Checkstyle Style
             </a>
           </li>
@@ -2790,7 +2790,7 @@ record MyRecord3(double myNumber) {} // violation, the record component name
             </a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+RecordComponentName">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+RecordComponentName">
               Checkstyle Style
             </a>
           </li>
@@ -2886,7 +2886,7 @@ record MyRecord3&lt;abc&gt; {} // violation, the record type parameter
             </a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+RecordTypeParameterName">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+RecordTypeParameterName">
               Checkstyle Style
             </a>
           </li>
@@ -3043,7 +3043,7 @@ class MyClass {
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+StaticVariableName">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+StaticVariableName">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -3231,7 +3231,7 @@ interface SecondName {} // violation, name 'SecondName'
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+TypeName">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+TypeName">
             Checkstyle Style</a>
           </li>
         </ul>

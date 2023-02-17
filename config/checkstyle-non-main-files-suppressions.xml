@@ -50,7 +50,7 @@
   <!-- ArchUnit store is automatically updated by ArchUnit which
        does not add new line at the end. -->
   <suppress checks="NewlineAtEndOfFile"
-            files="config[\\/]archunit-store[\\/]slices_should_be_free_of_cycles_suppressions"/>
+            files="config[\\/]archunit-store[\\/]slices-should-be-free-of-cycles-suppressions"/>
 
   <!-- till https://issues.apache.org/jira/browse/MRELEASE-1008 -->
   <suppress id="lineLength" files="pom.xml"/>
@@ -169,5 +169,8 @@
   <suppress id="properCurlCommand" files=".ci[\\/]releasenotes-gen-xdoc-push\.sh"/>
   <suppress id="properCurlCommand" files=".ci[\\/]creation-of-issue-in-other-repos\.sh"/>
   <suppress id="properCurlCommand" files="release\.sh"/>
+
+  <suppress id="kebabCaseFileNamingInConfigFolder"
+            files="config[\\/]StarterRuleSet-AllRulesByCategory\.groovy\.txt"/>
 
 </suppressions>
