@@ -629,7 +629,7 @@ public class TranslationCheckTest extends AbstractXmlTestSupport {
             .getChildrenElements(actual).size();
     }
 
-    private static class TestMessageDispatcher implements MessageDispatcher {
+    private static final class TestMessageDispatcher implements MessageDispatcher {
 
         private Set<Violation> savedErrors;
 

@@ -245,7 +245,7 @@ public final class JavaParser {
     /**
      * Custom error listener to provide detailed exception message.
      */
-    private static class CheckstyleErrorListener extends BaseErrorListener {
+    private static final class CheckstyleErrorListener extends BaseErrorListener {
 
         @Override
         public void syntaxError(Recognizer<?, ?> recognizer, Object offendingSymbol,
