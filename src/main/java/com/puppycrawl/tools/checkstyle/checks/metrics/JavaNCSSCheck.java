@@ -509,7 +509,7 @@ public class JavaNCSSCheck extends AbstractCheck {
      * Class representing a counter.
      *
      */
-    private static class Counter {
+    private static final class Counter {
 
         /** The counters internal integer. */
         private int count;
