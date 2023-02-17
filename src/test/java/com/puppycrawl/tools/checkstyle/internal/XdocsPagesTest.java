@@ -1381,7 +1381,7 @@ public class XdocsPagesTest {
             if ("Checkstyle Style".equals(linkText)) {
                 hasCheckstyle = true;
                 expectedUrl = "https://github.com/search?q="
-                        + "path%3Aconfig+filename%3Acheckstyle_checks.xml+"
+                        + "path%3Aconfig+filename%3Acheckstyle-checks.xml+"
                         + "repo%3Acheckstyle%2Fcheckstyle+" + sectionName;
             }
             else if ("Google Style".equals(linkText)) {

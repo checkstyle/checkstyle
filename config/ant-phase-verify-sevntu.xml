@@ -13,7 +13,7 @@
   <target name="execute" if="run">
     <taskdef resource="com/puppycrawl/tools/checkstyle/ant/checkstyle-ant-task.properties"/>
 
-    <property name="check.config" location="config/checkstyle_sevntu_checks.xml"/>
+    <property name="check.config" location="config/checkstyle-sevntu-checks.xml"/>
 
     <tstamp>
       <format property="STARTED" pattern="dd/MM/yyyy hh:mm:ss aa" />
