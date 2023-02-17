@@ -387,28 +387,28 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/MainFrame.java</fileName>
     <specifier>call.ui</specifier>
     <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
-    <lineContent>private class ExpandCollapseAction extends AbstractAction {</lineContent>
+    <lineContent>private final class ExpandCollapseAction extends AbstractAction {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/MainFrame.java</fileName>
     <specifier>call.ui</specifier>
     <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
-    <lineContent>private class FileSelectionAction extends AbstractAction {</lineContent>
+    <lineContent>private final class FileSelectionAction extends AbstractAction {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/MainFrame.java</fileName>
     <specifier>call.ui</specifier>
     <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
-    <lineContent>private class FindNodeByXpathAction extends AbstractAction {</lineContent>
+    <lineContent>private final class FindNodeByXpathAction extends AbstractAction {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/MainFrame.java</fileName>
     <specifier>call.ui</specifier>
     <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
-    <lineContent>private class ReloadAction extends AbstractAction {</lineContent>
+    <lineContent>private final class ReloadAction extends AbstractAction {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">

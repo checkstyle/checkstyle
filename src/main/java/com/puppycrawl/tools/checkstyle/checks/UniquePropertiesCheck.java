@@ -201,7 +201,7 @@ public class UniquePropertiesCheck extends AbstractFileSetCheck {
      * @noinspectionreason ClassExtendsConcreteCollection - we require custom
      *      {@code put} method to find duplicate keys
      */
-    private static class UniqueProperties extends Properties {
+    private static final class UniqueProperties extends Properties {
 
         /** A unique serial version identifier. */
         private static final long serialVersionUID = 1L;
