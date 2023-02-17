@@ -1135,7 +1135,7 @@ check-wildcards-on-pitest-target-classes)
     -n pom.xml)
 
   CLASSES_NO_WILDCARD=$(echo "$ALL_CLASSES" | grep -v ".*\*\$" | grep -v -e '^\s*$' || echo)
-  CLASSES_NO_WILDCARD_COUNT=$(echo "$CLASSES_NO_WILDCARD" | grep -v -e '^\s*$' | wc -l)
+  CLASSES_NO_WILDCARD_COUNT=$(echo "$CLASSES_NO_WILDCARD" | grep -c -v -e '^\s*$' && true)
 
   if [[ "$CLASSES_NO_WILDCARD_COUNT" -gt 0 ]]; then
     echo "Append asterisks to the following pitest target classes in pom.xml:"
