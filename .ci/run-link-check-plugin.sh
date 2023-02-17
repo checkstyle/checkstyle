@@ -14,7 +14,7 @@ echo "------------ grep of linkcheck.html--BEGIN"
 # grep could return exit code 1 if nothing is matching
 grep externalLink target/site/linkcheck.html | cat
 echo "------------ grep of linkcheck.html--END"
-RESULT=$(grep externalLink target/site/linkcheck.html | grep -v 'Read timed out' | wc -l)
+RESULT=$(grep externalLink target/site/linkcheck.html | grep -c -v 'Read timed out' || true)
 echo 'Exit code:'"$RESULT"
 if [[ $RESULT != 0 ]]; then false; fi
 
