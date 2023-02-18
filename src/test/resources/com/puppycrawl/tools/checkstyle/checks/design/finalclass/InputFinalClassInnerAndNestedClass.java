@@ -13,7 +13,7 @@ public class InputFinalClassInnerAndNestedClass {
         }
     }
 
-    private class SubClass extends SuperClass {
+    private final class SubClass extends SuperClass {
     }
 
     class SameName { // violation
