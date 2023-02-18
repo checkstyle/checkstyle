@@ -33,6 +33,7 @@ import com.puppycrawl.tools.checkstyle.JavaParser;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class FinalClassCheckTest
     extends AbstractModuleTestSupport {
@@ -78,7 +79,7 @@ public class FinalClassCheckTest
     @Test
     public void testClassWithPrivateCtorAndNestedExtendingSubclass() throws Exception {
         final String[] expected = {
-            "22:5: " + getCheckMessage(MSG_KEY, "C"),
+            "23:5: " + getCheckMessage(MSG_KEY, "C"),
         };
         verifyWithInlineConfigParser(
                 getNonCompilablePath(
@@ -267,4 +268,30 @@ public class FinalClassCheckTest
                 .isTrue();
     }
 
+    @Test
+    public void testPrivateClassWithDefaultCtor() throws Exception {
+        final String[] expected = {
+            "14:5: " + getCheckMessage(MSG_KEY, "Some2"),
+            "19:1: " + getCheckMessage(MSG_KEY, "Some"),
+            "24:5: " + getCheckMessage(MSG_KEY, "Some3"),
+            "26:5: " + getCheckMessage(MSG_KEY, "Some4"),
+            "31:5: " + getCheckMessage(MSG_KEY, "PaperSetter"),
+            "36:5: " + getCheckMessage(MSG_KEY, "Paper"),
+            "44:5: " + getCheckMessage(MSG_KEY, "Node"),
+            "51:5: " + getCheckMessage(MSG_KEY, "Some1"),
+            "55:1: " + getCheckMessage(MSG_KEY, "Some2"),
+            "105:5: " + getCheckMessage(MSG_KEY, "NewCheck"),
+            "108:5: " + getCheckMessage(MSG_KEY, "NewCheck2"),
+            "112:5: " + getCheckMessage(MSG_KEY, "OldCheck"),
+        };
+        verifyWithInlineConfigParser(getPath("InputFinalClassPrivateCtor.java"),
+                                     expected);
+    }
+
+    @Test
+    public void testPrivateClassWithDefaultCtor2() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(getPath("InputFinalClassPrivateCtor2.java"),
+                                     expected);
+    }
 }
