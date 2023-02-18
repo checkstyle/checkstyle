@@ -158,7 +158,7 @@ line 5: ////////////////////////////////////////////////////////////////////
       <subsection name="Example of Usage" id="Header_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+Header">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+Header">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -406,7 +406,7 @@ public class ThisWillPass { }
       <subsection name="Example of Usage" id="RegexpHeader_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+RegexpHeader">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+RegexpHeader">
             Checkstyle Style</a>
           </li>
         </ul>

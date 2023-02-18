@@ -119,7 +119,7 @@ public class MyClass {
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ArrayTypeStyle">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+ArrayTypeStyle">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -303,7 +303,7 @@ return '&#92;ufeff' + content;           // OK, non-printable escape character.
             Google Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+AvoidEscapedUnicodeCharacters">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+AvoidEscapedUnicodeCharacters">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -556,7 +556,7 @@ return '&#92;ufeff' + content;           // OK, non-printable escape character.
             Google Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+CommentsIndentation">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+CommentsIndentation">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -917,7 +917,7 @@ return '&#92;ufeff' + content;           // OK, non-printable escape character.
       <subsection name="Example of Usage" id="DescendantToken_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+DescendantToken">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+DescendantToken">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -1099,7 +1099,7 @@ public class Point {
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+FinalParameters">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+FinalParameters">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -1364,7 +1364,7 @@ void foo(String aFooString,
             Google Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+Indentation">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+Indentation">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -1563,7 +1563,7 @@ This is a sample text file. // ok, this file is not specified in the config.
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NewlineAtEndOfFile">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+NewlineAtEndOfFile">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -1650,7 +1650,7 @@ This is a sample text file. // ok, this file is not specified in the config.
       <subsection name="Example of Usage" id="NoCodeInFile_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NoCodeInFile">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+NoCodeInFile">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -1766,7 +1766,7 @@ key.png =value - violation
       <subsection name="Example of Usage" id="OrderedProperties_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+OrderedProperties">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+OrderedProperties">
               Checkstyle Style</a>
           </li>
         </ul>
@@ -1858,7 +1858,7 @@ record Foo { // violation
             Google Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+OuterTypeFilename">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+OuterTypeFilename">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -1972,7 +1972,7 @@ i=i/x; // FIX :  handle x = 0 case         // OK
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+TodoComment">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+TodoComment">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -2200,7 +2200,7 @@ public class Test {
       <subsection name="Example of Usage" id="TrailingComment_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+TrailingComment">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+TrailingComment">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -2404,7 +2404,7 @@ messages_home_fr_CA_UNIX.properties
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+Translation">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+Translation">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -2549,7 +2549,7 @@ public record MyRecord1 {
       <subsection name="Example of Usage" id="UncommentedMain_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+UncommentedMain">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+UncommentedMain">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -2661,7 +2661,7 @@ key.one=54 // OK, file is not checked
       <subsection name="Example of Usage" id="UniqueProperties_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+UniqueProperties">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+UniqueProperties">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -2740,7 +2740,7 @@ class Test {
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+UpperEll">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+UpperEll">
             Checkstyle Style</a>
           </li>
         </ul>
