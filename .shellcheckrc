@@ -20,7 +20,6 @@ disable=SC2115 # (warning): Use "${var:?}" to ensure this never expands to /* .
 disable=SC2128 # (warning): Expanding an array without an index only gives the first element.
 disable=SC2063 # (warning): Grep uses regex, but this looks like a glob.
 disable=SC2126 # (style): Consider using grep -c instead of grep|wc -l.
-disable=SC2005 # (style): Useless echo? Instead of 'echo $(cmd)', just use 'cmd'.
 disable=SC2015 # (info): Note that A && B || C is not if-then-else. C may run when A is true.
 disable=SC2230 # which is non-standard. Use builtin 'command -v' instead.
 disable=SC2153 # Possible misspelling: LINKED_ISSUES may not be assigned, but LINKED_ISSUE is.
