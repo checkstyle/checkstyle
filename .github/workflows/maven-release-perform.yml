@@ -1,8 +1,8 @@
 #############################################################################
-# GitHub Action to Run Maven Release Prepare.
+# GitHub Action to Run Maven Release Perform.
 #
 #############################################################################
-name: "R: Maven Release Prepare"
+name: "R: Maven Release Perform"
 on:
   workflow_dispatch:
     inputs:
@@ -10,35 +10,36 @@ on:
         description: 'Target Version without (-SNAPSHOT)'
         required: true
 
-permissions:
-  contents: write
-
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
 jobs:
-  prepare:
-    name: Prepare Release ${{ github.event.inputs.version }}
+  perform:
+    name: Release perform {{ inputs.version }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the latest code
         uses: actions/checkout@v3
-      - name: Download xmlstarlet
-        run: |
-          sudo apt-get install xmlstarlet
+        with:
+          fetch-depth: 0
       - name: Setup local maven cache
         uses: actions/cache@v2
         with:
           path: ~/.m2/repository
           key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
-      - name: Commit and Push Credentials
+      - name: Set up JDK 11
+        uses: actions/setup-java@v3
+        with:
+          java-version: 11
+      - name: Prepare release settings
+        env:
+          SONATYPE_USER: ${{ secrets.SONATYPE_USER }}
+          SONATYPE_PWD: ${{ secrets.SONATYPE_PWD }}
+          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+          GPG_KEY: ${{ secrets.GPG_KEY }}
         run: |
-          git config user.name 'github-actions[bot]'
-          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          ./.ci/prepare-settings.sh
       - name: Run Shell Script
         run: |
-          ./.ci/maven-prepare.sh ${{ github.event.inputs.version }}
-      - name: Push commit
-        run: |
-          git push origin master --tags
+          ./.ci/maven-release-perform.sh ${{ inputs.version }}

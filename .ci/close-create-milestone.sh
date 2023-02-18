@@ -18,8 +18,7 @@ curl -i -H "Authorization: token $GITHUB_TOKEN" \
 
 echo "Creation of new milestone ..."
 
-CURRENT_VERSION=$(xmlstarlet sel -N pom=http://maven.apache.org/POM/4.0.0 \
-                             -t -m pom:project -v pom:version pom.xml | sed "s/-SNAPSHOT//")
+CURRENT_VERSION=$(getCheckstylePomVersionWithoutSnapshot)
 echo CURRENT_VERSION="$CURRENT_VERSION"
 
 LAST_SUNDAY_DAY=$(cal -d "$(date -d "next month" +"%Y-%m")" \

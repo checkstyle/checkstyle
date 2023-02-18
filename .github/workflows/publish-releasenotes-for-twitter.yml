@@ -1,8 +1,8 @@
 #############################################################################
-# GitHub Action to Publish Release Notes GitHub Page.
+# GitHub Action to Publish Tweet of release notes.
 #
 #############################################################################
-name: "R: Publish GitHub Page"
+name: "R: Publish Tweet"
 on:
   workflow_dispatch:
     inputs:
@@ -16,20 +16,24 @@ concurrency:
 
 jobs:
   publish:
-    name: Publish releasenotes GitHub Page ${{ github.event.inputs.version }}
+    name: Publish releasenotes tweet for ${{ inputs.version }}
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
     steps:
       - name: Checkout the latest code
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
       - name: Setup local maven cache
         uses: actions/cache@v2
         with:
           path: ~/.m2/repository
           key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
       - name: Run Shell Script
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          ./.ci/update-github-page.sh ${{ github.event.inputs.version }}
+          ./.ci/tweet-releasenotes.sh ${{ inputs.version }}
+        env:
+          GITHUB_READ_ONLY_TOKEN: ${{ secrets.READ_ONLY_TOKEN_GITHUB }}
+          TWITTER_CONSUMER_KEY: ${{ secrets.TWITTER_CONSUMER_KEY }}
+          TWITTER_CONSUMER_SECRET: ${{ secrets.TWITTER_CONSUMER_SECRET }}
+          TWITTER_ACCESS_TOKEN: ${{ secrets.TWITTER_ACCESS_TOKEN }}
+          TWITTER_ACCESS_TOKEN_SECRET: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}

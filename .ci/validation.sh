@@ -611,7 +611,7 @@ sonarqube)
   cat target/sonar/report-task.txt
   echo "Verification of sonar gate status"
   export SONAR_API_TOKEN=$SONAR_TOKEN
-  .ci/sonar_break_build.sh
+  .ci/sonar-break-build.sh
   ;;
 
 no-error-pgjdbc)
