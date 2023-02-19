@@ -15,7 +15,6 @@ or set of validation rules (best practices).
 [![][pitest img]][pitest]
 [![][checker framework img]][checker framework]
 
-[![][codeship img]][codeship]
 [![][dependabot img]][dependabot]
 
 [![][mavenbadge img]][mavenbadge]
@@ -138,9 +137,6 @@ are in the file named "LICENSE.apache20" in this directory.
 
 [teamcity]:https://teamcity.jetbrains.com/viewType.html?buildTypeId=Checkstyle_IdeaInspectionsMaster
 [teamcity img]:https://teamcity.jetbrains.com/app/rest/builds/buildType:(id:Checkstyle_IdeaInspectionsMaster)/statusIcon
-
-[codeship]: https://codeship.com/projects/124310
-[codeship img]:https://codeship.com/projects/67b814a0-8fee-0133-9b59-02a170289b8c/status?branch=master
 
 [circleci]: https://circleci.com/gh/checkstyle/checkstyle/tree/master
 [circleci img]: https://circleci.com/gh/checkstyle/checkstyle/tree/master.svg?style=svg
