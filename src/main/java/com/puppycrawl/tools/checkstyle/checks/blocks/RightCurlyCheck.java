@@ -32,7 +32,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 /**
  * <p>
  * Checks the placement of right curly braces ({@code '}'}) for code blocks. This check supports
- * if-else, try-catch-finally blocks, while-loops, for-loops,
+ * if-else, try-catch-finally blocks, switch statements and expressions, while-loops, for-loops,
  * method definitions, class definitions, constructor definitions,
  * instance, static initialization blocks, annotation definitions and enum definitions.
  * For right curly brace of expression blocks of arrays, lambdas and class instances
@@ -292,6 +292,7 @@ public class RightCurlyCheck extends AbstractCheck {
             TokenTypes.INTERFACE_DEF,
             TokenTypes.RECORD_DEF,
             TokenTypes.COMPACT_CTOR_DEF,
+            TokenTypes.LITERAL_SWITCH,
         };
     }
 
@@ -559,11 +560,37 @@ public class RightCurlyCheck extends AbstractCheck {
                 case TokenTypes.LITERAL_DO:
                     details = getDetailsForDoLoops(ast);
                     break;
+                case TokenTypes.LITERAL_SWITCH:
+                    details = getDetailsForSwitch(ast);
+                    break;
                 default:
                     details = getDetailsForOthers(ast);
                     break;
             }
             return details;
+        }
+
+        /**
+         * Collects details about switch statements and expressions.
+         *
+         * @param switchNode switch statement or expression to gather details about
+         * @return new Details about given switch statement or expression
+         */
+        private static Details getDetailsForSwitch(DetailAST switchNode) {
+            final DetailAST lcurly = switchNode.findFirstToken(TokenTypes.LCURLY);
+            final DetailAST rcurly = switchNode.getLastChild();
+            DetailAST nextToken = null;
+            DetailAST parent = switchNode;
+            while (nextToken == null) {
+                nextToken = parent.getNextSibling();
+                if (nextToken != null && (nextToken.getType() == TokenTypes.SEMI
+                        || nextToken.getType() == TokenTypes.RPAREN
+                        || nextToken.getType() == TokenTypes.EMPTY_STAT)) {
+                    nextToken = nextToken.getNextSibling();
+                }
+                parent = parent.getParent();
+            }
+            return new Details(lcurly, rcurly, nextToken, true);
         }
 
         /**
