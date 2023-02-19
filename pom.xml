@@ -1961,8 +1961,7 @@
             <excludedLink>https://coveralls.io/r/checkstyle/checkstyle</excludedLink>
 
             <!-- we did too many requests to GitHub,
-                 now GitHub reject all requests "429 Too Many Requests"
-                 https://codeship.com/projects/124310/builds/12027213  -->
+                 now GitHub reject all requests "429 Too Many Requests" -->
             <excludedLink>https://github.com/*</excludedLink>
             <!-- redirects to US page, it is better to stay international -->
             <excludedLink>https://help.github.com/*</excludedLink>
