@@ -55,7 +55,11 @@ public class LocalizedMessage {
     private final String key;
 
     /**
-     * Arguments for MessageFormat.
+     * Arguments for java.text.MessageFormat, that is why type is Object[].
+     *
+     * <p>Note: Changing types from Object[] will be huge breaking compatibility, as Module
+     * messages use some type formatting already, so better to keep it as Object[].
+     * </p>
      */
     private final Object[] args;
 
