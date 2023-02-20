@@ -20,10 +20,12 @@
 package com.puppycrawl.tools.checkstyle.checks.design;
 
 import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Deque;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.function.Function;
@@ -253,12 +255,33 @@ public class FinalClassCheck
      * @return true if given class should be declared as final otherwise false
      */
     private static boolean shouldBeDeclaredAsFinal(ClassDesc desc) {
-        return desc.isWithPrivateCtor()
+        return (desc.isWithPrivateCtor() || isPrivateWithDefaultCtor(desc))
                 && !(desc.isDeclaredAsAbstract()
                     || desc.isSuperClassOfAnonymousInnerClass())
                 && !desc.isDeclaredAsFinal()
                 && !desc.isWithNonPrivateCtor()
                 && !desc.isWithNestedSubclass();
+    }
+
+    /**
+     * Check if class is private and with default constructor.
+     *
+     * @param desc description of class
+     * @return true if class is private and with default constructor
+     */
+    private static boolean isPrivateWithDefaultCtor(ClassDesc desc) {
+        final DetailAST descAst = desc.getTypeDeclarationAst();
+        DetailAST modifierChild = descAst.getFirstChild().getFirstChild();
+        final List<Integer> list = new ArrayList<>();
+
+        while (modifierChild != null) {
+            list.add(modifierChild.getType());
+            modifierChild = modifierChild.getNextSibling();
+        }
+
+        return list.contains(TokenTypes.LITERAL_PRIVATE)
+                && !desc.withPrivateCtor
+                && !desc.isWithNonPrivateCtor();
     }
 
     /**
