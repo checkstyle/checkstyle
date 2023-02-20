@@ -693,7 +693,8 @@ no-error-sevntu-checks)
   mvn -e --no-transfer-progress -Pno-validations verify  -Dcheckstyle.ant.skip=false \
      -Dcheckstyle.version="${CS_POM_VERSION}" \
      -Dcheckstyle.configLocation=../../../config/checkstyle_checks.xml \
-     -Dcheckstyle.nonMain.configLocation=../../../config/checkstyle_non_main_files_checks.xml
+     -Dcheckstyle.nonMain.configLocation=../../../config/checkstyle_non_main_files_checks.xml \
+     -Dcheckstyle.non-main-files-suppressions.file=config/checkstyle_non_main_files_suppressions.xml
   cd ../../
   removeFolderWithProtectedFiles sevntu.checkstyle
   ;;
