@@ -137,6 +137,15 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * &lt;/module&gt;
  * </pre>
  * <p>
+ *Example:
+ * </p>
+ * <pre>
+ *baseName.properties //ok
+ *baseName.translations  //ok
+ *baseName.text //violation  , extension without translations or properties
+ *baseName.word  // violation , extension without translations or properties
+ * </pre>
+ * <p>
  * Note, that files with the same path and base name but which have different
  * extensions will be considered as files that belong to different resource bundles.
  * </p>
@@ -148,6 +157,13 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * &lt;module name="Translation"&gt;
  *   &lt;property name="baseName" value="^ButtonLabels.*$"/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * ButtonLabels.properties  //ok
+ * another.properties   //violation , the basename is not ButtonLabels
  * </pre>
  * <p>
  * To configure the check to check existence of Japanese and French translations:
@@ -168,6 +184,14 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * &lt;/module&gt;
  * </pre>
  * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * baseName-ja.properties//ok
+ * baseName-fr.properties  //ok
+ * baseName-ar.properties  //voilation , arabic translation
+ *</pre>
+ * <p>
  * As we can see from the configuration, the TranslationCheck was configured
  * to check an existence of 'es', 'fr' and 'de' translations. Let's assume that
  * we have the resource bundle:
@@ -176,6 +200,20 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * messages_home.properties
  * messages_home_es_US.properties
  * messages_home_fr_CA_UNIX.properties
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * messages_home_de.properties
+ * messages_home_es_US.properties
+ * messages_home_fr_CA_UNIX.properties
+ * /ok
+ *
+ * messages_home_de.properties
+ * messages_home.properties
+ * messages_home_fr_CA_UNIX.properties
+ * //voilation , es is missing
  * </pre>
  * <p>
  * Than the check will rise the following violation: "0: Properties file
