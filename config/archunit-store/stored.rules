@@ -1,1 +1,1 @@
-slices\ matching\ 'com.puppycrawl.tools.checkstyle.(**)'\ should\ be\ free\ of\ cycles=slices_should_be_free_of_cycles_suppressions
+slices\ matching\ 'com.puppycrawl.tools.checkstyle.(**)'\ should\ be\ free\ of\ cycles=slices-should-be-free-of-cycles-suppressions
