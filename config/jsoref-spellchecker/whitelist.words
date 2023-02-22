@@ -1269,6 +1269,7 @@ suppresswarnings
 suppresswarningsfilter
 suppresswarningsholder
 suppresswithnearbycommentfilter
+suppresswithnearbytextfilter
 suppresswithplaintextcommentfilter
 suse
 svg
@@ -1377,6 +1378,7 @@ uxxxx
 validator
 VALUEEEE
 vararg
+varchar
 variabledeclarationusagedistance
 variabledistance
 Veach
