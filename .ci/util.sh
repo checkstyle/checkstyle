@@ -12,6 +12,12 @@ function checkForVariable() {
     echo "Error: Define $1 environment variable"
     exit 1
   fi
+
+  VAR_VALUE="${!VAR_NAME}"
+  if [ -z "$VAR_VALUE" ]; then
+    echo "Error: Set value to $1 environment variable"
+    exit 1
+  fi
 }
 
 function getMavenProperty {
