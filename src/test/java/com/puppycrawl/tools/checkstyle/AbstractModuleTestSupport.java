@@ -581,7 +581,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
     protected static String[] removeSuppressed(String[] actualViolations,
                                                String... suppressedViolations) {
         final List<String> actualViolationsList =
-            Arrays.stream(actualViolations).collect(Collectors.toList());
+            Arrays.stream(actualViolations).collect(Collectors.toCollection(ArrayList::new));
         actualViolationsList.removeAll(Arrays.asList(suppressedViolations));
         return actualViolationsList.toArray(CommonUtil.EMPTY_STRING_ARRAY);
     }
