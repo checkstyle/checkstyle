@@ -17,7 +17,7 @@
       <id>gpg</id>
       <properties>
         <gpg.passphrase>GPG_PASSPHRASE</gpg.passphrase>
-        <gpg.keyname>GPG_KEY</gpg.keyname>
+        <gpg.keyname>GPG_KEYNAME</gpg.keyname>
       </properties>
     </profile>
   </profiles>

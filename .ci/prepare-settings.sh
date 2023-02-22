@@ -9,7 +9,7 @@ cp config/release-settings.xml .ci-temp/
 checkForVariable "SONATYPE_USER"
 checkForVariable "SONATYPE_PWD"
 checkForVariable "GPG_PASSPHRASE"
-checkForVariable "GPG_KEY"
+checkForVariable "GPG_KEYNAME"
 
 replace() {
   sed -i "s/$1/$2/g" .ci-temp/release-settings.xml
@@ -18,7 +18,7 @@ replace() {
 replace SONATYPE_USER "$SONATYPE_USER"
 replace SONATYPE_PWD "$SONATYPE_PWD"
 replace GPG_PASSPHRASE "$GPG_PASSPHRASE"
-replace GPG_KEY "$GPG_KEY"
+replace GPG_KEY "$GPG_KEYNAME"
 
 mkdir -p ~/.m2
 TEMP_SETTING=./.ci-temp/release-settings.xml
