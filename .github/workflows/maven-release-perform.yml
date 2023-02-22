@@ -43,7 +43,7 @@ jobs:
           SONATYPE_USER: ${{ secrets.SONATYPE_USER }}
           SONATYPE_PWD: ${{ secrets.SONATYPE_PWD }}
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
-          GPG_KEY: ${{ secrets.GPG_KEY }}
+          GPG_KEYNAME: ${{ secrets.GPG_KEYNAME }}
         run: |
           ./.ci/prepare-settings.sh
       - name: Run Shell Script
