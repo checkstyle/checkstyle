@@ -52,7 +52,7 @@ import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
 import com.puppycrawl.tools.checkstyle.api.Violation;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-/**
+/* *
  * <p>
  * Ensures the correct translation of code by checking property files for consistency
  * regarding their keys. Two property files describing one and the same context
@@ -137,13 +137,13 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * &lt;/module&gt;
  * </pre>
  * <p>
- *Example:
+ * Example:
  * </p>
  * <pre>
- *baseName.properties //ok
- *baseName.translations  //ok
- *baseName.text //violation  , extension without translations or properties
- *baseName.word  // violation , extension without translations or properties
+ * baseName.properties //ok
+ * baseName.translations  //ok
+ * baseName.text //violation  , extension without translations or properties
+ * baseName.word  // violation , extension without translations or properties
  * </pre>
  * <p>
  * Note, that files with the same path and base name but which have different
@@ -190,7 +190,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * baseName-ja.properties//ok
  * baseName-fr.properties  //ok
  * baseName-ar.properties  //voilation , arabic translation
- *</pre>
+ * </pre>
  * <p>
  * As we can see from the configuration, the TranslationCheck was configured
  * to check an existence of 'es', 'fr' and 'de' translations. Let's assume that

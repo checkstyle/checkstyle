@@ -2350,13 +2350,13 @@ messages.properties: Key 'ok' missing.
 &lt;/module&gt;
         </source>
         <p>
-              Example:
+          Example:
         </p>
         <source>
 baseName.properties //ok
 baseName.translations  //ok
-baseName.text //violation  , extension without translations or properties
-baseName.word  // violation , extension without translations or properties
+baseName.text //violation , extension without translations or properties
+baseName.word // violation,extension without translations or properties
         </source>
         <p>
           Note, that files with the same path and base name but which have different
@@ -2375,10 +2375,9 @@ baseName.word  // violation , extension without translations or properties
               Example:
         </p>
         <source>
-ButtonLabels.properties  //ok
-another.properties   //violation , the basename is not ButtonLabels
+ButtonLabels.properties//ok
+another.properties  //violation, the basename is not ButtonLabels
         </source>
-
 
         <p>
           To configure the check to check existence of Japanese and French translations:
@@ -2407,12 +2406,12 @@ baseName-ar.properties  //voilation , arabic translation
 &lt;/module&gt;
         </source>
         <p>
-              Example:
+            Example:
         </p>
         <source>
-messages_home_de.properties
-messages_home_es_US.properties
-messages_home_fr_CA_UNIX.properties
+messages_de.properties
+messages_es_US.properties
+messages_fr_CA_UNIX.properties
         //ok
 
 messages_home_de.properties
@@ -2424,8 +2423,6 @@ messages_home_fr_CA_UNIX.properties
           As we can see from the configuration, the TranslationCheck was configured to check
           an existence of 'es', 'fr' and 'de' translations. Let's assume that we have the resource
           bundle:
-
-
         </p>
         <source>
 messages_home.properties
