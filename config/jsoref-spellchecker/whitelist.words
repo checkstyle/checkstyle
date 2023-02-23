@@ -502,6 +502,7 @@ googlesource
 govstrangefolder
 GPath
 gpg
+gpgv
 gradle
 gradlew
 graphicsenv
@@ -1027,6 +1028,7 @@ perl
 Perror
 pgjdbc
 Pgpg
+Pgpgv
 pguyot
 php
 picocli
