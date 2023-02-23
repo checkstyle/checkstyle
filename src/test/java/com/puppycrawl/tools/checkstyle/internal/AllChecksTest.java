@@ -364,7 +364,7 @@ public class AllChecksTest extends AbstractModuleTestSupport {
         moduleNames.stream().filter(check -> !modulesReferencedInConfig.contains(check))
             .forEach(check -> {
                 final String errorMessage = String.format(Locale.ROOT,
-                    "%s is not referenced in checkstyle_checks.xml", check);
+                    "%s is not referenced in checkstyle-checks.xml", check);
                 assertWithMessage(errorMessage).fail();
             });
     }
@@ -372,7 +372,7 @@ public class AllChecksTest extends AbstractModuleTestSupport {
     @Test
     public void testAllCheckTokensAreReferencedInCheckstyleConfigFile() throws Exception {
         final Configuration configuration = ConfigurationUtil
-                .loadConfiguration("config/checkstyle_checks.xml");
+                .loadConfiguration("config/checkstyle-checks.xml");
 
         validateAllCheckTokensAreReferencedInConfigFile("checkstyle", configuration,
                 CHECKSTYLE_TOKENS_IN_CONFIG_TO_IGNORE, false);
@@ -506,7 +506,7 @@ public class AllChecksTest extends AbstractModuleTestSupport {
         final Set<String> moduleNames = CheckUtil.getSimpleNames(CheckUtil.getCheckstyleModules());
         moduleNames.removeAll(INTERNAL_MODULES);
         for (String moduleName : moduleNames) {
-            assertWithMessage("checkstyle_checks.xml is missing module: " + moduleName)
+            assertWithMessage("checkstyle-checks.xml is missing module: " + moduleName)
                     .that(configChecks)
                     .contains(moduleName);
         }
