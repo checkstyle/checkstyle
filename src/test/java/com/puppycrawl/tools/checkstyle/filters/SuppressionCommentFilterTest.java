@@ -194,6 +194,20 @@ public class SuppressionCommentFilterTest
     }
 
     @Test
+    public void testMessageRegExp() throws Exception {
+        final String[] suppressed = {
+                "75:17: "
+                        + getCheckMessage(AbstractNameCheck.class,
+                        MSG_INVALID_PATTERN, "T", "^[a-z][a-zA-Z0-9]*$"),
+                "96:23: "
+                        + getCheckMessage(IllegalCatchCheck.class, IllegalCatchCheck.MSG_KEY, "Exception"),
+                "103:11: "
+                        + getCheckMessage(IllegalCatchCheck.class, IllegalCatchCheck.MSG_KEY, "Exception"),
+        };
+        verifySuppressedWithParser("InputSuppressionCommentFilter12.java", suppressed);
+    }
+
+    @Test
     public void testCheckCpp() throws Exception {
         final String[] suppressed = {
             "48:17: "
