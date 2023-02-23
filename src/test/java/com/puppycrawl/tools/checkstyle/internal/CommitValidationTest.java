@@ -72,12 +72,15 @@ public class CommitValidationTest {
 
     private static final String ISSUE_COMMIT_MESSAGE_REGEX_PATTERN = "^Issue #\\d+: .*$";
     private static final String PR_COMMIT_MESSAGE_REGEX_PATTERN = "^Pull #\\d+: .*$";
+    private static final String RELEASE_COMMIT_MESSAGE_REGEX_PATTERN =
+            "^\\[maven-release-plugin] .*$";
     private static final String OTHER_COMMIT_MESSAGE_REGEX_PATTERN =
             "^(minor|config|infra|doc|spelling|dependency|supplemental): .*$";
 
     private static final String ACCEPTED_COMMIT_MESSAGE_REGEX_PATTERN =
               "(" + ISSUE_COMMIT_MESSAGE_REGEX_PATTERN + ")|"
               + "(" + PR_COMMIT_MESSAGE_REGEX_PATTERN + ")|"
+              + "(" + RELEASE_COMMIT_MESSAGE_REGEX_PATTERN + ")|"
               + "(" + OTHER_COMMIT_MESSAGE_REGEX_PATTERN + ")";
 
     private static final Pattern ACCEPTED_COMMIT_MESSAGE_PATTERN =
@@ -316,6 +319,7 @@ public class CommitValidationTest {
                 + "    1) Must match one of the following patterns:\n"
                 + "        " + ISSUE_COMMIT_MESSAGE_REGEX_PATTERN + "\n"
                 + "        " + PR_COMMIT_MESSAGE_REGEX_PATTERN + "\n"
+                + "        " + RELEASE_COMMIT_MESSAGE_REGEX_PATTERN + "\n"
                 + "        " + OTHER_COMMIT_MESSAGE_REGEX_PATTERN + "\n"
                 + "    2) It contains only one line of text\n"
                 + "    3) Must not end with a period, space, or tab\n"
