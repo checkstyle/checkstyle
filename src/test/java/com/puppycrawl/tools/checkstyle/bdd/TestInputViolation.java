@@ -87,7 +87,14 @@ public final class TestInputViolation implements Comparable<TestInputViolation> 
 
     @Override
     public int compareTo(TestInputViolation testInputViolation) {
-        return Integer.compare(lineNo, testInputViolation.lineNo);
+        final int result;
+        if (message != null && lineNo == testInputViolation.lineNo) {
+            result = testInputViolation.message.compareTo(message);
+        }
+        else {
+            result = Integer.compare(lineNo, testInputViolation.lineNo);
+        }
+        return result;
     }
 
     @Override
