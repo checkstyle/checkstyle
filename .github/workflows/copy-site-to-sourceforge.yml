@@ -6,7 +6,7 @@ name: "R: Copy Site to SourceForge"
 on:
   workflow_dispatch:
     inputs:
-      release-version:
+      version:
         description: 'Release Version without (-SNAPSHOT)'
         required: true
 
@@ -16,7 +16,7 @@ concurrency:
 
 jobs:
   copy-site:
-    name: Copy site to sourceforge for ${{ github.event.inputs.release-version }}
+    name: Copy site to sourceforge for ${{ inputs.version }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the latest code
@@ -38,4 +38,4 @@ jobs:
         env:
           SF_USER: ${{ secrets.SF_USER }}
         run: |
-          ./.ci/copy-site-to-sourceforge.sh ${{ github.event.inputs.release-version }}
+          ./.ci/copy-site-to-sourceforge.sh ${{ inputs.version }}
