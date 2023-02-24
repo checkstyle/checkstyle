@@ -37,15 +37,9 @@ curl https://api.github.com/repos/checkstyle/checkstyle/releases \
  -H "Authorization: token $GITHUB_TOKEN" \
  -o /var/tmp/cs-releases.json
 
-TARGET_RELEASE_INDEX=$(jq -r --arg tagname "checkstyle-$TARGET_VERSION" \
-               'to_entries[] | select(.value.tag_name == $tagname).key' /var/tmp/cs-releases.json)
-echo TARGET_RELEASE_INDEX="$TARGET_RELEASE_INDEX"
-
-PREVIOUS_RELEASE_INDEX=$(($TARGET_RELEASE_INDEX+1))
-echo PREVIOUS_RELEASE_INDEX="$PREVIOUS_RELEASE_INDEX"
-
-END_REF=$(cat /var/tmp/cs-releases.json | jq -r ".[$TARGET_RELEASE_INDEX].tag_name")
-START_REF=$(cat /var/tmp/cs-releases.json | jq -r ".[$PREVIOUS_RELEASE_INDEX].tag_name")
+# Last release is at index 0.
+START_REF=$(cat /var/tmp/cs-releases.json | jq -r ".[0].tag_name")
+END_REF="checkstyle-$TARGET_VERSION"
 
 echo START_REF="$START_REF"
 echo END_REF="$END_REF"
@@ -74,21 +68,22 @@ echo 'Updating content to be be json value friendly'
 UPDATED_CONTENT=$(awk '{printf "%s\n", $0}' github_post.txt | jq -Rsa .)
 echo "$UPDATED_CONTENT"
 
-RELEASE_ID=$(cat /var/tmp/cs-releases.json | jq -r ".[$TARGET_RELEASE_INDEX].id")
-echo RELEASE_ID="$RELEASE_ID"
-
 cat <<EOF > body.json
 {
-"tag_name": "checkstyle-${TARGET_VERSION}",
-"body": ${UPDATED_CONTENT}
+  "tag_name": "checkstyle-$TARGET_VERSION",
+  "body": ${UPDATED_CONTENT},
+  "target_commitish": "master",
+  "name": "",
+  "draft": false,
+  "prerelease": false
 }
 EOF
 echo "JSON Body"
 cat body.json
 
-echo "Updating Github tag page"
+echo "Creating Github release"
 curl \
-  -X PATCH https://api.github.com/repos/checkstyle/checkstyle/releases/"$RELEASE_ID" \
+  -X POST https://api.github.com/repos/checkstyle/checkstyle/releases \
   -H "Accept: application/vnd.github+json" \
   -H "Authorization: token $GITHUB_TOKEN" \
   --data @body.json
