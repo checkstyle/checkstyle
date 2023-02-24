@@ -1,0 +1,28 @@
+/*
+SuppressWithNearbyTextFilter
+nearbyTextPattern = SUPPRESS CHECKSTYLE (\\w+) - ([+-]\\d+) Lines
+checkPattern = $1
+messagePattern = (default)(null)
+idPattern = (default)(null)
+lineRange = $2
+
+com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck
+fileExtensions = (default)all files
+ignorePattern = (default)^(package|import).*
+max = 85
+
+
+*/
+
+<module>
+    <child></child> <!-- SUPPRESS CHECKSTYLE LineLengthCheck - +3 Lines -->
+    <child></child> // filtered violation 'Line is longer than 85 characters (found 89).'
+    <child></child> // filtered violation 'Line is longer than 85 characters (found 89).'
+    <child></child> // filtered violation 'Line is longer than 85 characters (found 89).'
+    <child>abcdefg</child> // violation 'Line is longer than 85 characters (found 87).'
+
+    <child>abcdefg</child> // violation 'Line is longer than 85 characters (found 87).'
+    <child></child> // filtered violation 'Line is longer than 85 characters (found 89).'
+    <child></child> // filtered violation 'Line is longer than 85 characters (found 89).'
+    <child></child> <!-- SUPPRESS CHECKSTYLE LineLengthCheck - -2 Lines -->
+</module>
