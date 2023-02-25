@@ -17,7 +17,7 @@ tokens = (default)STATIC_IMPORT
 package com.puppycrawl.tools.checkstyle.checks.imports.importorder;
 
 import static java.lang.Math.*; // ok
-import static org.antlr.v4.runtime.CommonToken.*; // violation ''org.antlr.v4.runtime.CommonToken.*' should be separated from previous imports.'
+import static org.antlr.v4.runtime.CommonToken.*; // violation '.* should be separated from previous imports.'
 import static org.antlr.v4.runtime.CommonToken.*;  // ok
 
 import java.util.Set; // violation 'Wrong order for 'java.util.Set' import.'
