@@ -24,7 +24,7 @@ import java.awt.event.ActionEvent; // ok
 
 import javax.swing.JComponent; // violation 'Extra separation in import group before 'javax.swing.JComponent''
 import static javax.swing.WindowConstants.HIDE_ON_CLOSE; // ok
-import static javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE; // violation 'Wrong order for 'javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE' import.'
+import static javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE; // violation 'Wrong order for .* import.'
 import static javax.swing.WindowConstants.*; // violation 'Wrong order for 'javax.swing.WindowConstants.*' import.'
 import javax.swing.JTable; // violation 'Wrong order for 'javax.swing.JTable' import.'
 
