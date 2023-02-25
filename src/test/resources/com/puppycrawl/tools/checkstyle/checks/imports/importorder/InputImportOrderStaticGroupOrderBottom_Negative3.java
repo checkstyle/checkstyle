@@ -21,7 +21,7 @@ import org.antlr.v4.runtime.*; // ok
 import static java.lang.Math.PI; // ok
 import static org.antlr.v4.runtime.Recognizer.EOF; // ok
 
-import java.util.Set; // violation
+import java.util.Set; // violation 'Wrong order for 'java.util.Set' import.'
 
 import static java.util.Set.*; // ok
 

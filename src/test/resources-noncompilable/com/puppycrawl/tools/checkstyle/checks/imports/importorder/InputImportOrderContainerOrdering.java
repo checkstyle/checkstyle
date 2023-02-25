@@ -19,8 +19,8 @@ package com.puppycrawl.tools.checkstyle.checks.imports.importorder;
 import static io.netty.handler.codec.http.HttpConstants.COLON; // ok
 import static io.netty.handler.codec.http.HttpHeaders.addHeader; // ok
 import static io.netty.handler.codec.http.HttpHeaders.setHeader; // ok
-import static io.netty.handler.Codec.HTTP.HttpHeaders.tmp.same; // violation
-import static io.netty.handler.Codec.HTTP.HttpHeaders.TKN.same; // violation
+import static io.netty.handler.Codec.HTTP.HttpHeaders.tmp.same; // violation 'Wrong order for .* import.'
+import static io.netty.handler.Codec.HTTP.HttpHeaders.TKN.same; // violation 'Wrong order for .* import.'
 
 public class InputImportOrderContainerOrdering {
 

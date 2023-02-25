@@ -20,7 +20,7 @@ import java.io.File; // ok
 import java.io.IOException; // ok
 import java.util.Iterator; // ok
 
-import com.puppycrawl.tools.checkstyle.checks.imports.importorder.InputImportOrderBug; // violation
+import com.puppycrawl.tools.checkstyle.checks.imports.importorder.InputImportOrderBug; // violation 'Extra separation in import group before .*'
 
 public class InputImportOrder_WildcardUnspecified {
 }
