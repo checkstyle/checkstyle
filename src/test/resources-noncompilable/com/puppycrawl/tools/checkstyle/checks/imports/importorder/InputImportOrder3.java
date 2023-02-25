@@ -31,7 +31,7 @@ import java.io.InputStream; // ok
 import java.io.Reader; // ok
 import static javax.swing.WindowConstants.*; // ok
 
-import static sun.tools.util.ModifierFilter.ALL_ACCESS; // violation 'Extra separation in import group before 'sun.tools.util.ModifierFilter.ALL_ACCESS''
+import static sun.tools.util.ModifierFilter.ALL_ACCESS; // violation 'Extra separation in import group before .*'
 import static sun.tools.util.ModifierFilter.PACKAGE; // ok
 
 public class InputImportOrder3 {
