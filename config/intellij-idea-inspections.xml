@@ -4433,6 +4433,7 @@
         <option value="SuperClassHasFrequentlyUsedInheritors"/>
         <!-- we still have classes derived from deprecated ones -->
         <option value="DeprecatedIsStillUsed"/>
+        <option value="Deprecation"/>
         <!-- these are base classes for checks
                      and not all their methods may need to be overwritten -->
         <option value="NoopMethodInAbstractClass"/>
