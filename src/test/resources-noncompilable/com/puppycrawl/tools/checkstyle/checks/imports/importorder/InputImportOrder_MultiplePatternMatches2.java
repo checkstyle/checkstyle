@@ -18,7 +18,7 @@ tokens = (default)STATIC_IMPORT
 package com.puppycrawl.tools.checkstyle.checks.imports.importorder;
 import java.io.File; // ok
 
-import org.*; // violation
+import org.*; // violation 'Extra separation in import group before 'org.*''
 import org.myOrgorgan.Test; // ok
 
 public class InputImportOrder_MultiplePatternMatches2 {

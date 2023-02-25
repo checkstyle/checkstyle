@@ -18,9 +18,9 @@ tokens = (default)STATIC_IMPORT
 package com.puppycrawl.tools.checkstyle.checks.imports.importorder;
 import com.google.common.collect.Lists; // ok
 
-import static org.junit.Assert.fail; // violation
+import static org.junit.Assert.fail; // violation 'Wrong order for 'org.junit.Assert.fail' import.'
 import static java.lang.String.format; // ok
-import static org.infinispan.test.TestingUtil.extract; // violation
+import static org.infinispan.test.TestingUtil.extract; // violation 'Wrong order for 'org.infinispan.test.TestingUtil.extract' import.'
 
 public class InputImportOrderStaticGroupsNegative {
 }
