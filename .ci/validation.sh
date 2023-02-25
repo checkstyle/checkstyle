@@ -694,7 +694,7 @@ no-error-sevntu-checks)
      -Dcheckstyle.version="${CS_POM_VERSION}" \
      -Dcheckstyle.configLocation=../../../config/checkstyle-checks.xml \
      -Dcheckstyle.nonMain.configLocation=../../../config/checkstyle-non-main-files-checks.xml \
-     -Dcheckstyle.non-main-files-suppressions.file=config/checkstyle_non_main_files_suppressions.xml
+     -Dcheckstyle.non-main-files-suppressions.file=config/checkstyle-non-main-files-suppressions.xml
   cd ../../
   removeFolderWithProtectedFiles sevntu.checkstyle
   ;;
