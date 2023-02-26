@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: 'Release Version without (-SNAPSHOT)'
+        description: 'Target Version without (-SNAPSHOT)'
         required: true
 
 concurrency:
