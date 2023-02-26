@@ -608,30 +608,53 @@ class Bar implements Foo {
           Example:
         </p>
         <source>
+@SuppressWarnings("unchecked") // OK
 @Deprecated // OK
-@SomeArrays(pooches={DOGS.LEO}) // Violation - COMPACT_NO_ARRAY
-@SuppressWarnings({""}) // Violation - COMPACT_NO_ARRAY
+@SomeArrays({"unchecked","unused"}) // OK
 public class TestOne
 {
 
 }
 
-@SomeArrays(pooches={DOGS.LEO}, um={}, test={"bleh"}) // Violation - COMPACT_NO_ARRAY
-@SuppressWarnings("") // OK
-@Deprecated() // Violation - cannot have closing parenthesis
+@SuppressWarnings(value={"unchecked"}) // Violation - COMPACT_NO_ARRAY
+@Deprecated() // Violation - cannot have a closing parenthesis
+@SomeArrays(value={"unchecked","unused",}) // Violation - cannot have a trailing array comma
 class TestTwo {
 
 }
         </source>
         <p>
-          To configure the check to enforce an <code>expanded</code> style,
-          with a trailing array comma set to <code>never</code>
-          and always including the closing parenthesis.
+          To configure the check to enforce an <code>expanded</code> style.
         </p>
         <source>
 &lt;module name=&quot;AnnotationUseStyle&quot;&gt;
   &lt;property name=&quot;elementStyle&quot; value=&quot;expanded&quot;/&gt;
-  &lt;property name=&quot;trailingArrayComma&quot; value=&quot;never&quot;/&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          Example:
+        </p>
+        <source>
+@SuppressWarnings("unchecked") // Violation - EXPANDED
+@Deprecated // OK
+@SomeArrays({"unchecked","unused"}) // Violation - EXPANDED
+public class TestOne
+{
+
+}
+
+@SuppressWarnings(value={"unchecked"}) // OK
+@Deprecated() // Violation - cannot have a closing parenthesis
+@SomeArrays(value={"unchecked","unused",}) // Violation - cannot have a trailing array comma
+class TestTwo {
+
+}
+        </source>
+        <p>
+          To configure the check to enforce always including the closing parenthesis.
+        </p>
+        <source>
+&lt;module name=&quot;AnnotationUseStyle&quot;&gt;
   &lt;property name=&quot;closingParens&quot; value=&quot;always&quot;/&gt;
 &lt;/module&gt;
         </source>
@@ -639,17 +662,44 @@ class TestTwo {
           Example:
         </p>
         <source>
+@SuppressWarnings("unchecked") // OK
 @Deprecated // Violation - must have closing parenthesis
-@SomeArrays(pooches={DOGS.LEO}) // OK
-@SuppressWarnings({""}) // Violation - EXPANDED
+@SomeArrays({"unchecked","unused"}) // OK
 public class TestOne
 {
 
 }
 
-@SomeArrays(pooches={DOGS.LEO}, um={}, test={"bleh"}) // OK
-@SuppressWarnings("") // Violation - EXPANDED
+@SuppressWarnings(value={"unchecked"}) // Violation - COMPACT_NO_ARRAY
 @Deprecated() // OK
+@SomeArrays(value={"unchecked","unused",}) // Violation - cannot have a trailing array comma
+class TestTwo {
+
+}
+        </source>
+        <p>
+          To configure the check to enforce always including the trailing array comma.
+        </p>
+        <source>
+&lt;module name=&quot;AnnotationUseStyle&quot;&gt;
+  &lt;property name=&quot;trailingArrayComma&quot; value=&quot;always&quot;/&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          Example:
+        </p>
+        <source>
+@SuppressWarnings("unchecked") // OK
+@Deprecated // OK
+@SomeArrays({"unchecked","unused"}) // Violation - must have a trailing array comma
+public class TestOne
+{
+
+}
+
+@SuppressWarnings(value={"unchecked"}) // Violation - COMPACT_NO_ARRAY, trailing array comma
+@Deprecated() // Violation - cannot have a closing parenthesis
+@SomeArrays(value={"unchecked","unused",}) // OK
 class TestTwo {
 
 }
