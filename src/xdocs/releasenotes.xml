@@ -10,6 +10,145 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 10.8.0">
+      <div class="releaseDate">26.02.2023</div>
+      <p>Breaking backward compatibility:</p>
+        <ul>
+          <li>
+            Remove Serializable interface from Violation class and EventObject extension from
+            AuditEvent.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/12681">#12681</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Specify violation messages in input files..
+            Author: jxr98
+            <a href="https://github.com/checkstyle/checkstyle/issues/11214">#11214</a>
+          </li>
+          <li>
+            Make action to trigger all release steps.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/12720">#12720</a>
+          </li>
+          <li>
+            Make scripts and configurations filenames consistent.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/12716">#12716</a>
+          </li>
+          <li>
+            CommitValidationTest should ignore the release process.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/12765">#12765</a>
+          </li>
+          <li>
+            Use Shellcheck to resolve violations code in Shell Script.
+            Author: shubh220922, Kevin222004
+            <a href="https://github.com/checkstyle/checkstyle/issues/11637">#11637</a>
+          </li>
+          <li>
+            Update doc for JavadocType.
+            Author: hcy
+            <a href="https://github.com/checkstyle/checkstyle/issues/7601">#7601</a>
+          </li>
+          <li>
+            Release perform action is failing.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/12762">#12762</a>
+          </li>
+          <li>
+            Replace all usages of xmlstarlet with getCheckstylePomVersion from util.sh.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/12726">#12726</a>
+          </li>
+          <li>
+            confg: cancel 10.8.0 release, see details in #12762.
+            Author: Roman Ivanov
+          </li>
+          <li>
+            End of free builds for CloudBees CodeShip.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/12758">#12758</a>
+          </li>
+          <li>
+            Define variable for non-main-files-suppressions file.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/12761">#12761</a>
+          </li>
+          <li>
+            Fix RegexpOnFileNameCheck message keys.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/12748">#12748</a>
+          </li>
+          <li>
+            pitest: groovy does not run when profile fails.
+            Author: Vyom-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/12647">#12647</a>
+          </li>
+          <li>
+            Resolve surviving annotation mutations for pitest.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/12591">#12591</a>
+          </li>
+          <li>
+            Checker: false violation removals on other failures.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/12379">#12379</a>
+          </li>
+          <li>
+            Validation for next version in GitHub action .
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/12608">#12608</a>
+          </li>
+          <li>
+            pitest-survival-check-xml.groovy: prints nothing when there are no differences.
+            Author: Vyom-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/12153">#12153</a>
+          </li>
+          <li>
+            `pitest-survival-check-xml.groovy` should automatically update list of suppressions.
+            Author: Vyom-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/12613">#12613</a>
+          </li>
+          <li>
+            Remove admins from white list on commit validation .
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/12717">#12717</a>
+          </li>
+          <li>
+            Github action &quot;Release perform&quot;.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/12079">#12079</a>
+          </li>
+          <li>
+            pitest: validate wildcards on target classes.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/12625">#12625</a>
+          </li>
+          <li>
+            Issue 12705: remove .m2 for codenarc execution to make it more stable on download.
+            Author: Roman Ivanov
+          </li>
+          <li>
+            Github action to copy to sourceforge does not work.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/12574">#12574</a>
+          </li>
+          <li>
+            update all release action to have &#39;Setup local maven cache&#39; step to optimize
+            download of artifacts.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/12571">#12571</a>
+          </li>
+          <li>
+            Push &#39;all&#39; jar action is not working and not failing execution.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/12694">#12694</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 10.7.0">
       <div class="releaseDate">31.01.2023</div>
       <p>Breaking backward compatibility:</p>
