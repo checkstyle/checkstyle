@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -154,7 +155,8 @@ public final class IllegalCatchCheck extends AbstractCheck {
     /** Specify exception class names to reject. */
     private final Set<String> illegalClassNames = Arrays.stream(new String[] {"Exception", "Error",
         "RuntimeException", "Throwable", "java.lang.Error", "java.lang.Exception",
-        "java.lang.RuntimeException", "java.lang.Throwable", }).collect(Collectors.toSet());
+        "java.lang.RuntimeException", "java.lang.Throwable", })
+            .collect(Collectors.toCollection(HashSet::new));
 
     /**
      * Setter to specify exception class names to reject.
