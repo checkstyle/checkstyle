@@ -154,8 +154,8 @@ public final class IllegalCatchCheck extends AbstractCheck {
 
     /** Specify exception class names to reject. */
     private final Set<String> illegalClassNames = Arrays.stream(new String[] {"Exception", "Error",
-                    "RuntimeException", "Throwable", "java.lang.Error", "java.lang.Exception",
-                    "java.lang.RuntimeException", "java.lang.Throwable",})
+        "RuntimeException", "Throwable", "java.lang.Error", "java.lang.Exception",
+        "java.lang.RuntimeException", "java.lang.Throwable", })
             .collect(Collectors.toCollection(HashSet::new));
 
     /**
