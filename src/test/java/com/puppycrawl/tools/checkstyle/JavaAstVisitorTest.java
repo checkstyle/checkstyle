@@ -27,6 +27,7 @@ import java.lang.reflect.Modifier;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -111,7 +112,7 @@ public class JavaAstVisitorTest extends AbstractModuleTestSupport {
                 .filter(method -> method.getName().contains("visit"))
                 .filter(method -> method.getModifiers() == Modifier.PUBLIC)
                 .map(Method::getName)
-                .collect(Collectors.toSet());
+                .collect(Collectors.toCollection(HashSet::new));
 
         // remove overridden 'visit' method from ParseTreeVisitor interface in JavaAstVisitor
         filteredVisitMethodNames.remove("visit");
