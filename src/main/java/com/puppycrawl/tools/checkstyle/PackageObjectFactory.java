@@ -305,8 +305,10 @@ public class PackageObjectFactory implements ModuleFactory {
         Map<String, Set<String>> returnValue;
         try {
             returnValue = ModuleReflectionUtil.getCheckstyleModules(packages, loader).stream()
-                .collect(Collectors.groupingBy(Class::getSimpleName,
-                    Collectors.mapping(Class::getCanonicalName, Collectors.toCollection(HashSet::new))));
+                    .collect(Collectors.groupingBy(Class::getSimpleName,
+                            Collectors.mapping(
+                                    Class::getCanonicalName,
+                                    Collectors.toCollection(HashSet::new))));
         }
         catch (IOException ignore) {
             returnValue = Collections.emptyMap();
