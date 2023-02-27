@@ -126,30 +126,53 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Example:
  * </p>
  * <pre>
+ * &#64;SuppressWarnings("unchecked") // OK
  * &#64;Deprecated // OK
- * &#64;SomeArrays(pooches={DOGS.LEO}) // Violation - COMPACT_NO_ARRAY
- * &#64;SuppressWarnings({""}) // Violation - COMPACT_NO_ARRAY
+ * &#64;SomeArrays({"unchecked","unused"}) // OK
  * public class TestOne
  * {
  *
  * }
  *
- * &#64;SomeArrays(pooches={DOGS.LEO}, um={}, test={"bleh"}) // Violation - COMPACT_NO_ARRAY
- * &#64;SuppressWarnings("") // OK
- * &#64;Deprecated() // Violation - cannot have closing parenthesis
+ * &#64;SuppressWarnings(value={"unchecked"}) // Violation - COMPACT_NO_ARRAY
+ * &#64;Deprecated() // Violation - cannot have a closing parenthesis
+ * &#64;SomeArrays(value={"unchecked","unused",}) // Violation - cannot have a trailing array comma
  * class TestTwo {
  *
  * }
  * </pre>
  * <p>
- * To configure the check to enforce an {@code expanded} style,
- * with a trailing array comma set to {@code never}
- * and always including the closing parenthesis.
+ * To configure the check to enforce an {@code expanded} style.
  * </p>
  * <pre>
  * &lt;module name=&quot;AnnotationUseStyle&quot;&gt;
  *   &lt;property name=&quot;elementStyle&quot; value=&quot;expanded&quot;/&gt;
- *   &lt;property name=&quot;trailingArrayComma&quot; value=&quot;never&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * &#64;SuppressWarnings("unchecked") // Violation - EXPANDED
+ * &#64;Deprecated // OK
+ * &#64;SomeArrays({"unchecked","unused"}) // Violation - EXPANDED
+ * public class TestOne
+ * {
+ *
+ * }
+ *
+ * &#64;SuppressWarnings(value={"unchecked"}) // OK
+ * &#64;Deprecated() // Violation - cannot have a closing parenthesis
+ * &#64;SomeArrays(value={"unchecked","unused",}) // Violation - cannot have a trailing array comma
+ * class TestTwo {
+ *
+ * }
+ * </pre>
+ * <p>
+ * To configure the check to enforce always including the closing parenthesis.
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;AnnotationUseStyle&quot;&gt;
  *   &lt;property name=&quot;closingParens&quot; value=&quot;always&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
@@ -157,17 +180,44 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Example:
  * </p>
  * <pre>
+ * &#64;SuppressWarnings("unchecked") // OK
  * &#64;Deprecated // Violation - must have closing parenthesis
- * &#64;SomeArrays(pooches={DOGS.LEO}) // OK
- * &#64;SuppressWarnings({""}) // Violation - EXPANDED
+ * &#64;SomeArrays({"unchecked","unused"}) // OK
  * public class TestOne
  * {
  *
  * }
  *
- * &#64;SomeArrays(pooches={DOGS.LEO}, um={}, test={"bleh"}) // OK
- * &#64;SuppressWarnings("") // Violation - EXPANDED
+ * &#64;SuppressWarnings(value={"unchecked"}) // Violation - COMPACT_NO_ARRAY
  * &#64;Deprecated() // OK
+ * &#64;SomeArrays(value={"unchecked","unused",}) // Violation - cannot have a trailing array comma
+ * class TestTwo {
+ *
+ * }
+ * </pre>
+ * <p>
+ * To configure the check to enforce always including the trailing array comma.
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;AnnotationUseStyle&quot;&gt;
+ *   &lt;property name=&quot;trailingArrayComma&quot; value=&quot;always&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * &#64;SuppressWarnings("unchecked") // OK
+ * &#64;Deprecated // OK
+ * &#64;SomeArrays({"unchecked","unused"}) // Violation - must have a trailing array comma
+ * public class TestOne
+ * {
+ *
+ * }
+ *
+ * &#64;SuppressWarnings(value={"unchecked"}) // Violation - COMPACT_NO_ARRAY, trailing array comma
+ * &#64;Deprecated() // Violation - cannot have a closing parenthesis
+ * &#64;SomeArrays(value={"unchecked","unused",})  // OK
  * class TestTwo {
  *
  * }
