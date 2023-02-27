@@ -74,6 +74,8 @@ public class CommitValidationTest {
     private static final String PR_COMMIT_MESSAGE_REGEX_PATTERN = "^Pull #\\d+: .*$";
     private static final String RELEASE_COMMIT_MESSAGE_REGEX_PATTERN =
             "^\\[maven-release-plugin] .*$";
+    private static final String REVERT_COMMIT_MESSAGE_REGEX_PATTERN =
+            "^Revert .*$";
     private static final String OTHER_COMMIT_MESSAGE_REGEX_PATTERN =
             "^(minor|config|infra|doc|spelling|dependency|supplemental): .*$";
 
@@ -156,6 +158,21 @@ public class CommitValidationTest {
     }
 
     @Test
+    public void testRevertCommitMessage() {
+        assertWithMessage("should accept proper revert commit message")
+                .that(validateCommitMessage("Revert \"doc: release notes for 10.8.0\""
+                    + "\nThis reverts commit ff873c3c22161656794c969bb28a8cb09595f.\n"))
+                .isEqualTo(0);
+        assertWithMessage("should accept proper revert commit message")
+                .that(validateCommitMessage("Revert \"doc: release notes for 10.8.0\""))
+                .isEqualTo(0);
+        assertWithMessage("should not accept revert commit message with invalid prefix")
+                .that(validateCommitMessage("This reverts commit "
+                        + "ff873c3c22161656794c969bb28a8cb09595f.\n"))
+                .isEqualTo(1);
+    }
+
+    @Test
     public void testSupplementalPrefix() {
         assertWithMessage("should accept commit message with supplemental prefix")
                 .that(0)
@@ -206,7 +223,11 @@ public class CommitValidationTest {
         final String trimRight = commitMessage.replaceAll("[\\r\\n]+$", "");
         final int result;
 
-        if (!ACCEPTED_COMMIT_MESSAGE_PATTERN.matcher(message).matches()) {
+        if (message.matches(REVERT_COMMIT_MESSAGE_REGEX_PATTERN)) {
+            // revert commits are excluded from validation
+            result = 0;
+        }
+        else if (!ACCEPTED_COMMIT_MESSAGE_PATTERN.matcher(message).matches()) {
             // improper prefix
             result = 1;
         }
