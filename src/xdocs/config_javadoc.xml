@@ -770,7 +770,39 @@ public int checkReturnTag(final int aTagIndex,
         <source>
 &lt;module name="JavadocMethod"/&gt;
         </source>
+        <p> Example:</p>
+        <source>
+public class Test {
 
+  /**
+   *
+   */
+  Test(int x) {             // violation, param tag missing for x
+  }
+
+  /**
+   *
+   */
+  public int foo(int p1) {  // violation, param tag missing for p1
+      return p1;            // violation, return tag missing
+  }
+
+  /**
+   *
+   * @param p1 The first number
+   */
+  @Deprecated
+  private int boo(int p1) {
+      return p1;            // violation, return tag missing
+  }
+
+  /**
+   *
+   */
+  void bar(int p1) {        // violation, param tag missing for p1
+  }                         // ok, no return tag for void method
+}
+        </source>
         <p>
           To configure the check for only <code>public</code>
           modifier, ignoring any missing param tags is:
@@ -782,15 +814,203 @@ public int checkReturnTag(final int aTagIndex,
   &lt;property name=&quot;allowMissingParamTags&quot; value=&quot;true&quot;/&gt;
 &lt;/module&gt;
         </source>
+        <p>Example: </p>
+        <source>
+public class Test {
 
+  /**
+   *
+   */
+  Test(int x) {             // ok, only public methods checked
+  }
+
+  /**
+   *
+   */
+  public int foo(int p1) {  // ok, missing param tags allowed
+      return p1;            // violation, return tag missing
+  }
+
+  /**
+   *
+   * @param p1 The first number
+   */
+  @Deprecated
+  private int boo(int p1) {
+      return p1;            // ok, only public methods checked
+  }
+
+  /**
+   *
+   */
+  void bar(int p1) {        // ok, missing param tags allowed
+  }                         // ok, no return tag for void method
+}
+        </source>
         <p>
-          To configure the check for methods which are in <code>private</code>
-          and <code>package</code>, but not any other modifier:
+            To configure the check for methods which are in <code>private</code> and
+          <code>package</code>, but not any other modifier:
         </p>
         <source>
 &lt;module name="JavadocMethod"&gt;
   &lt;property name="accessModifiers" value="private, package"/&gt;
 &lt;/module&gt;
+        </source>
+        <p> Example:</p>
+        <source>
+class Test {
+
+  /**
+   *
+   */
+  Test(int x) {             // violation, param tag missing for x
+  }
+
+  /**
+   *
+   */
+  public int foo(int p1) {  // ok, public methods not checked
+      return p1;
+  }
+
+  /**
+   *
+   * @param p1 The first number
+   */
+  @Deprecated
+  private int boo(int p1) {
+      return p1;            // violation, return tag missing
+  }
+
+  /**
+   *
+   */
+  void bar(int p1) {        // violation, param tag missing for p1
+  }                         // ok, no return tag for void method
+}
+        </source>
+        <p>
+              To configure the check to ignore any missing return tags:
+        </p>
+        <source>
+&lt;module name="JavadocMethod"&gt;
+    &lt;property name="allowMissingReturnTag" value="true"/&gt;
+&lt;/module&gt;
+        </source>
+        <p> Example:</p>
+        <source>
+public class Test {
+
+  /**
+   *
+   */
+  Test(int x) {             // violation, param tag missing for x
+  }
+
+  /**
+   *
+   */
+  public int foo(int p1) {  // violation, param tag missing for p1
+      return p1;            // ok, missing return tag allowed
+  }
+
+  /**
+   *
+   * @param p1 The first number
+   */
+  @Deprecated
+  private int boo(int p1) {
+      return p1;            // ok, missing return tag allowed
+  }
+
+  /**
+   *
+   */
+  void bar(int p1) {        // violation, param tag missing for p1
+  }                         // ok, no return tag for void method
+}
+        </source>
+        <p>
+              To configure the check to ignore Methods with annotation <code>Deprecated</code>:
+        </p>
+        <source>
+&lt;module name="JavadocMethod"&gt;
+    &lt;property name="allowedAnnotations" value="Deprecated"/&gt;
+&lt;/module&gt;
+        </source>
+        <p> Example:</p>
+        <source>
+public class Test {
+
+  /**
+   *
+   */
+  Test(int x) {             // violation, param tag missing for x
+  }
+
+  /**
+   *
+   */
+  public int foo(int p1) {  // violation, param tag missing for p1
+      return p1;            // violation, return tag missing
+  }
+
+  /**
+   *
+   * @param p1 The first number
+   */
+  @Deprecated
+  private int boo(int p1) {
+      return p1;            // ok, Deprecated methods not checked
+  }
+
+  /**
+   *
+   */
+  void bar(int p1) {        // violation, param tag missing for p1
+  }                         // ok, no return tag for void method
+}
+        </source>
+        <p>
+              To configure the check only for tokens which are Constructor Definitions:
+        </p>
+        <source>
+&lt;module name="JavadocMethod"&gt;
+    &lt;property name="tokens" value="CTOR_DEF"/&gt;
+&lt;/module&gt;
+        </source>
+        <p> Example:</p>
+        <source>
+public class Test {
+
+  /**
+   *
+   */
+  Test(int x) {             // violation, param tag missing for x
+  }
+
+  /**
+   *
+   */
+  public int foo(int p1) {  // ok, method not checked
+      return p1;            // ok, method not checked
+  }
+
+  /**
+   *
+   * @param p1 The first number
+   */
+  @Deprecated
+  private int boo(int p1) {
+      return p1;            // ok, method not checked
+  }
+
+  /**
+   *
+   */
+  void bar(int p1) {        // ok, method not checked
+  }
+}
         </source>
 
         <p>
@@ -801,6 +1021,7 @@ public int checkReturnTag(final int aTagIndex,
   &lt;property name="validateThrows" value="true"/&gt;
 &lt;/module&gt;
         </source>
+        <p> Example:</p>
         <source>
 /**
  * Actual exception thrown is child class of class that is declared in throws.
@@ -879,9 +1100,7 @@ public Runnable printLater(String s) {
     };
 }
         </source>
-
       </subsection>
-
       <subsection name="Example of Usage" id="JavadocMethod_Example_of_Usage">
         <ul>
           <li>
