@@ -150,6 +150,37 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <pre>
  * &lt;module name="JavadocMethod"/&gt;
  * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * &#47;**
+ *  * A sample function to add two numbers
+ *  * @param number1 The first number
+ *  * @param number2 The second number
+ *  * @return An integer
+ *  *&#47;
+ * public int addTwoNumbers(int number1, int number2){   // ok, param tags present
+ *      return number1 + number2;    // ok, return tag present
+ * }
+ *
+ * &#47;**
+ *  * A sample function to subtract two numbers
+ *  * @param number1 The first number
+ *  * @param number2 The second number
+ *  *&#47;
+ * public int subtractTwoNumbers(int number1, int number2){
+ *     return number1 - number2; // violation, return tag missing
+ * }
+ *
+ * &#47;**
+ *  * A sample function to print the product two numbers
+ *  * @param number1 The first number
+ *  * @param number1 The second number
+ *  * @return An integer
+ *  *&#47;
+ * public void multiplyTwoNumbers(int number1, int number2){   // ok, param tags available
+ *     System.out.println(number1 * number2);
+ * }   // ok, no return tag required for a void function
+ * </pre>
  * <p>
  * To configure the check for only {@code public} modifier, ignoring any missing param tags is:
  * </p>
@@ -158,6 +189,23 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *   &lt;property name="accessModifiers" value="public"/&gt;
  *   &lt;property name="allowMissingParamTags" value="true"/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * &#47;**
+ *  * A sample function to add two numbers
+ *  * @param number1 The first number
+ *  *&#47;
+ * private int addTwoNumbers(int number1, int number2){   // ok, param tags not necessary
+ *      return number1 + number2;    // ok, only methods with public modifier will be checked
+ * }
+ *
+ * &#47;**
+ *  * A sample function to subtract two numbers
+ *  *&#47;
+ * public int subtractTwoNumbers(int number1, int number2){
+ *     return number1 - number2; // violation, return tag missing
+ * }
  * </pre>
  * <p>
  * To configure the check for methods which are in {@code private} and {@code package},
@@ -168,6 +216,36 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *   &lt;property name="accessModifiers" value="private, package"/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * &#47;**
+ *  * A sample function to add two numbers
+ *  * @param number1 The first number
+ *  * @param number2 The second number
+ *  *&#47;
+ * public int addTwoNumbers(int number1, int number2){
+ *      return number1 + number2;    // ok, no checks made for public methods
+ * }
+ *
+ * &#47;**
+ *  * A sample function to subtract two numbers
+ *  * @param number1 The first number
+ *  * @param number2 The second number
+ *  *&#47;
+ * private int subtractTwoNumbers(int number1, int number2){
+ *     return number1 - number2; // violation, return tag missing
+ * }
+ *
+ * &#47;**
+ *  * A sample function to print the product two numbers
+ *  * @param number1 The first number
+ *  * @param number1 The second number
+ *  * @return An integer
+ *  *&#47;
+ * void multiplyTwoNumbers(int number1, int number2){   // ok, param tags available
+ *     System.out.println(number1 * number2);
+ * }   // ok, no return tag required. Method is checked since it is package-private by default
+ * </pre>
  * <p>
  * To configure the check to validate {@code throws} tags, you can use following config.
  * </p>
@@ -176,6 +254,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *   &lt;property name="validateThrows" value="true"/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>Example:</p>
  * <pre>
  * &#47;**
  *  * Actual exception thrown is child class of class that is declared in throws.
