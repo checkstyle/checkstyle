@@ -770,7 +770,32 @@ public int checkReturnTag(final int aTagIndex,
         <source>
 &lt;module name="JavadocMethod"/&gt;
         </source>
+        <p> Example:</p>
+        <source>
+/**
+ * @param number1 The first number
+ * @param number2 The second number
+ * @return An integer
+ */
+public int addTwoNumbers(int number1, int number2){   // ok, param tags present
+    return number1 + number2;                         // ok, return tag present
+}
 
+/**
+ * @param number1 The first number
+ * @param number2 The second number
+ */
+public int subtractTwoNumbers(int number1, int number2){
+    return number1 - number2;                         // violation, return tag missing
+}
+
+/**
+ * @param param1 The first number
+ */
+public void printProduct(int param1, int param2){     // violation, param tag missing
+    System.out.println(param1 * param2);
+}                                                     // ok, no return tag needed for void function
+        </source>
         <p>
           To configure the check for only <code>public</code>
           modifier, ignoring any missing param tags is:
@@ -782,7 +807,22 @@ public int checkReturnTag(final int aTagIndex,
   &lt;property name=&quot;allowMissingParamTags&quot; value=&quot;true&quot;/&gt;
 &lt;/module&gt;
         </source>
+        <p>Example: </p>
+        <source>
+/**
+ * @param param1 The first number
+ */
+private int addTwoNumbers(int param1, int param2){  // ok, param tags not necessary
+     return param1 + param2;                        // ok, only public methods to be checked
+}
 
+/**
+ * @param number1 The first number
+ */
+public int subtractTwoNumbers(int number1, int number2){
+    return number1 - number2;                       // violation, return tag missing
+}
+        </source>
         <p>
           To configure the check for methods which are in <code>private</code>
           and <code>package</code>, but not any other modifier:
@@ -791,6 +831,103 @@ public int checkReturnTag(final int aTagIndex,
 &lt;module name="JavadocMethod"&gt;
   &lt;property name="accessModifiers" value="private, package"/&gt;
 &lt;/module&gt;
+        </source>
+        <p> Example:</p>
+        <source>
+/**
+ * @param number1 The first number
+ * @param number2 The second number
+ */
+public int addTwoNumbers(int number1, int number2){
+     return number1 + number2;                   // ok, no checks made for public methods
+}
+
+/**
+ * @param number1 The first number
+ * @param number2 The second number
+ */
+private int subtractTwoNumbers(int number1, int number2){
+    return number1 - number2;                    // violation, return tag missing
+}
+/**
+ * @param number1 The first number
+ */
+void printProduct(int number1, int number2){    // violation, param tag missing
+    System.out.println(number1 * number2);      // ok, no return tag required. Method is checked
+}                                               // since it is package-private by default
+        </source>
+        <p>
+              To configure the check to ignore any missing return tags:
+        </p>
+        <source>
+&lt;module name="JavadocMethod"&gt;
+    &lt;property name="allowMissingReturnTag" value="true"/&gt;
+&lt;/module&gt;
+        </source>
+        <p> Example:</p>
+        <source>
+/**
+ * @param number1 The first number
+ */
+public int addTwoNumbers(int number1,int number2){ // violation, param tag missing
+    return number1+number2;                        // ok, return tag not required
+}
+        </source>
+        <p>
+              To configure the check to ignore Methods with annotation <code>Deprecated</code>:
+        </p>
+        <source>
+&lt;module name="JavadocMethod"&gt;
+    &lt;property name="allowedAnnotations" value="Deprecated"/&gt;
+&lt;/module&gt;
+        </source>
+        <p> Example:</p>
+        <source>
+/**
+ * @param number1 The first number
+ * @return An integer
+ */
+public int addTwoNumbers(int number1,int number2){         // violation, param tag missing
+    return number1+number2;                                // ok, return tag present
+}
+
+@Deprecated
+/**
+ * @param number1
+ */
+public void multiplyTwoNumbers(int number1,int number2){   // ok, @Deprecated annotated
+    System.out.println(number1*number2);                   // methods won't be checked
+}
+        </source>
+        <p>
+              To configure the check only for tokens which are Constructor Definitions:
+        </p>
+        <source>
+&lt;module name="JavadocMethod"&gt;
+    &lt;property name="tokens" value="CTOR_DEF"/&gt;
+&lt;/module&gt;
+        </source>
+        <p> Example:</p>
+        <source>
+public class Test {
+    public int a;
+    public int b;
+    /**
+     * @param x the first number
+     */
+    Test(int x, int y) {                                 // violation, param tag missing
+        a = x;
+        b = y;
+    }
+
+    /**
+     * @param number1 The first number
+     * @return An integer
+     */
+    public int addTwoNumbers(int number1, int number2) { // ok, only constructors checked
+        return number1 + number2;
+    }
+}
         </source>
 
         <p>
@@ -801,6 +938,7 @@ public int checkReturnTag(final int aTagIndex,
   &lt;property name="validateThrows" value="true"/&gt;
 &lt;/module&gt;
         </source>
+        <p> Example:</p>
         <source>
 /**
  * Actual exception thrown is child class of class that is declared in throws.
@@ -879,9 +1017,7 @@ public Runnable printLater(String s) {
     };
 }
         </source>
-
       </subsection>
-
       <subsection name="Example of Usage" id="JavadocMethod_Example_of_Usage">
         <ul>
           <li>
