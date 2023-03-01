@@ -174,10 +174,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * &#47;**
  *  * A sample function to print the product two numbers
  *  * @param number1 The first number
- *  * @param number1 The second number
- *  * @return An integer
  *  *&#47;
- * public void multiplyTwoNumbers(int number1, int number2){   // ok, param tags available
+ * public void multiplyTwoNumbers(int number1, int number2){   // violation, param tag missing
  *     System.out.println(number1 * number2);
  * }   // ok, no return tag required for a void function
  * </pre>
@@ -239,10 +237,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * &#47;**
  *  * A sample function to print the product two numbers
  *  * @param number1 The first number
- *  * @param number1 The second number
- *  * @return An integer
  *  *&#47;
- * void multiplyTwoNumbers(int number1, int number2){   // ok, param tags available
+ * void multiplyTwoNumbers(int number1, int number2){   // violation, param tag missing
  *     System.out.println(number1 * number2);
  * }   // ok, no return tag required. Method is checked since it is package-private by default
  * </pre>

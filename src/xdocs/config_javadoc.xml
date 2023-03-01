@@ -794,10 +794,8 @@ public int subtractTwoNumbers(int number1, int number2){
 /**
  * A sample function to print the product two numbers
  * @param number1 The first number
- * @param number1 The second number
- * @return An integer
  */
-public void multiplyTwoNumbers(int number1, int number2){   // ok, param tags available
+public void multiplyTwoNumbers(int number1, int number2){   // violation, param tag missing
     System.out.println(number1 * number2);
 }   // ok, no return tag required for a void function
         </source>
@@ -846,7 +844,7 @@ return number1 - number2; // violation, return tag missing
  * @param number2 The second number
  */
 public int addTwoNumbers(int number1, int number2){
-return number1 + number2;    // ok, no checks made for public methods
+    return number1 + number2;    // ok, no checks made for public methods
 }
 
 /**
@@ -855,17 +853,15 @@ return number1 + number2;    // ok, no checks made for public methods
  * @param number2 The second number
  */
 private int subtractTwoNumbers(int number1, int number2){
-return number1 - number2; // violation, return tag missing
+    return number1 - number2; // violation, return tag missing
 }
 
 /**
  * A sample function to print the product two numbers
  * @param number1 The first number
- * @param number1 The second number
- * @return An integer
  */
-void multiplyTwoNumbers(int number1, int number2){   // ok, param tags available
-  System.out.println(number1 * number2);
+void multiplyTwoNumbers(int number1, int number2){   // violation, param tag missing
+    System.out.println(number1 * number2);
 }   // ok, no return tag required. Method is checked since it is package-private by default
         </source>
 
