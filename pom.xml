@@ -1753,9 +1753,6 @@
                 <!-- content header is conflicting with Input inline header -->
                 <exclude>**/RegexpHeaderCheckTest.class</exclude>
 
-                <!-- remain test methods should be updated -->
-                <exclude>**/SuppressWarningsHolderTest.class</exclude>
-
                 <!-- test should be updated -->
                 <exclude>**/AbstractCheckTest.class</exclude>
 
