@@ -1,3 +1,14 @@
+/*
+com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder
+aliasList = (default)
+
+
+com.puppycrawl.tools.checkstyle.checks.whitespace.TypecastParenPad
+option = space
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.suppresswarningsholder;
 
 import java.lang.annotation.ElementType;
