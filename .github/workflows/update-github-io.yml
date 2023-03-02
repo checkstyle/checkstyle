@@ -3,6 +3,7 @@
 #
 #############################################################################
 name: "R: Update github.io"
+run-name: "R: Update github.io ${{ inputs.version }}"
 on:
   workflow_dispatch:
     inputs:

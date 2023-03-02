@@ -3,6 +3,7 @@
 #
 #############################################################################
 name: "R: Publish GitHub Page"
+run-name: "R: Publish GitHub Page ${{ inputs.version }}"
 on:
   workflow_dispatch:
     inputs:
