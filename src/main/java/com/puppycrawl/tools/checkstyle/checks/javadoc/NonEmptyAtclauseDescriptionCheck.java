@@ -27,9 +27,7 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 
 /**
  * <p>
- * Checks that the description is provided for corresponding method's or constructor's
- * Parameters and Tags ( throws, deprecated, return, etc ),
- * The description must be provided in javadoc comment.
+ * Checks that the block tag is followed by description.
  * </p>
  * <ul>
  * <li>
@@ -69,13 +67,38 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * <pre>
  * class Test
  * {
- * // OK for parameter "a" because it's description is provided.
- * // Violation for parameter "ans" and "deprecated" and "throws" tags,
- * // because their description is not provided.
+ * // '@param a' - OK
+ * // '@param ans' - OK
+ * // '@return' - OK
+ * // '@deprecated' - OK
+ * // '@throws Exception' - OK
+ * &#47;**
+ * * &#64;param a Multiplying a with 10.
+ * * &#64;param ans our accumulation parameter
+ * * &#64;deprecated As of release 1.3
+ * * &#64;return multiplied value
+ * * &#64;throws Exception if something is bad
+ * *&#47;
+ * public int method(int a, int ans) throws Exception
+ * {
+ * ans = a * 10;
+ * return ans;
+ * }
+ * }
+ * </pre>
+ * <pre>
+ * class Test
+ * {
+ * // '@param a' - OK for parameter "a" because it's description is provided.
+ * // '@param ans' - violation
+ * // '@return' - violation
+ * // '@deprecated' - violation
+ * // '@throws Exception' - violation
  * &#47;**
  * * &#64;param a Multiplying a with 10.
  * * &#64;param ans
  * * &#64;deprecated
+ * * &#64;return
  * * &#64;throws Exception
  * *&#47;
  * public int method(int a, int ans) throws Exception
@@ -99,13 +122,16 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * <pre>
  * class Test
  * {
- * // OK for parameter "a" because it's description is provided.
- * // Violation for parameter "ans" because it's description is not provided.
- * // "deprecated" and "throws" tags are ignored.
+ * // '@param a' - OK because it's description is provided.
+ * // '@param ans' - violation
+ * // '@return' - violation
+ * // '@deprecated' - ok because not a target of validation
+ * // '@throws Exception' - ok because not a target of validation
  * &#47;**
  * * &#64;param a Multiplying a with 10.
  * * &#64;param ans
  * * &#64;deprecated
+ * * &#64;return
  * * &#64;throws Exception
  * *&#47;
  * public int method(int a, int ans) throws Exception
