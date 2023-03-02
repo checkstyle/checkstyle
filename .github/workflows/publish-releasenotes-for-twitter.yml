@@ -3,6 +3,7 @@
 #
 #############################################################################
 name: "R: Publish Tweet"
+run-name: "R: Publish Tweet ${{ inputs.version }}"
 on:
   workflow_dispatch:
     inputs:

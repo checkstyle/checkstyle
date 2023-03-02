@@ -3,6 +3,7 @@
 #
 #############################################################################
 name: "R: Copy Site to SourceForge"
+run-name: "R: Copy Site to SourceForge ${{ inputs.version }}"
 on:
   workflow_dispatch:
     inputs:
