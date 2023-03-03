@@ -20,7 +20,7 @@ package com . puppycrawl
  * Class for testing javadoc issues.
  * violation missing author tag
  **/
-class InputJavadocTypeWhitespace // violation
+class InputJavadocTypeWhitespace // violation 'missing @author tag.'
 {
     /** another check */
     void donBradman(Runnable aRun)
