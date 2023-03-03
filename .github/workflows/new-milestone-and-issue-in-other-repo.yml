@@ -2,8 +2,8 @@
 # GitHub Action to Create New Milestone and issue in Other Repositories.
 #
 #############################################################################
-name: "R: Close/Create Milestone, Upload '-all' jar, Create issues"
-run-name: "R: Close/Create Milestone, Upload '-all' jar, Create issues ${{ inputs.version }}"
+name: "R: Close/Create Milestone, Create issues"
+run-name: "R: Close/Create Milestone, Create issues ${{ inputs.version }}"
 on:
   workflow_dispatch:
     inputs:
@@ -50,12 +50,6 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
         run: |
           ./.ci/close-create-milestone.sh
-
-      - name: Upload '-all' jar
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
-        run: |
-          ./.ci/upload-all-jar.sh ${{ inputs.version }}
 
       - name: Creation of issue in other Repositories
         env:
