@@ -103,7 +103,7 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
     @Test
     public void testAll() throws Exception {
         final String[] expected = {
-            "8:72: "
+            "20:72: "
                     + getCheckMessage(TypecastParenPadCheck.class,
                             AbstractParenPadCheck.MSG_WS_NOT_PRECEDED, ")"),
         };
@@ -454,11 +454,11 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
 
         final String[] expected = {
-            "15:12: " + getCheckMessage(MemberNameCheck.class,
+            "31:12: " + getCheckMessage(MemberNameCheck.class,
                 AbstractNameCheck.MSG_INVALID_PATTERN, "STRING3", pattern),
-            "17:12: " + getCheckMessage(MemberNameCheck.class,
+            "34:12: " + getCheckMessage(MemberNameCheck.class,
                 AbstractNameCheck.MSG_INVALID_PATTERN, "STRING4", pattern),
-            "46:12: " + getCheckMessage(MemberNameCheck.class,
+            "63:12: " + getCheckMessage(MemberNameCheck.class,
                 AbstractNameCheck.MSG_INVALID_PATTERN, "STRING8", pattern),
             };
 
@@ -471,7 +471,7 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
     public void testWithAndWithoutCheckSuffixDifferentCases() throws Exception {
         final String pattern = "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$";
         final String[] expected = {
-            "4:30: " + getCheckMessage(ConstantNameCheck.class,
+            "16:30: " + getCheckMessage(ConstantNameCheck.class,
                 AbstractNameCheck.MSG_INVALID_PATTERN, "a", pattern),
         };
 
