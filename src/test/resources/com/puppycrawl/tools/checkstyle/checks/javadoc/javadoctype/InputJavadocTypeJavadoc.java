@@ -28,7 +28,7 @@ class InputJavadocTypeJavadoc
  * SomeText @author Oliver Burn
  * *@version 1.0
  */
-class InputJavadocTypeJavadoc1 // violation
+class InputJavadocTypeJavadoc1 // violation 'missing @author tag'
 {
 }
 
@@ -64,7 +64,7 @@ enum InputJavadocTypeEnum
  * SomeText @author Oliver Burn
  * *@version 1.0
  */
-enum InputJavadocTypeEnum1 // violation
+enum InputJavadocTypeEnum1 // violation 'missing @author tag'
 {
 }
 
@@ -100,7 +100,7 @@ enum InputJavadocTypeEnum2
  * SomeText @author Oliver Burn
  * *@version 1.0
  */
-@interface InputJavadocInterface1 // violation
+@interface InputJavadocInterface1 // violation 'missing @author tag'
 {
 }
 
