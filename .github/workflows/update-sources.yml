@@ -3,6 +3,7 @@
 #
 #############################################################################
 name: "R: Push Release Notes"
+run-name: "R: Push Release Notes ${{ inputs.version }}"
 on:
   workflow_dispatch:
     inputs:

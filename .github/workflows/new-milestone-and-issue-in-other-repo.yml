@@ -3,6 +3,7 @@
 #
 #############################################################################
 name: "R: Close/Create Milestone, Upload '-all' jar, Create issues"
+run-name: "R: Close/Create Milestone, Upload '-all' jar, Create issues ${{ inputs.version }}"
 on:
   workflow_dispatch:
     inputs:
