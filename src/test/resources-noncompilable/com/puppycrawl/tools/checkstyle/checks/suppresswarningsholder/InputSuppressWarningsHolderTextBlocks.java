@@ -2,6 +2,8 @@
 com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder
 aliasList = (default)
 
+com.puppycrawl.tools.checkstyle.filters.SuppressWarningsFilter
+
 com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck
 format = (default)^[a-z][a-zA-Z0-9]*$
 applyToPublic = (default)true
@@ -26,10 +28,10 @@ public class InputSuppressWarningsHolderTextBlocks {
     String STRING2 = """
             string"""; // ok, suppressed
 
-    String STRING3 = "string"; // violation
+    String STRING3 = "string"; // violation ''STRING3' must match pattern '\^\[a-z\]\[a-zA-Z0-9\]\*\$''
 
     String STRING4 = """
-            string"""; // violation
+            string"""; // violation ''STRING4' must match pattern '\^\[a-z\]\[a-zA-Z0-9\]\*\$''
 
     @SuppressWarnings({"""
             membername"""})
@@ -58,5 +60,5 @@ public class InputSuppressWarningsHolderTextBlocks {
         """
     })
     String STRING8 = """
-        string"""; // violation
+        string"""; // violation ''STRING8' must match pattern '\^\[a-z\]\[a-zA-Z0-9\]\*\$''
 }
