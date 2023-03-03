@@ -50,6 +50,16 @@ jobs:
     permissions:
       contents: write
 
+  upload-all-jar:
+    uses: ./.github/workflows/upload-all-jar.yml
+    needs: publish-releasenotes-outside
+    with:
+      version: ${{ inputs.version }}
+      concurrency-group: upload-all-jar
+    secrets: inherit
+    permissions:
+      contents: write
+
   new-milestone-and-issue-in-other-repo:
     uses: ./.github/workflows/new-milestone-and-issue-in-other-repo.yml
     needs: publish-releasenotes-outside
