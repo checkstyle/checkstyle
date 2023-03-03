@@ -134,7 +134,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *
  * }
  *
- * &#64;SuppressWarnings(value={"unchecked"}) // Violation - COMPACT_NO_ARRAY
+ * &#64;SuppressWarnings(value={"unchecked"}) // Violation - no parameter should be referenced
  * &#64;Deprecated() // Violation - cannot have a closing parenthesis
  * &#64;SomeArrays(value={"unchecked","unused",}) // Violation - cannot have a trailing array comma
  * class TestTwo {
@@ -142,20 +142,23 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * }
  * </pre>
  * <p>
- * To configure the check to enforce an {@code expanded} style.
+ * To configure the check to enforce an <code>expanded</code> style,
+ *             with a closing parenthesis and a trailing array comma set to <code>never</code>.
  * </p>
  * <pre>
  * &lt;module name=&quot;AnnotationUseStyle&quot;&gt;
- *   &lt;property name=&quot;elementStyle&quot; value=&quot;expanded&quot;/&gt;
+ *  &lt;property name=&quot;elementStyle&quot; value=&quot;expanded&quot;/&gt;
+ *  &lt;property name=&quot;closingParens&quot; value=&quot;never&quot;/&gt;
+ *  &lt;property name=&quot;trailingArrayComma&quot; value=&quot;never&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
  * <p>
  * Example:
  * </p>
  * <pre>
- * &#64;SuppressWarnings("unchecked") // Violation - EXPANDED
+ * &#64;SuppressWarnings("unchecked") // Violation - parameters should be referenced
  * &#64;Deprecated // OK
- * &#64;SomeArrays({"unchecked","unused"}) // Violation - EXPANDED
+ * &#64;SomeArrays({"unchecked","unused"}) // Violation - parameters should be referenced
  * public class TestOne
  * {
  *
@@ -169,11 +172,14 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * }
  * </pre>
  * <p>
- * To configure the check to enforce always including the closing parenthesis.
+ * To configure the check to enforce an <code>compact</code> style,
+ *             with always including a closing parenthesis and ignoring a trailing array comma.
  * </p>
  * <pre>
  * &lt;module name=&quot;AnnotationUseStyle&quot;&gt;
- *   &lt;property name=&quot;closingParens&quot; value=&quot;always&quot;/&gt;
+ *  &lt;property name=&quot;elementStyle&quot; value=&quot;compact&quot;/&gt;
+ *  &lt;property name=&quot;closingParens&quot; value=&quot;always&quot;/&gt;
+ *  &lt;property name=&quot;trailingArrayComma&quot; value=&quot;ignore&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
  * <p>
@@ -181,26 +187,29 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </p>
  * <pre>
  * &#64;SuppressWarnings("unchecked") // OK
- * &#64;Deprecated // Violation - must have closing parenthesis
+ * &#64;Deprecated // Violation - must have a closing parenthesis
  * &#64;SomeArrays({"unchecked","unused"}) // OK
  * public class TestOne
  * {
  *
  * }
  *
- * &#64;SuppressWarnings(value={"unchecked"}) // Violation - COMPACT_NO_ARRAY
+ * &#64;SuppressWarnings(value={"unchecked"}) // Violation - 'value' should not be referenced
  * &#64;Deprecated() // OK
- * &#64;SomeArrays(value={"unchecked","unused",}) // Violation - cannot have a trailing array comma
+ * &#64;SomeArrays(value={"unchecked","unused",}) // Violation - 'value' should not be referenced
  * class TestTwo {
  *
  * }
  * </pre>
  * <p>
- * To configure the check to enforce always including the trailing array comma.
+ * To configure the check to enforce a trailing array comma,
+ *             with ignoring the elementStyle and a closing parenthesis.
  * </p>
  * <pre>
  * &lt;module name=&quot;AnnotationUseStyle&quot;&gt;
- *   &lt;property name=&quot;trailingArrayComma&quot; value=&quot;always&quot;/&gt;
+ *  &lt;property name=&quot;elementStyle&quot; value=&quot;ignore&quot;/&gt;
+ *  &lt;property name=&quot;closingParens&quot; value=&quot;ignore&quot;/&gt;
+ *  &lt;property name=&quot;trailingArrayComma&quot; value=&quot;always&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
  * <p>
@@ -215,8 +224,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *
  * }
  *
- * &#64;SuppressWarnings(value={"unchecked"}) // Violation - COMPACT_NO_ARRAY, trailing array comma
- * &#64;Deprecated() // Violation - cannot have a closing parenthesis
+ * &#64;SuppressWarnings(value={"unchecked"}) // Violation - must have a trailing array comma
+ * &#64;Deprecated() // OK
  * &#64;SomeArrays(value={"unchecked","unused",})  // OK
  * class TestTwo {
  *
