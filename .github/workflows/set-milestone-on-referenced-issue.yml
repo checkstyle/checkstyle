@@ -1,0 +1,33 @@
+#############################################################################
+# GitHub action to set latest milestone on issue of merged PR.
+#
+#############################################################################
+name: 'Milestone for PR'
+
+on:
+  pull_request:
+    types:
+      - closed
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  issues: write
+  pull-requests: write
+
+jobs:
+  set-milestone:
+    name: '#${{ github.event.pull_request.number }}'
+    if: ${{ github.event.pull_request.merged == true }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the latest code
+        uses: actions/checkout@v3
+
+      - name: Set milestone on issue
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          ./.ci/set-milestone-on-referenced-issue.sh ${{ github.event.pull_request.number }}
