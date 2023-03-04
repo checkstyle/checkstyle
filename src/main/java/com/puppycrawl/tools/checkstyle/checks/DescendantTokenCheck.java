@@ -103,6 +103,31 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *   &lt;property name=&quot;minimumNumber&quot; value=&quot;1&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>Example:</p>
+ * <pre>
+ *   public class Switch {
+ *
+ *    public static void main(String[] args) {
+ *    
+ *       int x=1;
+ *       switch(x)								//OK
+ *       {
+ *       case 1: System.out.println("hi");
+ *       break;
+ *       default: System.out.println("Default");
+ *       break;
+ *       }
+ *       
+ *       
+ *       int y=1;
+ *       switch(y)				//Violation//Count of 0 for 'LITERAL_SWITCH' descendant 
+ *       {						//'LITERAL_DEFAULT' is less than minimum count 1.
+ *       	case 1: System.out.println("hi");
+ *          break;
+ *       }
+ *     }
+ *  }
+ * </pre>
  * <p>
  * To configure the check to produce a violation on a condition in {@code for}
  * which performs no check:
