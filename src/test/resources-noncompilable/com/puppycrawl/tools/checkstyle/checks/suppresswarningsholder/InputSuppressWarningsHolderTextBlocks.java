@@ -30,8 +30,8 @@ public class InputSuppressWarningsHolderTextBlocks {
 
     String STRING3 = "string"; // violation ''STRING3' must match pattern '\^\[a-z\]\[a-zA-Z0-9\]\*\$''
 
-    String STRING4 = """
-            string"""; // violation ''STRING4' must match pattern '\^\[a-z\]\[a-zA-Z0-9\]\*\$''
+    String STRING4 = """ // violation ''STRING4' must match pattern '\^\[a-z\]\[a-zA-Z0-9\]\*\$''
+            string""";
 
     @SuppressWarnings({"""
             membername"""})
@@ -59,6 +59,6 @@ public class InputSuppressWarningsHolderTextBlocks {
                 checkstyle:misspelled
         """
     })
-    String STRING8 = """
-        string"""; // violation ''STRING8' must match pattern '\^\[a-z\]\[a-zA-Z0-9\]\*\$''
+    String STRING8 = """ // violation ''STRING8' must match pattern '\^\[a-z\]\[a-zA-Z0-9\]\*\$''
+        string""";
 }

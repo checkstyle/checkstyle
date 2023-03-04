@@ -456,9 +456,9 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "31:12: " + getCheckMessage(MemberNameCheck.class,
                 AbstractNameCheck.MSG_INVALID_PATTERN, "STRING3", pattern),
-            "34:12: " + getCheckMessage(MemberNameCheck.class,
+            "33:12: " + getCheckMessage(MemberNameCheck.class,
                 AbstractNameCheck.MSG_INVALID_PATTERN, "STRING4", pattern),
-            "63:12: " + getCheckMessage(MemberNameCheck.class,
+            "62:12: " + getCheckMessage(MemberNameCheck.class,
                 AbstractNameCheck.MSG_INVALID_PATTERN, "STRING8", pattern),
             };
 
