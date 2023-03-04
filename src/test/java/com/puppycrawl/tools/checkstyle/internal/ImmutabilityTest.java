@@ -152,7 +152,11 @@ public class ImmutabilityTest {
         "com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenTextCheck.formatString",
         "com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheck.tagRegExp",
         "com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.format",
-        "com.puppycrawl.tools.checkstyle.checks.whitespace.AbstractParenPadCheck.option"
+        "com.puppycrawl.tools.checkstyle.checks.whitespace.AbstractParenPadCheck.option",
+        "com.puppycrawl.tools.checkstyle.checks.whitespace.ChainedMethodCallWrapCheck"
+            + ".METHOD_CHAIN_CONTINUATION_NODES",
+        "com.puppycrawl.tools.checkstyle.checks.whitespace.ChainedMethodCallWrapCheck"
+            + ".PARENT_OF_METHOD_CALL"
     );
 
     /**
