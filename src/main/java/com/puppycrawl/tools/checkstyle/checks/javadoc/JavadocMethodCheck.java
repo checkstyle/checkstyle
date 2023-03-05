@@ -153,31 +153,28 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <p>Example:</p>
  * <pre>
  * &#47;**
- *  * A sample function to add two numbers
  *  * @param number1 The first number
  *  * @param number2 The second number
  *  * @return An integer
  *  *&#47;
  * public int addTwoNumbers(int number1, int number2){   // ok, param tags present
- *      return number1 + number2;    // ok, return tag present
+ *      return number1 + number2;                        // ok, return tag present
  * }
  *
  * &#47;**
- *  * A sample function to subtract two numbers
  *  * @param number1 The first number
  *  * @param number2 The second number
  *  *&#47;
  * public int subtractTwoNumbers(int number1, int number2){
- *     return number1 - number2; // violation, return tag missing
+ *     return number1 - number2;                        // violation, return tag missing
  * }
  *
  * &#47;**
- *  * A sample function to print the product two numbers
- *  * @param number1 The first number
+ *  * @param param1 The first number
  *  *&#47;
- * public void multiplyTwoNumbers(int number1, int number2){   // violation, param tag missing
- *     System.out.println(number1 * number2);
- * }   // ok, no return tag required for a void function
+ * public void printProduct(int param1, int param2){   // violation, param tag missing
+ *     System.out.println(param1 * param2);
+ * }                                                  // ok, no return tag needed for void function
  * </pre>
  * <p>
  * To configure the check for only {@code public} modifier, ignoring any missing param tags is:
@@ -191,18 +188,17 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <p>Example:</p>
  * <pre>
  * &#47;**
- *  * A sample function to add two numbers
- *  * @param number1 The first number
+ *  * @param param1 The first number
  *  *&#47;
- * private int addTwoNumbers(int number1, int number2){   // ok, param tags not necessary
- *      return number1 + number2;    // ok, only methods with public modifier will be checked
+ * private int addTwoNumbers(int param1, int param2){  // ok, param tags not necessary
+ *      return param1 + param2;                        // ok, only public methods to be checked
  * }
  *
  * &#47;**
- *  * A sample function to subtract two numbers
+ *  * @param number1 The first number
  *  *&#47;
  * public int subtractTwoNumbers(int number1, int number2){
- *     return number1 - number2; // violation, return tag missing
+ *     return number1 - number2;                      // violation, return tag missing
  * }
  * </pre>
  * <p>
@@ -217,30 +213,101 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <p>Example:</p>
  * <pre>
  * &#47;**
- *  * A sample function to add two numbers
  *  * @param number1 The first number
  *  * @param number2 The second number
  *  *&#47;
  * public int addTwoNumbers(int number1, int number2){
- *      return number1 + number2;    // ok, no checks made for public methods
+ *      return number1 + number2;                   // ok, no checks made for public methods
  * }
  *
  * &#47;**
- *  * A sample function to subtract two numbers
  *  * @param number1 The first number
  *  * @param number2 The second number
  *  *&#47;
  * private int subtractTwoNumbers(int number1, int number2){
- *     return number1 - number2; // violation, return tag missing
+ *     return number1 - number2;                   // violation, return tag missing
  * }
  *
  * &#47;**
- *  * A sample function to print the product two numbers
  *  * @param number1 The first number
  *  *&#47;
- * void multiplyTwoNumbers(int number1, int number2){   // violation, param tag missing
- *     System.out.println(number1 * number2);
- * }   // ok, no return tag required. Method is checked since it is package-private by default
+ * void printProduct(int number1, int number2){   // violation, param tag missing
+ *     System.out.println(number1 * number2);     // ok, no return tag required. Method is checked
+ * }                                              // since it is package-private by default
+ *
+ * </pre>
+ * <p>
+ * To configure the check to ignore any missing return tags:
+ * </p>
+ * <pre>
+ *  &lt;module name="JavadocMethod"&gt;
+ *     &lt;property name="allowMissingReturnTag" value="true"/&gt;
+ *  &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * &#47;**
+ *  * @param number1 The first number
+ *  *&#47;
+ * public int addTwoNumbers(int number1,int number2){ // violation, param tag missing
+ *     return number1+number2;                        // ok, return tag not required
+ * }
+ * </pre>
+ * <p>
+ *  To configure the check to ignore Methods with annotation {@code Deprecated}:
+ * </p>
+ * <pre>
+ * &lt;module name="JavadocMethod"&gt;
+ *   &lt;property name="allowedAnnotations" value="Deprecated"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+* <pre>
+ * &#47;**
+ *  * @param number1 The first number
+ *  * @return An integer
+ *  *&#47;
+ * public int addTwoNumbers(int number1,int number2){       // violation, param tag missing
+ *     return number1+number2;                              // ok, return tag present
+ * }
+ *
+ * &#64;Deprecated
+ * &#47;**
+ *  * @param number1
+ *  *&#47;
+ * public void multiplyTwoNumbers(int number1,int number2){ // ok, @Deprecated annotated
+ *     System.out.println(number1*number2);                 // methods won't be checked
+ * }
+ * </pre>
+ * <p>
+ *     To configure the check only for tokens which are Constructor Definitions:
+ * </p>
+ * <pre>
+ * &lt;module name="JavadocMethod"&gt;
+ *   &lt;property name="tokens" value="CTOR_DEF"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * public class Test {
+ *  public int a;
+ *  public int b;
+ *  &#47;**
+ *   * @param x the first number
+ *   *&#47;
+ *  Test(int x, int y) { // violation, param tag missing
+ *      a = x;
+ *      b = y;
+ *  }
+ *
+ *  &#47;**
+ *   * @param number1 The first number
+ *   * @return An integer
+ *   *&#47;
+ *  public int addTwoNumbers(int number1, int number2) { // ok, only constructors checked
+ *      return number1 + number2;
+ *  }
+ * }
  * </pre>
  * <p>
  * To configure the check to validate {@code throws} tags, you can use following config.
