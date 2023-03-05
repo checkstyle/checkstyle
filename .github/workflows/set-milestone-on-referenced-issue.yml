@@ -13,10 +13,6 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
-permissions:
-  issues: write
-  pull-requests: write
-
 jobs:
   set-milestone:
     name: '#${{ github.event.pull_request.number }}'
@@ -28,6 +24,6 @@ jobs:
 
       - name: Set milestone on issue
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.PAT }}
         run: |
           ./.ci/set-milestone-on-referenced-issue.sh ${{ github.event.pull_request.number }}
