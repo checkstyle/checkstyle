@@ -153,24 +153,24 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <p>Example:</p>
  * <pre>
  * &#47;**
- *  * @param number1 The first number
- *  * @param number2 The second number
- *  * @return An integer
+ *  * &#64;param number1 The first number
+ *  * &#64;param number2 The second number
+ *  * &#64;return An integer
  *  *&#47;
  * public int addTwoNumbers(int number1, int number2){   // ok, param tags present
  *      return number1 + number2;                        // ok, return tag present
  * }
  *
  * &#47;**
- *  * @param number1 The first number
- *  * @param number2 The second number
+ *  * &#64;param number1 The first number
+ *  * &#64;param number2 The second number
  *  *&#47;
  * public int subtractTwoNumbers(int number1, int number2){
  *     return number1 - number2;                        // violation, return tag missing
  * }
  *
  * &#47;**
- *  * @param param1 The first number
+ *  * &#64;param param1 The first number
  *  *&#47;
  * public void printProduct(int param1, int param2){   // violation, param tag missing
  *     System.out.println(param1 * param2);
@@ -188,14 +188,14 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <p>Example:</p>
  * <pre>
  * &#47;**
- *  * @param param1 The first number
+ *  * &#64;param param1 The first number
  *  *&#47;
  * private int addTwoNumbers(int param1, int param2){  // ok, param tags not necessary
  *      return param1 + param2;                        // ok, only public methods to be checked
  * }
  *
  * &#47;**
- *  * @param number1 The first number
+ *  * &#64;param number1 The first number
  *  *&#47;
  * public int subtractTwoNumbers(int number1, int number2){
  *     return number1 - number2;                      // violation, return tag missing
@@ -213,23 +213,23 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <p>Example:</p>
  * <pre>
  * &#47;**
- *  * @param number1 The first number
- *  * @param number2 The second number
+ *  * &#64;param number1 The first number
+ *  * &#64;param number2 The second number
  *  *&#47;
  * public int addTwoNumbers(int number1, int number2){
  *      return number1 + number2;                   // ok, no checks made for public methods
  * }
  *
  * &#47;**
- *  * @param number1 The first number
- *  * @param number2 The second number
+ *  * &#64;param number1 The first number
+ *  * &#64;param number2 The second number
  *  *&#47;
  * private int subtractTwoNumbers(int number1, int number2){
  *     return number1 - number2;                   // violation, return tag missing
  * }
  *
  * &#47;**
- *  * @param number1 The first number
+ *  * &#64;param number1 The first number
  *  *&#47;
  * void printProduct(int number1, int number2){   // violation, param tag missing
  *     System.out.println(number1 * number2);     // ok, no return tag required. Method is checked
@@ -247,7 +247,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <p>Example:</p>
  * <pre>
  * &#47;**
- *  * @param number1 The first number
+ *  * &#64;param number1 The first number
  *  *&#47;
  * public int addTwoNumbers(int number1,int number2){ // violation, param tag missing
  *     return number1+number2;                        // ok, return tag not required
@@ -264,8 +264,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <p>Example:</p>
 * <pre>
  * &#47;**
- *  * @param number1 The first number
- *  * @return An integer
+ *  * &#64;param number1 The first number
+ *  * &#64;return An integer
  *  *&#47;
  * public int addTwoNumbers(int number1,int number2){       // violation, param tag missing
  *     return number1+number2;                              // ok, return tag present
@@ -273,7 +273,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *
  * &#64;Deprecated
  * &#47;**
- *  * @param number1
+ *  * &#64;param number1
  *  *&#47;
  * public void multiplyTwoNumbers(int number1,int number2){ // ok, @Deprecated annotated
  *     System.out.println(number1*number2);                 // methods won't be checked
@@ -293,7 +293,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *  public int a;
  *  public int b;
  *  &#47;**
- *   * @param x the first number
+ *   * &#64;param x the first number
  *   *&#47;
  *  Test(int x, int y) { // violation, param tag missing
  *      a = x;
@@ -301,8 +301,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *  }
  *
  *  &#47;**
- *   * @param number1 The first number
- *   * @return An integer
+ *   * &#64;param number1 The first number
+ *   * &#64;return An integer
  *   *&#47;
  *  public int addTwoNumbers(int number1, int number2) { // ok, only constructors checked
  *      return number1 + number2;
