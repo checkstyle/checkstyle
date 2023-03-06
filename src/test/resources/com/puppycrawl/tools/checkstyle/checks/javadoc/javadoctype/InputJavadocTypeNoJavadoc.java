@@ -15,7 +15,7 @@ tokens = (default)INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctype;
 
 /** */
-public class InputJavadocTypeNoJavadoc<T> // violation
+public class InputJavadocTypeNoJavadoc<T> // violation 'missing @param <T>.'
 {
     public int i1;
     protected int i2;
@@ -134,6 +134,6 @@ class PackageClass {
     void methodWithTwoStarComment() {}
 
     /** */
-    protected class ProtectedInner2<T> { // violation
+    protected class ProtectedInner2<T> { // violation 'missing @param <T>.'
     }
 }
