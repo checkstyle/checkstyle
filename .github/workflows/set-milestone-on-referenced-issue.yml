@@ -5,18 +5,20 @@
 name: 'Milestone issue closed by PR'
 
 on:
-  pull_request:
-    types:
-      - closed
+  push:
+    branches:
+      - master
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
-  cancel-in-progress: true
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  issues: write
+  pull-requests: write
 
 jobs:
   set-milestone:
-    name: '#${{ github.event.pull_request.number }}'
-    if: ${{ github.event.pull_request.merged == true }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the latest code
@@ -24,6 +26,6 @@ jobs:
 
       - name: Set milestone on issue
         env:
-          GITHUB_TOKEN: ${{ secrets.PAT }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          ./.ci/set-milestone-on-referenced-issue.sh ${{ github.event.pull_request.number }}
+          ./.ci/set-milestone-on-referenced-issue.sh '${{ toJSON(github.event.commits) }}'
