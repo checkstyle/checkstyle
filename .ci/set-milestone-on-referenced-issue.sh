@@ -5,28 +5,24 @@ set -e
 source ./.ci/util.sh
 
 if [[ -z $1 ]]; then
-  echo "[ERROR] Pull request number is not set."
-  echo "Usage: $BASH_SOURCE <pull request number>"
+  echo "[ERROR] Commits array is not set."
+  echo "Usage: $BASH_SOURCE <commits array>"
   exit 1
 fi
 
-PULL_REQUEST_NUMBER=$1
-echo "PULL_REQUEST_NUMBER=$PULL_REQUEST_NUMBER"
-
 checkForVariable "GITHUB_TOKEN"
 
-echo "Fetching commit messages that match '^(Pull|Issue) #[0-9]+' from PR #$PULL_REQUEST_NUMBER."
-PULL_REQUEST_COMMITS=$(curl -s \
-  -H "Accept: application/vnd.github+json" \
-  -H "Authorization: Bearer $GITHUB_TOKEN"\
-  https://api.github.com/repos/checkstyle/checkstyle/pulls/"$PULL_REQUEST_NUMBER"/commits)
-PULL_REQUEST_COMMIT_MESSAGES=$(echo "$PULL_REQUEST_COMMITS" \
-  | jq -r .[].commit.message | grep -E "^(Pull|Issue) #[0-9]+")
-echo "PULL_REQUEST_COMMIT_MESSAGES=
-$PULL_REQUEST_COMMIT_MESSAGES"
+COMMITS_ARRAY=$1
+echo "COMMITS_ARRAY=$COMMITS_ARRAY"
+
+echo "Extracting commit messages from commits array that match '^(Pull|Issue) #[0-9]+'."
+COMMIT_MESSAGES=$(echo "$COMMITS_ARRAY" | jq -r .[].message \
+  | grep -E "^(Pull|Issue) #[0-9]+")
+echo "COMMIT_MESSAGES=
+$COMMIT_MESSAGES"
 
 echo "Extracting issue numbers from commit messages."
-ISSUE_NUMBERS=$(echo "$PULL_REQUEST_COMMIT_MESSAGES" | grep -oE "#[0-9]+" | cut -c2-)
+ISSUE_NUMBERS=$(echo "$COMMIT_MESSAGES" | grep -oE "#[0-9]+" | cut -c2-)
 echo "ISSUE_NUMBERS=
 $ISSUE_NUMBERS"
 
