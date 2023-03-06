@@ -981,7 +981,7 @@ public class Foo{
         <source>
 &lt;module name=&quot;VisibilityModifier&quot;/&gt;
         </source>
-        <p>Example with default values:</p>
+        <p>Example with default:</p>
         <source>
 public class MyClass 
 {	
