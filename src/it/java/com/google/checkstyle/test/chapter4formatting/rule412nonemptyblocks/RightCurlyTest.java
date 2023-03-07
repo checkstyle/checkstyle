@@ -116,4 +116,18 @@ public class RightCurlyTest extends AbstractGoogleModuleTestSupport {
         verify(checkConfig, filePath, expected, warnList);
     }
 
+    @Test
+    public void testRightCurlySwitch() throws Exception {
+        final String[] expected = {
+            "12:24: " + getCheckMessage(RightCurlyCheck.class, MSG_KEY_LINE_ALONE, "}", 24),
+            "19:27: " + getCheckMessage(RightCurlyCheck.class, MSG_KEY_LINE_ALONE, "}", 27),
+
+        };
+
+        final Configuration checkConfig = createTreeWalkerConfig(getModuleConfigsByIds(MODULES));
+        final String filePath = getPath("InputRightCurlySwitchCase.java");
+
+        final Integer[] warnList = getLinesWithWarn(filePath);
+        verify(checkConfig, filePath, expected, warnList);
+    }
 }
