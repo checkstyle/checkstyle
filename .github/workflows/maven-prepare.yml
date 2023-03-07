@@ -3,6 +3,7 @@
 #
 #############################################################################
 name: "R: Maven Release Prepare"
+run-name: "R: Maven Release Prepare ${{ inputs.version }}"
 on:
   workflow_dispatch:
     inputs:

@@ -21,7 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctype;
  *
  * @version 8.35
  */
-class InputJavadocTypeRecords { // violation
+class InputJavadocTypeRecords { // violation 'missing @author tag.'
 }
 
 /**
@@ -30,7 +30,7 @@ class InputJavadocTypeRecords { // violation
  *
  * @version 8.37
  */
-record MyRecord1() { // violation
+record MyRecord1() { // violation 'missing @author tag.'
 
 }
 
@@ -39,7 +39,7 @@ record MyRecord1() { // violation
  * SomeText @author  Nick Mancuso
  * *@version 8.37
  */
-record MyRecord2() { // violation
+record MyRecord2() { // violation 'missing @author tag.'
 
     public MyRecord2 {
     }
@@ -52,7 +52,7 @@ record MyRecord2() { // violation
  * @author Nick Mancuso
  * @version 8.37
  */
-record MyRecord3() { // violation
+record MyRecord3() { // violation 'tag @author must match pattern 'ABC'.'
 
 }
 
@@ -62,7 +62,7 @@ record MyRecord3() { // violation
  *
  * @version 8.37
  */
-record MyRecord4() { // violation
+record MyRecord4() { // violation 'missing @author tag.'
 
 }
 

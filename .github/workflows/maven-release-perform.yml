@@ -3,6 +3,7 @@
 #
 #############################################################################
 name: "R: Maven Release Perform"
+run-name: "R: Maven Release Perform ${{ inputs.version }}"
 on:
   workflow_dispatch:
     inputs:
