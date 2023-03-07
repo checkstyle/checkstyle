@@ -502,11 +502,11 @@ Cycle detected: Slice api -> \
     - Method <com.puppycrawl.tools.checkstyle.utils.CheckUtil.getSurroundingAccessModifier(com.puppycrawl.tools.checkstyle.api.DetailAST)> calls method <com.puppycrawl.tools.checkstyle.api.DetailAST.getParent()> in (CheckUtil.java:493)\
     - Method <com.puppycrawl.tools.checkstyle.utils.CheckUtil.getSurroundingAccessModifier(com.puppycrawl.tools.checkstyle.api.DetailAST)> calls method <com.puppycrawl.tools.checkstyle.api.DetailAST.getParent()> in (CheckUtil.java:495)\
     - Method <com.puppycrawl.tools.checkstyle.utils.CheckUtil.getSurroundingAccessModifier(com.puppycrawl.tools.checkstyle.api.DetailAST)> calls method <com.puppycrawl.tools.checkstyle.api.DetailAST.getType()> in (CheckUtil.java:496)\
-    - Method <com.puppycrawl.tools.checkstyle.utils.CheckUtil.extractQualifiedName(com.puppycrawl.tools.checkstyle.api.DetailAST)> calls method <com.puppycrawl.tools.checkstyle.api.FullIdent.createFullIdent(com.puppycrawl.tools.checkstyle.api.DetailAST)> in (CheckUtil.java:657)\
-    - Method <com.puppycrawl.tools.checkstyle.utils.CheckUtil.extractQualifiedName(com.puppycrawl.tools.checkstyle.api.DetailAST)> calls method <com.puppycrawl.tools.checkstyle.api.FullIdent.getText()> in (CheckUtil.java:657)\
-    - Method <com.puppycrawl.tools.checkstyle.utils.CheckUtil.getShortNameOfAnonInnerClass(com.puppycrawl.tools.checkstyle.api.DetailAST)> calls method <com.puppycrawl.tools.checkstyle.api.DetailAST.getParent()> in (CheckUtil.java:672)\
-    - Method <com.puppycrawl.tools.checkstyle.utils.CheckUtil.getShortNameOfAnonInnerClass(com.puppycrawl.tools.checkstyle.api.DetailAST)> calls method <com.puppycrawl.tools.checkstyle.api.DetailAST.getParent()> in (CheckUtil.java:674)\
-    - Method <com.puppycrawl.tools.checkstyle.utils.CheckUtil.getShortNameOfAnonInnerClass(com.puppycrawl.tools.checkstyle.api.DetailAST)> calls method <com.puppycrawl.tools.checkstyle.api.DetailAST.getFirstChild()> in (CheckUtil.java:676)
+    - Method <com.puppycrawl.tools.checkstyle.utils.CheckUtil.extractQualifiedName(com.puppycrawl.tools.checkstyle.api.DetailAST)> calls method <com.puppycrawl.tools.checkstyle.api.FullIdent.createFullIdent(com.puppycrawl.tools.checkstyle.api.DetailAST)> in (CheckUtil.java:672)\
+    - Method <com.puppycrawl.tools.checkstyle.utils.CheckUtil.extractQualifiedName(com.puppycrawl.tools.checkstyle.api.DetailAST)> calls method <com.puppycrawl.tools.checkstyle.api.FullIdent.getText()> in (CheckUtil.java:672)\
+    - Method <com.puppycrawl.tools.checkstyle.utils.CheckUtil.getShortNameOfAnonInnerClass(com.puppycrawl.tools.checkstyle.api.DetailAST)> calls method <com.puppycrawl.tools.checkstyle.api.DetailAST.getParent()> in (CheckUtil.java:687)\
+    - Method <com.puppycrawl.tools.checkstyle.utils.CheckUtil.getShortNameOfAnonInnerClass(com.puppycrawl.tools.checkstyle.api.DetailAST)> calls method <com.puppycrawl.tools.checkstyle.api.DetailAST.getParent()> in (CheckUtil.java:689)\
+    - Method <com.puppycrawl.tools.checkstyle.utils.CheckUtil.getShortNameOfAnonInnerClass(com.puppycrawl.tools.checkstyle.api.DetailAST)> calls method <com.puppycrawl.tools.checkstyle.api.DetailAST.getFirstChild()> in (CheckUtil.java:691)
 Cycle detected: Slice api -> \
                 Slice checks.naming -> \
                 Slice utils -> \
@@ -1544,11 +1544,11 @@ Cycle detected: Slice api -> \
     - Method <com.puppycrawl.tools.checkstyle.utils.CheckUtil.getSurroundingAccessModifier(com.puppycrawl.tools.checkstyle.api.DetailAST)> calls method <com.puppycrawl.tools.checkstyle.api.DetailAST.getParent()> in (CheckUtil.java:493)\
     - Method <com.puppycrawl.tools.checkstyle.utils.CheckUtil.getSurroundingAccessModifier(com.puppycrawl.tools.checkstyle.api.DetailAST)> calls method <com.puppycrawl.tools.checkstyle.api.DetailAST.getParent()> in (CheckUtil.java:495)\
     - Method <com.puppycrawl.tools.checkstyle.utils.CheckUtil.getSurroundingAccessModifier(com.puppycrawl.tools.checkstyle.api.DetailAST)> calls method <com.puppycrawl.tools.checkstyle.api.DetailAST.getType()> in (CheckUtil.java:496)\
-    - Method <com.puppycrawl.tools.checkstyle.utils.CheckUtil.extractQualifiedName(com.puppycrawl.tools.checkstyle.api.DetailAST)> calls method <com.puppycrawl.tools.checkstyle.api.FullIdent.createFullIdent(com.puppycrawl.tools.checkstyle.api.DetailAST)> in (CheckUtil.java:657)\
-    - Method <com.puppycrawl.tools.checkstyle.utils.CheckUtil.extractQualifiedName(com.puppycrawl.tools.checkstyle.api.DetailAST)> calls method <com.puppycrawl.tools.checkstyle.api.FullIdent.getText()> in (CheckUtil.java:657)\
-    - Method <com.puppycrawl.tools.checkstyle.utils.CheckUtil.getShortNameOfAnonInnerClass(com.puppycrawl.tools.checkstyle.api.DetailAST)> calls method <com.puppycrawl.tools.checkstyle.api.DetailAST.getParent()> in (CheckUtil.java:672)\
-    - Method <com.puppycrawl.tools.checkstyle.utils.CheckUtil.getShortNameOfAnonInnerClass(com.puppycrawl.tools.checkstyle.api.DetailAST)> calls method <com.puppycrawl.tools.checkstyle.api.DetailAST.getParent()> in (CheckUtil.java:674)\
-    - Method <com.puppycrawl.tools.checkstyle.utils.CheckUtil.getShortNameOfAnonInnerClass(com.puppycrawl.tools.checkstyle.api.DetailAST)> calls method <com.puppycrawl.tools.checkstyle.api.DetailAST.getFirstChild()> in (CheckUtil.java:676)
+    - Method <com.puppycrawl.tools.checkstyle.utils.CheckUtil.extractQualifiedName(com.puppycrawl.tools.checkstyle.api.DetailAST)> calls method <com.puppycrawl.tools.checkstyle.api.FullIdent.createFullIdent(com.puppycrawl.tools.checkstyle.api.DetailAST)> in (CheckUtil.java:672)\
+    - Method <com.puppycrawl.tools.checkstyle.utils.CheckUtil.extractQualifiedName(com.puppycrawl.tools.checkstyle.api.DetailAST)> calls method <com.puppycrawl.tools.checkstyle.api.FullIdent.getText()> in (CheckUtil.java:672)\
+    - Method <com.puppycrawl.tools.checkstyle.utils.CheckUtil.getShortNameOfAnonInnerClass(com.puppycrawl.tools.checkstyle.api.DetailAST)> calls method <com.puppycrawl.tools.checkstyle.api.DetailAST.getParent()> in (CheckUtil.java:687)\
+    - Method <com.puppycrawl.tools.checkstyle.utils.CheckUtil.getShortNameOfAnonInnerClass(com.puppycrawl.tools.checkstyle.api.DetailAST)> calls method <com.puppycrawl.tools.checkstyle.api.DetailAST.getParent()> in (CheckUtil.java:689)\
+    - Method <com.puppycrawl.tools.checkstyle.utils.CheckUtil.getShortNameOfAnonInnerClass(com.puppycrawl.tools.checkstyle.api.DetailAST)> calls method <com.puppycrawl.tools.checkstyle.api.DetailAST.getFirstChild()> in (CheckUtil.java:691)
 Cycle detected: Slice api -> \
                 Slice utils -> \
                 Slice checks.javadoc -> \
