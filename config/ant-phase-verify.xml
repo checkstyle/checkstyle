@@ -16,18 +16,18 @@
              classpath="${mvn.runtime_classpath}"
              />
 
-    <property name="check.config" location="config/checkstyle_checks.xml"/>
+    <property name="check.config" location="config/checkstyle-checks.xml"/>
     <property name="check.config_non_main"
-              location="config/checkstyle_non_main_files_checks.xml"/>
+              location="config/checkstyle-non-main-files-checks.xml"/>
     <property name="check.config_resources"
-              location="config/checkstyle_resources_checks.xml"/>
+              location="config/checkstyle-resources-checks.xml"/>
     <property name="check.config_input"
-              location="config/checkstyle_input_checks.xml"/>
+              location="config/checkstyle-input-checks.xml"/>
 
     <tstamp>
       <format property="STARTED" pattern="dd/MM/yyyy hh:mm:ss aa" />
     </tstamp>
-    <echo level="info">Checkstyle started (checkstyle_checks.xml): ${STARTED}</echo>
+    <echo level="info">Checkstyle started (checkstyle-checks.xml): ${STARTED}</echo>
 
     <checkstyle config="${check.config}"
                 failOnViolation="false"
@@ -43,7 +43,7 @@
       <formatter type="sarif" toFile="${mvn.project.build.directory}/cs_errors.sarif"/>
       <property key="checkstyle.cache.file" file="${mvn.project.build.directory}/cachefile"/>
       <property key="checkstyle.header.file" file="config/java.header"/>
-      <property key="checkstyle.regexp.header.file" file="config/java_regexp.header"/>
+      <property key="checkstyle.regexp.header.file" file="config/java-regexp.header"/>
       <property key="checkstyle.importcontrol.file" file="config/import-control.xml"/>
       <property key="checkstyle.importcontroltest.file" file="config/import-control-test.xml"/>
       <property key="checkstyle.suppressions.file"
@@ -55,18 +55,20 @@
     <tstamp>
       <format property="FINISHED" pattern="dd/MM/yyyy hh:mm:ss aa"/>
     </tstamp>
-    <echo level="info">Checkstyle finished (checkstyle_checks.xml) : ${FINISHED}</echo>
+    <echo level="info">Checkstyle finished (checkstyle-checks.xml) : ${FINISHED}</echo>
 
     <tstamp>
       <format property="STARTED" pattern="dd/MM/yyyy hh:mm:ss aa"/>
     </tstamp>
-    <echo level="info">Checkstyle started (checkstyle_non_main_files_checks.xml): ${STARTED}</echo>
+    <echo level="info">Checkstyle started (checkstyle-non-main-files-checks.xml): ${STARTED}</echo>
 
     <checkstyle config="${check.config_non_main}"
                 failOnViolation="true"
                 failureProperty="checkstyle.failure.property"
                 executeIgnoredModules="true"
                 >
+      <property key="checkstyle.non-main-files-suppressions.file"
+                file="config/checkstyle-non-main-files-suppressions.xml"/>
       <path>
         <fileset dir="${basedir}" includes="**/*">
           <exclude name=".git/**/*"/>
@@ -136,13 +138,13 @@
     <tstamp>
       <format property="FINISHED" pattern="dd/MM/yyyy hh:mm:ss aa"/>
     </tstamp>
-    <echo level="info">Checkstyle finished (checkstyle_non_main_files_checks.xml): ${FINISHED}
+    <echo level="info">Checkstyle finished (checkstyle-non-main-files-checks.xml): ${FINISHED}
     </echo>
 
     <tstamp>
       <format property="STARTED" pattern="dd/MM/yyyy hh:mm:ss aa"/>
     </tstamp>
-    <echo level="info">Checkstyle started (checkstyle_resources_checks.xml): ${STARTED}</echo>
+    <echo level="info">Checkstyle started (checkstyle-resources-checks.xml): ${STARTED}</echo>
 
     <checkstyle config="${check.config_resources}"
                 failOnViolation="true"
@@ -170,7 +172,7 @@
     <tstamp>
       <format property="FINISHED" pattern="dd/MM/yyyy hh:mm:ss aa"/>
     </tstamp>
-    <echo level="info">Checkstyle finished (checkstyle_resources_checks.xml): ${FINISHED}</echo>
+    <echo level="info">Checkstyle finished (checkstyle-resources-checks.xml): ${FINISHED}</echo>
 
     <fail if="checkstyle.failure.property"
           message="Checkstyle failed: ${checkstyle.failure.property}"
@@ -179,7 +181,7 @@
     <tstamp>
       <format property="STARTED" pattern="dd/MM/yyyy hh:mm:ss aa"/>
     </tstamp>
-    <echo level="info">Checkstyle started (checkstyle_input_checks.xml): ${STARTED}</echo>
+    <echo level="info">Checkstyle started (checkstyle-input-checks.xml): ${STARTED}</echo>
 
     <checkstyle config="${check.config_input}"
                 failOnViolation="true"
@@ -233,7 +235,7 @@
     <tstamp>
       <format property="FINISHED" pattern="dd/MM/yyyy hh:mm:ss aa"/>
     </tstamp>
-    <echo level="info">Checkstyle finished (checkstyle_input_checks.xml): ${FINISHED}</echo>
+    <echo level="info">Checkstyle finished (checkstyle-input-checks.xml): ${FINISHED}</echo>
 
     <fail if="checkstyle.failure.property"
           message="Checkstyle failed: ${checkstyle.failure.property}"

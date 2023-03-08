@@ -12,7 +12,7 @@
 
   <groupId>com.puppycrawl.tools</groupId>
   <artifactId>checkstyle</artifactId>
-  <version>10.7.1-SNAPSHOT</version>
+  <version>10.8.1-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>checkstyle</name>
@@ -233,7 +233,7 @@
     <junit.version>5.9.2</junit.version>
     <forbiddenapis.version>3.4</forbiddenapis.version>
     <json-schema-validator.version>1.2.0</json-schema-validator.version>
-    <error-prone.version>2.15.0</error-prone.version>
+    <error-prone.version>2.18.0</error-prone.version>
     <checkerframework.version>3.27.0</checkerframework.version>
   </properties>
 
@@ -336,7 +336,7 @@
     <dependency>
       <groupId>nl.jqno.equalsverifier</groupId>
       <artifactId>equalsverifier</artifactId>
-      <version>3.13.1</version>
+      <version>3.14</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -424,7 +424,7 @@
         </plugin>
         <plugin>
           <artifactId>maven-assembly-plugin</artifactId>
-          <version>3.4.2</version>
+          <version>3.5.0</version>
         </plugin>
         <plugin>
           <artifactId>maven-dependency-plugin</artifactId>
@@ -472,7 +472,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-javadoc-plugin</artifactId>
-          <version>3.4.1</version>
+          <version>3.5.0</version>
           <configuration>
             <!-- Exclude generated sources. -->
             <excludePackageNames>
@@ -1576,13 +1576,13 @@
               <dir>config</dir>
               <excludes>
                 <exclude>java.header</exclude>
-                <exclude>java_regexp.header</exclude>
+                <exclude>java-regexp.header</exclude>
                 <exclude>org.eclipse.jdt.core.prefs</exclude>
                 <exclude>intellij-idea-inspections.properties</exclude>
                 <exclude>markdownlint.rb</exclude>
                 <exclude>signatures.txt</exclude>
                 <exclude>signatures-test.txt</exclude>
-                <exclude>StarterRuleSet-AllRulesByCategory.groovy.txt</exclude>
+                <exclude>codenarc-rules.groovy.txt</exclude>
                 <exclude>archunit-store/**</exclude>
                 <exclude>jsoref-spellchecker/**</exclude>
                 <exclude>projects-to-test/**</exclude>
@@ -1752,9 +1752,6 @@
                 <exclude>**/HeaderCheckTest.class</exclude>
                 <!-- content header is conflicting with Input inline header -->
                 <exclude>**/RegexpHeaderCheckTest.class</exclude>
-
-                <!-- remain test methods should be updated -->
-                <exclude>**/SuppressWarningsHolderTest.class</exclude>
 
                 <!-- test should be updated -->
                 <exclude>**/AbstractCheckTest.class</exclude>
@@ -1961,8 +1958,7 @@
             <excludedLink>https://coveralls.io/r/checkstyle/checkstyle</excludedLink>
 
             <!-- we did too many requests to GitHub,
-                 now GitHub reject all requests "429 Too Many Requests"
-                 https://codeship.com/projects/124310/builds/12027213  -->
+                 now GitHub reject all requests "429 Too Many Requests" -->
             <excludedLink>https://github.com/*</excludedLink>
             <!-- redirects to US page, it is better to stay international -->
             <excludedLink>https://help.github.com/*</excludedLink>
@@ -2371,6 +2367,26 @@
                 </configuration>
               </execution>
             </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <!-- Use only with GPG v2.1+ -->
+    <profile>
+      <id>gpgv2</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-gpg-plugin</artifactId>
+            <version>3.0.1</version>
+            <configuration>
+              <gpgArguments>
+                <arg>--pinentry-mode</arg>
+                <arg>loopback</arg>
+              </gpgArguments>
+            </configuration>
           </plugin>
         </plugins>
       </build>

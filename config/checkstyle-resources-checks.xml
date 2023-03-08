@@ -12,7 +12,7 @@
   <!-- Suppressions for resources -->
   <module name="SuppressionFilter">
     <property name="file"
-             value="config/checkstyle_resources_suppressions.xml"/>
+             value="config/checkstyle-resources-suppressions.xml"/>
   </module>
   <module name="FileTabCharacter"/>
   <module name="RegexpSingleline">
@@ -27,7 +27,7 @@
     <property name="fileNamePattern"
              value="^(package-info.java)|(Input\w+\.java)|(Expected\w+\.txt)|(.*\.properties)$"/>
     <property name="match" value="false"/>
-    <message key="regexp.filepath.mismatch"
+    <message key="regexp.filename.mismatch"
            value="All files in the ''src/(it|test)/resources'' folder should be named
                  ''Input*.java'' or ''Expected*.java''
                  or ''package-info.java'' or ''*.properties''."/>

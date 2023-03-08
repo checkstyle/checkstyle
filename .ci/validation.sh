@@ -22,7 +22,7 @@ case $1 in
 all-sevntu-checks)
   working_dir=.ci-temp/all-sevntu-checks
   mkdir -p $working_dir
-  xmlstarlet sel --net --template -m .//module -v "@name" -n config/checkstyle_sevntu_checks.xml \
+  xmlstarlet sel --net --template -m .//module -v "@name" -n config/checkstyle-sevntu-checks.xml \
     | grep -vE "Checker|TreeWalker|Filter|Holder" | grep -v "^$" \
     | sed "s/com\.github\.sevntu\.checkstyle\.checks\..*\.//" \
     | sort | uniq | sed "s/Check$//" > $working_dir/file.txt
@@ -42,7 +42,7 @@ check-missing-pitests)
 
   list=($(cat pom.xml | \
     xmlstarlet sel --ps -N pom="http://maven.apache.org/POM/4.0.0" \
-    -t -v '//pom:profile[./pom:id[contains(text(),'pitest')]]//pom:targetClasses/pom:param'))
+    -t -v "//pom:profile[./pom:id[contains(text(),'pitest')]]//pom:targetClasses/pom:param"))
 
   #  Temporary skip for Metadata generator related files for
   #  https://github.com/checkstyle/checkstyle/issues/8761
@@ -338,7 +338,7 @@ verify-no-exception-configs)
     | grep -vE $MODULES_WITH_EXTERNAL_FILES | grep -v "^$" >> $working_dir/temp.txt
   sort $working_dir/temp.txt | uniq | sed "s/Check$//" > $working_dir/web.txt
 
-  xmlstarlet fo -D -n config/checkstyle_checks.xml \
+  xmlstarlet fo -D -n config/checkstyle-checks.xml \
     | xmlstarlet sel --net --template -m .//module -n -v "@name" \
     | grep -vE $MODULES_WITH_EXTERNAL_FILES | grep -v "^$" \
     | sort | uniq | sed "s/Check$//" > $working_dir/file.txt
@@ -367,7 +367,7 @@ verify-no-exception-configs)
       fi
     else
       diff -u $working_dir/web.txt $working_dir/file.txt | cat
-      echo 'file config/checkstyle_checks.xml contains Check that is not present at:'
+      echo 'file config/checkstyle-checks.xml contains Check that is not present at:'
       echo 'https://github.com/checkstyle/contribution/blob/master/checkstyle-tester/checks-nonjavadoc-error.xml'
       echo 'https://github.com/checkstyle/contribution/blob/master/checkstyle-tester/checks-only-javadoc-error.xml'
       echo 'Please add new Check to one of such files to let Check participate in auto testing'
@@ -611,7 +611,7 @@ sonarqube)
   cat target/sonar/report-task.txt
   echo "Verification of sonar gate status"
   export SONAR_API_TOKEN=$SONAR_TOKEN
-  .ci/sonar_break_build.sh
+  .ci/sonar-break-build.sh
   ;;
 
 no-error-pgjdbc)
@@ -692,8 +692,9 @@ no-error-sevntu-checks)
   cd .ci-temp/sevntu.checkstyle/sevntu-checks
   mvn -e --no-transfer-progress -Pno-validations verify  -Dcheckstyle.ant.skip=false \
      -Dcheckstyle.version="${CS_POM_VERSION}" \
-     -Dcheckstyle.configLocation=../../../config/checkstyle_checks.xml \
-     -Dcheckstyle.nonMain.configLocation=../../../config/checkstyle_non_main_files_checks.xml
+     -Dcheckstyle.configLocation=../../../config/checkstyle-checks.xml \
+     -Dcheckstyle.nonMain.configLocation=../../../config/checkstyle-non-main-files-checks.xml \
+     -Dcheckstyle.non-main-files-suppressions.file=config/checkstyle-non-main-files-suppressions.xml
   cd ../../
   removeFolderWithProtectedFiles sevntu.checkstyle
   ;;
@@ -708,11 +709,11 @@ no-error-contribution)
   cd .ci-temp/contribution
   cd patch-diff-report-tool
   mvn -e --no-transfer-progress verify -DskipTests -Dcheckstyle.version="${CS_POM_VERSION}" \
-     -Dcheckstyle.configLocation=../../../config/checkstyle_checks.xml
+     -Dcheckstyle.configLocation=../../../config/checkstyle-checks.xml
   cd ../
   cd releasenotes-builder
   mvn -e --no-transfer-progress verify -DskipTests -Dcheckstyle.version="${CS_POM_VERSION}" \
-     -Dcheckstyle.configLocation=../../../config/checkstyle_checks.xml
+     -Dcheckstyle.configLocation=../../../config/checkstyle-checks.xml
   cd ../../
   removeFolderWithProtectedFiles contribution
   ;;
@@ -726,7 +727,7 @@ no-error-methods-distance)
   checkout_from https://github.com/sevntu-checkstyle/methods-distance.git
   cd .ci-temp/methods-distance
   mvn -e --no-transfer-progress verify -DskipTests -Dcheckstyle-version="${CS_POM_VERSION}" \
-     -Dcheckstyle.configLocation=../../config/checkstyle_checks.xml
+     -Dcheckstyle.configLocation=../../config/checkstyle-checks.xml
   cd ..
   removeFolderWithProtectedFiles  methods-distance
   ;;

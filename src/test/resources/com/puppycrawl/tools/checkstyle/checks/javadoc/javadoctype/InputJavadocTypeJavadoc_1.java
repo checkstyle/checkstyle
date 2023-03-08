@@ -19,7 +19,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctype;
  ****    @author Oliver Burn
  * @version 1.0
  */
-class InputJavadocTypeJavadoc_1 // violation
+class InputJavadocTypeJavadoc_1 // violation 'tag @author must match pattern 'ABC'.'
 {
 }
 
@@ -28,7 +28,7 @@ class InputJavadocTypeJavadoc_1 // violation
  * SomeText @author Oliver Burn
  * *@version 1.0
  */
-class InputJavadocTypeJavadoc_11 // violation
+class InputJavadocTypeJavadoc_11 // violation 'missing @author tag.'
 {
 }
 
@@ -37,7 +37,7 @@ class InputJavadocTypeJavadoc_11 // violation
  * tags are multi line ones
  * @author Oliver Burn
  * @version 1.0 */
-class InputJavadocTypeJavadoc_21 // violation
+class InputJavadocTypeJavadoc_21 // violation 'tag @author must match pattern 'ABC'.'
 {
 }
 
@@ -55,7 +55,7 @@ class InputJavadocType_1
  ****    @author Oliver Burn
  * @version 1.0
  */
-enum InputJavadocTypeEnum_1 // violation
+enum InputJavadocTypeEnum_1 // violation 'tag @author must match pattern 'ABC'.'
 {
 }
 
@@ -64,7 +64,7 @@ enum InputJavadocTypeEnum_1 // violation
  * SomeText @author Oliver Burn
  * *@version 1.0
  */
-enum InputJavadocTypeEnum_11 // violation
+enum InputJavadocTypeEnum_11 // violation 'missing @author tag.'
 {
 }
 
@@ -73,7 +73,7 @@ enum InputJavadocTypeEnum_11 // violation
  * tags are multi line ones
  * @author Oliver Burn
  * @version 1.0 */
-enum InputJavadocTypeEnum_21 // violation
+enum InputJavadocTypeEnum_21 // violation 'tag @author must match pattern 'ABC'.'
 {
 }
 
@@ -91,7 +91,7 @@ enum InputJavadocTypeEnum_21 // violation
  ****    @author Oliver Burn
  * @version 1.0
  */
-@interface InputJavadocInterface_1 // violation
+@interface InputJavadocInterface_1 // violation 'tag @author must match pattern 'ABC'.'
 {
 }
 
@@ -100,7 +100,7 @@ enum InputJavadocTypeEnum_21 // violation
  * SomeText @author Oliver Burn
  * *@version 1.0
  */
-@interface InputJavadocInterface_11 // violation
+@interface InputJavadocInterface_11 // violation 'missing @author tag.'
 {
 }
 
@@ -109,7 +109,7 @@ enum InputJavadocTypeEnum_21 // violation
  * tags are multi line ones
  * @author Oliver Burn
  * @version 1.0 */
-@interface InputJavadocInterface_21 // violation
+@interface InputJavadocInterface_21 // violation 'tag @author must match pattern 'ABC'.'
 {
 }
 

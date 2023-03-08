@@ -250,9 +250,9 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "21:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<D123>"),
             "25:1: " + getCheckMessage(MSG_MISSING_TAG, "@param <C456>"),
-            "58:8: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<C>"),
-            "61:5: " + getCheckMessage(MSG_MISSING_TAG, "@param <B>"),
-            "74:5: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "x"),
+            "59:8: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<C>"),
+            "62:5: " + getCheckMessage(MSG_MISSING_TAG, "@param <B>"),
+            "75:5: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "x"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocTypeTypeParamsTags_1.java"), expected);

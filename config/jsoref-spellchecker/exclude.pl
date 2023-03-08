@@ -21,7 +21,6 @@ my @excludes=qw(
   ^config/jsoref-spellchecker/whitelist.words$
   ^config/checker-framework-suppressions/
   ^config/archunit-store/
-  ^codeship.encrypted$
 );
 my $exclude = join "|", @excludes;
 while (<>) {

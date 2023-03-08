@@ -97,7 +97,7 @@ for (
       <subsection name="Example of Usage" id="EmptyForInitializerPad_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+EmptyForInitializerPad">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+EmptyForInitializerPad">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -220,7 +220,7 @@ for (Iterator foo = very.long.line.iterator();
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+EmptyForIteratorPad">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+EmptyForIteratorPad">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -571,7 +571,7 @@ class FirstClass {
             Google Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+EmptyLineSeparator">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+EmptyLineSeparator">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -747,7 +747,7 @@ public class Test {
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+FileTabCharacter">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+FileTabCharacter">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -868,7 +868,7 @@ Pair&lt;Integer, Integer &gt; p; // violation, "&gt;" preceded with whitespace
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+GenericWhitespace">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+GenericWhitespace">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -1069,7 +1069,7 @@ public class Test {
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MethodParamPad">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+MethodParamPad">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -1286,7 +1286,7 @@ import static java.math.BigInteger.ZERO;
             Google Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NoLineWrap">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+NoLineWrap">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -1524,7 +1524,7 @@ class Test {
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NoWhitespaceAfter">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+NoWhitespaceAfter">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -1739,7 +1739,7 @@ Lists.charactersOf("foo")
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NoWhitespaceBefore">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+NoWhitespaceBefore">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -1825,7 +1825,7 @@ class Test {
             Google Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NoWhitespaceBeforeCaseDefaultColon">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+NoWhitespaceBeforeCaseDefaultColon">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -2123,7 +2123,7 @@ class Test {
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+OperatorWrap">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+OperatorWrap">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -2412,7 +2412,7 @@ try (Closeable resource = acquire(); ) // no check before right parenthesis
             Google Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ParenPad">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+ParenPad">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -2627,7 +2627,7 @@ class Test3 {
             Google Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SeparatorWrap">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+SeparatorWrap">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -2768,7 +2768,7 @@ float f1; // OK, 1 whitespace
       <subsection name="Example of Usage" id="SingleSpaceSeparator_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SingleSpaceSeparator">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+SingleSpaceSeparator">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -2896,7 +2896,7 @@ class Bar {
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+TypecastParenPad">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+TypecastParenPad">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -3151,7 +3151,7 @@ public void myTest() {
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+WhitespaceAfter">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+WhitespaceAfter">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -3764,7 +3764,7 @@ class Test {
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+WhitespaceAround">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+WhitespaceAround">
             Checkstyle Style</a>
           </li>
         </ul>

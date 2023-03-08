@@ -231,7 +231,6 @@ codename
 codenarc
 codeql
 codeselectorpresentation
-codeship
 codestyle
 colgroup
 columnlimit
@@ -492,6 +491,7 @@ githubusercontent
 Gjs
 globbing
 GMetrics
+gnupg
 google
 googleapis
 googleblog
@@ -502,6 +502,7 @@ googlesource
 govstrangefolder
 GPath
 gpg
+gpgv
 gradle
 gradlew
 graphicsenv
@@ -1027,10 +1028,12 @@ perl
 Perror
 pgjdbc
 Pgpg
+Pgpgv
 pguyot
 php
 picocli
 pid
+pinentry
 PIPESTATUS
 pitest
 pkga
@@ -1279,7 +1282,6 @@ sysprop
 systemout
 Taglib
 taglist
-tagname
 taskdef
 tbody
 tcr

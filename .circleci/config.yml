@@ -22,7 +22,7 @@ jobs:
           command: |
             mkdir .idea
             cp config/intellij-idea-inspections-misc.xml .idea/misc.xml
-            ./.ci/idea_inspection.sh
+            ./.ci/idea-inspection.sh
           no_output_timeout: 25m
           working_directory: ~/project
       - store_artifacts:

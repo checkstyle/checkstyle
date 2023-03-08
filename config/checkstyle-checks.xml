@@ -191,7 +191,7 @@
     <property name="folderPattern" value="[\\/]src[\\/]\w+[\\/]java[\\/]"/>
     <property name="fileNamePattern" value="\.java$"/>
     <property name="match" value="false"/>
-    <message key="regexp.filepath.mismatch"
+    <message key="regexp.filename.mismatch"
              value="Only java files should be located in the ''src/*/java'' folders."/>
   </module>
   <module name="RegexpOnFilename">
@@ -199,7 +199,7 @@
     <property name="folderPattern" value="[\\/]src[\\/]xdocs[\\/]"/>
     <property name="fileNamePattern" value="\.(xml)|(vm)$"/>
     <property name="match" value="false"/>
-    <message key="regexp.filepath.mismatch"
+    <message key="regexp.filename.mismatch"
       value="All files in the ''src/xdocs'' folder should have the ''xml'' or ''vm'' extension."/>
   </module>
   <module name="RegexpOnFilename">
@@ -207,7 +207,7 @@
     <property name="folderPattern" value="[\\/]src[\\/]it[\\/]java[\\/]"/>
     <property name="fileNamePattern" value="^((\w+Test)|(\w+TestSupport)|(Abstract\w+))\.java$"/>
     <property name="match" value="false"/>
-    <message key="regexp.filepath.mismatch"
+    <message key="regexp.filename.mismatch"
              value="All files in the ''src/it/java'' folder
                     should be named ''*Test.java'' or ''Abstract*.java''."/>
   </module>

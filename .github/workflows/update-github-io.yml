@@ -1,9 +1,9 @@
 #############################################################################
-# GitHub Action to Create New Milestone and issue in Other Repositories.
+# GitHub Action to Update github.io
 #
 #############################################################################
-name: "R: Close/Create Milestone, Create issues"
-run-name: "R: Close/Create Milestone, Create issues ${{ inputs.version }}"
+name: "R: Update github.io"
+run-name: "R: Update github.io ${{ inputs.version }}"
 on:
   workflow_dispatch:
     inputs:
@@ -19,40 +19,35 @@ on:
         type: string
         required: true
 
-permissions:
-  contents: write
-  issues: write
-
 concurrency:
   group: ${{ github.workflow }}
     -${{ github.event.pull_request.number || github.ref }}-${{ inputs.concurrency-group }}
   cancel-in-progress: true
 
 jobs:
-  creation:
-    name: Creation-New Milestone/Issue" for ${{ inputs.version }}
+  update:
+    name: update github.io ${{ inputs.version }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the latest code
         uses: actions/checkout@v3
         with:
+          repository: checkstyle/checkstyle
           fetch-depth: 0
-      - name: Download ncal
-        run: |
-          sudo apt-get install ncal
       - name: Setup local maven cache
         uses: actions/cache@v2
         with:
           path: ~/.m2/repository
           key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
-      - name: Close/Create Milestone
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
+      - name: Run Shell Script
         run: |
-          ./.ci/close-create-milestone.sh
-
-      - name: Creation of issue in other Repositories
-        env:
-          GITHUB_TOKEN: ${{ secrets.PAT }}
+          ./.ci/generate-website.sh ${{ inputs.version }}
+      - name: Checkout checkstyle.github.io repo
+        uses: actions/checkout@v3
+        with:
+          repository: checkstyle/checkstyle.github.io
+          token: ${{ secrets.PAT }}
+          path: .ci-temp/checkstyle.github.io/
+      - name: Commit and Push to checkstyle.github.io repo
         run: |
-          ./.ci/creation-of-issue-in-other-repos.sh ${{ inputs.version }}
+          ./.ci/push-website-to-github-io.sh ${{ inputs.version }}

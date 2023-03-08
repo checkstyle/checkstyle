@@ -22,14 +22,14 @@ import java.awt.Dialog; // ok
 import java.awt.event.ActionEvent; // ok
 import static java.awt.Button.ABORT // ok
 ;
-import javax.swing.JComponent; // violation
+import javax.swing.JComponent; // violation ''javax.swing.JComponent' should be separated from previous imports.'
 import javax.swing.JTable; // ok
-import java.io.File; // violation
+import java.io.File; // violation ''java.io.File' should be separated from previous imports.'
 import static java.io.File.createTempFile; // ok
 import java.io.IOException; // ok
 import java.io.InputStream; // ok
 import java.io.Reader; // ok
-import static javax.swing.WindowConstants.*; // violation
+import static javax.swing.WindowConstants.*; // violation 'Wrong order for 'javax.swing.WindowConstants.*' import.'
 
 import static sun.tools.util.ModifierFilter.ALL_ACCESS; // ok
 import static sun.tools.util.ModifierFilter.PACKAGE; // ok

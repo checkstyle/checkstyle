@@ -17,7 +17,7 @@ if ! [[ "$NEW_VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
   exit 1;
 fi
 
-CURRENT_VERSION=$(getCheckstylePomVersion | sed "s/-SNAPSHOT//")
+CURRENT_VERSION=$(getCheckstylePomVersionWithoutSnapshot)
 echo CURRENT_VERSION="$CURRENT_VERSION"
 
 if [ "$NEW_VERSION" == "$CURRENT_VERSION" ]; then

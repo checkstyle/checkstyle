@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
 set -e
 
+source ./.ci/util.sh
+
 echo "Make sure you prepared your PC for automative deployment"
 echo "Release process: https://github.com/checkstyle/checkstyle/wiki/How-to-make-a-release"
 
-RELEASE=$(xmlstarlet sel -N pom=http://maven.apache.org/POM/4.0.0 \
-           -t -m pom:project -v pom:version pom.xml | sed "s/-SNAPSHOT//")
+RELEASE=$(getCheckstylePomVersionWithoutSnapshot)
 PREV_RELEASE=$(git describe --abbrev=0 "$(git rev-list --tags --max-count=1)" \
                 | sed "s/checkstyle-//")
 
@@ -60,8 +61,7 @@ NEW_RELEASE=$(git describe --abbrev=0 | cut -d '-' -f 2)
 PREV_RELEASE=$(git describe --abbrev=0 --tags \
         "$(git rev-list --tags --skip=1 --max-count=1)" \
     | cut -d '-' -f 2)
-FUTURE_RELEASE=$(xmlstarlet sel -N pom=http://maven.apache.org/POM/4.0.0 \
-           -t -m pom:project -v pom:version pom.xml | sed "s/-SNAPSHOT//")
+FUTURE_RELEASE=$(getCheckstylePomVersionWithoutSnapshot)
 TKN=$(cat ~/.m2/token-checkstyle.txt)
 
 echo "Updating Github tag page"

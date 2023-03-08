@@ -50,7 +50,7 @@
   <!-- ArchUnit store is automatically updated by ArchUnit which
        does not add new line at the end. -->
   <suppress checks="NewlineAtEndOfFile"
-            files="config[\\/]archunit-store[\\/]slices_should_be_free_of_cycles_suppressions"/>
+            files="config[\\/]archunit-store[\\/]slices-should-be-free-of-cycles-suppressions"/>
 
   <!-- till https://issues.apache.org/jira/browse/MRELEASE-1008 -->
   <suppress id="lineLength" files="pom.xml"/>
@@ -158,8 +158,8 @@
   <suppress id="properCurlCommand" files=".ci[\\/]test-spelling-unknown-words\.sh"/>
   <suppress id="properCurlCommand" files=".ci[\\/]run-link-check-plugin\.sh"/>
   <!-- other images that do not support newer curl commands until #12451 -->
-  <suppress id="properCurlCommand" files=".ci[\\/]sonar_break_build\.sh"/>
-  <suppress id="properCurlCommand" files=".ci[\\/]no_old_refs\.sh"/>
+  <suppress id="properCurlCommand" files=".ci[\\/]sonar-break-build\.sh"/>
+  <suppress id="properCurlCommand" files=".ci[\\/]no-old-refs\.sh"/>
   <suppress id="properCurlCommand" files=".ci[\\/]pr-description\.sh"/>
   <suppress id="properCurlCommand" files=".ci[\\/]close-create-milestone\.sh"/>
   <suppress id="properCurlCommand" files=".ci[\\/]tweet-releasenotes\.sh"/>
@@ -168,6 +168,7 @@
   <suppress id="properCurlCommand" files=".ci[\\/]update-github-milestone\.sh"/>
   <suppress id="properCurlCommand" files=".ci[\\/]releasenotes-gen-xdoc-push\.sh"/>
   <suppress id="properCurlCommand" files=".ci[\\/]creation-of-issue-in-other-repos\.sh"/>
+  <suppress id="properCurlCommand" files=".ci[\\/]set-milestone-on-referenced-issue\.sh"/>
   <suppress id="properCurlCommand" files="release\.sh"/>
 
 </suppressions>

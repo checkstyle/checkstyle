@@ -19,7 +19,6 @@
 
 package com.puppycrawl.tools.checkstyle.api;
 
-import java.io.Serializable;
 import java.text.MessageFormat;
 import java.util.Arrays;
 import java.util.Locale;
@@ -32,16 +31,12 @@ import com.puppycrawl.tools.checkstyle.LocalizedMessage;
  * message.properties files. The underlying implementation uses
  * java.text.MessageFormat.
  *
- * @noinspection SerializableHasSerializationMethods, ClassWithTooManyConstructors
- * @noinspectionreason SerializableHasSerializationMethods - we do not serialize this class
+ * @noinspection ClassWithTooManyConstructors
  * @noinspectionreason ClassWithTooManyConstructors - immutable nature of class requires a
  *      bunch of constructors
  */
 public final class Violation
-    implements Comparable<Violation>, Serializable {
-
-    /** A unique serial version identifier. */
-    private static final long serialVersionUID = 5675176836184862150L;
+    implements Comparable<Violation> {
 
     /** The default severity level if one is not specified. */
     private static final SeverityLevel DEFAULT_SEVERITY = SeverityLevel.ERROR;
@@ -64,15 +59,7 @@ public final class Violation
     /** Key for the violation format. **/
     private final String key;
 
-    /**
-     * Arguments for MessageFormat.
-     *
-     * @noinspection NonSerializableFieldInSerializableClass
-     * @noinspectionreason NonSerializableFieldInSerializableClass - usage of
-     *      'Serializable' for this api class
-     *      is considered as mistake now, but we do not break api without
-     *      good reason
-     */
+    /** Arguments for MessageFormat. */
     private final Object[] args;
 
     /** Name of the resource bundle to get violations from. **/
@@ -403,7 +390,18 @@ public final class Violation
         if (lineNo == other.lineNo) {
             if (columnNo == other.columnNo) {
                 if (Objects.equals(moduleId, other.moduleId)) {
-                    result = getViolation().compareTo(other.getViolation());
+                    if (Objects.equals(sourceClass, other.sourceClass)) {
+                        result = getViolation().compareTo(other.getViolation());
+                    }
+                    else if (sourceClass == null) {
+                        result = -1;
+                    }
+                    else if (other.sourceClass == null) {
+                        result = 1;
+                    }
+                    else {
+                        result = sourceClass.getName().compareTo(other.sourceClass.getName());
+                    }
                 }
                 else if (moduleId == null) {
                     result = -1;
