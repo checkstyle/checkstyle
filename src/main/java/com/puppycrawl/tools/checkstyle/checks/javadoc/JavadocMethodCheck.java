@@ -150,6 +150,47 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <pre>
  * &lt;module name="JavadocMethod"/&gt;
  * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * public class Test {
+ *  public int a;
+ *  public int b;
+ *
+ *  &#47;**
+ *   * &#64;param x the first number
+ *   *&#47;
+ *  Test(int x, int y) {                               // violation, param tag missing for y
+ *      a = x;
+ *      b = y;
+ *  }
+ *
+ *  &#47;**
+ *   *
+ *   * &#64;param p1 The first number
+ *   *&#47;
+ *  public int addTwoNumbers(int p1, int p2) {         // violation, param tag missing for p2
+ *      return p1 + p2;                                // violation, return tag missing
+ *  }
+ *
+ *  &#47;**
+ *   *
+ *   * &#64;param p1 The first number
+ *   * &#64;param p2 The second number
+ *   *&#47;
+ *  &#64;Deprecated
+ *  private int subtractTwoNumbers(int p1, int p2) {
+ *      return p1 - p2;                                // violation, return tag missing
+ *  }
+ *
+ *  &#47;**
+ *   *
+ *   * &#64;param p1 The first number
+ *   *&#47;
+ *  void multiplyTwoNumbers(int p1, int p2) {          // violation, param tag missing for p2
+ *      System.out.println(p1 * p2);    `              // ok, no return tag for void method
+ *  }
+ * }
+ * </pre>
  * <p>
  * To configure the check for only {@code public} modifier, ignoring any missing param tags is:
  * </p>
@@ -158,6 +199,47 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *   &lt;property name="accessModifiers" value="public"/&gt;
  *   &lt;property name="allowMissingParamTags" value="true"/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * public class Test {
+ *  public int a;
+ *  public int b;
+ *
+ *  &#47;**
+ *   * &#64;param x the first number
+ *   *&#47;
+ *  Test(int x, int y) {                               // ok, only public methods checked
+ *      a = x;
+ *      b = y;
+ *  }
+ *
+ *  &#47;**
+ *   *
+ *   * &#64;param p1 The first number
+ *   *&#47;
+ *  public int addTwoNumbers(int p1, int p2) {         // ok, missing param tags allowed
+ *      return p1 + p2;                                // violation, return tag missing
+ *  }
+ *
+ *  &#47;**
+ *   *
+ *   * &#64;param p1 The first number
+ *   * &#64;param p2 The second number
+ *   *&#47;
+ *  &#64;Deprecated
+ *  private int subtractTwoNumbers(int p1, int p2) {
+ *      return p1 - p2;                                // ok, only public methods checked
+ *  }
+ *
+ *  &#47;**
+ *   *
+ *   * &#64;param p1 The first number
+ *   *&#47;
+ *  void multiplyTwoNumbers(int p1, int p2) {          // ok, missing param tags allowed
+ *      System.out.println(p1 * p2);    `              // ok, no return tag for void method
+ *  }
+ * }
  * </pre>
  * <p>
  * To configure the check for methods which are in {@code private} and {@code package},
@@ -168,6 +250,194 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *   &lt;property name="accessModifiers" value="private, package"/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * class Test {
+ *  public int a;
+ *  public int b;
+ *
+ *  &#47;**
+ *   * &#64;param x the first number
+ *   *&#47;
+ *  Test(int x, int y) {                               // violation, param tag missing for y
+ *      a = x;
+ *      b = y;
+ *  }
+ *
+ *  &#47;**
+ *   *
+ *   * &#64;param p1 The first number
+ *   *&#47;
+ *  public int addTwoNumbers(int p1, int p2) {         // ok, public methods not checked
+ *      return p1 + p2;
+ *  }
+ *
+ *  &#47;**
+ *   *
+ *   * &#64;param p1 The first number
+ *   * &#64;param p2 The second number
+ *   *&#47;
+ *  &#64;Deprecated
+ *  private int subtractTwoNumbers(int p1, int p2) {
+ *      return p1 - p2;                                // violation, return tag missing
+ *  }
+ *
+ *  &#47;**
+ *   *
+ *   * &#64;param p1 The first number
+ *   *&#47;
+ *  void multiplyTwoNumbers(int p1, int p2) {          // violation, param tag missing for p2
+ *      System.out.println(p1 * p2);    `              // ok, no return tag for void method
+ *  }
+ * }
+ * </pre>
+ * <p>
+ * To configure the check to ignore any missing return tags:
+ * </p>
+ * <pre>
+ * &lt;module name="JavadocMethod"&gt;
+ *   &lt;property name="allowMissingReturnTag" value="true"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * public class Test {
+ *  public int a;
+ *  public int b;
+ *
+ *  &#47;**
+ *   * &#64;param x the first number
+ *   *&#47;
+ *  Test(int x, int y) {                               // violation, param tag missing for y
+ *      a = x;
+ *      b = y;
+ *  }
+ *
+ *  &#47;**
+ *   *
+ *   * &#64;param p1 The first number
+ *   *&#47;
+ *  public int addTwoNumbers(int p1, int p2) {         // violation, param tag missing for p2
+ *      return p1 + p2;                                // ok, missing return tag allowed
+ *  }
+ *
+ *  &#47;**
+ *   *
+ *   * &#64;param p1 The first number
+ *   * &#64;param p2 The second number
+ *   *&#47;
+ *  &#64;Deprecated
+ *  private int subtractTwoNumbers(int p1, int p2) {
+ *      return p1 - p2;                                // ok, missing return tag allowed
+ *  }
+ *
+ *  &#47;**
+ *   *
+ *   * &#64;param p1 The first number
+ *   *&#47;
+ *  void multiplyTwoNumbers(int p1, int p2) {          // violation, param tag missing for p2
+ *      System.out.println(p1 * p2);    `              // ok, no return tag for void method
+ *  }
+ * }
+ * </pre>
+ * <p>
+ *  To configure the check to ignore Methods with annotation {@code Deprecated}:
+ * </p>
+ * <pre>
+ * &lt;module name="JavadocMethod"&gt;
+ *   &lt;property name="allowedAnnotations" value="Deprecated"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * public class Test {
+ *  public int a;
+ *  public int b;
+ *
+ *  &#47;**
+ *   * &#64;param x the first number
+ *   *&#47;
+ *  Test(int x, int y) {                               // violation, param tag missing for y
+ *      a = x;
+ *      b = y;
+ *  }
+ *
+ *  &#47;**
+ *   *
+ *   * &#64;param p1 The first number
+ *   *&#47;
+ *  public int addTwoNumbers(int p1, int p2) {         // violation, param tag missing for p2
+ *      return p1 + p2;                                // violation, return tag missing
+ *  }
+ *
+ *  &#47;**
+ *   *
+ *   * &#64;param p1 The first number
+ *   * &#64;param p2 The second number
+ *   *&#47;
+ *  &#64;Deprecated
+ *  private int subtractTwoNumbers(int p1, int p2) {
+ *      return p1 - p2;                                // ok, Deprecated methods not checked
+ *  }
+ *
+ *  &#47;**
+ *   *
+ *   * &#64;param p1 The first number
+ *   *&#47;
+ *  void multiplyTwoNumbers(int p1, int p2) {          // violation, param tag missing for p2
+ *      System.out.println(p1 * p2);    `              // ok, no return tag for void method
+ *  }
+ * }
+ * </pre>
+ * <p>
+ *     To configure the check only for tokens which are Constructor Definitions:
+ * </p>
+ * <pre>
+ * &lt;module name="JavadocMethod"&gt;
+ *   &lt;property name="tokens" value="CTOR_DEF"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * public class Test {
+ *  public int a;
+ *  public int b;
+ *
+ *  &#47;**
+ *   * &#64;param x the first number
+ *   *&#47;
+ *  Test(int x, int y) {                               // violation, param tag missing for y
+ *      a = x;
+ *      b = y;
+ *  }
+ *
+ *  &#47;**
+ *   *
+ *   * &#64;param p1 The first number
+ *   *&#47;
+ *  public int addTwoNumbers(int p1, int p2) {         // ok, method not checked
+ *      return p1 + p2;                                // ok, method not checked
+ *  }
+ *
+ *  &#47;**
+ *   *
+ *   * &#64;param p1 The first number
+ *   * &#64;param p2 The second number
+ *   *&#47;
+ *  &#64;Deprecated
+ *  private int subtractTwoNumbers(int p1, int p2) {
+ *      return p1 - p2;                                // ok, method not checked
+ *  }
+ *
+ *  &#47;**
+ *   *
+ *   * &#64;param p1 The first number
+ *   *&#47;
+ *  void multiplyTwoNumbers(int p1, int p2) {          // ok, method not checked
+ *      System.out.println(p1 * p2);    `
+ *  }
+ * }
+ * </pre>
  * <p>
  * To configure the check to validate {@code throws} tags, you can use following config.
  * </p>
@@ -176,6 +446,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *   &lt;property name="validateThrows" value="true"/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>Example:</p>
  * <pre>
  * &#47;**
  *  * Actual exception thrown is child class of class that is declared in throws.
