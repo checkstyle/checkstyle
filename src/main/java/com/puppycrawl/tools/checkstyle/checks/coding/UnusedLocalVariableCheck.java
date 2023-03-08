@@ -558,7 +558,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
     private static TypeDeclDesc getTheNearestClass(String outerTypeDeclName,
             List<TypeDeclDesc> typeDeclWithSameName) {
         return Collections.min(typeDeclWithSameName, (first, second) -> {
-            return getTypeDeclarationNameMatchingCountDiff(outerTypeDeclName, first, second);
+            return getAnonTypeDeclarationNameMatchingCountDiff(outerTypeDeclName, first, second);
         });
     }
 
@@ -571,13 +571,13 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      * @param secondTypeDecl second input type declaration
      * @return difference between type declaration name matching count
      */
-    private static int getTypeDeclarationNameMatchingCountDiff(String outerTypeDeclName,
-                                                               TypeDeclDesc firstTypeDecl,
-                                                               TypeDeclDesc secondTypeDecl) {
+    private static int getAnonTypeDeclarationNameMatchingCountDiff(String outerTypeDeclName,
+                                                                   TypeDeclDesc firstTypeDecl,
+                                                                   TypeDeclDesc secondTypeDecl) {
         int diff = Integer.compare(
-            CheckUtil.typeDeclarationNameMatchingCount(
+            CheckUtil.getAnonSuperTypeMatchingCount(
                 outerTypeDeclName, secondTypeDecl.getQualifiedName()),
-            CheckUtil.typeDeclarationNameMatchingCount(
+            CheckUtil.getAnonSuperTypeMatchingCount(
                 outerTypeDeclName, firstTypeDecl.getQualifiedName()));
         if (diff == 0) {
             diff = Integer.compare(firstTypeDecl.getDepth(), secondTypeDecl.getDepth());
