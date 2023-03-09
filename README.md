@@ -171,7 +171,7 @@ are in the file named "LICENSE.apache20" in this directory.
 [sponsors.opencollective]:https://opencollective.com/checkstyle/
 [sponsors.opencollective img]:https://opencollective.com/checkstyle/sponsors/badge.svg
 
-[dependabot]:https://dependabot.com
+ [dependabot]:https://dependabot.com
 [dependabot img]:https://img.shields.io/badge/dependabot-025E8C?style=for-the-badge&logo=dependabot
 
 [closed issues]:https://github.com/checkstyle/checkstyle/actions/workflows/no-old-refs.yml
