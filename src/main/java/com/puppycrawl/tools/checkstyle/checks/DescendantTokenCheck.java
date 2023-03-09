@@ -106,7 +106,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <p>Example:</p>
  * <pre>
  *   public class Switch {
- *
  *    public static void main(String[] args) {
  *       int x=1;
  *       switch(x)              //OK
@@ -118,7 +117,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *       }
  *       int y=1;
  *       switch(y)	//violation//Count of 0 for 'LITERAL_SWITCH' descendant 
- *       {					  //'LITERAL_DEFAULT' is less than minimum count 1.
+ *       {                    //'LITERAL_DEFAULT' is less than minimum count 1.
  *       	case 1: System.out.println("hi");
  *          break;
  *       }
@@ -588,7 +587,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <pre>
  * public class Switch {
  *  private int a,b,c,d,e,f,g,h,i,j,k;//violation // Count of 11 for 'CLASS_DEF'
- *   }                                          //descendant 'VARIABLE_DEF' exceeds maximum count 10.
+ *   }                            //descendant 'VARIABLE_DEF' exceeds maximum count 10.
  *   //To Avoid Violation Class Fields should be less than or equals to 10
  * </pre>
  * <p>
