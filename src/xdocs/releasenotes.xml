@@ -10,6 +10,86 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 10.8.1">
+      <div class="releaseDate">09.03.2023</div>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            LocalizedMessage should use ModuleName in compareTo method.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/4930">#4930</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Fix &#39;set-milestone-on-referenced-issue&#39;.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/12801">#12801</a>
+          </li>
+          <li>
+            Specify violation messages in input files.
+            Author: Naoto Kuwayama
+            <a href="https://github.com/checkstyle/checkstyle/issues/11214">#11214</a>
+          </li>
+          <li>
+            Update documentation for AnnotationUseStyle.
+            Author: Naoto Kuwayama
+            <a href="https://github.com/checkstyle/checkstyle/issues/7571">#7571</a>
+          </li>
+          <li>
+            Execute upload of -all jar separately.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/12792">#12792</a>
+          </li>
+          <li>
+            Switch to PAT secret in set-milestone workflow.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/12799">#12799</a>
+          </li>
+          <li>
+            Remove execution of upload -all jar from new-milestone-and-issue-in-other-repo.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/12793">#12793</a>
+          </li>
+          <li>
+            Update Tests to use new &#39;verifyXxxxxx&#39; method or &#39;execute&#39; that use
+            inlined config in Input files.
+            Author: jxr98
+            <a href="https://github.com/checkstyle/checkstyle/issues/11446">#11446</a>
+          </li>
+          <li>
+            Add forgotten secret inherit in release.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/12797">#12797</a>
+          </li>
+          <li>
+            Create GitHub action to put current milestone on issue of closed PR.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/12497">#12497</a>
+          </li>
+          <li>
+            Use dynamic names for release workflow runs.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/12785">#12785</a>
+          </li>
+          <li>
+            Make action to trigger all release steps.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/12720">#12720</a>
+          </li>
+          <li>
+            CommitValidationTest fails on revert commits.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/12766">#12766</a>
+          </li>
+          <li>
+            Keep workflow input descriptions consistent.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/12776">#12776</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 10.8.0">
       <div class="releaseDate">26.02.2023</div>
       <p>Breaking backward compatibility:</p>
