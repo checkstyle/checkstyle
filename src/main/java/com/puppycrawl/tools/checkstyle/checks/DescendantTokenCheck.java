@@ -120,7 +120,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *       
  *       
  *       int y=1;
- *       switch(y)				//Violation//Count of 0 for 'LITERAL_SWITCH' descendant 
+ *       switch(y)				//violation//Count of 0 for 'LITERAL_SWITCH' descendant 
  *       {						//'LITERAL_DEFAULT' is less than minimum count 1.
  *       	case 1: System.out.println("hi");
  *          break;
@@ -144,7 +144,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *   public class Switch {
  *
  *  	public static void main(String[] args) {
- *  		for(;;)						//Violation // Count of 0 for 'FOR_CONDITION' descendant
+ *  		for(;;)						//violation // Count of 0 for 'FOR_CONDITION' descendant
  *  	     {}										//'EXPR' is less than minimum count 1.
  *  	   }
  *     }
@@ -166,7 +166,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <pre>
  *    public class Switch {
  *    	private int a;
- * 	   public void Equals()  					//OK no Violations
+ * 	   public void Equals()  					//OK no violation
  * 	   {
  * 	     if(this.a!=null)
  *  	      {}
@@ -176,9 +176,9 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *
  *   	public void Equals1()
  *  	     {
- *  	        if(this!=null)				//Violation //Total count of 2 exceeds maximum count 1 under 'NOT_EQUAL'.
+ *  	        if(this!=null)				//violation //Total count of 2 exceeds maximum count 1 under 'NOT_EQUAL'.
  * 	        {}
- *  	        else if(this==null)		    //Violation //Total count of 2 exceeds maximum count 1 under 'EQUAL'.
+ *  	        else if(this==null)		    //violation //Total count of 2 exceeds maximum count 1 under 'EQUAL'.
  *  	        {}
  *  	     }
  *  	}
@@ -200,9 +200,9 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *    	public static void main(String[] args)
  *          {
  *   	       String s="Hello";
- *   	        if(s=="Hello")          //Violation // Count of 1 for 'EQUAL' descendant
+ *   	        if(s=="Hello")          //violation // Count of 1 for 'EQUAL' descendant
  *              {}                                //'STRING_LITERAL' exceeds maximum count 0.
- *   	        else if(s!="Hello")     //Violation//Count of 1 for 'NOT_EQUAL' descendant
+ *   	        else if(s!="Hello")     //violation//Count of 1 for 'NOT_EQUAL' descendant
  *              {}                               //'STRING_LITERAL' exceeds maximum count 0
  *
  *      	       String s="Hello";
@@ -242,7 +242,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *   	public static void main(String[] args)
  *          {
  *   	        int i=10;
- *   	        for(;i<0;i++)               //Violation // Count of 0 for 'FOR_INIT' descendant
+ *   	        for(;i<0;i++)               //violation // Count of 0 for 'FOR_INIT' descendant
  *               {}                                    //'EXPR' is less than minimum count 1.
  *          }
  *     }
@@ -279,7 +279,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *   	          switch(i)
  *             {
  *   		        case 1: int j=1;
- *   			            switch(j)           //Violation //Count of 1 for 'LITERAL_SWITCH'
+ *   			            switch(j)           //violation //Count of 1 for 'LITERAL_SWITCH'
  *                        {                               //descendant 'LITERAL_SWITCH' exceeds maximum count 0
  *  			              case 1:
  *   			              break;
@@ -317,10 +317,10 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *   	        try {
  *
  *            } catch (ArithmeticException ex) {
- *   		         return true;              //Violation // Count of 1 for 'LITERAL_CATCH'
+ *   		         return true;              //violation // Count of 1 for 'LITERAL_CATCH'
  *            }                                          //descendant 'LITERAL_RETURN' exceeds maximum count 0.
  *   	        finally{
- *   	      	   return true;                //Violation//Count of 1 for 'LITERAL_FINALLY'
+ *   	      	   return true;                //violation//Count of 1 for 'LITERAL_FINALLY'
  *            }                                         //descendant 'LITERAL_RETURN' exceeds maximum count 0.
  *          }
  *   }
@@ -357,14 +357,14 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *   	           try {
  *            		//..
  *               } catch (ArithmeticException ex) {
- *   		            try{                        //Violation // Count of 1 for 'LITERAL_CATCH'
+ *   		            try{                        //violation // Count of 1 for 'LITERAL_CATCH'
  *   			              //..                              //descendant 'LITERAL_TRY' exceeds maximum count 0.
  *                    }catch(ArithmeticException ex){
  *   			              //..
  *                    }
  *               }
  *   	           finally{
- *   	                try{                        //Violation // Count of 1 for 'LITERAL_FINALLY'
+ *   	                try{                        //violation // Count of 1 for 'LITERAL_FINALLY'
  *   			              //..                              // descendant 'LITERAL_TRY' exceeds maximum count 0.
  *                    }catch(ArithmeticException ex){
  *   			              //..
@@ -404,7 +404,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *    public static void main(String[] args)
  *     {
  *   	   int x=1;
- *   	   switch(x)            //Voilation // Count of 11 for 'LITERAL_SWITCH' descendant
+ *   	   switch(x)            //violation // Count of 11 for 'LITERAL_SWITCH' descendant
  *          {                             //'LITERAL_CASE' exceeds maximum count 10.
  *    	  case 1:
  *   	      break;
@@ -450,11 +450,11 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *   public class Switch {
  *   	public void check()
  *      {
- *   		int k,n,b,v,c,x,z,a,s,d,w;	       //Violation // Count of 11 for 'METHOD_DEF'
+ *   		int k,n,b,v,c,x,z,a,s,d,w;	       //violation // Count of 11 for 'METHOD_DEF'
  *      }                                                //descendant 'VARIABLE_DEF' exceeds maximum count 10.
  *   }
  *
- *     //To Avoid Violation Method should contain less than or equal to 10 variables
+ *     //To Avoid violation Method should contain less than or equal to 10 variables
  *
  *</pre>
  * <p>
@@ -472,7 +472,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *   public class Switch {
  *   	  public int check()
  *       {
- *   		int k=10;                   //Violation // Count of 4 for 'METHOD_DEF' descendant
+ *   		int k=10;                   //violation // Count of 4 for 'METHOD_DEF' descendant
  *   		if(k<0)                                 //'LITERAL_RETURN' exceeds maximum count 3.
  *   		return 1;
  *   		else if(k>5)
@@ -512,7 +512,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <p>Example:</p>
  * <pre>
  *  public interface MyInterface{
- * 	      public int a=10;              //Violation // Count of 1 for 'INTERFACE_DEF'
+ * 	      public int a=10;              //violation // Count of 1 for 'INTERFACE_DEF'
  *            //..                                  //descendant 'VARIABLE_DEF' exceeds maximum count 0.
  *      }
  *
@@ -534,7 +534,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *<pre>
  *    public class Switch {
  *   	public void method() throws IOException,ArithmeticException
- *                  {                 //Violationh //Count of 2 for 'LITERAL_THROWS'
+ *                  {                 //violation //Count of 2 for 'LITERAL_THROWS'
  *                   }                             //descendant 'IDENT' exceeds maximum count 1.
  *   }
  *
@@ -571,7 +571,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *      public class Switch {
  *   	public static void main(String[] args)
  *         {
- *   	    	    ; //(Semicolon)             //Violation //Empty statement is not allowed
+ *   	    	    ; //(Semicolon)             //violation //Empty statement is not allowed
  *
  *   	           System.out.println("hi");   //OK
  *         }
@@ -591,7 +591,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <p>Example:</p>
  *<pre>
  *    public class Switch {
- *   	   private int a,b,c,d,e,f,g,h,i,j,k;	//Violation // Count of 11 for 'CLASS_DEF'
+ *   	   private int a,b,c,d,e,f,g,h,i,j,k;	//violation // Count of 11 for 'CLASS_DEF'
  *   }                                                    //descendant 'VARIABLE_DEF' exceeds maximum count 10.
  *
  *   //To Avoid Violation Class Fields should be less than or equals to 10
