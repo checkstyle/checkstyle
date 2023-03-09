@@ -233,7 +233,7 @@
     <junit.version>5.9.2</junit.version>
     <forbiddenapis.version>3.4</forbiddenapis.version>
     <json-schema-validator.version>1.2.0</json-schema-validator.version>
-    <error-prone.version>2.15.0</error-prone.version>
+    <error-prone.version>2.18.0</error-prone.version>
     <checkerframework.version>3.27.0</checkerframework.version>
   </properties>
 
@@ -354,7 +354,7 @@
     <dependency>
       <groupId>org.eclipse.jgit</groupId>
       <artifactId>org.eclipse.jgit</artifactId>
-      <version>6.4.0.202211300538-r</version>
+      <version>6.5.0.202303070854-r</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -1752,9 +1752,6 @@
                 <exclude>**/HeaderCheckTest.class</exclude>
                 <!-- content header is conflicting with Input inline header -->
                 <exclude>**/RegexpHeaderCheckTest.class</exclude>
-
-                <!-- remain test methods should be updated -->
-                <exclude>**/SuppressWarningsHolderTest.class</exclude>
 
                 <!-- test should be updated -->
                 <exclude>**/AbstractCheckTest.class</exclude>

@@ -23,6 +23,9 @@
   JavadocUtil.java and JavadocUtilTest.java. -->
   <suppress checks="ForbidCertainImports"
              files="JavadocUtil\.java|JavadocUtilTest\.java"/>
+  <!-- Uses other checks as a basis for it's tests. -->
+  <suppress checks="ForbidCertainImports"
+             files="ViolationTest\.java"/>
 
   <!-- Tone down the checking for test code -->
   <suppress checks="SingleBreakOrContinue" files="[\\/]XdocsPagesTest\.java"/>

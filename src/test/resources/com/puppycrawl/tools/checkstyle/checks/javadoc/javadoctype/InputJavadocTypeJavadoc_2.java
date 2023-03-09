@@ -19,7 +19,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctype;
  ****    @author Oliver Burn
  * @version 1.0
  */
-class InputJavadocTypeJavadoc_2 // violation
+class InputJavadocTypeJavadoc_2 // violation 'tag @version must match pattern'
 {
 }
 
@@ -28,7 +28,7 @@ class InputJavadocTypeJavadoc_2 // violation
  * SomeText @author Oliver Burn
  * *@version 1.0
  */
-class InputJavadocTypeJavadoc_12 // violation
+class InputJavadocTypeJavadoc_12 // violation 'missing @version tag'
 {
 }
 
@@ -37,7 +37,7 @@ class InputJavadocTypeJavadoc_12 // violation
  * tags are multi line ones
  * @author Oliver Burn
  * @version 1.0 */
-class InputJavadocTypeJavadoc_22 // violation
+class InputJavadocTypeJavadoc_22 // violation 'tag @version must match pattern'
 {
 }
 
@@ -46,7 +46,7 @@ class InputJavadocTypeJavadoc_22 // violation
 * @author ABC
 * @version 1.1
 */
-class InputJavadocType_2 // violation
+class InputJavadocType_2 // violation 'tag @version must match pattern'
 {
 }
 
@@ -55,7 +55,7 @@ class InputJavadocType_2 // violation
  ****    @author Oliver Burn
  * @version 1.0
  */
-enum InputJavadocTypeEnum_2 // violation
+enum InputJavadocTypeEnum_2 // violation 'tag @version must match pattern'
 {
 }
 
@@ -64,7 +64,7 @@ enum InputJavadocTypeEnum_2 // violation
  * SomeText @author Oliver Burn
  * *@version 1.0
  */
-enum InputJavadocTypeEnum_12 // violation
+enum InputJavadocTypeEnum_12 // violation 'missing @version tag.'
 {
 }
 
@@ -73,7 +73,7 @@ enum InputJavadocTypeEnum_12 // violation
  * tags are multi line ones
  * @author Oliver Burn
  * @version 1.0 */
-enum InputJavadocTypeEnum_22 // violation
+enum InputJavadocTypeEnum_22 // violation 'tag @version must match pattern'
 {
 }
 
@@ -82,7 +82,7 @@ enum InputJavadocTypeEnum_22 // violation
 * @author ABC
 * @version 1.1
 */
-@interface InputJavadocInterfaceType_2 // violation
+@interface InputJavadocInterfaceType_2 // violation 'tag @version must match pattern'
 {
 }
 
@@ -91,7 +91,7 @@ enum InputJavadocTypeEnum_22 // violation
  ****    @author Oliver Burn
  * @version 1.0
  */
-@interface InputJavadocInterface_2 // violation
+@interface InputJavadocInterface_2 // violation 'tag @version must match pattern'
 {
 }
 
@@ -100,7 +100,7 @@ enum InputJavadocTypeEnum_22 // violation
  * SomeText @author Oliver Burn
  * *@version 1.0
  */
-@interface InputJavadocInterface_12 // violation
+@interface InputJavadocInterface_12 // violation 'missing @version tag.'
 {
 }
 
@@ -109,7 +109,7 @@ enum InputJavadocTypeEnum_22 // violation
  * tags are multi line ones
  * @author Oliver Burn
  * @version 1.0 */
-@interface InputJavadocInterface_22 // violation
+@interface InputJavadocInterface_22 // violation 'tag @version must match pattern'
 {
 }
 
@@ -118,6 +118,6 @@ enum InputJavadocTypeEnum_22 // violation
 * @author ABC
 * @version 1.1
 */
-@interface InputJavadocInterfaceType_12 // violation
+@interface InputJavadocInterfaceType_12 // violation 'tag @version must match pattern'
 {
 }

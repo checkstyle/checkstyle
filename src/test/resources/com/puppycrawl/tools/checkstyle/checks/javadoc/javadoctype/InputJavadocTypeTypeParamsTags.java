@@ -18,7 +18,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctype;
  * Some explanation.
  * @param <A> A type param
  * @param <B1> Another type param
- * @param <D123> The wrong type param   // violation
+ * @param <D123> The wrong type param   // violation 'Unused @param tag for '<D123>'.'
  * @author Nobody
  * @version 1.0
  */
@@ -55,7 +55,7 @@ public class InputJavadocTypeTypeParamsTags<A,B1,C456 extends Comparable>
     /**
      * Example inner class.
      * @param <A> documented parameter
-     * @param <C> extra parameter  // violation
+     * @param <C> extra parameter  // violation 'Unused @param tag for '<C>'.'
      */
 
     public static class InnerClass<A,B>
@@ -71,5 +71,5 @@ public class InputJavadocTypeTypeParamsTags<A,B1,C456 extends Comparable>
     }
 }
 
-/** @param x */ // violation
+/** @param x */ // violation 'Unused @param tag for 'x'.'
 class Test {}

@@ -50,7 +50,7 @@ public class InputJavadocTypeScopeInnerClasses
         }
     }
     /** */
-    protected class InnerPublic2<T> // violation
+    protected class InnerPublic2<T> // violation 'missing @param <T> tag.'
     {
     }
 }
