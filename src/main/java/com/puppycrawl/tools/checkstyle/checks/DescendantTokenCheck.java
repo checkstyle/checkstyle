@@ -103,6 +103,28 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *   &lt;property name=&quot;minimumNumber&quot; value=&quot;1&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>Example:</p>
+ * <pre>
+ *   public class Switch {
+ *
+ *    public static void main(String[] args) {
+ *       int x=1;
+ *       switch(x)              //OK
+ *       {
+ *       case 1: System.out.println("hi");
+ *       break;
+ *       default: System.out.println("Default");
+ *       break;
+ *       }
+ *       int y=1;
+ *       switch(y)	//violation//Count of 0 for 'LITERAL_SWITCH' descendant 
+ *       {					  //'LITERAL_DEFAULT' is less than minimum count 1.
+ *       	case 1: System.out.println("hi");
+ *          break;
+ *       }
+ *     }
+ *  }
+ * </pre>
  * <p>
  * To configure the check to produce a violation on a condition in {@code for}
  * which performs no check:
@@ -113,6 +135,16 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *   &lt;property name=&quot;limitedTokens&quot; value=&quot;EXPR&quot;/&gt;
  *   &lt;property name=&quot;minimumNumber&quot; value=&quot;1&quot;/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ *   public class Switch {
+ *
+ *  	public static void main(String[] args) {
+ *  	for(;;) 	//violation // Count of 0 for 'FOR_CONDITION' descendant
+ *  	   {}					//'EXPR' is less than minimum count 1.
+ *  	 }
+ *     }
  * </pre>
  * <p>
  * To configure the check to produce a violation on comparing {@code this} with
@@ -127,6 +159,27 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *   &lt;property name=&quot;sumTokenCounts&quot; value=&quot;true&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>Example:</p>
+ * <pre>
+ *    public class Switch {
+ *    	private int a;
+ * 	   public void Equals()  					//OK no violation
+ * 	   {
+ * 	     if(this.a!=null)
+ *  	      {}
+ *  	     else if(this.a==null)
+ * 	      {}
+ * 	   }
+ *
+ *  public void Equals1()
+ *    {
+ *     if(this!=null)	//violation //Total count of 2 exceeds maximum count 1 under 'NOT_EQUAL'.
+ * 	      {}
+ *     else if(this==null)  //violation //Total count of 2 exceeds maximum count 1 under 'EQUAL'.
+ *  	  {}
+ *    }
+ *  }
+ * </pre>
  * <p>
  * To configure the check to produce a violation on a {@code String} literal equality check:
  * </p>
@@ -137,6 +190,23 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *   &lt;property name=&quot;maximumNumber&quot; value=&quot;0&quot;/&gt;
  *   &lt;property name=&quot;maximumDepth&quot; value=&quot;1&quot;/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ *   public class Switch {
+ *    	public static void main(String[] args)
+ *          {
+ *   	       String s="Hello";
+ *   	        if(s=="Hello")          //violation // Count of 1 for 'EQUAL' descendant
+ *              {}                                //'STRING_LITERAL' exceeds maximum count 0.
+ *   	        else if(s!="Hello")     //violation//Count of 1 for 'NOT_EQUAL' descendant
+ *              {}                               //'STRING_LITERAL' exceeds maximum count 0
+ *
+ *      	       String s="Hello";
+ *    	        if(s.equals("Hello"))               //OK
+ *                {}
+ *           }
+ *       }
  * </pre>
  * <p>
  * To configure the check to produce a violation on an assert statement that may
@@ -163,6 +233,29 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *   &lt;property name=&quot;minimumNumber&quot; value=&quot;1&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>Example:</p>
+ * <pre>
+ *    public class Switch {
+ *   	public static void main(String[] args)
+ *          {
+ *   	        int i=10;
+ *   	        for(;i<0;i++)               //violation // Count of 0 for 'FOR_INIT' descendant
+ *               {}                                    //'EXPR' is less than minimum count 1.
+ *          }
+ *     }
+ *
+ *        //instead of using (for) we can use (while) Statement
+ *    public class Switch {
+ *   	 public static void main(String[] args)
+ *         {
+ *   	        int i=0;
+ *   	        while(i<10)                     //OK
+ *   	        {
+ *   	            i++;
+ *   	        }
+ *         }
+ *   }
+ * </pre>
  * <p>
  * To configure the check to produce a violation on a switch that is nested in another switch:
  * </p>
@@ -173,6 +266,34 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *   &lt;property name=&quot;maximumNumber&quot; value=&quot;0&quot;/&gt;
  *   &lt;property name=&quot;minimumDepth&quot; value=&quot;1&quot;/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ *    public class Switch {
+ *   	   public static void main(String[] args)
+ *          {
+ *   	          int i=1;
+ *   	          switch(i)
+ *             {
+ *   		    case 1: int j=1;
+ *   			switch(j)  //violation //Count of 1 for 'LITERAL_SWITCH'
+ *               {                    //descendant 'LITERAL_SWITCH' exceeds maximum count 0
+ *  			    case 1:
+ *   			    break;
+ *               }
+ *   		        break;
+ *             }
+ *
+ *   	         int i=1;
+ *   	         switch(i)                     //OK
+ *             {
+ *   		       case 1:
+ *   		       break;
+ *             }
+ *
+ *          }
+ *       }
+ *
  * </pre>
  * <p>
  * To configure the check to produce a violation on a return statement from
@@ -185,6 +306,35 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *   &lt;property name=&quot;maximumNumber&quot; value=&quot;0&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>Example:</p>
+ * <pre>
+ *  public class Switch {
+ *    public static void main(String[] args)
+ *  {
+ *   try {
+ *
+ *      } catch (ArithmeticException ex) {
+ *         return true;  //violation // Count of 1 for 'LITERAL_CATCH'
+ *      }                            //descendant 'LITERAL_RETURN' exceeds maximum count 0.
+ *      finally{
+ *   	   return true;  //violation//Count of 1 for 'LITERAL_FINALLY'
+ *      }                          //descendant 'LITERAL_RETURN' exceeds maximum count 0.
+ *  }
+ * }
+ *
+ *   public class Switch {
+ *   	public static void main(String[] args)
+ *   	         try {                             //OK
+ *   	            //..
+ *             } catch (ArithmeticException ex) {
+ *                //..
+ *             }
+ *   	         finally{
+ *   	            //..
+ *             }
+ *          }
+ *   }
+ * </pre>
  * <p>
  * To configure the check to produce a violation on a try statement within a catch or finally block:
  * </p>
@@ -194,6 +344,44 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *   &lt;property name=&quot;limitedTokens&quot; value=&quot;LITERAL_TRY&quot;/&gt;
  *   &lt;property name=&quot;maximumNumber&quot; value=&quot;0&quot;/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ *   public class Switch {
+ *   public static void main(String[] args)
+ *    {
+ *    try {
+ *         //..
+ *        } catch (ArithmeticException ex) {
+ *            try{            //violation // Count of 1 for 'LITERAL_CATCH'
+ *   			    //..                 //descendant 'LITERAL_TRY' exceeds maximum count 0.
+ *               }catch(ArithmeticException ex){
+ *   			              //..
+ *               }
+ *        }
+ *   	   finally{
+ *   	        try{    //violation // Count of 1 for 'LITERAL_FINALLY'
+ *           //..                  // descendant 'LITERAL_TRY' exceeds maximum count 0.
+ *              }catch(ArithmeticException ex){
+ *   			              //..
+ *               }
+ *         }
+ *      }
+ *   }
+ *
+ *   public class Switch {
+ *   	public static void main(String[] args)
+ *          {
+ *   	           try {                                    //OK
+ *            		//..
+ *               } catch (ArithmeticException ex) {
+ *   			        //..
+ *               }
+ *   	           finally{
+ *   	       		//..
+ *               }
+ *          }
+ *   }
  * </pre>
  * <p>
  * To configure the check to produce a violation on a switch with too many cases:
@@ -206,6 +394,42 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *   &lt;property name=&quot;maximumNumber&quot; value=&quot;10&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>Example:</p>
+ * <pre>
+ *   public class Switch {
+ *    public static void main(String[] args)
+ *     {
+ *   	   int x=1;
+ *   	   switch(x)        //violation // Count of 11 for 'LITERAL_SWITCH' descendant
+ *          {                          //'LITERAL_CASE' exceeds maximum count 10.
+ *    	  case 1:
+ *   	      break;
+ *   	      case 2:
+ *   	      break;
+ *   	      case 3:
+ *   	      break;
+ *         case 4:
+ *  	      break;
+ *   	      case 5:
+ *   	      break;
+ *   	      case 6:
+ *   	      break;
+ *   	      case 7:
+ *   	      break;
+ *    	  case 8:
+ *   	      break;
+ *   	      case 9:
+ *   	      break;
+ *   	      case 10:
+ *  	      break;
+ *   	      case 11:
+ *   	      break;
+ *         }
+ *     }
+ *   }
+ *     //To Avoid Violation case should be less than or equals to 10
+ *
+ * </pre>
  * <p>
  * To configure the check to produce a violation on a method with too many local variables:
  * </p>
@@ -217,6 +441,18 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *   &lt;property name=&quot;maximumNumber&quot; value=&quot;10&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * public class Switch {
+ *  public void check()
+ *  {
+ *   int k,n,b,v,c,x,z,a,s,d,w; //violation // Count of 11 for 'METHOD_DEF'
+ *  }                                      //descendant 'VARIABLE_DEF' exceeds maximum count 10.
+ * }
+ *
+ *     //To Avoid violation Method should contain less than or equal to 10 variables
+ *
+ * </pre>
  * <p>
  * To configure the check to produce a violation on a method with too many returns:
  * </p>
@@ -226,6 +462,37 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *   &lt;property name=&quot;limitedTokens&quot; value=&quot;LITERAL_RETURN&quot;/&gt;
  *   &lt;property name=&quot;maximumNumber&quot; value=&quot;3&quot;/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ *   public class Switch {
+ *   	  public int check()
+ *       {
+ *   		int k=10;          //violation // Count of 4 for 'METHOD_DEF' descendant
+ *   		if(k<0)                       //'LITERAL_RETURN' exceeds maximum count 3.
+ *   		return 1;
+ *   		else if(k>5)
+ *  		return 2;
+ *   		else if(k>10)
+ *   		return 3;
+ *   		else if(k>15)
+ *   		return 4;
+ *      }
+ *   }
+ *
+ *  public class Switch {
+ *     public int check()
+ *         {
+ *     		int k=10;                      //OK
+ *     		if(k<0)
+ *     		return 1;
+ *     		else if(k>5)
+ *     		return 2;
+ *     		else if(k>10)
+ *     		return 3;
+ *     	}
+ *     }
+ *    //To Avoid Violation Method should return less than or equal to 3 return statements
  * </pre>
  * <p>
  * To configure the check to produce a violation on an interface with too many fields:
@@ -238,6 +505,17 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *   &lt;property name=&quot;maximumNumber&quot; value=&quot;0&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>Example:</p>
+ * <pre>
+ *  public interface MyInterface{
+ * 	      public int a=10;       //violation // Count of 1 for 'INTERFACE_DEF'
+ *            //..                          //descendant 'VARIABLE_DEF' exceeds maximum count 0.
+ *      }
+ *
+ *      public interface MyInterface{       //OK
+ *            //..
+ *          }
+ * </pre>
  * <p>
  * To configure the check to produce a violation on a method which throws too many exceptions:
  * </p>
@@ -247,6 +525,19 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *   &lt;property name=&quot;limitedTokens&quot; value=&quot;IDENT&quot;/&gt;
  *   &lt;property name=&quot;maximumNumber&quot; value=&quot;1&quot;/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ *    public class Switch {
+ *   	public void method() throws IOException,ArithmeticException
+ *                  {          //violation //Count of 2 for 'LITERAL_THROWS'
+ *                   }                     //descendant 'IDENT' exceeds maximum count 1.
+ *   }
+ *
+ *   public class Switch {
+ *     	public void method() throws IOException
+ *             {}                                     //OK
+ *    }
  * </pre>
  * <p>
  * To configure the check to produce a violation on a method with too many expressions:
@@ -271,6 +562,17 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *     value=&quot;Empty statement is not allowed.&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>Example:</p>
+ * <pre>
+ *      public class Switch {
+ *   	public static void main(String[] args)
+ *         {
+ *   	    	    ; //(Semicolon)             //violation //Empty statement is not allowed
+ *
+ *   	           System.out.println("hi");   //OK
+ *         }
+ *   }
+ * </pre>
  * <p>
  * To configure the check to produce a violation on a class with too many fields:
  * </p>
@@ -281,6 +583,13 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *   &lt;property name=&quot;maximumDepth&quot; value=&quot;2&quot;/&gt;
  *   &lt;property name=&quot;maximumNumber&quot; value=&quot;10&quot;/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * public class Switch {
+ *  private int a,b,c,d,e,f,g,h,i,j,k;//violation // Count of 11 for 'CLASS_DEF'
+ *   }                                          //descendant 'VARIABLE_DEF' exceeds maximum count 10.
+ *   //To Avoid Violation Class Fields should be less than or equals to 10
  * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
