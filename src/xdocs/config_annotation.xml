@@ -1322,6 +1322,23 @@ package com.example.annotations.packageannotation; //ok
         <source> &lt;module name=&quot;SuppressWarnings&quot;/&gt;
         </source>
 
+        <p>Example:</p>
+        <source>
+@SuppressWarnings("") // violation, empty strings or all whitespace are not allowed
+class Test{
+    @SuppressWarnings(" ") // violation
+    private int num = 9;
+
+    @SuppressWarnings("unused") // ok
+    void foo1(){
+    }
+
+    @SuppressWarnings(true?"unused":"") // violation, does not consider conditionals
+    void foo2(){
+    }
+}
+        </source>
+
         <p>
           To configure the check so that the "unchecked" and "unused"
           warnings cannot be suppressed on anything
@@ -1338,6 +1355,33 @@ package com.example.annotations.packageannotation; //ok
     ENUM_CONSTANT_DEF,METHOD_DEF,CTOR_DEF
     &quot;/&gt;
 &lt;/module&gt;
+        </source>
+
+        <p>Example:</p>
+        <source>
+@SuppressWarnings("all") // ok
+class TestA {
+    @SuppressWarnings("unused") // ok
+    private int num = 9;
+
+    void foo(int param1, @SuppressWarnings("unchecked") int param2) { //ok
+    }
+}
+
+@SuppressWarnings("unused") // violation, warnings cannot be suppressed on class
+class TestB {
+    @SuppressWarnings("unused") //violation, warnings cannot be suppressed on method
+    void foo() {
+    }
+}
+
+@SuppressWarnings("unchecked") // violation, warnings cannot be suppressed on interface
+interface TestC {
+}
+
+@SuppressWarnings(true?"all":"unused") // violation, does not consider conditionals
+class TestD {
+}
         </source>
       </subsection>
 
