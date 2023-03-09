@@ -111,6 +111,22 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <pre>
  * &lt;module name=&quot;SuppressWarnings&quot;/&gt;
  * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * &#64;SuppressWarnings("") // violation, empty strings or all whitespace are not allowed
+ * class Test{
+ *     &#64;SuppressWarnings(" ") // violation
+ *     private int num = 9;
+ *
+ *     &#64;SuppressWarnings("unused") // ok
+ *     void foo1(){
+ *     }
+ *
+ *     &#64;SuppressWarnings(true?"unused":"") // violation, does not consider conditionals
+ *     void foo2(){
+ *     }
+ * }
+ * </pre>
  * <p>
  * To configure the check so that the "unchecked" and "unused"
  * warnings cannot be suppressed on anything but variable and parameter declarations.
@@ -126,6 +142,32 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *     ENUM_CONSTANT_DEF,METHOD_DEF,CTOR_DEF
  *     &quot;/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * &#64;SuppressWarnings("all") // ok
+ * class TestA {
+ *     &#64;SuppressWarnings("unused") // ok
+ *     private int num = 9;
+ *
+ *     void foo(int param1, @SuppressWarnings("unchecked") int param2) { //ok
+ *     }
+ * }
+ *
+ * &#64;SuppressWarnings("unused") // violation, warnings cannot be suppressed on class
+ * class TestB {
+ *     &#64;SuppressWarnings("unused") //violation, warnings cannot be suppressed on method
+ *     void foo() {
+ *     }
+ * }
+ *
+ * &#64;SuppressWarnings("unchecked") // violation, warnings cannot be suppressed on interface
+ * interface TestC {
+ * }
+ *
+ * &#64;SuppressWarnings(true?"all":"unused") // violation, does not consider conditionals
+ * class TestD {
+ * }
  * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
