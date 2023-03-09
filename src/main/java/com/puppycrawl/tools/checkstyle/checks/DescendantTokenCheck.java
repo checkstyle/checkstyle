@@ -247,7 +247,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *          }
  *     }
  *
- *        //Instade of using (for) we can use (while) Statement
+ *        //instead of using (for) we can use (while) Statement
  *    public class Switch {
  *   	 public static void main(String[] args)
  *         {
