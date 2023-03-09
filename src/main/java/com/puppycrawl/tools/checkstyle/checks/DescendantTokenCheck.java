@@ -116,7 +116,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *       break;
  *       }
  *       int y=1;
- *       switch(y)	//violation//Count of 0 for 'LITERAL_SWITCH' descendant 
+ *       switch(y) //violation//Count of 0 for 'LITERAL_SWITCH' descendant
  *       {                    //'LITERAL_DEFAULT' is less than minimum count 1.
  *       	case 1: System.out.println("hi");
  *          break;
@@ -138,7 +138,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <p>Example:</p>
  * <pre>
  *   public class Switch {
- *
  *  	public static void main(String[] args) {
  *  	for(;;) 	//violation // Count of 0 for 'FOR_CONDITION' descendant
  *  	   {}					//'EXPR' is less than minimum count 1.
@@ -242,7 +241,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *               {}                                    //'EXPR' is less than minimum count 1.
  *          }
  *     }
- *
  *        //instead of using (for) we can use (while) Statement
  *    public class Switch {
  *   	 public static void main(String[] args)
@@ -292,7 +290,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *
  *          }
  *       }
- *
  * </pre>
  * <p>
  * To configure the check to produce a violation on a return statement from
@@ -320,7 +317,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *      }                          //descendant 'LITERAL_RETURN' exceeds maximum count 0.
  *  }
  * }
- *
  *   public class Switch {
  *   	public static void main(String[] args)
  *   	         try {                             //OK
@@ -367,7 +363,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *         }
  *      }
  *   }
- *
  *   public class Switch {
  *   	public static void main(String[] args)
  *          {
@@ -427,7 +422,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *     }
  *   }
  *     //To Avoid Violation case should be less than or equals to 10
- *
  * </pre>
  * <p>
  * To configure the check to produce a violation on a method with too many local variables:
@@ -448,7 +442,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *   int k,n,b,v,c,x,z,a,s,d,w; //violation // Count of 11 for 'METHOD_DEF'
  *  }                                      //descendant 'VARIABLE_DEF' exceeds maximum count 10.
  * }
- *
  *     //To Avoid violation Method should contain less than or equal to 10 variables
  *
  * </pre>
@@ -532,7 +525,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *                  {          //violation //Count of 2 for 'LITERAL_THROWS'
  *                   }                     //descendant 'IDENT' exceeds maximum count 1.
  *   }
- *
  *   public class Switch {
  *     	public void method() throws IOException
  *             {}                                     //OK
