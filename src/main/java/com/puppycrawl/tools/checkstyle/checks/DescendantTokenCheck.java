@@ -109,7 +109,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *
  *    public static void main(String[] args) {
  *       int x=1;
- *       switch(x)								//OK
+ *       switch(x)              //OK
  *       {
  *       case 1: System.out.println("hi");
  *       break;
@@ -141,9 +141,9 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *   public class Switch {
  *
  *  	public static void main(String[] args) {
- *  		for(;;)			//violation // Count of 0 for 'FOR_CONDITION' descendant
- *  	     {}							//'EXPR' is less than minimum count 1.
- *  	   }
+ *  	for(;;) 	//violation // Count of 0 for 'FOR_CONDITION' descendant
+ *  	   {}					//'EXPR' is less than minimum count 1.
+ *  	 }
  *     }
  * </pre>
  * <p>
@@ -171,14 +171,14 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * 	      {}
  * 	   }
  *
- *   	public void Equals1()
- *  	     {
- *  	        if(this!=null)				//violation //Total count of 2 exceeds maximum count 1 under 'NOT_EQUAL'.
- * 	        {}
- *  	        else if(this==null)		    //violation //Total count of 2 exceeds maximum count 1 under 'EQUAL'.
- *  	        {}
- *  	     }
- *  	}
+ *  public void Equals1()
+ *    {
+ *     if(this!=null)	//violation //Total count of 2 exceeds maximum count 1 under 'NOT_EQUAL'.
+ * 	      {}
+ *     else if(this==null)  //violation //Total count of 2 exceeds maximum count 1 under 'EQUAL'.
+ *  	  {}
+ *    }
+ *  }
  * </pre>
  * <p>
  * To configure the check to produce a violation on a {@code String} literal equality check:
@@ -308,23 +308,22 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </pre>
  * <p>Example:</p>
  * <pre>
- *     public class Switch {
- *   	   public static void main(String[] args)
- *          {
- *   	        try {
+ *  public class Switch {
+ *    public static void main(String[] args)
+ *  {
+ *   try {
  *
- *            } catch (ArithmeticException ex) {
- *   		         return true;   //violation // Count of 1 for 'LITERAL_CATCH'
- *            }                                 //descendant 'LITERAL_RETURN' exceeds maximum count 0.
- *   	        finally{
- *   	      	   return true;     //violation//Count of 1 for 'LITERAL_FINALLY'
- *            }                                //descendant 'LITERAL_RETURN' exceeds maximum count 0.
- *          }
- *   }
+ *      } catch (ArithmeticException ex) {
+ *         return true;  //violation // Count of 1 for 'LITERAL_CATCH'
+ *      }                            //descendant 'LITERAL_RETURN' exceeds maximum count 0.
+ *      finally{
+ *   	   return true;  //violation//Count of 1 for 'LITERAL_FINALLY'
+ *      }                          //descendant 'LITERAL_RETURN' exceeds maximum count 0.
+ *  }
+ * }
  *
  *   public class Switch {
  *   	public static void main(String[] args)
- *          
  *   	         try {                             //OK
  *   	            //..
  *             } catch (ArithmeticException ex) {
@@ -349,25 +348,25 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <p>Example:</p>
  * <pre>
  *   public class Switch {
- *   	public static void main(String[] args)
- *          {
- *   	           try {
- *            		//..
- *               } catch (ArithmeticException ex) {
- *   		            try{            //violation // Count of 1 for 'LITERAL_CATCH'
- *   			              //..                 //descendant 'LITERAL_TRY' exceeds maximum count 0.
- *                    }catch(ArithmeticException ex){
+ *   public static void main(String[] args)
+ *    {
+ *    try {
+ *         //..
+ *        } catch (ArithmeticException ex) {
+ *            try{            //violation // Count of 1 for 'LITERAL_CATCH'
+ *   			    //..                 //descendant 'LITERAL_TRY' exceeds maximum count 0.
+ *               }catch(ArithmeticException ex){
  *   			              //..
- *                    }
  *               }
- *   	           finally{
- *   	                try{           //violation // Count of 1 for 'LITERAL_FINALLY'
- *   			              //..                 // descendant 'LITERAL_TRY' exceeds maximum count 0.
- *                    }catch(ArithmeticException ex){
+ *        }
+ *   	   finally{
+ *   	        try{    //violation // Count of 1 for 'LITERAL_FINALLY'
+ *           //..                  // descendant 'LITERAL_TRY' exceeds maximum count 0.
+ *              }catch(ArithmeticException ex){
  *   			              //..
- *                    }
- *                }
+ *               }
  *         }
+ *      }
  *   }
  *
  *   public class Switch {
@@ -444,12 +443,12 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </pre>
  * <p>Example:</p>
  * <pre>
- *   public class Switch {
- *   	public void check()
- *      {
- *   		int k,n,b,v,c,x,z,a,s,d,w; //violation // Count of 11 for 'METHOD_DEF'
- *      }                                         //descendant 'VARIABLE_DEF' exceeds maximum count 10.
- *   }
+ * public class Switch {
+ *  public void check()
+ *  {
+ *   int k,n,b,v,c,x,z,a,s,d,w; //violation // Count of 11 for 'METHOD_DEF'
+ *  }                                      //descendant 'VARIABLE_DEF' exceeds maximum count 10.
+ * }
  *
  *     //To Avoid violation Method should contain less than or equal to 10 variables
  *
@@ -587,12 +586,10 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </pre>
  * <p>Example:</p>
  * <pre>
- *    public class Switch {
- *   	   private int a,b,c,d,e,f,g,h,i,j,k;//violation // Count of 11 for 'CLASS_DEF'
- *   }                                              //descendant 'VARIABLE_DEF' exceeds maximum count 10.
- *
+ * public class Switch {
+ *  private int a,b,c,d,e,f,g,h,i,j,k;//violation // Count of 11 for 'CLASS_DEF'
+ *   }                                          //descendant 'VARIABLE_DEF' exceeds maximum count 10.
  *   //To Avoid Violation Class Fields should be less than or equals to 10
- *
  * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
