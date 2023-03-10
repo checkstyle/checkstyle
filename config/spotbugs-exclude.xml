@@ -195,6 +195,11 @@
       <Class name="com.puppycrawl.tools.checkstyle.Checker"/>
       <Class name="com.puppycrawl.tools.checkstyle.TreeWalker"/>
     </Or>
+    <!-- Exclude DetailAstImpl#addChild from violation in visitor code -->
+    <Or>
+      <Class name="com.puppycrawl.tools.checkstyle.JavaAstVisitor"/>
+      <Method name="addChild"/>
+    </Or>
     <Method name="getExternalResourceLocations"/>
     <Bug pattern="PRMC_POSSIBLY_REDUNDANT_METHOD_CALLS"/>
   </Match>
