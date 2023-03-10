@@ -1495,7 +1495,11 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
 
     @Override
     public DetailAstImpl visitLambdaExp(JavaLanguageParser.LambdaExpContext ctx) {
-        return flattenedTree(ctx);
+        final DetailAstImpl lambda = create(ctx.LAMBDA());
+        processChildren(lambda, ctx.children.stream()
+                .filter(child -> !child.equals(ctx.LAMBDA()))
+                .collect(Collectors.toList()));
+        return lambda;
     }
 
     @Override
@@ -1625,14 +1629,6 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
             addLastSibling(typeType, visit(ctx.typeType(i + 1)));
         }
         return typeType;
-    }
-
-    @Override
-    public DetailAstImpl visitLambdaExpression(JavaLanguageParser.LambdaExpressionContext ctx) {
-        final DetailAstImpl lambda = create(ctx.LAMBDA());
-        lambda.addChild(visit(ctx.lambdaParameters()));
-        lambda.addChild(visit(ctx.lambdaBody()));
-        return lambda;
     }
 
     @Override
