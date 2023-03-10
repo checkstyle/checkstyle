@@ -190,8 +190,10 @@
     <Bug pattern="SLS_SUSPICIOUS_LOOP_SEARCH"/>
   </Match>
   <Match>
-    <!-- Till https://github.com/mebigfatguy/fb-contrib/issues/329 -->
     <Or>
+      <!-- Exclude DetailAstImpl#addChild from violation in visitor code -->
+      <Class name="com.puppycrawl.tools.checkstyle.JavaAstVisitor"/>
+      <!-- Till https://github.com/mebigfatguy/fb-contrib/issues/329 -->
       <Class name="com.puppycrawl.tools.checkstyle.Checker"/>
       <Class name="com.puppycrawl.tools.checkstyle.TreeWalker"/>
     </Or>
