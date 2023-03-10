@@ -115,7 +115,7 @@ are in the file named "LICENSE.apache20" in this directory.
 [sonar img]:https://sonarcloud.io/api/project_badges/measure?project=org.checkstyle%3Acheckstyle&metric=sqale_index
 
 [codacy]:https://www.codacy.com/app/checkstyle/checkstyle
-[codacy img]:https://api.codacy.com/project/badge/3adf12d434314ba8b38277ea46d3c44b
+[codacy img]:https://img.shields.io/badge/codacy-222F29?style=for-the-badge&logo=codacy
 
 [coverage]:https://codecov.io/github/checkstyle/checkstyle?branch=master
 [coverage img]:https://codecov.io/github/checkstyle/checkstyle/coverage.svg?branch=master
@@ -151,7 +151,7 @@ are in the file named "LICENSE.apache20" in this directory.
 [semaphoreci img]: https://checkstyle.semaphoreci.com/badges/checkstyle/branches/master.svg?style=shields
 
 [flattr]:https://flattr.com/submit/auto?fid=g39d10&amp;url=https%3A%2F%2Fcheckstyle.org
-[flattr img]:https://button.flattr.com/flattr-badge-large.png
+[flattr img]:https://img.shields.io/badge/flattr-000000?style=for-the-badge&logo=flattr
 
 [azure]:https://dev.azure.com/romanivanovjr/romanivanovjr/_build/latest?definitionId=1&branchName=master
 [azure img]:https://dev.azure.com/romanivanovjr/romanivanovjr/_apis/build/status/checkstyle.checkstyle?branchName=master
@@ -172,7 +172,7 @@ are in the file named "LICENSE.apache20" in this directory.
 [sponsors.opencollective img]:https://opencollective.com/checkstyle/sponsors/badge.svg
 
 [dependabot]:https://dependabot.com
-[dependabot img]:https://api.dependabot.com/badges/status?host=github&repo=checkstyle/checkstyle
+[dependabot img]:https://img.shields.io/badge/dependabot-025E8C?style=for-the-badge&logo=dependabot
 
 [closed issues]:https://github.com/checkstyle/checkstyle/actions/workflows/no-old-refs.yml
 [closed issues img]:https://github.com/checkstyle/checkstyle/actions/workflows/no-old-refs.yml/badge.svg
