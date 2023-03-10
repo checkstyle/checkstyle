@@ -17,7 +17,7 @@ echo "COMMITS_ARRAY=$COMMITS_ARRAY"
 
 echo "Extracting commit messages from commits array that match '^(Pull|Issue) #[0-9]+'."
 COMMIT_MESSAGES=$(echo "$COMMITS_ARRAY" | jq -r .[].message \
-  | grep -E "^(Pull|Issue) #[0-9]+")
+  | grep -E "^(Pull|Issue) #[0-9]+" || true)
 echo "COMMIT_MESSAGES=
 $COMMIT_MESSAGES"
 
