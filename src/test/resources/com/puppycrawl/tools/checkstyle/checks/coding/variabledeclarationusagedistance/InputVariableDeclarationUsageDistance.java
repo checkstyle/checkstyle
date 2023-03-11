@@ -1071,4 +1071,17 @@ class New2 {
         New2.field = (int)a;
     }
 
+    void methodTry() {
+        String a = ""; // violation 'Distance between .* declaration and its first usage is 4.'
+        String b = "abc";
+        n();
+        n();
+        n();
+        try (AutoCloseable i = new java.io.StringReader(a)) {
+            b.replace(a.charAt(0),'b');
+        }
+        catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

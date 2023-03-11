@@ -29,4 +29,18 @@ public class InputVariableDeclarationUsageDistanceAnonymous {
 
     public void nothing() {
     }
+
+    void methodTry() {
+        String a = "";
+        String b = "abc";
+        nothing();
+        nothing();
+        nothing();
+        try (AutoCloseable i = new java.io.StringReader(a)) {
+            b.replace(a.charAt(0),'b');
+        }
+        catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
