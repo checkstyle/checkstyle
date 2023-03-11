@@ -1322,6 +1322,30 @@ package com.example.annotations.packageannotation; //ok
         <source> &lt;module name=&quot;SuppressWarnings&quot;/&gt;
         </source>
 
+        <p>Example:</p>
+        <source>
+@SuppressWarnings("") // violation
+class TestA {
+  @SuppressWarnings("") // violation
+  final int num1 = 1;
+  @SuppressWarnings("all") // ok
+  final int num2 = 2;
+  @SuppressWarnings("unused") // ok
+  final int num3 = 3;
+
+  void foo1(@SuppressWarnings("unused") int param) {} // ok
+
+  @SuppressWarnings("all") // ok
+  void foo2(int param) {}
+  @SuppressWarnings("unused") // ok
+  void foo3(int param) {}
+  @SuppressWarnings(true?"all":"unused") // ok
+  void foo4(int param) {}
+}
+@SuppressWarnings("unchecked") // ok
+class TestB {}
+        </source>
+
         <p>
           To configure the check so that the "unchecked" and "unused"
           warnings cannot be suppressed on anything
@@ -1338,6 +1362,30 @@ package com.example.annotations.packageannotation; //ok
     ENUM_CONSTANT_DEF,METHOD_DEF,CTOR_DEF
     &quot;/&gt;
 &lt;/module&gt;
+        </source>
+
+        <p>Example:</p>
+        <source>
+@SuppressWarnings("") // ok
+class TestA {
+  @SuppressWarnings("") // ok
+  final int num1 = 1;
+  @SuppressWarnings("all") // ok
+  final int num2 = 2;
+  @SuppressWarnings("unused") // ok
+  final int num3 = 3;
+
+  void foo1(@SuppressWarnings("unused") int param) {} // ok
+
+  @SuppressWarnings("all") // ok
+  void foo2(int param) {}
+  @SuppressWarnings("unused") // violation
+  void foo3(int param) {}
+  @SuppressWarnings(true?"all":"unused") // violation
+  void foo4(int param) {}
+}
+@SuppressWarnings("unchecked") // violation
+class TestB {}
         </source>
       </subsection>
 
