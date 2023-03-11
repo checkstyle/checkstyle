@@ -1326,21 +1326,21 @@ package com.example.annotations.packageannotation; //ok
         <source>
 @SuppressWarnings("") // violation
 class TestA {
-    @SuppressWarnings("") // violation
-    final int num1 = 1;
-    @SuppressWarnings("all") // ok
-    final int num2 = 2;
-    @SuppressWarnings("unused") // ok
-    final int num3 = 3;
+  @SuppressWarnings("") // violation
+  final int num1 = 1;
+  @SuppressWarnings("all") // ok
+  final int num2 = 2;
+  @SuppressWarnings("unused") // ok
+  final int num3 = 3;
 
-    void foo1(@SuppressWarnings("unused") int param) {} // ok
+  void foo1(@SuppressWarnings("unused") int param) {} // ok
 
-    @SuppressWarnings("all") // ok
-    void foo2(int param) {}
-    @SuppressWarnings("unused") // ok
-    void foo3(int param) {}
-    @SuppressWarnings(true?"all":"unused") // ok
-    void foo4(int param) {}
+  @SuppressWarnings("all") // ok
+  void foo2(int param) {}
+  @SuppressWarnings("unused") // ok
+  void foo3(int param) {}
+  @SuppressWarnings(true?"all":"unused") // ok
+  void foo4(int param) {}
 }
 @SuppressWarnings("unchecked") // ok
 class TestB {}
@@ -1368,21 +1368,21 @@ class TestB {}
         <source>
 @SuppressWarnings("") // ok
 class TestA {
-    @SuppressWarnings("") // ok
-    final int num1 = 1;
-    @SuppressWarnings("all") // ok
-    final int num2 = 2;
-    @SuppressWarnings("unused") // ok
-    final int num3 = 3;
+  @SuppressWarnings("") // ok
+  final int num1 = 1;
+  @SuppressWarnings("all") // ok
+  final int num2 = 2;
+  @SuppressWarnings("unused") // ok
+  final int num3 = 3;
 
-    void foo1(@SuppressWarnings("unused") int param) {} // ok
+  void foo1(@SuppressWarnings("unused") int param) {} // ok
 
-    @SuppressWarnings("all") // ok
-    void foo2(int param) {}
-    @SuppressWarnings("unused") // violation
-    void foo3(int param) {}
-    @SuppressWarnings(true?"all":"unused") // violation
-    void foo4(int param) {}
+  @SuppressWarnings("all") // ok
+  void foo2(int param) {}
+  @SuppressWarnings("unused") // violation
+  void foo3(int param) {}
+  @SuppressWarnings(true?"all":"unused") // violation
+  void foo4(int param) {}
 }
 @SuppressWarnings("unchecked") // violation
 class TestB {}
