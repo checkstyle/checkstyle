@@ -279,15 +279,17 @@ public class WriteTagCheck
     @SuppressWarnings("deprecation")
     @Override
     public void visitToken(DetailAST ast) {
-        final FileContents contents = getFileContents();
-        final int lineNo = ast.getLineNo();
-        final TextBlock cmt =
-            contents.getJavadocBefore(lineNo);
-        if (cmt == null) {
-            log(lineNo, MSG_MISSING_TAG, tag);
-        }
-        else {
-            checkTag(lineNo, cmt.getText());
+        if (tag != null) {
+            final FileContents contents = getFileContents();
+            final int lineNo = ast.getLineNo();
+            final TextBlock cmt =
+                contents.getJavadocBefore(lineNo);
+            if (cmt == null) {
+                log(lineNo, MSG_MISSING_TAG, tag);
+            }
+            else if (tagRegExp != null) {
+                checkTag(lineNo, cmt.getText());
+            }
         }
     }
 
@@ -298,26 +300,24 @@ public class WriteTagCheck
      * @param comment the Javadoc comment for the type definition.
      */
     private void checkTag(int lineNo, String... comment) {
-        if (tagRegExp != null) {
-            boolean hasTag = false;
-            for (int i = 0; i < comment.length; i++) {
-                final String commentValue = comment[i];
-                final Matcher matcher = tagRegExp.matcher(commentValue);
-                if (matcher.find()) {
-                    hasTag = true;
-                    final int contentStart = matcher.start(1);
-                    final String content = commentValue.substring(contentStart);
-                    if (tagFormat == null || tagFormat.matcher(content).find()) {
-                        logTag(lineNo + i - comment.length, tag, content);
-                    }
-                    else {
-                        log(lineNo + i - comment.length, MSG_TAG_FORMAT, tag, tagFormat.pattern());
-                    }
+        boolean hasTag = false;
+        for (int i = 0; i < comment.length; i++) {
+            final String commentValue = comment[i];
+            final Matcher matcher = tagRegExp.matcher(commentValue);
+            if (matcher.find()) {
+                hasTag = true;
+                final int contentStart = matcher.start(1);
+                final String content = commentValue.substring(contentStart);
+                if (tagFormat == null || tagFormat.matcher(content).find()) {
+                    logTag(lineNo + i - comment.length, tag, content);
+                }
+                else {
+                    log(lineNo + i - comment.length, MSG_TAG_FORMAT, tag, tagFormat.pattern());
                 }
             }
-            if (!hasTag) {
-                log(lineNo, MSG_MISSING_TAG, tag);
-            }
+        }
+        if (!hasTag) {
+            log(lineNo, MSG_MISSING_TAG, tag);
         }
     }
 
