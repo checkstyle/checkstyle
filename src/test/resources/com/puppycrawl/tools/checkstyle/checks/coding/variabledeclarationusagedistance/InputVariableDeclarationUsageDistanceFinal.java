@@ -1071,4 +1071,15 @@ class New5 {
         New5.field = (int)a;
     }
 
+    void methodTry() {
+        String a = ""; // violation 'Distance .* is 2.'
+        String b = "abc";
+        n();
+        try (AutoCloseable i = new java.io.StringReader(a)) {
+            b.replace(a.charAt(0),'b');
+        }
+        catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
