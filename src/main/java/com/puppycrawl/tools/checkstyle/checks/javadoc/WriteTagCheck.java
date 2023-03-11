@@ -204,13 +204,11 @@ public class WriteTagCheck
      */
     public static final String MSG_TAG_FORMAT = "type.tagFormat";
 
-    /** Compiled regexp to match tag. */
-    private Pattern tagRegExp;
     /** Specify the regexp to match tag content. */
     private Pattern tagFormat;
 
-    /** Specify the name of tag. */
-    private String tag;
+    /** Specify the tag context. */
+    private TagContext tagContext;
     /** Specify the severity level when tag is found and printed. */
     private SeverityLevel tagSeverity = SeverityLevel.INFO;
 
@@ -220,8 +218,7 @@ public class WriteTagCheck
      * @param tag tag to check
      */
     public void setTag(String tag) {
-        this.tag = tag;
-        tagRegExp = CommonUtil.createPattern(tag + "\\s*(.*$)");
+        this.tagContext = new TagContext(tag);
     }
 
     /**
@@ -279,15 +276,18 @@ public class WriteTagCheck
     @SuppressWarnings("deprecation")
     @Override
     public void visitToken(DetailAST ast) {
-        final FileContents contents = getFileContents();
-        final int lineNo = ast.getLineNo();
-        final TextBlock cmt =
-            contents.getJavadocBefore(lineNo);
-        if (cmt == null) {
-            log(lineNo, MSG_MISSING_TAG, tag);
-        }
-        else {
-            checkTag(lineNo, cmt.getText());
+        if (tagContext != null) {
+            final String tag = tagContext.tag;
+            final FileContents contents = getFileContents();
+            final int lineNo = ast.getLineNo();
+            final TextBlock cmt =
+                contents.getJavadocBefore(lineNo);
+            if (cmt == null) {
+                log(lineNo, MSG_MISSING_TAG, tag);
+            }
+            else {
+                checkTag(lineNo, tag, tagContext.tagRegExp, cmt.getText());
+            }
         }
     }
 
@@ -296,28 +296,28 @@ public class WriteTagCheck
      *
      * @param lineNo the line number for the type definition.
      * @param comment the Javadoc comment for the type definition.
+     * @param tag tag value.
+     * @param tagRegExp tag regexp value.
      */
-    private void checkTag(int lineNo, String... comment) {
-        if (tagRegExp != null) {
-            boolean hasTag = false;
-            for (int i = 0; i < comment.length; i++) {
-                final String commentValue = comment[i];
-                final Matcher matcher = tagRegExp.matcher(commentValue);
-                if (matcher.find()) {
-                    hasTag = true;
-                    final int contentStart = matcher.start(1);
-                    final String content = commentValue.substring(contentStart);
-                    if (tagFormat == null || tagFormat.matcher(content).find()) {
-                        logTag(lineNo + i - comment.length, tag, content);
-                    }
-                    else {
-                        log(lineNo + i - comment.length, MSG_TAG_FORMAT, tag, tagFormat.pattern());
-                    }
+    private void checkTag(int lineNo, String tag, Pattern tagRegExp, String... comment) {
+        boolean hasTag = false;
+        for (int i = 0; i < comment.length; i++) {
+            final String commentValue = comment[i];
+            final Matcher matcher = tagRegExp.matcher(commentValue);
+            if (matcher.find()) {
+                hasTag = true;
+                final int contentStart = matcher.start(1);
+                final String content = commentValue.substring(contentStart);
+                if (tagFormat == null || tagFormat.matcher(content).find()) {
+                    logTag(lineNo + i - comment.length, tag, content);
+                }
+                else {
+                    log(lineNo + i - comment.length, MSG_TAG_FORMAT, tag, tagFormat.pattern());
                 }
             }
-            if (!hasTag) {
-                log(lineNo, MSG_MISSING_TAG, tag);
-            }
+        }
+        if (!hasTag) {
+            log(lineNo, MSG_MISSING_TAG, tag);
         }
     }
 
@@ -339,4 +339,23 @@ public class WriteTagCheck
         setSeverity(originalSeverity);
     }
 
+    /**
+     * Class to encapsulate tag context fields.
+     */
+    private static final class TagContext {
+        /** Tag value. */
+        private final String tag;
+        /** Tag regexp value. */
+        private final Pattern tagRegExp;
+
+        /**
+         * Class constructor.
+         *
+         * @param tag tag value
+         */
+        private TagContext(String tag) {
+            this.tag = tag;
+            this.tagRegExp = CommonUtil.createPattern(tag + "\\s*(.*$)");
+        }
+    }
 }
