@@ -111,6 +111,29 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <pre>
  * &lt;module name=&quot;SuppressWarnings&quot;/&gt;
  * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * &#64;SuppressWarnings("") // violation
+ * class TestA {
+ *     &#64;SuppressWarnings("") // violation
+ *     final int num1 = 1;
+ *     &#64;SuppressWarnings("all") // ok
+ *     final int num2 = 2;
+ *     &#64;SuppressWarnings("unused") // ok
+ *     final int num3 = 3;
+ *
+ *     void foo1(&#64;SuppressWarnings("unused") int param) {} // ok
+ *
+ *     &#64;SuppressWarnings("all") // ok
+ *     void foo2(int param) {}
+ *     &#64;SuppressWarnings("unused") // ok
+ *     void foo3(int param) {}
+ *     &#64;SuppressWarnings(true?"all":"unused") // ok
+ *     void foo4(int param) {}
+ * }
+ * &#64;SuppressWarnings("unchecked") // ok
+ * class TestB {}
+ * </pre>
  * <p>
  * To configure the check so that the "unchecked" and "unused"
  * warnings cannot be suppressed on anything but variable and parameter declarations.
@@ -126,6 +149,29 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *     ENUM_CONSTANT_DEF,METHOD_DEF,CTOR_DEF
  *     &quot;/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * &#64;SuppressWarnings("") // ok
+ * class TestA {
+ *     &#64;SuppressWarnings("") // ok
+ *     final int num1 = 1;
+ *     &#64;SuppressWarnings("all") // ok
+ *     final int num2 = 2;
+ *     &#64;SuppressWarnings("unused") // ok
+ *     final int num3 = 3;
+ *
+ *     void foo1(&#64;SuppressWarnings("unused") int param) {} // ok
+ *
+ *     &#64;SuppressWarnings("all") // ok
+ *     void foo2(int param) {}
+ *     &#64;SuppressWarnings("unused") // violation
+ *     void foo3(int param) {}
+ *     &#64;SuppressWarnings(true?"all":"unused") // violation
+ *     void foo4(int param) {}
+ * }
+ * &#64;SuppressWarnings("unchecked") // violation
+ * class TestB {}
  * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
