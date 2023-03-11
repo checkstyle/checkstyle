@@ -161,25 +161,18 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testNoJavadocs() throws Exception {
-        final String[] expected = {
-            "13: " + getCheckMessage(MSG_MISSING_TAG, "null"),
-        };
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(getPath("InputWriteTagNoJavadoc.java"), expected);
     }
 
     @Test
     public void testWriteTagRecordsAndCompactCtors() throws Exception {
         final String[] expected = {
-            "15: " + getCheckMessage(MSG_MISSING_TAG, "@incomplete"),
-            "19: " + getCheckMessage(MSG_TAG_FORMAT, "@incomplete", "\\S"),
-            "26: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete", "// violation"),
-            "33: " + getCheckMessage(MSG_MISSING_TAG, "@incomplete"),
-            "37: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete", "// violation"),
-            "44: " + getCheckMessage(MSG_MISSING_TAG, "@incomplete"),
-            "48: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete", "// violation"),
-            "56: " + getCheckMessage(MSG_MISSING_TAG, "@incomplete"),
-            "58: " + getCheckMessage(MSG_MISSING_TAG, "@incomplete"),
-            "62: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete", "// violation"),
+            "18: " + getCheckMessage(MSG_TAG_FORMAT, "@incomplete", "\\S"),
+            "25: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete", "// violation"),
+            "35: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete", "// violation"),
+            "45: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete", "// violation"),
+            "57: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete", "// violation"),
         };
         verifyWithInlineConfigParser(
             getNonCompilablePath("InputWriteTagRecordsAndCompactCtors.java"), expected);

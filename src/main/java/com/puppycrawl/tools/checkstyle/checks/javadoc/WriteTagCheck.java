@@ -36,6 +36,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Requires user defined Javadoc tag to be present in Javadoc comment with defined format.
  * To define the format for a tag, set property tagFormat to a regular expression.
  * Property tagSeverity is used for severity of events when the tag exists.
+ * No violation reported in case there is no javadoc.
  * </p>
  * <ul>
  * <li>
@@ -107,6 +108,9 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * public class Test { // violation as required tag is missed
  *   &#47;** some doc *&#47;
  *   void foo() {} // OK, as methods are not checked by default
+ * }
+ *
+ * class Test2 { // OK, no javadoc
  * }
  * </pre>
  * <p>
@@ -283,10 +287,7 @@ public class WriteTagCheck
         final int lineNo = ast.getLineNo();
         final TextBlock cmt =
             contents.getJavadocBefore(lineNo);
-        if (cmt == null) {
-            log(lineNo, MSG_MISSING_TAG, tag);
-        }
-        else {
+        if (cmt != null) {
             checkTag(lineNo, cmt.getText());
         }
     }

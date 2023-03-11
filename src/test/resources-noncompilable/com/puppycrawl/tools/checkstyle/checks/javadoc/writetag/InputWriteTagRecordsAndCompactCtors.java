@@ -11,8 +11,7 @@ tokens = INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF, COMPACT
 //non-compiled with javac: Compilable with Java14
 package com.puppycrawl.tools.checkstyle.checks.javadoc.writetag;
 
-// violation below , 'Type Javadoc comment is missing @incomplete tag'
-public class InputWriteTagRecordsAndCompactCtors { // violation
+public class InputWriteTagRecordsAndCompactCtors {
 
     // violation 2 lines below 'Type Javadoc tag @incomplete must match pattern '\\S''
     /**
@@ -29,8 +28,7 @@ public class InputWriteTagRecordsAndCompactCtors { // violation
 
     }
 
-    // violation below , 'Type Javadoc comment is missing @incomplete tag'
-    record MyRecord2(String myString) { // violation
+    record MyRecord2(String myString) {
 
         // violation 2 lines below , 'Javadoc tag .*'
         /**
@@ -40,8 +38,7 @@ public class InputWriteTagRecordsAndCompactCtors { // violation
         }
     }
 
-    // violation below , 'Type Javadoc comment is missing @incomplete tag'
-    record MyRecord3(int x) { // violation
+    record MyRecord3(int x) {
 
         // violation 2 lines below , 'Javadoc tag .*'
         /**
@@ -52,10 +49,8 @@ public class InputWriteTagRecordsAndCompactCtors { // violation
         }
     }
 
-    // violation below , 'Type Javadoc comment is missing @incomplete tag'
-    record MyRecord4(int y) { // violation
-        // violation below , 'Type Javadoc comment is missing @incomplete tag'
-        private record MyRecord5(int z) { // violation
+    record MyRecord4(int y) {
+        private record MyRecord5(int z) {
 
             // violation 2 lines below , 'Javadoc tag .*'
             /**
