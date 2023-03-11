@@ -279,15 +279,17 @@ public class WriteTagCheck
     @SuppressWarnings("deprecation")
     @Override
     public void visitToken(DetailAST ast) {
-        final FileContents contents = getFileContents();
-        final int lineNo = ast.getLineNo();
-        final TextBlock cmt =
-            contents.getJavadocBefore(lineNo);
-        if (cmt == null) {
-            log(lineNo, MSG_MISSING_TAG, tag);
-        }
-        else {
-            checkTag(lineNo, cmt.getText());
+        if (tag != null) {
+            final FileContents contents = getFileContents();
+            final int lineNo = ast.getLineNo();
+            final TextBlock cmt =
+                contents.getJavadocBefore(lineNo);
+            if (cmt == null) {
+                log(lineNo, MSG_MISSING_TAG, tag);
+            }
+            else {
+                checkTag(lineNo, cmt.getText());
+            }
         }
     }
 
@@ -309,8 +311,7 @@ public class WriteTagCheck
                     final String content = commentValue.substring(contentStart);
                     if (tagFormat == null || tagFormat.matcher(content).find()) {
                         logTag(lineNo + i - comment.length, tag, content);
-                    }
-                    else {
+                    } else {
                         log(lineNo + i - comment.length, MSG_TAG_FORMAT, tag, tagFormat.pattern());
                     }
                 }
