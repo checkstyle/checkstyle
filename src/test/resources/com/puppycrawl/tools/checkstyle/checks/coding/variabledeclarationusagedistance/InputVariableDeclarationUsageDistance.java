@@ -1071,4 +1071,12 @@ class New2 {
         New2.field = (int)a;
     }
 
+    void methodTry() {
+        String a = "";
+        try (AutoCloseable i = new java.io.StringReader(a)) {
+        }
+        catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

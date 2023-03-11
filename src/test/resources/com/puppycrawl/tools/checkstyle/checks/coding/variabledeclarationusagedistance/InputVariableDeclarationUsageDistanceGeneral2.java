@@ -55,12 +55,20 @@ public class InputVariableDeclarationUsageDistanceGeneral2 {
     }
 
     void method() throws Exception {
-        // Until https://github.com/checkstyle/checkstyle/issues/11968
-        String a = ""; // violation 'Distance between .* declaration and its first usage is 2.'
+        String a = "";
         try (AutoCloseable i = new java.io.StringReader(a)) {
         }
         finally {
             a.equals("");
+        }
+    }
+
+    void methodTry() {
+        String a = "";
+        try (AutoCloseable i = new java.io.StringReader(a)) {
+        }
+        catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 }

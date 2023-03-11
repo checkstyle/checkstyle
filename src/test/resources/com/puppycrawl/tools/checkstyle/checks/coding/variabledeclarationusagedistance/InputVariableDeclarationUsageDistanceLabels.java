@@ -29,4 +29,16 @@ public class InputVariableDeclarationUsageDistanceLabels {
 
     public void nothing() {
     }
+
+    void methodTry() {
+        String a = "";
+        nothing();
+        nothing();
+        nothing();
+        try (AutoCloseable i = new java.io.StringReader(a)) {
+        }
+        catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

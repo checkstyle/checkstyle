@@ -202,6 +202,16 @@ public class InputVariableDeclarationUsageDistanceCheckSwitchExpressions {
         }
         return false;
     }
+
+    public int methodTry() {
+        String a = "";
+        try (AutoCloseable i = new java.io.StringReader(a)) {
+        }
+        catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return 0;
+    }
 }
 
 
