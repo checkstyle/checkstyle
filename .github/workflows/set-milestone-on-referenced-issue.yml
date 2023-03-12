@@ -19,6 +19,7 @@ permissions:
 
 jobs:
   set-milestone:
+    if: github.repository == 'checkstyle/checkstyle'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the latest code

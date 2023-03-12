@@ -20,6 +20,7 @@ concurrency:
 
 jobs:
   check_issues:
+    if: github.repository == 'checkstyle/checkstyle'
     runs-on: ubuntu-latest
     steps:
       - name: Download checkstyle
