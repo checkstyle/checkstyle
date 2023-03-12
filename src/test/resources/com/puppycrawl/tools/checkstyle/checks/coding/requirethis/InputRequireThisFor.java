@@ -19,7 +19,7 @@ public class InputRequireThisFor {
     public void method1() {
         for (int i = 0; i < 10; i++) {
             int bottom = i - 4;
-            bottom = bottom > 0 ? bottom - 1 : bottom; // violation
+            bottom = bottom > 0 ? bottom - 1 : bottom; // violation '.*variable 'bottom' needs .*'
         }
     }
 
@@ -27,6 +27,6 @@ public class InputRequireThisFor {
         for (String name : new String[]{}) {
         }
 
-        Path jarfile = Paths.get(name + ".jar"); // violation
+        Path jarfile = Paths.get(name + ".jar"); // violation '.*variable 'name' needs .*'
     }
 }

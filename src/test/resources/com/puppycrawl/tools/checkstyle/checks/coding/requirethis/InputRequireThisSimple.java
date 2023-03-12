@@ -13,8 +13,8 @@ public class InputRequireThisSimple {
         private final int number = 1;
 
     public int check() {
-        int sum = number; // violation
-        sum += other(); // violation
+        int sum = number; // violation 'Reference to instance variable 'number' needs "this.".'
+        sum += other(); // violation 'Method call to 'other' needs "this.".'
         return sum;
     }
 

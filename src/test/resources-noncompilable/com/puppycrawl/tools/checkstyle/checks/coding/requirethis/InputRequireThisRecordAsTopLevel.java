@@ -14,20 +14,20 @@ public record InputRequireThisRecordAsTopLevel(int x, int y) {
     private static int i; // all fields must be static in a record definition
 
     public InputRequireThisRecordAsTopLevel {
-        method1(); // violation
-        method2(42); // violation
-        method3(); // violation
+        method1(); // violation 'Method call to 'method1' needs "this.".'
+        method2(42); // violation 'Method call to 'method2' needs "this.".'
+        method3(); // violation 'Method call to 'method3' needs "this.".'
         int z = x + y + 2; // ok, 'this' cannot be used in COMPACT_CTOR_DEF
         System.out.println(y + x); // ok, 'this' cannot be used in COMPACT_CTOR_DEF
     }
 
     InputRequireThisRecordAsTopLevel(int x) {
         this(x,42);
-        method1(); // violation
+        method1(); // violation 'Method call to 'method1' needs "this.".'
     }
 
     public int getIPlusX() {
-        return  i + x; // violation
+        return  i + x; // violation 'Reference to instance variable 'x' needs "this.".'
     }
 
     public static void setI(int i) {
@@ -35,14 +35,14 @@ public record InputRequireThisRecordAsTopLevel(int x, int y) {
     }
 
     void method1() {
-        i = 3 + y; // violation
+        i = 3 + y; // violation 'Reference to instance variable 'y' needs "this.".'
         int w = this.x; // ok
     }
 
     void method2(int i) {
         i++;
         this.setI(i);
-        method1(); // violation
+        method1(); // violation 'Method call to 'method1' needs "this.".'
         try {
             this.method1(); // ok
         } catch (RuntimeException e) {

@@ -23,7 +23,7 @@ public class InputRequireThisValidateOnlyOverlappingFalseLeaves {
         return i;
     }
 
-    private final int field = id(0); // violation
+    private final int field = id(0); // violation 'Method call to 'id' needs "this.".'
 }
 class Method {
     private boolean _a = false;
@@ -33,7 +33,7 @@ class Method {
             public void method() {}
             public void method2() {}
         };
-        return _a; // violation
+        return _a; // violation 'Reference to instance variable '_a' needs "this.".'
     }
 }
 class NestedClass {}
