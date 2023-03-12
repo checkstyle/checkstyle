@@ -17,9 +17,14 @@ echo "COMMITS_ARRAY=$COMMITS_ARRAY"
 
 echo "Extracting commit messages from commits array that match '^(Pull|Issue) #[0-9]+'."
 COMMIT_MESSAGES=$(echo "$COMMITS_ARRAY" | jq -r .[].message \
-  | grep -E "^(Pull|Issue) #[0-9]+")
+  | grep -E "^(Pull|Issue) #[0-9]+" || true)
 echo "COMMIT_MESSAGES=
 $COMMIT_MESSAGES"
+
+if [ -z "$COMMIT_MESSAGES" ]; then
+  echo "[WARN] No issue numbers found in commit messages."
+  exit 0
+fi
 
 echo "Extracting issue numbers from commit messages."
 ISSUE_NUMBERS=$(echo "$COMMIT_MESSAGES" | grep -oE "#[0-9]+" | cut -c2-)
@@ -27,8 +32,8 @@ echo "ISSUE_NUMBERS=
 $ISSUE_NUMBERS"
 
 if [ -z "$ISSUE_NUMBERS" ]; then
-  echo "[ERROR] No issue numbers found in commit messages."
-  exit 0
+  echo "[ERROR] No issue numbers found in commit messages but was expecting some."
+  exit 1
 fi
 
 echo "Fetching latest milestone."
