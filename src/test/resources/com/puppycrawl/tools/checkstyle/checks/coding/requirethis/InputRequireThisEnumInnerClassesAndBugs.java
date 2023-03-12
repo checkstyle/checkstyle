@@ -17,13 +17,13 @@ import java.io.InputStream;
 public class InputRequireThisEnumInnerClassesAndBugs {
     int i;
     void method1() {
-        i = 3; // violation
+        i = 3; // violation 'Reference to instance variable 'i' needs "this.".'
     }
 
     void method2(int i) {
         i++;
         this.i = i;
-        method1(); // violation
+        method1(); // violation 'Method call to 'method1' needs "this.".'
         try {
             this.method1();
         }
@@ -37,7 +37,7 @@ public class InputRequireThisEnumInnerClassesAndBugs {
 
     <T> void method3()
     {
-        i = 3; // violation
+        i = 3; // violation 'Reference to instance variable 'i' needs "this.".'
     }
 
     void method4() {
@@ -55,14 +55,14 @@ enum MyEnum
     {
         void doSomething()
         {
-            z = 1; // violation
+            z = 1; // violation 'Reference to instance variable 'z' needs "this.".'
         }
     };
 
     int z;
     private MyEnum()
     {
-        z = 0; // violation
+        z = 0; // violation 'Reference to instance variable 'z' needs "this.".'
     }
 }
 
@@ -119,16 +119,16 @@ class Issue257 {
 class Issue2240 {
     int i;
     void foo() {
-        i++; // violation
-        i++; int i = 1; i++; // violation
-        instanceMethod(); // violation
+        i++; // violation 'Reference to instance variable 'i' needs "this.".'
+        i++; int i = 1; i++; // violation 'Reference to instance variable 'i' needs "this.".'
+        instanceMethod(); // violation 'Method call to 'instanceMethod' needs "this.".'
     }
     void instanceMethod() {};
 
     class Nested {
         void bar() {
-            instanceMethod(); // violation
-            i++; // violation
+            instanceMethod(); // violation 'Method .* 'instanceMethod' needs "Issue2240.this.".'
+            i++; // violation 'Reference to instance variable 'i' needs "Issue2240.this.".'
         }
     }
 }
@@ -140,7 +140,7 @@ class Issue2539{
 
     void bar() {
         foo(1);
-        foo(); // violation
+        foo(); // violation 'Method call to 'foo' needs "this.".'
     }
 }
 class NestedRechange {
@@ -148,7 +148,7 @@ class NestedRechange {
 
     NestedRechange() {
         String s = "t";
-        s = s.substring(0); // violation
+        s = s.substring(0); // violation 'Reference to instance variable 's' needs "this.".'
     }
 
     private static class NestedStatic {
@@ -208,7 +208,7 @@ class TestClass {
         } else if (true) {
             String child = (String) this.child;
             if (!(this.child instanceof String)) {
-                child = field.get(child); // violation
+                child = field.get(child); // violation '.* variable 'field' needs "this.".'
             }
         }
     }

@@ -15,25 +15,25 @@ public class InputRequireThisExpressions {
     boolean b;
 
     public void method(int[] arr) {
-        Object plus = "" + id; // violation
-        Object minus = 1 - length; // violation
-        Object multi = 1 * length; // violation
-        Object div = 1 / length; // violation
-        Object mod = 1 % length; // violation
-        Object lt = 1 < length; // violation
-        Object gt = 1 > length; // violation
-        Object le = 1 <= length; // violation
-        Object ge = 1 >= length; // violation
-        Object equal = false == b; // violation
-        Object notEqual = false != b; // violation
-        Object sl = 1 << length; // violation
-        Object sr = 1 >> length; // violation
-        Object bsr = 1 >>> length; // violation
-        Object and = 1 & length; // violation
-        Object xor = 1 ^ length; // violation
-        Object bor = 1 | length; // violation
-        Object lor = false || b; // violation
-        Object land = false && b; // violation
+        Object plus = "" + id; // violation 'Reference to instance variable 'id' needs "this.".'
+        Object minus = 1 - length; // violation '.* variable 'length' needs "this.".'
+        Object multi = 1 * length; // violation '.* variable 'length' needs "this.".'
+        Object div = 1 / length; // violation '.* variable 'length' needs "this.".'
+        Object mod = 1 % length; // violation '.* variable 'length' needs "this.".'
+        Object lt = 1 < length; // violation '.* variable 'length' needs "this.".'
+        Object gt = 1 > length; // violation '.* variable 'length' needs "this.".'
+        Object le = 1 <= length; // violation '.* variable 'length' needs "this.".'
+        Object ge = 1 >= length; // violation '.* variable 'length' needs "this.".'
+        Object equal = false == b; // violation '.* variable 'b' needs "this.".'
+        Object notEqual = false != b; // violation '.* variable 'b' needs "this.".'
+        Object sl = 1 << length; // violation '.* variable 'length' needs "this.".'
+        Object sr = 1 >> length; // violation '.* variable 'length' needs "this.".'
+        Object bsr = 1 >>> length; // violation '.* variable 'length' needs "this.".'
+        Object and = 1 & length; // violation '.* variable 'length' needs "this.".'
+        Object xor = 1 ^ length; // violation '.* variable 'length' needs "this.".'
+        Object bor = 1 | length; // violation '.* variable 'length' needs "this.".'
+        Object lor = false || b; // violation '.* variable 'b' needs "this.".'
+        Object land = false && b; // violation '.* variable 'b' needs "this.".'
     }
 
     public void methodThis(int[] arr) {

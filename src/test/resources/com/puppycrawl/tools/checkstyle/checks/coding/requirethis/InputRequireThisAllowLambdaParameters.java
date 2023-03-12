@@ -21,7 +21,7 @@ public class InputRequireThisAllowLambdaParameters {
         strings.stream().filter(s1 -> s1.contains("f"))  // NO violation; s1 is a lambda parameter
                 .collect(java.util.stream.Collectors.toList());
 
-        s1 = "foo1"; // violation
+        s1 = "foo1"; // violation 'Reference to instance variable 's1' needs "this.".'
     }
 
     void foo2() {
@@ -43,7 +43,7 @@ public class InputRequireThisAllowLambdaParameters {
                 new String("y = " + y);  // NO violation; y is a lambda parameter
                 new String("InputRequireThisAllowLambdaParameters.this.x = " +
                         InputRequireThisAllowLambdaParameters.this.x);
-                y=x+z++; // 1 violation for z; NO violation for y; y is a lambda // violation
+                y=x+z++;  // violation 'Reference to instance variable 'z' needs "this.".'
             };
             myConsumer.accept(x);
         }
@@ -78,7 +78,7 @@ class Test {
     public void testThreadHasWrongClassLoader() {
         Thread t = new Thread(() -> {
             try {
-                thread.wait(); // violation
+                thread.wait(); // violation 'Reference to instance variable 'thread' needs "this.".'
             }
             catch (Exception e) {
             }

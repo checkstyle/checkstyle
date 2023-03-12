@@ -16,7 +16,7 @@ import java.io.InputStream;
 public class InputRequireThisEnumInnerClassesAndBugs3 {
     int i;
     void method1() {
-        i = 3; // violation
+        i = 3; // violation 'Reference to instance variable 'i' needs "this.".'
     }
 
     void method2(int i) {
@@ -36,7 +36,7 @@ public class InputRequireThisEnumInnerClassesAndBugs3 {
 
     <T> void method3()
     {
-        i = 3; // violation
+        i = 3; // violation 'Reference to instance variable 'i' needs "this.".'
     }
 
     void method4() {
@@ -55,14 +55,14 @@ enum MyEnum3
     {
         void doSomething()
         {
-            z = 1; // violation
+            z = 1; // violation 'Reference to instance variable 'z' needs "this.".'
         }
     };
 
     int z;
     private MyEnum3()
     {
-        z = 0; // violation
+        z = 0; // violation 'Reference to instance variable 'z' needs "this.".'
     }
 }
 
@@ -119,8 +119,8 @@ class Issue2573 {
 class Issue22403 {
     int i;
     void foo() {
-        i++; // violation
-        i++; int i = 1; i++; // violation
+        i++; // violation 'Reference to instance variable 'i' needs "this.".'
+        i++; int i = 1; i++; // violation 'Reference to instance variable 'i' needs "this.".'
         instanceMethod();
     }
     void instanceMethod() {};
@@ -128,7 +128,7 @@ class Issue22403 {
     class Nested {
         void bar() {
             instanceMethod();
-            i++; // violation
+            i++; // violation 'Reference to instance variable 'i' needs "Issue22403.this.".'
         }
     }
 }
@@ -149,7 +149,7 @@ class NestedRechange3 {
 
     NestedRechange3() {
         String s = "t";
-        s = s.substring(0); // violation
+        s = s.substring(0); // violation 'Reference to instance variable 's' needs "this.".'
     }
 
     private static class NestedStatic {
