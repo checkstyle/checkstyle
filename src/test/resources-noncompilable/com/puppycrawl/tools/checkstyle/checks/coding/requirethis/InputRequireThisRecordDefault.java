@@ -23,7 +23,7 @@ public record InputRequireThisRecordDefault(int x, int y) {
 
     InputRequireThisRecordDefault(int x) {
         this(x,42);
-        x = x; // violation
+        x = x; // violation 'Reference to instance variable 'x' needs "this.".'
     }
 
     public int getIPlusX() {

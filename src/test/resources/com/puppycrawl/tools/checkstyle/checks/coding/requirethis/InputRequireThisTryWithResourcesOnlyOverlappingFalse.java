@@ -107,7 +107,7 @@ public class InputRequireThisTryWithResourcesOnlyOverlappingFalse implements Aut
                     + fldBufferedReader.toString() + fldScanner.toString(); // 2 violations
         }
         catch (IOException e) {
-            String a = fldStreamReader.toString() // violation
+            String a = fldStreamReader.toString() // violation '.*variable 'fldStreamReader'.*'
                     + fldBufferedReader.toString() + fldScanner.toString(); // 2 violations
         }
     }

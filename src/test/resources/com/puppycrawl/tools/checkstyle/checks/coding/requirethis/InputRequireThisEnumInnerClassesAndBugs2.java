@@ -22,7 +22,7 @@ public class InputRequireThisEnumInnerClassesAndBugs2 {
     void method2(int i) {
         i++;
         this.i = i;
-        method1(); // violation
+        method1(); // violation 'Method call to 'method1' needs "this.".'
         try {
             this.method1();
         }
@@ -121,13 +121,13 @@ class Issue22402 {
     void foo() {
         i++;
         i++; int i = 1; i++;
-        instanceMethod(); // violation
+        instanceMethod(); // violation 'Method call to 'instanceMethod' needs "this.".'
     }
     void instanceMethod() {};
 
     class Nested {
         void bar() {
-            instanceMethod(); // violation
+            instanceMethod(); // violation 'Method .* 'instanceMethod' needs "Issue22402.this.".'
             i++;
         }
     }
@@ -140,7 +140,7 @@ class Issue25392{
 
     void bar() {
         foo(1);
-        foo(); // violation
+        foo(); // violation 'Method call to 'foo' needs "this.".'
     }
 }
 

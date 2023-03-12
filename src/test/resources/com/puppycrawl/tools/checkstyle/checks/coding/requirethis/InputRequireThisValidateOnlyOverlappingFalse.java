@@ -26,37 +26,37 @@ public class InputRequireThisValidateOnlyOverlappingFalse {
     private int intField;
 
     public InputRequireThisValidateOnlyOverlappingFalse(String field1) {
-        field1 = field1; // violation
-        fieldFinal1 = 0; // violation
-        fieldFinal2 = 0; // violation
-        fieldFinal3 = new BitSet(); // violation
+        field1 = field1; // violation 'Reference to instance variable 'field1' needs "this.".'
+        fieldFinal1 = 0; // violation '.* variable 'fieldFinal1' needs "this.".'
+        fieldFinal2 = 0; // violation '.* variable 'fieldFinal2' needs "this.".'
+        fieldFinal3 = new BitSet(); // violation '.* variable 'fieldFinal3' needs "this.".'
     }
 
     public InputRequireThisValidateOnlyOverlappingFalse(long value) {
-        fieldFinal1 = value; // violation
-        fieldFinal2 = 0; // violation
-        fieldFinal3 = new BitSet(); // violation
+        fieldFinal1 = value; // violation '.* variable 'fieldFinal1' needs "this.".'
+        fieldFinal2 = 0; // violation '.* variable 'fieldFinal2' needs "this.".'
+        fieldFinal3 = new BitSet(); // violation '.* variable 'fieldFinal3' needs "this.".'
     }
 
     public InputRequireThisValidateOnlyOverlappingFalse() {
-        fieldFinal1 = 0; // violation
+        fieldFinal1 = 0; // violation '.* variable 'fieldFinal1' needs "this.".'
         long fieldFinal2 = 0L;
         fieldFinal2 = 1L;
         this.fieldFinal2 = fieldFinal2;
-        fieldFinal3 = new BitSet(); // violation
+        fieldFinal3 = new BitSet(); // violation '.* variable 'fieldFinal3' needs "this.".'
     }
 
     public InputRequireThisValidateOnlyOverlappingFalse(String name, long id) {
-        fieldFinal1 = 0; // violation
+        fieldFinal1 = 0; // violation '.* variable 'fieldFinal1' needs "this.".'
         long field1 = 0L;
-        field1 = field1; // violation
+        field1 = field1; // violation 'Reference to instance variable 'field1' needs "this.".'
         this.fieldFinal2 = 1L;
-        fieldFinal3 = new BitSet(); // violation
+        fieldFinal3 = new BitSet(); // violation '.* variable 'fieldFinal3' needs "this.".'
     }
 
     public InputRequireThisValidateOnlyOverlappingFalse(int param) {
-        fieldFinal2 = 0L; // violation
-        fieldFinal3 = new BitSet(); // violation
+        fieldFinal2 = 0L; // violation '.* variable 'fieldFinal2' needs "this.".'
+        fieldFinal3 = new BitSet(); // violation '.* variable 'fieldFinal3' needs "this.".'
         long fieldFinal1 = 1L;
         try {
             fieldFinal1 = 2L;
@@ -66,8 +66,8 @@ public class InputRequireThisValidateOnlyOverlappingFalse {
     }
 
     public InputRequireThisValidateOnlyOverlappingFalse(BitSet fieldFinal3) {
-        fieldFinal1 = 1L; // violation
-        fieldFinal2 = 0L; // violation
+        fieldFinal1 = 1L; // violation 'Reference to instance variable 'fieldFinal1' needs "this.".'
+        fieldFinal2 = 0L; // violation 'Reference to instance variable 'fieldFinal2' needs "this.".'
         fieldFinal3 = new BitSet();
         if (true) {
             fieldFinal3 = (BitSet) fieldFinal3.clone();
@@ -86,7 +86,7 @@ public class InputRequireThisValidateOnlyOverlappingFalse {
 
     void foo3() {
         String field1 = "values";
-        field1 = field1; // violation
+        field1 = field1; // violation 'Reference to instance variable 'field1' needs "this.".'
     }
 
     void foo4(String methodParam) {
@@ -125,7 +125,7 @@ public class InputRequireThisValidateOnlyOverlappingFalse {
     }
 
     void foo8(Long field1) {
-        field1 += field1; // violation
+        field1 += field1; // violation 'Reference to instance variable 'field1' needs "this.".'
     }
 
     void foo9(Long fieldFinal1) {
@@ -134,11 +134,11 @@ public class InputRequireThisValidateOnlyOverlappingFalse {
     }
 
     void method1() {
-        field1 = "2"; // violation
+        field1 = "2"; // violation 'Reference to instance variable 'field1' needs "this.".'
     }
 
     void method2() {
-        method1() ; // violation
+        method1() ; // violation 'Method call to 'method1' needs "this.".'
     }
 
     void method3() {
@@ -174,28 +174,28 @@ public class InputRequireThisValidateOnlyOverlappingFalse {
     }
 
     InputRequireThisValidateOnlyOverlappingFalse(boolean flag) {
-        fieldFinal1 = 0L; // violation
-        fieldFinal2 = 0L; // violation
-        fieldFinal3 = new BitSet(); // violation
+        fieldFinal1 = 0L; // violation 'Reference to instance variable 'fieldFinal1' needs "this.".'
+        fieldFinal2 = 0L; // violation 'Reference to instance variable 'fieldFinal2' needs "this.".'
+        fieldFinal3 = new BitSet(); // violation '.* variable 'fieldFinal3' needs "this.".'
         long field1 = 1L;
-        field1 = field1; // violation
+        field1 = field1; // violation 'Reference to instance variable 'field1' needs "this.".'
     }
 
     InputRequireThisValidateOnlyOverlappingFalse(boolean flag, String name) {
-        fieldFinal1 = 0L; // violation
-        fieldFinal2 = 0L; // violation
-        fieldFinal3 = new BitSet(); // violation
+        fieldFinal1 = 0L; // violation 'Reference to instance variable 'fieldFinal1' needs "this.".'
+        fieldFinal2 = 0L; // violation 'Reference to instance variable 'fieldFinal2' needs "this.".'
+        fieldFinal3 = new BitSet(); // violation '.* variable 'fieldFinal3' needs "this.".'
         long field1 = 1L;
-        field1 = field1; // violation
+        field1 = field1; // violation 'Reference to instance variable 'field1' needs "this.".'
         return;
     }
 
     void foo18() {
-        field1 = "Hello"; // violation
+        field1 = "Hello"; // violation 'Reference to instance variable 'field1' needs "this.".'
     }
 
     void foo19(String field1) {
-        field1 = "Hello"; // violation
+        field1 = "Hello"; // violation 'Reference to instance variable 'field1' needs "this.".'
     }
 
     void foo20() {
@@ -216,14 +216,14 @@ public class InputRequireThisValidateOnlyOverlappingFalse {
     }
 
     void foo23() {
-        field1 = "Hello!"; // violation
+        field1 = "Hello!"; // violation 'Reference to instance variable 'field1' needs "this.".'
     }
 
     void foo24() {
         String field1 = "Hello";
         field1 = "Java"; // No violation. Local var allowed
         this.booleanField = true;
-        this.booleanField = booleanField; // violation
+        this.booleanField = booleanField; // violation '.* variable 'booleanField' needs "this.".'
     }
 
     void foo25() {
@@ -234,7 +234,7 @@ public class InputRequireThisValidateOnlyOverlappingFalse {
                     field1 = new String(); // No violation. Local var allowed
                 }
                 else {
-                    field1 += field1; // violation
+                    field1 += field1; // violation '.* variable 'field1' needs "this.".'
                 }
             }
         }
@@ -244,7 +244,7 @@ public class InputRequireThisValidateOnlyOverlappingFalse {
     }
 
     void foo26(String field1) {
-        field1 = field1.replace('/', '*'); // violation
+        field1 = field1.replace('/', '*'); // violation '.* variable 'field1' needs "this.".'
     }
 
     void foo27() {
@@ -259,7 +259,7 @@ public class InputRequireThisValidateOnlyOverlappingFalse {
 
     void foo28() {
         boolean booleanField = true;
-        booleanField = !booleanField; // violation
+        booleanField = !booleanField; // violation '.* variable 'booleanField' needs "this.".'
     }
 
     static void foo29(String field1) {
@@ -268,7 +268,7 @@ public class InputRequireThisValidateOnlyOverlappingFalse {
     }
 
     void foo30(String field1) {
-        field1 = true ? "field1" : field1; // violation
+        field1 = true ? "field1" : field1; // violation '.* variable 'field1' needs "this.".'
     }
 
     void foo31(String field1) {
@@ -276,7 +276,7 @@ public class InputRequireThisValidateOnlyOverlappingFalse {
     }
 
     String foo32(String field1) {
-        field1 = addSuf2F(field1); // violation
+        field1 = addSuf2F(field1); // violation 'Method call to 'addSuf2F' needs "this.".'
         return field1;
     }
 
@@ -307,7 +307,7 @@ public class InputRequireThisValidateOnlyOverlappingFalse {
     }
 
     String foo37(String field1) {
-        field1 += "suffix"; // violation
+        field1 += "suffix"; // violation 'Reference to instance variable 'field1' needs "this.".'
         return "New string";
     }
 
@@ -346,7 +346,7 @@ public class InputRequireThisValidateOnlyOverlappingFalse {
 
     {
         String field1 = "";
-        field1 = field1; // violation
+        field1 = field1; // violation 'Reference to instance variable 'field1' needs "this.".'
     }
 
     static {
@@ -380,9 +380,9 @@ public class InputRequireThisValidateOnlyOverlappingFalse {
     }
 
     public String foo45() {
-        String action = getAction(); // violation
+        String action = getAction(); // violation 'Method call to 'getAction' needs "this.".'
         if (true) {
-            return processAction("action"); // violation
+            return processAction("action"); // violation 'Method .* 'processAction' needs "this.".'
         }
         else if (action.endsWith("/")) {
             if (action.startsWith("/")) {
@@ -390,7 +390,7 @@ public class InputRequireThisValidateOnlyOverlappingFalse {
             }
         }
         action = "action"; // No violation. Local var allowed
-        return processAction(action); // violation
+        return processAction(action); // violation 'Method call to 'processAction' needs "this.".'
     }
 
     private String processAction(String action) {
@@ -496,7 +496,7 @@ class Issue7306 {
         test.forEach(this.add::add); // OK
         test.forEach(test::add); // OK
         test.forEach(Collections::singletonList); // OK
-        test.forEach(add::add); // violation
+        test.forEach(add::add); // violation 'Reference to instance variable 'add' needs "this.".'
     }
 }
 class AnotherOverlappingFalse {

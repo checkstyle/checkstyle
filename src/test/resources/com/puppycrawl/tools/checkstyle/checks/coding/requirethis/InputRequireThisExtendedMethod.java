@@ -28,7 +28,7 @@ public class InputRequireThisExtendedMethod // ok
     int EXPR;
 
     String method(int EXPR) {
-        EXPR += 12; // violation
+        EXPR += 12; // violation 'Reference to instance variable 'EXPR' needs "this.".'
         return "someString";
     }
 }
