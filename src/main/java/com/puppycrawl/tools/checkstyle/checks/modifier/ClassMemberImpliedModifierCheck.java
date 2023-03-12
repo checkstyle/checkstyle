@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.modifier;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 
@@ -237,13 +238,14 @@ public class ClassMemberImpliedModifierCheck
     }
 
     /**
-     * Checks if ast is in a class, enum, or record block.
+     * Checks if ast is in a class, enum, anon class or record block.
      *
      * @param ast the current ast
-     * @return true if ast is in a class, enum, or record
+     * @return true if ast is in a class, enum, anon class or record
      */
     private static boolean isInTypeBlock(DetailAST ast) {
-        return ScopeUtil.isInClassBlock(ast)
+        return ScopeUtil.isInScope(ast, Scope.ANONINNER)
+                || ScopeUtil.isInClassBlock(ast)
                 || ScopeUtil.isInEnumBlock(ast)
                 || ScopeUtil.isInRecordBlock(ast);
     }
