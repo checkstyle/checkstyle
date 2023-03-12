@@ -13,6 +13,7 @@ concurrency:
 
 jobs:
   error-prone:
+    if: github.repository == 'checkstyle/checkstyle'
     runs-on: ubuntu-latest
     steps:
       - name: Set up JDK 11
