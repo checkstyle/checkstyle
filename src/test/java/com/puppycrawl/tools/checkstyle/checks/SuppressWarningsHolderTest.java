@@ -42,6 +42,7 @@ import com.puppycrawl.tools.checkstyle.api.Violation;
 import com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck;
+import com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.AbstractParenPadCheck;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.TypecastParenPadCheck;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
@@ -479,4 +480,31 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
                 expected);
     }
 
+    @Test
+    public void testAliasList() throws Exception {
+        final String[] expected = {
+            "16:17: " + getCheckMessage(ParameterNumberCheck.class,
+                    ParameterNumberCheck.MSG_KEY, 7, 8),
+            "28:17: " + getCheckMessage(ParameterNumberCheck.class,
+                    ParameterNumberCheck.MSG_KEY, 7, 8),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputSuppressWarningsHolderAlias.java"),
+                expected);
+    }
+
+    @Test
+    public void testAliasList2() throws Exception {
+        final String pattern = "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$";
+        final String[] expected = {
+            "16:29: " + getCheckMessage(ConstantNameCheck.class,
+                AbstractNameCheck.MSG_INVALID_PATTERN, "a", pattern),
+            "19:30: " + getCheckMessage(ConstantNameCheck.class,
+                AbstractNameCheck.MSG_INVALID_PATTERN, "b", pattern),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputSuppressWarningsHolderAlias2.java"),
+                expected);
+    }
 }
