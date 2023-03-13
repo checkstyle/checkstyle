@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
@@ -304,8 +305,10 @@ public class PackageObjectFactory implements ModuleFactory {
         Map<String, Set<String>> returnValue;
         try {
             returnValue = ModuleReflectionUtil.getCheckstyleModules(packages, loader).stream()
-                .collect(Collectors.groupingBy(Class::getSimpleName,
-                    Collectors.mapping(Class::getCanonicalName, Collectors.toSet())));
+                    .collect(Collectors.groupingBy(Class::getSimpleName,
+                            Collectors.mapping(
+                                    Class::getCanonicalName,
+                                    Collectors.toCollection(HashSet::new))));
         }
         catch (IOException ignore) {
             returnValue = Collections.emptyMap();
