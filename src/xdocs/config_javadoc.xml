@@ -3605,33 +3605,32 @@ class Test
         Example:
         </p>
         <source>
-class Test
-{
-  /**
-  * Violation for return tag.
-  * <code>@param</code> a Some javadoc
-  * <code>@return</code>
+              class Test
+              {
+              /**
+              * Violation for return tag.
+              * <code>@param</code> a Some javadoc
+              * <code>@return</code>
 
-  */
-  public int method(String a)
-  {
-    return 1;
-  }
-}
+              */
+              public int method(String a)
+              {
+              return 1;
+              }
+              }
         </source>
-
-          <p>
+        <p>
               To configure the check to validate <code>@throws</code> tags:
-          </p>
-          <source>
+        </p>
+        <source>
               &lt;module name="NonEmptyAtclauseDescription"&gt;
-                  &lt;property name="javadocTokens" value="THROWS_LITERAL"/&gt;
-                &lt;/module&gt;
-          </source>
-          <p>
-              Example:
-          </p>
-          <source>
+              &lt;property name="javadocTokens" value="THROWS_LITERAL"/&gt;
+              &lt;/module&gt;
+        </source>
+        <p>
+            Example:
+        </p>
+        <source>
               class Test
               {
               /**
@@ -3645,20 +3644,20 @@ class Test
               return 1;
               }
               }
-          </source>
+        </source>
 
-          <p>
+        <p>
               To configure the check to validate <code>@deprecated</code> tags:
-          </p>
-          <source>
+        </p>
+        <source>
               &lt;module name="NonEmptyAtclauseDescription"&gt;
-                  &lt;property name="javadocTokens" value="DEPRECATED_LITERAL"/&gt;
-                 &lt;/module&gt;
-          </source>
-          <p>
+              &lt;property name="javadocTokens" value="DEPRECATED_LITERAL"/&gt;
+              &lt;/module&gt;
+        </source>
+        <p>
               Example:
-          </p>
-          <source>
+        </p>
+        <source>
               class Test
               {
               /**
@@ -3672,20 +3671,20 @@ class Test
               return 1;
               }
               }
-          </source>
+        </source>
 
-          <p>
+        <p>
               To configure the check to validate <code>@exception</code> tags:
-          </p>
-          <source>
+        </p>
+        <source>
               &lt;module name="NonEmptyAtclauseDescription"&gt;
-                  &lt;property name="javadocTokens" value="EXCEPTION_LITERAL"/&gt;
-                 &lt;/module&gt;
-          </source>
-          <p>
+              &lt;property name="javadocTokens" value="EXCEPTION_LITERAL"/&gt;
+              &lt;/module&gt;
+        </source>
+        <p>
               Example:
-          </p>
-          <source>
+        </p>
+        <source>
               class Test
               {
               /**
@@ -3699,7 +3698,7 @@ class Test
               return 1;
               }
               }
-          </source>
+        </source>
 
 
       </subsection>
