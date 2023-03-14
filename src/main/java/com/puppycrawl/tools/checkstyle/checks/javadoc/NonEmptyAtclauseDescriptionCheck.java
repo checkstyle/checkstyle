@@ -55,7 +55,8 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * </li>
  * </ul>
  * <p>
- * To configure the check to validate {@code @param} tags:
+ * To configure the default check that will check {@code @param}, {@code @return},
+ * {@code @throws}, {@code @deprecated}:
  * </p>
  * <pre>
  * &lt;module name="NonEmptyAtclauseDescription"&gt;
@@ -68,15 +69,46 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * <pre>
  * class Test
  * {
- * &#47;**
- * * Violation for param "b".
- * * &#64;param a Some javadoc // OK
- * * &#64;param b
- * *&#47;
- * public int method(String a, int b)
- * {
- * return 1;
+ *  // Violation for param "b" and at tags "return", "deprecated" and "throws".
+ *  &#47;**
+ *  * Some summary.
+ *  * &#64;param a Some javadoc // OK
+ *  * &#64;param b
+ *  * &#64;return
+ *  * &#64;deprecated
+ *  * &#64;throws Exception
+ *  *&#47;
+ * public int method(String a, int b) throws Exception {
+ *   return 1;
+ *  }
  * }
+ * </pre>
+ * <p>
+ * To configure the check to validate {@code @param} tags:
+ * </p>
+ * <pre>
+ * &lt;module name="NonEmptyAtclauseDescription"&gt;
+ *   &lt;property name="javadocTokens" value="PARAM_LITERAL"/&gt;
+ *  &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * class Test
+ * {
+ *  // Violation 4 lines below on param tag.
+ *  &#47;**
+ *  * Some summary.
+ *  * &#64;param a Some javadoc // OK
+ *  * &#64;param b
+ *  * &#64;return
+ *  * &#64;deprecated
+ *  * &#64;throws Exception
+ *  *&#47;
+ * public int method(String a, int b) throws Exception {
+ *   return 1;
+ *  }
  * }
  * </pre>
  * <p>
@@ -93,15 +125,18 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * <pre>
  * class Test
  * {
- * &#47;**
- * * Violation for return tag.
- * * &#64;param a Some javadoc
- * * &#64;return
- * *&#47;
- * public int method(String a)
- * {
- * return 1;
- * }
+ *  // Violation 5 lines below on return tag.
+ *  &#47;**
+ *  * Some summary.
+ *  * &#64;param a Some javadoc // OK
+ *  * &#64;param b
+ *  * &#64;return
+ *  * &#64;deprecated
+ *  * &#64;throws Exception
+ *  *&#47;
+ * public int method(String a, int b) throws Exception {
+ *   return 1;
+ *  }
  * }
  * </pre>
  * <p>
@@ -118,15 +153,18 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * <pre>
  * class Test
  * {
- * &#47;**
- * * Violation for throws tag.
- * * &#64;param a Some javadoc
- * * &#64;throws Exception
- * *&#47;
- * public int method(String a) throws Exception
- * {
- * return 1;
- * }
+ *  // Violation 7 lines below on throws tag.
+ *  &#47;**
+ *  * Some summary.
+ *  * &#64;param a Some javadoc // OK
+ *  * &#64;param b
+ *  * &#64;return
+ *  * &#64;deprecated
+ *  * &#64;throws Exception
+ *  *&#47;
+ * public int method(String a, int b) throws Exception {
+ *   return 1;
+ *  }
  * }
  * </pre>
  * <p>
@@ -143,15 +181,18 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * <pre>
  * class Test
  * {
- * &#47;**
- * * Violation for deprecated tag.
- * * &#64;param a Some javadoc
- * * &#64;deprecated
- * *&#47;
- * public int method(String a)
- * {
- * return 1;
- * }
+ *  // Violation 6 lines below on deprecated tag.
+ *  &#47;**
+ *  * Some summary.
+ *  * &#64;param a Some javadoc // OK
+ *  * &#64;param b
+ *  * &#64;return
+ *  * &#64;deprecated
+ *  * &#64;throws Exception
+ *  *&#47;
+ * public int method(String a, int b) throws Exception {
+ *   return 1;
+ *  }
  * }
  * </pre>
  * <p>
@@ -168,15 +209,18 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * <pre>
  * class Test
  * {
- * &#47;**
- * * Violation for exception tag.
- * * &#64;param a Some javadoc
- * * &#64;exception Exception
- * *&#47;
- * public int method(String a) throws Exception
- * {
- * return 1;
- * }
+ *  // Violation 7 lines below on exception tag.
+ *  &#47;**
+ *  * Some summary.
+ *  * &#64;param a Some javadoc // OK
+ *  * &#64;param b
+ *  * &#64;return
+ *  * &#64;deprecated
+ *  * &#64;exception Exception
+ *  *&#47;
+ * public int method(String a, int b) throws Exception {
+ *   return 1;
+ *  }
  * }
  * </pre>
  * <p>

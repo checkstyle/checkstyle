@@ -3568,7 +3568,8 @@ class Class3 {}
 
       <subsection name="Examples" id="NonEmptyAtclauseDescription_Examples">
         <p>
-            To configure the check to validate <code>@param</code> tags:
+          To configure the default check that will check <code>@param</code>,
+          <code>@return</code>,<code>@throws</code>, <code>@deprecated</code>:
         </p>
         <source>
 &lt;module name="NonEmptyAtclauseDescription"&gt;
@@ -3581,13 +3582,47 @@ class Class3 {}
         <source>
 class Test
 {
+  // Violation for param "b" and at tags "return", "deprecated" and "throws".
   /**
-  * Violation for param "b".
+  * Some summary.
   * <code>@param</code> a Some javadoc // OK
   * <code>@param</code> b
+  * <code>@return</code>
+  * <code>@deprecated</code>
+  * <code>@throws</code> Exception
 
   */
-  public int method(String a, int b)
+  public int method(String a) throws Exception
+  {
+    return 1;
+  }
+}
+        </source>
+
+        <p>
+            To configure the check to validate <code>@param</code> tags:
+        </p>
+        <source>
+&lt;module name="NonEmptyAtclauseDescription"&gt;
+  &lt;property name="javadocTokens" value="PARAM_LITERAL"/&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+              Example:
+        </p>
+        <source>
+class Test
+{
+  // Violation 4 lines below on param tag.
+  /**
+  * Some summary.
+  * <code>@param</code> a Some javadoc // OK
+  * <code>@param</code> b
+  * <code>@return</code>
+  * <code>@deprecated</code>
+  * <code>@throws</code> Exception
+  */
+  public int method(String a, int b) throws Exception
   {
     return 1;
   }
@@ -3607,19 +3642,21 @@ class Test
         <source>
 class Test
 {
+  // Violation 5 lines below on return tag.
   /**
-  * Violation for return tag.
-  * <code>@param</code> a Some javadoc
+  * Some summary.
+  * <code>@param</code> a Some javadoc // OK
+  * <code>@param</code> b
   * <code>@return</code>
-
+  * <code>@deprecated</code>
+  * <code>@throws</code> Exception
   */
-  public int method(String a)
+  public int method(String a, int b) throws Exception
   {
     return 1;
   }
 }
         </source>
-
         <p>
               To configure the check to validate <code>@throws</code> tags:
         </p>
@@ -3634,19 +3671,21 @@ class Test
         <source>
 class Test
 {
+  // Violation 7 lines below on throws tag.
   /**
-  * Violation for throws tag.
-  * <code>@param</code> a Some javadoc
+  * Some summary.
+  * <code>@param</code> a Some javadoc // OK
+  * <code>@param</code> b
+  * <code>@return</code>
+  * <code>@deprecated</code>
   * <code>@throws</code> Exception
-
   */
-  public int method(String a) throws Exception
+  public int method(String a, int b) throws Exception
   {
     return 1;
   }
 }
         </source>
-
         <p>
               To configure the check to validate <code>@deprecated</code> tags:
         </p>
@@ -3661,19 +3700,21 @@ class Test
         <source>
 class Test
 {
+  // Violation 6 lines below on deprecated tag.
   /**
-  * Violation for deprecated tag.
-  * <code>@param</code> a Some javadoc
+  * Some summary.
+  * <code>@param</code> a Some javadoc // OK
+  * <code>@param</code> b
+  * <code>@return</code>
   * <code>@deprecated</code>
-
+  * <code>@throws</code> Exception
   */
-  public int method(String a)
+  public int method(String a, int b) throws Exception
   {
     return 1;
   }
 }
         </source>
-
         <p>
               To configure the check to validate <code>@exception</code> tags:
         </p>
@@ -3688,13 +3729,16 @@ class Test
         <source>
 class Test
 {
+  // Violation 7 lines below on exception tag.
   /**
-  * Violation for exception tag.
-  * <code>@param</code> a Some javadoc
+  * Some summary.
+  * <code>@param</code> a Some javadoc // OK
+  * <code>@param</code> b
+  * <code>@return</code>
+  * <code>@deprecated</code>
   * <code>@exception</code> Exception
-
   */
-  public int method(String a) throws Exception
+  public int method(String a, int b) throws Exception
   {
     return 1;
   }
