@@ -161,13 +161,13 @@
   <suppress id="properCurlCommand" files=".ci[\\/]sonar-break-build\.sh"/>
   <suppress id="properCurlCommand" files=".ci[\\/]no-old-refs\.sh"/>
   <suppress id="properCurlCommand" files=".ci[\\/]pr-description\.sh"/>
-  <suppress id="properCurlCommand" files=".ci[\\/]close-create-milestone\.sh"/>
-  <suppress id="properCurlCommand" files=".ci[\\/]tweet-releasenotes\.sh"/>
-  <suppress id="properCurlCommand" files=".ci[\\/]upload-all-jar\.sh"/>
-  <suppress id="properCurlCommand" files=".ci[\\/]update-github-page\.sh"/>
+  <suppress id="properCurlCommand" files=".ci[\\/]release-close-create-milestone\.sh"/>
+  <suppress id="properCurlCommand" files=".ci[\\/]release-publish-releasenotes-twitter\.sh"/>
+  <suppress id="properCurlCommand" files=".ci[\\/]release-upload-all-jar\.sh"/>
+  <suppress id="properCurlCommand" files=".ci[\\/]release-update-github-page\.sh"/>
   <suppress id="properCurlCommand" files=".ci[\\/]update-github-milestone\.sh"/>
   <suppress id="properCurlCommand" files=".ci[\\/]releasenotes-gen-xdoc-push\.sh"/>
-  <suppress id="properCurlCommand" files=".ci[\\/]creation-of-issue-in-other-repos\.sh"/>
+  <suppress id="properCurlCommand" files=".ci[\\/]release-create-issues-in-other-repos\.sh"/>
   <suppress id="properCurlCommand" files=".ci[\\/]set-milestone-on-referenced-issue\.sh"/>
   <suppress id="properCurlCommand" files="release\.sh"/>
 

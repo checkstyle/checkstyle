@@ -1,9 +1,9 @@
 #############################################################################
-# GitHub Action to Run Maven Release Prepare.
+# GitHub Action to Run Prepare goal of Maven Release plugin.
 #
 #############################################################################
-name: "R: Maven Release Prepare"
-run-name: "R: Maven Release Prepare ${{ inputs.version }}"
+name: "R: Maven Prepare"
+run-name: "R: Maven Prepare ${{ inputs.version }}"
 on:
   workflow_dispatch:
     inputs:
@@ -24,8 +24,8 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  prepare:
-    name: Prepare Release ${{ inputs.version }}
+  maven-prepare:
+    name: Maven Prepare ${{ inputs.version }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the latest code
@@ -44,7 +44,7 @@ jobs:
           git config user.email 'github-actions[bot]@users.noreply.github.com'
       - name: Run Shell Script
         run: |
-          ./.ci/maven-prepare.sh ${{ inputs.version }}
+          ./.ci/release-maven-prepare.sh ${{ inputs.version }}
       - name: Push commit
         run: |
           git push origin master --tags
