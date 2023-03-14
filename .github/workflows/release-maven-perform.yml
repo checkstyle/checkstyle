@@ -1,9 +1,9 @@
 #############################################################################
-# GitHub Action to Run Maven Release Perform.
+# GitHub Action to Run Perform goal of Maven Release plugin.
 #
 #############################################################################
-name: "R: Maven Release Perform"
-run-name: "R: Maven Release Perform ${{ inputs.version }}"
+name: "R: Maven Perform"
+run-name: "R: Maven Perform ${{ inputs.version }}"
 on:
   workflow_dispatch:
     inputs:
@@ -21,8 +21,8 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  perform:
-    name: Release perform ${{ inputs.version }}
+  maven-perform:
+    name: Maven Perform ${{ inputs.version }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the latest code
@@ -51,7 +51,7 @@ jobs:
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
           GPG_KEYNAME: ${{ secrets.GPG_KEYNAME }}
         run: |
-          ./.ci/prepare-settings.sh
+          ./.ci/release-create-maven-settings-xml.sh
       - name: Run Shell Script
         run: |
-          ./.ci/maven-release-perform.sh ${{ inputs.version }}
+          ./.ci/release-maven-perform.sh ${{ inputs.version }}

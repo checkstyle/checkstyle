@@ -1,9 +1,9 @@
 #############################################################################
-# GitHub Action to Publish Tweet of release notes.
+# GitHub Action to Update GitHub.io.
 #
 #############################################################################
-name: "R: Publish Tweet"
-run-name: "R: Publish Tweet ${{ inputs.version }}"
+name: "R: Update GitHub.io"
+run-name: "R: Update GitHub.io ${{ inputs.version }}"
 on:
   workflow_dispatch:
     inputs:
@@ -25,13 +25,14 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  publish:
-    name: Publish releasenotes tweet for ${{ inputs.version }}
+  update-github-io:
+    name: Update GitHub.io ${{ inputs.version }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the latest code
         uses: actions/checkout@v3
         with:
+          repository: checkstyle/checkstyle
           fetch-depth: 0
       - name: Setup local maven cache
         uses: actions/cache@v2
@@ -40,10 +41,13 @@ jobs:
           key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
       - name: Run Shell Script
         run: |
-          ./.ci/tweet-releasenotes.sh ${{ inputs.version }}
-        env:
-          GITHUB_READ_ONLY_TOKEN: ${{ secrets.READ_ONLY_TOKEN_GITHUB }}
-          TWITTER_CONSUMER_KEY: ${{ secrets.TWITTER_CONSUMER_KEY }}
-          TWITTER_CONSUMER_SECRET: ${{ secrets.TWITTER_CONSUMER_SECRET }}
-          TWITTER_ACCESS_TOKEN: ${{ secrets.TWITTER_ACCESS_TOKEN }}
-          TWITTER_ACCESS_TOKEN_SECRET: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
+          ./.ci/generate-website.sh ${{ inputs.version }}
+      - name: Checkout checkstyle.github.io repo
+        uses: actions/checkout@v3
+        with:
+          repository: checkstyle/checkstyle.github.io
+          token: ${{ secrets.PAT }}
+          path: .ci-temp/checkstyle.github.io/
+      - name: Commit and Push to checkstyle.github.io repo
+        run: |
+          ./.ci/release-update-github-io.sh ${{ inputs.version }}

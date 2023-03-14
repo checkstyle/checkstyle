@@ -1,9 +1,9 @@
 #############################################################################
-# GitHub Action to Copy Site to SourceForge.
+# GitHub Action to Copy github.io to sourceforge.org.
 #
 #############################################################################
-name: "R: Copy Site to SourceForge"
-run-name: "R: Copy Site to SourceForge ${{ inputs.version }}"
+name: "R: Copy github.io to sourceforge.org"
+run-name: "R: Copy github.io to sourceforge.org ${{ inputs.version }}"
 on:
   workflow_dispatch:
     inputs:
@@ -21,8 +21,8 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  copy-site:
-    name: Copy site to sourceforge for ${{ inputs.version }}
+  copy-github-io-to-sourceforge:
+    name: Copy github.io to sourceforge.org ${{ inputs.version }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the latest code
@@ -44,4 +44,4 @@ jobs:
         env:
           SF_USER: ${{ secrets.SF_USER }}
         run: |
-          ./.ci/copy-site-to-sourceforge.sh ${{ inputs.version }}
+          ./.ci/release-copy-github-io-to-sourceforge.sh ${{ inputs.version }}
