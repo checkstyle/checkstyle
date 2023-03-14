@@ -9,7 +9,7 @@ addCheckstyleBundleToAntResolvers() {
     -i '/ivysettings/resolvers/filesystem[last()]' -t attr -n name -v local-checkstyle \
     -s '/ivysettings/resolvers/filesystem[last()]' -t elem -n artifact \
     -i '/ivysettings/resolvers/filesystem[last()]/artifact' -t attr -n pattern -v \
-    '${base.dir}/../../target/[artifact]-[revision]-all.[ext]' \
+    "${base.dir}/../../target/[artifact]-[revision]-all.[ext]" \
     -s '/ivysettings/modules' -t elem -n module \
     -i '/ivysettings/modules/module[last()]' -t attr -n organisation -v com.puppycrawl.tools \
     -i '/ivysettings/modules/module[last()]' -t attr -n name -v checkstyle \
@@ -770,7 +770,7 @@ no-error-strata)
   checkout_from https://github.com/OpenGamma/Strata.git
   cd .ci-temp/Strata
   STRATA_CS_POM_VERSION=$(mvn -e --no-transfer-progress -q -Dexec.executable='echo' \
-                     -Dexec.args='${checkstyle.version}' \
+                     -Dexec.args="${checkstyle.version}" \
                      --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
   mvn -e --no-transfer-progress install -B -Dstrict -DskipTests \
      -Dforbiddenapis.skip=true -Dcheckstyle.version="${CS_POM_VERSION}" \

@@ -52,7 +52,7 @@ LATEST_RELEASE_TAG=$(git describe "$(git rev-list --tags --max-count=1)")
 cd ../../
 
 CS_RELEASE_VERSION=$(mvn -e --no-transfer-progress -q -Dexec.executable='echo' \
-              -Dexec.args='${project.version}' \
+              -Dexec.args="${project.version}" \
               --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec | sed 's/-SNAPSHOT//')
 echo LATEST_RELEASE_TAG="$LATEST_RELEASE_TAG"
 echo CS_RELEASE_VERSION="$CS_RELEASE_VERSION"
