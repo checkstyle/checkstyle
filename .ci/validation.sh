@@ -4,6 +4,7 @@ set -e
 source ./.ci/util.sh
 
 addCheckstyleBundleToAntResolvers() {
+  # shellcheck disable=2016 # we do not want to expand properties in this command
   xmlstarlet ed --inplace \
     -s '/ivysettings/resolvers' -t elem -n filesystem \
     -i '/ivysettings/resolvers/filesystem[last()]' -t attr -n name -v local-checkstyle \
@@ -769,6 +770,7 @@ no-error-strata)
   echo "Checkout target sources ..."
   checkout_from https://github.com/OpenGamma/Strata.git
   cd .ci-temp/Strata
+  # shellcheck disable=2016 # we do not want to expand properties in this command
   STRATA_CS_POM_VERSION=$(mvn -e --no-transfer-progress -q -Dexec.executable='echo' \
                      -Dexec.args='${checkstyle.version}' \
                      --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
