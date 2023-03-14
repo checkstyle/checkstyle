@@ -49,7 +49,10 @@ echo "Checking results ..."
 PROBLEM_COUNT=$(grep -R "<problems" "$RESULTS_DIR"/ | cat | wc -l )
 
 if [[ $PROBLEM_COUNT -gt 0 ]] && [[ "$CIRCLECI" == "true" ]]; then
-    echo "There are inspection problems. Review results in 'ARTIFACTS' tab above."
+    echo -e "\n\n\n\n"
+    echo "ATTENTION GITHUB CONTRIBUTOR:"
+    echo "There are inspection problems."
+    echo "Review results in 'ARTIFACTS' tab in the CircleCI UI above."
     exit 1;
 elif [[ $PROBLEM_COUNT -gt 0 ]]; then
     echo "There are inspection problems. Review results at $RESULTS_DIR folder. Files:"
