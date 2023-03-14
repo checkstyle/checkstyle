@@ -20,7 +20,7 @@ curl --fail-with-body -u admin:admin \
    -v http://localhost:9000/api/issues/search?componentRoots=com.puppycrawl.tools:checkstyle \
         > response.json
 
-OUTPUT="$(cat response.json | jq '.total')"
+OUTPUT="$(< response.json jq '.total')"
 
 # print number of found issues
 if [ ! "$OUTPUT" -eq "0" ]; then
