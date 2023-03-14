@@ -19,15 +19,15 @@
 
 package org.checkstyle.suppressionxpathfilter;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.checks.modifier.ModifierOrderCheck;
-import org.junit.jupiter.api.Test;
-
 import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
-public class XpathRegressionModifierOrderTest extends AbstractXpathTestSupport{
+import org.junit.jupiter.api.Test;
+
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.checks.modifier.ModifierOrderCheck;
+public class XpathRegressionModifierOrderTest extends AbstractXpathTestSupport {
 
     private final Class<ModifierOrderCheck> clazz = ModifierOrderCheck.class;
 
@@ -49,14 +49,14 @@ public class XpathRegressionModifierOrderTest extends AbstractXpathTestSupport{
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT" +
-                        "[@text='SuppressionXpathRegressionModifierOrderMethod']]" +
-                        "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]/MODIFIERS" +
-                        "/ANNOTATION[./IDENT[@text='MethodAnnotation']]",
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT" +
-                        "[@text='SuppressionXpathRegressionModifierOrderMethod']]" +
-                        "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]/MODIFIERS" +
-                        "/ANNOTATION[./IDENT[@text='MethodAnnotation']]/AT");
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+                        + "[@text='SuppressionXpathRegressionModifierOrderMethod']]"
+                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]/MODIFIERS"
+                        + "/ANNOTATION[./IDENT[@text='MethodAnnotation']]",
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+                        + "[@text='SuppressionXpathRegressionModifierOrderMethod']]"
+                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]/MODIFIERS"
+                        + "/ANNOTATION[./IDENT[@text='MethodAnnotation']]/AT");
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
@@ -74,9 +74,9 @@ public class XpathRegressionModifierOrderTest extends AbstractXpathTestSupport{
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT" +
-                        "[@text='SuppressionXpathRegressionModifierOrderVariable']]" +
-                        "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='var']]/MODIFIERS/LITERAL_PRIVATE");
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+                        + "[@text='SuppressionXpathRegressionModifierOrderVariable']]"
+                        + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='var']]/MODIFIERS/LITERAL_PRIVATE");
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
@@ -94,12 +94,12 @@ public class XpathRegressionModifierOrderTest extends AbstractXpathTestSupport{
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT/ANNOTATION_DEF[./IDENT" +
-                        "[@text='SuppressionXpathRegressionModifierOrderAnnotation']]" +
-                        "/MODIFIERS/ANNOTATION[./IDENT[@text='InterfaceAnnotation']]",
-                "/COMPILATION_UNIT/ANNOTATION_DEF[./IDENT" +
-                        "[@text='SuppressionXpathRegressionModifierOrderAnnotation']]" +
-                        "/MODIFIERS/ANNOTATION[./IDENT[@text='InterfaceAnnotation']]/AT");
+                "/COMPILATION_UNIT/ANNOTATION_DEF[./IDENT"
+                        + "[@text='SuppressionXpathRegressionModifierOrderAnnotation']]"
+                        + "/MODIFIERS/ANNOTATION[./IDENT[@text='InterfaceAnnotation']]",
+                "/COMPILATION_UNIT/ANNOTATION_DEF[./IDENT"
+                        + "[@text='SuppressionXpathRegressionModifierOrderAnnotation']]"
+                        + "/MODIFIERS/ANNOTATION[./IDENT[@text='InterfaceAnnotation']]/AT");
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
