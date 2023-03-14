@@ -1,6 +1,13 @@
+/*
+ModifiedControlVariable
+skipEnhancedForLoopVariable = true
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.coding.modifiedcontrolvariable;
 
-public class InputModifiedControlVariableEnhancedForLoopVariable {
+public class InputModifiedControlVariableEnhancedForLoopVariable { // ok
 
     public void method2()
     {

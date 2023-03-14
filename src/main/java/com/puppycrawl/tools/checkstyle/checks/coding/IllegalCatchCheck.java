@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,27 +15,135 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 
 /**
- * Catching java.lang.Exception, java.lang.Error or java.lang.RuntimeException
- * is almost never acceptable.
- * @author <a href="mailto:simon@redhillconsulting.com.au">Simon Harris</a>
- * @author <a href="mailto:IliaDubinin91@gmail.com">Ilja Dubinin</a>
+ * <p>
+ * Checks that certain exception types do not appear in a {@code catch} statement.
+ * </p>
+ * <p>
+ * Rationale: catching {@code java.lang.Exception}, {@code java.lang.Error} or
+ * {@code java.lang.RuntimeException} is almost never acceptable.
+ * Novice developers often simply catch Exception in an attempt to handle
+ * multiple exception classes. This unfortunately leads to code that inadvertently
+ * catches {@code NullPointerException}, {@code OutOfMemoryError}, etc.
+ * </p>
+ * <ul>
+ * <li>
+ * Property {@code illegalClassNames} - Specify exception class names to reject.
+ * Type is {@code java.lang.String[]}.
+ * Default value is {@code Error, Exception, RuntimeException, Throwable, java.lang.Error,
+ * java.lang.Exception, java.lang.RuntimeException, java.lang.Throwable}.
+ * </li>
+ * </ul>
+ * <p>
+ * To configure the check:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;IllegalCatch&quot;/&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * try {
+ *     // some code here
+ * } catch (Exception e) { // violation
+ *
+ * }
+ *
+ * try {
+ *     // some code here
+ * } catch (ArithmeticException e) { // OK
+ *
+ * } catch (Exception e) { // violation, catching Exception is illegal
+ *                           and order of catch blocks doesn't matter
+ * }
+ *
+ * try {
+ *     // some code here
+ * } catch (ArithmeticException | Exception e) { // violation, catching Exception is illegal
+ *
+ * }
+ *
+ * try {
+ *     // some code here
+ * } catch (ArithmeticException e) { // OK
+ *
+ * }
+ *
+ * </pre>
+ * <p>
+ * To configure the check to override the default list
+ * with ArithmeticException and OutOfMemoryError:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;IllegalCatch&quot;&gt;
+ *   &lt;property name=&quot;illegalClassNames&quot; value=&quot;ArithmeticException,
+ *               OutOfMemoryError&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * try {
+ *     // some code here
+ * } catch (OutOfMemoryError e) { // violation
+ *
+ * }
+ *
+ * try {
+ *     // some code here
+ * } catch (ArithmeticException e) { // violation
+ *
+ * }
+ *
+ * try {
+ *     // some code here
+ * } catch (NullPointerException e) { // OK
+ *
+ * } catch (OutOfMemoryError e) { // violation
+ *
+ * }
+ *
+ * try {
+ *     // some code here
+ * } catch (ArithmeticException | Exception e) {  // violation
+ *
+ * }
+ *
+ * try {
+ *     // some code here
+ * } catch (Exception e) { // OK
+ *
+ * }
+ * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code illegal.catch}
+ * </li>
+ * </ul>
+ *
+ * @since 3.2
  */
+@StatelessCheck
 public final class IllegalCatchCheck extends AbstractCheck {
 
     /**
@@ -44,43 +152,37 @@ public final class IllegalCatchCheck extends AbstractCheck {
      */
     public static final String MSG_KEY = "illegal.catch";
 
-    /** Illegal class names. */
+    /** Specify exception class names to reject. */
     private final Set<String> illegalClassNames = Arrays.stream(new String[] {"Exception", "Error",
         "RuntimeException", "Throwable", "java.lang.Error", "java.lang.Exception",
-        "java.lang.RuntimeException", "java.lang.Throwable", }).collect(Collectors.toSet());
+        "java.lang.RuntimeException", "java.lang.Throwable", })
+            .collect(Collectors.toCollection(HashSet::new));
 
     /**
-     * Set the list of illegal classes.
+     * Setter to specify exception class names to reject.
      *
      * @param classNames
      *            array of illegal exception classes
      */
     public void setIllegalClassNames(final String... classNames) {
         illegalClassNames.clear();
-        for (final String name : classNames) {
-            illegalClassNames.add(name);
-            final int lastDot = name.lastIndexOf('.');
-            if (lastDot > 0 && lastDot < name.length() - 1) {
-                final String shortName = name
-                        .substring(name.lastIndexOf('.') + 1);
-                illegalClassNames.add(shortName);
-            }
-        }
+        illegalClassNames.addAll(
+                CheckUtil.parseClassNames(classNames));
     }
 
     @Override
     public int[] getDefaultTokens() {
-        return new int[] {TokenTypes.LITERAL_CATCH};
+        return getRequiredTokens();
     }
 
     @Override
     public int[] getRequiredTokens() {
-        return getDefaultTokens();
+        return new int[] {TokenTypes.LITERAL_CATCH};
     }
 
     @Override
     public int[] getAcceptableTokens() {
-        return new int[] {TokenTypes.LITERAL_CATCH};
+        return getRequiredTokens();
     }
 
     @Override
@@ -89,41 +191,15 @@ public final class IllegalCatchCheck extends AbstractCheck {
             detailAST.findFirstToken(TokenTypes.PARAMETER_DEF);
         final DetailAST excTypeParent =
                 parameterDef.findFirstToken(TokenTypes.TYPE);
-        final List<DetailAST> excTypes = getAllExceptionTypes(excTypeParent);
 
-        for (DetailAST excType : excTypes) {
-            final FullIdent ident = FullIdent.createFullIdent(excType);
-
-            if (illegalClassNames.contains(ident.getText())) {
-                log(detailAST, MSG_KEY, ident.getText());
+        DetailAST currentNode = excTypeParent.getFirstChild();
+        while (currentNode != null) {
+            final FullIdent ident = FullIdent.createFullIdent(currentNode);
+            final String identText = ident.getText();
+            if (illegalClassNames.contains(identText)) {
+                log(detailAST, MSG_KEY, identText);
             }
-        }
-    }
-
-    /**
-     * Finds all exception types in current catch.
-     * We need it till we can have few different exception types into one catch.
-     * @param parentToken - parent node for types (TYPE or BOR)
-     * @return list, that contains all exception types in current catch
-     */
-    private static List<DetailAST> getAllExceptionTypes(DetailAST parentToken) {
-        DetailAST currentNode = parentToken.getFirstChild();
-        final List<DetailAST> exceptionTypes = new LinkedList<>();
-        if (currentNode.getType() == TokenTypes.BOR) {
-            exceptionTypes.addAll(getAllExceptionTypes(currentNode));
             currentNode = currentNode.getNextSibling();
-            if (currentNode != null) {
-                exceptionTypes.add(currentNode);
-            }
         }
-        else {
-            exceptionTypes.add(currentNode);
-            currentNode = currentNode.getNextSibling();
-            while (currentNode != null) {
-                exceptionTypes.add(currentNode);
-                currentNode = currentNode.getNextSibling();
-            }
-        }
-        return exceptionTypes;
     }
 }

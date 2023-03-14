@@ -1,3 +1,10 @@
+/*
+MissingDeprecated
+violateExecutionOnNonTightHtml = (default)false
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.annotation.missingdeprecated;
 
 public class InputMissingDeprecatedMethod {
@@ -5,10 +12,10 @@ public class InputMissingDeprecatedMethod {
 
     /**
      * @deprecated
-     * 
+     *
      * @param comment
      */
-    public void method(){
+    public void method(){ // violation
     }
 
 }

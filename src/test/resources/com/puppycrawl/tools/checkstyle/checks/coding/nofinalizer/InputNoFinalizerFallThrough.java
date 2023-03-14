@@ -1,3 +1,9 @@
+/*
+NoFinalizer
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.coding.nofinalizer;
 
 public class InputNoFinalizerFallThrough
@@ -5,7 +11,7 @@ public class InputNoFinalizerFallThrough
     void method(int i, int j, boolean cond) {
         while (true) {
             switch (i) {
-            case 0: // no problem
+            case 0: // ok
             case 1:
                 i++;
                 break;
@@ -126,23 +132,23 @@ public class InputNoFinalizerFallThrough
             }
         }
     }
-    
-    
-    
+
+
+
     /* Like above, but all fall throughs with relief comment */
     void methodFallThru(int i, int j, boolean cond) {
       while (true) {
           switch (i) {
           case -1: // FALLTHRU
-              
-          case 0: // no problem
+
+          case 0: // ok
           case 1:
               i++;
               break;
           case 2:
               i++;
               // fallthru
-          case 3: 
+          case 3:
               i++;
               break;
           case 4:
@@ -167,7 +173,7 @@ public class InputNoFinalizerFallThrough
               i++;
           }
           // fallthru
-          case 12: 
+          case 12:
               if (false)
                   break;
               else
@@ -246,10 +252,10 @@ public class InputNoFinalizerFallThrough
                   return;
               default:
                   return;
-              }        
+              }
           case 24:
               i++;
-          /* fallthru */ case 25: 
+          /* fallthru */ case 25:
               i++;
               break;
 
@@ -261,7 +267,7 @@ public class InputNoFinalizerFallThrough
                   break;
               default:
                   return;
-              } 
+              }
               // fallthru
           default:
               // this is the last label
@@ -270,7 +276,7 @@ public class InputNoFinalizerFallThrough
          }
       }
    }
-    
+
    /* Test relief comment. */
    void methodFallThruCC(int i, int j, boolean cond) {
       while (true) {
@@ -295,7 +301,7 @@ public class InputNoFinalizerFallThrough
           }
       }
    }
-    
+
    /* Like above, but C-style comments. */
    void methodFallThruC(int i, int j, boolean cond) {
       while (true) {
@@ -337,7 +343,7 @@ public class InputNoFinalizerFallThrough
           }
       }
    }
-    
+
    /* C-style comments with other default fallthru-comment. */
    void methodFallThruCOtherWords(int i, int j, boolean cond) {
       while (true) {
@@ -358,7 +364,7 @@ public class InputNoFinalizerFallThrough
           }
       }
    }
-    
+
    /* C-style comments with custom fallthru-comment. */
    void methodFallThruCCustomWords(int i, int j, boolean cond) {
       while (true) {
@@ -379,7 +385,7 @@ public class InputNoFinalizerFallThrough
           }
       }
    }
-   
+
    void methodFallThruLastCaseGroup(int i, int j, boolean cond) {
        while (true) {
            switch (i){
@@ -388,12 +394,12 @@ public class InputNoFinalizerFallThrough
            }
            switch (i){
            case 0:
-               i++; 
+               i++;
                // fallthru
            }
            switch (i){
            case 0:
-               i++; 
+               i++;
            /* fallthru */ }
        }
     }
@@ -416,7 +422,7 @@ public class InputNoFinalizerFallThrough
             default: // violation - no fall through comment
         }
     }
-    
+
     void nextedSwitches2() {
         switch(hashCode()) {
         case 1:
@@ -426,7 +432,7 @@ public class InputNoFinalizerFallThrough
             break;
         }
     }
-    
+
     void ifWithoutBreak() {
         switch(hashCode()) {
         case 1:
@@ -438,7 +444,7 @@ public class InputNoFinalizerFallThrough
             break;
         }
     }
-    
+
     void noCommentAtTheEnd() {
         switch(hashCode()) {
         case 1: System.lineSeparator();
@@ -449,76 +455,4 @@ public class InputNoFinalizerFallThrough
         }
     }
 
-    void tryResource() throws Exception {
-        switch (hashCode()) {
-        case 1:
-            try (final Resource resource = new Resource()) {
-                return;
-            }
-        case 2:
-            try (final Resource resource = new Resource()) {
-                return;
-            }
-            finally {
-                return;
-            }
-        case 3:
-            try (final Resource resource = new Resource()) {
-                return;
-            }
-            catch (Exception ex) {
-                return;
-            }
-        case 4:
-            try (final Resource resource = new Resource()) {
-            }
-            finally {
-                return;
-            }
-        case 5:
-            try (final Resource resource = new Resource()) {
-                return;
-            }
-            finally {
-            }
-        case 6:
-            try (final Resource resource = new Resource()) {
-            }
-            catch (Exception ex) {
-                return;
-            }
-            // fallthru
-        case 7:
-            try (final Resource resource = new Resource()) {
-            }
-            // fallthru
-        case 8:
-            try (final Resource resource = new Resource()) {
-            }
-            finally {
-            }
-            // fallthru
-        case 9:
-            try (final Resource resource = new Resource()) {
-            }
-            catch (Exception ex) {
-            }
-            // fallthru
-        case 10:
-            try (final Resource resource = new Resource()) {
-                return;
-            }
-            catch (Exception ex) {
-            }
-            // fallthru
-        default:
-            break;
-        }
-    }
-
-    private static class Resource implements AutoCloseable {
-        @Override
-        public void close() throws Exception {
-        }
-    }
 }

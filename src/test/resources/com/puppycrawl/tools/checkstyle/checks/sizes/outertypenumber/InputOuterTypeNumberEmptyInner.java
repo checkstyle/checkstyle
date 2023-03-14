@@ -1,4 +1,11 @@
-package com.puppycrawl.tools.checkstyle.checks.sizes.outertypenumber;
+/*
+OuterTypeNumber
+max = (default)1
+
+
+*/
+
+package com.puppycrawl.tools.checkstyle.checks.sizes.outertypenumber; // ok
 
 /**Contains empty inner class for OuterTypeNumberCheckTest*/
 public class InputOuterTypeNumberEmptyInner {

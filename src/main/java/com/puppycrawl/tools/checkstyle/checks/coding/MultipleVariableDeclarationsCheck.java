@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,14 +15,16 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CheckUtils;
+import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <p>
@@ -31,18 +33,55 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtils;
  * </p>
  * <p>
  * Rationale: <a
- * href="http://www.oracle.com/technetwork/java/javase/documentation/codeconventions-141270.html">
- * the SUN Code conventions chapter 6.1</a> recommends that
- * declarations should be one per line.
+ * href="https://checkstyle.org/styleguides/sun-code-conventions-19990420/CodeConventions.doc5.html#a2992">
+ * the Java code conventions chapter 6.1</a> recommends that
+ * declarations should be one per line/statement.
  * </p>
  * <p>
- * An example of how to configure the check is:
+ * To configure the check:
  * </p>
  * <pre>
  * &lt;module name="MultipleVariableDeclarations"/&gt;
  * </pre>
- * @author o_sukhodolsky
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * public class Test {
+ *   public void myTest() {
+ *     int mid;
+ *     int high;
+ *     // ...
+ *
+ *     int lower, higher; // violation
+ *     // ...
+ *
+ *     int value,
+ *         index; // violation
+ *     // ...
+ *
+ *     int place = mid, number = high;  // violation
+ *   }
+ * }
+ * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code multiple.variable.declarations}
+ * </li>
+ * <li>
+ * {@code multiple.variable.declarations.comma}
+ * </li>
+ * </ul>
+ *
+ * @since 3.4
  */
+@StatelessCheck
 public class MultipleVariableDeclarationsCheck extends AbstractCheck {
 
     /**
@@ -59,17 +98,17 @@ public class MultipleVariableDeclarationsCheck extends AbstractCheck {
 
     @Override
     public int[] getAcceptableTokens() {
-        return new int[] {TokenTypes.VARIABLE_DEF};
+        return getRequiredTokens();
     }
 
     @Override
     public int[] getDefaultTokens() {
-        return getAcceptableTokens();
+        return getRequiredTokens();
     }
 
     @Override
     public int[] getRequiredTokens() {
-        return getAcceptableTokens();
+        return new int[] {TokenTypes.VARIABLE_DEF};
     }
 
     @Override
@@ -86,7 +125,7 @@ public class MultipleVariableDeclarationsCheck extends AbstractCheck {
 
             if (nextNode != null
                     && nextNode.getType() == TokenTypes.VARIABLE_DEF) {
-                final DetailAST firstNode = CheckUtils.getFirstNode(ast);
+                final DetailAST firstNode = CheckUtil.getFirstNode(ast);
                 if (isCommaSeparated) {
                     // Check if the multiple variable declarations are in a
                     // for loop initializer. If they are, then no warning
@@ -100,9 +139,9 @@ public class MultipleVariableDeclarationsCheck extends AbstractCheck {
                 }
                 else {
                     final DetailAST lastNode = getLastNode(ast);
-                    final DetailAST firstNextNode = CheckUtils.getFirstNode(nextNode);
+                    final DetailAST firstNextNode = CheckUtil.getFirstNode(nextNode);
 
-                    if (firstNextNode.getLineNo() == lastNode.getLineNo()) {
+                    if (TokenUtil.areOnSameLine(firstNextNode, lastNode)) {
                         log(firstNode, MSG_MULTIPLE);
                     }
                 }
@@ -112,22 +151,18 @@ public class MultipleVariableDeclarationsCheck extends AbstractCheck {
 
     /**
      * Finds sub-node for given node maximum (line, column) pair.
+     *
      * @param node the root of tree for search.
      * @return sub-node with maximum (line, column) pair.
      */
     private static DetailAST getLastNode(final DetailAST node) {
         DetailAST currentNode = node;
-        DetailAST child = node.getFirstChild();
-        while (child != null) {
-            final DetailAST newNode = getLastNode(child);
-            if (newNode.getLineNo() > currentNode.getLineNo()
-                || newNode.getLineNo() == currentNode.getLineNo()
-                    && newNode.getColumnNo() > currentNode.getColumnNo()) {
-                currentNode = newNode;
-            }
-            child = child.getNextSibling();
+        final DetailAST child = node.getLastChild();
+        if (child != null) {
+            currentNode = getLastNode(child);
         }
 
         return currentNode;
     }
+
 }

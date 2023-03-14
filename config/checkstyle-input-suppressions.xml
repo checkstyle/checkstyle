@@ -1,0 +1,213 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE suppressions PUBLIC
+        "-//Checkstyle//DTD SuppressionFilter Configuration 1.1//EN"
+        "https://checkstyle.org/dtds/suppressions_1_1.dtd">
+
+<suppressions>
+
+  <!-- Suppress miscellaneous files -->
+
+  <suppress id="StyleValidationCommentInInputs" files="package-info.java"/>
+
+  <!-- Suppress input files for following test classes, as they are not inputs related to
+  check configuration. -->
+
+  <suppress id="StyleValidationCommentInInputs" files="meta[\\/].*"/>
+
+  <suppress id="StyleValidationCommentInInputs"
+            files="asttreestringprinter[\\/].*.java"/>
+
+  <suppress id="StyleValidationCommentInInputs"
+            files="checker[\\/].*.java"/>
+
+  <suppress id="StyleValidationCommentInInputs"
+            files="detailastimpl[\\/]InputDetailAstImplJustToMakeStackoverflowError.java"/>
+
+  <suppress id="StyleValidationCommentInInputs"
+            files="header[\\/].*.java"/>
+
+  <suppress id="StyleValidationCommentInInputs"
+            files="internal[\\/]allchecks[\\/]InputAllChecksDefaultConfig.java"/>
+
+  <suppress id="StyleValidationCommentInInputs"
+            files="javadocdetailnodeparser[\\/]InputJavadocDetailNodeParser.java"/>
+
+  <suppress id="StyleValidationCommentInInputs"
+            files="javadocpropertiesgenerator[\\/].*.java"/>
+
+  <suppress id="StyleValidationCommentInInputs"
+            files="utils[\\/]checkutil[\\/]InputCheckUtilTest.java"/>
+
+  <suppress id="StyleValidationCommentInInputs"
+            files="suppresswarningsholder[\\/].*.java"/>
+
+  <suppress id="StyleValidationCommentInInputs"
+            files="packagenamesloader[\\/]InputPackageNamesLoaderNotXml.java"/>
+
+  <suppress id="StyleValidationCommentInInputs"
+            files="packageobjectfactory[\\/].*.java"/>
+
+  <!-- XpathFilterElementTest uses assertions directly instead of using them through parser
+  or the traditional verify method -->
+  <suppress id="StyleValidationCommentInInputs"
+            files="filters[\\/]xpathfilterelement[\\/]InputXpathFilterElementSuppressByXpath.java"/>
+
+  <!-- until https://github.com/checkstyle/checkstyle/issues/10663 -->
+  <suppress id="StyleValidationCommentInInputs"
+            files="indentation[\\/]indentation[\\/].*"/>
+
+  <!-- until https://github.com/checkstyle/checkstyle/issues/4845 -->
+  <suppress id="noCheckstyleInInputs"
+          files="[\\/]checks[\\/]imports[\\/]customimportorder[\\/]InputCustomImportOrderThirdPartyAndSpecial.java"/>
+  <suppress id="noCheckstyleInInputs"
+          files="[\\/]checks[\\/]imports[\\/]customimportorder[\\/]InputCustomImportOrderThirdPartyAndSpecial2.java"/>
+  <suppress id="noCheckstyleInInputs"
+          files="[\\/]checks[\\/]imports[\\/]unusedimports[\\/]InputUnusedImportsAnnotations.java"/>
+  <suppress id="noCheckstyleInInputs"
+          files="[\\/]checks[\\/]coding[\\/]illegaltype[\\/]InputIllegalTypeSameFileNameFalsePositive.java"/>
+  <suppress id="noCheckstyleInInputs"
+          files="[\\/]checks[\\/]coding[\\/]illegaltype[\\/]InputIllegalTypeTestSameFileNameGeneral.java"/>
+  <suppress id="noCheckstyleInInputs"
+          files="[\\/]checks[\\/]coding[\\/]illegaltype[\\/]InputIllegalTypeTestStarImports.java"/>
+  <suppress id="noCheckstyleInInputs"
+          files="[\\/]checks[\\/]design[\\/]visibilitymodifier[\\/]InputVisibilityModifierAnnotatedSameTypeName.java"/>
+  <suppress id="noCheckstyleInInputs"
+          files="[\\/]checks[\\/]design[\\/]visibilitymodifier[\\/]InputVisibilityModifierImmutableSameTypeName.java"/>
+  <suppress id="noCheckstyleInInputs"
+          files="[\\/]checks[\\/]design[\\/]visibilitymodifier[\\/]InputVisibilityModifierImmutableSameTypeName2.java"/>
+  <suppress id="noCheckstyleInInputs"
+          files="[\\/]checks[\\/]design[\\/]visibilitymodifier[\\/]InputVisibilityModifierImmutableStarImport.java"/>
+  <suppress id="noCheckstyleInInputs"
+          files="[\\/]checks[\\/]design[\\/]visibilitymodifier[\\/]InputVisibilityModifierIsStarImport.java"/>
+  <suppress id="noCheckstyleInInputs"
+          files="[\\/]checks[\\/]imports[\\/]avoidstarimport[\\/]InputAvoidStarImportAllowClass.java"/>
+  <suppress id="noCheckstyleInInputs"
+          files="[\\/]checks[\\/]imports[\\/]avoidstarimport[\\/]InputAvoidStarImportAllowStaticMember.java"/>
+  <suppress id="noCheckstyleInInputs"
+          files="[\\/]checks[\\/]imports[\\/]avoidstarimport[\\/]InputAvoidStarImportDefault.java"/>
+  <suppress id="noCheckstyleInInputs"
+          files="[\\/]checks[\\/]imports[\\/]avoidstarimport[\\/]InputAvoidStarImportExcludes.java"/>
+  <suppress id="noCheckstyleInInputs"
+          files="[\\/]checks[\\/]imports[\\/]avoidstaticimport[\\/]InputAvoidStaticImportDefault.java"/>
+  <suppress id="noCheckstyleInInputs"
+          files="[\\/]checks[\\/]imports[\\/]avoidstaticimport[\\/]InputAvoidStaticImportDefault2.java"/>
+  <suppress id="noCheckstyleInInputs"
+          files="[\\/]checks[\\/]imports[\\/]avoidstaticimport[\\/]InputAvoidStaticImportDefault3.java"/>
+  <suppress id="noCheckstyleInInputs"
+          files="[\\/]checks[\\/]imports[\\/]avoidstaticimport[\\/]InputAvoidStaticImportDefault4.java"/>
+  <suppress id="noCheckstyleInInputs"
+          files="[\\/]checks[\\/]imports[\\/]avoidstaticimport[\\/]InputAvoidStaticImportDefault5.java"/>
+  <suppress id="noCheckstyleInInputs"
+          files="[\\/]checks[\\/]imports[\\/]customimportorder[\\/]InputCustomImportOrderDefault.java"/>
+  <suppress id="noCheckstyleInInputs"
+          files="[\\/]checks[\\/]imports[\\/]customimportorder[\\/]InputCustomImportOrderDefault2.java"/>
+  <suppress id="noCheckstyleInInputs"
+          files="[\\/]checks[\\/]imports[\\/]customimportorder[\\/]InputCustomImportOrderDefault3.java"/>
+  <suppress id="noCheckstyleInInputs"
+          files="[\\/]checks[\\/]imports[\\/]customimportorder[\\/]InputCustomImportOrderDefault4.java"/>
+  <suppress id="noCheckstyleInInputs"
+          files="[\\/]checks[\\/]imports[\\/]customimportorder[\\/]InputCustomImportOrderDefault5.java"/>
+  <suppress id="noCheckstyleInInputs"
+          files="[\\/]checks[\\/]imports[\\/]customimportorder[\\/]InputCustomImportOrderDefault6.java"/>
+  <suppress id="noCheckstyleInInputs"
+          files="[\\/]checks[\\/]imports[\\/]customimportorder[\\/]InputCustomImportOrderDefault7.java"/>
+  <suppress id="noCheckstyleInInputs"
+          files="[\\/]checks[\\/]imports[\\/]customimportorder[\\/]InputCustomImportOrderDefault8.java"/>
+  <suppress id="noCheckstyleInInputs"
+          files="[\\/]checks[\\/]imports[\\/]customimportorder[\\/]InputCustomImportOrderDefault9.java"/>
+  <suppress id="noCheckstyleInInputs"
+          files="[\\/]checks[\\/]imports[\\/]customimportorder[\\/]InputCustomImportOrderImportsContainingJava.java"/>
+  <suppress id="noCheckstyleInInputs"
+          files="[\\/]checks[\\/]imports[\\/]customimportorder[\\/]InputCustomImportOrderSingleLine.java"/>
+  <suppress id="noCheckstyleInInputs"
+          files="[\\/]checks[\\/]imports[\\/]customimportorder[\\/]InputCustomImportOrderSpanMultipleLines.java"/>
+  <suppress id="noCheckstyleInInputs"
+          files="[\\/]checks[\\/]imports[\\/]customimportorder[\\/]InputCustomImportOrder_NoSeparator.java"/>
+  <suppress id="noCheckstyleInInputs"
+          files="[\\/]checks[\\/]imports[\\/]customimportorder[\\/]InputCustomImportOrder_OverlappingPatterns.java"/>
+  <suppress id="noCheckstyleInInputs"
+          files="[\\/]checks[\\/]imports[\\/]illegalimport[\\/]InputIllegalImportDefault1.java"/>
+  <suppress id="noCheckstyleInInputs"
+          files="[\\/]checks[\\/]imports[\\/]illegalimport[\\/]InputIllegalImportDefault2.java"/>
+  <suppress id="noCheckstyleInInputs"
+          files="[\\/]checks[\\/]imports[\\/]illegalimport[\\/]InputIllegalImportDefault3.java"/>
+  <suppress id="noCheckstyleInInputs"
+          files="[\\/]checks[\\/]imports[\\/]illegalimport[\\/]InputIllegalImportDefault4.java"/>
+  <suppress id="noCheckstyleInInputs"
+          files="[\\/]checks[\\/]imports[\\/]illegalimport[\\/]InputIllegalImportDefault5.java"/>
+  <suppress id="noCheckstyleInInputs"
+          files="[\\/]checks[\\/]imports[\\/]illegalimport[\\/]InputIllegalImportDefault6.java"/>
+  <suppress id="noCheckstyleInInputs"
+          files="[\\/]checks[\\/]imports[\\/]illegalimport[\\/]InputIllegalImportDefault7.java"/>
+  <suppress id="noCheckstyleInInputs"
+          files="[\\/]checks[\\/]imports[\\/]importorder[\\/]InputImportOrder_Wildcard.java"/>
+  <suppress id="noCheckstyleInInputs"
+          files="[\\/]checks[\\/]imports[\\/]importorder[\\/]InputImportOrder_WildcardUnspecified.java"/>
+  <suppress id="noCheckstyleInInputs"
+          files="[\\/]checks[\\/]imports[\\/]redundantimport[\\/]InputRedundantImportWithChecker.java"/>
+  <suppress id="noCheckstyleInInputs"
+          files="[\\/]checks[\\/]imports[\\/]unusedimports[\\/]InputUnusedImports.java"/>
+  <suppress id="noCheckstyleInInputs"
+          files="[\\/]checks[\\/]imports[\\/]unusedimports[\\/]InputUnusedImports2.java"/>
+  <suppress id="noCheckstyleInInputs"
+          files="[\\/]checks[\\/]imports[\\/]unusedimports[\\/]InputUnusedImportsShadowed.java"/>
+  <suppress id="noCheckstyleInInputs"
+          files="[\\/]checks[\\/]indentation[\\/]indentation[\\/]InputIndentationAnonymousClassInMethodCurlyOnNewLine.java"/>
+  <suppress id="noCheckstyleInInputs"
+          files="[\\/]checks[\\/]metrics[\\/]classdataabstractioncoupling[\\/]InputClassDataAbstractionCouplingExcludedPackagesAllIgnored.java"/>
+  <suppress id="noCheckstyleInInputs"
+          files="[\\/]checks[\\/]metrics[\\/]classdataabstractioncoupling[\\/]InputClassDataAbstractionCouplingExcludedPackagesCommonPackage.java"/>
+  <suppress id="noCheckstyleInInputs"
+          files="[\\/]checks[\\/]metrics[\\/]classdataabstractioncoupling[\\/]InputClassDataAbstractionCouplingExcludedPackagesDirectPackages.java"/>
+  <suppress id="noCheckstyleInInputs"
+          files="[\\/]checks[\\/]metrics[\\/]classfanoutcomplexity[\\/]InputClassFanOutComplexityExcludedPackagesAllIgnored.java"/>
+  <suppress id="noCheckstyleInInputs"
+          files="[\\/]checks[\\/]metrics[\\/]classfanoutcomplexity[\\/]InputClassFanOutComplexityExcludedPackagesCommonPackage.java"/>
+  <suppress id="noCheckstyleInInputs"
+          files="[\\/]checks[\\/]metrics[\\/]classfanoutcomplexity[\\/]InputClassFanOutComplexityExcludedPackagesDirectPackages.java"/>
+  <suppress id="noCheckstyleInInputs"
+          files="[\\/]checks[\\/]sizes[\\/]linelength[\\/]InputLineLengthLongImportStatements.java"/>
+  <suppress id="noCheckstyleInInputs"
+          files="[\\/]checks[\\/]whitespace[\\/]emptylineseparator[\\/]InputEmptyLineSeparator.java"/>
+  <suppress id="noCheckstyleInInputs"
+          files="[\\/]checks[\\/]whitespace[\\/]emptylineseparator[\\/]InputEmptyLineSeparator2.java"/>
+  <suppress id="noCheckstyleInInputs"
+          files="[\\/]packageobjectfactory[\\/]bar[\\/]FooCheck.java"/>
+  <suppress id="noCheckstyleInInputs"
+          files="[\\/]packageobjectfactory[\\/]foo[\\/]FooCheck.java"/>
+  <suppress id="noCheckstyleInInputs"
+          files="[\\/]packageobjectfactory[\\/]foo[\\/]FooCheck.java"/>
+  <suppress id="noCheckstyleInInputs"
+          files="[\\/]meta[\\/]javadocmetadatascraper[\\/]InputJavadocMetadataScraperAbstractSuperCheck.java"/>
+  <suppress id="noCheckstyleInInputs"
+          files="[\\/]meta[\\/]javadocmetadatascraper[\\/]InputJavadocMetadataScraperAnnotationUseStyleCheck.java"/>
+  <suppress id="noCheckstyleInInputs"
+          files="[\\/]meta[\\/]javadocmetadatascraper[\\/]InputJavadocMetadataScraperAtclauseOrderCheck.java"/>
+  <suppress id="noCheckstyleInInputs"
+          files="[\\/]meta[\\/]javadocmetadatascraper[\\/]InputJavadocMetadataScraperBeforeExecutionExclusionFileFilter.java"/>
+  <suppress id="noCheckstyleInInputs"
+          files="[\\/]meta[\\/]javadocmetadatascraper[\\/]InputJavadocMetadataScraperNoCodeInFileCheck.java"/>
+  <suppress id="noCheckstyleInInputs"
+          files="[\\/]meta[\\/]javadocmetadatascraper[\\/]InputJavadocMetadataScraperRightCurlyCheck.java"/>
+  <suppress id="noCheckstyleInInputs"
+          files="[\\/]meta[\\/]javadocmetadatascraper[\\/]InputJavadocMetadataScraperSummaryJavadocCheck.java"/>
+  <suppress id="noCheckstyleInInputs"
+          files="[\\/]meta[\\/]javadocmetadatascraper[\\/]InputJavadocMetadataScraperSuppressWarningsFilter.java"/>
+  <suppress id="noCheckstyleInInputs"
+          files="[\\/]meta[\\/]javadocmetadatascraper[\\/]InputJavadocMetadataScraperWriteTagCheck.java"/>
+
+  <!-- needed for coverage -->
+  <suppress id="StyleValidationCommentInInputs"
+            files="coding[\\/]packagedeclaration[\\/]InputPackageDeclarationEmptyFile.java"/>
+
+  <suppress id="StyleValidationCommentInInputs"
+            files="nocodeinfile[\\/]InputNoCodeInFile1.java"/>
+
+  <suppress id="StyleValidationCommentInInputs"
+            files="nocodeinfile[\\/]InputNoCodeInFile2.java"/>
+
+  <suppress id="StyleValidationCommentInInputs"
+            files="regexp[\\/]regexponfilename[\\/]InputRegexpOnFilenameSemantic.java"/>
+
+</suppressions>

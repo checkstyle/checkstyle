@@ -1,7 +1,23 @@
-////////////////////////////////////////////////////////////////////////////////
-// Test case file for checkstyle.
-// Created: 2001
-////////////////////////////////////////////////////////////////////////////////
+/*
+WhitespaceAround
+allowEmptyConstructors = (default)false
+allowEmptyMethods = (default)false
+allowEmptyTypes = true
+allowEmptyLoops = (default)false
+allowEmptyLambdas = (default)false
+allowEmptyCatches = (default)false
+ignoreEnhancedForColon = (default)true
+tokens = (default)ASSIGN, BAND, BAND_ASSIGN, BOR, BOR_ASSIGN, BSR, BSR_ASSIGN, BXOR, \
+         BXOR_ASSIGN, COLON, DIV, DIV_ASSIGN, DO_WHILE, EQUAL, GE, GT, LAMBDA, LAND, \
+         LCURLY, LE, LITERAL_CATCH, LITERAL_DO, LITERAL_ELSE, LITERAL_FINALLY, \
+         LITERAL_FOR, LITERAL_IF, LITERAL_RETURN, LITERAL_SWITCH, LITERAL_SYNCHRONIZED, \
+         LITERAL_TRY, LITERAL_WHILE, LOR, LT, MINUS, MINUS_ASSIGN, MOD, MOD_ASSIGN, \
+         NOT_EQUAL, PLUS, PLUS_ASSIGN, QUESTION, RCURLY, SL, SLIST, SL_ASSIGN, SR, \
+         SR_ASSIGN, STAR, STAR_ASSIGN, LITERAL_ASSERT, TYPE_EXTENSION_AND
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.whitespace.whitespacearound;
 
 import java.lang.annotation.Documented;
@@ -14,7 +30,7 @@ import java.util.function.Supplier;
 
 
 
-class myFoo
+class InputWhitespaceAroundEmptyTypesAndCycles
 {
 	private static final String ALLOWS_NULL_KEYS = "";
 	private static final String ALLOWS_NULL_VALUES = "";
@@ -26,9 +42,9 @@ class myFoo
 		String[][] x = { {"foo"} };
 		int len = 0;
 		String sequence = null;
-		for (int first = 0; first < len && matches(sequence.charAt(first)); first++) {}
-		while (i == 1) {}
-		do {} while (i == 1);
+		for (int first = 0; first < len && matches(sequence.charAt(first)); first++) {} // 2 violations
+		while (i == 1) {} // 2 violations
+		do {} while (i == 1); // 2 violations
 	}
 
 	private boolean matches(char charAt)
@@ -62,10 +78,10 @@ class WithEmptyAnonymous
 	@interface Require {
 
 		String[] value();
-		
+
 	}
 }
 
 class MyClass {
-	
+
 }

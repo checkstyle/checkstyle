@@ -19,8 +19,8 @@ h4 {
   margin-right : 5%;
   padding-left: 2%;
   padding-right: 2%;
-  background-color: Silver;
-  color:Black;
+  background-color: #c0c0c0;
+  color: #000000;
   border: ridge;
 }
 
@@ -34,7 +34,7 @@ h4 {
 
 #banner {
   border-bottom: 1px solid #fff;
-  background: url("../images/header-background.png") repeat scroll 0 0 transparent;
+  background: url("../images/header-background.png") repeat-x scroll 0 0 transparent;
 }
 
 .dl-link {
@@ -42,23 +42,114 @@ h4 {
   float: right;
 }
 
-h2:hover .anchor {
-  display: inline-block;
+h2:hover .anchor, h3:hover .anchor {
+  visibility: visible;
 }
 
 .anchor {
-  display: none;
+  visibility: hidden;
+  display: inline-block;
 }
 
 .source {
-  width: 90%;
-  overflow-x: auto;
   white-space: nowrap;
+  padding: 0;
+  overflow-x: auto;
 }
 
-.wrap-content {
-  white-space: pre-wrap !important;
-  white-space: -moz-pre-wrap !important;
-  white-space: -o-pre-wrap !important;
+.source > pre {
+  margin: 0;
+  padding: 12px;
+  width: max-content;
+}
+
+.wrap-content pre {
+  white-space: pre-line !important;
   word-wrap: break-word !important;
+}
+
+section {
+  position: relative;
+}
+
+p, td, table.bodyTable td, th, table.bodyTable th, li, pre, #breadcrumbs span, #navcolumn h5,
+  #navcolumn li, #footer, div.tip b, .releaseDate, .xright {
+  font-size: 15px;
+}
+
+#navcolumn li.expanded, #navcolumn li.collapsed {
+  background-size: 7px;
+}
+
+#navcolumn {
+  padding: 8px 4px 0 12px;
+}
+
+#bodyColumn h2, h2 {
+  font-size: 24px;
+}
+
+#navcolumn li {
+  margin: 3px 0;
+}
+
+#bodyColumn {
+  margin-left: 297px;
+}
+
+#leftColumn {
+  width: 270px;
+}
+
+
+.releaseDate {
+  position: absolute;
+  top: 2px;
+  right: 6px;
+}
+
+.wrapper {
+  overflow-y: auto;
+}
+
+span.wrapper.block {
+  display: block;
+}
+
+span.wrapper.inline {
+  display: inline;
+}
+
+a[title="toTop"] {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  border: 1px solid Rgb(0, 0, 0);
+  background-color: Rgb(221, 221, 221);
+  color: Rgb(153, 0, 0);
+  padding: 5px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: 900;
+  z-index: 10;
+}
+
+@media screen and (max-width: 823px) {
+  #leftColumn {
+    float: none;
+    width: auto;
+    margin: 1.5em;
+  }
+
+  #bodyColumn {
+    margin: 1.5em;
+  }
+
+  #bannerRight {
+    display: none;
+  }
+
+  p, h1, h2, h3, h4, h5, h6, li {
+    word-break: break-word;
+  }
 }

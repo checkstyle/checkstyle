@@ -1,5 +1,14 @@
+/*
+RequireThis
+checkFields = (default)true
+checkMethods = (default)true
+validateOnlyOverlapping = false
+
+
+*/
+
 // someexamples of 1.5 extensions
-package com.puppycrawl.tools.checkstyle.checks.coding.requirethis;
+package com.puppycrawl.tools.checkstyle.checks.coding.requirethis; // ok
 
 @interface MyAnnotation1 {
     String name();
@@ -32,5 +41,33 @@ interface TestRequireThisEnum
         THURSDAY,
         FRIDAY,
         SATURDAY
+    }
+}
+class NestedClass {
+    protected RuntimeException exception = new RuntimeException() {};
+
+    public void anonEx2() {
+        RuntimeException exception = new RuntimeException();
+        try {
+            //some code
+            String re = "lol";
+        } catch (Exception e) {
+            throw exception;
+        }
+    }
+}
+class Basic {
+    abstract class Awaiter extends Thread {
+        private volatile Throwable result = null;
+        protected void result(Throwable result) { this.result = result; }
+    }
+
+    private Awaiter awaiter() {
+        return new Awaiter() {
+            public void run() {
+                try {}
+                catch (Throwable result) { result(result); }
+            }
+        };
     }
 }

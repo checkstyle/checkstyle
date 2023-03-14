@@ -1,14 +1,18 @@
-////////////////////////////////////////////////////////////////////////////////
-// Test case file for checkstyle.
-// Created: 2001
-////////////////////////////////////////////////////////////////////////////////
-package com . puppycrawl
-    .tools.
+/*
+NoWhitespaceBefore
+allowLineBreaks = (default)false
+tokens = DOT
+
+
+*/
+
+package com . puppycrawl // violation
+    .tools. // violation
     checkstyle.checks.whitespace.nowhitespacebefore;
 
 /**
  * Class for testing whitespace issues.
- * error missing author tag
+ * violation missing author tag
  **/
 class InputNoWhitespaceBeforeDot
 {
@@ -85,7 +89,7 @@ class InputNoWhitespaceBeforeDot
     private void testCasts()
     {
         Object o = (Object) new Object(); // ok
-        o = (Object)o; // error
+        o = (Object)o;
         o = ( Object ) o; // ok
         o = (Object)
             o; // ok
@@ -126,14 +130,14 @@ class InputNoWhitespaceBeforeDot
     }
 
     /** @return dot test **/
-    private java .lang.  String dotTest()
+    private java .lang.  String dotTest() // violation
     {
         Object o = new java.lang.Object();
         o.
             toString();
         o
-            .toString();
-        o . toString();
+            .toString(); // violation
+        o . toString(); // violation
         return o.toString();
     }
 
@@ -181,14 +185,14 @@ class InputNoWhitespaceBeforeDot
     }
 
 
-    /** bug 806243 (NoWhitespaceBeforeCheck error for anonymous inner class) */
+    /** bug 806243 (NoWhitespaceBeforeCheck violation for anonymous inner class) */
     private int i ;
     //           ^ whitespace
     private int i1, i2, i3 ;
     //                    ^ whitespace
     private int i4, i5, i6;
 
-    /** bug 806243 (NoWhitespaceBeforeCheck error for anonymous inner class) */
+    /** bug 806243 (NoWhitespaceBeforeCheck violation for anonymous inner class) */
     void bug806243()
     {
         Object o = new InputNoWhitespaceBeforeDot() {
@@ -202,7 +206,7 @@ class InputNoWhitespaceBeforeDot
 }
 
 /**
- * Bug 806242 (NoWhitespaceBeforeCheck error with an interface).
+ * Bug 806242 (NoWhitespaceBeforeCheck violation with an interface).
  * @author o_sukhodolsky
  * @version 1.0
  */
@@ -213,7 +217,7 @@ interface IFoo_NoWhitespaceBeforeDot
 }
 
 /**
- * Avoid Whitespace errors in for loop.
+ * Avoid Whitespace violations in for loop.
  * @author lkuehne
  * @version 1.0
  */
@@ -223,15 +227,15 @@ class SpecialCasesInForLoop_NoWhitespaceBeforeDot
     {
         // avoid conflict between WhiteSpaceAfter ';' and ParenPad(nospace)
         for (int i = 0; i++ < 5;) {
-	    //                  ^ no whitespace
-	}
+        //                  ^ no whitespace
+    }
 
         // bug 895072
-	// avoid confilct between ParenPad(space) and NoWhiteSpace before ';'
-	int i = 0;
-	for ( ; i < 5; i++ ) {
-	//   ^ whitespace
-	}
+    // avoid conflict between ParenPad(space) and NoWhiteSpace before ';'
+    int i = 0;
+    for ( ; i < 5; i++ ) {
+    //   ^ whitespace
+    }
         for (int anInt : getSomeInts()) {
             //Should be ignored
         }
@@ -261,7 +265,7 @@ class SpecialCasesInForLoop_NoWhitespaceBeforeDot
                 }
             }};
         runs[0]
-.
+. // violation
  run()
 ;
     }

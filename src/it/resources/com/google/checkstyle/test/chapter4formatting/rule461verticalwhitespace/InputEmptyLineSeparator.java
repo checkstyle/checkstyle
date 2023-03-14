@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2014  Oliver Burn
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+//
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 package com.google.checkstyle.test.chapter4formatting.rule461verticalwhitespace; //warn
 import java.io.Serializable; //warn
 import java.util.ArrayList;
@@ -24,41 +24,41 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Callable;
 import java.util.Collections;
-import com.puppycrawl.tools.checkstyle.Checker;
-import com.puppycrawl.tools.checkstyle.ConfigurationLoader;
+import java.util.Calendar;
+import java.util.Set;
 
 import javax.swing.AbstractAction;
 
 import org.apache.commons.beanutils.locale.converters.ByteLocaleConverter;
 class InputEmptyLineSeparator //warn
 {
-	public static final double FOO_PI = 3.1415;
-	private boolean flag = true; 
-	static {  //warn
+    public static final double FOO_PI = 3.1415;
+    private boolean flag = true;
+    static {  //warn
         //empty static initializer
-	}
+    }
 
-	{
-		//empty instance initializer
-	}
+    {
+        //empty instance initializer
+    }
 
-	/**
-	 * 
-	 * 
-	 * 
-	 */
-	private InputEmptyLineSeparator()
-	{
-		//empty
-	}
+    /**
+     *
+     *
+     *
+     */
+    private InputEmptyLineSeparator()
+    {
+        //empty
+    }
 
     public int compareTo(InputEmptyLineSeparator aObject)
     {
-    	int number = 0;
+        int number = 0;
         return 0;
     }
     /**
-     * 
+     *
      * @param task
      * @param result
      * @return
@@ -76,20 +76,20 @@ class InputEmptyLineSeparator //warn
     }
 
     class InnerClass {
-    	
-    	public static final double FOO_PI_INNER = 3.1415;
-    	private boolean flagInner = true; 
-    	{ //warn
-    		//empty instance initializer
-    	}
 
-    	private InnerClass()
-    	{
-    		//empty
-    	}
+        public static final double FOO_PI_INNER = 3.1415;
+        private boolean flagInner = true;
+        { //warn
+            //empty instance initializer
+        }
+
+        private InnerClass()
+        {
+            //empty
+        }
 
     }
-    
+
     class InnerClass2 { //ok
         private InnerClass2() //ok
         {
@@ -109,7 +109,7 @@ class InputEmptyLineSeparator //warn
 
 class Clazz { //ok
     private Clazz() {} //ok
-} 
+}
 class Class2{ //warn
     public int compareTo(InputEmptyLineSeparator aObject) //ok
     {

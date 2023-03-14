@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,25 +15,24 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.ant;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Properties;
-import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
-import org.apache.tools.ant.AntClassLoader;
 import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.DirectoryScanner;
 import org.apache.tools.ant.Project;
@@ -42,17 +41,18 @@ import org.apache.tools.ant.taskdefs.LogOutputStream;
 import org.apache.tools.ant.types.EnumeratedAttribute;
 import org.apache.tools.ant.types.FileSet;
 import org.apache.tools.ant.types.Path;
-import org.apache.tools.ant.types.Reference;
 
-import com.google.common.io.Closeables;
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.ConfigurationLoader;
 import com.puppycrawl.tools.checkstyle.DefaultLogger;
 import com.puppycrawl.tools.checkstyle.ModuleFactory;
 import com.puppycrawl.tools.checkstyle.PackageObjectFactory;
 import com.puppycrawl.tools.checkstyle.PropertiesExpander;
+import com.puppycrawl.tools.checkstyle.SarifLogger;
+import com.puppycrawl.tools.checkstyle.ThreadModeSettings;
 import com.puppycrawl.tools.checkstyle.XMLLogger;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
+import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.RootModule;
@@ -60,15 +60,17 @@ import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevelCounter;
 
 /**
- * An implementation of a ANT task for calling checkstyle. See the documentation
+ * An implementation of an ANT task for calling checkstyle. See the documentation
  * of the task for usage.
- * @author Oliver Burn
  */
 public class CheckstyleAntTask extends Task {
+
     /** Poor man's enum for an xml formatter. */
     private static final String E_XML = "xml";
-    /** Poor man's enum for an plain formatter. */
+    /** Poor man's enum for a plain formatter. */
     private static final String E_PLAIN = "plain";
+    /** Poor man's enum for a sarif formatter. */
+    private static final String E_SARIF = "sarif";
 
     /** Suffix for time string. */
     private static final String TIME_SUFFIX = " ms.";
@@ -84,9 +86,6 @@ public class CheckstyleAntTask extends Task {
 
     /** Contains the Properties to override. */
     private final List<Property> overrideProps = new ArrayList<>();
-
-    /** Class path to locate class files. */
-    private Path classpath;
 
     /** Name of file to check. */
     private String fileName;
@@ -123,8 +122,9 @@ public class CheckstyleAntTask extends Task {
     /**
      * Tells this task to write failure message to the named property when there
      * is a violation.
+     *
      * @param propertyName the name of the property to set
-     *                      in the event of an failure.
+     *                      in the event of a failure.
      */
     public void setFailureProperty(String propertyName) {
         failureProperty = propertyName;
@@ -132,6 +132,7 @@ public class CheckstyleAntTask extends Task {
 
     /**
      * Sets flag - whether to fail if a violation is found.
+     *
      * @param fail whether to fail if a violation is found
      */
     public void setFailOnViolation(boolean fail) {
@@ -140,6 +141,7 @@ public class CheckstyleAntTask extends Task {
 
     /**
      * Sets the maximum number of errors allowed. Default is 0.
+     *
      * @param maxErrors the maximum number of errors allowed.
      */
     public void setMaxErrors(int maxErrors) {
@@ -149,6 +151,7 @@ public class CheckstyleAntTask extends Task {
     /**
      * Sets the maximum number of warnings allowed. Default is
      * {@link Integer#MAX_VALUE}.
+     *
      * @param maxWarnings the maximum number of warnings allowed.
      */
     public void setMaxWarnings(int maxWarnings) {
@@ -157,6 +160,7 @@ public class CheckstyleAntTask extends Task {
 
     /**
      * Adds a path.
+     *
      * @param path the path to add.
      */
     public void addPath(Path path) {
@@ -165,6 +169,7 @@ public class CheckstyleAntTask extends Task {
 
     /**
      * Adds set of files (nested fileset attribute).
+     *
      * @param fileSet the file set to add
      */
     public void addFileset(FileSet fileSet) {
@@ -173,6 +178,7 @@ public class CheckstyleAntTask extends Task {
 
     /**
      * Add a formatter.
+     *
      * @param formatter the formatter to add for logging.
      */
     public void addFormatter(Formatter formatter) {
@@ -181,6 +187,7 @@ public class CheckstyleAntTask extends Task {
 
     /**
      * Add an override property.
+     *
      * @param property the property to add
      */
     public void addProperty(Property property) {
@@ -188,39 +195,22 @@ public class CheckstyleAntTask extends Task {
     }
 
     /**
-     * Set the class path.
-     * @param classpath the path to locate classes
-     */
-    public void setClasspath(Path classpath) {
-        if (this.classpath == null) {
-            this.classpath = classpath;
-        }
-        else {
-            this.classpath.append(classpath);
-        }
-    }
-
-    /**
-     * Set the class path from a reference defined elsewhere.
-     * @param classpathRef the reference to an instance defining the classpath
-     */
-    public void setClasspathRef(Reference classpathRef) {
-        createClasspath().setRefid(classpathRef);
-    }
-
-    /**
      * Creates classpath.
+     *
      * @return a created path for locating classes
+     * @deprecated left in implementation until #12556 only to allow users to migrate to new gradle
+     *     plugins. This method will be removed in Checkstyle 11.x.x .
+     * @noinspection DeprecatedIsStillUsed
+     * @noinspectionreason DeprecatedIsStillUsed - until #12556
      */
+    @Deprecated(since = "10.7.0")
     public Path createClasspath() {
-        if (classpath == null) {
-            classpath = new Path(getProject());
-        }
-        return classpath.createPath();
+        return new Path(getProject());
     }
 
     /**
      * Sets file to be checked.
+     *
      * @param file the file to be checked
      */
     public void setFile(File file) {
@@ -229,7 +219,9 @@ public class CheckstyleAntTask extends Task {
 
     /**
      * Sets configuration file.
+     *
      * @param configuration the configuration file, URL, or resource to use
+     * @throws BuildException when config was already set
      */
     public void setConfig(String configuration) {
         if (config != null) {
@@ -240,6 +232,7 @@ public class CheckstyleAntTask extends Task {
 
     /**
      * Sets flag - whether to execute ignored modules.
+     *
      * @param omit whether to execute ignored modules
      */
     public void setExecuteIgnoredModules(boolean omit) {
@@ -253,6 +246,7 @@ public class CheckstyleAntTask extends Task {
     /**
      * Sets a properties file for use instead
      * of individually setting them.
+     *
      * @param props the properties File to use
      */
     public void setProperties(File props) {
@@ -268,15 +262,9 @@ public class CheckstyleAntTask extends Task {
         final long startTime = System.currentTimeMillis();
 
         try {
-            // output version info in debug mode
-            final ResourceBundle compilationProperties = ResourceBundle
-                    .getBundle("checkstylecompilation", Locale.ROOT);
-            final String version = compilationProperties
-                    .getString("checkstyle.compile.version");
-            final String compileTimestamp = compilationProperties
-                    .getString("checkstyle.compile.timestamp");
+            final String version = CheckstyleAntTask.class.getPackage().getImplementationVersion();
+
             log("checkstyle version " + version, Project.MSG_VERBOSE);
-            log("compiled on " + compileTimestamp, Project.MSG_VERBOSE);
 
             // Check for no arguments
             if (fileName == null
@@ -300,6 +288,7 @@ public class CheckstyleAntTask extends Task {
 
     /**
      * Helper implementation to perform execution.
+     *
      * @param checkstyleVersion Checkstyle compile version.
      */
     private void realExecute(String checkstyleVersion) {
@@ -320,26 +309,20 @@ public class CheckstyleAntTask extends Task {
             processFiles(rootModule, warningCounter, checkstyleVersion);
         }
         finally {
-            destroyRootModule(rootModule);
-        }
-    }
-
-    /**
-     * Destroy root module. This method exists only due to bug in cobertura library
-     * https://github.com/cobertura/cobertura/issues/170
-     * @param rootModule Root module that was used to process files
-     */
-    private static void destroyRootModule(RootModule rootModule) {
-        if (rootModule != null) {
-            rootModule.destroy();
+            if (rootModule != null) {
+                rootModule.destroy();
+            }
         }
     }
 
     /**
      * Scans and processes files by means given root module.
+     *
      * @param rootModule Root module to process files
      * @param warningCounter Root Module's counter of warnings
      * @param checkstyleVersion Checkstyle compile version
+     * @throws BuildException if the files could not be processed,
+     *     or if the build failed due to violations.
      */
     private void processFiles(RootModule rootModule, final SeverityLevelCounter warningCounter,
             final String checkstyleVersion) {
@@ -349,7 +332,9 @@ public class CheckstyleAntTask extends Task {
         log("To locate the files took " + (endTime - startTime) + TIME_SUFFIX,
             Project.MSG_VERBOSE);
 
-        log("Running Checkstyle " + checkstyleVersion + " on " + files.size()
+        log("Running Checkstyle "
+                + Objects.toString(checkstyleVersion, "")
+                + " on " + files.size()
                 + " files", Project.MSG_INFO);
         log("Using configuration " + config, Project.MSG_VERBOSE);
 
@@ -385,17 +370,26 @@ public class CheckstyleAntTask extends Task {
 
     /**
      * Creates new instance of the root module.
+     *
      * @return new instance of the root module
+     * @throws BuildException if the root module could not be created.
      */
     private RootModule createRootModule() {
         final RootModule rootModule;
         try {
             final Properties props = createOverridingProperties();
-            final Configuration configuration =
-                ConfigurationLoader.loadConfiguration(
-                    config,
-                    new PropertiesExpander(props),
-                    !executeIgnoredModules);
+            final ThreadModeSettings threadModeSettings =
+                    ThreadModeSettings.SINGLE_THREAD_MODE_INSTANCE;
+            final ConfigurationLoader.IgnoredModulesOptions ignoredModulesOptions;
+            if (executeIgnoredModules) {
+                ignoredModulesOptions = ConfigurationLoader.IgnoredModulesOptions.EXECUTE;
+            }
+            else {
+                ignoredModulesOptions = ConfigurationLoader.IgnoredModulesOptions.OMIT;
+            }
+
+            final Configuration configuration = ConfigurationLoader.loadConfiguration(config,
+                    new PropertiesExpander(props), ignoredModulesOptions, threadModeSettings);
 
             final ClassLoader moduleClassLoader =
                 Checker.class.getClassLoader();
@@ -405,19 +399,11 @@ public class CheckstyleAntTask extends Task {
 
             rootModule = (RootModule) factory.createModule(configuration.getName());
             rootModule.setModuleClassLoader(moduleClassLoader);
-
-            if (rootModule instanceof Checker) {
-                final ClassLoader loader = new AntClassLoader(getProject(),
-                        classpath);
-
-                ((Checker) rootModule).setClassLoader(loader);
-            }
-
             rootModule.configure(configuration);
         }
         catch (final CheckstyleException ex) {
             throw new BuildException(String.format(Locale.ROOT, "Unable to create Root Module: "
-                    + "config {%s}, classpath {%s}.", config, classpath), ex);
+                    + "config {%s}.", config), ex);
         }
         return rootModule;
     }
@@ -425,25 +411,21 @@ public class CheckstyleAntTask extends Task {
     /**
      * Create the Properties object based on the arguments specified
      * to the ANT task.
-     * @return the properties for property expansion expansion
-     * @throws BuildException if an error occurs
+     *
+     * @return the properties for property expansion
+     * @throws BuildException if the properties file could not be loaded.
      */
     private Properties createOverridingProperties() {
         final Properties returnValue = new Properties();
 
         // Load the properties file if specified
         if (properties != null) {
-            FileInputStream inStream = null;
-            try {
-                inStream = new FileInputStream(properties);
+            try (InputStream inStream = Files.newInputStream(properties.toPath())) {
                 returnValue.load(inStream);
             }
             catch (final IOException ex) {
                 throw new BuildException("Error loading Properties file '"
                         + properties + "'", ex, getLocation());
-            }
-            finally {
-                Closeables.closeQuietly(inStream);
             }
         }
 
@@ -464,7 +446,9 @@ public class CheckstyleAntTask extends Task {
 
     /**
      * Return the list of listeners set in this task.
+     *
      * @return the list of listeners.
+     * @throws BuildException if the listeners could not be created.
      */
     private AuditListener[] getListeners() {
         final int formatterCount = Math.max(1, formatters.size());
@@ -476,7 +460,8 @@ public class CheckstyleAntTask extends Task {
             if (formatters.isEmpty()) {
                 final OutputStream debug = new LogOutputStream(this, Project.MSG_DEBUG);
                 final OutputStream err = new LogOutputStream(this, Project.MSG_ERR);
-                listeners[0] = new DefaultLogger(debug, true, err, true);
+                listeners[0] = new DefaultLogger(debug, AutomaticBean.OutputStreamOptions.CLOSE,
+                        err, AutomaticBean.OutputStreamOptions.CLOSE);
             }
             else {
                 for (int i = 0; i < formatterCount; i++) {
@@ -494,12 +479,13 @@ public class CheckstyleAntTask extends Task {
 
     /**
      * Returns the list of files (full path name) to process.
+     *
      * @return the list of files included via the fileName, filesets and paths.
      */
-    protected List<File> getFilesToCheck() {
+    private List<File> getFilesToCheck() {
         final List<File> allFiles = new ArrayList<>();
         if (fileName != null) {
-            // oops we've got an additional one to process, don't
+            // oops, we've got an additional one to process, don't
             // forget it. No sweat, it's fully resolved via the setter.
             log("Adding standalone file for audit", Project.MSG_VERBOSE);
             allFiles.add(new File(fileName));
@@ -516,6 +502,7 @@ public class CheckstyleAntTask extends Task {
 
     /**
      * Retrieves all files from the defined paths.
+     *
      * @return a list of files defined via paths.
      */
     private List<File> scanPaths() {
@@ -568,6 +555,7 @@ public class CheckstyleAntTask extends Task {
 
     /**
      * Returns the list of files (full path name) to process.
+     *
      * @return the list of files included via the filesets.
      */
     protected List<File> scanFileSets() {
@@ -576,8 +564,6 @@ public class CheckstyleAntTask extends Task {
         for (int i = 0; i < fileSets.size(); i++) {
             final FileSet fileSet = fileSets.get(i);
             final DirectoryScanner scanner = fileSet.getDirectoryScanner(getProject());
-            scanner.scan();
-
             final List<File> scannedFiles = retrieveAllScannedFiles(scanner, i);
             allFiles.addAll(scannedFiles);
         }
@@ -605,33 +591,35 @@ public class CheckstyleAntTask extends Task {
     }
 
     /**
-     * Poor mans enumeration for the formatter types.
-     * @author Oliver Burn
+     * Poor man enumeration for the formatter types.
      */
     public static class FormatterType extends EnumeratedAttribute {
+
         /** My possible values. */
-        private static final String[] VALUES = {E_XML, E_PLAIN};
+        private static final String[] VALUES = {E_XML, E_PLAIN, E_SARIF};
 
         @Override
         public String[] getValues() {
             return VALUES.clone();
         }
+
     }
 
     /**
      * Details about a formatter to be used.
-     * @author Oliver Burn
      */
     public static class Formatter {
+
         /** The formatter type. */
         private FormatterType type;
         /** The file to output to. */
         private File toFile;
-        /** Whether or not the write to the named file. */
+        /** Whether or not to write to the named file. */
         private boolean useFile = true;
 
         /**
          * Set the type of the formatter.
+         *
          * @param type the type
          */
         public void setType(FormatterType type) {
@@ -640,6 +628,7 @@ public class CheckstyleAntTask extends Task {
 
         /**
          * Set the file to output to.
+         *
          * @param destination destination the file to output to
          */
         public void setTofile(File destination) {
@@ -648,7 +637,8 @@ public class CheckstyleAntTask extends Task {
 
         /**
          * Sets whether or not we write to a file if it is provided.
-         * @param use whether not not to use provided file.
+         *
+         * @param use whether not to use provided file.
          */
         public void setUseFile(boolean use) {
             useFile = use;
@@ -656,6 +646,7 @@ public class CheckstyleAntTask extends Task {
 
         /**
          * Creates a listener for the formatter.
+         *
          * @param task the task running
          * @return a listener
          * @throws IOException if an error occurs
@@ -666,6 +657,10 @@ public class CheckstyleAntTask extends Task {
                     && E_XML.equals(type.getValue())) {
                 listener = createXmlLogger(task);
             }
+            else if (type != null
+                    && E_SARIF.equals(type.getValue())) {
+                listener = createSarifLogger(task);
+            }
             else {
                 listener = createDefaultLogger(task);
             }
@@ -673,7 +668,28 @@ public class CheckstyleAntTask extends Task {
         }
 
         /**
+         * Creates Sarif logger.
+         *
+         * @param task the task to possibly log to
+         * @return an SarifLogger instance
+         * @throws IOException if an error occurs
+         */
+        private AuditListener createSarifLogger(Task task) throws IOException {
+            final AuditListener sarifLogger;
+            if (toFile == null || !useFile) {
+                sarifLogger = new SarifLogger(new LogOutputStream(task, Project.MSG_INFO),
+                        AutomaticBean.OutputStreamOptions.CLOSE);
+            }
+            else {
+                sarifLogger = new SarifLogger(Files.newOutputStream(toFile.toPath()),
+                        AutomaticBean.OutputStreamOptions.CLOSE);
+            }
+            return sarifLogger;
+        }
+
+        /**
          * Creates default logger.
+         *
          * @param task the task to possibly log to
          * @return a DefaultLogger instance
          * @throws IOException if an error occurs
@@ -684,17 +700,23 @@ public class CheckstyleAntTask extends Task {
             if (toFile == null || !useFile) {
                 defaultLogger = new DefaultLogger(
                     new LogOutputStream(task, Project.MSG_DEBUG),
-                    true, new LogOutputStream(task, Project.MSG_ERR), true);
+                        AutomaticBean.OutputStreamOptions.CLOSE,
+                        new LogOutputStream(task, Project.MSG_ERR),
+                        AutomaticBean.OutputStreamOptions.CLOSE
+                );
             }
             else {
-                final FileOutputStream infoStream = new FileOutputStream(toFile);
-                defaultLogger = new DefaultLogger(infoStream, true, infoStream, false);
+                final OutputStream infoStream = Files.newOutputStream(toFile.toPath());
+                defaultLogger =
+                        new DefaultLogger(infoStream, AutomaticBean.OutputStreamOptions.CLOSE,
+                                infoStream, AutomaticBean.OutputStreamOptions.NONE);
             }
             return defaultLogger;
         }
 
         /**
          * Creates XML logger.
+         *
          * @param task the task to possibly log to
          * @return an XMLLogger instance
          * @throws IOException if an error occurs
@@ -702,19 +724,23 @@ public class CheckstyleAntTask extends Task {
         private AuditListener createXmlLogger(Task task) throws IOException {
             final AuditListener xmlLogger;
             if (toFile == null || !useFile) {
-                xmlLogger = new XMLLogger(new LogOutputStream(task, Project.MSG_INFO), true);
+                xmlLogger = new XMLLogger(new LogOutputStream(task, Project.MSG_INFO),
+                        AutomaticBean.OutputStreamOptions.CLOSE);
             }
             else {
-                xmlLogger = new XMLLogger(new FileOutputStream(toFile), true);
+                xmlLogger = new XMLLogger(Files.newOutputStream(toFile.toPath()),
+                        AutomaticBean.OutputStreamOptions.CLOSE);
             }
             return xmlLogger;
         }
+
     }
 
     /**
      * Represents a property that consists of a key and value.
      */
     public static class Property {
+
         /** The property key. */
         private String key;
         /** The property value. */
@@ -722,6 +748,7 @@ public class CheckstyleAntTask extends Task {
 
         /**
          * Gets key.
+         *
          * @return the property key
          */
         public String getKey() {
@@ -730,6 +757,7 @@ public class CheckstyleAntTask extends Task {
 
         /**
          * Sets key.
+         *
          * @param key sets the property key
          */
         public void setKey(String key) {
@@ -738,6 +766,7 @@ public class CheckstyleAntTask extends Task {
 
         /**
          * Gets value.
+         *
          * @return the property value
          */
         public String getValue() {
@@ -746,6 +775,7 @@ public class CheckstyleAntTask extends Task {
 
         /**
          * Sets value.
+         *
          * @param value set the property value
          */
         public void setValue(String value) {
@@ -754,32 +784,13 @@ public class CheckstyleAntTask extends Task {
 
         /**
          * Sets the property value from a File.
+         *
          * @param file set the property value from a File
          */
         public void setFile(File file) {
             value = file.getAbsolutePath();
         }
+
     }
 
-    /** Represents a custom listener. */
-    public static class Listener {
-        /** Class name of the listener class. */
-        private String className;
-
-        /**
-         * Gets class name.
-         * @return the class name
-         */
-        public String getClassname() {
-            return className;
-        }
-
-        /**
-         * Sets class name.
-         * @param name set the class name
-         */
-        public void setClassname(String name) {
-            className = name;
-        }
-    }
 }

@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,75 +15,65 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.filters;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static com.google.common.truth.Truth.assertWithMessage;
+import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
-import java.net.URI;
 import java.net.URL;
 
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.TemporaryFolder;
-import org.junit.runner.RunWith;
-import org.mockito.BDDMockito;
-import org.mockito.Mockito;
-import org.powermock.api.mockito.PowerMockito;
-import org.powermock.core.classloader.annotations.PrepareForTest;
-import org.powermock.modules.junit4.PowerMockRunner;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 
-import com.google.common.io.Closeables;
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.BriefUtLogger;
-import com.puppycrawl.tools.checkstyle.Checker;
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
-import nl.jqno.equalsverifier.EqualsVerifier;
-import nl.jqno.equalsverifier.Warning;
+import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
+import com.puppycrawl.tools.checkstyle.api.Violation;
 
-@RunWith(PowerMockRunner.class)
-@PrepareForTest({SuppressionFilter.class, CommonUtils.class})
-public class SuppressionFilterTest extends BaseCheckTestSupport {
+public class SuppressionFilterTest extends AbstractModuleTestSupport {
 
-    @Rule
-    public final TemporaryFolder temporaryFolder = new TemporaryFolder();
+    @TempDir
+    public File temporaryFolder;
 
     @Override
-    protected String getPath(String filename) throws IOException {
-        return super.getPath("filters" + File.separator + filename);
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/filters/suppressionfilter";
     }
 
     @Test
-    public void testEqualsAndHashCode() {
-        EqualsVerifier
-                .forClass(SuppressionFilter.class)
-                .usingGetClass()
-                .withIgnoredFields("file", "optional", "configuration")
-                .suppress(Warning.NONFINAL_FIELDS)
-                .verify();
-    }
-
-    @Test
-    public void testAccept() throws CheckstyleException {
-        final String fileName = "src/test/resources/com/puppycrawl/tools/checkstyle/filters/"
-                          + "suppressions_none.xml";
+    public void testAccept() throws Exception {
+        final String fileName = getPath("InputSuppressionFilterNone.xml");
         final boolean optional = false;
         final SuppressionFilter filter = createSuppressionFilter(fileName, optional);
 
         final AuditEvent ev = new AuditEvent(this, "ATest.java", null);
 
-        assertTrue("Audit event should be excepted when there are no suppressions",
-            filter.accept(ev));
+        assertWithMessage("Audit event should be excepted when there are no suppressions")
+                .that(filter.accept(ev))
+                .isTrue();
+    }
+
+    @Test
+    public void testAcceptFalse() throws Exception {
+        final String fileName = getPath("InputSuppressionFilterSuppress.xml");
+        final boolean optional = false;
+        final SuppressionFilter filter = createSuppressionFilter(fileName, optional);
+
+        final Violation message = new Violation(1, 1, null, "msg", null,
+                SeverityLevel.ERROR, null, getClass(), null);
+        final AuditEvent ev = new AuditEvent(this, "ATest.java", message);
+
+        assertWithMessage("Audit event should be rejected when there is a matching suppression")
+                .that(filter.accept(ev))
+                .isFalse();
     }
 
     @Test
@@ -93,132 +83,102 @@ public class SuppressionFilterTest extends BaseCheckTestSupport {
         final SuppressionFilter filter = createSuppressionFilter(fileName, optional);
 
         final AuditEvent ev = new AuditEvent(this, "AnyJava.java", null);
-        assertTrue("Audit event on null file should be excepted, but was not", filter.accept(ev));
+        assertWithMessage("Audit event on null file should be excepted, but was not")
+                .that(filter.accept(ev))
+                .isTrue();
     }
 
     @Test
-    public void testNonExistingSuppressionFileWithFalseOptional() {
-        final String fileName = "src/test/resources/com/puppycrawl/tools/checkstyle/filters/"
-                + "non_existing_suppression_file.xml";
+    public void testNonExistentSuppressionFileWithFalseOptional() {
+        final String fileName = "non_existent_suppression_file.xml";
         try {
             final boolean optional = false;
             createSuppressionFilter(fileName, optional);
-            fail("Exception is expected");
+            assertWithMessage("Exception is expected").fail();
         }
         catch (CheckstyleException ex) {
-            assertEquals("Invalid error message",
-                "Unable to find: " + fileName, ex.getMessage());
+            assertWithMessage("Invalid error message")
+                .that(ex.getMessage())
+                .isEqualTo("Unable to find: " + fileName);
         }
     }
 
     @Test
-    public void testExistingInvalidSuppressionFileWithTrueOptional() {
-        final String fileName = "src/test/resources/com/puppycrawl/tools/checkstyle/filters/"
-                + "suppressions_invalid_file.xml";
+    public void testExistingInvalidSuppressionFileWithTrueOptional() throws IOException {
+        final String fileName = getPath("InputSuppressionFilterInvalidFile.xml");
         try {
             final boolean optional = true;
             createSuppressionFilter(fileName, optional);
-            fail("Exception is expected");
+            assertWithMessage("Exception is expected").fail();
         }
         catch (CheckstyleException ex) {
-            assertEquals("Invalid error message",
-                "Unable to parse " + fileName + " - invalid files or checks format",
-                ex.getMessage());
+            assertWithMessage("Invalid error message")
+                .that(ex.getMessage())
+                .isEqualTo("Unable to parse " + fileName
+                        + " - invalid files or checks or message format");
         }
     }
 
     @Test
     public void testExistingSuppressionFileWithTrueOptional() throws Exception {
-        final String fileName = "src/test/resources/com/puppycrawl/tools/checkstyle/filters/"
-                + "suppressions_none.xml";
+        final String fileName = getPath("InputSuppressionFilterNone.xml");
         final boolean optional = true;
         final SuppressionFilter filter = createSuppressionFilter(fileName, optional);
 
         final AuditEvent ev = new AuditEvent(this, "AnyFile.java", null);
 
-        assertTrue("Suppression file with true optional was not accepted",
-            filter.accept(ev));
+        assertWithMessage("Suppression file with true optional was not accepted")
+                .that(filter.accept(ev))
+                .isTrue();
     }
 
     @Test
-    public void testExistingConfigWithTrueOptionalThrowsIoErrorWhileClosing()
-            throws Exception {
-        final InputStream inputStream = PowerMockito.mock(InputStream.class);
-        Mockito.doThrow(IOException.class).when(inputStream).close();
-
-        final URL url = PowerMockito.mock(URL.class);
-        BDDMockito.given(url.openStream()).willReturn(inputStream);
-
-        final URI uri = PowerMockito.mock(URI.class);
-        BDDMockito.given(uri.toURL()).willReturn(url);
-
-        PowerMockito.mockStatic(CommonUtils.class);
-
-        final String fileName = "src/test/resources/com/puppycrawl/tools/checkstyle/filters/"
-                + "suppressions_none.xml";
-        BDDMockito.given(CommonUtils.getUriByFilename(fileName)).willReturn(uri);
-
-        final boolean optional = true;
-        final SuppressionFilter filter = createSuppressionFilter(fileName, optional);
-        final AuditEvent ev = new AuditEvent(this, "AnyFile.java", null);
-        assertTrue(
-            "Event was not excepted when IOException is thrown while reading suppression file",
-            filter.accept(ev));
-    }
-
-    @Test
-    public void testNonExistingSuppressionFileWithTrueOptional() throws Exception {
-        final String fileName = "src/test/resources/com/puppycrawl/tools/checkstyle/filters/"
-                + "non_existing_suppression_file.xml";
+    public void testNonExistentSuppressionFileWithTrueOptional() throws Exception {
+        final String fileName = "non_existent_suppression_file.xml";
         final boolean optional = true;
         final SuppressionFilter filter = createSuppressionFilter(fileName, optional);
 
         final AuditEvent ev = new AuditEvent(this, "AnyFile.java", null);
 
-        assertTrue("Should except event when suppression file does not exist",
-            filter.accept(ev));
+        assertWithMessage("Should except event when suppression file does not exist")
+                .that(filter.accept(ev))
+                .isTrue();
     }
 
     @Test
-    public void testNonExistingSuppressionUrlWithTrueOptional() throws Exception {
+    public void testNonExistentSuppressionUrlWithTrueOptional() throws Exception {
         final String fileName =
-                "http://checkstyle.sourceforge.net/non_existing_suppression.xml";
+                "https://checkstyle.org/non_existent_suppression.xml";
         final boolean optional = true;
         final SuppressionFilter filter = createSuppressionFilter(fileName, optional);
 
         final AuditEvent ev = new AuditEvent(this, "AnyFile.java", null);
 
-        assertTrue("Should except event when suppression file url does not exist",
-            filter.accept(ev));
+        assertWithMessage("Should except event when suppression file url does not exist")
+                .that(filter.accept(ev))
+                .isTrue();
     }
 
     @Test
-    public void testLocalFileExternalResourceContentDoesNotChange() throws Exception {
-        final DefaultConfiguration filterConfig = createCheckConfig(SuppressionFilter.class);
-        filterConfig.addAttribute("file", getPath("suppressions_none.xml"));
+    public void testUseCacheLocalFileExternalResourceContentDoesNotChange() throws Exception {
+        final DefaultConfiguration filterConfig = createModuleConfig(SuppressionFilter.class);
+        filterConfig.addProperty("file", getPath("InputSuppressionFilterNone.xml"));
 
-        final DefaultConfiguration checkerConfig = new DefaultConfiguration("checkstyle_checks");
-        checkerConfig.addChild(filterConfig);
-        final String cacheFile = temporaryFolder.newFile().getPath();
-        checkerConfig.addAttribute("cacheFile", cacheFile);
+        final DefaultConfiguration checkerConfig = createRootConfig(filterConfig);
+        final File cacheFile = File.createTempFile("junit", null, temporaryFolder);
+        checkerConfig.addProperty("cacheFile", cacheFile.getPath());
 
-        final Checker checker = new Checker();
-        checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
-        checker.addListener(new BriefUtLogger(stream));
-        checker.configure(checkerConfig);
+        final String filePath = File.createTempFile("file", ".java", temporaryFolder).getPath();
 
-        final String filePath = temporaryFolder.newFile("file.java").getPath();
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-
-        verify(checker, filePath, expected);
+        execute(checkerConfig, filePath);
         // One more time to use cache.
-        verify(checker, filePath, expected);
+        execute(checkerConfig, filePath);
     }
 
     @Test
-    public void testRemoteFileExternalResourceContentDoesNotChange() throws Exception {
+    public void testUseCacheRemoteFileExternalResourceContentDoesNotChange() throws Exception {
         final String[] urlCandidates = {
-            "http://checkstyle.sourceforge.net/files/suppressions_none.xml",
+            "https://checkstyle.org/files/suppressions_none.xml",
             "https://raw.githubusercontent.com/checkstyle/checkstyle/master/src/site/resources/"
                 + "files/suppressions_none.xml",
         };
@@ -231,45 +191,30 @@ public class SuppressionFilterTest extends BaseCheckTestSupport {
             }
         }
 
-        // Run the test only if connection is available and url is reachable.
-        // We must use an if statement over junit's rule or assume because
-        // powermock disrupts the assume exception and turns into a failure
-        // instead of a skip when it doesn't pass
-        if (urlForTest != null) {
-            final DefaultConfiguration firstFilterConfig =
-                createCheckConfig(SuppressionFilter.class);
-            firstFilterConfig.addAttribute("file", urlForTest);
+        assumeTrue(urlForTest != null, "No Internet connection.");
+        final DefaultConfiguration firstFilterConfig = createModuleConfig(SuppressionFilter.class);
+        // -@cs[CheckstyleTestMakeup] need to test dynamic property
+        firstFilterConfig.addProperty("file", urlForTest);
 
-            final DefaultConfiguration firstCheckerConfig =
-                new DefaultConfiguration("checkstyle_checks");
-            firstCheckerConfig.addChild(firstFilterConfig);
-            final String cacheFile = temporaryFolder.newFile().getPath();
-            firstCheckerConfig.addAttribute("cacheFile", cacheFile);
+        final DefaultConfiguration firstCheckerConfig = createRootConfig(firstFilterConfig);
+        final File cacheFile = File.createTempFile("junit", null, temporaryFolder);
+        firstCheckerConfig.addProperty("cacheFile", cacheFile.getPath());
 
-            final Checker checker = new Checker();
-            checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
-            checker.configure(firstCheckerConfig);
-            checker.addListener(new BriefUtLogger(stream));
+        final String pathToEmptyFile =
+                File.createTempFile("file", ".java", temporaryFolder).getPath();
 
-            final String pathToEmptyFile = temporaryFolder.newFile("file.java").getPath();
-            final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        execute(firstCheckerConfig, pathToEmptyFile);
 
-            verify(checker, pathToEmptyFile, expected);
+        // One more time to use cache.
+        final DefaultConfiguration secondFilterConfig =
+            createModuleConfig(SuppressionFilter.class);
+        // -@cs[CheckstyleTestMakeup] need to test dynamic property
+        secondFilterConfig.addProperty("file", urlForTest);
 
-            // One more time to use cache.
-            final DefaultConfiguration secondFilterConfig =
-                createCheckConfig(SuppressionFilter.class);
-            secondFilterConfig.addAttribute("file", urlForTest);
+        final DefaultConfiguration secondCheckerConfig = createRootConfig(secondFilterConfig);
+        secondCheckerConfig.addProperty("cacheFile", cacheFile.getPath());
 
-            final DefaultConfiguration secondCheckerConfig =
-                new DefaultConfiguration("checkstyle_checks");
-            secondCheckerConfig.addAttribute("cacheFile", cacheFile);
-            secondCheckerConfig.addChild(secondFilterConfig);
-
-            checker.configure(secondCheckerConfig);
-
-            verify(checker, pathToEmptyFile, expected);
-        }
+        execute(secondCheckerConfig, pathToEmptyFile);
     }
 
     private static boolean isConnectionAvailableAndStable(String url) throws Exception {
@@ -280,16 +225,13 @@ public class SuppressionFilterTest extends BaseCheckTestSupport {
             int attemptCount = 0;
 
             while (attemptCount <= attemptLimit) {
-                InputStream stream = null;
-                try {
-                    final URL address = new URL(url);
-                    stream = address.openStream();
+                try (InputStream stream = new URL(url).openStream()) {
                     // Attempt to read a byte in order to check whether file content is available
                     available = stream.read() != -1;
                     break;
                 }
                 catch (IOException ex) {
-                    // for some reason Travis CI failed some times (unstable) on reading the file
+                    // for some reason Travis CI failed sometimes (unstable) on reading the file
                     if (attemptCount < attemptLimit && ex.getMessage().contains("Unable to read")) {
                         attemptCount++;
                         available = false;
@@ -297,12 +239,8 @@ public class SuppressionFilterTest extends BaseCheckTestSupport {
                         Thread.sleep(1000);
                     }
                     else {
-                        Closeables.closeQuietly(stream);
                         throw ex;
                     }
-                }
-                finally {
-                    Closeables.closeQuietly(stream);
                 }
             }
         }
@@ -316,7 +254,7 @@ public class SuppressionFilterTest extends BaseCheckTestSupport {
             final HttpURLConnection urlConnect = (HttpURLConnection) verifiableUrl.openConnection();
             urlConnect.getContent();
         }
-        catch (IOException ex) {
+        catch (IOException ignored) {
             result = false;
         }
         return result;
@@ -330,4 +268,5 @@ public class SuppressionFilterTest extends BaseCheckTestSupport {
         suppressionFilter.finishLocalSetup();
         return suppressionFilter;
     }
+
 }

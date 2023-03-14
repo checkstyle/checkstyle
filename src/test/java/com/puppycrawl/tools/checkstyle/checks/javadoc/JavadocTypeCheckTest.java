@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,44 +15,35 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
-import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck.MSG_JAVADOC_MISSING;
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck.MSG_MISSING_TAG;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck.MSG_TAG_FORMAT;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck.MSG_UNKNOWN_TAG;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck.MSG_UNUSED_TAG;
-import static org.junit.Assert.assertArrayEquals;
 
-import java.io.File;
-import java.io.IOException;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Test;
-
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.api.Scope;
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-/**
- * @author Oliver.Burn
- */
-public class JavadocTypeCheckTest extends BaseCheckTestSupport {
+public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
+
     @Override
-    protected String getPath(String filename) throws IOException {
-        return super.getPath("checks" + File.separator
-                + "javadoc" + File.separator + filename);
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/checks/javadoc/javadoctype";
     }
 
     @Test
     public void testGetRequiredTokens() {
         final JavadocTypeCheck javadocTypeCheck = new JavadocTypeCheck();
-        assertArrayEquals(
-            "JavadocTypeCheck#getRequiredTockens should return empty array by default",
-            CommonUtils.EMPTY_INT_ARRAY, javadocTypeCheck.getRequiredTokens());
+        assertWithMessage("JavadocTypeCheck#getRequiredTokens should return empty array by default")
+            .that(javadocTypeCheck.getRequiredTokens())
+            .isEqualTo(CommonUtil.EMPTY_INT_ARRAY);
     }
 
     @Test
@@ -65,334 +56,343 @@ public class JavadocTypeCheckTest extends BaseCheckTestSupport {
             TokenTypes.CLASS_DEF,
             TokenTypes.ENUM_DEF,
             TokenTypes.ANNOTATION_DEF,
+            TokenTypes.RECORD_DEF,
         };
 
-        assertArrayEquals("Default acceptable tokens are invalid", expected, actual);
+        assertWithMessage("Default acceptable tokens are invalid")
+            .that(actual)
+            .isEqualTo(expected);
     }
 
     @Test
     public void testTags() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(JavadocTypeCheck.class);
-        final String[] expected = {
-            "8: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "302: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "327: " + getCheckMessage(MSG_JAVADOC_MISSING),
-        };
-        verify(checkConfig, getPath("InputTags.java"), expected);
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocTypeTags.java"), expected);
     }
 
     @Test
     public void testInner() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(JavadocTypeCheck.class);
-        final String[] expected = {
-            "14: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "21: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "27: " + getCheckMessage(MSG_JAVADOC_MISSING),
-        };
-        verify(checkConfig, getPath("InputInner.java"), expected);
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocTypeInner.java"), expected);
     }
 
     @Test
     public void testStrict() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(JavadocTypeCheck.class);
-        final String[] expected = {
-            "7: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "14: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "34: " + getCheckMessage(MSG_JAVADOC_MISSING),
-        };
-        verify(checkConfig, getPath("InputPublicOnly.java"), expected);
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocTypePublicOnly.java"), expected);
     }
 
     @Test
     public void testProtected() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(JavadocTypeCheck.class);
-        checkConfig.addAttribute("scope", Scope.PROTECTED.getName());
-        final String[] expected = {
-            "7: " + getCheckMessage(MSG_JAVADOC_MISSING),
-        };
-        verify(checkConfig, getPath("InputPublicOnly.java"), expected);
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocTypePublicOnly1.java"), expected);
     }
 
     @Test
     public void testPublic() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(JavadocTypeCheck.class);
-        checkConfig.addAttribute("scope", Scope.PUBLIC.getName());
-        final String[] expected = {
-            "7: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "38: " + getCheckMessage(MSG_JAVADOC_MISSING),
-        };
-        verify(checkConfig, getPath("InputScopeInnerInterfaces.java"), expected);
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocTypeScopeInnerInterfaces.java"),
+               expected);
     }
 
     @Test
     public void testProtest() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(JavadocTypeCheck.class);
-        checkConfig.addAttribute("scope", Scope.PROTECTED.getName());
-        final String[] expected = {
-            "7: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "29: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "38: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "65: " + getCheckMessage(MSG_JAVADOC_MISSING),
-        };
-        verify(checkConfig, getPath("InputScopeInnerInterfaces.java"), expected);
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocTypeScopeInnerInterfaces1.java"),
+               expected);
     }
 
     @Test
     public void testPkg() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(JavadocTypeCheck.class);
-        checkConfig.addAttribute(
-            "scope",
-            Scope.getInstance("package").getName());
         final String[] expected = {
-            "18: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "20: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "22: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "53:5: " + getCheckMessage(MSG_MISSING_TAG, "@param <T>"),
         };
-        verify(checkConfig, getPath("InputScopeInnerClasses.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocTypeScopeInnerClasses.java"), expected);
     }
 
     @Test
     public void testEclipse() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(JavadocTypeCheck.class);
-        checkConfig.addAttribute(
-            "scope",
-            Scope.getInstance("public").getName());
-        final String[] expected = {
-            "18: " + getCheckMessage(MSG_JAVADOC_MISSING),
-        };
-        verify(checkConfig, getPath("InputScopeInnerClasses.java"), expected);
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocTypeScopeInnerClasses1.java"), expected);
     }
 
     @Test
     public void testAuthorRequired() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(JavadocTypeCheck.class);
-        checkConfig.addAttribute("authorFormat", "\\S");
         final String[] expected = {
-            "13: " + getCheckMessage(MSG_MISSING_TAG, "@author"),
+            "23:1: " + getCheckMessage(MSG_MISSING_TAG, "@author"),
         };
-        verify(checkConfig, getPath("InputWhitespace.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocTypeWhitespace.java"), expected);
     }
 
     @Test
     public void testAuthorRegularEx()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(JavadocTypeCheck.class);
-        checkConfig.addAttribute("authorFormat", "0*");
         final String[] expected = {
-            "22: " + getCheckMessage(MSG_MISSING_TAG, "@author"),
-            "58: " + getCheckMessage(MSG_MISSING_TAG, "@author"),
-            "94: " + getCheckMessage(MSG_MISSING_TAG, "@author"),
+            "31:1: " + getCheckMessage(MSG_MISSING_TAG, "@author"),
+            "67:1: " + getCheckMessage(MSG_MISSING_TAG, "@author"),
+            "103:1: " + getCheckMessage(MSG_MISSING_TAG, "@author"),
         };
-        verify(checkConfig, getPath("InputJavadoc.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocTypeJavadoc.java"), expected);
     }
 
     @Test
     public void testAuthorRegularExError()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(JavadocTypeCheck.class);
-        checkConfig.addAttribute("authorFormat", "ABC");
         final String[] expected = {
-            "13: " + getCheckMessage(MSG_TAG_FORMAT, "@author", "ABC"),
-            "22: " + getCheckMessage(MSG_MISSING_TAG, "@author"),
-            "31: " + getCheckMessage(MSG_TAG_FORMAT, "@author", "ABC"),
-            "49: " + getCheckMessage(MSG_TAG_FORMAT, "@author", "ABC"),
-            "58: " + getCheckMessage(MSG_MISSING_TAG, "@author"),
-            "67: " + getCheckMessage(MSG_TAG_FORMAT, "@author", "ABC"),
-            "85: " + getCheckMessage(MSG_TAG_FORMAT, "@author", "ABC"),
-            "94: " + getCheckMessage(MSG_MISSING_TAG, "@author"),
-            "103: " + getCheckMessage(MSG_TAG_FORMAT, "@author", "ABC"),
+            "22:1: " + getCheckMessage(MSG_TAG_FORMAT, "@author", "ABC"),
+            "31:1: " + getCheckMessage(MSG_MISSING_TAG, "@author"),
+            "40:1: " + getCheckMessage(MSG_TAG_FORMAT, "@author", "ABC"),
+            "58:1: " + getCheckMessage(MSG_TAG_FORMAT, "@author", "ABC"),
+            "67:1: " + getCheckMessage(MSG_MISSING_TAG, "@author"),
+            "76:1: " + getCheckMessage(MSG_TAG_FORMAT, "@author", "ABC"),
+            "94:1: " + getCheckMessage(MSG_TAG_FORMAT, "@author", "ABC"),
+            "103:1: " + getCheckMessage(MSG_MISSING_TAG, "@author"),
+            "112:1: " + getCheckMessage(MSG_TAG_FORMAT, "@author", "ABC"),
         };
-        verify(checkConfig, getPath("InputJavadoc.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocTypeJavadoc_1.java"), expected);
     }
 
     @Test
     public void testVersionRequired()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(JavadocTypeCheck.class);
-        checkConfig.addAttribute("versionFormat", "\\S");
         final String[] expected = {
-            "13: " + getCheckMessage(MSG_MISSING_TAG, "@version"),
+            "23:1: " + getCheckMessage(MSG_MISSING_TAG, "@version"),
         };
-        verify(checkConfig, getPath("InputWhitespace.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocTypeWhitespace_1.java"), expected);
     }
 
     @Test
     public void testVersionRegularEx()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(JavadocTypeCheck.class);
-        checkConfig.addAttribute("versionFormat", "^\\p{Digit}+\\.\\p{Digit}+$");
         final String[] expected = {
-            "22: " + getCheckMessage(MSG_MISSING_TAG, "@version"),
-            "58: " + getCheckMessage(MSG_MISSING_TAG, "@version"),
-            "94: " + getCheckMessage(MSG_MISSING_TAG, "@version"),
+            "31:1: " + getCheckMessage(MSG_MISSING_TAG, "@version"),
+            "67:1: " + getCheckMessage(MSG_MISSING_TAG, "@version"),
+            "103:1: " + getCheckMessage(MSG_MISSING_TAG, "@version"),
         };
-        verify(checkConfig, getPath("InputJavadoc.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocTypeJavadoc_3.java"), expected);
     }
 
     @Test
     public void testVersionRegularExError()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(JavadocTypeCheck.class);
-        checkConfig.addAttribute("versionFormat", "\\$Revision.*\\$");
         final String[] expected = {
-            "13: " + getCheckMessage(MSG_TAG_FORMAT, "@version", "\\$Revision.*\\$"),
-            "22: " + getCheckMessage(MSG_MISSING_TAG, "@version"),
-            "31: " + getCheckMessage(MSG_TAG_FORMAT, "@version", "\\$Revision.*\\$"),
-            "40: " + getCheckMessage(MSG_TAG_FORMAT, "@version", "\\$Revision.*\\$"),
-            "49: " + getCheckMessage(MSG_TAG_FORMAT, "@version", "\\$Revision.*\\$"),
-            "58: " + getCheckMessage(MSG_MISSING_TAG, "@version"),
-            "67: " + getCheckMessage(MSG_TAG_FORMAT, "@version", "\\$Revision.*\\$"),
-            "76: " + getCheckMessage(MSG_TAG_FORMAT, "@version", "\\$Revision.*\\$"),
-            "85: " + getCheckMessage(MSG_TAG_FORMAT, "@version", "\\$Revision.*\\$"),
-            "94: " + getCheckMessage(MSG_MISSING_TAG, "@version"),
-            "103: " + getCheckMessage(MSG_TAG_FORMAT, "@version", "\\$Revision.*\\$"),
-            "112: " + getCheckMessage(MSG_TAG_FORMAT, "@version", "\\$Revision.*\\$"),
+            "22:1: " + getCheckMessage(MSG_TAG_FORMAT, "@version", "\\$Revision.*\\$"),
+            "31:1: " + getCheckMessage(MSG_MISSING_TAG, "@version"),
+            "40:1: " + getCheckMessage(MSG_TAG_FORMAT, "@version", "\\$Revision.*\\$"),
+            "49:1: " + getCheckMessage(MSG_TAG_FORMAT, "@version", "\\$Revision.*\\$"),
+            "58:1: " + getCheckMessage(MSG_TAG_FORMAT, "@version", "\\$Revision.*\\$"),
+            "67:1: " + getCheckMessage(MSG_MISSING_TAG, "@version"),
+            "76:1: " + getCheckMessage(MSG_TAG_FORMAT, "@version", "\\$Revision.*\\$"),
+            "85:1: " + getCheckMessage(MSG_TAG_FORMAT, "@version", "\\$Revision.*\\$"),
+            "94:1: " + getCheckMessage(MSG_TAG_FORMAT, "@version", "\\$Revision.*\\$"),
+            "103:1: " + getCheckMessage(MSG_MISSING_TAG, "@version"),
+            "112:1: " + getCheckMessage(MSG_TAG_FORMAT, "@version", "\\$Revision.*\\$"),
+            "121:1: " + getCheckMessage(MSG_TAG_FORMAT, "@version", "\\$Revision.*\\$"),
         };
-        verify(checkConfig, getPath("InputJavadoc.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocTypeJavadoc_2.java"), expected);
     }
 
     @Test
     public void testScopes() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(JavadocTypeCheck.class);
         final String[] expected = {
-            "3: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "15: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "27: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "39: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "52: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "63: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "75: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "87: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "99: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "111: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "18:1: " + getCheckMessage(MSG_MISSING_TAG, "@param <T>"),
+            "137:5: " + getCheckMessage(MSG_MISSING_TAG, "@param <T>"),
         };
-        verify(checkConfig,
-               getPath("InputNoJavadoc.java"),
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocTypeNoJavadoc.java"),
                expected);
     }
 
     @Test
     public void testLimitViolationsBySpecifyingTokens() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(JavadocTypeCheck.class);
-        checkConfig.addAttribute("tokens", "INTERFACE_DEF");
-        final String[] expected = {
-            "4: " + getCheckMessage(MSG_JAVADOC_MISSING),
-        };
-        verify(checkConfig, getPath("InputNoJavadocOnInterface.java"), expected);
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocTypeNoJavadocOnInterface.java"),
+               expected);
     }
 
     @Test
     public void testScopes2() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(JavadocTypeCheck.class);
-        checkConfig.addAttribute("scope", Scope.PROTECTED.getName());
         final String[] expected = {
-            "3: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "15: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "18:1: " + getCheckMessage(MSG_MISSING_TAG, "@param <T>"),
         };
-        verify(checkConfig,
-               getPath("InputNoJavadoc.java"),
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocTypeNoJavadoc_2.java"),
                expected);
     }
 
     @Test
     public void testExcludeScope() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(JavadocTypeCheck.class);
-        checkConfig.addAttribute("scope", Scope.PRIVATE.getName());
-        checkConfig.addAttribute("excludeScope", Scope.PROTECTED.getName());
         final String[] expected = {
-            "27: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "39: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "52: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "63: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "75: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "87: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "99: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "111: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "137:5: " + getCheckMessage(MSG_MISSING_TAG, "@param <T>"),
         };
-        verify(checkConfig,
-               getPath("InputNoJavadoc.java"),
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocTypeNoJavadoc_1.java"),
                expected);
     }
 
     @Test
     public void testTypeParameters() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(JavadocTypeCheck.class);
         final String[] expected = {
-            "7:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<D123>"),
-            "11: " + getCheckMessage(MSG_MISSING_TAG, "@param <C456>"),
-            "44:8: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<C>"),
-            "47: " + getCheckMessage(MSG_MISSING_TAG, "@param <B>"),
-            "60:5: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<x>"),
+            "21:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<D123>"),
+            "25:1: " + getCheckMessage(MSG_MISSING_TAG, "@param <C456>"),
+            "59:8: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<C>"),
+            "62:5: " + getCheckMessage(MSG_MISSING_TAG, "@param <B>"),
+            "75:5: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "x"),
         };
-        verify(checkConfig, getPath("InputTypeParamsTags.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocTypeTypeParamsTags_1.java"), expected);
     }
 
     @Test
     public void testAllowMissingTypeParameters() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(JavadocTypeCheck.class);
-        checkConfig.addAttribute("allowMissingParamTags", "true");
         final String[] expected = {
-            "7:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<D123>"),
-            "44:8: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<C>"),
-            "60:5: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<x>"),
+            "21:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<D123>"),
+            "58:8: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<C>"),
+            "74:5: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "x"),
         };
-        verify(checkConfig, getPath("InputTypeParamsTags.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocTypeTypeParamsTags.java"), expected);
     }
 
     @Test
     public void testDontAllowUnusedParameterTag() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createCheckConfig(JavadocTypeCheck.class);
         final String[] expected = {
-            "6:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<BAD>"),
-            "7:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<BAD>"),
+            "20:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "BAD"),
+            "21:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<BAD>"),
         };
-        verify(checkConfig,
-                getPath("InputUnusedParamInJavadocForClass.java"),
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocTypeUnusedParamInJavadocForClass.java"),
                 expected);
     }
 
     @Test
     public void testBadTag() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(JavadocTypeCheck.class);
         final String[] expected = {
-            "5:4: " + getCheckMessage(MSG_UNKNOWN_TAG, "mytag"),
+            "19:4: " + getCheckMessage(MSG_UNKNOWN_TAG, "mytag"),
         };
-        verify(checkConfig,
-               getPath("InputBadTag.java"),
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocTypeBadTag.java"),
                expected);
     }
 
     @Test
     public void testBadTagSuppress() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(JavadocTypeCheck.class);
-        checkConfig.addAttribute("allowUnknownTags", "true");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig,
-                getPath("InputBadTag.java"),
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocTypeBadTag_1.java"),
                 expected);
+    }
+
+    @Test
+    public void testAllowedAnnotationsDefault() throws Exception {
+
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocTypeAllowedAnnotations.java"),
+            expected);
+    }
+
+    @Test
+    public void testAllowedAnnotationsWithFullyQualifiedName() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocTypeAllowedAnnotations_1.java"),
+                expected);
+    }
+
+    @Test
+    public void testAllowedAnnotationsAllowed() throws Exception {
+
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocTypeAllowedAnnotations_2.java"),
+            expected);
+    }
+
+    @Test
+    public void testAllowedAnnotationsNotAllowed() throws Exception {
+
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocTypeAllowedAnnotations_3.java"),
+            expected);
+    }
+
+    @Test
+    public void testJavadocTypeRecords() throws Exception {
+        final String[] expected = {
+            "24:1: " + getCheckMessage(MSG_MISSING_TAG, "@author"),
+            "33:1: " + getCheckMessage(MSG_MISSING_TAG, "@author"),
+            "42:1: " + getCheckMessage(MSG_MISSING_TAG, "@author"),
+            "55:1: " + getCheckMessage(MSG_TAG_FORMAT, "@author", "ABC"),
+            "65:1: " + getCheckMessage(MSG_MISSING_TAG, "@author"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputJavadocTypeRecords.java"), expected);
+    }
+
+    @Test
+    public void testJavadocTypeRecordComponents() throws Exception {
+
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputJavadocTypeRecordComponents.java"), expected);
+    }
+
+    @Test
+    public void testJavadocTypeRecordComponents2() throws Exception {
+
+        final String[] expected = {
+            "44:1: " + getCheckMessage(MSG_MISSING_TAG, "@param <X>"),
+            "48:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "x"),
+            "59:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "notMyString"),
+            "62:1: " + getCheckMessage(MSG_MISSING_TAG, "@param myString"),
+            "62:1: " + getCheckMessage(MSG_MISSING_TAG, "@param myInt"),
+            "66:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "x"),
+            "68:1: " + getCheckMessage(MSG_MISSING_TAG, "@param myList"),
+            "75:1: " + getCheckMessage(MSG_MISSING_TAG, "@param X"),
+            "78:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "notMyString"),
+            "81:1: " + getCheckMessage(MSG_MISSING_TAG, "@param <T>"),
+            "81:1: " + getCheckMessage(MSG_MISSING_TAG, "@param myInt"),
+            "81:1: " + getCheckMessage(MSG_MISSING_TAG, "@param myString"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputJavadocTypeRecordComponents2.java"), expected);
+    }
+
+    @Test
+    public void testJavadocTypeInterfaceMemberScopeIsPublic() throws Exception {
+
+        final String[] expected = {
+            "19:5: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<T>"),
+            "24:5: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<T>"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocTypeInterfaceMemberScopeIsPublic.java"), expected);
+    }
+
+    @Test
+    public void testTrimOptionProperty() throws Exception {
+        final String[] expected = {
+            "21:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<D123>"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocTypeTestTrimProperty.java"), expected);
     }
 }

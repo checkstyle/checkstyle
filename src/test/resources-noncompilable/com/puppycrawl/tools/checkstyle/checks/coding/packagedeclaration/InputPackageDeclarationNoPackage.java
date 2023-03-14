@@ -1,5 +1,10 @@
-/**
- * No package here. Compilable by javac, but noncompilable by eclipse
- */
-public class InputNoPackage {
+/*
+PackageDeclaration
+matchDirectoryStructure = (default)true
+
+
+*/
+
+// comment
+class InputPackageDeclarationNoPackage { // violation
 }

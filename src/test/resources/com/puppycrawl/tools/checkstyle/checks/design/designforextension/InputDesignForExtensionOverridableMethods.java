@@ -1,3 +1,11 @@
+/*
+DesignForExtension
+ignoredAnnotations = (default)After, AfterClass, Before, BeforeClass, Test
+requiredJavadocPhrase = (default).*
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.design.designforextension;
 
 public class InputDesignForExtensionOverridableMethods {
@@ -12,7 +20,7 @@ public class InputDesignForExtensionOverridableMethods {
         private int foo4(int a, int b) {return a + b;}
 
         public void foo5() {
-            // single line comment is not counted as a content
+            // single-line comment is not counted as a content
         }
 
         public void foo6() {
@@ -28,7 +36,7 @@ public class InputDesignForExtensionOverridableMethods {
         }
 
         public int foo8(int a, int b) { // violation
-            // single line comment before content
+            // single-line comment before content
             return a + b;
         }
 
@@ -48,7 +56,7 @@ public class InputDesignForExtensionOverridableMethods {
 
         public int foo11(int a, int b) { // violation
             return a + b;
-            // single line comment after content
+            // single-line comment after content
         }
 
         public int foo12(int a, int b) { // violation
@@ -101,8 +109,8 @@ public class InputDesignForExtensionOverridableMethods {
         // organized in a block
         public void foo24() {}
 
-        /* Block comment */
-        public void foo25() {
+        /* Block comment violation */
+        public void foo25() { // violation
             return;
         }
 
@@ -125,8 +133,8 @@ public class InputDesignForExtensionOverridableMethods {
             return;
         }
 
-        /* Block comment */
-        @Deprecated
+        /* Block comment violation */
+        @Deprecated // violation
         public void foo29() {
             return;
         }
@@ -148,7 +156,7 @@ public class InputDesignForExtensionOverridableMethods {
         }
 
         /* */
-        public int foo31() {
+        public int foo31() { // violation
             /** */
             return 1;
         }
@@ -159,13 +167,13 @@ public class InputDesignForExtensionOverridableMethods {
             return 1;
         }
 
-        @Deprecated
+        @Deprecated // violation
         /** */
         public int foo33() {
             return 1;
         }
 
-        @Deprecated
+        @Deprecated // violation
         /* */
         public int foo34() {
             return 1;
@@ -187,12 +195,41 @@ public class InputDesignForExtensionOverridableMethods {
         // comment
         public void foo38() { }
 
-        @Deprecated /** */
+        @Deprecated /** */ // violation
         public void foo39() {return; }
+
+        void foo40() { // no violation: empty body
+            /** */
+        }
+
+        void foo41() { // violation
+            return;
+        }
+
+        /** */
+        void foo42() { // no violation: has javadoc comment
+        }
+
+        /** */
+        void foo43() {
+            return;
+        }
+
+        /** */
+        /* not empty */
+        void foo44() {
+            return;
+        }
+
+        /* not empty */
+        /** */
+        void foo45() {
+            return;
+        }
 
         /**
          * @param indent indentation to check.
-         * @return true if {@code indent} less then minimal of
+         * @return true if {@code indent} less than minimal of
          *         acceptable indentation levels, false otherwise.
          */
         public boolean isGreaterThan(int indent) {

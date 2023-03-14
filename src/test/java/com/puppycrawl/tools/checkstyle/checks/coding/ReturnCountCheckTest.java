@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,122 +15,112 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck.MSG_KEY;
+import static com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck.MSG_KEY_VOID;
 
 import java.io.File;
-import java.io.IOException;
+import java.util.Collection;
+import java.util.Optional;
+import java.util.Set;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.DetailAstImpl;
+import com.puppycrawl.tools.checkstyle.JavaParser;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-public class ReturnCountCheckTest extends BaseCheckTestSupport {
-    @Override
-    protected String getPath(String filename) throws IOException {
-        return super.getPath("checks" + File.separator
-                + "coding" + File.separator
-                + "returncount" + File.separator
-                + filename);
-    }
+public class ReturnCountCheckTest extends AbstractModuleTestSupport {
 
     @Override
-    protected String getNonCompilablePath(String filename) throws IOException {
-        return super.getNonCompilablePath("checks" + File.separator
-                + "coding" + File.separator + filename);
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/checks/coding/returncount";
     }
 
     @Test
     public void testDefault() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(ReturnCountCheck.class);
         final String[] expected = {
-            "18:5: " + getCheckMessage(MSG_KEY, 7, 1),
-            "30:5: " + getCheckMessage(MSG_KEY, 2, 1),
-            "35:17: " + getCheckMessage(MSG_KEY, 6, 1),
-            "49:5: " + getCheckMessage(MSG_KEY, 7, 2),
+            "28:5: " + getCheckMessage(MSG_KEY_VOID, 7, 1),
+            "40:5: " + getCheckMessage(MSG_KEY_VOID, 2, 1),
+            "45:17: " + getCheckMessage(MSG_KEY_VOID, 6, 1),
+            "59:5: " + getCheckMessage(MSG_KEY, 7, 2),
         };
-        verify(checkConfig, getPath("InputReturnCountSwitches.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputReturnCountSwitches.java"), expected);
     }
 
     @Test
     public void testFormat() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(ReturnCountCheck.class);
-        checkConfig.addAttribute("format", "^$");
         final String[] expected = {
-            "5:5: " + getCheckMessage(MSG_KEY, 7, 2),
-            "18:5: " + getCheckMessage(MSG_KEY, 7, 1),
-            "30:5: " + getCheckMessage(MSG_KEY, 2, 1),
-            "35:17: " + getCheckMessage(MSG_KEY, 6, 1),
-            "49:5: " + getCheckMessage(MSG_KEY, 7, 2),
+            "15:5: " + getCheckMessage(MSG_KEY, 7, 2),
+            "28:5: " + getCheckMessage(MSG_KEY_VOID, 7, 1),
+            "40:5: " + getCheckMessage(MSG_KEY_VOID, 2, 1),
+            "45:17: " + getCheckMessage(MSG_KEY_VOID, 6, 1),
+            "59:5: " + getCheckMessage(MSG_KEY, 7, 2),
         };
-        verify(checkConfig, getPath("InputReturnCountSwitches.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputReturnCountSwitches2.java"), expected);
     }
 
     @Test
     public void testMethodsAndLambdas() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(ReturnCountCheck.class);
-        checkConfig.addAttribute("max", "1");
         final String[] expected = {
-            "15:55: " + getCheckMessage(MSG_KEY, 2, 1),
-            "27:49: " + getCheckMessage(MSG_KEY, 2, 1),
-            "34:42: " + getCheckMessage(MSG_KEY, 3, 1),
-            "41:5: " + getCheckMessage(MSG_KEY, 2, 1),
-            "49:57: " + getCheckMessage(MSG_KEY, 2, 1),
+            "25:55: " + getCheckMessage(MSG_KEY, 2, 1),
+            "37:49: " + getCheckMessage(MSG_KEY, 2, 1),
+            "44:42: " + getCheckMessage(MSG_KEY, 3, 1),
+            "51:5: " + getCheckMessage(MSG_KEY, 2, 1),
+            "59:57: " + getCheckMessage(MSG_KEY, 2, 1),
         };
-        verify(checkConfig, getPath("InputReturnCountLambda.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputReturnCountLambda.java"), expected);
     }
 
     @Test
     public void testLambdasOnly() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(ReturnCountCheck.class);
-        checkConfig.addAttribute("tokens", "LAMBDA");
         final String[] expected = {
-            "34:42: " + getCheckMessage(MSG_KEY, 3, 2),
+            "43:42: " + getCheckMessage(MSG_KEY, 3, 2),
         };
-        verify(checkConfig, getPath("InputReturnCountLambda.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputReturnCountLambda2.java"), expected);
     }
 
     @Test
     public void testMethodsOnly() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(ReturnCountCheck.class);
-        checkConfig.addAttribute("tokens", "METHOD_DEF");
         final String[] expected = {
-            "26:5: " + getCheckMessage(MSG_KEY, 3, 2),
-            "33:5: " + getCheckMessage(MSG_KEY, 4, 2),
-            "41:5: " + getCheckMessage(MSG_KEY, 4, 2),
-            "56:5: " + getCheckMessage(MSG_KEY, 3, 2),
+            "35:5: " + getCheckMessage(MSG_KEY, 3, 2),
+            "42:5: " + getCheckMessage(MSG_KEY, 4, 2),
+            "50:5: " + getCheckMessage(MSG_KEY, 4, 2),
+            "65:5: " + getCheckMessage(MSG_KEY, 3, 2),
         };
-        verify(checkConfig, getPath("InputReturnCountLambda.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputReturnCountLambda3.java"), expected);
     }
 
     @Test
     public void testWithReturnOnlyAsTokens() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(ReturnCountCheck.class);
-        checkConfig.addAttribute("tokens", "LITERAL_RETURN");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputReturnCountLambda.java"), expected);
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputReturnCountLambda4.java"), expected);
     }
 
     @Test
     public void testImproperToken() {
         final ReturnCountCheck check = new ReturnCountCheck();
 
-        final DetailAST classDefAst = new DetailAST();
+        final DetailAstImpl classDefAst = new DetailAstImpl();
         classDefAst.setType(TokenTypes.CLASS_DEF);
 
         try {
             check.visitToken(classDefAst);
-            Assert.fail("IllegalStateException is expected");
+            assertWithMessage("IllegalStateException is expected").fail();
         }
         catch (IllegalStateException ex) {
             // it is OK
@@ -138,7 +128,7 @@ public class ReturnCountCheckTest extends BaseCheckTestSupport {
 
         try {
             check.leaveToken(classDefAst);
-            Assert.fail("IllegalStateException is expected");
+            assertWithMessage("IllegalStateException is expected").fail();
         }
         catch (IllegalStateException ex) {
             // it is OK
@@ -147,15 +137,41 @@ public class ReturnCountCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testMaxForVoid() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(ReturnCountCheck.class);
-        checkConfig.addAttribute("max", "2");
-        checkConfig.addAttribute("maxForVoid", "0");
         final String[] expected = {
-            "4:5: " + getCheckMessage(MSG_KEY, 1, 0),
-            "8:5: " + getCheckMessage(MSG_KEY, 1, 0),
-            "14:5: " + getCheckMessage(MSG_KEY, 2, 0),
-            "30:5: " + getCheckMessage(MSG_KEY, 3, 2),
+            "14:5: " + getCheckMessage(MSG_KEY_VOID, 1, 0),
+            "18:5: " + getCheckMessage(MSG_KEY_VOID, 1, 0),
+            "24:5: " + getCheckMessage(MSG_KEY_VOID, 2, 0),
+            "40:5: " + getCheckMessage(MSG_KEY, 3, 2),
+            "51:5: " + getCheckMessage(MSG_KEY_VOID, 2, 0),
         };
-        verify(checkConfig, getPath("InputReturnCountVoid.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputReturnCountVoid.java"), expected);
     }
+
+    /**
+     * We cannot reproduce situation when visitToken is called and leaveToken is not.
+     * So, we have to use reflection to be sure that even in such situation
+     * state of the field will be cleared.
+     *
+     * @throws Exception when code tested throws exception
+     */
+    @Test
+    @SuppressWarnings("unchecked")
+    public void testClearState() throws Exception {
+        final ReturnCountCheck check = new ReturnCountCheck();
+        final Optional<DetailAST> methodDef = TestUtil.findTokenInAstByPredicate(
+            JavaParser.parseFile(new File(getPath("InputReturnCountVoid.java")),
+                JavaParser.Options.WITHOUT_COMMENTS),
+            ast -> ast.getType() == TokenTypes.METHOD_DEF);
+
+        assertWithMessage("Ast should contain METHOD_DEF")
+                .that(methodDef.isPresent())
+                .isTrue();
+        assertWithMessage("State is not cleared on beginTree")
+                .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check, methodDef.get(),
+                        "contextStack",
+                        contextStack -> ((Collection<Set<String>>) contextStack).isEmpty()))
+                .isTrue();
+    }
+
 }

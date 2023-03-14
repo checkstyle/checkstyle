@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,137 +15,131 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.sizes;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.sizes.ExecutableStatementCountCheck.MSG_KEY;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
 
-import java.io.File;
-import java.io.IOException;
+import java.util.Collection;
 
-import org.junit.Test;
+import org.antlr.v4.runtime.CommonToken;
+import org.junit.jupiter.api.Test;
 
-import antlr.CommonHiddenStreamToken;
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.DetailAstImpl;
+import com.puppycrawl.tools.checkstyle.api.Context;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class ExecutableStatementCountCheckTest
-    extends BaseCheckTestSupport {
+    extends AbstractModuleTestSupport {
+
     @Override
-    protected String getPath(String filename) throws IOException {
-        return super.getPath("checks" + File.separator
-                + "sizes" + File.separator + "executablestatementcount"
-                + File.separator + filename);
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/checks/sizes/executablestatementcount";
+    }
+
+    @Test
+    @SuppressWarnings("unchecked")
+    public void testStatefulFieldsClearedOnBeginTree() {
+        final DetailAstImpl ast = new DetailAstImpl();
+        ast.setType(TokenTypes.STATIC_INIT);
+        final ExecutableStatementCountCheck check = new ExecutableStatementCountCheck();
+        assertWithMessage("Stateful field is not cleared after beginTree")
+                .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check, ast, "contextStack",
+                        contextStack -> ((Collection<Context>) contextStack).isEmpty()))
+                .isTrue();
     }
 
     @Test
     public void testMaxZero() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(ExecutableStatementCountCheck.class);
-
-        checkConfig.addAttribute("max", "0");
 
         final String[] expected = {
-            "4:5: " + getCheckMessage(MSG_KEY, 3, 0),
-            "7:17: " + getCheckMessage(MSG_KEY, 1, 0),
-            "17:5: " + getCheckMessage(MSG_KEY, 2, 0),
-            "27:5: " + getCheckMessage(MSG_KEY, 1, 0),
-            "34:5: " + getCheckMessage(MSG_KEY, 3, 0),
-            "48:5: " + getCheckMessage(MSG_KEY, 2, 0),
-            "58:5: " + getCheckMessage(MSG_KEY, 2, 0),
-            "67:5: " + getCheckMessage(MSG_KEY, 2, 0),
-            "76:5: " + getCheckMessage(MSG_KEY, 2, 0),
-            "79:13: " + getCheckMessage(MSG_KEY, 1, 0),
+            "12:5: " + getCheckMessage(MSG_KEY, 3, 0),
+            "15:17: " + getCheckMessage(MSG_KEY, 1, 0),
+            "25:5: " + getCheckMessage(MSG_KEY, 2, 0),
+            "35:5: " + getCheckMessage(MSG_KEY, 1, 0),
+            "42:5: " + getCheckMessage(MSG_KEY, 3, 0),
+            "56:5: " + getCheckMessage(MSG_KEY, 2, 0),
+            "66:5: " + getCheckMessage(MSG_KEY, 2, 0),
+            "75:5: " + getCheckMessage(MSG_KEY, 2, 0),
+            "84:5: " + getCheckMessage(MSG_KEY, 2, 0),
+            "87:13: " + getCheckMessage(MSG_KEY, 1, 0),
+            "98:29: " + getCheckMessage(MSG_KEY, 1, 0),
         };
 
-        verify(checkConfig, getPath("InputExecutableStatementCount.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputExecutableStatementCountMaxZero.java"), expected);
     }
 
     @Test
     public void testMethodDef() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(ExecutableStatementCountCheck.class);
-
-        checkConfig.addAttribute("max", "0");
-        checkConfig.addAttribute("tokens", "METHOD_DEF");
 
         final String[] expected = {
-            "4:5: " + getCheckMessage(MSG_KEY, 3, 0),
-            "7:17: " + getCheckMessage(MSG_KEY, 1, 0),
-            "17:5: " + getCheckMessage(MSG_KEY, 2, 0),
-            "27:5: " + getCheckMessage(MSG_KEY, 1, 0),
-            "34:5: " + getCheckMessage(MSG_KEY, 3, 0),
-            "79:13: " + getCheckMessage(MSG_KEY, 1, 0),
+            "12:5: " + getCheckMessage(MSG_KEY, 3, 0),
+            "15:17: " + getCheckMessage(MSG_KEY, 1, 0),
+            "25:5: " + getCheckMessage(MSG_KEY, 2, 0),
+            "35:5: " + getCheckMessage(MSG_KEY, 1, 0),
+            "42:5: " + getCheckMessage(MSG_KEY, 3, 0),
+            "60:13: " + getCheckMessage(MSG_KEY, 1, 0),
         };
 
-        verify(checkConfig, getPath("InputExecutableStatementCount.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputExecutableStatementCountMethodDef.java"), expected);
     }
 
     @Test
     public void testCtorDef() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(ExecutableStatementCountCheck.class);
-
-        checkConfig.addAttribute("max", "0");
-        checkConfig.addAttribute("tokens", "CTOR_DEF");
 
         final String[] expected = {
-            "48:5: " + getCheckMessage(MSG_KEY, 2, 0),
-            "76:5: " + getCheckMessage(MSG_KEY, 2, 0),
+            "12:5: " + getCheckMessage(MSG_KEY, 2, 0),
+            "22:5: " + getCheckMessage(MSG_KEY, 2, 0),
         };
 
-        verify(checkConfig, getPath("InputExecutableStatementCount.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputExecutableStatementCountCtorDef.java"), expected);
     }
 
     @Test
     public void testStaticInit() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(ExecutableStatementCountCheck.class);
-
-        checkConfig.addAttribute("max", "0");
-        checkConfig.addAttribute("tokens", "STATIC_INIT");
 
         final String[] expected = {
-            "58:5: " + getCheckMessage(MSG_KEY, 2, 0),
+            "13:5: " + getCheckMessage(MSG_KEY, 2, 0),
         };
 
-        verify(checkConfig, getPath("InputExecutableStatementCount.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputExecutableStatementCountStaticInit.java"), expected);
     }
 
     @Test
     public void testInstanceInit() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(ExecutableStatementCountCheck.class);
-
-        checkConfig.addAttribute("max", "0");
-        checkConfig.addAttribute("tokens", "INSTANCE_INIT");
 
         final String[] expected = {
-            "67:5: " + getCheckMessage(MSG_KEY, 2, 0),
+            "13:5: " + getCheckMessage(MSG_KEY, 2, 0),
         };
 
-        verify(checkConfig, getPath("InputExecutableStatementCount.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputExecutableStatementCountInstanceInit.java"), expected);
     }
 
     @Test
     public void testVisitTokenWithWrongTokenType() {
         final ExecutableStatementCountCheck checkObj =
             new ExecutableStatementCountCheck();
-        final DetailAST ast = new DetailAST();
+        final DetailAstImpl ast = new DetailAstImpl();
         ast.initialize(
-            new CommonHiddenStreamToken(TokenTypes.ENUM, "ENUM"));
+            new CommonToken(TokenTypes.ENUM, "ENUM"));
         try {
             checkObj.visitToken(ast);
-            fail("exception expected");
+            assertWithMessage("exception expected").fail();
         }
         catch (IllegalStateException ex) {
-            assertEquals("Invalid exception message", "ENUM[0x-1]", ex.getMessage());
+            assertWithMessage("Invalid exception message")
+                .that(ex.getMessage())
+                .isEqualTo("ENUM[0x-1]");
         }
     }
 
@@ -153,25 +147,61 @@ public class ExecutableStatementCountCheckTest
     public void testLeaveTokenWithWrongTokenType() {
         final ExecutableStatementCountCheck checkObj =
             new ExecutableStatementCountCheck();
-        final DetailAST ast = new DetailAST();
+        final DetailAstImpl ast = new DetailAstImpl();
         ast.initialize(
-            new CommonHiddenStreamToken(TokenTypes.ENUM, "ENUM"));
+            new CommonToken(TokenTypes.ENUM, "ENUM"));
         try {
             checkObj.leaveToken(ast);
-            fail("exception expected");
+            assertWithMessage("exception expected").fail();
         }
         catch (IllegalStateException ex) {
-            assertEquals("Invalid exception message", "ENUM[0x-1]", ex.getMessage());
+            assertWithMessage("Invalid exception message")
+                .that(ex.getMessage())
+                .isEqualTo("ENUM[0x-1]");
         }
     }
 
     @Test
     public void testDefaultConfiguration() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(ExecutableStatementCountCheck.class);
 
-        createChecker(checkConfig);
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputExecutableStatementCount.java"), expected);
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputExecutableStatementCountDefaultConfig.java"), expected);
     }
+
+    @Test
+    public void testExecutableStatementCountRecords() throws Exception {
+
+        final int max = 1;
+
+        final String[] expected = {
+            "15:9: " + getCheckMessage(MSG_KEY, 3, max),
+            "24:9: " + getCheckMessage(MSG_KEY, 3, max),
+            "33:9: " + getCheckMessage(MSG_KEY, 3, max),
+            "41:9: " + getCheckMessage(MSG_KEY, 4, max),
+            "51:9: " + getCheckMessage(MSG_KEY, 6, max),
+            "65:17: " + getCheckMessage(MSG_KEY, 6, max),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputExecutableStatementCountRecords.java"),
+                expected);
+    }
+
+    @Test
+    public void testExecutableStatementCountLambdas() throws Exception {
+
+        final int max = 1;
+
+        final String[] expected = {
+            "16:22: " + getCheckMessage(MSG_KEY, 6, max),
+            "25:22: " + getCheckMessage(MSG_KEY, 2, max),
+            "26:26: " + getCheckMessage(MSG_KEY, 2, max),
+            "30:26: " + getCheckMessage(MSG_KEY, 4, max),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputExecutableStatementCountLambdas.java"), expected);
+    }
+
 }

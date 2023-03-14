@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,23 +15,25 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
 import java.util.Locale;
 
+import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CodePointUtil;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * <p>Abstract class for checking the padding of parentheses. That is whether a
  * space is required after a left parenthesis and before a right parenthesis,
  * or such spaces are forbidden.
  * </p>
- * @author Oliver Burn
  */
+@StatelessCheck
 public abstract class AbstractParenPadCheck
     extends AbstractCheck {
 
@@ -70,57 +72,57 @@ public abstract class AbstractParenPadCheck
 
     /**
      * Set the option to enforce.
+     *
      * @param optionStr string to decode option from
      * @throws IllegalArgumentException if unable to decode
      */
     public void setOption(String optionStr) {
-        try {
-            option = PadOption.valueOf(optionStr.trim().toUpperCase(Locale.ENGLISH));
-        }
-        catch (IllegalArgumentException iae) {
-            throw new IllegalArgumentException("unable to parse " + optionStr, iae);
-        }
+        option = PadOption.valueOf(optionStr.trim().toUpperCase(Locale.ENGLISH));
     }
 
     /**
      * Process a token representing a left parentheses.
+     *
      * @param ast the token representing a left parentheses
      */
     protected void processLeft(DetailAST ast) {
-        final String line = getLines()[ast.getLineNo() - 1];
+        final int[] line = getLineCodePoints(ast.getLineNo() - 1);
         final int after = ast.getColumnNo() + 1;
-        if (after < line.length()) {
-            if (option == PadOption.NOSPACE
-                && Character.isWhitespace(line.charAt(after))) {
-                log(ast.getLineNo(), after, MSG_WS_FOLLOWED, OPEN_PARENTHESIS);
+
+        if (after < line.length) {
+            final boolean hasWhitespaceAfter =
+                    CommonUtil.isCodePointWhitespace(line, after);
+            if (option == PadOption.NOSPACE && hasWhitespaceAfter) {
+                log(ast, MSG_WS_FOLLOWED, OPEN_PARENTHESIS);
             }
-            else if (option == PadOption.SPACE
-                     && !Character.isWhitespace(line.charAt(after))
-                     && line.charAt(after) != CLOSE_PARENTHESIS) {
-                log(ast.getLineNo(), after, MSG_WS_NOT_FOLLOWED, OPEN_PARENTHESIS);
+            else if (option == PadOption.SPACE && !hasWhitespaceAfter
+                     && line[after] != CLOSE_PARENTHESIS) {
+                log(ast, MSG_WS_NOT_FOLLOWED, OPEN_PARENTHESIS);
             }
         }
     }
 
     /**
      * Process a token representing a right parentheses.
+     *
      * @param ast the token representing a right parentheses
      */
     protected void processRight(DetailAST ast) {
         final int before = ast.getColumnNo() - 1;
         if (before >= 0) {
-            final String line = getLines()[ast.getLineNo() - 1];
-            if (option == PadOption.NOSPACE
-                && Character.isWhitespace(line.charAt(before))
-                && !CommonUtils.hasWhitespaceBefore(before, line)) {
-                log(ast.getLineNo(), before, MSG_WS_PRECEDED, CLOSE_PARENTHESIS);
+            final int[] line = getLineCodePoints(ast.getLineNo() - 1);
+            final boolean hasPrecedingWhitespace =
+                    CommonUtil.isCodePointWhitespace(line, before);
+
+            if (option == PadOption.NOSPACE && hasPrecedingWhitespace
+                && !CodePointUtil.hasWhitespaceBefore(before, line)) {
+                log(ast, MSG_WS_PRECEDED, CLOSE_PARENTHESIS);
             }
-            else if (option == PadOption.SPACE
-                && !Character.isWhitespace(line.charAt(before))
-                && line.charAt(before) != OPEN_PARENTHESIS) {
-                log(ast.getLineNo(), ast.getColumnNo(),
-                    MSG_WS_NOT_PRECEDED, CLOSE_PARENTHESIS);
+            else if (option == PadOption.SPACE && !hasPrecedingWhitespace
+                && line[before] != OPEN_PARENTHESIS) {
+                log(ast, MSG_WS_NOT_PRECEDED, CLOSE_PARENTHESIS);
             }
         }
     }
+
 }

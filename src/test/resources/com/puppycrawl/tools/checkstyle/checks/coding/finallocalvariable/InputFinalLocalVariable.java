@@ -1,3 +1,11 @@
+/*
+FinalLocalVariable
+validateEnhancedForLoopVariable = (default)false
+tokens = (default)VARIABLE_DEF
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.coding.finallocalvariable;
 
 public class InputFinalLocalVariable
@@ -6,8 +14,8 @@ public class InputFinalLocalVariable
     //static block
     static
     {
-        int i, j = 0;
-        Runnable runnable = new Runnable()
+        int i, j = 0; // 2 violations
+        Runnable runnable = new Runnable() // violation
         {
             public void run()
             {
@@ -17,27 +25,27 @@ public class InputFinalLocalVariable
     /** constructor */
     public InputFinalLocalVariable()
     {
-        int i = 0;
+        int i = 0; // violation
         // final variable
         final int j = 2;
 
-        int z;
+        int z; // violation
 
-        Object obj = new Object();
+        Object obj = new Object(); // violation
 
         int k = 0;
 
-        String x = obj.toString();
+        String x = obj.toString(); // violation
 
         k++;
 
         k = 2;
 
-        Runnable runnable = new Runnable()
+        Runnable runnable = new Runnable() // violation
         {
             public void run()
             {
-                int q = 0;
+                int q = 0; // violation
             }
         };
     }
@@ -53,17 +61,17 @@ public class InputFinalLocalVariable
 
     public void aMethod()
     {
-        int i = 0;
+        int i = 0; // violation
 
         final int j = 2;
 
-        int z;
+        int z; // violation
 
-        Object obj = new Object();
+        Object obj = new Object(); // violation
 
         int k = 0;
 
-        String x = obj.toString();
+        String x = obj.toString(); // violation
 
         k++;
 
@@ -71,8 +79,8 @@ public class InputFinalLocalVariable
         {
             public Inner()
             {
-                int w = 0;
-                Runnable runnable = new Runnable()
+                int w = 0; // violation
+                Runnable runnable = new Runnable() // violation
                 {
                     public void run()
                     {
@@ -93,9 +101,9 @@ public class InputFinalLocalVariable
 
         int l = 0;
         {
-            int weird = 0;
-            int j = 0;
-            int k = 0;
+            int weird = 0; // violation
+            int j = 0; // violation
+            int k = 0; // violation
             {
                l++;
             }
@@ -182,12 +190,12 @@ enum Enum1 {
 
 class class2 {
     public void method1(){
-        int x;
+        int x; // violation
         x = 3;
     }
     public void method2() {
         for(int i=0;i<5;i++){
-            int x;
+            int x; // violation
             x = 3;
         }
         int y;
@@ -207,14 +215,14 @@ class class2 {
            m = 0;
         } while (false);
         do {
-            int n;
+            int n; // violation
            n = 0;
-        } while (true);        
+        } while (true);
     }
 
     private void foo() {
-        int q;
-        int w;
+        int q; // violation
+        int w; // violation
         int e;
         q = 1;
         w = 1;
@@ -223,8 +231,8 @@ class class2 {
         class Local {
             void bar() {
                 int q;
-                int w;
-                int e;
+                int w; // violation
+                int e; // violation
                 q = 1;
                 q = 2;
                 w = 1;
@@ -244,7 +252,7 @@ class class2 {
             i++;
         }
         while (true) {
-            int n;
+            int n; // violation
             n = 0;
         }
     }
@@ -256,7 +264,7 @@ class class2 {
             r = 0;
         }
         for (int a: array) {
-            int t;
+            int t; // violation
             t = 0;
         }
     }
@@ -266,7 +274,7 @@ class classs3 {
     public void method(final int i) {
         switch (i) {
             case 1:
-                int foo = 1;    // Violation
+                int foo = 1;    // violation
                 break;
             default:
         }
@@ -285,7 +293,7 @@ class classs3 {
 class Class3 {
     public void test1() {
         final boolean b = true;
-        int shouldBeFinal;        //Violation
+        int shouldBeFinal;        // violation
 
         if (b) {
             shouldBeFinal = 1;
@@ -297,7 +305,7 @@ class Class3 {
 
     public void test2() {
         final int b = 10;
-        int shouldBeFinal;        //Violation
+        int shouldBeFinal;        // violation
 
         switch (b) {
         case 0:
@@ -333,7 +341,7 @@ class Class3 {
         } else {
             x = 2;
         }
-        
+
         if(b) {
             x = 3;
         }
@@ -341,7 +349,7 @@ class Class3 {
 
     public void test5() {
         final boolean b = false;
-        int shouldBeFinal;    //Violation
+        int shouldBeFinal;    // violation
         if(b) {
         }
         if (b) {
@@ -354,10 +362,10 @@ class Class3 {
 
 class class4 {
     public void foo() {
-        int shouldBeFinal;    //violation
+        int shouldBeFinal;    // violation
         class Bar {
             void bar () {
-                int shouldBeFinal;    //Violation
+                int shouldBeFinal;    // violation
                 final boolean b = false;
                 if (b) {
                     shouldBeFinal = 1;
@@ -372,7 +380,7 @@ class class4 {
 class class5 {
     public void test1(){
         final boolean b = false;
-        int shouldBeFinal;    //Violation
+        int shouldBeFinal;    // violation
         if(b){
             if(b){
                 shouldBeFinal = 1;
@@ -383,7 +391,7 @@ class class5 {
     }
     public void test2() {
         final int b = 10;
-        int shouldBeFinal;        //Violation
+        int shouldBeFinal;        // violation
 
         switch (b) {
         case 0:
@@ -415,10 +423,10 @@ class class5 {
         }
     }
     public void test4() {
-        int shouldBeFinal;    //violation
+        int shouldBeFinal;    // violation
         class Bar {
             void bar () {
-                int shouldBeFinal;    //Violation
+                int shouldBeFinal;    // violation
                 final boolean b = false;
                 if (b) {
                     if (b) {
@@ -428,6 +436,42 @@ class class5 {
                     }
                 } else {
                     shouldBeFinal = 2;
+                }
+            }
+        }
+
+        abstract class Bar2 {
+            abstract void method(String param);
+        }
+    }
+
+    public void test5() {
+        InputFinalLocalVariable table = new InputFinalLocalVariable(); // violation
+        new Runnable() {
+            @Override
+            public void run() {
+                InputFinalLocalVariable table = null;
+                table = new InputFinalLocalVariable();
+            }
+        };
+    }
+
+    public void test6() {
+        byte tmpByte[];
+
+        if (true) {
+                if (true) {
+                    tmpByte = new byte[0];
+                }
+        } else {
+            if (true) {
+                if (true) {
+                    tmpByte = new byte[1];
+                }
+            }
+            if (false) {
+                if (true) {
+                    tmpByte = new byte[2];
                 }
             }
         }

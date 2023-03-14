@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,76 +15,63 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.naming;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
-import static org.junit.Assert.assertArrayEquals;
 
-import java.io.File;
-import java.io.IOException;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Test;
-
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class StaticVariableNameCheckTest
-    extends BaseCheckTestSupport {
+    extends AbstractModuleTestSupport {
+
     @Override
-    protected String getPath(String filename) throws IOException {
-        return super.getPath("checks" + File.separator
-                     + "naming" + File.separator
-                     + "staticvariablename" + File.separator + filename);
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/checks/naming/staticvariablename";
     }
 
     @Test
     public void testGetRequiredTokens() {
         final StaticVariableNameCheck checkObj = new StaticVariableNameCheck();
         final int[] expected = {TokenTypes.VARIABLE_DEF};
-        assertArrayEquals("Default required tokens are invalid",
-            expected, checkObj.getRequiredTokens());
+        assertWithMessage("Default required tokens are invalid")
+                .that(checkObj.getRequiredTokens())
+                .isEqualTo(expected);
     }
 
     @Test
     public void testSpecified()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(StaticVariableNameCheck.class);
-        checkConfig.addAttribute("format", "^s[A-Z][a-zA-Z0-9]*$");
 
         final String pattern = "^s[A-Z][a-zA-Z0-9]*$";
 
         final String[] expected = {
-            "30:24: " + getCheckMessage(MSG_INVALID_PATTERN, "badStatic", pattern),
+            "36:24: " + getCheckMessage(MSG_INVALID_PATTERN, "badStatic", pattern),
         };
-        verify(checkConfig, getPath("InputStaticVariableName1.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputStaticVariableName1.java"), expected);
     }
 
     @Test
     public void testAccessTuning()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(StaticVariableNameCheck.class);
-        checkConfig.addAttribute("format", "^s[A-Z][a-zA-Z0-9]*$");
-
-        // allow method names and class names to equal
-        checkConfig.addAttribute("applyToPrivate", "false");
-
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputStaticVariableName1.java"), expected);
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputStaticVariableName2.java"), expected);
     }
 
     @Test
     public void testInterfaceOrAnnotationBlock()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-                createCheckConfig(StaticVariableNameCheck.class);
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputStaticVariableName.java"), expected);
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputStaticVariableName.java"), expected);
     }
 
     @Test
@@ -94,6 +81,9 @@ public class StaticVariableNameCheckTest
         final int[] expected = {
             TokenTypes.VARIABLE_DEF,
         };
-        assertArrayEquals("Default acceptable tokens are invalid", expected, actual);
+        assertWithMessage("Default acceptable tokens are invalid")
+                .that(actual)
+                .isEqualTo(expected);
     }
+
 }

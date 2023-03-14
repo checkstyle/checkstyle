@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,159 +15,229 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck.MSG_FALL_THROUGH;
 import static com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck.MSG_FALL_THROUGH_LAST;
 
-import java.io.File;
-import java.io.IOException;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Assert;
-import org.junit.Test;
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+public class FallThroughCheckTest extends AbstractModuleTestSupport {
 
-public class FallThroughCheckTest extends BaseCheckTestSupport {
     @Override
-    protected String getPath(String filename) throws IOException {
-        return super.getPath("checks" + File.separator
-                + "coding" + File.separator + "fallthrough" + File.separator + filename);
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/checks/coding/fallthrough";
     }
 
     @Test
     public void testDefault() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(FallThroughCheck.class);
         final String[] expected = {
-            "14:13: " + getCheckMessage(MSG_FALL_THROUGH),
-            "38:13: " + getCheckMessage(MSG_FALL_THROUGH),
-            "47:13: " + getCheckMessage(MSG_FALL_THROUGH),
-            "53:13: " + getCheckMessage(MSG_FALL_THROUGH),
-            "70:13: " + getCheckMessage(MSG_FALL_THROUGH),
-            "87:13: " + getCheckMessage(MSG_FALL_THROUGH),
-            "123:13: " + getCheckMessage(MSG_FALL_THROUGH),
-            "179:11: " + getCheckMessage(MSG_FALL_THROUGH),
-            "369:11: " + getCheckMessage(MSG_FALL_THROUGH),
-            "372:11: " + getCheckMessage(MSG_FALL_THROUGH),
-            "374:40: " + getCheckMessage(MSG_FALL_THROUGH),
-            "416:13: " + getCheckMessage(MSG_FALL_THROUGH),
-            "424:9: " + getCheckMessage(MSG_FALL_THROUGH),
-            "436:9: " + getCheckMessage(MSG_FALL_THROUGH),
-            "446:9: " + getCheckMessage(MSG_FALL_THROUGH),
-
+            "22:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "46:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "55:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "61:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "78:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "95:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "131:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "187:11: " + getCheckMessage(MSG_FALL_THROUGH),
+            "377:11: " + getCheckMessage(MSG_FALL_THROUGH),
+            "380:11: " + getCheckMessage(MSG_FALL_THROUGH),
+            "382:40: " + getCheckMessage(MSG_FALL_THROUGH),
+            "424:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "432:9: " + getCheckMessage(MSG_FALL_THROUGH),
+            "444:9: " + getCheckMessage(MSG_FALL_THROUGH),
+            "454:9: " + getCheckMessage(MSG_FALL_THROUGH),
+            "490:9: " + getCheckMessage(MSG_FALL_THROUGH),
+            "491:9: " + getCheckMessage(MSG_FALL_THROUGH),
+            "492:9: " + getCheckMessage(MSG_FALL_THROUGH),
+            "529:15: " + getCheckMessage(MSG_FALL_THROUGH),
+            "531:15: " + getCheckMessage(MSG_FALL_THROUGH),
+            "533:15: " + getCheckMessage(MSG_FALL_THROUGH),
+            "535:15: " + getCheckMessage(MSG_FALL_THROUGH),
+            "537:15: " + getCheckMessage(MSG_FALL_THROUGH),
         };
-        verify(checkConfig,
-               getPath("InputFallThrough.java"),
+        verifyWithInlineConfigParser(
+                getPath("InputFallThroughDefault.java"),
                expected);
     }
 
     @Test
-    public void testLastCaseGroup() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(FallThroughCheck.class);
-        checkConfig.addAttribute("checkLastCaseGroup", "true");
+    public void testTryWithResources() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputFallThrough.java"),
+               expected);
+    }
+
+    @Test
+    public void testStringSwitch() throws Exception {
         final String[] expected = {
-            "14:13: " + getCheckMessage(MSG_FALL_THROUGH),
-            "38:13: " + getCheckMessage(MSG_FALL_THROUGH),
-            "47:13: " + getCheckMessage(MSG_FALL_THROUGH),
-            "53:13: " + getCheckMessage(MSG_FALL_THROUGH),
-            "70:13: " + getCheckMessage(MSG_FALL_THROUGH),
-            "87:13: " + getCheckMessage(MSG_FALL_THROUGH),
-            "123:13: " + getCheckMessage(MSG_FALL_THROUGH),
-            "123:13: " + getCheckMessage(MSG_FALL_THROUGH_LAST),
-            "179:11: " + getCheckMessage(MSG_FALL_THROUGH),
-            "369:11: " + getCheckMessage(MSG_FALL_THROUGH),
-            "372:11: " + getCheckMessage(MSG_FALL_THROUGH),
-            "374:40: " + getCheckMessage(MSG_FALL_THROUGH),
-            "376:11: " + getCheckMessage(MSG_FALL_THROUGH_LAST),
-            "416:13: " + getCheckMessage(MSG_FALL_THROUGH),
-            "424:9: " + getCheckMessage(MSG_FALL_THROUGH),
-            "436:9: " + getCheckMessage(MSG_FALL_THROUGH),
-            "446:9: " + getCheckMessage(MSG_FALL_THROUGH),
+            "21:9: " + getCheckMessage(MSG_FALL_THROUGH),
         };
-        verify(checkConfig,
-               getPath("InputFallThrough.java"),
+        verifyWithInlineConfigParser(getPath("InputFallThroughStringSwitch.java"), expected);
+    }
+
+    @Test
+    public void testCharacterSwitch() throws Exception {
+        final String[] expected = {
+            "19:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "30:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "38:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "44:17: " + getCheckMessage(MSG_FALL_THROUGH),
+            "48:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "63:13: " + getCheckMessage(MSG_FALL_THROUGH),
+        };
+        verifyWithInlineConfigParser(getPath("InputFallThroughCharacterSwitch.java"), expected);
+    }
+
+    @Test
+    public void testLastCaseGroup() throws Exception {
+        final String[] expected = {
+            "22:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "46:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "55:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "61:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "78:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "95:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "131:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "131:13: " + getCheckMessage(MSG_FALL_THROUGH_LAST),
+            "187:11: " + getCheckMessage(MSG_FALL_THROUGH),
+            "377:11: " + getCheckMessage(MSG_FALL_THROUGH),
+            "380:11: " + getCheckMessage(MSG_FALL_THROUGH),
+            "382:40: " + getCheckMessage(MSG_FALL_THROUGH),
+            "384:11: " + getCheckMessage(MSG_FALL_THROUGH_LAST),
+            "424:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "432:9: " + getCheckMessage(MSG_FALL_THROUGH),
+            "444:9: " + getCheckMessage(MSG_FALL_THROUGH),
+            "454:9: " + getCheckMessage(MSG_FALL_THROUGH),
+            "490:9: " + getCheckMessage(MSG_FALL_THROUGH),
+            "491:9: " + getCheckMessage(MSG_FALL_THROUGH),
+            "492:9: " + getCheckMessage(MSG_FALL_THROUGH),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputFallThrough.java"),
                expected);
     }
 
     @Test
     public void testOwnPattern() throws Exception {
-        final String ownPattern = "Continue with next case";
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(FallThroughCheck.class);
-        checkConfig.addAttribute("reliefPattern", ownPattern);
 
         final String[] expected = {
-            "14:13: " + getCheckMessage(MSG_FALL_THROUGH),
-            "38:13: " + getCheckMessage(MSG_FALL_THROUGH),
-            "47:13: " + getCheckMessage(MSG_FALL_THROUGH),
-            "53:13: " + getCheckMessage(MSG_FALL_THROUGH),
-            "70:13: " + getCheckMessage(MSG_FALL_THROUGH),
-            "87:13: " + getCheckMessage(MSG_FALL_THROUGH),
-            "123:13: " + getCheckMessage(MSG_FALL_THROUGH),
-            "145:11: " + getCheckMessage(MSG_FALL_THROUGH),
-            "170:11: " + getCheckMessage(MSG_FALL_THROUGH),
-            "179:11: " + getCheckMessage(MSG_FALL_THROUGH),
-            "186:11: " + getCheckMessage(MSG_FALL_THROUGH),
-            "204:11: " + getCheckMessage(MSG_FALL_THROUGH),
-            "222:11: " + getCheckMessage(MSG_FALL_THROUGH),
-            "252:26: " + getCheckMessage(MSG_FALL_THROUGH),
-            "266:11: " + getCheckMessage(MSG_FALL_THROUGH),
-            "281:11: " + getCheckMessage(MSG_FALL_THROUGH),
-            "284:11: " + getCheckMessage(MSG_FALL_THROUGH),
-            "288:11: " + getCheckMessage(MSG_FALL_THROUGH),
-            "290:25: " + getCheckMessage(MSG_FALL_THROUGH),
-            "306:11: " + getCheckMessage(MSG_FALL_THROUGH),
-            "309:11: " + getCheckMessage(MSG_FALL_THROUGH),
-            "311:25: " + getCheckMessage(MSG_FALL_THROUGH),
-            "327:11: " + getCheckMessage(MSG_FALL_THROUGH),
-            "330:11: " + getCheckMessage(MSG_FALL_THROUGH),
-            "332:23: " + getCheckMessage(MSG_FALL_THROUGH),
-            "348:11: " + getCheckMessage(MSG_FALL_THROUGH),
-            "351:11: " + getCheckMessage(MSG_FALL_THROUGH),
-            "353:30: " + getCheckMessage(MSG_FALL_THROUGH),
-            "416:13: " + getCheckMessage(MSG_FALL_THROUGH),
-            "424:9: " + getCheckMessage(MSG_FALL_THROUGH),
-            "436:9: " + getCheckMessage(MSG_FALL_THROUGH),
-            "446:9: " + getCheckMessage(MSG_FALL_THROUGH),
+            "22:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "46:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "55:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "61:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "78:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "95:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "131:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "153:11: " + getCheckMessage(MSG_FALL_THROUGH),
+            "178:11: " + getCheckMessage(MSG_FALL_THROUGH),
+            "187:11: " + getCheckMessage(MSG_FALL_THROUGH),
+            "194:11: " + getCheckMessage(MSG_FALL_THROUGH),
+            "212:11: " + getCheckMessage(MSG_FALL_THROUGH),
+            "230:11: " + getCheckMessage(MSG_FALL_THROUGH),
+            "260:26: " + getCheckMessage(MSG_FALL_THROUGH),
+            "274:11: " + getCheckMessage(MSG_FALL_THROUGH),
+            "289:11: " + getCheckMessage(MSG_FALL_THROUGH),
+            "292:11: " + getCheckMessage(MSG_FALL_THROUGH),
+            "296:11: " + getCheckMessage(MSG_FALL_THROUGH),
+            "298:25: " + getCheckMessage(MSG_FALL_THROUGH),
+            "314:11: " + getCheckMessage(MSG_FALL_THROUGH),
+            "317:11: " + getCheckMessage(MSG_FALL_THROUGH),
+            "319:25: " + getCheckMessage(MSG_FALL_THROUGH),
+            "335:11: " + getCheckMessage(MSG_FALL_THROUGH),
+            "338:11: " + getCheckMessage(MSG_FALL_THROUGH),
+            "340:23: " + getCheckMessage(MSG_FALL_THROUGH),
+            "356:11: " + getCheckMessage(MSG_FALL_THROUGH),
+            "359:11: " + getCheckMessage(MSG_FALL_THROUGH),
+            "361:30: " + getCheckMessage(MSG_FALL_THROUGH),
+            "424:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "432:9: " + getCheckMessage(MSG_FALL_THROUGH),
+            "444:9: " + getCheckMessage(MSG_FALL_THROUGH),
+            "454:9: " + getCheckMessage(MSG_FALL_THROUGH),
+            "481:12: " + getCheckMessage(MSG_FALL_THROUGH),
+            "490:9: " + getCheckMessage(MSG_FALL_THROUGH),
             "491:9: " + getCheckMessage(MSG_FALL_THROUGH),
-            "495:9: " + getCheckMessage(MSG_FALL_THROUGH),
-            "501:9: " + getCheckMessage(MSG_FALL_THROUGH),
-            "507:9: " + getCheckMessage(MSG_FALL_THROUGH),
-            "514:9: " + getCheckMessage(MSG_FALL_THROUGH),
+            "492:9: " + getCheckMessage(MSG_FALL_THROUGH),
         };
-        verify(checkConfig,
-               getPath("InputFallThrough.java"),
+        verifyWithInlineConfigParser(
+                getPath("InputFallThrough3.java"),
                expected);
+    }
 
+    @Test
+    public void testOwnPatternTryWithResources() throws Exception {
+
+        final String[] expected = {
+            "54:9: " + getCheckMessage(MSG_FALL_THROUGH),
+            "58:9: " + getCheckMessage(MSG_FALL_THROUGH),
+            "64:9: " + getCheckMessage(MSG_FALL_THROUGH),
+            "70:9: " + getCheckMessage(MSG_FALL_THROUGH),
+            "77:9: " + getCheckMessage(MSG_FALL_THROUGH),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputFallThrough2.java"),
+               expected);
+    }
+
+    @Test
+    public void testWithEmoji() throws Exception {
+        final String[] expected = {
+            "22:17: " + getCheckMessage(MSG_FALL_THROUGH),
+            "25:17: " + getCheckMessage(MSG_FALL_THROUGH),
+            "49:17: " + getCheckMessage(MSG_FALL_THROUGH),
+            "52:17: " + getCheckMessage(MSG_FALL_THROUGH),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputFallThroughWithEmoji.java"), expected);
     }
 
     @Test
     public void testTokensNotNull() {
         final FallThroughCheck check = new FallThroughCheck();
-        Assert.assertNotNull(check.getAcceptableTokens());
-        Assert.assertNotNull(check.getDefaultTokens());
-        Assert.assertNotNull(check.getRequiredTokens());
+        assertWithMessage("Acceptable tokens should not be null")
+            .that(check.getAcceptableTokens())
+            .isNotNull();
+        assertWithMessage("Default tokens should not be null")
+            .that(check.getDefaultTokens())
+            .isNotNull();
+        assertWithMessage("Required tokens should not be null")
+            .that(check.getRequiredTokens())
+            .isNotNull();
     }
 
     @Test
     public void testFallThroughNoElse() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(FallThroughCheck.class);
         final String[] expected = {
-            "20:13: " + getCheckMessage(MSG_FALL_THROUGH),
-            "35:13: " + getCheckMessage(MSG_FALL_THROUGH),
-            "39:13: " + getCheckMessage(MSG_FALL_THROUGH),
-            "46:13: " + getCheckMessage(MSG_FALL_THROUGH),
-            "60:13: " + getCheckMessage(MSG_FALL_THROUGH),
-            "67:13: " + getCheckMessage(MSG_FALL_THROUGH),
-            "80:21: " + getCheckMessage(MSG_FALL_THROUGH),
-            "86:13: " + getCheckMessage(MSG_FALL_THROUGH),
-            "88:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "28:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "43:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "47:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "54:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "68:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "75:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "88:21: " + getCheckMessage(MSG_FALL_THROUGH),
+            "94:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "96:13: " + getCheckMessage(MSG_FALL_THROUGH),
         };
-        verify(checkConfig,
-            getPath("InputFallThrough2.java"),
+        verifyWithInlineConfigParser(
+                getPath("InputFallThrough2.java"),
             expected);
     }
+
+    @Test
+    public void testYield() throws Exception {
+        final String[] expected = {
+            "19:9: " + getCheckMessage(MSG_FALL_THROUGH),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputFallThrough3.java"),
+                expected);
+    }
+
 }

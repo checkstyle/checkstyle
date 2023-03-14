@@ -1,3 +1,10 @@
+/*
+MissingDeprecated
+violateExecutionOnNonTightHtml = (default)false
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.annotation.missingdeprecated;
 
 import java.lang.annotation.Inherited;
@@ -9,7 +16,7 @@ public class InputMissingDeprecatedBadJavadoc
      * @Deprecated this is not the same
      */
     @Deprecated
-    protected InputMissingDeprecatedBadJavadoc() {
+    protected InputMissingDeprecatedBadJavadoc() { // violation above
 
     }
 
@@ -24,9 +31,9 @@ public class InputMissingDeprecatedBadJavadoc
     enum Rock {
 
         /**
-         * 
+         *
          */
-        @Bleh2(bleh=1)
+        @Bleh2(bleh=1) // violation
         @Deprecated
         Metallica
     }
@@ -36,7 +43,7 @@ public class InputMissingDeprecatedBadJavadoc
  *
  */
 @Deprecated
-interface Foo2 {
+interface Foo2 { // violation above
     @Deprecated
     interface Bar {
 
@@ -46,12 +53,12 @@ interface Foo2 {
 /**
  */
 @Deprecated
-@interface Bleh2 {
+@interface Bleh2 { // violation above
 
     /**
-     * 
+     *
      * @return
      */
     @Deprecated
-    int bleh();
+    int bleh(); // violation above
 }

@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,27 +15,85 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.api;
 
-import static com.puppycrawl.tools.checkstyle.internal.TestUtils.assertUtilsClassHasPrivateConstructor;
-import static org.junit.Assert.assertEquals;
+import static com.google.common.truth.Truth.assertWithMessage;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
 
-import org.junit.Test;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Locale;
+import java.util.ResourceBundle;
+import java.util.Set;
+import java.util.stream.Collectors;
 
-import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
+import org.junit.jupiter.api.Test;
+
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 public class TokenTypesTest {
+
+    @Test
+    public void testAllTokenTypesHasDescription() {
+        final String tokenTypes = "com.puppycrawl.tools.checkstyle.api.tokentypes";
+        final ResourceBundle bundle = ResourceBundle.getBundle(tokenTypes, Locale.ROOT);
+
+        final Set<String> expected = Arrays.stream(TokenUtil.getAllTokenIds())
+            .mapToObj(TokenUtil::getTokenName)
+            .filter(name -> name.charAt(0) != '$')
+            .collect(Collectors.toSet());
+        final Set<String> actual = bundle.keySet();
+        assertWithMessage("TokenTypes without description")
+                .that(actual)
+                .isEqualTo(expected);
+    }
+
+    @Test
+    public void testAllDescriptionsEndsWithPeriod() {
+        final Set<String> badDescriptions = Arrays.stream(TokenUtil.getAllTokenIds())
+            .mapToObj(TokenUtil::getTokenName)
+            .filter(name -> name.charAt(0) != '$')
+            .map(TokenUtil::getShortDescription)
+            .filter(desc -> desc.charAt(desc.length() - 1) != '.').collect(Collectors.toSet());
+        assertWithMessage("Malformed TokenType descriptions")
+                .that(badDescriptions)
+                .isEqualTo(Collections.emptySet());
+    }
+
     @Test
     public void testGetShortDescription() {
-        assertEquals("short description for EQUAL",
-                "The <code>==</code> (equal) operator.", TokenUtils
-                        .getShortDescription("EQUAL"));
+        assertWithMessage("short description for EQUAL")
+                .that(TokenUtil.getShortDescription("EQUAL"))
+                .isEqualTo("The <code>==</code> (equal) operator.");
+
+        assertWithMessage("short description for LAND")
+                .that(TokenUtil.getShortDescription("LAND"))
+                .isEqualTo("The <code>&&</code> (conditional AND) operator.");
+
+        assertWithMessage("short description for LCURLY")
+                .that(TokenUtil.getShortDescription("LCURLY"))
+                .isEqualTo("A left curly brace (<code>{</code>).");
+
+        assertWithMessage("short description for SR_ASSIGN")
+                .that(TokenUtil.getShortDescription("SR_ASSIGN"))
+                .isEqualTo("The <code>>>=</code> (signed right shift assignment) operator.");
+
+        assertWithMessage("short description for SL")
+                .that(TokenUtil.getShortDescription("SL"))
+                .isEqualTo("The <code><<</code> (shift left) operator.");
+
+        assertWithMessage("short description for BSR")
+                .that(TokenUtil.getShortDescription("BSR"))
+                .isEqualTo("The <code>>>></code> (unsigned shift right) operator.");
     }
 
     @Test
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
-        assertUtilsClassHasPrivateConstructor(TokenTypes.class);
+        assertWithMessage("Constructor is not private")
+                .that(isUtilsClassHasPrivateConstructor(TokenTypes.class))
+                .isTrue();
     }
+
 }

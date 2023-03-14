@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,56 +15,167 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.blocks;
 
+import java.util.Arrays;
 import java.util.Locale;
 
+import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CodePointUtil;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
+ * <p>
  * Checks for empty blocks. This check does not validate sequential blocks.
- * The policy to verify is specified using the {@link
- * BlockOption} class and defaults to {@link BlockOption#STATEMENT}.
- *
- * <p> By default the check will check the following blocks:
- *  {@link TokenTypes#LITERAL_WHILE LITERAL_WHILE},
- *  {@link TokenTypes#LITERAL_TRY LITERAL_TRY},
- *  {@link TokenTypes#LITERAL_FINALLY LITERAL_FINALLY},
- *  {@link TokenTypes#LITERAL_DO LITERAL_DO},
- *  {@link TokenTypes#LITERAL_IF LITERAL_IF},
- *  {@link TokenTypes#LITERAL_ELSE LITERAL_ELSE},
- *  {@link TokenTypes#LITERAL_FOR LITERAL_FOR},
- *  {@link TokenTypes#STATIC_INIT STATIC_INIT},
- *  {@link TokenTypes#LITERAL_SWITCH LITERAL_SWITCH}.
- *  {@link TokenTypes#LITERAL_SYNCHRONIZED LITERAL_SYNCHRONIZED}.
  * </p>
- *
- * <p> An example of how to configure the check is:
+ * <p>
+ * Sequential blocks won't be checked. Also, no violations for fallthrough:
+ * </p>
+ * <pre>
+ * switch (a) {
+ *   case 1:                          // no violation
+ *   case 2:                          // no violation
+ *   case 3: someMethod(); { }        // no violation
+ *   default: break;
+ * }
+ * </pre>
+ * <p>
+ * NOTE: This check processes LITERAL_CASE and LITERAL_DEFAULT separately.
+ * Verification empty block is done for single nearest {@code case} or {@code default}.
+ * </p>
+ * <ul>
+ * <li>
+ * Property {@code option} - specify the policy on block contents.
+ * Type is {@code com.puppycrawl.tools.checkstyle.checks.blocks.BlockOption}.
+ * Default value is {@code statement}.
+ * </li>
+ * <li>
+ * Property {@code tokens} - tokens to check
+ * Type is {@code java.lang.String[]}.
+ * Validation type is {@code tokenSet}.
+ * Default value is:
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_WHILE">
+ * LITERAL_WHILE</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_TRY">
+ * LITERAL_TRY</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_FINALLY">
+ * LITERAL_FINALLY</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_DO">
+ * LITERAL_DO</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_IF">
+ * LITERAL_IF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_ELSE">
+ * LITERAL_ELSE</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_FOR">
+ * LITERAL_FOR</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INSTANCE_INIT">
+ * INSTANCE_INIT</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STATIC_INIT">
+ * STATIC_INIT</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_SWITCH">
+ * LITERAL_SWITCH</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_SYNCHRONIZED">
+ * LITERAL_SYNCHRONIZED</a>.
+ * </li>
+ * </ul>
+ * <p>
+ * To configure the check:
  * </p>
  * <pre>
  * &lt;module name="EmptyBlock"/&gt;
  * </pre>
- *
- * <p> An example of how to configure the check for the {@link
- * BlockOption#TEXT} policy and only try blocks is:
+ * <p>
+ * Example:
  * </p>
- *
  * <pre>
- * &lt;module name="EmptyBlock"&gt;
- *    &lt;property name="tokens" value="LITERAL_TRY"/&gt;
- *    &lt;property name="option" value="text"/&gt;
+ * public class Test {
+ *   private void emptyLoop() {
+ *     for (int i = 0; i &lt; 10; i++) { // violation
+ *     }
+ *
+ *     try { // violation
+ *
+ *     } catch (Exception e) {
+ *       // ignored
+ *     }
+ *   }
+ * }
+ * </pre>
+ * <p>
+ * To configure the check for the {@code text} policy and only {@code try} blocks:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;EmptyBlock&quot;&gt;
+ *   &lt;property name=&quot;option&quot; value=&quot;text&quot;/&gt;
+ *   &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_TRY&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p> Example: </p>
+ * <pre>
+ * public class Test {
+ *   private void emptyLoop() {
+ *     for (int i = 0; i &lt; 10; i++) {
+ *       // ignored
+ *     }
  *
- * @author Lars Kühne
+ *     // violation on next line
+ *     try {
+ *
+ *     } catch (Exception e) {
+ *       // ignored
+ *     }
+ *   }
+ * }
+ * </pre>
+ * <p>
+ * To configure the check for default in switch block:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;EmptyBlock&quot;&gt;
+ *   &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_DEFAULT&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p> Example: </p>
+ * <pre>
+ * public class Test {
+ *   private void test(int a) {
+ *     switch (a) {
+ *       case 1: someMethod();
+ *       default: // OK, as there is no block
+ *     }
+ *     switch (a) {
+ *       case 1: someMethod();
+ *       default: {} // violation
+ *     }
+ *   }
+ * }
+ * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code block.empty}
+ * </li>
+ * <li>
+ * {@code block.noStatement}
+ * </li>
+ * </ul>
+ *
+ * @since 3.0
  */
+@StatelessCheck
 public class EmptyBlockCheck
     extends AbstractCheck {
+
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
@@ -77,21 +188,17 @@ public class EmptyBlockCheck
      */
     public static final String MSG_KEY_BLOCK_EMPTY = "block.empty";
 
-    /** The policy to enforce. */
+    /** Specify the policy on block contents. */
     private BlockOption option = BlockOption.STATEMENT;
 
     /**
-     * Set the option to enforce.
+     * Setter to specify the policy on block contents.
+     *
      * @param optionStr string to decode option from
      * @throws IllegalArgumentException if unable to decode
      */
     public void setOption(String optionStr) {
-        try {
-            option = BlockOption.valueOf(optionStr.trim().toUpperCase(Locale.ENGLISH));
-        }
-        catch (IllegalArgumentException iae) {
-            throw new IllegalArgumentException("unable to parse " + optionStr, iae);
-        }
+        option = BlockOption.valueOf(optionStr.trim().toUpperCase(Locale.ENGLISH));
     }
 
     @Override
@@ -134,7 +241,7 @@ public class EmptyBlockCheck
 
     @Override
     public int[] getRequiredTokens() {
-        return CommonUtils.EMPTY_INT_ARRAY;
+        return CommonUtil.EMPTY_INT_ARRAY;
     }
 
     @Override
@@ -144,21 +251,20 @@ public class EmptyBlockCheck
             if (option == BlockOption.STATEMENT) {
                 final boolean emptyBlock;
                 if (leftCurly.getType() == TokenTypes.LCURLY) {
-                    emptyBlock = leftCurly.getNextSibling().getType() != TokenTypes.CASE_GROUP;
+                    final DetailAST nextSibling = leftCurly.getNextSibling();
+                    emptyBlock = nextSibling.getType() != TokenTypes.CASE_GROUP
+                            && nextSibling.getType() != TokenTypes.SWITCH_RULE;
                 }
                 else {
                     emptyBlock = leftCurly.getChildCount() <= 1;
                 }
                 if (emptyBlock) {
-                    log(leftCurly.getLineNo(),
-                        leftCurly.getColumnNo(),
-                        MSG_KEY_BLOCK_NO_STATEMENT,
-                        ast.getText());
+                    log(leftCurly,
+                        MSG_KEY_BLOCK_NO_STATEMENT);
                 }
             }
             else if (!hasText(leftCurly)) {
-                log(leftCurly.getLineNo(),
-                    leftCurly.getColumnNo(),
+                log(leftCurly,
                     MSG_KEY_BLOCK_EMPTY,
                     ast.getText());
             }
@@ -167,10 +273,11 @@ public class EmptyBlockCheck
 
     /**
      * Checks if SLIST token contains any text.
+     *
      * @param slistAST a {@code DetailAST} value
      * @return whether the SLIST token contains any text.
      */
-    protected boolean hasText(final DetailAST slistAST) {
+    private boolean hasText(final DetailAST slistAST) {
         final DetailAST rightCurly = slistAST.findFirstToken(TokenTypes.RCURLY);
         final DetailAST rcurlyAST;
 
@@ -184,46 +291,43 @@ public class EmptyBlockCheck
         final int slistColNo = slistAST.getColumnNo();
         final int rcurlyLineNo = rcurlyAST.getLineNo();
         final int rcurlyColNo = rcurlyAST.getColumnNo();
-        final String[] lines = getLines();
         boolean returnValue = false;
         if (slistLineNo == rcurlyLineNo) {
             // Handle braces on the same line
-            final String txt = lines[slistLineNo - 1]
-                    .substring(slistColNo + 1, rcurlyColNo);
-            if (!CommonUtils.isBlank(txt)) {
+            final int[] txt = Arrays.copyOfRange(getLineCodePoints(slistLineNo - 1),
+                    slistColNo + 1, rcurlyColNo);
+
+            if (!CodePointUtil.isBlank(txt)) {
                 returnValue = true;
             }
         }
         else {
-            final String firstLine = lines[slistLineNo - 1].substring(slistColNo + 1);
-            final String lastLine = lines[rcurlyLineNo - 1].substring(0, rcurlyColNo);
-            if (CommonUtils.isBlank(firstLine)
-                    && CommonUtils.isBlank(lastLine)) {
-                // check if all lines are also only whitespace
-                returnValue = !checkIsAllLinesAreWhitespace(lines, slistLineNo, rcurlyLineNo);
-            }
-            else {
-                returnValue = true;
-            }
+            final int[] codePointsFirstLine = getLineCodePoints(slistLineNo - 1);
+            final int[] firstLine = Arrays.copyOfRange(codePointsFirstLine,
+                    slistColNo + 1, codePointsFirstLine.length);
+            final int[] codePointsLastLine = getLineCodePoints(rcurlyLineNo - 1);
+            final int[] lastLine = Arrays.copyOfRange(codePointsLastLine, 0, rcurlyColNo);
+            // check if all lines are also only whitespace
+            returnValue = !(CodePointUtil.isBlank(firstLine) && CodePointUtil.isBlank(lastLine))
+                    || !checkIsAllLinesAreWhitespace(slistLineNo, rcurlyLineNo);
         }
         return returnValue;
     }
 
     /**
-     * Checks is all lines in array contain whitespaces only.
+     * Checks is all lines from 'lineFrom' to 'lineTo' (exclusive)
+     * contain whitespaces only.
      *
-     * @param lines
-     *            array of lines
      * @param lineFrom
      *            check from this line number
      * @param lineTo
      *            check to this line numbers
      * @return true if lines contain only whitespaces
      */
-    private static boolean checkIsAllLinesAreWhitespace(String[] lines, int lineFrom, int lineTo) {
+    private boolean checkIsAllLinesAreWhitespace(int lineFrom, int lineTo) {
         boolean result = true;
         for (int i = lineFrom; i < lineTo - 1; i++) {
-            if (!CommonUtils.isBlank(lines[i])) {
+            if (!CodePointUtil.isBlank(getLineCodePoints(i))) {
                 result = false;
                 break;
             }
@@ -243,6 +347,7 @@ public class EmptyBlockCheck
         if ((ast.getType() == TokenTypes.LITERAL_CASE
                 || ast.getType() == TokenTypes.LITERAL_DEFAULT)
                 && ast.getNextSibling() != null
+                && ast.getNextSibling().getFirstChild() != null
                 && ast.getNextSibling().getFirstChild().getType() == TokenTypes.SLIST) {
             leftCurly = ast.getNextSibling().getFirstChild();
         }
@@ -254,4 +359,5 @@ public class EmptyBlockCheck
         }
         return leftCurly;
     }
+
 }

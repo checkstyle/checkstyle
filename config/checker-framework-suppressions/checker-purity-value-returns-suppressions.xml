@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suppressedErrors>
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/CheckUtil.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter radix of parseInt.</message>
+    <lineContent>result = Integer.parseInt(txt, radix);</lineContent>
+    <details>
+      found   : int
+      required: @IntRange(from=2, to=36) int
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/CheckUtil.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter radix of parseLong.</message>
+    <lineContent>result = Long.parseLong(txt, radix);</lineContent>
+    <details>
+      found   : int
+      required: @IntRange(from=2, to=36) int
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/CheckUtil.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter radix of parseUnsignedInt.</message>
+    <lineContent>result = Integer.parseUnsignedInt(txt, radix);</lineContent>
+    <details>
+      found   : int
+      required: @IntRange(from=2, to=36) int
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/CheckUtil.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter radix of parseUnsignedLong.</message>
+    <lineContent>result = Long.parseUnsignedLong(txt, radix);</lineContent>
+    <details>
+      found   : int
+      required: @IntRange(from=2, to=36) int
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/TokenUtil.java</fileName>
+    <specifier>methodref.param</specifier>
+    <message>Incompatible parameter type for bitIndex</message>
+    <lineContent>.collect(BitSet::new, BitSet::set, BitSet::or);</lineContent>
+    <details>
+      found   : @IntRangeFromNonNegative int
+      required: int
+      Consequence: method in BitSet
+      void set(BitSet this, @IntRangeFromNonNegative int p0)
+      is not a valid method reference for method in ObjIntConsumer&lt;BitSet&gt;
+      void accept(ObjIntConsumer&lt;BitSet&gt; this, BitSet p0, int p1)
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/TokenUtil.java</fileName>
+    <specifier>methodref.param</specifier>
+    <message>Incompatible parameter type for bitIndex</message>
+    <lineContent>.collect(BitSet::new, BitSet::set, BitSet::or);</lineContent>
+    <details>
+      found   : @IntRangeFromNonNegative int
+      required: int
+      Consequence: method in BitSet
+      void set(BitSet this, @IntRangeFromNonNegative int p0)
+      is not a valid method reference for method in ObjIntConsumer&lt;BitSet&gt;
+      void accept(ObjIntConsumer&lt;BitSet&gt; this, BitSet p0, int p1)
+    </details>
+  </checkerFrameworkError>
+</suppressedErrors>

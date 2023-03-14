@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,49 +15,55 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.gui;
+
+import static com.google.common.truth.Truth.assertWithMessage;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import com.google.common.collect.ImmutableList;
+import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.gui.MainFrameModel.ParseMode;
 
-public class CodeSelectorPresentationTest {
+public class CodeSelectorPresentationTest extends AbstractPathTestSupport {
 
     private MainFrameModel model;
 
     private DetailAST tree;
 
-    private List<Integer> linesToPosition;
+    private ImmutableList<Integer> linesToPosition;
 
-    @Before
-    public void loadFile() throws CheckstyleException {
+    @BeforeEach
+    public void loadFile() throws Exception {
         model = new MainFrameModel();
         model.setParseMode(ParseMode.JAVA_WITH_JAVADOC_AND_COMMENTS);
-        model.openFile(new File(getPath("InputJavadocAttributesAndMethods.java")));
-        tree = ((DetailAST) model.getParseTreeTableModel().getRoot()).getFirstChild();
-        linesToPosition = convertLinesToPosition(model.getLinesToPosition());
+        model.openFile(new File(getPath("InputCodeSelectorPresentation.java")));
+        tree = ((DetailAST) model.getParseTreeTableModel().getRoot())
+                .getFirstChild().getNextSibling();
+        linesToPosition = ImmutableList.copyOf(convertLinesToPosition(model.getLinesToPosition()));
     }
 
-    private static String getPath(String filename) {
-        return "src/test/resources/com/puppycrawl/tools/checkstyle/gui/" + filename;
+    @Override
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/gui/codeselectorpresentation";
     }
 
-    /** Converts lineToPosition from multicharacter to one character line separator
-      * needs to support crossplatform line separators
-      * @param systemLinesToPosition lines to position mapping for current system
-      * @return lines to position mapping with one character line separator
-      */
+    /**
+     * Converts lineToPosition from multicharacter to one character line separator
+     * needs to support crossplatform line separators.
+     *
+     * @param systemLinesToPosition lines to position mapping for current system
+     * @return lines to position mapping with one character line separator
+     */
     private static List<Integer> convertLinesToPosition(List<Integer> systemLinesToPosition) {
         final List<Integer> convertedLinesToPosition = new ArrayList<>();
         final int lineSeparationCorrection = System.lineSeparator().length() - 1;
@@ -74,8 +80,12 @@ public class CodeSelectorPresentationTest {
         final CodeSelectorPresentation selector = new CodeSelectorPresentation(tree,
                 linesToPosition);
         selector.findSelectionPositions();
-        Assert.assertEquals(23, selector.getSelectionStart());
-        Assert.assertEquals(212, selector.getSelectionEnd());
+        assertWithMessage("Invalid selection start")
+                .that(selector.getSelectionStart())
+                .isEqualTo(94);
+        assertWithMessage("Invalid selection end")
+                .that(selector.getSelectionEnd())
+                .isEqualTo(279);
     }
 
     @Test
@@ -84,8 +94,12 @@ public class CodeSelectorPresentationTest {
         final CodeSelectorPresentation selector = new CodeSelectorPresentation(leaf,
                 linesToPosition);
         selector.findSelectionPositions();
-        Assert.assertEquals(62, selector.getSelectionStart());
-        Assert.assertEquals(63, selector.getSelectionEnd());
+        assertWithMessage("Invalid selection start")
+                .that(selector.getSelectionStart())
+                .isEqualTo(130);
+        assertWithMessage("Invalid selection end")
+                .that(selector.getSelectionEnd())
+                .isEqualTo(131);
     }
 
     @Test
@@ -94,8 +108,12 @@ public class CodeSelectorPresentationTest {
         final CodeSelectorPresentation selector = new CodeSelectorPresentation(leaf,
                 linesToPosition);
         selector.findSelectionPositions();
-        Assert.assertEquals(23, selector.getSelectionStart());
-        Assert.assertEquals(23, selector.getSelectionEnd());
+        assertWithMessage("Invalid selection start")
+                .that(selector.getSelectionStart())
+                .isEqualTo(94);
+        assertWithMessage("Invalid selection end")
+                .that(selector.getSelectionEnd())
+                .isEqualTo(94);
     }
 
     @Test
@@ -105,8 +123,12 @@ public class CodeSelectorPresentationTest {
         final CodeSelectorPresentation selector = new CodeSelectorPresentation(javadoc,
                 linesToPosition);
         selector.findSelectionPositions();
-        Assert.assertEquals(3, selector.getSelectionStart());
-        Assert.assertEquals(25, selector.getSelectionEnd());
+        assertWithMessage("Invalid selection start")
+                .that(selector.getSelectionStart())
+                .isEqualTo(74);
+        assertWithMessage("Invalid selection end")
+                .that(selector.getSelectionEnd())
+                .isEqualTo(96);
     }
 
     @Test
@@ -117,8 +139,12 @@ public class CodeSelectorPresentationTest {
         final CodeSelectorPresentation selector = new CodeSelectorPresentation(javadocLeaf,
                 linesToPosition);
         selector.findSelectionPositions();
-        Assert.assertEquals(5, selector.getSelectionStart());
-        Assert.assertEquals(19, selector.getSelectionEnd());
+        assertWithMessage("Invalid selection start")
+                .that(selector.getSelectionStart())
+                .isEqualTo(76);
+        assertWithMessage("Invalid selection end")
+                .that(selector.getSelectionEnd())
+                .isEqualTo(90);
     }
 
 }

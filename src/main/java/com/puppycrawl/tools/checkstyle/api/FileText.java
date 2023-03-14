@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,15 +15,15 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.api;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.StringReader;
@@ -31,28 +31,24 @@ import java.nio.charset.Charset;
 import java.nio.charset.CharsetDecoder;
 import java.nio.charset.CodingErrorAction;
 import java.nio.charset.UnsupportedCharsetException;
-import java.util.AbstractList;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.google.common.io.Closeables;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * Represents the text contents of a file of arbitrary plain text type.
  * <p>
  * This class will be passed to instances of class FileSetCheck by
- * Checker. It implements a string list to ensure backwards
- * compatibility, but can be extended in the future to allow more
- * flexible, more powerful or more efficient handling of certain
- * situations.
+ * Checker.
  * </p>
  *
- * @author Martin von Gagern
  */
-public final class FileText extends AbstractList<String> {
+public final class FileText {
 
     /**
      * The number of characters to read in one go.
@@ -82,14 +78,17 @@ public final class FileText extends AbstractList<String> {
     private final Charset charset;
 
     /**
-     * The full text contents of the file.
-     */
-    private final String fullText;
-
-    /**
      * The lines of the file, without terminators.
      */
     private final String[] lines;
+
+    /**
+     * The full text contents of the file.
+     *
+     * @noinspection FieldMayBeFinal
+     * @noinspectionreason FieldMayBeFinal - field is not final to ease reaching full test coverage.
+     */
+    private String fullText;
 
     /**
      * The first position of each line within the full text.
@@ -97,54 +96,8 @@ public final class FileText extends AbstractList<String> {
     private int[] lineBreaks;
 
     /**
-     * Creates a new file text representation.
-     *
-     * <p>The file will be read using the specified encoding, replacing
-     * malformed input and unmappable characters with the default
-     * replacement character.
-     *
-     * @param file the name of the file
-     * @param charsetName the encoding to use when reading the file
-     * @throws NullPointerException if the text is null
-     * @throws IOException if the file could not be read
-     */
-    public FileText(File file, String charsetName) throws IOException {
-        this.file = file;
-
-        // We use our own decoder, to be sure we have complete control
-        // about replacements.
-        final CharsetDecoder decoder;
-        try {
-            charset = Charset.forName(charsetName);
-            decoder = charset.newDecoder();
-            decoder.onMalformedInput(CodingErrorAction.REPLACE);
-            decoder.onUnmappableCharacter(CodingErrorAction.REPLACE);
-        }
-        catch (final UnsupportedCharsetException ex) {
-            final String message = "Unsupported charset: " + charsetName;
-            throw new IllegalStateException(message, ex);
-        }
-
-        fullText = readFile(file, decoder);
-
-        // Use the BufferedReader to break down the lines as this
-        // is about 30% faster than using the
-        // LINE_TERMINATOR.split(fullText, -1) method
-        final ArrayList<String> textLines = new ArrayList<>();
-        final BufferedReader reader =
-            new BufferedReader(new StringReader(fullText));
-        while (true) {
-            final String line = reader.readLine();
-            if (line == null) {
-                break;
-            }
-            textLines.add(line);
-        }
-        lines = textLines.toArray(new String[textLines.size()]);
-    }
-
-    /**
      * Copy constructor.
+     *
      * @param fileText to make copy of
      */
     public FileText(FileText fileText) {
@@ -171,76 +124,109 @@ public final class FileText extends AbstractList<String> {
      * @param lines the lines of the text, without terminators
      * @throws NullPointerException if the lines array is null
      */
-    private FileText(File file, List<String> lines) {
-        final StringBuilder buf = new StringBuilder();
+    public FileText(File file, List<String> lines) {
+        final StringBuilder buf = new StringBuilder(1024);
         for (final String line : lines) {
             buf.append(line).append('\n');
         }
-        buf.trimToSize();
 
         this.file = file;
         charset = null;
         fullText = buf.toString();
-        this.lines = lines.toArray(new String[lines.size()]);
+        this.lines = lines.toArray(CommonUtil.EMPTY_STRING_ARRAY);
+    }
+
+    /**
+     * Creates a new file text representation.
+     *
+     * <p>The file will be read using the specified encoding, replacing
+     * malformed input and unmappable characters with the default
+     * replacement character.
+     *
+     * @param file the name of the file
+     * @param charsetName the encoding to use when reading the file
+     * @throws NullPointerException if the text is null
+     * @throws IllegalStateException if the charset is not supported.
+     * @throws IOException if the file could not be read
+     */
+    public FileText(File file, String charsetName) throws IOException {
+        this.file = file;
+
+        // We use our own decoder, to be sure we have complete control
+        // about replacements.
+        final CharsetDecoder decoder;
+        try {
+            charset = Charset.forName(charsetName);
+            decoder = charset.newDecoder();
+            decoder.onMalformedInput(CodingErrorAction.REPLACE);
+            decoder.onUnmappableCharacter(CodingErrorAction.REPLACE);
+        }
+        catch (final UnsupportedCharsetException ex) {
+            final String message = "Unsupported charset: " + charsetName;
+            throw new IllegalStateException(message, ex);
+        }
+
+        fullText = readFile(file, decoder);
+
+        // Use the BufferedReader to break down the lines as this
+        // is about 30% faster than using the
+        // LINE_TERMINATOR.split(fullText, -1) method
+        try (BufferedReader reader = new BufferedReader(new StringReader(fullText))) {
+            final ArrayList<String> textLines = new ArrayList<>();
+            while (true) {
+                final String line = reader.readLine();
+                if (line == null) {
+                    break;
+                }
+                textLines.add(line);
+            }
+            lines = textLines.toArray(CommonUtil.EMPTY_STRING_ARRAY);
+        }
     }
 
     /**
      * Reads file using specific decoder and returns all its content as a String.
+     *
      * @param inputFile File to read
      * @param decoder Charset decoder
      * @return File's text
      * @throws IOException Unable to open or read the file
+     * @throws FileNotFoundException when inputFile does not exist
      */
     private static String readFile(final File inputFile, final CharsetDecoder decoder)
             throws IOException {
         if (!inputFile.exists()) {
             throw new FileNotFoundException(inputFile.getPath() + " (No such file or directory)");
         }
-        final StringBuilder buf = new StringBuilder();
-        final FileInputStream stream = new FileInputStream(inputFile);
-        final Reader reader = new InputStreamReader(stream, decoder);
-        try {
+        final StringBuilder buf = new StringBuilder(1024);
+        final InputStream stream = Files.newInputStream(inputFile.toPath());
+        try (Reader reader = new InputStreamReader(stream, decoder)) {
             final char[] chars = new char[READ_BUFFER_SIZE];
             while (true) {
                 final int len = reader.read(chars);
-                if (len < 0) {
+                if (len == -1) {
                     break;
                 }
                 buf.append(chars, 0, len);
             }
         }
-        finally {
-            Closeables.closeQuietly(reader);
-        }
         return buf.toString();
     }
 
     /**
-     * Compatibility conversion.
+     * Retrieves a line of the text by its number.
+     * The returned line will not contain a trailing terminator.
      *
-     * <p>This method can be used to convert the arguments passed to
-     * {@link FileSetCheck#process(File,List)} to a FileText
-     * object. If the list of lines already is a FileText, it is
-     * returned as is. Otherwise, a new FileText is constructed by
-     * joining the lines using line feed characters.
-     *
-     * @param file the name of the file
-     * @param lines the lines of the text, without terminators
-     * @return an object representing the denoted text file
+     * @param lineNo the number of the line to get, starting at zero
+     * @return the line with the given number
      */
-    public static FileText fromLines(File file, List<String> lines) {
-        final FileText fileText;
-        if (lines instanceof FileText) {
-            fileText = (FileText) lines;
-        }
-        else {
-            fileText = new FileText(file, lines);
-        }
-        return fileText;
+    public String get(final int lineNo) {
+        return lines[lineNo];
     }
 
     /**
      * Get the name of the file.
+     *
      * @return an object containing the name of the file
      */
     public File getFile() {
@@ -250,6 +236,7 @@ public final class FileText extends AbstractList<String> {
     /**
      * Get the character set which was used to read the file.
      * Will be {@code null} for a file reconstructed from its lines.
+     *
      * @return the charset used when the file was read
      */
     public Charset getCharset() {
@@ -258,6 +245,7 @@ public final class FileText extends AbstractList<String> {
 
     /**
      * Retrieve the full text of the file.
+     *
      * @return the full text of the file
      */
     public CharSequence getFullText() {
@@ -268,6 +256,7 @@ public final class FileText extends AbstractList<String> {
      * Returns an array of all lines.
      * {@code text.toLinesArray()} is equivalent to
      * {@code text.toArray(new String[text.size()])}.
+     *
      * @return an array of all lines of the text
      */
     public String[] toLinesArray() {
@@ -275,7 +264,28 @@ public final class FileText extends AbstractList<String> {
     }
 
     /**
+     * Determine line and column numbers in full text.
+     *
+     * @param pos the character position in the full text
+     * @return the line and column numbers of this character
+     */
+    public LineColumn lineColumn(int pos) {
+        final int[] lineBreakPositions = findLineBreaks();
+        int lineNo = Arrays.binarySearch(lineBreakPositions, pos);
+        if (lineNo < 0) {
+            // we have: lineNo = -(insertion point) - 1
+            // we want: lineNo =  (insertion point) - 1
+            lineNo = -lineNo - 2;
+        }
+        final int startOfLine = lineBreakPositions[lineNo];
+        final int columnNo = pos - startOfLine;
+        // now we have lineNo and columnNo, both starting at zero.
+        return new LineColumn(lineNo + 1, columnNo);
+    }
+
+    /**
      * Find positions of line breaks in the full text.
+     *
      * @return an array giving the first positions of each line.
      */
     private int[] findLineBreaks() {
@@ -297,40 +307,10 @@ public final class FileText extends AbstractList<String> {
     }
 
     /**
-     * Determine line and column numbers in full text.
-     * @param pos the character position in the full text
-     * @return the line and column numbers of this character
-     */
-    public LineColumn lineColumn(int pos) {
-        final int[] lineBreakPositions = findLineBreaks();
-        int lineNo = Arrays.binarySearch(lineBreakPositions, pos);
-        if (lineNo < 0) {
-            // we have: lineNo = -(insertion point) - 1
-            // we want: lineNo =  (insertion point) - 1
-            lineNo = -lineNo - 2;
-        }
-        final int startOfLine = lineBreakPositions[lineNo];
-        final int columnNo = pos - startOfLine;
-        // now we have lineNo and columnNo, both starting at zero.
-        return new LineColumn(lineNo + 1, columnNo);
-    }
-
-    /**
-     * Retrieves a line of the text by its number.
-     * The returned line will not contain a trailing terminator.
-     * @param lineNo the number of the line to get, starting at zero
-     * @return the line with the given number
-     */
-    @Override
-    public String get(final int lineNo) {
-        return lines[lineNo];
-    }
-
-    /**
      * Counts the lines of the text.
+     *
      * @return the number of lines in the text
      */
-    @Override
     public int size() {
         return lines.length;
     }

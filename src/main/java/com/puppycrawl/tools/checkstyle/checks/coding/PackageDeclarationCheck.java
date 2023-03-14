@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,31 +15,92 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import java.io.File;
 
+import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * Ensures there is a package declaration.
- * Optionally checks if directory structure matches package name.
- * Rationale: Classes that live in the null package cannot be
- * imported. Many novice developers are not aware of this.
+ * <p>
+ * Ensures that a class has a package declaration, and (optionally) whether
+ * the package name matches the directory name for the source file.
+ * </p>
+ * <p>
+ * Rationale: Classes that live in the null package cannot be imported.
+ * Many novice developers are not aware of this.
+ * </p>
+ * <p>
  * Packages provide logical namespace to classes and should be stored in
  * the form of directory levels to provide physical grouping to your classes.
  * These directories are added to the classpath so that your classes
  * are visible to JVM when it runs the code.
+ * </p>
+ * <ul>
+ * <li>
+ * Property {@code matchDirectoryStructure} - Control whether to check for
+ * directory and package name match.
+ * Type is {@code boolean}.
+ * Default value is {@code true}.
+ * </li>
+ * </ul>
+ * <p>
+ * To configure the check:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;PackageDeclaration&quot;/&gt;
+ * </pre>
+ * <p>
+ * Let us consider the class AnnotationLocationCheck which is in the directory
+ * /com/puppycrawl/tools/checkstyle/checks/annotations/
+ * </p>
+ * <pre>
+ * package com.puppycrawl.tools.checkstyle.checks; //Violation
+ * public class AnnotationLocationCheck extends AbstractCheck {
+ *   //...
+ * }
+ * </pre>
+ * <p>
+ * Example of how the check works when matchDirectoryStructure option is set to false.
+ * Let us again consider the AnnotationLocationCheck class located at directory
+ * /com/puppycrawl/tools/checkstyle/checks/annotations/ along with the following setup,
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;PackageDeclaration&quot;&gt;
+ * &lt;property name=&quot;matchDirectoryStructure&quot; value=&quot;false&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <pre>
+ * package com.puppycrawl.tools.checkstyle.checks;  //No Violation
  *
- * @author <a href="mailto:simon@redhillconsulting.com.au">Simon Harris</a>
- * @author Oliver Burn
- * @author Vikramaditya Kukreja
+ * public class AnnotationLocationCheck extends AbstractCheck {
+ *   //...
+ * }
+ * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code mismatch.package.directory}
+ * </li>
+ * <li>
+ * {@code missing.package.declaration}
+ * </li>
+ * </ul>
+ *
+ * @since 3.2
  */
+@FileStatefulCheck
 public final class PackageDeclarationCheck extends AbstractCheck {
 
     /**
@@ -54,17 +115,15 @@ public final class PackageDeclarationCheck extends AbstractCheck {
      */
     public static final String MSG_KEY_MISMATCH = "mismatch.package.directory";
 
-    /** Line number used to log violation when no AST nodes are present in file. */
-    private static final int DEFAULT_LINE_NUMBER = 1;
-
     /** Is package defined. */
     private boolean defined;
 
-    /** Whether to check for directory and package name match. */
+    /** Control whether to check for directory and package name match. */
     private boolean matchDirectoryStructure = true;
 
     /**
-     * Set whether to check for directory and package name match.
+     * Setter to control whether to check for directory and package name match.
+     *
      * @param matchDirectoryStructure the new value.
      */
     public void setMatchDirectoryStructure(boolean matchDirectoryStructure) {
@@ -73,17 +132,17 @@ public final class PackageDeclarationCheck extends AbstractCheck {
 
     @Override
     public int[] getDefaultTokens() {
-        return new int[] {TokenTypes.PACKAGE_DEF};
+        return getRequiredTokens();
     }
 
     @Override
     public int[] getRequiredTokens() {
-        return getDefaultTokens();
+        return new int[] {TokenTypes.PACKAGE_DEF};
     }
 
     @Override
     public int[] getAcceptableTokens() {
-        return new int[] {TokenTypes.PACKAGE_DEF};
+        return getRequiredTokens();
     }
 
     @Override
@@ -93,12 +152,8 @@ public final class PackageDeclarationCheck extends AbstractCheck {
 
     @Override
     public void finishTree(DetailAST ast) {
-        if (!defined) {
-            int lineNumber = DEFAULT_LINE_NUMBER;
-            if (ast != null) {
-                lineNumber = ast.getLineNo();
-            }
-            log(lineNumber, MSG_KEY_MISSING);
+        if (!defined && ast != null) {
+            log(ast, MSG_KEY_MISSING);
         }
     }
 
@@ -107,7 +162,6 @@ public final class PackageDeclarationCheck extends AbstractCheck {
         defined = true;
 
         if (matchDirectoryStructure) {
-
             final DetailAST packageNameAst = ast.getLastChild().getPreviousSibling();
             final FullIdent fullIdent = FullIdent.createFullIdent(packageNameAst);
             final String packageName = fullIdent.getText().replace('.', File.separatorChar);
@@ -115,18 +169,20 @@ public final class PackageDeclarationCheck extends AbstractCheck {
             final String directoryName = getDirectoryName();
 
             if (!directoryName.endsWith(packageName)) {
-                log(fullIdent.getLineNo(), MSG_KEY_MISMATCH, packageName);
+                log(ast, MSG_KEY_MISMATCH, packageName);
             }
         }
     }
 
     /**
      * Returns the directory name this file is in.
+     *
      * @return Directory name.
      */
     private String getDirectoryName() {
-        final String fileName = getFileContents().getFileName();
+        final String fileName = getFilePath();
         final int lastSeparatorPos = fileName.lastIndexOf(File.separatorChar);
         return fileName.substring(0, lastSeparatorPos);
     }
+
 }

@@ -1,7 +1,13 @@
-////////////////////////////////////////////////////////////////////////////////
-// Test case file for checkstyle.
-// Created: 2001
-////////////////////////////////////////////////////////////////////////////////
+/*
+EmptyBlock
+option = (default)statement
+tokens = (default)LITERAL_WHILE, LITERAL_TRY, LITERAL_FINALLY, LITERAL_DO, \
+         LITERAL_IF, LITERAL_ELSE, LITERAL_FOR, INSTANCE_INIT, STATIC_INIT, \
+         LITERAL_SWITCH, LITERAL_SYNCHRONIZED
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.blocks.emptyblock;
 
 import java.io.*; // star import for instantiation tests
@@ -10,8 +16,7 @@ import java.awt.Color;
 
 /**
  * Test case for detecting empty block statements.
- * @author Lars Kühne
- **/
+**/
 class InputEmptyBlockSemantic
 {
     static {
@@ -30,20 +35,20 @@ class InputEmptyBlockSemantic
 
     void exHandlerTest()
     {
-        try {
+        try {   // violation 'Must have at least one statement.'
         }
-        finally {
+        finally {   // violation 'Must have at least one statement'
         }
-        try {
+        try {   // violation 'Must have at least one statement'
         // something
         }
-        finally {
+        finally {   // violation 'Must have at least one statement'
             // something
         }
-        try {
+        try {   // ok
             ; // something
         }
-        finally {
+        finally {   // ok
             ; // statement
         }
     }
@@ -60,28 +65,28 @@ class InputEmptyBlockSemantic
     }
 
     // empty instance initializer
-    {
+    {   // violation 'Must have at least one statement'
     }
 
     private class InputBraces {
-        
+
     }
 
     synchronized void foo() {
-        synchronized (this) {} // not OK
-        synchronized (Class.class) { // OK
-            synchronized (new Object()) {
-                // not OK if checking statements
+        synchronized (this) {}  // violation 'Must have at least one statement'
+        synchronized (Class.class) { // ok
+            synchronized (new Object()) {   // violation 'Must have at least one statement'
+                // text
             }
         }
     }
-    
-    
+
+
     static {
-       
+
     int a = 0;}
-    
-    static {
-        
+
+    static {    // violation 'Must have at least one statement'
+
     }
 }

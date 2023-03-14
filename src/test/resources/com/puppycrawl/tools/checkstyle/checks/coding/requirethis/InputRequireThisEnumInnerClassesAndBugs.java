@@ -1,3 +1,12 @@
+/*
+RequireThis
+checkFields = (default)true
+checkMethods = (default)true
+validateOnlyOverlapping = false
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.coding.requirethis;
 
 import java.awt.Toolkit;
@@ -8,13 +17,13 @@ import java.io.InputStream;
 public class InputRequireThisEnumInnerClassesAndBugs {
     int i;
     void method1() {
-        i = 3;
+        i = 3; // violation 'Reference to instance variable 'i' needs "this.".'
     }
 
     void method2(int i) {
         i++;
         this.i = i;
-        method1();
+        method1(); // violation 'Method call to 'method1' needs "this.".'
         try {
             this.method1();
         }
@@ -28,7 +37,7 @@ public class InputRequireThisEnumInnerClassesAndBugs {
 
     <T> void method3()
     {
-        i = 3;
+        i = 3; // violation 'Reference to instance variable 'i' needs "this.".'
     }
 
     void method4() {
@@ -46,28 +55,28 @@ enum MyEnum
     {
         void doSomething()
         {
-            z = 1;
+            z = 1; // violation 'Reference to instance variable 'z' needs "this.".'
         }
     };
 
     int z;
     private MyEnum()
     {
-        z = 0;
+        z = 0; // violation 'Reference to instance variable 'z' needs "this.".'
     }
 }
 
 class Bug2123003 {
     @Rock(band = "GnR")
     private String band;
-    
+
     class Inner {
         @Rock(band = {"GnR"})
         private String band;
     }
-    
+
     class Inner2 {
-        @Rock(band = {(true) ? "GnR" : "Tool"})
+        @Rock(band = {"Tool"})
         private String band;
     }
     /*     \m/(>.<)\m/     */
@@ -110,16 +119,16 @@ class Issue257 {
 class Issue2240 {
     int i;
     void foo() {
-        i++;
-        i++; int i = 1; i++;
-        instanceMethod();
+        i++; // violation 'Reference to instance variable 'i' needs "this.".'
+        i++; int i = 1; i++; // violation 'Reference to instance variable 'i' needs "this.".'
+        instanceMethod(); // violation 'Method call to 'instanceMethod' needs "this.".'
     }
     void instanceMethod() {};
 
     class Nested {
         void bar() {
-            instanceMethod();
-            i++;
+            instanceMethod(); // violation 'Method .* 'instanceMethod' needs "Issue2240.this.".'
+            i++; // violation 'Reference to instance variable 'i' needs "Issue2240.this.".'
         }
     }
 }
@@ -131,6 +140,94 @@ class Issue2539{
 
     void bar() {
         foo(1);
-        foo();
+        foo(); // violation 'Method call to 'foo' needs "this.".'
+    }
+}
+class NestedRechange {
+    final String s = "";
+
+    NestedRechange() {
+        String s = "t";
+        s = s.substring(0); // violation 'Reference to instance variable 's' needs "this.".'
+    }
+
+    private static class NestedStatic {
+        static final String s = "";
+
+        public void method() {
+            s.substring(0);
+        }
+    }
+}
+class NestedFrames {
+    int a = 0;
+    int b = 0;
+
+    public int oneReturnInMethod2() {
+        for (int i = 0; i < 10; i++) {
+            int a = 1;
+            if (a != 2 && true) {
+                if (true | false) {
+                    if (a - a != 0) {
+                        a += 1;
+                    }
+                }
+            }
+        }
+        return a + a * a; // 3 violations
+    }
+
+    public int oneReturnInMethod3() {
+        for (int b = 0; b < 10; b++) {
+        }
+        return b + b * b; // 3 violations
+    }
+    final NestedFrames NestedFrames = new NestedFrames();
+}
+class Another {
+    void method1() {
+       for (int i = 0; i < 1; i++) {
+           i = i + 1;
+       }
+       for (int i = 0; i < 1; i++) {
+           for (int j = 0; j < 1; i++) {
+               --i;
+           }
+       }
+   }
+   private int i;
+}
+class TestClass {
+    private final TestClass field = new TestClass();
+
+    private String child;
+
+    public void method() {
+        if (false) {
+            return;
+        } else if (true) {
+            String child = (String) this.child;
+            if (!(this.child instanceof String)) {
+                child = field.get(child); // violation '.* variable 'field' needs "this.".'
+            }
+        }
+    }
+
+    public String get(String s) {
+        return s;
+    }
+}
+class TestClass3 {
+    private static class Flags {
+        public void method() {
+            final char ch = ' ';
+            parse(ch);
+        }
+
+        private static void parse(char c) {
+        }
+    }
+
+    private void parse(String s) {
     }
 }

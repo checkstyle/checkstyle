@@ -1,3 +1,9 @@
+/*
+CovariantEquals
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.coding.covariantequals;
 
 /**
@@ -8,7 +14,7 @@ public class InputCovariantEquals
 {
     private class Inner
     {
-        public boolean equals(Inner aInner)
+        public boolean equals(Inner aInner) // violation
         {
             return false;
         }
@@ -20,26 +26,26 @@ public class InputCovariantEquals
         {
             return false;
         }
-        
+
         public boolean equals(Object aObj)
         {
-            return false;       
+            return false;
         }
     }
 
-    public boolean equals(InputCovariantEquals aInputCovariantEquals)
+    public boolean equals(InputCovariantEquals aInputCovariantEquals) // violation
     {
         return false;
     }
 }
 
 class InputCovariant2
-{   
+{
     public boolean equals(InputCovariant2 aInputCovariant2)
     {
         return false;
     }
-    
+
     public boolean equals(Object aObject)
     {
         return false;
@@ -47,12 +53,12 @@ class InputCovariant2
 }
 
 class InputCovariant3
-{   
+{
     public boolean equals(InputCovariant3 aInputCovariant3)
     {
         return false;
     }
-    
+
     public boolean equals(java.lang.Object aObject)
     {
         return false;
@@ -61,13 +67,13 @@ class InputCovariant3
 
 class InputCovariant4
 {
-    public boolean equals(int i)
+    public boolean equals(int i) // violation
     {
         return false;
     }
 }
 
-class AnonymousIC
+class InputAnonymousIC
 {
     Comparable comp = new Comparable()
         {
@@ -75,17 +81,17 @@ class AnonymousIC
             {
                 return 0;
             }
-            public boolean equals(String aString)
+            public boolean equals(String aString) // violation
             {
                 return false;
             }
         };
-    
+
     public boolean equals(Object aObject)
     {
         return false;
     }
-    
+
     public void method()
     {
         Double d = new Double(1);
@@ -131,11 +137,11 @@ class InputGenericCovariant8
 enum InputEnumCovariant {
     EQUALS;
 
-    public boolean equals(InputEnumCovariant inputEnumCovariant) {
+    public boolean equals(InputEnumCovariant inputEnumCovariant) { // violation
         return false;
     }
 
-    int equals(Integer integer) {
+    int equals(Integer integer) { // violation
         return 0;
     }
 }

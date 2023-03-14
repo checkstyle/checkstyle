@@ -1,3 +1,13 @@
+/*
+IllegalTokenText
+format = a href
+ignoreCase = (default)false
+message = (default)
+tokens = STRING_LITERAL
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.coding.illegaltokentext;
 
 /**
@@ -16,12 +26,12 @@ public class InputIllegalTokenTextTokens
                 break;
         }
     }
-    
+
     public native void nativeMethod();
-    
+
     public void methodWithLiterals()
     {
-        final String ref = "<a href=\"";
+        final String ref = "<a href=\""; // violation
         final String refCase = "<A hReF=\"";
     }
 

@@ -1,3 +1,14 @@
+/*
+RequireThis
+checkFields = (default)true
+checkMethods = false
+validateOnlyOverlapping = false
+
+
+*/
+
+package com.puppycrawl.tools.checkstyle.checks.coding.requirethis;
+
 import java.util.function.Consumer;
 public class InputRequireThisAllowLambdaParameters {
     private String s1 = "foo1";
@@ -10,13 +21,13 @@ public class InputRequireThisAllowLambdaParameters {
         strings.stream().filter(s1 -> s1.contains("f"))  // NO violation; s1 is a lambda parameter
                 .collect(java.util.stream.Collectors.toList());
 
-        s1 = "foo1"; // violation; validateOnlyOverlapping=false
+        s1 = "foo1"; // violation 'Reference to instance variable 's1' needs "this.".'
     }
 
     void foo2() {
         final java.util.List<String> strings = new java.util.ArrayList<>();
         strings.add("foo1");
-        strings.stream().filter(s1 -> s1.contains(s1 = s1 + "2"))  // NO violation; s1 is a lambda parameter
+        strings.stream().filter(s1 -> s1.contains(s1 = s1 + "2"))// NO violation;s1 is lambda param
                 .collect(java.util.stream.Collectors.toList());
     }
 
@@ -32,7 +43,7 @@ public class InputRequireThisAllowLambdaParameters {
                 new String("y = " + y);  // NO violation; y is a lambda parameter
                 new String("InputRequireThisAllowLambdaParameters.this.x = " +
                         InputRequireThisAllowLambdaParameters.this.x);
-                y=x+z++; // 1 violation for z; NO violation for y; y is a lambda parameter
+                y=x+z++;  // violation 'Reference to instance variable 'z' needs "this.".'
             };
             myConsumer.accept(x);
         }
@@ -58,5 +69,19 @@ class Calculator {
         IntegerMath subtraction = (a, b) -> a = a - b; // NO violations
         myApp.operateBinary(20, 10, subtraction);
         myApp.operateBinary(a++, b, addition);  // 2 violations
+    }
+}
+
+class Test {
+    private Thread thread;
+
+    public void testThreadHasWrongClassLoader() {
+        Thread t = new Thread(() -> {
+            try {
+                thread.wait(); // violation 'Reference to instance variable 'thread' needs "this.".'
+            }
+            catch (Exception e) {
+            }
+        });
     }
 }

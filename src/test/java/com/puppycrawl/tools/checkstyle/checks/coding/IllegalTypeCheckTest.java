@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,209 +15,416 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.coding.IllegalTypeCheck.MSG_KEY;
 
 import java.io.File;
-import java.io.IOException;
 
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-public class IllegalTypeCheckTest extends BaseCheckTestSupport {
-    private DefaultConfiguration checkConfig;
-
-    @Before
-    public void setUp() {
-        checkConfig = createCheckConfig(IllegalTypeCheck.class);
-    }
+public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
 
     @Override
-    protected String getPath(String filename) throws IOException {
-        return super.getPath("checks" + File.separator
-                + "coding" + File.separator
-                + "illegaltype" + File.separator
-                + filename);
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/checks/coding/illegaltype";
     }
 
     @Test
     public void testValidateAbstractClassNamesSetToTrue() throws Exception {
-        checkConfig.addAttribute("validateAbstractClassNames", "true");
         final String[] expected = {
-            "27:5: " + getCheckMessage(MSG_KEY, "AbstractClass"),
-            "29:37: " + getCheckMessage(MSG_KEY, "AbstractClass"),
-            "33:12: " + getCheckMessage(MSG_KEY, "AbstractClass"),
+            "27:38: " + getCheckMessage(MSG_KEY, "AbstractClass"),
+            "44:5: " + getCheckMessage(MSG_KEY, "AbstractClass"),
+            "46:37: " + getCheckMessage(MSG_KEY, "AbstractClass"),
+            "50:12: " + getCheckMessage(MSG_KEY, "AbstractClass"),
         };
 
-        verify(checkConfig, getPath("InputIllegalTypeAbstractClassNames.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputIllegalTypeTestAbstractClassNamesTrue.java"), expected);
     }
 
     @Test
     public void testValidateAbstractClassNamesSetToFalse() throws Exception {
-        checkConfig.addAttribute("validateAbstractClassNames", "false");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("InputIllegalTypeAbstractClassNames.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputIllegalTypeTestAbstractClassNamesFalse.java"), expected);
     }
 
     @Test
     public void testDefaults() throws Exception {
         final String[] expected = {
-            "16:13: " + getCheckMessage(MSG_KEY, "java.util.TreeSet"),
-            "17:13: " + getCheckMessage(MSG_KEY, "TreeSet"),
+            "34:13: " + getCheckMessage(MSG_KEY, "java.util.TreeSet"),
+            "35:13: " + getCheckMessage(MSG_KEY, "TreeSet"),
+            "60:14: " + getCheckMessage(MSG_KEY, "HashMap"),
+            "62:5: " + getCheckMessage(MSG_KEY, "HashMap"),
         };
 
-        verify(checkConfig, getPath("InputIllegalType.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputIllegalTypeTestDefaults.java"), expected);
+    }
+
+    @Test
+    public void testDefaultsEmptyStringMemberModifiers() throws Exception {
+
+        final String[] expected = {
+            "34:13: " + getCheckMessage(MSG_KEY, "java.util.TreeSet"),
+            "35:13: " + getCheckMessage(MSG_KEY, "TreeSet"),
+            "60:14: " + getCheckMessage(MSG_KEY, "HashMap"),
+            "62:5: " + getCheckMessage(MSG_KEY, "HashMap"),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputIllegalTypeEmptyStringMemberModifiers.java"), expected);
     }
 
     @Test
     public void testIgnoreMethodNames() throws Exception {
-        checkConfig.addAttribute("ignoredMethodNames", "table2");
-        checkConfig.addAttribute("validateAbstractClassNames", "true");
         final String[] expected = {
-            "6:13: " + getCheckMessage(MSG_KEY, "AbstractClass"),
-            "9:13: " + getCheckMessage(MSG_KEY,
+            "23:13: " + getCheckMessage(MSG_KEY, "AbstractClass"),
+            "26:13: " + getCheckMessage(MSG_KEY,
                 "com.puppycrawl.tools.checkstyle.checks.coding.illegaltype."
                     + "InputIllegalType.AbstractClass"),
-            "16:13: " + getCheckMessage(MSG_KEY, "java.util.TreeSet"),
+            "34:13: " + getCheckMessage(MSG_KEY, "java.util.TreeSet"),
+            "43:36: " + getCheckMessage(MSG_KEY, "java.util.TreeSet"),
+            "60:14: " + getCheckMessage(MSG_KEY, "HashMap"),
+            "62:5: " + getCheckMessage(MSG_KEY, "HashMap"),
         };
 
-        verify(checkConfig, getPath("InputIllegalType.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputIllegalTypeTestIgnoreMethodNames.java"), expected);
     }
 
     @Test
     public void testFormat() throws Exception {
-        checkConfig.addAttribute("format", "^$");
 
         final String[] expected = {
-            "16:13: " + getCheckMessage(MSG_KEY, "java.util.TreeSet"),
-            "17:13: " + getCheckMessage(MSG_KEY, "TreeSet"),
+            "34:13: " + getCheckMessage(MSG_KEY, "java.util.TreeSet"),
+            "35:13: " + getCheckMessage(MSG_KEY, "TreeSet"),
+            "60:14: " + getCheckMessage(MSG_KEY, "HashMap"),
+            "62:5: " + getCheckMessage(MSG_KEY, "HashMap"),
         };
 
-        verify(checkConfig, getPath("InputIllegalType.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputIllegalTypeTestFormat.java"), expected);
     }
 
     @Test
     public void testLegalAbstractClassNames() throws Exception {
-        checkConfig.addAttribute("validateAbstractClassNames", "true");
-        checkConfig.addAttribute("legalAbstractClassNames", "AbstractClass");
 
         final String[] expected = {
-            "9:13: " + getCheckMessage(MSG_KEY,
+            "26:13: " + getCheckMessage(MSG_KEY,
                 "com.puppycrawl.tools.checkstyle.checks.coding.illegaltype."
                     + "InputIllegalType.AbstractClass"),
-            "16:13: " + getCheckMessage(MSG_KEY, "java.util.TreeSet"),
-            "17:13: " + getCheckMessage(MSG_KEY, "TreeSet"),
+            "34:13: " + getCheckMessage(MSG_KEY, "java.util.TreeSet"),
+            "35:13: " + getCheckMessage(MSG_KEY, "TreeSet"),
+            "60:14: " + getCheckMessage(MSG_KEY, "HashMap"),
+            "62:5: " + getCheckMessage(MSG_KEY, "HashMap"),
         };
 
-        verify(checkConfig, getPath("InputIllegalType.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputIllegalTypeTestLegalAbstractClassNames.java"), expected);
     }
 
     @Test
     public void testSameFileNameFalsePositive() throws Exception {
-        checkConfig.addAttribute("illegalClassNames", "java.util.GregorianCalendar, SubCalendar, "
-                + "java.util.List");
-
         final String[] expected = {
-            "12:5: " + getCheckMessage(MSG_KEY, "SubCalendar"),
-            "27:5: " + getCheckMessage(MSG_KEY, "java.util.List"),
+            "28:5: " + getCheckMessage(MSG_KEY, "SubCal"),
+            "43:5: " + getCheckMessage(MSG_KEY, "java.util.List"),
         };
 
-        verify(checkConfig, getPath("InputIllegalTypeSameFileName.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputIllegalTypeSameFileNameFalsePositive.java"), expected);
     }
 
     @Test
     public void testSameFileNameGeneral() throws Exception {
-        checkConfig.addAttribute("illegalClassNames",
-            "List, InputIllegalTypeGregorianCalendar, java.io.File, ArrayList");
         final String[] expected = {
-            "10:5: " + getCheckMessage(MSG_KEY, "InputIllegalTypeGregorianCalendar"),
-            "16:23: " + getCheckMessage(MSG_KEY, "InputIllegalTypeGregorianCalendar"),
-            "24:9: " + getCheckMessage(MSG_KEY, "List"),
-            "25:9: " + getCheckMessage(MSG_KEY, "java.io.File"),
-            "27:5: " + getCheckMessage(MSG_KEY, "java.util.List"),
-            "28:13: " + getCheckMessage(MSG_KEY, "ArrayList"),
+            "25:5: " + getCheckMessage(MSG_KEY, "InputIllegalTypeGregCal"),
+            "29:43: " + getCheckMessage(MSG_KEY, "InputIllegalTypeGregCal"),
+            "31:23: " + getCheckMessage(MSG_KEY, "InputIllegalTypeGregCal"),
+            "39:9: " + getCheckMessage(MSG_KEY, "List"),
+            "40:9: " + getCheckMessage(MSG_KEY, "java.io.File"),
+            "42:5: " + getCheckMessage(MSG_KEY, "java.util.List"),
+            "43:13: " + getCheckMessage(MSG_KEY, "ArrayList"),
+            "44:13: " + getCheckMessage(MSG_KEY, "Boolean"),
         };
-        verify(checkConfig, getPath("InputIllegalTypeSameFileName.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputIllegalTypeTestSameFileNameGeneral.java"), expected);
+    }
+
+    @Test
+    public void testArrayTypes() throws Exception {
+        final String[] expected = {
+            "20:12: " + getCheckMessage(MSG_KEY, "Boolean[]"),
+            "22:12: " + getCheckMessage(MSG_KEY, "Boolean[][]"),
+            "24:12: " + getCheckMessage(MSG_KEY, "Boolean[]"),
+            "25:9: " + getCheckMessage(MSG_KEY, "Boolean[]"),
+            "29:12: " + getCheckMessage(MSG_KEY, "Boolean[][]"),
+            "30:9: " + getCheckMessage(MSG_KEY, "Boolean[][]"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputIllegalTypeArrays.java"), expected);
+    }
+
+    @Test
+    public void testPlainAndArrayTypes() throws Exception {
+        final String[] expected = {
+            "20:12: " + getCheckMessage(MSG_KEY, "Boolean"),
+            "24:12: " + getCheckMessage(MSG_KEY, "Boolean[][]"),
+            "26:12: " + getCheckMessage(MSG_KEY, "Boolean"),
+            "35:12: " + getCheckMessage(MSG_KEY, "Boolean[][]"),
+            "36:9: " + getCheckMessage(MSG_KEY, "Boolean[][]"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputIllegalTypeTestPlainAndArraysTypes.java"), expected);
+    }
+
+    @Test
+    public void testGenerics() throws Exception {
+        final String[] expected = {
+            "28:16: " + getCheckMessage(MSG_KEY, "Boolean"),
+            "29:31: " + getCheckMessage(MSG_KEY, "Boolean"),
+            "29:40: " + getCheckMessage(MSG_KEY, "Foo"),
+            "32:18: " + getCheckMessage(MSG_KEY, "Boolean"),
+            "33:24: " + getCheckMessage(MSG_KEY, "Foo"),
+            "33:44: " + getCheckMessage(MSG_KEY, "Boolean"),
+            "36:23: " + getCheckMessage(MSG_KEY, "Boolean"),
+            "36:42: " + getCheckMessage(MSG_KEY, "Serializable"),
+            "38:54: " + getCheckMessage(MSG_KEY, "Boolean"),
+            "40:25: " + getCheckMessage(MSG_KEY, "Boolean"),
+            "40:60: " + getCheckMessage(MSG_KEY, "Boolean"),
+            "42:26: " + getCheckMessage(MSG_KEY, "Foo"),
+            "42:30: " + getCheckMessage(MSG_KEY, "Boolean"),
+            "46:26: " + getCheckMessage(MSG_KEY, "Foo"),
+            "46:38: " + getCheckMessage(MSG_KEY, "Boolean"),
+            "55:20: " + getCheckMessage(MSG_KEY, "Boolean"),
+            "68:28: " + getCheckMessage(MSG_KEY, "Boolean"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputIllegalTypeTestGenerics.java"), expected);
+    }
+
+    @Test
+    public void testExtendsImplements() throws Exception {
+        final String[] expected = {
+            "24:17: " + getCheckMessage(MSG_KEY, "Hashtable"),
+            "25:14: " + getCheckMessage(MSG_KEY, "Boolean"),
+            "30:23: " + getCheckMessage(MSG_KEY, "Boolean"),
+            "32:13: " + getCheckMessage(MSG_KEY, "Serializable"),
+            "34:24: " + getCheckMessage(MSG_KEY, "Foo"),
+            "35:27: " + getCheckMessage(MSG_KEY, "Boolean"),
+            "38:32: " + getCheckMessage(MSG_KEY, "Foo"),
+            "39:28: " + getCheckMessage(MSG_KEY, "Boolean"),
+            "40:13: " + getCheckMessage(MSG_KEY, "Serializable"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputIllegalTypeTestExtendsImplements.java"), expected);
     }
 
     @Test
     public void testStarImports() throws Exception {
-        checkConfig.addAttribute("illegalClassNames", "List");
 
         final String[] expected = {
-            "10:5: " + getCheckMessage(MSG_KEY, "List"),
+            "25:5: " + getCheckMessage(MSG_KEY, "List"),
         };
 
-        verify(checkConfig, getPath("InputIllegalTypeStarImports.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputIllegalTypeTestStarImports.java"), expected);
     }
 
     @Test
     public void testStaticImports() throws Exception {
-        checkConfig.addAttribute("illegalClassNames", "SomeStaticClass");
-        checkConfig.addAttribute("ignoredMethodNames", "foo1");
 
         final String[] expected = {
-            "13:6: " + getCheckMessage(MSG_KEY, "SomeStaticClass"),
-            "15:31: " + getCheckMessage(MSG_KEY, "SomeStaticClass"),
+            "28:6: " + getCheckMessage(MSG_KEY, "SomeStaticClass"),
+            "30:31: " + getCheckMessage(MSG_KEY, "SomeStaticClass"),
         };
 
-        verify(checkConfig, getPath("InputIllegalTypeStaticImports.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputIllegalTypeTestStaticImports.java"), expected);
     }
 
     @Test
     public void testMemberModifiers() throws Exception {
-        checkConfig.addAttribute("validateAbstractClassNames", "true");
-        checkConfig.addAttribute("memberModifiers", "LITERAL_PRIVATE, LITERAL_PROTECTED,"
-                + " LITERAL_STATIC");
         final String[] expected = {
-            "6:13: " + getCheckMessage(MSG_KEY, "AbstractClass"),
-            "9:13: " + getCheckMessage(MSG_KEY,
-                "com.puppycrawl.tools.checkstyle.checks.coding.illegaltype."
-                    + "InputIllegalTypeMemberModifiers.AbstractClass"),
-            "16:13: " + getCheckMessage(MSG_KEY, "java.util.TreeSet"),
-            "17:13: " + getCheckMessage(MSG_KEY, "TreeSet"),
-            "23:15: " + getCheckMessage(MSG_KEY,
-                "com.puppycrawl.tools.checkstyle.checks.coding.illegaltype."
-                    + "InputIllegalTypeMemberModifiers.AbstractClass"),
-            "25:25: " + getCheckMessage(MSG_KEY, "java.util.TreeSet"),
-            "33:15: " + getCheckMessage(MSG_KEY, "AbstractClass"),
+            "22:13: " + getCheckMessage(MSG_KEY, "AbstractClass"),
+            "25:13: " + getCheckMessage(MSG_KEY, "java.util.AbstractList"),
+            "32:13: " + getCheckMessage(MSG_KEY, "java.util.TreeSet"),
+            "33:13: " + getCheckMessage(MSG_KEY, "TreeSet"),
+            "39:15: " + getCheckMessage(MSG_KEY, "java.util.AbstractList"),
+            "41:25: " + getCheckMessage(MSG_KEY, "java.util.TreeSet"),
+            "49:15: " + getCheckMessage(MSG_KEY, "AbstractClass"),
         };
 
-        verify(checkConfig, getPath("InputIllegalTypeMemberModifiers.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputIllegalTypeTestMemberModifiers.java"), expected);
+    }
+
+    @Test
+    public void testPackageClassName() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputIllegalTypePackageClassName.java"),
+                expected);
+    }
+
+    @Test
+    public void testClearDataBetweenFiles() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IllegalTypeCheck.class);
+        final String violationFile = getPath("InputIllegalTypeTestClearDataBetweenFiles.java");
+        checkConfig.addProperty("illegalClassNames", "java.util.TreeSet");
+        final String[] expected = {
+            "21:13: " + getCheckMessage(MSG_KEY, "java.util.TreeSet"),
+            "22:13: " + getCheckMessage(MSG_KEY, "TreeSet"),
+        };
+
+        verify(createChecker(checkConfig), new File[] {
+            new File(violationFile),
+            new File(getPath("InputIllegalTypeSimilarClassName.java")),
+        }, violationFile, expected);
+    }
+
+    @Test
+    public void testIllegalTypeEnhancedInstanceof() throws Exception {
+        final String[] expected = {
+            "28:9: " + getCheckMessage(MSG_KEY, "LinkedHashMap"),
+            "31:28: " + getCheckMessage(MSG_KEY, "LinkedHashMap"),
+            "35:35: " + getCheckMessage(MSG_KEY, "HashMap"),
+            "40:52: " + getCheckMessage(MSG_KEY, "TreeSet"),
+            "41:32: " + getCheckMessage(MSG_KEY, "TreeSet"),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputIllegalTypeTestEnhancedInstanceof.java"),
+                expected);
+    }
+
+    @Test
+    public void testIllegalTypeRecordsAndCompactCtors() throws Exception {
+        final String[] expected = {
+            "27:14: " + getCheckMessage(MSG_KEY, "LinkedHashMap"),
+            "31:52: " + getCheckMessage(MSG_KEY, "Cloneable"),
+            "32:16: " + getCheckMessage(MSG_KEY, "LinkedHashMap"),
+            "35:13: " + getCheckMessage(MSG_KEY, "TreeSet"),
+            "39:38: " + getCheckMessage(MSG_KEY, "TreeSet"),
+            "40:18: " + getCheckMessage(MSG_KEY, "HashMap"),
+            "48:13: " + getCheckMessage(MSG_KEY, "LinkedHashMap"),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputIllegalTypeRecordsAndCompactCtors.java"),
+            expected);
+    }
+
+    @Test
+    public void testIllegalTypeNewArrayStructure() throws Exception {
+
+        final String[] expected = {
+            "26:13: " + getCheckMessage(MSG_KEY, "HashMap"),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputIllegalTypeNewArrayStructure.java"),
+            expected);
+    }
+
+    @Test
+    public void testRecordComponentsDefault() throws Exception {
+        final String[] expected = {
+            "45:9: " + getCheckMessage(MSG_KEY, "HashSet"),
+            "53:23: " + getCheckMessage(MSG_KEY, "HashSet"),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "InputIllegalTypeRecordsWithMemberModifiersDefault.java"),
+                expected);
+    }
+
+    @Test
+    public void testRecordComponentsFinal() throws Exception {
+        final String[] expected = {
+            "45:9: " + getCheckMessage(MSG_KEY, "HashSet"),
+            "53:23: " + getCheckMessage(MSG_KEY, "HashSet"),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "InputIllegalTypeRecordsWithMemberModifiersFinal.java"),
+                expected);
+    }
+
+    @Test
+    public void testRecordComponentsPrivateFinal() throws Exception {
+        final String[] expected = {
+            "45:9: " + getCheckMessage(MSG_KEY, "HashSet"),
+            "53:23: " + getCheckMessage(MSG_KEY, "HashSet"),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "InputIllegalTypeRecordsWithMemberModifiersPrivateFinal.java"),
+                expected);
+    }
+
+    @Test
+    public void testRecordComponentsPublicProtectedStatic() throws Exception {
+        final String[] expected = {
+            "45:9: " + getCheckMessage(MSG_KEY, "HashSet")};
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "InputIllegalTypeRecordsWithMemberModifiersPublicProtectedStatic.java"),
+                expected);
+    }
+
+    @Test
+    public void testTrailingWhitespaceInConfig() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputIllegalTypeWhitespaceInConfig.java"),
+                expected);
     }
 
     @Test
     public void testTokensNotNull() {
         final IllegalTypeCheck check = new IllegalTypeCheck();
-        Assert.assertNotNull(check.getAcceptableTokens());
-        Assert.assertNotNull(check.getDefaultTokens());
-        Assert.assertNotNull(check.getRequiredTokens());
+        assertWithMessage("Acceptable tokens should not be null")
+            .that(check.getAcceptableTokens())
+            .isNotNull();
+        assertWithMessage("Default tokens should not be null")
+            .that(check.getDefaultTokens())
+            .isNotNull();
+        assertWithMessage("Required tokens should not be null")
+            .that(check.getRequiredTokens())
+            .isNotNull();
     }
 
     @Test
     public void testImproperToken() {
         final IllegalTypeCheck check = new IllegalTypeCheck();
 
-        final DetailAST classDefAst = new DetailAST();
-        classDefAst.setType(TokenTypes.CLASS_DEF);
+        final DetailAstImpl classDefAst = new DetailAstImpl();
+        classDefAst.setType(TokenTypes.DOT);
 
         try {
             check.visitToken(classDefAst);
-            Assert.fail("IllegalStateException is expected");
+            assertWithMessage("IllegalStateException is expected").fail();
         }
         catch (IllegalStateException ex) {
             // it is OK
         }
     }
+
 }

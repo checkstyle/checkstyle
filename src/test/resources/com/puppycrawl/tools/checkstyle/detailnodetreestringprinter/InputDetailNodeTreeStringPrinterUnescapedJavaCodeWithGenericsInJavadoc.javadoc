@@ -1,0 +1,41 @@
+/**
+  @Test
+  public void someTestMethod() {
+      List<Foo> x = makeAList();
+      List<Foo> x = makeAList();
+      Issue #4390: Javadoc comments containing unescaped Java code with
+      generic types leads to enormous parsing times
+      <Issue> <#4390:> <javadoc> <comments> <containing> <unescaped> <java> <code> <with>
+      <generic> <types> <leads> <to> <enormous> <parsing> <times>
+
+      List<Foo> x = makeAList();
+      List<Foo> x = makeAList();
+      List<Foo> x = makeAList();
+      List<Foo> x = makeAList();
+      List<Foo> x = makeAList();
+      List<Foo> x = makeAList();
+      List<Foo> x = makeAList();
+      List<Foo> x = makeAList();
+      List<Foo> x = makeAList();
+      List<Foo> x = makeAList();
+      List<Foo> x = makeAList();
+      List<Foo> x = makeAList();
+      List<Foo> x = makeAList();
+      List<Foo> x = makeAList();
+      List<Foo> x = makeAList();
+      List<Foo> x = makeAList();
+      List<Foo> x = makeAList();
+      List<Foo> x = makeAList();
+      List<Foo> x = makeAList();
+      List<Foo> x = makeAList();
+
+      List<Foo> x = makeAList();
+      List<Foo> x = makeAList();
+      Issue #4390: Javadoc comments containing unescaped Java code with
+      generic types leads to enormous parsing times
+      <parsing> <Issue> <#4390:> <javadoc> <comments> <containing> <unescaped> <java> <code> <with>
+      <generic> <types> <leads> <to> <enormous> <parsing>
+      </parsing> </enormous> </to> </leads> </types> </generic> </with> </code> </java>
+      </unescaped> </containing> </comments> </javadoc> </Issue>
+  }
+**/

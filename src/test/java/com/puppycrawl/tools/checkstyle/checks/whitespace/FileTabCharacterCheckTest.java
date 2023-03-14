@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,101 +15,62 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheck.MSG_CONTAINS_TAB;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheck.MSG_FILE_CONTAINS_TAB;
 
-import java.io.File;
-import java.io.IOException;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Test;
-
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.Definitions;
-import com.puppycrawl.tools.checkstyle.api.Configuration;
-import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 
 public class FileTabCharacterCheckTest
-    extends BaseCheckTestSupport {
-    @Override
-    protected String getPath(String filename) throws IOException {
-        return super.getPath("checks" + File.separator
-                + "whitespace" + File.separator
-                + "filetabcharacter" + File.separator
-                + filename);
-    }
+    extends AbstractModuleTestSupport {
 
     @Override
-    protected DefaultConfiguration createCheckerConfig(
-        Configuration config) {
-        final DefaultConfiguration dc = new DefaultConfiguration("root");
-        dc.addChild(config);
-        return dc;
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/checks/whitespace/filetabcharacter";
     }
 
     @Test
     public void testDefault() throws Exception {
-        final DefaultConfiguration checkConfig = createConfig(false);
         final String[] expected = {
-            "19:25: " + getCheckMessage(MSG_FILE_CONTAINS_TAB),
+            "22:25: " + getCheckMessage(MSG_FILE_CONTAINS_TAB),
         };
-        final File[] files = {
-            new File(getPath("InputFileTabCharacterSimple.java")),
+        verifyWithInlineConfigParser(
+                getPath("InputFileTabCharacterSimple.java"),
+            expected);
+    }
+
+    @Test
+    public void testCustomMessage() throws Exception {
+        final String msgFileContainsTab =
+            "File contains tab characters (this is the first instance) :)";
+        final String[] expected = {
+            "14:25: " + msgFileContainsTab,
         };
-        verify(createChecker(checkConfig), files, getPath("InputFileTabCharacterSimple.java"),
+        verifyWithInlineConfigParser(
+            getPath("InputFileTabCharacterCustomMessage.java"),
             expected);
     }
 
     @Test
     public void testVerbose() throws Exception {
-        final DefaultConfiguration checkConfig = createConfig(true);
         final String[] expected = {
-            "19:25: " + getCheckMessage(MSG_CONTAINS_TAB),
-            "145:35: " + getCheckMessage(MSG_CONTAINS_TAB),
-            "146:64: " + getCheckMessage(MSG_CONTAINS_TAB),
-            "154:9: " + getCheckMessage(MSG_CONTAINS_TAB),
-            "155:10: " + getCheckMessage(MSG_CONTAINS_TAB),
-            "156:1: " + getCheckMessage(MSG_CONTAINS_TAB),
-            "157:3: " + getCheckMessage(MSG_CONTAINS_TAB),
-            "158:3: " + getCheckMessage(MSG_CONTAINS_TAB),
+            "22:25: " + getCheckMessage(MSG_CONTAINS_TAB),
+            "148:35: " + getCheckMessage(MSG_CONTAINS_TAB),
+            "151:28: " + getCheckMessage(MSG_CONTAINS_TAB),
+            "159:9: " + getCheckMessage(MSG_CONTAINS_TAB),
+            "160:10: " + getCheckMessage(MSG_CONTAINS_TAB),
+            "161:1: " + getCheckMessage(MSG_CONTAINS_TAB),
+            "162:3: " + getCheckMessage(MSG_CONTAINS_TAB),
+            "163:3: " + getCheckMessage(MSG_CONTAINS_TAB),
         };
-        final File[] files = {
-            new File(getPath("InputFileTabCharacterSimple.java")),
-        };
-        verify(createChecker(checkConfig), files, getPath("InputFileTabCharacterSimple.java"),
+        verifyWithInlineConfigParser(
+                getPath("InputFileTabCharacterSimple1.java"),
             expected);
     }
 
-    @Test
-    public void testBadFile() throws Exception {
-        final DefaultConfiguration checkConfig = createConfig(false);
-        final String path = getPath("Claira");
-        final String exceptionMessage = " (No such file or directory)";
-        final LocalizedMessage localizedMessage = new LocalizedMessage(0,
-                Definitions.CHECKSTYLE_BUNDLE, "general.exception",
-                new String[] {path + exceptionMessage}, null, getClass(), null);
-
-        final String[] expected = {
-            "0: " + localizedMessage.getMessage(),
-        };
-        final File[] files = {
-            new File(path),
-        };
-        verify(createChecker(checkConfig), files, path, expected);
-    }
-
-    /**
-     * Creates a configuration that is functionally close to that in the docs.
-     * @param verbose verbose mode
-     */
-    private static DefaultConfiguration createConfig(boolean verbose) {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(FileTabCharacterCheck.class);
-        checkConfig.addAttribute("eachLine", Boolean.toString(verbose));
-        return checkConfig;
-    }
 }

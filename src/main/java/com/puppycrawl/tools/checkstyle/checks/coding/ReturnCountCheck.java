@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
@@ -23,14 +23,15 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.regex.Pattern;
 
+import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * <p>
- * Restricts the number of return statements in methods, constructors and lambda expressions
- * (2 by default). Ignores specified methods ({@code equals()} by default).
+ * Restricts the number of return statements in methods, constructors and lambda expressions.
+ * Ignores specified methods ({@code equals} by default).
  * </p>
  * <p>
  * <b>max</b> property will only check returns in methods and lambdas that
@@ -45,12 +46,247 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * of 0.
  * </p>
  * <p>
- * Rationale: Too many return points can be indication that code is
+ * Rationale: Too many return points can mean that code is
  * attempting to do too much or may be difficult to understand.
  * </p>
+ * <ul>
+ * <li>
+ * Property {@code max} - Specify maximum allowed number of return statements
+ * in non-void methods/lambdas.
+ * Type is {@code int}.
+ * Default value is {@code 2}.
+ * </li>
+ * <li>
+ * Property {@code maxForVoid} - Specify maximum allowed number of return statements
+ * in void methods/constructors/lambdas.
+ * Type is {@code int}.
+ * Default value is {@code 1}.
+ * </li>
+ * <li>
+ * Property {@code format} - Specify method names to ignore.
+ * Type is {@code java.util.regex.Pattern}.
+ * Default value is {@code "^equals$"}.
+ * </li>
+ * <li>
+ * Property {@code tokens} - tokens to check
+ * Type is {@code java.lang.String[]}.
+ * Validation type is {@code tokenSet}.
+ * Default value is:
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
+ * CTOR_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+ * METHOD_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">
+ * LAMBDA</a>.
+ * </li>
+ * </ul>
+ * <p>
+ * To configure the check so that it doesn't allow more than three return statements per method
+ * (ignoring the {@code equals()} method):
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;ReturnCount&quot;&gt;
+ *   &lt;property name=&quot;max&quot; value=&quot;3&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * public class MyClass {
+ *   public int sign(int x) {
+ *     if (x &lt; 0)
+ *       return -1;
+ *     if (x == 0)
+ *       return 1;
+ *     return 0;
+ *   } // OK
+ *   public int badSign(int x) {
+ *     if (x &lt; -2)
+ *       return -2;
+ *     if (x == 0)
+ *       return 0;
+ *     if (x &gt; 2)
+ *       return 2;
+ *     return 1;
+ *   } // violation, more than three return statements
+ * }
+ * </pre>
+ * <p>
+ * To configure the check so that it doesn't allow any return statements per void method:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;ReturnCount&quot;&gt;
+ *   &lt;property name=&quot;maxForVoid&quot; value=&quot;0&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * public class MyClass {
+ *   public void firstMethod(int x) {
+ *   } // OK
  *
- * @author <a href="mailto:simon@redhillconsulting.com.au">Simon Harris</a>
+ *   public void badMethod(int x) {
+ *     return;
+ *   } // violation, return statements per void method
+ * }
+ * </pre>
+ * <p>
+ * To configure the check so that it doesn't allow more than 2 return statements per method
+ * (ignoring the {@code equals()} method) and more than 1 return statements per void method:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;ReturnCount&quot;&gt;
+ *   &lt;property name=&quot;max&quot; value=&quot;2&quot;/&gt;
+ *   &lt;property name=&quot;maxForVoid&quot; value=&quot;1&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * public class MyClass {
+ *   public void firstMethod() {
+ *   } // OK
+ *
+ *   public void secondMethod() {
+ *     return;
+ *   } // OK
+ *
+ *   public void badMethod(int x) {
+ *     if (x == 0)
+ *       return;
+ *     return;
+ *   } // violation, more than one return statements
+ *
+ *   public int sign(int x) {
+ *     if (x &lt; 0)
+ *       return -1;
+ *     return 0;
+ *   } // OK
+ *
+ *   public int badSign(int x) {
+ *     if (x &lt; 0)
+ *       return -1;
+ *     if (x == 0)
+ *       return 1;
+ *     return 0;
+ *   } // violation, more than two return statements in methods
+ * }
+ * </pre>
+ * <p>
+ * To configure the check so that it doesn't allow more than three
+ * return statements per method for all methods:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;ReturnCount&quot;&gt;
+ *   &lt;property name=&quot;max&quot; value=&quot;3&quot;/&gt;
+ *   &lt;property name=&quot;format&quot; value=&quot;^$&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * public class MyClass {
+ *   public int sign(int x) {
+ *     if (x &lt; 0)
+ *       return -1;
+ *     if (x == 0)
+ *       return 1;
+ *     return 0;
+ *   } // OK
+ *
+ *   public int badSign(int x) {
+ *     if (x &lt; -2)
+ *       return -2;
+ *     if (x == 0)
+ *       return 0;
+ *     if (x &gt; 2)
+ *       return 2;
+ *     return 1;
+ *   } // violation, more than three return statements per method
+ * }
+ * </pre>
+ * <p>
+ * To configure the check so that it doesn't allow any return statements in constructors,
+ * more than one return statement in all lambda expressions and more than two return
+ * statements in methods:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;ReturnCount&quot;&gt;
+ *   &lt;property name=&quot;maxForVoid&quot; value=&quot;0&quot;/&gt;
+ *   &lt;property name=&quot;tokens&quot; value=&quot;CTOR_DEF&quot;/&gt;
+ * &lt;/module&gt;
+ * &lt;module name=&quot;ReturnCount&quot;&gt;
+ *   &lt;property name=&quot;max&quot; value=&quot;1&quot;/&gt;
+ *   &lt;property name=&quot;tokens&quot; value=&quot;LAMBDA&quot;/&gt;
+ * &lt;/module&gt;
+ * &lt;module name=&quot;ReturnCount&quot;&gt;
+ *   &lt;property name=&quot;max&quot; value=&quot;2&quot;/&gt;
+ *   &lt;property name=&quot;tokens&quot; value=&quot;METHOD_DEF&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * import java.util.function.Predicate;
+ *
+ * public class Test {
+ *   public Test() {
+ *   } // OK
+ *
+ *   public Test(int i) {
+ *     return; // violation, max allowed for constructors is 0
+ *   }
+ *
+ *   final Predicate&lt;Integer&gt; p = i -&gt; {
+ *     if (i &gt; 5) {
+ *       return true;
+ *     }
+ *     return false;
+ *   }; // violation, max allowed for lambdas is 1
+ *
+ *   final Predicate&lt;Integer&gt; q = i -&gt; {
+ *     return i &gt; 5;
+ *   }; // OK
+ *
+ *   public int sign(int x) {
+ *     if (x &gt; 0)
+ *       return -1;
+ *     return 0;
+ *   } // OK
+ *
+ *   public int badSign(int x) {
+ *     if (x &lt; 0)
+ *       return -1;
+ *     if (x == 0)
+ *       return 1;
+ *     return 0;
+ *   } // violation, more than two return statements in methods
+ * }
+ * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code return.count}
+ * </li>
+ * <li>
+ * {@code return.countVoid}
+ * </li>
+ * </ul>
+ *
+ * @since 3.2
  */
+@FileStatefulCheck
 public final class ReturnCountCheck extends AbstractCheck {
 
     /**
@@ -58,16 +294,21 @@ public final class ReturnCountCheck extends AbstractCheck {
      * file.
      */
     public static final String MSG_KEY = "return.count";
+    /**
+     * A key pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY_VOID = "return.countVoid";
 
     /** Stack of method contexts. */
     private final Deque<Context> contextStack = new ArrayDeque<>();
 
-    /** The regexp to match against. */
+    /** Specify method names to ignore. */
     private Pattern format = Pattern.compile("^equals$");
 
-    /** Maximum allowed number of return statements. */
+    /** Specify maximum allowed number of return statements in non-void methods/lambdas. */
     private int max = 2;
-    /** Maximum allowed number of return statements for void methods. */
+    /** Specify maximum allowed number of return statements in void methods/constructors/lambdas. */
     private int maxForVoid = 1;
     /** Current method context. */
     private Context context;
@@ -98,7 +339,8 @@ public final class ReturnCountCheck extends AbstractCheck {
     }
 
     /**
-     * Set the format for the specified regular expression.
+     * Setter to specify method names to ignore.
+     *
      * @param pattern a pattern.
      */
     public void setFormat(Pattern pattern) {
@@ -106,7 +348,9 @@ public final class ReturnCountCheck extends AbstractCheck {
     }
 
     /**
-     * Setter for max property.
+     * Setter to specify maximum allowed number of return statements
+     * in non-void methods/lambdas.
+     *
      * @param max maximum allowed number of return statements.
      */
     public void setMax(int max) {
@@ -114,7 +358,9 @@ public final class ReturnCountCheck extends AbstractCheck {
     }
 
     /**
-     * Setter for maxForVoid property.
+     * Setter to specify maximum allowed number of return statements
+     * in void methods/constructors/lambdas.
+     *
      * @param maxForVoid maximum allowed number of return statements for void methods.
      */
     public void setMaxForVoid(int maxForVoid) {
@@ -163,6 +409,7 @@ public final class ReturnCountCheck extends AbstractCheck {
 
     /**
      * Creates new method context and places old one on the stack.
+     *
      * @param ast method definition for check.
      */
     private void visitMethodDef(DetailAST ast) {
@@ -174,6 +421,7 @@ public final class ReturnCountCheck extends AbstractCheck {
 
     /**
      * Checks number of return statements and restore previous context.
+     *
      * @param ast node to leave.
      */
     private void leave(DetailAST ast) {
@@ -191,47 +439,52 @@ public final class ReturnCountCheck extends AbstractCheck {
 
     /**
      * Examines the return statement and tells context about it.
+     *
      * @param ast return statement to check.
      */
     private void visitReturn(DetailAST ast) {
         // we can't identify which max to use for lambdas, so we can only assign
         // after the first return statement is seen
         if (ast.getFirstChild().getType() == TokenTypes.SEMI) {
-            context.visitLiteralReturn(maxForVoid);
+            context.visitLiteralReturn(maxForVoid, Boolean.TRUE);
         }
         else {
-            context.visitLiteralReturn(max);
+            context.visitLiteralReturn(max, Boolean.FALSE);
         }
     }
 
     /**
      * Class to encapsulate information about one method.
-     * @author <a href="mailto:simon@redhillconsulting.com.au">Simon Harris</a>
      */
-    private class Context {
+    private final class Context {
+
         /** Whether we should check this method or not. */
         private final boolean checking;
         /** Counter for return statements. */
         private int count;
         /** Maximum allowed number of return statements. */
         private Integer maxAllowed;
+        /** Identifies if context is void. */
+        private boolean isVoidContext;
 
         /**
          * Creates new method context.
-         * @param checking should we check this method or not.
+         *
+         * @param checking should we check this method or not
          */
-        Context(boolean checking) {
+        private Context(boolean checking) {
             this.checking = checking;
         }
 
         /**
-         * Increase the number of return statements.
+         * Increase the number of return statements and set context return type.
+         *
          * @param maxAssigned Maximum allowed number of return statements.
+         * @param voidReturn Identifies if context is void.
          */
-        public void visitLiteralReturn(int maxAssigned) {
-            if (maxAllowed == null) {
-                maxAllowed = maxAssigned;
-            }
+        public void visitLiteralReturn(int maxAssigned, Boolean voidReturn) {
+            isVoidContext = voidReturn;
+            maxAllowed = maxAssigned;
 
             ++count;
         }
@@ -239,12 +492,20 @@ public final class ReturnCountCheck extends AbstractCheck {
         /**
          * Checks if number of return statements in the method are more
          * than allowed.
+         *
          * @param ast method def associated with this context.
          */
         public void checkCount(DetailAST ast) {
             if (checking && maxAllowed != null && count > maxAllowed) {
-                log(ast.getLineNo(), ast.getColumnNo(), MSG_KEY, count, maxAllowed);
+                if (isVoidContext) {
+                    log(ast, MSG_KEY_VOID, count, maxAllowed);
+                }
+                else {
+                    log(ast, MSG_KEY, count, maxAllowed);
+                }
             }
         }
+
     }
+
 }

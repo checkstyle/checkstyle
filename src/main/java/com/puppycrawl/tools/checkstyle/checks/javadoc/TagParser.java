@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
@@ -25,7 +25,7 @@ import java.util.List;
 /**
  * <p>
  * Helper class used to parse HTML tags or generic type identifiers
- * from a single line of text. Just the beginning of the HTML tag
+ * from a single-line of text. Just the beginning of the HTML tag
  * is located.  No attempt is made to parse out the complete tag,
  * particularly since some of the tag parameters could be located
  * on the following line of text.  The {@code hasNextTag} and
@@ -34,7 +34,7 @@ import java.util.List;
  * </p>
  *
  * <p>
- * This class isn't really specific to HTML tags. Currently the only HTML
+ * This class isn't really specific to HTML tags. Currently, the only HTML
  * tag that this class looks specifically for is the HTML comment tag.
  * This class helps figure out if a tag exists and if it is well-formed.
  * It does not know whether it is valid HTML.  This class is also used for
@@ -42,23 +42,25 @@ import java.util.List;
  * <MY_FOO_TYPE>}, etc. According to this class they are valid tags.
  * </p>
  *
- * @author Chris Stillwell
  */
 class TagParser {
-    /** List of HtmlTags found on the input line of text. */
+
+    /** HtmlTags found on the input line of text. */
     private final List<HtmlTag> tags = new LinkedList<>();
 
     /**
      * Constructs a TagParser and finds the first tag if any.
+     *
      * @param text the line of text to parse.
      * @param lineNo the source line number.
      */
-    TagParser(String[] text, int lineNo) {
+    /* package */ TagParser(String[] text, int lineNo) {
         parseTags(text, lineNo);
     }
 
     /**
      * Returns the next available HtmlTag.
+     *
      * @return a HtmlTag or {@code null} if none available.
      * @throws IndexOutOfBoundsException if there are no HtmlTags
      *         left to return.
@@ -69,6 +71,7 @@ class TagParser {
 
     /**
      * Indicates if there are any more HtmlTag to retrieve.
+     *
      * @return {@code true} if there are more tags.
      */
     public boolean hasNextTag() {
@@ -78,6 +81,7 @@ class TagParser {
     /**
      * Performs lazy initialization on the internal tags List
      * and adds the tag.
+     *
      * @param tag the HtmlTag to add.
      */
     private void add(HtmlTag tag) {
@@ -87,6 +91,7 @@ class TagParser {
     /**
      * Parses the text line for any HTML tags and adds them to the internal
      * List of tags.
+     *
      * @param text the source line to parse.
      * @param lineNo the source line number.
      */
@@ -102,7 +107,7 @@ class TagParser {
                 position = parseTag(text, lineNo, nLines, position);
             }
             else {
-                position = getNextCharPos(text, position);
+                position = getNextPoint(text, position);
             }
             position = findChar(text, '<', position);
         }
@@ -110,6 +115,7 @@ class TagParser {
 
     /**
      * Parses the tag and return position after it.
+     *
      * @param text the source line to parse.
      * @param lineNo the source line number.
      * @param nLines line length
@@ -146,6 +152,7 @@ class TagParser {
 
     /**
      * Checks if the given position is start one for HTML tag.
+     *
      * @param javadocText text of javadoc comments.
      * @param pos position to check.
      * @return {@code true} some HTML tag starts from given position.
@@ -154,16 +161,16 @@ class TagParser {
         final int column = pos.getColumnNo() + 1;
         final String text = javadocText[pos.getLineNo()];
 
-        //Character.isJavaIdentifier... may not be a valid HTML
-        //identifier but is valid for generics
-        return column < text.length()
-                && (Character.isJavaIdentifierStart(text.charAt(column))
-                    || text.charAt(column) == '/')
-                || column >= text.length();
+        // Character.isJavaIdentifier... may not be a valid HTML
+        // identifier but is valid for generics
+        return column >= text.length()
+                || Character.isJavaIdentifierStart(text.charAt(column))
+                    || text.charAt(column) == '/';
     }
 
     /**
      * Parse tag id.
+     *
      * @param javadocText text of javadoc comments.
      * @param tagStart start position of the tag
      * @return id for given tag
@@ -173,7 +180,6 @@ class TagParser {
         int column = tagStart.getColumnNo() + 1;
         String text = javadocText[tagStart.getLineNo()];
         if (column < text.length()) {
-
             if (text.charAt(column) == '/') {
                 column++;
             }
@@ -181,8 +187,8 @@ class TagParser {
             text = text.substring(column).trim();
             int position = 0;
 
-            //Character.isJavaIdentifier... may not be a valid HTML
-            //identifier but is valid for generics
+            // Character.isJavaIdentifier... may not be a valid HTML
+            // identifier but is valid for generics
             while (position < text.length()
                     && (Character.isJavaIdentifierStart(text.charAt(position))
                         || Character.isJavaIdentifierPart(text.charAt(position)))) {
@@ -196,6 +202,7 @@ class TagParser {
 
     /**
      * If this is a HTML-comments.
+     *
      * @param text text of javadoc comments
      * @param pos position to check
      * @return {@code true} if HTML-comments
@@ -207,6 +214,7 @@ class TagParser {
 
     /**
      * Skips HTML comments.
+     *
      * @param text text of javadoc comments.
      * @param fromPoint start position of HTML-comments
      * @return position after HTML-comments
@@ -214,15 +222,16 @@ class TagParser {
     private static Point skipHtmlComment(String[] text, Point fromPoint) {
         Point toPoint = fromPoint;
         toPoint = findChar(text, '>', toPoint);
-        while (!text[toPoint.getLineNo()]
-               .substring(0, toPoint.getColumnNo() + 1).endsWith("-->")) {
-            toPoint = findChar(text, '>', getNextCharPos(text, toPoint));
+        while (toPoint.getLineNo() < text.length && !text[toPoint.getLineNo()]
+                .substring(0, toPoint.getColumnNo() + 1).endsWith("-->")) {
+            toPoint = findChar(text, '>', getNextPoint(text, toPoint));
         }
         return toPoint;
     }
 
     /**
      * Finds next occurrence of given character.
+     *
      * @param text text to search
      * @param character character to search
      * @param from position to start search
@@ -232,51 +241,36 @@ class TagParser {
         Point curr = new Point(from.getLineNo(), from.getColumnNo());
         while (curr.getLineNo() < text.length
                && text[curr.getLineNo()].charAt(curr.getColumnNo()) != character) {
-            curr = getNextCharPos(text, curr);
+            curr = getNextPoint(text, curr);
         }
 
         return curr;
     }
 
     /**
-     * Returns position of next comment character, skips
-     * whitespaces and asterisks.
+     * Increments column number to be examined, moves onto the next line when no
+     * more characters are available.
+     *
      * @param text to search.
      * @param from location to search from
-     * @return location of the next character.
+     * @return next point to be examined
      */
-    private static Point getNextCharPos(String[] text, Point from) {
+    private static Point getNextPoint(String[] text, Point from) {
         int line = from.getLineNo();
         int column = from.getColumnNo() + 1;
         while (line < text.length && column >= text[line].length()) {
             // go to the next line
             line++;
             column = 0;
-            if (line < text.length) {
-                //skip beginning spaces and stars
-                final String currentLine = text[line];
-                while (column < currentLine.length()
-                       && (Character.isWhitespace(currentLine.charAt(column))
-                           || currentLine.charAt(column) == '*')) {
-                    column++;
-                    if (column < currentLine.length()
-                        && currentLine.charAt(column - 1) == '*'
-                        && currentLine.charAt(column) == '/') {
-                        // this is end of comment
-                        column = currentLine.length();
-                    }
-                }
-            }
         }
-
         return new Point(line, column);
     }
 
     /**
      * Represents current position in the text.
-     * @author o_sukholsky
      */
     private static final class Point {
+
         /** Line number. */
         private final int lineNo;
         /** Column number.*/
@@ -284,16 +278,18 @@ class TagParser {
 
         /**
          * Creates new {@code Point} instance.
+         *
          * @param lineNo line number
          * @param columnNo column number
          */
-        Point(int lineNo, int columnNo) {
+        private Point(int lineNo, int columnNo) {
             this.lineNo = lineNo;
             this.columnNo = columnNo;
         }
 
         /**
          * Getter for line number.
+         *
          * @return line number of the position.
          */
         public int getLineNo() {
@@ -302,10 +298,13 @@ class TagParser {
 
         /**
          * Getter for column number.
+         *
          * @return column number of the position.
          */
         public int getColumnNo() {
             return columnNo;
         }
+
     }
+
 }

@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,61 +15,62 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.imports.IllegalImportCheck.MSG_KEY;
-import static org.junit.Assert.assertArrayEquals;
 
-import java.io.File;
-import java.io.IOException;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Test;
-
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
-public class IllegalImportCheckTest extends BaseCheckTestSupport {
+public class IllegalImportCheckTest extends AbstractModuleTestSupport {
+
     @Override
-    protected String getPath(String filename) throws IOException {
-        return super.getPath("checks" + File.separator
-                + "imports" + File.separator + "illegalimport" + File.separator + filename);
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/checks/imports/illegalimport";
     }
 
     @Test
     public void testGetRequiredTokens() {
         final IllegalImportCheck checkObj = new IllegalImportCheck();
         final int[] expected = {TokenTypes.IMPORT, TokenTypes.STATIC_IMPORT};
-        assertArrayEquals("Default required tokens are invalid",
-            expected, checkObj.getRequiredTokens());
+        assertWithMessage("Default required tokens are invalid")
+            .that(checkObj.getRequiredTokens())
+            .isEqualTo(expected);
     }
 
     @Test
     public void testWithSupplied()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(IllegalImportCheck.class);
-        checkConfig.addAttribute("illegalPkgs", "java.io");
         final String[] expected = {
-            "9:1: " + getCheckMessage(MSG_KEY, "java.io.*"),
-            "23:1: " + getCheckMessage(MSG_KEY, "java.io.File.listRoots"),
-            "27:1: " + getCheckMessage(MSG_KEY, "java.io.File.createTempFile"),
+            "14:1: " + getCheckMessage(MSG_KEY, "java.io.*"),
+            "28:1: " + getCheckMessage(MSG_KEY, "java.io.File.listRoots"),
+            "32:1: " + getCheckMessage(MSG_KEY, "java.io.File.createTempFile"),
         };
-        verify(checkConfig, getPath("InputIllegalImportDefault.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputIllegalImportDefault1.java"), expected);
     }
 
     @Test
     public void testWithDefault()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(IllegalImportCheck.class);
+        final String[] expected = {};
+        verifyWithInlineConfigParser(
+                getPath("InputIllegalImportDefault2.java"), expected);
+    }
+
+    @Test
+    public void testCustomSunPackageWithRegexp()
+            throws Exception {
         final String[] expected = {
-            "15:1: " + getCheckMessage(MSG_KEY, "sun.applet.*"),
-            "28:1: " + getCheckMessage(MSG_KEY, "sun.*"),
+            "17:1: " + getCheckMessage(MSG_KEY, "sun.reflect.*"),
         };
-        verify(checkConfig, getPath("InputIllegalImportDefault.java"), expected);
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputIllegalImportDefault.java"), expected);
     }
 
     @Test
@@ -79,78 +80,81 @@ public class IllegalImportCheckTest extends BaseCheckTestSupport {
         final int[] actual = testCheckObject.getAcceptableTokens();
         final int[] expected = {TokenTypes.IMPORT, TokenTypes.STATIC_IMPORT};
 
-        assertArrayEquals("Default acceptable tokens are invalid", expected, actual);
+        assertWithMessage("Default acceptable tokens are invalid")
+            .that(actual)
+            .isEqualTo(expected);
     }
 
     @Test
     public void testIllegalClasses()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-                createCheckConfig(IllegalImportCheck.class);
-        checkConfig.addAttribute("illegalClasses", "java.sql.Connection");
         final String[] expected = {
-            "11:1: " + getCheckMessage(MSG_KEY, "java.sql.Connection"),
-            "15:1: " + getCheckMessage(MSG_KEY, "sun.applet.*"),
-            "28:1: " + getCheckMessage(MSG_KEY, "sun.*"),
+            "16:1: " + getCheckMessage(MSG_KEY, "java.sql.Connection"),
+            "20:1: " + getCheckMessage(MSG_KEY, "org.junit.jupiter.api.*"),
+            "33:1: " + getCheckMessage(MSG_KEY, "org.junit.jupiter.api.*"),
         };
-        verify(checkConfig, getPath("InputIllegalImportDefault.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputIllegalImportDefault3.java"), expected);
+    }
+
+    @Test
+    public void testIllegalClassesStarImport()
+            throws Exception {
+        final String[] expected = {
+            "14:1: " + getCheckMessage(MSG_KEY, "java.io.*"),
+            "20:1: " + getCheckMessage(MSG_KEY, "org.junit.jupiter.api.*"),
+            "33:1: " + getCheckMessage(MSG_KEY, "org.junit.jupiter.api.*"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputIllegalImportDefault4.java"), expected);
     }
 
     @Test
     public void testIllegalPackagesRegularExpression()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-                createCheckConfig(IllegalImportCheck.class);
-        checkConfig.addAttribute("illegalPkgs", "java\\.util");
-        checkConfig.addAttribute("regexp", "true");
         final String[] expected = {
-            "12:1: " + getCheckMessage(MSG_KEY, "java.util.List"),
-            "13:1: " + getCheckMessage(MSG_KEY, "java.util.List"),
-            "16:1: " + getCheckMessage(MSG_KEY, "java.util.Enumeration"),
-            "17:1: " + getCheckMessage(MSG_KEY, "java.util.Arrays"),
-            "34:1: " + getCheckMessage(MSG_KEY, "java.util.Date"),
-            "35:1: " + getCheckMessage(MSG_KEY, "java.util.Calendar"),
-            "36:1: " + getCheckMessage(MSG_KEY, "java.util.BitSet"),
+            "17:1: " + getCheckMessage(MSG_KEY, "java.util.List"),
+            "18:1: " + getCheckMessage(MSG_KEY, "java.util.List"),
+            "21:1: " + getCheckMessage(MSG_KEY, "java.util.Enumeration"),
+            "22:1: " + getCheckMessage(MSG_KEY, "java.util.Arrays"),
+            "39:1: " + getCheckMessage(MSG_KEY, "java.util.Date"),
+            "40:1: " + getCheckMessage(MSG_KEY, "java.util.Calendar"),
+            "41:1: " + getCheckMessage(MSG_KEY, "java.util.BitSet"),
         };
-        verify(checkConfig, getPath("InputIllegalImportDefault.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputIllegalImportDefault5.java"), expected);
     }
 
     @Test
-    public void testIllegalClassessRegularExpression()
+    public void testIllegalClassesRegularExpression()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-                createCheckConfig(IllegalImportCheck.class);
-        checkConfig.addAttribute("illegalPkgs", "");
-        checkConfig.addAttribute("illegalClasses", "^java\\.util\\.(List|Arrays)");
-        checkConfig.addAttribute("regexp", "true");
         final String[] expected = {
-            "12:1: " + getCheckMessage(MSG_KEY, "java.util.List"),
-            "13:1: " + getCheckMessage(MSG_KEY, "java.util.List"),
-            "17:1: " + getCheckMessage(MSG_KEY, "java.util.Arrays"),
+            "17:1: " + getCheckMessage(MSG_KEY, "java.util.List"),
+            "18:1: " + getCheckMessage(MSG_KEY, "java.util.List"),
+            "22:1: " + getCheckMessage(MSG_KEY, "java.util.Arrays"),
         };
-        verify(checkConfig, getPath("InputIllegalImportDefault.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputIllegalImportDefault6.java"), expected);
     }
 
     @Test
     public void testIllegalPackagesAndClassesRegularExpression()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-                createCheckConfig(IllegalImportCheck.class);
-        checkConfig.addAttribute("illegalPkgs", "java\\.util");
-        checkConfig.addAttribute("illegalClasses",
-                "^com\\.puppycrawl\\.tools\\.checkstyle\\.Checker.*");
-        checkConfig.addAttribute("regexp", "true");
         final String[] expected = {
-            "12:1: " + getCheckMessage(MSG_KEY, "java.util.List"),
-            "13:1: " + getCheckMessage(MSG_KEY, "java.util.List"),
-            "16:1: " + getCheckMessage(MSG_KEY, "java.util.Enumeration"),
-            "17:1: " + getCheckMessage(MSG_KEY, "java.util.Arrays"),
-            "34:1: " + getCheckMessage(MSG_KEY, "java.util.Date"),
-            "35:1: " + getCheckMessage(MSG_KEY, "java.util.Calendar"),
-            "36:1: " + getCheckMessage(MSG_KEY, "java.util.BitSet"),
-            "38:1: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.Checker"),
-            "39:1: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.CheckerTest"),
+            "17:1: " + getCheckMessage(MSG_KEY, "java.util.List"),
+            "18:1: " + getCheckMessage(MSG_KEY, "java.util.List"),
+            "21:1: " + getCheckMessage(MSG_KEY, "java.util.Enumeration"),
+            "22:1: " + getCheckMessage(MSG_KEY, "java.util.Arrays"),
+            "35:1: " + getCheckMessage(MSG_KEY, "java.awt.Component"),
+            "36:1: " + getCheckMessage(MSG_KEY, "java.awt.Graphics2D"),
+            "37:1: " + getCheckMessage(MSG_KEY, "java.awt.HeadlessException"),
+            "38:1: " + getCheckMessage(MSG_KEY, "java.awt.Label"),
+            "39:1: " + getCheckMessage(MSG_KEY, "java.util.Date"),
+            "40:1: " + getCheckMessage(MSG_KEY, "java.util.Calendar"),
+            "41:1: " + getCheckMessage(MSG_KEY, "java.util.BitSet"),
         };
-        verify(checkConfig, getPath("InputIllegalImportDefault.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputIllegalImportDefault7.java"), expected);
     }
+
 }

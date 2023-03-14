@@ -1,10 +1,16 @@
+/*
+MissingCtor
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.coding.missingctor;
 
-public class InputMissingCtor
+public class InputMissingCtor // violation
 {
 }
-// we shouln't flag abstract classes
-abstract class AbstactClass {
+// we shouldn't flag abstract classes
+abstract class AbstractClass {
 }
 
 // this class has ctor

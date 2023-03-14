@@ -2,15 +2,10 @@
 
 <document xmlns="http://maven.apache.org/XDOC/2.0"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
 
   <head>
     <title>Writing Filters</title>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"/>
-    <script type="text/javascript" src="js/anchors.js"/>
-    <script type="text/javascript" src="js/google-analytics.js"/>
-    <link rel="icon" href="images/favicon.png" type="image/x-icon" />
-    <link rel="shortcut icon" href="images/favicon.ico" type="image/ico" />
   </head>
 
   <body>
@@ -23,20 +18,22 @@
 
     <section name="Overview">
       <p>
-        A <code>Checker</code> has a set of <code>Filter</code>s that decide which audit events the <code>Checker</code> reports through its listeners.  Interface
-        <code>Filter</code> and class <code>FilterSet</code> are intended to support general <code>AuditEvent</code> filtering using a set of <code>Filter</code>s.
+        A <code>Checker</code> has a set of <code>Filter</code>s that decide which audit events
+        the <code>Checker</code> reports through its listeners.  Interface <code>Filter</code>
+        and class <code>FilterSet</code> are intended to support general <code>AuditEvent</code>
+        filtering using a set of <code>Filter</code>s.
       </p>
 
       <p>
-        A <code>Filter</code> has <code>boolean</code> method <code>accept(AuditEvent)</code> that returns <code>true</code> if the <code>Filter</code>
-        accepts the <code>AuditEvent</code> parameter and returns
-        <code>false</code> if the <code>Filter</code> rejects it.
+        A <code>Filter</code> has <code>boolean</code> method <code>accept(AuditEvent)</code> that
+        returns <code>true</code> if the <code>Filter</code> accepts the <code>AuditEvent</code>
+        parameter and returns <code>false</code> if the <code>Filter</code> rejects it.
       </p>
 
       <p>
-        A <code>FilterSet</code> is a particular <code>Filter</code> that contains a set of <code>Filter</code>s. A <code>FilterSet</code>
-        accepts an <code>AuditEvent</code> if and only if all
-        <code>Filter</code>s in the set accept the <code>AuditEvent</code>.
+        A <code>FilterSet</code> is a particular <code>Filter</code> that contains a set of
+        <code>Filter</code>s. A <code>FilterSet</code> accepts an <code>AuditEvent</code> if and
+        only if all <code>Filter</code>s in the set accept the <code>AuditEvent</code>.
       </p>
 
       <p>
@@ -44,20 +41,22 @@
         and class <code>FilterSet</code>.
       </p>
 
-      <img src="images/Filter.gif" alt="Filter UML diagram" />
+      <div class="wrapper">
+        <img src="images/Filter.gif" alt="Filter UML diagram" />
+      </div>
     </section>
 
     <section name="Writing Filters">
       <p>
         The <code>Filter</code> that we demonstrate here rejects
         audit events for files whose name matches a <a
-        href="property_types.html#regexp">regular expression</a>.  In order to
+        href="property_types.html#Pattern">Pattern</a>.  In order to
         enable the specification of the file name pattern as a property in a
         configuration file, the <code>Filter</code> is an <a
         href="apidocs/com/puppycrawl/tools/checkstyle/api/AutomaticBean.html">AutomaticBean</a>
         with mutator method <code>setFiles(String)</code> that
-        receives the file name pattern.  An <code>AutomaticBean</code> uses JavaBean introspection to set
-        JavaBean properties such as <code>files</code>.
+        receives the file name pattern.  An <code>AutomaticBean</code> uses JavaBean
+        introspection to set JavaBean properties such as <code>files</code>.
       </p>
 
       <source>
@@ -76,32 +75,33 @@ public class FilesFilter
     extends AutomaticBean
     implements Filter
 {
-    private Pattern mFileRegexp;
+  private Pattern mFileRegexp;
 
-    public FilesFilter()
-        throws PatternSyntaxException
-    {
-        setFiles("^$");
-    }
+  public FilesFilter()
+      throws PatternSyntaxException
+  {
+    setFiles("^$");
+  }
 
-    public boolean accept(AuditEvent aEvent)
-    {
-        final String fileName = aEvent.getFileName();
-        return ((fileName == null) || !mFileRegexp.matcher(fileName).find());
-    }
+  public boolean accept(AuditEvent aEvent)
+  {
+    final String fileName = aEvent.getFileName();
+    return ((fileName == null) || !mFileRegexp.matcher(fileName).find());
+  }
 
-    public void setFiles(String aFilesPattern)
-        throws PatternSyntaxException
-    {
-        mFileRegexp = Utils.getPattern(aFilesPattern);
-    }
+  public void setFiles(String aFilesPattern)
+      throws PatternSyntaxException
+  {
+    mFileRegexp = Utils.getPattern(aFilesPattern);
+  }
 }
       </source>
     </section>
 
     <section name="Declare check's external resource locations">
       <p>
-        See <a href="writingchecks.html#Declare_checks_external_resource_locations">Declare check's external resource locations</a>.
+        See <a href="writingchecks.html#Declare_check.27s_external_resource_locations">
+        Declare check's external resource locations</a>.
       </p>
     </section>
 
@@ -119,7 +119,7 @@ public class FilesFilter
 
       <source>
 &lt;module name=&quot;com.mycompany.filters.FilesFilter&quot;&gt;
-    &lt;property name=&quot;files&quot; value=&quot;Generated&quot;/&gt;
+  &lt;property name=&quot;files&quot; value=&quot;Generated&quot;/&gt;
 &lt;/module&gt;
       </source>
     </section>

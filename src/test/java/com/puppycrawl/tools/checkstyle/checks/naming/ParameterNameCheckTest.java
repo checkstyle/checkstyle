@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,75 +15,77 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.naming;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
-import static org.junit.Assert.assertArrayEquals;
 
-import java.io.File;
-import java.io.IOException;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Test;
-
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class ParameterNameCheckTest
-    extends BaseCheckTestSupport {
+    extends AbstractModuleTestSupport {
+
     @Override
-    protected String getPath(String filename) throws IOException {
-        return super.getPath("checks" + File.separator
-                + "naming" + File.separator
-                + "parametername" + File.separator
-                + filename);
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/checks/naming/parametername";
     }
 
     @Test
     public void testGetRequiredTokens() {
         final ParameterNameCheck checkObj = new ParameterNameCheck();
         final int[] expected = {TokenTypes.PARAMETER_DEF};
-        assertArrayEquals("Default required tokens are invalid",
-            expected, checkObj.getRequiredTokens());
+        assertWithMessage("Default required tokens are invalid")
+                .that(checkObj.getRequiredTokens())
+                .isEqualTo(expected);
     }
 
     @Test
     public void testCatch()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(ParameterNameCheck.class);
-        checkConfig.addAttribute("format", "^NO_WAY_MATEY$");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputParameterNameCatchOnly.java"), expected);
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputParameterNameCatchOnly.java"), expected);
     }
 
     @Test
     public void testSpecified()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(ParameterNameCheck.class);
-        checkConfig.addAttribute("format", "^a[A-Z][a-zA-Z0-9]*$");
 
         final String pattern = "^a[A-Z][a-zA-Z0-9]*$";
 
         final String[] expected = {
-            "71:19: " + getCheckMessage(MSG_INVALID_PATTERN, "badFormat1", pattern),
-            "71:34: " + getCheckMessage(MSG_INVALID_PATTERN, "badFormat2", pattern),
-            "72:25: " + getCheckMessage(MSG_INVALID_PATTERN, "badFormat3", pattern),
+            "68:19: " + getCheckMessage(MSG_INVALID_PATTERN, "badFormat1", pattern),
+            "68:34: " + getCheckMessage(MSG_INVALID_PATTERN, "badFormat2", pattern),
+            "69:25: " + getCheckMessage(MSG_INVALID_PATTERN, "badFormat3", pattern),
         };
-        verify(checkConfig, getPath("InputParameterName.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputParameterNameOne.java"), expected);
+    }
+
+    @Test
+    public void testWhitespaceInAccessModifierProperty() throws Exception {
+        final String pattern = "^h$";
+        final String[] expected = {
+            "14:69: " + getCheckMessage(MSG_INVALID_PATTERN, "parameter1", pattern),
+            "18:31: " + getCheckMessage(MSG_INVALID_PATTERN, "parameter2", pattern),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputParameterNameWhitespaceInAccessModifierProperty.java"), expected);
     }
 
     @Test
     public void testDefault()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(ParameterNameCheck.class);
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputParameterName.java"), expected);
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputParameterName.java"), expected);
     }
 
     @Test
@@ -93,89 +95,110 @@ public class ParameterNameCheckTest
         final int[] expected = {
             TokenTypes.PARAMETER_DEF,
         };
-        assertArrayEquals("Default acceptable tokens are invalid", expected, actual);
+        assertWithMessage("Default acceptable tokens are invalid")
+                .that(actual)
+                .isEqualTo(expected);
     }
 
     @Test
     public void testSkipMethodsWithOverrideAnnotationTrue()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(ParameterNameCheck.class);
-        checkConfig.addAttribute("format", "^h$");
-        checkConfig.addAttribute("ignoreOverridden", "true");
 
         final String pattern = "^h$";
 
         final String[] expected = {
-            "11:28: " + getCheckMessage(MSG_INVALID_PATTERN, "object", pattern),
-            "15:30: " + getCheckMessage(MSG_INVALID_PATTERN, "aaaa", pattern),
-            "19:19: " + getCheckMessage(MSG_INVALID_PATTERN, "abc", pattern),
-            "19:28: " + getCheckMessage(MSG_INVALID_PATTERN, "bd", pattern),
-            "21:18: " + getCheckMessage(MSG_INVALID_PATTERN, "abc", pattern),
-            "28:33: " + getCheckMessage(MSG_INVALID_PATTERN, "field", pattern),
-            "28:62: " + getCheckMessage(MSG_INVALID_PATTERN, "packageNames", pattern),
+            "20:28: " + getCheckMessage(MSG_INVALID_PATTERN, "object", pattern),
+            "24:30: " + getCheckMessage(MSG_INVALID_PATTERN, "aaaa", pattern),
+            "28:19: " + getCheckMessage(MSG_INVALID_PATTERN, "abc", pattern),
+            "28:28: " + getCheckMessage(MSG_INVALID_PATTERN, "bd", pattern),
+            "30:18: " + getCheckMessage(MSG_INVALID_PATTERN, "abc", pattern),
+            "37:46: " + getCheckMessage(MSG_INVALID_PATTERN, "fie", pattern),
+            "37:73: " + getCheckMessage(MSG_INVALID_PATTERN, "pkgNames", pattern),
             };
-        verify(checkConfig, getPath("InputOverrideAnnotation.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputParameterNameOverrideAnnotation.java"), expected);
     }
 
     @Test
     public void testSkipMethodsWithOverrideAnnotationFalse()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(ParameterNameCheck.class);
-        checkConfig.addAttribute("format", "^h$");
-        checkConfig.addAttribute("ignoreOverridden", "false");
 
         final String pattern = "^h$";
 
         final String[] expected = {
-            "6:34: " + getCheckMessage(MSG_INVALID_PATTERN, "o", pattern),
-            "11:28: " + getCheckMessage(MSG_INVALID_PATTERN, "object", pattern),
-            "15:30: " + getCheckMessage(MSG_INVALID_PATTERN, "aaaa", pattern),
-            "19:19: " + getCheckMessage(MSG_INVALID_PATTERN, "abc", pattern),
-            "19:28: " + getCheckMessage(MSG_INVALID_PATTERN, "bd", pattern),
-            "21:18: " + getCheckMessage(MSG_INVALID_PATTERN, "abc", pattern),
-            "28:33: " + getCheckMessage(MSG_INVALID_PATTERN, "field", pattern),
-            "28:62: " + getCheckMessage(MSG_INVALID_PATTERN, "packageNames", pattern),
+            "15:34: " + getCheckMessage(MSG_INVALID_PATTERN, "o", pattern),
+            "20:28: " + getCheckMessage(MSG_INVALID_PATTERN, "object", pattern),
+            "24:30: " + getCheckMessage(MSG_INVALID_PATTERN, "aaaa", pattern),
+            "28:19: " + getCheckMessage(MSG_INVALID_PATTERN, "abc", pattern),
+            "28:28: " + getCheckMessage(MSG_INVALID_PATTERN, "bd", pattern),
+            "30:18: " + getCheckMessage(MSG_INVALID_PATTERN, "abc", pattern),
+            "37:49: " + getCheckMessage(MSG_INVALID_PATTERN, "fie", pattern),
+            "37:76: " + getCheckMessage(MSG_INVALID_PATTERN, "pkgNames", pattern),
             };
-        verify(checkConfig, getPath("InputOverrideAnnotation.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputParameterNameOverrideAnnotationOne.java"), expected);
     }
 
     @Test
     public void testPublicAccessModifier()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(ParameterNameCheck.class);
-        checkConfig.addAttribute("format", "^h$");
-        checkConfig.addAttribute("accessModifiers", AccessModifier.PUBLIC.toString());
 
         final String pattern = "^h$";
 
         final String[] expected = {
-            "5:36: " + getCheckMessage(MSG_INVALID_PATTERN, "pubconstr", pattern),
-            "9:31: " + getCheckMessage(MSG_INVALID_PATTERN, "inner", pattern),
-            "19:24: " + getCheckMessage(MSG_INVALID_PATTERN, "pubpub", pattern),
-            "30:21: " + getCheckMessage(MSG_INVALID_PATTERN, "pubifc", pattern),
-            "44:24: " + getCheckMessage(MSG_INVALID_PATTERN, "packpub", pattern),
-            "60:21: " + getCheckMessage(MSG_INVALID_PATTERN, "packifc", pattern),
+            "14:49: " + getCheckMessage(MSG_INVALID_PATTERN, "pubconstr", pattern),
+            "18:31: " + getCheckMessage(MSG_INVALID_PATTERN, "inner", pattern),
+            "28:24: " + getCheckMessage(MSG_INVALID_PATTERN, "pubpub", pattern),
+            "39:21: " + getCheckMessage(MSG_INVALID_PATTERN, "pubifc", pattern),
+            "53:24: " + getCheckMessage(MSG_INVALID_PATTERN, "packpub", pattern),
+            "69:21: " + getCheckMessage(MSG_INVALID_PATTERN, "packifc", pattern),
             };
-        verify(checkConfig, getPath("InputAccessModifier.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputParameterNameAccessModifier.java"), expected);
     }
 
     @Test
     public void testIsOverriddenNoNullPointerException()
             throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(ParameterNameCheck.class);
-        checkConfig.addAttribute("format", "^[a-z][a-zA-Z0-9]*$");
-        checkConfig.addAttribute("ignoreOverridden", "true");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputParameterNameOverrideAnnotationNoNPE.java"), expected);
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputParameterNameOverrideAnnotationNoNPE.java"), expected);
     }
 
     @Test
     public void testReceiverParameter() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(ParameterNameCheck.class);
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputParameterNameReceiver.java"), expected);
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputParameterNameReceiver.java"), expected);
     }
+
+    @Test
+    public void testLambdaParameterNoViolationAtAll() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputParameterNameLambda.java"), expected);
+    }
+
+    @Test
+    public void testWhitespaceInConfig() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputParameterNameWhitespaceInConfig.java"), expected);
+    }
+
+    @Test
+    public void testSetAccessModifiers() throws Exception {
+        final AccessModifierOption[] input = {
+            AccessModifierOption.PACKAGE,
+        };
+        final ParameterNameCheck check = new ParameterNameCheck();
+        check.setAccessModifiers(input);
+
+        assertWithMessage("check creates its own instance of access modifier array")
+            .that(System.identityHashCode(
+                TestUtil.getClassDeclaredField(ParameterNameCheck.class, "accessModifiers")
+                        .get(check)))
+            .isNotEqualTo(System.identityHashCode(input));
+    }
+
 }

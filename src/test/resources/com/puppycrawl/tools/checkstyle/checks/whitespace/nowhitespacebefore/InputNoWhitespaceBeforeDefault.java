@@ -1,14 +1,18 @@
-////////////////////////////////////////////////////////////////////////////////
-// Test case file for checkstyle.
-// Created: 2001
-////////////////////////////////////////////////////////////////////////////////
+/*
+NoWhitespaceBefore
+allowLineBreaks = (default)false
+tokens = (default)COMMA, SEMI, POST_INC, POST_DEC, ELLIPSIS, LABELED_STAT
+
+
+*/
+
 package com . puppycrawl
         .tools.
         checkstyle.checks.whitespace.nowhitespacebefore;
 
 /**
  * Class for testing whitespace issues.
- * error missing author tag
+ * violation missing author tag
  **/
 class InputNoWhitespaceBeforeDefault
 {
@@ -27,7 +31,7 @@ class InputNoWhitespaceBeforeDefault
         b=1; // Ignore 1
         b+=1; // Ignore 1
         b -=- 1 + (+ b); // Ignore 2
-        b = b ++ + b --; // Ignore 1
+        b = b ++ + b --; // 2 violations
         b = ++ b - -- b; // Ignore 1
     }
 
@@ -85,7 +89,7 @@ class InputNoWhitespaceBeforeDefault
     private void testCasts()
     {
         Object o = (Object) new Object(); // ok
-        o = (Object)o; // error
+        o = (Object)o;
         o = ( Object ) o; // ok
         o = (Object)
                 o; // ok
@@ -173,26 +177,26 @@ class InputNoWhitespaceBeforeDefault
     /** rfe 521323, detect whitespace before ';' */
     void rfe521323()
     {
-        doStuff() ;
+        doStuff() ; // violation
         //       ^ whitespace
-        for (int i = 0 ; i < 5; i++) {
+        for (int i = 0 ; i < 5; i++) { // violation
             //        ^ whitespace
         }
     }
 
 
-    /** bug 806243 (NoWhitespaceBeforeCheck error for anonymous inner class) */
-    private int i ;
+    /** bug 806243 (NoWhitespaceBeforeCheck violation for anonymous inner class) */
+    private int i ; // violation
     //           ^ whitespace
-    private int i1, i2, i3 ;
+    private int i1, i2, i3 ; // violation
     //                    ^ whitespace
     private int i4, i5, i6;
 
-    /** bug 806243 (NoWhitespaceBeforeCheck error for anonymous inner class) */
+    /** bug 806243 (NoWhitespaceBeforeCheck violation for anonymous inner class) */
     void bug806243()
     {
         Object o = new InputNoWhitespaceBeforeDefault() {
-            private int j ;
+            private int j ; // violation
             //           ^ whitespace
         };
     }
@@ -202,18 +206,18 @@ class InputNoWhitespaceBeforeDefault
 }
 
 /**
- * Bug 806242 (NoWhitespaceBeforeCheck error with an interface).
+ * Bug 806242 (NoWhitespaceBeforeCheck violation with an interface).
  * @author o_sukhodolsky
  * @version 1.0
  */
 interface IFoo_NoWhitespaceBeforeDefault
 {
-    void foo() ;
+    void foo() ; // violation
     //        ^ whitespace
 }
 
 /**
- * Avoid Whitespace errors in for loop.
+ * Avoid Whitespace violations in for loop.
  * @author lkuehne
  * @version 1.0
  */
@@ -227,7 +231,7 @@ class SpecialCasesInForLoop_NoWhitespaceBeforeDefault
         }
 
         // bug 895072
-        // avoid confilct between ParenPad(space) and NoWhiteSpace before ';'
+        // avoid conflict between ParenPad(space) and NoWhiteSpace before ';'
         int i = 0;
         for ( ; i < 5; i++ ) {
             //   ^ whitespace
@@ -263,11 +267,11 @@ class SpecialCasesInForLoop_NoWhitespaceBeforeDefault
         runs[0]
 .
  run()
-;
+; // violation
     }
 
     public void testNullSemi() {
-        return ;
+        return ; // violation
     }
 
     public void register(Object obj) { }
@@ -281,9 +285,19 @@ class SpecialCasesInForLoop_NoWhitespaceBeforeDefault
         testNullSemi
 (
 )
-;
+; // violation
     }
 
-    public static void testNoWhitespaceBeforeEllipses(String ... args) {
+    public static void testNoWhitespaceBeforeEllipses(String ... args) { // violation
+    }
+
+    {
+        label1 : // violation
+        for(int i = 0; i < 10; i++) {}
+    }
+
+    public void foo() {
+        label2: // no violation
+        while (true) {}
     }
 }

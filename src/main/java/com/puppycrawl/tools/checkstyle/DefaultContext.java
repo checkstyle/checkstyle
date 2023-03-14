@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,22 +15,22 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle;
 
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 
-import com.google.common.collect.ImmutableCollection;
-import com.google.common.collect.ImmutableList;
 import com.puppycrawl.tools.checkstyle.api.Context;
 
 /**
  * A default implementation of the Context interface.
- * @author lkuehne
  */
 public final class DefaultContext implements Context {
+
     /** Stores the context entries. */
     private final Map<String, Object> entries = new HashMap<>();
 
@@ -40,16 +40,18 @@ public final class DefaultContext implements Context {
     }
 
     @Override
-    public ImmutableCollection<String> getAttributeNames() {
-        return ImmutableList.copyOf(entries.keySet());
+    public Collection<String> getAttributeNames() {
+        return new HashSet<>(entries.keySet());
     }
 
     /**
      * Adds a context entry.
+     *
      * @param key the context key
      * @param value the value for key
      */
     public void add(String key, Object value) {
         entries.put(key, value);
     }
+
 }

@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle;
 
@@ -23,13 +23,16 @@ import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 
 /**
  * Represents the formatter interface for log message.
- * @author Andrei Selkin
  */
+@FunctionalInterface
 public interface AuditEventFormatter {
+
     /**
-     * Formats an error message.
+     * Formats an event message.
+     *
      * @param event audit event.
-     * @return string representation of error message.
+     * @return string representation of event message.
      */
     String format(AuditEvent event);
+
 }

@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,156 +15,297 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks;
 
 import java.util.Arrays;
-import java.util.Set;
 
-import antlr.collections.AST;
+import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
+import com.puppycrawl.tools.checkstyle.PropertyType;
+import com.puppycrawl.tools.checkstyle.XdocsPropertyType;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
-import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <p>
  * Checks for restricted tokens beneath other tokens.
  * </p>
  * <p>
- * Examples of how to configure the check:
+ * WARNING: This is a very powerful and flexible check, but, at the same time,
+ * it is low-level and very implementation-dependent because its results depend
+ * on the grammar we use to build abstract syntax trees. Thus, we recommend using
+ * other checks when they provide the desired functionality. Essentially, this
+ * check just works on the level of an abstract syntax tree and knows nothing
+ * about language structures.
+ * </p>
+ * <ul>
+ * <li>
+ * Property {@code limitedTokens} - Specify set of tokens with limited occurrences as descendants.
+ * Type is {@code java.lang.String[]}.
+ * Validation type is {@code tokenTypesSet}.
+ * Default value is {@code ""}.
+ * </li>
+ * <li>
+ * Property {@code minimumDepth} - Specify the minimum depth for descendant counts.
+ * Type is {@code int}.
+ * Default value is {@code 0}.
+ * </li>
+ * <li>
+ * Property {@code maximumDepth} - Specify the maximum depth for descendant counts.
+ * Type is {@code int}.
+ * Default value is {@code 2147483647}.
+ * </li>
+ * <li>
+ * Property {@code minimumNumber} - Specify a minimum count for descendants.
+ * Type is {@code int}.
+ * Default value is {@code 0}.
+ * </li>
+ * <li>
+ * Property {@code maximumNumber} - Specify a maximum count for descendants.
+ * Type is {@code int}.
+ * Default value is {@code 2147483647}.
+ * </li>
+ * <li>
+ * Property {@code sumTokenCounts} - Control whether the number of tokens found
+ * should be calculated from the sum of the individual token counts.
+ * Type is {@code boolean}.
+ * Default value is {@code false}.
+ * </li>
+ * <li>
+ * Property {@code minimumMessage} - Define the violation message
+ * when the minimum count is not reached.
+ * Type is {@code java.lang.String}.
+ * Default value is {@code null}.
+ * </li>
+ * <li>
+ * Property {@code maximumMessage} - Define the violation message
+ * when the maximum count is exceeded.
+ * Type is {@code java.lang.String}.
+ * Default value is {@code null}.
+ * </li>
+ * <li>
+ * Property {@code tokens} - tokens to check
+ * Type is {@code anyTokenTypesSet}.
+ * Default value is {@code ""}.
+ * </li>
+ * </ul>
+ * <p>
+ * To configure the check to produce a violation on a switch statement with no default case:
  * </p>
  * <pre>
- * &lt;!-- String literal equality check --&gt;
- * &lt;module name="DescendantToken"&gt;
- *     &lt;property name="tokens" value="EQUAL,NOT_EQUAL"/&gt;
- *     &lt;property name="limitedTokens" value="STRING_LITERAL"/&gt;
- *     &lt;property name="maximumNumber" value="0"/&gt;
- *     &lt;property name="maximumDepth" value="1"/&gt;
- * &lt;/module&gt;
- *
- * &lt;!-- Switch with no default --&gt;
- * &lt;module name="DescendantToken"&gt;
- *     &lt;property name="tokens" value="LITERAL_SWITCH"/&gt;
- *     &lt;property name="maximumDepth" value="2"/&gt;
- *     &lt;property name="limitedTokens" value="LITERAL_DEFAULT"/&gt;
- *     &lt;property name="minimumNumber" value="1"/&gt;
- * &lt;/module&gt;
- *
- * &lt;!-- Assert statement may have side effects --&gt;
- * &lt;module name="DescendantToken"&gt;
- *     &lt;property name="tokens" value="LITERAL_ASSERT"/&gt;
- *     &lt;property name="limitedTokens" value="ASSIGN,DEC,INC,POST_DEC,
- *     POST_INC,PLUS_ASSIGN,MINUS_ASSIGN,STAR_ASSIGN,DIV_ASSIGN,MOD_ASSIGN,
- *     BSR_ASSIGN,SR_ASSIGN,SL_ASSIGN,BAND_ASSIGN,BXOR_ASSIGN,BOR_ASSIGN,
- *     METHOD_CALL"/&gt;
- *     &lt;property name="maximumNumber" value="0"/&gt;
- * &lt;/module&gt;
- *
- * &lt;!-- Initializer in for performs no setup - use while instead? --&gt;
- * &lt;module name="DescendantToken"&gt;
- *     &lt;property name="tokens" value="FOR_INIT"/&gt;
- *     &lt;property name="limitedTokens" value="EXPR"/&gt;
- *     &lt;property name="minimumNumber" value="1"/&gt;
- * &lt;/module&gt;
- *
- * &lt;!-- Condition in for performs no check --&gt;
- * &lt;module name="DescendantToken"&gt;
- *     &lt;property name="tokens" value="FOR_CONDITION"/&gt;
- *     &lt;property name="limitedTokens" value="EXPR"/&gt;
- *     &lt;property name="minimumNumber" value="1"/&gt;
- * &lt;/module&gt;
- *
- * &lt;!-- Switch within switch --&gt;
- * &lt;module name="DescendantToken"&gt;
- *     &lt;property name="tokens" value="LITERAL_SWITCH"/&gt;
- *     &lt;property name="limitedTokens" value="LITERAL_SWITCH"/&gt;
- *     &lt;property name="maximumNumber" value="0"/&gt;
- *     &lt;property name="minimumDepth" value="1"/&gt;
- * &lt;/module&gt;
- *
- * &lt;!-- Return from within a catch or finally block --&gt;
- * &lt;module name="DescendantToken"&gt;
- *     &lt;property name="tokens" value="LITERAL_FINALLY,LITERAL_CATCH"/&gt;
- *     &lt;property name="limitedTokens" value="LITERAL_RETURN"/&gt;
- *     &lt;property name="maximumNumber" value="0"/&gt;
- * &lt;/module&gt;
- *
- * &lt;!-- Try within catch or finally block --&gt;
- * &lt;module name="DescendantToken"&gt;
- *     &lt;property name="tokens" value="LITERAL_CATCH,LITERAL_FINALLY"/&gt;
- *     &lt;property name="limitedTokens" value="LITERAL_TRY"/&gt;
- *     &lt;property name="maximumNumber" value="0"/&gt;
- * &lt;/module&gt;
- *
- * &lt;!-- Too many cases within a switch --&gt;
- * &lt;module name="DescendantToken"&gt;
- *     &lt;property name="tokens" value="LITERAL_SWITCH"/&gt;
- *     &lt;property name="limitedTokens" value="LITERAL_CASE"/&gt;
- *     &lt;property name="maximumDepth" value="2"/&gt;
- *     &lt;property name="maximumNumber" value="10"/&gt;
- * &lt;/module&gt;
- *
- * &lt;!-- Too many local variables within a method --&gt;
- * &lt;module name="DescendantToken"&gt;
- *     &lt;property name="tokens" value="METHOD_DEF"/&gt;
- *     &lt;property name="limitedTokens" value="VARIABLE_DEF"/&gt;
- *     &lt;property name="maximumDepth" value="2"/&gt;
- *     &lt;property name="maximumNumber" value="10"/&gt;
- * &lt;/module&gt;
- *
- * &lt;!-- Too many returns from within a method --&gt;
- * &lt;module name="DescendantToken"&gt;
- *     &lt;property name="tokens" value="METHOD_DEF"/&gt;
- *     &lt;property name="limitedTokens" value="LITERAL_RETURN"/&gt;
- *     &lt;property name="maximumNumber" value="3"/&gt;
- * &lt;/module&gt;
- *
- * &lt;!-- Too many fields within an interface --&gt;
- * &lt;module name="DescendantToken"&gt;
- *     &lt;property name="tokens" value="INTERFACE_DEF"/&gt;
- *     &lt;property name="limitedTokens" value="VARIABLE_DEF"/&gt;
- *     &lt;property name="maximumDepth" value="2"/&gt;
- *     &lt;property name="maximumNumber" value="0"/&gt;
- * &lt;/module&gt;
- *
- * &lt;!-- Limit the number of exceptions a method can throw --&gt;
- * &lt;module name="DescendantToken"&gt;
- *     &lt;property name="tokens" value="LITERAL_THROWS"/&gt;
- *     &lt;property name="limitedTokens" value="IDENT"/&gt;
- *     &lt;property name="maximumNumber" value="1"/&gt;
- * &lt;/module&gt;
- *
- * &lt;!-- Limit the number of expressions in a method --&gt;
- * &lt;module name="DescendantToken"&gt;
- *     &lt;property name="tokens" value="METHOD_DEF"/&gt;
- *     &lt;property name="limitedTokens" value="EXPR"/&gt;
- *     &lt;property name="maximumNumber" value="200"/&gt;
- * &lt;/module&gt;
- *
- * &lt;!-- Disallow empty statements --&gt;
- * &lt;module name="DescendantToken"&gt;
- *     &lt;property name="tokens" value="EMPTY_STAT"/&gt;
- *     &lt;property name="limitedTokens" value="EMPTY_STAT"/&gt;
- *     &lt;property name="maximumNumber" value="0"/&gt;
- *     &lt;property name="maximumDepth" value="0"/&gt;
- *     &lt;property name="maximumMessage"
- *         value="Empty statement is not allowed."/&gt;
- * &lt;/module&gt;
- *
- * &lt;!-- Too many fields within a class --&gt;
- * &lt;module name="DescendantToken"&gt;
- *     &lt;property name="tokens" value="CLASS_DEF"/&gt;
- *     &lt;property name="limitedTokens" value="VARIABLE_DEF"/&gt;
- *     &lt;property name="maximumDepth" value="2"/&gt;
- *     &lt;property name="maximumNumber" value="10"/&gt;
+ * &lt;module name=&quot;DescendantToken&quot;&gt;
+ *   &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_SWITCH&quot;/&gt;
+ *   &lt;property name=&quot;maximumDepth&quot; value=&quot;2&quot;/&gt;
+ *   &lt;property name=&quot;limitedTokens&quot; value=&quot;LITERAL_DEFAULT&quot;/&gt;
+ *   &lt;property name=&quot;minimumNumber&quot; value=&quot;1&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>
+ * To configure the check to produce a violation on a condition in {@code for}
+ * which performs no check:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;DescendantToken&quot;&gt;
+ *   &lt;property name=&quot;tokens&quot; value=&quot;FOR_CONDITION&quot;/&gt;
+ *   &lt;property name=&quot;limitedTokens&quot; value=&quot;EXPR&quot;/&gt;
+ *   &lt;property name=&quot;minimumNumber&quot; value=&quot;1&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * To configure the check to produce a violation on comparing {@code this} with
+ * {@code null}(i.e. {@code this == null} and {@code this != null}):
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;DescendantToken&quot;&gt;
+ *   &lt;property name=&quot;tokens&quot; value=&quot;EQUAL,NOT_EQUAL&quot;/&gt;
+ *   &lt;property name=&quot;limitedTokens&quot; value=&quot;LITERAL_THIS,LITERAL_NULL&quot;/&gt;
+ *   &lt;property name=&quot;maximumNumber&quot; value=&quot;1&quot;/&gt;
+ *   &lt;property name=&quot;maximumDepth&quot; value=&quot;1&quot;/&gt;
+ *   &lt;property name=&quot;sumTokenCounts&quot; value=&quot;true&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * To configure the check to produce a violation on a {@code String} literal equality check:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;DescendantToken&quot;&gt;
+ *   &lt;property name=&quot;tokens&quot; value=&quot;EQUAL,NOT_EQUAL&quot;/&gt;
+ *   &lt;property name=&quot;limitedTokens&quot; value=&quot;STRING_LITERAL&quot;/&gt;
+ *   &lt;property name=&quot;maximumNumber&quot; value=&quot;0&quot;/&gt;
+ *   &lt;property name=&quot;maximumDepth&quot; value=&quot;1&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * To configure the check to produce a violation on an assert statement that may
+ * have side effects (formatted for browser display):
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;DescendantToken&quot;&gt;
+ *   &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_ASSERT&quot;/&gt;
+ *   &lt;property name=&quot;limitedTokens&quot; value=&quot;ASSIGN,DEC,INC,POST_DEC,
+ *     POST_INC,PLUS_ASSIGN,MINUS_ASSIGN,STAR_ASSIGN,DIV_ASSIGN,MOD_ASSIGN,
+ *     BSR_ASSIGN,SR_ASSIGN,SL_ASSIGN,BAND_ASSIGN,BXOR_ASSIGN,BOR_ASSIGN,
+ *     METHOD_CALL&quot;/&gt;
+ *   &lt;property name=&quot;maximumNumber&quot; value=&quot;0&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * To configure the check to produce a violation on an initializer in {@code for}
+ * performs no setup (where a {@code while} statement could be used instead):
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;DescendantToken&quot;&gt;
+ *   &lt;property name=&quot;tokens&quot; value=&quot;FOR_INIT&quot;/&gt;
+ *   &lt;property name=&quot;limitedTokens&quot; value=&quot;EXPR&quot;/&gt;
+ *   &lt;property name=&quot;minimumNumber&quot; value=&quot;1&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * To configure the check to produce a violation on a switch that is nested in another switch:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;DescendantToken&quot;&gt;
+ *   &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_SWITCH&quot;/&gt;
+ *   &lt;property name=&quot;limitedTokens&quot; value=&quot;LITERAL_SWITCH&quot;/&gt;
+ *   &lt;property name=&quot;maximumNumber&quot; value=&quot;0&quot;/&gt;
+ *   &lt;property name=&quot;minimumDepth&quot; value=&quot;1&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * To configure the check to produce a violation on a return statement from
+ * within a catch or finally block:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;DescendantToken&quot;&gt;
+ *   &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_FINALLY,LITERAL_CATCH&quot;/&gt;
+ *   &lt;property name=&quot;limitedTokens&quot; value=&quot;LITERAL_RETURN&quot;/&gt;
+ *   &lt;property name=&quot;maximumNumber&quot; value=&quot;0&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * To configure the check to produce a violation on a try statement within a catch or finally block:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;DescendantToken&quot;&gt;
+ *   &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_CATCH,LITERAL_FINALLY&quot;/&gt;
+ *   &lt;property name=&quot;limitedTokens&quot; value=&quot;LITERAL_TRY&quot;/&gt;
+ *   &lt;property name=&quot;maximumNumber&quot; value=&quot;0&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * To configure the check to produce a violation on a switch with too many cases:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;DescendantToken&quot;&gt;
+ *   &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_SWITCH&quot;/&gt;
+ *   &lt;property name=&quot;limitedTokens&quot; value=&quot;LITERAL_CASE&quot;/&gt;
+ *   &lt;property name=&quot;maximumDepth&quot; value=&quot;2&quot;/&gt;
+ *   &lt;property name=&quot;maximumNumber&quot; value=&quot;10&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * To configure the check to produce a violation on a method with too many local variables:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;DescendantToken&quot;&gt;
+ *   &lt;property name=&quot;tokens&quot; value=&quot;METHOD_DEF&quot;/&gt;
+ *   &lt;property name=&quot;limitedTokens&quot; value=&quot;VARIABLE_DEF&quot;/&gt;
+ *   &lt;property name=&quot;maximumDepth&quot; value=&quot;2&quot;/&gt;
+ *   &lt;property name=&quot;maximumNumber&quot; value=&quot;10&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * To configure the check to produce a violation on a method with too many returns:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;DescendantToken&quot;&gt;
+ *   &lt;property name=&quot;tokens&quot; value=&quot;METHOD_DEF&quot;/&gt;
+ *   &lt;property name=&quot;limitedTokens&quot; value=&quot;LITERAL_RETURN&quot;/&gt;
+ *   &lt;property name=&quot;maximumNumber&quot; value=&quot;3&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * To configure the check to produce a violation on an interface with too many fields:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;DescendantToken&quot;&gt;
+ *   &lt;property name=&quot;tokens&quot; value=&quot;INTERFACE_DEF&quot;/&gt;
+ *   &lt;property name=&quot;limitedTokens&quot; value=&quot;VARIABLE_DEF&quot;/&gt;
+ *   &lt;property name=&quot;maximumDepth&quot; value=&quot;2&quot;/&gt;
+ *   &lt;property name=&quot;maximumNumber&quot; value=&quot;0&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * To configure the check to produce a violation on a method which throws too many exceptions:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;DescendantToken&quot;&gt;
+ *   &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_THROWS&quot;/&gt;
+ *   &lt;property name=&quot;limitedTokens&quot; value=&quot;IDENT&quot;/&gt;
+ *   &lt;property name=&quot;maximumNumber&quot; value=&quot;1&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * To configure the check to produce a violation on a method with too many expressions:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;DescendantToken&quot;&gt;
+ *   &lt;property name=&quot;tokens&quot; value=&quot;METHOD_DEF&quot;/&gt;
+ *   &lt;property name=&quot;limitedTokens&quot; value=&quot;EXPR&quot;/&gt;
+ *   &lt;property name=&quot;maximumNumber&quot; value=&quot;200&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * To configure the check to produce a violation on an empty statement:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;DescendantToken&quot;&gt;
+ *   &lt;property name=&quot;tokens&quot; value=&quot;EMPTY_STAT&quot;/&gt;
+ *   &lt;property name=&quot;limitedTokens&quot; value=&quot;EMPTY_STAT&quot;/&gt;
+ *   &lt;property name=&quot;maximumNumber&quot; value=&quot;0&quot;/&gt;
+ *   &lt;property name=&quot;maximumDepth&quot; value=&quot;0&quot;/&gt;
+ *   &lt;property name=&quot;maximumMessage&quot;
+ *     value=&quot;Empty statement is not allowed.&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * To configure the check to produce a violation on a class with too many fields:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;DescendantToken&quot;&gt;
+ *   &lt;property name=&quot;tokens&quot; value=&quot;CLASS_DEF&quot;/&gt;
+ *   &lt;property name=&quot;limitedTokens&quot; value=&quot;VARIABLE_DEF&quot;/&gt;
+ *   &lt;property name=&quot;maximumDepth&quot; value=&quot;2&quot;/&gt;
+ *   &lt;property name=&quot;maximumNumber&quot; value=&quot;10&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code descendant.token.max}
+ * </li>
+ * <li>
+ * {@code descendant.token.min}
+ * </li>
+ * <li>
+ * {@code descendant.token.sum.max}
+ * </li>
+ * <li>
+ * {@code descendant.token.sum.min}
+ * </li>
+ * </ul>
  *
- * @author Tim Tyler &lt;tim@tt1.org&gt;
- * @author Rick Giles
+ * @since 3.2
  */
+@FileStatefulCheck
 public class DescendantTokenCheck extends AbstractCheck {
 
     /**
@@ -191,42 +332,51 @@ public class DescendantTokenCheck extends AbstractCheck {
      */
     public static final String MSG_KEY_SUM_MAX = "descendant.token.sum.max";
 
-    /** Minimum depth. */
+    /** Specify the minimum depth for descendant counts. */
     private int minimumDepth;
-    /** Maximum depth. */
+    /** Specify the maximum depth for descendant counts. */
     private int maximumDepth = Integer.MAX_VALUE;
-    /** Minimum number. */
+    /** Specify a minimum count for descendants. */
     private int minimumNumber;
-    /** Maximum number. */
+    /** Specify a maximum count for descendants. */
     private int maximumNumber = Integer.MAX_VALUE;
-    /** Whether to sum the number of tokens found. */
+    /**
+     * Control whether the number of tokens found should be calculated from
+     * the sum of the individual token counts.
+     */
     private boolean sumTokenCounts;
-    /** Limited tokens. */
-    private int[] limitedTokens = CommonUtils.EMPTY_INT_ARRAY;
-    /** Error message when minimum count not reached. */
+    /** Specify set of tokens with limited occurrences as descendants. */
+    @XdocsPropertyType(PropertyType.TOKEN_ARRAY)
+    private int[] limitedTokens = CommonUtil.EMPTY_INT_ARRAY;
+    /** Define the violation message when the minimum count is not reached. */
     private String minimumMessage;
-    /** Error message when maximum count exceeded. */
+    /** Define the violation message when the maximum count is exceeded. */
     private String maximumMessage;
 
     /**
      * Counts of descendant tokens.
      * Indexed by (token ID - 1) for performance.
      */
-    private int[] counts = CommonUtils.EMPTY_INT_ARRAY;
+    private int[] counts = CommonUtil.EMPTY_INT_ARRAY;
+
+    @Override
+    public int[] getAcceptableTokens() {
+        return TokenUtil.getAllTokenIds();
+    }
 
     @Override
     public int[] getDefaultTokens() {
-        return CommonUtils.EMPTY_INT_ARRAY;
+        return getRequiredTokens();
     }
 
     @Override
     public int[] getRequiredTokens() {
-        return CommonUtils.EMPTY_INT_ARRAY;
+        return CommonUtil.EMPTY_INT_ARRAY;
     }
 
     @Override
     public void visitToken(DetailAST ast) {
-        //reset counts
+        // reset counts
         Arrays.fill(counts, 0);
         countTokens(ast, 0);
 
@@ -240,21 +390,22 @@ public class DescendantTokenCheck extends AbstractCheck {
 
     /**
      * Log violations for each Token.
+     *
      * @param ast token
      */
     private void logAsSeparated(DetailAST ast) {
         // name of this token
-        final String name = TokenUtils.getTokenName(ast.getType());
+        final String name = TokenUtil.getTokenName(ast.getType());
 
         for (int element : limitedTokens) {
             final int tokenCount = counts[element - 1];
             if (tokenCount < minimumNumber) {
-                final String descendantName = TokenUtils.getTokenName(element);
+                final String descendantName = TokenUtil.getTokenName(element);
 
                 if (minimumMessage == null) {
                     minimumMessage = MSG_KEY_MIN;
                 }
-                log(ast.getLineNo(), ast.getColumnNo(),
+                log(ast,
                         minimumMessage,
                         String.valueOf(tokenCount),
                         String.valueOf(minimumNumber),
@@ -262,12 +413,12 @@ public class DescendantTokenCheck extends AbstractCheck {
                         descendantName);
             }
             if (tokenCount > maximumNumber) {
-                final String descendantName = TokenUtils.getTokenName(element);
+                final String descendantName = TokenUtil.getTokenName(element);
 
                 if (maximumMessage == null) {
                     maximumMessage = MSG_KEY_MAX;
                 }
-                log(ast.getLineNo(), ast.getColumnNo(),
+                log(ast,
                         maximumMessage,
                         String.valueOf(tokenCount),
                         String.valueOf(maximumNumber),
@@ -279,11 +430,12 @@ public class DescendantTokenCheck extends AbstractCheck {
 
     /**
      * Log validation as one violation.
+     *
      * @param ast current token
      */
     private void logAsTotal(DetailAST ast) {
         // name of this token
-        final String name = TokenUtils.getTokenName(ast.getType());
+        final String name = TokenUtil.getTokenName(ast.getType());
 
         int total = 0;
         for (int element : limitedTokens) {
@@ -293,7 +445,7 @@ public class DescendantTokenCheck extends AbstractCheck {
             if (minimumMessage == null) {
                 minimumMessage = MSG_KEY_SUM_MIN;
             }
-            log(ast.getLineNo(), ast.getColumnNo(),
+            log(ast,
                     minimumMessage,
                     String.valueOf(total),
                     String.valueOf(minimumNumber), name);
@@ -302,7 +454,7 @@ public class DescendantTokenCheck extends AbstractCheck {
             if (maximumMessage == null) {
                 maximumMessage = MSG_KEY_SUM_MAX;
             }
-            log(ast.getLineNo(), ast.getColumnNo(),
+            log(ast,
                     maximumMessage,
                     String.valueOf(total),
                     String.valueOf(maximumNumber), name);
@@ -311,19 +463,20 @@ public class DescendantTokenCheck extends AbstractCheck {
 
     /**
      * Counts the number of occurrences of descendant tokens.
+     *
      * @param ast the root token for descendants.
      * @param depth the maximum depth of the counted descendants.
      */
-    private void countTokens(AST ast, int depth) {
+    private void countTokens(DetailAST ast, int depth) {
         if (depth <= maximumDepth) {
-            //update count
+            // update count
             if (depth >= minimumDepth) {
                 final int type = ast.getType();
                 if (type <= counts.length) {
                     counts[type - 1]++;
                 }
             }
-            AST child = ast.getFirstChild();
+            DetailAST child = ast.getFirstChild();
             final int nextDepth = depth + 1;
             while (child != null) {
                 countTokens(child, nextDepth);
@@ -332,30 +485,18 @@ public class DescendantTokenCheck extends AbstractCheck {
         }
     }
 
-    @Override
-    public int[] getAcceptableTokens() {
-        // Any tokens set by property 'tokens' are acceptable
-        final Set<String> tokenNames = getTokenNames();
-        final int[] result = new int[tokenNames.size()];
-        int index = 0;
-        for (String name : tokenNames) {
-            result[index] = TokenUtils.getTokenId(name);
-            index++;
-        }
-        return result;
-    }
-
     /**
-     * Sets the tokens which occurrence as descendant is limited.
-     * @param limitedTokensParam - list of tokens to ignore.
+     * Setter to specify set of tokens with limited occurrences as descendants.
+     *
+     * @param limitedTokensParam tokens to ignore.
      */
     public void setLimitedTokens(String... limitedTokensParam) {
         limitedTokens = new int[limitedTokensParam.length];
 
         int maxToken = 0;
         for (int i = 0; i < limitedTokensParam.length; i++) {
-            limitedTokens[i] = TokenUtils.getTokenId(limitedTokensParam[i]);
-            if (limitedTokens[i] > maxToken) {
+            limitedTokens[i] = TokenUtil.getTokenId(limitedTokensParam[i]);
+            if (limitedTokens[i] >= maxToken + 1) {
                 maxToken = limitedTokens[i];
             }
         }
@@ -363,7 +504,8 @@ public class DescendantTokenCheck extends AbstractCheck {
     }
 
     /**
-     * Sets the minimum depth for descendant counts.
+     * Setter to specify the minimum depth for descendant counts.
+     *
      * @param minimumDepth the minimum depth for descendant counts.
      */
     public void setMinimumDepth(int minimumDepth) {
@@ -371,7 +513,8 @@ public class DescendantTokenCheck extends AbstractCheck {
     }
 
     /**
-     * Sets the maximum depth for descendant counts.
+     * Setter to specify the maximum depth for descendant counts.
+     *
      * @param maximumDepth the maximum depth for descendant counts.
      */
     public void setMaximumDepth(int maximumDepth) {
@@ -379,7 +522,8 @@ public class DescendantTokenCheck extends AbstractCheck {
     }
 
     /**
-     * Sets a minimum count for descendants.
+     * Setter to specify a minimum count for descendants.
+     *
      * @param minimumNumber the minimum count for descendants.
      */
     public void setMinimumNumber(int minimumNumber) {
@@ -387,7 +531,8 @@ public class DescendantTokenCheck extends AbstractCheck {
     }
 
     /**
-      * Sets a maximum count for descendants.
+      * Setter to specify a maximum count for descendants.
+      *
       * @param maximumNumber the maximum count for descendants.
       */
     public void setMaximumNumber(int maximumNumber) {
@@ -395,8 +540,9 @@ public class DescendantTokenCheck extends AbstractCheck {
     }
 
     /**
-     * Sets the error message for minimum count not reached.
-     * @param message the error message for minimum count not reached.
+     * Setter to define the violation message when the minimum count is not reached.
+     *
+     * @param message the violation message for minimum count not reached.
      *     Used as a {@code MessageFormat} pattern with arguments
      *     <ul>
      *     <li>{0} - token count</li>
@@ -410,15 +556,16 @@ public class DescendantTokenCheck extends AbstractCheck {
     }
 
     /**
-     * Sets the error message for maximum count exceeded.
-     * @param message the error message for maximum count exceeded.
+     * Setter to define the violation message when the maximum count is exceeded.
+     *
+     * @param message the violation message for maximum count exceeded.
      *     Used as a {@code MessageFormat} pattern with arguments
-     * <ul>
-     * <li>{0} - token count</li>
-     * <li>{1} - maximum number</li>
-     * <li>{2} - name of token</li>
-     * <li>{3} - name of limited token</li>
-     * </ul>
+     *     <ul>
+     *     <li>{0} - token count</li>
+     *     <li>{1} - maximum number</li>
+     *     <li>{2} - name of token</li>
+     *     <li>{3} - name of limited token</li>
+     *     </ul>
      */
 
     public void setMaximumMessage(String message) {
@@ -426,11 +573,13 @@ public class DescendantTokenCheck extends AbstractCheck {
     }
 
     /**
-     * Sets whether to use the sum of the tokens found, rather than the
-     * individual counts.
+     * Setter to control whether the number of tokens found should be calculated
+     * from the sum of the individual token counts.
+     *
      * @param sum whether to use the sum.
      */
     public void setSumTokenCounts(boolean sum) {
         sumTokenCounts = sum;
     }
+
 }

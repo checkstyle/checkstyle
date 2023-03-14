@@ -1,5 +1,12 @@
-package com.puppycrawl.tools.checkstyle.checks.coding.onestatementperline;
+/*
+OneStatementPerLine
+treatTryResourcesAsStatement = true
 
+
+*/
+
+package com.puppycrawl.tools.checkstyle.checks.coding.onestatementperline;
+import java.io.StringReader;
 /*
     This class provides test input for OneStatementPerLineCheck with different
     types of multiline statements.
@@ -7,8 +14,6 @@ package com.puppycrawl.tools.checkstyle.checks.coding.onestatementperline;
     Statements must end with a semicolon.
     Statements generally contain expressions (expressions have a value).
     One of the simplest is the Assignment Statement.
-
-    <variable> = <expression>;
  */
 public class InputOneStatementPerLineMultiline {
 
@@ -41,7 +46,7 @@ public class InputOneStatementPerLineMultiline {
      * on the same line are illegal.
      */
     int o = 1, p = 2,
-        r = 5; int t;
+        r = 5; int t; // violation
 
     /**
      * Two assignment (declaration) statement
@@ -58,7 +63,7 @@ public class InputOneStatementPerLineMultiline {
      */
     int var1 = 5,
         var4 = 5; int var2 = 6,
-        var3 = 5;
+        var3 = 5; // violation
 
     /**
      * Two statements on the same line
@@ -66,7 +71,7 @@ public class InputOneStatementPerLineMultiline {
      * are illegal.
      */
     int var6 = 5; int var7 = 6,
-        var8 = 5;
+        var8 = 5; // violation
 
     /**
      * Two statements on the same line
@@ -78,7 +83,7 @@ public class InputOneStatementPerLineMultiline {
 
         );toString(
 
-        );
+        ); // violation
     }
 
     /**
@@ -87,7 +92,7 @@ public class InputOneStatementPerLineMultiline {
      */
     int var9 = 1,
         var10 = 5
-            ; int var11 = 2;
+            ; int var11 = 2; // violation
 
     /**
      * Multiline for loop statement is legal.
@@ -132,12 +137,12 @@ public class InputOneStatementPerLineMultiline {
             k = 1
             ; n<5
             ;
-            n++, k--) { var1++; var2++; }
+            n++, k--) { var1++; var2++; } // violation
     }
 
     /**
      * Multiple statements within try-with-resource on a separate line is legal.
-     * @see <a href="https://github.com/checkstyle/checkstyle/issues/2211">OneStatementPerLine: false match with try-with-resources</a>
+     * @see <a href="https://github.com/checkstyle/checkstyle/issues/2211">false match</a>
      */
     private void issue2211pass() {
         try(
@@ -149,8 +154,8 @@ public class InputOneStatementPerLineMultiline {
     }
 
     /**
-     * Multiple statements within try-with-resource on a separate line is legal. Added per PR comment:
-     * @see <a href="https://github.com/checkstyle/checkstyle/pull/2750#issuecomment-166032327">Please add UT cases</a>
+     * Multiple statements within try-with-resource on a separate line is legal. Per PR comment:
+     * @see <a href="https://github.com/checkstyle/checkstyle/pull/2750#issuecomment-166032327"/>
      */
     private void issue2211pass2() {
         try( AutoCloseable i = new java.io.StringReader("");
@@ -161,22 +166,22 @@ public class InputOneStatementPerLineMultiline {
 
     /**
      * Multiple statements within try-with-resource on next line after try is illegal.
-     * @see <a href="https://github.com/checkstyle/checkstyle/issues/2211">OneStatementPerLine: false match with try-with-resources</a>
+     * @see <a href="https://github.com/checkstyle/checkstyle/issues/2211">false match</a>
      */
     private void issue2211fail() {
         try(
-                AutoCloseable i = new java.io.StringReader("");AutoCloseable k = new java.io.StringReader("");
+    AutoCloseable i=new java.io.PipedReader();AutoCloseable k=new java.io.PipedReader();// violation
         ) {
         } catch (Exception e1) {
         }
     }
 
     /**
-     * Multiple statements within try-with-resource on a same line as try is illegal.  Added per PR comment:
-     * @see <a href="https://github.com/checkstyle/checkstyle/pull/2750#issuecomment-166032327">Please add UT cases</a>
+     * Multiple statements within try-with-resource on a same line as try is illegal. PR comment:
+     * @see <a href="https://github.com/checkstyle/checkstyle/pull/2750#issuecomment-166032327"/>
      */
     private void issue2211fail2() {
-        try( AutoCloseable i = new java.io.StringReader("");AutoCloseable k = new java.io.StringReader("");) {
+      try(AutoCloseable i=new StringReader("");AutoCloseable k=new StringReader("");) { // violation
         } catch (Exception e1) {
         }
     }

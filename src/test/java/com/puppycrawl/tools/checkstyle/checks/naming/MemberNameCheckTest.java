@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,230 +15,195 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.naming;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
-import static org.junit.Assert.assertArrayEquals;
 
-import java.io.File;
-import java.io.IOException;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Test;
-
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class MemberNameCheckTest
-    extends BaseCheckTestSupport {
+    extends AbstractModuleTestSupport {
+
     @Override
-    protected String getPath(String filename) throws IOException {
-        return super.getPath("checks" + File.separator
-                + "naming" + File.separator
-                + "membername" + File.separator
-                + filename);
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/checks/naming/membername";
     }
 
     @Test
     public void testGetRequiredTokens() {
         final MemberNameCheck checkObj = new MemberNameCheck();
         final int[] expected = {TokenTypes.VARIABLE_DEF};
-        assertArrayEquals("Default required tokens are invalid",
-            expected, checkObj.getRequiredTokens());
+        assertWithMessage("Default required tokens are invalid")
+            .that(checkObj.getRequiredTokens())
+            .isEqualTo(expected);
     }
 
     @Test
     public void testSpecified()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(MemberNameCheck.class);
-        checkConfig.addAttribute("format", "^m[A-Z][a-zA-Z0-9]*$");
 
         final String pattern = "^m[A-Z][a-zA-Z0-9]*$";
 
         final String[] expected = {
-            "35:17: " + getCheckMessage(MSG_INVALID_PATTERN, "badMember", pattern),
-            "224:17: " + getCheckMessage(MSG_INVALID_PATTERN, "someMember", pattern),
+            "41:17: " + getCheckMessage(MSG_INVALID_PATTERN, "badMember", pattern),
+            "230:17: " + getCheckMessage(MSG_INVALID_PATTERN, "someMember", pattern),
         };
-        verify(checkConfig, getPath("InputMemberNameSimple.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputMemberNameSimple.java"), expected);
     }
 
     @Test
     public void testInnerClass()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(MemberNameCheck.class);
 
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
 
         final String[] expected = {
-            "56:25: " + getCheckMessage(MSG_INVALID_PATTERN, "ABC", pattern),
+            "63:25: " + getCheckMessage(MSG_INVALID_PATTERN, "ABC", pattern),
         };
-        verify(checkConfig, getPath("InputMemberNameInner.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputMemberNameInner.java"), expected);
     }
 
     @Test
     public void testDefaults() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(MemberNameCheck.class);
 
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
 
         final String[] expected = {
-            "10:16: " + getCheckMessage(MSG_INVALID_PATTERN, "_public", pattern),
-            "11:19: " + getCheckMessage(MSG_INVALID_PATTERN, "_protected", pattern),
-            "12:9: " + getCheckMessage(MSG_INVALID_PATTERN, "_package", pattern),
-            "13:17: " + getCheckMessage(MSG_INVALID_PATTERN, "_private", pattern),
+            "21:16: " + getCheckMessage(MSG_INVALID_PATTERN, "_public", pattern),
+            "22:19: " + getCheckMessage(MSG_INVALID_PATTERN, "_protected", pattern),
+            "23:9: " + getCheckMessage(MSG_INVALID_PATTERN, "_package", pattern),
+            "24:17: " + getCheckMessage(MSG_INVALID_PATTERN, "_private", pattern),
         };
-        verify(checkConfig, getPath("InputMemberName.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputMemberName.java"), expected);
     }
 
     @Test
     public void testUnderlined() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(MemberNameCheck.class);
-        checkConfig.addAttribute("format", "^_[a-z]*$");
 
         final String pattern = "^_[a-z]*$";
 
         final String[] expected = {
-            "5:16: " + getCheckMessage(MSG_INVALID_PATTERN, "mPublic", pattern),
-            "6:19: " + getCheckMessage(MSG_INVALID_PATTERN, "mProtected", pattern),
-            "7:9: " + getCheckMessage(MSG_INVALID_PATTERN, "mPackage", pattern),
-            "8:17: " + getCheckMessage(MSG_INVALID_PATTERN, "mPrivate", pattern),
+            "16:16: " + getCheckMessage(MSG_INVALID_PATTERN, "mPublic", pattern),
+            "17:19: " + getCheckMessage(MSG_INVALID_PATTERN, "mProtected", pattern),
+            "18:9: " + getCheckMessage(MSG_INVALID_PATTERN, "mPackage", pattern),
+            "19:17: " + getCheckMessage(MSG_INVALID_PATTERN, "mPrivate", pattern),
         };
-        verify(checkConfig, getPath("InputMemberName.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputMemberName2.java"), expected);
     }
 
     @Test
     public void testPublicOnly() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(MemberNameCheck.class);
-        checkConfig.addAttribute("format", "^_[a-z]*$");
-        checkConfig.addAttribute("applyToProtected", "false");
-        checkConfig.addAttribute("applyToPackage", "false");
-        checkConfig.addAttribute("applyToPrivate", "false");
 
         final String pattern = "^_[a-z]*$";
 
         final String[] expected = {
-            "5:16: " + getCheckMessage(MSG_INVALID_PATTERN, "mPublic", pattern),
+            "16:16: " + getCheckMessage(MSG_INVALID_PATTERN, "mPublic", pattern),
         };
-        verify(checkConfig, getPath("InputMemberName.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputMemberName3.java"), expected);
     }
 
     @Test
     public void testProtectedOnly() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(MemberNameCheck.class);
-        checkConfig.addAttribute("format", "^_[a-z]*$");
-        checkConfig.addAttribute("applyToPublic", "false");
-        checkConfig.addAttribute("applyToPackage", "false");
-        checkConfig.addAttribute("applyToPrivate", "false");
 
         final String pattern = "^_[a-z]*$";
 
         final String[] expected = {
-            "6:19: " + getCheckMessage(MSG_INVALID_PATTERN, "mProtected", pattern),
+            "17:19: " + getCheckMessage(MSG_INVALID_PATTERN, "mProtected", pattern),
         };
-        verify(checkConfig, getPath("InputMemberName.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputMemberName4.java"), expected);
     }
 
     @Test
     public void testPackageOnly() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(MemberNameCheck.class);
-        checkConfig.addAttribute("format", "^_[a-z]*$");
-        checkConfig.addAttribute("applyToPublic", "false");
-        checkConfig.addAttribute("applyToProtected", "false");
-        checkConfig.addAttribute("applyToPrivate", "false");
 
         final String pattern = "^_[a-z]*$";
 
         final String[] expected = {
-            "7:9: " + getCheckMessage(MSG_INVALID_PATTERN, "mPackage", pattern),
+            "18:9: " + getCheckMessage(MSG_INVALID_PATTERN, "mPackage", pattern),
         };
-        verify(checkConfig, getPath("InputMemberName.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputMemberName5.java"), expected);
     }
 
     @Test
     public void testPrivateOnly() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(MemberNameCheck.class);
-        checkConfig.addAttribute("format", "^_[a-z]*$");
-        checkConfig.addAttribute("applyToPublic", "false");
-        checkConfig.addAttribute("applyToProtected", "false");
-        checkConfig.addAttribute("applyToPackage", "false");
 
         final String pattern = "^_[a-z]*$";
 
         final String[] expected = {
-            "8:17: " + getCheckMessage(MSG_INVALID_PATTERN, "mPrivate", pattern),
+            "19:17: " + getCheckMessage(MSG_INVALID_PATTERN, "mPrivate", pattern),
         };
-        verify(checkConfig, getPath("InputMemberName.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputMemberName6.java"), expected);
     }
 
     @Test
     public void testNotPrivate() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(MemberNameCheck.class);
-        checkConfig.addAttribute("applyToPrivate", "false");
 
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
 
         final String[] expected = {
-            "10:16: " + getCheckMessage(MSG_INVALID_PATTERN, "_public", pattern),
-            "11:19: " + getCheckMessage(MSG_INVALID_PATTERN, "_protected", pattern),
-            "12:9: " + getCheckMessage(MSG_INVALID_PATTERN, "_package", pattern),
+            "21:16: " + getCheckMessage(MSG_INVALID_PATTERN, "_public", pattern),
+            "22:19: " + getCheckMessage(MSG_INVALID_PATTERN, "_protected", pattern),
+            "23:9: " + getCheckMessage(MSG_INVALID_PATTERN, "_package", pattern),
         };
-        verify(checkConfig, getPath("InputMemberName.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputMemberName7.java"), expected);
     }
 
     @Test
     public void memberNameExtended() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(MemberNameCheck.class);
-        checkConfig.addAttribute("format", "^[a-z][a-z0-9][a-zA-Z0-9]*$");
 
         final String pattern = "^[a-z][a-z0-9][a-zA-Z0-9]*$";
 
         final String[] expected = {
-            "8:16: " + getCheckMessage(MSG_INVALID_PATTERN, "mPublic", pattern),
-            "9:19: " + getCheckMessage(MSG_INVALID_PATTERN, "mProtected", pattern),
-            "10:9: " + getCheckMessage(MSG_INVALID_PATTERN, "mPackage", pattern),
-            "11:17: " + getCheckMessage(MSG_INVALID_PATTERN, "mPrivate", pattern),
-            "13:16: " + getCheckMessage(MSG_INVALID_PATTERN, "_public", pattern),
-            "14:19: " + getCheckMessage(MSG_INVALID_PATTERN, "_protected", pattern),
-            "15:9: " + getCheckMessage(MSG_INVALID_PATTERN, "_package", pattern),
-            "16:17: " + getCheckMessage(MSG_INVALID_PATTERN, "_private", pattern),
-            "19:20: " + getCheckMessage(MSG_INVALID_PATTERN, "mPublic", pattern),
-            "20:23: " + getCheckMessage(MSG_INVALID_PATTERN, "mProtected", pattern),
-            "21:13: " + getCheckMessage(MSG_INVALID_PATTERN, "mPackage", pattern),
-            "22:21: " + getCheckMessage(MSG_INVALID_PATTERN, "mPrivate", pattern),
-            "24:20: " + getCheckMessage(MSG_INVALID_PATTERN, "_public", pattern),
-            "25:23: " + getCheckMessage(MSG_INVALID_PATTERN, "_protected", pattern),
-            "26:13: " + getCheckMessage(MSG_INVALID_PATTERN, "_package", pattern),
-            "27:21: " + getCheckMessage(MSG_INVALID_PATTERN, "_private", pattern),
-            "31:20: " + getCheckMessage(MSG_INVALID_PATTERN, "mPublic", pattern),
-            "32:23: " + getCheckMessage(MSG_INVALID_PATTERN, "mProtected", pattern),
-            "33:13: " + getCheckMessage(MSG_INVALID_PATTERN, "mPackage", pattern),
-            "34:21: " + getCheckMessage(MSG_INVALID_PATTERN, "mPrivate", pattern),
-            "36:20: " + getCheckMessage(MSG_INVALID_PATTERN, "_public", pattern),
-            "37:23: " + getCheckMessage(MSG_INVALID_PATTERN, "_protected", pattern),
-            "38:13: " + getCheckMessage(MSG_INVALID_PATTERN, "_package", pattern),
-            "39:21: " + getCheckMessage(MSG_INVALID_PATTERN, "_private", pattern),
-            "63:16: " + getCheckMessage(MSG_INVALID_PATTERN, "mPublic", pattern),
-            "64:9: " + getCheckMessage(MSG_INVALID_PATTERN, "mProtected", pattern),
-            "65:9: " + getCheckMessage(MSG_INVALID_PATTERN, "mPackage", pattern),
-            "66:9: " + getCheckMessage(MSG_INVALID_PATTERN, "mPrivate", pattern),
-            "68:16: " + getCheckMessage(MSG_INVALID_PATTERN, "_public", pattern),
-            "69:9: " + getCheckMessage(MSG_INVALID_PATTERN, "_protected", pattern),
-            "70:9: " + getCheckMessage(MSG_INVALID_PATTERN, "_package", pattern),
-            "71:9: " + getCheckMessage(MSG_INVALID_PATTERN, "_private", pattern),
+            "19:16: " + getCheckMessage(MSG_INVALID_PATTERN, "mPublic", pattern),
+            "20:19: " + getCheckMessage(MSG_INVALID_PATTERN, "mProtected", pattern),
+            "21:9: " + getCheckMessage(MSG_INVALID_PATTERN, "mPackage", pattern),
+            "22:17: " + getCheckMessage(MSG_INVALID_PATTERN, "mPrivate", pattern),
+            "24:16: " + getCheckMessage(MSG_INVALID_PATTERN, "_public", pattern),
+            "25:19: " + getCheckMessage(MSG_INVALID_PATTERN, "_protected", pattern),
+            "26:9: " + getCheckMessage(MSG_INVALID_PATTERN, "_package", pattern),
+            "27:17: " + getCheckMessage(MSG_INVALID_PATTERN, "_private", pattern),
+            "30:20: " + getCheckMessage(MSG_INVALID_PATTERN, "mPublic", pattern),
+            "31:23: " + getCheckMessage(MSG_INVALID_PATTERN, "mProtected", pattern),
+            "32:13: " + getCheckMessage(MSG_INVALID_PATTERN, "mPackage", pattern),
+            "33:21: " + getCheckMessage(MSG_INVALID_PATTERN, "mPrivate", pattern),
+            "35:20: " + getCheckMessage(MSG_INVALID_PATTERN, "_public", pattern),
+            "36:23: " + getCheckMessage(MSG_INVALID_PATTERN, "_protected", pattern),
+            "37:13: " + getCheckMessage(MSG_INVALID_PATTERN, "_package", pattern),
+            "38:21: " + getCheckMessage(MSG_INVALID_PATTERN, "_private", pattern),
+            "42:20: " + getCheckMessage(MSG_INVALID_PATTERN, "mPublic", pattern),
+            "43:23: " + getCheckMessage(MSG_INVALID_PATTERN, "mProtected", pattern),
+            "44:13: " + getCheckMessage(MSG_INVALID_PATTERN, "mPackage", pattern),
+            "45:21: " + getCheckMessage(MSG_INVALID_PATTERN, "mPrivate", pattern),
+            "47:20: " + getCheckMessage(MSG_INVALID_PATTERN, "_public", pattern),
+            "48:23: " + getCheckMessage(MSG_INVALID_PATTERN, "_protected", pattern),
+            "49:13: " + getCheckMessage(MSG_INVALID_PATTERN, "_package", pattern),
+            "50:21: " + getCheckMessage(MSG_INVALID_PATTERN, "_private", pattern),
+            "74:16: " + getCheckMessage(MSG_INVALID_PATTERN, "mPublic", pattern),
+            "75:9: " + getCheckMessage(MSG_INVALID_PATTERN, "mProtected", pattern),
+            "76:9: " + getCheckMessage(MSG_INVALID_PATTERN, "mPackage", pattern),
+            "77:9: " + getCheckMessage(MSG_INVALID_PATTERN, "mPrivate", pattern),
+            "79:16: " + getCheckMessage(MSG_INVALID_PATTERN, "_public", pattern),
+            "80:9: " + getCheckMessage(MSG_INVALID_PATTERN, "_protected", pattern),
+            "81:9: " + getCheckMessage(MSG_INVALID_PATTERN, "_package", pattern),
+            "82:9: " + getCheckMessage(MSG_INVALID_PATTERN, "_private", pattern),
         };
-        verify(checkConfig, getPath("InputMemberNameExtended.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputMemberNameExtended.java"), expected);
     }
 
     @Test
@@ -248,6 +213,9 @@ public class MemberNameCheckTest
         final int[] expected = {
             TokenTypes.VARIABLE_DEF,
         };
-        assertArrayEquals("Default acceptable tokens are invalid", expected, actual);
+        assertWithMessage("Default acceptable tokens are invalid")
+            .that(actual)
+            .isEqualTo(expected);
     }
+
 }

@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,24 +15,33 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.utils;
 
-import static org.junit.Assert.assertEquals;
+import static com.google.common.truth.Truth.assertWithMessage;
 
 import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.JavaParser;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.internal.TestUtils;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
-public class BlockCommentPositionTest {
+public class BlockCommentPositionTest extends AbstractModuleTestSupport {
+
+    @Test
+    public void testPrivateConstr() throws Exception {
+        assertWithMessage("Constructor is not private")
+                .that(TestUtil.isUtilsClassHasPrivateConstructor(BlockCommentPosition.class))
+                .isTrue();
+    }
 
     @Test
     public void testJavaDocsRecognition() throws Exception {
@@ -40,27 +49,57 @@ public class BlockCommentPositionTest {
                 new BlockCommentPositionTestMetadata("InputBlockCommentPositionOnClass.java",
                         BlockCommentPosition::isOnClass, 3),
                 new BlockCommentPositionTestMetadata("InputBlockCommentPositionOnMethod.java",
-                        BlockCommentPosition::isOnMethod, 3),
+                        BlockCommentPosition::isOnMethod, 6),
                 new BlockCommentPositionTestMetadata("InputBlockCommentPositionOnField.java",
                         BlockCommentPosition::isOnField, 3),
                 new BlockCommentPositionTestMetadata("InputBlockCommentPositionOnEnum.java",
                         BlockCommentPosition::isOnEnum, 3),
                 new BlockCommentPositionTestMetadata("InputBlockCommentPositionOnConstructor.java",
-                        BlockCommentPosition::isOnConstructor, 3),
+                        BlockCommentPosition::isOnConstructor, 5),
                 new BlockCommentPositionTestMetadata("InputBlockCommentPositionOnInterface.java",
                         BlockCommentPosition::isOnInterface, 3),
                 new BlockCommentPositionTestMetadata("InputBlockCommentPositionOnAnnotation.java",
                         BlockCommentPosition::isOnAnnotationDef, 3),
                 new BlockCommentPositionTestMetadata("InputBlockCommentPositionOnEnumMember.java",
-                        BlockCommentPosition::isOnEnumConstant, 2)
+                        BlockCommentPosition::isOnEnumConstant, 2),
+                new BlockCommentPositionTestMetadata(
+                        "InputBlockCommentPositionOnAnnotationField.java",
+                        BlockCommentPosition::isOnAnnotationField, 4),
+                new BlockCommentPositionTestMetadata(
+                        "inputs/normal/package-info.java",
+                        BlockCommentPosition::isOnPackage, 1),
+                new BlockCommentPositionTestMetadata(
+                        "inputs/annotation/package-info.java",
+                        BlockCommentPosition::isOnPackage, 1)
         );
 
         for (BlockCommentPositionTestMetadata metadata : metadataList) {
-            final DetailAST ast = TestUtils.parseFile(
-                    new File(getPath(metadata.getFileName()))
-            );
+            final DetailAST ast = JavaParser.parseFile(new File(getPath(metadata.getFileName())),
+                JavaParser.Options.WITH_COMMENTS);
             final int matches = getJavadocsCount(ast, metadata.getAssertion());
-            assertEquals(metadata.getMatchesNum(), matches);
+            assertWithMessage("Invalid javadoc count")
+                    .that(matches)
+                    .isEqualTo(metadata.getMatchesNum());
+        }
+    }
+
+    @Test
+    public void testJavaDocsRecognitionNonCompilable() throws Exception {
+        final List<BlockCommentPositionTestMetadata> metadataList = Arrays.asList(
+            new BlockCommentPositionTestMetadata("InputBlockCommentPositionOnRecord.java",
+                BlockCommentPosition::isOnRecord, 3),
+            new BlockCommentPositionTestMetadata("InputBlockCommentPositionOnCompactCtor.java",
+                BlockCommentPosition::isOnCompactConstructor, 3)
+        );
+
+        for (BlockCommentPositionTestMetadata metadata : metadataList) {
+            final DetailAST ast = JavaParser.parseFile(
+                new File(getNonCompilablePath(metadata.getFileName())),
+                    JavaParser.Options.WITH_COMMENTS);
+            final int matches = getJavadocsCount(ast, metadata.getAssertion());
+            assertWithMessage("Invalid javadoc count")
+                    .that(matches)
+                    .isEqualTo(metadata.getMatchesNum());
         }
     }
 
@@ -70,7 +109,7 @@ public class BlockCommentPositionTest {
         DetailAST node = detailAST;
         while (node != null) {
             if (node.getType() == TokenTypes.BLOCK_COMMENT_BEGIN
-                    && JavadocUtils.isJavadocComment(node)) {
+                    && JavadocUtil.isJavadocComment(node)) {
                 if (!assertion.apply(node)) {
                     throw new IllegalStateException("Position of comment is defined correctly");
                 }
@@ -82,9 +121,9 @@ public class BlockCommentPositionTest {
         return matchFound;
     }
 
-    private static String getPath(String filename) {
-        return "src/test/resources/com/puppycrawl/tools/checkstyle/utils/blockcommentposition/"
-                + filename;
+    @Override
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/utils/blockcommentposition";
     }
 
     private static final class BlockCommentPositionTestMetadata {
@@ -111,5 +150,7 @@ public class BlockCommentPositionTest {
         public int getMatchesNum() {
             return matchesNum;
         }
+
     }
+
 }

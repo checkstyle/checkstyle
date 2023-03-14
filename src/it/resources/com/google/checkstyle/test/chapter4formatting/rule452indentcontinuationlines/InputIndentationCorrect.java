@@ -40,9 +40,9 @@ public abstract class InputIndentationCorrect { //indent:0 exp:0
         return false; //indent:8 exp:8
       } //indent:6 exp:6
 
-      @Override public String replaceFrom(CharSequence sequence, CharSequence replacement) { //indent:6 exp:6
-        checkNotNull(replacement); //indent:8 exp:8
-        return sequence.toString(); //indent:8 exp:8
+      @Override public String replaceFrom(CharSequence seq, CharSequence repl) { //indent:6 exp:6
+        checkNotNull(repl); //indent:8 exp:8
+        return seq.toString(); //indent:8 exp:8
       } //indent:6 exp:6
 
       private void checkNotNull(CharSequence replacement) {} //indent:6 exp:6

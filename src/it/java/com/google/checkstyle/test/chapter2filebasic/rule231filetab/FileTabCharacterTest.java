@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,39 +15,25 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.google.checkstyle.test.chapter2filebasic.rule231filetab;
 
-import java.io.File;
-import java.io.IOException;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Test;
-
-import com.google.checkstyle.test.base.BaseCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheck;
 
-public class FileTabCharacterTest extends BaseCheckTestSupport {
+public class FileTabCharacterTest extends AbstractGoogleModuleTestSupport {
 
     @Override
-    protected String getPath(String fileName) throws IOException {
-        return super.getPath("chapter2filebasic" + File.separator + "rule231filetab"
-                + File.separator + fileName);
-    }
-
-    @Override
-    protected DefaultConfiguration createCheckerConfig(
-        Configuration aConfig) {
-        final DefaultConfiguration dc = new DefaultConfiguration("root");
-        dc.addChild(aConfig);
-        return dc;
+    protected String getPackageLocation() {
+        return "com/google/checkstyle/test/chapter2filebasic/rule231filetab";
     }
 
     @Test
     public void testFileTab() throws Exception {
-
         final String[] expected = {
             "8:25: " + getCheckMessage(FileTabCharacterCheck.class, "containsTab"),
             "51:5: " + getCheckMessage(FileTabCharacterCheck.class, "containsTab"),
@@ -60,10 +46,11 @@ public class FileTabCharacterTest extends BaseCheckTestSupport {
             "134:3: " + getCheckMessage(FileTabCharacterCheck.class, "containsTab"),
         };
 
-        final Configuration checkConfig = getCheckConfig("FileTabCharacter");
+        final Configuration checkConfig = getModuleConfig("FileTabCharacter");
         final String filePath = getPath("InputFileTabCharacter.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
+
 }

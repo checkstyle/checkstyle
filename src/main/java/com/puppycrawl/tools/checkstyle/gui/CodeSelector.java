@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,12 +15,13 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.gui;
 
 import java.awt.Color;
-import java.util.List;
+import java.util.ArrayList;
+import java.util.Collection;
 
 import javax.swing.JTextArea;
 
@@ -29,9 +30,9 @@ import com.puppycrawl.tools.checkstyle.api.DetailNode;
 
 /**
  * Helper class to select a code.
- * @author unknown
  */
 public class CodeSelector {
+
     /** Editor. */
     private final JTextArea editor;
     /** Presentation model. */
@@ -39,18 +40,21 @@ public class CodeSelector {
 
     /**
      * Constructor.
+     *
      * @param node ast node.
      * @param editor text area editor.
-     * @param lines2position list to map lines.
+     * @param lines2position positions of lines.
      */
     public CodeSelector(final Object node, final JTextArea editor,
-                        final List<Integer> lines2position) {
+                        final Collection<Integer> lines2position) {
         this.editor = editor;
         if (node instanceof DetailAST) {
-            pModel = new CodeSelectorPresentation((DetailAST) node, lines2position);
+            pModel = new CodeSelectorPresentation((DetailAST) node,
+                    new ArrayList<>(lines2position));
         }
         else {
-            pModel = new CodeSelectorPresentation((DetailNode) node, lines2position);
+            pModel = new CodeSelectorPresentation((DetailNode) node,
+                    new ArrayList<>(lines2position));
         }
     }
 
@@ -64,4 +68,5 @@ public class CodeSelector {
         editor.setCaretPosition(pModel.getSelectionStart());
         editor.moveCaretPosition(pModel.getSelectionEnd());
     }
+
 }

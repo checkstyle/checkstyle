@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,16 +15,16 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
+import static com.google.common.truth.Truth.assertThat;
+import static com.google.common.truth.Truth.assertWithMessage;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.utils.JavadocUtils;
+import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 
 public class JavadocTagTest {
 
@@ -34,9 +34,11 @@ public class JavadocTagTest {
      */
     @Test
     public void testJavadocTagTypeValueOf() {
-        final JavadocUtils.JavadocTagType enumConst =
-            JavadocUtils.JavadocTagType.valueOf("ALL");
-        assertEquals(JavadocUtils.JavadocTagType.ALL, enumConst);
+        final JavadocUtil.JavadocTagType enumConst =
+            JavadocUtil.JavadocTagType.valueOf("ALL");
+        assertWithMessage("Invalid enum valueOf result")
+            .that(enumConst)
+            .isEqualTo(JavadocUtil.JavadocTagType.ALL);
     }
 
     /* Additional test for jacoco, since values()
@@ -45,14 +47,16 @@ public class JavadocTagTest {
      */
     @Test
     public void testJavadocTagTypeValues() {
-        final JavadocUtils.JavadocTagType[] enumConstants =
-            JavadocUtils.JavadocTagType.values();
-        final JavadocUtils.JavadocTagType[] expected = {
-            JavadocUtils.JavadocTagType.BLOCK,
-            JavadocUtils.JavadocTagType.INLINE,
-            JavadocUtils.JavadocTagType.ALL,
+        final JavadocUtil.JavadocTagType[] enumConstants =
+            JavadocUtil.JavadocTagType.values();
+        final JavadocUtil.JavadocTagType[] expected = {
+            JavadocUtil.JavadocTagType.BLOCK,
+            JavadocUtil.JavadocTagType.INLINE,
+            JavadocUtil.JavadocTagType.ALL,
         };
-        assertArrayEquals(expected, enumConstants);
+        assertWithMessage("Invalid enum constants")
+            .that(enumConstants)
+            .isEqualTo(expected);
     }
 
     @Test
@@ -61,6 +65,25 @@ public class JavadocTagTest {
 
         final String result = javadocTag.toString();
 
-        assertEquals("JavadocTag{tag='author' lineNo=0, columnNo=1, firstArg='firstArg'}", result);
+        assertWithMessage("Invalid toString result")
+            .that(result)
+            .isEqualTo("JavadocTag[tag='author' lineNo=0, columnNo=1, firstArg='firstArg']");
     }
+
+    @Test
+    public void testJavadocTagReferenceImports() {
+        assertThat(new JavadocTag(0, 0, "see", null).canReferenceImports()).isTrue();
+        assertThat(new JavadocTag(0, 0, "link", null).canReferenceImports()).isTrue();
+        assertThat(new JavadocTag(0, 0, "value", null).canReferenceImports()).isTrue();
+        assertThat(new JavadocTag(0, 0, "linkplain", null).canReferenceImports()).isTrue();
+        assertThat(new JavadocTag(0, 0, "throws", null).canReferenceImports()).isTrue();
+        assertThat(new JavadocTag(0, 0, "exception", null).canReferenceImports()).isTrue();
+    }
+
+    @Test
+    public void testJavadocTagReferenceImportsInvalid() {
+        assertThat(new JavadocTag(0, 0, "author", null).canReferenceImports())
+                .isFalse();
+    }
+
 }

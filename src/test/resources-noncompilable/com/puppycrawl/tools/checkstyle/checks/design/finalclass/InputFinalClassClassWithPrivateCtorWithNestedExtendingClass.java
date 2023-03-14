@@ -1,3 +1,10 @@
+/*
+FinalClass
+
+
+*/
+
+//non-compiled with javac: reference to non existen package "com.nonexistent.packages.C" for testing
 package com.puppycrawl.tools.checkstyle.checks.design.finalclass;
 
 public class InputFinalClassClassWithPrivateCtorWithNestedExtendingClass {
@@ -8,11 +15,11 @@ public class InputFinalClassClassWithPrivateCtorWithNestedExtendingClass {
 
     class B {
         private B() {}
-        private class ExtendB extends
-                com.puppycrawl.tools.checkstyle.checks.design.finalclass.InputFinalClassClassWithPrivateCtorWithNestedExtendingClass.B {}
+        private class ExtendB extends com.puppycrawl.tools.checkstyle.checks.design.finalclass.
+            InputFinalClassClassWithPrivateCtorWithNestedExtendingClass.B {}
     }
 
-    class C {
+    class C { // violation
         private C() {}
         private class ExtendC extends com.nonexistent.packages.C {}
     }

@@ -1,17 +1,19 @@
-////////////////////////////////////////////////////////////////////////////////
-// Test case file for checkstyle.
-// Created: 2001
-////////////////////////////////////////////////////////////////////////////////
+/*
+RedundantImport
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.imports.redundantimport;
 
-import com.puppycrawl.tools.checkstyle.checks.imports.redundantimport.*;
-import com.puppycrawl.tools.checkstyle.checks.imports.redundantimport.InputImportBug;
+import com.puppycrawl.tools.checkstyle.checks.imports.redundantimport.*; // violation 'Redundant import from the same package'
+import com.puppycrawl.tools.checkstyle.checks.imports.redundantimport.InputRedundantImportBug; // violation 'Redundant import from the same package'
 import java.io.*;
-import java.lang.*;
-import java.lang.String;
+import java.lang.*; // violation 'Redundant import from the java.lang package'
+import java.lang.String; // violation 'Redundant import from the java.lang package'
 
 import java.util.List;
-import java.util.List;
+import java.util.List; // violation 'Duplicate import to line 15'
 import java.util.Iterator;
 import java.util.Enumeration;
 import java.util.Arrays;
@@ -23,7 +25,7 @@ import javax.swing.BorderFactory;
 import static java.io.File.listRoots;
 
 import static javax.swing.WindowConstants.*;
-import static javax.swing.WindowConstants.*;
+import static javax.swing.WindowConstants.*; // violation 'Duplicate import to line 27'
 import static java.io.File.createTempFile;
 import static java.io.File.pathSeparator;
 
@@ -35,15 +37,13 @@ import java.util.Date;
 import java.util.Calendar;
 import java.util.BitSet;
 
-import com.puppycrawl.tools.checkstyle.Checker;
-import com.puppycrawl.tools.checkstyle.CheckerTest;
-import com.puppycrawl.tools.checkstyle.BaseFileSetCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.Definitions;
-import com.puppycrawl.tools.checkstyle.checks.Input15Extensions;
-import com.puppycrawl.tools.checkstyle.ConfigurationLoaderTest;
-import com.puppycrawl.tools.checkstyle.PackageNamesLoader;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.DefaultLogger;
+
+
+
+
+
+
+
 
 import static java.lang.Math.PI;
 import static com.puppycrawl.tools.checkstyle.checks.imports.RedundantImportCheck.MSG_SAME;
@@ -94,7 +94,7 @@ class InputRedundantImportWithChecker
      * method comment with JavaDoc-only import {@link BitSet#aMethod()}
      */
     public void Label() {}
-    
+
     /**
      * Renders to a {@linkplain Graphics2D graphics context}.
      * @throws HeadlessException if no graphis environment can be found.

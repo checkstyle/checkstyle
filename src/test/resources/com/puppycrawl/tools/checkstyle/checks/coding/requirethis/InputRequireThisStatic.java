@@ -1,3 +1,12 @@
+/*
+RequireThis
+checkFields = (default)true
+checkMethods = (default)true
+validateOnlyOverlapping = false
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.coding.requirethis;
 
 import java.io.BufferedReader;
@@ -5,17 +14,17 @@ import java.io.FileNotFoundException;
 import java.io.InputStreamReader;
 import java.io.IOException;
 
-public final class InputRequireThisStatic {
+public final class InputRequireThisStatic { // ok
     public static String staticField1 = "";
 
     public static String staticField2 = new String(staticField1);
 
     public String instanceField1;
-    public BufferedReader instanceField2;
-    
+    public BufferedReader instFld2;
+
     static {
-        try (BufferedReader instanceField2 = new BufferedReader(new InputStreamReader(null, "utf-8"))) {
-            instanceField2.readLine();
+        try (BufferedReader instFld2 = new BufferedReader(new InputStreamReader(null, "utf-8"))) {
+            instFld2.readLine();
         }
         catch (FileNotFoundException e) {
         }
@@ -42,8 +51,8 @@ public final class InputRequireThisStatic {
     }
 
     static void test2() {
-        try (BufferedReader instanceField2 = new BufferedReader(new InputStreamReader(null, "utf-8"))) {
-            instanceField2.readLine();
+        try (BufferedReader instFld2 = new BufferedReader(new InputStreamReader(null, "utf-8"))) {
+            instFld2.readLine();
         }
         catch (IOException e) {
         }

@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,28 +15,28 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.api;
 
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 
 /**
  * A filter set applies filters to AuditEvents.
  * If a filter in the set rejects an AuditEvent, then the
  * AuditEvent is rejected. Otherwise, the AuditEvent is accepted.
- * @author Rick Giles
  */
 public class FilterSet
     implements Filter {
+
     /** Filter set. */
     private final Set<Filter> filters = new HashSet<>();
 
     /**
      * Adds a Filter to the set.
+     *
      * @param filter the Filter to add.
      */
     public void addFilter(Filter filter) {
@@ -45,6 +45,7 @@ public class FilterSet
 
     /**
      * Removes filter.
+     *
      * @param filter filter to remove.
      */
     public void removeFilter(Filter filter) {
@@ -53,6 +54,7 @@ public class FilterSet
 
     /**
      * Returns the Filters of the filter set.
+     *
      * @return the Filters of the filter set.
      */
     public Set<Filter> getFilters() {
@@ -62,23 +64,6 @@ public class FilterSet
     @Override
     public String toString() {
         return filters.toString();
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        if (this == other) {
-            return true;
-        }
-        if (other == null || getClass() != other.getClass()) {
-            return false;
-        }
-        final FilterSet filterSet = (FilterSet) other;
-        return Objects.equals(filters, filterSet.filters);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(filters);
     }
 
     @Override
@@ -97,4 +82,5 @@ public class FilterSet
     public void clear() {
         filters.clear();
     }
+
 }

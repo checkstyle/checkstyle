@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suppressedMutations>
+  <mutation unstable="false">
+    <sourceFile>FallThroughCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck</mutatedClass>
+    <mutatedMethod>checkTry</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getNextSibling</description>
+    <lineContent>catchStmt = catchStmt.getNextSibling();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FallThroughCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck</mutatedClass>
+    <mutatedMethod>matchesComment</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/util/regex/Matcher::start</description>
+    <lineContent>lineNo, matcher.start(), lineNo, matcher.end());</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FinalLocalVariableCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck</mutatedClass>
+    <mutatedMethod>getLoopAstParent</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getParent with receiver</description>
+    <lineContent>DetailAST loopAstParent = ast.getParent();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FinalLocalVariableCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck</mutatedClass>
+    <mutatedMethod>isInAbstractOrNativeMethod</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getParent with receiver</description>
+    <lineContent>DetailAST parent = ast.getParent();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FinalLocalVariableCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck</mutatedClass>
+    <mutatedMethod>isInSpecificCodeBlocks</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getParent with receiver</description>
+    <lineContent>for (DetailAST token = node.getParent(); token != null; token = token.getParent()) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FinalLocalVariableCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck</mutatedClass>
+    <mutatedMethod>leaveToken</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/util/Deque::pop</description>
+    <lineContent>prevScopeUninitializedVariables.pop();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FinalLocalVariableCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck</mutatedClass>
+    <mutatedMethod>updateUninitializedVariables</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>&amp;&amp; isSameVariables(storedVariable, variable)</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FinalLocalVariableCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck$ScopeData</mutatedClass>
+    <mutatedMethod>findFinalVariableCandidateForAst</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (storedVariable != null &amp;&amp; isSameVariables(storedVariable, ast)) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>HiddenFieldCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck$FieldFrame</mutatedClass>
+    <mutatedMethod>containsInstanceField</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>return instanceFields.contains(field)</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalInstantiationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck</mutatedClass>
+    <mutatedMethod>beginTree</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable pkgName</description>
+    <lineContent>pkgName = null;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalTokenTextCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenTextCheck</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/util/regex/Pattern::compile</description>
+    <lineContent>private Pattern format = Pattern.compile(formatString);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalTokenTextCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenTextCheck</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable format</description>
+    <lineContent>private Pattern format = Pattern.compile(formatString);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalTypeCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalTypeCheck</mutatedClass>
+    <mutatedMethod>setIllegalAbstractClassNameFormat</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable illegalAbstractClassNameFormat</description>
+    <lineContent>illegalAbstractClassNameFormat = pattern;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalTypeCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalTypeCheck</mutatedClass>
+    <mutatedMethod>visitToken</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/lang/Object::toString</description>
+    <lineContent>throw new IllegalStateException(ast.toString());</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>MagicNumberCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck</mutatedClass>
+    <mutatedMethod>isInHashCodeMethod</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getParent with receiver</description>
+    <lineContent>DetailAST methodDefAST = ast.getParent();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>MatchXpathCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.MatchXpathCheck</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable query</description>
+    <lineContent>private String query = &quot;&quot;;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>MatchXpathCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.MatchXpathCheck</mutatedClass>
+    <mutatedMethod>setQuery</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable query</description>
+    <lineContent>this.query = query;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>MultipleStringLiteralsCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck</mutatedClass>
+    <mutatedMethod>isInIgnoreOccurrenceContext</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getParent with receiver</description>
+    <lineContent>token.getParent() != null;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>MultipleVariableDeclarationsCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.MultipleVariableDeclarationsCheck</mutatedClass>
+    <mutatedMethod>getLastNode</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/checks/coding/MultipleVariableDeclarationsCheck::getLastNode with argument</description>
+    <lineContent>currentNode = getLastNode(child);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>MultipleVariableDeclarationsCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.MultipleVariableDeclarationsCheck</mutatedClass>
+    <mutatedMethod>visitToken</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/utils/CheckUtil::getFirstNode with argument</description>
+    <lineContent>final DetailAST firstNextNode = CheckUtil.getFirstNode(nextNode);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>NestedForDepthCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.NestedForDepthCheck</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable max</description>
+    <lineContent>private int max = 1;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>NestedForDepthCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.NestedForDepthCheck</mutatedClass>
+    <mutatedMethod>beginTree</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable depth</description>
+    <lineContent>depth = 0;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>NestedIfDepthCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.NestedIfDepthCheck</mutatedClass>
+    <mutatedMethod>beginTree</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable depth</description>
+    <lineContent>depth = 0;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>NestedTryDepthCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.NestedTryDepthCheck</mutatedClass>
+    <mutatedMethod>beginTree</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable depth</description>
+    <lineContent>depth = 0;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>OneStatementPerLineCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable forStatementEnd</description>
+    <lineContent>private int forStatementEnd = -1;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>OneStatementPerLineCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable lambdaStatementEnd</description>
+    <lineContent>private int lambdaStatementEnd = -1;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>OneStatementPerLineCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable lastStatementEnd</description>
+    <lineContent>private int lastStatementEnd = -1;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>OneStatementPerLineCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable lastVariableResourceStatementEnd</description>
+    <lineContent>private int lastVariableResourceStatementEnd = -1;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>OneStatementPerLineCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck</mutatedClass>
+    <mutatedMethod>beginTree</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable forStatementEnd</description>
+    <lineContent>forStatementEnd = -1;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>OneStatementPerLineCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck</mutatedClass>
+    <mutatedMethod>beginTree</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable inForHeader</description>
+    <lineContent>inForHeader = false;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>OneStatementPerLineCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck</mutatedClass>
+    <mutatedMethod>beginTree</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable isInLambda</description>
+    <lineContent>isInLambda = false;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>OneStatementPerLineCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck</mutatedClass>
+    <mutatedMethod>beginTree</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable lastStatementEnd</description>
+    <lineContent>lastStatementEnd = -1;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>OneStatementPerLineCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck</mutatedClass>
+    <mutatedMethod>beginTree</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable lastVariableResourceStatementEnd</description>
+    <lineContent>lastVariableResourceStatementEnd = -1;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>StringLiteralEqualityCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.StringLiteralEqualityCheck</mutatedClass>
+    <mutatedMethod>areStringsConcatenated</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::findFirstToken with receiver</description>
+    <lineContent>DetailAST plusAst = ast.findFirstToken(TokenTypes.PLUS);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>UnusedLocalVariableCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheck</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable depth</description>
+    <lineContent>depth = 0;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>UnusedLocalVariableCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheck</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable packageName</description>
+    <lineContent>packageName = null;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>UnusedLocalVariableCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheck</mutatedClass>
+    <mutatedMethod>addInstanceOrClassVar</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::findFirstToken</description>
+    <lineContent>varDefAst.findFirstToken(TokenTypes.TYPE), findScopeOfVariable(varDefAst));</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>UnusedLocalVariableCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheck</mutatedClass>
+    <mutatedMethod>addInstanceOrClassVar</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/checks/coding/UnusedLocalVariableCheck::findScopeOfVariable</description>
+    <lineContent>varDefAst.findFirstToken(TokenTypes.TYPE), findScopeOfVariable(varDefAst));</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>UnusedLocalVariableCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheck</mutatedClass>
+    <mutatedMethod>addInstanceOrClassVar</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/checks/coding/UnusedLocalVariableCheck::findScopeOfVariable with argument</description>
+    <lineContent>varDefAst.findFirstToken(TokenTypes.TYPE), findScopeOfVariable(varDefAst));</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>UnusedLocalVariableCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheck</mutatedClass>
+    <mutatedMethod>addInstanceOrClassVar</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::findFirstToken with receiver</description>
+    <lineContent>varDefAst.findFirstToken(TokenTypes.TYPE), findScopeOfVariable(varDefAst));</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>UnusedLocalVariableCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheck</mutatedClass>
+    <mutatedMethod>getBlockContainingLocalAnonInnerClass</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getParent with receiver</description>
+    <lineContent>DetailAST parentAst = literalNewAst.getParent();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>UnusedLocalVariableCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheck</mutatedClass>
+    <mutatedMethod>isInsideLocalAnonInnerClass</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getParent with receiver</description>
+    <lineContent>DetailAST parentAst = literalNewAst.getParent();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>UnusedLocalVariableCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheck</mutatedClass>
+    <mutatedMethod>isInsideLocalAnonInnerClass</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getParent with receiver</description>
+    <lineContent>if (TokenUtil.isTypeDeclaration(parentAst.getParent().getType())) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>UnusedLocalVariableCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheck$TypeDeclDesc</mutatedClass>
+    <mutatedMethod>getUpdatedCopyOfVarStack</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getLastChild with receiver</description>
+    <lineContent>final DetailAST updatedScope = literalNewAst.getLastChild();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>UnusedLocalVariableCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheck$TypeDeclDesc</mutatedClass>
+    <mutatedMethod>lambda$getUpdatedCopyOfVarStack$0</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/checks/coding/UnusedLocalVariableCheck$VariableDesc::getTypeAst</description>
+    <lineContent>instVar.getTypeAst(), updatedScope);</lineContent>
+  </mutation>
+</suppressedMutations>

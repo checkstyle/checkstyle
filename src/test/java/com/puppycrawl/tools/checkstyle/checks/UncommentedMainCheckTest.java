@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,104 +15,130 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck.MSG_KEY;
-import static org.junit.Assert.assertEquals;
 
-import java.io.File;
-import java.io.IOException;
+import org.antlr.v4.runtime.CommonToken;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Assert;
-import org.junit.Test;
-
-import antlr.CommonHiddenStreamToken;
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class UncommentedMainCheckTest
-    extends BaseCheckTestSupport {
+    extends AbstractModuleTestSupport {
+
     @Override
-    protected String getPath(String filename) throws IOException {
-        return super.getPath("checks" + File.separator + filename);
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/checks/uncommentedmain";
     }
 
     @Test
     public void testDefaults()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(UncommentedMainCheck.class);
         final String[] expected = {
-            "14: " + getCheckMessage(MSG_KEY),
-            "23: " + getCheckMessage(MSG_KEY),
-            "32: " + getCheckMessage(MSG_KEY),
-            "96: " + getCheckMessage(MSG_KEY),
+            "17:5: " + getCheckMessage(MSG_KEY),
+            "26:5: " + getCheckMessage(MSG_KEY),
+            "35:5: " + getCheckMessage(MSG_KEY),
+            "99:5: " + getCheckMessage(MSG_KEY),
         };
-        verify(checkConfig, getPath("InputUncommentedMain.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputUncommentedMain.java"), expected);
     }
 
     @Test
     public void testExcludedClasses()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(UncommentedMainCheck.class);
-        checkConfig.addAttribute("excludedClasses", "\\.Main.*$");
         final String[] expected = {
-            "14: " + getCheckMessage(MSG_KEY),
-            "32: " + getCheckMessage(MSG_KEY),
-            "96: " + getCheckMessage(MSG_KEY),
+            "17:5: " + getCheckMessage(MSG_KEY),
+            "35:5: " + getCheckMessage(MSG_KEY),
+            "99:5: " + getCheckMessage(MSG_KEY),
         };
-        verify(checkConfig, getPath("InputUncommentedMain.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputUncommentedMain6.java"), expected);
     }
 
     @Test
     public void testTokens() {
         final UncommentedMainCheck check = new UncommentedMainCheck();
-        Assert.assertNotNull(check.getRequiredTokens());
-        Assert.assertNotNull(check.getAcceptableTokens());
-        Assert.assertArrayEquals(check.getDefaultTokens(), check.getAcceptableTokens());
-        Assert.assertArrayEquals(check.getDefaultTokens(), check.getRequiredTokens());
+        assertWithMessage("Required tokens should not be null")
+            .that(check.getRequiredTokens())
+            .isNotNull();
+        assertWithMessage("Acceptable tokens should not be null")
+            .that(check.getAcceptableTokens())
+            .isNotNull();
+        assertWithMessage("Invalid default tokens")
+            .that(check.getAcceptableTokens())
+            .isEqualTo(check.getDefaultTokens());
+        assertWithMessage("Invalid acceptable tokens")
+            .that(check.getRequiredTokens())
+            .isEqualTo(check.getDefaultTokens());
     }
 
     @Test
     public void testDeepDepth() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(UncommentedMainCheck.class);
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputUncommentedMain2.java"), expected);
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputUncommentedMain2.java"), expected);
+    }
+
+    @Test
+    public void testVisitPackage() throws Exception {
+        final String[] expected = {
+            "21:5: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputUncommentedMain5.java"), expected);
     }
 
     @Test
     public void testWrongName() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(UncommentedMainCheck.class);
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputUncommentedMain3.java"), expected);
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputUncommentedMain3.java"), expected);
     }
 
     @Test
     public void testWrongArrayType() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(UncommentedMainCheck.class);
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputUncommentedMain4.java"), expected);
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputUncommentedMain4.java"), expected);
     }
 
     @Test
     public void testIllegalStateException() {
         final UncommentedMainCheck check = new UncommentedMainCheck();
-        final DetailAST ast = new DetailAST();
-        ast.initialize(new CommonHiddenStreamToken(TokenTypes.CTOR_DEF, "ctor"));
+        final DetailAstImpl ast = new DetailAstImpl();
+        ast.initialize(new CommonToken(TokenTypes.CTOR_DEF, "ctor"));
         try {
             check.visitToken(ast);
-            Assert.fail("IllegalStateException is expected");
+            assertWithMessage("IllegalStateException is expected").fail();
         }
         catch (IllegalStateException ex) {
-            assertEquals("Error message is unexpected",
-                    ast.toString(), ex.getMessage());
+            assertWithMessage("Error message is unexpected")
+                .that(ex.getMessage())
+                .isEqualTo(ast.toString());
         }
-
     }
+
+    @Test
+    public void testRecords()
+            throws Exception {
+
+        final String[] expected = {
+            "12:5: " + getCheckMessage(MSG_KEY),
+            "20:9: " + getCheckMessage(MSG_KEY),
+            "25:13: " + getCheckMessage(MSG_KEY),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                "InputUncommentedMainRecords.java"), expected);
+    }
+
 }

@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,68 +15,66 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyForIteratorPadCheck.MSG_WS_FOLLOWED;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyForIteratorPadCheck.MSG_WS_NOT_FOLLOWED;
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
-import java.io.File;
-import java.io.IOException;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Before;
-import org.junit.Test;
-
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class EmptyForIteratorPadCheckTest
-    extends BaseCheckTestSupport {
-    private DefaultConfiguration checkConfig;
-
-    @Before
-    public void setUp() {
-        checkConfig = createCheckConfig(EmptyForIteratorPadCheck.class);
-    }
+    extends AbstractModuleTestSupport {
 
     @Override
-    protected String getPath(String filename) throws IOException {
-        return super.getPath("checks" + File.separator + "whitespace" + File.separator
-            + "emptyforiteratorpad" + File.separator + filename);
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/checks/whitespace/emptyforiteratorpad";
     }
 
     @Test
     public void testGetRequiredTokens() {
         final EmptyForIteratorPadCheck checkObj = new EmptyForIteratorPadCheck();
         final int[] expected = {TokenTypes.FOR_ITERATOR};
-        assertArrayEquals("Default required tokens are invalid",
-            expected, checkObj.getRequiredTokens());
+        assertWithMessage("Default required tokens are invalid")
+            .that(checkObj.getRequiredTokens())
+            .isEqualTo(expected);
     }
 
     @Test
     public void testDefault() throws Exception {
         final String[] expected = {
-            "27:31: " + getCheckMessage(MSG_WS_FOLLOWED, ";"),
-            "43:32: " + getCheckMessage(MSG_WS_FOLLOWED, ";"),
-            "55:11: " + getCheckMessage(MSG_WS_FOLLOWED, ";"),
+            "30:32: " + getCheckMessage(MSG_WS_FOLLOWED, ";"),
+            "46:33: " + getCheckMessage(MSG_WS_FOLLOWED, ";"),
+            "58:12: " + getCheckMessage(MSG_WS_FOLLOWED, ";"),
         };
-        verify(checkConfig, getPath("InputEmptyForIteratorPad.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyForIteratorPad.java"), expected);
     }
 
     @Test
     public void testSpaceOption() throws Exception {
-        checkConfig.addAttribute("option", PadOption.SPACE.toString());
         final String[] expected = {
-            "23:31: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ";"),
+            "26:31: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ";"),
         };
-        verify(checkConfig, getPath("InputEmptyForIteratorPad.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyForIteratorPad1.java"), expected);
+    }
+
+    @Test
+    public void testWithEmoji() throws Exception {
+        final String[] expected = {
+            "24:40: " + getCheckMessage(MSG_WS_FOLLOWED, ";"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyForIteratorPadWithEmoji.java"), expected);
+
     }
 
     @Test
@@ -86,25 +84,48 @@ public class EmptyForIteratorPadCheckTest
         final int[] expected = {
             TokenTypes.FOR_ITERATOR,
         };
-        assertArrayEquals("Default acceptable tokens are invalid", expected, actual);
+        assertWithMessage("Default acceptable tokens are invalid")
+            .that(actual)
+            .isEqualTo(expected);
     }
 
     @Test
     public void testInvalidOption() throws Exception {
-        checkConfig.addAttribute("option", "invalid_option");
-
         try {
-            final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+            final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-            verify(checkConfig, getPath("InputEmptyForIteratorPad.java"), expected);
-            fail("exception expected");
+            verifyWithInlineConfigParser(getPath("InputEmptyForIteratorPad2.java"), expected);
+            assertWithMessage("exception expected").fail();
         }
         catch (CheckstyleException ex) {
-            final String messageStart = "cannot initialize module "
-                + "com.puppycrawl.tools.checkstyle.TreeWalker - Cannot set property 'option' to "
-                + "'invalid_option' in module";
-            assertTrue("Invalid exception message, should start with: ",
-                ex.getMessage().startsWith(messageStart));
+            assertWithMessage("Invalid exception message")
+                .that(ex.getMessage())
+                .isEqualTo("cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker - "
+                    + "cannot initialize module com.puppycrawl.tools.checkstyle.checks."
+                    + "whitespace.EmptyForIteratorPadCheck - "
+                    + "Cannot set property 'option' to 'invalid_option'");
         }
+    }
+
+    @Test
+    public void testTrimOptionProperty() throws Exception {
+        final String[] expected = {
+            "20:31: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ";"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyForIteratorPadToCheckTrimFunctionInOptionProperty.java"),
+                expected);
+
+    }
+
+    @Test
+    public void testUppercaseOptionProperty() throws Exception {
+        final String[] expected = {
+            "20:31: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ";"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyForIteratorPadToCheckUppercaseFunctionInOptionProperty.java"),
+                expected);
+
     }
 }

@@ -1,6 +1,18 @@
+/*
+MethodCount
+maxTotal = (default)100
+maxPrivate = (default)100
+maxPackage = (default)100
+maxProtected = (default)100
+maxPublic = (default)100
+tokens = (default)CLASS_DEF, ENUM_CONSTANT_DEF, ENUM_DEF, INTERFACE_DEF, ANNOTATION_DEF, RECORD_DEF
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.sizes.methodcount;
 
-public class InputMethodCount {
+public class InputMethodCount { // ok
 
   /**
    * Dummy inner class to check that the inner-classes methods are not counted

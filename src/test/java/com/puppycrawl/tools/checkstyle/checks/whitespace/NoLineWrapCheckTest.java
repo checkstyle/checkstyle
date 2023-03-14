@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,62 +15,75 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.NoLineWrapCheck.MSG_KEY;
 
-import java.io.File;
-import java.io.IOException;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Test;
-
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class NoLineWrapCheckTest
-    extends BaseCheckTestSupport {
+    extends AbstractModuleTestSupport {
+
     @Override
-    protected String getPath(String filename) throws IOException {
-        return super.getPath("checks" + File.separator
-                + "whitespace" + File.separator
-                + "nolinewrap" + File.separator
-                + filename);
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/checks/whitespace/nolinewrap";
     }
 
     @Test
     public void testCaseWithoutLineWrapping() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(NoLineWrapCheck.class);
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputNoLineWrapGood.java"), expected);
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputNoLineWrapGood.java"), expected);
     }
 
     @Test
     public void testDefaultTokensLineWrapping() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(NoLineWrapCheck.class);
         final String[] expected = {
-            "1: " + getCheckMessage(MSG_KEY, "package"),
-            "6: " + getCheckMessage(MSG_KEY, "import"),
-            "10: " + getCheckMessage(MSG_KEY, "import"),
+            "8:1: " + getCheckMessage(MSG_KEY, "package"),
+            "13:1: " + getCheckMessage(MSG_KEY, "import"),
+            "17:1: " + getCheckMessage(MSG_KEY, "import"),
         };
-        verify(checkConfig, getPath("InputNoLineWrapBad.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputNoLineWrapBad.java"), expected);
     }
 
     @Test
     public void testCustomTokensLineWrapping()
             throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(NoLineWrapCheck.class);
-        checkConfig.addAttribute(
-                "tokens", "IMPORT, STATIC_IMPORT, CLASS_DEF, METHOD_DEF, ENUM_DEF");
         final String[] expected = {
-            "6: " + getCheckMessage(MSG_KEY, "import"),
-            "10: " + getCheckMessage(MSG_KEY, "import"),
-            "13: " + getCheckMessage(MSG_KEY, "CLASS_DEF"),
-            "16: " + getCheckMessage(MSG_KEY, "METHOD_DEF"),
-            "23: " + getCheckMessage(MSG_KEY, "ENUM_DEF"),
+            "13:1: " + getCheckMessage(MSG_KEY, "import"),
+            "17:1: " + getCheckMessage(MSG_KEY, "import"),
+            "20:1: " + getCheckMessage(MSG_KEY, "CLASS_DEF"),
+            "23:9: " + getCheckMessage(MSG_KEY, "METHOD_DEF"),
+            "30:1: " + getCheckMessage(MSG_KEY, "ENUM_DEF"),
         };
-        verify(checkConfig, getPath("InputNoLineWrapBad.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputNoLineWrapBad2.java"), expected);
     }
+
+    @Test
+    public void testNoLineWrapRecordsAndCompactCtors()
+            throws Exception {
+
+        final String[] expected = {
+            "13:9: " + getCheckMessage(MSG_KEY, "CTOR_DEF"),
+            "19:5: " + getCheckMessage(MSG_KEY, "RECORD_DEF"),
+            "28:9: " + getCheckMessage(MSG_KEY, "CTOR_DEF"),
+            "34:5: " + getCheckMessage(MSG_KEY, "RECORD_DEF"),
+            "36:9: " + getCheckMessage(MSG_KEY, "COMPACT_CTOR_DEF"),
+            "40:5: " + getCheckMessage(MSG_KEY, "RECORD_DEF"),
+            "42:9: " + getCheckMessage(MSG_KEY, "COMPACT_CTOR_DEF"),
+            "47:9: " + getCheckMessage(MSG_KEY, "RECORD_DEF"),
+            "49:13: " + getCheckMessage(MSG_KEY, "COMPACT_CTOR_DEF"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputNoLineWrapRecordsAndCompactCtors.java"),
+                expected);
+    }
+
 }

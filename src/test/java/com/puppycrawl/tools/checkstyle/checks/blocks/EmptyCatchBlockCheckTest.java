@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,70 +15,81 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.blocks;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.blocks.EmptyCatchBlockCheck.MSG_KEY_CATCH_BLOCK_EMPTY;
-import static org.junit.Assert.assertArrayEquals;
 
-import java.io.File;
-import java.io.IOException;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Test;
-
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
-/**
- *
- * @author <a href="mailto:nesterenko-aleksey@list.ru">Aleksey Nesterenko</a>
- *
- */
-public class EmptyCatchBlockCheckTest extends BaseCheckTestSupport {
+public class EmptyCatchBlockCheckTest extends AbstractModuleTestSupport {
+
     @Override
-    protected String getPath(String filename) throws IOException {
-        return super.getPath("checks" + File.separator
-                + "blocks" + File.separator + "emptycatchblock" + File.separator + filename);
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/checks/blocks/emptycatchblock";
     }
 
     @Test
     public void testGetRequiredTokens() {
         final EmptyCatchBlockCheck checkObj = new EmptyCatchBlockCheck();
         final int[] expected = {TokenTypes.LITERAL_CATCH};
-        assertArrayEquals("Default required tokens are invalid",
-            expected, checkObj.getRequiredTokens());
+        assertWithMessage("Default required tokens are invalid")
+                .that(checkObj.getRequiredTokens())
+                .isEqualTo(expected);
     }
 
     @Test
     public void testDefault() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(EmptyCatchBlockCheck.class);
         final String[] expected = {
-            "35: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
-            "42: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
+            "25:31: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
+            "32:83: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
         };
-        verify(checkConfig, getPath("InputEmptyCatchBlockDefault.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyCatchBlockDefault.java"), expected);
     }
 
     @Test
     public void testWithUserSetValues() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(EmptyCatchBlockCheck.class);
-        checkConfig.addAttribute("exceptionVariableName", "expected|ignore|myException");
-        checkConfig.addAttribute("commentFormat", "This is expected");
         final String[] expected = {
-            "35: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
-            "63: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
-            "97: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
-            "186: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
-            "195: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
-            "214: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
-            "230: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
-            "239: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
+            "26:31: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
+            "54:78: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
+            "88:29: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
+            "177:33: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
+            "186:33: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
+            "205:33: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
+            "221:33: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
+            "230:33: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
         };
-        verify(checkConfig, getPath("InputEmptyCatchBlockDefault.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyCatchBlockDefault2.java"), expected);
+    }
+
+    @Test
+    public void testLinesAreProperlySplitSystemIndependently() throws Exception {
+        final String[] expected = {
+            "25:31: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
+            "53:78: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
+            "87:29: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
+            "176:33: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
+            "185:33: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
+            "204:33: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
+            "220:33: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
+            "229:33: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
+        };
+        final String originalLineSeparator = System.getProperty("line.separator");
+        try {
+            System.setProperty("line.separator", "\r\n");
+            verifyWithInlineConfigParser(
+                    getPath("InputEmptyCatchBlockDefaultLF.java"), expected);
+        }
+        finally {
+            System.setProperty("line.separator", originalLineSeparator);
+        }
     }
 
     @Test
@@ -86,6 +97,9 @@ public class EmptyCatchBlockCheckTest extends BaseCheckTestSupport {
         final EmptyCatchBlockCheck constantNameCheckObj = new EmptyCatchBlockCheck();
         final int[] actual = constantNameCheckObj.getAcceptableTokens();
         final int[] expected = {TokenTypes.LITERAL_CATCH };
-        assertArrayEquals("Default acceptable tokens are invalid", expected, actual);
+        assertWithMessage("Default acceptable tokens are invalid")
+                .that(actual)
+                .isEqualTo(expected);
     }
+
 }

@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,101 +15,159 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
+import com.puppycrawl.tools.checkstyle.utils.CodePointUtil;
 
 /**
  * <p>
- * Restrict using <a href =
- * "http://docs.oracle.com/javase/specs/jls/se8/html/jls-3.html#jls-3.3">
- * Unicode escapes</a> (such as <code>&#92;u221e</code>).
- * It is possible to allow using escapes for
+ * Restricts using
+ * <a href = "https://docs.oracle.com/javase/specs/jls/se11/html/jls-3.html#jls-3.3">
+ * Unicode escapes</a>
+ * (such as &#92;u221e). It is possible to allow using escapes for
  * <a href="https://en.wiktionary.org/wiki/Appendix:Control_characters">
- * non-printable(control) characters</a>.
+ * non-printable, control characters</a>.
  * Also, this check can be configured to allow using escapes
  * if trail comment is present. By the option it is possible to
- * allow using escapes if literal contains only them. By the option it
- * is possible to allow using escapes for space literals.
+ * allow using escapes if literal contains only them.
  * </p>
+ * <ul>
+ * <li>
+ * Property {@code allowEscapesForControlCharacters} - Allow use escapes for
+ * non-printable, control characters.
+ * Type is {@code boolean}.
+ * Default value is {@code false}.
+ * </li>
+ * <li>
+ * Property {@code allowByTailComment} - Allow use escapes if trail comment is present.
+ * Type is {@code boolean}.
+ * Default value is {@code false}.
+ * </li>
+ * <li>
+ * Property {@code allowIfAllCharactersEscaped} - Allow if all characters in literal are escaped.
+ * Type is {@code boolean}.
+ * Default value is {@code false}.
+ * </li>
+ * <li>
+ * Property {@code allowNonPrintableEscapes} - Allow use escapes for
+ * non-printable, whitespace characters.
+ * Type is {@code boolean}.
+ * Default value is {@code false}.
+ * </li>
+ * </ul>
  * <p>
- * Examples of using Unicode:</p>
- * <pre>
- * String unitAbbrev = "μs";      // Best: perfectly clear even without a comment.
- * String unitAbbrev = "&#92;u03bcs"; // Poor: the reader has no idea what this is.
- * </pre>
- * <p>
- * An example of how to configure the check is:
+ * To configure the check:
  * </p>
  * <pre>
  * &lt;module name="AvoidEscapedUnicodeCharacters"/&gt;
  * </pre>
  * <p>
- * An example of non-printable(control) characters.
- * </p>
+ * Examples of using Unicode:</p>
  * <pre>
- * return '&#92;ufeff' + content; // byte order mark
+ * String unitAbbrev = "μs";     // OK, perfectly clear even without a comment.
+ * String unitAbbrev = "&#92;u03bcs";// violation, the reader has no idea what this is.
+ * return '&#92;ufeff' + content;    // OK, an example of non-printable,
+ *                               // control characters (byte order mark).
  * </pre>
  * <p>
  * An example of how to configure the check to allow using escapes
- * for non-printable(control) characters:
+ * for non-printable, control characters:
  * </p>
  * <pre>
  * &lt;module name="AvoidEscapedUnicodeCharacters"&gt;
- *     &lt;property name="allowEscapesForControlCharacters" value="true"/&gt;
+ *   &lt;property name="allowEscapesForControlCharacters" value="true"/&gt;
  * &lt;/module&gt;
  * </pre>
  * <p>
- * Example of using escapes with trail comment:
+ * Example of using escapes for non-printable, control characters:
  * </p>
  * <pre>
- * String unitAbbrev = "&#92;u03bcs"; // Greek letter mu, "s"
+ * String unitAbbrev = "μs";      // OK, a normal String
+ * String unitAbbrev = "&#92;u03bcs"; // violation, "&#92;u03bcs" is a printable character.
+ * return '&#92;ufeff' + content;     // OK, non-printable control character.
  * </pre>
- * <p>An example of how to configure the check to allow using escapes
+ * <p>
+ * An example of how to configure the check to allow using escapes
  * if trail comment is present:
  * </p>
  * <pre>
  * &lt;module name="AvoidEscapedUnicodeCharacters"&gt;
- *     &lt;property name="allowByTailComment" value="true"/&gt;
+ *   &lt;property name="allowByTailComment" value="true"/&gt;
  * &lt;/module&gt;
  * </pre>
- * <p>Example of using escapes if literal contains only them:
+ * <p>Example of using escapes if trail comment is present:
  * </p>
  * <pre>
- * String unitAbbrev = "&#92;u03bc&#92;u03bc&#92;u03bc";
+ * String unitAbbrev = "μs";      // OK, a normal String
+ * String unitAbbrev = "&#92;u03bcs"; // OK, Greek letter mu, "s"
+ * return '&#92;ufeff' + content;
+ * // -----^--------------------- violation, comment is not used within same line.
  * </pre>
- * <p>An example of how to configure the check to allow escapes
- * if literal contains only them:
- * </p>
- * <pre>
- * &lt;module name="AvoidEscapedUnicodeCharacters"&gt;
- *    &lt;property name="allowIfAllCharactersEscaped" value="true"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>An example of how to configure the check to allow non-printable escapes:
+ * <p>
+ * An example of how to configure the check to allow if
+ * all characters in literal are escaped.
  * </p>
  * <pre>
  * &lt;module name="AvoidEscapedUnicodeCharacters"&gt;
- *    &lt;property name="allowNonPrintableEscapes" value="true"/&gt;
+ *   &lt;property name="allowIfAllCharactersEscaped" value="true"/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>Example of using escapes if all characters in literal are escaped:</p>
+ * <pre>
+ * String unitAbbrev = "μs";      // OK, a normal String
+ * String unitAbbrev = "&#92;u03bcs"; // violation, not all characters are escaped ('s').
+ * String unitAbbrev = "&#92;u03bc&#92;u03bc&#92;u03bc"; // OK
+ * String unitAbbrev = "&#92;u03bc&#92;u03bcs";// violation, not all characters are escaped ('s').
+ * return '&#92;ufeff' + content;          // OK, all control characters are escaped
+ * </pre>
+ * <p>An example of how to configure the check to allow using escapes
+ * for non-printable whitespace characters:
+ * </p>
+ * <pre>
+ * &lt;module name="AvoidEscapedUnicodeCharacters"&gt;
+ *   &lt;property name="allowNonPrintableEscapes" value="true"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>Example of using escapes for non-printable whitespace characters:</p>
+ * <pre>
+ * String unitAbbrev = "μs";       // OK, a normal String
+ * String unitAbbrev1 = "&#92;u03bcs"; // violation, printable escape character.
+ * String unitAbbrev2 = "&#92;u03bc&#92;u03bc&#92;u03bc"; // violation, printable escape character.
+ * String unitAbbrev3 = "&#92;u03bc&#92;u03bcs";// violation, printable escape character.
+ * return '&#92;ufeff' + content;           // OK, non-printable escape character.
+ * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code forbid.escaped.unicode.char}
+ * </li>
+ * </ul>
  *
- * @author maxvetrenko
- *
+ * @since 5.8
  */
+@FileStatefulCheck
 public class AvoidEscapedUnicodeCharactersCheck
     extends AbstractCheck {
+
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
@@ -117,7 +175,7 @@ public class AvoidEscapedUnicodeCharactersCheck
     public static final String MSG_KEY = "forbid.escaped.unicode.char";
 
     /** Regular expression for Unicode chars. */
-    private static final Pattern UNICODE_REGEXP = Pattern.compile("\\\\u[a-fA-F0-9]{4}");
+    private static final Pattern UNICODE_REGEXP = Pattern.compile("\\\\u+[a-fA-F\\d]{4}");
 
     /**
      * Regular expression Unicode control characters.
@@ -125,47 +183,119 @@ public class AvoidEscapedUnicodeCharactersCheck
      * @see <a href="https://en.wiktionary.org/wiki/Appendix:Control_characters">
      *     Appendix:Control characters</a>
      */
-    private static final Pattern UNICODE_CONTROL = Pattern.compile("\\\\(u|U)"
-            + "(00[0-1][0-9A-Fa-f]|00[8-9][0-9A-Fa-f]|00(a|A)(d|D)|034(f|F)|070(f|F)"
-            + "|180(e|E)|200[b-fB-F]|202[a-eA-E]|206[0-4a-fA-F]"
-            + "|[fF]{3}[9a-bA-B]|[fF][eE][fF]{2})");
+    private static final Pattern UNICODE_CONTROL = Pattern.compile("\\\\u+"
+            + "(00[0-1][\\dA-Fa-f]"
+            + "|00[8-9][\\dA-Fa-f]"
+            + "|00[aA][dD]"
+            + "|034[fF]"
+            + "|070[fF]"
+            + "|180[eE]"
+            + "|200[b-fB-F]"
+            + "|202[a-eA-E]"
+            + "|206[0-4a-fA-F]"
+            + "|[fF]{3}[9a-bA-B]"
+            + "|[fF][eE][fF]{2})");
 
-    /** Regular expression for all escaped chars. */
-    private static final Pattern ALL_ESCAPED_CHARS =
-            Pattern.compile("^((\\\\u)[a-fA-F0-9]{4}"
-                    + "||\\\\b|\\\\t|\\\\n|\\\\f|\\\\r|\\\\|\"|\')+$");
+    /**
+     * Regular expression for all escaped chars.
+     * See <a href="https://docs.oracle.com/javase/specs/jls/se15/html/jls-3.html#jls-3.10.7">
+     * EscapeSequence</a>
+     */
+    private static final Pattern ALL_ESCAPED_CHARS = Pattern.compile("^("
+            + UNICODE_REGEXP.pattern()
+            + "|\""
+            + "|'"
+            + "|\\\\"
+            + "|\\\\b"
+            + "|\\\\f"
+            + "|\\\\n"
+            + "|\\R"
+            + "|\\\\r"
+            + "|\\\\s"
+            + "|\\\\t"
+            + ")+$");
 
     /** Regular expression for escaped backslash. */
     private static final Pattern ESCAPED_BACKSLASH = Pattern.compile("\\\\\\\\");
 
     /** Regular expression for non-printable unicode chars. */
-    private static final Pattern NON_PRINTABLE_CHARS = Pattern.compile("\\\\u1680|\\\\u2028"
-            + "|\\\\u2029|\\\\u205(f|F)|\\\\u3000|\\\\u2007|\\\\u2000|\\\\u200(a|A)"
-            + "|\\\\u007(F|f)|\\\\u009(f|F)|\\\\u(f|F){4}|\\\\u007(F|f)|\\\\u00(a|A)(d|D)"
-            + "|\\\\u0600|\\\\u061(c|C)|\\\\u06(d|D){2}|\\\\u070(f|F)|\\\\u1680|\\\\u180(e|E)"
-            + "|\\\\u2000|\\\\u2028|\\\\u205(f|F)|\\\\u2066|\\\\u2067|\\\\u2068|\\\\u2069"
-            + "|\\\\u206(a|A)|\\\\u(d|D)800|\\\\u(f|F)(e|E)(f|F){2}|\\\\u(f|F){3}9"
-            + "|\\\\u(f|F){3}(a|A)|\\\\u0020|\\\\u00(a|A)0|\\\\u00(a|A)(d|D)|\\\\u0604"
-            + "|\\\\u061(c|C)|\\\\u06(d|D){2}|\\\\u070(f|F)|\\\\u1680|\\\\u180(e|E)|\\\\u200(f|F)"
-            + "|\\\\u202(f|F)|\\\\u2064|\\\\u2066|\\\\u2067|\\\\u2068|\\\\u2069|\\\\u206(f|F)"
-            + "|\\\\u(f|F)8(f|F){2}|\\\\u(f|F)(e|E)(f|F){2}|\\\\u(f|F){3}9|\\\\u(f|F){3}(b|B)"
-            + "|\\\\u05(d|D)0|\\\\u05(f|F)3|\\\\u0600|\\\\u0750|\\\\u0(e|E)00|\\\\u1(e|E)00"
-            + "|\\\\u2100|\\\\u(f|F)(b|B)50|\\\\u(f|F)(e|E)70|\\\\u(F|f){2}61|\\\\u04(f|F)9"
-            + "|\\\\u05(b|B)(e|E)|\\\\u05(e|E)(a|A)|\\\\u05(f|F)4|\\\\u06(f|F){2}"
-            + "|\\\\u077(f|F)|\\\\u0(e|E)7(f|F)|\\\\u20(a|A)(f|F)|\\\\u213(a|A)|\\\\u0000"
-            + "|\\\\u(f|F)(d|D)(f|F){2}|\\\\u(f|F)(e|E)(f|F){2}|\\\\u(f|F){2}(d|D)(c|C)"
-            + "|\\\\u2002|\\\\u0085|\\\\u200(a|A)|\\\\u2005|\\\\u2000|\\\\u2029|\\\\u000(B|b)"
-            + "|\\\\u2008|\\\\u2003|\\\\u205(f|F)|\\\\u1680|\\\\u0009|\\\\u0020|\\\\u2006"
-            + "|\\\\u2001|\\\\u202(f|F)|\\\\u00(a|A)0|\\\\u000(c|C)|\\\\u2009|\\\\u2004|\\\\u2028"
-            + "|\\\\u2028|\\\\u2007|\\\\u2004|\\\\u2028|\\\\u2007|\\\\u2025"
-            + "|\\\\u(f|F){2}0(e|E)|\\\\u(f|F){2}61");
+    private static final Pattern NON_PRINTABLE_CHARS = Pattern.compile("\\\\u0000"
+            + "|\\\\u0009"
+            + "|\\\\u000[bB]"
+            + "|\\\\u000[cC]"
+            + "|\\\\u0020"
+            + "|\\\\u007[fF]"
+            + "|\\\\u0085"
+            + "|\\\\u009[fF]"
+            + "|\\\\u00[aA]0"
+            + "|\\\\u00[aA][dD]"
+            + "|\\\\u04[fF]9"
+            + "|\\\\u05[bB][eE]"
+            + "|\\\\u05[dD]0"
+            + "|\\\\u05[eE][aA]"
+            + "|\\\\u05[fF]3"
+            + "|\\\\u05[fF]4"
+            + "|\\\\u0600"
+            + "|\\\\u0604"
+            + "|\\\\u061[cC]"
+            + "|\\\\u06[dD]{2}"
+            + "|\\\\u06[fF]{2}"
+            + "|\\\\u070[fF]"
+            + "|\\\\u0750"
+            + "|\\\\u077[fF]"
+            + "|\\\\u0[eE]00"
+            + "|\\\\u0[eE]7[fF]"
+            + "|\\\\u1680"
+            + "|\\\\u180[eE]"
+            + "|\\\\u1[eE]00"
+            + "|\\\\u2000"
+            + "|\\\\u2001"
+            + "|\\\\u2002"
+            + "|\\\\u2003"
+            + "|\\\\u2004"
+            + "|\\\\u2005"
+            + "|\\\\u2006"
+            + "|\\\\u2007"
+            + "|\\\\u2008"
+            + "|\\\\u2009"
+            + "|\\\\u200[aA]"
+            + "|\\\\u200[fF]"
+            + "|\\\\u2025"
+            + "|\\\\u2028"
+            + "|\\\\u2029"
+            + "|\\\\u202[fF]"
+            + "|\\\\u205[fF]"
+            + "|\\\\u2064"
+            + "|\\\\u2066"
+            + "|\\\\u2067"
+            + "|\\\\u2068"
+            + "|\\\\u2069"
+            + "|\\\\u206[aA]"
+            + "|\\\\u206[fF]"
+            + "|\\\\u20[aA][fF]"
+            + "|\\\\u2100"
+            + "|\\\\u213[aA]"
+            + "|\\\\u3000"
+            + "|\\\\u[dD]800"
+            + "|\\\\u[fF]8[fF]{2}"
+            + "|\\\\u[fF][bB]50"
+            + "|\\\\u[fF][dD][fF]{2}"
+            + "|\\\\u[fF][eE]70"
+            + "|\\\\u[fF][eE][fF]{2}"
+            + "|\\\\u[fF]{2}0[eE]"
+            + "|\\\\u[fF]{2}61"
+            + "|\\\\u[fF]{2}[dD][cC]"
+            + "|\\\\u[fF]{3}9"
+            + "|\\\\u[fF]{3}[aA]"
+            + "|\\\\u[fF]{3}[bB]"
+            + "|\\\\u[fF]{4}");
 
     /** Cpp style comments. */
     private Map<Integer, TextBlock> singlelineComments;
     /** C style comments. */
     private Map<Integer, List<TextBlock>> blockComments;
 
-    /** Allow use escapes for non-printable(control) characters.  */
+    /** Allow use escapes for non-printable, control characters. */
     private boolean allowEscapesForControlCharacters;
 
     /** Allow use escapes if trail comment is present. */
@@ -174,11 +304,12 @@ public class AvoidEscapedUnicodeCharactersCheck
     /** Allow if all characters in literal are escaped. */
     private boolean allowIfAllCharactersEscaped;
 
-    /** Allow escapes for space literals. */
+    /** Allow use escapes for non-printable, whitespace characters. */
     private boolean allowNonPrintableEscapes;
 
     /**
-     * Set allowIfAllCharactersEscaped.
+     * Setter to allow use escapes for non-printable, control characters.
+     *
      * @param allow user's value.
      */
     public final void setAllowEscapesForControlCharacters(boolean allow) {
@@ -186,7 +317,8 @@ public class AvoidEscapedUnicodeCharactersCheck
     }
 
     /**
-     * Set allowByTailComment.
+     * Setter to allow use escapes if trail comment is present.
+     *
      * @param allow user's value.
      */
     public final void setAllowByTailComment(boolean allow) {
@@ -194,7 +326,8 @@ public class AvoidEscapedUnicodeCharactersCheck
     }
 
     /**
-     * Set allowIfAllCharactersEscaped.
+     * Setter to allow if all characters in literal are escaped.
+     *
      * @param allow user's value.
      */
     public final void setAllowIfAllCharactersEscaped(boolean allow) {
@@ -202,7 +335,8 @@ public class AvoidEscapedUnicodeCharactersCheck
     }
 
     /**
-     * Set allowSpaceEscapes.
+     * Setter to allow use escapes for non-printable, whitespace characters.
+     *
      * @param allow user's value.
      */
     public final void setAllowNonPrintableEscapes(boolean allow) {
@@ -211,19 +345,25 @@ public class AvoidEscapedUnicodeCharactersCheck
 
     @Override
     public int[] getDefaultTokens() {
-        return getAcceptableTokens();
+        return getRequiredTokens();
     }
 
     @Override
     public int[] getAcceptableTokens() {
-        return new int[] {TokenTypes.STRING_LITERAL, TokenTypes.CHAR_LITERAL};
+        return getRequiredTokens();
     }
 
     @Override
     public int[] getRequiredTokens() {
-        return getAcceptableTokens();
+        return new int[] {
+            TokenTypes.STRING_LITERAL,
+            TokenTypes.CHAR_LITERAL,
+            TokenTypes.TEXT_BLOCK_CONTENT,
+        };
     }
 
+    // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/11166
+    @SuppressWarnings("deprecation")
     @Override
     public void beginTree(DetailAST rootAST) {
         singlelineComments = getFileContents().getSingleLineComments();
@@ -232,8 +372,8 @@ public class AvoidEscapedUnicodeCharactersCheck
 
     @Override
     public void visitToken(DetailAST ast) {
-
-        final String literal = ast.getText();
+        final String literal =
+            CheckUtil.stripIndentAndInitialNewLineFromTextBlock(ast.getText());
 
         if (hasUnicodeChar(literal) && !(allowByTailComment && hasTrailComment(ast)
                 || isAllCharactersEscaped(literal)
@@ -241,12 +381,13 @@ public class AvoidEscapedUnicodeCharactersCheck
                         && isOnlyUnicodeValidChars(literal, UNICODE_CONTROL)
                 || allowNonPrintableEscapes
                         && isOnlyUnicodeValidChars(literal, NON_PRINTABLE_CHARS))) {
-            log(ast.getLineNo(), MSG_KEY);
+            log(ast, MSG_KEY);
         }
     }
 
     /**
      * Checks if literal has Unicode chars.
+     *
      * @param literal String literal.
      * @return true if literal has Unicode chars.
      */
@@ -258,6 +399,7 @@ public class AvoidEscapedUnicodeCharactersCheck
 
     /**
      * Check if String literal contains Unicode control chars.
+     *
      * @param literal String literal.
      * @param pattern RegExp for valid characters.
      * @return true, if String literal contains Unicode control chars.
@@ -272,12 +414,19 @@ public class AvoidEscapedUnicodeCharactersCheck
 
     /**
      * Check if trail comment is present after ast token.
+     *
      * @param ast current token.
      * @return true if trail comment is present after ast token.
      */
     private boolean hasTrailComment(DetailAST ast) {
+        int lineNo = ast.getLineNo();
+
+        // Since the trailing comment in the case of text blocks must follow the """ delimiter,
+        // we need to look for it after TEXT_BLOCK_LITERAL_END.
+        if (ast.getType() == TokenTypes.TEXT_BLOCK_CONTENT) {
+            lineNo = ast.getNextSibling().getLineNo();
+        }
         boolean result = false;
-        final int lineNo = ast.getLineNo();
         if (singlelineComments.containsKey(lineNo)) {
             result = true;
         }
@@ -285,8 +434,8 @@ public class AvoidEscapedUnicodeCharactersCheck
             final List<TextBlock> commentList = blockComments.get(lineNo);
             if (commentList != null) {
                 final TextBlock comment = commentList.get(commentList.size() - 1);
-                final String line = getLines()[lineNo - 1];
-                result = isTrailingBlockComment(comment, line);
+                final int[] codePoints = getLineCodePoints(lineNo - 1);
+                result = isTrailingBlockComment(comment, codePoints);
             }
         }
         return result;
@@ -294,17 +443,20 @@ public class AvoidEscapedUnicodeCharactersCheck
 
     /**
      * Whether the C style comment is trailing.
+     *
      * @param comment the comment to check.
-     * @param line the line where the comment starts.
+     * @param codePoints the first line of the comment, in unicode code points
      * @return true if the comment is trailing.
      */
-    private static boolean isTrailingBlockComment(TextBlock comment, String line) {
+    private static boolean isTrailingBlockComment(TextBlock comment, int... codePoints) {
         return comment.getText().length != 1
-            || CommonUtils.isBlank(line.substring(comment.getEndColNo() + 1));
+            || CodePointUtil.isBlank(Arrays.copyOfRange(codePoints,
+                comment.getEndColNo() + 1, codePoints.length));
     }
 
     /**
      * Count regexp matches into String literal.
+     *
      * @param pattern pattern.
      * @param target String literal.
      * @return count of regexp matches.
@@ -320,12 +472,13 @@ public class AvoidEscapedUnicodeCharactersCheck
 
     /**
      * Checks if all characters in String literal is escaped.
+     *
      * @param literal current literal.
      * @return true if all characters in String literal is escaped.
      */
     private boolean isAllCharactersEscaped(String literal) {
         return allowIfAllCharactersEscaped
-                && ALL_ESCAPED_CHARS.matcher(literal.substring(1,
-                        literal.length() - 1)).find();
+                && ALL_ESCAPED_CHARS.matcher(literal).find();
     }
+
 }

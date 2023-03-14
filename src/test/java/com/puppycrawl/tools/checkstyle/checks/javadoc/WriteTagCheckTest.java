@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,19 +15,17 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheck.MSG_MISSING_TAG;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheck.MSG_TAG_FORMAT;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheck.MSG_WRITE_TAG;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.LineNumberReader;
 import java.nio.charset.StandardCharsets;
@@ -35,170 +33,156 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.Checker;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * Unit test for WriteTagCheck.
- * @author Daniel Grenner
  */
-public class WriteTagCheckTest extends BaseCheckTestSupport {
-    private DefaultConfiguration checkConfig;
-
-    @Before
-    public void setUp() {
-        checkConfig = createCheckConfig(WriteTagCheck.class);
-    }
+public class WriteTagCheckTest extends AbstractModuleTestSupport {
 
     @Override
-    protected String getPath(String filename) throws IOException {
-        return super.getPath("checks" + File.separator
-                + "javadoc" + File.separator + filename);
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/checks/javadoc/writetag";
     }
 
     @Test
     public void testDefaultSettings() throws Exception {
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputWriteTag.java"), expected);
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(getPath("InputWriteTagDefault.java"), expected);
     }
 
     @Test
     public void testTag() throws Exception {
-        checkConfig.addAttribute("tag", "@author");
-        checkConfig.addAttribute("tagFormat", "\\S");
         final String[] expected = {
-            "10: " + getCheckMessage(MSG_WRITE_TAG, "@author", "Daniel Grenner"),
+            "15: " + getCheckMessage(MSG_WRITE_TAG, "@author", "Daniel Grenner"),
         };
-        verify(checkConfig, getPath("InputWriteTag.java"), expected);
+        verifyWithInlineConfigParser(getPath("InputWriteTag.java"), expected);
     }
 
     @Test
     public void testMissingFormat() throws Exception {
-        checkConfig.addAttribute("tag", "@author");
         final String[] expected = {
-            "10: " + getCheckMessage(MSG_WRITE_TAG, "@author", "Daniel Grenner"),
+            "15: " + getCheckMessage(MSG_WRITE_TAG, "@author", "Daniel Grenner"),
         };
-        verify(checkConfig, getPath("InputWriteTag.java"), expected);
+        verifyWithInlineConfigParser(getPath("InputWriteTagMissingFormat.java"), expected);
     }
 
     @Test
     public void testTagIncomplete() throws Exception {
-        checkConfig.addAttribute("tag", "@incomplete");
-        checkConfig.addAttribute("tagFormat", "\\S");
         final String[] expected = {
-            "11: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete",
+            "16: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete",
                 "This class needs more code..."),
         };
-        verify(checkConfig, getPath("InputWriteTag.java"), expected);
+        verifyWithInlineConfigParser(getPath("InputWriteTagIncomplete.java"), expected);
     }
 
     @Test
     public void testDoubleTag() throws Exception {
-        checkConfig.addAttribute("tag", "@doubletag");
-        checkConfig.addAttribute("tagFormat", "\\S");
         final String[] expected = {
-            "12: " + getCheckMessage(MSG_WRITE_TAG, "@doubletag", "first text"),
-            "13: " + getCheckMessage(MSG_WRITE_TAG, "@doubletag", "second text"),
+            "18: " + getCheckMessage(MSG_WRITE_TAG, "@doubletag", "first text"),
+            "19: " + getCheckMessage(MSG_WRITE_TAG, "@doubletag", "second text"),
         };
-        verify(checkConfig, getPath("InputWriteTag.java"), expected);
+        verifyWithInlineConfigParser(getPath("InputWriteTagDoubleTag.java"), expected);
     }
 
     @Test
     public void testEmptyTag() throws Exception {
-        checkConfig.addAttribute("tag", "@emptytag");
-        checkConfig.addAttribute("tagFormat", "");
         final String[] expected = {
-            "14: " + getCheckMessage(MSG_WRITE_TAG, "@emptytag", ""),
+            "19: " + getCheckMessage(MSG_WRITE_TAG, "@emptytag", ""),
         };
-        verify(checkConfig, getPath("InputWriteTag.java"), expected);
+        verifyWithInlineConfigParser(getPath("InputWriteTagEmptyTag.java"), expected);
     }
 
     @Test
     public void testMissingTag() throws Exception {
-        checkConfig.addAttribute("tag", "@missingtag");
         final String[] expected = {
-            "16: " + getCheckMessage(MSG_MISSING_TAG, "@missingtag"),
+            "20: " + getCheckMessage(MSG_MISSING_TAG, "@missingtag"),
         };
-        verify(checkConfig, getPath("InputWriteTag.java"), expected);
+        verifyWithInlineConfigParser(getPath("InputWriteTagMissingTag.java"), expected);
     }
 
     @Test
     public void testMethod() throws Exception {
-        checkConfig.addAttribute("tag", "@todo");
-        checkConfig.addAttribute("tagFormat", "\\S");
-        checkConfig.addAttribute("tokens",
-            "INTERFACE_DEF, CLASS_DEF, METHOD_DEF, CTOR_DEF");
-        checkConfig.addAttribute("severity", "ignore");
         final String[] expected = {
-            "19: " + getCheckMessage(MSG_WRITE_TAG, "@todo", "Add a constructor comment"),
-            "30: " + getCheckMessage(MSG_WRITE_TAG, "@todo", "Add a comment"),
+            "24: " + getCheckMessage(MSG_WRITE_TAG, "@todo",
+                    "Add a constructor comment"),
+            "36: " + getCheckMessage(MSG_WRITE_TAG, "@todo", "Add a comment"),
         };
-        verify(checkConfig, getPath("InputWriteTag.java"), expected);
+        verifyWithInlineConfigParser(getPath("InputWriteTagMethod.java"), expected);
     }
 
     @Test
     public void testSeverity() throws Exception {
-        checkConfig.addAttribute("tag", "@author");
-        checkConfig.addAttribute("tagFormat", "\\S");
-        checkConfig.addAttribute("severity", "ignore");
         final String[] expected = {
-            "10: " + getCheckMessage(MSG_WRITE_TAG, "@author", "Daniel Grenner"),
+            "16: " + getCheckMessage(MSG_WRITE_TAG, "@author", "Daniel Grenner"),
         };
-        verify(checkConfig, getPath("InputWriteTag.java"), expected);
+        verifyWithInlineConfigParser(getPath("InputWriteTagSeverity.java"), expected);
     }
 
     @Test
     public void testIgnoreMissing() throws Exception {
-        checkConfig.addAttribute("tag", "@todo2");
-        checkConfig.addAttribute("tagFormat", "\\S");
-        checkConfig.addAttribute("severity", "ignore");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputWriteTag.java"), expected);
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(getPath("InputWriteTagIgnore.java"), expected);
     }
 
     @Test
     public void testRegularEx()
             throws Exception {
-        checkConfig.addAttribute("tag", "@author");
-        checkConfig.addAttribute("tagFormat", "0*");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputWriteTag.java"), expected);
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(getPath("InputWriteTagRegularExpression.java"), expected);
     }
 
     @Test
-    public void testRegularExError()
-            throws Exception {
-        checkConfig.addAttribute("tag", "@author");
-        checkConfig.addAttribute("tagFormat", "ABC");
+    public void testRegularExError() throws Exception {
         final String[] expected = {
-            "10: " + getCheckMessage(MSG_TAG_FORMAT, "@author", "ABC"),
+            "15: " + getCheckMessage(MSG_TAG_FORMAT, "@author", "ABC"),
         };
-        verify(checkConfig, getPath("InputWriteTag.java"), expected);
+        verifyWithInlineConfigParser(getPath("InputWriteTagExpressionError.java"), expected);
     }
 
     @Test
     public void testEnumsAndAnnotations() throws Exception {
-        checkConfig.addAttribute("tag", "@incomplete");
-        checkConfig.addAttribute("tagFormat", ".*");
-        checkConfig.addAttribute("severity", "ignore");
-        checkConfig.addAttribute("tagSeverity", "error");
-        checkConfig.addAttribute("tokens",
-            "ANNOTATION_DEF, ENUM_DEF, ANNOTATION_FIELD_DEF, ENUM_CONSTANT_DEF");
         final String[] expected = {
-            "9: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete", "This enum needs more code..."),
-            "13: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete",
-                "This enum constant needs more code..."),
+            "15: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete",
+                    "This enum needs more code... // violation"),
             "19: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete",
-                "This annotation needs more code..."),
-            "23: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete",
-                "This annotation field needs more code..."),
+                "This enum constant needs more code... // violation"),
+            "25: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete",
+                "This annotation needs more code... // violation"),
+            "29: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete",
+                "This annotation field needs more code... // violation"),
         };
-        verify(checkConfig, getPath("InputWriteTag2.java"), expected);
+        verifyWithInlineConfigParser(getPath("InputWriteTagEnumsAndAnnotations.java"), expected);
+    }
+
+    @Test
+    public void testNoJavadocs() throws Exception {
+        final String[] expected = {
+            "13: " + getCheckMessage(MSG_MISSING_TAG, "null"),
+        };
+        verifyWithInlineConfigParser(getPath("InputWriteTagNoJavadoc.java"), expected);
+    }
+
+    @Test
+    public void testWriteTagRecordsAndCompactCtors() throws Exception {
+        final String[] expected = {
+            "15: " + getCheckMessage(MSG_MISSING_TAG, "@incomplete"),
+            "19: " + getCheckMessage(MSG_TAG_FORMAT, "@incomplete", "\\S"),
+            "26: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete", "// violation"),
+            "33: " + getCheckMessage(MSG_MISSING_TAG, "@incomplete"),
+            "37: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete", "// violation"),
+            "44: " + getCheckMessage(MSG_MISSING_TAG, "@incomplete"),
+            "48: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete", "// violation"),
+            "56: " + getCheckMessage(MSG_MISSING_TAG, "@incomplete"),
+            "58: " + getCheckMessage(MSG_MISSING_TAG, "@incomplete"),
+            "62: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete", "// violation"),
+        };
+        verifyWithInlineConfigParser(
+            getNonCompilablePath("InputWriteTagRecordsAndCompactCtors.java"), expected);
     }
 
     @Override
@@ -207,26 +191,29 @@ public class WriteTagCheckTest extends BaseCheckTestSupport {
                           String messageFileName,
                           String... expected)
             throws Exception {
-        stream.flush();
+        getStream().flush();
         final List<File> theFiles = new ArrayList<>();
         Collections.addAll(theFiles, processedFiles);
         final int errs = checker.process(theFiles);
 
         // process each of the lines
-        final ByteArrayInputStream localStream =
-            new ByteArrayInputStream(stream.toByteArray());
-        try (LineNumberReader lnr = new LineNumberReader(
+        try (ByteArrayInputStream localStream =
+                new ByteArrayInputStream(getStream().toByteArray());
+            LineNumberReader lnr = new LineNumberReader(
                 new InputStreamReader(localStream, StandardCharsets.UTF_8))) {
-
             for (int i = 0; i < expected.length; i++) {
                 final String expectedResult = messageFileName + ":" + expected[i];
                 final String actual = lnr.readLine();
-                assertEquals("error message " + i, expectedResult, actual);
+                assertWithMessage("error message " + i)
+                        .that(actual)
+                        .isEqualTo(expectedResult);
             }
 
-            assertTrue("unexpected output: " + lnr.readLine(),
-                    expected.length >= errs);
+            assertWithMessage("unexpected output: " + lnr.readLine())
+                    .that(errs)
+                    .isAtMost(expected.length);
         }
         checker.destroy();
     }
+
 }

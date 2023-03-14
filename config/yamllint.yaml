@@ -1,0 +1,37 @@
+---
+
+yaml-files:
+  - '*.yaml'
+  - '*.yml'
+
+rules:
+  braces: enable
+  brackets:
+    min-spaces-inside: 1
+    max-spaces-inside: 1
+  colons: enable
+  commas: enable
+  comments: enable
+  comments-indentation: enable
+  # We have no use for yaml directives, and we do not have single yaml files
+  # with multiple documents in them, so we do not need doc start or end.
+  document-start: disable
+  document-end: disable
+
+  empty-lines: enable
+  empty-values: enable
+  hyphens: enable
+  indentation: enable
+  key-duplicates: enable
+  # alphabetical keys are not always the best way to organize them
+  key-ordering: disable
+  line-length:
+    max: 100
+  new-line-at-end-of-file: enable
+  new-lines: enable
+  octal-values: enable
+  # we do not need such strict format
+  quoted-strings: disable
+  trailing-spaces: enable
+  truthy:
+    allowed-values: [ 'true', 'false', 'on' ]

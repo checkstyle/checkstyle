@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,38 +15,24 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.annotation;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.annotation.PackageAnnotationCheck.MSG_KEY;
 
-import java.io.File;
-import java.io.IOException;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Assert;
-import org.junit.Test;
-
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-public class PackageAnnotationCheckTest extends BaseCheckTestSupport {
-    @Override
-    protected String getPath(String filename) throws IOException {
-        return super.getPath("checks" + File.separator
-                + "annotation" + File.separator
-                + "packageannotation" + File.separator
-                + filename);
-    }
+public class PackageAnnotationCheckTest extends AbstractModuleTestSupport {
 
     @Override
-    protected String getNonCompilablePath(String filename) throws IOException {
-        return super.getNonCompilablePath("checks" + File.separator
-                + "annotation" + File.separator
-                + "packageannotation" + File.separator
-                + filename);
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/checks/annotation/packageannotation";
     }
 
     /**
@@ -54,38 +40,41 @@ public class PackageAnnotationCheckTest extends BaseCheckTestSupport {
      */
     @Test
     public void testGoodPackageAnnotation() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(PackageAnnotationCheck.class);
 
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getNonCompilablePath("package-info.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("package-info.java"), expected);
     }
 
     @Test
     public void testGetAcceptableTokens() {
         final PackageAnnotationCheck constantNameCheckObj = new PackageAnnotationCheck();
         final int[] actual = constantNameCheckObj.getAcceptableTokens();
-        final int[] expected = {TokenTypes.PACKAGE_DEF };
-        Assert.assertArrayEquals(expected, actual);
+        final int[] expected = {TokenTypes.PACKAGE_DEF};
+        assertWithMessage("Invalid acceptable tokens")
+                .that(actual)
+                .isEqualTo(expected);
     }
 
     @Test
-    public void testAnnotationNotInPackageInfo() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(PackageAnnotationCheck.class);
+    public void testNoPackageAnnotation() throws Exception {
 
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("InputPackageAnnotation.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputPackageAnnotation.java"), expected);
     }
 
     @Test
-    public void testWithoutAnnotation() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(PackageAnnotationCheck.class);
+    public void testBadPackageAnnotation() throws Exception {
 
         final String[] expected = {
-            "0: " + getCheckMessage(MSG_KEY),
+            "10:1: " + getCheckMessage(MSG_KEY),
         };
 
-        verify(checkConfig, getNonCompilablePath("InputPackageAnnotation2.java"), expected);
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputPackageAnnotation2.java"), expected);
     }
+
 }

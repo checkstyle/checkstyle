@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,70 +15,72 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.design;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.design.FinalClassCheck.MSG_KEY;
-import static org.junit.Assert.assertArrayEquals;
 
 import java.io.File;
-import java.io.IOException;
+import java.util.Optional;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.DetailAstImpl;
+import com.puppycrawl.tools.checkstyle.JavaParser;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
 public class FinalClassCheckTest
-    extends BaseCheckTestSupport {
-    @Override
-    protected String getPath(String filename) throws IOException {
-        return super.getPath("checks" + File.separator
-                + "design" + File.separator
-                + "finalclass" + File.separator
-                + filename);
-    }
+    extends AbstractModuleTestSupport {
 
     @Override
-    protected String getNonCompilablePath(String filename) throws IOException {
-        return super.getNonCompilablePath("checks" + File.separator
-                + "design" + File.separator
-                + "finalclass" + File.separator
-                + filename);
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/checks/design/finalclass";
     }
 
     @Test
     public void testGetRequiredTokens() {
         final FinalClassCheck checkObj = new FinalClassCheck();
-        final int[] expected = {TokenTypes.CLASS_DEF, TokenTypes.CTOR_DEF, TokenTypes.PACKAGE_DEF};
-        assertArrayEquals("Default required tokens are invalid",
-            expected, checkObj.getRequiredTokens());
+        final int[] expected = {
+            TokenTypes.ANNOTATION_DEF,
+            TokenTypes.CLASS_DEF,
+            TokenTypes.ENUM_DEF,
+            TokenTypes.INTERFACE_DEF,
+            TokenTypes.RECORD_DEF,
+            TokenTypes.CTOR_DEF,
+            TokenTypes.PACKAGE_DEF,
+            TokenTypes.LITERAL_NEW,
+        };
+        assertWithMessage("Default required tokens are invalid")
+            .that(checkObj.getRequiredTokens())
+            .isEqualTo(expected);
     }
 
     @Test
     public void testFinalClass() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(FinalClassCheck.class);
         final String[] expected = {
-            "7: " + getCheckMessage(MSG_KEY, "InputFinalClass"),
-            "15: " + getCheckMessage(MSG_KEY, "test4"),
-            "113: " + getCheckMessage(MSG_KEY, "someinnerClass"),
+            "11:1: " + getCheckMessage(MSG_KEY, "InputFinalClass"),
+            "19:4: " + getCheckMessage(MSG_KEY, "test4"),
+            "117:5: " + getCheckMessage(MSG_KEY, "someinnerClass"),
+            "124:5: " + getCheckMessage(MSG_KEY, "SomeClass"),
+            "130:5: " + getCheckMessage(MSG_KEY, "SomeClass"),
+            "151:1: " + getCheckMessage(MSG_KEY, "TestNewKeyword"),
+            "184:5: " + getCheckMessage(MSG_KEY, "NestedClass"),
         };
-        verify(checkConfig, getPath("InputFinalClass.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputFinalClass.java"), expected);
     }
 
     @Test
     public void testClassWithPrivateCtorAndNestedExtendingSubclass() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createCheckConfig(FinalClassCheck.class);
         final String[] expected = {
-            "15: " + getCheckMessage(MSG_KEY, "C"),
+            "22:5: " + getCheckMessage(MSG_KEY, "C"),
         };
-        verify(checkConfig,
+        verifyWithInlineConfigParser(
                 getNonCompilablePath(
                         "InputFinalClassClassWithPrivateCtorWithNestedExtendingClass.java"),
                 expected);
@@ -87,37 +89,182 @@ public class FinalClassCheckTest
     @Test
     public void testClassWithPrivateCtorAndNestedExtendingSubclassWithoutPackage()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-                createCheckConfig(FinalClassCheck.class);
         final String[] expected = {
-            "7: " + getCheckMessage(MSG_KEY, "C"),
+            "14:5: " + getCheckMessage(MSG_KEY, "C"),
         };
-        verify(checkConfig,
+        verifyWithInlineConfigParser(
                 getNonCompilablePath(
                 "InputFinalClassClassWithPrivateCtorWithNestedExtendingClassWithoutPackage.java"),
                 expected);
     }
 
     @Test
+    public void testFinalClassConstructorInRecord() throws Exception {
+
+        final String[] expected = {
+            "27:9: " + getCheckMessage(MSG_KEY, "F"),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputFinalClassConstructorInRecord.java"),
+            expected);
+    }
+
+    @Test
     public void testImproperToken() {
         final FinalClassCheck finalClassCheck = new FinalClassCheck();
-        final DetailAST badAst = new DetailAST();
-        final int unsupportedTokenByCheck = TokenTypes.EOF;
+        final DetailAstImpl badAst = new DetailAstImpl();
+        final int unsupportedTokenByCheck = TokenTypes.COMPILATION_UNIT;
         badAst.setType(unsupportedTokenByCheck);
         try {
             finalClassCheck.visitToken(badAst);
-            Assert.fail("IllegalStateException is expected");
+            assertWithMessage("IllegalStateException is expected").fail();
         }
         catch (IllegalStateException ex) {
-            // it is OK
+            assertWithMessage("Invalid exception message")
+                .that(ex.getMessage())
+                .isEqualTo(badAst.toString());
         }
     }
 
     @Test
     public void testGetAcceptableTokens() {
         final FinalClassCheck obj = new FinalClassCheck();
-        final int[] expected = {TokenTypes.CLASS_DEF, TokenTypes.CTOR_DEF, TokenTypes.PACKAGE_DEF};
-        assertArrayEquals("Default acceptable tokens are invalid",
-            expected, obj.getAcceptableTokens());
+        final int[] expected = {
+            TokenTypes.ANNOTATION_DEF,
+            TokenTypes.CLASS_DEF,
+            TokenTypes.ENUM_DEF,
+            TokenTypes.INTERFACE_DEF,
+            TokenTypes.RECORD_DEF,
+            TokenTypes.CTOR_DEF,
+            TokenTypes.PACKAGE_DEF,
+            TokenTypes.LITERAL_NEW,
+        };
+        assertWithMessage("Default acceptable tokens are invalid")
+            .that(obj.getAcceptableTokens())
+            .isEqualTo(expected);
     }
+
+    @Test
+    public void testFinalClassInnerAndNestedClasses() throws Exception {
+        final String[] expected = {
+            "19:5: " + getCheckMessage(MSG_KEY, "SameName"),
+            "45:9: " + getCheckMessage(MSG_KEY, "SameName"),
+            "69:13: " + getCheckMessage(MSG_KEY, "B"),
+            "84:9: " + getCheckMessage(MSG_KEY, "c"),
+        };
+        verifyWithInlineConfigParser(getPath("InputFinalClassInnerAndNestedClass.java"), expected);
+    }
+
+    @Test
+    public void testFinalClassStaticNestedClasses() throws Exception {
+
+        final String[] expected = {
+            "14:17: " + getCheckMessage(MSG_KEY, "C"),
+            "32:9: " + getCheckMessage(MSG_KEY, "B"),
+            "43:9: " + getCheckMessage(MSG_KEY, "C"),
+            "60:13: " + getCheckMessage(MSG_KEY, "Q"),
+            "76:9: " + getCheckMessage(MSG_KEY, "F"),
+            "83:9: " + getCheckMessage(MSG_KEY, "c"),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputFinalClassNestedStaticClassInsideInnerClass.java"),
+                expected);
+    }
+
+    @Test
+    public void testFinalClassEnum() throws Exception {
+        final String[] expected = {
+            "35:5: " + getCheckMessage(MSG_KEY, "DerivedClass"),
+        };
+        verifyWithInlineConfigParser(getPath("InputFinalClassEnum.java"), expected);
+    }
+
+    @Test
+    public void testFinalClassAnnotation() throws Exception {
+        final String[] expected = {
+            "15:5: " + getCheckMessage(MSG_KEY, "DerivedClass"),
+        };
+        verifyWithInlineConfigParser(getPath("InputFinalClassAnnotation.java"), expected);
+    }
+
+    @Test
+    public void testFinalClassInterface() throws Exception {
+        final String[] expected = {
+            "15:5: " + getCheckMessage(MSG_KEY, "DerivedClass"),
+        };
+        verifyWithInlineConfigParser(getPath("InputFinalClassInterface.java"), expected);
+    }
+
+    @Test
+    public void testFinalClassAnonymousInnerClass() throws Exception {
+        final String[] expected = {
+            "11:9: " + getCheckMessage(MSG_KEY, "b"),
+            "27:9: " + getCheckMessage(MSG_KEY, "m"),
+            "40:9: " + getCheckMessage(MSG_KEY, "q"),
+            "52:13: " + getCheckMessage(MSG_KEY, "b"),
+            "67:9: " + getCheckMessage(MSG_KEY, "g"),
+            "71:9: " + getCheckMessage(MSG_KEY, "y"),
+            "84:9: " + getCheckMessage(MSG_KEY, "n"),
+            "91:9: " + getCheckMessage(MSG_KEY, "n"),
+        };
+        verifyWithInlineConfigParser(getPath("InputFinalClassAnonymousInnerClass.java"), expected);
+    }
+
+    @Test
+    public void testFinalClassNestedInInterface() throws Exception {
+        final String[] expected = {
+            "24:5: " + getCheckMessage(MSG_KEY, "b"),
+            "28:13: " + getCheckMessage(MSG_KEY, "m"),
+            "50:5: " + getCheckMessage(MSG_KEY, "c"),
+        };
+        verifyWithInlineConfigParser(
+            getPath("InputFinalClassNestedInInterfaceWithAnonInnerClass.java"), expected);
+    }
+
+    @Test
+    public void testFinalClassNestedInEnum() throws Exception {
+        final String[] expected = {
+            "13:9: " + getCheckMessage(MSG_KEY, "j"),
+            "27:9: " + getCheckMessage(MSG_KEY, "n"),
+        };
+        verifyWithInlineConfigParser(getPath("InputFinalClassNestedInEnumWithAnonInnerClass.java"),
+                                     expected);
+    }
+
+    @Test
+    public void testFinalClassNestedInRecord() throws Exception {
+        final String[] expected = {
+            "13:9: " + getCheckMessage(MSG_KEY, "c"),
+            "31:13: " + getCheckMessage(MSG_KEY, "j"),
+        };
+        verifyWithInlineConfigParser(getNonCompilablePath("InputFinalClassNestedInRecord.java"),
+                                     expected);
+    }
+
+    /**
+     * We cannot reproduce situation when visitToken is called and leaveToken is not.
+     * So, we have to use reflection to be sure that even in such situation
+     * state of the field will be cleared.
+     *
+     * @throws Exception when code tested throws exception
+     */
+    @Test
+    public void testClearState() throws Exception {
+        final FinalClassCheck check = new FinalClassCheck();
+        final DetailAST root = JavaParser.parseFile(new File(getPath("InputFinalClass.java")),
+                JavaParser.Options.WITHOUT_COMMENTS);
+        final Optional<DetailAST> packageDef = TestUtil.findTokenInAstByPredicate(root,
+            ast -> ast.getType() == TokenTypes.PACKAGE_DEF);
+
+        assertWithMessage("Ast should contain PACKAGE_DEF")
+                .that(packageDef.isPresent())
+                .isTrue();
+        assertWithMessage("State is not cleared on beginTree")
+                .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check, packageDef.get(),
+                        "packageName", packageName -> ((String) packageName).isEmpty()))
+                .isTrue();
+    }
+
 }

@@ -1,8 +1,16 @@
+/*
+SeparatorWrap
+option = invalid_option
+tokens = (default)DOT, COMMA
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.whitespace.separatorwrap;
 
-public class InputSeparatorWrapForInvalidOption<T extends FooForInvalidOption
+public class InputSeparatorWrapForInvalidOption<T extends FooForInvalidOption // ok
         & BarForInvalidOption> {
-    public void goodCase() throws FooExceptionForInvalidOption, BarExceptionForInvalidOption
+    public void goodCase() throws FooException4IO, BarException4IO
     {
         int i = 0;
         String s = "ffffooooString";
@@ -11,12 +19,12 @@ public class InputSeparatorWrapForInvalidOption<T extends FooForInvalidOption
         s.isEmpty();
         try {
             foo(i, s);
-        } catch (FooExceptionForInvalidOption |
-                BarExceptionForInvalidOption e) {}
+        } catch (FooException4IO |
+                BarException4IO e) {}
         foo(i,
                 s); //good wrapping
     }
-    public static void foo(int i, String s) throws FooExceptionForInvalidOption, BarExceptionForInvalidOption
+    public static void foo(int i, String s) throws FooException4IO, BarException4IO
     {
 
     }
@@ -25,21 +33,21 @@ public class InputSeparatorWrapForInvalidOption<T extends FooForInvalidOption
 class badCaseForInvalidOption<T extends FooForInvalidOption &  BarForInvalidOption> {
 
 
-    public void goodCaseForInvalidOption(int... aFoo) throws FooExceptionForInvalidOption, BarExceptionForInvalidOption
+    public void goodCaseForInvalidOption(int... aFoo) throws FooException4IO, BarException4IO
     {
         String s = "ffffooooString";
         s.
                 isEmpty(); //bad wrapping
         try {
             foo(1, s);
-        } catch (FooExceptionForInvalidOption
-                | BarExceptionForInvalidOption e) {}
+        } catch (FooException4IO
+                | BarException4IO e) {}
 
         foo(1
                 ,s);  //bad wrapping
         int[] i;
     }
-    public static String foo(int i, String s) throws FooExceptionForInvalidOption, BarExceptionForInvalidOption
+    public static String foo(int i, String s) throws FooException4IO, BarException4IO
     {
         return new StringBuilder("")
                 .append("", 0, 1)
@@ -56,10 +64,10 @@ interface BarForInvalidOption {
 
 }
 
-class FooExceptionForInvalidOption extends Exception {
+class FooException4IO extends Exception {
 
 }
 
-class BarExceptionForInvalidOption extends Exception {
+class BarException4IO extends Exception {
 
 }

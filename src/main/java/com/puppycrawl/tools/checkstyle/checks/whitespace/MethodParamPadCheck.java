@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,16 +15,18 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
 import java.util.Locale;
 
+import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CodePointUtil;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * <p>
@@ -34,36 +36,117 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * That is, if the identifier and left parenthesis are on the same line,
  * checks whether a space is required immediately after the identifier or
  * such a space is forbidden.
- * If they are not on the same line, reports an error, unless configured to
- * allow line breaks.
+ * If they are not on the same line, reports a violation, unless configured to
+ * allow line breaks. To allow linebreaks after the identifier, set property
+ * {@code allowLineBreaks} to {@code true}.
  * </p>
- * <p> By default the check will check the following tokens:
- *  {@link TokenTypes#CTOR_DEF CTOR_DEF},
- *  {@link TokenTypes#LITERAL_NEW LITERAL_NEW},
- *  {@link TokenTypes#METHOD_CALL METHOD_CALL},
- *  {@link TokenTypes#METHOD_DEF METHOD_DEF},
- *  {@link TokenTypes#SUPER_CTOR_CALL SUPER_CTOR_CALL}.
- * </p>
+ * <ul>
+ * <li>
+ * Property {@code allowLineBreaks} - Allow a line break between the identifier
+ * and left parenthesis.
+ * Type is {@code boolean}.
+ * Default value is {@code false}.
+ * </li>
+ * <li>
+ * Property {@code option} - Specify policy on how to pad method parameter.
+ * Type is {@code com.puppycrawl.tools.checkstyle.checks.whitespace.PadOption}.
+ * Default value is {@code nospace}.
+ * </li>
+ * <li>
+ * Property {@code tokens} - tokens to check
+ * Type is {@code java.lang.String[]}.
+ * Validation type is {@code tokenSet}.
+ * Default value is:
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
+ * CTOR_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_NEW">
+ * LITERAL_NEW</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_CALL">
+ * METHOD_CALL</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+ * METHOD_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#SUPER_CTOR_CALL">
+ * SUPER_CTOR_CALL</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_CONSTANT_DEF">
+ * ENUM_CONSTANT_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
+ * RECORD_DEF</a>.
+ * </li>
+ * </ul>
  * <p>
- * An example of how to configure the check is:
+ * To configure the check:
  * </p>
  * <pre>
  * &lt;module name="MethodParamPad"/&gt;
  * </pre>
- * <p> An example of how to configure the check to require a space
+ * <pre>
+ * public class Test {
+ *  public Test() { // OK
+ *     super(); // OK
+ *   }
+ *
+ *   public Test (int aParam) { // Violation - '(' is preceded with whitespace
+ *     super (); // Violation - '(' is preceded with whitespace
+ *   }
+ *
+ *   public void method() {} // OK
+ *
+ *   public void methodWithVeryLongName
+ *     () {} // Violation - '(' is preceded with whitespace
+ *
+ * }
+ * </pre>
+ * <p>
+ * To configure the check to require a space
  * after the identifier of a method definition, except if the left
- * parenthesis occurs on a new line, is:
+ * parenthesis occurs on a new line:
  * </p>
  * <pre>
  * &lt;module name="MethodParamPad"&gt;
- *     &lt;property name="tokens" value="METHOD_DEF"/&gt;
- *     &lt;property name="option" value="space"/&gt;
- *     &lt;property name="allowLineBreaks" value="true"/&gt;
+ *   &lt;property name="tokens" value="METHOD_DEF"/&gt;
+ *   &lt;property name="option" value="space"/&gt;
+ *   &lt;property name="allowLineBreaks" value="true"/&gt;
  * &lt;/module&gt;
  * </pre>
- * @author Rick Giles
+ * <pre>
+ * public class Test {
+ *   public Test() { // OK
+ *     super(); // OK
+ *   }
+ *
+ *   public Test (int aParam) { // OK
+ *     super (); // OK
+ *   }
+ *
+ *   public void method() {} // Violation - '(' is NOT preceded with whitespace
+ *
+ *   public void methodWithVeryLongName
+ *     () {} // OK, because allowLineBreaks is true
+ *
+ * }
+ * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code line.previous}
+ * </li>
+ * <li>
+ * {@code ws.notPreceded}
+ * </li>
+ * <li>
+ * {@code ws.preceded}
+ * </li>
+ * </ul>
+ *
+ * @since 3.4
  */
 
+@StatelessCheck
 public class MethodParamPadCheck
     extends AbstractCheck {
 
@@ -86,12 +169,11 @@ public class MethodParamPadCheck
     public static final String MSG_WS_NOT_PRECEDED = "ws.notPreceded";
 
     /**
-     * Whether whitespace is allowed if the method identifier is at a
-     * linebreak.
+     * Allow a line break between the identifier and left parenthesis.
      */
     private boolean allowLineBreaks;
 
-    /** The policy to enforce. */
+    /** Specify policy on how to pad method parameter. */
     private PadOption option = PadOption.NOSPACE;
 
     @Override
@@ -108,12 +190,13 @@ public class MethodParamPadCheck
             TokenTypes.METHOD_DEF,
             TokenTypes.SUPER_CTOR_CALL,
             TokenTypes.ENUM_CONSTANT_DEF,
+            TokenTypes.RECORD_DEF,
         };
     }
 
     @Override
     public int[] getRequiredTokens() {
-        return CommonUtils.EMPTY_INT_ARRAY;
+        return CommonUtil.EMPTY_INT_ARRAY;
     }
 
     @Override
@@ -128,8 +211,8 @@ public class MethodParamPadCheck
         }
 
         if (parenAST != null) {
-            final String line = getLines()[parenAST.getLineNo() - 1];
-            if (CommonUtils.hasWhitespaceBefore(parenAST.getColumnNo(), line)) {
+            final int[] line = getLineCodePoints(parenAST.getLineNo() - 1);
+            if (CodePointUtil.hasWhitespaceBefore(parenAST.getColumnNo(), line)) {
                 if (!allowLineBreaks) {
                     log(parenAST, MSG_LINE_PREVIOUS, parenAST.getText());
                 }
@@ -137,11 +220,11 @@ public class MethodParamPadCheck
             else {
                 final int before = parenAST.getColumnNo() - 1;
                 if (option == PadOption.NOSPACE
-                    && Character.isWhitespace(line.charAt(before))) {
+                    && CommonUtil.isCodePointWhitespace(line, before)) {
                     log(parenAST, MSG_WS_PRECEDED, parenAST.getText());
                 }
                 else if (option == PadOption.SPACE
-                         && !Character.isWhitespace(line.charAt(before))) {
+                         && !CommonUtil.isCodePointWhitespace(line, before)) {
                     log(parenAST, MSG_WS_NOT_PRECEDED, parenAST.getText());
                 }
             }
@@ -149,7 +232,8 @@ public class MethodParamPadCheck
     }
 
     /**
-     * Control whether whitespace is flagged at line breaks.
+     * Setter to allow a line break between the identifier and left parenthesis.
+     *
      * @param allowLineBreaks whether whitespace should be
      *     flagged at line breaks.
      */
@@ -158,16 +242,13 @@ public class MethodParamPadCheck
     }
 
     /**
-     * Set the option to enforce.
+     * Setter to specify policy on how to pad method parameter.
+     *
      * @param optionStr string to decode option from
      * @throws IllegalArgumentException if unable to decode
      */
     public void setOption(String optionStr) {
-        try {
-            option = PadOption.valueOf(optionStr.trim().toUpperCase(Locale.ENGLISH));
-        }
-        catch (IllegalArgumentException iae) {
-            throw new IllegalArgumentException("unable to parse " + optionStr, iae);
-        }
+        option = PadOption.valueOf(optionStr.trim().toUpperCase(Locale.ENGLISH));
     }
+
 }

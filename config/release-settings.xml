@@ -1,0 +1,24 @@
+<settings>
+  <servers>
+    <server>
+      <id>sonatype-nexus-staging</id>
+      <username>SONATYPE_USER</username>
+      <password>SONATYPE_PWD</password>
+    </server>
+  </servers>
+
+  <profiles>
+    <profile>
+      <!-- "mvn release:prepare .... -Pgpg"
+           and it is possible to skip " -Dgpg.passphrase=...." at "-Darguments"
+           Use "gpg \-\-list-keys", "pub   1024D/C6XXXX57A 2010-01-13"
+                to get "gpg.keyname" in example it is  value "C6XXXX57A"
+      -->
+      <id>gpg</id>
+      <properties>
+        <gpg.passphrase>GPG_PASSPHRASE</gpg.passphrase>
+        <gpg.keyname>GPG_KEYNAME</gpg.keyname>
+      </properties>
+    </profile>
+  </profiles>
+</settings>

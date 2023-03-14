@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,35 +15,69 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.annotation;
 
+import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.AnnotationUtility;
+import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
+import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 
 /**
- * This check makes sure that all package annotations are in the
- * package-info.java file.
- *
  * <p>
- * According to the Java Language Specification.
+ * Checks that all package annotations are in the package-info.java file.
  * </p>
- *
  * <p>
- * The JLS does not enforce the placement of package annotations.
- * This placement may vary based on implementation. The JLS
- * does highly recommend that all package annotations are
- * placed in the package-info.java file.
- *
- * See <a
- * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-7.html#jls-7.4.1">
- * Java Language Specification, section 7.4.1</a>.
+ * For Java SE8 and above, placement of package annotations in the package-info.java
+ * file is enforced by the compiler and this check is not necessary.
  * </p>
- * @author Travis Schneeberger
+ * <p>
+ * For Java SE7 and below, the Java Language Specification highly recommends
+ * but doesn't require that annotations are placed in the package-info.java file,
+ * and this check can help to enforce that placement.
+ * </p>
+ * <p>
+ * See <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-7.html#jls-7.4.1">
+ * Java Language Specification, &#167;7.4.1</a> for more info.
+ * </p>
+ * <p>
+ * To configure the check:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;PackageAnnotation&quot;/&gt;
+ * </pre>
+ * <p>Example of validating MyClass.java:</p>
+ * <pre>
+ * &#64;Deprecated
+ * package com.example.annotations.packageannotation; //violation
+ * </pre>
+ * <p>Example of fixing violation in MyClass.java:</p>
+ * <pre>
+ * package com.example.annotations.packageannotation; //ok
+ * </pre>
+ * <p>Example of validating package-info.java:</p>
+ * <pre>
+ * &#64;Deprecated
+ * package com.example.annotations.packageannotation; //ok
+ * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code annotation.package.location}
+ * </li>
+ * </ul>
+ *
+ * @since 5.0
  */
+@StatelessCheck
 public class PackageAnnotationCheck extends AbstractCheck {
 
     /**
@@ -72,12 +106,11 @@ public class PackageAnnotationCheck extends AbstractCheck {
     @Override
     public void visitToken(final DetailAST ast) {
         final boolean containsAnnotation =
-            AnnotationUtility.containsAnnotation(ast);
-        final boolean inPackageInfo =
-            getFileContents().inPackageInfo();
+            AnnotationUtil.containsAnnotation(ast);
 
-        if (containsAnnotation && !inPackageInfo) {
-            log(ast.getLine(), MSG_KEY);
+        if (containsAnnotation && !CheckUtil.isPackageInfo(getFilePath())) {
+            log(ast, MSG_KEY);
         }
     }
+
 }

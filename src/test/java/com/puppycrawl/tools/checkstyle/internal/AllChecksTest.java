@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,14 +15,17 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.internal;
+
+import static com.google.common.truth.Truth.assertWithMessage;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.BitSet;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -35,36 +38,47 @@ import java.util.TreeMap;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.Checker;
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.Definitions;
+import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
+import com.puppycrawl.tools.checkstyle.GlobalStatefulCheck;
 import com.puppycrawl.tools.checkstyle.ModuleFactory;
+import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheck;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
+import com.puppycrawl.tools.checkstyle.internal.utils.ConfigurationUtil;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
+import com.puppycrawl.tools.checkstyle.internal.utils.XdocUtil;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.ModuleReflectionUtil;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
-public class AllChecksTest extends BaseCheckTestSupport {
+public class AllChecksTest extends AbstractModuleTestSupport {
+
     private static final Locale[] ALL_LOCALES = {
-        Locale.GERMAN,
+        Locale.CHINESE,
+        Locale.ENGLISH,
         new Locale("es"),
         new Locale("fi"),
         Locale.FRENCH,
+        Locale.GERMAN,
         Locale.JAPANESE,
         new Locale("pt"),
+        new Locale("ru"),
         new Locale("tr"),
-        Locale.CHINESE,
-        Locale.ENGLISH,
     };
 
     private static final Map<String, Set<String>> CHECKSTYLE_TOKENS_IN_CONFIG_TO_IGNORE =
             new HashMap<>();
     private static final Map<String, Set<String>> GOOGLE_TOKENS_IN_CONFIG_TO_IGNORE =
             new HashMap<>();
+    private static final Set<String> INTERNAL_MODULES;
 
     static {
         // checkstyle
@@ -115,30 +129,36 @@ public class AllChecksTest extends BaseCheckTestSupport {
                         "LITERAL_BOOLEAN", "CLASS_DEF", "COLON", "LITERAL_TRY", "ENUM_DEF", "GT",
                         "NUM_INT", "ANNOTATION_DEF", "METHOD_REF", "TYPE_ARGUMENTS",
                         "DOUBLE_COLON", "IDENT", "MOD_ASSIGN", "LITERAL_FOR", "SUPER_CTOR_CALL",
-                        "STRING_LITERAL", "ARRAY_DECLARATOR", "LITERAL_CASE").collect(
-                        Collectors.toSet()));
+                        "STRING_LITERAL", "ARRAY_DECLARATOR", "LITERAL_CASE",
+                        "PATTERN_VARIABLE_DEF", "RECORD_DEF", "LITERAL_RECORD",
+                        "RECORD_COMPONENTS", "RECORD_COMPONENT_DEF", "COMPACT_CTOR_DEF",
+                        "TEXT_BLOCK_LITERAL_BEGIN", "TEXT_BLOCK_CONTENT", "TEXT_BLOCK_LITERAL_END",
+                        "LITERAL_YIELD", "SWITCH_RULE")
+                        .collect(Collectors.toSet()));
         // we have no need to block specific token text
         CHECKSTYLE_TOKENS_IN_CONFIG_TO_IGNORE.put("IllegalTokenText",
                 Stream.of("NUM_DOUBLE", "NUM_FLOAT", "NUM_INT", "NUM_LONG", "IDENT",
-                    "COMMENT_CONTENT", "STRING_LITERAL", "CHAR_LITERAL")
+                    "COMMENT_CONTENT", "STRING_LITERAL", "CHAR_LITERAL", "TEXT_BLOCK_CONTENT")
                     .collect(Collectors.toSet()));
         // we do not use this check as it is deprecated
         CHECKSTYLE_TOKENS_IN_CONFIG_TO_IGNORE.put("WriteTag",
-                Stream.of("ENUM_CONSTANT_DEF", "METHOD_DEF", "CTOR_DEF", "ANNOTATION_FIELD_DEF")
-                        .collect(Collectors.toSet()));
+                Stream.of("ENUM_CONSTANT_DEF", "METHOD_DEF", "CTOR_DEF",
+                    "ANNOTATION_FIELD_DEF", "RECORD_DEF", "COMPACT_CTOR_DEF")
+                    .collect(Collectors.toSet()));
         // state of the configuration when test was made until reason found in
         // https://github.com/checkstyle/checkstyle/issues/3730
         CHECKSTYLE_TOKENS_IN_CONFIG_TO_IGNORE.put("AnnotationLocation",
-                Stream.of("TYPECAST", "DOT", "TYPE_ARGUMENT", "LITERAL_NEW", "LITERAL_THROWS",
-                        "IMPLEMENTS_CLAUSE", "CLASS_DEF", "CTOR_DEF", "ENUM_DEF", "INTERFACE_DEF",
-                        "METHOD_DEF", "VARIABLE_DEF").collect(Collectors.toSet()));
+                Stream.of("CLASS_DEF", "CTOR_DEF", "ENUM_DEF", "INTERFACE_DEF",
+                        "METHOD_DEF", "VARIABLE_DEF",
+                        "RECORD_DEF", "COMPACT_CTOR_DEF")
+                        .collect(Collectors.toSet()));
         CHECKSTYLE_TOKENS_IN_CONFIG_TO_IGNORE.put("NoLineWrap", Stream.of(
-                // method declaration could be long due to "parameters/exceptions", it is ok to
-                // be not strict there
-                "METHOD_DEF", "CTOR_DEF",
+                // method/constructor declaration could be long due to "parameters/exceptions", it
+                // is ok to be not strict there
+                "METHOD_DEF", "CTOR_DEF", "COMPACT_CTOR_DEF",
                 // type declaration could be long due to "extends/implements", it is ok to
                 // be not strict there
-                "CLASS_DEF", "ENUM_DEF", "INTERFACE_DEF")
+                "CLASS_DEF", "ENUM_DEF", "INTERFACE_DEF", "RECORD_DEF")
                 .collect(Collectors.toSet()));
         CHECKSTYLE_TOKENS_IN_CONFIG_TO_IGNORE.put("NoWhitespaceAfter", Stream.of(
                 // whitespace after is preferred
@@ -157,18 +177,15 @@ public class AllChecksTest extends BaseCheckTestSupport {
         CHECKSTYLE_TOKENS_IN_CONFIG_TO_IGNORE.put("WhitespaceAround", Stream.of(
                 // we prefer no spaces on one side or both for these tokens
                 "ARRAY_INIT",
+                "ELLIPSIS",
                 // these are covered by GenericWhitespaceCheck
                 "WILDCARD_TYPE", "GENERIC_END", "GENERIC_START").collect(Collectors.toSet()));
-        CHECKSTYLE_TOKENS_IN_CONFIG_TO_IGNORE.put("RightCurly", Stream.of(
-                // Until https://github.com/checkstyle/checkstyle/issues/4177
-                "LAMBDA").collect(Collectors.toSet()));
 
         // google
         GOOGLE_TOKENS_IN_CONFIG_TO_IGNORE.put("AnnotationLocation", Stream.of(
                 // state of the configuration when test was made until reason found in
                 // https://github.com/checkstyle/checkstyle/issues/3730
-                "TYPECAST", "DOT", "TYPE_ARGUMENT", "ANNOTATION_DEF", "LITERAL_NEW",
-                "LITERAL_THROWS", "PARAMETER_DEF", "IMPLEMENTS_CLAUSE", "ANNOTATION_FIELD_DEF")
+                "ANNOTATION_DEF", "ANNOTATION_FIELD_DEF", "ENUM_CONSTANT_DEF", "PACKAGE_DEF")
                 .collect(Collectors.toSet()));
         GOOGLE_TOKENS_IN_CONFIG_TO_IGNORE.put("AbbreviationAsWordInName", Stream.of(
                 // enum values should be uppercase
@@ -176,12 +193,19 @@ public class AllChecksTest extends BaseCheckTestSupport {
         GOOGLE_TOKENS_IN_CONFIG_TO_IGNORE.put("NoLineWrap", Stream.of(
                 // method declaration could be long due to "parameters/exceptions", it is ok to
                 // be not strict there
-                "METHOD_DEF", "CTOR_DEF", "CLASS_DEF", "ENUM_DEF", "INTERFACE_DEF")
+                "METHOD_DEF", "CTOR_DEF", "CLASS_DEF", "ENUM_DEF", "INTERFACE_DEF", "RECORD_DEF",
+                "COMPACT_CTOR_DEF")
                 .collect(Collectors.toSet()));
         GOOGLE_TOKENS_IN_CONFIG_TO_IGNORE.put("SeparatorWrap", Stream.of(
-                // state of configuration until
-                // https://github.com/checkstyle/checkstyle/issues/3752
-                "RBRACK", "AT", "ELLIPSIS", "SEMI", "ARRAY_DECLARATOR",
+                // location could be any to allow writing expressions for indexes evaluation
+                // on new line, see https://github.com/checkstyle/checkstyle/issues/3752
+                "RBRACK",
+                // for some targets annotations can be used without wrapping, as described
+                // in https://google.github.io/styleguide/javaguide.html#s4.8.5-annotations
+                "AT",
+                // location could be any to allow using for line separation in enum values,
+                // see https://github.com/checkstyle/checkstyle/issues/3752
+                "SEMI",
                 // needs context to decide what type of parentheses should be separated or not
                 // which this check does not provide
                 "LPAREN", "RPAREN").collect(Collectors.toSet()));
@@ -202,13 +226,15 @@ public class AllChecksTest extends BaseCheckTestSupport {
         GOOGLE_TOKENS_IN_CONFIG_TO_IGNORE.put("WhitespaceAround", Stream.of(
                 //  allowed via '4.8.3 Arrays'
                 "ARRAY_INIT",
+                //  '...' is almost same as '[]' by meaning
+                "ELLIPSIS",
                 // google prefers no spaces on one side or both for these tokens
                 "GENERIC_START", "GENERIC_END", "WILDCARD_TYPE")
                 .collect(Collectors.toSet()));
         GOOGLE_TOKENS_IN_CONFIG_TO_IGNORE.put("IllegalTokenText", Stream.of(
                 // all other java tokens and text are allowed
                 "NUM_DOUBLE", "NUM_FLOAT", "NUM_INT", "NUM_LONG", "IDENT",
-                "COMMENT_CONTENT", "STRING_LITERAL", "CHAR_LITERAL")
+                "COMMENT_CONTENT", "STRING_LITERAL", "CHAR_LITERAL", "TEXT_BLOCK_CONTENT")
                 .collect(Collectors.toSet()));
         GOOGLE_TOKENS_IN_CONFIG_TO_IGNORE.put("OperatorWrap", Stream.of(
                 // specifically allowed via '4.5.1 Where to break' because the following are
@@ -216,44 +242,46 @@ public class AllChecksTest extends BaseCheckTestSupport {
                 "DIV_ASSIGN", "BOR_ASSIGN", "SL_ASSIGN", "ASSIGN", "BSR_ASSIGN", "BAND_ASSIGN",
                 "PLUS_ASSIGN", "MINUS_ASSIGN", "SR_ASSIGN", "STAR_ASSIGN", "BXOR_ASSIGN",
                 "MOD_ASSIGN",
-                // state of the configuration when test was made until
+                // COLON token ignored in check config, explained in
                 // https://github.com/checkstyle/checkstyle/issues/4122
-                "COLON", "TYPE_EXTENSION_AND").collect(Collectors.toSet()));
-        GOOGLE_TOKENS_IN_CONFIG_TO_IGNORE.put("RightCurly", Stream.of(
-                // Until https://github.com/checkstyle/checkstyle/issues/4178
-                "LAMBDA").collect(Collectors.toSet()));
+                "COLON").collect(Collectors.toSet()));
+        GOOGLE_TOKENS_IN_CONFIG_TO_IGNORE.put("NoWhitespaceBefore", Stream.of(
+                // google uses GenericWhitespace for this behavior
+                "GENERIC_START", "GENERIC_END",
+                // whitespace is necessary between a type annotation and ellipsis
+                // according '4.6.2 Horizontal whitespace point 9'
+                "ELLIPSIS").collect(Collectors.toSet()));
+        INTERNAL_MODULES = Definitions.INTERNAL_MODULES.stream()
+                .map(moduleName -> {
+                    final String[] packageTokens = moduleName.split("\\.");
+                    return packageTokens[packageTokens.length - 1];
+                })
+                .collect(Collectors.toSet());
+    }
+
+    @Override
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/internal/allchecks";
     }
 
     @Test
-    public void testAllChecksWithDefaultConfiguration() throws Exception {
-        final String inputFilePath = getPath("InputDefaultConfig.java");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+    public void testAllModulesWithDefaultConfiguration() throws Exception {
+        final String inputFilePath = getPath("InputAllChecksDefaultConfig.java");
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        for (Class<?> check : CheckUtil.getCheckstyleChecks()) {
-            final DefaultConfiguration checkConfig = createCheckConfig(check);
-            final Checker checker;
-            if (AbstractCheck.class.isAssignableFrom(check)) {
-                // Checks which have Check as a parent.
-                if (check.equals(ImportControlCheck.class)) {
-                    // ImportControlCheck must have the import control configuration file to avoid
-                    // violation.
-                    checkConfig.addAttribute("file", getPath("import-control_complete.xml"));
-                }
-                checker = createChecker(checkConfig);
+        for (Class<?> module : CheckUtil.getCheckstyleModules()) {
+            if (ModuleReflectionUtil.isRootModule(module)) {
+                continue;
             }
-            else {
-                // Checks which have TreeWalker as a parent.
-                BaseCheckTestSupport testSupport = new BaseCheckTestSupport() {
-                    @Override
-                    protected DefaultConfiguration createCheckerConfig(Configuration config) {
-                        final DefaultConfiguration dc = new DefaultConfiguration("root");
-                        dc.addChild(checkConfig);
-                        return dc;
-                    }
-                };
-                checker = testSupport.createChecker(checkConfig);
+
+            final DefaultConfiguration moduleConfig = createModuleConfig(module);
+            if (module.equals(ImportControlCheck.class)) {
+                // ImportControlCheck must have the import control configuration file to avoid
+                // violation.
+                moduleConfig.addProperty("file", getPath(
+                        "InputAllChecksImportControl.xml"));
             }
-            verify(checker, inputFilePath, expected);
+            verify(moduleConfig, inputFilePath, expected);
         }
     }
 
@@ -266,12 +294,10 @@ public class AllChecksTest extends BaseCheckTestSupport {
                 final int[] defaultTokens = testedCheck.getDefaultTokens();
                 final int[] acceptableTokens = testedCheck.getAcceptableTokens();
 
-                if (!isSubset(defaultTokens, acceptableTokens)) {
-                    final String errorMessage = String.format(Locale.ROOT,
-                            "%s's default tokens must be a subset"
-                            + " of acceptable tokens.", check.getName());
-                    Assert.fail(errorMessage);
-                }
+                assertWithMessage("%s's default tokens must be a subset of acceptable tokens.",
+                            check.getName())
+                        .that(isSubset(defaultTokens, acceptableTokens))
+                        .isTrue();
             }
         }
     }
@@ -285,12 +311,10 @@ public class AllChecksTest extends BaseCheckTestSupport {
                 final int[] requiredTokens = testedCheck.getRequiredTokens();
                 final int[] acceptableTokens = testedCheck.getAcceptableTokens();
 
-                if (!isSubset(requiredTokens, acceptableTokens)) {
-                    final String errorMessage = String.format(Locale.ROOT,
-                            "%s's required tokens must be a subset"
-                            + " of acceptable tokens.", check.getName());
-                    Assert.fail(errorMessage);
-                }
+                assertWithMessage("%s's required tokens must be a subset of acceptable tokens.",
+                            check.getName())
+                        .that(isSubset(requiredTokens, acceptableTokens))
+                        .isTrue();
             }
         }
     }
@@ -304,13 +328,30 @@ public class AllChecksTest extends BaseCheckTestSupport {
                 final int[] defaultTokens = testedCheck.getDefaultTokens();
                 final int[] requiredTokens = testedCheck.getRequiredTokens();
 
-                if (!isSubset(requiredTokens, defaultTokens)) {
-                    final String errorMessage = String.format(Locale.ROOT,
-                            "%s's required tokens must be a subset"
-                            + " of default tokens.", check.getName());
-                    Assert.fail(errorMessage);
-                }
+                assertWithMessage("%s's required tokens must be a subset of default tokens.",
+                            check.getName())
+                        .that(isSubset(requiredTokens, defaultTokens))
+                        .isTrue();
             }
+        }
+    }
+
+    @Test
+    public void testAllModulesHaveMultiThreadAnnotation() throws Exception {
+        for (Class<?> module : CheckUtil.getCheckstyleModules()) {
+            if (ModuleReflectionUtil.isRootModule(module)
+                    || ModuleReflectionUtil.isFilterModule(module)
+                    || ModuleReflectionUtil.isFileFilterModule(module)
+                    || ModuleReflectionUtil.isTreeWalkerFilterModule(module)) {
+                continue;
+            }
+
+            assertWithMessage("module '" + module.getSimpleName()
+                    + "' must contain a multi-thread annotation")
+                            .that(module.isAnnotationPresent(GlobalStatefulCheck.class)
+                                    || module.isAnnotationPresent(FileStatefulCheck.class)
+                                    || module.isAnnotationPresent(StatelessCheck.class))
+                            .isTrue();
         }
     }
 
@@ -319,21 +360,22 @@ public class AllChecksTest extends BaseCheckTestSupport {
         final Set<String> modulesReferencedInConfig = CheckUtil.getConfigCheckStyleModules();
         final Set<String> moduleNames = CheckUtil.getSimpleNames(CheckUtil.getCheckstyleModules());
 
+        moduleNames.removeAll(INTERNAL_MODULES);
         moduleNames.stream().filter(check -> !modulesReferencedInConfig.contains(check))
             .forEach(check -> {
                 final String errorMessage = String.format(Locale.ROOT,
-                    "%s is not referenced in checkstyle_checks.xml", check);
-                Assert.fail(errorMessage);
+                    "%s is not referenced in checkstyle-checks.xml", check);
+                assertWithMessage(errorMessage).fail();
             });
     }
 
     @Test
     public void testAllCheckTokensAreReferencedInCheckstyleConfigFile() throws Exception {
         final Configuration configuration = ConfigurationUtil
-                .loadConfiguration("config/checkstyle_checks.xml");
+                .loadConfiguration("config/checkstyle-checks.xml");
 
         validateAllCheckTokensAreReferencedInConfigFile("checkstyle", configuration,
-                CHECKSTYLE_TOKENS_IN_CONFIG_TO_IGNORE);
+                CHECKSTYLE_TOKENS_IN_CONFIG_TO_IGNORE, false);
     }
 
     @Test
@@ -342,12 +384,13 @@ public class AllChecksTest extends BaseCheckTestSupport {
                 .loadConfiguration("src/main/resources/google_checks.xml");
 
         validateAllCheckTokensAreReferencedInConfigFile("google", configuration,
-                GOOGLE_TOKENS_IN_CONFIG_TO_IGNORE);
+                GOOGLE_TOKENS_IN_CONFIG_TO_IGNORE, true);
     }
 
     private static void validateAllCheckTokensAreReferencedInConfigFile(String configName,
-            Configuration configuration, Map<String, Set<String>> tokensToIgnore) throws Exception {
-        final ModuleFactory moduleFactory = TestUtils.getPackageObjectFactory();
+            Configuration configuration, Map<String, Set<String>> tokensToIgnore,
+            boolean defaultTokensMustBeExplicit) throws Exception {
+        final ModuleFactory moduleFactory = TestUtil.getPackageObjectFactory();
         final Set<Configuration> configChecks = ConfigurationUtil.getChecks(configuration);
 
         final Map<String, Set<String>> configCheckTokens = new HashMap<>();
@@ -363,45 +406,76 @@ public class AllChecksTest extends BaseCheckTestSupport {
             catch (CheckstyleException ex) {
                 throw new CheckstyleException("Couldn't find check: " + checkName, ex);
             }
+            final AbstractCheck check;
+            if (instance instanceof AbstractCheck
+                    && !isAllTokensAcceptable((AbstractCheck) instance)) {
+                check = (AbstractCheck) instance;
+            }
+            else {
+                // we can not have in our config test for all tokens
+                continue;
+            }
 
-            if (instance instanceof AbstractCheck) {
-                final AbstractCheck check = (AbstractCheck) instance;
+            Set<String> configTokens = configCheckTokens.get(checkName);
 
-                Set<String> configTokens = configCheckTokens.get(checkName);
+            if (configTokens == null) {
+                configTokens = new HashSet<>();
 
-                if (configTokens == null) {
-                    configTokens = new HashSet<>();
+                configCheckTokens.put(checkName, configTokens);
 
-                    configCheckTokens.put(checkName, configTokens);
+                // add all overridden tokens
+                final Set<String> overrideTokens = tokensToIgnore.get(checkName);
 
-                    // add all overridden tokens
-                    final Set<String> overrideTokens = tokensToIgnore.get(checkName);
-
-                    if (overrideTokens != null) {
-                        configTokens.addAll(overrideTokens);
-                    }
-
-                    configTokens.addAll(CheckUtil.getTokenNameSet(check.getRequiredTokens()));
-                    checkTokens.put(checkName,
-                            CheckUtil.getTokenNameSet(check.getAcceptableTokens()));
+                if (overrideTokens != null) {
+                    configTokens.addAll(overrideTokens);
                 }
 
-                try {
-                    configTokens.addAll(Arrays.asList(checkConfig.getAttribute("tokens").trim()
-                            .split(",\\s*")));
+                configTokens.addAll(CheckUtil.getTokenNameSet(check.getRequiredTokens()));
+                checkTokens.put(checkName,
+                        CheckUtil.getTokenNameSet(check.getAcceptableTokens()));
+            }
+
+            try {
+                configTokens.addAll(Arrays.asList(checkConfig.getProperty("tokens").trim()
+                        .split(",\\s*")));
+            }
+            catch (CheckstyleException ex) {
+                // no tokens defined, so it is using default
+                if (defaultTokensMustBeExplicit) {
+                    validateDefaultTokens(checkConfig, check, configTokens);
                 }
-                catch (CheckstyleException ex) {
-                    // no tokens defined, so it is using default
+                else {
                     configTokens.addAll(CheckUtil.getTokenNameSet(check.getDefaultTokens()));
                 }
             }
         }
-
         for (Entry<String, Set<String>> entry : checkTokens.entrySet()) {
-            Assert.assertEquals("'" + entry.getKey()
+            final Set<String> actual = configCheckTokens.get(entry.getKey());
+            assertWithMessage("'" + entry.getKey()
                     + "' should have all acceptable tokens from check in " + configName
-                    + " config or specify an override to ignore the specific tokens",
-                    entry.getValue(), configCheckTokens.get(entry.getKey()));
+                    + " config or specify an override to ignore the specific tokens")
+                .that(actual)
+                .isEqualTo(entry.getValue());
+        }
+    }
+
+    private static boolean isAllTokensAcceptable(AbstractCheck check) {
+        return Arrays.equals(check.getAcceptableTokens(), TokenUtil.getAllTokenIds());
+    }
+
+    private static void validateDefaultTokens(Configuration checkConfig, AbstractCheck check,
+                                              Set<String> configTokens) {
+
+        final BitSet defaultTokensSet = TokenUtil.asBitSet(check.getDefaultTokens());
+        final BitSet requiredTokensSet = TokenUtil.asBitSet(check.getRequiredTokens());
+
+        if (defaultTokensSet.equals(requiredTokensSet)) {
+            configTokens.addAll(
+                    CheckUtil.getTokenNameSet(check.getDefaultTokens()));
+        }
+        else {
+            assertWithMessage("All default tokens should be used in config for "
+                    + checkConfig.getName()).fail();
         }
     }
 
@@ -414,24 +488,27 @@ public class AllChecksTest extends BaseCheckTestSupport {
         // these are documented on non-'config_' pages
         checkstyleModulesNames.remove("TreeWalker");
         checkstyleModulesNames.remove("Checker");
-
+        // temporarily hosted in test folder
+        checkstyleModulesNames.removeAll(INTERNAL_MODULES);
         checkstyleModulesNames.stream()
             .filter(moduleName -> !modulesNamesWhichHaveXdocs.contains(moduleName))
             .forEach(moduleName -> {
                 final String missingModuleMessage = String.format(Locale.ROOT,
                     "Module %s does not have xdoc documentation.",
                     moduleName);
-                Assert.fail(missingModuleMessage);
+                assertWithMessage(missingModuleMessage).fail();
             });
     }
 
     @Test
     public void testAllCheckstyleModulesInCheckstyleConfig() throws Exception {
         final Set<String> configChecks = CheckUtil.getConfigCheckStyleModules();
-
-        for (String moduleName : CheckUtil.getSimpleNames(CheckUtil.getCheckstyleModules())) {
-            Assert.assertTrue("checkstyle_checks.xml is missing module: " + moduleName,
-                    configChecks.contains(moduleName));
+        final Set<String> moduleNames = CheckUtil.getSimpleNames(CheckUtil.getCheckstyleModules());
+        moduleNames.removeAll(INTERNAL_MODULES);
+        for (String moduleName : moduleNames) {
+            assertWithMessage("checkstyle-checks.xml is missing module: " + moduleName)
+                    .that(configChecks)
+                    .contains(moduleName);
         }
     }
 
@@ -439,16 +516,19 @@ public class AllChecksTest extends BaseCheckTestSupport {
     public void testAllCheckstyleChecksHaveMessage() throws Exception {
         for (Class<?> module : CheckUtil.getCheckstyleChecks()) {
             final String name = module.getSimpleName();
+            final Set<Field> messages = CheckUtil.getCheckMessages(module, false);
 
-            if ("FileContentsHolder".equals(name)) {
-                Assert.assertTrue(name
-                        + " should not have any 'MSG_*' field for error messages", CheckUtil
-                        .getCheckMessages(module).isEmpty());
+            // No messages in just module
+            if ("SuppressWarningsHolder".equals(name)) {
+                assertWithMessage(name + " should not have any 'MSG_*' fields for error messages")
+                        .that(messages)
+                        .isEmpty();
             }
             else {
-                Assert.assertFalse(name
-                        + " should have at least one 'MSG_*' field for error messages", CheckUtil
-                        .getCheckMessages(module).isEmpty());
+                assertWithMessage(
+                        name + " should have at least one 'MSG_*' field for error messages")
+                                .that(messages)
+                                .isNotEmpty();
             }
         }
     }
@@ -459,17 +539,18 @@ public class AllChecksTest extends BaseCheckTestSupport {
 
         // test validity of messages from modules
         for (Class<?> module : CheckUtil.getCheckstyleModules()) {
-            for (Field message : CheckUtil.getCheckMessages(module)) {
-                Assert.assertEquals(module.getSimpleName() + "." + message.getName()
-                        + " should be 'public static final'", Modifier.PUBLIC | Modifier.STATIC
-                        | Modifier.FINAL, message.getModifiers());
+            for (Field message : CheckUtil.getCheckMessages(module, true)) {
+                assertWithMessage(module.getSimpleName() + "." + message.getName()
+                                + " should be 'public static final'")
+                    .that(message.getModifiers())
+                    .isEqualTo(Modifier.PUBLIC | Modifier.STATIC | Modifier.FINAL);
 
                 // below is required for package/private classes
-                if (!message.isAccessible()) {
-                    message.setAccessible(true);
-                }
+                message.trySetAccessible();
 
-                verifyCheckstyleMessage(usedMessages, module, message);
+                if (!INTERNAL_MODULES.contains(module.getSimpleName())) {
+                    verifyCheckstyleMessage(usedMessages, module, message);
+                }
             }
         }
 
@@ -485,8 +566,10 @@ public class AllChecksTest extends BaseCheckTestSupport {
                     continue;
                 }
 
-                Assert.assertTrue("property '" + key + "' isn't used by any check in package '"
-                        + entry.getKey() + "'", entry.getValue().contains(key.toString()));
+                assertWithMessage("property '" + key + "' isn't used by any check in package '"
+                                      + entry.getKey() + "'")
+                        .that(entry.getValue())
+                        .contains(key.toString());
             }
         }
     }
@@ -495,12 +578,8 @@ public class AllChecksTest extends BaseCheckTestSupport {
             Class<?> module, Field message) throws Exception {
         final String messageString = message.get(null).toString();
         final String packageName = module.getPackage().getName();
-        List<String> packageMessages = usedMessages.get(packageName);
-
-        if (packageMessages == null) {
-            packageMessages = new ArrayList<>();
-            usedMessages.put(packageName, packageMessages);
-        }
+        final List<String> packageMessages =
+                usedMessages.computeIfAbsent(packageName, key -> new ArrayList<>());
 
         packageMessages.add(messageString);
 
@@ -510,32 +589,36 @@ public class AllChecksTest extends BaseCheckTestSupport {
             try {
                 result = CheckUtil.getCheckMessage(module, locale, messageString);
             }
-            catch (IllegalArgumentException ex) {
-                Assert.fail(module.getSimpleName() + " with the message '" + messageString
+            // -@cs[IllegalCatch] There is no other way to deliver filename that was used
+            catch (Exception ex) {
+                assertWithMessage(module.getSimpleName() + " with the message '" + messageString
                         + "' in locale '" + locale.getLanguage() + "' failed with: "
-                        + ex.getClass().getSimpleName() + " - " + ex.getMessage());
+                        + ex.getClass().getSimpleName() + " - " + ex.getMessage()).fail();
             }
 
-            Assert.assertNotNull(
-                    module.getSimpleName() + " should have text for the message '"
-                            + messageString + "' in locale " + locale.getLanguage() + "'",
-                    result);
-            Assert.assertFalse(
-                    module.getSimpleName() + " should have non-empty text for the message '"
-                            + messageString + "' in locale '" + locale.getLanguage() + "'",
-                    result.trim().isEmpty());
-            Assert.assertFalse(
+            assertWithMessage(module.getSimpleName() + " should have text for the message '"
+                    + messageString + "' in locale " + locale.getLanguage() + "'")
+                .that(result)
+                .isNotNull();
+            assertWithMessage("%s should have non-empty text for the message '%s' in locale '%s'",
+                            module.getSimpleName(), messageString, locale.getLanguage())
+                    .that(result.trim())
+                    .isNotEmpty();
+            assertWithMessage(
                     module.getSimpleName() + " should have non-TODO text for the message '"
-                            + messageString + "' in locale " + locale.getLanguage() + "'",
-                    !"todo.match".equals(messageString)
-                            && result.trim().startsWith("TODO"));
+                            + messageString + "' in locale " + locale.getLanguage() + "'")
+                                    .that(!"todo.match".equals(messageString)
+                                            && result.trim().startsWith("TODO"))
+                                    .isFalse();
         }
     }
 
     /**
      * Checks that an array is a subset of other array.
+     *
      * @param array to check whether it is a subset.
      * @param arrayToCheckIn array to check in.
+     * @return {@code true} if all elements in {@code array} are in {@code arrayToCheckIn}.
      */
     private static boolean isSubset(int[] array, int... arrayToCheckIn) {
         Arrays.sort(arrayToCheckIn);
@@ -548,4 +631,5 @@ public class AllChecksTest extends BaseCheckTestSupport {
         }
         return result;
     }
+
 }

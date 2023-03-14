@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,12 +15,12 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import java.util.ArrayDeque;
-import java.util.Arrays;
+import java.util.BitSet;
 import java.util.Deque;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -28,45 +28,75 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
- * Check for ensuring that for loop control variables are not modified
+ * <p>
+ * Checks that for loop control variables are not modified
  * inside the for block. An example is:
- *
+ * </p>
  * <pre>
- * {@code
  * for (int i = 0; i &lt; 1; i++) {
- *     i++;//violation
- * }
+ *   i++; // violation
  * }
  * </pre>
+ * <p>
  * Rationale: If the control variable is modified inside the loop
- * body, the program flow becomes more difficult to follow.<br>
- * See <a href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-14.html#jls-14.14">
+ * body, the program flow becomes more difficult to follow.
+ * See <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-14.html#jls-14.14">
  * FOR statement</a> specification for more details.
- * <p>Examples:</p>
- *
+ * </p>
+ * <p>
+ * Such loop would be suppressed:
+ * </p>
  * <pre>
- * &lt;module name=&quot;ModifiedControlVariable&quot;&gt;
- * &lt;/module&gt;
- * </pre>
- *
- * <p>Such loop would be suppressed:
- *
- * <pre>
- * {@code
- * for(int i=0; i &lt; 10;) {
- *     i++;
- * }
+ * for (int i = 0; i &lt; 10;) {
+ *   i++;
  * }
  * </pre>
- *
+ * <p>
+ * NOTE:The check works with only primitive type variables.
+ * The check will not work for arrays used as control variable.An example is
+ * </p>
+ * <pre>
+ * for (int a[]={0};a[0] &lt; 10;a[0]++) {
+ *  a[0]++;   // it will skip this violation
+ * }
+ * </pre>
+ * <ul>
+ * <li>
+ * Property {@code skipEnhancedForLoopVariable} - Control whether to check
+ * <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-14.html#jls-14.14.2">
+ * enhanced for-loop</a> variable.
+ * Type is {@code boolean}.
+ * Default value is {@code false}.
+ * </li>
+ * </ul>
+ * <p>
+ * To configure the check:
+ * </p>
+ * <pre>
+ * &lt;module name="ModifiedControlVariable"/&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * for(int i=0;i &lt; 8;i++) {
+ *   i++; // violation, control variable modified
+ * }
+ * String args1[]={"Coding", "block"};
+ * for (String arg: args1) {
+ *   arg = arg.trim(); // violation, control variable modified
+ * }
+ * </pre>
  * <p>
  * By default, This Check validates
- *  <a href = "http://docs.oracle.com/javase/specs/jls/se8/html/jls-14.html#jls-14.14.2">
+ *  <a href = "https://docs.oracle.com/javase/specs/jls/se11/html/jls-14.html#jls-14.14.2">
  * Enhanced For-Loop</a>.
  * </p>
  * <p>
@@ -78,23 +108,35 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </p>
  * <pre>
  * &lt;module name="ModifiedControlVariable"&gt;
- *     &lt;property name="skipEnhancedForLoopVariable" value="true"/&gt;
+ *   &lt;property name="skipEnhancedForLoopVariable" value="true"/&gt;
  * &lt;/module&gt;
  * </pre>
  * <p>Example:</p>
  *
  * <pre>
- * {@code
- * for (String line: lines) {
- *     line = line.trim();   // it will skip this violation
+ * for(int i=0;i &lt; 8;i++) {
+ *   i++; // violation, control variable modified
  * }
+ * String args1[]={"Coding", "block"};
+ * for (String arg: args1) {
+ *   arg = arg.trim(); // ok
  * }
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code modified.control.variable}
+ * </li>
+ * </ul>
  *
- *
- * @author Daniel Grenner
- * @author <a href="mailto:piotr.listkiewicz@gmail.com">liscju</a>
+ * @since 3.5
  */
+@FileStatefulCheck
 public final class ModifiedControlVariableCheck extends AbstractCheck {
 
     /**
@@ -109,23 +151,28 @@ public final class ModifiedControlVariableCheck extends AbstractCheck {
     private static final String ILLEGAL_TYPE_OF_TOKEN = "Illegal type of token: ";
 
     /** Operations which can change control variable in update part of the loop. */
-    private static final Set<Integer> MUTATION_OPERATIONS =
-        Arrays.stream(new Integer[] {
+    private static final BitSet MUTATION_OPERATIONS = TokenUtil.asBitSet(
             TokenTypes.POST_INC,
             TokenTypes.POST_DEC,
             TokenTypes.DEC,
             TokenTypes.INC,
-            TokenTypes.ASSIGN,
-        }).collect(Collectors.toSet());
+            TokenTypes.ASSIGN);
 
     /** Stack of block parameters. */
     private final Deque<Deque<String>> variableStack = new ArrayDeque<>();
 
-    /** Controls whether to skip enhanced for-loop variable. */
+    /**
+     * Control whether to check
+     * <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-14.html#jls-14.14.2">
+     * enhanced for-loop</a> variable.
+     */
     private boolean skipEnhancedForLoopVariable;
 
     /**
-     * Whether to skip enhanced for-loop variable or not.
+     * Setter to control whether to check
+     * <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-14.html#jls-14.14.2">
+     * enhanced for-loop</a> variable.
+     *
      * @param skipEnhancedForLoopVariable whether to skip enhanced for-loop variable
      */
     public void setSkipEnhancedForLoopVariable(boolean skipEnhancedForLoopVariable) {
@@ -134,16 +181,11 @@ public final class ModifiedControlVariableCheck extends AbstractCheck {
 
     @Override
     public int[] getDefaultTokens() {
-        return getAcceptableTokens();
+        return getRequiredTokens();
     }
 
     @Override
     public int[] getRequiredTokens() {
-        return getAcceptableTokens();
-    }
-
-    @Override
-    public int[] getAcceptableTokens() {
         return new int[] {
             TokenTypes.OBJBLOCK,
             TokenTypes.LITERAL_FOR,
@@ -169,10 +211,14 @@ public final class ModifiedControlVariableCheck extends AbstractCheck {
     }
 
     @Override
+    public int[] getAcceptableTokens() {
+        return getRequiredTokens();
+    }
+
+    @Override
     public void beginTree(DetailAST rootAST) {
         // clear data
         variableStack.clear();
-        variableStack.push(new ArrayDeque<>());
     }
 
     @Override
@@ -184,7 +230,7 @@ public final class ModifiedControlVariableCheck extends AbstractCheck {
             case TokenTypes.LITERAL_FOR:
             case TokenTypes.FOR_ITERATOR:
             case TokenTypes.FOR_EACH_CLAUSE:
-                //we need that Tokens only at leaveToken()
+                // we need that Tokens only at leaveToken()
                 break;
             case TokenTypes.ASSIGN:
             case TokenTypes.PLUS_ASSIGN:
@@ -222,9 +268,7 @@ public final class ModifiedControlVariableCheck extends AbstractCheck {
                 }
                 break;
             case TokenTypes.LITERAL_FOR:
-                if (!getCurrentVariables().isEmpty()) {
-                    leaveForDef(ast);
-                }
+                leaveForDef(ast);
                 break;
             case TokenTypes.OBJBLOCK:
                 exitBlock();
@@ -245,7 +289,7 @@ public final class ModifiedControlVariableCheck extends AbstractCheck {
             case TokenTypes.POST_INC:
             case TokenTypes.DEC:
             case TokenTypes.POST_DEC:
-                //we need that Tokens only at visitToken()
+                // we need that Tokens only at visitToken()
                 break;
             default:
                 throw new IllegalStateException(ILLEGAL_TYPE_OF_TOKEN + ast);
@@ -268,6 +312,7 @@ public final class ModifiedControlVariableCheck extends AbstractCheck {
 
     /**
      * Get current variable stack.
+     *
      * @return current variable stack
      */
     private Deque<String> getCurrentVariables() {
@@ -276,22 +321,22 @@ public final class ModifiedControlVariableCheck extends AbstractCheck {
 
     /**
      * Check if ident is parameter.
+     *
      * @param ast ident to check.
      */
     private void checkIdent(DetailAST ast) {
-        if (!getCurrentVariables().isEmpty()) {
-            final DetailAST identAST = ast.getFirstChild();
+        final Deque<String> currentVariables = getCurrentVariables();
+        final DetailAST identAST = ast.getFirstChild();
 
-            if (identAST != null && identAST.getType() == TokenTypes.IDENT
-                && getCurrentVariables().contains(identAST.getText())) {
-                log(ast.getLineNo(), ast.getColumnNo(),
-                    MSG_KEY, identAST.getText());
-            }
+        if (identAST != null && identAST.getType() == TokenTypes.IDENT
+            && currentVariables.contains(identAST.getText())) {
+            log(ast, MSG_KEY, identAST.getText());
         }
     }
 
     /**
      * Push current variables to the stack.
+     *
      * @param ast a for definition.
      */
     private void leaveForIter(DetailAST ast) {
@@ -304,6 +349,7 @@ public final class ModifiedControlVariableCheck extends AbstractCheck {
     /**
      * Determines which variable are specific to for loop and should not be
      * change by inner loop body.
+     *
      * @param ast For Loop
      * @return Set of Variable Name which are managed by for
      */
@@ -316,6 +362,7 @@ public final class ModifiedControlVariableCheck extends AbstractCheck {
 
     /**
      * Push current variables to the stack.
+     *
      * @param paramDef a for-each clause variable
      */
     private void leaveForEach(DetailAST paramDef) {
@@ -325,13 +372,16 @@ public final class ModifiedControlVariableCheck extends AbstractCheck {
 
     /**
      * Pops the variables from the stack.
+     *
      * @param ast a for definition.
      */
     private void leaveForDef(DetailAST ast) {
         final DetailAST forInitAST = ast.findFirstToken(TokenTypes.FOR_INIT);
         if (forInitAST == null) {
-            // this is for-each loop, just pop variables
-            getCurrentVariables().pop();
+            if (!skipEnhancedForLoopVariable) {
+                // this is for-each loop, just pop variables
+                getCurrentVariables().pop();
+            }
         }
         else {
             final Set<String> variablesManagedByForLoop = getVariablesManagedByForLoop(ast);
@@ -341,6 +391,7 @@ public final class ModifiedControlVariableCheck extends AbstractCheck {
 
     /**
      * Pops given number of variables from currentVariables.
+     *
      * @param count Count of variables to be popped from currentVariables
      */
     private void popCurrentVariables(int count) {
@@ -351,6 +402,7 @@ public final class ModifiedControlVariableCheck extends AbstractCheck {
 
     /**
      * Get all variables initialized In init part of for loop.
+     *
      * @param ast for loop token
      * @return set of variables initialized in for loop
      */
@@ -373,6 +425,7 @@ public final class ModifiedControlVariableCheck extends AbstractCheck {
 
     /**
      * Get all variables which for loop iterating part change in every loop.
+     *
      * @param ast for loop literal(TokenTypes.LITERAL_FOR)
      * @return names of variables change in iterating part of for
      */
@@ -383,12 +436,10 @@ public final class ModifiedControlVariableCheck extends AbstractCheck {
 
         findChildrenOfExpressionType(forUpdateListAST).stream()
             .filter(iteratingExpressionAST -> {
-                return MUTATION_OPERATIONS.contains(iteratingExpressionAST.getType());
+                return MUTATION_OPERATIONS.get(iteratingExpressionAST.getType());
             }).forEach(iteratingExpressionAST -> {
                 final DetailAST oneVariableOperatorChild = iteratingExpressionAST.getFirstChild();
-                if (oneVariableOperatorChild.getType() == TokenTypes.IDENT) {
-                    iteratorVariables.add(oneVariableOperatorChild.getText());
-                }
+                iteratorVariables.add(oneVariableOperatorChild.getText());
             });
 
         return iteratorVariables;
@@ -396,6 +447,7 @@ public final class ModifiedControlVariableCheck extends AbstractCheck {
 
     /**
      * Find all child of given AST of type TokenType.EXPR
+     *
      * @param ast parent of expressions to find
      * @return all child of given ast
      */
@@ -412,4 +464,5 @@ public final class ModifiedControlVariableCheck extends AbstractCheck {
         }
         return foundExpressions;
     }
+
 }

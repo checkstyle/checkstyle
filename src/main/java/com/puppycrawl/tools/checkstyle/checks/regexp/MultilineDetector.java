@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.regexp;
 
@@ -26,7 +26,6 @@ import com.puppycrawl.tools.checkstyle.api.LineColumn;
 
 /**
  * A detector that matches across multiple lines.
- * @author oliver
  */
 class MultilineDetector {
 
@@ -64,14 +63,16 @@ class MultilineDetector {
 
     /**
      * Creates an instance.
+     *
      * @param options the options to use.
      */
-    MultilineDetector(DetectorOptions options) {
+    /* package */ MultilineDetector(DetectorOptions options) {
         this.options = options;
     }
 
     /**
      * Processes an entire text file looking for matches.
+     *
      * @param fileText the text to process
      */
     public void processLines(FileText fileText) {
@@ -80,7 +81,7 @@ class MultilineDetector {
 
         final String format = options.getFormat();
         if (format == null || format.isEmpty()) {
-            options.getReporter().log(0, MSG_EMPTY);
+            options.getReporter().log(1, MSG_EMPTY);
         }
         else {
             matcher = options.getPattern().matcher(fileText.getFullText());
@@ -115,20 +116,19 @@ class MultilineDetector {
             // OK http://blog.igorminar.com/2008/05/catching-stackoverflowerror-and-bug-in.html
             // http://programmers.stackexchange.com/questions/
             //        209099/is-it-ever-okay-to-catch-stackoverflowerror-in-java
-            options.getReporter().log(0, MSG_STACKOVERFLOW, matcher.pattern().toString());
+            options.getReporter().log(1, MSG_STACKOVERFLOW, matcher.pattern().toString());
         }
-
     }
 
     /** Perform processing at the end of a set of lines. */
     private void finish() {
         if (currentMatches < options.getMinimum()) {
             if (options.getMessage().isEmpty()) {
-                options.getReporter().log(0, MSG_REGEXP_MINIMUM,
+                options.getReporter().log(1, MSG_REGEXP_MINIMUM,
                         options.getMinimum(), options.getFormat());
             }
             else {
-                options.getReporter().log(0, options.getMessage());
+                options.getReporter().log(1, options.getMessage());
             }
         }
     }
@@ -139,4 +139,5 @@ class MultilineDetector {
     private void resetState() {
         currentMatches = 0;
     }
+
 }

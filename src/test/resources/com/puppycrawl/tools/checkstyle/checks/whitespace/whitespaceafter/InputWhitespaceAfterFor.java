@@ -1,7 +1,11 @@
-////////////////////////////////////////////////////////////////////////////////
-// Test case file for FOR_ITERATION and whitespace.
-// Created: 2003
-////////////////////////////////////////////////////////////////////////////////
+/*
+WhitespaceAfter
+tokens = (default)COMMA, SEMI, TYPECAST, LITERAL_IF, LITERAL_ELSE, LITERAL_WHILE, \
+         LITERAL_DO, LITERAL_FOR, DO_WHILE
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.whitespace.whitespaceafter;
 
 class InputWhitespaceAfterFor
@@ -10,11 +14,11 @@ class InputWhitespaceAfterFor
     {
         for (int i = 0; i < 1; i++) {
         }
-        
-        for (int i = 0; i < 1;i++) {
+
+        for (int i = 0; i < 1;i++) { // violation '';' is not followed by whitespace'
         }
 
-        for (int i = 0; i < 1;i++ ) {
+        for (int i = 0; i < 1;i++ ) { // violation '';' is not followed by whitespace'
         }
 
         for (int i = 0; i < 1; i++ ) {
@@ -27,7 +31,7 @@ class InputWhitespaceAfterFor
         for (int i = 0; i < 1; ) {
             i++;
         }
-        
+
         // test eol, there is no space after second SEMI
         for (int i = 0; i < 1;
             ) {
@@ -39,7 +43,7 @@ class InputWhitespaceAfterFor
     {
         for ( int i = 0; i < 1; i++ ) {
         }
-        
+
         for ( int i = 0; i < 1; ) {
             i++;
         }

@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,64 +15,56 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.naming;
 
-import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
-import static org.junit.Assert.assertArrayEquals;
+import static com.google.common.truth.Truth.assertWithMessage;
+import static com.puppycrawl.tools.checkstyle.checks.naming.PackageNameCheck.MSG_KEY;
 
-import java.io.File;
-import java.io.IOException;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Test;
-
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class PackageNameCheckTest
-    extends BaseCheckTestSupport {
+    extends AbstractModuleTestSupport {
+
     @Override
-    protected String getPath(String filename) throws IOException {
-        return super.getPath("checks" + File.separator
-                + "naming" + File.separator
-                + "packagename" + File.separator
-                + filename);
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/checks/naming/packagename";
     }
 
     @Test
     public void testGetRequiredTokens() {
         final PackageNameCheck checkObj = new PackageNameCheck();
         final int[] expected = {TokenTypes.PACKAGE_DEF};
-        assertArrayEquals("Default required tokens are invalid",
-            expected, checkObj.getRequiredTokens());
+        assertWithMessage("Default required tokens are invalid")
+                .that(checkObj.getRequiredTokens())
+                .isEqualTo(expected);
     }
 
     @Test
     public void testSpecified()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(PackageNameCheck.class);
-        checkConfig.addAttribute("format", "[A-Z]+");
 
         final String pattern = "[A-Z]+";
 
         final String[] expected = {
-            "6:9: " + getCheckMessage(MSG_INVALID_PATTERN,
+            "8:9: " + getCheckMessage(MSG_KEY,
                 "com.puppycrawl.tools.checkstyle.checks.naming.packagename", pattern),
         };
-        verify(checkConfig, getPath("InputPackageNameSimple.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputPackageNameSimple1.java"), expected);
     }
 
     @Test
     public void testDefault()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(PackageNameCheck.class);
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputPackageNameSimple.java"), expected);
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputPackageNameSimple.java"), expected);
     }
 
     @Test
@@ -82,6 +74,9 @@ public class PackageNameCheckTest
         final int[] expected = {
             TokenTypes.PACKAGE_DEF,
         };
-        assertArrayEquals("Default acceptable tokens are invalid", expected, actual);
+        assertWithMessage("Default acceptable tokens are invalid")
+                .that(actual)
+                .isEqualTo(expected);
     }
+
 }

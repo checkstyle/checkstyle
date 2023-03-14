@@ -1,6 +1,6 @@
 package com.google.checkstyle.test.chapter6programpractice.rule64finalizers;
 
-class NormalFinalizer {
+class InputNoFinalizeExtend {
 
     public static void doStuff() {
         // This method do some stuff
@@ -36,7 +36,7 @@ class WithoutTryCatchFinalizer {
 }
 
 // public finalizer
-class PublicFinalizer {
+class InputPublicFinalizer {
 
     public static void doStuff() {
         // This method do some stuff
@@ -52,7 +52,7 @@ class PublicFinalizer {
 }
 
 // unless (or worse) finalizer
-class SuperFinalizer {
+class InputSuperFinalizer {
 
     protected void finalize() throws Throwable { //warn
         super.finalize();
@@ -60,7 +60,7 @@ class SuperFinalizer {
 }
 
 // public finalizer
-class StaticFinalizer {
+class InputStaticFinalizer {
 
     public static void doStuff() {
         // This method do some stuff
@@ -103,15 +103,15 @@ class WithoutFinalize {
 class WithoutMethods {}
 
 class WithAnonymousClass {
-    
+
     public static void doStuff() {
         // This method do some stuff
     }
-    
+
     public void foo() {
-        
+
         Ball b = new Ball() {
-            
+
             public void hit() {
                 System.identityHashCode("You hit it!");
             }

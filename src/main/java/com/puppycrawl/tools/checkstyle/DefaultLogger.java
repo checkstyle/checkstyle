@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle;
 
@@ -28,7 +28,6 @@ import java.nio.charset.StandardCharsets;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
-import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 
 /**
@@ -38,7 +37,6 @@ import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
  * stdout anyway. If there is really a problem this is what XMLLogger is for.
  * It gives structure.
  *
- * @author <a href="mailto:stephane.bailliez@wanadoo.fr">Stephane Bailliez</a>
  * @see XMLLogger
  */
 public class DefaultLogger extends AutomaticBean implements AuditListener {
@@ -74,45 +72,56 @@ public class DefaultLogger extends AutomaticBean implements AuditListener {
 
     /**
      * Creates a new {@code DefaultLogger} instance.
-     * @param outputStream where to log infos and errors
-     * @param closeStreamsAfterUse if oS should be closed in auditFinished()
+     *
+     * @param outputStream where to log audit events
+     * @param outputStreamOptions if {@code CLOSE} that should be closed in auditFinished()
      */
-    public DefaultLogger(OutputStream outputStream, boolean closeStreamsAfterUse) {
+    public DefaultLogger(OutputStream outputStream, OutputStreamOptions outputStreamOptions) {
         // no need to close oS twice
-        this(outputStream, closeStreamsAfterUse, outputStream, false);
+        this(outputStream, outputStreamOptions, outputStream, OutputStreamOptions.NONE);
     }
 
     /**
-     * Creates a new <code>DefaultLogger</code> instance.
+     * Creates a new {@code DefaultLogger} instance.
+     *
      * @param infoStream the {@code OutputStream} for info messages.
-     * @param closeInfoAfterUse auditFinished should close infoStream.
+     * @param infoStreamOptions if {@code CLOSE} info should be closed in auditFinished()
      * @param errorStream the {@code OutputStream} for error messages.
-     * @param closeErrorAfterUse auditFinished should close errorStream
+     * @param errorStreamOptions if {@code CLOSE} error should be closed in auditFinished()
      */
     public DefaultLogger(OutputStream infoStream,
-                         boolean closeInfoAfterUse,
+                         OutputStreamOptions infoStreamOptions,
                          OutputStream errorStream,
-                         boolean closeErrorAfterUse) {
-        this(infoStream, closeInfoAfterUse, errorStream, closeErrorAfterUse,
-            new AuditEventDefaultFormatter());
+                         OutputStreamOptions errorStreamOptions) {
+        this(infoStream, infoStreamOptions, errorStream, errorStreamOptions,
+                new AuditEventDefaultFormatter());
     }
 
     /**
      * Creates a new {@code DefaultLogger} instance.
      *
      * @param infoStream the {@code OutputStream} for info messages
-     * @param closeInfoAfterUse auditFinished should close infoStream
+     * @param infoStreamOptions if {@code CLOSE} info should be closed in auditFinished()
      * @param errorStream the {@code OutputStream} for error messages
-     * @param closeErrorAfterUse auditFinished should close errorStream
+     * @param errorStreamOptions if {@code CLOSE} error should be closed in auditFinished()
      * @param messageFormatter formatter for the log message.
+     * @throws IllegalArgumentException if stream options are null
+     * @noinspection WeakerAccess
+     * @noinspectionreason WeakerAccess - we avoid 'protected' when possible
      */
     public DefaultLogger(OutputStream infoStream,
-                         boolean closeInfoAfterUse,
+                         OutputStreamOptions infoStreamOptions,
                          OutputStream errorStream,
-                         boolean closeErrorAfterUse,
+                         OutputStreamOptions errorStreamOptions,
                          AuditEventFormatter messageFormatter) {
-        closeInfo = closeInfoAfterUse;
-        closeError = closeErrorAfterUse;
+        if (infoStreamOptions == null) {
+            throw new IllegalArgumentException("Parameter infoStreamOptions can not be null");
+        }
+        closeInfo = infoStreamOptions == OutputStreamOptions.CLOSE;
+        if (errorStreamOptions == null) {
+            throw new IllegalArgumentException("Parameter errorStreamOptions can not be null");
+        }
+        closeError = errorStreamOptions == OutputStreamOptions.CLOSE;
         final Writer infoStreamWriter = new OutputStreamWriter(infoStream, StandardCharsets.UTF_8);
         infoWriter = new PrintWriter(infoStreamWriter);
 
@@ -127,9 +136,15 @@ public class DefaultLogger extends AutomaticBean implements AuditListener {
         formatter = messageFormatter;
     }
 
+    @Override
+    protected void finishLocalSetup() {
+        // No code by default
+    }
+
     /**
      * Print an Emacs compliant line on the error stream.
-     * If the column number is non zero, then also display it.
+     * If the column number is non-zero, then also display it.
+     *
      * @see AuditListener
      **/
     @Override
@@ -144,29 +159,28 @@ public class DefaultLogger extends AutomaticBean implements AuditListener {
     @Override
     public void addException(AuditEvent event, Throwable throwable) {
         synchronized (errorWriter) {
-            final LocalizedMessage addExceptionMessage = new LocalizedMessage(0,
-                Definitions.CHECKSTYLE_BUNDLE, ADD_EXCEPTION_MESSAGE,
-                new String[] {event.getFileName()}, null,
-                LocalizedMessage.class, null);
-            errorWriter.println(addExceptionMessage.getMessage());
+            final LocalizedMessage exceptionMessage = new LocalizedMessage(
+                    Definitions.CHECKSTYLE_BUNDLE, DefaultLogger.class,
+                    ADD_EXCEPTION_MESSAGE, event.getFileName());
+            errorWriter.println(exceptionMessage.getMessage());
             throwable.printStackTrace(errorWriter);
         }
     }
 
     @Override
     public void auditStarted(AuditEvent event) {
-        final LocalizedMessage auditStartMessage = new LocalizedMessage(0,
-            Definitions.CHECKSTYLE_BUNDLE, AUDIT_STARTED_MESSAGE, null, null,
-            LocalizedMessage.class, null);
+        final LocalizedMessage auditStartMessage = new LocalizedMessage(
+                Definitions.CHECKSTYLE_BUNDLE, DefaultLogger.class,
+                AUDIT_STARTED_MESSAGE);
         infoWriter.println(auditStartMessage.getMessage());
         infoWriter.flush();
     }
 
     @Override
     public void auditFinished(AuditEvent event) {
-        final LocalizedMessage auditFinishMessage = new LocalizedMessage(0,
-            Definitions.CHECKSTYLE_BUNDLE, AUDIT_FINISHED_MESSAGE, null, null,
-            LocalizedMessage.class, null);
+        final LocalizedMessage auditFinishMessage = new LocalizedMessage(
+                Definitions.CHECKSTYLE_BUNDLE, DefaultLogger.class,
+                AUDIT_FINISHED_MESSAGE);
         infoWriter.println(auditFinishMessage.getMessage());
         closeStreams();
     }

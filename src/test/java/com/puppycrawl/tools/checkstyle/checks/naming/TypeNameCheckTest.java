@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,111 +15,109 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.naming;
 
 import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
 import static com.puppycrawl.tools.checkstyle.checks.naming.TypeNameCheck.DEFAULT_PATTERN;
 
-import java.io.File;
-import java.io.IOException;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Test;
-
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
-import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 
 public class TypeNameCheckTest
-    extends BaseCheckTestSupport {
+    extends AbstractModuleTestSupport {
+
     @Override
-    protected String getPath(String filename) throws IOException {
-        return super.getPath("checks" + File.separator
-                + "naming" + File.separator
-                + "typename" + File.separator
-                + filename);
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/checks/naming/typename";
     }
 
     @Test
     public void testSpecified()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-                createCheckConfig(TypeNameCheck.class);
-        checkConfig.addAttribute("format", "^inputHe");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputTypeName.java"), expected);
+        final String[] expected = {
+            "25:14: " + getCheckMessage(MSG_INVALID_PATTERN,
+                        "InputTypeName", "^inputHe"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputTypeName.java"), expected);
     }
 
     @Test
     public void testDefault()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-                createCheckConfig(TypeNameCheck.class);
         final String[] expected = {
-            "3:7: " + getCheckMessage(MSG_INVALID_PATTERN,
-                    "inputHeaderClass", DEFAULT_PATTERN),
-            "5:22: " + getCheckMessage(MSG_INVALID_PATTERN,
+            "15:7: " + getCheckMessage(MSG_INVALID_PATTERN,
+                    "inputHeaderClass2", DEFAULT_PATTERN),
+            "17:22: " + getCheckMessage(MSG_INVALID_PATTERN,
                     "inputHeaderInterface", DEFAULT_PATTERN),
-            "7:17: " + getCheckMessage(MSG_INVALID_PATTERN,
+            "19:17: " + getCheckMessage(MSG_INVALID_PATTERN,
                     "inputHeaderEnum", DEFAULT_PATTERN),
-            "9:23: " + getCheckMessage(MSG_INVALID_PATTERN,
+            "21:23: " + getCheckMessage(MSG_INVALID_PATTERN,
                     "inputHeaderAnnotation", DEFAULT_PATTERN),
         };
-        verify(checkConfig, getPath("InputTypeName.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputTypeName2.java"), expected);
     }
 
     @Test
     public void testClassSpecific()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(TypeNameCheck.class);
-        checkConfig.addAttribute("tokens", TokenUtils.getTokenName(TokenTypes.CLASS_DEF));
         final String[] expected = {
-            "3:7: " + getCheckMessage(MSG_INVALID_PATTERN,
-                    "inputHeaderClass", DEFAULT_PATTERN),
+            "15:7: " + getCheckMessage(MSG_INVALID_PATTERN,
+                    "inputHeaderClass3", DEFAULT_PATTERN),
         };
-        verify(checkConfig, getPath("InputTypeName.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputTypeName3.java"), expected);
     }
 
     @Test
     public void testInterfaceSpecific()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(TypeNameCheck.class);
-        checkConfig.addAttribute("tokens", TokenUtils.getTokenName(TokenTypes.INTERFACE_DEF));
         final String[] expected = {
-            "5:22: " + getCheckMessage(MSG_INVALID_PATTERN,
+            "17:22: " + getCheckMessage(MSG_INVALID_PATTERN,
                     "inputHeaderInterface", DEFAULT_PATTERN),
         };
-        verify(checkConfig, getPath("InputTypeName.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputTypeName4.java"), expected);
     }
 
     @Test
     public void testEnumSpecific()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(TypeNameCheck.class);
-        checkConfig.addAttribute("tokens", TokenUtils.getTokenName(TokenTypes.ENUM_DEF));
         final String[] expected = {
-            "7:17: " + getCheckMessage(MSG_INVALID_PATTERN,
+            "19:17: " + getCheckMessage(MSG_INVALID_PATTERN,
                     "inputHeaderEnum", DEFAULT_PATTERN),
         };
-        verify(checkConfig, getPath("InputTypeName.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputTypeName5.java"), expected);
     }
 
     @Test
     public void testAnnotationSpecific()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(TypeNameCheck.class);
-        checkConfig.addAttribute("tokens", TokenUtils.getTokenName(TokenTypes.ANNOTATION_DEF));
         final String[] expected = {
-            "9:23: " + getCheckMessage(MSG_INVALID_PATTERN,
+            "21:23: " + getCheckMessage(MSG_INVALID_PATTERN,
                 "inputHeaderAnnotation", DEFAULT_PATTERN),
         };
-        verify(checkConfig, getPath("InputTypeName.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputTypeName6.java"), expected);
     }
+
+    @Test
+    public void testTypeNameRecords() throws Exception {
+
+        final String[] expected = {
+            "23:10: " + getCheckMessage(MSG_INVALID_PATTERN, "Third_Name", DEFAULT_PATTERN),
+            "25:11: " + getCheckMessage(MSG_INVALID_PATTERN, "FourthName_", DEFAULT_PATTERN),
+            "28:12: " + getCheckMessage(MSG_INVALID_PATTERN, "My_Record", DEFAULT_PATTERN),
+            "29:16: " + getCheckMessage(MSG_INVALID_PATTERN, "Inner__Record", DEFAULT_PATTERN),
+            "34:12: " + getCheckMessage(MSG_INVALID_PATTERN, "MyRecord__", DEFAULT_PATTERN),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputTypeNameRecords.java"), expected);
+    }
+
 }

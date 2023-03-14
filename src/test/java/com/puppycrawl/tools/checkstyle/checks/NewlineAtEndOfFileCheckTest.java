@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,134 +15,107 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck.MSG_KEY_NO_NEWLINE_EOF;
 import static com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck.MSG_KEY_UNABLE_OPEN;
-import static java.util.Locale.ENGLISH;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
-import static org.powermock.api.mockito.PowerMockito.mock;
-import static org.powermock.api.mockito.PowerMockito.when;
+import static com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck.MSG_KEY_WRONG_ENDING;
 
 import java.io.File;
-import java.io.IOException;
+import java.io.FileNotFoundException;
 import java.io.RandomAccessFile;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
-import com.puppycrawl.tools.checkstyle.api.Configuration;
-import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.api.FileText;
+import com.puppycrawl.tools.checkstyle.api.Violation;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class NewlineAtEndOfFileCheckTest
-    extends BaseCheckTestSupport {
-    @Override
-    protected DefaultConfiguration createCheckerConfig(
-        Configuration config) {
-        final DefaultConfiguration dc = new DefaultConfiguration("root");
-        dc.addChild(config);
-        return dc;
-    }
+    extends AbstractModuleTestSupport {
 
     @Override
-    protected String getPath(String filename) throws IOException {
-        return super.getPath("checks" + File.separator + filename);
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/checks/newlineatendoffile";
     }
 
     @Test
     public void testNewlineLfAtEndOfFile() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(NewlineAtEndOfFileCheck.class);
-        checkConfig.addAttribute("lineSeparator", LineSeparatorOption.LF.toString());
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(
-            createChecker(checkConfig),
-            getPath("InputNewlineLfAtEndOfFile.java"),
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputNewlineAtEndOfFileLf.java"),
+            expected);
+    }
+
+    @Test
+    public void testNewlineLfAtEndOfFileLfNotOverlapWithCrLf() throws Exception {
+        final String[] expected = {
+            "1: " + getCheckMessage(MSG_KEY_WRONG_ENDING),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputNewlineAtEndOfFileCrlf.java"),
             expected);
     }
 
     @Test
     public void testNewlineCrlfAtEndOfFile() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(NewlineAtEndOfFileCheck.class);
-        checkConfig.addAttribute("lineSeparator", LineSeparatorOption.CRLF.toString());
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(
-            createChecker(checkConfig),
-            getPath("InputNewlineCrlfAtEndOfFile.java"),
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputNewlineAtEndOfFileCrlf3.java"),
             expected);
     }
 
     @Test
     public void testNewlineCrAtEndOfFile() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(NewlineAtEndOfFileCheck.class);
-        checkConfig.addAttribute("lineSeparator", LineSeparatorOption.CR.toString());
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(
-            createChecker(checkConfig),
-            getPath("InputNewlineCrAtEndOfFile.java"),
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputNewlineAtEndOfFileCr.java"),
             expected);
     }
 
     @Test
     public void testAnyNewlineAtEndOfFile() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(NewlineAtEndOfFileCheck.class);
-        checkConfig.addAttribute("lineSeparator", LineSeparatorOption.LF_CR_CRLF.toString());
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(
-            createChecker(checkConfig),
-            getPath("InputNewlineCrlfAtEndOfFile.java"),
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputNewlineAtEndOfFileCrlf2.java"),
             expected);
-        verify(
-            createChecker(checkConfig),
-            getPath("InputNewlineLfAtEndOfFile.java"),
+        verifyWithInlineConfigParser(
+                getPath("InputNewlineAtEndOfFileLf2.java"),
             expected);
-        verify(
-            createChecker(checkConfig),
-            getPath("InputNewlineCrAtEndOfFile.java"),
+        verifyWithInlineConfigParser(
+                getPath("InputNewlineAtEndOfFileCr2.java"),
             expected);
     }
 
     @Test
     public void testNoNewlineLfAtEndOfFile() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(NewlineAtEndOfFileCheck.class);
-        checkConfig.addAttribute("lineSeparator", LineSeparatorOption.LF.toString());
         final String[] expected = {
-            "0: " + getCheckMessage(MSG_KEY_NO_NEWLINE_EOF),
+            "1: " + getCheckMessage(MSG_KEY_NO_NEWLINE_EOF),
         };
-        verify(
-            createChecker(checkConfig),
-            getPath("InputNoNewlineAtEndOfFile.java"),
+        verifyWithInlineConfigParser(
+                getPath("InputNewlineAtEndOfFileNoNewline.java"),
             expected);
     }
 
     @Test
     public void testNoNewlineAtEndOfFile() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(NewlineAtEndOfFileCheck.class);
-        checkConfig.addAttribute("lineSeparator", LineSeparatorOption.LF_CR_CRLF.toString());
+        final String msgKeyNoNewlineEof = "File does not end with a newline :)";
         final String[] expected = {
-            "0: " + getCheckMessage(MSG_KEY_NO_NEWLINE_EOF),
+            "1: " + msgKeyNoNewlineEof,
         };
-        verify(
-            createChecker(checkConfig),
-            getPath("InputNoNewlineAtEndOfFile.java"),
+        verifyWithInlineConfigParser(
+                getPath("InputNewlineAtEndOfFileNoNewline2.java"),
             expected);
     }
 
@@ -150,76 +123,114 @@ public class NewlineAtEndOfFileCheckTest
     public void testSetLineSeparatorFailure()
             throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(NewlineAtEndOfFileCheck.class);
-        checkConfig.addAttribute("lineSeparator", "ct");
+            createModuleConfig(NewlineAtEndOfFileCheck.class);
+        checkConfig.addProperty("lineSeparator", "ct");
         try {
             createChecker(checkConfig);
-            fail("exception expected");
+            assertWithMessage("exception expected").fail();
         }
         catch (CheckstyleException ex) {
-            assertTrue("Error message is unexpected",
-                    ex.getMessage().startsWith(
-                    "cannot initialize module com.puppycrawl.tools.checkstyle."
+            assertWithMessage("Error message is unexpected")
+                    .that(ex.getMessage())
+                    .isEqualTo("cannot initialize module com.puppycrawl.tools.checkstyle."
                             + "checks.NewlineAtEndOfFileCheck - "
-                            + "Cannot set property 'lineSeparator' to 'ct' in module"));
+                            + "Cannot set property 'lineSeparator' to 'ct'");
         }
     }
 
     @Test
     public void testEmptyFileFile() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(NewlineAtEndOfFileCheck.class);
-        checkConfig.addAttribute("lineSeparator", LineSeparatorOption.LF.toString());
+            createModuleConfig(NewlineAtEndOfFileCheck.class);
+        checkConfig.addProperty("lineSeparator", LineSeparatorOption.LF.toString());
         final String[] expected = {
-            "0: " + getCheckMessage(MSG_KEY_NO_NEWLINE_EOF),
+            "1: " + getCheckMessage(MSG_KEY_NO_NEWLINE_EOF),
         };
         verify(
-            createChecker(checkConfig),
-            getPath("InputEmptyFile.txt"),
+            checkConfig,
+            getPath("InputNewlineAtEndOfFileEmptyFile.txt"),
             expected);
     }
 
     @Test
+    public void testFileWithEmptyLineOnly() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(NewlineAtEndOfFileCheck.class);
+        checkConfig.addProperty("lineSeparator", LineSeparatorOption.LF.toString());
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verify(
+                checkConfig,
+                getPath("InputNewlineAtEndOfFileNewlineAtEnd.txt"),
+                expected);
+    }
+
+    @Test
+    public void testFileWithEmptyLineOnlyWithLfCrCrlf() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(NewlineAtEndOfFileCheck.class);
+        checkConfig.addProperty("lineSeparator", LineSeparatorOption.LF_CR_CRLF.toString());
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verify(
+                checkConfig,
+                getPath("InputNewlineAtEndOfFileNewlineAtEndLf.txt"),
+                expected);
+    }
+
+    @Test
     public void testWrongFile() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(NewlineAtEndOfFileCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(NewlineAtEndOfFileCheck.class);
         final NewlineAtEndOfFileCheck check = new NewlineAtEndOfFileCheck();
         check.configure(checkConfig);
         final List<String> lines = new ArrayList<>(1);
         lines.add("txt");
         final File impossibleFile = new File("");
-        final Set<LocalizedMessage> messages = check.process(impossibleFile, lines);
-        assertEquals("Ammount of messages is unexpected",
-                1, messages.size());
-        final Iterator<LocalizedMessage> iterator = messages.iterator();
-        assertEquals("Violation message differs from expected",
-                getCheckMessage(MSG_KEY_UNABLE_OPEN, ""), iterator.next().getMessage());
+        final FileText fileText = new FileText(impossibleFile, lines);
+        final Set<Violation> violations = check.process(impossibleFile, fileText);
+        assertWithMessage("Amount of violations is unexpected")
+                .that(violations)
+                .hasSize(1);
+        final Iterator<Violation> iterator = violations.iterator();
+        assertWithMessage("Violation message differs from expected")
+                .that(iterator.next().getViolation())
+                .isEqualTo(getCheckMessage(MSG_KEY_UNABLE_OPEN, ""));
     }
 
     @Test
     public void testWrongSeparatorLength() throws Exception {
-        final NewlineAtEndOfFileCheck check = new NewlineAtEndOfFileCheck();
-        final DefaultConfiguration checkConfig = createCheckConfig(NewlineAtEndOfFileCheck.class);
-        check.configure(checkConfig);
-
-        final Method method = NewlineAtEndOfFileCheck.class
-                .getDeclaredMethod("endsWithNewline", RandomAccessFile.class);
-        method.setAccessible(true);
-        final RandomAccessFile file = mock(RandomAccessFile.class);
-        when(file.length()).thenReturn(2_000_000L);
-        try {
-            method.invoke(new NewlineAtEndOfFileCheck(), file);
+        try (RandomAccessFile file =
+                     new ReadZeroRandomAccessFile(getPath("InputNewlineAtEndOfFileLf.java"), "r")) {
+            TestUtil.invokeMethod(new NewlineAtEndOfFileCheck(), "endsWithNewline", file,
+                LineSeparatorOption.LF);
+            assertWithMessage("ReflectiveOperationException is expected").fail();
         }
-        catch (InvocationTargetException ex) {
-            assertTrue("Error type is unexpected",
-                    ex.getCause() instanceof IOException);
-            if (System.getProperty("os.name").toLowerCase(ENGLISH).startsWith("windows")) {
-                assertEquals("Error message is unexpected",
-                        "Unable to read 2 bytes, got 0", ex.getCause().getMessage());
-            }
-            else {
-                assertEquals("Error message is unexpected",
-                        "Unable to read 1 bytes, got 0", ex.getCause().getMessage());
-            }
+        catch (ReflectiveOperationException ex) {
+            assertWithMessage("Error message is unexpected")
+                .that(ex)
+                    .hasCauseThat()
+                        .hasMessageThat()
+                        .isEqualTo("Unable to read 1 bytes, got 0");
         }
     }
+
+    @Test
+    public void testTrimOptionProperty() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputNewlineAtEndOfFileTestTrimProperty.java"),
+                expected);
+    }
+
+    private static final class ReadZeroRandomAccessFile extends RandomAccessFile {
+
+        private ReadZeroRandomAccessFile(String name, String mode)
+                throws FileNotFoundException {
+            super(name, mode);
+        }
+
+        @Override
+        public int read(byte[] bytes) {
+            return 0;
+        }
+    }
+
 }

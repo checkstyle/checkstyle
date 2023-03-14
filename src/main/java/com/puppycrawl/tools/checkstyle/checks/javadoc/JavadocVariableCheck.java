@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,25 +15,165 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import java.util.regex.Pattern;
 
+import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
+import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 
 /**
- * Checks that a variable has Javadoc comment. Ignores <code>serialVersionUID</code> fields.
+ * <p>
+ * Checks that a variable has a Javadoc comment. Ignores {@code serialVersionUID} fields.
+ * </p>
+ * <ul>
+ * <li>
+ * Property {@code scope} - Specify the visibility scope where Javadoc comments are checked.
+ * Type is {@code com.puppycrawl.tools.checkstyle.api.Scope}.
+ * Default value is {@code private}.
+ * </li>
+ * <li>
+ * Property {@code excludeScope} - Specify the visibility scope where Javadoc
+ * comments are not checked.
+ * Type is {@code com.puppycrawl.tools.checkstyle.api.Scope}.
+ * Default value is {@code null}.
+ * </li>
+ * <li>
+ * Property {@code ignoreNamePattern} - Specify the regexp to define variable names to ignore.
+ * Type is {@code java.util.regex.Pattern}.
+ * Default value is {@code null}.
+ * </li>
+ * <li>
+ * Property {@code tokens} - tokens to check
+ * Type is {@code java.lang.String[]}.
+ * Validation type is {@code tokenSet}.
+ * Default value is:
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_CONSTANT_DEF">
+ * ENUM_CONSTANT_DEF</a>.
+ * </li>
+ * </ul>
+ * <p>
+ * To configure the default check:
+ * </p>
+ * <pre>
+ * &lt;module name="JavadocVariable"/&gt;
+ * </pre>
+ * <p>
+ * By default, this setting will report a violation if
+ * there is no javadoc for any scope member.
+ * </p>
+ * <pre>
+ * public class Test {
+ *   private int a; // violation, missing javadoc for private member
  *
- * @author Oliver Burn
+ *   &#47;**
+ *    * Some description here
+ *    *&#47;
+ *   private int b; // OK
+ *   protected int c; // violation, missing javadoc for protected member
+ *   public int d; // violation, missing javadoc for public member
+ *   &#47;*package*&#47; int e; // violation, missing javadoc for package member
+ * }
+ * </pre>
+ * <p>
+ * To configure the check for {@code public} scope:
+ * </p>
+ * <pre>
+ * &lt;module name="JavadocVariable"&gt;
+ *   &lt;property name="scope" value="public"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>This setting will report a violation if there is no javadoc for {@code public} member.</p>
+ * <pre>
+ * public class Test {
+ *   private int a; // OK
+ *
+ *   &#47;**
+ *    * Some description here
+ *    *&#47;
+ *   private int b; // OK
+ *   protected int c; // OK
+ *   public int d; // violation, missing javadoc for public member
+ *   &#47;*package*&#47; int e; // OK
+ * }
+ * </pre>
+ * <p>
+ * To configure the check for members which are in {@code private},
+ * but not in {@code protected} scope:
+ * </p>
+ * <pre>
+ * &lt;module name="JavadocVariable"&gt;
+ *   &lt;property name="scope" value="private"/&gt;
+ *   &lt;property name="excludeScope" value="protected"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * This setting will report a violation if there is no javadoc for {@code private}
+ * member and ignores {@code protected} member.
+ * </p>
+ * <pre>
+ * public class Test {
+ *   private int a; // violation, missing javadoc for private member
+ *
+ *   &#47;**
+ *    * Some description here
+ *    *&#47;
+ *   private int b; // OK
+ *   protected int c; // OK
+ *   public int d; // OK
+ *   &#47;*package*&#47; int e; // violation, missing javadoc for package member
+ * }
+ * </pre>
+ * <p>
+ * To ignore absence of Javadoc comments for variables with names {@code log} or {@code logger}:
+ * </p>
+ * <pre>
+ * &lt;module name="JavadocVariable"&gt;
+ *   &lt;property name="ignoreNamePattern" value="log|logger"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * This setting will report a violation if there is no javadoc for any scope
+ * member and ignores members with name {@code log} or {@code logger}.
+ * </p>
+ * <pre>
+ * public class Test {
+ *   private int a; // violation, missing javadoc for private member
+ *
+ *   &#47;**
+ *    * Some description here
+ *    *&#47;
+ *   private int b; // OK
+ *   protected int c; // violation, missing javadoc for protected member
+ *   public int d; // violation, missing javadoc for public member
+ *   &#47;*package*&#47; int e; // violation, missing javadoc for package member
+ *   private int log; // OK
+ *   private int logger; // OK
+ * }
+ * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code javadoc.missing}
+ * </li>
+ * </ul>
+ *
+ * @since 3.0
  */
+@StatelessCheck
 public class JavadocVariableCheck
     extends AbstractCheck {
 
@@ -43,17 +183,18 @@ public class JavadocVariableCheck
      */
     public static final String MSG_JAVADOC_MISSING = "javadoc.missing";
 
-    /** The scope to check. */
+    /** Specify the visibility scope where Javadoc comments are checked. */
     private Scope scope = Scope.PRIVATE;
 
-    /** The visibility scope where Javadoc comments shouldn't be checked. **/
+    /** Specify the visibility scope where Javadoc comments are not checked. */
     private Scope excludeScope;
 
-    /** The pattern to ignore variable name. */
+    /** Specify the regexp to define variable names to ignore. */
     private Pattern ignoreNamePattern;
 
     /**
-     * Sets the scope to check.
+     * Setter to specify the visibility scope where Javadoc comments are checked.
+     *
      * @param scope a scope.
      */
     public void setScope(Scope scope) {
@@ -61,7 +202,8 @@ public class JavadocVariableCheck
     }
 
     /**
-     * Set the excludeScope.
+     * Setter to specify the visibility scope where Javadoc comments are not checked.
+     *
      * @param excludeScope a scope.
      */
     public void setExcludeScope(Scope excludeScope) {
@@ -69,7 +211,8 @@ public class JavadocVariableCheck
     }
 
     /**
-     * Sets the variable names to ignore in the check.
+     * Setter to specify the regexp to define variable names to ignore.
+     *
      * @param pattern a pattern.
      */
     public void setIgnoreNamePattern(Pattern pattern) {
@@ -100,6 +243,8 @@ public class JavadocVariableCheck
         };
     }
 
+    // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/11166
+    @SuppressWarnings("deprecation")
     @Override
     public void visitToken(DetailAST ast) {
         if (shouldCheck(ast)) {
@@ -115,6 +260,7 @@ public class JavadocVariableCheck
 
     /**
      * Decides whether the variable name of an AST is in the ignore list.
+     *
      * @param ast the AST to check
      * @return true if the variable name of ast is in the ignore list.
      */
@@ -126,20 +272,15 @@ public class JavadocVariableCheck
 
     /**
      * Whether we should check this node.
+     *
      * @param ast a given node.
      * @return whether we should check a given node.
      */
     private boolean shouldCheck(final DetailAST ast) {
         boolean result = false;
-        if (!ScopeUtils.isInCodeBlock(ast) && !isIgnored(ast)) {
-            Scope customScope = Scope.PUBLIC;
-            if (ast.getType() != TokenTypes.ENUM_CONSTANT_DEF
-                    && !ScopeUtils.isInInterfaceOrAnnotationBlock(ast)) {
-                final DetailAST mods = ast.findFirstToken(TokenTypes.MODIFIERS);
-                customScope = ScopeUtils.getScopeFromMods(mods);
-            }
-
-            final Scope surroundingScope = ScopeUtils.getSurroundingScope(ast);
+        if (!ScopeUtil.isInCodeBlock(ast) && !isIgnored(ast)) {
+            final Scope customScope = ScopeUtil.getScope(ast);
+            final Scope surroundingScope = ScopeUtil.getSurroundingScope(ast);
             result = customScope.isIn(scope) && surroundingScope.isIn(scope)
                 && (excludeScope == null
                     || !customScope.isIn(excludeScope)
@@ -147,4 +288,5 @@ public class JavadocVariableCheck
         }
         return result;
     }
+
 }

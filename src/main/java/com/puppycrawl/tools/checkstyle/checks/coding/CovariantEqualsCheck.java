@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,33 +15,134 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import java.util.HashSet;
 import java.util.Set;
 
+import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CheckUtils;
+import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 
 /**
- * <p>Checks that if a class defines a covariant method equals,
- * then it defines method equals(java.lang.Object).
- * Inspired by findbugs,
- * http://findbugs.sourceforge.net/bugDescriptions.html#EQ_SELF_NO_OBJECT
+ * <p>
+ * Checks that classes and records which define a covariant {@code equals()} method
+ * also override method {@code equals(Object)}.
  * </p>
  * <p>
- * An example of how to configure the check is:
+ * Covariant {@code equals()} - method that is similar to {@code equals(Object)},
+ * but with a covariant parameter type (any subtype of Object).
+ * </p>
+ * <p>
+ * <strong>Notice</strong>: the enums are also checked,
+ * even though they cannot override {@code equals(Object)}.
+ * The reason is to point out that implementing {@code equals()} in enums
+ * is considered an awful practice: it may cause having two different enum values
+ * that are equal using covariant enum method, and not equal when compared normally.
+ * </p>
+ * <p>
+ * Inspired by <a href="https://www.cs.jhu.edu/~daveho/pubs/oopsla2004.pdf">
+ * Finding Bugs is Easy, chapter '4.5 Bad Covariant Definition of Equals (Eq)'</a>:
+ * </p>
+ * <p>
+ * Java classes and records may override the {@code equals(Object)} method to define
+ * a predicate for object equality. This method is used by many of the Java
+ * runtime library classes; for example, to implement generic containers.
+ * </p>
+ * <p>
+ * Programmers sometimes mistakenly use the type of their class {@code Foo}
+ * as the type of the parameter to {@code equals()}:
  * </p>
  * <pre>
- * &lt;module name="CovariantEquals"/&gt;
+ * public boolean equals(Foo obj) {...}
  * </pre>
- * @author Rick Giles
+ * <p>
+ * This covariant version of {@code equals()} does not override the version in
+ * the {@code Object} class, and it may lead to unexpected behavior at runtime,
+ * especially if the class is used with one of the standard collection classes
+ * which expect that the standard {@code equals(Object)} method is overridden.
+ * </p>
+ * <p>
+ * This kind of bug is not obvious because it looks correct, and in circumstances
+ * where the class is accessed through the references of the class type (rather
+ * than a supertype), it will work correctly. However, the first time it is used
+ * in a container, the behavior might be mysterious. For these reasons, this type
+ * of bug can elude testing and code inspections.
+ * </p>
+ * <p>
+ * To configure the check:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;CovariantEquals&quot;/&gt;
+ * </pre>
+ * <p>
+ * For example:
+ * </p>
+ * <pre>
+ * class Test {
+ *   public boolean equals(Test i) {  // violation
+ *     return false;
+ *   }
+ * }
+ * </pre>
+ * <p>
+ * The same class without violations:
+ * </p>
+ * <pre>
+ * class Test {
+ *   public boolean equals(Test i) {  // no violation
+ *     return false;
+ *   }
+ *
+ *   public boolean equals(Object i) {
+ *     return false;
+ *   }
+ * }
+ * </pre>
+ * <p>
+ * Another example:
+ * </p>
+ * <pre>
+ * record Test(String str) {
+ *   public boolean equals(Test r) {  // violation
+ *     return false;
+ *   }
+ * }
+ * </pre>
+ * <p>
+ * The same record without violations:
+ * </p>
+ * <pre>
+ * record Test(String str) {
+ *   public boolean equals(Test r) {  // no violation
+ *     return false;
+ *   }
+ *
+ *   public boolean equals(Object r) {
+ *     return false;
+ *   }
+ * }
+ * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code covariant.equals}
+ * </li>
+ * </ul>
+ *
+ * @since 3.2
  */
+@FileStatefulCheck
 public class CovariantEqualsCheck extends AbstractCheck {
 
     /**
@@ -55,17 +156,22 @@ public class CovariantEqualsCheck extends AbstractCheck {
 
     @Override
     public int[] getDefaultTokens() {
-        return new int[] {TokenTypes.CLASS_DEF, TokenTypes.LITERAL_NEW, TokenTypes.ENUM_DEF, };
+        return getRequiredTokens();
     }
 
     @Override
     public int[] getRequiredTokens() {
-        return getDefaultTokens();
+        return new int[] {
+            TokenTypes.CLASS_DEF,
+            TokenTypes.LITERAL_NEW,
+            TokenTypes.ENUM_DEF,
+            TokenTypes.RECORD_DEF,
+        };
     }
 
     @Override
     public int[] getAcceptableTokens() {
-        return new int[] {TokenTypes.CLASS_DEF, TokenTypes.LITERAL_NEW, TokenTypes.ENUM_DEF, };
+        return getRequiredTokens();
     }
 
     @Override
@@ -78,8 +184,7 @@ public class CovariantEqualsCheck extends AbstractCheck {
             DetailAST child = objBlock.getFirstChild();
             boolean hasEqualsObject = false;
             while (child != null) {
-                if (child.getType() == TokenTypes.METHOD_DEF
-                        && CheckUtils.isEqualsMethod(child)) {
+                if (CheckUtil.isEqualsMethod(child)) {
                     if (isFirstParameterObject(child)) {
                         hasEqualsObject = true;
                     }
@@ -95,8 +200,7 @@ public class CovariantEqualsCheck extends AbstractCheck {
                 for (DetailAST equalsAST : equalsMethods) {
                     final DetailAST nameNode = equalsAST
                             .findFirstToken(TokenTypes.IDENT);
-                    log(nameNode.getLineNo(), nameNode.getColumnNo(),
-                            MSG_KEY);
+                    log(nameNode, MSG_KEY);
                 }
             }
         }
@@ -104,6 +208,7 @@ public class CovariantEqualsCheck extends AbstractCheck {
 
     /**
      * Tests whether a method's first parameter is an Object.
+     *
      * @param methodDefAst the method definition AST to test.
      *     Precondition: ast is a TokenTypes.METHOD_DEF node.
      * @return true if ast has first parameter of type Object.
@@ -119,4 +224,5 @@ public class CovariantEqualsCheck extends AbstractCheck {
         final String name = fullIdent.getText();
         return "Object".equals(name) || "java.lang.Object".equals(name);
     }
+
 }

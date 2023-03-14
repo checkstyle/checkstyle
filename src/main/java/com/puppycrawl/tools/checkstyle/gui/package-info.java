@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,10 +15,10 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
- * User interface classes for CheckStyle. Currently this is mainly a gui to aid
+ * User interface classes for CheckStyle. Currently, this is mainly a gui to aid
  * Check developers.
  *
  * <p>This is definitely work in progress. Here are some ideas where
@@ -35,7 +35,7 @@
  *     (well, err.., except Eclipse).
  *   </li>
  *   <li>
- *     Add ability to execute individual Checks and display the error messages.
+ *     Add ability to execute individual Checks and display the violation messages.
  *   </li>
  *   <li>
  *     Add a GUI for the

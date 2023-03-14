@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,97 +15,132 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.design;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.design.MutableExceptionCheck.MSG_KEY;
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.fail;
 
 import java.io.File;
-import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 
-import org.junit.Test;
+import org.antlr.v4.runtime.CommonToken;
+import org.junit.jupiter.api.Test;
 
-import antlr.CommonHiddenStreamToken;
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.google.common.collect.ImmutableMap;
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-public class MutableExceptionCheckTest extends BaseCheckTestSupport {
+public class MutableExceptionCheckTest extends AbstractModuleTestSupport {
+
     @Override
-    protected String getPath(String filename) throws IOException {
-        return super.getPath("checks" + File.separator
-                + "design" + File.separator
-                + "mutableexception" + File.separator
-                + filename);
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/checks/design/mutableexception";
     }
 
     @Test
     public void testClassExtendsGenericClass() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(MutableExceptionCheck.class);
 
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("InputMutableExceptionClassExtendsGenericClass.java"),
-            expected);
+        verifyWithInlineConfigParser(
+                getPath("InputMutableExceptionClassExtendsGenericClass.java"),
+                expected);
     }
 
     @Test
     public void testDefault() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(MutableExceptionCheck.class);
 
         final String[] expected = {
-            "6:9: " + getCheckMessage(MSG_KEY, "errorCode"),
-            "23:9: " + getCheckMessage(MSG_KEY, "errorCode"),
-            "46:9: " + getCheckMessage(MSG_KEY, "errorCode"),
+            "14:9: " + getCheckMessage(MSG_KEY, "errorCode"),
+            "31:9: " + getCheckMessage(MSG_KEY, "errorCode"),
+            "54:9: " + getCheckMessage(MSG_KEY, "errorCode"),
         };
 
-        verify(checkConfig, getPath("InputMutableException.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputMutableException.java"), expected);
+    }
+
+    @Test
+    public void testMultipleInputs() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(MutableExceptionCheck.class);
+        final String filePath1 = getPath("InputMutableException2.java");
+        final String filePath2 = getPath("InputMutableExceptionMultipleInputs.java");
+
+        final List<String> expected1 = Arrays.asList(
+            "14:9: " + getCheckMessage(MSG_KEY, "errorCode"),
+            "31:9: " + getCheckMessage(MSG_KEY, "errorCode"),
+            "54:9: " + getCheckMessage(MSG_KEY, "errorCode"));
+        final List<String> expected2 = Arrays.asList(
+            "14:9: " + getCheckMessage(MSG_KEY, "errorCode"),
+            "18:9: " + getCheckMessage(MSG_KEY, "errorCode"));
+
+        final File[] inputs = {new File(filePath1), new File(filePath2)};
+
+        verify(createChecker(checkConfig), inputs,
+                ImmutableMap.of(filePath1, expected1, filePath2, expected2));
     }
 
     @Test
     public void testFormat() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(MutableExceptionCheck.class);
-        checkConfig.addAttribute("format", "^.*Failure$");
-        checkConfig.addAttribute("extendedClassNameFormat", "^.*ThreadDeath$");
         final String[] expected = {
-            "34:13: " + getCheckMessage(MSG_KEY, "errorCode"),
+            "42:13: " + getCheckMessage(MSG_KEY, "errorCode"),
         };
 
-        verify(checkConfig, getPath("InputMutableException.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputMutableException3.java"), expected);
+    }
+
+    @Test
+    public void testNested() throws Exception {
+
+        final String[] expected = {
+            "15:9: " + getCheckMessage(MSG_KEY, "code"),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputMutableExceptionNested.java"), expected);
     }
 
     @Test
     public void testGetAcceptableTokens() {
         final MutableExceptionCheck obj = new MutableExceptionCheck();
         final int[] expected = {TokenTypes.CLASS_DEF, TokenTypes.VARIABLE_DEF};
-        assertArrayEquals("Default acceptable tokens are invalid",
-            expected, obj.getAcceptableTokens());
+        assertWithMessage("Default acceptable tokens are invalid")
+                .that(obj.getAcceptableTokens())
+                .isEqualTo(expected);
     }
 
     @Test
     public void testGetRequiredTokens() {
         final MutableExceptionCheck obj = new MutableExceptionCheck();
         final int[] expected = {TokenTypes.CLASS_DEF, TokenTypes.VARIABLE_DEF};
-        assertArrayEquals("Default required tokens are invalid",
-            expected, obj.getRequiredTokens());
+        assertWithMessage("Default required tokens are invalid")
+                .that(obj.getRequiredTokens())
+                .isEqualTo(expected);
     }
 
     @Test
     public void testWrongTokenType() {
         final MutableExceptionCheck obj = new MutableExceptionCheck();
-        final DetailAST ast = new DetailAST();
-        ast.initialize(new CommonHiddenStreamToken(TokenTypes.INTERFACE_DEF, "interface"));
+        final DetailAstImpl ast = new DetailAstImpl();
+        ast.initialize(new CommonToken(TokenTypes.INTERFACE_DEF, "interface"));
         try {
             obj.visitToken(ast);
-            fail("IllegalStateException is expected");
+            assertWithMessage("IllegalStateException is expected")
+                    .fail();
         }
         catch (IllegalStateException ex) {
-            //expected
+            // exception is expected
+            assertWithMessage("Invalid exception message")
+                    .that(ex.getMessage())
+                    .isEqualTo("interface[0x-1]");
         }
     }
+
 }

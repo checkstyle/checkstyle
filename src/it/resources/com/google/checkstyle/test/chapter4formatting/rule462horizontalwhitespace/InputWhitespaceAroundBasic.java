@@ -2,9 +2,9 @@ package com.google.checkstyle.test.chapter4formatting.rule462horizontalwhitespac
 
 /**
  * Class for testing whitespace issues.
- * error missing author tag
+ * violation missing author tag
  **/
-class InputWhitespace
+class InputWhitespaceAroundBasic
 {
     /** warn **/
     private int mVar1= 1; // warn
@@ -67,7 +67,7 @@ class InputWhitespace
     {
         if ( true )
         {
-            return(2); // //warn 
+            return(2); // //warn
         }
         else
         {
@@ -174,18 +174,18 @@ class InputWhitespace
         }
     }
 
-    
-    /** bug  806243 (NoWhitespaceBeforeCheck error for anonymous inner class) */
+
+    /** bug  806243 (NoWhitespaceBeforeCheck violation for anonymous inner class) */
     private int i ;
     //           ^ whitespace
     private int i1, i2, i3 ;
     //                    ^ whitespace
     private int i4, i5, i6;
 
-    /** bug  806243 (NoWhitespaceBeforeCheck error for anonymous inner class) */
+    /** bug  806243 (NoWhitespaceBeforeCheck violation for anonymous inner class) */
     void bug806243()
     {
-        Object o = new InputWhitespace() {
+        Object o = new InputWhitespaceAroundBasic() {
             private int j ;
             //           ^ whitespace
         };
@@ -196,7 +196,7 @@ class InputWhitespace
 }
 
 /**
- * Bug 806242 (NoWhitespaceBeforeCheck error with an interface).
+ * Bug 806242 (NoWhitespaceBeforeCheck violation with an interface).
  * @author o_sukhodolsky
  * @version 1.0
  */
@@ -207,7 +207,7 @@ interface IFoo
 }
 
 /**
- * Avoid Whitespace errors in for loop.
+ * Avoid Whitespace violations in for loop.
  * @author lkuehne
  * @version 1.0
  */
@@ -221,7 +221,7 @@ class SpecialCasesInForLoop
     }
 
         // bug 895072
-    // avoid confilct between ParenPad(space) and NoWhiteSpace before ';'
+    // avoid conflict between ParenPad(space) and NoWhiteSpace before ';'
     int i = 0;
     for ( ; i < 5; i++ ) {
     //   ^ whitespace
@@ -234,6 +234,14 @@ class SpecialCasesInForLoop
     int[] getSomeInts() {
         int i = (int) ( 2 / 3 );
         return null;
+    }
+
+    void forColon() {
+        int ll[] = new int[10];
+        for (int x:ll) {} // warn
+        for (int x :ll) {} // warn
+        for (int x: ll) {} // warn
+        for (int x : ll) {} // ok
     }
 }
 
@@ -248,7 +256,8 @@ class NewGoogleOperators
 
        l = ()-> { }; //warn
        l = () ->{ }; //warn
-       l = () -> { };
+       l = () -> { }; //ok
+       l = () -> {}; //ok
 
        java.util.Arrays.sort(null, String :: compareToIgnoreCase);
        java.util.Arrays.sort(null, String::compareToIgnoreCase);

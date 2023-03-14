@@ -1,22 +1,19 @@
-////////////////////////////////////////////////////////////////////////////////
-// Test case file for checkstyle.
-// Created: Feb-2001
-// Ignore error
-////////////////////////////////////////////////////////////////////////////////
+/*
+MethodLength
+max = 19
+countEmpty = (default)true
+tokens = (default)METHOD_DEF , CTOR_DEF , COMPACT_CTOR_DEF
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.sizes.methodlength;
 import java.io.*;
-/**
- * Contains simple mistakes:
- * - Long lines
- * - Tabs
- * - Format of variables and parameters
- * - Order of modifiers
- * @author Oliver Burn
- **/
+
 final class InputMethodLengthSimple
 {
     // Long line ----------------------------------------------------------------
-    // Contains a tab ->	<-
+    // Contains a tab ->        <-
     // Contains trailing whitespace ->
 
     // Name format tests
@@ -76,7 +73,7 @@ final class InputMethodLengthSimple
     }
 
     /** method that is 20 lines long **/
-    private void longMethod()
+    private void longMethod() // violation
     {
         // a line
         // a line
@@ -142,29 +139,29 @@ final class InputMethodLengthSimple
     private static final int BAD__NAME = 3;
 
     // A very, very long line that is OK because it matches the regexp "^.*is OK.*regexp.*$"
-    // long line that has a tab ->	<- and would be OK if tab counted as 1 char
-    // tabs that count as one char because of their position ->	<-   ->	<-, OK
- 
-    /** some lines to test the error column after tabs */
+    // long line that has a tab ->        <- and would be OK if tab counted as 1 char
+    // tabs that count as one char because of their position ->        <-   ->        <-, OK
+
+    /** some lines to test the violation column after tabs */
     void errorColumnAfterTabs()
     {
         // with tab-width 8 all statements below start at the same column,
         // with different combinations of ' ' and '\t' before the statement
                 int tab0 =1;
-        	int tab1 =1;
-         	int tab2 =1;
-		int tab3 =1;
-  	  	int tab4 =1;
-  	        int tab5 =1;
+                int tab1 =1;
+                 int tab2 =1;
+                int tab3 =1;
+                    int tab4 =1;
+                  int tab5 =1;
     }
 
-    // FIXME:
-    /* FIXME: a
-     * FIXME:
-     * TODO
+    // MEMME:
+    /* MEMME: a
+     * MEMME:
+     * OOOO
      */
     /* NOTHING */
-    /* YES */ /* FIXME: x */ /* YES!! */
+    /* YES */ /* MEMME: x */ /* YES!! */
 
     /** test long comments **/
     void veryLong()
@@ -197,7 +194,7 @@ final class InputMethodLengthSimple
     }
 }
 
-/** Test class for variable naming in for each clauses. */
+/** Test class for variable naming in for each clause. */
 class InputSimple2
 {
     /** Some more Javadoc. */
@@ -220,6 +217,6 @@ enum MyEnum1
     /** XYZ constant */
     XYZ;
 
-    /** Should be mSomeMemeber */
+    /** Should be mSomeMember */
     private int someMember;
 }

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suppressions PUBLIC
+        "-//Checkstyle//DTD SuppressionXpathFilter Experimental Configuration 1.2//EN"
+        "https://checkstyle.org/dtds/suppressions_1_2_xpath_experimental.dtd">
+<suppressions>
+    <suppress-xpath
+            files="InputSuppressionXpathFilterEscapeString.java"
+            checks="IllegalTokenTextCheck"
+            query="/COMPILATION_UNIT/CLASS_DEF[./IDENT
+            [@text='InputSuppressionXpathFilterEscapeString']]/OBJBLOCK/VARIABLE_DEF
+            [./IDENT[@text='quoteChar']]/ASSIGN/EXPR/STRING_LITERAL
+            [@text='\&quot;escaped\&quot;']"/>
+    <suppress-xpath
+            files="InputSuppressionXpathFilterEscapeString.java"
+            checks="IllegalTokenTextCheck"
+            query="/COMPILATION_UNIT/CLASS_DEF[./IDENT
+            [@text='InputSuppressionXpathFilterEscapeString']]/OBJBLOCK/VARIABLE_DEF
+            [./IDENT[@text='lessChar']]/ASSIGN/EXPR/STRING_LITERAL[@text='&lt;escaped']"/>
+    <suppress-xpath
+            files="InputSuppressionXpathFilterEscapeString.java"
+            checks="IllegalTokenTextCheck"
+            query="/COMPILATION_UNIT/CLASS_DEF[./IDENT
+            [@text='InputSuppressionXpathFilterEscapeString']]/OBJBLOCK/VARIABLE_DEF
+            [./IDENT[@text='ampersandChar']]/ASSIGN/EXPR/STRING_LITERAL[@text='&amp;escaped']"/>
+    <suppress-xpath
+            files="InputSuppressionXpathFilterEscapeString.java"
+            checks="IllegalTokenTextCheck"
+            query="/COMPILATION_UNIT/CLASS_DEF[./IDENT
+            [@text='InputSuppressionXpathFilterEscapeString']]/OBJBLOCK/VARIABLE_DEF
+            [./IDENT[@text='greaterChar']]/ASSIGN/EXPR/STRING_LITERAL[@text='&gt;escaped']"/>
+    <suppress-xpath
+            files="InputSuppressionXpathFilterEscapeString.java"
+            checks="IllegalTokenTextCheck"
+            query="/COMPILATION_UNIT/CLASS_DEF[./IDENT
+            [@text='InputSuppressionXpathFilterEscapeString']]/OBJBLOCK/VARIABLE_DEF
+            [./IDENT[@text='newLineChar']]/ASSIGN/EXPR/STRING_LITERAL[@text='escaped\n']"/>
+    <suppress-xpath
+            files="InputSuppressionXpathFilterEscapeString.java"
+            checks="IllegalTokenTextCheck"
+            query="/COMPILATION_UNIT/CLASS_DEF[./IDENT
+            [@text='InputSuppressionXpathFilterEscapeString']]/OBJBLOCK/VARIABLE_DEF
+            [./IDENT[@text='specialChar']]/ASSIGN/EXPR/STRING_LITERAL[@text='escaped\r']"/>
+    <suppress-xpath
+            files="InputSuppressionXpathFilterEscapeString.java"
+            checks="IllegalTokenTextCheck"
+            query="/COMPILATION_UNIT/CLASS_DEF[./IDENT
+            [@text='InputSuppressionXpathFilterEscapeString']]/OBJBLOCK/VARIABLE_DEF
+            [./IDENT[@text='aposChar']]/ASSIGN/EXPR/STRING_LITERAL
+            [@text='&apos;&apos;escaped&apos;&apos;']"/>
+</suppressions>

@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,59 +15,69 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static com.google.common.truth.Truth.assertWithMessage;
 
-import java.io.BufferedReader;
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.regex.Pattern;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
-import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
+import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
+import com.puppycrawl.tools.checkstyle.api.AutomaticBean.OutputStreamOptions;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.api.Violation;
+import com.puppycrawl.tools.checkstyle.internal.utils.CloseAndFlushTestByteArrayOutputStream;
 
 /**
  * Enter a description of class XMLLoggerTest.java.
- * @author Rick Giles
  */
 // -@cs[AbbreviationAsWordInName] Test should be named as its main class.
-public class XMLLoggerTest {
+public class XMLLoggerTest extends AbstractXmlTestSupport {
+
+    /**
+     * Output stream to hold the test results. The IntelliJ IDEA issues the AutoCloseableResource
+     * warning here, so it needs to be suppressed. The {@code ByteArrayOutputStream} does not hold
+     * any resources that need to be released.
+     */
     private final CloseAndFlushTestByteArrayOutputStream outStream =
         new CloseAndFlushTestByteArrayOutputStream();
+
+    @Override
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/xmllogger";
+    }
 
     @Test
     public void testEncode()
             throws IOException {
-        new XMLLogger(outStream, false);
+        final XMLLogger test = new XMLLogger(outStream, OutputStreamOptions.NONE);
+        assertWithMessage("should be able to create XMLLogger without issue")
+            .that(test)
+            .isNotNull();
         final String[][] encodings = {
             {"<", "&lt;"},
             {">", "&gt;"},
             {"'", "&apos;"},
             {"\"", "&quot;"},
             {"&", "&amp;"},
-            {"&lt;", "&lt;"},
+            {"&lt;", "&amp;lt;"},
             {"abc;", "abc;"},
-            {"&#0;", "&#0;"}, //reference
-            {"&#0", "&amp;#0"}, //not reference
-            {"&#X0;", "&amp;#X0;"}, //not reference
+            {"&#0;", "&amp;#0;"},
+            {"&#0", "&amp;#0"},
+            {"&#X0;", "&amp;#X0;"},
+            {"\u0001", "#x1;"},
+            {"\u0080", "#x80;"},
         };
         for (String[] encoding : encodings) {
             final String encoded = XMLLogger.encode(encoding[0]);
-            assertEquals("\"" + encoding[0] + "\"", encoding[1], encoded);
+            assertWithMessage("\"" + encoding[0] + "\"")
+                .that(encoded)
+                .isEqualTo(encoding[1]);
         }
         outStream.close();
     }
@@ -75,14 +85,23 @@ public class XMLLoggerTest {
     @Test
     public void testIsReference()
             throws IOException {
-        new XMLLogger(outStream, false);
+        final XMLLogger test = new XMLLogger(outStream, OutputStreamOptions.NONE);
+        assertWithMessage("should be able to create XMLLogger without issue")
+            .that(test)
+            .isNotNull();
         final String[] references = {
             "&#0;",
             "&#x0;",
+            "&lt;",
+            "&gt;",
+            "&apos;",
+            "&quot;",
+            "&amp;",
         };
         for (String reference : references) {
-            assertTrue("reference: " + reference,
-                    XMLLogger.isReference(reference));
+            assertWithMessage("reference: " + reference)
+                    .that(XMLLogger.isReference(reference))
+                    .isTrue();
         }
         final String[] noReferences = {
             "&",
@@ -92,11 +111,13 @@ public class XMLLoggerTest {
             "&#X0;",
             "&#x;",
             "&#xg;",
+            "ramp;",
             "ref",
         };
         for (String noReference : noReferences) {
-            assertFalse("no reference: " + noReference,
-                    XMLLogger.isReference(noReference));
+            assertWithMessage("no reference: " + noReference)
+                    .that(XMLLogger.isReference(noReference))
+                    .isFalse();
         }
 
         outStream.close();
@@ -104,164 +125,284 @@ public class XMLLoggerTest {
 
     @Test
     public void testCloseStream()
-            throws IOException {
-        final XMLLogger logger = new XMLLogger(outStream, true);
+            throws Exception {
+        final XMLLogger logger = new XMLLogger(outStream,
+                AutomaticBean.OutputStreamOptions.CLOSE);
         logger.auditStarted(null);
         logger.auditFinished(null);
-        final String[] expectedLines = CommonUtils.EMPTY_STRING_ARRAY;
-        verifyLines(expectedLines);
+
+        assertWithMessage("Invalid close count")
+            .that(outStream.getCloseCount())
+            .isEqualTo(1);
+
+        verifyXml(getPath("ExpectedXMLLoggerEmpty.xml"), outStream);
     }
 
     @Test
     public void testNoCloseStream()
-            throws IOException {
-        final XMLLogger logger = new XMLLogger(outStream, false);
+            throws Exception {
+        final XMLLogger logger = new XMLLogger(outStream,
+                AutomaticBean.OutputStreamOptions.NONE);
         logger.auditStarted(null);
         logger.auditFinished(null);
+
+        assertWithMessage("Invalid close count")
+            .that(outStream.getCloseCount())
+            .isEqualTo(0);
+
         outStream.close();
-        final String[] expectedLines = CommonUtils.EMPTY_STRING_ARRAY;
-        verifyLines(expectedLines);
+        verifyXml(getPath("ExpectedXMLLoggerEmpty.xml"), outStream);
     }
 
     @Test
     public void testFileStarted()
-            throws IOException {
-        final XMLLogger logger = new XMLLogger(outStream, true);
+            throws Exception {
+        final XMLLogger logger = new XMLLogger(outStream, OutputStreamOptions.CLOSE);
         logger.auditStarted(null);
         final AuditEvent ev = new AuditEvent(this, "Test.java");
         logger.fileStarted(ev);
+        logger.fileFinished(ev);
         logger.auditFinished(null);
-        final String[] expectedLines = {"<file name=\"Test.java\">"};
-        verifyLines(expectedLines);
+        verifyXml(getPath("ExpectedXMLLogger.xml"), outStream);
     }
 
     @Test
     public void testFileFinished()
-            throws IOException {
-        final XMLLogger logger = new XMLLogger(outStream, true);
+            throws Exception {
+        final XMLLogger logger = new XMLLogger(outStream, OutputStreamOptions.CLOSE);
         logger.auditStarted(null);
         final AuditEvent ev = new AuditEvent(this, "Test.java");
         logger.fileFinished(ev);
         logger.auditFinished(null);
-        final String[] expectedLines = {"</file>"};
-        verifyLines(expectedLines);
+        verifyXml(getPath("ExpectedXMLLogger.xml"), outStream);
     }
 
     @Test
-    public void testAddError() throws IOException {
-        final XMLLogger logger = new XMLLogger(outStream, true);
+    public void testAddError() throws Exception {
+        final XMLLogger logger = new XMLLogger(outStream, OutputStreamOptions.CLOSE);
         logger.auditStarted(null);
-        final LocalizedMessage message =
-            new LocalizedMessage(1, 1,
+        final Violation violation =
+            new Violation(1, 1,
                 "messages.properties", "key", null, SeverityLevel.ERROR, null,
                     getClass(), null);
-        final AuditEvent ev = new AuditEvent(this, "Test.java", message);
+        final AuditEvent ev = new AuditEvent(this, "Test.java", violation);
+        logger.fileStarted(ev);
         logger.addError(ev);
+        logger.fileFinished(ev);
         logger.auditFinished(null);
-        final String[] expectedLines = {
-            "<error line=\"1\" column=\"1\" severity=\"error\" message=\"key\""
-                + " source=\"com.puppycrawl.tools.checkstyle.XMLLoggerTest\"/>",
-        };
-        verifyLines(expectedLines);
+        verifyXml(getPath("ExpectedXMLLoggerError.xml"), outStream, violation.getViolation());
     }
 
     @Test
-    public void testAddErrorOnZeroColumns() throws IOException {
-        final XMLLogger logger = new XMLLogger(outStream, true);
+    public void testAddErrorWithNullFileName() throws Exception {
+        final XMLLogger logger = new XMLLogger(outStream, OutputStreamOptions.CLOSE);
         logger.auditStarted(null);
-        final LocalizedMessage message =
-                new LocalizedMessage(1, 0,
+        final Violation violation =
+                new Violation(1, 1,
                         "messages.properties", "key", null, SeverityLevel.ERROR, null,
                         getClass(), null);
-        final AuditEvent ev = new AuditEvent(this, "Test.java", message);
+        final AuditEvent ev = new AuditEvent(this, null, violation);
         logger.addError(ev);
         logger.auditFinished(null);
-        final String[] expectedLines = {
-            "<error line=\"1\" severity=\"error\" message=\"key\""
-                + " source=\"com.puppycrawl.tools.checkstyle.XMLLoggerTest\"/>",
-        };
-        verifyLines(expectedLines);
+        verifyXml(getPath("ExpectedXMLLoggerErrorNullFileName.xml"), outStream,
+                violation.getViolation());
     }
 
     @Test
-    public void testAddIgnored() throws IOException {
-        final XMLLogger logger = new XMLLogger(outStream, true);
+    public void testAddErrorModuleId() throws Exception {
+        final XMLLogger logger = new XMLLogger(outStream, OutputStreamOptions.CLOSE);
         logger.auditStarted(null);
-        final LocalizedMessage message =
-                new LocalizedMessage(1, 1,
-                        "messages.properties", "key", null, SeverityLevel.IGNORE, null,
-                        getClass(), null);
-        final AuditEvent ev = new AuditEvent(this, "Test.java", message);
+        final Violation violation =
+            new Violation(1, 1,
+                "messages.properties", "key", null, SeverityLevel.ERROR, "module",
+                    getClass(), null);
+        final AuditEvent ev = new AuditEvent(this, "Test.java", violation);
         logger.addError(ev);
         logger.auditFinished(null);
-        final String[] expectedLines = CommonUtils.EMPTY_STRING_ARRAY;
-        verifyLines(expectedLines);
+        verifyXml(getPath("ExpectedXMLLoggerErrorModuleId.xml"), outStream,
+                violation.getViolation());
+    }
+
+    @Test
+    public void testAddErrorOnZeroColumns() throws Exception {
+        final XMLLogger logger = new XMLLogger(outStream, OutputStreamOptions.CLOSE);
+        logger.auditStarted(null);
+        final Violation violation =
+                new Violation(1, 0,
+                        "messages.properties", "key", null, SeverityLevel.ERROR, null,
+                        getClass(), null);
+        final AuditEvent ev = new AuditEvent(this, "Test.java", violation);
+        logger.fileStarted(ev);
+        logger.addError(ev);
+        logger.fileFinished(ev);
+        logger.auditFinished(null);
+        verifyXml(getPath("ExpectedXMLLoggerErrorZeroColumn.xml"), outStream,
+                violation.getViolation());
+    }
+
+    @Test
+    public void testAddIgnored() throws Exception {
+        final XMLLogger logger = new XMLLogger(outStream, OutputStreamOptions.CLOSE);
+        logger.auditStarted(null);
+        final Violation violation =
+                new Violation(1, 1,
+                        "messages.properties", "key", null, SeverityLevel.IGNORE, null,
+                        getClass(), null);
+        final AuditEvent ev = new AuditEvent(this, "Test.java", violation);
+        logger.addError(ev);
+        logger.auditFinished(null);
+        verifyXml(getPath("ExpectedXMLLoggerEmpty.xml"), outStream);
     }
 
     @Test
     public void testAddException()
-            throws IOException {
-        final XMLLogger logger = new XMLLogger(outStream, true);
+            throws Exception {
+        final XMLLogger logger = new XMLLogger(outStream, OutputStreamOptions.CLOSE);
         logger.auditStarted(null);
-        final LocalizedMessage message =
-            new LocalizedMessage(1, 1,
+        final Violation violation =
+            new Violation(1, 1,
                 "messages.properties", null, null, null, getClass(), null);
-        final AuditEvent ev = new AuditEvent(this, "Test.java", message);
+        final AuditEvent ev = new AuditEvent(this, "Test.java", violation);
         logger.addException(ev, new TestException("msg", new RuntimeException("msg")));
         logger.auditFinished(null);
-        final String[] expectedLines = {
-            "&lt;exception&gt;&#10;&lt;![CDATA[&#10;stackTrace&#10;example]]&gt;"
-                + "&#10;&lt;/exception&gt;&#10;",
-        };
-
-        verifyLines(expectedLines);
-        assertEquals(1, outStream.getCloseCount());
+        verifyXml(getPath("ExpectedXMLLoggerException.xml"), outStream);
+        assertWithMessage("Invalid close count")
+            .that(outStream.getCloseCount())
+            .isEqualTo(1);
     }
 
-    private String[] getOutStreamLines()
-            throws IOException {
-        final byte[] bytes = outStream.toByteArray();
-        final ByteArrayInputStream inStream =
-            new ByteArrayInputStream(bytes);
-        final List<String> lineList = new ArrayList<>();
-        try (BufferedReader reader = new BufferedReader(
-                new InputStreamReader(inStream, StandardCharsets.UTF_8))) {
-            while (true) {
-                final String line = reader.readLine();
-                if (line == null) {
-                    break;
-                }
-                lineList.add(line);
-            }
+    @Test
+    public void testAddExceptionWithNullFileName()
+            throws Exception {
+        final XMLLogger logger = new XMLLogger(outStream, OutputStreamOptions.CLOSE);
+        logger.auditStarted(null);
+        final Violation violation =
+                new Violation(1, 1,
+                        "messages.properties", null, null, null, getClass(), null);
+        final AuditEvent ev = new AuditEvent(this, null, violation);
+        logger.addException(ev, new TestException("msg", new RuntimeException("msg")));
+        logger.auditFinished(null);
+        verifyXml(getPath("ExpectedXMLLoggerExceptionNullFileName.xml"), outStream);
+        assertWithMessage("Invalid close count")
+            .that(outStream.getCloseCount())
+            .isEqualTo(1);
+    }
+
+    @Test
+    public void testAddExceptionAfterFileStarted()
+            throws Exception {
+        final XMLLogger logger = new XMLLogger(outStream, OutputStreamOptions.CLOSE);
+        logger.auditStarted(null);
+
+        final AuditEvent fileStartedEvent = new AuditEvent(this, "Test.java");
+        logger.fileStarted(fileStartedEvent);
+
+        final Violation violation =
+                new Violation(1, 1,
+                        "messages.properties", null, null, null, getClass(), null);
+        final AuditEvent ev = new AuditEvent(this, "Test.java", violation);
+        logger.addException(ev, new TestException("msg", new RuntimeException("msg")));
+
+        logger.fileFinished(ev);
+        logger.auditFinished(null);
+        verifyXml(getPath("ExpectedXMLLoggerException2.xml"), outStream);
+        assertWithMessage("Invalid close count")
+            .that(outStream.getCloseCount())
+            .isEqualTo(1);
+    }
+
+    @Test
+    public void testAddExceptionBeforeFileFinished()
+            throws Exception {
+        final XMLLogger logger = new XMLLogger(outStream, OutputStreamOptions.CLOSE);
+        logger.auditStarted(null);
+        final Violation violation =
+                new Violation(1, 1,
+                        "messages.properties", null, null, null, getClass(), null);
+        final AuditEvent ev = new AuditEvent(this, "Test.java", violation);
+        logger.addException(ev, new TestException("msg", new RuntimeException("msg")));
+        final AuditEvent fileFinishedEvent = new AuditEvent(this, "Test.java");
+        logger.fileFinished(fileFinishedEvent);
+        logger.auditFinished(null);
+        verifyXml(getPath("ExpectedXMLLoggerException3.xml"), outStream);
+        assertWithMessage("Invalid close count")
+            .that(outStream.getCloseCount())
+            .isEqualTo(1);
+    }
+
+    @Test
+    public void testAddExceptionBetweenFileStartedAndFinished()
+            throws Exception {
+        final XMLLogger logger = new XMLLogger(outStream, OutputStreamOptions.CLOSE);
+        logger.auditStarted(null);
+        final Violation violation =
+                new Violation(1, 1,
+                        "messages.properties", null, null, null, getClass(), null);
+        final AuditEvent fileStartedEvent = new AuditEvent(this, "Test.java");
+        logger.fileStarted(fileStartedEvent);
+        final AuditEvent ev = new AuditEvent(this, "Test.java", violation);
+        logger.addException(ev, new TestException("msg", new RuntimeException("msg")));
+        final AuditEvent fileFinishedEvent = new AuditEvent(this, "Test.java");
+        logger.fileFinished(fileFinishedEvent);
+        logger.auditFinished(null);
+        verifyXml(getPath("ExpectedXMLLoggerException2.xml"), outStream);
+        assertWithMessage("Invalid close count")
+            .that(outStream.getCloseCount())
+            .isEqualTo(1);
+    }
+
+    @Test
+    public void testAuditFinishedWithoutFileFinished() throws Exception {
+        final XMLLogger logger = new XMLLogger(outStream, OutputStreamOptions.CLOSE);
+        logger.auditStarted(null);
+        final AuditEvent fileStartedEvent = new AuditEvent(this, "Test.java");
+        logger.fileStarted(fileStartedEvent);
+
+        final Violation violation =
+                new Violation(1, 1,
+                        "messages.properties", "key", null, SeverityLevel.ERROR, null,
+                        getClass(), null);
+        final AuditEvent errorEvent = new AuditEvent(this, "Test.java", violation);
+        logger.addError(errorEvent);
+
+        logger.fileFinished(errorEvent);
+        logger.auditFinished(null);
+        verifyXml(getPath("ExpectedXMLLoggerError.xml"), outStream, violation.getViolation());
+    }
+
+    @Test
+    public void testNullOutputStreamOptions() {
+        try {
+            final XMLLogger logger = new XMLLogger(outStream, null);
+            // assert required to calm down eclipse's 'The allocated object is never used' violation
+            assertWithMessage("Null instance")
+                .that(logger)
+                .isNotNull();
+            assertWithMessage("Exception was expected").fail();
         }
-        return lineList.toArray(new String[lineList.size()]);
-    }
-
-    /**
-     * Verify output lines from auditStart to auditEnd.
-     * Take into consideration checkstyle element (first and last lines).
-     * @param expectedLines expected error report lines
-     */
-    private void verifyLines(String... expectedLines)
-            throws IOException {
-        final String[] lines = getOutStreamLines();
-        assertEquals("length.", expectedLines.length + 3, lines.length);
-        assertEquals("first line.",
-                     "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
-                     lines[0]);
-        final Pattern checkstyleOpenTag = Pattern.compile("^<checkstyle version=\".*\">$");
-        assertTrue("second line.", checkstyleOpenTag.matcher(lines[1]).matches());
-        for (int i = 0; i < expectedLines.length; i++) {
-            assertEquals("line " + i + ".", expectedLines[i], lines[i + 2]);
+        catch (IllegalArgumentException exception) {
+            assertWithMessage("Invalid error message")
+                .that(exception.getMessage())
+                .isEqualTo("Parameter outputStreamOptions can not be null");
         }
-        assertEquals("last line.", "</checkstyle>", lines[lines.length - 1]);
     }
 
-    private static class TestException extends RuntimeException {
+    @Test
+    public void testFinishLocalSetup() {
+        final XMLLogger logger = new XMLLogger(outStream, OutputStreamOptions.CLOSE);
+        logger.finishLocalSetup();
+        logger.auditStarted(null);
+        logger.auditFinished(null);
+        assertWithMessage("instance should not be null")
+            .that(logger)
+            .isNotNull();
+    }
+
+    private static final class TestException extends RuntimeException {
 
         private static final long serialVersionUID = 1L;
 
-        TestException(String msg, Throwable cause) {
+        private TestException(String msg, Throwable cause) {
             super(msg, cause);
         }
 
@@ -269,6 +410,7 @@ public class XMLLoggerTest {
         public void printStackTrace(PrintWriter printWriter) {
             printWriter.print("stackTrace\r\nexample");
         }
+
     }
 
 }

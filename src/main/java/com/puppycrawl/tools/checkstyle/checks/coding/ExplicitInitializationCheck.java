@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,39 +15,121 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CheckUtils;
-import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
+import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
+import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 
 /**
  * <p>
- * Checks if any class or object member explicitly initialized
+ * Checks if any class or object member is explicitly initialized
  * to default for its type value ({@code null} for object
  * references, zero for numeric types and {@code char}
  * and {@code false} for {@code boolean}.
  * </p>
  * <p>
- * Rationale: each instance variable gets
- * initialized twice, to the same value.  Java
+ * Rationale: Each instance variable gets
+ * initialized twice, to the same value. Java
  * initializes each instance variable to its default
- * value (0 or null) before performing any
- * initialization specified in the code.  So in this case,
- * x gets initialized to 0 twice, and bar gets initialized
- * to null twice.  So there is a minor inefficiency.  This style of
- * coding is a hold-over from C/C++ style coding,
- * and it shows that the developer isn't really confident that
- * Java really initializes instance variables to default
- * values.
+ * value ({@code 0} or {@code null}) before performing any
+ * initialization specified in the code.
+ * So there is a minor inefficiency.
  * </p>
+ * <ul>
+ * <li>
+ * Property {@code onlyObjectReferences} - control whether only explicit
+ * initializations made to null for objects should be checked.
+ * Type is {@code boolean}.
+ * Default value is {@code false}.
+ * </li>
+ * </ul>
+ * <p>
+ * To configure the check:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;ExplicitInitialization&quot;/&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * public class Test {
+ *   private int intField1 = 0; // violation
+ *   private int intField2 = 1;
+ *   private int intField3;
  *
- * @author o_sukhodolsky
+ *   private char charField1 = '\0'; // violation
+ *   private char charField2 = 'b';
+ *   private char charField3;
+ *
+ *   private boolean boolField1 = false; // violation
+ *   private boolean boolField2 = true;
+ *   private boolean boolField3;
+ *
+ *   private Obj objField1 = null; // violation
+ *   private Obj objField2 = new Obj();
+ *   private Obj objField3;
+ *
+ *   private int arrField1[] = null; // violation
+ *   private int arrField2[] = new int[10];
+ *   private int arrField3[];
+ * }
+ * </pre>
+ * <p>
+ * To configure the check so that it only checks for objects that explicitly initialize to null:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;ExplicitInitialization&quot;&gt;
+ *   &lt;property name=&quot;onlyObjectReferences&quot; value=&quot;true&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * public class Test {
+ *   private int intField1 = 0; // ignored
+ *   private int intField2 = 1;
+ *   private int intField3;
+ *
+ *   private char charField1 = '\0'; // ignored
+ *   private char charField2 = 'b';
+ *   private char charField3;
+ *
+ *   private boolean boolField1 = false; // ignored
+ *   private boolean boolField2 = true;
+ *   private boolean boolField3;
+ *
+ *   private Obj objField1 = null; // violation
+ *   private Obj objField2 = new Obj();
+ *   private Obj objField3;
+ *
+ *   private int arrField1[] = null; // violation
+ *   private int arrField2[] = new int[10];
+ *   private int arrField3[];
+ * }
+ * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code explicit.init}
+ * </li>
+ * </ul>
+ *
+ * @since 3.2
  */
+@StatelessCheck
 public class ExplicitInitializationCheck extends AbstractCheck {
 
     /**
@@ -56,26 +138,30 @@ public class ExplicitInitializationCheck extends AbstractCheck {
      */
     public static final String MSG_KEY = "explicit.init";
 
-    /** Whether only explicit initialization made to null should be checked.**/
+    /**
+     * Control whether only explicit initializations made to null for objects should be checked.
+     **/
     private boolean onlyObjectReferences;
 
     @Override
     public final int[] getDefaultTokens() {
-        return new int[] {TokenTypes.VARIABLE_DEF};
+        return getRequiredTokens();
     }
 
     @Override
     public final int[] getRequiredTokens() {
-        return getDefaultTokens();
+        return new int[] {TokenTypes.VARIABLE_DEF};
     }
 
     @Override
     public final int[] getAcceptableTokens() {
-        return new int[] {TokenTypes.VARIABLE_DEF};
+        return getRequiredTokens();
     }
 
     /**
-     * Sets whether only explicit initialization made to null should be checked.
+     * Setter to control whether only explicit initializations made to null
+     * for objects should be checked.
+     *
      * @param onlyObjectReferences whether only explicit initialization made to null
      *                             should be checked
      */
@@ -89,9 +175,7 @@ public class ExplicitInitializationCheck extends AbstractCheck {
             final DetailAST assign = ast.findFirstToken(TokenTypes.ASSIGN);
             final DetailAST exprStart =
                 assign.getFirstChild().getFirstChild();
-            final DetailAST type = ast.findFirstToken(TokenTypes.TYPE);
-            if (isObjectType(type)
-                && exprStart.getType() == TokenTypes.LITERAL_NULL) {
+            if (exprStart.getType() == TokenTypes.LITERAL_NULL) {
                 final DetailAST ident = ast.findFirstToken(TokenTypes.IDENT);
                 log(ident, MSG_KEY, ident.getText(), "null");
             }
@@ -103,6 +187,7 @@ public class ExplicitInitializationCheck extends AbstractCheck {
 
     /**
      * Checks for explicit initializations made to 'false', '0' and '\0'.
+     *
      * @param ast token being checked for explicit initializations
      */
     private void validateNonObjects(DetailAST ast) {
@@ -127,17 +212,18 @@ public class ExplicitInitializationCheck extends AbstractCheck {
 
     /**
      * Examine char literal for initializing to default value.
+     *
      * @param exprStart expression
      * @return true is literal is initialized by zero symbol
      */
     private static boolean isZeroChar(DetailAST exprStart) {
         return isZero(exprStart)
-            || exprStart.getType() == TokenTypes.CHAR_LITERAL
-            && "'\\0'".equals(exprStart.getText());
+            || "'\\0'".equals(exprStart.getText());
     }
 
     /**
      * Checks for cases that should be skipped: no assignment, local variable, final variables.
+     *
      * @param ast Variable def AST
      * @return true is that is a case that need to be skipped.
      */
@@ -146,31 +232,21 @@ public class ExplicitInitializationCheck extends AbstractCheck {
 
         // do not check local variables and
         // fields declared in interface/annotations
-        if (!ScopeUtils.isLocalVariableDef(ast)
-                && !ScopeUtils.isInInterfaceOrAnnotationBlock(ast)) {
+        if (!ScopeUtil.isLocalVariableDef(ast)
+                && !ScopeUtil.isInInterfaceOrAnnotationBlock(ast)) {
             final DetailAST assign = ast.findFirstToken(TokenTypes.ASSIGN);
 
             if (assign != null) {
                 final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
-                skipCase = modifiers.branchContains(TokenTypes.FINAL);
+                skipCase = modifiers.findFirstToken(TokenTypes.FINAL) != null;
             }
         }
         return skipCase;
     }
 
     /**
-     * Determines if a given type is an object type.
-     * @param type type to check.
-     * @return true if it is an object type.
-     */
-    private static boolean isObjectType(DetailAST type) {
-        final int objectType = type.getFirstChild().getType();
-        return objectType == TokenTypes.IDENT || objectType == TokenTypes.DOT
-                || objectType == TokenTypes.ARRAY_DECLARATOR;
-    }
-
-    /**
      * Determine if a given type is a numeric type.
+     *
      * @param type code of the type for check.
      * @return true if it's a numeric type.
      * @see TokenTypes
@@ -192,16 +268,19 @@ public class ExplicitInitializationCheck extends AbstractCheck {
      */
     private static boolean isZero(DetailAST expr) {
         final int type = expr.getType();
+        final boolean isZero;
         switch (type) {
             case TokenTypes.NUM_FLOAT:
             case TokenTypes.NUM_DOUBLE:
             case TokenTypes.NUM_INT:
             case TokenTypes.NUM_LONG:
                 final String text = expr.getText();
-                return Double.compare(
-                    CheckUtils.parseDouble(text, type), 0.0) == 0;
+                isZero = Double.compare(CheckUtil.parseDouble(text, type), 0.0) == 0;
+                break;
             default:
-                return false;
+                isZero = false;
         }
+        return isZero;
     }
+
 }

@@ -1,13 +1,22 @@
+/*
+MultipleStringLiterals
+allowedDuplicates = 2
+ignoreStringsRegexp =
+ignoreOccurrenceContext = (default)ANNOTATION
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.coding.multiplestringliterals;
 
 public class InputMultipleStringLiterals
 {   /*string literals*/
-    String m = "StringContents";
+    String m = "StringContents"; // violation
     String m1 = "SingleString";
     String m2 = "DoubleString" + "DoubleString";
-    String m3 = "" + "";
+    String m3 = "" + ""; // violation
     String m4 = "" + "";
-    String debugStr = ", " + ", " + ", ";
+    String debugStr = ", " + ", " + ", "; // violation
 
     void method1() {
         String a1 = "StringContents";

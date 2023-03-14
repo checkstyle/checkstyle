@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.IllegalTypeCheck"
+              name="IllegalType"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;p&gt;
+ Checks that particular classes or interfaces are never used.
+ &lt;/p&gt;
+ &lt;p&gt;
+ Rationale: Helps reduce coupling on concrete classes.
+ &lt;/p&gt;
+ &lt;p&gt;
+ For additional restriction of type usage see also:
+ &lt;a href="https://checkstyle.org/config_coding.html#IllegalInstantiation"&gt;
+ IllegalInstantiation&lt;/a&gt;,
+ &lt;a href="https://checkstyle.org/config_imports.html#IllegalImport"&gt;IllegalImport&lt;/a&gt;
+ &lt;/p&gt;
+ &lt;p&gt;
+ It is possible to set illegal class names via short or
+ &lt;a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-6.html#jls-6.7"&gt;canonical&lt;/a&gt;
+ name. Specifying illegal type invokes analyzing imports and Check puts violations at
+ corresponding declarations (of variables, methods or parameters).
+ This helps to avoid ambiguous cases, e.g.: {@code java.awt.List} was set as
+ illegal class name, then, code like:
+ &lt;/p&gt;
+ &lt;pre&gt;
+ import java.util.List;
+ ...
+ List list; //No violation here
+ &lt;/pre&gt;
+ &lt;p&gt;
+ will be ok.
+ &lt;/p&gt;
+ &lt;p&gt;
+ In most cases it's justified to put following classes to &lt;b&gt;illegalClassNames&lt;/b&gt;:
+ &lt;/p&gt;
+ &lt;ul&gt;
+ &lt;li&gt;GregorianCalendar&lt;/li&gt;
+ &lt;li&gt;Hashtable&lt;/li&gt;
+ &lt;li&gt;ArrayList&lt;/li&gt;
+ &lt;li&gt;LinkedList&lt;/li&gt;
+ &lt;li&gt;Vector&lt;/li&gt;
+ &lt;/ul&gt;
+ &lt;p&gt;
+ as methods that are differ from interface methods are rarely used, so in most cases user will
+ benefit from checking for them.
+ &lt;/p&gt;</description>
+         <properties>
+            <property default-value="false"
+                       name="validateAbstractClassNames"
+                       type="boolean">
+               <description>Control whether to validate abstract class names.</description>
+            </property>
+            <property default-value="HashMap, HashSet, LinkedHashMap, LinkedHashSet, TreeMap, TreeSet, java.util.HashMap, java.util.HashSet, java.util.LinkedHashMap, java.util.LinkedHashSet, java.util.TreeMap, java.util.TreeSet"
+                       name="illegalClassNames"
+                       type="java.lang.String[]">
+               <description>Specify classes that should not be used
+ as types in variable declarations, return values or parameters.</description>
+            </property>
+            <property default-value=""
+                       name="legalAbstractClassNames"
+                       type="java.lang.String[]">
+               <description>Define abstract classes that may be used as types.</description>
+            </property>
+            <property default-value="getEnvironment, getInitialContext"
+                       name="ignoredMethodNames"
+                       type="java.lang.String[]">
+               <description>Specify methods that should not be checked.</description>
+            </property>
+            <property default-value="^(.*[.])?Abstract.*$"
+                       name="illegalAbstractClassNameFormat"
+                       type="java.util.regex.Pattern">
+               <description>Specify RegExp for illegal abstract class
+ names.</description>
+            </property>
+            <property default-value=""
+                       name="memberModifiers"
+                       type="java.lang.String[]"
+                       validation-type="tokenTypesSet">
+               <description>Control whether to check only methods and fields with any
+ of the specified modifiers.
+ This property does not affect method calls nor method references nor record components.</description>
+            </property>
+            <property default-value="ANNOTATION_FIELD_DEF,CLASS_DEF,INTERFACE_DEF,METHOD_CALL,METHOD_DEF,METHOD_REF,PARAMETER_DEF,VARIABLE_DEF,PATTERN_VARIABLE_DEF,RECORD_DEF,RECORD_COMPONENT_DEF"
+                       name="tokens"
+                       type="java.lang.String[]"
+                       validation-type="tokenSet">
+               <description>tokens to check</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="illegal.type"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>

@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,115 +15,216 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.blocks;
 
 import java.util.regex.Pattern;
 
+import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * <p>
- * Checks for empty catch blocks. There are two options to make validation more precise:
- * </p>
- *
- * <p><b>exceptionVariableName</b> - the name of variable associated with exception,
- * if Check meets variable name matching specified value - empty block is suppressed.<br>
- *  default value: &quot;^$&quot;
- * </p>
- *
- * <p><b>commentFormat</b> - the format of the first comment inside empty catch
- * block, if Check meets comment inside empty catch block matching specified format
- *  - empty block is suppressed. If it is multi-line comment - only its first line is analyzed.<br>
- * default value: &quot;.*&quot;<br>
- * So, by default Check allows empty catch block with any comment inside.
+ * Checks for empty catch blocks.
+ * By default, check allows empty catch block with any comment inside.
  * </p>
  * <p>
+ * There are two options to make validation more precise: <b>exceptionVariableName</b> and
+ * <b>commentFormat</b>.
  * If both options are specified - they are applied by <b>any of them is matching</b>.
  * </p>
- * Examples:
+ * <ul>
+ * <li>
+ * Property {@code exceptionVariableName} - Specify the RegExp for the name of the variable
+ * associated with exception. If check meets variable name matching specified value - empty
+ * block is suppressed.
+ * Type is {@code java.util.regex.Pattern}.
+ * Default value is {@code "^$"}.
+ * </li>
+ * <li>
+ * Property {@code commentFormat} - Specify the RegExp for the first comment inside empty
+ * catch block. If check meets comment inside empty catch block matching specified format
+ * - empty block is suppressed. If it is multi-line comment - only its first line is analyzed.
+ * Type is {@code java.util.regex.Pattern}.
+ * Default value is {@code ".*"}.
+ * </li>
+ * </ul>
  * <p>
- * To configure the Check to suppress empty catch block if exception's variable name is
- *  <b>expected</b> or <b>ignore</b>:
+ * To configure the check:
  * </p>
  * <pre>
- * &lt;module name=&quot;EmptyCatchBlock&quot;&gt;
- *    &lt;property name=&quot;exceptionVariableName&quot; value=&quot;ignore|expected;/&gt;
- * &lt;/module&gt;
+ * &lt;module name=&quot;EmptyCatchBlock&quot;/&gt;
  * </pre>
- *
- * <p>Such empty blocks would be both suppressed:<br>
+ * <p>
+ * Example:
  * </p>
  * <pre>
- * {@code
  * try {
- *     throw new RuntimeException();
+ *   throw new RuntimeException();
  * } catch (RuntimeException expected) {
- * }
- * }
- * {@code
+ * } // violation
+ *
  * try {
- *     throw new RuntimeException();
+ *   throw new RuntimeException();
  * } catch (RuntimeException ignore) {
- * }
- * }
+ *   // no handling
+ * } // ok, catch block has comment
+ *
+ * try {
+ *   throw new RuntimeException();
+ * } catch (RuntimeException o) {
+ * } // violation
+ *
+ * try {
+ *   throw new RuntimeException();
+ * } catch (RuntimeException ex) {
+ *   // This is expected
+ * } // ok
  * </pre>
  * <p>
- * To configure the Check to suppress empty catch block if single-line comment inside
- *  is &quot;//This is expected&quot;:
+ * To configure the check to suppress empty catch block if exception's variable name is
+ * {@code expected} or {@code ignore} or there's any comment inside:
  * </p>
  * <pre>
  * &lt;module name=&quot;EmptyCatchBlock&quot;&gt;
- *    &lt;property name=&quot;commentFormat&quot; value=&quot;This is expected&quot;/&gt;
+ *   &lt;property name=&quot;exceptionVariableName&quot; value=&quot;expected|ignore&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
- *
- * <p>Such empty block would be suppressed:<br>
+ * <p>
+ * Such empty blocks would be both suppressed:
  * </p>
  * <pre>
- * {@code
  * try {
- *     throw new RuntimeException();
+ *   throw new RuntimeException();
+ * } catch (RuntimeException expected) {
+ * } // ok
+ *
+ * try {
+ *   throw new RuntimeException();
+ * } catch (RuntimeException ignore) {
+ *   // no handling
+ * } // ok
+ *
+ * try {
+ *   throw new RuntimeException();
+ * } catch (RuntimeException o) {
+ * } // violation
+ *
+ * try {
+ *   throw new RuntimeException();
  * } catch (RuntimeException ex) {
- *     //This is expected
- * }
- * }
+ *   // This is expected
+ * } // ok
  * </pre>
  * <p>
- * To configure the Check to suppress empty catch block if single-line comment inside
- *  is &quot;//This is expected&quot; or exception's variable name is &quot;myException&quot;:
+ * To configure the check to suppress empty catch block if single-line comment inside
+ * is &quot;//This is expected&quot;:
  * </p>
  * <pre>
  * &lt;module name=&quot;EmptyCatchBlock&quot;&gt;
- *    &lt;property name=&quot;commentFormat&quot; value=&quot;This is expected&quot;/&gt;
- *    &lt;property name=&quot;exceptionVariableName&quot; value=&quot;myException&quot;/&gt;
+ *   &lt;property name=&quot;commentFormat&quot; value=&quot;This is expected&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
- *
- * <p>Such empty blocks would be both suppressed:<br>
+ * <p>
+ * Such empty block would be suppressed:
  * </p>
  * <pre>
- * {@code
  * try {
- *     throw new RuntimeException();
+ *   throw new RuntimeException();
+ * } catch (RuntimeException expected) {
+ * } // violation
+ *
+ * try {
+ *   throw new RuntimeException();
+ * } catch (RuntimeException ignore) {
+ *   // no handling
+ * } // violation
+ *
+ * try {
+ *   throw new RuntimeException();
+ * } catch (RuntimeException o) {
+ * } // violation
+ *
+ * try {
+ *   throw new RuntimeException();
  * } catch (RuntimeException ex) {
- *     //This is expected
- * }
- * }
- * {@code
+ *   // This is expected
+ * } // ok
+ * </pre>
+ * <p>
+ * To configure the check to suppress empty catch block if single-line comment inside
+ * is &quot;//This is expected&quot; or exception's
+ * variable name is &quot;myException&quot; (any option is matching):
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;EmptyCatchBlock&quot;&gt;
+ *   &lt;property name=&quot;commentFormat&quot; value=&quot;This is expected&quot;/&gt;
+ *   &lt;property name=&quot;exceptionVariableName&quot; value=&quot;myException&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Such empty blocks would be suppressed:
+ * </p>
+ * <pre>
  * try {
- *     throw new RuntimeException();
+ *   throw new RuntimeException();
+ * } catch (RuntimeException e) {
+ *   //This is expected
+ * }
+ * ...
+ * try {
+ *   throw new RuntimeException();
+ * } catch (RuntimeException e) {
+ *   //   This is expected
+ * }
+ * ...
+ * try {
+ *   throw new RuntimeException();
+ * } catch (RuntimeException e) {
+ *   // This is expected
+ *   // some another comment
+ * }
+ * ...
+ * try {
+ *   throw new RuntimeException();
+ * } catch (RuntimeException e) {
+ *   &#47;* This is expected *&#47;
+ * }
+ * ...
+ * try {
+ *   throw new RuntimeException();
+ * } catch (RuntimeException e) {
+ *   &#47;*
+ *   *
+ *   * This is expected
+ *   * some another comment
+ *   *&#47;
+ * }
+ * ...
+ * try {
+ *   throw new RuntimeException();
  * } catch (RuntimeException myException) {
  *
  * }
- * }
  * </pre>
- * @author <a href="mailto:nesterenko-aleksey@list.ru">Aleksey Nesterenko</a>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code catch.block.empty}
+ * </li>
+ * </ul>
+ *
+ * @since 6.4
  */
+@StatelessCheck
 public class EmptyCatchBlockCheck extends AbstractCheck {
 
     /**
@@ -132,61 +233,62 @@ public class EmptyCatchBlockCheck extends AbstractCheck {
      */
     public static final String MSG_KEY_CATCH_BLOCK_EMPTY = "catch.block.empty";
 
-    /** Format of skipping exception's variable name. */
-    private String exceptionVariableName = "^$";
-
-    /** Format of comment. */
-    private String commentFormat = ".*";
+    /**
+     * A pattern to split on line ends.
+     */
+    private static final Pattern LINE_END_PATTERN = Pattern.compile("\\r?+\\n|\\r");
 
     /**
-     * Regular expression pattern compiled from exception's variable name.
+     * Specify the RegExp for the name of the variable associated with exception.
+     * If check meets variable name matching specified value - empty block is suppressed.
      */
-    private Pattern variableNameRegexp = Pattern.compile(exceptionVariableName);
+    private Pattern exceptionVariableName = Pattern.compile("^$");
 
     /**
-     * Regular expression pattern compiled from comment's format.
+     * Specify the RegExp for the first comment inside empty catch block.
+     * If check meets comment inside empty catch block matching specified format - empty
+     * block is suppressed. If it is multi-line comment - only its first line is analyzed.
      */
-    private Pattern commentRegexp = Pattern.compile(commentFormat);
+    private Pattern commentFormat = Pattern.compile(".*");
 
     /**
-     * Setter for exception's variable name format.
-     * @param exceptionVariableName
-     *        format of exception's variable name.
-     * @throws org.apache.commons.beanutils.ConversionException
-     *         if unable to create Pattern object.
+     * Setter to specify the RegExp for the name of the variable associated with exception.
+     * If check meets variable name matching specified value - empty block is suppressed.
+     *
+     * @param exceptionVariablePattern
+     *        pattern of exception's variable name.
      */
-    public void setExceptionVariableName(String exceptionVariableName) {
-        this.exceptionVariableName = exceptionVariableName;
-        variableNameRegexp = CommonUtils.createPattern(exceptionVariableName);
+    public void setExceptionVariableName(Pattern exceptionVariablePattern) {
+        exceptionVariableName = exceptionVariablePattern;
     }
 
     /**
-     * Setter for comment format.
-     * @param commentFormat
-     *        format of comment.
-     * @throws org.apache.commons.beanutils.ConversionException
-     *         if unable to create Pattern object.
+     * Setter to specify the RegExp for the first comment inside empty catch block.
+     * If check meets comment inside empty catch block matching specified format - empty
+     * block is suppressed. If it is multi-line comment - only its first line is analyzed.
+     *
+     * @param commentPattern
+     *        pattern of comment.
      */
-    public void setCommentFormat(String commentFormat) {
-        this.commentFormat = commentFormat;
-        commentRegexp = CommonUtils.createPattern(commentFormat);
+    public void setCommentFormat(Pattern commentPattern) {
+        commentFormat = commentPattern;
     }
 
     @Override
     public int[] getDefaultTokens() {
-        return getAcceptableTokens();
+        return getRequiredTokens();
     }
 
     @Override
     public int[] getAcceptableTokens() {
-        return new int[] {
-            TokenTypes.LITERAL_CATCH,
-        };
+        return getRequiredTokens();
     }
 
     @Override
     public int[] getRequiredTokens() {
-        return getAcceptableTokens();
+        return new int[] {
+            TokenTypes.LITERAL_CATCH,
+        };
     }
 
     @Override
@@ -203,13 +305,14 @@ public class EmptyCatchBlockCheck extends AbstractCheck {
      * Visits catch ast node, if it is empty catch block - checks it according to
      *  Check's options. If exception's variable name or comment inside block are matching
      *   specified regexp - skips from consideration, else - puts violation.
+     *
      * @param catchAst {@link TokenTypes#LITERAL_CATCH LITERAL_CATCH}
      */
     private void visitCatchBlock(DetailAST catchAst) {
         if (isEmptyCatchBlock(catchAst)) {
             final String commentContent = getCommentFirstLine(catchAst);
             if (isVerifiable(catchAst, commentContent)) {
-                log(catchAst.getLineNo(), MSG_KEY_CATCH_BLOCK_EMPTY);
+                log(catchAst.findFirstToken(TokenTypes.SLIST), MSG_KEY_CATCH_BLOCK_EMPTY);
             }
         }
     }
@@ -217,6 +320,7 @@ public class EmptyCatchBlockCheck extends AbstractCheck {
     /**
      * Gets the first line of comment in catch block. If comment is single-line -
      *  returns it fully, else if comment is multi-line - returns the first line.
+     *
      * @param catchAst {@link TokenTypes#LITERAL_CATCH LITERAL_CATCH}
      * @return the first line of comment in catch block, "" if no comment was found.
      */
@@ -229,7 +333,7 @@ public class EmptyCatchBlockCheck extends AbstractCheck {
         }
         else if (firstElementInBlock.getType() == TokenTypes.BLOCK_COMMENT_BEGIN) {
             commentContent = firstElementInBlock.getFirstChild().getText();
-            final String[] lines = commentContent.split(System.getProperty("line.separator"));
+            final String[] lines = LINE_END_PATTERN.split(commentContent);
             for (String line : lines) {
                 if (!line.isEmpty()) {
                     commentContent = line;
@@ -243,21 +347,23 @@ public class EmptyCatchBlockCheck extends AbstractCheck {
     /**
      * Checks if current empty catch block is verifiable according to Check's options
      *  (exception's variable name and comment format are both in consideration).
+     *
      * @param emptyCatchAst empty catch {@link TokenTypes#LITERAL_CATCH LITERAL_CATCH} block.
      * @param commentContent text of comment.
      * @return true if empty catch block is verifiable by Check.
      */
     private boolean isVerifiable(DetailAST emptyCatchAst, String commentContent) {
         final String variableName = getExceptionVariableName(emptyCatchAst);
-        final boolean isMatchingVariableName = variableNameRegexp
+        final boolean isMatchingVariableName = exceptionVariableName
                 .matcher(variableName).find();
         final boolean isMatchingCommentContent = !commentContent.isEmpty()
-                 && commentRegexp.matcher(commentContent).find();
+                 && commentFormat.matcher(commentContent).find();
         return !isMatchingVariableName && !isMatchingCommentContent;
     }
 
     /**
      * Checks if catch block is empty or contains only comments.
+     *
      * @param catchAst {@link TokenTypes#LITERAL_CATCH LITERAL_CATCH}
      * @return true if catch block is empty.
      */
@@ -278,6 +384,7 @@ public class EmptyCatchBlockCheck extends AbstractCheck {
 
     /**
      * Gets variable's name associated with exception.
+     *
      * @param catchAst {@link TokenTypes#LITERAL_CATCH LITERAL_CATCH}
      * @return Variable's name associated with exception.
      */

@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,54 +15,174 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * <p>
- * Outputs a JavaDoc tag as information. Can be used e.g. with the stylesheets
- * that sort the report by author name.
- * To define the format for a tag, set property tagFormat to a
- * regular expression.
- * This check uses two different severity levels. The normal one is used for
- * reporting when the tag is missing. The additional one (tagSeverity) is used
- * for the level of reporting when the tag exists. The default value for
- * tagSeverity is info.
+ * Requires user defined Javadoc tag to be present in Javadoc comment with defined format.
+ * To define the format for a tag, set property tagFormat to a regular expression.
+ * Property tagSeverity is used for severity of events when the tag exists.
  * </p>
- * <p> An example of how to configure the check for printing author name is:
- *</p>
+ * <ul>
+ * <li>
+ * Property {@code tag} - Specify the name of tag.
+ * Type is {@code java.lang.String}.
+ * Default value is {@code null}.
+ * </li>
+ * <li>
+ * Property {@code tagFormat} - Specify the regexp to match tag content.
+ * Type is {@code java.util.regex.Pattern}.
+ * Default value is {@code null}.
+ * </li>
+ * <li>
+ * Property {@code tagSeverity} - Specify the severity level when tag is found and printed.
+ * Type is {@code com.puppycrawl.tools.checkstyle.api.SeverityLevel}.
+ * Default value is {@code info}.
+ * </li>
+ * <li>
+ * Property {@code tokens} - tokens to check
+ * Type is {@code java.lang.String[]}.
+ * Validation type is {@code tokenSet}.
+ * Default value is:
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
+ * INTERFACE_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
+ * CLASS_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
+ * ENUM_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
+ * ANNOTATION_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
+ * RECORD_DEF</a>.
+ * </li>
+ * </ul>
+ * <p>
+ * Example of default Check configuration that do nothing.
+ * </p>
+ * <pre>
+ * &lt;module name="WriteTag"/&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * &#47;**
+ * * Some class
+ * *&#47;
+ * public class Test {
+ *   &#47;** some doc *&#47;
+ *   void foo() {}
+ * }
+ * </pre>
+ * <p>
+ * To configure Check to demand some special tag (for example {@code &#64;since})
+ * to be present on classes javadoc.
+ * </p>
  * <pre>
  * &lt;module name="WriteTag"&gt;
- *    &lt;property name="tag" value="@author"/&gt;
- *    &lt;property name="tagFormat" value="\S"/&gt;
+ *   &lt;property name="tag" value="@since"/&gt;
  * &lt;/module&gt;
  * </pre>
- * <p> An example of how to configure the check to print warnings if an
- * "@incomplete" tag is found, and not print anything if it is not found:
- *</p>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * &#47;**
+ * * Some class
+ * *&#47;
+ * public class Test { // violation as required tag is missed
+ *   &#47;** some doc *&#47;
+ *   void foo() {} // OK, as methods are not checked by default
+ * }
+ * </pre>
+ * <p>
+ * To configure Check to demand some special tag (for example {@code &#64;since})
+ * to be present on method javadocs also in addition to default tokens.
+ * </p>
  * <pre>
  * &lt;module name="WriteTag"&gt;
- *    &lt;property name="tag" value="@incomplete"/&gt;
- *    &lt;property name="tagFormat" value="\S"/&gt;
- *    &lt;property name="severity" value="ignore"/&gt;
- *    &lt;property name="tagSeverity" value="warning"/&gt;
+ *   &lt;property name="tag" value="@since"/&gt;
+ *   &lt;property name="tokens"
+ *          value="INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF, METHOD_DEF" /&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * &#47;**
+ * * Some class
+ * *&#47;
+ * public class Test { // violation as required tag is missed
+ *   &#47;** some doc *&#47;
+ *   void foo() {} // violation as required tag is missed
+ * }
+ * </pre>
+ * <p>
+ * To configure Check to demand {@code &#64;since} tag
+ * to be present with digital value on method javadocs also in addition to default tokens.
+ * Attention: usage of non "ignore" in tagSeverity will print violation with such severity
+ * on each presence of such tag.
+ * </p>
+ * <pre>
+ * &lt;module name="WriteTag"&gt;
+ *   &lt;property name="tag" value="@since"/&gt;
+ *   &lt;property name="tokens"
+ *          value="INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF, METHOD_DEF" /&gt;
+ *   &lt;property name="tagFormat" value="[1-9\.]"/&gt;
+ *   &lt;property name="tagSeverity" value="ignore"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * &#47;**
+ * * Some class
+ * * &#64;since 1.2
+ * *&#47;
+ * public class Test {
+ *   &#47;** some doc
+ *   * &#64;since violation
+ *   *&#47;
+ *   void foo() {}
+ * }
+ * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code javadoc.writeTag}
+ * </li>
+ * <li>
+ * {@code type.missingTag}
+ * </li>
+ * <li>
+ * {@code type.tagFormat}
+ * </li>
+ * </ul>
  *
- * @author Daniel Grenner
+ * @since 4.2
  */
+@StatelessCheck
 public class WriteTagCheck
     extends AbstractCheck {
 
@@ -84,27 +204,29 @@ public class WriteTagCheck
      */
     public static final String MSG_TAG_FORMAT = "type.tagFormat";
 
-    /** Compiled regexp to match tag. **/
+    /** Compiled regexp to match tag. */
     private Pattern tagRegExp;
-    /** Compiled regexp to match tag content. **/
+    /** Specify the regexp to match tag content. */
     private Pattern tagFormat;
 
-    /** Regexp to match tag. */
+    /** Specify the name of tag. */
     private String tag;
-    /** The severity level of found tag reports. */
+    /** Specify the severity level when tag is found and printed. */
     private SeverityLevel tagSeverity = SeverityLevel.INFO;
 
     /**
-     * Sets the tag to check.
+     * Setter to specify the name of tag.
+     *
      * @param tag tag to check
      */
     public void setTag(String tag) {
         this.tag = tag;
-        tagRegExp = CommonUtils.createPattern(tag + "\\s*(.*$)");
+        tagRegExp = CommonUtil.createPattern(tag + "\\s*(.*$)");
     }
 
     /**
-     * Set the tag format.
+     * Setter to specify the regexp to match tag content.
+     *
      * @param pattern a {@code String} value
      */
     public void setTagFormat(Pattern pattern) {
@@ -112,7 +234,7 @@ public class WriteTagCheck
     }
 
     /**
-     * Sets the tag severity level.
+     * Setter to specify the severity level when tag is found and printed.
      *
      * @param severity  The new severity level
      * @see SeverityLevel
@@ -123,31 +245,38 @@ public class WriteTagCheck
 
     @Override
     public int[] getDefaultTokens() {
-        return new int[] {TokenTypes.INTERFACE_DEF,
-                          TokenTypes.CLASS_DEF,
-                          TokenTypes.ENUM_DEF,
-                          TokenTypes.ANNOTATION_DEF,
+        return new int[] {
+            TokenTypes.INTERFACE_DEF,
+            TokenTypes.CLASS_DEF,
+            TokenTypes.ENUM_DEF,
+            TokenTypes.ANNOTATION_DEF,
+            TokenTypes.RECORD_DEF,
         };
     }
 
     @Override
     public int[] getAcceptableTokens() {
-        return new int[] {TokenTypes.INTERFACE_DEF,
-                          TokenTypes.CLASS_DEF,
-                          TokenTypes.ENUM_DEF,
-                          TokenTypes.ANNOTATION_DEF,
-                          TokenTypes.METHOD_DEF,
-                          TokenTypes.CTOR_DEF,
-                          TokenTypes.ENUM_CONSTANT_DEF,
-                          TokenTypes.ANNOTATION_FIELD_DEF,
+        return new int[] {
+            TokenTypes.INTERFACE_DEF,
+            TokenTypes.CLASS_DEF,
+            TokenTypes.ENUM_DEF,
+            TokenTypes.ANNOTATION_DEF,
+            TokenTypes.METHOD_DEF,
+            TokenTypes.CTOR_DEF,
+            TokenTypes.ENUM_CONSTANT_DEF,
+            TokenTypes.ANNOTATION_FIELD_DEF,
+            TokenTypes.RECORD_DEF,
+            TokenTypes.COMPACT_CTOR_DEF,
         };
     }
 
     @Override
     public int[] getRequiredTokens() {
-        return CommonUtils.EMPTY_INT_ARRAY;
+        return CommonUtil.EMPTY_INT_ARRAY;
     }
 
+    // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/11166
+    @SuppressWarnings("deprecation")
     @Override
     public void visitToken(DetailAST ast) {
         final FileContents contents = getFileContents();
@@ -164,17 +293,18 @@ public class WriteTagCheck
 
     /**
      * Verifies that a type definition has a required tag.
+     *
      * @param lineNo the line number for the type definition.
      * @param comment the Javadoc comment for the type definition.
      */
     private void checkTag(int lineNo, String... comment) {
         if (tagRegExp != null) {
-            int tagCount = 0;
+            boolean hasTag = false;
             for (int i = 0; i < comment.length; i++) {
                 final String commentValue = comment[i];
                 final Matcher matcher = tagRegExp.matcher(commentValue);
                 if (matcher.find()) {
-                    tagCount += 1;
+                    hasTag = true;
                     final int contentStart = matcher.start(1);
                     final String content = commentValue.substring(contentStart);
                     if (tagFormat == null || tagFormat.matcher(content).find()) {
@@ -185,7 +315,7 @@ public class WriteTagCheck
                     }
                 }
             }
-            if (tagCount == 0) {
+            if (!hasTag) {
                 log(lineNo, MSG_MISSING_TAG, tag);
             }
         }
@@ -194,13 +324,13 @@ public class WriteTagCheck
     /**
      * Log a message.
      *
-     * @param line the line number where the error was found
+     * @param line the line number where the violation was found
      * @param tagName the javadoc tag to be logged
      * @param tagValue the contents of the tag
      *
      * @see java.text.MessageFormat
      */
-    protected final void logTag(int line, String tagName, String tagValue) {
+    private void logTag(int line, String tagName, String tagValue) {
         final String originalSeverity = getSeverity();
         setSeverity(tagSeverity.getName());
 
@@ -208,4 +338,5 @@ public class WriteTagCheck
 
         setSeverity(originalSeverity);
     }
+
 }

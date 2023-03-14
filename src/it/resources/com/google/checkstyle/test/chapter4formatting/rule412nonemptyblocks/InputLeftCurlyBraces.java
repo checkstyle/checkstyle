@@ -11,25 +11,25 @@ class InputLeftCurlyBraces
     /** Test do/while loops **/
     void testDoWhile()
     { //warn
-        
+
         do {
             testDoWhile();
         }
         while (condition());
 
-      
+
         do testDoWhile(); while (condition());
     }
 
     /** Test while loops **/
     void testWhile()
     { //warn
-        
+
         while (condition()) {
             testWhile();
         }
 
-        
+
         while(condition());
         while (condition())
             testWhile();
@@ -41,12 +41,12 @@ class InputLeftCurlyBraces
     /** Test for loops **/
     void testFor()
     {  //warn
-        
+
         for (int i = 1; i < 5; i++) {
             testFor();
         }
 
-        
+
         for(int i = 1;i < 5;i++);
         for (int i = 1; i < 5; i++)
             testFor();
@@ -59,7 +59,7 @@ class InputLeftCurlyBraces
     /** Test if constructs **/
     public void testIf()
     { //warn
-        
+
         if (condition()) {
             testIf();
         }
@@ -70,7 +70,7 @@ class InputLeftCurlyBraces
             testIf();
         }
 
-        
+
         if (condition());
         if (condition())
             testIf();
@@ -95,17 +95,17 @@ class InputLeftCurlyBraces
 
     void whitespaceAfterSemi()
     { //warn
-       
+
         int i = 1;int j = 2;
 
-        
+
         for (;;) {
         }
     }
 
     /** Empty constructor block. **/
     public InputLeftCurlyBraces() {}
-    
+
     /** Empty method block. **/
     public void emptyImplementation() {}
 }

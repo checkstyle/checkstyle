@@ -1,7 +1,10 @@
-////////////////////////////////////////////////////////////////////////////////
-// Test case file for FOR_ITERATION.
-// Created: 2003
-////////////////////////////////////////////////////////////////////////////////
+/*
+EmptyForIteratorPad
+option = (default)nospace
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.whitespace.emptyforiteratorpad;
 
 class InputEmptyForIteratorPad
@@ -10,7 +13,7 @@ class InputEmptyForIteratorPad
     {
         for (int i = 0; i < 1; i++) {
         }
-        
+
         for (int i = 0; i < 1;i++) {
         }
 
@@ -24,10 +27,10 @@ class InputEmptyForIteratorPad
             i++;
         }
 
-        for (int i = 0; i < 1; ) {
+        for (int i = 0; i < 1; ) { // violation '';' is followed by whitespace'
             i++;
         }
-        
+
         // test eol, there is no space after second SEMI
         for (int i = 0; i < 1;
             ) {
@@ -39,8 +42,8 @@ class InputEmptyForIteratorPad
     {
         for ( int i = 0; i < 1; i++ ) {
         }
-        
-        for ( int i = 0; i < 1; ) {
+
+        for ( int i = 0; i < 1; ) { // violation '';' is followed by whitespace'
             i++;
         }
 
@@ -52,7 +55,7 @@ class InputEmptyForIteratorPad
         }
 
         for (
-        ;; ) {
+        ;; ) { // violation '';' is followed by whitespace'
         }
     }
 }

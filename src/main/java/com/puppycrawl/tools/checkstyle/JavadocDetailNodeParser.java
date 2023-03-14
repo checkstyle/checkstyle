@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,34 +15,40 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle;
 
-import org.antlr.v4.runtime.ANTLRInputStream;
-import org.antlr.v4.runtime.BailErrorStrategy;
+import java.util.ArrayDeque;
+import java.util.Deque;
+import java.util.List;
+
 import org.antlr.v4.runtime.BaseErrorListener;
+import org.antlr.v4.runtime.BufferedTokenStream;
+import org.antlr.v4.runtime.CharStreams;
+import org.antlr.v4.runtime.CommonToken;
 import org.antlr.v4.runtime.CommonTokenStream;
+import org.antlr.v4.runtime.FailedPredicateException;
+import org.antlr.v4.runtime.NoViableAltException;
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.RecognitionException;
 import org.antlr.v4.runtime.Recognizer;
 import org.antlr.v4.runtime.Token;
+import org.antlr.v4.runtime.misc.Interval;
 import org.antlr.v4.runtime.misc.ParseCancellationException;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
-import com.google.common.base.CaseFormat;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl;
-import com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocLexer;
-import com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser;
-import com.puppycrawl.tools.checkstyle.utils.JavadocUtils;
+import com.puppycrawl.tools.checkstyle.grammar.javadoc.JavadocLexer;
+import com.puppycrawl.tools.checkstyle.grammar.javadoc.JavadocParser;
+import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 
 /**
  * Used for parsing Javadoc comment as DetailNode tree.
- * @author bizmailov
  *
  */
 public class JavadocDetailNodeParser {
@@ -68,15 +74,9 @@ public class JavadocDetailNodeParser {
     public static final String MSG_JAVADOC_PARSE_RULE_ERROR = "javadoc.parse.rule.error";
 
     /**
-     * Error message key for common javadoc errors.
+     * Message property key for the Unclosed HTML message.
      */
-    public static final String MSG_KEY_PARSE_ERROR = "javadoc.parse.error";
-
-    /**
-     * Unrecognized error from antlr parser.
-     */
-    public static final String MSG_KEY_UNRECOGNIZED_ANTLR_ERROR =
-            "javadoc.unrecognized.antlr.error";
+    public static final String MSG_UNCLOSED_HTML_TAG = "javadoc.unclosedHtml";
 
     /** Symbols with which javadoc starts. */
     private static final String JAVADOC_START = "/**";
@@ -87,12 +87,8 @@ public class JavadocDetailNodeParser {
     private int blockCommentLineNumber;
 
     /**
-     * Custom error listener.
-     */
-    private DescriptiveErrorListener errorListener;
-
-    /**
      * Parses Javadoc comment as DetailNode tree.
+     *
      * @param javadocCommentAst
      *        DetailAST of Javadoc comment
      * @return DetailNode tree of Javadoc comment
@@ -100,12 +96,12 @@ public class JavadocDetailNodeParser {
     public ParseStatus parseJavadocAsDetailNode(DetailAST javadocCommentAst) {
         blockCommentLineNumber = javadocCommentAst.getLineNo();
 
-        final String javadocComment = JavadocUtils.getJavadocCommentContent(javadocCommentAst);
+        final String javadocComment = JavadocUtil.getJavadocCommentContent(javadocCommentAst);
 
         // Use a new error listener each time to be able to use
         // one check instance for multiple files to be checked
         // without getting side effects.
-        errorListener = new DescriptiveErrorListener();
+        final DescriptiveErrorListener errorListener = new DescriptiveErrorListener();
 
         // Log messages should have line number in scope of file,
         // not in scope of Javadoc comment.
@@ -115,26 +111,40 @@ public class JavadocDetailNodeParser {
         final ParseStatus result = new ParseStatus();
 
         try {
-            final ParseTree parseTree = parseJavadocAsParseTree(javadocComment);
+            final JavadocParser javadocParser = createJavadocParser(javadocComment, errorListener);
 
-            final DetailNode tree = convertParseTreeToDetailNode(parseTree);
+            final ParseTree javadocParseTree = javadocParser.javadoc();
+
+            final DetailNode tree = convertParseTreeToDetailNode(javadocParseTree);
             // adjust first line to indent of /**
             adjustFirstLineToJavadocIndent(tree,
                         javadocCommentAst.getColumnNo()
                                 + JAVADOC_START.length());
             result.setTree(tree);
+            result.firstNonTightHtmlTag = getFirstNonTightHtmlTag(javadocParser,
+                    errorListener.offset);
         }
         catch (ParseCancellationException | IllegalArgumentException ex) {
-            // If syntax error occurs then message is printed by error listener
-            // and parser throws this runtime exception to stop parsing.
-            // Just stop processing current Javadoc comment.
-            ParseErrorMessage parseErrorMessage = errorListener.getErrorMessage();
+            ParseErrorMessage parseErrorMessage = null;
 
-            // There are cases when antlr error listener does not handle syntax error
+            if (ex.getCause() instanceof FailedPredicateException
+                    || ex.getCause() instanceof NoViableAltException) {
+                final RecognitionException recognitionEx = (RecognitionException) ex.getCause();
+                if (recognitionEx.getCtx() instanceof JavadocParser.HtmlTagContext) {
+                    final Token htmlTagNameStart = getMissedHtmlTag(recognitionEx);
+                    parseErrorMessage = new ParseErrorMessage(
+                            errorListener.offset + htmlTagNameStart.getLine(),
+                            MSG_JAVADOC_MISSED_HTML_CLOSE,
+                            htmlTagNameStart.getCharPositionInLine(),
+                            htmlTagNameStart.getText());
+                }
+            }
+
             if (parseErrorMessage == null) {
-                parseErrorMessage = new ParseErrorMessage(javadocCommentAst.getLineNo(),
-                        MSG_KEY_UNRECOGNIZED_ANTLR_ERROR,
-                        javadocCommentAst.getColumnNo(), ex.getMessage());
+                // If syntax error occurs then message is printed by error listener
+                // and parser throws this runtime exception to stop parsing.
+                // Just stop processing current Javadoc comment.
+                parseErrorMessage = errorListener.getErrorMessage();
             }
 
             result.setParseErrorMessage(parseErrorMessage);
@@ -145,20 +155,15 @@ public class JavadocDetailNodeParser {
 
     /**
      * Parses block comment content as javadoc comment.
+     *
      * @param blockComment
      *        block comment content.
+     * @param errorListener custom error listener
      * @return parse tree
      */
-    private ParseTree parseJavadocAsParseTree(String blockComment) {
-        final ANTLRInputStream input = new ANTLRInputStream(blockComment);
-
-        final JavadocLexer lexer = new JavadocLexer(input);
-
-        // remove default error listeners
-        lexer.removeErrorListeners();
-
-        // add custom error listener that logs parsing errors
-        lexer.addErrorListener(errorListener);
+    private static JavadocParser createJavadocParser(String blockComment,
+            DescriptiveErrorListener errorListener) {
+        final JavadocLexer lexer = new JavadocLexer(CharStreams.fromString(blockComment), true);
 
         final CommonTokenStream tokens = new CommonTokenStream(lexer);
 
@@ -170,11 +175,11 @@ public class JavadocDetailNodeParser {
         // add custom error listener that logs syntax errors
         parser.addErrorListener(errorListener);
 
-        // This strategy stops parsing when parser error occurs.
-        // By default it uses Error Recover Strategy which is slow and useless.
-        parser.setErrorHandler(new BailErrorStrategy());
+        // JavadocParserErrorStrategy stops parsing on first parse error encountered unlike the
+        // DefaultErrorStrategy used by ANTLR which rather attempts error recovery.
+        parser.setErrorHandler(new CheckstyleParserErrorStrategy());
 
-        return parser.javadoc();
+        return parser;
     }
 
     /**
@@ -182,6 +187,9 @@ public class JavadocDetailNodeParser {
      *
      * @param parseTreeNode root node of ParseTree
      * @return root of DetailNode tree
+     * @noinspection SuspiciousArrayCast
+     * @noinspectionreason SuspiciousArrayCast - design of parser forces us to
+     *      use mutable node
      */
     private DetailNode convertParseTreeToDetailNode(ParseTree parseTreeNode) {
         final JavadocNodeImpl rootJavadocNode = createRootJavadocNode(parseTreeNode);
@@ -192,8 +200,7 @@ public class JavadocDetailNodeParser {
         while (currentJavadocParent != null) {
             // remove unnecessary children tokens
             if (currentJavadocParent.getType() == JavadocTokenTypes.TEXT) {
-                currentJavadocParent
-                        .setChildren((DetailNode[]) JavadocNodeImpl.EMPTY_DETAIL_NODE_ARRAY);
+                currentJavadocParent.setChildren(JavadocNodeImpl.EMPTY_DETAIL_NODE_ARRAY);
             }
 
             final JavadocNodeImpl[] children =
@@ -206,27 +213,25 @@ public class JavadocDetailNodeParser {
                 parseTreeParent = parseTreeParent.getChild(0);
             }
             else {
-                JavadocNodeImpl nextJavadocSibling = (JavadocNodeImpl) JavadocUtils
+                JavadocNodeImpl nextJavadocSibling = (JavadocNodeImpl) JavadocUtil
                         .getNextSibling(currentJavadocParent);
 
                 ParseTree nextParseTreeSibling = getNextSibling(parseTreeParent);
 
-                if (nextJavadocSibling == null) {
-                    JavadocNodeImpl tempJavadocParent =
+                while (nextJavadocSibling == null) {
+                    currentJavadocParent =
                             (JavadocNodeImpl) currentJavadocParent.getParent();
 
-                    ParseTree tempParseTreeParent = parseTreeParent.getParent();
+                    parseTreeParent = parseTreeParent.getParent();
 
-                    while (nextJavadocSibling == null && tempJavadocParent != null) {
-
-                        nextJavadocSibling = (JavadocNodeImpl) JavadocUtils
-                                .getNextSibling(tempJavadocParent);
-
-                        nextParseTreeSibling = getNextSibling(tempParseTreeParent);
-
-                        tempJavadocParent = (JavadocNodeImpl) tempJavadocParent.getParent();
-                        tempParseTreeParent = tempParseTreeParent.getParent();
+                    if (currentJavadocParent == null) {
+                        break;
                     }
+
+                    nextJavadocSibling = (JavadocNodeImpl) JavadocUtil
+                            .getNextSibling(currentJavadocParent);
+
+                    nextParseTreeSibling = getNextSibling(parseTreeParent);
                 }
                 currentJavadocParent = nextJavadocSibling;
                 parseTreeParent = nextParseTreeSibling;
@@ -238,8 +243,9 @@ public class JavadocDetailNodeParser {
 
     /**
      * Creates child nodes for each node from 'nodes' array.
-     * @param parseTreeParent original ParseTree parent node
+     *
      * @param nodes array of JavadocNodeImpl nodes
+     * @param parseTreeParent original ParseTree parent node
      */
     private void insertChildrenNodes(final JavadocNodeImpl[] nodes, ParseTree parseTreeParent) {
         for (int i = 0; i < nodes.length; i++) {
@@ -247,18 +253,19 @@ public class JavadocDetailNodeParser {
             final ParseTree currentParseTreeNodeChild = parseTreeParent.getChild(i);
             final JavadocNodeImpl[] subChildren =
                     createChildrenNodes(currentJavadocNode, currentParseTreeNodeChild);
-            currentJavadocNode.setChildren((DetailNode[]) subChildren);
+            currentJavadocNode.setChildren(subChildren);
         }
     }
 
     /**
      * Creates children Javadoc nodes base on ParseTree node's children.
+     *
      * @param parentJavadocNode node that will be parent for created children
      * @param parseTreeNode original ParseTree node
      * @return array of Javadoc nodes
      */
     private JavadocNodeImpl[]
-            createChildrenNodes(JavadocNodeImpl parentJavadocNode, ParseTree parseTreeNode) {
+            createChildrenNodes(DetailNode parentJavadocNode, ParseTree parseTreeNode) {
         final JavadocNodeImpl[] children =
                 new JavadocNodeImpl[parseTreeNode.getChildCount()];
 
@@ -273,6 +280,7 @@ public class JavadocDetailNodeParser {
 
     /**
      * Creates root JavadocNodeImpl node base on ParseTree root node.
+     *
      * @param parseTreeNode ParseTree root node
      * @return root Javadoc node
      */
@@ -280,14 +288,14 @@ public class JavadocDetailNodeParser {
         final JavadocNodeImpl rootJavadocNode = createJavadocNode(parseTreeNode, null, -1);
 
         final int childCount = parseTreeNode.getChildCount();
-        final JavadocNodeImpl[] children = new JavadocNodeImpl[childCount];
+        final DetailNode[] children = rootJavadocNode.getChildren();
 
         for (int i = 0; i < childCount; i++) {
             final JavadocNodeImpl child = createJavadocNode(parseTreeNode.getChild(i),
                     rootJavadocNode, i);
             children[i] = child;
         }
-        rootJavadocNode.setChildren((DetailNode[]) children);
+        rootJavadocNode.setChildren(children);
         return rootJavadocNode;
     }
 
@@ -313,12 +321,13 @@ public class JavadocDetailNodeParser {
         node.setIndex(index);
         node.setType(getTokenType(parseTree));
         node.setParent(parent);
-        node.setChildren((DetailNode[]) new JavadocNodeImpl[parseTree.getChildCount()]);
+        node.setChildren(new JavadocNodeImpl[parseTree.getChildCount()]);
         return node;
     }
 
     /**
      * Adjust first line nodes to javadoc indent.
+     *
      * @param tree DetailNode tree root
      * @param javadocColumnNumber javadoc indent
      */
@@ -334,6 +343,7 @@ public class JavadocDetailNodeParser {
 
     /**
      * Gets line number from ParseTree node.
+     *
      * @param tree
      *        ParseTree node
      * @return line number
@@ -352,6 +362,7 @@ public class JavadocDetailNodeParser {
 
     /**
      * Gets column number from ParseTree node.
+     *
      * @param tree
      *        ParseTree node
      * @return column number
@@ -370,6 +381,7 @@ public class JavadocDetailNodeParser {
 
     /**
      * Gets next sibling of ParseTree node.
+     *
      * @param node ParseTree node
      * @return next sibling of ParseTree node.
      */
@@ -378,15 +390,11 @@ public class JavadocDetailNodeParser {
 
         if (node.getParent() != null) {
             final ParseTree parent = node.getParent();
-            final int childCount = parent.getChildCount();
-
             int index = 0;
             while (true) {
                 final ParseTree currentNode = parent.getChild(index);
                 if (currentNode.equals(node)) {
-                    if (index != childCount - 1) {
-                        nextSibling = parent.getChild(index + 1);
-                    }
+                    nextSibling = parent.getChild(index + 1);
                     break;
                 }
                 index++;
@@ -397,6 +405,7 @@ public class JavadocDetailNodeParser {
 
     /**
      * Gets token type of ParseTree node from JavadocTokenTypes class.
+     *
      * @param node ParseTree node.
      * @return token type from JavadocTokenTypes
      */
@@ -408,9 +417,7 @@ public class JavadocDetailNodeParser {
         }
         else {
             final String className = getNodeClassNameWithoutContext(node);
-            final String typeName =
-                    CaseFormat.UPPER_CAMEL.to(CaseFormat.UPPER_UNDERSCORE, className);
-            tokenType = JavadocUtils.getTokenId(typeName);
+            tokenType = JavadocUtil.getTokenId(convertUpperCamelToUpperUnderscore(className));
         }
 
         return tokenType;
@@ -419,18 +426,20 @@ public class JavadocDetailNodeParser {
     /**
      * Gets class name of ParseTree node and removes 'Context' postfix at the
      * end and formats it.
+     *
      * @param node {@code ParseTree} node whose class name is to be formatted and returned
      * @return uppercased class name without the word 'Context' and with appropriately
      *     inserted underscores
      */
     private static String getFormattedNodeClassNameWithoutContext(ParseTree node) {
         final String classNameWithoutContext = getNodeClassNameWithoutContext(node);
-        return CaseFormat.UPPER_CAMEL.to(CaseFormat.UPPER_UNDERSCORE, classNameWithoutContext);
+        return convertUpperCamelToUpperUnderscore(classNameWithoutContext);
     }
 
     /**
      * Gets class name of ParseTree node and removes 'Context' postfix at the
      * end.
+     *
      * @param node
      *        ParseTree node.
      * @return class name without 'Context'
@@ -443,9 +452,113 @@ public class JavadocDetailNodeParser {
     }
 
     /**
+     * Method to get the missed HTML tag to generate more informative error message for the user.
+     * This method doesn't concern itself with
+     * <a href="https://www.w3.org/TR/html51/syntax.html#void-elements">void elements</a>
+     * since it is forbidden to close them.
+     * Missed HTML tags for the following tags will <i>not</i> generate an error message from ANTLR:
+     * {@code
+     * <p>
+     * <li>
+     * <tr>
+     * <td>
+     * <th>
+     * <body>
+     * <colgroup>
+     * <dd>
+     * <dt>
+     * <head>
+     * <html>
+     * <option>
+     * <tbody>
+     * <thead>
+     * <tfoot>
+     * }
+     *
+     * @param exception {@code NoViableAltException} object catched while parsing javadoc
+     * @return returns appropriate {@link Token} if a HTML close tag is missed;
+     *     null otherwise
+     */
+    private static Token getMissedHtmlTag(RecognitionException exception) {
+        Token htmlTagNameStart = null;
+        final Interval sourceInterval = exception.getCtx().getSourceInterval();
+        final List<Token> tokenList = ((BufferedTokenStream) exception.getInputStream())
+                .getTokens(sourceInterval.a, sourceInterval.b);
+        final Deque<Token> stack = new ArrayDeque<>();
+        int prevTokenType = JavadocTokenTypes.EOF;
+        for (final Token token : tokenList) {
+            final int tokenType = token.getType();
+            if (tokenType == JavadocTokenTypes.HTML_TAG_NAME
+                    && prevTokenType == JavadocTokenTypes.START) {
+                stack.push(token);
+            }
+            else if (tokenType == JavadocTokenTypes.HTML_TAG_NAME && !stack.isEmpty()) {
+                if (stack.peek().getText().equals(token.getText())) {
+                    stack.pop();
+                }
+                else {
+                    htmlTagNameStart = stack.pop();
+                }
+            }
+            prevTokenType = tokenType;
+        }
+        if (htmlTagNameStart == null) {
+            htmlTagNameStart = stack.pop();
+        }
+        return htmlTagNameStart;
+    }
+
+    /**
+     * This method is used to get the first non-tight HTML tag encountered while parsing javadoc.
+     * This shall eventually be reflected by the {@link ParseStatus} object returned by
+     * {@link #parseJavadocAsDetailNode(DetailAST)} method via the instance member
+     * {@link ParseStatus#firstNonTightHtmlTag}, and checks not supposed to process non-tight HTML
+     * or the ones which are supposed to log violation for non-tight javadocs can utilize that.
+     *
+     * @param javadocParser The ANTLR recognizer instance which has been used to parse the javadoc
+     * @param javadocLineOffset The line number of beginning of the Javadoc comment
+     * @return First non-tight HTML tag if one exists; null otherwise
+     */
+    private static Token getFirstNonTightHtmlTag(JavadocParser javadocParser,
+            int javadocLineOffset) {
+        final CommonToken offendingToken;
+        final ParserRuleContext nonTightTagStartContext = javadocParser.nonTightTagStartContext;
+        if (nonTightTagStartContext == null) {
+            offendingToken = null;
+        }
+        else {
+            final Token token = ((TerminalNode) nonTightTagStartContext.getChild(1))
+                    .getSymbol();
+            offendingToken = new CommonToken(token);
+            offendingToken.setLine(offendingToken.getLine() + javadocLineOffset);
+        }
+        return offendingToken;
+    }
+
+    /**
+     * Converts the given {@code text} from camel case to all upper case with
+     * underscores separating each word.
+     *
+     * @param text The string to convert.
+     * @return The result of the conversion.
+     */
+    private static String convertUpperCamelToUpperUnderscore(String text) {
+        final StringBuilder result = new StringBuilder(20);
+        boolean first = true;
+        for (char letter : text.toCharArray()) {
+            if (!first && Character.isUpperCase(letter)) {
+                result.append('_');
+            }
+            result.append(Character.toUpperCase(letter));
+            first = false;
+        }
+        return result.toString();
+    }
+
+    /**
      * Custom error listener for JavadocParser that prints user readable errors.
      */
-    private static class DescriptiveErrorListener extends BaseErrorListener {
+    private static final class DescriptiveErrorListener extends BaseErrorListener {
 
         /**
          * Offset is line number of beginning of the Javadoc comment. Log
@@ -461,6 +574,7 @@ public class JavadocDetailNodeParser {
 
         /**
          * Getter for error message during parsing.
+         *
          * @return Error message during parsing.
          */
         private ParseErrorMessage getErrorMessage() {
@@ -471,6 +585,7 @@ public class JavadocDetailNodeParser {
          * Sets offset. Offset is line number of beginning of the Javadoc
          * comment. Log messages should have line number in scope of file, not
          * in scope of Javadoc comment.
+         *
          * @param offset
          *        offset line number
          */
@@ -494,30 +609,24 @@ public class JavadocDetailNodeParser {
                 int line, int charPositionInLine,
                 String msg, RecognitionException ex) {
             final int lineNumber = offset + line;
-            final Token token = (Token) offendingSymbol;
 
-            if (MSG_JAVADOC_MISSED_HTML_CLOSE.equals(msg)) {
+            if (MSG_JAVADOC_WRONG_SINGLETON_TAG.equals(msg)) {
                 errorMessage = new ParseErrorMessage(lineNumber,
-                        MSG_JAVADOC_MISSED_HTML_CLOSE, charPositionInLine, token.getText());
+                        MSG_JAVADOC_WRONG_SINGLETON_TAG, charPositionInLine,
+                        ((Token) offendingSymbol).getText());
 
                 throw new IllegalArgumentException(msg);
             }
-            else if (MSG_JAVADOC_WRONG_SINGLETON_TAG.equals(msg)) {
-                errorMessage = new ParseErrorMessage(lineNumber,
-                        MSG_JAVADOC_WRONG_SINGLETON_TAG, charPositionInLine, token.getText());
 
-                throw new IllegalArgumentException(msg);
-            }
-            else {
-                final int ruleIndex = ex.getCtx().getRuleIndex();
-                final String ruleName = recognizer.getRuleNames()[ruleIndex];
-                final String upperCaseRuleName = CaseFormat.UPPER_CAMEL.to(
-                        CaseFormat.UPPER_UNDERSCORE, ruleName);
+            final int ruleIndex = ex.getCtx().getRuleIndex();
+            final String ruleName = recognizer.getRuleNames()[ruleIndex];
+            final String upperCaseRuleName = convertUpperCamelToUpperUnderscore(ruleName);
 
-                errorMessage = new ParseErrorMessage(lineNumber,
-                        MSG_JAVADOC_PARSE_RULE_ERROR, charPositionInLine, msg, upperCaseRuleName);
-            }
+            errorMessage = new ParseErrorMessage(lineNumber,
+                    MSG_JAVADOC_PARSE_RULE_ERROR, charPositionInLine, msg, upperCaseRuleName);
+
         }
+
     }
 
     /**
@@ -525,6 +634,7 @@ public class JavadocDetailNodeParser {
      * error message.
      */
     public static class ParseStatus {
+
         /**
          * DetailNode tree (is null if parsing fails).
          */
@@ -536,7 +646,17 @@ public class JavadocDetailNodeParser {
         private ParseErrorMessage parseErrorMessage;
 
         /**
+         * Stores the first non-tight HTML tag encountered while parsing javadoc.
+         *
+         * @see <a
+         *     href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules">
+         *     Tight HTML rules</a>
+         */
+        private Token firstNonTightHtmlTag;
+
+        /**
          * Getter for DetailNode tree.
+         *
          * @return DetailNode tree if parsing was successful, null otherwise.
          */
         public DetailNode getTree() {
@@ -545,6 +665,7 @@ public class JavadocDetailNodeParser {
 
         /**
          * Sets DetailNode tree.
+         *
          * @param tree DetailNode tree.
          */
         public void setTree(DetailNode tree) {
@@ -553,6 +674,7 @@ public class JavadocDetailNodeParser {
 
         /**
          * Getter for error message during parsing.
+         *
          * @return Error message if parsing was unsuccessful, null otherwise.
          */
         public ParseErrorMessage getParseErrorMessage() {
@@ -561,10 +683,35 @@ public class JavadocDetailNodeParser {
 
         /**
          * Sets parse error message.
+         *
          * @param parseErrorMessage Parse error message.
          */
         public void setParseErrorMessage(ParseErrorMessage parseErrorMessage) {
             this.parseErrorMessage = parseErrorMessage;
+        }
+
+        /**
+         * This method is used to check if the javadoc parsed has non-tight HTML tags.
+         *
+         * @return returns true if the javadoc has at least one non-tight HTML tag; false otherwise
+         * @see <a
+         *     href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules">
+         *     Tight HTML rules</a>
+         */
+        public boolean isNonTight() {
+            return firstNonTightHtmlTag != null;
+        }
+
+        /**
+         * Getter for the first non-tight HTML tag encountered while parsing javadoc.
+         *
+         * @return the first non-tight HTML tag that is encountered while parsing Javadoc,
+         *     if one exists
+         * @see <a href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules">
+         *     Tight HTML rules</a>
+         */
+        public Token getFirstNonTightHtmlTag() {
+            return firstNonTightHtmlTag;
         }
 
     }
@@ -573,6 +720,7 @@ public class JavadocDetailNodeParser {
      * Contains information about parse error message.
      */
     public static class ParseErrorMessage {
+
         /**
          * Line number where parse error occurred.
          */
@@ -595,7 +743,8 @@ public class JavadocDetailNodeParser {
          * @param messageKey message key
          * @param messageArguments message arguments
          */
-        ParseErrorMessage(int lineNumber, String messageKey, Object... messageArguments) {
+        /* package */ ParseErrorMessage(int lineNumber, String messageKey,
+                Object... messageArguments) {
             this.lineNumber = lineNumber;
             this.messageKey = messageKey;
             this.messageArguments = messageArguments.clone();
@@ -603,6 +752,7 @@ public class JavadocDetailNodeParser {
 
         /**
          * Getter for line number where parse error occurred.
+         *
          * @return Line number where parse error occurred.
          */
         public int getLineNumber() {
@@ -611,6 +761,7 @@ public class JavadocDetailNodeParser {
 
         /**
          * Getter for key for error message.
+         *
          * @return Key for error message.
          */
         public String getMessageKey() {
@@ -619,11 +770,12 @@ public class JavadocDetailNodeParser {
 
         /**
          * Getter for error message arguments.
+         *
          * @return Array of error message arguments.
          */
         public Object[] getMessageArguments() {
             return messageArguments.clone();
         }
-    }
 
+    }
 }

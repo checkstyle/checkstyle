@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,177 +15,225 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck.MSG_ACCESS;
 import static com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck.MSG_CONSTRUCTOR;
 import static com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck.MSG_INSTANCE;
 import static com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck.MSG_STATIC;
 
-import java.io.File;
-import java.io.IOException;
+import java.util.SortedSet;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.api.Violation;
 
 public class DeclarationOrderCheckTest
-    extends BaseCheckTestSupport {
+    extends AbstractModuleTestSupport {
+
     @Override
-    protected String getPath(String filename) throws IOException {
-        return super.getPath("checks" + File.separator
-                + "coding" + File.separator + "declarationorder" + File.separator + filename);
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/checks/coding/declarationorder";
     }
 
     @Test
     public void testDefault() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(DeclarationOrderCheck.class);
 
         final String[] expected = {
-            "8:5: " + getCheckMessage(MSG_ACCESS),
-            "13:5: " + getCheckMessage(MSG_ACCESS),
-            "18:5: " + getCheckMessage(MSG_ACCESS),
+            "16:5: " + getCheckMessage(MSG_ACCESS),
             "21:5: " + getCheckMessage(MSG_ACCESS),
-            "27:5: " + getCheckMessage(MSG_STATIC),
-            "34:9: " + getCheckMessage(MSG_ACCESS),
-            "45:9: " + getCheckMessage(MSG_STATIC),
-            "54:5: " + getCheckMessage(MSG_CONSTRUCTOR),
-            "80:5: " + getCheckMessage(MSG_INSTANCE),
-
-            "92:9: " + getCheckMessage(MSG_ACCESS),
-            "100:9: " + getCheckMessage(MSG_STATIC),
-            "106:5: " + getCheckMessage(MSG_ACCESS),
-            "111:5: " + getCheckMessage(MSG_ACCESS),
-            "116:5: " + getCheckMessage(MSG_ACCESS),
-            "119:5: " + getCheckMessage(MSG_ACCESS),
-            "125:5: " + getCheckMessage(MSG_STATIC),
-            "132:9: " + getCheckMessage(MSG_ACCESS),
-            "143:9: " + getCheckMessage(MSG_STATIC),
-            "152:5: " + getCheckMessage(MSG_CONSTRUCTOR),
-            "178:5: " + getCheckMessage(MSG_INSTANCE),
-            "182:9: " + getCheckMessage(MSG_ACCESS),
+            "26:5: " + getCheckMessage(MSG_ACCESS),
+            "29:5: " + getCheckMessage(MSG_ACCESS),
+            "35:5: " + getCheckMessage(MSG_STATIC),
+            "42:9: " + getCheckMessage(MSG_ACCESS),
+            "60:9: " + getCheckMessage(MSG_STATIC),
+            "69:5: " + getCheckMessage(MSG_CONSTRUCTOR),
+            "95:5: " + getCheckMessage(MSG_INSTANCE),
+            "107:9: " + getCheckMessage(MSG_ACCESS),
+            "115:9: " + getCheckMessage(MSG_STATIC),
+            "121:5: " + getCheckMessage(MSG_ACCESS),
+            "126:5: " + getCheckMessage(MSG_ACCESS),
+            "131:5: " + getCheckMessage(MSG_ACCESS),
+            "134:5: " + getCheckMessage(MSG_ACCESS),
+            "140:5: " + getCheckMessage(MSG_STATIC),
+            "147:9: " + getCheckMessage(MSG_ACCESS),
+            "158:9: " + getCheckMessage(MSG_STATIC),
+            "167:5: " + getCheckMessage(MSG_CONSTRUCTOR),
+            "193:5: " + getCheckMessage(MSG_INSTANCE),
+            "198:9: " + getCheckMessage(MSG_ACCESS),
         };
-        verify(checkConfig, getPath("InputDeclarationOrder.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputDeclarationOrder.java"), expected);
     }
 
     @Test
     public void testOnlyConstructors() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(DeclarationOrderCheck.class);
-        checkConfig.addAttribute("ignoreConstructors", "false");
-        checkConfig.addAttribute("ignoreModifiers", "true");
 
         final String[] expected = {
-            "45:9: " + getCheckMessage(MSG_STATIC),
-            "54:5: " + getCheckMessage(MSG_CONSTRUCTOR),
-            "80:5: " + getCheckMessage(MSG_INSTANCE),
-            "100:9: " + getCheckMessage(MSG_STATIC),
+            "53:9: " + getCheckMessage(MSG_STATIC),
+            "62:5: " + getCheckMessage(MSG_CONSTRUCTOR),
+            "88:5: " + getCheckMessage(MSG_INSTANCE),
+            "107:9: " + getCheckMessage(MSG_STATIC),
             "143:9: " + getCheckMessage(MSG_STATIC),
             "152:5: " + getCheckMessage(MSG_CONSTRUCTOR),
             "178:5: " + getCheckMessage(MSG_INSTANCE),
         };
-        verify(checkConfig, getPath("InputDeclarationOrder.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputDeclarationOrderOnlyConstructors.java"), expected);
     }
 
     @Test
     public void testOnlyModifiers() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(DeclarationOrderCheck.class);
-        checkConfig.addAttribute("ignoreConstructors", "true");
-        checkConfig.addAttribute("ignoreModifiers", "false");
 
         final String[] expected = {
-            "8:5: " + getCheckMessage(MSG_ACCESS),
-            "13:5: " + getCheckMessage(MSG_ACCESS),
-            "18:5: " + getCheckMessage(MSG_ACCESS),
+            "16:5: " + getCheckMessage(MSG_ACCESS),
             "21:5: " + getCheckMessage(MSG_ACCESS),
-            "27:5: " + getCheckMessage(MSG_STATIC),
-            "34:9: " + getCheckMessage(MSG_ACCESS),
-            "45:9: " + getCheckMessage(MSG_STATIC),
-            "80:5: " + getCheckMessage(MSG_INSTANCE),
-
-            "92:9: " + getCheckMessage(MSG_ACCESS),
-            "100:9: " + getCheckMessage(MSG_STATIC),
-            "106:5: " + getCheckMessage(MSG_ACCESS),
-            "111:5: " + getCheckMessage(MSG_ACCESS),
-            "116:5: " + getCheckMessage(MSG_ACCESS),
-            "119:5: " + getCheckMessage(MSG_ACCESS),
-            "125:5: " + getCheckMessage(MSG_STATIC),
-            "132:9: " + getCheckMessage(MSG_ACCESS),
-            "143:9: " + getCheckMessage(MSG_STATIC),
-            "178:5: " + getCheckMessage(MSG_INSTANCE),
-            "182:9: " + getCheckMessage(MSG_ACCESS),
+            "26:5: " + getCheckMessage(MSG_ACCESS),
+            "29:5: " + getCheckMessage(MSG_ACCESS),
+            "35:5: " + getCheckMessage(MSG_STATIC),
+            "42:9: " + getCheckMessage(MSG_ACCESS),
+            "60:9: " + getCheckMessage(MSG_STATIC),
+            "94:5: " + getCheckMessage(MSG_INSTANCE),
+            "106:9: " + getCheckMessage(MSG_ACCESS),
+            "114:9: " + getCheckMessage(MSG_STATIC),
+            "120:5: " + getCheckMessage(MSG_ACCESS),
+            "125:5: " + getCheckMessage(MSG_ACCESS),
+            "130:5: " + getCheckMessage(MSG_ACCESS),
+            "133:5: " + getCheckMessage(MSG_ACCESS),
+            "139:5: " + getCheckMessage(MSG_STATIC),
+            "146:9: " + getCheckMessage(MSG_ACCESS),
+            "157:9: " + getCheckMessage(MSG_STATIC),
+            "191:5: " + getCheckMessage(MSG_INSTANCE),
+            "196:9: " + getCheckMessage(MSG_ACCESS),
         };
-        verify(checkConfig, getPath("InputDeclarationOrder.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputDeclarationOrderOnlyModifiers.java"), expected);
     }
 
     @Test
     public void testTokensNotNull() {
         final DeclarationOrderCheck check = new DeclarationOrderCheck();
-        Assert.assertNotNull(check.getAcceptableTokens());
-        Assert.assertNotNull(check.getDefaultTokens());
-        Assert.assertNotNull(check.getRequiredTokens());
+        assertWithMessage("Acceptable tokens should not be null")
+            .that(check.getAcceptableTokens())
+            .isNotNull();
+        assertWithMessage("Default tokens should not be null")
+            .that(check.getDefaultTokens())
+            .isNotNull();
+        assertWithMessage("Required tokens should not be null")
+            .that(check.getRequiredTokens())
+            .isNotNull();
     }
 
     @Test
     public void testParents() {
-        final DetailAST parent = new DetailAST();
+        final DetailAstImpl parent = new DetailAstImpl();
         parent.setType(TokenTypes.STATIC_INIT);
-        final DetailAST method = new DetailAST();
+        final DetailAstImpl method = new DetailAstImpl();
         method.setType(TokenTypes.METHOD_DEF);
         parent.setFirstChild(method);
-        final DetailAST ctor = new DetailAST();
+        final DetailAstImpl ctor = new DetailAstImpl();
         ctor.setType(TokenTypes.CTOR_DEF);
         method.setNextSibling(ctor);
 
         final DeclarationOrderCheck check = new DeclarationOrderCheck();
+
         check.visitToken(method);
+        final SortedSet<Violation> violations1 = check.getViolations();
+
+        assertWithMessage("No exception violations expected")
+            .that(violations1)
+            .isEmpty();
+
         check.visitToken(ctor);
+        final SortedSet<Violation> violations2 = check.getViolations();
+
+        assertWithMessage("No exception violations expected")
+            .that(violations2)
+            .isEmpty();
     }
 
     @Test
     public void testImproperToken() {
-        final DetailAST parent = new DetailAST();
+        final DetailAstImpl parent = new DetailAstImpl();
         parent.setType(TokenTypes.STATIC_INIT);
-        final DetailAST array = new DetailAST();
+        final DetailAstImpl array = new DetailAstImpl();
         array.setType(TokenTypes.ARRAY_INIT);
         parent.setFirstChild(array);
 
         final DeclarationOrderCheck check = new DeclarationOrderCheck();
+
         check.visitToken(array);
+        final SortedSet<Violation> violations = check.getViolations();
+
+        assertWithMessage("No exception violations expected")
+            .that(violations)
+            .isEmpty();
     }
 
     @Test
     public void testForwardReference() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(DeclarationOrderCheck.class);
         final String[] expected = {
-            "12:5: " + getCheckMessage(MSG_ACCESS),
-            "13:5: " + getCheckMessage(MSG_ACCESS),
-            "14:5: " + getCheckMessage(MSG_ACCESS),
-            "15:5: " + getCheckMessage(MSG_ACCESS),
-            "16:5: " + getCheckMessage(MSG_ACCESS),
-            "17:5: " + getCheckMessage(MSG_ACCESS),
+            "20:5: " + getCheckMessage(MSG_ACCESS),
+            "21:5: " + getCheckMessage(MSG_ACCESS),
+            "22:5: " + getCheckMessage(MSG_ACCESS),
             "23:5: " + getCheckMessage(MSG_ACCESS),
-            "41:5: " + getCheckMessage(MSG_STATIC),
+            "24:5: " + getCheckMessage(MSG_ACCESS),
+            "25:5: " + getCheckMessage(MSG_ACCESS),
+            "31:5: " + getCheckMessage(MSG_ACCESS),
+            "49:5: " + getCheckMessage(MSG_STATIC),
+            "69:5: " + getCheckMessage(MSG_ACCESS),
         };
-        verify(checkConfig, getPath("InputDeclarationOrderForwardReference.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputDeclarationOrderForwardReference.java"), expected);
+    }
+
+    @Test
+    public void testDeclarationOrderRecordsAndCompactCtors() throws Exception {
+        final String[] expected = {
+            "21:9: " + getCheckMessage(MSG_CONSTRUCTOR),
+            "24:9: " + getCheckMessage(MSG_STATIC),
+            "33:9: " + getCheckMessage(MSG_CONSTRUCTOR),
+            "36:9: " + getCheckMessage(MSG_STATIC),
+            "43:9: " + getCheckMessage(MSG_STATIC),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputDeclarationOrderRecordsAndCompactCtors.java"),
+            expected);
+    }
+
+    @Test
+    public void testDeclarationOrderInterfaceMemberScopeIsPublic() throws Exception {
+        final String[] expected = {
+            "21:3: " + getCheckMessage(MSG_STATIC),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputDeclarationOrderInterfaceMemberScopeIsPublic.java"),
+            expected);
+    }
+
+    @Test
+    public void testVariableAccess() throws Exception {
+        final String[] expected = {
+            "23:5: " + getCheckMessage(MSG_ACCESS),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputDeclarationOrderVariableAccess.java"), expected);
     }
 
     @Test
     public void testAvoidDuplicatesForStaticFinalFields() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(DeclarationOrderCheck.class);
         final String[] expected = {
-            "6:5: " + getCheckMessage(MSG_STATIC),
+            "14:5: " + getCheckMessage(MSG_STATIC),
         };
-        verify(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputDeclarationOrderAvoidDuplicatesInStaticFinalFields.java"),
                 expected);
     }
+
 }

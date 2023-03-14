@@ -1,14 +1,21 @@
-////////////////////////////////////////////////////////////////////////////////
-// Test case file for checkstyle.
-// Created: 2001
-////////////////////////////////////////////////////////////////////////////////
+/*
+ParenPad
+option = (default)nospace
+tokens = (default)ANNOTATION, ANNOTATION_FIELD_DEF, CTOR_CALL, CTOR_DEF, DOT, \
+         ENUM_CONSTANT_DEF, EXPR, LITERAL_CATCH, LITERAL_DO, LITERAL_FOR, LITERAL_IF, \
+         LITERAL_NEW, LITERAL_SWITCH, LITERAL_SYNCHRONIZED, LITERAL_WHILE, METHOD_CALL, \
+         METHOD_DEF, QUESTION, RESOURCE_SPECIFICATION, SUPER_CTOR_CALL, LAMBDA, RECORD_DEF
+
+
+*/
+
 package com . puppycrawl
     .tools.
     checkstyle.checks.whitespace.parenpad;
 
 /**
  * Class for testing whitespace issues.
- * error missing author tag
+ * violation missing author tag
  **/
 class InputParenPadWhitespace
 {
@@ -55,7 +62,7 @@ class InputParenPadWhitespace
     private void fastExit()
     {
         boolean complicatedStuffNeeded = true;
-        if( !complicatedStuffNeeded )
+        if( !complicatedStuffNeeded ) // 2 violations
         {
             return; // should not complain about missing WS after return
         }
@@ -71,7 +78,7 @@ class InputParenPadWhitespace
     */
     private int nonVoid()
     {
-        if ( true )
+        if ( true ) // 2 violations
         {
             return(2); // should complain about missing WS after return
         }
@@ -85,7 +92,7 @@ class InputParenPadWhitespace
     private void testCasts()
     {
         Object o = (Object) new Object(); // ok
-        o = (Object)o; // error
+        o = (Object)o;
         o = ( Object ) o; // ok
         o = (Object)
             o; // ok
@@ -181,14 +188,14 @@ class InputParenPadWhitespace
     }
 
 
-    /** bug 806243 (NoWhitespaceBeforeCheck error for anonymous inner class) */
+    /** bug 806243 (NoWhitespaceBeforeCheck violation for anonymous inner class) */
     private int i ;
     //           ^ whitespace
     private int i1, i2, i3 ;
     //                    ^ whitespace
     private int i4, i5, i6;
 
-    /** bug 806243 (NoWhitespaceBeforeCheck error for anonymous inner class) */
+    /** bug 806243 (NoWhitespaceBeforeCheck violation for anonymous inner class) */
     void bug806243()
     {
         Object o = new InputParenPadWhitespace() {
@@ -202,7 +209,7 @@ class InputParenPadWhitespace
 }
 
 /**
- * Bug 806242 (NoWhitespaceBeforeCheck error with an interface).
+ * Bug 806242 (NoWhitespaceBeforeCheck violation with an interface).
  * @author o_sukhodolsky
  * @version 1.0
  */
@@ -213,7 +220,7 @@ interface IFoo
 }
 
 /**
- * Avoid Whitespace errors in for loop.
+ * Avoid Whitespace violations in for loop.
  * @author lkuehne
  * @version 1.0
  */
@@ -227,9 +234,9 @@ class SpecialCasesInForLoop
 	}
 
         // bug 895072
-	// avoid confilct between ParenPad(space) and NoWhiteSpace before ';'
+	// avoid conflict between ParenPad(space) and NoWhiteSpace before ';'
 	int i = 0;
-	for ( ; i < 5; i++ ) {
+	for ( ; i < 5; i++ ) { // violation
 	//   ^ whitespace
 	}
         for (int anInt : getSomeInts()) {
@@ -238,7 +245,7 @@ class SpecialCasesInForLoop
     }
 
     int[] getSomeInts() {
-        int i = (int) ( 2 / 3 );
+        int i = (int) ( 2 / 3 ); // 2 violations
         return null;
     }
 
@@ -274,7 +281,7 @@ class SpecialCasesInForLoop
 
     public void doSomething(String args[]) {
         register(boolean[].class);
-        register( args );
+        register( args ); // 2 violations
     }
 
     public void parentheses() {

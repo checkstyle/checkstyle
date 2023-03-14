@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
@@ -24,89 +24,180 @@ import java.util.Deque;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
+import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 
 /**
- * Checks that the parts of a class or interface declaration
- * appear in the order suggested by the
- * <a href=
- * "http://www.oracle.com/technetwork/java/javase/documentation/codeconventions-141855.html#1852">
+ * <p>
+ * Checks that the parts of a class, record, or interface declaration appear in the order
+ * suggested by the
+ * <a href="https://checkstyle.org/styleguides/sun-code-conventions-19990420/CodeConventions.doc2.html#a1852">
  * Code Conventions for the Java Programming Language</a>.
- *
- *
+ * </p>
+ * <p>
+ * According to
+ * <a href="https://checkstyle.org/styleguides/sun-code-conventions-19990420/CodeConventions.doc2.html#a1852">
+ * Code Conventions for the Java Programming Language</a>, the parts of a class
+ * or interface declaration should appear in the following order:
+ * </p>
  * <ol>
- * <li> Class (static) variables. First the public class variables, then
- *      the protected, then package level (no access modifier), and then
- *      the private. </li>
+ * <li>
+ * Class (static) variables. First the public class variables, then
+ * protected, then package level (no access modifier), and then private.
+ * </li>
  * <li> Instance variables. First the public class variables, then
- *      the protected, then package level (no access modifier), and then
- *      the private. </li>
+ * protected, then package level (no access modifier), and then private.
+ * </li>
  * <li> Constructors </li>
  * <li> Methods </li>
  * </ol>
- *
+ * <p>
+ * Purpose of <b>ignore*</b> option is to ignore related violations,
+ * however it still impacts on other class members.
+ * </p>
  * <p>ATTENTION: the check skips class fields which have
- * <a href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-8.html#jls-8.3.3">
+ * <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-8.html#jls-8.3.3">
  * forward references </a> from validation due to the fact that we have Checkstyle's limitations
- * to clearly detect user intention of fields location and grouping. For example,
- * <pre>{@code
- *      public class A {
- *          private double x = 1.0;
- *          private double y = 2.0;
- *          public double slope = x / y; // will be skipped from validation due to forward reference
- *      }
- * }</pre>
- *
- * <p>Available options:
+ * to clearly detect user intention of fields location and grouping. For example:
+ * </p>
+ * <pre>
+ * public class A {
+ *   private double x = 1.0;
+ *   private double y = 2.0;
+ *   public double slope = x / y; // will be skipped from validation due to forward reference
+ * }
+ * </pre>
  * <ul>
- * <li>ignoreModifiers</li>
- * <li>ignoreConstructors</li>
+ * <li>
+ * Property {@code ignoreConstructors} - control whether to ignore constructors.
+ * Type is {@code boolean}.
+ * Default value is {@code false}.
+ * </li>
+ * <li>
+ * Property {@code ignoreModifiers} - control whether to ignore modifiers (fields, ...).
+ * Type is {@code boolean}.
+ * Default value is {@code false}.
+ * </li>
+ * </ul>
+ * <p>
+ * To configure the check:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;DeclarationOrder&quot;/&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * public class Test {
+ *
+ *   public int a;
+ *   protected int b;
+ *   public int c;            // violation, variable access definition in wrong order
+ *
+ *   Test() {
+ *     this.a = 0;
+ *   }
+ *
+ *   public void foo() {
+ *     // This method does nothing
+ *   }
+ *
+ *   Test(int a) {            // violation, constructor definition in wrong order
+ *     this.a = a;
+ *   }
+ *
+ *   private String name;     // violation, instance variable declaration in wrong order
+ * }
+ * </pre>
+ * <p>
+ * To configure the check to ignore validation of constructors:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;DeclarationOrder&quot;&gt;
+ *   &lt;property name=&quot;ignoreConstructors&quot; value=&quot;true&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * public class Test {
+ *
+ *   public int a;
+ *   protected int b;
+ *   public int c;            // violation, variable access definition in wrong order
+ *
+ *   Test() {
+ *     this.a = 0;
+ *   }
+ *
+ *   public void foo() {
+ *     // This method does nothing
+ *   }
+ *
+ *   Test(int a) {            // OK, validation of constructors ignored
+ *     this.a = a;
+ *   }
+ *
+ *   private String name;     // violation, instance variable declaration in wrong order
+ * }
+ * </pre>
+ * <p>
+ * To configure the check to ignore modifiers:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;DeclarationOrder&quot;&gt;
+ *   &lt;property name=&quot;ignoreModifiers&quot; value=&quot;true&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * public class Test {
+ *
+ *   public int a;
+ *   protected int b;
+ *   public int c;            // OK, access modifiers not considered while validating
+ *
+ *   Test() {
+ *     this.a = 0;
+ *   }
+ *
+ *   public void foo() {
+ *     // This method does nothing
+ *   }
+ *
+ *   Test(int a) {            // violation, constructor definition in wrong order
+ *     this.a = a;
+ *   }
+ *
+ *   private String name;     // violation, instance variable declaration in wrong order
+ * }
+ * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code declaration.order.access}
+ * </li>
+ * <li>
+ * {@code declaration.order.constructor}
+ * </li>
+ * <li>
+ * {@code declaration.order.instance}
+ * </li>
+ * <li>
+ * {@code declaration.order.static}
+ * </li>
  * </ul>
  *
- * <p>Purpose of <b>ignore*</b> option is to ignore related violations,
- * however it still impacts on other class members.
- *
- * <p>For example:
- * <pre>{@code
- *     class K {
- *         int a;
- *         void m(){}
- *         K(){}  &lt;-- "Constructor definition in wrong order"
- *         int b; &lt;-- "Instance variable definition in wrong order"
- *     }
- * }</pre>
- *
- * <p>With <b>ignoreConstructors</b> option:
- * <pre>{@code
- *     class K {
- *         int a;
- *         void m(){}
- *         K(){}
- *         int b; &lt;-- "Instance variable definition in wrong order"
- *     }
- * }</pre>
- *
- * <p>With <b>ignoreConstructors</b> option and without a method definition in a source class:
- * <pre>{@code
- *     class K {
- *         int a;
- *         K(){}
- *         int b; &lt;-- "Instance variable definition in wrong order"
- *     }
- * }</pre>
- *
- * <p>An example of how to configure the check is:
- *
- * <pre>
- * &lt;module name="DeclarationOrder"/&gt;
- * </pre>
- *
- * @author r_auckenthaler
+ * @since 3.2
  */
+@FileStatefulCheck
 public class DeclarationOrderCheck extends AbstractCheck {
 
     /**
@@ -154,30 +245,31 @@ public class DeclarationOrderCheck extends AbstractCheck {
     /** Set of all class field names.*/
     private Set<String> classFieldNames;
 
-    /** If true, ignores the check to constructors. */
+    /** Control whether to ignore constructors. */
     private boolean ignoreConstructors;
-    /** If true, ignore the check to modifiers (fields, ...). */
+    /** Control whether to ignore modifiers (fields, ...). */
     private boolean ignoreModifiers;
 
     @Override
     public int[] getDefaultTokens() {
-        return getAcceptableTokens();
+        return getRequiredTokens();
     }
 
     @Override
     public int[] getAcceptableTokens() {
+        return getRequiredTokens();
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
         return new int[] {
             TokenTypes.CTOR_DEF,
             TokenTypes.METHOD_DEF,
             TokenTypes.MODIFIERS,
             TokenTypes.OBJBLOCK,
             TokenTypes.VARIABLE_DEF,
+            TokenTypes.COMPACT_CTOR_DEF,
         };
-    }
-
-    @Override
-    public int[] getRequiredTokens() {
-        return getAcceptableTokens();
     }
 
     @Override
@@ -201,6 +293,7 @@ public class DeclarationOrderCheck extends AbstractCheck {
                 }
                 break;
             case TokenTypes.CTOR_DEF:
+            case TokenTypes.COMPACT_CTOR_DEF:
                 if (parentType == TokenTypes.OBJBLOCK) {
                     processConstructor(ast);
                 }
@@ -213,7 +306,7 @@ public class DeclarationOrderCheck extends AbstractCheck {
                 }
                 break;
             case TokenTypes.VARIABLE_DEF:
-                if (ScopeUtils.isClassFieldDef(ast)) {
+                if (ScopeUtil.isClassFieldDef(ast)) {
                     final DetailAST fieldDef = ast.findFirstToken(TokenTypes.IDENT);
                     classFieldNames.add(fieldDef.getText());
                 }
@@ -225,10 +318,10 @@ public class DeclarationOrderCheck extends AbstractCheck {
 
     /**
      * Processes constructor.
+     *
      * @param ast constructor AST.
      */
     private void processConstructor(DetailAST ast) {
-
         final ScopeState state = scopeStates.peek();
         if (state.currentScopeState > STATE_CTOR_DEF) {
             if (!ignoreConstructors) {
@@ -242,6 +335,7 @@ public class DeclarationOrderCheck extends AbstractCheck {
 
     /**
      * Processes modifiers.
+     *
      * @param ast ast of Modifiers.
      */
     private void processModifiers(DetailAST ast) {
@@ -255,6 +349,7 @@ public class DeclarationOrderCheck extends AbstractCheck {
      * ({@code STATE_STATIC_VARIABLE_DEF}, {@code STATE_INSTANCE_VARIABLE_DEF},
      * ({@code STATE_CTOR_DEF}, {@code STATE_METHOD_DEF}), if it is
      * it updates states where appropriate or logs violation.
+     *
      * @param modifierAst modifiers to process
      * @param state current state
      * @return true if modifierAst is valid in given state, false otherwise
@@ -290,13 +385,14 @@ public class DeclarationOrderCheck extends AbstractCheck {
      * Checks if given modifiers are valid in substate of given
      * state({@code Scope}), if it is it updates substate or else it
      * logs violation.
+     *
      * @param modifiersAst modifiers to process
      * @param state current state
      * @param isStateValid is main state for given modifiers is valid
      */
     private void processModifiersSubState(DetailAST modifiersAst, ScopeState state,
                                           boolean isStateValid) {
-        final Scope access = ScopeUtils.getScopeFromMods(modifiersAst);
+        final Scope access = ScopeUtil.getScopeFromMods(modifiersAst);
         if (state.declarationAccess.compareTo(access) > 0) {
             if (isStateValid
                     && !ignoreModifiers
@@ -311,6 +407,7 @@ public class DeclarationOrderCheck extends AbstractCheck {
 
     /**
      * Checks whether an identifier references a field which has been already defined in class.
+     *
      * @param fieldDef a field definition.
      * @return true if an identifier references a field which has been already defined in class.
      */
@@ -329,6 +426,7 @@ public class DeclarationOrderCheck extends AbstractCheck {
 
     /**
      * Collects all tokens of specific type starting with the current ast node.
+     *
      * @param ast ast node.
      * @param tokenType token type.
      * @return a set of all tokens of specific type starting with the current ast node.
@@ -362,7 +460,8 @@ public class DeclarationOrderCheck extends AbstractCheck {
     }
 
     /**
-     * Sets whether to ignore constructors.
+     * Setter to control whether to ignore constructors.
+     *
      * @param ignoreConstructors whether to ignore constructors.
      */
     public void setIgnoreConstructors(boolean ignoreConstructors) {
@@ -370,7 +469,8 @@ public class DeclarationOrderCheck extends AbstractCheck {
     }
 
     /**
-     * Sets whether to ignore modifiers.
+     * Setter to control whether to ignore modifiers (fields, ...).
+     *
      * @param ignoreModifiers whether to ignore modifiers.
      */
     public void setIgnoreModifiers(boolean ignoreModifiers) {
@@ -380,11 +480,14 @@ public class DeclarationOrderCheck extends AbstractCheck {
     /**
      * Private class to encapsulate the state.
      */
-    private static class ScopeState {
+    private static final class ScopeState {
+
         /** The state the check is in. */
         private int currentScopeState = STATE_STATIC_VARIABLE_DEF;
 
         /** The sub-state the check is in. */
         private Scope declarationAccess = Scope.PUBLIC;
+
     }
+
 }

@@ -1,7 +1,9 @@
-////////////////////////////////////////////////////////////////////////////////
-// Test case file for checkstyle.
-// Created: 2001
-////////////////////////////////////////////////////////////////////////////////
+/*
+SimplifyBooleanReturn
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.coding.simplifybooleanreturn;
 
 /**
@@ -17,7 +19,7 @@ public class InputSimplifyBooleanReturn
         boolean even = System.currentTimeMillis() % 2 == 0;
 
         // can be simplified to "if (even)"
-        if (even == true) {
+        if (even == true) { // violation
             return false;
         }
         else {
@@ -30,7 +32,7 @@ public class InputSimplifyBooleanReturn
     {
         boolean even = System.currentTimeMillis() % 2 == 0;
         // can be simplified to "return !even"
-        if (!even)
+        if (!even) // violation
             return true;
         else
             return false;
@@ -74,6 +76,17 @@ public class InputSimplifyBooleanReturn
             return true;
         } else {
             return dasa;
+        }
+    }
+
+    boolean aa() {
+        boolean asd = false;
+        boolean dasa = true;
+
+        if (asd) {
+            return dasa;
+        } else {
+            return true;
         }
     }
 

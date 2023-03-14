@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,83 +15,122 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.metrics;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck.MSG_KEY;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
 
-import java.io.File;
-import java.io.IOException;
+import org.antlr.v4.runtime.CommonToken;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Test;
-
-import antlr.CommonHiddenStreamToken;
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-public class BooleanExpressionComplexityCheckTest extends BaseCheckTestSupport {
+public class BooleanExpressionComplexityCheckTest extends AbstractModuleTestSupport {
+
     @Override
-    protected String getPath(String filename) throws IOException {
-        return super.getPath("checks" + File.separator
-                + "metrics" + File.separator + filename);
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/checks/metrics/booleanexpressioncomplexity";
     }
 
     @Test
     public void test() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(BooleanExpressionComplexityCheck.class);
 
         final String[] expected = {
-            "13:9: " + getCheckMessage(MSG_KEY, 4, 3),
-            "32:9: " + getCheckMessage(MSG_KEY, 6, 3),
-            "38:34: " + getCheckMessage(MSG_KEY, 4, 3),
-            "40:34: " + getCheckMessage(MSG_KEY, 4, 3),
+            "21:9: " + getCheckMessage(MSG_KEY, 4, 3),
+            "38:46: " + getCheckMessage(MSG_KEY, 4, 3),
+            "48:9: " + getCheckMessage(MSG_KEY, 6, 3),
+            "54:34: " + getCheckMessage(MSG_KEY, 4, 3),
+            "56:34: " + getCheckMessage(MSG_KEY, 4, 3),
         };
 
-        verify(checkConfig, getPath("InputBooleanExpressionComplexity.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputBooleanExpressionComplexity.java"), expected);
     }
 
     @Test
     public void testNoBitwise() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(BooleanExpressionComplexityCheck.class);
-        checkConfig.addAttribute("max", "5");
-        checkConfig.addAttribute("tokens", "BXOR,LAND,LOR");
 
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("InputBooleanExpressionComplexity.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputBooleanExpressionComplexity2.java"), expected);
     }
 
     @Test
     public void testNullPointerException() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(BooleanExpressionComplexityCheck.class);
 
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("InputBooleanExpressionComplexityNPE.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputBooleanExpressionComplexityNPE.java"), expected);
     }
 
     @Test
     public void testWrongToken() {
         final BooleanExpressionComplexityCheck booleanExpressionComplexityCheckObj =
             new BooleanExpressionComplexityCheck();
-        final DetailAST ast = new DetailAST();
-        ast.initialize(new CommonHiddenStreamToken(TokenTypes.INTERFACE_DEF, "interface"));
+        final DetailAstImpl ast = new DetailAstImpl();
+        ast.initialize(new CommonToken(TokenTypes.INTERFACE_DEF, "interface"));
         try {
             booleanExpressionComplexityCheckObj.visitToken(ast);
-            fail("exception expected");
+            assertWithMessage("exception expected").fail();
         }
         catch (IllegalArgumentException ex) {
-            assertEquals("Invalid exception message",
-                "Unknown type: interface[0x-1]", ex.getMessage());
+            assertWithMessage("Invalid exception message")
+                .that(ex.getMessage())
+                .isEqualTo("Unknown type: interface[0x-1]");
         }
     }
+
+    @Test
+    public void testSmall() throws Exception {
+
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("InputBooleanExpressionComplexitySmall.java"), expected);
+    }
+
+    @Test
+    public void testBooleanExpressionComplexityRecordsAndCompactCtors() throws Exception {
+
+        final int max = 3;
+
+        final String[] expected = {
+            "16:12: " + getCheckMessage(MSG_KEY, 4, max),
+            "24:23: " + getCheckMessage(MSG_KEY, 4, max),
+            "35:23: " + getCheckMessage(MSG_KEY, 4, max),
+            "45:27: " + getCheckMessage(MSG_KEY, 4, max),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "InputBooleanExpressionComplexityRecordsAndCompactCtors.java"),
+                expected);
+    }
+
+    @Test
+    public void testLeaves() throws Exception {
+
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("InputBooleanExpressionComplexityLeaves.java"), expected);
+    }
+
+    @Test
+    public void testRecordLeaves() throws Exception {
+
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputBooleanExpressionComplexityRecordLeaves.java"),
+                expected);
+    }
+
 }

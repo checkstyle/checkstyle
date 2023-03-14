@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,25 +15,21 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.google.checkstyle.test.chapter7javadoc.rule713atclauses;
 
-import java.io.File;
-import java.io.IOException;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Test;
-
-import com.google.checkstyle.test.base.BaseCheckTestSupport;
+import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.NonEmptyAtclauseDescriptionCheck;
 
-public class NonEmptyAtclauseDescriptionTest extends BaseCheckTestSupport {
+public class NonEmptyAtclauseDescriptionTest extends AbstractGoogleModuleTestSupport {
 
     @Override
-    protected String getPath(String fileName) throws IOException {
-        return super.getPath("chapter7javadoc" + File.separator + "rule713atclauses"
-                + File.separator + fileName);
+    protected String getPackageLocation() {
+        return "com/google/checkstyle/test/chapter7javadoc/rule713atclauses";
     }
 
     @Test
@@ -55,7 +51,7 @@ public class NonEmptyAtclauseDescriptionTest extends BaseCheckTestSupport {
             "52: " + msg,
         };
 
-        final Configuration checkConfig = getCheckConfig("NonEmptyAtclauseDescription");
+        final Configuration checkConfig = getModuleConfig("NonEmptyAtclauseDescription");
         final String filePath = getPath("InputNonEmptyAtclauseDescriptionCheck.java");
 
         final Integer[] warnList = getLineNumbersFromExpected(expected);
@@ -76,7 +72,7 @@ public class NonEmptyAtclauseDescriptionTest extends BaseCheckTestSupport {
             "40: " + msg,
         };
 
-        final Configuration checkConfig = getCheckConfig("NonEmptyAtclauseDescription");
+        final Configuration checkConfig = getModuleConfig("NonEmptyAtclauseDescription");
         final String filePath = getPath("InputNonEmptyAtclauseDescriptionCheckSpaceSeq.java");
 
         final Integer[] warnList = getLineNumbersFromExpected(expected);
@@ -85,8 +81,9 @@ public class NonEmptyAtclauseDescriptionTest extends BaseCheckTestSupport {
 
     /**
      * Gets line numbers with violations from an array with expected messages.
-     * This is used as using "warn" comments in input files would affects the work
+     * This is used as using "warn" comments in input files would affect the work
      * of the Check.
+     *
      * @param expected an array with expected messages.
      * @return Integer array with numbers of lines with violations.
      */
@@ -97,4 +94,5 @@ public class NonEmptyAtclauseDescriptionTest extends BaseCheckTestSupport {
         }
         return result;
     }
+
 }

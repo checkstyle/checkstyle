@@ -6,7 +6,7 @@ package com.google.checkstyle.test.chapter7javadoc.rule712paragraphs;
  * /^ WARN/   Some Javadoc.<p> //warn
  *
  */
-class InputCorrectJavaDocParagraphCheck1 {
+class InputIncorrectJavadocParagraphCheck {
 
     /**
      * Some Javadoc.<P>  //warn
@@ -16,17 +16,17 @@ class InputCorrectJavaDocParagraphCheck1 {
      * @since 8.0
      */
     public static final byte NUL = 0;
-       
+
     /**
      * Some <p>Javadoc.//warn
      *
      * <p>Some Javadoc.
      *
-     * @see <a href="http://code.google.com/webtoolkit/doc/latest/DevGuideOrganizingProjects.html#DevGuideModules">
+     * @see <a href="http://www.gwtproject.org/doc/latest/DevGuideOrganizingProjects.html#DevGuideModules">
      *     Documentation about GWT emulated source</a>
      */
     boolean emulated() {return false;}
-    
+
     /**<p>Some Javadoc. //warn
      * <p> //warn
      * <p><p> //warn
@@ -39,7 +39,7 @@ class InputCorrectJavaDocParagraphCheck1 {
          * @since 8.0
          */
         public static final byte NUL = 0;
-           
+
         /**<p> //warn
          * /^WARN/ Some Javadoc.
          *
@@ -47,7 +47,7 @@ class InputCorrectJavaDocParagraphCheck1 {
          * /^WARN/
          * <p> //warn
          *  /^WARN/ Some Javadoc.<p> //warn
-         * @see <a href="http://code.google.com/webtoolkit/doc/latest/DevGuideOrganizingProjects.html#DevGuideModules">
+         * @see <a href="http://www.gwtproject.org/doc/latest/DevGuideOrganizingProjects.html#DevGuideModules">
          *     Documentation about GWT emulated source</a>
          */
         boolean emulated() {return false;}
@@ -55,7 +55,7 @@ class InputCorrectJavaDocParagraphCheck1 {
 
     InnerInputCorrectJavaDocParagraphCheck anon = new InnerInputCorrectJavaDocParagraphCheck() {
 
-    	/**
+        /**
          * <p>Some Javadoc. //warn
          *
          * <p>Some Javadoc.
@@ -69,7 +69,7 @@ class InputCorrectJavaDocParagraphCheck1 {
          *
          *  <p>  Some Javadoc. //warn
          *
-         * @see <a href="http://code.google.com/webtoolkit/doc/latest/DevGuideOrganizingProjects.html#DevGuideModules">
+         * @see <a href="http://www.gwtproject.org/doc/latest/DevGuideOrganizingProjects.html#DevGuideModules">
          *     Documentation about <p> GWT emulated source</a> //warn
          */
         boolean emulated() {return false;}

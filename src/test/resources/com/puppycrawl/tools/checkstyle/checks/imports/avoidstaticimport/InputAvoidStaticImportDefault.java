@@ -1,7 +1,10 @@
-////////////////////////////////////////////////////////////////////////////////
-// Test case file for checkstyle.
-// Created: 2001
-////////////////////////////////////////////////////////////////////////////////
+/*
+AvoidStaticImport
+excludes = (default)
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.imports.avoidstaticimport;
 
 import com.puppycrawl.tools.checkstyle.checks.imports.*;
@@ -20,14 +23,15 @@ import javax.swing.JToolBar;
 import javax.swing.JToggleButton;
 import javax.swing.ScrollPaneLayout;
 import javax.swing.BorderFactory;
-import static java.io.File.listRoots;
+import static java.io.File.listRoots; // violation
 
-import static javax.swing.WindowConstants.*;
-import static javax.swing.WindowConstants.*;
-import static java.io.File.createTempFile;
-import static java.io.File.pathSeparator;
-import static com.puppycrawl.tools.checkstyle.checks.imports.avoidstaticimport.InputAvoidStaticImportNestedClass.InnerClass;
-import static com.puppycrawl.tools.checkstyle.checks.imports.avoidstaticimport.InputAvoidStaticImportNestedClass.InnerClass.one;
+import static javax.swing.WindowConstants.*; // violation
+import static java.io.File.createTempFile; // violation
+import static java.io.File.pathSeparator; // violation
+import static java.lang.Math.E; // violation
+import static java.lang.Math.sqrt; // violation
+import static com.puppycrawl.tools.checkstyle.checks.imports.avoidstaticimport.InputAvoidStaticImportNestedClass.InnerClass; // violation
+import static com.puppycrawl.tools.checkstyle.checks.imports.avoidstaticimport.InputAvoidStaticImportNestedClass.InnerClass.one; // violation
 
 import java.awt.Component;
 import java.awt.Graphics2D;
@@ -37,15 +41,13 @@ import java.util.Date;
 import java.util.Calendar;
 import java.util.BitSet;
 
-import com.puppycrawl.tools.checkstyle.Checker;
-import com.puppycrawl.tools.checkstyle.CheckerTest;
-import com.puppycrawl.tools.checkstyle.BaseFileSetCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.Definitions;
-import com.puppycrawl.tools.checkstyle.checks.Input15Extensions;
-import com.puppycrawl.tools.checkstyle.ConfigurationLoaderTest;
-import com.puppycrawl.tools.checkstyle.PackageNamesLoader;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.DefaultLogger;
+
+
+
+
+
+
+
 
 /**
  * Test case for imports
@@ -93,7 +95,7 @@ class InputAvoidStaticImportDefault
      * method comment with JavaDoc-only import {@link BitSet#aMethod()}
      */
     public void Label() {}
-    
+
     /**
      * Renders to a {@linkplain Graphics2D graphics context}.
      * @throws HeadlessException if no graphis environment can be found.

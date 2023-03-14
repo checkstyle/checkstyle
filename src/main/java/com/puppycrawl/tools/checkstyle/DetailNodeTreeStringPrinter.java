@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,12 +15,13 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 
 import com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser.ParseErrorMessage;
 import com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser.ParseStatus;
@@ -28,21 +29,16 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
-import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
-import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.JavadocUtils;
+import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
+import com.puppycrawl.tools.checkstyle.utils.ParserUtil;
 
 /**
  * Parses file as javadoc DetailNode tree and prints to system output stream.
- * @author bizmailov
  */
 public final class DetailNodeTreeStringPrinter {
 
     /** OS specific line separator. */
     private static final String LINE_SEPARATOR = System.getProperty("line.separator");
-
-    /** Symbols with which javadoc starts. */
-    private static final String JAVADOC_START = "/**";
 
     /** Prevent instances. */
     private DetailNodeTreeStringPrinter() {
@@ -51,6 +47,7 @@ public final class DetailNodeTreeStringPrinter {
 
     /**
      * Parse a file and print the parse tree.
+     *
      * @param file the file to print.
      * @return parse tree as a string
      * @throws IOException if the file could not be read.
@@ -61,8 +58,10 @@ public final class DetailNodeTreeStringPrinter {
 
     /**
      * Parse block comment DetailAST as Javadoc DetailNode tree.
+     *
      * @param blockComment DetailAST
      * @return DetailNode tree
+     * @throws IllegalArgumentException if there is an error parsing the Javadoc.
      */
     public static DetailNode parseJavadocAsDetailNode(DetailAST blockComment) {
         final JavadocDetailNodeParser parser = new JavadocDetailNodeParser();
@@ -75,40 +74,40 @@ public final class DetailNodeTreeStringPrinter {
 
     /**
      * Parse javadoc comment to DetailNode tree.
+     *
      * @param javadocComment javadoc comment content
      * @return tree
      */
     private static DetailNode parseJavadocAsDetailNode(String javadocComment) {
-        final DetailAST blockComment = createFakeBlockComment(javadocComment);
+        final DetailAST blockComment = ParserUtil.createBlockCommentNode(javadocComment);
         return parseJavadocAsDetailNode(blockComment);
     }
 
     /**
-     * Builds error message base on ParseErrorMessage's message key, its arguments, etc.
+     * Builds violation base on ParseErrorMessage's violation key, its arguments, etc.
+     *
      * @param parseErrorMessage ParseErrorMessage
-     * @return error message
+     * @return error violation
      */
     private static String getParseErrorMessage(ParseErrorMessage parseErrorMessage) {
-        final LocalizedMessage lmessage = new LocalizedMessage(
-                parseErrorMessage.getLineNumber(),
+        final LocalizedMessage message = new LocalizedMessage(
                 "com.puppycrawl.tools.checkstyle.checks.javadoc.messages",
-                parseErrorMessage.getMessageKey(),
-                parseErrorMessage.getMessageArguments(),
-                "",
                 DetailNodeTreeStringPrinter.class,
-                null);
-        return "[ERROR:" + parseErrorMessage.getLineNumber() + "] " + lmessage.getMessage();
+                parseErrorMessage.getMessageKey(),
+                parseErrorMessage.getMessageArguments());
+        return "[ERROR:" + parseErrorMessage.getLineNumber() + "] " + message.getMessage();
     }
 
     /**
      * Print AST.
+     *
      * @param ast the root AST node.
      * @param rootPrefix prefix for the root node
      * @param prefix prefix for other nodes
      * @return string AST.
      */
     public static String printTree(DetailNode ast, String rootPrefix, String prefix) {
-        final StringBuilder messageBuilder = new StringBuilder();
+        final StringBuilder messageBuilder = new StringBuilder(1024);
         DetailNode node = ast;
         while (node != null) {
             if (node.getType() == JavadocTokenTypes.JAVADOC) {
@@ -118,25 +117,26 @@ public final class DetailNodeTreeStringPrinter {
                 messageBuilder.append(prefix);
             }
             messageBuilder.append(getIndentation(node))
-                    .append(JavadocUtils.getTokenName(node.getType())).append(" -> ")
-                    .append(JavadocUtils.escapeAllControlChars(node.getText())).append(" [")
+                    .append(JavadocUtil.getTokenName(node.getType())).append(" -> ")
+                    .append(JavadocUtil.escapeAllControlChars(node.getText())).append(" [")
                     .append(node.getLineNumber()).append(':').append(node.getColumnNumber())
                     .append(']').append(LINE_SEPARATOR)
-                    .append(printTree(JavadocUtils.getFirstChild(node), rootPrefix, prefix));
-            node = JavadocUtils.getNextSibling(node);
+                    .append(printTree(JavadocUtil.getFirstChild(node), rootPrefix, prefix));
+            node = JavadocUtil.getNextSibling(node);
         }
         return messageBuilder.toString();
     }
 
     /**
      * Get indentation for a node.
+     *
      * @param node the DetailNode to get the indentation for.
      * @return the indentation in String format.
      */
     private static String getIndentation(DetailNode node) {
-        final boolean isLastChild = JavadocUtils.getNextSibling(node) == null;
+        final boolean isLastChild = JavadocUtil.getNextSibling(node) == null;
         DetailNode currentNode = node;
-        final StringBuilder indentation = new StringBuilder();
+        final StringBuilder indentation = new StringBuilder(1024);
         while (currentNode.getParent() != null) {
             currentNode = currentNode.getParent();
             if (currentNode.getParent() == null) {
@@ -150,7 +150,7 @@ public final class DetailNodeTreeStringPrinter {
                 }
             }
             else {
-                if (JavadocUtils.getNextSibling(currentNode) == null) {
+                if (JavadocUtil.getNextSibling(currentNode) == null) {
                     indentation.insert(0, "    ");
                 }
                 else {
@@ -163,45 +163,15 @@ public final class DetailNodeTreeStringPrinter {
 
     /**
      * Parse a file and return the parse tree.
+     *
      * @param file the file to parse.
      * @return the root node of the parse tree.
      * @throws IOException if the file could not be read.
      */
     private static DetailNode parseFile(File file) throws IOException {
-        // Details: https://github.com/checkstyle/checkstyle/issues/3034
-        //noinspection MismatchedQueryAndUpdateOfCollection
         final FileText text = new FileText(file.getAbsoluteFile(),
-            System.getProperty("file.encoding", "UTF-8"));
+            System.getProperty("file.encoding", StandardCharsets.UTF_8.name()));
         return parseJavadocAsDetailNode(text.getFullText().toString());
-    }
-
-    /**
-     * Creates DetailAST block comment to pass it to the Javadoc parser.
-     * @param content comment content.
-     * @return DetailAST block comment
-     */
-    private static DetailAST createFakeBlockComment(String content) {
-        final DetailAST blockCommentBegin = new DetailAST();
-        blockCommentBegin.setType(TokenTypes.BLOCK_COMMENT_BEGIN);
-        blockCommentBegin.setText("/*");
-        blockCommentBegin.setLineNo(0);
-        blockCommentBegin.setColumnNo(-JAVADOC_START.length());
-
-        final DetailAST commentContent = new DetailAST();
-        commentContent.setType(TokenTypes.COMMENT_CONTENT);
-        commentContent.setText("*" + content);
-        commentContent.setLineNo(0);
-        // javadoc should starts at 0 column, so COMMENT_CONTENT node
-        // that contains javadoc identificator has -1 column
-        commentContent.setColumnNo(-1);
-
-        final DetailAST blockCommentEnd = new DetailAST();
-        blockCommentEnd.setType(TokenTypes.BLOCK_COMMENT_END);
-        blockCommentEnd.setText("*/");
-
-        blockCommentBegin.setFirstChild(commentContent);
-        commentContent.setNextSibling(blockCommentEnd);
-        return blockCommentBegin;
     }
 
 }

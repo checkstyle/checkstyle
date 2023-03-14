@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,88 +15,190 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.Arrays;
 import java.util.regex.Pattern;
 
+import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.TextBlock;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <p>
- * The check to ensure that comments are the only thing on a line.
- * For the case of // comments that means that the only thing that should
- * precede it is whitespace.
- * It doesn't check comments if they do not end line, i.e. it accept
- * the following:
- * {@code Thread.sleep( 10 &lt;some comment here&gt; );}
- * Format property is intended to deal with the "} // while" example.
+ * The check to ensure that lines with code do not end with comment.
+ * For the case of {@code //} comments that means that the only thing that should precede
+ * it is whitespace. It doesn't check comments if they do not end a line; for example,
+ * it accepts the following: <code>Thread.sleep( 10 /*some comment here&#42;/ );</code>
+ * Format property is intended to deal with the <code>} // while</code> example.
  * </p>
- *
- * <p>Rationale: Steve McConnell in &quot;Code Complete&quot; suggests that endline
- * comments are a bad practice. An end line comment would
- * be one that is on the same line as actual code. For example:
+ * <p>
+ * Rationale: Steve McConnell in <cite>Code Complete</cite> suggests that endline
+ * comments are a bad practice. An end line comment would be one that is on
+ * the same line as actual code. For example:
+ * </p>
  * <pre>
- *  a = b + c;      // Some insightful comment
- *  d = e / f;        // Another comment for this line
+ * a = b + c;      // Some insightful comment
+ * d = e / f;        // Another comment for this line
  * </pre>
- * Quoting &quot;Code Complete&quot; for the justification:
+ * <p>
+ * Quoting <cite>Code Complete</cite> for the justification:
+ * </p>
  * <ul>
  * <li>
- * &quot;The comments have to be aligned so that they do not
- * interfere with the visual structure of the code. If you don't
- * align them neatly, they'll make your listing look like it's been
- * through a washing machine.&quot;
+ * "The comments have to be aligned so that they do not interfere with the visual
+ * structure of the code. If you don't align them neatly, they'll make your listing
+ * look like it's been through a washing machine."
  * </li>
  * <li>
- * &quot;Endline comments tend to be hard to format...It takes time
- * to align them. Such time is not spent learning more about
- * the code; it's dedicated solely to the tedious task of
- * pressing the spacebar or tab key.&quot;
+ * "Endline comments tend to be hard to format...It takes time to align them.
+ * Such time is not spent learning more about the code; it's dedicated solely
+ * to the tedious task of pressing the spacebar or tab key."
  * </li>
  * <li>
- * &quot;Endline comments are also hard to maintain. If the code on
- * any line containing an endline comment grows, it bumps the
- * comment farther out, and all the other endline comments will
- * have to bumped out to match. Styles that are hard to
- * maintain aren't maintained....&quot;
+ * "Endline comments are also hard to maintain. If the code on any line containing
+ * an endline comment grows, it bumps the comment farther out, and all the other
+ * endline comments will have to bumped out to match. Styles that are hard to
+ * maintain aren't maintained...."
  * </li>
  * <li>
- * &quot;Endline comments also tend to be cryptic. The right side of
- * the line doesn't offer much room and the desire to keep the
- * comment on one line means the comment must be short.
- * Work then goes into making the line as short as possible
- * instead of as clear as possible. The comment usually ends
- * up as cryptic as possible....&quot;
+ * "Endline comments also tend to be cryptic. The right side of the line doesn't
+ * offer much room and the desire to keep the comment on one line means the comment
+ * must be short. Work then goes into making the line as short as possible instead
+ * of as clear as possible. The comment usually ends up as cryptic as possible...."
  * </li>
  * <li>
- * &quot;A systemic problem with endline comments is that it's hard
- * to write a meaningful comment for one line of code. Most
- * endline comments just repeat the line of code, which hurts
- * more than it helps.&quot;
+ * "A systemic problem with endline comments is that it's hard to write a meaningful
+ * comment for one line of code. Most endline comments just repeat the line of code,
+ * which hurts more than it helps."
  * </li>
  * </ul>
- * His comments on being hard to maintain when the size of
- * the line changes are even more important in the age of
- * automated refactorings.
- *
- * <p>To configure the check so it enforces only comment on a line:
+ * <p>
+ * McConnell's comments on being hard to maintain when the size of the line changes
+ * are even more important in the age of automated refactorings.
+ * </p>
+ * <ul>
+ * <li>
+ * Property {@code format} - Specify pattern for strings allowed before the comment.
+ * Type is {@code java.util.regex.Pattern}.
+ * Default value is <code>"^[\s});]*$"</code>.
+ * </li>
+ * <li>
+ * Property {@code legalComment} - Define pattern for text allowed in trailing comments.
+ * This pattern will not be applied to multiline comments.
+ * Type is {@code java.util.regex.Pattern}.
+ * Default value is {@code null}.
+ * </li>
+ * </ul>
+ * <p>
+ * To configure the check:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;TrailingComment&quot;/&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * // OK
+ * if (&#47;&#42; OK &#42;&#47; x &#62; 5) {}
+ * int a = 5; // violation
+ * doSomething(
+ *   param1
+ * ); // OK, by default such trailing of method/code-block ending is allowed
+ * </pre>
+ * <p>
+ * To configure the check to enforce only comment on a line:
+ * </p>
  * <pre>
  * &lt;module name=&quot;TrailingComment&quot;&gt;
- *    &lt;property name=&quot;format&quot; value=&quot;^\\s*$&quot;/&gt;
+ *   &lt;property name=&quot;format&quot; value=&quot;^\s*$&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * // OK
+ * if (&#47;&#42; OK, this comment does not end the line &#42;&#47; x &#62; 5) {}
+ * int a = 5; // violation, line content before comment should match pattern "^\s*$"
+ * doSomething(
+ *   param1
+ * ); // violation, line content before comment should match pattern "^\s*$"
+ * </pre>
+ * <p>
+ * To configure check so that trailing comment with exact comments like "SUPPRESS CHECKSTYLE",
+ * "NOPMD", "NOSONAR" are suppressed:
+ * </p>
+ * <pre>
+ * &lt;module name="TrailingComment"/&gt;
+ * &lt;module name="SuppressionXpathSingleFilter"&gt;
+ *   &lt;property name="checks" value="TrailingCommentCheck"/&gt;
+ *   &lt;property name="query" value="//SINGLE_LINE_COMMENT
+ *       [./COMMENT_CONTENT[@text=' NOSONAR\n' or @text=' NOPMD\n'
+ *       or @text=' SUPPRESS CHECKSTYLE\n']]"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example for trailing comments check to suppress specific trailing comment:
+ * </p>
+ * <pre>
+ * public class Test {
+ *   int a; // SUPPRESS CHECKSTYLE
+ *   int b; // NOPMD
+ *   int c; // NOSONAR
+ *   int d; // violation, not suppressed
+ * }
+ * </pre>
+ * <p>
+ * To configure check so that trailing comment starting with "SUPPRESS CHECKSTYLE", "NOPMD",
+ * "NOSONAR" are suppressed:
+ * </p>
+ * <pre>
+ * &lt;module name="TrailingComment"/&gt; &lt;module name="SuppressionXpathSingleFilter"&gt;
+ * &lt;property name="checks" value="TrailingCommentCheck"/&gt;
+ *   &lt;property name="query" value="//SINGLE_LINE_COMMENT
+ *       [./COMMENT_CONTENT[starts-with(@text, ' NOPMD')]]"/&gt;
+ *   &lt;property name="query" value="//SINGLE_LINE_COMMENT
+ *       [./COMMENT_CONTENT[starts-with(@text, ' SUPPRESS CHECKSTYLE')]]"/&gt;
+ *   &lt;property name="query" value="//SINGLE_LINE_COMMENT
+ *       [./COMMENT_CONTENT[starts-with(@text, ' NOSONAR')]]"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * public class Test {
+ *   int a; // SUPPRESS CHECKSTYLE - OK, comment starts with " SUPPRESS CHECKSTYLE"
+ *   int b; // NOPMD - OK, comment starts with " NOPMD"
+ *   int c; // NOSONAR - OK, comment starts with " NOSONAR"
+ *   int d; // violation, not suppressed
+ * }
+ * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code trailing.comments}
+ * </li>
+ * </ul>
  *
- * @author o_sukhodolsky
+ * @noinspection HtmlTagCanBeJavadocTag
+ * @noinspectionreason HtmlTagCanBeJavadocTag - encoded symbols were not decoded
+ *      when replaced with Javadoc tag
+ * @since 3.4
  */
+@StatelessCheck
 public class TrailingCommentCheck extends AbstractCheck {
 
     /**
@@ -105,14 +207,22 @@ public class TrailingCommentCheck extends AbstractCheck {
      */
     public static final String MSG_KEY = "trailing.comments";
 
-    /** Pattern for legal trailing comment. */
+    /** Specify pattern for strings to be formatted without comment specifiers. */
+    private static final Pattern FORMAT_LINE = Pattern.compile("/");
+
+    /**
+     * Define pattern for text allowed in trailing comments.
+     * This pattern will not be applied to multiline comments.
+     */
     private Pattern legalComment;
 
-    /** The regexp to match against. */
+    /** Specify pattern for strings allowed before the comment. */
     private Pattern format = Pattern.compile("^[\\s});]*$");
 
     /**
-     * Sets patter for legal trailing comments.
+     * Setter to define pattern for text allowed in trailing comments.
+     * This pattern will not be applied to multiline comments.
+     *
      * @param legalComment pattern to set.
      */
     public void setLegalComment(final Pattern legalComment) {
@@ -120,7 +230,8 @@ public class TrailingCommentCheck extends AbstractCheck {
     }
 
     /**
-     * Set the format for the specified regular expression.
+     * Setter to specify pattern for strings allowed before the comment.
+     *
      * @param pattern a pattern
      */
     public final void setFormat(Pattern pattern) {
@@ -128,86 +239,96 @@ public class TrailingCommentCheck extends AbstractCheck {
     }
 
     @Override
+    public boolean isCommentNodesRequired() {
+        return true;
+    }
+
+    @Override
     public int[] getDefaultTokens() {
-        return CommonUtils.EMPTY_INT_ARRAY;
+        return getRequiredTokens();
     }
 
     @Override
     public int[] getAcceptableTokens() {
-        return CommonUtils.EMPTY_INT_ARRAY;
+        return getRequiredTokens();
     }
 
     @Override
     public int[] getRequiredTokens() {
-        return CommonUtils.EMPTY_INT_ARRAY;
+        return new int[] {
+            TokenTypes.SINGLE_LINE_COMMENT,
+            TokenTypes.BLOCK_COMMENT_BEGIN,
+        };
     }
 
     @Override
     public void visitToken(DetailAST ast) {
-        throw new IllegalStateException("visitToken() shouldn't be called.");
-    }
-
-    @Override
-    public void beginTree(DetailAST rootAST) {
-        final Map<Integer, TextBlock> cppComments = getFileContents()
-                .getSingleLineComments();
-        final Map<Integer, List<TextBlock>> cComments = getFileContents()
-                .getBlockComments();
-        final Set<Integer> lines = new HashSet<>();
-        lines.addAll(cppComments.keySet());
-        lines.addAll(cComments.keySet());
-
-        for (Integer lineNo : lines) {
-            final String line = getLines()[lineNo - 1];
-            final String lineBefore;
-            final TextBlock comment;
-            if (cppComments.containsKey(lineNo)) {
-                comment = cppComments.get(lineNo);
-                lineBefore = line.substring(0, comment.getStartColNo());
-            }
-            else {
-                final List<TextBlock> commentList = cComments.get(lineNo);
-                comment = commentList.get(commentList.size() - 1);
-                lineBefore = line.substring(0, comment.getStartColNo());
-
-                // do not check comment which doesn't end line
-                if (comment.getText().length == 1
-                        && !CommonUtils.isBlank(line
-                            .substring(comment.getEndColNo() + 1))) {
-                    continue;
-                }
-            }
-            if (!format.matcher(lineBefore).find()
-                && !isLegalComment(comment)) {
-                log(lineNo, MSG_KEY);
-            }
+        if (ast.getType() == TokenTypes.SINGLE_LINE_COMMENT) {
+            checkSingleLineComment(ast);
+        }
+        else {
+            checkBlockComment(ast);
         }
     }
 
     /**
-     * Checks if given comment is legal (single-line and matches to the
-     * pattern).
-     * @param comment comment to check.
-     * @return true if the comment if legal.
+     * Checks if single-line comment is legal.
+     *
+     * @param ast Detail ast element to be checked.
      */
-    private boolean isLegalComment(final TextBlock comment) {
-        final boolean legal;
+    private void checkSingleLineComment(DetailAST ast) {
+        final int lineNo = ast.getLineNo();
+        final String comment = ast.getFirstChild().getText();
+        final int[] lineBeforeCodePoints =
+                Arrays.copyOfRange(getLineCodePoints(lineNo - 1), 0, ast.getColumnNo());
+        final String lineBefore = new String(lineBeforeCodePoints, 0, lineBeforeCodePoints.length);
 
-        // multi-line comment can not be legal
-        if (legalComment == null || comment.getStartLineNo() != comment.getEndLineNo()) {
-            legal = false;
+        if (!format.matcher(lineBefore).find() && !isLegalCommentContent(comment)) {
+            log(ast, MSG_KEY);
         }
-        else {
-            String commentText = comment.getText()[0];
-            // remove chars which start comment
-            commentText = commentText.substring(2);
-            // if this is a C-style comment we need to remove its end
-            if (commentText.endsWith("*/")) {
-                commentText = commentText.substring(0, commentText.length() - 2);
-            }
-            commentText = commentText.trim();
-            legal = legalComment.matcher(commentText).find();
+    }
+
+    /**
+     * Method to check if block comment is in correct format.
+     *
+     * @param ast Detail ast element to be checked.
+     */
+    private void checkBlockComment(DetailAST ast) {
+        final int lineNo = ast.getLineNo();
+        final DetailAST firstChild = ast.getFirstChild();
+        final DetailAST lastChild = ast.getLastChild();
+        final String comment = firstChild.getText();
+        int[] lineCodePoints = getLineCodePoints(lineNo - 1);
+
+        if (lineCodePoints.length > lastChild.getColumnNo() + 1) {
+            lineCodePoints = Arrays.copyOfRange(lineCodePoints,
+                    lastChild.getColumnNo() + 2, lineCodePoints.length);
         }
-        return legal;
+
+        String line = new String(lineCodePoints, 0, lineCodePoints.length);
+        line = FORMAT_LINE.matcher(line).replaceAll("");
+
+        final int[] lineBeforeCodePoints =
+                Arrays.copyOfRange(getLineCodePoints(lineNo - 1), 0, ast.getColumnNo());
+        final String lineBefore = new String(lineBeforeCodePoints, 0, lineBeforeCodePoints.length);
+        final boolean isCommentAtEndOfLine = ast.getLineNo() != lastChild.getLineNo()
+                || CommonUtil.isBlank(line);
+        final boolean isLegalBlockComment = isLegalCommentContent(comment)
+                && TokenUtil.areOnSameLine(firstChild, lastChild)
+                || format.matcher(lineBefore).find();
+
+        if (isCommentAtEndOfLine && !isLegalBlockComment) {
+            log(ast, MSG_KEY);
+        }
+    }
+
+    /**
+     * Checks if given comment content is legal.
+     *
+     * @param commentContent comment content to check.
+     * @return true if the content is legal.
+     */
+    private boolean isLegalCommentContent(String commentContent) {
+        return legalComment != null && legalComment.matcher(commentContent).find();
     }
 }

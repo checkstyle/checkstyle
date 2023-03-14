@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+
+  <head>
+    <title>Reporting Configuration</title>
+  </head>
+
+  <body>
+    <section name="Content">
+      <macro name="toc">
+        <param name="fromDepth" value="1"/>
+        <param name="toDepth" value="1"/>
+      </macro>
+    </section>
+
+    <section name="Localization Support">
+      <p>
+        Checkstyle supports localization of the output messages.
+        If your language is not supported, please consider
+        translating the messages in the <code>messages.properties</code> file. Please let us
+        know if you translate the file.
+      </p>
+    </section>
+
+    <section name="Enable External DTD load">
+      <p>
+        The property <code>checkstyle.enableExternalDtdLoad</code>
+        defines ability use custom DTD files in config and load them from some location.
+        The property type
+        is <a href="property_types.html#boolean">boolean</a> and defaults
+        to <code>false</code>. Disabled by default due to security concerns.
+      </p>
+      <subsection name="Examples" id="Enable_External_DTD_load_Examples">
+        <p>
+          The following is an example of include xml files content in xml by ENTITY feature
+          to let keep common part of configs in single file and composite main config
+          by few smaller parts.
+          <br/>
+          Imagine we want to define for test sources a bit different requirements
+          than for main code.
+        </p>
+        <p>
+          Common part <code>checkstyle-common.xml</code>:
+          <source>
+&lt;module name=&quot;FileLength&quot;&gt;
+  &lt;property name=&quot;max&quot; value=&quot;1&quot;/&gt;
+&lt;/module&gt;
+          </source>
+        </p>
+        <p>
+          Main config <code>checkstyle.xml</code>:
+          <source>
+&lt;?xml version=&quot;1.0&quot;?&gt;
+&lt;!DOCTYPE module PUBLIC
+          &quot;-//Checkstyle//DTD Checkstyle Configuration 1.3//EN&quot;
+          &quot;https://checkstyle.org/dtds/configuration_1_3.dtd&quot; [
+    &lt;!ENTITY common SYSTEM &quot;checkstyle-common.xml&quot;&gt;
+]&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+
+    &amp;common;
+
+    &lt;module name=&quot;TreeWalker&quot;&gt;
+        &lt;module name=&quot;MemberName&quot;&gt;
+            &lt;property name=&quot;format&quot; value=&quot;^[a-z][a-zA-Z]+$&quot;/&gt;
+        &lt;/module&gt;
+    &lt;/module&gt;
+
+&lt;/module&gt;
+          </source>
+        </p>
+        <p>
+          Test config <code>checkstyle-test.xml</code>:
+          <source>
+&lt;?xml version=&quot;1.0&quot;?&gt;
+&lt;!DOCTYPE module PUBLIC
+          &quot;-//Checkstyle//DTD Checkstyle Configuration 1.3//EN&quot;
+          &quot;https://checkstyle.org/dtds/configuration_1_3.dtd&quot; [
+    &lt;!ENTITY common SYSTEM &quot;checkstyle-common.xml&quot;&gt;
+]&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+
+    &amp;common;
+
+    &lt;module name=&quot;TreeWalker&quot;&gt;
+        &lt;module name=&quot;MemberName&quot;&gt;
+            &lt;property name=&quot;format&quot; value=&quot;_[a-z]&quot;/&gt;
+        &lt;/module&gt;
+    &lt;/module&gt;
+
+&lt;/module&gt;
+          </source>
+        </p>
+        <p>
+          Target file for validation <code>Test.java</code>:
+          <source>
+class Test {
+  int i = 0;
+}
+          </source>
+        </p>
+        <p>
+          Example of execution for <code>checkstyle.xml</code>. Violation from Check of
+          <code>common.xml</code> is expected, validation of field name is done by main code rules:
+          <source>
+$ java -Dcheckstyle.enableExternalDtdLoad=true -classpath checkstyle-XX.X-all.jar \
+        com.puppycrawl.tools.checkstyle.Main -c checkstyle.xml Test.java
+Starting audit...
+[ERROR] Test.java:1: File length is 3 lines (max allowed is 1). [FileLength]
+[ERROR] Test.java:2:7: &apos;i&apos; must match pattern &apos;^[a-z][a-zA-Z]+$&apos;. [MemberName]
+Audit done.
+Checkstyle ends with 2 errors.
+          </source>
+        </p>
+        <p>
+          Example of execution for <code>checkstyle-test.xml</code>. Violation from Check of
+          <code>common.xml</code> is expected, validation of field name is done by test code rules:
+          <source>
+$ java -Dcheckstyle.enableExternalDtdLoad=true -classpath checkstyle-XX.X-all.jar \
+          com.puppycrawl.tools.checkstyle.Main -c checkstyle-test.xml Test.java
+Starting audit...
+[ERROR] Test.java:1: File length is 3 lines (max allowed is 1). [FileLength]
+[ERROR] Test.java:2:7: &apos;i&apos; must match pattern &apos;_[a-z]&apos;. [MemberName]
+Audit done.
+Checkstyle ends with 2 errors.
+          </source>
+        </p>
+      </subsection>
+    </section>
+
+    <section name="Property chaining support">
+      <p>
+        Checkstyle supports property expansion within property definitions, also
+        known as property chaining. This feature allows you to define properties
+        using other properties. For example:
+        <source>
+checkstyle.dir=/home/user/checkstyle
+config.dir=configs
+checkstyle.suppressions.file=${checkstyle.dir}/${config.dir}/suppressions.xml
+        </source>
+        You can then use
+        <code>${checkstyle.suppressions.file}</code> in your checkstyle configuration,
+        which will resolve to
+        <code>/home/user/checkstyle/configs/suppressions.xml</code>.
+      </p>
+      <subsection name="Notes" id="Property_chaining_support_Notes">
+        <p>
+          Note that property variable expression must be of the form
+          <code>${expression}</code>.
+        </p>
+        <p>
+          It is not necessary to define chained properties sequentially.
+        </p>
+      </subsection>
+    </section>
+
+  </body>
+</document>

@@ -1,7 +1,11 @@
-////////////////////////////////////////////////////////////////////////////////
-// Test case file for checkstyle.
-// Created: 2001
-////////////////////////////////////////////////////////////////////////////////
+/*
+LocalVariableName
+format = (default)^[a-z][a-zA-Z0-9]*$
+allowOneCharVarInForLoop = (default)false
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.naming.localvariablename;
 
 /**
@@ -10,14 +14,14 @@ package com.puppycrawl.tools.checkstyle.checks.naming.localvariablename;
  **/
 class InputLocalVariableNameInnerClass
 {
-    // Ignore - two errors
+    // Ignore - two violations
     class InnerInner2
     {
         // Ignore
-        public int fData;
+        public int fData; // ok
     }
 
-    // Ignore - 2 errors
+    // Ignore - 2 violations
     interface InnerInterface2
     {
         // Ignore - should be all upper case

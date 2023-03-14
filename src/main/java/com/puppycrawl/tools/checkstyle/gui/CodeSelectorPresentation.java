@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,23 +15,21 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.gui;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
-import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * Presentation model for CodeSelector.
- * @author unknown
  */
 public class CodeSelectorPresentation {
+
     /** DetailAST or DetailNode node. */
     private final Object node;
     /** Mapping. */
@@ -43,28 +41,35 @@ public class CodeSelectorPresentation {
 
     /**
      * Constructor.
+     *
      * @param ast ast node.
-     * @param lines2position list to map lines.
+     * @param lines2position positions of lines.
+     * @noinspection AssignmentOrReturnOfFieldWithMutableType
+     * @noinspectionreason AssignmentOrReturnOfFieldWithMutableType - mutability is
+     *      expected in list of lines of code
      */
     public CodeSelectorPresentation(DetailAST ast, List<Integer> lines2position) {
         node = ast;
-        final List<Integer> copy = new ArrayList<>(lines2position);
-        this.lines2position = Collections.unmodifiableList(copy);
+        this.lines2position = lines2position;
     }
 
     /**
      * Constructor.
+     *
      * @param node DetailNode node.
      * @param lines2position list to map lines.
+     * @noinspection AssignmentOrReturnOfFieldWithMutableType
+     * @noinspectionreason AssignmentOrReturnOfFieldWithMutableType - mutability is expected
+     *      in list of lines of code
      */
     public CodeSelectorPresentation(DetailNode node, List<Integer> lines2position) {
         this.node = node;
-        final List<Integer> copy = new ArrayList<>(lines2position);
-        this.lines2position = Collections.unmodifiableList(copy);
+        this.lines2position = lines2position;
     }
 
     /**
      * Returns selection start position.
+     *
      * @return selection start position.
      */
     public int getSelectionStart() {
@@ -73,6 +78,7 @@ public class CodeSelectorPresentation {
 
     /**
      * Returns selection end position.
+     *
      * @return selection end position.
      */
     public int getSelectionEnd() {
@@ -93,22 +99,23 @@ public class CodeSelectorPresentation {
 
     /**
      * Find start and end selection positions from AST line and Column.
+     *
      * @param ast DetailAST node for which selection finds
      */
     private void findSelectionPositions(DetailAST ast) {
         selectionStart = lines2position.get(ast.getLineNo()) + ast.getColumnNo();
 
-        if (ast.getChildCount() == 0
-                && TokenUtils.getTokenName(ast.getType()).equals(ast.getText())) {
-            selectionEnd = selectionStart;
+        if (ast.hasChildren() || !TokenUtil.getTokenName(ast.getType()).equals(ast.getText())) {
+            selectionEnd = findLastPosition(ast);
         }
         else {
-            selectionEnd = findLastPosition(ast);
+            selectionEnd = selectionStart;
         }
     }
 
     /**
      * Find start and end selection positions from DetailNode line and Column.
+     *
      * @param detailNode DetailNode node for which selection finds
      */
     private void findSelectionPositions(DetailNode detailNode) {
@@ -120,23 +127,25 @@ public class CodeSelectorPresentation {
 
     /**
      * Finds the last position of node without children.
+     *
      * @param astNode DetailAST node.
      * @return Last position of node without children.
      */
     private int findLastPosition(final DetailAST astNode) {
         final int lastPosition;
-        if (astNode.getChildCount() == 0) {
-            lastPosition = lines2position.get(astNode.getLineNo()) + astNode.getColumnNo()
-                    + astNode.getText().length();
+        if (astNode.hasChildren()) {
+            lastPosition = findLastPosition(astNode.getLastChild());
         }
         else {
-            lastPosition = findLastPosition(astNode.getLastChild());
+            lastPosition = lines2position.get(astNode.getLineNo()) + astNode.getColumnNo()
+                    + astNode.getText().length();
         }
         return lastPosition;
     }
 
     /**
      * Finds the last position of node without children.
+     *
      * @param detailNode DetailNode node.
      * @return Last position of node without children.
      */
@@ -153,4 +162,5 @@ public class CodeSelectorPresentation {
         }
         return lastPosition;
     }
+
 }

@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,42 +15,135 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import java.util.Objects;
 import java.util.regex.Pattern;
 
+import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * <p>
- * Checks for illegal token text.
+ * Checks specified tokens text for matching an illegal pattern.
+ * By default, no tokens are specified.
  * </p>
- * <p> An example of how to configure the check to forbid String literals
- * containing {@code "a href"} is:
+ * <ul>
+ * <li>
+ * Property {@code format} - Define the RegExp for illegal pattern.
+ * Type is {@code java.util.regex.Pattern}.
+ * Default value is {@code "^$"}.
+ * </li>
+ * <li>
+ * Property {@code ignoreCase} - Control whether to ignore case when matching.
+ * Type is {@code boolean}.
+ * Default value is {@code false}.
+ * </li>
+ * <li>
+ * Property {@code message} - Define the message which is used to notify about violations;
+ * if empty then the default message is used.
+ * Type is {@code java.lang.String}.
+ * Default value is {@code ""}.
+ * </li>
+ * <li>
+ * Property {@code tokens} - tokens to check
+ * Type is {@code java.lang.String[]}.
+ * Validation type is {@code tokenSet}.
+ * Default value is: {@code ""}.
+ * </li>
+ * </ul>
+ * <p>
+ * To configure the check to forbid String literals containing {@code "a href"}:
  * </p>
  * <pre>
- * &lt;module name="IllegalTokenText"&gt;
- *     &lt;property name="tokens" value="STRING_LITERAL"/&gt;
- *     &lt;property name="format" value="a href"/&gt;
+ * &lt;module name=&quot;IllegalTokenText&quot;&gt;
+ *   &lt;property name=&quot;tokens&quot; value=&quot;STRING_LITERAL&quot;/&gt;
+ *   &lt;property name=&quot;format&quot; value=&quot;a href&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
- * <p> An example of how to configure the check to forbid leading zeros in an
- * integer literal, other than zero and a hex literal is:
+ * <p>Example:</p>
+ * <pre>
+ * public void myTest() {
+ *     String test = "a href"; // violation
+ *     String test2 = "A href"; // OK, case is sensitive
+ * }
+ * </pre>
+ * <p>
+ * To configure the check to forbid String literals containing {@code "a href"}
+ * for the ignoreCase mode:
  * </p>
  * <pre>
- * &lt;module name="IllegalTokenText"&gt;
- *     &lt;property name="tokens" value="NUM_INT,NUM_LONG"/&gt;
- *     &lt;property name="format" value="^0[^lx]"/&gt;
- *     &lt;property name="ignoreCase" value="true"/&gt;
+ * &lt;module name=&quot;IllegalTokenText&quot;&gt;
+ *   &lt;property name=&quot;tokens&quot; value=&quot;STRING_LITERAL&quot;/&gt;
+ *   &lt;property name=&quot;format&quot; value=&quot;a href&quot;/&gt;
+ *   &lt;property name=&quot;ignoreCase&quot; value=&quot;true&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
- * @author Rick Giles
+ * <p>Example:</p>
+ * <pre>
+ * public void myTest() {
+ *     String test = "a href"; // violation
+ *     String test2 = "A href"; // violation, case is ignored
+ * }
+ * </pre>
+ * <p>
+ * To configure the check to forbid string literal text blocks containing {@code """}:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;IllegalTokenText&quot;&gt;
+ *   &lt;property name=&quot;tokens&quot; value=&quot;TEXT_BLOCK_CONTENT&quot;/&gt;
+ *   &lt;property name=&quot;format&quot; value='&quot;'/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * public void myTest() {
+ *     final String quote = """
+ *                \""""; // violation
+ * }
+ * </pre>
+ * <p>
+ * To configure the check to forbid leading zeros in an integer literal,
+ * other than zero and a hex literal:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;IllegalTokenText&quot;&gt;
+ *   &lt;property name=&quot;tokens&quot; value=&quot;NUM_INT,NUM_LONG&quot;/&gt;
+ *   &lt;property name=&quot;format&quot; value=&quot;^0[^lx]&quot;/&gt;
+ *   &lt;property name=&quot;ignoreCase&quot; value=&quot;true&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * public void myTest() {
+ *     int test1 = 0; // OK
+ *     int test2 = 0x111; // OK
+ *     int test3 = 0X111; // OK, case is ignored
+ *     int test4 = 010; // violation
+ *     long test5 = 0L; // OK
+ *     long test6 = 010L; // violation
+ * }
+ * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code illegal.token.text}
+ * </li>
+ * </ul>
+ *
+ * @since 3.2
  */
+@StatelessCheck
 public class IllegalTokenTextCheck
     extends AbstractCheck {
 
@@ -61,23 +154,23 @@ public class IllegalTokenTextCheck
     public static final String MSG_KEY = "illegal.token.text";
 
     /**
-     * Custom message for report if illegal regexp found
-     * ignored if empty.
+     * Define the message which is used to notify about violations;
+     * if empty then the default message is used.
      */
     private String message = "";
 
     /** The format string of the regexp. */
-    private String format = "$^";
+    private String formatString = "^$";
 
-    /** The regexp to match against. */
-    private Pattern regexp = Pattern.compile(format);
+    /** Define the RegExp for illegal pattern. */
+    private Pattern format = Pattern.compile(formatString);
 
-    /** The flags to use with the regexp. */
-    private int compileFlags;
+    /** Control whether to ignore case when matching. */
+    private boolean ignoreCase;
 
     @Override
     public int[] getDefaultTokens() {
-        return CommonUtils.EMPTY_INT_ARRAY;
+        return CommonUtil.EMPTY_INT_ARRAY;
     }
 
     @Override
@@ -91,12 +184,13 @@ public class IllegalTokenTextCheck
             TokenTypes.COMMENT_CONTENT,
             TokenTypes.STRING_LITERAL,
             TokenTypes.CHAR_LITERAL,
+            TokenTypes.TEXT_BLOCK_CONTENT,
         };
     }
 
     @Override
     public int[] getRequiredTokens() {
-        return CommonUtils.EMPTY_INT_ARRAY;
+        return CommonUtil.EMPTY_INT_ARRAY;
     }
 
     @Override
@@ -107,63 +201,62 @@ public class IllegalTokenTextCheck
     @Override
     public void visitToken(DetailAST ast) {
         final String text = ast.getText();
-        if (regexp.matcher(text).find()) {
+        if (format.matcher(text).find()) {
             String customMessage = message;
             if (customMessage.isEmpty()) {
                 customMessage = MSG_KEY;
             }
             log(
-                ast.getLineNo(),
-                ast.getColumnNo(),
+                ast,
                 customMessage,
-                format);
+                formatString);
         }
     }
 
     /**
-     * Setter for message property.
+     * Setter to define the message which is used to notify about violations;
+     * if empty then the default message is used.
+     *
      * @param message custom message which should be used
      *                 to report about violations.
      */
     public void setMessage(String message) {
-        if (message == null) {
-            this.message = "";
-        }
-        else {
-            this.message = message;
-        }
+        this.message = Objects.requireNonNullElse(message, "");
     }
 
     /**
-     * Set the format to the specified regular expression.
+     * Setter to define the RegExp for illegal pattern.
+     *
      * @param format a {@code String} value
-     * @throws org.apache.commons.beanutils.ConversionException unable to parse format
      */
     public void setFormat(String format) {
-        this.format = format;
+        formatString = format;
         updateRegexp();
     }
 
     /**
-     * Set whether or not the match is case sensitive.
-     * @param caseInsensitive true if the match is case insensitive.
+     * Setter to control whether to ignore case when matching.
+     *
+     * @param caseInsensitive true if the match is case-insensitive.
      */
     public void setIgnoreCase(boolean caseInsensitive) {
-        if (caseInsensitive) {
+        ignoreCase = caseInsensitive;
+        updateRegexp();
+    }
+
+    /**
+     * Updates the {@link #format} based on the values from {@link #formatString} and
+     * {@link #ignoreCase}.
+     */
+    private void updateRegexp() {
+        final int compileFlags;
+        if (ignoreCase) {
             compileFlags = Pattern.CASE_INSENSITIVE;
         }
         else {
             compileFlags = 0;
         }
-
-        updateRegexp();
+        format = CommonUtil.createPattern(formatString, compileFlags);
     }
 
-    /**
-     * Updates the {@link #regexp} based on the values from {@link #format} and
-     * {@link #compileFlags}.
-     */
-    private void updateRegexp() {
-        regexp = CommonUtils.createPattern(format, compileFlags);
-    }
 }

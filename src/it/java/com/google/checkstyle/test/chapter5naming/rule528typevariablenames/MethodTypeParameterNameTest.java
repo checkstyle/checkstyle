@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,50 +15,39 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.google.checkstyle.test.chapter5naming.rule528typevariablenames;
 
-import java.io.File;
-import java.io.IOException;
+import java.util.Map;
 
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import com.google.checkstyle.test.base.BaseCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 
-public class MethodTypeParameterNameTest extends BaseCheckTestSupport {
+public class MethodTypeParameterNameTest extends AbstractGoogleModuleTestSupport {
 
     private static final String MSG_KEY = "name.invalidPattern";
-    private static Configuration configuration;
-    private static String format;
 
     @Override
-    protected String getPath(String fileName) throws IOException {
-        return super.getPath("chapter5naming" + File.separator + "rule528typevariablenames"
-                + File.separator + fileName);
-    }
-
-    @BeforeClass
-    public static void setConfigurationBuilder() throws CheckstyleException {
-        configuration = getCheckConfig("ClassTypeParameterName");
-        format = configuration.getAttribute("format");
+    protected String getPackageLocation() {
+        return "com/google/checkstyle/test/chapter5naming/rule528typevariablenames";
     }
 
     @Test
     public void testMethodDefault() throws Exception {
-
-        final Configuration checkConfig = getCheckConfig("MethodTypeParameterName");
+        final Configuration checkConfig = getModuleConfig("MethodTypeParameterName");
+        final String format = checkConfig.getProperty("format");
+        final Map<String, String> messages = checkConfig.getMessages();
 
         final String[] expected = {
-            "9:6: " + getCheckMessage(checkConfig.getMessages(), MSG_KEY, "e_e", format),
-            "19:6: " + getCheckMessage(checkConfig.getMessages(), MSG_KEY, "Tfo$o2T", format),
-            "23:6: " + getCheckMessage(checkConfig.getMessages(), MSG_KEY, "foo_", format),
-            "28:10: " + getCheckMessage(checkConfig.getMessages(), MSG_KEY, "_abc", format),
-            "37:14: " + getCheckMessage(checkConfig.getMessages(), MSG_KEY, "T$", format),
-            "42:14: " + getCheckMessage(checkConfig.getMessages(), MSG_KEY, "EE", format),
+            "9:6: " + getCheckMessage(messages, MSG_KEY, "e_e", format),
+            "19:6: " + getCheckMessage(messages, MSG_KEY, "Tfo$o2T", format),
+            "23:6: " + getCheckMessage(messages, MSG_KEY, "foo_", format),
+            "28:10: " + getCheckMessage(messages, MSG_KEY, "_abc", format),
+            "37:14: " + getCheckMessage(messages, MSG_KEY, "T$", format),
+            "42:14: " + getCheckMessage(messages, MSG_KEY, "EE", format),
         };
 
         final String filePath = getPath("InputMethodTypeParameterName.java");
@@ -66,4 +55,5 @@ public class MethodTypeParameterNameTest extends BaseCheckTestSupport {
         final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
+
 }

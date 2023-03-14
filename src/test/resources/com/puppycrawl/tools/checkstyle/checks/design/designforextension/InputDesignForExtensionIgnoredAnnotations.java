@@ -1,3 +1,11 @@
+/*
+DesignForExtension
+ignoredAnnotations = Override, Deprecated, MyAnnotation
+requiredJavadocPhrase = (default).*
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.design.designforextension;
 
 public class InputDesignForExtensionIgnoredAnnotations {
@@ -162,5 +170,17 @@ public class InputDesignForExtensionIgnoredAnnotations {
         foo1();
     }
 
+    /**
+     * @deprecated
+     */
+    <T> T dontUse4() { // violation 'method 'dontUse4' does not have javadoc'
+        return null;
+    }
+
     public @interface MyAnnotation { }
+}
+class InputDesignForExtensionsLocalAnnotations {
+    @interface Rule {}
+
+    @interface ClassRule {}
 }

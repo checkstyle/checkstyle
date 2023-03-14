@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,31 +15,185 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.metrics;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
 
+import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * This check calculates the Non Commenting Source Statements (NCSS) metric for
- * java source files and methods. The check adheres to the <a
- * href="http://www.kclee.com/clemens/java/javancss">JavaNCSS specification
- * </a> and gives the same results as the JavaNCSS tool.
+ * <p>
+ * Determines complexity of methods, classes and files by counting
+ * the Non Commenting Source Statements (NCSS). This check adheres to the
+ * <a href="http://www.kclee.de/clemens/java/javancss/#specification">specification</a>
+ * for the <a href="http://www.kclee.de/clemens/java/javancss/">JavaNCSS-Tool</a>
+ * written by <b>Chr. Clemens Lee</b>.
+ * </p>
+ * <p>
+ * Roughly said the NCSS metric is calculated by counting the source lines which are
+ * not comments, (nearly) equivalent to counting the semicolons and opening curly braces.
+ * </p>
+ * <p>
+ * The NCSS for a class is summarized from the NCSS of all its methods, the NCSS
+ * of its nested classes and the number of member variable declarations.
+ * </p>
+ * <p>
+ * The NCSS for a file is summarized from the ncss of all its top level classes,
+ * the number of imports and the package declaration.
+ * </p>
+ * <p>
+ * Rationale: Too large methods and classes are hard to read and costly to maintain.
+ * A large NCSS number often means that a method or class has too many responsibilities
+ * and/or functionalities which should be decomposed into smaller units.
+ * </p>
+ * <ul>
+ * <li>
+ * Property {@code methodMaximum} - Specify the maximum allowed number of
+ * non commenting lines in a method.
+ * Type is {@code int}.
+ * Default value is {@code 50}.
+ * </li>
+ * <li>
+ * Property {@code classMaximum} - Specify the maximum allowed number of
+ * non commenting lines in a class.
+ * Type is {@code int}.
+ * Default value is {@code 1500}.
+ * </li>
+ * <li>
+ * Property {@code fileMaximum} - Specify the maximum allowed number of
+ * non commenting lines in a file including all top level and nested classes.
+ * Type is {@code int}.
+ * Default value is {@code 2000}.
+ * </li>
+ * <li>
+ * Property {@code recordMaximum} - Specify the maximum allowed number of
+ * non commenting lines in a record.
+ * Type is {@code int}.
+ * Default value is {@code 150}.
+ * </li>
+ * </ul>
+ * <p>
+ * To configure the check:
+ * </p>
+ * <pre>
+ * &lt;module name="JavaNCSS"/&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * public void test() {
+ *   System.out.println("Line 1");
+ *   // another 48 lines of code
+ *   System.out.println("Line 50") // OK
+ *   System.out.println("Line 51") // violation, the method crosses 50 non commented lines
+ * }
+ * </pre>
+ * <p>
+ * To configure the check with 40 allowed non commented lines for a method:
+ * </p>
+ * <pre>
+ * &lt;module name="JavaNCSS"&gt;
+ *   &lt;property name="methodMaximum" value="40"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * public void test() {
+ *   System.out.println("Line 1");
+ *   // another 38 lines of code
+ *   System.out.println("Line 40") // OK
+ *   System.out.println("Line 41") // violation, the method crosses 40 non commented lines
+ * }
+ * </pre>
+ * <p>
+ * To configure the check to set limit of non commented lines in class to 100:
+ * </p>
+ * <pre>
+ * &lt;module name="JavaNCSS"&gt;
+ *   &lt;property name="classMaximum" value="100"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * public class Test {
+ *   public void test() {
+ *       System.out.println("Line 1");
+ *       // another 47 lines of code
+ *       System.out.println("Line 49");
+ *   }
  *
- * <p>The NCSS-metric tries to determine complexity of methods, classes and files
- * by counting the non commenting lines. Roughly said this is (nearly)
- * equivalent to counting the semicolons and opening curly braces.
+ *   public void test1() {
+ *       System.out.println("Line 50"); // OK
+ *       // another 47 lines of code
+ *       System.out.println("Line 98"); // violation
+ *   }
+ * }
+ * </pre>
+ * <p>
+ * To configure the check to set limit of non commented lines in file to 200:
+ * </p>
+ * <pre>
+ * &lt;module name="JavaNCSS"&gt;
+ *   &lt;property name="fileMaximum" value="200"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * public class Test1 {
+ *   public void test() {
+ *       System.out.println("Line 1");
+ *       // another 48 lines of code
+ *       System.out.println("Line 49");
+ *   }
  *
- * @author Lars Ködderitzsch
+ *   public void test1() {
+ *       System.out.println("Line 50");
+ *       // another 47 lines of code
+ *       System.out.println("Line 98"); // OK
+ *   }
+ * }
+ *
+ * class Test2 {
+ *   public void test() {
+ *       System.out.println("Line 150"); // OK
+ *   }
+ *
+ *   public void test1() {
+ *       System.out.println("Line 200"); // violation
+ *   }
+ * }
+ * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code ncss.class}
+ * </li>
+ * <li>
+ * {@code ncss.file}
+ * </li>
+ * <li>
+ * {@code ncss.method}
+ * </li>
+ * <li>
+ * {@code ncss.record}
+ * </li>
+ * </ul>
+ *
+ * @since 3.5
  */
 // -@cs[AbbreviationAsWordInName] We can not change it as,
 // check's name is a part of API (used in configurations).
+@FileStatefulCheck
 public class JavaNCSSCheck extends AbstractCheck {
 
     /**
@@ -58,6 +212,12 @@ public class JavaNCSSCheck extends AbstractCheck {
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
+    public static final String MSG_RECORD = "ncss.record";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
     public static final String MSG_FILE = "ncss.file";
 
     /** Default constant for max file ncss. */
@@ -66,16 +226,25 @@ public class JavaNCSSCheck extends AbstractCheck {
     /** Default constant for max file ncss. */
     private static final int CLASS_MAX_NCSS = 1500;
 
+    /** Default constant for max record ncss. */
+    private static final int RECORD_MAX_NCSS = 150;
+
     /** Default constant for max method ncss. */
     private static final int METHOD_MAX_NCSS = 50;
 
-    /** Maximum ncss for a complete source file. */
+    /**
+     * Specify the maximum allowed number of non commenting lines in a file
+     * including all top level and nested classes.
+     */
     private int fileMaximum = FILE_MAX_NCSS;
 
-    /** Maximum ncss for a class. */
+    /** Specify the maximum allowed number of non commenting lines in a class. */
     private int classMaximum = CLASS_MAX_NCSS;
 
-    /** Maximum ncss for a method. */
+    /** Specify the maximum allowed number of non commenting lines in a record. */
+    private int recordMaximum = RECORD_MAX_NCSS;
+
+    /** Specify the maximum allowed number of non commenting lines in a method. */
     private int methodMaximum = METHOD_MAX_NCSS;
 
     /** List containing the stacked counters. */
@@ -83,36 +252,7 @@ public class JavaNCSSCheck extends AbstractCheck {
 
     @Override
     public int[] getDefaultTokens() {
-        return new int[] {
-            TokenTypes.CLASS_DEF,
-            TokenTypes.INTERFACE_DEF,
-            TokenTypes.METHOD_DEF,
-            TokenTypes.CTOR_DEF,
-            TokenTypes.INSTANCE_INIT,
-            TokenTypes.STATIC_INIT,
-            TokenTypes.PACKAGE_DEF,
-            TokenTypes.IMPORT,
-            TokenTypes.VARIABLE_DEF,
-            TokenTypes.CTOR_CALL,
-            TokenTypes.SUPER_CTOR_CALL,
-            TokenTypes.LITERAL_IF,
-            TokenTypes.LITERAL_ELSE,
-            TokenTypes.LITERAL_WHILE,
-            TokenTypes.LITERAL_DO,
-            TokenTypes.LITERAL_FOR,
-            TokenTypes.LITERAL_SWITCH,
-            TokenTypes.LITERAL_BREAK,
-            TokenTypes.LITERAL_CONTINUE,
-            TokenTypes.LITERAL_RETURN,
-            TokenTypes.LITERAL_THROW,
-            TokenTypes.LITERAL_SYNCHRONIZED,
-            TokenTypes.LITERAL_CATCH,
-            TokenTypes.LITERAL_FINALLY,
-            TokenTypes.EXPR,
-            TokenTypes.LABELED_STAT,
-            TokenTypes.LITERAL_CASE,
-            TokenTypes.LITERAL_DEFAULT,
-        };
+        return getRequiredTokens();
     }
 
     @Override
@@ -146,48 +286,21 @@ public class JavaNCSSCheck extends AbstractCheck {
             TokenTypes.LABELED_STAT,
             TokenTypes.LITERAL_CASE,
             TokenTypes.LITERAL_DEFAULT,
+            TokenTypes.RECORD_DEF,
+            TokenTypes.COMPACT_CTOR_DEF,
         };
     }
 
     @Override
     public int[] getAcceptableTokens() {
-        return new int[] {
-            TokenTypes.CLASS_DEF,
-            TokenTypes.INTERFACE_DEF,
-            TokenTypes.METHOD_DEF,
-            TokenTypes.CTOR_DEF,
-            TokenTypes.INSTANCE_INIT,
-            TokenTypes.STATIC_INIT,
-            TokenTypes.PACKAGE_DEF,
-            TokenTypes.IMPORT,
-            TokenTypes.VARIABLE_DEF,
-            TokenTypes.CTOR_CALL,
-            TokenTypes.SUPER_CTOR_CALL,
-            TokenTypes.LITERAL_IF,
-            TokenTypes.LITERAL_ELSE,
-            TokenTypes.LITERAL_WHILE,
-            TokenTypes.LITERAL_DO,
-            TokenTypes.LITERAL_FOR,
-            TokenTypes.LITERAL_SWITCH,
-            TokenTypes.LITERAL_BREAK,
-            TokenTypes.LITERAL_CONTINUE,
-            TokenTypes.LITERAL_RETURN,
-            TokenTypes.LITERAL_THROW,
-            TokenTypes.LITERAL_SYNCHRONIZED,
-            TokenTypes.LITERAL_CATCH,
-            TokenTypes.LITERAL_FINALLY,
-            TokenTypes.EXPR,
-            TokenTypes.LABELED_STAT,
-            TokenTypes.LITERAL_CASE,
-            TokenTypes.LITERAL_DEFAULT,
-        };
+        return getRequiredTokens();
     }
 
     @Override
     public void beginTree(DetailAST rootAST) {
         counters = new ArrayDeque<>();
 
-        //add a counter for the file
+        // add a counter for the file
         counters.push(new Counter());
     }
 
@@ -196,17 +309,15 @@ public class JavaNCSSCheck extends AbstractCheck {
         final int tokenType = ast.getType();
 
         if (tokenType == TokenTypes.CLASS_DEF
-            || tokenType == TokenTypes.METHOD_DEF
-            || tokenType == TokenTypes.CTOR_DEF
-            || tokenType == TokenTypes.STATIC_INIT
-            || tokenType == TokenTypes.INSTANCE_INIT) {
-            //add a counter for this class/method
+            || tokenType == TokenTypes.RECORD_DEF
+            || isMethodOrCtorOrInitDefinition(tokenType)) {
+            // add a counter for this class/method
             counters.push(new Counter());
         }
 
-        //check if token is countable
+        // check if token is countable
         if (isCountable(ast)) {
-            //increment the stacked counters
+            // increment the stacked counters
             counters.forEach(Counter::increment);
         }
     }
@@ -214,45 +325,50 @@ public class JavaNCSSCheck extends AbstractCheck {
     @Override
     public void leaveToken(DetailAST ast) {
         final int tokenType = ast.getType();
-        if (tokenType == TokenTypes.METHOD_DEF
-            || tokenType == TokenTypes.CTOR_DEF
-            || tokenType == TokenTypes.STATIC_INIT
-            || tokenType == TokenTypes.INSTANCE_INIT) {
-            //pop counter from the stack
+
+        if (isMethodOrCtorOrInitDefinition(tokenType)) {
+            // pop counter from the stack
             final Counter counter = counters.pop();
 
             final int count = counter.getCount();
             if (count > methodMaximum) {
-                log(ast.getLineNo(), ast.getColumnNo(), MSG_METHOD,
-                        count, methodMaximum);
+                log(ast, MSG_METHOD, count, methodMaximum);
             }
         }
         else if (tokenType == TokenTypes.CLASS_DEF) {
-            //pop counter from the stack
+            // pop counter from the stack
             final Counter counter = counters.pop();
 
             final int count = counter.getCount();
             if (count > classMaximum) {
-                log(ast.getLineNo(), ast.getColumnNo(), MSG_CLASS,
-                        count, classMaximum);
+                log(ast, MSG_CLASS, count, classMaximum);
+            }
+        }
+        else if (tokenType == TokenTypes.RECORD_DEF) {
+            // pop counter from the stack
+            final Counter counter = counters.pop();
+
+            final int count = counter.getCount();
+            if (count > recordMaximum) {
+                log(ast, MSG_RECORD, count, recordMaximum);
             }
         }
     }
 
     @Override
     public void finishTree(DetailAST rootAST) {
-        //pop counter from the stack
+        // pop counter from the stack
         final Counter counter = counters.pop();
 
         final int count = counter.getCount();
         if (count > fileMaximum) {
-            log(rootAST.getLineNo(), rootAST.getColumnNo(), MSG_FILE,
-                    count, fileMaximum);
+            log(rootAST, MSG_FILE, count, fileMaximum);
         }
     }
 
     /**
-     * Sets the maximum ncss for a file.
+     * Setter to specify the maximum allowed number of non commenting lines
+     * in a file including all top level and nested classes.
      *
      * @param fileMaximum
      *            the maximum ncss
@@ -262,7 +378,7 @@ public class JavaNCSSCheck extends AbstractCheck {
     }
 
     /**
-     * Sets the maximum ncss for a class.
+     * Setter to specify the maximum allowed number of non commenting lines in a class.
      *
      * @param classMaximum
      *            the maximum ncss
@@ -272,7 +388,17 @@ public class JavaNCSSCheck extends AbstractCheck {
     }
 
     /**
-     * Sets the maximum ncss for a method.
+     * Setter to specify the maximum allowed number of non commenting lines in a record.
+     *
+     * @param recordMaximum
+     *            the maximum ncss
+     */
+    public void setRecordMaximum(int recordMaximum) {
+        this.recordMaximum = recordMaximum;
+    }
+
+    /**
+     * Setter to specify the maximum allowed number of non commenting lines in a method.
      *
      * @param methodMaximum
      *            the maximum ncss
@@ -293,11 +419,11 @@ public class JavaNCSSCheck extends AbstractCheck {
 
         final int tokenType = ast.getType();
 
-        //check if an expression is countable
+        // check if an expression is countable
         if (tokenType == TokenTypes.EXPR) {
             countable = isExpressionCountable(ast);
         }
-        //check if an variable definition is countable
+        // check if a variable definition is countable
         else if (tokenType == TokenTypes.VARIABLE_DEF) {
             countable = isVariableDefCountable(ast);
         }
@@ -313,7 +439,7 @@ public class JavaNCSSCheck extends AbstractCheck {
     private static boolean isVariableDefCountable(DetailAST ast) {
         boolean countable = false;
 
-        //count variable definitions only if they are direct child to a slist or
+        // count variable definitions only if they are direct child to a slist or
         // object block
         final int parentType = ast.getParent().getType();
 
@@ -321,9 +447,9 @@ public class JavaNCSSCheck extends AbstractCheck {
             || parentType == TokenTypes.OBJBLOCK) {
             final DetailAST prevSibling = ast.getPreviousSibling();
 
-            //is countable if no previous sibling is found or
-            //the sibling is no COMMA.
-            //This is done because multiple assignment on one line are counted
+            // is countable if no previous sibling is found or
+            // the sibling is no COMMA.
+            // This is done because multiple assignment on one line are counted
             // as 1
             countable = prevSibling == null
                     || prevSibling.getType() != TokenTypes.COMMA;
@@ -341,24 +467,24 @@ public class JavaNCSSCheck extends AbstractCheck {
     private static boolean isExpressionCountable(DetailAST ast) {
         final boolean countable;
 
-        //count expressions only if they are direct child to a slist (method
+        // count expressions only if they are direct child to a slist (method
         // body, for loop...)
-        //or direct child of label,if,else,do,while,for
+        // or direct child of label,if,else,do,while,for
         final int parentType = ast.getParent().getType();
         switch (parentType) {
-            case TokenTypes.SLIST :
-            case TokenTypes.LABELED_STAT :
-            case TokenTypes.LITERAL_FOR :
-            case TokenTypes.LITERAL_DO :
-            case TokenTypes.LITERAL_WHILE :
-            case TokenTypes.LITERAL_IF :
-            case TokenTypes.LITERAL_ELSE :
-                //don't count if or loop conditions
+            case TokenTypes.SLIST:
+            case TokenTypes.LABELED_STAT:
+            case TokenTypes.LITERAL_FOR:
+            case TokenTypes.LITERAL_DO:
+            case TokenTypes.LITERAL_WHILE:
+            case TokenTypes.LITERAL_IF:
+            case TokenTypes.LITERAL_ELSE:
+                // don't count if or loop conditions
                 final DetailAST prevSibling = ast.getPreviousSibling();
                 countable = prevSibling == null
                     || prevSibling.getType() != TokenTypes.LPAREN;
                 break;
-            default :
+            default:
                 countable = false;
                 break;
         }
@@ -366,11 +492,25 @@ public class JavaNCSSCheck extends AbstractCheck {
     }
 
     /**
+     * Checks if a token is a method, constructor, or compact constructor definition.
+     *
+     * @param tokenType the type of token we are checking
+     * @return true if token type is method or ctor definition, false otherwise
+     */
+    private static boolean isMethodOrCtorOrInitDefinition(int tokenType) {
+        return tokenType == TokenTypes.METHOD_DEF
+                || tokenType == TokenTypes.COMPACT_CTOR_DEF
+                || tokenType == TokenTypes.CTOR_DEF
+                || tokenType == TokenTypes.STATIC_INIT
+                || tokenType == TokenTypes.INSTANCE_INIT;
+    }
+
+    /**
      * Class representing a counter.
      *
-     * @author Lars Ködderitzsch
      */
-    private static class Counter {
+    private static final class Counter {
+
         /** The counters internal integer. */
         private int count;
 
@@ -389,5 +529,7 @@ public class JavaNCSSCheck extends AbstractCheck {
         public int getCount() {
             return count;
         }
+
     }
+
 }

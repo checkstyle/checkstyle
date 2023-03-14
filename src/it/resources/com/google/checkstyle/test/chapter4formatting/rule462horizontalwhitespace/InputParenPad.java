@@ -129,7 +129,7 @@ public class InputParenPad
 enum MyEnum {
     SOME_CONSTANT( ) { // warning
         int i = (int) (2 * (4 / 2)
-                ); 
+                );
     };
 
     public void myMethod() {
@@ -210,5 +210,14 @@ enum MyEnum {
         org.junit.Assert.assertThat( "123", org.hamcrest.CoreMatchers.is( "123" ) ); // warning
         org.junit.Assert.assertThat( "Help! Integers don't work", // warning
                 0, org.hamcrest.CoreMatchers.is( 1 ) ); // warning
+    }
+
+    private void tryWithResources() throws Exception {
+        try (AutoCloseable a = null) {} // ok
+        try (AutoCloseable a = null; AutoCloseable b = null) {} // ok
+        try (AutoCloseable a = null; AutoCloseable b = null; ) {} // ok
+        try (AutoCloseable a = null; AutoCloseable b = null; ) {} // ok
+        try (AutoCloseable a = null ) {} // warning
+        try (AutoCloseable a = null; AutoCloseable b = null ) {} // warning
     }
 }

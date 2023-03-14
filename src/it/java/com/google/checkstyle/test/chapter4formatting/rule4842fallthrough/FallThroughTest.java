@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,30 +15,25 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.google.checkstyle.test.chapter4formatting.rule4842fallthrough;
 
-import java.io.File;
-import java.io.IOException;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Test;
-
-import com.google.checkstyle.test.base.BaseCheckTestSupport;
+import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck;
 
-public class FallThroughTest extends BaseCheckTestSupport {
+public class FallThroughTest extends AbstractGoogleModuleTestSupport {
 
     @Override
-    protected String getPath(String fileName) throws IOException {
-        return super.getPath("chapter4formatting" + File.separator + "rule4842fallthrough"
-                + File.separator + fileName);
+    protected String getPackageLocation() {
+        return "com/google/checkstyle/test/chapter4formatting/rule4842fallthrough";
     }
 
     @Test
     public void testFallThrough() throws Exception {
-
         final String msg = getCheckMessage(FallThroughCheck.class, "fall.through");
 
         final String[] expected = {
@@ -53,12 +48,18 @@ public class FallThroughTest extends BaseCheckTestSupport {
             "369:11: " + msg,
             "372:11: " + msg,
             "374:41: " + msg,
+            "440:15: " + msg,
+            "442:15: " + msg,
+            "444:15: " + msg,
+            "446:15: " + msg,
+            "448:15: " + msg,
         };
 
-        final Configuration checkConfig = getCheckConfig("FallThrough");
+        final Configuration checkConfig = getModuleConfig("FallThrough");
         final String filePath = getPath("InputFallThrough.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
+
 }

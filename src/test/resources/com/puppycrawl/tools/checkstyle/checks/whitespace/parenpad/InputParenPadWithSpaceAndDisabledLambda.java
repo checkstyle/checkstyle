@@ -1,3 +1,11 @@
+/*
+ParenPad
+option = SPACE
+tokens = EXPR, METHOD_CALL, METHOD_DEF
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.whitespace.parenpad;
 
 class InputParenPadWithSpaceAndDisabledLambda {

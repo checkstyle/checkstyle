@@ -1,0 +1,14 @@
+<!DOCTYPE import-control PUBLIC
+    "-//Checkstyle//DTD ImportControl Configuration 1.4//EN"
+    "https://checkstyle.org/dtds/import_control_1_4.dtd">
+
+<import-control pkg="com.puppycrawl.tools.checkstyle.checks.imports">
+  <allow class="java.awt.Image"/>
+
+  <file name="InputImportControlFileName">
+    <disallow class="java.awt.Image"/>
+  </file>
+  <subpackage name="importcontrol">
+    <allow class="java.awt.Image"/>
+  </subpackage>
+</import-control>

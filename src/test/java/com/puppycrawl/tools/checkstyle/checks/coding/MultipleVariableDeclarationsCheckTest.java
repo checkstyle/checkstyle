@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,55 +15,57 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.coding.MultipleVariableDeclarationsCheck.MSG_MULTIPLE;
 import static com.puppycrawl.tools.checkstyle.checks.coding.MultipleVariableDeclarationsCheck.MSG_MULTIPLE_COMMA;
 
-import java.io.File;
-import java.io.IOException;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Assert;
-import org.junit.Test;
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+public class MultipleVariableDeclarationsCheckTest extends AbstractModuleTestSupport {
 
-public class MultipleVariableDeclarationsCheckTest extends BaseCheckTestSupport {
     @Override
-    protected String getPath(String filename) throws IOException {
-        return super.getPath("checks" + File.separator
-                + "coding" + File.separator
-                + "multiplevariabledeclarations" + File.separator
-                + filename);
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/checks/coding/multiplevariabledeclarations";
     }
 
     @Test
     public void testIt() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(MultipleVariableDeclarationsCheck.class);
 
         final String[] expected = {
-            "4:5: " + getCheckMessage(MSG_MULTIPLE_COMMA),
-            "5:5: " + getCheckMessage(MSG_MULTIPLE),
-            "8:9: " + getCheckMessage(MSG_MULTIPLE_COMMA),
-            "9:9: " + getCheckMessage(MSG_MULTIPLE),
-            "13:5: " + getCheckMessage(MSG_MULTIPLE),
-            "16:5: " + getCheckMessage(MSG_MULTIPLE),
+            "11:5: " + getCheckMessage(MSG_MULTIPLE_COMMA),
+            "12:5: " + getCheckMessage(MSG_MULTIPLE),
+            "15:9: " + getCheckMessage(MSG_MULTIPLE_COMMA),
+            "16:9: " + getCheckMessage(MSG_MULTIPLE),
+            "20:5: " + getCheckMessage(MSG_MULTIPLE),
+            "23:5: " + getCheckMessage(MSG_MULTIPLE),
+            "42:9: " + getCheckMessage(MSG_MULTIPLE),
+            "42:31: " + getCheckMessage(MSG_MULTIPLE),
+            "42:44: " + getCheckMessage(MSG_MULTIPLE),
         };
 
-        verify(checkConfig,
-               getPath("InputMultipleVariableDeclarations.java"),
+        verifyWithInlineConfigParser(
+                getPath("InputMultipleVariableDeclarations.java"),
                expected);
     }
 
     @Test
     public void testTokensNotNull() {
         final MultipleVariableDeclarationsCheck check = new MultipleVariableDeclarationsCheck();
-        Assert.assertNotNull(check.getAcceptableTokens());
-        Assert.assertNotNull(check.getDefaultTokens());
-        Assert.assertNotNull(check.getRequiredTokens());
+        assertWithMessage("Acceptable tokens should not be null")
+            .that(check.getAcceptableTokens())
+            .isNotNull();
+        assertWithMessage("Default tokens should not be null")
+            .that(check.getDefaultTokens())
+            .isNotNull();
+        assertWithMessage("Required tokens should not be null")
+            .that(check.getRequiredTokens())
+            .isNotNull();
     }
+
 }

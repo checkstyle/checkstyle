@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,41 +15,80 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks;
 
 import java.util.regex.Pattern;
 
+import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * <p>
- * A check for 'TODO:' comments. To check for other patterns in Java comments, set
- * property format.
+ * Checks for {@code TODO:} comments. Actually it is a generic
+ * <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/regex/Pattern.html">
+ * pattern</a> matcher on Java comments. To check for other patterns
+ * in Java comments, set the {@code format} property.
  * </p>
  * <p>
- * An example of how to configure the check is:
+ * Using {@code TODO:} comments is a great way to keep track of tasks that need to be done.
+ * Having them reported by Checkstyle makes it very hard to forget about them.
  * </p>
- *
+ * <ul>
+ * <li>
+ * Property {@code format} - Specify pattern to match comments against.
+ * Type is {@code java.util.regex.Pattern}.
+ * Default value is {@code "TODO:"}.
+ * </li>
+ * </ul>
+ * <p>
+ * To configure the check:
+ * </p>
  * <pre>
  * &lt;module name="TodoComment"/&gt;
  * </pre>
  * <p>
- * An example of how to configure the check for comments that contain
- * {@code TODO} or {@code FIXME}is:
+ * Example:
  * </p>
- *
+ * <pre>
+ * i++; // TODO: do differently in future   // violation
+ * i++; // todo: do differently in future   // OK
+ * </pre>
+ * <p>
+ * To configure the check for comments that contain {@code TODO} and {@code FIXME}:
+ * </p>
  * <pre>
  * &lt;module name="TodoComment"&gt;
- *    &lt;property name="format" value="(TODO)|(FIXME)"/&gt;
+ *   &lt;property name="format" value="(TODO)|(FIXME)"/&gt;
  * &lt;/module&gt;
  * </pre>
- * @author Oliver Burn
- * @author Baratali Izmailov
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * i++;   // TODO: do differently in future   // violation
+ * i++;   // todo: do differently in future   // OK
+ * i=i/x; // FIXME: handle x = 0 case         // violation
+ * i=i/x; // FIX :  handle x = 0 case         // OK
+ * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code todo.match}
+ * </li>
+ * </ul>
+ *
+ * @since 3.0
  */
+@StatelessCheck
 public class TodoCommentCheck
         extends AbstractCheck {
 
@@ -60,7 +99,7 @@ public class TodoCommentCheck
     public static final String MSG_KEY = "todo.match";
 
     /**
-     * Regular expression pattern compiled from format.
+     * Specify pattern to match comments against.
      */
     private Pattern format = Pattern.compile("TODO:");
 
@@ -70,7 +109,8 @@ public class TodoCommentCheck
     }
 
     /**
-     * Setter for 'todo' comment pattern.
+     * Setter to specify pattern to match comments against.
+     *
      * @param pattern
      *        pattern of 'todo' comment.
      */
@@ -80,27 +120,28 @@ public class TodoCommentCheck
 
     @Override
     public int[] getDefaultTokens() {
-        return getAcceptableTokens();
+        return getRequiredTokens();
     }
 
     @Override
     public int[] getAcceptableTokens() {
-        return new int[] {TokenTypes.COMMENT_CONTENT };
+        return getRequiredTokens();
     }
 
     @Override
     public int[] getRequiredTokens() {
-        return getAcceptableTokens();
+        return new int[] {TokenTypes.COMMENT_CONTENT };
     }
 
     @Override
     public void visitToken(DetailAST ast) {
         final String[] lines = ast.getText().split("\n");
 
-        for (int i = 0; i < lines.length; i++) {
-            if (format.matcher(lines[i]).find()) {
-                log(ast.getLineNo() + i, MSG_KEY, format.pattern());
+        for (String line : lines) {
+            if (format.matcher(line).find()) {
+                log(ast, MSG_KEY, format.pattern());
             }
         }
     }
+
 }

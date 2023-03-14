@@ -11,7 +11,7 @@ import java.util.concurrent.AbstractExecutorService;
 import java.util.concurrent.*; //warn
 
 import com.google.checkstyle.test.chapter2filebasic.rule21filename.*; //warn
-import com.sun.xml.internal.xsom.impl.scd.Iterators; //warn
+import com.google.checkstyle.test.chapter3filestructure.rule3sourcefile.*; //warn
 
 import com.google.common.reflect.*; //warn
 

@@ -1,3 +1,9 @@
+/*
+InnerAssignment
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.coding.innerassignment;
 
 import java.io.FileInputStream;
@@ -13,14 +19,14 @@ public class InputInnerAssignment
         int b;
         int c;
 
-        a = b = c = 1; // flag two inner assignments
+        a = b = c = 1; // 2 violations
 
-        String s = Integer.toString(b = 2); // flag inner assignment
+        String s = Integer.toString(b = 2); // violation
 
-        Integer i = new Integer(a += 5); // flag inner assigment
+        Integer i = new Integer(a += 5); // violation
 
         c = b++; // common practice, don't flag
-                 // even though technically an assigment to b
+                 // even though technically an assignment to b
 
         for (int j = 0; j < 6; j += 2) { // common practice, don't flag
             a += j;
@@ -35,21 +41,21 @@ public class InputInnerAssignment
         boolean bb;
         int i;
 
-        if (bb = false) {}
-        for (i = 0; bb = false; i = i + 1) {}
-        while (bb = false) {}
-        if ((bb = false)) {}
-        for (int j = 0; (bb = false); j += 1) {}
-        while ((bb = false)) {}
-        i = (bb = false) ? (b = 2) : (b += 1);
-        i = (b += 1) + (b -= 1);
-        do {i += 1;} while (bb = false);
+        if (bb = false) {} // violation
+        for (i = 0; bb = false; i = i + 1) {} // violation
+        while (bb = false) {} // violation
+        if ((bb = false)) {} // violation
+        for (int j = 0; (bb = false); j += 1) {} // violation
+        while ((bb = false)) {} // violation
+        i = (bb = false) ? (b = 2) : (b += 1); // 3 violations
+        i = (b += 1) + (b -= 1); // 2 violations
+        do {i += 1;} while (bb = false); // violation
     }
 
     public static void demoInputStreamIdiom(java.io.InputStream is) throws java.io.IOException
     {
         int b;
-        while ((b = is.read()) != -1) // common idiom to avoid clumsy loop control logic, don't flag (make configurable later)
+        while ((b = is.read()) != -1) // common idiom to avoid clumsy loop control logic don't flag
         {
             // work with b
         }
@@ -59,7 +65,7 @@ public class InputInnerAssignment
     {
         // code that doesn't contain braces around conditional code
         // results in a parse tree without SLISTs
-        // no assignement should be flagged here
+        // no assignment should be flagged here
         int sum = 0;
 
         for (int i = 0; i < 3; i++)
@@ -78,6 +84,12 @@ public class InputInnerAssignment
         do
             sum = sum + 1;
         while (sum < 6);
+
+        ChildParent o = new ChildParent();
+        Object t = null;
+
+        while (o != null)
+            t = o = o.getParent(); // violation
     }
 
     @SuppressWarnings(value = "unchecked")
@@ -91,12 +103,81 @@ public class InputInnerAssignment
     // Taken from JDK7 java.lang.Package src code.
     private static Manifest loadManifest(String fn) {
         try (FileInputStream fis = new FileInputStream(fn);
-	     JarInputStream jis = new JarInputStream(fis, false))
+             JarInputStream jis = new JarInputStream(fis, false))
         {
             return jis.getManifest();
         } catch (IOException e)
         {
             return null;
         }
+    }
+
+    private static class ChildParent {
+        public ChildParent getParent() {
+            return this;
+        }
+    }
+
+    void method() throws IOException {
+        Integer line;
+        FileInputStream file = null;
+        while (!((line = file.read()) != null)) {}
+        while ((line = file.read()) != null && line < 3) {}
+        while ((line = file.read()) != null && line < 3 && line > 5) {}
+        while ((line = file.read()) != null || line < 3) {}
+        while ((line = file.read()) != null || line < 3 || line > 5) {}
+        while ((line = file.read()) != null & line < 3) {}
+        while ((line = file.read()) != null & line < 3 & line > 5) {}
+        while ((line = file.read()) != null | line < 3) {}
+        while ((line = file.read()) != null | line < 3 | line > 5) {}
+        while (line < 3 && (line = file.read()) != null) {}
+        while (line < 3 || (line = file.read()) != null) {}
+        while (line < 3 & (line = file.read()) != null) {}
+        while (line < 3 | (line = file.read()) != null) {}
+
+        do{}
+        while (!((line = file.read()) != null));
+        do{}
+        while ((line = file.read()) != null && line < 3);
+        do{}
+        while ((line = file.read()) != null && line < 3 && line > 5);
+        do{}
+        while ((line = file.read()) != null || line < 3);
+        do{}
+        while ((line = file.read()) != null || line < 3 || line > 5);
+        do{}
+        while ((line = file.read()) != null & line < 3);
+        do{}
+        while ((line = file.read()) != null & line < 3 & line > 5);
+        do{}
+        while ((line = file.read()) != null | line < 3);
+        do{}
+        while ((line = file.read()) != null | line < 3 | line > 5);
+        do{}
+        while (line < 3 && (line = file.read()) != null);
+        do{}
+        while (line < 3 || (line = file.read()) != null);
+        do{}
+        while (line < 3 & (line = file.read()) != null);
+        do{}
+        while (line < 3 | (line = file.read()) != null);
+
+        for (;!((line = file.read()) != null);) {}
+        for (;(line = file.read()) != null && line < 3;) {}
+        for (;(line = file.read()) != null && line < 3 && line > 5;) {}
+        for (;(line = file.read()) != null || line < 3;) {}
+        for (;(line = file.read()) != null || line < 3 || line > 5;) {}
+        for (;(line = file.read()) != null & line < 3;) {}
+        for (;(line = file.read()) != null & line < 3 & line > 5;) {}
+        for (;(line = file.read()) != null | line < 3;) {}
+        for (;(line = file.read()) != null | line < 3 | line > 5;) {}
+        for (;line < 3 && (line = file.read()) != null;) {}
+        for (;line < 3 || (line = file.read()) != null;) {}
+        for (;line < 3 & (line = file.read()) != null;) {}
+        for (;line < 3 | (line = file.read()) != null;) {}
+
+        String str1 = "";
+        String str2 = "cd";
+        for (;;(str1 = "ab").concat(str2)) {} // violation
     }
 }

@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
@@ -24,12 +24,12 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import antlr.collections.AST;
+import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * <p>
@@ -41,9 +41,10 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * calling the constructor.
  * </p>
  * <p>
- * A simple example is the java.lang.Boolean class, to save memory and CPU
- * cycles it is preferable to use the predefined constants TRUE and FALSE.
- * Constructor invocations should be replaced by calls to Boolean.valueOf().
+ * A simple example is the {@code java.lang.Boolean} class.
+ * For performance reasons, it is preferable to use the predefined constants
+ * {@code TRUE} and {@code FALSE}.
+ * Constructor invocations should be replaced by calls to {@code Boolean.valueOf()}.
  * </p>
  * <p>
  * Some extremely performance sensitive projects may require the use of factory
@@ -51,16 +52,102 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * object pools.
  * </p>
  * <p>
- * Limitations: It is currently not possible to specify array classes.
+ * There is a limitation that it is currently not possible to specify array classes.
  * </p>
+ * <ul>
+ * <li>
+ * Property {@code classes} - Specify fully qualified class names that should not be instantiated.
+ * Type is {@code java.lang.String[]}.
+ * Default value is {@code ""}.
+ * </li>
+ * </ul>
  * <p>
- * An example of how to configure the check is:
+ * To configure the check:
  * </p>
  * <pre>
- * &lt;module name="IllegalInstantiation"/&gt;
+ * &lt;module name=&quot;IllegalInstantiation&quot;/&gt;
  * </pre>
- * @author lkuehne
+ * <p>Example:</p>
+ * <pre>
+ * public class MyTest {
+ *   public class Boolean {
+ *     boolean a;
+ *
+ *     public Boolean (boolean a) { this.a = a; }
+ *   }
+ *
+ *   public void myTest (boolean a, int b) {
+ *     Boolean c = new Boolean(a); // OK
+ *     java.lang.Boolean d = new java.lang.Boolean(a); // OK
+ *
+ *     Integer e = new Integer(b); // OK
+ *     Integer f = Integer.valueOf(b); // OK
+ *   }
+ * }
+ * </pre>
+ * <p>
+ * To configure the check to find instantiations of {@code java.lang.Boolean}
+ * and {@code java.lang.Integer}:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;IllegalInstantiation&quot;&gt;
+ *   &lt;property name=&quot;classes&quot; value=&quot;java.lang.Boolean,
+ *     java.lang.Integer&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * public class MyTest {
+ *   public class Boolean {
+ *     boolean a;
+ *
+ *     public Boolean (boolean a) { this.a = a; }
+ *   }
+ *
+ *   public void myTest (boolean a, int b) {
+ *     Boolean c = new Boolean(a); // OK
+ *     java.lang.Boolean d = new java.lang.Boolean(a); // violation, instantiation of
+ *                                                     // java.lang.Boolean should be avoided
+ *
+ *     Integer e = new Integer(b); // violation, instantiation of
+ *                                 // java.lang.Integer should be avoided
+ *     Integer f = Integer.valueOf(b); // OK
+ *   }
+ * }
+ * </pre>
+ * <p>
+ * Finally, there is a limitation that it is currently not possible to specify array classes:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;IllegalInstantiation&quot;&gt;
+ *   &lt;property name=&quot;classes&quot; value=&quot;java.lang.Boolean[],
+ *      Boolean[], java.lang.Integer[], Integer[]&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * public class MyTest {
+ *   public void myTest () {
+ *     Boolean[] newBoolArray = new Boolean[]{true,true,false}; // OK
+ *     Integer[] newIntArray = new Integer[]{1,2,3}; // OK
+ *   }
+ * }
+ * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code instantiation.avoid}
+ * </li>
+ * </ul>
+ *
+ * @since 3.0
  */
+@FileStatefulCheck
 public class IllegalInstantiationCheck
     extends AbstractCheck {
 
@@ -82,19 +169,24 @@ public class IllegalInstantiationCheck
     /** The instantiations in the file. */
     private final Set<DetailAST> instantiations = new HashSet<>();
 
-    /** Set of fully qualified class names. E.g. "java.lang.Boolean" */
-    private Set<String> illegalClasses = new HashSet<>();
+    /** Specify fully qualified class names that should not be instantiated. */
+    private Set<String> classes = new HashSet<>();
 
     /** Name of the package. */
     private String pkgName;
 
     @Override
     public int[] getDefaultTokens() {
-        return getAcceptableTokens();
+        return getRequiredTokens();
     }
 
     @Override
     public int[] getAcceptableTokens() {
+        return getRequiredTokens();
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
         return new int[] {
             TokenTypes.IMPORT,
             TokenTypes.LITERAL_NEW,
@@ -104,17 +196,7 @@ public class IllegalInstantiationCheck
     }
 
     @Override
-    public int[] getRequiredTokens() {
-        return new int[] {
-            TokenTypes.IMPORT,
-            TokenTypes.LITERAL_NEW,
-            TokenTypes.PACKAGE_DEF,
-        };
-    }
-
-    @Override
     public void beginTree(DetailAST rootAST) {
-        super.beginTree(rootAST);
         pkgName = null;
         imports.clear();
         instantiations.clear();
@@ -160,6 +242,7 @@ public class IllegalInstantiationCheck
 
     /**
      * Perform processing for an import token.
+     *
      * @param ast the import token
      */
     private void processImport(DetailAST ast) {
@@ -171,6 +254,7 @@ public class IllegalInstantiationCheck
 
     /**
      * Perform processing for an package token.
+     *
      * @param ast the package token
      */
     private void processPackageDef(DetailAST ast) {
@@ -183,6 +267,7 @@ public class IllegalInstantiationCheck
 
     /**
      * Collects a "new" token.
+     *
      * @param ast the "new" token
      */
     private void processLiteralNew(DetailAST ast) {
@@ -194,26 +279,26 @@ public class IllegalInstantiationCheck
     /**
      * Processes one of the collected "new" tokens when walking tree
      * has finished.
+     *
      * @param newTokenAst the "new" token.
      */
     private void postProcessLiteralNew(DetailAST newTokenAst) {
         final DetailAST typeNameAst = newTokenAst.getFirstChild();
-        final AST nameSibling = typeNameAst.getNextSibling();
+        final DetailAST nameSibling = typeNameAst.getNextSibling();
         if (nameSibling.getType() != TokenTypes.ARRAY_DECLARATOR) {
             // ast != "new Boolean[]"
             final FullIdent typeIdent = FullIdent.createFullIdent(typeNameAst);
             final String typeName = typeIdent.getText();
             final String fqClassName = getIllegalInstantiation(typeName);
             if (fqClassName != null) {
-                final int lineNo = newTokenAst.getLineNo();
-                final int colNo = newTokenAst.getColumnNo();
-                log(lineNo, colNo, MSG_KEY, fqClassName);
+                log(newTokenAst, MSG_KEY, fqClassName);
             }
         }
     }
 
     /**
      * Checks illegal instantiations.
+     *
      * @param className instantiated class, may or may not be qualified
      * @return the fully qualified class name of className
      *     or null if instantiation of className is OK
@@ -221,7 +306,7 @@ public class IllegalInstantiationCheck
     private String getIllegalInstantiation(String className) {
         String fullClassName = null;
 
-        if (illegalClasses.contains(className)) {
+        if (classes.contains(className)) {
             fullClassName = className;
         }
         else {
@@ -234,9 +319,9 @@ public class IllegalInstantiationCheck
                 pkgNameLen = pkgName.length();
             }
 
-            for (String illegal : illegalClasses) {
-                if (isStandardClass(className, illegal)
-                        || isSamePackage(className, pkgNameLen, illegal)) {
+            for (String illegal : classes) {
+                if (isSamePackage(className, pkgNameLen, illegal)
+                        || isStandardClass(className, illegal)) {
                     fullClassName = illegal;
                 }
                 else {
@@ -253,6 +338,7 @@ public class IllegalInstantiationCheck
 
     /**
      * Check import statements.
+     *
      * @param className name of the class
      * @return value of illegal instantiated type
      */
@@ -265,8 +351,8 @@ public class IllegalInstantiationCheck
                 importArg = importArg.substring(0, importArg.length() - 1)
                         + className;
             }
-            if (CommonUtils.baseClassName(importArg).equals(className)
-                    && illegalClasses.contains(importArg)) {
+            if (CommonUtil.baseClassName(importArg).equals(className)
+                    && classes.contains(importArg)) {
                 illegalType = importArg;
                 break;
             }
@@ -276,6 +362,7 @@ public class IllegalInstantiationCheck
 
     /**
      * Check that type is of the same package.
+     *
      * @param className class name
      * @param pkgNameLen package name
      * @param illegal illegal value
@@ -297,35 +384,14 @@ public class IllegalInstantiationCheck
     }
 
     /**
-     * Is class of the same package.
-     * @param className class name
-     * @return true if same package class
-     */
-    private boolean isSamePackage(String className) {
-        boolean isSamePackage = false;
-        try {
-            final ClassLoader classLoader = getClassLoader();
-            if (classLoader != null) {
-                final String fqName = pkgName + "." + className;
-                classLoader.loadClass(fqName);
-                // no ClassNotFoundException, fqName is a known class
-                isSamePackage = true;
-            }
-        }
-        catch (final ClassNotFoundException ignored) {
-            // not a class from the same package
-            isSamePackage = false;
-        }
-        return isSamePackage;
-    }
-
-    /**
      * Is Standard Class.
+     *
      * @param className class name
      * @param illegal illegal value
      * @return true if type is standard
      */
     private boolean isStandardClass(String className, String illegal) {
+        boolean isStandardClass = false;
         // class from java.lang
         if (illegal.length() - JAVA_LANG.length() == className.length()
             && illegal.endsWith(className)
@@ -337,20 +403,21 @@ public class IllegalInstantiationCheck
             // not to java.lang.Boolean
 
             final boolean isSameFile = classNames.contains(className);
-            final boolean isSamePackage = isSamePackage(className);
 
-            if (!isSameFile && !isSamePackage) {
-                return true;
+            if (!isSameFile) {
+                isStandardClass = true;
             }
         }
-        return false;
+        return isStandardClass;
     }
 
     /**
-     * Sets the classes that are illegal to instantiate.
-     * @param names a comma separate list of class names
+     * Setter to specify fully qualified class names that should not be instantiated.
+     *
+     * @param names class names
      */
     public void setClasses(String... names) {
-        illegalClasses = Arrays.stream(names).collect(Collectors.toSet());
+        classes = Arrays.stream(names).collect(Collectors.toSet());
     }
+
 }

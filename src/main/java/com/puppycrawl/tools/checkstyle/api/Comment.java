@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,16 +15,18 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.api;
+
+import java.util.Arrays;
 
 /**
  * Representation of the comment block.
  *
- * @author o_sukhodolsky
  */
 public class Comment implements TextBlock {
+
     /** Text of the comment. */
     private final String[] text;
 
@@ -42,6 +44,7 @@ public class Comment implements TextBlock {
 
     /**
      * Creates new instance.
+     *
      * @param text the lines that make up the comment.
      * @param firstCol number of the first column of the comment.
      * @param lastLine number of the last line of the comment.
@@ -49,9 +52,8 @@ public class Comment implements TextBlock {
      */
     public Comment(final String[] text, final int firstCol,
             final int lastLine, final int lastCol) {
-        this.text = new String[text.length];
-        System.arraycopy(text, 0, this.text, 0, this.text.length);
-        startLineNo = lastLine - this.text.length + 1;
+        this.text = text.clone();
+        startLineNo = lastLine - text.length + 1;
         endLineNo = lastLine;
         startColNo = firstCol;
         endColNo = lastCol;
@@ -98,8 +100,11 @@ public class Comment implements TextBlock {
 
     @Override
     public String toString() {
-        final String separator = ":";
-        return "Comment[" + startLineNo + separator + startColNo + "-"
-            + endLineNo + separator + endColNo + "]";
+        return "Comment[text=" + Arrays.toString(text)
+                + ", startLineNo=" + startLineNo
+                + ", endLineNo=" + endLineNo
+                + ", startColNo=" + startColNo
+                + ", endColNo=" + endColNo + ']';
     }
+
 }

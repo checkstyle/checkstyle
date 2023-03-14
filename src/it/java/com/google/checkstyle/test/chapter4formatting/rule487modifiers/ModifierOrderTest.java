@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,38 +15,33 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.google.checkstyle.test.chapter4formatting.rule487modifiers;
 
-import java.io.File;
-import java.io.IOException;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Test;
-
-import com.google.checkstyle.test.base.BaseCheckTestSupport;
+import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.modifier.ModifierOrderCheck;
 
-public class ModifierOrderTest extends BaseCheckTestSupport {
+public class ModifierOrderTest extends AbstractGoogleModuleTestSupport {
 
     @Override
-    protected String getPath(String fileName) throws IOException {
-        return super.getPath("chapter4formatting" + File.separator + "rule487modifiers"
-                + File.separator + fileName);
+    protected String getPackageLocation() {
+        return "com/google/checkstyle/test/chapter4formatting/rule487modifiers";
     }
 
     @Test
     public void testModifierOrder() throws Exception {
-
         final Class<ModifierOrderCheck> clazz = ModifierOrderCheck.class;
         final String msgMod = "mod.order";
         final String msgAnnotation = "annotation.order";
 
         final String[] expected = {
             "3:10: " + getCheckMessage(clazz, msgMod, "abstract"),
-            "5:19: " + getCheckMessage(clazz, msgMod, "private"),
-            "7:18: " + getCheckMessage(clazz, msgMod, "public"),
+            "5:15: " + getCheckMessage(clazz, msgMod, "private"),
+            "7:14: " + getCheckMessage(clazz, msgMod, "public"),
             "15:14: " + getCheckMessage(clazz, msgMod, "private"),
             "25:13: " + getCheckMessage(clazz, msgAnnotation, "@MyAnnotation2"),
             "30:13: " + getCheckMessage(clazz, msgAnnotation, "@MyAnnotation2"),
@@ -68,42 +63,43 @@ public class ModifierOrderTest extends BaseCheckTestSupport {
             "106:19: " + getCheckMessage(clazz, msgAnnotation, "@MyAnnotation2"),
             "108:18: " + getCheckMessage(clazz, msgMod, "static"),
             "110:25: " + getCheckMessage(clazz, msgMod, "private"),
-            "137:27: " + getCheckMessage(clazz, msgMod, "private"),
-            "139:26: " + getCheckMessage(clazz, msgMod, "public"),
-            "143:23: " + getCheckMessage(clazz, msgAnnotation, "@MyAnnotation2"),
-            "145:26: " + getCheckMessage(clazz, msgMod, "protected"),
-            "147:20: " + getCheckMessage(clazz, msgMod, "synchronized"),
-            "149:20: " + getCheckMessage(clazz, msgAnnotation, "@MyAnnotation2"),
-            "151:20: " + getCheckMessage(clazz, msgAnnotation, "@MyAnnotation2"),
-            "153:33: " + getCheckMessage(clazz, msgAnnotation, "@MyAnnotation2"),
-            "155:26: " + getCheckMessage(clazz, msgMod, "private"),
-            "168:35: " + getCheckMessage(clazz, msgMod, "private"),
-            "170:34: " + getCheckMessage(clazz, msgMod, "public"),
-            "172:35: " + getCheckMessage(clazz, msgAnnotation, "@MyAnnotation2"),
-            "174:31: " + getCheckMessage(clazz, msgAnnotation, "@MyAnnotation2"),
-            "176:34: " + getCheckMessage(clazz, msgMod, "protected"),
-            "178:28: " + getCheckMessage(clazz, msgMod, "synchronized"),
-            "182:28: " + getCheckMessage(clazz, msgAnnotation, "@MyAnnotation2"),
-            "184:41: " + getCheckMessage(clazz, msgAnnotation, "@MyAnnotation2"),
-            "186:34: " + getCheckMessage(clazz, msgMod, "private"),
-            "197:27: " + getCheckMessage(clazz, msgMod, "private"),
-            "199:26: " + getCheckMessage(clazz, msgMod, "public"),
-            "203:22: " + getCheckMessage(clazz, msgMod, "protected"),
-            "205:26: " + getCheckMessage(clazz, msgAnnotation, "@MyAnnotation2"),
-            "207:41: " + getCheckMessage(clazz, msgMod, "final"),
-            "209:37: " + getCheckMessage(clazz, msgMod, "final"),
-            "211:26: " + getCheckMessage(clazz, msgMod, "final"),
-            "213:50: " + getCheckMessage(clazz, msgMod, "private"),
-            "215:28: " + getCheckMessage(clazz, msgMod, "synchronized"),
-            "217:37: " + getCheckMessage(clazz, msgMod, "protected"),
-            "219:22: " + getCheckMessage(clazz, msgAnnotation, "@MyAnnotation2"),
+            "137:19: " + getCheckMessage(clazz, msgMod, "private"),
+            "139:18: " + getCheckMessage(clazz, msgMod, "public"),
+            "143:19: " + getCheckMessage(clazz, msgAnnotation, "@MyAnnotation2"),
+            "145:22: " + getCheckMessage(clazz, msgMod, "protected"),
+            "147:16: " + getCheckMessage(clazz, msgMod, "synchronized"),
+            "149:16: " + getCheckMessage(clazz, msgAnnotation, "@MyAnnotation2"),
+            "151:16: " + getCheckMessage(clazz, msgAnnotation, "@MyAnnotation2"),
+            "153:29: " + getCheckMessage(clazz, msgAnnotation, "@MyAnnotation2"),
+            "155:22: " + getCheckMessage(clazz, msgMod, "private"),
+            "168:23: " + getCheckMessage(clazz, msgMod, "private"),
+            "170:22: " + getCheckMessage(clazz, msgMod, "public"),
+            "172:23: " + getCheckMessage(clazz, msgAnnotation, "@MyAnnotation2"),
+            "174:23: " + getCheckMessage(clazz, msgAnnotation, "@MyAnnotation2"),
+            "176:26: " + getCheckMessage(clazz, msgMod, "protected"),
+            "178:20: " + getCheckMessage(clazz, msgMod, "synchronized"),
+            "182:20: " + getCheckMessage(clazz, msgAnnotation, "@MyAnnotation2"),
+            "184:33: " + getCheckMessage(clazz, msgAnnotation, "@MyAnnotation2"),
+            "186:26: " + getCheckMessage(clazz, msgMod, "private"),
+            "197:19: " + getCheckMessage(clazz, msgMod, "private"),
+            "199:18: " + getCheckMessage(clazz, msgMod, "public"),
+            "203:18: " + getCheckMessage(clazz, msgMod, "protected"),
+            "205:22: " + getCheckMessage(clazz, msgAnnotation, "@MyAnnotation2"),
+            "207:37: " + getCheckMessage(clazz, msgMod, "final"),
+            "209:33: " + getCheckMessage(clazz, msgMod, "final"),
+            "211:22: " + getCheckMessage(clazz, msgMod, "final"),
+            "213:46: " + getCheckMessage(clazz, msgMod, "private"),
+            "215:24: " + getCheckMessage(clazz, msgMod, "synchronized"),
+            "217:33: " + getCheckMessage(clazz, msgMod, "protected"),
+            "219:18: " + getCheckMessage(clazz, msgAnnotation, "@MyAnnotation2"),
             "245:14: " + getCheckMessage(clazz, msgMod, "default"),
         };
 
-        final Configuration checkConfig = getCheckConfig("ModifierOrder");
+        final Configuration checkConfig = getModuleConfig("ModifierOrder");
         final String filePath = getPath("InputModifierOrder.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
+
 }

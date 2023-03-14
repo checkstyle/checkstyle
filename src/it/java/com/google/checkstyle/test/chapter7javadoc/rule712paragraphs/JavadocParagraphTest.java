@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,34 +15,29 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.google.checkstyle.test.chapter7javadoc.rule712paragraphs;
 
-import java.io.File;
-import java.io.IOException;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Test;
-
-import com.google.checkstyle.test.base.BaseCheckTestSupport;
+import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-public class JavadocParagraphTest extends BaseCheckTestSupport {
+public class JavadocParagraphTest extends AbstractGoogleModuleTestSupport {
 
     @Override
-    protected String getPath(String fileName) throws IOException {
-        return super.getPath("chapter7javadoc" + File.separator + "rule712paragraphs"
-                + File.separator + fileName);
+    protected String getPackageLocation() {
+        return "com/google/checkstyle/test/chapter7javadoc/rule712paragraphs";
     }
 
     @Test
     public void testJavadocParagraphCorrect() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-
-        final Configuration checkConfig = getCheckConfig("JavadocParagraph");
+        final Configuration checkConfig = getModuleConfig("JavadocParagraph");
         final String filePath = getPath("InputCorrectJavadocParagraphCheck.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);
@@ -51,7 +46,6 @@ public class JavadocParagraphTest extends BaseCheckTestSupport {
 
     @Test
     public void testJavadocParagraphIncorrect() throws Exception {
-
         final String msgBefore = getCheckMessage(JavadocParagraphCheck.class,
                 "javadoc.paragraph.line.before");
         final String msgRed = getCheckMessage(JavadocParagraphCheck.class,
@@ -92,10 +86,11 @@ public class JavadocParagraphTest extends BaseCheckTestSupport {
             "73: " + msgBefore,
         };
 
-        final Configuration checkConfig = getCheckConfig("JavadocParagraph");
+        final Configuration checkConfig = getModuleConfig("JavadocParagraph");
         final String filePath = getPath("InputIncorrectJavadocParagraphCheck.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
+
 }

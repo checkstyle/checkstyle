@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,32 +15,24 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.OuterTypeFilenameCheck.MSG_KEY;
-import static org.junit.Assert.assertArrayEquals;
 
-import java.io.File;
-import java.io.IOException;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Test;
-
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-public class OuterTypeFilenameCheckTest extends BaseCheckTestSupport {
-    @Override
-    protected String getPath(String filename) throws IOException {
-        return super.getPath("checks" + File.separator + filename);
-    }
+public class OuterTypeFilenameCheckTest extends AbstractModuleTestSupport {
 
     @Override
-    protected String getNonCompilablePath(String filename) throws IOException {
-        return super.getNonCompilablePath("checks" + File.separator + filename);
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/checks/outertypefilename";
     }
 
     @Test
@@ -51,25 +43,25 @@ public class OuterTypeFilenameCheckTest extends BaseCheckTestSupport {
             TokenTypes.INTERFACE_DEF,
             TokenTypes.ENUM_DEF,
             TokenTypes.ANNOTATION_DEF,
+            TokenTypes.RECORD_DEF,
         };
-        assertArrayEquals("Required tokens array differs from expected",
-                expected, checkObj.getRequiredTokens());
+        assertWithMessage("Required tokens array differs from expected")
+                .that(checkObj.getRequiredTokens())
+                .isEqualTo(expected);
     }
 
     @Test
     public void testGood1() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(OuterTypeFilenameCheck.class);
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputIllegalTokens.java"), expected);
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputOuterTypeFilenameIllegalTokens.java"), expected);
     }
 
     @Test
     public void testGood2() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(OuterTypeFilenameCheck.class);
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("Input15Extensions.java"), expected);
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputOuterTypeFilename15Extensions.java"), expected);
     }
 
     @Test
@@ -81,47 +73,96 @@ public class OuterTypeFilenameCheckTest extends BaseCheckTestSupport {
             TokenTypes.INTERFACE_DEF,
             TokenTypes.ENUM_DEF,
             TokenTypes.ANNOTATION_DEF,
+            TokenTypes.RECORD_DEF,
         };
-        assertArrayEquals("Acceptable tokens array differs from expected",
-                expected, actual);
+        assertWithMessage("Acceptable tokens array differs from expected")
+                .that(actual)
+                .isEqualTo(expected);
     }
 
     @Test
     public void testNestedClass() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(OuterTypeFilenameCheck.class);
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputOuterTypeFilename1.java"), expected);
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputOuterTypeFilename1.java"), expected);
+    }
+
+    @Test
+    public void testNestedClass2() throws Exception {
+        final String[] expected = {
+            "9:1: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputOuterTypeFilename1a.java"), expected);
     }
 
     @Test
     public void testFinePublic() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(OuterTypeFilenameCheck.class);
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputOuterTypeFilename2.java"), expected);
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputOuterTypeFilename2.java"), expected);
+    }
+
+    @Test
+    public void testPublicClassIsNotFirst() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputOuterTypeFilenameCheckPublic.java"), expected);
+    }
+
+    @Test
+    public void testNoPublicClasses() throws Exception {
+        final String[] expected = {
+            "9:1: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputOuterTypeFilenameNoPublic.java"), expected);
     }
 
     @Test
     public void testFineDefault() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(OuterTypeFilenameCheck.class);
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputOuterTypeFilename3.java"), expected);
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputOuterTypeFilename3.java"), expected);
     }
 
     @Test
     public void testWrongDefault() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(OuterTypeFilenameCheck.class);
         final String[] expected = {
-            "4: " + getCheckMessage(MSG_KEY),
+            "10:2: " + getCheckMessage(MSG_KEY),
         };
-        verify(checkConfig, getPath("InputOuterTypeFilename5.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputOuterTypeFilename5.java"), expected);
     }
 
     @Test
     public void testPackageAnnotation() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(OuterTypeFilenameCheck.class);
 
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getNonCompilablePath("package-info.java"), expected);
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("package-info.java"), expected);
     }
+
+    @Test
+    public void testOuterTypeFilenameRecords() throws Exception {
+
+        final String[] expected = {
+            "10:1: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputOuterTypeFilenameRecordMethodRecordDef.java"),
+                expected);
+    }
+
+    @Test
+    public void testOuterTypeFilenameRecordsMethodRecordDef() throws Exception {
+
+        final String[] expected = {
+            "10:1: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputOuterTypeFilenameRecord.java"), expected);
+    }
+
 }

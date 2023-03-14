@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,76 +15,138 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.blocks;
 
+import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * Finds nested blocks.
- *
  * <p>
- * For example this Check flags confusing code like
+ * Finds nested blocks (blocks that are used freely in the code).
+ * </p>
+ * <p>
+ * Rationale: Nested blocks are often leftovers from the
+ * debugging process, they confuse the reader.
+ * </p>
+ * <p>
+ * For example, this check finds the obsolete braces in
  * </p>
  * <pre>
  * public void guessTheOutput()
  * {
- *     int whichIsWhich = 0;
- *     {
- *         int whichIsWhich = 2;
- *     }
- *     System.out.println("value = " + whichIsWhich);
+ *   int whichIsWhich = 0;
+ *   {
+ *     whichIsWhich = 2;
+ *   }
+ *   System.out.println("value = " + whichIsWhich);
  * }
  * </pre>
+ * <p>
  * and debugging / refactoring leftovers such as
- *
+ * </p>
  * <pre>
- * // if (someOldCondition)
+ * // if (conditionThatIsNotUsedAnyLonger)
  * {
- *     System.out.println("unconditional");
+ *   System.out.println("unconditional");
  * }
  * </pre>
- *
  * <p>
  * A case in a switch statement does not implicitly form a block.
- * Thus to be able to introduce local variables that have case scope
+ * Thus, to be able to introduce local variables that have case scope
  * it is necessary to open a nested block. This is supported, set
  * the allowInSwitchCase property to true and include all statements
  * of the case in the block.
  * </p>
- *
+ * <ul>
+ * <li>
+ * Property {@code allowInSwitchCase} - Allow nested blocks if they are the
+ * only child of a switch case.
+ * Type is {@code boolean}.
+ * Default value is {@code false}.
+ * </li>
+ * </ul>
+ * <p>
+ * To configure the check:
+ * </p>
  * <pre>
- * switch (a)
- * {
- *     case 0:
- *         // Never OK, break outside block
- *         {
- *             x = 1;
- *         }
+ * &lt;module name="AvoidNestedBlocks"/&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * public void foo() {
+ *   int myInteger = 0;
+ *   {                      // violation
+ *     myInteger = 2;
+ *   }
+ *   System.out.println("myInteger = " + myInteger);
+ *
+ *   switch (a) {
+ *     case 1:
+ *       {                    // violation
+ *         System.out.println("Case 1");
  *         break;
- *     case 1:
- *         // Never OK, statement outside block
- *         System.out.println("Hello");
- *         {
- *             x = 2;
- *             break;
- *         }
- *     case 1:
- *         // OK if allowInSwitchCase is true
- *         {
- *             System.out.println("Hello");
- *             x = 2;
- *             break;
- *         }
+ *       }
+ *     case 2:
+ *       System.out.println("Case 2");     // OK
+ *       break;
+ *   }
  * }
  * </pre>
+ * <p>
+ * To configure the check to allow nested blocks in switch case:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;AvoidNestedBlocks&quot;&gt;
+ *   &lt;property name=&quot;allowInSwitchCase&quot; value=&quot;true&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * public void foo() {
+ *   int myInteger = 0;
+ *   {                      // violation
+ *     myInteger = 2;
+ *   }
+ *   System.out.println("myInteger = " + myInteger);
  *
- * @author lkuehne
+ *   switch (a)
+ *   {
+ *     case 1:
+ *       {                    // OK
+ *         System.out.println("Case 1");
+ *         break;
+ *       }
+ *     case 2:
+ *       System.out.println("Case 2");     // OK
+ *       break;
+ *   }
+ * }
+ * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code block.nested}
+ * </li>
+ * </ul>
+ *
+ * @since 3.1
  */
+@StatelessCheck
 public class AvoidNestedBlocksCheck extends AbstractCheck {
+
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
@@ -92,43 +154,52 @@ public class AvoidNestedBlocksCheck extends AbstractCheck {
     public static final String MSG_KEY_BLOCK_NESTED = "block.nested";
 
     /**
-     * Whether nested blocks are allowed if they are the
-     * only child of a switch case.
+     * Allow nested blocks if they are the only child of a switch case.
      */
     private boolean allowInSwitchCase;
 
     @Override
     public int[] getDefaultTokens() {
-        return getAcceptableTokens();
+        return getRequiredTokens();
     }
 
     @Override
     public int[] getAcceptableTokens() {
-        return new int[] {TokenTypes.SLIST};
+        return getRequiredTokens();
     }
 
     @Override
     public int[] getRequiredTokens() {
-        return getAcceptableTokens();
+        return new int[] {TokenTypes.SLIST};
     }
 
     @Override
     public void visitToken(DetailAST ast) {
         final DetailAST parent = ast.getParent();
         if (parent.getType() == TokenTypes.SLIST
-                && (!allowInSwitchCase
-                    || parent.getParent().getType() != TokenTypes.CASE_GROUP
-                    || parent.getNumberOfChildren() != 1)) {
-            log(ast.getLineNo(), ast.getColumnNo(), MSG_KEY_BLOCK_NESTED);
+                && (!allowInSwitchCase || hasSiblings(ast))) {
+            log(ast, MSG_KEY_BLOCK_NESTED);
         }
     }
 
     /**
-     * Setter for allowInSwitchCase property.
+     * Checks whether the AST node has any siblings or not.
+     *
+     * @param ast node to examine
+     * @return {@code true} if the node has one or more siblings
+     */
+    private static boolean hasSiblings(DetailAST ast) {
+        return ast.getPreviousSibling() != null || ast.getNextSibling() != null;
+    }
+
+    /**
+     * Setter to allow nested blocks if they are the only child of a switch case.
+     *
      * @param allowInSwitchCase whether nested blocks are allowed
      *                 if they are the only child of a switch case.
      */
     public void setAllowInSwitchCase(boolean allowInSwitchCase) {
         this.allowInSwitchCase = allowInSwitchCase;
     }
+
 }

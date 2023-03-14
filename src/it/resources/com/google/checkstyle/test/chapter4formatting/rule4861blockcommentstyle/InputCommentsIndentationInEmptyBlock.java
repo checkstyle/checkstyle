@@ -76,7 +76,7 @@ public class InputCommentsIndentationInEmptyBlock {
         try {
 
         } catch (Exception e) {
-            // TODO: handle exception here
+            // OOOO: handle exception here
         }
     }
 

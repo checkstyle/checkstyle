@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,41 +15,35 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.sizes;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.sizes.AnonInnerLengthCheck.MSG_KEY;
-import static org.junit.Assert.assertArrayEquals;
 
-import java.io.File;
-import java.io.IOException;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Test;
-
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * Unit test for AnonInnerLengthCheck.
- * @author Rob Worth
- * @author Lars Kühne
  */
-public class AnonInnerLengthCheckTest extends BaseCheckTestSupport {
+public class AnonInnerLengthCheckTest extends AbstractModuleTestSupport {
+
     @Override
-    protected String getPath(String filename) throws IOException {
-        return super.getPath("checks" + File.separator
-                + "sizes" + File.separator + "anoninnerlength"
-                + File.separator + filename);
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/checks/sizes/anoninnerlength";
     }
 
     @Test
     public void testGetRequiredTokens() {
         final AnonInnerLengthCheck checkObj = new AnonInnerLengthCheck();
         final int[] expected = {TokenTypes.LITERAL_NEW};
-        assertArrayEquals("Default required tokens are invalid",
-            expected, checkObj.getRequiredTokens());
+        assertWithMessage("Default required tokens are invalid")
+            .that(checkObj.getRequiredTokens())
+            .isEqualTo(expected);
     }
 
     @Test
@@ -59,28 +53,28 @@ public class AnonInnerLengthCheckTest extends BaseCheckTestSupport {
         final int[] actual = anonInnerLengthCheckObj.getAcceptableTokens();
         final int[] expected = {TokenTypes.LITERAL_NEW};
 
-        assertArrayEquals("Default acceptable tokens are invalid", expected, actual);
+        assertWithMessage("Default acceptable tokens are invalid")
+            .that(actual)
+            .isEqualTo(expected);
     }
 
     @Test
     public void testDefault() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(AnonInnerLengthCheck.class);
         final String[] expected = {
-            "50:35: " + getCheckMessage(MSG_KEY, 21, 20),
+            "53:35: " + getCheckMessage(MSG_KEY, 21, 20),
         };
-        verify(checkConfig, getPath("InputAnonInnerLength.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputAnonInnerLength.java"), expected);
     }
 
     @Test
     public void testNonDefault() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(AnonInnerLengthCheck.class);
-        checkConfig.addAttribute("max", "6");
         final String[] expected = {
-            "50:35: " + getCheckMessage(MSG_KEY, 21, 6),
-            "75:35: " + getCheckMessage(MSG_KEY, 20, 6),
+            "54:35: " + getCheckMessage(MSG_KEY, 21, 6),
+            "79:35: " + getCheckMessage(MSG_KEY, 20, 6),
         };
-        verify(checkConfig, getPath("InputAnonInnerLength.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputAnonInnerLength2.java"), expected);
     }
+
 }

@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suppressedMutations>
+  <mutation unstable="false">
+    <sourceFile>DescendantTokenCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable limitedTokens</description>
+    <lineContent>@XdocsPropertyType(PropertyType.TOKEN_ARRAY)</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>DescendantTokenCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable counts</description>
+    <lineContent>private int[] counts = CommonUtil.EMPTY_INT_ARRAY;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>NewlineAtEndOfFileCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck</mutatedClass>
+    <mutatedMethod>readAndCheckFile</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/io/File::getPath</description>
+    <lineContent>log(1, MSG_KEY_NO_NEWLINE_EOF, file.getPath());</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>NewlineAtEndOfFileCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck</mutatedClass>
+    <mutatedMethod>readAndCheckFile</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/io/File::getPath</description>
+    <lineContent>log(1, MSG_KEY_WRONG_ENDING, file.getPath());</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>OrderedPropertiesCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.OrderedPropertiesCheck</mutatedClass>
+    <mutatedMethod>getKeyPattern</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/util/regex/Matcher::quoteReplacement</description>
+    <lineContent>.replaceAll(Matcher.quoteReplacement(&quot;\\\\ &quot;)) + &quot;[\\s:=].*&quot;;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>OrderedPropertiesCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.OrderedPropertiesCheck</mutatedClass>
+    <mutatedMethod>getKeyPattern</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
+    <description>replaced call to java/util/regex/Matcher::quoteReplacement with argument</description>
+    <lineContent>.replaceAll(Matcher.quoteReplacement(&quot;\\\\ &quot;)) + &quot;[\\s:=].*&quot;;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>OrderedPropertiesCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.OrderedPropertiesCheck$SequencedProperties</mutatedClass>
+    <mutatedMethod>put</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/util/Properties::put</description>
+    <lineContent>return super.put(key, value);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>OrderedPropertiesCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.OrderedPropertiesCheck$SequencedProperties</mutatedClass>
+    <mutatedMethod>put</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
+    <description>replaced call to java/util/Properties::put with argument</description>
+    <lineContent>return super.put(key, value);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>OrderedPropertiesCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.OrderedPropertiesCheck$SequencedProperties</mutatedClass>
+    <mutatedMethod>put</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.returns.NullReturnValsMutator</mutator>
+    <description>replaced return value with null for com/puppycrawl/tools/checkstyle/checks/OrderedPropertiesCheck$SequencedProperties::put</description>
+    <lineContent>return super.put(key, value);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>OuterTypeFilenameCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.OuterTypeFilenameCheck</mutatedClass>
+    <mutatedMethod>beginTree</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable hasPublic</description>
+    <lineContent>hasPublic = false;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>OuterTypeFilenameCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.OuterTypeFilenameCheck</mutatedClass>
+    <mutatedMethod>beginTree</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable seenFirstToken</description>
+    <lineContent>seenFirstToken = false;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>OuterTypeFilenameCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.OuterTypeFilenameCheck</mutatedClass>
+    <mutatedMethod>beginTree</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable wrongType</description>
+    <lineContent>wrongType = null;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SuppressWarningsHolder.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder</mutatedClass>
+    <mutatedMethod>addSuppressions</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getColumnNo</description>
+    <lineContent>final int firstColumn = targetAST.getColumnNo();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SuppressWarningsHolder.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder</mutatedClass>
+    <mutatedMethod>findAllExpressionsInChildren</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getNextSibling</description>
+    <lineContent>childAST = childAST.getNextSibling();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SuppressWarningsHolder.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder</mutatedClass>
+    <mutatedMethod>getStringExpr</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getLastChild with receiver</description>
+    <lineContent>expr = firstChild.getLastChild().getText();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SuppressWarningsHolder.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder</mutatedClass>
+    <mutatedMethod>getStringExpr</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_0</mutator>
+    <description>RemoveSwitch 0 (case value 58)</description>
+    <lineContent>switch (firstChild.getType()) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SuppressWarningsHolder.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder</mutatedClass>
+    <mutatedMethod>getStringExpr</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_1</mutator>
+    <description>RemoveSwitch 1 (case value 59)</description>
+    <lineContent>switch (firstChild.getType()) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>TodoCommentCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.TodoCommentCheck</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/util/regex/Pattern::compile</description>
+    <lineContent>private Pattern format = Pattern.compile(&quot;TODO:&quot;);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>TodoCommentCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.TodoCommentCheck</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable format</description>
+    <lineContent>private Pattern format = Pattern.compile(&quot;TODO:&quot;);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>TranslationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.TranslationCheck</mutatedClass>
+    <mutatedMethod>logException</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/checks/TranslationCheck::getId</description>
+    <lineContent>getId(),</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>TranslationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.TranslationCheck$ResourceBundle</mutatedClass>
+    <mutatedMethod>getFiles</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
+    <description>replaced call to java/util/Collections::unmodifiableSet with argument</description>
+    <lineContent>return Collections.unmodifiableSet(files);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>UncommentedMainCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck</mutatedClass>
+    <mutatedMethod>beginTree</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable classDepth</description>
+    <lineContent>classDepth = 0;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>UncommentedMainCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck</mutatedClass>
+    <mutatedMethod>beginTree</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable currentClass</description>
+    <lineContent>currentClass = null;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>UncommentedMainCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck</mutatedClass>
+    <mutatedMethod>beginTree</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/FullIdent::createFullIdent</description>
+    <lineContent>packageName = FullIdent.createFullIdent(null);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>UncommentedMainCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck</mutatedClass>
+    <mutatedMethod>beginTree</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable packageName</description>
+    <lineContent>packageName = FullIdent.createFullIdent(null);</lineContent>
+  </mutation>
+</suppressedMutations>

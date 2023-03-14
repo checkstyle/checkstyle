@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,56 +15,53 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.coding.NoCloneCheck.MSG_KEY;
 
-import java.io.File;
-import java.io.IOException;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Assert;
-import org.junit.Test;
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-
-/**
- * NoCloneCheck test.
- */
 public class NoCloneCheckTest
-    extends BaseCheckTestSupport {
+    extends AbstractModuleTestSupport {
+
     @Override
-    protected String getPath(String filename) throws IOException {
-        return super.getPath("checks" + File.separator
-                + "coding" + File.separator
-                + "noclone" + File.separator
-                + filename);
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/checks/coding/noclone";
     }
 
     @Test
     public void testHasClone()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(NoCloneCheck.class);
         final String[] expected = {
-            "10: " + getCheckMessage(MSG_KEY),
-            "27: " + getCheckMessage(MSG_KEY),
-            "35: " + getCheckMessage(MSG_KEY),
-            "39: " + getCheckMessage(MSG_KEY),
-            "52: " + getCheckMessage(MSG_KEY),
-            "60: " + getCheckMessage(MSG_KEY),
-            "98: " + getCheckMessage(MSG_KEY),
+            "17:5: " + getCheckMessage(MSG_KEY),
+            "34:5: " + getCheckMessage(MSG_KEY),
+            "42:5: " + getCheckMessage(MSG_KEY),
+            "46:13: " + getCheckMessage(MSG_KEY),
+            "59:5: " + getCheckMessage(MSG_KEY),
+            "67:5: " + getCheckMessage(MSG_KEY),
+            "106:5: " + getCheckMessage(MSG_KEY),
         };
-        verify(checkConfig, getPath("InputNoClone.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputNoClone.java"), expected);
     }
 
     @Test
     public void testTokensNotNull() {
         final NoCloneCheck check = new NoCloneCheck();
-        Assert.assertNotNull(check.getAcceptableTokens());
-        Assert.assertNotNull(check.getDefaultTokens());
-        Assert.assertNotNull(check.getRequiredTokens());
+        assertWithMessage("Acceptable tokens should not be null")
+            .that(check.getAcceptableTokens())
+            .isNotNull();
+        assertWithMessage("Default tokens should not be null")
+            .that(check.getDefaultTokens())
+            .isNotNull();
+        assertWithMessage("Required tokens should not be null")
+            .that(check.getRequiredTokens())
+            .isNotNull();
     }
+
 }

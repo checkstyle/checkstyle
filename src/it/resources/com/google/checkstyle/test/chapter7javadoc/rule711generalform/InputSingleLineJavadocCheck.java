@@ -1,8 +1,8 @@
 package com.google.checkstyle.test.chapter7javadoc.rule711generalform;
 
-class Foo{
+class InputSingleLineJavadocCheck{
 
-	/** As of JDK 1.1, replaced by {@link #setBounds(int,int,int,int)} */ //warn
+    /** As of JDK 1.1, replaced by {@link #setBounds(int,int,int,int)} */
     void foo1() {}
 
     /**
@@ -10,11 +10,11 @@ class Foo{
      */
     void foo2() {}
 
-    /** @throws CheckstyleException if an error occurs */ //warn
+    /** @throws CheckstyleException if a problem occurs */ //warn
     void foo3() {}
 
     /**
-     * @throws CheckstyleException if an error occurs
+     * @throws CheckstyleException if a problem occurs
      */
     void foo4() {}
 
@@ -29,15 +29,18 @@ class Foo{
     /** @inheritDoc */ //warn
     void foo7() {}
 
-    /** {@inheritDoc} */ //warn
+    /** {@inheritDoc} */
     void foo8() {}
 
     /** @customTag */ //warn
     void bar() {}
 
-    /** <h1> Some header </h1> {@inheritDoc} {@code bar1} text*/ //warn
+    /** <h1> Some header </h1> {@inheritDoc} {@code bar1} text*/
     void bar2() {}
 
-    /** @customTag <a> href="https://github.com/checkstyle/chestyle/"</a> text*/ //warn
+    /** @customTag <a> href="https://github.com/checkstyle/checkstyle/"</a> text*/ //warn
     void bar3() {}
+
+    /** Single line Javadoc that references {@link String}. */
+    void bar4() {}
 }

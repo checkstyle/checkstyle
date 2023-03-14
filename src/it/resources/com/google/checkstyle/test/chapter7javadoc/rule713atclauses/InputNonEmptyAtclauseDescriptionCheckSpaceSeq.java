@@ -9,9 +9,9 @@ class InputNonEmptyAtclauseDescriptionCheckSpaceSeq
          */
         public InputNonEmptyAtclauseDescriptionCheckSpaceSeq(String a, int b)
         {
-                
+
         }
-        
+
         /**
          * Some javadoc.
          * @param a Some javadoc.
@@ -19,28 +19,28 @@ class InputNonEmptyAtclauseDescriptionCheckSpaceSeq
          */
         public InputNonEmptyAtclauseDescriptionCheckSpaceSeq(String a)
         {
-                
+
         }
-        
+
         /**
          * Some javadoc.
-         * @param a                     
-         * @param b           
-         * @param c     
+         * @param a
+         * @param b
+         * @param c
          */
         public InputNonEmptyAtclauseDescriptionCheckSpaceSeq(String a, int b, double c)
         {
-                
+
         }
-        
+
         /**
-         * 
-         * @param a  
-         * @param e     
-         * @deprecated     
+         *
+         * @param a
+         * @param e
+         * @deprecated
          */
         public InputNonEmptyAtclauseDescriptionCheckSpaceSeq(String a, boolean e)
         {
-                
+
         }
 }

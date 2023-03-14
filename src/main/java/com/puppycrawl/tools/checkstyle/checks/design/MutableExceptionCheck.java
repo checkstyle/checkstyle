@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.design;
 
@@ -23,23 +23,190 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.regex.Pattern;
 
+import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * <p> Ensures that exceptions (classes with names conforming to some regular
- * expression and explicitly extending classes with names conforming to other
- * regular expression) are immutable. That is, they have only final fields.</p>
- * <p> Rationale: Exception instances should represent an error
- * condition. Having non final fields not only allows the state to be
+ * <p>
+ * Ensures that exception classes (classes with names conforming to some pattern
+ * and explicitly extending classes with names conforming to other
+ * pattern) are immutable, that is, that they have only final fields.
+ * </p>
+ * <p>
+ * The current algorithm is very simple: it checks that all members of exception are final.
+ * The user can still mutate an exception's instance (e.g. Throwable has a method called
+ * {@code setStackTrace} which changes the exception's stack trace). But, at least, all
+ * information provided by this exception type is unchangeable.
+ * </p>
+ * <p>
+ * Rationale: Exception instances should represent an error
+ * condition. Having non-final fields not only allows the state to be
  * modified by accident and therefore mask the original condition but
- * also allows developers to accidentally forget to initialise state
- * thereby leading to code catching the exception to draw incorrect
- * conclusions based on the state.</p>
+ * also allows developers to accidentally forget to set the initial state.
+ * In both cases, code catching the exception could draw incorrect
+ * conclusions based on the state.
+ * </p>
+ * <ul>
+ * <li>
+ * Property {@code format} - Specify pattern for exception class names.
+ * Type is {@code java.util.regex.Pattern}.
+ * Default value is {@code "^.*Exception$|^.*Error$|^.*Throwable$"}.
+ * </li>
+ * <li>
+ * Property {@code extendedClassNameFormat} - Specify pattern for extended class names.
+ * Type is {@code java.util.regex.Pattern}.
+ * Default value is {@code "^.*Exception$|^.*Error$|^.*Throwable$"}.
+ * </li>
+ * </ul>
+ * <p>
+ * To configure the check:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;MutableException&quot;/&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * class FirstClass extends Exception {
+ *   private int code; // OK, class name doesn't match with default pattern
  *
- * @author <a href="mailto:simon@redhillconsulting.com.au">Simon Harris</a>
+ *   public FirstClass() {
+ *     code = 1;
+ *   }
+ * }
+ *
+ * class MyException extends Exception {
+ *   private int code; // violation, The field 'code' must be declared final
+ *
+ *   public MyException() {
+ *     code = 2;
+ *   }
+ * }
+ *
+ * class MyThrowable extends Throwable {
+ *    final int code; // OK
+ *    String message; // violation, The field 'message' must be declared final
+ *
+ *    public MyThrowable(int code, String message) {
+ *      this.code = code;
+ *      this.message = message;
+ *    }
+ * }
+ *
+ * class BadException extends java.lang.Exception {
+ *   int code; // violation, The field 'code' must be declared final
+ *
+ *   public BadException(int code) {
+ *     this.code = code;
+ *   }
+ * }
+ * </pre>
+ * <p>
+ * To configure the check so that it checks for class name that ends
+ * with 'Exception':
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;MutableException&quot;&gt;
+ *   &lt;property name=&quot;format&quot; value=&quot;^.*Exception$&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * class FirstClass extends Exception {
+ *   private int code; // OK, class name doesn't match with given pattern
+ *
+ *   public FirstClass() {
+ *     code = 1;
+ *   }
+ * }
+ *
+ * class MyException extends Exception {
+ *   private int code; // violation, The field 'code' must be declared final
+ *
+ *   public MyException() {
+ *     code = 2;
+ *   }
+ * }
+ *
+ * class MyThrowable extends Throwable {
+ *   final int code; // OK, class name doesn't match with given pattern
+ *   String message; // OK, class name doesn't match with given pattern
+ *
+ *   public MyThrowable(int code, String message) {
+ *     this.code = code;
+ *     this.message = message;
+ *   }
+ * }
+ *
+ * class BadException extends java.lang.Exception {
+ *   int code; // violation, The field 'code' must be declared final
+ *
+ *   public BadException(int code) {
+ *     this.code = code;
+ *   }
+ * }
+ * </pre>
+ * <p>
+ * To configure the check so that it checks for type name that is used in
+ * 'extends' and ends with 'Throwable':
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;MutableException&quot;&gt;
+ *   &lt;property name=&quot;extendedClassNameFormat&quot; value=&quot;^.*Throwable$&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * class FirstClass extends Exception {
+ *   private int code; // OK, extended class name doesn't match with given pattern
+ *
+ *   public FirstClass() {
+ *     code = 1;
+ *   }
+ * }
+ *
+ * class MyException extends Exception {
+ *   private int code; // OK, extended class name doesn't match with given pattern
+ *
+ *   public MyException() {
+ *     code = 2;
+ *   }
+ * }
+ *
+ * class MyThrowable extends Throwable {
+ *   final int code; // OK
+ *   String message; // violation, The field 'message' must be declared final
+ *
+ *   public MyThrowable(int code, String message) {
+ *     this.code = code;
+ *     this.message = message;
+ *   }
+ * }
+ *
+ * class BadException extends java.lang.Exception {
+ *   int code; // OK, extended class name doesn't match with given pattern
+ *
+ *   public BadException(int code) {
+ *     this.code = code;
+ *   }
+ * }
+ * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code mutable.exception}
+ * </li>
+ * </ul>
+ *
+ * @since 3.2
  */
+@FileStatefulCheck
 public final class MutableExceptionCheck extends AbstractCheck {
 
     /**
@@ -52,15 +219,16 @@ public final class MutableExceptionCheck extends AbstractCheck {
     private static final String DEFAULT_FORMAT = "^.*Exception$|^.*Error$|^.*Throwable$";
     /** Stack of checking information for classes. */
     private final Deque<Boolean> checkingStack = new ArrayDeque<>();
-    /** Pattern for class name that is being extended. */
+    /** Specify pattern for extended class names. */
     private Pattern extendedClassNameFormat = Pattern.compile(DEFAULT_FORMAT);
     /** Should we check current class or not. */
     private boolean checking;
-    /** The regexp to match against. */
-    private Pattern format = Pattern.compile(DEFAULT_FORMAT);
+    /** Specify pattern for exception class names. */
+    private Pattern format = extendedClassNameFormat;
 
     /**
-     * Sets the format of extended class name to the specified regular expression.
+     * Setter to specify pattern for extended class names.
+     *
      * @param extendedClassNameFormat a {@code String} value
      */
     public void setExtendedClassNameFormat(Pattern extendedClassNameFormat) {
@@ -68,7 +236,8 @@ public final class MutableExceptionCheck extends AbstractCheck {
     }
 
     /**
-     * Set the format for the specified regular expression.
+     * Setter to specify pattern for exception class names.
+     *
      * @param pattern the new pattern
      */
     public void setFormat(Pattern pattern) {
@@ -77,17 +246,17 @@ public final class MutableExceptionCheck extends AbstractCheck {
 
     @Override
     public int[] getDefaultTokens() {
-        return new int[] {TokenTypes.CLASS_DEF, TokenTypes.VARIABLE_DEF};
+        return getRequiredTokens();
     }
 
     @Override
     public int[] getRequiredTokens() {
-        return getDefaultTokens();
+        return new int[] {TokenTypes.CLASS_DEF, TokenTypes.VARIABLE_DEF};
     }
 
     @Override
     public int[] getAcceptableTokens() {
-        return new int[] {TokenTypes.CLASS_DEF, TokenTypes.VARIABLE_DEF};
+        return getRequiredTokens();
     }
 
     @Override
@@ -113,6 +282,7 @@ public final class MutableExceptionCheck extends AbstractCheck {
 
     /**
      * Called when we start processing class definition.
+     *
      * @param ast class definition node
      */
     private void visitClassDef(DetailAST ast) {
@@ -127,6 +297,7 @@ public final class MutableExceptionCheck extends AbstractCheck {
 
     /**
      * Checks variable definition.
+     *
      * @param ast variable def node for check
      */
     private void visitVariableDef(DetailAST ast) {
@@ -135,14 +306,14 @@ public final class MutableExceptionCheck extends AbstractCheck {
                 ast.findFirstToken(TokenTypes.MODIFIERS);
 
             if (modifiersAST.findFirstToken(TokenTypes.FINAL) == null) {
-                log(ast.getLineNo(), ast.getColumnNo(), MSG_KEY,
-                        ast.findFirstToken(TokenTypes.IDENT).getText());
+                log(ast, MSG_KEY, ast.findFirstToken(TokenTypes.IDENT).getText());
             }
         }
     }
 
     /**
      * Checks that a class name conforms to specified format.
+     *
      * @param ast class definition node
      * @return true if a class name conforms to specified format
      */
@@ -153,6 +324,7 @@ public final class MutableExceptionCheck extends AbstractCheck {
 
     /**
      * Checks that if extended class name conforms to specified format.
+     *
      * @param ast class definition node
      * @return true if extended class name conforms to specified format
      */
@@ -169,4 +341,5 @@ public final class MutableExceptionCheck extends AbstractCheck {
         }
         return result;
     }
+
 }

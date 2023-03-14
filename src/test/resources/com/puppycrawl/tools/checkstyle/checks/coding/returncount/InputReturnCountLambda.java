@@ -1,3 +1,13 @@
+/*
+ReturnCount
+max = 1
+maxForVoid = (default)1
+format = (default)^equals$
+tokens = (default)CTOR_DEF, METHOD_DEF, LAMBDA
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.coding.returncount;
 
 import java.lang.Integer;
@@ -12,7 +22,7 @@ public class InputReturnCountLambda {
         return;
     };
 
-    Callable<Integer> fieldWithTwoReturnInLambda = () -> {
+    Callable<Integer> fieldWithTwoReturnInLambda = () -> { // violation 'Return count is 2'
         if (hashCode() == 0) return 0;
         else return 1;
     };
@@ -24,21 +34,21 @@ public class InputReturnCountLambda {
     }
 
     Optional<Integer> methodWithTwoReturnInLambda() {
-        return Optional.of(hashCode()).filter(i -> {
+        return Optional.of(hashCode()).filter(i -> { // violation 'Return count is 2'
             if (i > 0) return true;
             else return false;
         });
     }
 
     Optional<Object> methodWithThreeReturnInLambda(int number) {
-        return Optional.of(number).map(i -> {
+        return Optional.of(number).map(i -> { // violation 'Return count is 3'
             if (i == 42) return true;
             else if (i == 7) return true;
             else return false;
         });
     }
 
-    int methodWithTwoReturnWithLambdas(final int number) {
+    int methodWithTwoReturnWithLambdas(final int number) { // violation 'Return count is 2'
         if (hashCode() > 0) {
             new Thread(
                 () -> {
@@ -46,7 +56,7 @@ public class InputReturnCountLambda {
             ).start();
             return number;
         } else {
-            return Optional.of(hashCode()).orElseGet(() -> {
+            return Optional.of(hashCode()).orElseGet(() -> { // violation 'Return count is 2'
                 if (number > 0) return number;
                 else return 0;
             });

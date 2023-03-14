@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,28 +15,107 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import antlr.collections.AST;
+import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <p>
- * Checks for overly complicated boolean return statements.
- * Idea shamelessly stolen from the equivalent PMD rule (pmd.sourceforge.net).
- * </p>
- * <p>
- * An example of how to configure the check is:
+ * Checks for over-complicated boolean return statements.
+ * For example the following code
  * </p>
  * <pre>
- * &lt;module name="SimplifyBooleanReturn"/&gt;
+ * if (valid())
+ *   return false;
+ * else
+ *   return true;
  * </pre>
- * @author Lars Kühne
+ * <p>
+ * could be written as
+ * </p>
+ * <pre>
+ * return !valid();
+ * </pre>
+ * <p>
+ * The idea for this Check has been shamelessly stolen from the equivalent
+ * <a href="https://pmd.github.io/">PMD</a> rule.
+ * </p>
+ * <p>
+ * To configure the check:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;SimplifyBooleanReturn&quot;/&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * public class Test {
+ *
+ *  private boolean cond;
+ *  private Foo a;
+ *  private Foo b;
+ *
+ *  public boolean check1() {
+ *   if (cond) { // violation, can be simplified
+ *     return true;
+ *   }
+ *   else {
+ *     return false;
+ *   }
+ *  }
+ *
+ *  // Ok, simplified version of check1()
+ *  public boolean check2() {
+ *   return cond;
+ *  }
+ *
+ *  // violations, can be simplified
+ *  public boolean check3() {
+ *   if (cond == true) { // can be simplified to "if (cond)"
+ *     return false;
+ *   }
+ *   else {
+ *     return true; // can be simplified to "return !cond"
+ *   }
+ *  }
+ *
+ *  // Ok, can be simplified but doesn't return a Boolean
+ *  public Foo choose1() {
+ *   if (cond) {
+ *     return a;
+ *   }
+ *   else {
+ *     return b;
+ *   }
+ *  }
+ *
+ *  // Ok, simplified version of choose1()
+ *  public Foo choose2() {
+ *   return cond ? a: b;
+ *  }
+ *
+ * }
+ * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code simplify.boolReturn}
+ * </li>
+ * </ul>
+ *
+ * @since 3.0
  */
+@StatelessCheck
 public class SimplifyBooleanReturnCheck
     extends AbstractCheck {
 
@@ -48,17 +127,17 @@ public class SimplifyBooleanReturnCheck
 
     @Override
     public int[] getAcceptableTokens() {
-        return new int[] {TokenTypes.LITERAL_IF};
+        return getRequiredTokens();
     }
 
     @Override
     public int[] getDefaultTokens() {
-        return getAcceptableTokens();
+        return getRequiredTokens();
     }
 
     @Override
     public int[] getRequiredTokens() {
-        return getAcceptableTokens();
+        return new int[] {TokenTypes.LITERAL_IF};
     }
 
     @Override
@@ -71,18 +150,18 @@ public class SimplifyBooleanReturnCheck
         // [ LITERAL_ELSE (with the elseStatement as a child) ]
 
         // don't bother if this is not if then else
-        final AST elseLiteral =
+        final DetailAST elseLiteral =
             ast.findFirstToken(TokenTypes.LITERAL_ELSE);
         if (elseLiteral != null) {
-            final AST elseStatement = elseLiteral.getFirstChild();
+            final DetailAST elseStatement = elseLiteral.getFirstChild();
 
             // skip '(' and ')'
-            final AST condition = ast.getFirstChild().getNextSibling();
-            final AST thenStatement = condition.getNextSibling().getNextSibling();
+            final DetailAST condition = ast.getFirstChild().getNextSibling();
+            final DetailAST thenStatement = condition.getNextSibling().getNextSibling();
 
             if (canReturnOnlyBooleanLiteral(thenStatement)
                 && canReturnOnlyBooleanLiteral(elseStatement)) {
-                log(ast.getLineNo(), ast.getColumnNo(), MSG_KEY);
+                log(ast, MSG_KEY);
             }
         }
     }
@@ -92,12 +171,10 @@ public class SimplifyBooleanReturnCheck
      * or a compound statement that contains only such a return statement.
      *
      * <p>Returns {@code true} iff ast represents
-     * <br/>
      * <pre>
      * return true/false;
      * </pre>
      * or
-     * <br/>
      * <pre>
      * {
      *   return true/false;
@@ -107,20 +184,19 @@ public class SimplifyBooleanReturnCheck
      * @param ast the syntax tree to check
      * @return if ast is a return statement with a boolean literal.
      */
-    private static boolean canReturnOnlyBooleanLiteral(AST ast) {
-        if (isBooleanLiteralReturnStatement(ast)) {
-            return true;
+    private static boolean canReturnOnlyBooleanLiteral(DetailAST ast) {
+        boolean result = true;
+        if (!isBooleanLiteralReturnStatement(ast)) {
+            final DetailAST firstStatement = ast.getFirstChild();
+            result = isBooleanLiteralReturnStatement(firstStatement);
         }
-
-        final AST firstStatement = ast.getFirstChild();
-        return isBooleanLiteralReturnStatement(firstStatement);
+        return result;
     }
 
     /**
      * Returns if an AST is a return statement with a boolean literal.
      *
      * <p>Returns {@code true} iff ast represents
-     * <br/>
      * <pre>
      * return true/false;
      * </pre>
@@ -128,28 +204,17 @@ public class SimplifyBooleanReturnCheck
      * @param ast the syntax tree to check
      * @return if ast is a return statement with a boolean literal.
      */
-    private static boolean isBooleanLiteralReturnStatement(AST ast) {
+    private static boolean isBooleanLiteralReturnStatement(DetailAST ast) {
         boolean booleanReturnStatement = false;
 
         if (ast != null && ast.getType() == TokenTypes.LITERAL_RETURN) {
-            final AST expr = ast.getFirstChild();
+            final DetailAST expr = ast.getFirstChild();
 
             if (expr.getType() != TokenTypes.SEMI) {
-                final AST value = expr.getFirstChild();
-                booleanReturnStatement = isBooleanLiteralType(value.getType());
+                final DetailAST value = expr.getFirstChild();
+                booleanReturnStatement = TokenUtil.isBooleanLiteralType(value.getType());
             }
         }
         return booleanReturnStatement;
-    }
-
-    /**
-     * Checks if a token type is a literal true or false.
-     * @param tokenType the TokenType
-     * @return true iff tokenType is LITERAL_TRUE or LITERAL_FALSE
-     */
-    private static boolean isBooleanLiteralType(final int tokenType) {
-        final boolean isTrue = tokenType == TokenTypes.LITERAL_TRUE;
-        final boolean isFalse = tokenType == TokenTypes.LITERAL_FALSE;
-        return isTrue || isFalse;
     }
 }

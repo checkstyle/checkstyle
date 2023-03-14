@@ -1,3 +1,11 @@
+/*
+DesignForExtension
+ignoredAnnotations = Deprecated
+requiredJavadocPhrase = (default).*
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.design.designforextension;
 
 public class InputDesignForExtensionNativeMethods {
@@ -19,9 +27,9 @@ public class InputDesignForExtensionNativeMethods {
     public native void foo5();
 
     /*
-     * Block-commend doc for native method.
+     * Violation. Block-commend doc for native method.
      */
-    public native void foo6();
+    public native void foo6(); // violation
 
     @Deprecated
     public native void foo7();

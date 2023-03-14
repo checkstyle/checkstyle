@@ -1,0 +1,44 @@
+* @author
+      author-name <br attr="value"/>
+
+* @deprecated
+      deprecated-text
+
+* @exception      CustomEx
+      {@link CustomEx} <b>Internal</b>
+
+* @param         ParamName
+      Param-description
+
+* @return
+      return-description
+
+* @serial
+      DESCRIPTION
+
+* @serial
+include
+
+* @serialData
+      DESCRIPTION
+      on multiple lines
+
+* @serialField     fieldname     fieldtype
+
+     description
+
+* @since
+            8.2
+
+* @throws      Exception     Exception-description
+         spanning multiple lines
+
+* @version
+             8.2 - 8.3 - 8.4...
+
+* @customTag
+
+     DESCRIPTION
+
+* @see package.Class#member(Object, Object)
+*         Description

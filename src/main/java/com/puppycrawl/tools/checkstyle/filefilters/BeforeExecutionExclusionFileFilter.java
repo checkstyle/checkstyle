@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.filefilters;
 
@@ -26,17 +26,17 @@ import com.puppycrawl.tools.checkstyle.api.BeforeExecutionFileFilter;
 
 /**
  * <p>
- * File filter <code>BeforeExecutionExclusionFileFilter</code> decides which files should be
+ * File filter {@code BeforeExecutionExclusionFileFilter} decides which files should be
  * excluded from being processed by the utility.
  * </p>
  *
  * <p>
- * By default Checkstyle includes all files and sub-directories in a directory to be processed and
- * checked for violations. Users could have files that are in these sub-directories that shouldn't
+ * By default, Checkstyle includes all files and subdirectories in a directory to be processed and
+ * checked for violations. Users could have files that are in these subdirectories that shouldn't
  * be processed with their checkstyle configuration for various reasons, one of which is a valid
  * Java file that won't pass Checkstyle's parser. When Checkstyle tries to parse a Java file and
- * fails, it will throw an <code>Exception</code> and halt parsing any more files for violations.
- * An example of a valid Java file Checkstyle can't parse is JDK 9's <code>module-info.java</code>.
+ * fails, it will throw an {@code Exception} and halt parsing any more files for violations.
+ * An example of a valid Java file Checkstyle can't parse is JDK 9's {@code module-info.java}.
  * This file filter will exclude these problem files from being parsed, allowing the rest of the
  * files to run normal and be validated.
  * </p>
@@ -45,15 +45,12 @@ import com.puppycrawl.tools.checkstyle.api.BeforeExecutionFileFilter;
  * <b>Note:</b> When a file is excluded from the utility, it is excluded from all Checks and no
  * testing for violations will be performed on them.
  * </p>
- *
- * <p>
- * Check have following options:
- * </p>
  * <ul>
  * <li>
- * fileNamePattern - Regular expression to match the file name against. Default value is null.</li>
+ * Property {@code fileNamePattern} - Define regular expression to match the file name against.
+ * Type is {@code java.util.regex.Pattern}.
+ * Default value is {@code null}.</li>
  * </ul>
- * <br>
  *
  * <p>
  * To configure the filter to exclude all 'module-info.java' files:
@@ -64,17 +61,42 @@ import com.puppycrawl.tools.checkstyle.api.BeforeExecutionFileFilter;
  *   &lt;property name=&quot;fileNamePattern&quot; value=&quot;module\-info\.java$&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>
+ * To configure the filter to run only on required files for example that ends with "Remote"
+ * or end with "Client" in names or named as "Remote.java" or "Client.java"
+ * use <a href="https://www.regular-expressions.info/lookaround.html">negative lookahead</a>:
+ * </p>
  *
- * @author Richard Veach
+ * <pre>
+ * &lt;module name=&quot;BeforeExecutionExclusionFileFilter&quot;&gt;
+ *   &lt;property name=&quot;fileNamePattern&quot;
+ *  value=&quot;^(?!.*(Remote\.java|Client\.java|[\\/]Remote\.java|[\\/]Client\.java)).*$&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * To configure the filter to exclude all Test folder files:
+ * </p>
+ *
+ * <pre>
+ * &lt;module name=&quot;BeforeExecutionExclusionFileFilter&quot;&gt;
+ *   &lt;property name=&quot;fileNamePattern&quot;
+ *     value=&quot;.*[\\/]src[\\/]test[\\/].*$&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.Checker}
+ * </p>
+ *
+ * @since 7.2
  */
 public final class BeforeExecutionExclusionFileFilter extends AutomaticBean
         implements BeforeExecutionFileFilter {
 
-    /** Filename of exclusion. */
+    /** Define regular expression to match the file name against. */
     private Pattern fileNamePattern;
 
     /**
-     * Sets regular expression of the file to exclude.
+     * Setter to define regular expression to match the file name against.
      *
      * @param fileNamePattern regular expression of the excluded file.
      */
@@ -83,7 +105,13 @@ public final class BeforeExecutionExclusionFileFilter extends AutomaticBean
     }
 
     @Override
+    protected void finishLocalSetup() {
+        // No code by default
+    }
+
+    @Override
     public boolean accept(String uri) {
         return fileNamePattern == null || !fileNamePattern.matcher(uri).find();
     }
+
 }

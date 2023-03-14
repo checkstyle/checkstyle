@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,38 +15,66 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import java.util.HashMap;
 import java.util.Map;
 
+import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <p>
- * Checks that overload methods are grouped together. Example:
+ * Checks that overloaded methods are grouped together. Overloaded methods have the same
+ * name but different signatures where the signature can differ by the number of
+ * input parameters or type of input parameters or both.
+ * </p>
+ * <p>
+ * To configure the check:
  * </p>
  * <pre>
- * {@code
- * public void foo(int i) {}
- * public void foo(String s) {}
- * public void notFoo() {} // Have to be after foo(int i, String s)
- * public void foo(int i, String s) {}
- * }
+ * &lt;module name=&quot;OverloadMethodsDeclarationOrder&quot;/&gt;
  * </pre>
  * <p>
- * An example of how to configure the check is:
+ * Example of correct grouping of overloaded methods:
  * </p>
- *
  * <pre>
- * &lt;module name="OverloadMethodsDeclarationOrder"/&gt;
+ * public void foo(int i) {}
+ * public void foo(String s) {}
+ * public void foo(String s, int i) {}
+ * public void foo(int i, String s) {}
+ * public void notFoo() {}
  * </pre>
- * @author maxvetrenko
+ * <p>
+ * Example of incorrect grouping of overloaded methods:
+ * </p>
+ * <pre>
+ * public void foo(int i) {} // OK
+ * public void foo(String s) {} // OK
+ * public void notFoo() {} // violation. Have to be after foo(String s, int i)
+ * public void foo(int i, String s) {}
+ * public void foo(String s, int i) {}
+ * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code overload.methods.declaration}
+ * </li>
+ * </ul>
+ *
+ * @since 5.8
  */
+@StatelessCheck
 public class OverloadMethodsDeclarationOrderCheck extends AbstractCheck {
 
     /**
@@ -57,28 +85,34 @@ public class OverloadMethodsDeclarationOrderCheck extends AbstractCheck {
 
     @Override
     public int[] getDefaultTokens() {
-        return getAcceptableTokens();
+        return getRequiredTokens();
     }
 
     @Override
     public int[] getAcceptableTokens() {
+        return getRequiredTokens();
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
         return new int[] {
             TokenTypes.OBJBLOCK,
         };
     }
 
     @Override
-    public int[] getRequiredTokens() {
-        return getAcceptableTokens();
-    }
-
-    @Override
     public void visitToken(DetailAST ast) {
         final int parentType = ast.getParent().getType();
-        if (parentType == TokenTypes.CLASS_DEF
-                || parentType == TokenTypes.ENUM_DEF
-                || parentType == TokenTypes.INTERFACE_DEF
-                || parentType == TokenTypes.LITERAL_NEW) {
+
+        final int[] tokenTypes = {
+            TokenTypes.CLASS_DEF,
+            TokenTypes.ENUM_DEF,
+            TokenTypes.INTERFACE_DEF,
+            TokenTypes.LITERAL_NEW,
+            TokenTypes.RECORD_DEF,
+        };
+
+        if (TokenUtil.isOfType(parentType, tokenTypes)) {
             checkOverloadMethodsGrouping(ast);
         }
     }
@@ -86,6 +120,7 @@ public class OverloadMethodsDeclarationOrderCheck extends AbstractCheck {
     /**
      * Checks that if overload methods are grouped together they should not be
      * separated from each other.
+     *
      * @param objectBlock
      *        is a class, interface or enum object block.
      */
@@ -100,14 +135,12 @@ public class OverloadMethodsDeclarationOrderCheck extends AbstractCheck {
                 currentIndex++;
                 final String methodName =
                         currentToken.findFirstToken(TokenTypes.IDENT).getText();
-                if (methodIndexMap.containsKey(methodName)) {
-                    final int previousIndex = methodIndexMap.get(methodName);
-                    if (currentIndex - previousIndex > allowedDistance) {
-                        final int previousLineWithOverloadMethod =
-                                methodLineNumberMap.get(methodName);
-                        log(currentToken.getLineNo(), MSG_KEY,
-                                previousLineWithOverloadMethod);
-                    }
+                final Integer previousIndex = methodIndexMap.get(methodName);
+                if (previousIndex != null && currentIndex - previousIndex > allowedDistance) {
+                    final int previousLineWithOverloadMethod =
+                            methodLineNumberMap.get(methodName);
+                    log(currentToken, MSG_KEY,
+                            previousLineWithOverloadMethod);
                 }
                 methodIndexMap.put(methodName, currentIndex);
                 methodLineNumberMap.put(methodName, currentToken.getLineNo());
@@ -115,4 +148,5 @@ public class OverloadMethodsDeclarationOrderCheck extends AbstractCheck {
             currentToken = currentToken.getNextSibling();
         }
     }
+
 }

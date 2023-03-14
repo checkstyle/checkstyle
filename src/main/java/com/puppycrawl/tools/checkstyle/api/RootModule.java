@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.api;
 
@@ -25,9 +25,9 @@ import java.util.List;
 /**
  * The first module that is run as part of Checkstyle and controls its entire
  * behavior and children.
- * @author Richard Veach
  */
 public interface RootModule extends Configurable {
+
     /** Cleans up the object. **/
     void destroy();
 
@@ -35,8 +35,9 @@ public interface RootModule extends Configurable {
      * Processes a set of files.
      * Once this is done, it is highly recommended to call for
      * the destroy method to close and remove the listeners.
+     *
      * @param files the list of files to be audited.
-     * @return the total number of errors found
+     * @return the total number of audit events with error severity found
      * @throws CheckstyleException if error condition within Checkstyle occurs
      * @see #destroy()
      */
@@ -44,6 +45,7 @@ public interface RootModule extends Configurable {
 
     /**
      * Add the listener that will be used to receive events from the audit.
+     *
      * @param listener the nosy thing
      */
     void addListener(AuditListener listener);
@@ -53,7 +55,9 @@ public interface RootModule extends Configurable {
      * classes when the module tree is being built up.
      * If no custom ModuleFactory is being set for the root module then
      * this module classloader must be specified.
+     *
      * @param moduleClassLoader the classloader used to load module classes
      */
     void setModuleClassLoader(ClassLoader moduleClassLoader);
+
 }
