@@ -1,9 +1,9 @@
 #############################################################################
-# GitHub Action to Push Release Notes.
+# GitHub Action to Commit and Push Release Notes to releasenotes.xml File.
 #
 #############################################################################
-name: "R: Push Release Notes"
-run-name: "R: Push Release Notes ${{ inputs.version }}"
+name: "R: Update xdoc with Release Notes"
+run-name: "R: Update xdoc with Release Notes ${{ inputs.version }}"
 on:
   workflow_dispatch:
     inputs:
@@ -21,8 +21,8 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  releasenotes:
-    name: Push releasenotes ${{ inputs.version }}
+  update-xdoc-with-releasenotes:
+    name: Update xdoc with Release Notes ${{ inputs.version }}
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -38,7 +38,7 @@ jobs:
         env:
           READ_ONLY_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          ./.ci/update-releasenotesxml.sh ${{ inputs.version }}
+          ./.ci/release-update-xdoc-with-releasenotes.sh ${{ inputs.version }}
       - name: Commit and Push
         run: |
             git config user.name 'github-actions[bot]'

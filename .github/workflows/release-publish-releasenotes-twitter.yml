@@ -1,9 +1,9 @@
 #############################################################################
-# GitHub Action to Publish Release Notes GitHub Page.
+# GitHub Action to Publish Release Notes on Twitter.
 #
 #############################################################################
-name: "R: Publish GitHub Page"
-run-name: "R: Publish GitHub Page ${{ inputs.version }}"
+name: "R: Publish Release Notes on Twitter"
+run-name: "R: Publish Release Notes on Twitter ${{ inputs.version }}"
 on:
   workflow_dispatch:
     inputs:
@@ -25,21 +25,25 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  publish:
-    name: Publish releasenotes GitHub Page ${{ inputs.version }}
+  publish-releasenotes-twitter:
+    name: Publish Release Notes on Twitter ${{ inputs.version }}
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
     steps:
       - name: Checkout the latest code
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
       - name: Setup local maven cache
         uses: actions/cache@v2
         with:
           path: ~/.m2/repository
           key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
       - name: Run Shell Script
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          ./.ci/update-github-page.sh ${{ inputs.version }}
+          ./.ci/release-publish-releasenotes-twitter.sh ${{ inputs.version }}
+        env:
+          GITHUB_READ_ONLY_TOKEN: ${{ secrets.READ_ONLY_TOKEN_GITHUB }}
+          TWITTER_CONSUMER_KEY: ${{ secrets.TWITTER_CONSUMER_KEY }}
+          TWITTER_CONSUMER_SECRET: ${{ secrets.TWITTER_CONSUMER_SECRET }}
+          TWITTER_ACCESS_TOKEN: ${{ secrets.TWITTER_ACCESS_TOKEN }}
+          TWITTER_ACCESS_TOKEN_SECRET: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}

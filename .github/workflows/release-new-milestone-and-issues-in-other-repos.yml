@@ -1,9 +1,9 @@
 #############################################################################
-# GitHub Action to Create New Milestone and issue in Other Repositories.
+# GitHub Action to Create New Milestone and Issues in Other Repositories.
 #
 #############################################################################
-name: "R: Close/Create Milestone, Create issues"
-run-name: "R: Close/Create Milestone, Create issues ${{ inputs.version }}"
+name: "R: New Milestone, Create issues"
+run-name: "R: New Milestone, Create issues ${{ inputs.version }}"
 on:
   workflow_dispatch:
     inputs:
@@ -29,8 +29,8 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  creation:
-    name: Creation-New Milestone/Issue" for ${{ inputs.version }}
+  new-milestone-and-issues-in-other-repos:
+    name: New Milestone, Create issues for ${{ inputs.version }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the latest code
@@ -49,10 +49,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ github.token }}
         run: |
-          ./.ci/close-create-milestone.sh
+          ./.ci/release-close-create-milestone.sh
 
       - name: Creation of issue in other Repositories
         env:
           GITHUB_TOKEN: ${{ secrets.PAT }}
         run: |
-          ./.ci/creation-of-issue-in-other-repos.sh ${{ inputs.version }}
+          ./.ci/release-create-issues-in-other-repos.sh ${{ inputs.version }}

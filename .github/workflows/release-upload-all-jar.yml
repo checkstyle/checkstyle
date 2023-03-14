@@ -1,9 +1,10 @@
 #############################################################################
-# GitHub Action to Update github.io
+# GitHub Action to Upload '-all' Jar.
+# It is part of .github/workflows/new-milestone-and-issue-in-other-repo.yml
 #
 #############################################################################
-name: "R: Update github.io"
-run-name: "R: Update github.io ${{ inputs.version }}"
+name: "R: Upload '-all' Jar"
+run-name: "R: Upload '-all' Jar ${{ inputs.version }}"
 on:
   workflow_dispatch:
     inputs:
@@ -19,35 +20,33 @@ on:
         type: string
         required: true
 
+permissions:
+  contents: write
+
 concurrency:
   group: ${{ github.workflow }}
     -${{ github.event.pull_request.number || github.ref }}-${{ inputs.concurrency-group }}
   cancel-in-progress: true
 
 jobs:
-  update:
-    name: update github.io ${{ inputs.version }}
+  upload-all-jar:
+    name: Upload '-all' jar ${{ inputs.version }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the latest code
         uses: actions/checkout@v3
         with:
-          repository: checkstyle/checkstyle
           fetch-depth: 0
+          ref: master
+
       - name: Setup local maven cache
         uses: actions/cache@v2
         with:
           path: ~/.m2/repository
           key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
-      - name: Run Shell Script
+
+      - name: Run GitHub Update Script
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
         run: |
-          ./.ci/generate-website.sh ${{ inputs.version }}
-      - name: Checkout checkstyle.github.io repo
-        uses: actions/checkout@v3
-        with:
-          repository: checkstyle/checkstyle.github.io
-          token: ${{ secrets.PAT }}
-          path: .ci-temp/checkstyle.github.io/
-      - name: Commit and Push to checkstyle.github.io repo
-        run: |
-          ./.ci/push-website-to-github-io.sh ${{ inputs.version }}
+          ./.ci/release-upload-all-jar.sh ${{ inputs.version }}
