@@ -51,6 +51,7 @@ cd .ci-temp/checkstyle
 LATEST_RELEASE_TAG=$(git describe "$(git rev-list --tags --max-count=1)")
 cd ../../
 
+# shellcheck disable=2016 # we do not want to expand properties in this command
 CS_RELEASE_VERSION=$(mvn -e --no-transfer-progress -q -Dexec.executable='echo' \
               -Dexec.args='${project.version}' \
               --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec | sed 's/-SNAPSHOT//')
