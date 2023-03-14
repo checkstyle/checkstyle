@@ -4,7 +4,7 @@ set -e
 
 function list_profiles() {
   POM_PATH="$(dirname "${0}")/../pom.xml"
-  cat "$POM_PATH" | sed -n -e 's/^.*<id>\(pitest-[^<]\+\)<\/id>.*$/\1/p' | sort
+  < "$POM_PATH" sed -n -e 's/^.*<id>\(pitest-[^<]\+\)<\/id>.*$/\1/p' | sort
 }
 
 case $1 in

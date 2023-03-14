@@ -34,7 +34,7 @@ curl https://api.github.com/repos/checkstyle/checkstyle/releases \
  -o /var/tmp/cs-releases.json
 
 TARGET_RELEASE_NUM=$1
-TARGET_RELEASE_INDEX=$(cat /var/tmp/cs-releases.json | \
+TARGET_RELEASE_INDEX=$(< /var/tmp/cs-releases.json \
     jq "[.[].tag_name] | to_entries | .[] | \
     select(.value==\"checkstyle-$TARGET_RELEASE_NUM\") | .key")
 echo TARGET_RELEASE_INDEX="$TARGET_RELEASE_INDEX"
@@ -42,8 +42,8 @@ echo TARGET_RELEASE_INDEX="$TARGET_RELEASE_INDEX"
 PREVIOUS_RELEASE_INDEX=$(($TARGET_RELEASE_INDEX+1))
 echo PREVIOUS_RELEASE_INDEX="$PREVIOUS_RELEASE_INDEX"
 
-END_REF=$(cat /var/tmp/cs-releases.json | jq -r ".[$TARGET_RELEASE_INDEX].tag_name")
-START_REF=$(cat /var/tmp/cs-releases.json | jq -r ".[$PREVIOUS_RELEASE_INDEX].tag_name")
+END_REF=$(< /var/tmp/cs-releases.json jq -r ".[$TARGET_RELEASE_INDEX].tag_name")
+START_REF=$(< /var/tmp/cs-releases.json jq -r ".[$PREVIOUS_RELEASE_INDEX].tag_name")
 
 echo START_REF="$START_REF"
 echo END_REF="$END_REF"

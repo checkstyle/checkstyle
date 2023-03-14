@@ -38,7 +38,7 @@ curl https://api.github.com/repos/checkstyle/checkstyle/releases \
  -o /var/tmp/cs-releases.json
 
 # Last release is at index 0.
-START_REF=$(cat /var/tmp/cs-releases.json | jq -r ".[0].tag_name")
+START_REF=$(< /var/tmp/cs-releases.json jq -r ".[0].tag_name")
 END_REF="checkstyle-$TARGET_VERSION"
 
 echo START_REF="$START_REF"

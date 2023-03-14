@@ -40,7 +40,7 @@ check-missing-pitests)
   fail=0
   mkdir -p target
 
-  list=($(cat pom.xml | \
+  list=($(< pom.xml \
     xmlstarlet sel --ps -N pom="http://maven.apache.org/POM/4.0.0" \
     -t -v "//pom:profile[./pom:id[contains(text(),'pitest')]]//pom:targetClasses/pom:param"))
 
@@ -89,7 +89,7 @@ nondex)
     -Dtest=!JavadocPropertiesGeneratorTest#testNonExistentArgument
   mkdir -p .ci-temp
   grep -RlE 'td class=.x' .nondex/ | cat > .ci-temp/output.txt
-  RESULT=$(cat .ci-temp/output.txt | wc -c)
+  RESULT=$(< .ci-temp/output.txt wc -c)
   cat .ci-temp/output.txt
   echo 'Size of output:'"$RESULT"
   if [[ $RESULT != 0 ]]; then false; fi
@@ -410,7 +410,7 @@ spotbugs-and-pmd)
   mvn -e --no-transfer-progress clean test-compile pmd:check spotbugs:check
   cd .ci-temp/spotbugs-and-pmd
   grep "Processing_Errors" "$CHECKSTYLE_DIR/target/site/pmd.html" | cat > errors.log
-  RESULT=$(cat errors.log | wc -l)
+  RESULT=$(< errors.log wc -l)
   if [[ $RESULT != 0 ]]; then
     echo "Errors are detected in target/site/pmd.html."
     sleep 5s
