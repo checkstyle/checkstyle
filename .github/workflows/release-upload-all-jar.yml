@@ -1,6 +1,5 @@
 #############################################################################
 # GitHub Action to Upload '-all' Jar.
-# It is part of .github/workflows/new-milestone-and-issue-in-other-repo.yml
 #
 #############################################################################
 name: "R: Upload '-all' Jar"
