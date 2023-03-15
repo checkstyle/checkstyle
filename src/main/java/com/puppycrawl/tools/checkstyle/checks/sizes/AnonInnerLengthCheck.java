@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,10 +15,11 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.sizes;
 
+import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -30,32 +31,46 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <p>
  * Rationale: If an anonymous inner class becomes very long
  * it is hard to understand and to see the flow of the method
- * where the class is defined. Therefore long anonymous inner
+ * where the class is defined. Therefore, long anonymous inner
  * classes should usually be refactored into a named inner class.
  * See also Bloch, Effective Java, p. 93.
  * </p>
+ * <ul>
+ * <li>
+ * Property {@code max} - Specify the maximum number of lines allowed.
+ * Type is {@code int}.
+ * Default value is {@code 20}.
+ * </li>
+ * </ul>
  * <p>
- * The default maximum anonymous inner class length is 20 lines.
- * To change the maximum number of lines, set property max.
- * </p>
- * <p>
- * An example of how to configure the check is:
+ * To configure the check to accept anonymous classes with up to 20 lines:
  * </p>
  * <pre>
  * &lt;module name="AnonInnerLength"/&gt;
  * </pre>
  * <p>
- * An example of how to configure the check so that it accepts anonymous
- * inner classes with up to 60 lines is:
+ * To configure the check to accept anonymous classes with up to 60 lines:
  * </p>
  * <pre>
  * &lt;module name="AnonInnerLength"&gt;
- *    &lt;property name="max" value="60"/&gt;
+ *   &lt;property name="max" value="60"/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code maxLen.anonInner}
+ * </li>
+ * </ul>
  *
- * @author Rob Worth
+ * @since 3.2
  */
+@StatelessCheck
 public class AnonInnerLengthCheck extends AbstractCheck {
 
     /**
@@ -67,22 +82,22 @@ public class AnonInnerLengthCheck extends AbstractCheck {
     /** Default maximum number of lines. */
     private static final int DEFAULT_MAX = 20;
 
-    /** Maximum number of lines. */
+    /** Specify the maximum number of lines allowed. */
     private int max = DEFAULT_MAX;
 
     @Override
     public int[] getDefaultTokens() {
-        return getAcceptableTokens();
+        return getRequiredTokens();
     }
 
     @Override
     public int[] getAcceptableTokens() {
-        return new int[] {TokenTypes.LITERAL_NEW};
+        return getRequiredTokens();
     }
 
     @Override
     public int[] getRequiredTokens() {
-        return getAcceptableTokens();
+        return new int[] {TokenTypes.LITERAL_NEW};
     }
 
     @Override
@@ -94,17 +109,18 @@ public class AnonInnerLengthCheck extends AbstractCheck {
             final int length =
                 closingBrace.getLineNo() - openingBrace.getLineNo() + 1;
             if (length > max) {
-                log(ast.getLineNo(), ast.getColumnNo(), MSG_KEY,
-                        length, max);
+                log(ast, MSG_KEY, length, max);
             }
         }
     }
 
     /**
-     * Sets maximum length of an anonymous inner class.
+     * Setter to specify the maximum number of lines allowed.
+     *
      * @param length the maximum length of an anonymous inner class.
      */
     public void setMax(int length) {
         max = length;
     }
+
 }

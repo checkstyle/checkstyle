@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,30 +15,24 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.naming;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
-import static org.junit.Assert.assertArrayEquals;
 
-import java.io.File;
-import java.io.IOException;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Test;
-
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class ClassTypeParameterNameCheckTest
-    extends BaseCheckTestSupport {
+    extends AbstractModuleTestSupport {
+
     @Override
-    protected String getPath(String filename) throws IOException {
-        return super.getPath("checks" + File.separator
-                + "naming" + File.separator
-                + "classtypeparametername" + File.separator
-                + filename);
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/checks/naming/classtypeparametername";
     }
 
     @Test
@@ -46,40 +40,38 @@ public class ClassTypeParameterNameCheckTest
         final ClassTypeParameterNameCheck checkObj =
             new ClassTypeParameterNameCheck();
         final int[] expected = {TokenTypes.TYPE_PARAMETER};
-        assertArrayEquals("Default required tokens are invalid",
-            expected, checkObj.getRequiredTokens());
+        assertWithMessage("Default required tokens are invalid")
+            .that(checkObj.getRequiredTokens())
+            .isEqualTo(expected);
     }
 
     @Test
     public void testClassDefault()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(ClassTypeParameterNameCheck.class);
 
         final String pattern = "^[A-Z]$";
 
         final String[] expected = {
-            "5:42: " + getCheckMessage(MSG_INVALID_PATTERN, "t", pattern),
-            "13:14: " + getCheckMessage(MSG_INVALID_PATTERN, "foo", pattern),
-            "27:24: " + getCheckMessage(MSG_INVALID_PATTERN, "foo", pattern),
+            "12:42: " + getCheckMessage(MSG_INVALID_PATTERN, "t", pattern),
+            "20:14: " + getCheckMessage(MSG_INVALID_PATTERN, "foo", pattern),
+            "34:24: " + getCheckMessage(MSG_INVALID_PATTERN, "foo", pattern),
         };
-        verify(checkConfig, getPath("InputClassTypeParameterName.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputClassTypeParameterName.java"), expected);
     }
 
     @Test
     public void testClassFooName()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(ClassTypeParameterNameCheck.class);
-        checkConfig.addAttribute("format", "^foo$");
 
         final String pattern = "^foo$";
 
         final String[] expected = {
-            "5:42: " + getCheckMessage(MSG_INVALID_PATTERN, "t", pattern),
-            "33:18: " + getCheckMessage(MSG_INVALID_PATTERN, "T", pattern),
+            "12:43: " + getCheckMessage(MSG_INVALID_PATTERN, "t", pattern),
+            "40:19: " + getCheckMessage(MSG_INVALID_PATTERN, "T", pattern),
         };
-        verify(checkConfig, getPath("InputClassTypeParameterName.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputClassTypeParameterName1.java"), expected);
     }
 
     @Test
@@ -90,6 +82,9 @@ public class ClassTypeParameterNameCheckTest
         final int[] expected = {
             TokenTypes.TYPE_PARAMETER,
         };
-        assertArrayEquals("Default acceptable tokens are invalid", expected, actual);
+        assertWithMessage("Default acceptable tokens are invalid")
+            .that(actual)
+            .isEqualTo(expected);
     }
+
 }

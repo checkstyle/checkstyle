@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,32 +15,87 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * Check the number of nested {@code for} -statements. The maximum
- * number of nested layers can be configured. The default value is 1.
- * The code for the class is copied from the NestedIfDepthCheck-class.
- * The only difference is the intercepted token (for instead of if).
- * Example:
+ * <p>
+ * Restricts nested {@code for} blocks to a specified depth.
+ * </p>
+ * <ul>
+ * <li>
+ * Property {@code max} - Specify maximum allowed nesting depth.
+ * Type is {@code int}.
+ * Default value is {@code 1}.
+ * </li>
+ * </ul>
+ * <p>
+ * To configure the check:
+ * </p>
  * <pre>
- *  &lt;!-- Restricts nested for blocks to a specified depth (default = 1).
- *                                                                        --&gt;
- *  &lt;module name=&quot;com.puppycrawl.tools.checkstyle.checks.coding
- *                                            .CatchWithLostStackCheck&quot;&gt;
- *    &lt;property name=&quot;severity&quot; value=&quot;info&quot;/&gt;
- *    &lt;property name=&quot;max&quot; value=&quot;1&quot;/&gt;
- *  &lt;/module&gt;
+ * &lt;module name=&quot;NestedForDepth&quot;/&gt;
  * </pre>
- * @author Alexander Jesse
- * @see NestedIfDepthCheck
+ * <p>Example:</p>
+ * <pre>
+ * for(int i=0; i&lt;10; i++) {
+ *   for(int j=0; j&lt;i; j++) {
+ *     for(int k=0; k&lt;j; k++) { // violation, max allowed nested loop number is 1
+ *     }
+ *   }
+ * }
+ *
+ * for(int i=0; i&lt;10; i++) {
+ *   for(int j=0; j&lt;i; j++) { // ok
+ *   }
+ * }
+ * </pre>
+ * <p>
+ * To configure the check to allow nesting depth 2:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;NestedForDepth&quot;&gt;
+ *   &lt;property name=&quot;max&quot; value=&quot;2&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * for(int i=0; i&lt;10; i++) {
+ *   for(int j=0; j&lt;i; j++) {
+ *     for(int k=0; k&lt;j; k++) {
+ *       for(int l=0; l&lt;k; l++) { // violation, max allowed nested loop number is 2
+ *       }
+ *     }
+ *    }
+ * }
+ *
+ * for(int i=0; i&lt;10; i++) {
+ *   for(int j=0; j&lt;i; j++) {
+ *     for(int k=0; k&lt;j; k++) { // ok
+ *     }
+ *   }
+ * }
+ * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code nested.for.depth}
+ * </li>
+ * </ul>
+ *
+ * @since 5.3
  */
+@FileStatefulCheck
 public final class NestedForDepthCheck extends AbstractCheck {
 
     /**
@@ -49,13 +104,14 @@ public final class NestedForDepthCheck extends AbstractCheck {
      */
     public static final String MSG_KEY = "nested.for.depth";
 
-    /** Maximum allowed nesting depth. */
+    /** Specify maximum allowed nesting depth. */
     private int max = 1;
     /** Current nesting depth. */
     private int depth;
 
     /**
-     * Setter for maximum allowed nesting depth.
+     * Setter to specify maximum allowed nesting depth.
+     *
      * @param max maximum allowed nesting depth.
      */
     public void setMax(int max) {
@@ -64,17 +120,17 @@ public final class NestedForDepthCheck extends AbstractCheck {
 
     @Override
     public int[] getDefaultTokens() {
-        return getAcceptableTokens();
+        return getRequiredTokens();
     }
 
     @Override
     public int[] getAcceptableTokens() {
-        return new int[] {TokenTypes.LITERAL_FOR};
+        return getRequiredTokens();
     }
 
     @Override
     public int[] getRequiredTokens() {
-        return getAcceptableTokens();
+        return new int[] {TokenTypes.LITERAL_FOR};
     }
 
     @Override
@@ -94,4 +150,5 @@ public final class NestedForDepthCheck extends AbstractCheck {
     public void leaveToken(DetailAST ast) {
         --depth;
     }
+
 }

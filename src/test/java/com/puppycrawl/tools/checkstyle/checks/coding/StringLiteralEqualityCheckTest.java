@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,48 +15,98 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.coding.StringLiteralEqualityCheck.MSG_KEY;
 
-import java.io.File;
-import java.io.IOException;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Assert;
-import org.junit.Test;
-
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 
 public class StringLiteralEqualityCheckTest
-        extends BaseCheckTestSupport {
+        extends AbstractModuleTestSupport {
+
     @Override
-    protected String getPath(String filename) throws IOException {
-        return super.getPath("checks" + File.separator
-                + "coding" + File.separator
-                + "stringliteralequality" + File.separator
-                + filename);
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/checks/coding/stringliteralequality";
     }
 
     @Test
     public void testIt() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(StringLiteralEqualityCheck.class);
         final String[] expected = {
-            "11:18: " + getCheckMessage(MSG_KEY, "=="),
-            "16:20: " + getCheckMessage(MSG_KEY, "=="),
-            "21:22: " + getCheckMessage(MSG_KEY, "=="),
+            "17:18: " + getCheckMessage(MSG_KEY, "=="),
+            "22:20: " + getCheckMessage(MSG_KEY, "=="),
+            "27:22: " + getCheckMessage(MSG_KEY, "=="),
         };
-        verify(checkConfig, getPath("InputStringLiteralEquality.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputStringLiteralEquality.java"), expected);
+    }
+
+    @Test
+    public void testStringLiteralEqualityTextBlocks() throws Exception {
+        final String[] expected = {
+            "14:34: " + getCheckMessage(MSG_KEY, "=="),
+            "22:21: " + getCheckMessage(MSG_KEY, "=="),
+            "25:24: " + getCheckMessage(MSG_KEY, "!="),
+            "28:34: " + getCheckMessage(MSG_KEY, "=="),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputStringLiteralEqualityCheckTextBlocks.java"),
+            expected);
+    }
+
+    @Test
+    public void testConcatenatedStringLiterals() throws Exception {
+        final String[] expected = {
+            "14:15: " + getCheckMessage(MSG_KEY, "=="),
+            "17:24: " + getCheckMessage(MSG_KEY, "=="),
+            "20:31: " + getCheckMessage(MSG_KEY, "!="),
+            "23:15: " + getCheckMessage(MSG_KEY, "=="),
+            "28:26: " + getCheckMessage(MSG_KEY, "=="),
+            "31:26: " + getCheckMessage(MSG_KEY, "!="),
+            "34:15: " + getCheckMessage(MSG_KEY, "!="),
+            "37:32: " + getCheckMessage(MSG_KEY, "=="),
+            "39:33: " + getCheckMessage(MSG_KEY, "!="),
+            "41:31: " + getCheckMessage(MSG_KEY, "!="),
+            "42:27: " + getCheckMessage(MSG_KEY, "=="),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputStringLiteralEqualityConcatenatedString.java"), expected);
+    }
+
+    @Test
+    public void testConcatenatedTextBlocks() throws Exception {
+        final String[] expected = {
+            "15:15: " + getCheckMessage(MSG_KEY, "=="),
+            "21:23: " + getCheckMessage(MSG_KEY, "=="),
+            "26:23: " + getCheckMessage(MSG_KEY, "!="),
+            "29:15: " + getCheckMessage(MSG_KEY, "=="),
+            "38:26: " + getCheckMessage(MSG_KEY, "=="),
+            "42:26: " + getCheckMessage(MSG_KEY, "!="),
+            "46:15: " + getCheckMessage(MSG_KEY, "!="),
+            "51:28: " + getCheckMessage(MSG_KEY, "!="),
+            "53:31: " + getCheckMessage(MSG_KEY, "=="),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputStringLiteralEqualityConcatenatedTextBlocks.java"),
+                expected);
     }
 
     @Test
     public void testTokensNotNull() {
         final StringLiteralEqualityCheck check = new StringLiteralEqualityCheck();
-        Assert.assertNotNull(check.getAcceptableTokens());
-        Assert.assertNotNull(check.getDefaultTokens());
-        Assert.assertNotNull(check.getRequiredTokens());
+        assertWithMessage("Acceptable tokens should not be null")
+            .that(check.getAcceptableTokens())
+            .isNotNull();
+        assertWithMessage("Default tokens should not be null")
+            .that(check.getDefaultTokens())
+            .isNotNull();
+        assertWithMessage("Required tokens should not be null")
+            .that(check.getRequiredTokens())
+            .isNotNull();
     }
+
 }

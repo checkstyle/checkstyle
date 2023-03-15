@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.naming;
 
@@ -24,9 +24,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * <p>
- * Checks that {@code catch} parameter names conform to a format specified by the format property.
- * The format is a {@link java.util.regex.Pattern regular expression} and defaults to
- * <strong>^(e|t|ex|[a-z][a-z][a-zA-Z]+)$</strong>.
+ * Checks that {@code catch} parameter names conform to a specified pattern.
  * </p>
  * <p>
  * Default pattern has the following characteristic:
@@ -42,23 +40,92 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <li>prohibits two letter abbreviations like {@code ie} or {@code ee}</li>
  * <li>prohibits any other characters than letters</li>
  * </ul>
+ * <ul>
+ * <li>
+ * Property {@code format} - Specifies valid identifiers.
+ * Type is {@code java.util.regex.Pattern}.
+ * Default value is {@code "^(e|t|ex|[a-z][a-z][a-zA-Z]+)$"}.
+ * </li>
+ * </ul>
  * <p>
- * An example of how to configure the check is:
+ * To configure the check:
  * </p>
  * <pre>
  * &lt;module name="CatchParameterName"/&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * public class MyTest {
+ *   public void myTest() {
+ *     try {
+ *       // ...
+ *     } catch (ArithmeticException e) { // OK
+ *       // ...
+ *     } catch (ArrayIndexOutOfBoundsException ex) { // OK
+ *       // ...
+ *     } catch (Throwable t) { // OK
+ *       // ...
+ *     } catch (IndexOutOfBoundsException e123) { // violation, digits
+ *                                // not allowed
+ *       // ...
+ *     } catch (NullPointerException ab) { // violation, should have at least
+ *                              // three characters if not e|t|ex
+ *       // ...
+ *     } catch (ArrayStoreException abc) { // OK
+ *       // ...
+ *     } catch (InterruptedException aBC) { // violation, first two characters
+ *                               // should be in lowercase
+ *       // ...
+ *     } catch (RuntimeException abC) { // OK
+ *       // ...
+ *     } catch (Exception abCD) { // OK
+ *       // ...
+ *     }
+ *   }
+ * }
  * </pre>
  * <p>
  * An example of how to configure the check for names that begin with a lower case letter,
  * followed by any letters or digits is:
  * </p>
+ * <p>Configuration:</p>
  * <pre>
  * &lt;module name="CatchParameterName"&gt;
- *    &lt;property name="format" value="^[a-z][a-zA-Z0-9]+$"/&gt;
+ *   &lt;property name="format" value="^[a-z][a-zA-Z0-9]+$"/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * public class MyTest {
+ *   public void myTest() {
+ *     try {
+ *       // ...
+ *     } catch (ArithmeticException ex) { // OK
+ *       // ...
+ *     } catch (ArrayIndexOutOfBoundsException ex2) { // OK
+ *       // ...
+ *     } catch (IOException thirdException) { // OK
+ *       // ...
+ *     } catch (Exception FourthException) { // violation, the initial letter
+ *                                           // should be lowercase
+ *       // ...
+ *     }
+ *   }
+ * }
+ * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code name.invalidPattern}
+ * </li>
+ * </ul>
  *
- * @author Michal Kordas
+ * @since 6.14
  */
 public class CatchParameterNameCheck extends AbstractNameCheck {
 
@@ -71,21 +138,22 @@ public class CatchParameterNameCheck extends AbstractNameCheck {
 
     @Override
     public int[] getDefaultTokens() {
-        return getAcceptableTokens();
+        return getRequiredTokens();
     }
 
     @Override
     public int[] getAcceptableTokens() {
-        return new int[] {TokenTypes.PARAMETER_DEF};
+        return getRequiredTokens();
     }
 
     @Override
     public int[] getRequiredTokens() {
-        return getAcceptableTokens();
+        return new int[] {TokenTypes.PARAMETER_DEF};
     }
 
     @Override
     protected boolean mustCheckName(DetailAST ast) {
         return ast.getParent().getType() == TokenTypes.LITERAL_CATCH;
     }
+
 }

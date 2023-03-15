@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,80 +15,93 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.metrics;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.metrics.CyclomaticComplexityCheck.MSG_KEY;
 
-import java.io.File;
-import java.io.IOException;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Assert;
-import org.junit.Test;
-
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class CyclomaticComplexityCheckTest
-    extends BaseCheckTestSupport {
+    extends AbstractModuleTestSupport {
+
     @Override
-    protected String getPath(String filename) throws IOException {
-        return super.getPath("checks" + File.separator
-                + "metrics" + File.separator + filename);
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/checks/metrics/cyclomaticcomplexity";
     }
 
     @Test
     public void testSwitchBlockAsSingleDecisionPointSetToTrue() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(CyclomaticComplexityCheck.class);
-        checkConfig.addAttribute("max", "0");
-        checkConfig.addAttribute("switchBlockAsSingleDecisionPoint", "true");
 
         final String[] expected = {
-            "4:5: " + getCheckMessage(MSG_KEY, 2, 0),
+            "14:5: " + getCheckMessage(MSG_KEY, 2, 0),
         };
 
-        verify(checkConfig, getPath("InputComplexitySwitchBlocks.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputCyclomaticComplexitySwitchBlocks.java"), expected);
     }
 
     @Test
     public void testSwitchBlockAsSingleDecisionPointSetToFalse() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(CyclomaticComplexityCheck.class);
-        checkConfig.addAttribute("max", "0");
-        checkConfig.addAttribute("switchBlockAsSingleDecisionPoint", "false");
 
         final String[] expected = {
-            "4:5: " + getCheckMessage(MSG_KEY, 5, 0),
+            "14:5: " + getCheckMessage(MSG_KEY, 5, 0),
         };
 
-        verify(checkConfig, getPath("InputComplexitySwitchBlocks.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputCyclomaticComplexitySwitchBlocks2.java"), expected);
+    }
+
+    @Test
+    public void testEqualsMaxComplexity() throws Exception {
+
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("InputCyclomaticComplexitySwitchBlocks3.java"), expected);
     }
 
     @Test
     public void test() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(CyclomaticComplexityCheck.class);
-
-        checkConfig.addAttribute("max", "0");
 
         final String[] expected = {
-            "5:5: " + getCheckMessage(MSG_KEY, 2, 0),
-            "10:17: " + getCheckMessage(MSG_KEY, 2, 0),
-            "22:5: " + getCheckMessage(MSG_KEY, 6, 0),
-            "35:5: " + getCheckMessage(MSG_KEY, 3, 0),
-            "45:5: " + getCheckMessage(MSG_KEY, 5, 0),
-            "63:5: " + getCheckMessage(MSG_KEY, 3, 0),
-            "76:5: " + getCheckMessage(MSG_KEY, 3, 0),
-            "88:5: " + getCheckMessage(MSG_KEY, 3, 0),
-            "100:5: " + getCheckMessage(MSG_KEY, 1, 0),
-            "104:13: " + getCheckMessage(MSG_KEY, 2, 0),
+            "15:5: " + getCheckMessage(MSG_KEY, 2, 0),
+            "20:17: " + getCheckMessage(MSG_KEY, 2, 0),
+            "32:5: " + getCheckMessage(MSG_KEY, 6, 0),
+            "45:5: " + getCheckMessage(MSG_KEY, 3, 0),
+            "55:5: " + getCheckMessage(MSG_KEY, 5, 0),
+            "73:5: " + getCheckMessage(MSG_KEY, 3, 0),
+            "86:5: " + getCheckMessage(MSG_KEY, 3, 0),
+            "98:5: " + getCheckMessage(MSG_KEY, 3, 0),
+            "110:5: " + getCheckMessage(MSG_KEY, 1, 0),
+            "114:13: " + getCheckMessage(MSG_KEY, 2, 0),
         };
 
-        verify(checkConfig, getPath("InputComplexity.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputCyclomaticComplexity.java"), expected);
+    }
+
+    @Test
+    public void testCyclomaticComplexityRecords() throws Exception {
+
+        final int max = 0;
+
+        final String[] expected = {
+            "17:9: " + getCheckMessage(MSG_KEY, 11, max),
+            "48:9: " + getCheckMessage(MSG_KEY, 11, max),
+            "83:5: " + getCheckMessage(MSG_KEY, 11, max),
+            "115:5: " + getCheckMessage(MSG_KEY, 11, max),
+            "148:5: " + getCheckMessage(MSG_KEY, 11, max),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputCyclomaticComplexityRecords.java"), expected);
     }
 
     @Test
@@ -111,17 +124,46 @@ public class CyclomaticComplexityCheckTest
             TokenTypes.QUESTION,
             TokenTypes.LAND,
             TokenTypes.LOR,
+            TokenTypes.COMPACT_CTOR_DEF,
         };
-        Assert.assertArrayEquals(expected, actual);
+        assertWithMessage("Invalid acceptable tokens")
+            .that(actual)
+            .isEqualTo(expected);
+    }
+
+    @Test
+    public void testGetRequiredTokens() {
+        final CyclomaticComplexityCheck cyclomaticComplexityCheckObj =
+            new CyclomaticComplexityCheck();
+        final int[] actual = cyclomaticComplexityCheckObj.getRequiredTokens();
+        final int[] expected = {
+            TokenTypes.CTOR_DEF,
+            TokenTypes.METHOD_DEF,
+            TokenTypes.INSTANCE_INIT,
+            TokenTypes.STATIC_INIT,
+            TokenTypes.COMPACT_CTOR_DEF,
+        };
+        assertWithMessage("Invalid required tokens")
+            .that(actual)
+            .isEqualTo(expected);
     }
 
     @Test
     public void testHighMax() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(CyclomaticComplexityCheck.class);
-        checkConfig.addAttribute("max", "100");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("InputComplexitySwitchBlocks.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputCyclomaticComplexitySwitchBlocks4.java"), expected);
     }
+
+    @Test
+    public void testDefaultMax() throws Exception {
+        final String[] expected = {
+            "14:5: " + getCheckMessage(MSG_KEY, 12, 10),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputCyclomaticComplexitySwitchBlocks5.java"), expected);
+    }
+
 }

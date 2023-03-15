@@ -1,0 +1,19 @@
+/*
+ImportControl
+file = (file)InputImportControlWrong.xml
+path = (default).*
+
+
+*/
+
+package com.puppycrawl.tools.checkstyle.checks.imports.importcontrol; // violation 'Import control file does not handle this package'
+
+import java.awt.Image;
+import javax.swing.border.*;
+import java.io.File;
+import static java.awt.Button.ABORT;
+
+public class InputImportControl3
+{
+
+}

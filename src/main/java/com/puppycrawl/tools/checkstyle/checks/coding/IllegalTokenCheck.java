@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,44 +15,81 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
-import com.puppycrawl.tools.checkstyle.utils.JavadocUtils;
-import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <p>
- * Checks for illegal tokens. By default labels are prohibited.
+ * Checks for illegal tokens. By default, labels are prohibited.
  * </p>
  * <p>
  * Rationale: Certain language features can harm readability, lead to
  * confusion or are not obvious to novice developers. Other features
  * may be discouraged in certain frameworks, such as not having
- * native methods in EJB components.
+ * native methods in Enterprise JavaBeans components.
  * </p>
+ * <ul>
+ * <li>
+ * Property {@code tokens} - tokens to check
+ * Type is {@code anyTokenTypesSet}.
+ * Default value is
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LABELED_STAT">
+ * LABELED_STAT</a>.
+ * </li>
+ * </ul>
  * <p>
- * An example of how to configure the check is:
+ * To configure the check:
  * </p>
  * <pre>
- * &lt;module name="IllegalToken"/&gt;
+ * &lt;module name=&quot;IllegalToken&quot;/&gt;
  * </pre>
- * <p> An example of how to configure the check to forbid
- * a {@link TokenTypes#LITERAL_NATIVE LITERAL_NATIVE} token is:
+ * <p>Example:</p>
+ * <pre>
+ * public void myTest() {
+ *     outer: // violation
+ *     for (int i = 0; i &lt; 5; i++) {
+ *         if (i == 1) {
+ *             break outer;
+ *         }
+ *     }
+ * }
+ * </pre>
+ * <p>
+ * To configure the check to report violation on token LITERAL_NATIVE:
  * </p>
  * <pre>
- * &lt;module name="IllegalToken"&gt;
- *     &lt;property name="tokens" value="LITERAL_NATIVE"/&gt;
+ * &lt;module name=&quot;IllegalToken&quot;&gt;
+ *   &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_NATIVE&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
- * @author <a href="mailto:simon@redhillconsulting.com.au">Simon Harris</a>
- * @author Rick Giles
+ * <p>Example:</p>
+ * <pre>
+ * public native void myTest(); // violation
+ * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code illegal.token}
+ * </li>
+ * </ul>
+ *
+ * @since 3.2
  */
+@StatelessCheck
 public class IllegalTokenCheck
     extends AbstractCheck {
 
@@ -71,12 +108,12 @@ public class IllegalTokenCheck
 
     @Override
     public int[] getAcceptableTokens() {
-        return TokenUtils.getAllTokenIds();
+        return TokenUtil.getAllTokenIds();
     }
 
     @Override
     public int[] getRequiredTokens() {
-        return CommonUtils.EMPTY_INT_ARRAY;
+        return CommonUtil.EMPTY_INT_ARRAY;
     }
 
     @Override
@@ -87,8 +124,7 @@ public class IllegalTokenCheck
     @Override
     public void visitToken(DetailAST ast) {
         log(
-            ast.getLineNo(),
-            ast.getColumnNo(),
+            ast,
             MSG_KEY,
             convertToString(ast)
         );
@@ -96,6 +132,7 @@ public class IllegalTokenCheck
 
     /**
      * Converts given AST node to string representation.
+     *
      * @param ast node to be represented as string
      * @return string representation of AST node
      */
@@ -107,7 +144,7 @@ public class IllegalTokenCheck
                 break;
             // multiline tokens need to become singlelined
             case TokenTypes.COMMENT_CONTENT:
-                tokenText = JavadocUtils.escapeAllControlChars(ast.getText());
+                tokenText = JavadocUtil.escapeAllControlChars(ast.getText());
                 break;
             default:
                 tokenText = ast.getText();

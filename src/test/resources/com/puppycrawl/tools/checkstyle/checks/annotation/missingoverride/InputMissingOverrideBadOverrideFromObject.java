@@ -1,3 +1,10 @@
+/*
+MissingOverride
+javaFiveCompatibility = (default)false
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.annotation.missingoverride;
 
 public class InputMissingOverrideBadOverrideFromObject
@@ -5,8 +12,8 @@ public class InputMissingOverrideBadOverrideFromObject
     /**
      * {@inheritDoc}
      */
-    public boolean equals(Object obj)
-    {
+    public boolean // violation 'include @java.lang.Override annotation when '@inheritDoc''
+    equals(Object obj) {
         return false;
     }
 
@@ -17,8 +24,7 @@ public class InputMissingOverrideBadOverrideFromObject
      *
      * {@inheritDoc
      */
-    public int hashCode()
-    {
+    public int hashCode() {
         return 1;
     }
 
@@ -27,9 +33,8 @@ public class InputMissingOverrideBadOverrideFromObject
         /**
          * {@inheritDoc}
          */
-        protected void finalize() throws Throwable
-        {
-        }
+        protected void // violation 'include @java.lang.Override annotation when '@inheritDoc''
+        finalize() throws Throwable {}
     }
 }
 
@@ -38,16 +43,37 @@ interface HashEq2 {
     /**
      * {@inheritDoc}
      */
-    public int hashCode();
+    public int hashCode(); // violation 'include @java.lang.Override annotation when '@inheritDoc''
+
+    /**
+     * {@inheritDoc}
+     */
+    @Deprecated // violation 'include @java.lang.Override annotation when '@inheritDoc''
+    public String toString();
+
+    @SuppressWarnings("")
+    /**
+     * {@inheritDoc}
+     */
+    @Deprecated
+    public boolean equals(Object a); // ok, because javadoc has invalid position
+
+    @SuppressWarnings("")
+    /**
+     * {@inheritDoc}
+     */
+    public HashEq2 clone(Object a); // ok, because javadoc has invalid position
 }
 
-enum Bleh3 {
+enum enum3 {
     B;
 
     /**
      * {@inheritDoc}
      */
-    public String toString() {
+    public String toString(){//violation 'include @java.lang.Override annotation when '@inheritDoc''
         return "B";
     }
+
+    private static void test() {}
 }

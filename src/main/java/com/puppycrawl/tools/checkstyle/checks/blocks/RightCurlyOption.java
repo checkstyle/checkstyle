@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,16 +15,30 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.blocks;
 
 /**
- * Represents the options for placing the right curly brace {@code '}'}.
+ * Represents the options for placing the right curly brace <code>'}'</code>.
  *
- * @author Oliver Burn
  */
 public enum RightCurlyOption {
+
+    /**
+     * Represents the policy that the brace must be alone on the line.
+     * For example:
+     *
+     * <pre>
+     * try {
+     *     ...
+     * <b>}</b>
+     * finally {
+     *     ...
+     * <b>}</b>
+     * </pre>
+     **/
+    ALONE,
 
     /**
      * Represents the policy that the brace must be alone on the line,
@@ -47,29 +61,19 @@ public enum RightCurlyOption {
     ALONE_OR_SINGLELINE,
 
     /**
-     * Represents the policy that the brace must be alone on the line.
-     * For example:
-     *
-     * <pre>
-     * try {
-     *     ...
-     * <b>}</b>
-     * finally {
-     *     ...
-     * <b>}</b>
-     * </pre>
-     **/
-    ALONE,
-
-    /**
-     * Represents the policy that the brace should be on the same line as the
-     * the next part of a multi-block statement (one that directly contains
-     * multiple blocks: if/else-if/else or try/catch/finally). It also allows
-     * single-line format of multi-block statements.
+     * Represents the policy that the brace should follow
+     * {@link RightCurlyOption#ALONE_OR_SINGLELINE} policy
+     * but the brace should be on the same line as the next part of a multi-block statement
+     * (one that directly contains
+     * multiple blocks: if/else-if/else or try/catch/finally).
+     * If no next part of a multi-block statement present, brace must be alone on line.
+     * It also allows single-line format of multi-block statements.
      *
      * <p>Examples:</p>
      *
      * <pre>
+     * public long getId() {return id;<b>}</b> // this is OK, it is single-line
+     *
      * // try-catch-finally blocks
      * try {
      *     ...
@@ -105,19 +109,14 @@ public enum RightCurlyOption {
      *
      * if (a &#62; 0) {
      *     ...
-     * <b>}</b> int i = 5; // this is NOT OK, next part of a multi-block statement is absent
-     *
-     * // Single line blocks will rise violations, because right curly
-     * // brace is not on the same line as the next part of a multi-block
-     * // statement, it just ends the line.
-     * public long getId() {return id;<b>}</b> // this is NOT OK
+     * <b>}</b> int i = 5; // NOT OK, no next part of a multi-block statement, so should be alone
      *
      * Thread t = new Thread(new Runnable() {
      *  &#64;Override
      *  public void run() {
      *                ...
-     *  <b>}</b> // this is NOT OK, not on the same line as the next part of a multi-block statement
-     * <b>}</b>); // this is OK, allowed for better code readability
+     *  <b>}</b> // this is OK, should be alone as next part of a multi-block statement is absent
+     * <b>}</b>); // this case is out of scope of RightCurly Check (see issue #5945)
      *
      * if (a &#62; 0) { ... <b>}</b> // OK, single-line multi-block statement
      * if (a &#62; 0) { ... } else { ... <b>}</b> // OK, single-line multi-block statement
@@ -126,5 +125,6 @@ public enum RightCurlyOption {
      * } else { ... <b>}</b> // OK, single-line multi-block statement
      * </pre>
      **/
-    SAME
+    SAME,
+
 }

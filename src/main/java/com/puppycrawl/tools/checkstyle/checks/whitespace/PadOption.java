@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,18 +15,18 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
 /**
  * Represents the options for whitespace around parentheses.
  *
- * @author Oliver Burn
  * @see EmptyForIteratorPadCheck
  * @see ParenPadCheck
  */
 public enum PadOption {
+
     /**
      * Represents no spacing following a left parenthesis
      * or preceding a right one.
@@ -37,5 +37,6 @@ public enum PadOption {
      * Represents mandatory spacing following a left parenthesis
      * and preceding a right one.
      */
-    SPACE
+    SPACE,
+
 }

@@ -1,8 +1,11 @@
-////////////////////////////////////////////////////////////////////////////////
-// Test case file for checkstyle.
-// Created: Feb-2001
-// Ignore error
-////////////////////////////////////////////////////////////////////////////////
+/*
+WhitespaceAfter
+tokens = (default)COMMA, SEMI, TYPECAST, LITERAL_IF, LITERAL_ELSE, LITERAL_WHILE, \
+         LITERAL_DO, LITERAL_FOR, DO_WHILE
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.whitespace.whitespaceafter;
 import java.io.*;
 /**
@@ -39,7 +42,7 @@ final class InputWhitespaceAfterDefaultConfig
     protected int mNumCreated2 = 0;
 
     /** commas are wrong **/
-    private int[] mInts = new int[] {1,2, 3,
+    private int[] mInts = new int[] {1,2, 3, // violation '',' is not followed by whitespace'
                                      4};
 
     //
@@ -68,7 +71,7 @@ final class InputWhitespaceAfterDefaultConfig
      * @param badFormat3 bad format
      * @throws java.lang.Exception abc
      **/
-    int test1(int badFormat1,int badFormat2,
+    int test1(int badFormat1,int badFormat2, // violation '',' is not followed by whitespace'
               final int badFormat3)
         throws java.lang.Exception
     {
@@ -144,8 +147,8 @@ final class InputWhitespaceAfterDefaultConfig
     // A very, very long line that is OK because it matches the regexp "^.*is OK.*regexp.*$"
     // long line that has a tab ->	<- and would be OK if tab counted as 1 char
     // tabs that count as one char because of their position ->	<-   ->	<-, OK
- 
-    /** some lines to test the error column after tabs */
+
+    /** some lines to test the violation column after tabs */
     void errorColumnAfterTabs()
     {
         // with tab-width 8 all statements below start at the same column,
@@ -158,13 +161,13 @@ final class InputWhitespaceAfterDefaultConfig
   	        int tab5 =1;
     }
 
-    // FIXME:
-    /* FIXME: a
-     * FIXME:
-     * TODO
+    // MEMME:
+    /* MEMME: a
+     * MEMME:
+     * OOOO
      */
     /* NOTHING */
-    /* YES */ /* FIXME: x */ /* YES!! */
+    /* YES */ /* MEMME: x */ /* YES!! */
 
     /** test long comments **/
     void veryLong()
@@ -197,7 +200,7 @@ final class InputWhitespaceAfterDefaultConfig
     }
 }
 
-/** Test class for variable naming in for each clauses. */
+/** Test class for variable naming in for each clause. */
 class InputSimple2
 {
     /** Some more Javadoc. */
@@ -220,6 +223,6 @@ enum MyEnum1
     /** XYZ constant */
     XYZ;
 
-    /** Should be mSomeMemeber */
+    /** Should be mSomeMember */
     private int someMember;
 }

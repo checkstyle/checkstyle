@@ -18,8 +18,8 @@ public class InputIndentationCorrectClass  //indent:0 exp:0
        extends  //indent:7 exp:>=6
           SecondClassReturnWithVeryVeryVeryLongName {  //indent:10 exp:>=6
     public InnerClass2(String string) {  //indent:4 exp:4
-      super(string);  //indent:6 exp:6
-      // TODO Auto-generated constructor stub //indent:6 exp:6
+      super();  //indent:6 exp:6
+      // OOOO Auto-generated constructor stub //indent:6 exp:6
     }  //indent:4 exp:4
   }  //indent:2 exp:2
 
@@ -28,7 +28,7 @@ public class InputIndentationCorrectClass  //indent:0 exp:0
     SecondClassWithLongLongLongLongName anon =  //indent:4 exp:4
           new SecondClassWithLongLongLongLongName() {  //indent:10 exp:>=8
 
-    };  //indent:4 exp:4
+          };  //indent:10 exp:10
 
     SecondClassWithLongLongLongLongName anon2 = new  //indent:4 exp:4
           SecondClassWithLongLongLongLongName() {  //indent:10 exp:>=8
@@ -38,6 +38,12 @@ public class InputIndentationCorrectClass  //indent:0 exp:0
 } //indent:0 exp:0
 
 class SecondClassWithLongLongLongLongName  //indent:0 exp:0
+    extends  //indent:4 exp:4
+         InputIndentationCorrectClass{  //indent:9 exp:>=4
+
+}  //indent:0 exp:0
+
+class SecondClassReturnWithVeryVeryVeryLongName  //indent:0 exp:0
     extends  //indent:4 exp:4
          InputIndentationCorrectClass{  //indent:9 exp:>=4
 

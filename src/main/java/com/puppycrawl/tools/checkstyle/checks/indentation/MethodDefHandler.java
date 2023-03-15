@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.indentation;
 
@@ -25,10 +25,9 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 /**
  * Handler for method definitions.
  *
- * @author jrichard
- * @author Maikel Steneker
  */
 public class MethodDefHandler extends BlockParentHandler {
+
     /**
      * Construct an instance of this handler with the given indentation check,
      * abstract syntax tree, and parent handler.
@@ -73,20 +72,20 @@ public class MethodDefHandler extends BlockParentHandler {
     /**
      * Gets the start line of the method, excluding any annotations. This is required because the
      * current {@link TokenTypes#METHOD_DEF} may not always be the start as seen in
-     * https://github.com/checkstyle/checkstyle/issues/3145.
+     * <a href="https://github.com/checkstyle/checkstyle/issues/3145">#3145</a>.
      *
      * @param mainAst
      *            The method definition ast.
      * @return The start column position of the method.
      */
-    private int getMethodDefLineStart(DetailAST mainAst) {
+    private static int getMethodDefLineStart(DetailAST mainAst) {
         // get first type position
         int lineStart = mainAst.findFirstToken(TokenTypes.IDENT).getLineNo();
 
         // check if there is a type before the indent
         final DetailAST typeNode = mainAst.findFirstToken(TokenTypes.TYPE);
         if (typeNode != null) {
-            lineStart = getFirstLine(lineStart, typeNode);
+            lineStart = getFirstLine(typeNode);
         }
 
         // check if there is a modifier before the type
@@ -111,7 +110,9 @@ public class MethodDefHandler extends BlockParentHandler {
         checkModifiers();
         checkThrows();
 
-        checkWrappingIndentation(getMainAst(), getMethodDefParamRightParen(getMainAst()));
+        if (getMethodDefParamRightParen(getMainAst()) != null) {
+            checkWrappingIndentation(getMainAst(), getMethodDefParamRightParen(getMainAst()));
+        }
         // abstract method def -- no body
         if (getLeftCurly() != null) {
             super.checkIndentation();
@@ -120,6 +121,7 @@ public class MethodDefHandler extends BlockParentHandler {
 
     /**
      * Returns right parenthesis of method definition parameter list.
+     *
      * @param methodDefAst
      *          method definition ast node(TokenTypes.LITERAL_IF)
      * @return right parenthesis of method definition parameter list.
@@ -137,15 +139,21 @@ public class MethodDefHandler extends BlockParentHandler {
     private static String getHandlerName(DetailAST ast) {
         final String name;
 
-        if (ast.getType() == TokenTypes.CTOR_DEF) {
-            name = "ctor def";
+        switch (ast.getType()) {
+            case TokenTypes.CTOR_DEF:
+                name = "ctor def";
+                break;
+            case TokenTypes.ANNOTATION_FIELD_DEF:
+                name = "annotation field def";
+                break;
+            case TokenTypes.COMPACT_CTOR_DEF:
+                name = "compact ctor def";
+                break;
+            default:
+                name = "method def";
         }
-        else if (ast.getType() == TokenTypes.ANNOTATION_FIELD_DEF) {
-            name = "annotation field def";
-        }
-        else {
-            name = "method def";
-        }
+
         return name;
     }
+
 }

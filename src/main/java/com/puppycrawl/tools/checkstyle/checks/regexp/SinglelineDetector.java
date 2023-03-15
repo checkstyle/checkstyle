@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,18 +15,19 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.regexp;
 
-import java.util.List;
 import java.util.regex.Matcher;
+
+import com.puppycrawl.tools.checkstyle.api.FileText;
 
 /**
  * A detector that matches individual lines.
- * @author oliver
  */
 class SinglelineDetector {
+
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
@@ -46,20 +47,23 @@ class SinglelineDetector {
 
     /**
      * Creates an instance.
+     *
      * @param options the options to use.
      */
-    SinglelineDetector(DetectorOptions options) {
+    /* package */ SinglelineDetector(DetectorOptions options) {
         this.options = options;
     }
 
     /**
      * Processes a set of lines looking for matches.
-     * @param lines the lines to process.
+     *
+     * @param fileText {@link FileText} object contains the lines to process.
      */
-    public void processLines(List<String> lines) {
+    public void processLines(FileText fileText) {
         resetState();
         int lineNo = 0;
-        for (String line : lines) {
+        for (int index = 0; index < fileText.size(); index++) {
+            final String line = fileText.get(index);
             lineNo++;
             checkLine(lineNo, line, options.getPattern().matcher(line), 0);
         }
@@ -70,11 +74,11 @@ class SinglelineDetector {
     private void finish() {
         if (currentMatches < options.getMinimum()) {
             if (options.getMessage().isEmpty()) {
-                options.getReporter().log(0, MSG_REGEXP_MINIMUM,
+                options.getReporter().log(1, MSG_REGEXP_MINIMUM,
                         options.getMinimum(), options.getFormat());
             }
             else {
-                options.getReporter().log(0, options.getMessage());
+                options.getReporter().log(1, options.getMessage());
             }
         }
     }
@@ -88,6 +92,7 @@ class SinglelineDetector {
 
     /**
      * Check a line for matches.
+     *
      * @param lineNo the line number of the line to check
      * @param line the line to check
      * @param matcher the matcher to use
@@ -106,10 +111,7 @@ class SinglelineDetector {
             // So we need to use (endCol - 1) here.
             if (options.getSuppressor()
                     .shouldSuppress(lineNo, startCol, lineNo, endCol - 1)) {
-                if (endCol < line.length()) {
-                    // check if the expression is on the rest of the line
-                    checkLine(lineNo, line, matcher, endCol);
-                }
+                checkLine(lineNo, line, matcher, endCol);
             }
             else {
                 currentMatches++;
@@ -125,4 +127,5 @@ class SinglelineDetector {
             }
         }
     }
+
 }

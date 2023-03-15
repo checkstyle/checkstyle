@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.indentation;
 
@@ -25,7 +25,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 /**
  * Handler for synchronized statements.
  *
- * @author liscju piotr.listkiewicz@gmail.com
  */
 public class SynchronizedHandler extends BlockParentHandler {
 
@@ -71,6 +70,7 @@ public class SynchronizedHandler extends BlockParentHandler {
 
     /**
      * Checks if given synchronized is modifier of method.
+     *
      * @param ast synchronized(TokenTypes.LITERAL_SYNCHRONIZED) to check
      * @return true if synchronized only modifies method
      */
@@ -80,10 +80,12 @@ public class SynchronizedHandler extends BlockParentHandler {
 
     /**
      * Returns right parenthesis of synchronized statement.
+     *
      * @param syncStatementAST ast node(TokenTypes.LITERAL_SYNCHRONIZED)
      * @return right parenthesis of synchronized statement.
      */
     private static DetailAST getSynchronizedStatementRightParen(DetailAST syncStatementAST) {
         return syncStatementAST.findFirstToken(TokenTypes.RPAREN);
     }
+
 }

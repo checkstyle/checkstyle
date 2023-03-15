@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.gui;
 
@@ -27,7 +27,6 @@ import javax.swing.WindowConstants;
 /**
  * Entry point for starting the checkstyle GUI.
  *
- * @author unknown
  */
 public final class Main {
 
@@ -38,19 +37,30 @@ public final class Main {
 
     /**
      * Entry point.
+     *
      * @param args the command line arguments.
      */
     public static void main(final String... args) {
         SwingUtilities.invokeLater(() -> {
-            final MainFrame mainFrame = new MainFrame();
-
-            if (args.length > 0) {
-                final File sourceFile = new File(args[0]);
-                mainFrame.openFile(sourceFile);
-            }
-            mainFrame.setTitle("Checkstyle GUI");
-            mainFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-            mainFrame.setVisible(true);
+            createMainFrame(args);
         });
     }
+
+    /**
+     * Helper method to create the {@code MainFrame} instance.
+     *
+     * @param args the command line arguments
+     */
+    private static void createMainFrame(String... args) {
+        final MainFrame mainFrame = new MainFrame();
+        if (args.length > 0) {
+            final File sourceFile = new File(args[0]);
+            mainFrame.openFile(sourceFile);
+        }
+        mainFrame.setTitle("Checkstyle GUI");
+        mainFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        mainFrame.pack();
+        mainFrame.setVisible(true);
+    }
+
 }

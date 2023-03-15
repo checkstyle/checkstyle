@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,22 +15,78 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.sizes;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
 
+import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
- * Restricts the number of executable statements to a specified limit
- * (default = 30).
- * @author Simon Harris
+ * <p>
+ * Restricts the number of executable statements to a specified limit.
+ * </p>
+ * <ul>
+ * <li>
+ * Property {@code max} - Specify the maximum threshold allowed.
+ * Type is {@code int}.
+ * Default value is {@code 30}.
+ * </li>
+ * <li>
+ * Property {@code tokens} - tokens to check
+ * Type is {@code java.lang.String[]}.
+ * Validation type is {@code tokenSet}.
+ * Default value is:
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
+ * CTOR_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+ * METHOD_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INSTANCE_INIT">
+ * INSTANCE_INIT</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STATIC_INIT">
+ * STATIC_INIT</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMPACT_CTOR_DEF">
+ * COMPACT_CTOR_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">
+ * LAMBDA</a>.
+ * </li>
+ * </ul>
+ * <p>
+ * To configure the check:
+ * </p>
+ * <pre>
+ * &lt;module name="ExecutableStatementCount"/&gt;
+ * </pre>
+ * <p>
+ * To configure the check with a threshold of 20 for constructor and method definitions:
+ * </p>
+ * <pre>
+ * &lt;module name="ExecutableStatementCount"&gt;
+ *   &lt;property name="max" value="20"/&gt;
+ *   &lt;property name="tokens" value="CTOR_DEF,METHOD_DEF"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code executableStatementCount}
+ * </li>
+ * </ul>
+ *
+ * @since 3.2
  */
+@FileStatefulCheck
 public final class ExecutableStatementCountCheck
     extends AbstractCheck {
 
@@ -46,7 +102,7 @@ public final class ExecutableStatementCountCheck
     /** Stack of method contexts. */
     private final Deque<Context> contextStack = new ArrayDeque<>();
 
-    /** Threshold to report error for. */
+    /** Specify the maximum threshold allowed. */
     private int max;
 
     /** Current method context. */
@@ -65,6 +121,8 @@ public final class ExecutableStatementCountCheck
             TokenTypes.INSTANCE_INIT,
             TokenTypes.STATIC_INIT,
             TokenTypes.SLIST,
+            TokenTypes.COMPACT_CTOR_DEF,
+            TokenTypes.LAMBDA,
         };
     }
 
@@ -81,11 +139,14 @@ public final class ExecutableStatementCountCheck
             TokenTypes.INSTANCE_INIT,
             TokenTypes.STATIC_INIT,
             TokenTypes.SLIST,
+            TokenTypes.COMPACT_CTOR_DEF,
+            TokenTypes.LAMBDA,
         };
     }
 
     /**
-     * Sets the maximum threshold.
+     * Setter to specify the maximum threshold allowed.
+     *
      * @param max the maximum threshold.
      */
     public void setMax(int max) {
@@ -100,57 +161,46 @@ public final class ExecutableStatementCountCheck
 
     @Override
     public void visitToken(DetailAST ast) {
-        switch (ast.getType()) {
-            case TokenTypes.CTOR_DEF:
-            case TokenTypes.METHOD_DEF:
-            case TokenTypes.INSTANCE_INIT:
-            case TokenTypes.STATIC_INIT:
-                visitMemberDef(ast);
-                break;
-            case TokenTypes.SLIST:
-                visitSlist(ast);
-                break;
-            default:
-                throw new IllegalStateException(ast.toString());
+        if (isContainerNode(ast)) {
+            visitContainerNode(ast);
+        }
+        else if (TokenUtil.isOfType(ast, TokenTypes.SLIST)) {
+            visitSlist(ast);
+        }
+        else {
+            throw new IllegalStateException(ast.toString());
         }
     }
 
     @Override
     public void leaveToken(DetailAST ast) {
-        switch (ast.getType()) {
-            case TokenTypes.CTOR_DEF:
-            case TokenTypes.METHOD_DEF:
-            case TokenTypes.INSTANCE_INIT:
-            case TokenTypes.STATIC_INIT:
-                leaveMemberDef(ast);
-                break;
-            case TokenTypes.SLIST:
-                // Do nothing
-                break;
-            default:
-                throw new IllegalStateException(ast.toString());
+        if (isContainerNode(ast)) {
+            leaveContainerNode(ast);
+        }
+        else if (!TokenUtil.isOfType(ast, TokenTypes.SLIST)) {
+            throw new IllegalStateException(ast.toString());
         }
     }
 
     /**
-     * Process the start of the member definition.
-     * @param ast the token representing the member definition.
+     * Process the start of the container node.
+     *
+     * @param ast the token representing the container node.
      */
-    private void visitMemberDef(DetailAST ast) {
+    private void visitContainerNode(DetailAST ast) {
         contextStack.push(context);
         context = new Context(ast);
     }
 
     /**
-     * Process the end of a member definition.
+     * Process the end of a container node.
      *
-     * @param ast the token representing the member definition.
+     * @param ast the token representing the container node.
      */
-    private void leaveMemberDef(DetailAST ast) {
+    private void leaveContainerNode(DetailAST ast) {
         final int count = context.getCount();
         if (count > max) {
-            log(ast.getLineNo(), ast.getColumnNo(),
-                    MSG_KEY, count, max);
+            log(ast, MSG_KEY, count, max);
         }
         context = contextStack.pop();
     }
@@ -161,30 +211,34 @@ public final class ExecutableStatementCountCheck
      * @param ast the token representing the statement list.
      */
     private void visitSlist(DetailAST ast) {
-        if (context.getAST() != null) {
-            // find member AST for the statement list
-            final DetailAST contextAST = context.getAST();
-            DetailAST parent = ast.getParent();
-            int type = parent.getType();
-            while (type != TokenTypes.CTOR_DEF
-                && type != TokenTypes.METHOD_DEF
-                && type != TokenTypes.INSTANCE_INIT
-                && type != TokenTypes.STATIC_INIT) {
-
-                parent = parent.getParent();
-                type = parent.getType();
-            }
-            if (parent == contextAST) {
-                context.addCount(ast.getChildCount() / 2);
-            }
+        final DetailAST contextAST = context.getAST();
+        DetailAST parent = ast;
+        while (parent != null && !isContainerNode(parent)) {
+            parent = parent.getParent();
+        }
+        if (parent == contextAST) {
+            context.addCount(ast.getChildCount() / 2);
         }
     }
 
     /**
-     * Class to encapsulate counting information about one member.
-     * @author Simon Harris
+     * Check if the node is of type ctor (compact or canonical),
+     * instance/ static initializer, method definition or lambda.
+     *
+     * @param node AST node we are checking
+     * @return true if node is of the given types
      */
-    private static class Context {
+    private static boolean isContainerNode(DetailAST node) {
+        return TokenUtil.isOfType(node, TokenTypes.METHOD_DEF,
+                TokenTypes.LAMBDA, TokenTypes.CTOR_DEF, TokenTypes.INSTANCE_INIT,
+                TokenTypes.STATIC_INIT, TokenTypes.COMPACT_CTOR_DEF);
+    }
+
+    /**
+     * Class to encapsulate counting information about one member.
+     */
+    private static final class Context {
+
         /** Member AST node. */
         private final DetailAST ast;
 
@@ -193,15 +247,16 @@ public final class ExecutableStatementCountCheck
 
         /**
          * Creates new member context.
+         *
          * @param ast member AST node.
          */
-        Context(DetailAST ast) {
+        private Context(DetailAST ast) {
             this.ast = ast;
-            count = 0;
         }
 
         /**
          * Increase count.
+         *
          * @param addition the count increment.
          */
         public void addCount(int addition) {
@@ -210,6 +265,7 @@ public final class ExecutableStatementCountCheck
 
         /**
          * Gets the member AST node.
+         *
          * @return the member AST node.
          */
         public DetailAST getAST() {
@@ -218,10 +274,13 @@ public final class ExecutableStatementCountCheck
 
         /**
          * Gets the count.
+         *
          * @return the count.
          */
         public int getCount() {
             return count;
         }
+
     }
+
 }

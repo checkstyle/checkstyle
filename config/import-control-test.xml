@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<!DOCTYPE import-control PUBLIC
+    "-//Checkstyle//DTD ImportControl Configuration 1.4//EN"
+    "https://checkstyle.org/dtds/import_control_1_4.dtd">
+
+<import-control
+        pkg="(|
+        |com\.puppycrawl\.tools\.checkstyle|
+        |com\.google\.checkstyle\.test|
+        |com\.sun\.checkstyle\.test|
+        |org\.checkstyle.*)"
+        regex="true">
+
+  <!-- Disallow obsolete Junit API -->
+  <disallow pkg="org.junit" exact-match="true"/>
+  <disallow pkg="junit.framework" />
+  <!-- Disallow hamcrest and only allow Truth -->
+  <disallow pkg="org.hamcrest.CoreMatchers"/>
+  <disallow pkg="org.hamcrest.MatcherAssert"/>
+  <!-- Disallow @BeforeAll, see https://github.com/checkstyle/checkstyle/issues/12100 -->
+  <disallow class="org.junit.jupiter.api.BeforeAll"/>
+  <!-- Disallow Junit assert in favor of Truth asserts in few exceptions -->
+  <allow class="org.junit.jupiter.api.Assertions.assertThrows"/>
+  <allow class="org.junit.jupiter.api.Assertions.assertDoesNotThrow"/>
+  <disallow pkg="org.junit.jupiter.api.Assertions"/>
+
+  <!-- Reflection shouldn't be used in tests. -->
+  <disallow pkg="java\.lang\.reflect\.*" regex="true" />
+
+  <allow pkg=".*" regex="true" />
+
+  <subpackage name="api">
+  </subpackage>
+  <subpackage name="internal">
+    <subpackage name="utils">
+      <file name="CheckUtil">
+        <!-- Uses reflection to collect violation messages. -->
+        <allow class="java.lang.reflect.Field" />
+      </file>
+      <file name="TestUtil">
+        <!-- All reflection usage should be in this class. -->
+        <allow pkg="java.lang.reflect" />
+      </file>
+    </subpackage>
+  </subpackage>
+
+  <subpackage name="bdd">
+    <file name="InlineConfigParser">
+      <!-- Use reflection to count violation messages in a check. -->
+      <allow class="java.lang.reflect.Modifier" />
+    </file>
+  </subpackage>
+
+  <file name="JavaAstVisitorTest">
+    <!-- Uses reflection to validate method order. -->
+    <allow pkg="java.lang.reflect" />
+  </file>
+
+</import-control>

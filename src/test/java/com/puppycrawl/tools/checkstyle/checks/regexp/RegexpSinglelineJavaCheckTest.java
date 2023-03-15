@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,230 +15,190 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.regexp;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.regexp.MultilineDetector.MSG_REGEXP_EXCEEDED;
 import static com.puppycrawl.tools.checkstyle.checks.regexp.MultilineDetector.MSG_REGEXP_MINIMUM;
-import static org.junit.Assert.assertArrayEquals;
 
-import java.io.File;
-import java.io.IOException;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Before;
-import org.junit.Test;
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
-
-public class RegexpSinglelineJavaCheckTest extends BaseCheckTestSupport {
-    private DefaultConfiguration checkConfig;
-
-    @Before
-    public void setUp() {
-        checkConfig = createCheckConfig(RegexpSinglelineJavaCheck.class);
-    }
+public class RegexpSinglelineJavaCheckTest extends AbstractModuleTestSupport {
 
     @Override
-    protected String getPath(String filename) throws IOException {
-        return super.getPath("checks" + File.separator
-                + "regexp" + File.separator + filename);
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/checks/regexp/regexpsinglelinejava";
+    }
+
+    @Test
+    public void testGetAcceptableTokens() {
+        final RegexpSinglelineJavaCheck regexpSinglelineJavaCheck =
+            new RegexpSinglelineJavaCheck();
+        assertWithMessage("Default acceptable tokens are invalid")
+                .that(regexpSinglelineJavaCheck.getAcceptableTokens())
+                .isEmpty();
     }
 
     @Test
     public void testGetRequiredTokens() {
         final RegexpSinglelineJavaCheck checkObj = new RegexpSinglelineJavaCheck();
-        assertArrayEquals("Default required tokens are invalid",
-            CommonUtils.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
+        assertWithMessage("Default required tokens are invalid")
+                .that(checkObj.getRequiredTokens())
+                .isEmpty();
     }
 
     @Test
     public void testIt() throws Exception {
-        final String illegal = "System\\.(out)|(err)\\.print(ln)?\\(";
-        checkConfig.addAttribute("format", illegal);
         final String[] expected = {
-            "69: " + getCheckMessage(MSG_REGEXP_EXCEEDED, illegal),
+            "77: " + getCheckMessage(MSG_REGEXP_EXCEEDED, "System\\.(out)|(err)\\.print(ln)?\\("),
         };
-        verify(checkConfig, getPath("InputSemantic.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputRegexpSinglelineJavaSemantic.java"), expected);
     }
 
     @Test
     public void testMessageProperty()
             throws Exception {
-        final String illegal = "System\\.(out)|(err)\\.print(ln)?\\(";
-        checkConfig.addAttribute("format", illegal);
-        final String message = "Bad line :(";
-        checkConfig.addAttribute("message", message);
         final String[] expected = {
-            "69: " + message,
+            "78: " + "Bad line :(",
         };
-        verify(checkConfig, getPath("InputSemantic.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputRegexpSinglelineJavaSemantic2.java"), expected);
     }
 
     @Test
     public void testIgnoreCaseTrue() throws Exception {
-        final String illegal = "SYSTEM\\.(OUT)|(ERR)\\.PRINT(LN)?\\(";
-        checkConfig.addAttribute("format", illegal);
-        checkConfig.addAttribute("ignoreCase", "true");
         final String[] expected = {
-            "69: " + getCheckMessage(MSG_REGEXP_EXCEEDED, illegal),
+            "78: " + getCheckMessage(MSG_REGEXP_EXCEEDED, "SYSTEM\\.(OUT)|(ERR)\\.PRINT(LN)?\\("),
         };
-        verify(checkConfig, getPath("InputSemantic.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputRegexpSinglelineJavaSemantic3.java"), expected);
     }
 
     @Test
     public void testIgnoreCaseFalse() throws Exception {
-        final String illegal = "SYSTEM\\.(OUT)|(ERR)\\.PRINT(LN)?\\(";
-        checkConfig.addAttribute("format", illegal);
-        checkConfig.addAttribute("ignoreCase", "false");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputSemantic.java"), expected);
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputRegexpSinglelineJavaSemantic4.java"), expected);
     }
 
     @Test
     public void testIgnoreCommentsCppStyle() throws Exception {
         // See if the comment is removed properly
-        final String illegal = "don't use trailing comments";
-        checkConfig.addAttribute("format", illegal);
-        checkConfig.addAttribute("ignoreComments", "true");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputTrailingComment.java"), expected);
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputRegexpSinglelineJavaTrailingComment.java"), expected);
     }
 
     @Test
     public void testIgnoreCommentsFalseCppStyle() throws Exception {
         // See if the comment is removed properly
-        final String illegal = "don't use trailing comments";
-        checkConfig.addAttribute("format", illegal);
-        checkConfig.addAttribute("ignoreComments", "false");
         final String[] expected = {
-            "4: " + getCheckMessage(MSG_REGEXP_EXCEEDED, illegal),
+            "16: " + getCheckMessage(MSG_REGEXP_EXCEEDED, "don't\\suse trailing comments"),
         };
-        verify(checkConfig, getPath("InputTrailingComment.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputRegexpSinglelineJavaTrailingComment2.java"), expected);
     }
 
     @Test
     public void testIgnoreCommentsBlockStyle() throws Exception {
         // See if the comment is removed properly
-        final String illegal = "c-style 1";
-        checkConfig.addAttribute("format", illegal);
-        checkConfig.addAttribute("ignoreComments", "true");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputTrailingComment.java"), expected);
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputRegexpSinglelineJavaTrailingComment3.java"), expected);
     }
 
     @Test
     public void testIgnoreCommentsFalseBlockStyle() throws Exception {
-        final String illegal = "c-style 1";
-        checkConfig.addAttribute("format", illegal);
-        checkConfig.addAttribute("ignoreComments", "false");
         final String[] expected = {
-            "19: " + getCheckMessage(MSG_REGEXP_EXCEEDED, illegal),
+            "31: " + getCheckMessage(MSG_REGEXP_EXCEEDED, "c-style\\s1"),
         };
-        verify(checkConfig, getPath("InputTrailingComment.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputRegexpSinglelineJavaTrailingComment4.java"), expected);
     }
 
     @Test
     public void testIgnoreCommentsMultipleBlockStyle() throws Exception {
         // See if a second comment on the same line is removed properly
-        final String illegal = "c-style 2";
-        checkConfig.addAttribute("format", illegal);
-        checkConfig.addAttribute("ignoreComments", "true");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputTrailingComment.java"), expected);
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputRegexpSinglelineJavaTrailingComment5.java"), expected);
     }
 
     @Test
     public void testIgnoreCommentsMultiLine() throws Exception {
-        final String illegal = "Let's check multi-line comments";
-        checkConfig.addAttribute("format", illegal);
-        checkConfig.addAttribute("ignoreComments", "true");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputTrailingComment.java"), expected);
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputRegexpSinglelineJavaTrailingComment6.java"), expected);
     }
 
     @Test
     public void testIgnoreCommentsInlineStart() throws Exception {
-        final String illegal = "long ms /";
-        checkConfig.addAttribute("format", illegal);
-        checkConfig.addAttribute("ignoreComments", "true");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputTrailingComment.java"), expected);
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputRegexpSinglelineJavaTrailingComment7.java"), expected);
     }
 
     @Test
     public void testIgnoreCommentsInlineEnd() throws Exception {
-        final String illegal = "int z";
-        checkConfig.addAttribute("format", illegal);
-        checkConfig.addAttribute("ignoreComments", "true");
         final String[] expected = {
-            "22: " + getCheckMessage(MSG_REGEXP_EXCEEDED, illegal),
+            "34: " + getCheckMessage(MSG_REGEXP_EXCEEDED, "int z"),
         };
-        verify(checkConfig, getPath("InputTrailingComment.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputRegexpSinglelineJavaTrailingComment8.java"), expected);
     }
 
     @Test
     public void testIgnoreCommentsInlineMiddle() throws Exception {
-        final String illegal = "int y";
-        checkConfig.addAttribute("format", illegal);
-        checkConfig.addAttribute("ignoreComments", "true");
         final String[] expected = {
-            "23: " + getCheckMessage(MSG_REGEXP_EXCEEDED, illegal),
+            "35: " + getCheckMessage(MSG_REGEXP_EXCEEDED, "int y"),
         };
-        verify(checkConfig, getPath("InputTrailingComment.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputRegexpSinglelineJavaTrailingComment9.java"), expected);
     }
 
     @Test
     public void testIgnoreCommentsNoSpaces() throws Exception {
         // make sure the comment is not turned into spaces
-        final String illegal = "long ms  ";
-        checkConfig.addAttribute("format", illegal);
-        checkConfig.addAttribute("ignoreComments", "true");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputTrailingComment.java"), expected);
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputRegexpSinglelineJavaTrailingComment10.java"), expected);
     }
 
     @Test
     public void test1371588() throws Exception {
         // StackOverflowError with trailing space and ignoreComments
-        final String illegal = "\\s+$";
-        checkConfig.addAttribute("format", illegal);
-        checkConfig.addAttribute("ignoreComments", "true");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputTrailingComment.java"), expected);
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputRegexpSinglelineJavaTrailingComment11.java"), expected);
     }
 
     @Test
     public void testExistingInDoc() throws Exception {
-        final String required = "Test case file";
-        checkConfig.addAttribute("format", required);
-        checkConfig.addAttribute("minimum", "1");
-        checkConfig.addAttribute("maximum", "1000");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputSemantic.java"), expected);
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputRegexpSinglelineJavaSemantic5.java"), expected);
     }
 
     @Test
     public void testExistingInCode() throws Exception {
-        final String required = "package";
-        checkConfig.addAttribute("format", required);
-        checkConfig.addAttribute("minimum", "1");
-        checkConfig.addAttribute("maximum", "1000");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputSemantic.java"), expected);
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputRegexpSinglelineJavaSemantic6.java"), expected);
     }
 
     @Test
     public void testMissing() throws Exception {
-        final String required = "This text is not in the file";
-        checkConfig.addAttribute("format", required);
-        checkConfig.addAttribute("minimum", "1");
-        checkConfig.addAttribute("maximum", "1000");
         final String[] expected = {
-            "0: " + getCheckMessage(MSG_REGEXP_MINIMUM, 1, required),
+            "1: " + getCheckMessage(MSG_REGEXP_MINIMUM, 1, "This\\stext is not in the file"),
         };
-        verify(checkConfig, getPath("InputSemantic.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputRegexpSinglelineJavaSemantic7.java"), expected);
     }
+
 }

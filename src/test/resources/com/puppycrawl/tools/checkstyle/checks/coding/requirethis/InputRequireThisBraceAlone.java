@@ -1,6 +1,15 @@
+/*
+RequireThis
+checkFields = (default)true
+checkMethods = (default)true
+validateOnlyOverlapping = false
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.coding.requirethis;
 
-public final class InputRequireThisBraceAlone {
+public final class InputRequireThisBraceAlone { // ok
     protected void test() throws Exception {
         {
             boolean var1 = false;

@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suppressedMutations>
+  <mutation unstable="false">
+    <sourceFile>AbstractSuperCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.AbstractSuperCheck$MethodNode</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable callingSuper</description>
+    <lineContent>callingSuper = false;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>DeclarationOrderCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck</mutatedClass>
+    <mutatedMethod>processModifiersState</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable currentScopeState</description>
+    <lineContent>state.currentScopeState = STATE_STATIC_VARIABLE_DEF;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>DeclarationOrderCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck</mutatedClass>
+    <mutatedMethod>processModifiersState</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable declarationAccess</description>
+    <lineContent>state.declarationAccess = Scope.PUBLIC;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>DefaultComesLastCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.DefaultComesLastCheck</mutatedClass>
+    <mutatedMethod>findNextSibling</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getNextSibling</description>
+    <lineContent>node = node.getNextSibling();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>EqualsAvoidNullCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.EqualsAvoidNullCheck</mutatedClass>
+    <mutatedMethod>isStringFieldOrVariableFromClass</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/checks/coding/EqualsAvoidNullCheck::getObjectFrame with argument</description>
+    <lineContent>FieldFrame frame = getObjectFrame(currentFrame);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>EqualsAvoidNullCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.EqualsAvoidNullCheck</mutatedClass>
+    <mutatedMethod>isStringFieldOrVariableFromClass</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/checks/coding/EqualsAvoidNullCheck::getObjectFrame with argument</description>
+    <lineContent>frame = getObjectFrame(frame.getParent());</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>EqualsAvoidNullCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.EqualsAvoidNullCheck$FieldFrame</mutatedClass>
+    <mutatedMethod>getChildren</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
+    <description>replaced call to java/util/Collections::unmodifiableSet with argument</description>
+    <lineContent>return Collections.unmodifiableSet(children);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>EqualsAvoidNullCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.EqualsAvoidNullCheck$FieldFrame</mutatedClass>
+    <mutatedMethod>getMethodCalls</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
+    <description>replaced call to java/util/Collections::unmodifiableSet with argument</description>
+    <lineContent>return Collections.unmodifiableSet(methodCalls);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>PackageDeclarationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.PackageDeclarationCheck</mutatedClass>
+    <mutatedMethod>beginTree</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable defined</description>
+    <lineContent>defined = false;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>ReturnCountCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck</mutatedClass>
+    <mutatedMethod>leaveToken</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/lang/Object::toString</description>
+    <lineContent>throw new IllegalStateException(ast.toString());</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>ReturnCountCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck</mutatedClass>
+    <mutatedMethod>visitToken</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/lang/Object::toString</description>
+    <lineContent>throw new IllegalStateException(ast.toString());</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>UnnecessaryParenthesesCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck</mutatedClass>
+    <mutatedMethod>checkExpression</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable parentToSkip</description>
+    <lineContent>parentToSkip = null;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>UnnecessaryParenthesesCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck</mutatedClass>
+    <mutatedMethod>visitToken</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getText</description>
+    <lineContent>log(ast, MSG_LAMBDA, ast.getText());</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>VariableDeclarationUsageDistanceCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck</mutatedClass>
+    <mutatedMethod>calculateDistanceBetweenScopes</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
+    <description>replaced call to java/util/Objects::requireNonNullElse with argument</description>
+    <lineContent>Objects.requireNonNullElse(exprWithVariableUsage, blockWithVariableUsage);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>VariableDeclarationUsageDistanceCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck</mutatedClass>
+    <mutatedMethod>calculateDistanceBetweenScopes</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_4</mutator>
+    <description>RemoveSwitch 4 (case value 85)</description>
+    <lineContent>switch (blockWithVariableUsage.getType()) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>VariableDeclarationUsageDistanceCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck</mutatedClass>
+    <mutatedMethod>getDistToVariableUsageInChildNode</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_1</mutator>
+    <description>RemoveSwitch 1 (case value 10)</description>
+    <lineContent>switch (examineNode.getType()) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>VariableDeclarationUsageDistanceCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck</mutatedClass>
+    <mutatedMethod>getDistToVariableUsageInChildNode</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_6</mutator>
+    <description>RemoveSwitch 6 (case value 91)</description>
+    <lineContent>switch (examineNode.getType()) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>VariableDeclarationUsageDistanceCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck</mutatedClass>
+    <mutatedMethod>getFirstNodeInsideTryCatchFinallyBlocks</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getLastChild with receiver</description>
+    <lineContent>final DetailAST finalBlock = currentNode.getLastChild();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>VariableDeclarationUsageDistanceCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck</mutatedClass>
+    <mutatedMethod>isInitializationSequence</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getText</description>
+    <lineContent>.findFirstToken(TokenTypes.IDENT).getText();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>VariableDeclarationUsageDistanceCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck</mutatedClass>
+    <mutatedMethod>isInitializationSequence</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::findFirstToken with receiver</description>
+    <lineContent>.findFirstToken(TokenTypes.IDENT).getText();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>VariableDeclarationUsageDistanceCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck</mutatedClass>
+    <mutatedMethod>isInitializationSequence</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/lang/String::equals</description>
+    <lineContent>isUsedVariableDeclarationFound = variableName.equals(currentVariableName);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>VariableDeclarationUsageDistanceCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck</mutatedClass>
+    <mutatedMethod>isInitializationSequence</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>while (result</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>VariableDeclarationUsageDistanceCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck</mutatedClass>
+    <mutatedMethod>isVariableInOperatorExpr</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getNextSibling with receiver</description>
+    <lineContent>DetailAST exprBetweenBrackets = openingBracket.getNextSibling();</lineContent>
+  </mutation>
+</suppressedMutations>

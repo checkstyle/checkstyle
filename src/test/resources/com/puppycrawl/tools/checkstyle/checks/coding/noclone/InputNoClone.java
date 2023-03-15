@@ -1,4 +1,11 @@
+/*
+NoClone
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.coding.noclone;
+
 public class InputNoClone
 {/* class body */
     public InputNoClone() throws CloneNotSupportedException
@@ -6,17 +13,17 @@ public class InputNoClone
         super.equals(new String());
         super.clone();
     }
-    
-    public Object clone() throws CloneNotSupportedException
+
+    public Object clone() throws CloneNotSupportedException // violation
     {
         return super.clone();
     }
-    
+
     public void method() throws CloneNotSupportedException
     {
         super.clone();
     }
-    
+
     {
         super.clone();
     }
@@ -24,7 +31,7 @@ public class InputNoClone
 
 class NoSuperClone
 {
-    public Object clone()
+    public Object clone() // violation
     {
         return null;
     }
@@ -32,11 +39,11 @@ class NoSuperClone
 
 class InnerClone
 {
-    public Object clone()
+    public Object clone() // violation
     {
         class Inner
         {
-            public Object clone() throws CloneNotSupportedException
+            public Object clone() throws CloneNotSupportedException // violation
             {
                 return super.clone();
             }
@@ -49,7 +56,7 @@ class InnerClone
 // type arguments are ignored when checking super calls
 class CloneWithTypeArguments<T> extends CloneWithTypeArgumentsAndNoSuper<T>
 {
-    public CloneWithTypeArguments<T> clone() throws CloneNotSupportedException
+    public CloneWithTypeArguments<T> clone() throws CloneNotSupportedException // violation
     {
         return (CloneWithTypeArguments<T>) super.<T>clone();
     }
@@ -57,32 +64,33 @@ class CloneWithTypeArguments<T> extends CloneWithTypeArgumentsAndNoSuper<T>
 
 class CloneWithTypeArgumentsAndNoSuper<T>
 {
-    public CloneWithTypeArgumentsAndNoSuper<T> clone() throws CloneNotSupportedException
+    public CloneWithTypeArgumentsAndNoSuper<T> clone() // violation
+            throws CloneNotSupportedException
     {
         return null;
     }
 }
 
-//Check that super keword isn't snagged here
+//Check that super keyword isn't snagged here
 class MyClassWithGenericSuperMethod
 {
     void someMethod(java.util.List<? super java.util.Map<Object, Object>> l)
     {
 
     }
-    
+
     /**
      * Not a valid clone override. Should not get flagged.
      * @param o some object
      * @return a cloned Object?
      */
     public static Object clone(Object o) {
-	return null;
+        return null;
     }
 }
 
 class AnotherClass {
-    
+
     /**
      * Not a valid clone override. Should not get flagged.
      * @param t some type
@@ -90,10 +98,10 @@ class AnotherClass {
      * @return a cloned type?
      */
     public <T> T clone(T t) {
-	return null;
+        return null;
     }
 }
 
 class NativeTest {
-    public native Object clone();
+    public native Object clone(); // violation
 }

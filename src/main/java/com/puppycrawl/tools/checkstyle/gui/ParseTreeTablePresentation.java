@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,27 +15,24 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.gui;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import antlr.ASTFactory;
-import antlr.collections.AST;
 import com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.gui.MainFrameModel.ParseMode;
-import com.puppycrawl.tools.checkstyle.utils.JavadocUtils;
-import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
+import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * The model that backs the parse tree in the GUI.
  *
- * @author Lars Kühne
  */
 public class ParseTreeTablePresentation {
 
@@ -51,36 +48,36 @@ public class ParseTreeTablePresentation {
         "Text",
     };
 
-    /**
-     * The root node of the tree table model.
-     */
-    private final Object root;
-
     /** Cache to store already parsed Javadoc comments. Used for optimisation purposes. */
     private final Map<DetailAST, DetailNode> blockCommentToJavadocTree = new HashMap<>();
+
+    /** The root node of the tree table model. */
+    private DetailAST root;
 
     /** Parsing mode. */
     private ParseMode parseMode;
 
     /**
      * Constructor initialise root node.
+     *
      * @param parseTree DetailAST parse tree.
      */
     public ParseTreeTablePresentation(DetailAST parseTree) {
-        root = createArtificialTreeRoot();
-        setParseTree(parseTree);
+        root = parseTree;
     }
 
     /**
      * Set parse tree.
+     *
      * @param parseTree DetailAST parse tree.
      */
-    protected final void setParseTree(DetailAST parseTree) {
-        ((AST) root).setFirstChild(parseTree);
+    protected final void setRoot(DetailAST parseTree) {
+        root = parseTree;
     }
 
     /**
      * Set parse mode.
+     *
      * @param mode ParseMode enum
      */
     protected void setParseMode(ParseMode mode) {
@@ -89,6 +86,7 @@ public class ParseTreeTablePresentation {
 
     /**
      * Returns number of available columns.
+     *
      * @return the number of available columns.
      */
     public int getColumnCount() {
@@ -97,6 +95,7 @@ public class ParseTreeTablePresentation {
 
     /**
      * Returns name for specified column number.
+     *
      * @param column the column number
      * @return the name for column number {@code column}.
      */
@@ -106,8 +105,10 @@ public class ParseTreeTablePresentation {
 
     /**
      * Returns type of specified column number.
+     *
      * @param column the column number
      * @return the type for column number {@code column}.
+     * @throws IllegalStateException if an unknown column index was specified.
      */
     // -@cs[ForbidWildcardAsReturnType] We need to satisfy javax.swing.table.AbstractTableModel
     // public Class<?> getColumnClass(int columnIndex) {...}
@@ -119,16 +120,12 @@ public class ParseTreeTablePresentation {
                 columnClass = ParseTreeTableModel.class;
                 break;
             case 1:
+            case 4:
                 columnClass = String.class;
                 break;
             case 2:
-                columnClass = Integer.class;
-                break;
             case 3:
                 columnClass = Integer.class;
-                break;
-            case 4:
-                columnClass = String.class;
                 break;
             default:
                 throw new IllegalStateException(UNKNOWN_COLUMN_MSG);
@@ -138,6 +135,7 @@ public class ParseTreeTablePresentation {
 
     /**
      * Returns the value to be displayed for node at column number.
+     *
      * @param node the node
      * @param column the column number
      * @return the value to be displayed for node {@code node}, at column number {@code column}.
@@ -157,6 +155,7 @@ public class ParseTreeTablePresentation {
 
     /**
      * Returns the child of parent at index.
+     *
      * @param parent the node to get a child from.
      * @param index the index of a child.
      * @return the child of parent at index.
@@ -176,6 +175,7 @@ public class ParseTreeTablePresentation {
 
     /**
      * Returns the number of children of parent.
+     *
      * @param parent the node to count children for.
      * @return the number of children of the node parent.
      */
@@ -187,10 +187,10 @@ public class ParseTreeTablePresentation {
         }
         else {
             if (parseMode == ParseMode.JAVA_WITH_JAVADOC_AND_COMMENTS
-                    && ((AST) parent).getType() == TokenTypes.COMMENT_CONTENT
-                    && JavadocUtils.isJavadocComment(((DetailAST) parent).getParent())) {
-                //getChildCount return 0 on COMMENT_CONTENT,
-                //but we need to attach javadoc tree, that is separate tree
+                    && ((DetailAST) parent).getType() == TokenTypes.COMMENT_CONTENT
+                    && JavadocUtil.isJavadocComment(((DetailAST) parent).getParent())) {
+                // getChildCount return 0 on COMMENT_CONTENT,
+                // but we need to attach javadoc tree, that is separate tree
                 result = 1;
             }
             else {
@@ -203,6 +203,7 @@ public class ParseTreeTablePresentation {
 
     /**
      * Returns value of root.
+     *
      * @return the root.
      */
     public Object getRoot() {
@@ -211,6 +212,7 @@ public class ParseTreeTablePresentation {
 
     /**
      * Whether the node is a leaf.
+     *
      * @param node the node to check.
      * @return true if the node is a leaf.
      */
@@ -219,15 +221,15 @@ public class ParseTreeTablePresentation {
     }
 
     /**
-     * Return the index of child in parent.  If either <code>parent</code>
-     * or <code>child</code> is <code>null</code>, returns -1.
-     * If either <code>parent</code> or <code>child</code> don't
+     * Return the index of child in parent.  If either {@code parent}
+     * or {@code child} is {@code null}, returns -1.
+     * If either {@code parent} or {@code child} don't
      * belong to this tree model, returns -1.
      *
      * @param parent a node in the tree, obtained from this data source.
      * @param child the node we are interested in.
      * @return the index of the child in the parent, or -1 if either
-     *     <code>child</code> or <code>parent</code> are <code>null</code>
+     *     {@code child} or {@code parent} are {@code null}
      *     or don't belong to this tree model.
      */
     public int getIndexOfChild(Object parent, Object child) {
@@ -242,8 +244,9 @@ public class ParseTreeTablePresentation {
     }
 
     /**
-     * Indicates whether the the value for node {@code node}, at column number {@code column} is
+     * Indicates whether the value for node {@code node}, at column number {@code column} is
      * editable.
+     *
      * @param column the column number
      * @return true if editable
      */
@@ -252,17 +255,8 @@ public class ParseTreeTablePresentation {
     }
 
     /**
-     * Creates artificial tree root.
-     * @return artificial tree root.
-     */
-    private static DetailAST createArtificialTreeRoot() {
-        final ASTFactory factory = new ASTFactory();
-        factory.setASTNodeClass(DetailAST.class.getName());
-        return (DetailAST) factory.create(TokenTypes.EOF, "ROOT");
-    }
-
-    /**
      * Gets child of DetailAST node at specified index.
+     *
      * @param parent DetailAST node
      * @param index child index
      * @return child DetailsAST or DetailNode if child is Javadoc node
@@ -272,7 +266,7 @@ public class ParseTreeTablePresentation {
         final Object result;
         if (parseMode == ParseMode.JAVA_WITH_JAVADOC_AND_COMMENTS
                 && parent.getType() == TokenTypes.COMMENT_CONTENT
-                && JavadocUtils.isJavadocComment(parent.getParent())) {
+                && JavadocUtil.isJavadocComment(parent.getParent())) {
             result = getJavadocTree(parent.getParent());
         }
         else {
@@ -290,11 +284,13 @@ public class ParseTreeTablePresentation {
 
     /**
      * Gets a value for DetailNode object.
+     *
      * @param node DetailNode(Javadoc) node.
      * @param column column index.
      * @return value at specified column.
+     * @throws IllegalStateException if an unknown column index was specified.
      */
-    private Object getValueAtDetailNode(DetailNode node, int column) {
+    private static Object getValueAtDetailNode(DetailNode node, int column) {
         final Object value;
 
         switch (column) {
@@ -303,7 +299,7 @@ public class ParseTreeTablePresentation {
                 value = null;
                 break;
             case 1:
-                value = JavadocUtils.getTokenName(node.getType());
+                value = JavadocUtil.getTokenName(node.getType());
                 break;
             case 2:
                 value = node.getLineNumber();
@@ -322,11 +318,13 @@ public class ParseTreeTablePresentation {
 
     /**
      * Gets a value for DetailAST object.
+     *
      * @param ast DetailAST node.
      * @param column column index.
      * @return value at specified column.
+     * @throws IllegalStateException if an unknown column index was specified.
      */
-    private Object getValueAtDetailAST(DetailAST ast, int column) {
+    private static Object getValueAtDetailAST(DetailAST ast, int column) {
         final Object value;
 
         switch (column) {
@@ -335,7 +333,7 @@ public class ParseTreeTablePresentation {
                 value = null;
                 break;
             case 1:
-                value = TokenUtils.getTokenName(ast.getType());
+                value = TokenUtil.getTokenName(ast.getType());
                 break;
             case 2:
                 value = ast.getLineNo();
@@ -354,16 +352,23 @@ public class ParseTreeTablePresentation {
 
     /**
      * Gets Javadoc (DetailNode) tree of specified block comments.
+     *
      * @param blockComment Javadoc comment as a block comment
-     * @return DetailNode tree
+     * @return root of DetailNode tree
      */
     private DetailNode getJavadocTree(DetailAST blockComment) {
-        DetailNode javadocTree = blockCommentToJavadocTree.get(blockComment);
-        if (javadocTree == null) {
-            javadocTree = new JavadocDetailNodeParser().parseJavadocAsDetailNode(blockComment)
-                    .getTree();
-            blockCommentToJavadocTree.put(blockComment, javadocTree);
-        }
-        return javadocTree;
+        return blockCommentToJavadocTree.computeIfAbsent(blockComment,
+                ParseTreeTablePresentation::parseJavadocTree);
     }
+
+    /**
+     * Parses Javadoc (DetailNode) tree of specified block comments.
+     *
+     * @param blockComment Javadoc comment as a block comment
+     * @return root of DetailNode tree
+     */
+    private static DetailNode parseJavadocTree(DetailAST blockComment) {
+        return new JavadocDetailNodeParser().parseJavadocAsDetailNode(blockComment).getTree();
+    }
+
 }

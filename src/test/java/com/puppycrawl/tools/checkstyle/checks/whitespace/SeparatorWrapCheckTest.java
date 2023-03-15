@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,72 +15,55 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.SeparatorWrapCheck.MSG_LINE_NEW;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.SeparatorWrapCheck.MSG_LINE_PREVIOUS;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
-import java.io.File;
-import java.io.IOException;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class SeparatorWrapCheckTest
-        extends BaseCheckTestSupport {
-    private DefaultConfiguration checkConfig;
-
-    @Before
-    public void setUp() {
-        checkConfig = createCheckConfig(SeparatorWrapCheck.class);
-    }
+        extends AbstractModuleTestSupport {
 
     @Override
-    protected String getPath(String filename) throws IOException {
-        return super.getPath("checks" + File.separator
-                + "whitespace" + File.separator + "separatorwrap" + File.separator + filename);
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/checks/whitespace/separatorwrap";
     }
 
     @Test
     public void testDot()
             throws Exception {
-        checkConfig.addAttribute("option", "NL");
-        checkConfig.addAttribute("tokens", "DOT");
         final String[] expected = {
-            "31:10: " + getCheckMessage(MSG_LINE_NEW, "."),
+            "39:10: " + getCheckMessage(MSG_LINE_NEW, "."),
         };
-        verify(checkConfig, getPath("InputSeparatorWrapForTestDot.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputSeparatorWrapForTestDot.java"), expected);
     }
 
     @Test
     public void testComma() throws Exception {
-        checkConfig.addAttribute("option", "EOL");
-        checkConfig.addAttribute("tokens", "COMMA");
         final String[] expected = {
-            "39:17: " + getCheckMessage(MSG_LINE_PREVIOUS, ","),
+            "47:17: " + getCheckMessage(MSG_LINE_PREVIOUS, ","),
         };
-        verify(checkConfig, getPath("InputSeparatorWrapForTestComma.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputSeparatorWrapForTestComma.java"), expected);
     }
 
     @Test
     public void testMethodRef() throws Exception {
-        checkConfig.addAttribute("option", "NL");
-        checkConfig.addAttribute("tokens", "METHOD_REF");
         final String[] expected = {
-            "17:56: " + getCheckMessage(MSG_LINE_NEW, "::"),
+            "25:56: " + getCheckMessage(MSG_LINE_NEW, "::"),
         };
-        verify(checkConfig, getPath("InputSeparatorWrapForTestMethodRef.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputSeparatorWrapForTestMethodRef.java"), expected);
     }
 
     @Test
@@ -91,25 +74,79 @@ public class SeparatorWrapCheckTest
             TokenTypes.DOT,
             TokenTypes.COMMA,
         };
-        Assert.assertArrayEquals(expected, actual);
+        assertWithMessage("Invalid default tokens")
+            .that(actual)
+            .isEqualTo(expected);
     }
 
     @Test
     public void testInvalidOption() throws Exception {
-        checkConfig.addAttribute("option", "invalid_option");
 
         try {
-            final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+            final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-            verify(checkConfig, getPath("InputSeparatorWrapForInvalidOption.java"), expected);
-            fail("exception expected");
+            verifyWithInlineConfigParser(
+                    getPath("InputSeparatorWrapForInvalidOption.java"), expected);
+            assertWithMessage("exception expected").fail();
         }
         catch (CheckstyleException ex) {
-            final String messageStart = "cannot initialize module "
-                + "com.puppycrawl.tools.checkstyle.TreeWalker - Cannot set property 'option' to "
-                + "'invalid_option' in module";
-            assertTrue("Invalid exception message, should start with: " + messageStart,
-                ex.getMessage().startsWith(messageStart));
+            assertWithMessage("Invalid exception message")
+                .that(ex.getMessage())
+                .isEqualTo("cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker - "
+                    + "cannot initialize module com.puppycrawl.tools.checkstyle.checks."
+                    + "whitespace.SeparatorWrapCheck - "
+                    + "Cannot set property 'option' to 'invalid_option'");
         }
+    }
+
+    @Test
+    public void testEllipsis() throws Exception {
+        final String[] expected = {
+            "19:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "..."),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputSeparatorWrapForEllipsis.java"), expected);
+    }
+
+    @Test
+    public void testArrayDeclarator() throws Exception {
+        final String[] expected = {
+            "17:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "["),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputSeparatorWrapForArrayDeclarator.java"), expected);
+    }
+
+    @Test
+    public void testWithEmoji() throws Exception {
+        final String[] expected = {
+            "13:39: " + getCheckMessage(MSG_LINE_NEW, '['),
+            "16:57: " + getCheckMessage(MSG_LINE_NEW, '['),
+            "19:39: " + getCheckMessage(MSG_LINE_NEW, "..."),
+            "26:19: " + getCheckMessage(MSG_LINE_NEW, '.'),
+            "39:50: " + getCheckMessage(MSG_LINE_NEW, ','),
+            "41:50: " + getCheckMessage(MSG_LINE_NEW, "::"),
+        };
+        verifyWithInlineConfigParser(
+            getPath("InputSeparatorWrapWithEmoji.java"), expected);
+    }
+
+    @Test
+    public void testTrimOptionProperty() throws Exception {
+        final String[] expected = {
+            "18:44: " + getCheckMessage(MSG_LINE_NEW, "::"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputSeparatorWrapSetOptionTrim.java"), expected);
+    }
+
+    @Test
+    public void testCommaOnNewLine() throws Exception {
+        final String[] expected = {
+            "16:10: " + getCheckMessage(MSG_LINE_NEW, ","),
+            "21:26: " + getCheckMessage(MSG_LINE_NEW, ","),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputSeparatorWrapForTestTrailingWhitespace.java"), expected);
     }
 }

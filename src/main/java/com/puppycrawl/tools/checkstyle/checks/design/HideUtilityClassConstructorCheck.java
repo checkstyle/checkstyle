@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,24 +15,97 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.design;
 
+import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * Make sure that utility classes (classes that contain only static methods)
+ * <p>
+ * Makes sure that utility classes (classes that contain only static methods or fields in their API)
  * do not have a public constructor.
+ * </p>
  * <p>
  * Rationale: Instantiating utility classes does not make sense.
+ * Hence, the constructors should either be private or (if you want to allow subclassing) protected.
  * A common mistake is forgetting to hide the default constructor.
  * </p>
+ * <p>
+ * If you make the constructor protected you may want to consider the following constructor
+ * implementation technique to disallow instantiating subclasses:
+ * </p>
+ * <pre>
+ * public class StringUtils // not final to allow subclassing
+ * {
+ *   protected StringUtils() {
+ *     // prevents calls from subclass
+ *     throw new UnsupportedOperationException();
+ *   }
  *
- * @author lkuehne
+ *   public static int count(char c, String s) {
+ *     // ...
+ *   }
+ * }
+ * </pre>
+ * <p>
+ * To configure the check:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;HideUtilityClassConstructor&quot;/&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * class Test { // violation, class only has a static method and a constructor
+ *
+ *   public Test() {
+ *   }
+ *
+ *   public static void fun() {
+ *   }
+ * }
+ *
+ * class Foo { // OK
+ *
+ *   private Foo() {
+ *   }
+ *
+ *   static int n;
+ * }
+ *
+ * class Bar { // OK
+ *
+ *   protected Bar() {
+ *     // prevents calls from subclass
+ *     throw new UnsupportedOperationException();
+ *   }
+ * }
+ *
+ * class UtilityClass { // violation, class only has a static field
+ *
+ *   static float f;
+ * }
+ * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code hide.utility.class}
+ * </li>
+ * </ul>
+ *
+ * @since 3.1
  */
+@StatelessCheck
 public class HideUtilityClassConstructorCheck extends AbstractCheck {
 
     /**
@@ -43,17 +116,17 @@ public class HideUtilityClassConstructorCheck extends AbstractCheck {
 
     @Override
     public int[] getDefaultTokens() {
-        return getAcceptableTokens();
+        return getRequiredTokens();
     }
 
     @Override
     public int[] getAcceptableTokens() {
-        return new int[] {TokenTypes.CLASS_DEF};
+        return getRequiredTokens();
     }
 
     @Override
     public int[] getRequiredTokens() {
-        return getAcceptableTokens();
+        return new int[] {TokenTypes.CLASS_DEF};
     }
 
     @Override
@@ -67,7 +140,6 @@ public class HideUtilityClassConstructorCheck extends AbstractCheck {
 
             final boolean hasDefaultCtor = details.isHasDefaultCtor();
             final boolean hasPublicCtor = details.isHasPublicCtor();
-            final boolean hasMethodOrField = details.isHasMethodOrField();
             final boolean hasNonStaticMethodOrField = details.isHasNonStaticMethodOrField();
             final boolean hasNonPrivateStaticMethodOrField =
                     details.isHasNonPrivateStaticMethodOrField();
@@ -79,43 +151,44 @@ public class HideUtilityClassConstructorCheck extends AbstractCheck {
             final boolean extendsJlo =
                 ast.findFirstToken(TokenTypes.EXTENDS_CLAUSE) == null;
 
-            final boolean isUtilClass = extendsJlo && hasMethodOrField
+            final boolean isUtilClass = extendsJlo
                 && !hasNonStaticMethodOrField && hasNonPrivateStaticMethodOrField;
 
             if (isUtilClass && hasAccessibleCtor && !hasStaticModifier) {
-                log(ast.getLineNo(), ast.getColumnNo(), MSG_KEY);
+                log(ast, MSG_KEY);
             }
         }
     }
 
     /**
      * Returns true if given class is abstract or false.
+     *
      * @param ast class definition for check.
      * @return true if a given class declared as abstract.
      */
     private static boolean isAbstract(DetailAST ast) {
         return ast.findFirstToken(TokenTypes.MODIFIERS)
-            .branchContains(TokenTypes.ABSTRACT);
+            .findFirstToken(TokenTypes.ABSTRACT) != null;
     }
 
     /**
      * Returns true if given class is static or false.
+     *
      * @param ast class definition for check.
      * @return true if a given class declared as static.
      */
     private static boolean isStatic(DetailAST ast) {
         return ast.findFirstToken(TokenTypes.MODIFIERS)
-            .branchContains(TokenTypes.LITERAL_STATIC);
+            .findFirstToken(TokenTypes.LITERAL_STATIC) != null;
     }
 
     /**
      * Details of class that are required for validation.
      */
-    private static class Details {
+    private static final class Details {
+
         /** Class ast. */
         private final DetailAST ast;
-        /** Result of details gathering. */
-        private boolean hasMethodOrField;
         /** Result of details gathering. */
         private boolean hasNonStaticMethodOrField;
         /** Result of details gathering. */
@@ -127,22 +200,16 @@ public class HideUtilityClassConstructorCheck extends AbstractCheck {
 
         /**
          * C-tor.
+         *
          * @param ast class ast
          * */
-        Details(DetailAST ast) {
+        private Details(DetailAST ast) {
             this.ast = ast;
         }
 
         /**
          * Getter.
-         * @return boolean
-         */
-        public boolean isHasMethodOrField() {
-            return hasMethodOrField;
-        }
-
-        /**
-         * Getter.
+         *
          * @return boolean
          */
         public boolean isHasNonStaticMethodOrField() {
@@ -151,6 +218,7 @@ public class HideUtilityClassConstructorCheck extends AbstractCheck {
 
         /**
          * Getter.
+         *
          * @return boolean
          */
         public boolean isHasNonPrivateStaticMethodOrField() {
@@ -159,6 +227,7 @@ public class HideUtilityClassConstructorCheck extends AbstractCheck {
 
         /**
          * Getter.
+         *
          * @return boolean
          */
         public boolean isHasDefaultCtor() {
@@ -167,6 +236,7 @@ public class HideUtilityClassConstructorCheck extends AbstractCheck {
 
         /**
          * Getter.
+         *
          * @return boolean
          */
         public boolean isHasPublicCtor() {
@@ -178,46 +248,45 @@ public class HideUtilityClassConstructorCheck extends AbstractCheck {
          */
         public void invoke() {
             final DetailAST objBlock = ast.findFirstToken(TokenTypes.OBJBLOCK);
-            hasMethodOrField = false;
-            hasNonStaticMethodOrField = false;
-            hasNonPrivateStaticMethodOrField = false;
             hasDefaultCtor = true;
-            hasPublicCtor = false;
             DetailAST child = objBlock.getFirstChild();
 
             while (child != null) {
                 final int type = child.getType();
                 if (type == TokenTypes.METHOD_DEF
                         || type == TokenTypes.VARIABLE_DEF) {
-                    hasMethodOrField = true;
                     final DetailAST modifiers =
                         child.findFirstToken(TokenTypes.MODIFIERS);
                     final boolean isStatic =
-                        modifiers.branchContains(TokenTypes.LITERAL_STATIC);
-                    final boolean isPrivate =
-                        modifiers.branchContains(TokenTypes.LITERAL_PRIVATE);
+                        modifiers.findFirstToken(TokenTypes.LITERAL_STATIC) != null;
 
-                    if (!isStatic) {
-                        hasNonStaticMethodOrField = true;
+                    if (isStatic) {
+                        final boolean isPrivate =
+                                modifiers.findFirstToken(TokenTypes.LITERAL_PRIVATE) != null;
+
+                        if (!isPrivate) {
+                            hasNonPrivateStaticMethodOrField = true;
+                        }
                     }
-                    if (isStatic && !isPrivate) {
-                        hasNonPrivateStaticMethodOrField = true;
+                    else {
+                        hasNonStaticMethodOrField = true;
                     }
                 }
                 if (type == TokenTypes.CTOR_DEF) {
                     hasDefaultCtor = false;
                     final DetailAST modifiers =
                         child.findFirstToken(TokenTypes.MODIFIERS);
-                    if (!modifiers.branchContains(TokenTypes.LITERAL_PRIVATE)
-                        && !modifiers.branchContains(TokenTypes.LITERAL_PROTECTED)) {
+                    if (modifiers.findFirstToken(TokenTypes.LITERAL_PRIVATE) == null
+                        && modifiers.findFirstToken(TokenTypes.LITERAL_PROTECTED) == null) {
                         // treat package visible as public
                         // for the purpose of this Check
                         hasPublicCtor = true;
                     }
-
                 }
                 child = child.getNextSibling();
             }
         }
+
     }
+
 }

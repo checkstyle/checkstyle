@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,46 +15,68 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.coding.ArrayTrailingCommaCheck.MSG_KEY;
 
-import java.io.File;
-import java.io.IOException;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Assert;
-import org.junit.Test;
-
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 
 public class ArrayTrailingCommaCheckTest
-    extends BaseCheckTestSupport {
+    extends AbstractModuleTestSupport {
+
     @Override
-    protected String getPath(String filename) throws IOException {
-        return super.getPath("checks" + File.separator
-                + "coding" + File.separator + "arraytrailingcomma" + File.separator + filename);
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/checks/coding/arraytrailingcomma";
     }
 
     @Test
     public void testDefault()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(ArrayTrailingCommaCheck.class);
         final String[] expected = {
-            "17: " + getCheckMessage(MSG_KEY),
-            "37: " + getCheckMessage(MSG_KEY),
+            "23:9: " + getCheckMessage(MSG_KEY),
+            "43:9: " + getCheckMessage(MSG_KEY),
+            "80:9: " + getCheckMessage(MSG_KEY),
+            "82:12: " + getCheckMessage(MSG_KEY),
         };
-        verify(checkConfig, getPath("InputArrayTrailingComma.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputArrayTrailingComma.java"), expected);
     }
 
     @Test
     public void testTokensNotNull() {
         final ArrayTrailingCommaCheck check = new ArrayTrailingCommaCheck();
-        Assert.assertNotNull(check.getAcceptableTokens());
-        Assert.assertNotNull(check.getDefaultTokens());
-        Assert.assertNotNull(check.getRequiredTokens());
+        assertWithMessage("Invalid acceptable tokens")
+                .that(check.getAcceptableTokens())
+                .isNotNull();
+        assertWithMessage("Invalid default tokens")
+                .that(check.getDefaultTokens())
+                .isNotNull();
+        assertWithMessage("Invalid required tokens")
+                .that(check.getRequiredTokens())
+                .isNotNull();
     }
+
+    @Test
+    public void testAlwaysDemandTrailingComma() throws Exception {
+        final String[] expected = {
+            "15:26: " + getCheckMessage(MSG_KEY),
+            "22:29: " + getCheckMessage(MSG_KEY),
+            "27:14: " + getCheckMessage(MSG_KEY),
+            "29:17: " + getCheckMessage(MSG_KEY),
+            "32:20: " + getCheckMessage(MSG_KEY),
+            "38:17: " + getCheckMessage(MSG_KEY),
+            "47:13: " + getCheckMessage(MSG_KEY),
+            "52:28: " + getCheckMessage(MSG_KEY),
+            "54:17: " + getCheckMessage(MSG_KEY),
+            "56:13: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputArrayTrailingCommaAlwaysDemandTrailingComma.java"), expected);
+    }
+
 }

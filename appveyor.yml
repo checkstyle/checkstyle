@@ -1,84 +1,75 @@
-os: Windows Server 2012
+image: Visual Studio 2019
 version: '{build}'
 skip_tags: true
+
 clone_depth: 10
 branches:
   only:
     - master
   except:
     - gh-pages
-init:
-  - git config --global core.autocrlf true
 install:
   - ps: |
       Add-Type -AssemblyName System.IO.Compression.FileSystem
-      if (!(Test-Path -Path "C:\maven\apache-maven-3.2.5" )) {
+      if (!(Test-Path -Path "C:\maven\apache-maven-3.8.6" )) {
         (new-object System.Net.WebClient).DownloadFile(
-          'http://www.us.apache.org/dist/maven/maven-3/3.2.5/binaries/apache-maven-3.2.5-bin.zip',
+          'https://downloads.apache.org/maven/maven-3/3.8.6/binaries/apache-maven-3.8.6-bin.zip',
           'C:\maven-bin.zip'
         )
         [System.IO.Compression.ZipFile]::ExtractToDirectory("C:\maven-bin.zip", "C:\maven")
       }
-  - cmd: SET M2_HOME=C:\maven\apache-maven-3.2.5
+  - cmd: SET M2_HOME=C:\maven\apache-maven-3.8.6
   - cmd: SET PATH=%M2_HOME%\bin;%JAVA_HOME%\bin;%PATH%
-  - cmd: git config --global core.autocrlf
+  - cmd: git config core.autocrlf
   - cmd: mvn --version
   - cmd: java -version
-  - cmd: '%CYG_BIN% -qnNdO -R %CYG_ROOT% -s %CYG_MIRROR% -l %CYG_CACHE% -P hg'
 
 cache:
-  - C:\maven\apache-maven-3.2.5
+  - C:\maven\apache-maven-3.8.6
   - C:\Users\appveyor\.m2
-  - C:\cygwin\var\cache\setup
 
 matrix:
   fast_finish: true
 
 environment:
   global:
-    CYG_BIN: C:\cygwin\setup-x86.exe
-    CYG_ROOT: C:\cygwin
-    CYG_CACHE: C:\cygwin\var\cache\setup
-    CYG_MIRROR: http://cygwin.mirror.constant.com
-    CMD1: " "
-    CMD2: " "
-    CMD3: " "
-    CMD4: " "
-    CMD5: " "
-    CMD6: " "
-    CMD7: " "
-    CMD8: " "
-    CMD9: " "
-    CMD10: " "
-  # We do matrix as Appveyor could fail to finish simple "mvn verify"
+    CMD: " "
+    # https://stackoverflow.com/questions/42024619/maven-build-gets-connection-reset-when-downloading-artifacts
+    MAVEN_OPTS: "-Dhttp.keepAlive=false -Dmaven.wagon.http.retryHandler.count=3"
+  # We do matrix as AppVeyor could fail to finish simple "mvn -e verify"
   #    if he loose maven cache (happens from time to time)
   matrix:
-    # checkstyle and sevntu.checkstyle
-    - JAVA_HOME: C:\Program Files\Java\jdk1.8.0
-      DESC: "checkstyle and sevntu.checkstyle"
-      CMD1: "mvn -e verify -DskipTests -DskipITs -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true -Dxml.skip=true"
-    # verify without checkstyle
-    - JAVA_HOME: C:\Program Files\Java\jdk1.8.0
-      DESC: "verify without checkstyle"
-      CMD1: "mvn -e verify -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true"
-    # site, without verify
-    - JAVA_HOME: C:\Program Files\Java\jdk1.8.0
-      DESC: "site, without verify"
-      CMD1: "mvn -e -Pno-validations site"
+    # sevntu (JDK11)
+    - JAVA_HOME: C:\Program Files\Java\jdk11
+      DESC: "sevntu (JDK11)"
+      CMD: "./.ci/validation.cmd sevntu"
+    # run checkstyle (JDK11)
+    - JAVA_HOME: C:\Program Files\Java\jdk11
+      DESC: "run checkstyle (JDK11)"
+      CMD: "./.ci/validation.cmd run_checkstyle"
+    # verify without checkstyle (JDK11)
+    - JAVA_HOME: C:\Program Files\Java\jdk11
+      DESC: "verify without checkstyle (JDK11)"
+      CMD: "./.ci/validation.cmd verify_without_checkstyle"
+    # site, without verify (JDK11)
+    - JAVA_HOME: C:\Program Files\Java\jdk11
+      DESC: "site, without verify (JDK11)"
+      CMD: "./.ci/validation.cmd site_without_verify"
 
 build_script:
-  - ps: >
-       (get-content env:CMD1)
-       + (get-content env:CMD2)
-       + (get-content env:CMD3)
-       + (get-content env:CMD4)
-       + (get-content env:CMD5)
-       + (get-content env:CMD6)
-       + (get-content env:CMD7)
-       + (get-content env:CMD8)
-       + (get-content env:CMD9)
-       + (get-content env:CMD10)
-       | Out-File appveyor.cmd -encoding ASCII
-  - ps: get-content appveyor.cmd
-  # We need to use cmd there as ps1 is failing each time error output appear from any command line
-  - appveyor.cmd
+  - ps: |
+      $RUN_JOB=1
+      if ($RUN_JOB -eq 1) {
+        $Expr = (get-content env:CMD)
+        Write-Host "CMD: $Expr"
+        Invoke-Expression $Expr
+        Write-Host "CMD exited with exit code $LastExitCode"
+        if ($LastExitCode -ne 0) {
+          exit $LastExitCode
+        }
+      } else {
+        Write-Host "build is skipped ..."
+      }
+  - ps: echo "Size of caches (bytes):"
+  - ps: Get-ChildItem -Recurse 'C:\maven\apache-maven-3.8.6' | Measure-Object -Property Length -Sum
+  - ps: Get-ChildItem -Recurse 'C:\Users\appveyor\.m2' | Measure-Object -Property Length -Sum

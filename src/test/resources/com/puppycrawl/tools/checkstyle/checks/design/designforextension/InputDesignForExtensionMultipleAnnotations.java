@@ -1,3 +1,11 @@
+/*
+DesignForExtension
+ignoredAnnotations = Override, Deprecated, Before, After, BeforeClass, AfterClass
+requiredJavadocPhrase = (default).*
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.design.designforextension;
 
 import java.util.List;
@@ -5,7 +13,7 @@ import java.util.List;
 import org.junit.Ignore;
 import org.junit.Test;
 
-public class InputDesignForExtensionMultipleAnnotations {
+public class InputDesignForExtensionMultipleAnnotations { // ok
 
     @Ignore
     @Deprecated

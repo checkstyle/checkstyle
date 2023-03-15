@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,16 +15,16 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 /**
  * Used to keep track of a tag and the text that follows it.
  *
- * @author Chris Stillwell
  */
 class HtmlTag {
+
     /** The maximum length of text to display with this tag. */
     private static final int MAX_TEXT_LEN = 60;
 
@@ -48,6 +48,7 @@ class HtmlTag {
 
     /**
      * Construct the HtmlTag.
+     *
      * @param id the HTML tag name.
      * @param lineNo the source line number of this tag.
      * @param position the position within the text of this tag.
@@ -55,7 +56,7 @@ class HtmlTag {
      * @param incomplete is the tag is incomplete.
      * @param text the line of comment text for this tag.
      */
-    HtmlTag(String id, int lineNo, int position, boolean closedTag,
+    /* package */ HtmlTag(String id, int lineNo, int position, boolean closedTag,
             boolean incomplete, String text) {
         this.id = id;
         this.lineNo = lineNo;
@@ -67,6 +68,7 @@ class HtmlTag {
 
     /**
      * Returns the id (name) of this tag.
+     *
      * @return a String id.
      */
     public String getId() {
@@ -75,6 +77,7 @@ class HtmlTag {
 
     /**
      * Indicates if this tag is a close (end) tag.
+     *
      * @return {@code true} is this is a close tag.
      */
     public boolean isCloseTag() {
@@ -83,6 +86,7 @@ class HtmlTag {
 
     /**
      * Indicates if this tag is a self-closed XHTML style.
+     *
      * @return {@code true} is this is a self-closed tag.
      */
     public boolean isClosedTag() {
@@ -91,6 +95,7 @@ class HtmlTag {
 
     /**
      * Indicates if this tag is incomplete (has no close &gt;).
+     *
      * @return {@code true} if the tag is incomplete.
      */
     public boolean isIncompleteTag() {
@@ -99,7 +104,8 @@ class HtmlTag {
 
     /**
      * Returns the source line number where this tag was found.
-     * Used for displaying a Checkstyle error.
+     * Used for displaying a Checkstyle violation.
+     *
      * @return an int line number.
      */
     public int getLineNo() {
@@ -108,7 +114,8 @@ class HtmlTag {
 
     /**
      * Returns the position with in the comment line where this tag
-     * was found.  Used for displaying a Checkstyle error.
+     * was found.  Used for displaying a Checkstyle violation.
+     *
      * @return an int relative to zero.
      */
     public int getPosition() {
@@ -117,9 +124,23 @@ class HtmlTag {
 
     @Override
     public String toString() {
+        return "HtmlTag[id='" + id + '\''
+                + ", lineNo=" + lineNo
+                + ", position=" + position
+                + ", text='" + text + '\''
+                + ", closedTag=" + closedTag
+                + ", incompleteTag=" + incompleteTag + ']';
+    }
+
+    /**
+     * Returns the comment line of text where this tag appears.
+     *
+     * @return text of the tag
+     */
+    public String getText() {
         final int startOfText = position;
-        final int endOfText =
-            Math.min(startOfText + MAX_TEXT_LEN, text.length());
+        final int endOfText = Math.min(startOfText + MAX_TEXT_LEN, text.length());
         return text.substring(startOfText, endOfText);
     }
+
 }

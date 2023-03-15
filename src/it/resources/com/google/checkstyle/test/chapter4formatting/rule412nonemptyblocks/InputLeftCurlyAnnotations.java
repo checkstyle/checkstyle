@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @TestClassAnnotation
-class InputLeftCurlyAnnotations 
+class InputLeftCurlyAnnotations
 { //warn
     private static final int X = 10;
     @Override
@@ -14,15 +14,15 @@ class InputLeftCurlyAnnotations
     { //warn
         return false;
     }
-    
+
     @Override
     @SuppressWarnings("unused")
-    public int hashCode() 
+    public int hashCode()
     { //warn
         int a = 10;
         return 1;
     }
-    
+
     @Override @SuppressWarnings({"unused", "unchecked", "static-access"}) public String toString()
     { //warn
         Integer i = this.X;
@@ -38,14 +38,14 @@ class InputLeftCurlyAnnotations2 {
     public boolean equals(Object other) {
         return false;
     }
-    
+
     @Override
     @SuppressWarnings("unused")
     public int hashCode() {
         int a = 10;
         return 1;
     }
-    
+
     @Override @SuppressWarnings({"unused", "unchecked", "static-access"}) public String toString()
     { //warn
         Integer i = this.X;

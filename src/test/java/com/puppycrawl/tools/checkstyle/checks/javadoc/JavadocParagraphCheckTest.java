@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,123 +15,115 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck.MSG_LINE_BEFORE;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck.MSG_MISPLACED_TAG;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck.MSG_REDUNDANT_PARAGRAPH;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck.MSG_TAG_AFTER;
-import static org.junit.Assert.assertArrayEquals;
 
-import java.io.File;
-import java.io.IOException;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Before;
-import org.junit.Test;
-
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-public class JavadocParagraphCheckTest extends BaseCheckTestSupport {
-    private DefaultConfiguration checkConfig;
-
-    @Before
-    public void setUp() {
-        checkConfig = createCheckConfig(JavadocParagraphCheck.class);
-    }
+public class JavadocParagraphCheckTest extends AbstractModuleTestSupport {
 
     @Override
-    protected String getPath(String filename) throws IOException {
-        return super.getPath("checks" + File.separator
-                + "javadoc" + File.separator + filename);
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/checks/javadoc/javadocparagraph";
     }
 
     @Test
     public void testGetRequiredTokens() {
         final JavadocParagraphCheck checkObj = new JavadocParagraphCheck();
         final int[] expected = {TokenTypes.BLOCK_COMMENT_BEGIN};
-        assertArrayEquals("Default required tokens are invalid",
-            expected, checkObj.getRequiredTokens());
+        assertWithMessage("Default required tokens are invalid")
+            .that(checkObj.getRequiredTokens())
+            .isEqualTo(expected);
     }
 
     @Test
     public void testCorrect() throws Exception {
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("InputCorrectJavaDocParagraph.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocParagraphCorrect.java"), expected);
     }
 
     @Test
     public void testIncorrect() throws Exception {
         final String[] expected = {
-            "7: " + getCheckMessage(MSG_MISPLACED_TAG),
-            "7: " + getCheckMessage(MSG_LINE_BEFORE),
-            "8: " + getCheckMessage(MSG_MISPLACED_TAG),
-            "8: " + getCheckMessage(MSG_LINE_BEFORE),
+            "13: " + getCheckMessage(MSG_MISPLACED_TAG),
+            "13: " + getCheckMessage(MSG_LINE_BEFORE),
             "14: " + getCheckMessage(MSG_MISPLACED_TAG),
             "14: " + getCheckMessage(MSG_LINE_BEFORE),
-            "16: " + getCheckMessage(MSG_MISPLACED_TAG),
-            "23: " + getCheckMessage(MSG_LINE_BEFORE),
-            "25: " + getCheckMessage(MSG_MISPLACED_TAG),
+            "20: " + getCheckMessage(MSG_MISPLACED_TAG),
+            "20: " + getCheckMessage(MSG_LINE_BEFORE),
+            "22: " + getCheckMessage(MSG_MISPLACED_TAG),
+            "30: " + getCheckMessage(MSG_LINE_BEFORE),
             "32: " + getCheckMessage(MSG_MISPLACED_TAG),
-            "32: " + getCheckMessage(MSG_LINE_BEFORE),
-            "32: " + getCheckMessage(MSG_REDUNDANT_PARAGRAPH),
-            "33: " + getCheckMessage(MSG_MISPLACED_TAG),
-            "33: " + getCheckMessage(MSG_LINE_BEFORE),
-            "34: " + getCheckMessage(MSG_MISPLACED_TAG),
-            "34: " + getCheckMessage(MSG_LINE_BEFORE),
-            "35: " + getCheckMessage(MSG_MISPLACED_TAG),
-            "35: " + getCheckMessage(MSG_LINE_BEFORE),
             "39: " + getCheckMessage(MSG_MISPLACED_TAG),
             "39: " + getCheckMessage(MSG_LINE_BEFORE),
-            "45: " + getCheckMessage(MSG_MISPLACED_TAG),
-            "45: " + getCheckMessage(MSG_REDUNDANT_PARAGRAPH),
-            "48: " + getCheckMessage(MSG_MISPLACED_TAG),
-            "50: " + getCheckMessage(MSG_MISPLACED_TAG),
-            "50: " + getCheckMessage(MSG_LINE_BEFORE),
-            "51: " + getCheckMessage(MSG_MISPLACED_TAG),
-            "51: " + getCheckMessage(MSG_LINE_BEFORE),
-            "61: " + getCheckMessage(MSG_REDUNDANT_PARAGRAPH),
-            "62: " + getCheckMessage(MSG_TAG_AFTER),
-            "70: " + getCheckMessage(MSG_MISPLACED_TAG),
-            "70: " + getCheckMessage(MSG_LINE_BEFORE),
-            "72: " + getCheckMessage(MSG_MISPLACED_TAG),
-            "75: " + getCheckMessage(MSG_MISPLACED_TAG),
-            "75: " + getCheckMessage(MSG_LINE_BEFORE),
-            "81: " + getCheckMessage(MSG_TAG_AFTER),
-            "82: " + getCheckMessage(MSG_TAG_AFTER),
+            "39: " + getCheckMessage(MSG_REDUNDANT_PARAGRAPH),
+            "40: " + getCheckMessage(MSG_MISPLACED_TAG),
+            "40: " + getCheckMessage(MSG_LINE_BEFORE),
+            "41: " + getCheckMessage(MSG_MISPLACED_TAG),
+            "41: " + getCheckMessage(MSG_LINE_BEFORE),
+            "42: " + getCheckMessage(MSG_MISPLACED_TAG),
+            "42: " + getCheckMessage(MSG_LINE_BEFORE),
+            "46: " + getCheckMessage(MSG_MISPLACED_TAG),
+            "46: " + getCheckMessage(MSG_LINE_BEFORE),
+            "52: " + getCheckMessage(MSG_MISPLACED_TAG),
+            "52: " + getCheckMessage(MSG_REDUNDANT_PARAGRAPH),
+            "55: " + getCheckMessage(MSG_MISPLACED_TAG),
+            "57: " + getCheckMessage(MSG_MISPLACED_TAG),
+            "57: " + getCheckMessage(MSG_LINE_BEFORE),
+            "58: " + getCheckMessage(MSG_MISPLACED_TAG),
+            "58: " + getCheckMessage(MSG_LINE_BEFORE),
+            "69: " + getCheckMessage(MSG_REDUNDANT_PARAGRAPH),
+            "70: " + getCheckMessage(MSG_TAG_AFTER),
+            "79: " + getCheckMessage(MSG_MISPLACED_TAG),
+            "79: " + getCheckMessage(MSG_LINE_BEFORE),
+            "81: " + getCheckMessage(MSG_MISPLACED_TAG),
+            "84: " + getCheckMessage(MSG_MISPLACED_TAG),
+            "84: " + getCheckMessage(MSG_LINE_BEFORE),
+            "91: " + getCheckMessage(MSG_TAG_AFTER),
+            "92: " + getCheckMessage(MSG_TAG_AFTER),
         };
-        verify(checkConfig, getPath("InputIncorrectJavaDocParagraph.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocParagraphIncorrect.java"), expected);
     }
 
     @Test
     public void testAllowNewlineParagraph() throws Exception {
-        checkConfig.addAttribute("allowNewlineParagraph", "false");
         final String[] expected = {
-            "7: " + getCheckMessage(MSG_LINE_BEFORE),
-            "8: " + getCheckMessage(MSG_LINE_BEFORE),
+            "13: " + getCheckMessage(MSG_LINE_BEFORE),
             "14: " + getCheckMessage(MSG_LINE_BEFORE),
-            "23: " + getCheckMessage(MSG_LINE_BEFORE),
-            "32: " + getCheckMessage(MSG_LINE_BEFORE),
-            "32: " + getCheckMessage(MSG_REDUNDANT_PARAGRAPH),
-            "33: " + getCheckMessage(MSG_LINE_BEFORE),
-            "34: " + getCheckMessage(MSG_LINE_BEFORE),
-            "35: " + getCheckMessage(MSG_LINE_BEFORE),
+            "19: " + getCheckMessage(MSG_LINE_BEFORE),
+            "28: " + getCheckMessage(MSG_LINE_BEFORE),
+            "37: " + getCheckMessage(MSG_LINE_BEFORE),
+            "37: " + getCheckMessage(MSG_REDUNDANT_PARAGRAPH),
+            "38: " + getCheckMessage(MSG_LINE_BEFORE),
             "39: " + getCheckMessage(MSG_LINE_BEFORE),
-            "45: " + getCheckMessage(MSG_REDUNDANT_PARAGRAPH),
-            "50: " + getCheckMessage(MSG_LINE_BEFORE),
-            "51: " + getCheckMessage(MSG_LINE_BEFORE),
-            "61: " + getCheckMessage(MSG_REDUNDANT_PARAGRAPH),
-            "62: " + getCheckMessage(MSG_TAG_AFTER),
-            "70: " + getCheckMessage(MSG_LINE_BEFORE),
-            "75: " + getCheckMessage(MSG_LINE_BEFORE),
-            "81: " + getCheckMessage(MSG_TAG_AFTER),
-            "82: " + getCheckMessage(MSG_TAG_AFTER),
+            "40: " + getCheckMessage(MSG_LINE_BEFORE),
+            "45: " + getCheckMessage(MSG_LINE_BEFORE),
+            "53: " + getCheckMessage(MSG_REDUNDANT_PARAGRAPH),
+            "58: " + getCheckMessage(MSG_LINE_BEFORE),
+            "59: " + getCheckMessage(MSG_LINE_BEFORE),
+            "70: " + getCheckMessage(MSG_REDUNDANT_PARAGRAPH),
+            "71: " + getCheckMessage(MSG_TAG_AFTER),
+            "80: " + getCheckMessage(MSG_LINE_BEFORE),
+            "85: " + getCheckMessage(MSG_LINE_BEFORE),
+            "93: " + getCheckMessage(MSG_TAG_AFTER),
+            "94: " + getCheckMessage(MSG_TAG_AFTER),
         };
-        verify(checkConfig, getPath("InputIncorrectJavaDocParagraph.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocParagraphIncorrect2.java"), expected);
     }
+
 }

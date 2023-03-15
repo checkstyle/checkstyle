@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FindBugsFilter>
+  <Match>
+    <!-- That code is auto generated -->
+    <Package name="~com\.puppycrawl\.tools\.checkstyle\.grammar.*" />
+  </Match>
+  <Match>
+    <!-- see a reason of suppression at #910 -->
+    <Class name="com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck$UniqueProperties" />
+    <Bug pattern="EQ_DOESNT_OVERRIDE_EQUALS" />
+  </Match>
+  <Match>
+    <!-- till https://github.com/spotbugs/spotbugs/issues/1338 fails on java11+ -->
+    <Class name="com.puppycrawl.tools.checkstyle.Main" />
+    <Method name="loadProperties" />
+    <Bug pattern="RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE" />
+  </Match>
+  <Match>
+    <!-- till https://github.com/spotbugs/spotbugs/issues/1338 fails on java11+ -->
+    <Class name="com.puppycrawl.tools.checkstyle.PropertyCacheFile" />
+    <Method name="load" />
+    <Bug pattern="RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE" />
+  </Match>
+  <Match>
+    <!-- till https://github.com/spotbugs/spotbugs/issues/1338 fails on java11+ -->
+    <Class name="com.puppycrawl.tools.checkstyle.PropertyCacheFile" />
+    <Method name="persist" />
+    <Bug pattern="RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE" />
+  </Match>
+  <Match>
+    <!-- till https://github.com/spotbugs/spotbugs/issues/1338 fails on java11+ -->
+    <Class name="com.puppycrawl.tools.checkstyle.ant.CheckstyleAntTask" />
+    <Method name="createOverridingProperties" />
+    <Bug pattern="RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE" />
+  </Match>
+  <Match>
+    <!-- till https://github.com/spotbugs/spotbugs/issues/1338 fails on java11+ -->
+    <Class name="com.puppycrawl.tools.checkstyle.checks.OrderedPropertiesCheck" />
+    <Method name="processFiltered" />
+    <Bug pattern="RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE" />
+  </Match>
+  <Match>
+    <!-- till https://github.com/spotbugs/spotbugs/issues/1338 fails on java11+ -->
+    <Class name="com.puppycrawl.tools.checkstyle.checks.TranslationCheck" />
+    <Method name="getTranslationKeys" />
+    <Bug pattern="RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE" />
+  </Match>
+  <Match>
+    <!-- till https://github.com/spotbugs/spotbugs/issues/1338 fails on java11+ -->
+    <Class name="com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck" />
+    <Method name="processFiltered" />
+    <Bug pattern="RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE" />
+  </Match>
+  <Match>
+    <!-- till https://github.com/spotbugs/spotbugs/issues/1338 fails on java11+ -->
+    <Class name="com.puppycrawl.tools.checkstyle.meta.MetadataGeneratorUtil" />
+    <Method name="dumpMetadata" />
+    <Bug pattern="RCN_REDUNDANT_NULLCHECK_WOULD_HAVE_BEEN_A_NPE" />
+  </Match>
+  <Match>
+    <!-- There is some empty methods in AbstractCheck/AbstractJavadocCheck.
+         Making them abstract requires too much boilerplate in subclasses. -->
+    <Bug pattern="ACEM_ABSTRACT_CLASS_EMPTY_METHODS"/>
+  </Match>
+  <Match>
+    <!-- Till https://github.com/mebigfatguy/fb-contrib/issues/296
+         @Nullable annotation is good idea in general, but requires extra dependencies. -->
+    <Bug pattern="AI_ANNOTATION_ISSUES_NEEDS_NULLABLE"/>
+  </Match>
+  <Match>
+    <!-- have never been a case for years, Eclipse does not show any other classes
+           inherited from CommonASTWithHiddenTokens -->
+    <Class name="com.puppycrawl.tools.checkstyle.DetailAstImpl" />
+    <Bug pattern="BC_UNCONFIRMED_CAST" />
+  </Match>
+  <Match>
+    <!-- The structure of frames relies on the AST structure which relies on correct/compilable
+           java files. It is ok to have direct casts to subtypes there. Any problems at runtime do
+           mean serious problems in the algorithm or AST generation. -->
+    <Class name="com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck"/>
+    <Or>
+      <Bug pattern="BC_UNCONFIRMED_CAST"/>
+      <Bug pattern="BC_UNCONFIRMED_CAST_OF_RETURN_VALUE"/>
+    </Or>
+  </Match>
+  <Match>
+    <!-- Till https://github.com/mebigfatguy/fb-contrib/issues/309 -->
+    <Bug pattern="CE_CLASS_ENVY"/>
+  </Match>
+  <Match>
+    <!-- These fields are restricted caches which must remain populated until the process ends. -->
+    <Bug pattern="PMB_POSSIBLE_MEMORY_BLOAT"/>
+    <Or>
+      <Class name="com.puppycrawl.tools.checkstyle.PackageObjectFactory"/>
+      <Class name="com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder"/>
+    </Or>
+  </Match>
+  <Match>
+    <!-- false positive, beginTree is a kind of constructor for Checks -->
+    <Or>
+      <Class name="com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck" />
+      <Class name="com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck" />
+      <Class name="com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck" />
+      <Class name="com.puppycrawl.tools.checkstyle.checks.coding.MatchXpathCheck"/>
+      <Class name="com.puppycrawl.tools.checkstyle.checks.OuterTypeFilenameCheck" />
+      <Class name="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpCheck" />
+      <!-- createJavadocNode is private and can not be launched without visitToken -->
+      <Class name="com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck" />
+      <!-- has only one public method and all initialized in that method -->
+      <Class name="com.puppycrawl.tools.checkstyle.checks.regexp.MultilineDetector" />
+      <!-- beginProcessing() is kind of c-tor -->
+      <Class name="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpMultilineCheck" />
+      <Class name="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck" />
+      <!-- Uses setters to set fields values.
+           This is part of the public API, so it's hard to refactor. -->
+      <Class name="com.puppycrawl.tools.checkstyle.api.AbstractCheck$FileContext" />
+      <Class name="com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck$FileContext" />
+      <!-- We cannot modify fields since we won't have the values
+             to create the instance until the setters are called -->
+      <Class name="com.puppycrawl.tools.checkstyle.filters.SuppressionSingleFilter"/>
+      <Class name="com.puppycrawl.tools.checkstyle.filters.SuppressionXpathSingleFilter"/>
+    </Or>
+    <Bug pattern="UWF_FIELD_NOT_INITIALIZED_IN_CONSTRUCTOR" />
+  </Match>
+  <Match>
+    <!-- false-positive. Bugs reported even though casting is done only
+           after verification using instanceof -->
+    <Class name="com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser"/>
+    <Method name="parseJavadocAsDetailNode"/>
+    <Bug pattern="BC_UNCONFIRMED_CAST_OF_RETURN_VALUE"/>
+  </Match>
+  <Match>
+    <!-- false-positive. See details at https://github.com/checkstyle/checkstyle/pull/6343 -->
+    <Class
+    name="com.puppycrawl.tools.checkstyle.checks.OrderedPropertiesCheck$SequencedProperties"/>
+    <Bug pattern="EQ_DOESNT_OVERRIDE_EQUALS"/>
+  </Match>
+  <Match>
+    <!-- It is better to catch all exceptions since it can throw a runtime exception. -->
+    <Class name="com.puppycrawl.tools.checkstyle.checks.TranslationCheck"/>
+    <Method name="getTranslationKeys"/>
+    <Bug pattern="REC_CATCH_EXCEPTION"/>
+  </Match>
+  <Match>
+    <!-- false-positive. See details at https://github.com/checkstyle/checkstyle/issues/8262 -->
+    <Field name="$jacocoData"/>
+    <Bug pattern="SE_TRANSIENT_FIELD_NOT_RESTORED"/>
+  </Match>
+  <Match>
+    <!-- Creates too many false positives on classes stored in sets/maps
+         which require multiple objects to be stored. -->
+    <Bug pattern="FCBL_FIELD_COULD_BE_LOCAL"/>
+  </Match>
+  <Match>
+    <!-- Runtime#exit(int) used in Main#main to return the exit code to the system. -->
+    <Class name="com.puppycrawl.tools.checkstyle.Main"/>
+    <Bug pattern="MDM_RUNTIME_EXIT_OR_HALT"/>
+  </Match>
+  <Match>
+    <!-- False positive as we override and enforce final so no more overrides. -->
+    <Bug pattern="COM_COPIED_OVERRIDDEN_METHOD"/>
+    <Class name="com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck"/>
+    <Method name="finishTree"/>
+  </Match>
+  <Match>
+    <!-- Check is broken and does not clearly report where the fault is.
+         Suppressed until https://github.com/mebigfatguy/fb-contrib/issues/408 -->
+    <Bug pattern="WOC_WRITE_ONLY_COLLECTION_FIELD"/>
+  </Match>
+  <Match>
+    <!-- Creates too many false positives on orElseGet calls. -->
+    <Bug pattern="OI_OPTIONAL_ISSUES_USES_ORELSEGET_WITH_NULL"/>
+  </Match>
+  <Match>
+    <!-- Must scan entire list to find the best item. -->
+    <Class name="com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck"/>
+    <Method name="getGroupNumber"/>
+    <Bug pattern="SLS_SUSPICIOUS_LOOP_SEARCH"/>
+  </Match>
+  <Match>
+    <!-- Better to use DetailAstImpl here to avoid needless dependency of API package. -->
+    <Class name="com.puppycrawl.tools.checkstyle.JavaAstVisitor"/>
+    <Method name="addLastSibling"/>
+    <Bug pattern="OCP_OVERLY_CONCRETE_PARAMETER"/>
+  </Match>
+  <Match>
+    <!-- Unable to resolve the item. -->
+    <Class name="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
+    <Method name="findLastChildWhichContainsSpecifiedToken"/>
+    <Bug pattern="SLS_SUSPICIOUS_LOOP_SEARCH"/>
+  </Match>
+  <Match>
+    <!-- Till https://github.com/mebigfatguy/fb-contrib/issues/329 -->
+    <Or>
+      <Class name="com.puppycrawl.tools.checkstyle.Checker"/>
+      <Class name="com.puppycrawl.tools.checkstyle.TreeWalker"/>
+    </Or>
+    <Method name="getExternalResourceLocations"/>
+    <Bug pattern="PRMC_POSSIBLY_REDUNDANT_METHOD_CALLS"/>
+  </Match>
+  <Match>
+    <!-- For recursive code, the size is difficult to determine.
+         It is better to use the default allocation size. -->
+    <Or>
+      <Class name="com.puppycrawl.tools.checkstyle.JavaAstVisitor"/>
+      <Class name="com.puppycrawl.tools.checkstyle.meta.JavadocMetadataScraper"/>
+    </Or>
+    <Bug pattern="PSC_PRESIZE_COLLECTIONS"/>
+  </Match>
+  <!-- After https://github.com/checkstyle/checkstyle/issues/11140
+       there should be one section per one bug pattern, with list of allowed classes or methods -->
+  <Match>
+    <Bug pattern="
+      CLI_CONSTANT_LIST_INDEX,
+      EXS_EXCEPTION_SOFTENING_NO_CHECKED,
+      EXS_EXCEPTION_SOFTENING_NO_CONSTRAINTS,
+      FCCD_FIND_CLASS_CIRCULAR_DEPENDENCY,
+      IMC_IMMATURE_CLASS_BAD_SERIALVERSIONUID,
+      IMC_IMMATURE_CLASS_NO_EQUALS,
+      IMC_IMMATURE_CLASS_NO_TOSTRING,
+      IMC_IMMATURE_CLASS_PRINTSTACKTRACE,
+      MOM_MISLEADING_OVERLOAD_MODEL,
+      NFF_NON_FUNCTIONAL_FIELD,
+      NMCS_NEEDLESS_MEMBER_COLLECTION_SYNCHRONIZATION,
+      OPM_OVERLY_PERMISSIVE_METHOD,
+      PMB_INSTANCE_BASED_THREAD_LOCAL,
+      SEO_SUBOPTIMAL_EXPRESSION_ORDER,
+      STT_STRING_PARSING_A_FIELD,
+      WEM_WEAK_EXCEPTION_MESSAGING,
+      " />
+  </Match>
+  <Match>
+    <!-- Till https://github.com/spotbugs/spotbugs/issues/1601 -->
+    <Bug pattern="EI_EXPOSE_REP,EI_EXPOSE_REP2"/>
+  </Match>
+  <Match>
+    <!-- Till https://github.com/spotbugs/spotbugs/issues/1867 -->
+    <Class name="com.puppycrawl.tools.checkstyle.gui.ListToTreeSelectionModelWrapper"/>
+    <Bug pattern="MC_OVERRIDABLE_METHOD_CALL_IN_CONSTRUCTOR"/>
+  </Match>
+  <Match>
+    <!-- Checks and filters are treated differently. -->
+    <Or>
+      <Class name="com.puppycrawl.tools.checkstyle.Checker"/>
+      <Class name="com.puppycrawl.tools.checkstyle.TreeWalker"/>
+    </Or>
+    <Bug pattern="ITC_INHERITANCE_TYPE_CHECKING"/>
+  </Match>
+</FindBugsFilter>

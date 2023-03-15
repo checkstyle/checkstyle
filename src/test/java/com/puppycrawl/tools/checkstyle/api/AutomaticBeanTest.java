@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,23 +15,25 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.api;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static com.google.common.truth.Truth.assertWithMessage;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
+import java.net.URI;
+import java.util.Arrays;
+import java.util.regex.Pattern;
 
 import org.apache.commons.beanutils.ConversionException;
-import org.junit.Test;
+import org.apache.commons.beanutils.ConvertUtilsBean;
+import org.apache.commons.beanutils.Converter;
+import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.DefaultContext;
+import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
 public class AutomaticBeanTest {
 
@@ -39,13 +41,22 @@ public class AutomaticBeanTest {
     public void testConfigureNoSuchAttribute() {
         final TestBean testBean = new TestBean();
         final DefaultConfiguration conf = new DefaultConfiguration("testConf");
-        conf.addAttribute("NonExisting", "doesn't matter");
+        conf.addProperty("NonExistent", "doesn't matter");
         try {
             testBean.configure(conf);
+            assertWithMessage("Exception is expected")
+                    .fail();
         }
         catch (CheckstyleException ex) {
-            assertNull(ex.getCause());
-            assertTrue(ex.getMessage().startsWith("Property '" + "NonExisting" + "' in module "));
+            assertWithMessage("Exceptions cause should be null")
+                    .that(ex)
+                    .hasCauseThat()
+                    .isNull();
+            assertWithMessage("Invalid exception message")
+                    .that(ex)
+                    .hasMessageThat()
+                    .isEqualTo("Property 'NonExistent' does not exist,"
+                            + " please check the documentation");
         }
     }
 
@@ -53,40 +64,65 @@ public class AutomaticBeanTest {
     public void testConfigureNoSuchAttribute2() {
         final TestBean testBean = new TestBean();
         final DefaultConfiguration conf = new DefaultConfiguration("testConf");
-        conf.addAttribute("privateField", "doesn't matter");
+        conf.addProperty("privateField", "doesn't matter");
         try {
             testBean.configure(conf);
+            assertWithMessage("Exception is expected")
+                    .fail();
         }
         catch (CheckstyleException ex) {
-            assertNull(ex.getCause());
-            assertTrue(ex.getMessage().startsWith("Property '" + "privateField" + "' in module "));
+            assertWithMessage("Exceptions cause should be null")
+                    .that(ex)
+                    .hasCauseThat()
+                    .isNull();
+            assertWithMessage("Invalid exception message")
+                    .that(ex)
+                    .hasMessageThat()
+                    .isEqualTo("Property 'privateField' does not exist,"
+                            + " please check the documentation");
         }
     }
 
     @Test
     public void testSetupChildFromBaseClass() throws CheckstyleException {
         final TestBean testBean = new TestBean();
+        testBean.configure(new DefaultConfiguration("bean config"));
         testBean.setupChild(null);
+        try {
+            testBean.setupChild(new DefaultConfiguration("dummy"));
+            assertWithMessage("Exception is expected")
+                    .fail();
+        }
+        catch (CheckstyleException ex) {
+            final String expectedMessage = "dummy is not allowed as a child in bean config. "
+                    + "Please review 'Parent Module' section for this Check"
+                    + " in web documentation if Check is standard.";
+            assertWithMessage("Invalid exception message")
+                    .that(ex)
+                    .hasMessageThat()
+                    .isEqualTo(expectedMessage);
+        }
     }
 
     @Test
-    public void testSetupInvalidChildFromBaseClass() throws Exception {
+    public void testSetupInvalidChildFromBaseClass() {
         final TestBean testBean = new TestBean();
         final DefaultConfiguration parentConf = new DefaultConfiguration("parentConf");
         final DefaultConfiguration childConf = new DefaultConfiguration("childConf");
-        final Field field = AutomaticBean.class.getDeclaredField("configuration");
-        field.setAccessible(true);
-        field.set(testBean, parentConf);
+        TestUtil.setInternalState(testBean, "configuration", parentConf);
 
         try {
             testBean.setupChild(childConf);
-            fail("expecting checkstyle exception");
+            assertWithMessage("expecting checkstyle exception")
+                    .fail();
         }
         catch (CheckstyleException ex) {
-            assertEquals("expected exception", "childConf is not allowed as a "
+            assertWithMessage("Invalid exception message")
+                    .that(ex)
+                    .hasMessageThat()
+                    .isEqualTo("childConf is not allowed as a "
                             + "child in parentConf. Please review 'Parent Module' section "
-                            + "for this Check in web documentation if Check is standard.",
-                    ex.getMessage());
+                            + "for this Check in web documentation if Check is standard.");
         }
     }
 
@@ -97,11 +133,19 @@ public class AutomaticBeanTest {
         context.add("exceptionalMethod", 123.0f);
         try {
             testBean.contextualize(context);
-            fail("InvocationTargetException is expected");
+            assertWithMessage("InvocationTargetException is expected")
+                    .fail();
         }
         catch (CheckstyleException ex) {
-            assertTrue(ex.getCause() instanceof InvocationTargetException);
-            assertTrue(ex.getMessage().startsWith("Cannot set property "));
+            final String expected = "Cannot set property 'exceptionalMethod' to '123.0'";
+            assertWithMessage("Invalid exception cause, should be: ReflectiveOperationException")
+                    .that(ex)
+                    .hasCauseThat()
+                    .isInstanceOf(ReflectiveOperationException.class);
+            assertWithMessage("Invalid exception message, should start with: " + expected)
+                    .that(ex)
+                    .hasMessageThat()
+                    .isEqualTo(expected);
         }
     }
 
@@ -112,11 +156,19 @@ public class AutomaticBeanTest {
         context.add("val", "some string");
         try {
             testBean.contextualize(context);
-            fail("InvocationTargetException is expected");
+            assertWithMessage("InvocationTargetException is expected")
+                    .fail();
         }
         catch (CheckstyleException ex) {
-            assertTrue(ex.getCause() instanceof ConversionException);
-            assertTrue(ex.getMessage().startsWith("illegal value "));
+            final String expected = "illegal value ";
+            assertWithMessage("Invalid exception cause, should be: ConversionException")
+                    .that(ex)
+                    .hasCauseThat()
+                    .isInstanceOf(ConversionException.class);
+            assertWithMessage("Invalid exception message, should start with: " + expected)
+                    .that(ex)
+                    .hasMessageThat()
+                    .startsWith(expected);
         }
     }
 
@@ -125,16 +177,125 @@ public class AutomaticBeanTest {
         final TestBean testBean = new TestBean();
         testBean.setVal(0);
         testBean.setWrong("wrongVal");
+        testBean.assignPrivateFieldSecretly(null);
         try {
             testBean.setExceptionalMethod("someValue");
-            fail("exception expected");
+            assertWithMessage("exception expected")
+                    .fail();
         }
         catch (IllegalStateException ex) {
-            assertEquals("null,wrongVal,0,someValue", ex.getMessage());
+            assertWithMessage("Invalid exception message")
+                    .that(ex)
+                    .hasMessageThat()
+                    .isEqualTo("null,wrongVal,0,someValue");
         }
     }
 
-    private static class TestBean extends AutomaticBean {
+    @Test
+    public void testRegisterIntegralTypes() throws Exception {
+        final ConvertUtilsBeanStub convertUtilsBean = new ConvertUtilsBeanStub();
+        TestUtil.invokeStaticMethod(AutomaticBean.class, "registerIntegralTypes", convertUtilsBean);
+        assertWithMessage("Number of converters registered differs from expected")
+                .that(convertUtilsBean.getRegisterCount())
+                .isEqualTo(81);
+    }
+
+    @Test
+    public void testBeanConverters() throws Exception {
+        final ConverterBean bean = new ConverterBean();
+
+        // methods are not seen as used by reflection
+        bean.setStrings("BAD");
+        bean.setPattern(null);
+        bean.setSeverityLevel(null);
+        bean.setScope(null);
+        bean.setUri(null);
+        bean.setAccessModifiers(AccessModifierOption.PACKAGE);
+
+        final DefaultConfiguration config = new DefaultConfiguration("bean");
+        config.addProperty("strings", "a, b, c");
+        config.addProperty("pattern", ".*");
+        config.addProperty("severityLevel", "error");
+        config.addProperty("scope", "public");
+        config.addProperty("uri", "http://github.com");
+        config.addProperty("accessModifiers", "public, private");
+        bean.configure(config);
+
+        final String message = "invalid result";
+        assertWithMessage(message)
+                .that(bean.strings)
+                .asList()
+                .containsExactly("a", "b", "c")
+                .inOrder();
+        assertWithMessage(message)
+                .that(bean.pattern.pattern())
+                .isEqualTo(".*");
+        assertWithMessage(message)
+                .that(bean.severityLevel)
+                .isEqualTo(SeverityLevel.ERROR);
+        assertWithMessage(message)
+                .that(bean.scope)
+                .isEqualTo(Scope.PUBLIC);
+        assertWithMessage(message)
+                .that(bean.uri)
+                .isEqualTo(new URI("http://github.com"));
+        assertWithMessage(message)
+                .that(bean.accessModifiers)
+                .asList()
+                .containsExactly(AccessModifierOption.PUBLIC, AccessModifierOption.PRIVATE)
+                .inOrder();
+    }
+
+    @Test
+    public void testBeanConvertersUri2() throws Exception {
+        final ConverterBean bean = new ConverterBean();
+        final DefaultConfiguration config = new DefaultConfiguration("bean");
+        config.addProperty("uri", "");
+        bean.configure(config);
+
+        assertWithMessage("invalid result")
+                .that(bean.uri)
+                .isNull();
+    }
+
+    @Test
+    public void testBeanConvertersUri3() {
+        final ConverterBean bean = new ConverterBean();
+        final DefaultConfiguration config = new DefaultConfiguration("bean");
+        config.addProperty("uri", "BAD");
+
+        try {
+            bean.configure(config);
+            assertWithMessage("Exception is expected")
+                    .fail();
+        }
+        catch (CheckstyleException ex) {
+            assertWithMessage("Error message is not expected")
+                    .that(ex)
+                    .hasMessageThat()
+                    .isEqualTo("illegal value 'BAD' for property 'uri'");
+        }
+    }
+
+    private static final class ConvertUtilsBeanStub extends ConvertUtilsBean {
+
+        private int registerCount;
+
+        @Override
+        public void register(Converter converter, Class<?> clazz) {
+            super.register(converter, clazz);
+            if (converter != null) {
+                registerCount++;
+            }
+        }
+
+        public int getRegisterCount() {
+            return registerCount;
+        }
+
+    }
+
+    public static final class TestBean extends AutomaticBean {
 
         private String privateField;
 
@@ -150,13 +311,93 @@ public class AutomaticBeanTest {
             this.val = val;
         }
 
+        public void assignPrivateFieldSecretly(String input) {
+            privateField = input;
+        }
+
         public void setExceptionalMethod(String value) {
             throw new IllegalStateException(privateField + "," + wrong + "," + val + "," + value);
         }
 
-        public void doSmth() {
-            privateField = "some value, just for fun";
+        @Override
+        protected void finishLocalSetup() {
+            // No code by default
         }
 
     }
+
+    /**
+     * This class has to be public for reflection to access the methods.
+     */
+    public static class ConverterBean extends AutomaticBean {
+
+        private String[] strings;
+        private Pattern pattern;
+        private SeverityLevel severityLevel;
+        private Scope scope;
+        private URI uri;
+        private AccessModifierOption[] accessModifiers;
+
+        /**
+         * Setter for strings.
+         *
+         * @param strings strings.
+         */
+        public void setStrings(String... strings) {
+            this.strings = Arrays.copyOf(strings, strings.length);
+        }
+
+        /**
+         * Setter for pattern.
+         *
+         * @param pattern pattern.
+         */
+        public void setPattern(Pattern pattern) {
+            this.pattern = pattern;
+        }
+
+        /**
+         * Setter for severity level.
+         *
+         * @param severityLevel severity level.
+         */
+        public void setSeverityLevel(SeverityLevel severityLevel) {
+            this.severityLevel = severityLevel;
+        }
+
+        /**
+         * Setter for scope.
+         *
+         * @param scope scope.
+         */
+        public void setScope(Scope scope) {
+            this.scope = scope;
+        }
+
+        /**
+         * Setter for uri.
+         *
+         * @param uri uri.
+         */
+        public void setUri(URI uri) {
+            this.uri = uri;
+        }
+
+        /**
+         * Setter for access modifiers.
+         *
+         * @param accessModifiers access modifiers.
+         */
+        public void setAccessModifiers(AccessModifierOption... accessModifiers) {
+            this.accessModifiers = Arrays.copyOf(accessModifiers,
+                    accessModifiers.length);
+        }
+
+        @Override
+        protected void finishLocalSetup() {
+            // no code
+        }
+
+    }
+
 }

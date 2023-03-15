@@ -1,8 +1,14 @@
+/*
+GenericWhitespace
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.whitespace.genericwhitespace;
 import java.util.function.Supplier;
 public class InputGenericWhitespaceMethodRef1
 {
-  public static class SomeClass {
+  public static class SomeClass { // ok
     public static class Nested<V> {
       private Nested() {
       }

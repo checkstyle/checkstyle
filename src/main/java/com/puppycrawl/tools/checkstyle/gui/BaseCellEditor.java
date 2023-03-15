@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.gui;
 
@@ -30,12 +30,10 @@ import javax.swing.event.EventListenerList;
  * A base class for CellEditors, providing default implementations for all
  * methods in the CellEditor interface and support for managing a series
  * of listeners.
- *
  * <a href=
  * "https://docs.oracle.com/cd/E48246_01/apirefs.1111/e13403/oracle/ide/controls/TreeTableModel.html">
  * Original&nbsp;Source&nbsp;Location</a>
  *
- * @author Philip Milne
  */
 public class BaseCellEditor implements CellEditor {
 
@@ -80,8 +78,9 @@ public class BaseCellEditor implements CellEditor {
     }
 
     /**
-     * Notifies all listeners that have registered interest for
+     * Notifies all listeners that have registered interest in
      * 'editing stopped' event.
+     *
      * @see EventListenerList
      */
     protected void fireEditingStopped() {
@@ -97,8 +96,9 @@ public class BaseCellEditor implements CellEditor {
     }
 
     /**
-     * Notifies all listeners that have registered interest for
+     * Notifies all listeners that have registered interest in
      * 'editing canceled' event.
+     *
      * @see EventListenerList
      */
     protected void fireEditingCanceled() {
@@ -112,4 +112,5 @@ public class BaseCellEditor implements CellEditor {
             }
         }
     }
+
 }

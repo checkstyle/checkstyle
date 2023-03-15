@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,34 +15,26 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.blocks;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.blocks.EmptyBlockCheck.MSG_KEY_BLOCK_EMPTY;
 import static com.puppycrawl.tools.checkstyle.checks.blocks.EmptyBlockCheck.MSG_KEY_BLOCK_NO_STATEMENT;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
-import java.io.File;
-import java.io.IOException;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Test;
-
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class EmptyBlockCheckTest
-    extends BaseCheckTestSupport {
+    extends AbstractModuleTestSupport {
+
     @Override
-    protected String getPath(String filename) throws IOException {
-        return super.getPath("checks" + File.separator
-                + "blocks" + File.separator
-                + "emptyblock" + File.separator
-                + filename);
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/checks/blocks/emptyblock";
     }
 
     /* Additional test for jacoco, since valueOf()
@@ -52,181 +44,203 @@ public class EmptyBlockCheckTest
     @Test
     public void testBlockOptionValueOf() {
         final BlockOption option = BlockOption.valueOf("TEXT");
-        assertEquals("Invalid valueOf result", BlockOption.TEXT, option);
+        assertWithMessage("Invalid valueOf result")
+            .that(option)
+            .isEqualTo(BlockOption.TEXT);
     }
 
     @Test
     public void testDefault()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(EmptyBlockCheck.class);
         final String[] expected = {
-            "33:13: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
-            "35:17: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
-            "37:13: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
+            "38:13: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
             "40:17: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
-            "63:5: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
-            "71:29: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
-            "73:41: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
-            "84:12: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
+            "42:13: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
+            "45:17: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
+            "68:5: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
+            "76:29: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
+            "78:41: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
+            "89:12: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
         };
-        verify(checkConfig, getPath("InputEmptyBlockSemantic.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyBlockSemantic.java"), expected);
     }
 
     @Test
     public void testText()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(EmptyBlockCheck.class);
-        checkConfig.addAttribute("option", BlockOption.TEXT.toString());
         final String[] expected = {
-            "33:13: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "try"),
-            "35:17: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "finally"),
-            "63:5: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "INSTANCE_INIT"),
-            "71:29: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "synchronized"),
-            "84:12: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "STATIC_INIT"),
+            "38:13: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "try"),
+            "40:17: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "finally"),
+            "68:5: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "INSTANCE_INIT"),
+            "76:29: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "synchronized"),
+            "88:12: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "STATIC_INIT"),
         };
-        verify(checkConfig, getPath("InputEmptyBlockSemantic.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyBlockSemanticText.java"), expected);
     }
 
     @Test
     public void testStatement()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(EmptyBlockCheck.class);
-        checkConfig.addAttribute("option", BlockOption.STATEMENT.toString());
         final String[] expected = {
-            "33:13: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
-            "35:17: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
-            "37:13: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
+            "38:13: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
             "40:17: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
-            "63:5: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
-            "71:29: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
-            "73:41: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
-            "84:12: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
+            "42:13: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
+            "45:17: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
+            "68:5: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
+            "76:29: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
+            "78:41: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
+            "89:12: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
         };
-        verify(checkConfig, getPath("InputEmptyBlockSemantic.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyBlockSemanticStatement.java"), expected);
     }
 
     @Test
     public void allowEmptyLoops() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createCheckConfig(EmptyBlockCheck.class);
-        checkConfig.addAttribute("option", BlockOption.STATEMENT.toString());
-        checkConfig.addAttribute("tokens", "LITERAL_TRY, LITERAL_CATCH,"
-                + "LITERAL_FINALLY, LITERAL_DO, LITERAL_IF,"
-                + "LITERAL_ELSE, INSTANCE_INIT, STATIC_INIT, LITERAL_SWITCH");
         final String[] expected = {
-            "16:29: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
-            "19:42: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
-            "22:29: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
-            "23:28: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
+            "21:21: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
+            "24:34: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
+            "27:21: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
+            "28:20: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
         };
-        verify(checkConfig, getPath("InputEmptyBlockSemantic2.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyBlockSemantic2Statement.java"), expected);
     }
 
     @Test
     public void allowEmptyLoopsText() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createCheckConfig(EmptyBlockCheck.class);
-        checkConfig.addAttribute("option", BlockOption.TEXT.toString());
-        checkConfig.addAttribute("tokens", "LITERAL_TRY, LITERAL_CATCH,"
-                + "LITERAL_FINALLY, LITERAL_DO, LITERAL_IF,"
-                + "LITERAL_ELSE, INSTANCE_INIT, STATIC_INIT, LITERAL_SWITCH");
         final String[] expected = {
-            "16:29: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "if"),
-            "19:42: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "if"),
-            "22:29: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "if"),
-            "23:28: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "switch"),
+            "26:21: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "if"),
+            "29:34: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "if"),
+            "32:21: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "if"),
+            "33:20: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "switch"),
         };
-        verify(checkConfig, getPath("InputEmptyBlockSemantic2.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyBlockSemantic2Text.java"), expected);
     }
 
     @Test
     public void testInvalidOption() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(EmptyBlockCheck.class);
-        checkConfig.addAttribute("option", "invalid_option");
 
         try {
-            final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+            final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-            verify(checkConfig, getPath("InputEmptyBlockSemantic.java"), expected);
-            fail("exception expected");
+            verifyWithInlineConfigParser(
+                    getPath("InputEmptyBlockSemanticInvalid.java"), expected);
+            assertWithMessage("exception expected").fail();
         }
         catch (CheckstyleException ex) {
-            final String messageStart =
-                "cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker - "
-                    + "Cannot set property 'option' to 'invalid_option' in module";
-
-            assertTrue("Invalid exception message, should start with: " + messageStart,
-                ex.getMessage().startsWith(messageStart));
+            assertWithMessage("Invalid exception message")
+                .that(ex.getMessage())
+                .isEqualTo("cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker - "
+                        + "cannot initialize module com.puppycrawl.tools.checkstyle.checks."
+                        + "blocks.EmptyBlockCheck - "
+                        + "Cannot set property 'option' to 'invalid_option'");
         }
     }
 
     @Test
     public void testAllowEmptyCaseWithText() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(EmptyBlockCheck.class);
-        checkConfig.addAttribute("option", BlockOption.TEXT.toString());
-        checkConfig.addAttribute("tokens", "LITERAL_CASE");
         final String[] expected = {
-            "12:28: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "case"),
-            "18:13: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "case"),
-            "29:29: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "case"),
-            "31:37: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "case"),
-            "32:29: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "case"),
+            "16:28: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "case"),
+            "22:13: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "case"),
+            "33:29: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "case"),
+            "35:37: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "case"),
+            "36:29: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "case"),
         };
-        verify(checkConfig, getPath("InputEmptyBlockCase.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyBlockCase.java"), expected);
     }
 
     @Test
     public void testForbidCaseWithoutStmt() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(EmptyBlockCheck.class);
-        checkConfig.addAttribute("option", BlockOption.STATEMENT.toString());
-        checkConfig.addAttribute("tokens", "LITERAL_CASE");
         final String[] expected = {
-            "12:28: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "case"),
-            "18:13: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "case"),
+            "16:28: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "case"),
             "22:13: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "case"),
-            "29:29: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "case"),
-            "31:37: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "case"),
-            "32:29: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "case"),
-            "32:40: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "case"),
+            "26:13: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "case"),
+            "33:29: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "case"),
+            "35:37: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "case"),
+            "36:29: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "case"),
+            "36:40: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "case"),
         };
-        verify(checkConfig, getPath("InputEmptyBlockCase.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyBlockCase2.java"), expected);
     }
 
     @Test
     public void testAllowEmptyDefaultWithText() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(EmptyBlockCheck.class);
-        checkConfig.addAttribute("option", BlockOption.TEXT.toString());
-        checkConfig.addAttribute("tokens", "LITERAL_DEFAULT");
         final String[] expected = {
-            "5:30: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "default"),
-            "11:13: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "default"),
-            "36:22: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "default"),
-            "44:47: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "default"),
-            "50:22: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "default"),
-            "78:13: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "default"),
+            "15:30: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "default"),
+            "21:13: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "default"),
+            "46:22: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "default"),
+            "54:47: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "default"),
+            "60:22: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "default"),
+            "88:13: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "default"),
         };
-        verify(checkConfig, getPath("InputEmptyBlockDefault.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyBlockDefault.java"), expected);
     }
 
     @Test
     public void testForbidDefaultWithoutStatement() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(EmptyBlockCheck.class);
-        checkConfig.addAttribute("option", BlockOption.STATEMENT.toString());
-        checkConfig.addAttribute("tokens", "LITERAL_DEFAULT");
         final String[] expected = {
-            "5:30: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "default"),
-            "11:13: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "default"),
-            "15:13: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "default"),
-            "26:30: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "default"),
-            "36:22: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "default"),
-            "44:47: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "default"),
-            "50:22: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "default"),
-            "65:22: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "default"),
-            "78:13: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "default"),
+            "15:30: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "default"),
+            "21:13: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "default"),
+            "25:13: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "default"),
+            "36:30: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "default"),
+            "46:22: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "default"),
+            "54:47: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "default"),
+            "60:22: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "default"),
+            "75:22: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "default"),
+            "88:13: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "default"),
         };
-        verify(checkConfig, getPath("InputEmptyBlockDefault.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyBlockDefault2.java"), expected);
+    }
+
+    @Test
+    public void testEmptyBlockWithEmoji() throws Exception {
+        final String[] expected = {
+            "15:12: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "STATIC_INIT"),
+            "25:27: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "if"),
+            "28:34: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "if"),
+            "30:62: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "for"),
+            "31:25: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "if"),
+            "33:25: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "switch"),
+            "40:22: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "case"),
+            "45:46: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "default"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyBlockWithEmoji.java"), expected);
+
+    }
+
+    @Test
+    public void testAnnotationDefaultKeyword() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        final String path = getPath("InputEmptyBlockAnnotationDefaultKeyword.java");
+        verifyWithInlineConfigParser(
+                path, expected);
+    }
+
+    @Test
+    public void testEmptyBlockSwitchExpressions() throws Exception {
+        final String[] expected = {
+            "17:30: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "default"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputEmptyBlockSwitchExpressions.java"), expected);
+    }
+
+    @Test
+    public void testUppercaseProperty() throws Exception {
+        final String[] expected = {
+            "16:30: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "default"),
+            "22:13: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "default"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyBlockTestUppercaseOptionProperty.java"), expected);
     }
 }

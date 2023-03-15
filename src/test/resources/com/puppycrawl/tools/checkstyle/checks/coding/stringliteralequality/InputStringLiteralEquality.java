@@ -1,5 +1,11 @@
-package com.puppycrawl.tools.checkstyle.checks.coding.stringliteralequality;
+/*
+StringLiteralEquality
 
+
+*/
+
+package com.puppycrawl.tools.checkstyle.checks.coding.stringliteralequality;
+import java.util.Locale;
 /**
  * Input file for the StringLiteralEqualityCheck
  * @author Lars K&uuml;hne
@@ -8,20 +14,20 @@ public class InputStringLiteralEquality
 {
     void foo(String name)
     {
-        if (name == "Lars")
+        if (name == "Lars") // violation
         {
             // flagged, should use equals
         }
 
-        if ("Oleg" == name)
+        if ("Oleg" == name) // violation
         {
             // flagged, should use equals
         }
 
-        if ("Oliver" == "Oliver")
+        if ("Oliver" == "Oliver") // violation
         {
             // doesn't make much sense because this can be evaluated
-            // to true at compile time, but is flagged anyway
+            // to true at compile-time, but is flagged anyway
         }
 
         String compare = "Rick";
@@ -39,9 +45,13 @@ public class InputStringLiteralEquality
             // what some of us get paid for :-)
         }
 
-        if ("Rick".toUpperCase(java.util.Locale.getDefault()) == "Rick".toLowerCase(java.util.Locale.getDefault()))
+        if ("Rick".toUpperCase(Locale.getDefault()) == "Rick".toLowerCase(Locale.getDefault()))
         {
-            // completly dynamic, don't flag
+            // completely dynamic, don't flag
         }
+    }
+
+    public static boolean isMethod(Integer value) {
+        return value.intValue() != value.intValue() + 1;
     }
 }

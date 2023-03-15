@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,150 +15,216 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.annotation;
 
+import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
- * Check location of annotation on language elements.
+ * <p>
+ * Checks location of annotation on language elements.
  * By default, Check enforce to locate annotations immediately after
  * documentation block and before target element, annotation should be located
- * on separate line from target element.
+ * on separate line from target element. This check also verifies that the annotations
+ * are on the same indenting level as the annotated element if they are not on the same line.
+ * </p>
+ * <p>
+ * Attention: Elements that cannot have JavaDoc comments like local variables are not in the
+ * scope of this check even though a token type like {@code VARIABLE_DEF} would match them.
+ * </p>
  * <p>
  * Attention: Annotations among modifiers are ignored (looks like false-negative)
- * as there might be a problem with annotations for return types.
+ * as there might be a problem with annotations for return types:
  * </p>
- * <pre>public @Nullable Long getStartTimeOrNull() { ... }</pre>.
+ * <pre>
+ * public @Nullable Long getStartTimeOrNull() { ... }
+ * </pre>
  * <p>
  * Such annotations are better to keep close to type.
  * Due to limitations, Checkstyle can not examine the target of an annotation.
  * </p>
- *
  * <p>
  * Example:
  * </p>
- *
  * <pre>
  * &#64;Override
  * &#64;Nullable
  * public String getNameIfPresent() { ... }
  * </pre>
- *
- * <p>
- * The check has the following options:
- * </p>
  * <ul>
- * <li>allowSamelineMultipleAnnotations - to allow annotation to be located on
- * the same line as the target element. Default value is false.
- * </li>
- *
  * <li>
- * allowSamelineSingleParameterlessAnnotation - to allow single parameterless
- * annotation to be located on the same line as the target element. Default value is false.
+ * Property {@code allowSamelineMultipleAnnotations} - Allow annotation(s) to be located on
+ * the same line as target element.
+ * Type is {@code boolean}.
+ * Default value is {@code false}.
  * </li>
- *
  * <li>
- * allowSamelineParameterizedAnnotation - to allow parameterized annotation
- * to be located on the same line as the target element. Default value is false.
+ * Property {@code allowSamelineSingleParameterlessAnnotation} - Allow single parameterless
+ * annotation to be located on the same line as target element.
+ * Type is {@code boolean}.
+ * Default value is {@code true}.
+ * </li>
+ * <li>
+ * Property {@code allowSamelineParameterizedAnnotation} - Allow one and only parameterized
+ * annotation to be located on the same line as target element.
+ * Type is {@code boolean}.
+ * Default value is {@code false}.
+ * </li>
+ * <li>
+ * Property {@code tokens} - tokens to check
+ * Type is {@code java.lang.String[]}.
+ * Validation type is {@code tokenSet}.
+ * Default value is:
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
+ * CLASS_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
+ * INTERFACE_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PACKAGE_DEF">
+ * PACKAGE_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_CONSTANT_DEF">
+ * ENUM_CONSTANT_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
+ * ENUM_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+ * METHOD_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
+ * CTOR_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
+ * VARIABLE_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
+ * RECORD_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMPACT_CTOR_DEF">
+ * COMPACT_CTOR_DEF</a>.
  * </li>
  * </ul>
- * <br>
  * <p>
- * Example to allow single parameterless annotation on the same line:
+ * To configure the default check to allow one single parameterless annotation on the same line:
  * </p>
  * <pre>
- * &#64;Override public int hashCode() { ... }
+ * &lt;module name=&quot;AnnotationLocation&quot;/&gt;
  * </pre>
- *
- * <p>Use the following configuration:
- * <pre>
- * &lt;module name=&quot;AnnotationLocation&quot;&gt;
- *    &lt;property name=&quot;allowSamelineMultipleAnnotations&quot; value=&quot;false&quot;/&gt;
- *    &lt;property name=&quot;allowSamelineSingleParameterlessAnnotation&quot;
- *    value=&quot;true&quot;/&gt;
- *    &lt;property name=&quot;allowSamelineParameterizedAnnotation&quot; value=&quot;false&quot;
- *    /&gt;
- * &lt;/module&gt;
- * </pre>
- * <br>
  * <p>
- * Example to allow multiple parameterized annotations on the same line:
+ * Example for above configuration:
  * </p>
  * <pre>
- * &#64;SuppressWarnings("deprecation") &#64;Mock DataLoader loader;
+ * &#64;NotNull private boolean field1; //ok
+ * &#64;Override public int hashCode() { return 1; } //ok
+ * &#64;NotNull //ok
+ * private boolean field2;
+ * &#64;Override //ok
+ * public boolean equals(Object obj) { return true; }
+ * &#64;Mock DataLoader loader; //ok
+ * &#64;SuppressWarnings("deprecation") DataLoader loader; //violation
+ * &#64;SuppressWarnings("deprecation") public int foo() { return 1; } //violation
+ * &#64;NotNull &#64;Mock DataLoader loader; //violation
  * </pre>
- *
- * <p>Use the following configuration:
- * <pre>
- * &lt;module name=&quot;AnnotationLocation&quot;&gt;
- *    &lt;property name=&quot;allowSamelineMultipleAnnotations&quot; value=&quot;true&quot;/&gt;
- *    &lt;property name=&quot;allowSamelineSingleParameterlessAnnotation&quot;
- *    value=&quot;true&quot;/&gt;
- *    &lt;property name=&quot;allowSamelineParameterizedAnnotation&quot; value=&quot;true&quot;
- *    /&gt;
- * &lt;/module&gt;
- * </pre>
- * <br>
  * <p>
- * Example to allow multiple parameterless annotations on the same line:
+ * Use the following configuration to allow multiple annotations on the same line:
  * </p>
  * <pre>
- * &#64;Partial &#64;Mock DataLoader loader;
- * </pre>
- *
- * <p>Use the following configuration:
- * <pre>
  * &lt;module name=&quot;AnnotationLocation&quot;&gt;
- *    &lt;property name=&quot;allowSamelineMultipleAnnotations&quot; value=&quot;true&quot;/&gt;
- *    &lt;property name=&quot;allowSamelineSingleParameterlessAnnotation&quot;
- *    value=&quot;true&quot;/&gt;
- *    &lt;property name=&quot;allowSamelineParameterizedAnnotation&quot; value=&quot;false&quot;
- *    /&gt;
+ *   &lt;property name=&quot;allowSamelineMultipleAnnotations&quot; value=&quot;true&quot;/&gt;
+ *   &lt;property name=&quot;allowSamelineSingleParameterlessAnnotation&quot;
+ *     value=&quot;false&quot;/&gt;
+ *   &lt;property name=&quot;allowSamelineParameterizedAnnotation&quot; value=&quot;false&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
- * <br>
  * <p>
- * The following example demonstrates how the check validates annotation of method parameters,
- * catch parameters, foreach, for-loop variable definitions.
+ * Example to allow any location multiple annotations:
  * </p>
- *
- * <p>Configuration:
+ * <pre>
+ * &#64;NotNull private boolean field1; //ok
+ * &#64;Override public int hashCode() { return 1; } //ok
+ * &#64;NotNull //ok
+ * private boolean field2;
+ * &#64;Override //ok
+ * public boolean equals(Object obj) { return true; }
+ * &#64;Mock DataLoader loader; //ok
+ * &#64;SuppressWarnings("deprecation") DataLoader loader; //ok
+ * &#64;SuppressWarnings("deprecation") public int foo() { return 1; } //ok
+ * &#64;NotNull &#64;Mock DataLoader loader; //ok
+ * </pre>
+ * <p>
+ * Use the following configuration to allow only one and only parameterized annotation
+ * on the same line:
+ * </p>
  * <pre>
  * &lt;module name=&quot;AnnotationLocation&quot;&gt;
- *    &lt;property name=&quot;allowSamelineMultipleAnnotations&quot; value=&quot;false&quot;/&gt;
- *    &lt;property name=&quot;allowSamelineSingleParameterlessAnnotation&quot;
- *    value=&quot;false&quot;/&gt;
- *    &lt;property name=&quot;allowSamelineParameterizedAnnotation&quot; value=&quot;false&quot;
- *    /&gt;
- *    &lt;property name=&quot;tokens&quot; value=&quot;VARIABLE_DEF, PARAMETER_DEF&quot;/&gt;
+ *   &lt;property name=&quot;allowSamelineMultipleAnnotations&quot; value=&quot;false&quot;/&gt;
+ *   &lt;property name=&quot;allowSamelineSingleParameterlessAnnotation&quot;
+ *     value=&quot;false&quot;/&gt;
+ *   &lt;property name=&quot;allowSamelineParameterizedAnnotation&quot; value=&quot;true&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>
+ * Example to allow only one and only parameterized annotation on the same line:
+ * </p>
+ * <pre>
+ * &#64;NotNull private boolean field1; //violation
+ * &#64;Override public int hashCode() { return 1; } //violation
+ * &#64;NotNull //ok
+ * private boolean field2;
+ * &#64;Override //ok
+ * public boolean equals(Object obj) { return true; }
+ * &#64;Mock DataLoader loader; //violation
+ * &#64;SuppressWarnings("deprecation") DataLoader loader; //ok
+ * &#64;SuppressWarnings("deprecation") public int foo() { return 1; } //ok
+ * &#64;NotNull &#64;Mock DataLoader loader; //violation
+ * </pre>
+ * <p>
+ * Use the following configuration to only validate annotations on methods to allow one
+ * single parameterless annotation on the same line:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;AnnotationLocation&quot;&gt;
+ *   &lt;property name=&quot;tokens&quot; value=&quot;METHOD_DEF&quot;/&gt;
+ *   &lt;property name=&quot;allowSamelineMultipleAnnotations&quot; value=&quot;false&quot;/&gt;
+ *   &lt;property name=&quot;allowSamelineSingleParameterlessAnnotation&quot;
+ *     value=&quot;true&quot;/&gt;
+ *   &lt;property name=&quot;allowSamelineParameterizedAnnotation&quot; value=&quot;false&quot;/&gt;
+ *  &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example for above configuration to check only methods:
+ * </p>
+ * <pre>
+ * &#64;NotNull private boolean field1; //ok
+ * &#64;Override public int hashCode() { return 1; } //ok
+ * &#64;NotNull //ok
+ * private boolean field2;
+ * &#64;Override //ok
+ * public boolean equals(Object obj) { return true; }
+ * &#64;Mock DataLoader loader; //ok
+ * &#64;SuppressWarnings("deprecation") DataLoader loader; //ok
+ * &#64;SuppressWarnings("deprecation") public int foo() { return 1; } //violation
+ * &#64;NotNull &#64;Mock DataLoader loader; //ok
+ * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code annotation.location}
+ * </li>
+ * <li>
+ * {@code annotation.location.alone}
+ * </li>
+ * </ul>
  *
- * <p>Code example
- * {@code
- * ...
- * public void test(&#64;MyAnnotation String s) { // OK
- *   ...
- *   for (&#64;MyAnnotation char c : s.toCharArray()) { ... }  // OK
- *   ...
- *   try { ... }
- *   catch (&#64;MyAnnotation Exception ex) { ... } // OK
- *   ...
- *   for (&#64;MyAnnotation int i = 0; i &lt; 10; i++) { ... } // OK
- *   ...
- *   MathOperation c = (&#64;MyAnnotation int a, &#64;MyAnnotation int b) -&gt; a + b; // OK
- *   ...
- * }
- * }
- *
- * @author maxvetrenko
+ * @since 6.0
  */
+@StatelessCheck
 public class AnnotationLocationCheck extends AbstractCheck {
+
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
@@ -171,31 +237,28 @@ public class AnnotationLocationCheck extends AbstractCheck {
      */
     public static final String MSG_KEY_ANNOTATION_LOCATION = "annotation.location";
 
-    /** Array of single line annotation parents. */
-    private static final int[] SINGLELINE_ANNOTATION_PARENTS = {TokenTypes.FOR_EACH_CLAUSE,
-                                                                TokenTypes.PARAMETER_DEF,
-                                                                TokenTypes.FOR_INIT, };
-
     /**
-     * If true, it allows single prameterless annotation to be located on the same line as
+     * Allow single parameterless annotation to be located on the same line as
      * target element.
      */
     private boolean allowSamelineSingleParameterlessAnnotation = true;
 
     /**
-     * If true, it allows parameterized annotation to be located on the same line as
+     * Allow one and only parameterized annotation to be located on the same line as
      * target element.
      */
     private boolean allowSamelineParameterizedAnnotation;
 
     /**
-     * If true, it allows annotation to be located on the same line as
+     * Allow annotation(s) to be located on the same line as
      * target element.
      */
     private boolean allowSamelineMultipleAnnotations;
 
     /**
-     * Sets if allow same line single parameterless annotation.
+     * Setter to allow single parameterless annotation to be located on the same line as
+     * target element.
+     *
      * @param allow User's value of allowSamelineSingleParameterlessAnnotation.
      */
     public final void setAllowSamelineSingleParameterlessAnnotation(boolean allow) {
@@ -203,8 +266,9 @@ public class AnnotationLocationCheck extends AbstractCheck {
     }
 
     /**
-     * Sets if allow parameterized annotation to be located on the same line as
+     * Setter to allow one and only parameterized annotation to be located on the same line as
      * target element.
+     *
      * @param allow User's value of allowSamelineParameterizedAnnotation.
      */
     public final void setAllowSamelineParameterizedAnnotation(boolean allow) {
@@ -212,8 +276,9 @@ public class AnnotationLocationCheck extends AbstractCheck {
     }
 
     /**
-     * Sets if allow annotation to be located on the same line as
+     * Setter to allow annotation(s) to be located on the same line as
      * target element.
+     *
      * @param allow User's value of allowSamelineMultipleAnnotations.
      */
     public final void setAllowSamelineMultipleAnnotations(boolean allow) {
@@ -225,10 +290,14 @@ public class AnnotationLocationCheck extends AbstractCheck {
         return new int[] {
             TokenTypes.CLASS_DEF,
             TokenTypes.INTERFACE_DEF,
+            TokenTypes.PACKAGE_DEF,
+            TokenTypes.ENUM_CONSTANT_DEF,
             TokenTypes.ENUM_DEF,
             TokenTypes.METHOD_DEF,
             TokenTypes.CTOR_DEF,
             TokenTypes.VARIABLE_DEF,
+            TokenTypes.RECORD_DEF,
+            TokenTypes.COMPACT_CTOR_DEF,
         };
     }
 
@@ -237,61 +306,53 @@ public class AnnotationLocationCheck extends AbstractCheck {
         return new int[] {
             TokenTypes.CLASS_DEF,
             TokenTypes.INTERFACE_DEF,
+            TokenTypes.PACKAGE_DEF,
+            TokenTypes.ENUM_CONSTANT_DEF,
             TokenTypes.ENUM_DEF,
             TokenTypes.METHOD_DEF,
             TokenTypes.CTOR_DEF,
             TokenTypes.VARIABLE_DEF,
-            TokenTypes.PARAMETER_DEF,
             TokenTypes.ANNOTATION_DEF,
-            TokenTypes.TYPECAST,
-            TokenTypes.LITERAL_THROWS,
-            TokenTypes.IMPLEMENTS_CLAUSE,
-            TokenTypes.TYPE_ARGUMENT,
-            TokenTypes.LITERAL_NEW,
-            TokenTypes.DOT,
             TokenTypes.ANNOTATION_FIELD_DEF,
+            TokenTypes.RECORD_DEF,
+            TokenTypes.COMPACT_CTOR_DEF,
         };
     }
 
     @Override
     public int[] getRequiredTokens() {
-        return CommonUtils.EMPTY_INT_ARRAY;
+        return CommonUtil.EMPTY_INT_ARRAY;
     }
 
     @Override
     public void visitToken(DetailAST ast) {
-        final DetailAST modifiersNode = ast.findFirstToken(TokenTypes.MODIFIERS);
-
-        if (hasAnnotations(modifiersNode)) {
-            checkAnnotations(modifiersNode, getExpectedAnnotationIndentation(modifiersNode));
+        // ignore variable def tokens that are not field definitions
+        if (ast.getType() != TokenTypes.VARIABLE_DEF
+                || ast.getParent().getType() == TokenTypes.OBJBLOCK) {
+            DetailAST node = ast.findFirstToken(TokenTypes.MODIFIERS);
+            if (node == null) {
+                node = ast.findFirstToken(TokenTypes.ANNOTATIONS);
+            }
+            checkAnnotations(node, getExpectedAnnotationIndentation(node));
         }
     }
 
     /**
-     * Checks whether a given modifier node has an annotation.
-     * @param modifierNode modifier node.
-     * @return true if the given modifier node has the annotation.
-     */
-    private static boolean hasAnnotations(DetailAST modifierNode) {
-        return modifierNode != null
-            && modifierNode.findFirstToken(TokenTypes.ANNOTATION) != null;
-    }
-
-    /**
      * Returns an expected annotation indentation.
-     * The expected indentation should be the same as the indentation of the node
-     * which is the parent of the target modifier node.
-     * @param modifierNode modifier node.
+     * The expected indentation should be the same as the indentation of the target node.
+     *
+     * @param node modifiers or annotations node.
      * @return the annotation indentation.
      */
-    private static int getExpectedAnnotationIndentation(DetailAST modifierNode) {
-        return modifierNode.getParent().getColumnNo();
+    private static int getExpectedAnnotationIndentation(DetailAST node) {
+        return node.getColumnNo();
     }
 
     /**
      * Checks annotations positions in code:
      * 1) Checks whether the annotations locations are correct.
      * 2) Checks whether the annotations have the valid indentation level.
+     *
      * @param modifierNode modifiers node.
      * @param correctIndentation correct indentation of the annotation.
      */
@@ -302,11 +363,11 @@ public class AnnotationLocationCheck extends AbstractCheck {
             final boolean hasParameters = isParameterized(annotation);
 
             if (!isCorrectLocation(annotation, hasParameters)) {
-                log(annotation.getLineNo(),
+                log(annotation,
                         MSG_KEY_ANNOTATION_LOCATION_ALONE, getAnnotationName(annotation));
             }
             else if (annotation.getColumnNo() != correctIndentation && !hasNodeBefore(annotation)) {
-                log(annotation.getLineNo(), MSG_KEY_ANNOTATION_LOCATION,
+                log(annotation, MSG_KEY_ANNOTATION_LOCATION,
                     getAnnotationName(annotation), annotation.getColumnNo(), correctIndentation);
             }
             annotation = annotation.getNextSibling();
@@ -315,15 +376,20 @@ public class AnnotationLocationCheck extends AbstractCheck {
 
     /**
      * Checks whether an annotation has parameters.
+     *
      * @param annotation annotation node.
      * @return true if the annotation has parameters.
      */
     private static boolean isParameterized(DetailAST annotation) {
-        return annotation.findFirstToken(TokenTypes.EXPR) != null;
+        return TokenUtil.findFirstTokenByPredicate(annotation, ast -> {
+            return ast.getType() == TokenTypes.EXPR
+                || ast.getType() == TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR;
+        }).isPresent();
     }
 
     /**
      * Returns the name of the given annotation.
+     *
      * @param annotation annotation node.
      * @return annotation name.
      */
@@ -344,8 +410,8 @@ public class AnnotationLocationCheck extends AbstractCheck {
      * the value of {@link AnnotationLocationCheck#allowSamelineParameterizedAnnotation};
      * 2) checks parameterless annotation location considering
      * the value of {@link AnnotationLocationCheck#allowSamelineSingleParameterlessAnnotation};
-     * 3) checks annotation location considering the elements
-     * of {@link AnnotationLocationCheck#SINGLELINE_ANNOTATION_PARENTS};
+     * 3) checks annotation location;
+     *
      * @param annotation annotation node.
      * @param hasParams whether an annotation has parameters.
      * @return true if the annotation has a correct location.
@@ -361,12 +427,12 @@ public class AnnotationLocationCheck extends AbstractCheck {
         }
         return allowSamelineMultipleAnnotations
             || allowingCondition && !hasNodeBefore(annotation)
-            || !allowingCondition && (!hasNodeBeside(annotation)
-            || isAllowedPosition(annotation, SINGLELINE_ANNOTATION_PARENTS));
+            || !hasNodeBeside(annotation);
     }
 
     /**
      * Checks whether an annotation node has any node before on the same line.
+     *
      * @param annotation annotation node.
      * @return true if an annotation node has any node before on the same line.
      */
@@ -379,6 +445,7 @@ public class AnnotationLocationCheck extends AbstractCheck {
 
     /**
      * Checks whether an annotation node has any node before or after on the same line.
+     *
      * @param annotation annotation node.
      * @return true if an annotation node has any node before or after on the same line.
      */
@@ -388,6 +455,7 @@ public class AnnotationLocationCheck extends AbstractCheck {
 
     /**
      * Checks whether an annotation node has any node after on the same line.
+     *
      * @param annotation annotation node.
      * @return true if an annotation node has any node after on the same line.
      */
@@ -402,38 +470,4 @@ public class AnnotationLocationCheck extends AbstractCheck {
         return annotationLineNo == nextNode.getLineNo();
     }
 
-    /**
-     * Checks whether position of annotation is allowed.
-     * @param annotation annotation token.
-     * @param allowedPositions an array of allowed annotation positions.
-     * @return true if position of annotation is allowed.
-     */
-    public static boolean isAllowedPosition(DetailAST annotation, int... allowedPositions) {
-        boolean allowed = false;
-        for (int position : allowedPositions) {
-            if (isInSpecificCodeBlock(annotation, position)) {
-                allowed = true;
-                break;
-            }
-        }
-        return allowed;
-    }
-
-    /**
-     * Checks whether the scope of a node is restricted to a specific code block.
-     * @param node node.
-     * @param blockType block type.
-     * @return true if the scope of a node is restricted to a specific code block.
-     */
-    private static boolean isInSpecificCodeBlock(DetailAST node, int blockType) {
-        boolean returnValue = false;
-        for (DetailAST token = node.getParent(); token != null; token = token.getParent()) {
-            final int type = token.getType();
-            if (type == blockType) {
-                returnValue = true;
-                break;
-            }
-        }
-        return returnValue;
-    }
 }

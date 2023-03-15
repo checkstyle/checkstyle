@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,81 +15,181 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.annotation;
 
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.AnnotationUtility;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * <p>
- * This check allows you to specify what warnings that
- * {@link SuppressWarnings SuppressWarnings} is not
- * allowed to suppress.  You can also specify a list
- * of TokenTypes that the configured warning(s) cannot
- * be suppressed on.
+ * Allows to specify what warnings that
+ * {@code @SuppressWarnings} is not allowed to suppress.
+ * You can also specify a list of TokenTypes that
+ * the configured warning(s) cannot be suppressed on.
  * </p>
- *
  * <p>
- * The {@link #setFormat warnings} property is a
- * regex pattern.  Any warning being suppressed matching
- * this pattern will be flagged.
+ * Limitations:  This check does not consider conditionals
+ * inside the &#64;SuppressWarnings annotation.
  * </p>
- *
  * <p>
- * By default, any warning specified will be disallowed on
- * all legal TokenTypes unless otherwise specified via
- * the
- * {@link AbstractCheck#setTokens(String[]) tokens}
- * property.
- *
- * Also, by default warnings that are empty strings or all
- * whitespace (regex: ^$|^\s+$) are flagged.  By specifying,
- * the format property these defaults no longer apply.
- * </p>
- *
- * <p>Limitations:  This check does not consider conditionals
- * inside the SuppressWarnings annotation. <br>
  * For example:
  * {@code @SuppressWarnings((false) ? (true) ? "unchecked" : "foo" : "unused")}.
  * According to the above example, the "unused" warning is being suppressed
  * not the "unchecked" or "foo" warnings.  All of these warnings will be
  * considered and matched against regardless of what the conditional
  * evaluates to.
- * <br>
  * The check also does not support code like {@code @SuppressWarnings("un" + "used")},
  * {@code @SuppressWarnings((String) "unused")} or
  * {@code @SuppressWarnings({('u' + (char)'n') + (""+("used" + (String)"")),})}.
  * </p>
- *
+ * <p>
+ * By default, any warning specified will be disallowed on
+ * all legal TokenTypes unless otherwise specified via
+ * the tokens property.
+ * </p>
+ * <p>
+ * Also, by default warnings that are empty strings or all
+ * whitespace (regex: ^$|^\s+$) are flagged.  By specifying,
+ * the format property these defaults no longer apply.
+ * </p>
  * <p>This check can be configured so that the "unchecked"
  * and "unused" warnings cannot be suppressed on
  * anything but variable and parameter declarations.
  * See below of an example.
  * </p>
+ * <ul>
+ * <li>
+ * Property {@code format} - Specify the RegExp to match against warnings. Any warning
+ * being suppressed matching this pattern will be flagged.
+ * Type is {@code java.util.regex.Pattern}.
+ * Default value is {@code "^\s*+$"}.
+ * </li>
+ * <li>
+ * Property {@code tokens} - tokens to check
+ * Type is {@code java.lang.String[]}.
+ * Validation type is {@code tokenSet}.
+ * Default value is:
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
+ * CLASS_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
+ * INTERFACE_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
+ * ENUM_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
+ * ANNOTATION_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">
+ * ANNOTATION_FIELD_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_CONSTANT_DEF">
+ * ENUM_CONSTANT_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PARAMETER_DEF">
+ * PARAMETER_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
+ * VARIABLE_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+ * METHOD_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
+ * CTOR_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMPACT_CTOR_DEF">
+ * COMPACT_CTOR_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
+ * RECORD_DEF</a>.
+ * </li>
+ * </ul>
+ * <p>
+ * To configure the check:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;SuppressWarnings&quot;/&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * &#64;SuppressWarnings("") // violation
+ * class TestA {
+ *   &#64;SuppressWarnings("") // violation
+ *   final int num1 = 1;
+ *   &#64;SuppressWarnings("all") // ok
+ *   final int num2 = 2;
+ *   &#64;SuppressWarnings("unused") // ok
+ *   final int num3 = 3;
  *
+ *   void foo1(&#64;SuppressWarnings("unused") int param) {} // ok
+ *
+ *   &#64;SuppressWarnings("all") // ok
+ *   void foo2(int param) {}
+ *   &#64;SuppressWarnings("unused") // ok
+ *   void foo3(int param) {}
+ *   &#64;SuppressWarnings(true?"all":"unused") // ok
+ *   void foo4(int param) {}
+ * }
+ * &#64;SuppressWarnings("unchecked") // ok
+ * class TestB {}
+ * </pre>
+ * <p>
+ * To configure the check so that the "unchecked" and "unused"
+ * warnings cannot be suppressed on anything but variable and parameter declarations.
+ * </p>
  * <pre>
  * &lt;module name=&quot;SuppressWarnings&quot;&gt;
- *    &lt;property name=&quot;format&quot;
- *        value=&quot;^unchecked$|^unused$&quot;/&gt;
- *    &lt;property name=&quot;tokens&quot;
- *        value=&quot;
- *        CLASS_DEF,INTERFACE_DEF,ENUM_DEF,
- *        ANNOTATION_DEF,ANNOTATION_FIELD_DEF,
- *        ENUM_CONSTANT_DEF,METHOD_DEF,CTOR_DEF
- *        &quot;/&gt;
+ *   &lt;property name=&quot;format&quot;
+ *       value=&quot;^unchecked$|^unused$&quot;/&gt;
+ *   &lt;property name=&quot;tokens&quot;
+ *     value=&quot;
+ *     CLASS_DEF,INTERFACE_DEF,ENUM_DEF,
+ *     ANNOTATION_DEF,ANNOTATION_FIELD_DEF,
+ *     ENUM_CONSTANT_DEF,METHOD_DEF,CTOR_DEF
+ *     &quot;/&gt;
  * &lt;/module&gt;
  * </pre>
- * @author Travis Schneeberger
+ * <p>Example:</p>
+ * <pre>
+ * &#64;SuppressWarnings("") // ok
+ * class TestA {
+ *   &#64;SuppressWarnings("") // ok
+ *   final int num1 = 1;
+ *   &#64;SuppressWarnings("all") // ok
+ *   final int num2 = 2;
+ *   &#64;SuppressWarnings("unused") // ok
+ *   final int num3 = 3;
+ *
+ *   void foo1(&#64;SuppressWarnings("unused") int param) {} // ok
+ *
+ *   &#64;SuppressWarnings("all") // ok
+ *   void foo2(int param) {}
+ *   &#64;SuppressWarnings("unused") // violation
+ *   void foo3(int param) {}
+ *   &#64;SuppressWarnings(true?"all":"unused") // violation
+ *   void foo4(int param) {}
+ * }
+ * &#64;SuppressWarnings("unchecked") // violation
+ * class TestB {}
+ * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code suppressed.warning.not.allowed}
+ * </li>
+ * </ul>
+ *
+ * @since 5.0
  */
+@StatelessCheck
 public class SuppressWarningsCheck extends AbstractCheck {
+
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
@@ -107,11 +207,16 @@ public class SuppressWarningsCheck extends AbstractCheck {
     private static final String FQ_SUPPRESS_WARNINGS =
         "java.lang." + SUPPRESS_WARNINGS;
 
-    /** The regexp to match against. */
-    private Pattern format = Pattern.compile("^$|^\\s+$");
+    /**
+     * Specify the RegExp to match against warnings. Any warning
+     * being suppressed matching this pattern will be flagged.
+     */
+    private Pattern format = Pattern.compile("^\\s*+$");
 
     /**
-     * Set the format for the specified regular expression.
+     * Setter to specify the RegExp to match against warnings. Any warning
+     * being suppressed matching this pattern will be flagged.
+     *
      * @param pattern the new pattern
      */
     public final void setFormat(Pattern pattern) {
@@ -136,12 +241,14 @@ public class SuppressWarningsCheck extends AbstractCheck {
             TokenTypes.VARIABLE_DEF,
             TokenTypes.METHOD_DEF,
             TokenTypes.CTOR_DEF,
+            TokenTypes.COMPACT_CTOR_DEF,
+            TokenTypes.RECORD_DEF,
         };
     }
 
     @Override
     public int[] getRequiredTokens() {
-        return CommonUtils.EMPTY_INT_ARRAY;
+        return CommonUtil.EMPTY_INT_ARRAY;
     }
 
     @Override
@@ -154,33 +261,26 @@ public class SuppressWarningsCheck extends AbstractCheck {
 
             final DetailAST token =
                     warningHolder.findFirstToken(TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR);
-            DetailAST warning;
 
-            if (token == null) {
-                warning = warningHolder.findFirstToken(TokenTypes.EXPR);
-            }
-            else {
-                // case like '@SuppressWarnings(value = UNUSED)'
-                warning = token.findFirstToken(TokenTypes.EXPR);
-            }
+            // case like '@SuppressWarnings(value = UNUSED)'
+            final DetailAST parent = Objects.requireNonNullElse(token, warningHolder);
+            DetailAST warning = parent.findFirstToken(TokenTypes.EXPR);
 
-            //rare case with empty array ex: @SuppressWarnings({})
+            // rare case with empty array ex: @SuppressWarnings({})
             if (warning == null) {
-                //check to see if empty warnings are forbidden -- are by default
-                logMatch(warningHolder.getLineNo(),
-                    warningHolder.getColumnNo(), "");
+                // check to see if empty warnings are forbidden -- are by default
+                logMatch(warningHolder, "");
             }
             else {
                 while (warning != null) {
                     if (warning.getType() == TokenTypes.EXPR) {
                         final DetailAST fChild = warning.getFirstChild();
                         switch (fChild.getType()) {
-                            //typical case
+                            // typical case
                             case TokenTypes.STRING_LITERAL:
                                 final String warningText =
                                     removeQuotes(warning.getFirstChild().getText());
-                                logMatch(warning.getLineNo(),
-                                        warning.getColumnNo(), warningText);
+                                logMatch(warning, warningText);
                                 break;
                             // conditional case
                             // ex:
@@ -188,18 +288,15 @@ public class SuppressWarningsCheck extends AbstractCheck {
                             case TokenTypes.QUESTION:
                                 walkConditional(fChild);
                                 break;
-                            // param in constant case
-                            // ex: public static final String UNCHECKED = "unchecked";
-                            // @SuppressWarnings(UNCHECKED)
-                            // or
-                            // @SuppressWarnings(SomeClass.UNCHECKED)
-                            case TokenTypes.IDENT:
-                            case TokenTypes.DOT:
-                                break;
                             default:
                                 // Known limitation: cases like @SuppressWarnings("un" + "used") or
                                 // @SuppressWarnings((String) "unused") are not properly supported,
                                 // but they should not cause exceptions.
+                                // Also constant as param
+                                // ex: public static final String UNCHECKED = "unchecked";
+                                // @SuppressWarnings(UNCHECKED)
+                                // or
+                                // @SuppressWarnings(SomeClass.UNCHECKED)
                         }
                     }
                     warning = warning.getNextSibling();
@@ -217,27 +314,25 @@ public class SuppressWarningsCheck extends AbstractCheck {
      * @return the {@link SuppressWarnings SuppressWarnings} annotation
      */
     private static DetailAST getSuppressWarnings(DetailAST ast) {
-        DetailAST annotation = AnnotationUtility.getAnnotation(ast, SUPPRESS_WARNINGS);
+        DetailAST annotation = AnnotationUtil.getAnnotation(ast, SUPPRESS_WARNINGS);
 
         if (annotation == null) {
-            annotation = AnnotationUtility.getAnnotation(ast, FQ_SUPPRESS_WARNINGS);
+            annotation = AnnotationUtil.getAnnotation(ast, FQ_SUPPRESS_WARNINGS);
         }
         return annotation;
     }
 
     /**
      * This method looks for a warning that matches a configured expression.
-     * If found it logs a violation at the given line and column number.
+     * If found it logs a violation at the given AST.
      *
-     * @param lineNo the line number
-     * @param colNum the column number
+     * @param ast the location to place the violation
      * @param warningText the warning.
      */
-    private void logMatch(final int lineNo,
-        final int colNum, final String warningText) {
+    private void logMatch(DetailAST ast, final String warningText) {
         final Matcher matcher = format.matcher(warningText);
         if (matcher.matches()) {
-            log(lineNo, colNum,
+            log(ast,
                     MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, warningText);
         }
     }
@@ -251,32 +346,20 @@ public class SuppressWarningsCheck extends AbstractCheck {
     private static DetailAST findWarningsHolder(final DetailAST annotation) {
         final DetailAST annValuePair =
             annotation.findFirstToken(TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR);
-        final DetailAST annArrayInit;
 
-        if (annValuePair == null) {
-            annArrayInit =
-                    annotation.findFirstToken(TokenTypes.ANNOTATION_ARRAY_INIT);
-        }
-        else {
-            annArrayInit =
-                    annValuePair.findFirstToken(TokenTypes.ANNOTATION_ARRAY_INIT);
-        }
-
-        DetailAST warningsHolder = annotation;
-        if (annArrayInit != null) {
-            warningsHolder = annArrayInit;
-        }
-
-        return warningsHolder;
+        final DetailAST annArrayInitParent = Objects.requireNonNullElse(annValuePair, annotation);
+        final DetailAST annArrayInit = annArrayInitParent
+                .findFirstToken(TokenTypes.ANNOTATION_ARRAY_INIT);
+        return Objects.requireNonNullElse(annArrayInit, annotation);
     }
 
     /**
      * Strips a single double quote from the front and back of a string.
      *
-     * <p>For example:
-     * <br/>
+     * <p>For example:</p>
+     * <pre>
      * Input String = "unchecked"
-     * <br/>
+     * </pre>
      * Output String = unchecked
      *
      * @param warning the warning string
@@ -292,7 +375,7 @@ public class SuppressWarningsCheck extends AbstractCheck {
      * logging violations.
      *
      * @param cond a Conditional type
-     * {@link TokenTypes#QUESTION QUESTION}
+     *     {@link TokenTypes#QUESTION QUESTION}
      */
     private void walkConditional(final DetailAST cond) {
         if (cond.getType() == TokenTypes.QUESTION) {
@@ -302,7 +385,7 @@ public class SuppressWarningsCheck extends AbstractCheck {
         else {
             final String warningText =
                     removeQuotes(cond.getText());
-            logMatch(cond.getLineNo(), cond.getColumnNo(), warningText);
+            logMatch(cond, warningText);
         }
     }
 
@@ -310,7 +393,7 @@ public class SuppressWarningsCheck extends AbstractCheck {
      * Retrieves the left side of a conditional.
      *
      * @param cond cond a conditional type
-     * {@link TokenTypes#QUESTION QUESTION}
+     *     {@link TokenTypes#QUESTION QUESTION}
      * @return either the value
      *     or another conditional
      */
@@ -323,7 +406,7 @@ public class SuppressWarningsCheck extends AbstractCheck {
      * Retrieves the right side of a conditional.
      *
      * @param cond a conditional type
-     * {@link TokenTypes#QUESTION QUESTION}
+     *     {@link TokenTypes#QUESTION QUESTION}
      * @return either the value
      *     or another conditional
      */
@@ -331,4 +414,5 @@ public class SuppressWarningsCheck extends AbstractCheck {
         final DetailAST colon = cond.findFirstToken(TokenTypes.COLON);
         return colon.getNextSibling();
     }
+
 }

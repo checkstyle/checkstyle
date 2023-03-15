@@ -1,3 +1,10 @@
+/*
+MissingOverride
+javaFiveCompatibility = (default)false
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.annotation.missingoverride;
 
 public class InputMissingOverrideGoodOverride
@@ -10,7 +17,7 @@ public class InputMissingOverrideGoodOverride
                 /**
                  * {@inheritDoc}
                  */
-                @Override
+                @Override       // ok
                 public String toString() {
                     return "junk";
                 }
@@ -27,7 +34,7 @@ public class InputMissingOverrideGoodOverride
                     /**
                      * {@inheritDoc}
                      */
-                    @Override
+                    @Override       // ok
                     public String toString() {
                         return "junk";
                     }
@@ -35,7 +42,7 @@ public class InputMissingOverrideGoodOverride
             }
         });
     }
-    
+
     void doFoo2(Runnable r) {
         doFoo(new Runnable() {
 
@@ -45,7 +52,7 @@ public class InputMissingOverrideGoodOverride
                     /**
                      * {@inheritDoc}
                      */
-                    @java.lang.Override
+                    @java.lang.Override     // ok
                     public String toString() {
                         return "junk";
                     }

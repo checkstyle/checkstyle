@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.gui;
 
@@ -29,9 +29,10 @@ import javax.swing.tree.TreePath;
  * a change in the ListSelectionModel happens, the paths are updated
  * in the DefaultTreeSelectionModel.
  *
- * @author unknown
  */
 class ListToTreeSelectionModelWrapper extends DefaultTreeSelectionModel {
+
+    /** A unique serial version identifier. */
     private static final long serialVersionUID = 2267930983939339510L;
     /** TreeTable to perform updates on. */
     private final TreeTable treeTable;
@@ -40,9 +41,10 @@ class ListToTreeSelectionModelWrapper extends DefaultTreeSelectionModel {
 
     /**
      * Constructor to initialise treeTable.
+     *
      * @param jTreeTable TreeTable to perform updates on.
      */
-    ListToTreeSelectionModelWrapper(TreeTable jTreeTable) {
+    /* package */ ListToTreeSelectionModelWrapper(TreeTable jTreeTable) {
         treeTable = jTreeTable;
         getListSelectionModel().addListSelectionListener(event -> {
             updateSelectedPathsFromSelectedRows();
@@ -112,6 +114,7 @@ class ListToTreeSelectionModelWrapper extends DefaultTreeSelectionModel {
 
     /**
      * If the row at given index is selected, selected paths are updated.
+     *
      * @param counter number of row.
      */
     private void updateSelectedPathIfRowIsSelected(int counter) {
@@ -123,4 +126,5 @@ class ListToTreeSelectionModelWrapper extends DefaultTreeSelectionModel {
             }
         }
     }
+
 }

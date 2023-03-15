@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,38 +15,34 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.sizes;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck.MSG_KEY;
-import static org.junit.Assert.assertArrayEquals;
 
-import java.io.File;
-import java.io.IOException;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Test;
-
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class ParameterNumberCheckTest
-    extends BaseCheckTestSupport {
+    extends AbstractModuleTestSupport {
+
     @Override
-    protected String getPath(String filename) throws IOException {
-        return super.getPath("checks" + File.separator
-                + "sizes" + File.separator + "parameternumber"
-                + File.separator + filename);
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/checks/sizes/parameternumber";
     }
 
     @Test
     public void testGetRequiredTokens() {
         final ParameterNumberCheck checkObj = new ParameterNumberCheck();
-        assertArrayEquals(
-            "ParameterNumberCheck#getRequiredTockens should return empty array by default",
-            CommonUtils.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
+        assertWithMessage("ParameterNumberCheck#getRequiredTokens should return empty array "
+                + "by default")
+            .that(checkObj.getRequiredTokens())
+            .isEqualTo(CommonUtil.EMPTY_INT_ARRAY);
     }
 
     @Test
@@ -59,55 +55,72 @@ public class ParameterNumberCheckTest
             TokenTypes.CTOR_DEF,
         };
 
-        assertArrayEquals("Default acceptable tokens are invalid", expected, actual);
+        assertWithMessage("Default acceptable tokens are invalid")
+            .that(actual)
+            .isEqualTo(expected);
     }
 
     @Test
     public void testDefault()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(ParameterNumberCheck.class);
         final String[] expected = {
-            "194:10: " + getCheckMessage(MSG_KEY, 7, 9),
+            "198:10: " + getCheckMessage(MSG_KEY, 7, 9),
         };
-        verify(checkConfig, getPath("InputParameterNumberSimple.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputParameterNumberSimple.java"), expected);
     }
 
     @Test
     public void testNum()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(ParameterNumberCheck.class);
-        checkConfig.addAttribute("max", "2");
         final String[] expected = {
-            "71:9: " + getCheckMessage(MSG_KEY, 2, 3),
-            "194:10: " + getCheckMessage(MSG_KEY, 2, 9),
+            "75:9: " + getCheckMessage(MSG_KEY, 2, 3),
+            "198:10: " + getCheckMessage(MSG_KEY, 2, 9),
         };
-        verify(checkConfig, getPath("InputParameterNumberSimple.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputParameterNumberSimple2.java"), expected);
+    }
+
+    @Test
+    public void testMaxParam()
+            throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputParameterNumberSimple3.java"), expected);
     }
 
     @Test
     public void shouldLogActualParameterNumber()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(ParameterNumberCheck.class);
-        checkConfig.addMessage("maxParam", "{0},{1}");
         final String[] expected = {
-            "194:10: 7,9",
+            "199:10: 7,9",
         };
-        verify(checkConfig, getPath("InputParameterNumberSimple.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputParameterNumberSimple4.java"), expected);
     }
 
     @Test
-    public void shouldIgnoreMethodsWithOverrideAnnotation()
+    public void testIgnoreOverriddenMethods()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-                createCheckConfig(ParameterNumberCheck.class);
-        checkConfig.addAttribute("ignoreOverriddenMethods", "true");
         final String[] expected = {
-            "6:10: " + getCheckMessage(MSG_KEY, 7, 8),
-            "11:10: " + getCheckMessage(MSG_KEY, 7, 8),
+            "15:10: " + getCheckMessage(MSG_KEY, 7, 8),
+            "20:10: " + getCheckMessage(MSG_KEY, 7, 8),
         };
-        verify(checkConfig, getPath("InputParameterNumber.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputParameterNumber.java"), expected);
     }
+
+    @Test
+    public void testIgnoreOverriddenMethodsFalse()
+            throws Exception {
+        final String[] expected = {
+            "15:10: " + getCheckMessage(MSG_KEY, 7, 8),
+            "20:10: " + getCheckMessage(MSG_KEY, 7, 8),
+            "28:10: " + getCheckMessage(MSG_KEY, 7, 8),
+            "33:10: " + getCheckMessage(MSG_KEY, 7, 8),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputParameterNumber2.java"), expected);
+    }
+
 }

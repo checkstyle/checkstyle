@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,21 +15,17 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.api;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.fail;
+import static com.google.common.truth.Truth.assertWithMessage;
 
-import java.util.Locale;
-
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.junitpioneer.jupiter.DefaultLocale;
 
 /**
  * Test cases for {@link SeverityLevel} enumeration.
- * @author Mehmet Can Cömert
  */
 public class SeverityLevelTest {
 
@@ -40,47 +36,67 @@ public class SeverityLevelTest {
     @Test
     public void testSeverityLevelValueOf() {
         final SeverityLevel level = SeverityLevel.valueOf("INFO");
-        assertEquals(SeverityLevel.INFO, level);
+        assertWithMessage("Invalid severity level")
+            .that(level)
+            .isEqualTo(SeverityLevel.INFO);
     }
 
     @Test
     public void testMisc() {
         final SeverityLevel severityLevel = SeverityLevel.getInstance("info");
-        assertNotNull(severityLevel);
-        assertEquals("info", severityLevel.toString());
-        assertEquals("info", severityLevel.getName());
+        assertWithMessage("Invalid getInstance result, should not be null")
+            .that(severityLevel)
+            .isNotNull();
+        assertWithMessage("Invalid toString result")
+            .that(severityLevel.toString())
+            .isEqualTo("info");
+        assertWithMessage("Invalid severity level name")
+            .that(severityLevel.getName())
+            .isEqualTo("info");
 
         try {
             SeverityLevel.getInstance("unknown");
-            fail("exception expected");
+            assertWithMessage("exception expected").fail();
         }
         catch (IllegalArgumentException ex) {
-            assertEquals(
-                    "No enum constant com.puppycrawl.tools.checkstyle.api.SeverityLevel.UNKNOWN",
-                    ex.getMessage());
+            assertWithMessage("Invalid exception message")
+                .that(ex.getMessage())
+                .isEqualTo("No enum constant "
+                    + "com.puppycrawl.tools.checkstyle.api.SeverityLevel.UNKNOWN");
         }
     }
 
     @Test
     public void testMixedCaseSpaces() {
-        SeverityLevel.getInstance("IgnoRe ");
-        SeverityLevel.getInstance(" iNfo");
-        SeverityLevel.getInstance(" WarniNg");
-        SeverityLevel.getInstance("    ERROR ");
+        assertWithMessage("Invalid getInstance result")
+            .that(SeverityLevel.getInstance("IgnoRe "))
+            .isEqualTo(SeverityLevel.IGNORE);
+        assertWithMessage("Invalid getInstance result")
+            .that(SeverityLevel.getInstance(" iNfo"))
+            .isEqualTo(SeverityLevel.INFO);
+        assertWithMessage("Invalid getInstance result")
+            .that(SeverityLevel.getInstance(" WarniNg"))
+            .isEqualTo(SeverityLevel.WARNING);
+        assertWithMessage("Invalid getInstance result")
+            .that(SeverityLevel.getInstance("    ERROR "))
+            .isEqualTo(SeverityLevel.ERROR);
     }
 
+    @DefaultLocale(language = "tr", country = "TR")
     @Test
     public void testMixedCaseSpacesWithDifferentLocales() {
-        final Locale[] differentLocales = {new Locale("TR", "tr") };
-        final Locale defaultLocale = Locale.getDefault();
-        try {
-            for (Locale differentLocale : differentLocales) {
-                Locale.setDefault(differentLocale);
-                testMixedCaseSpaces();
-            }
-        }
-        finally {
-            Locale.setDefault(defaultLocale);
-        }
+        assertWithMessage("Invalid getInstance result")
+            .that(SeverityLevel.getInstance("IgnoRe "))
+            .isEqualTo(SeverityLevel.IGNORE);
+        assertWithMessage("Invalid getInstance result")
+            .that(SeverityLevel.getInstance(" iNfo"))
+            .isEqualTo(SeverityLevel.INFO);
+        assertWithMessage("Invalid getInstance result")
+            .that(SeverityLevel.getInstance(" WarniNg"))
+            .isEqualTo(SeverityLevel.WARNING);
+        assertWithMessage("Invalid getInstance result")
+            .that(SeverityLevel.getInstance("    ERROR "))
+            .isEqualTo(SeverityLevel.ERROR);
     }
+
 }

@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,30 +15,118 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks;
 
 import java.util.Optional;
+import java.util.Set;
 import java.util.regex.Pattern;
 
+import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * Detects uncommented main methods. Basically detects
- * any main method, since if it is detectable
- * that means it is uncommented.
- *
- * <pre class="body">
+ * <p>
+ * Detects uncommented {@code main} methods.
+ * </p>
+ * <p>
+ * Rationale: A {@code main} method is often used for debugging purposes.
+ * When debugging is finished, developers often forget to remove the method,
+ * which changes the API and increases the size of the resulting class or JAR file.
+ * Except for the real program entry points, all {@code main} methods
+ * should be removed or commented out of the sources.
+ * </p>
+ * <ul>
+ * <li>
+ * Property {@code excludedClasses} - Specify pattern for qualified names of
+ * classes which are allowed to have a {@code main} method.
+ * Type is {@code java.util.regex.Pattern}.
+ * Default value is {@code "^$"}.
+ * </li>
+ * </ul>
+ * <p>
+ * To configure the check:
+ * </p>
+ * <pre>
  * &lt;module name=&quot;UncommentedMain&quot;/&gt;
  * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * public class Game {
+ *    public static void main(String... args){}   // violation
+ * }
  *
- * @author Michael Yui
- * @author o_sukhodolsky
+ * public class Main {
+ *    public static void main(String[] args){}   // violation
+ * }
+ *
+ * public class Launch {
+ *    //public static void main(String[] args){} // OK
+ * }
+ *
+ * public class Start {
+ *    public void main(){}                       // OK
+ * }
+ *
+ * public record MyRecord1 {
+ *    public void main(){}                       // violation
+ * }
+ *
+ * public record MyRecord2 {
+ *    //public void main(){}                       // OK
+ * }
+ *
+ * </pre>
+ * <p>
+ * To configure the check to allow the {@code main} method for all classes with "Main" name:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;UncommentedMain&quot;&gt;
+ *   &lt;property name=&quot;excludedClasses&quot; value=&quot;\.Main$&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * public class Game {
+ *    public static void main(String... args){}   // violation
+ * }
+ *
+ * public class Main {
+ *    public static void main(String[] args){}   // OK
+ * }
+ *
+ * public class Launch {
+ *    //public static void main(String[] args){} // OK
+ * }
+ *
+ * public class Start {
+ *    public void main(){}                       // OK
+ * }
+ *
+ * public record MyRecord1 {
+ *    public void main(){}                       // OK
+ * }
+ *
+ * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code uncommented.main}
+ * </li>
+ * </ul>
+ *
+ * @since 3.2
  */
+@FileStatefulCheck
 public class UncommentedMainCheck
     extends AbstractCheck {
 
@@ -48,7 +136,18 @@ public class UncommentedMainCheck
      */
     public static final String MSG_KEY = "uncommented.main";
 
-    /** Compiled regexp to exclude classes from check. */
+    /** Set of possible String array types. */
+    private static final Set<String> STRING_PARAMETER_NAMES = Set.of(
+        String[].class.getCanonicalName(),
+        String.class.getCanonicalName(),
+        String[].class.getSimpleName(),
+        String.class.getSimpleName()
+    );
+
+    /**
+     * Specify pattern for qualified names of classes which are allowed to
+     * have a {@code main} method.
+     */
     private Pattern excludedClasses = Pattern.compile("^$");
     /** Current class name. */
     private String currentClass;
@@ -58,7 +157,9 @@ public class UncommentedMainCheck
     private int classDepth;
 
     /**
-     * Set the excluded classes pattern.
+     * Setter to specify pattern for qualified names of classes which are allowed
+     * to have a {@code main} method.
+     *
      * @param excludedClasses a pattern
      */
     public void setExcludedClasses(Pattern excludedClasses) {
@@ -67,21 +168,22 @@ public class UncommentedMainCheck
 
     @Override
     public int[] getAcceptableTokens() {
-        return new int[] {
-            TokenTypes.METHOD_DEF,
-            TokenTypes.CLASS_DEF,
-            TokenTypes.PACKAGE_DEF,
-        };
+        return getRequiredTokens();
     }
 
     @Override
     public int[] getDefaultTokens() {
-        return getAcceptableTokens();
+        return getRequiredTokens();
     }
 
     @Override
     public int[] getRequiredTokens() {
-        return getAcceptableTokens();
+        return new int[] {
+            TokenTypes.METHOD_DEF,
+            TokenTypes.CLASS_DEF,
+            TokenTypes.PACKAGE_DEF,
+            TokenTypes.RECORD_DEF,
+        };
     }
 
     @Override
@@ -94,22 +196,19 @@ public class UncommentedMainCheck
     @Override
     public void leaveToken(DetailAST ast) {
         if (ast.getType() == TokenTypes.CLASS_DEF) {
-            if (classDepth == 1) {
-                currentClass = null;
-            }
             classDepth--;
         }
     }
 
     @Override
     public void visitToken(DetailAST ast) {
-
         switch (ast.getType()) {
             case TokenTypes.PACKAGE_DEF:
                 visitPackageDef(ast);
                 break;
+            case TokenTypes.RECORD_DEF:
             case TokenTypes.CLASS_DEF:
-                visitClassDef(ast);
+                visitClassOrRecordDef(ast);
                 break;
             case TokenTypes.METHOD_DEF:
                 visitMethodDef(ast);
@@ -121,6 +220,7 @@ public class UncommentedMainCheck
 
     /**
      * Sets current package.
+     *
      * @param packageDef node for package definition
      */
     private void visitPackageDef(DetailAST packageDef) {
@@ -130,13 +230,14 @@ public class UncommentedMainCheck
 
     /**
      * If not inner class then change current class name.
-     * @param classDef node for class definition
+     *
+     * @param classOrRecordDef node for class or record definition
      */
-    private void visitClassDef(DetailAST classDef) {
+    private void visitClassOrRecordDef(DetailAST classOrRecordDef) {
         // we are not use inner classes because they can not
         // have static methods
         if (classDepth == 0) {
-            final DetailAST ident = classDef.findFirstToken(TokenTypes.IDENT);
+            final DetailAST ident = classOrRecordDef.findFirstToken(TokenTypes.IDENT);
             currentClass = packageName.getText() + "." + ident.getText();
             classDepth++;
         }
@@ -145,6 +246,7 @@ public class UncommentedMainCheck
     /**
      * Checks method definition if this is
      * {@code public static void main(String[])}.
+     *
      * @param method method definition node
      */
     private void visitMethodDef(DetailAST method) {
@@ -155,12 +257,13 @@ public class UncommentedMainCheck
                 && checkModifiers(method)
                 && checkType(method)
                 && checkParams(method)) {
-            log(method.getLineNo(), MSG_KEY);
+            log(method, MSG_KEY);
         }
     }
 
     /**
      * Checks that current class is not excluded.
+     *
      * @return true if check passed, false otherwise
      */
     private boolean checkClassName() {
@@ -169,6 +272,7 @@ public class UncommentedMainCheck
 
     /**
      * Checks that method name is @quot;main@quot;.
+     *
      * @param method the METHOD_DEF node
      * @return true if check passed, false otherwise
      */
@@ -179,6 +283,7 @@ public class UncommentedMainCheck
 
     /**
      * Checks that method has final and static modifiers.
+     *
      * @param method the METHOD_DEF node
      * @return true if check passed, false otherwise
      */
@@ -186,12 +291,13 @@ public class UncommentedMainCheck
         final DetailAST modifiers =
             method.findFirstToken(TokenTypes.MODIFIERS);
 
-        return modifiers.branchContains(TokenTypes.LITERAL_PUBLIC)
-            && modifiers.branchContains(TokenTypes.LITERAL_STATIC);
+        return modifiers.findFirstToken(TokenTypes.LITERAL_PUBLIC) != null
+            && modifiers.findFirstToken(TokenTypes.LITERAL_STATIC) != null;
     }
 
     /**
      * Checks that return type is {@code void}.
+     *
      * @param method the METHOD_DEF node
      * @return true if check passed, false otherwise
      */
@@ -203,6 +309,7 @@ public class UncommentedMainCheck
 
     /**
      * Checks that method has only {@code String[]} or only {@code String...} param.
+     *
      * @param method the METHOD_DEF node
      * @return true if check passed, false otherwise
      */
@@ -212,15 +319,12 @@ public class UncommentedMainCheck
 
         if (params.getChildCount() == 1) {
             final DetailAST parameterType = params.getFirstChild().findFirstToken(TokenTypes.TYPE);
-            final Optional<DetailAST> arrayDecl = Optional.ofNullable(
-                parameterType.findFirstToken(TokenTypes.ARRAY_DECLARATOR));
+            final boolean isArrayDeclaration =
+                parameterType.findFirstToken(TokenTypes.ARRAY_DECLARATOR) != null;
             final Optional<DetailAST> varargs = Optional.ofNullable(
                 params.getFirstChild().findFirstToken(TokenTypes.ELLIPSIS));
 
-            if (arrayDecl.isPresent()) {
-                checkPassed = isStringType(arrayDecl.get().getFirstChild());
-            }
-            else if (varargs.isPresent()) {
+            if (isArrayDeclaration || varargs.isPresent()) {
                 checkPassed = isStringType(parameterType.getFirstChild());
             }
         }
@@ -229,12 +333,13 @@ public class UncommentedMainCheck
 
     /**
      * Whether the type is java.lang.String.
+     *
      * @param typeAst the type to check.
      * @return true, if the type is java.lang.String.
      */
     private static boolean isStringType(DetailAST typeAst) {
         final FullIdent type = FullIdent.createFullIdent(typeAst);
-        return "String".equals(type.getText())
-            || "java.lang.String".equals(type.getText());
+        return STRING_PARAMETER_NAMES.contains(type.getText());
     }
+
 }

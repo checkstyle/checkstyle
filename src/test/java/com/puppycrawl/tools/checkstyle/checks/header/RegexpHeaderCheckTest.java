@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,49 +15,34 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.header;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck.MSG_HEADER_MISMATCH;
 import static com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck.MSG_HEADER_MISSING;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
-import static org.mockito.Matchers.any;
-import static org.mockito.Mockito.times;
-import static org.powermock.api.mockito.PowerMockito.doNothing;
-import static org.powermock.api.mockito.PowerMockito.mockStatic;
-import static org.powermock.api.mockito.PowerMockito.verifyStatic;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.net.URI;
+import java.util.List;
 import java.util.Locale;
+import java.util.regex.Pattern;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.powermock.core.classloader.annotations.PrepareForTest;
-import org.powermock.modules.junit4.PowerMockRunner;
+import org.junit.jupiter.api.Test;
 
-import com.google.common.io.Closeables;
-import com.puppycrawl.tools.checkstyle.BaseFileSetCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * Unit test for RegexpHeaderCheck.
- * @author richter
  */
-@RunWith(PowerMockRunner.class)
-@PrepareForTest(Closeables.class)
-public class RegexpHeaderCheckTest extends BaseFileSetCheckTestSupport {
+public class RegexpHeaderCheckTest extends AbstractModuleTestSupport {
+
     @Override
-    protected String getPath(String filename) throws IOException {
-        return super.getPath("checks" + File.separator
-                + "header" + File.separator + "regexpheader" + File.separator + filename);
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/checks/header/regexpheader";
     }
 
     /**
@@ -70,6 +55,11 @@ public class RegexpHeaderCheckTest extends BaseFileSetCheckTestSupport {
         // recreate for each test because multiple invocations fail
         final String header = null;
         instance.setHeader(header);
+        final List<Pattern> headerRegexps = TestUtil.getInternalState(instance, "headerRegexps");
+
+        assertWithMessage("When header is null regexps should not be set")
+                .that(headerRegexps)
+                .isEmpty();
     }
 
     /**
@@ -82,6 +72,11 @@ public class RegexpHeaderCheckTest extends BaseFileSetCheckTestSupport {
         // check empty string passes
         final String header = "";
         instance.setHeader(header);
+        final List<Pattern> headerRegexps = TestUtil.getInternalState(instance, "headerRegexps");
+
+        assertWithMessage("When header is empty regexps should not be set")
+                .that(headerRegexps)
+                .isEmpty();
     }
 
     /**
@@ -89,18 +84,17 @@ public class RegexpHeaderCheckTest extends BaseFileSetCheckTestSupport {
      */
     @Test
     public void testSetHeaderSimple() {
-        //check if reader finally closed
-        mockStatic(Closeables.class);
-        doNothing().when(Closeables.class);
-        Closeables.closeQuietly(any(Reader.class));
-
         final RegexpHeaderCheck instance = new RegexpHeaderCheck();
         // check valid header passes
         final String header = "abc.*";
         instance.setHeader(header);
-
-        verifyStatic(times(1));
-        Closeables.closeQuietly(any(Reader.class));
+        final List<Pattern> headerRegexps = TestUtil.getInternalState(instance, "headerRegexps");
+        assertWithMessage("Expected one pattern")
+            .that(headerRegexps.size())
+            .isEqualTo(1);
+        assertWithMessage("Invalid header regexp")
+            .that(headerRegexps.get(0).pattern())
+            .isEqualTo(header);
     }
 
     /**
@@ -113,45 +107,47 @@ public class RegexpHeaderCheckTest extends BaseFileSetCheckTestSupport {
         try {
             final String header = "^/**\\n * Licensed to the Apache Software Foundation (ASF)";
             instance.setHeader(header);
-            fail(String.format(Locale.ROOT, "%s should have been thrown",
-                    IllegalArgumentException.class));
+            assertWithMessage(String.format(Locale.ROOT, "%s should have been thrown",
+                    IllegalArgumentException.class)).fail();
         }
         catch (IllegalArgumentException ex) {
-            assertEquals("Invalid exception message", "Unable to parse format: ^/**\\n *"
-                + " Licensed to the Apache Software Foundation (ASF)", ex.getMessage());
+            assertWithMessage("Invalid exception message")
+                .that(ex.getMessage())
+                .isEqualTo("Unable to parse format: ^/**\\n *"
+                    + " Licensed to the Apache Software Foundation (ASF)");
         }
     }
 
     @Test
     public void testDefaultConfiguration() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(RegexpHeaderCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(RegexpHeaderCheck.class);
         createChecker(checkConfig);
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputRegexpHeaderDefaultConfig.java"), expected);
     }
 
     @Test
     public void testEmptyFilename() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(RegexpHeaderCheck.class);
-        checkConfig.addAttribute("headerFile", "");
+        final DefaultConfiguration checkConfig = createModuleConfig(RegexpHeaderCheck.class);
+        checkConfig.addProperty("headerFile", "");
         try {
             createChecker(checkConfig);
-            fail("Checker creation should not succeed with invalid headerFile");
+            assertWithMessage("Checker creation should not succeed with invalid headerFile").fail();
         }
         catch (CheckstyleException ex) {
-            assertEquals("Invalid exception message", "cannot initialize module"
+            assertWithMessage("Invalid exception message")
+                .that(ex.getMessage())
+                .isEqualTo("cannot initialize module"
                     + " com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck"
-                    + " - Cannot set property 'headerFile' to '' in"
-                    + " module com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck",
-                    ex.getMessage());
+                    + " - Cannot set property 'headerFile' to ''");
         }
     }
 
     @Test
     public void testRegexpHeader() throws Exception {
         final DefaultConfiguration checkConfig =
-                createCheckConfig(RegexpHeaderCheck.class);
-        checkConfig.addAttribute("headerFile", getPath("InputRegexpHeader.header"));
+                createModuleConfig(RegexpHeaderCheck.class);
+        checkConfig.addProperty("headerFile", getPath("InputRegexpHeader.header"));
         final String[] expected = {
             "3: " + getCheckMessage(MSG_HEADER_MISMATCH, "// Created: 2002"),
         };
@@ -159,11 +155,23 @@ public class RegexpHeaderCheckTest extends BaseFileSetCheckTestSupport {
     }
 
     @Test
+    public void testNonMatchingRegexpHeader() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(RegexpHeaderCheck.class);
+        checkConfig.addProperty("header",
+                                "\\/\\/ Nth Line of Header\\n\\/\\/ Nth Line of Header\\n");
+        checkConfig.addProperty("multiLines", "1");
+        final String[] expected = {
+            "1: " + getCheckMessage(MSG_HEADER_MISMATCH, "\\/\\/ Nth Line of Header"),
+        };
+        verify(checkConfig, getPath("InputRegexpHeaderNonMatching.java"), expected);
+    }
+
+    @Test
     public void testRegexpHeaderUrl() throws Exception {
         final DefaultConfiguration checkConfig =
-                createCheckConfig(RegexpHeaderCheck.class);
-        final URI uri = new File(getPath("InputRegexpHeader.header")).toURI();
-        checkConfig.addAttribute("headerFile", uri.toString());
+                createModuleConfig(RegexpHeaderCheck.class);
+        checkConfig.addProperty("headerFile", getUriString("InputRegexpHeader.header"));
         final String[] expected = {
             "3: " + getCheckMessage(MSG_HEADER_MISMATCH, "// Created: 2002"),
         };
@@ -173,8 +181,8 @@ public class RegexpHeaderCheckTest extends BaseFileSetCheckTestSupport {
     @Test
     public void testInlineRegexpHeader() throws Exception {
         final DefaultConfiguration checkConfig =
-                createCheckConfig(RegexpHeaderCheck.class);
-        checkConfig.addAttribute("header", "^/*$\\n// .*\\n// Created: 2002\\n^//.*\\n^//.*");
+                createModuleConfig(RegexpHeaderCheck.class);
+        checkConfig.addProperty("header", "^/*$\\n// .*\\n// Created: 2002\\n^//.*\\n^//.*");
         final String[] expected = {
             "3: " + getCheckMessage(MSG_HEADER_MISMATCH, "// Created: 2002"),
         };
@@ -184,76 +192,99 @@ public class RegexpHeaderCheckTest extends BaseFileSetCheckTestSupport {
     @Test
     public void testFailureForMultilineRegexp() throws Exception {
         final DefaultConfiguration checkConfig =
-                createCheckConfig(RegexpHeaderCheck.class);
-        checkConfig.addAttribute("header", "^(.*\\n.*)");
+                createModuleConfig(RegexpHeaderCheck.class);
+        checkConfig.addProperty("header", "^(.*\\n.*)");
         try {
             createChecker(checkConfig);
-            fail("Checker creation should not succeed when regexp spans multiple lines");
+            assertWithMessage(
+                    "Checker creation should not succeed when regexp spans multiple lines").fail();
         }
         catch (CheckstyleException ex) {
-            assertEquals("Invalid exception message", "cannot initialize module"
+            assertWithMessage("Invalid exception message")
+                .that(ex.getMessage())
+                .isEqualTo("cannot initialize module"
                     + " com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck"
-                    + " - Cannot set property 'header' to '^(.*\\n.*)' in module"
-                    + " com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck",
-                    ex.getMessage());
+                    + " - Cannot set property 'header' to '^(.*\\n.*)'");
         }
+    }
+
+    @Test
+    public void testInlineRegexpHeaderConsecutiveNewlines() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(RegexpHeaderCheck.class);
+        checkConfig.addProperty("header", "^/*$\\n// .*\\n\\n// Created: 2017\\n^//.*");
+        final String[] expected = {
+            "3: " + getCheckMessage(MSG_HEADER_MISMATCH, "^$"),
+        };
+        verify(checkConfig, getPath("InputRegexpHeaderConsecutiveNewLines.java"), expected);
+    }
+
+    @Test
+    public void testInlineRegexpHeaderConsecutiveNewlinesThroughConfigFile() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(RegexpHeaderCheck.class);
+        checkConfig.addProperty("headerFile", getUriString("InputRegexpHeaderNewLines.header"));
+        final String[] expected = {
+            "3: " + getCheckMessage(MSG_HEADER_MISMATCH, "^$"),
+        };
+        verify(checkConfig, getPath("InputRegexpHeaderConsecutiveNewLines.java"), expected);
     }
 
     @Test
     public void testRegexpHeaderIgnore() throws Exception {
         final DefaultConfiguration checkConfig =
-                createCheckConfig(RegexpHeaderCheck.class);
-        checkConfig.addAttribute("headerFile", getPath("InputRegexpHeader1.header"));
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+                createModuleConfig(RegexpHeaderCheck.class);
+        checkConfig.addProperty("headerFile", getPath("InputRegexpHeader1.header"));
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputRegexpHeaderIgnore.java"), expected);
     }
 
     @Test
     public void testRegexpHeaderMulti1() throws Exception {
         final DefaultConfiguration checkConfig =
-                createCheckConfig(RegexpHeaderCheck.class);
-        checkConfig.addAttribute("headerFile", getPath("InputRegexpHeader2.header"));
-        checkConfig.addAttribute("multiLines", "3, 6");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+                createModuleConfig(RegexpHeaderCheck.class);
+        checkConfig.addProperty("headerFile", getPath("InputRegexpHeader2.header"));
+        checkConfig.addProperty("multiLines", "3, 6");
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputRegexpHeaderDefaultConfig.java"), expected);
     }
 
     @Test
     public void testRegexpHeaderMulti2() throws Exception {
         final DefaultConfiguration checkConfig =
-                createCheckConfig(RegexpHeaderCheck.class);
-        checkConfig.addAttribute("headerFile", getPath("InputRegexpHeader2.header"));
-        checkConfig.addAttribute("multiLines", "3, 6");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+                createModuleConfig(RegexpHeaderCheck.class);
+        checkConfig.addProperty("headerFile", getPath("InputRegexpHeader2.header"));
+        checkConfig.addProperty("multiLines", "3, 6");
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputRegexpHeaderMulti2.java"), expected);
     }
 
     @Test
     public void testRegexpHeaderMulti3() throws Exception {
         final DefaultConfiguration checkConfig =
-                createCheckConfig(RegexpHeaderCheck.class);
-        checkConfig.addAttribute("headerFile", getPath("InputRegexpHeader2.header"));
-        checkConfig.addAttribute("multiLines", "3, 7");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+                createModuleConfig(RegexpHeaderCheck.class);
+        checkConfig.addProperty("headerFile", getPath("InputRegexpHeader2.header"));
+        checkConfig.addProperty("multiLines", "3, 7");
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputRegexpHeaderDefaultConfig.java"), expected);
     }
 
     @Test
     public void testRegexpHeaderMulti4() throws Exception {
         final DefaultConfiguration checkConfig =
-                createCheckConfig(RegexpHeaderCheck.class);
-        checkConfig.addAttribute("headerFile", getPath("InputRegexpHeader2.header"));
-        checkConfig.addAttribute("multiLines", "3, 5, 6, 7");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+                createModuleConfig(RegexpHeaderCheck.class);
+        checkConfig.addProperty("headerFile", getPath("InputRegexpHeader2.header"));
+        checkConfig.addProperty("multiLines", "3, 5, 6, 7");
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputRegexpHeaderMulti4.java"), expected);
     }
 
     @Test
     public void testRegexpHeaderMulti5() throws Exception {
         final DefaultConfiguration checkConfig =
-                createCheckConfig(RegexpHeaderCheck.class);
-        checkConfig.addAttribute("headerFile", getPath("InputRegexpHeader2.header"));
-        checkConfig.addAttribute("multiLines", "3");
+                createModuleConfig(RegexpHeaderCheck.class);
+        checkConfig.addProperty("headerFile", getPath("InputRegexpHeader2.header"));
+        checkConfig.addProperty("multiLines", "3");
         final String[] expected = {
             "1: " + getCheckMessage(MSG_HEADER_MISSING),
         };
@@ -263,29 +294,29 @@ public class RegexpHeaderCheckTest extends BaseFileSetCheckTestSupport {
     @Test
     public void testRegexpHeaderMulti6() throws Exception {
         final DefaultConfiguration checkConfig =
-                createCheckConfig(RegexpHeaderCheck.class);
-        checkConfig.addAttribute("headerFile", getPath("InputRegexpHeader2_4.header"));
-        checkConfig.addAttribute("multiLines", "8974382");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+                createModuleConfig(RegexpHeaderCheck.class);
+        checkConfig.addProperty("headerFile", getPath("InputRegexpHeader2_4.header"));
+        checkConfig.addProperty("multiLines", "8974382");
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputRegexpHeaderMulti6.java"), expected);
     }
 
     @Test
     public void testRegexpHeaderSmallHeader() throws Exception {
         final DefaultConfiguration checkConfig =
-                createCheckConfig(RegexpHeaderCheck.class);
-        checkConfig.addAttribute("headerFile", getPath("InputRegexpHeader2.header"));
-        checkConfig.addAttribute("multiLines", "3, 6");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+                createModuleConfig(RegexpHeaderCheck.class);
+        checkConfig.addProperty("headerFile", getPath("InputRegexpHeader2.header"));
+        checkConfig.addProperty("multiLines", "3, 6");
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputRegexpHeaderSmallHeader.java"), expected);
     }
 
     @Test
     public void testEmptyMultiline()
             throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(RegexpHeaderCheck.class);
-        checkConfig.addAttribute("headerFile", getPath("InputRegexpHeader2.header"));
-        checkConfig.addAttribute("multiLines", "");
+        final DefaultConfiguration checkConfig = createModuleConfig(RegexpHeaderCheck.class);
+        checkConfig.addProperty("headerFile", getPath("InputRegexpHeader2.header"));
+        checkConfig.addProperty("multiLines", "");
         final String[] expected = {
             "1: " + getCheckMessage(MSG_HEADER_MISSING),
         };
@@ -295,8 +326,8 @@ public class RegexpHeaderCheckTest extends BaseFileSetCheckTestSupport {
     @Test
     public void testRegexpHeaderMulti52()
             throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(RegexpHeaderCheck.class);
-        checkConfig.addAttribute("headerFile", getPath("InputRegexpHeader3.header"));
+        final DefaultConfiguration checkConfig = createModuleConfig(RegexpHeaderCheck.class);
+        checkConfig.addProperty("headerFile", getPath("InputRegexpHeader3.header"));
         final String[] expected = {
             "1: " + getCheckMessage(MSG_HEADER_MISSING),
         };
@@ -306,59 +337,47 @@ public class RegexpHeaderCheckTest extends BaseFileSetCheckTestSupport {
     @Test
     public void testIgnoreLinesSorted() throws Exception {
         final DefaultConfiguration checkConfig =
-                createCheckConfig(RegexpHeaderCheck.class);
-        checkConfig.addAttribute("headerFile", getPath("InputRegexpHeader5.header"));
-        checkConfig.addAttribute("multiLines", "7,5,3");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+                createModuleConfig(RegexpHeaderCheck.class);
+        checkConfig.addProperty("headerFile", getPath("InputRegexpHeader5.header"));
+        checkConfig.addProperty("multiLines", "7,5,3");
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputRegexpHeaderIgnoreLinesSorted.java"), expected);
     }
 
     @Test
     public void testHeaderWithInvalidRegexp() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(RegexpHeaderCheck.class);
-        checkConfig.addAttribute("headerFile", getPath("InputRegexpHeader.invalid.header"));
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final DefaultConfiguration checkConfig = createModuleConfig(RegexpHeaderCheck.class);
+        checkConfig.addProperty("headerFile", getPath("InputRegexpHeader.invalid.header"));
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        final String path = getPath("InputRegexpHeaderMulti52.java");
         try {
-            verify(checkConfig, getPath("InputRegexpHeaderMulti52.java"), expected);
-            fail("IllegalArgumentException is expected");
+            verify(checkConfig, path, expected);
+            assertWithMessage("IllegalArgumentException is expected").fail();
         }
         catch (IllegalArgumentException ex) {
-            assertEquals("Invalid exception message",
-                "line 1 in header specification is not a regular expression", ex.getMessage());
+            assertWithMessage("Invalid exception message")
+                .that(ex.getMessage())
+                .isEqualTo("line 1 in header specification is not a regular expression");
         }
     }
 
     @Test
     public void testNoWarningIfSingleLinedLeft() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(RegexpHeaderCheck.class);
-        checkConfig.addAttribute("headerFile", getPath("InputRegexpHeader4.header"));
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final DefaultConfiguration checkConfig = createModuleConfig(RegexpHeaderCheck.class);
+        checkConfig.addProperty("headerFile", getPath("InputRegexpHeader4.header"));
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputRegexpHeaderMulti5.java"), expected);
     }
 
     @Test
     public void testNoHeaderMissingErrorInCaseHeaderSizeEqualToFileSize() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(RegexpHeaderCheck.class);
-        checkConfig.addAttribute("headerFile", getPath("InputRegexpHeader3.header"));
-        checkConfig.addAttribute("multiLines", "1");
+        final DefaultConfiguration checkConfig = createModuleConfig(RegexpHeaderCheck.class);
+        checkConfig.addProperty("headerFile", getPath("InputRegexpHeader3.header"));
+        checkConfig.addProperty("multiLines", "1");
         final String[] expected = {
             "5: " + getCheckMessage(MSG_HEADER_MISMATCH, "^$"),
         };
         verify(checkConfig, getPath("InputRegexpHeaderMulti52.java"), expected);
     }
 
-    @Test
-    public void testReaderClosedAfterHeaderRead() throws Exception {
-        mockStatic(Closeables.class);
-        doNothing().when(Closeables.class);
-        Closeables.closeQuietly(any(InputStreamReader.class));
-
-        final DefaultConfiguration checkConfig = createCheckConfig(RegexpHeaderCheck.class);
-        checkConfig.addAttribute("headerFile", getPath("InputRegexpHeader.header"));
-        createChecker(checkConfig);
-
-        //check if reader finally closed
-        verifyStatic(times(1));
-        Closeables.closeQuietly(any(InputStreamReader.class));
-    }
 }

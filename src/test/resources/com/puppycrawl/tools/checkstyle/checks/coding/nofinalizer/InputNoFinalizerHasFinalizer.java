@@ -1,13 +1,19 @@
+/*
+NoFinalizer
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.coding.nofinalizer;
 
 public class InputNoFinalizerHasFinalizer
 {
-    public void finalize()
+    public void finalize() // violation
     {
         // It's not enough to check if the METHOD_DEF branch contains a PARAMETER_DEF, as that would
         // treat this method as having a parameter.
         Runnable runnable = new Runnable() {
-        
+
             public void run() {
                 reallyFinalize("hi");
             }
@@ -19,7 +25,7 @@ public class InputNoFinalizerHasFinalizer
         };
         runnable.run();
     }
-    
+
     // should not be reported by NoFinalizer check
     public void finalize(String x)
     {

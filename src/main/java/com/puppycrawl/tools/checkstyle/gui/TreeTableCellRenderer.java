@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.gui;
 
@@ -32,27 +32,37 @@ import javax.swing.tree.TreeModel;
 
 /**
  * A TreeCellRenderer that displays a JTree.
- * @author Lars Kühne
  */
 class TreeTableCellRenderer extends JTree implements
         TableCellRenderer {
+
     /**
      * Serial ID.
      */
     private static final long serialVersionUID = 4324031590789321581L;
 
+    /** The text color for selected cells. */
+    private static final String COLOR_KEY_TABLE_SELECTION_FOREGROUND = "Table.selectionForeground";
+
+    /** The background color for selected cells. */
+    private static final String COLOR_KEY_TABLE_SELECTION_BACKGROUND = "Table.selectionBackground";
+
+    /** The background color for table. */
+    private static final String COLOR_KEY_TABLE_BACKGROUND = "Table.background";
+
     /** Tree table to render. */
     private final TreeTable treeTable;
 
-    /** Last table/tree row asked to renderer. */
+    /** Last table/tree row asked to render. */
     private int visibleRow;
 
     /**
      * Creates a new instance.
+     *
      * @param treeTable tree table to render.
      * @param model Tree model.
      */
-    TreeTableCellRenderer(TreeTable treeTable, TreeModel model) {
+    /* package */ TreeTableCellRenderer(TreeTable treeTable, TreeModel model) {
         super(model);
         this.treeTable = treeTable;
     }
@@ -69,12 +79,11 @@ class TreeTableCellRenderer extends JTree implements
         final TreeCellRenderer tcr = getCellRenderer();
         if (tcr instanceof DefaultTreeCellRenderer) {
             final DefaultTreeCellRenderer renderer = (DefaultTreeCellRenderer) tcr;
-            // For 1.1 uncomment this, 1.2 has a bug that will cause an
-            // exception to be thrown if the border selection color is
-            // null.
-            // renderer.setBorderSelectionColor(null);
-            renderer.setTextSelectionColor(UIManager.getColor("Table.selectionForeground"));
-            renderer.setBackgroundSelectionColor(UIManager.getColor("Table.selectionBackground"));
+            renderer.setBorderSelectionColor(null);
+            renderer.setTextSelectionColor(
+                    UIManager.getColor(COLOR_KEY_TABLE_SELECTION_FOREGROUND));
+            renderer.setBackgroundSelectionColor(
+                    UIManager.getColor(COLOR_KEY_TABLE_SELECTION_BACKGROUND));
         }
     }
 
@@ -113,6 +122,7 @@ class TreeTableCellRenderer extends JTree implements
 
     /**
      * TreeCellRenderer method. Overridden to update the visible row.
+     *
      * @see TableCellRenderer
      */
     @Override
@@ -121,14 +131,17 @@ class TreeTableCellRenderer extends JTree implements
             boolean isSelected,
             boolean hasFocus,
             int row, int column) {
+        final String colorKey;
         if (isSelected) {
-            setBackground(table.getSelectionBackground());
+            colorKey = COLOR_KEY_TABLE_SELECTION_BACKGROUND;
         }
         else {
-            setBackground(table.getBackground());
+            colorKey = COLOR_KEY_TABLE_BACKGROUND;
         }
 
+        setBackground(UIManager.getColor(colorKey));
         visibleRow = row;
         return this;
     }
+
 }

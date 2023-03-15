@@ -6,17 +6,17 @@ public class InputOneTopLevelClassBasic
         super.equals(new String());
         super.clone();
     }
-    
+
     public Object clone() throws CloneNotSupportedException
     {
         return super.clone();
     }
-    
+
     public void method() throws CloneNotSupportedException
     {
         super.clone();
     }
-    
+
     {
         super.clone();
     }
@@ -56,14 +56,14 @@ class CloneWithTypeArgumentsAndNoSuper //warn
 {
 }
 
-//Check that super keword isn't snagged here
+//Check that super keyword isn't snagged here
 class MyClassWithGenericSuperMethod //warn
 {
     void someMethod(java.util.List<? super java.util.Map> l)
     {
         //Some code
     }
-    
+
     /**
      * Not a valid clone override. Should not get flagged.
      * @param o some object
@@ -75,7 +75,7 @@ class MyClassWithGenericSuperMethod //warn
 }
 
 class AnotherClass { //warn
-    
+
     /**
      * Not a valid clone override. Should not get flagged.
      * @param t some type

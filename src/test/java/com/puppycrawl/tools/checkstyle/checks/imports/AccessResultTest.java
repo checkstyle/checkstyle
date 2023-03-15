@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,14 +15,13 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
+import static com.google.common.truth.Truth.assertWithMessage;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class AccessResultTest {
 
@@ -33,7 +32,9 @@ public class AccessResultTest {
     @Test
     public void testAccessResultValueOf() {
         final AccessResult result = AccessResult.valueOf("ALLOWED");
-        assertEquals(AccessResult.ALLOWED, result);
+        assertWithMessage("Invalid access result")
+            .that(result)
+            .isEqualTo(AccessResult.ALLOWED);
     }
 
     /* Additional test for jacoco, since values()
@@ -48,6 +49,9 @@ public class AccessResultTest {
             AccessResult.DISALLOWED,
             AccessResult.UNKNOWN,
         };
-        assertArrayEquals(expected, actual);
+        assertWithMessage("Invalid access result values")
+            .that(actual)
+            .isEqualTo(expected);
     }
+
 }

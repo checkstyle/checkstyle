@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,43 +15,61 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.api;
 
 import java.io.File;
 import java.util.Arrays;
-import java.util.List;
 import java.util.SortedSet;
+import java.util.TreeSet;
 
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * Provides common functionality for many FileSetChecks.
  *
- * @author lkuehne
- * @author oliver
+ * @noinspection NoopMethodInAbstractClass
+ * @noinspectionreason NoopMethodInAbstractClass - we allow each
+ *      check to define these methods, as needed. They
+ *      should be overridden only by demand in subclasses
  */
 public abstract class AbstractFileSetCheck
     extends AbstractViolationReporter
     implements FileSetCheck {
 
-    /** Collects the error messages. */
-    private final LocalizedMessages messageCollector = new LocalizedMessages();
+    /**
+     * The check context.
+     *
+     * @noinspection ThreadLocalNotStaticFinal
+     * @noinspectionreason ThreadLocalNotStaticFinal - static context is
+     *      problematic for multithreading
+     */
+    private final ThreadLocal<FileContext> context = ThreadLocal.withInitial(FileContext::new);
 
     /** The dispatcher errors are fired to. */
     private MessageDispatcher messageDispatcher;
 
-    /** The file extensions that are accepted by this filter. */
-    private String[] fileExtensions = CommonUtils.EMPTY_STRING_ARRAY;
+    /**
+     * Specify the file type extension of files to process.
+     * Default is uninitialized as the value is inherited from the parent module.
+     */
+    private String[] fileExtensions;
+
+    /**
+     * The tab width for column reporting.
+     * Default is uninitialized as the value is inherited from the parent module.
+     */
+    private int tabWidth;
 
     /**
      * Called to process a file that matches the specified file extensions.
+     *
      * @param file the file to be processed
-     * @param lines an immutable list of the contents of the file.
+     * @param fileText the contents of the file.
      * @throws CheckstyleException if error condition within Checkstyle occurs.
      */
-    protected abstract void processFiltered(File file, List<String> lines)
+    protected abstract void processFiltered(File file, FileText fileText)
             throws CheckstyleException;
 
     @Override
@@ -61,7 +79,7 @@ public abstract class AbstractFileSetCheck
 
     @Override
     public void destroy() {
-        // No code by default, should be overridden only by demand at subclasses
+        context.remove();
     }
 
     @Override
@@ -70,14 +88,18 @@ public abstract class AbstractFileSetCheck
     }
 
     @Override
-    public final SortedSet<LocalizedMessage> process(File file, List<String> lines)
+    public final SortedSet<Violation> process(File file, FileText fileText)
             throws CheckstyleException {
-        messageCollector.reset();
+        final FileContext fileContext = context.get();
+        fileContext.fileContents = new FileContents(fileText);
+        fileContext.violations.clear();
         // Process only what interested in
-        if (CommonUtils.matchesFileExtension(file, fileExtensions)) {
-            processFiltered(file, lines);
+        if (CommonUtil.matchesFileExtension(file, fileExtensions)) {
+            processFiltered(file, fileText);
         }
-        return messageCollector.getMessages();
+        final SortedSet<Violation> result = new TreeSet<>(fileContext.violations);
+        fileContext.violations.clear();
+        return result;
     }
 
     @Override
@@ -91,7 +113,7 @@ public abstract class AbstractFileSetCheck
     }
 
     /**
-     * A message dispatcher is used to fire violation messages to
+     * A message dispatcher is used to fire violations to
      * interested audit listeners.
      *
      * @return the current MessageDispatcher.
@@ -101,7 +123,35 @@ public abstract class AbstractFileSetCheck
     }
 
     /**
+     * Returns the sorted set of {@link Violation}.
+     *
+     * @return the sorted set of {@link Violation}.
+     */
+    public SortedSet<Violation> getViolations() {
+        return new TreeSet<>(context.get().violations);
+    }
+
+    /**
+     * Set the file contents associated with the tree.
+     *
+     * @param contents the manager
+     */
+    public final void setFileContents(FileContents contents) {
+        context.get().fileContents = contents;
+    }
+
+    /**
+     * Returns the file contents associated with the file.
+     *
+     * @return the file contents
+     */
+    protected final FileContents getFileContents() {
+        return context.get().fileContents;
+    }
+
+    /**
      * Makes copy of file extensions and returns them.
+     *
      * @return file extensions that identify the files that pass the
      *     filter of this FileSetCheck.
      */
@@ -110,8 +160,8 @@ public abstract class AbstractFileSetCheck
     }
 
     /**
-     * Sets the file extensions that identify the files that pass the
-     * filter of this FileSetCheck.
+     * Setter to specify the file type extension of files to process.
+     *
      * @param extensions the set of file extensions. A missing
      *         initial '.' character of an extension is automatically added.
      * @throws IllegalArgumentException is argument is null
@@ -124,7 +174,7 @@ public abstract class AbstractFileSetCheck
         fileExtensions = new String[extensions.length];
         for (int i = 0; i < extensions.length; i++) {
             final String extension = extensions[i];
-            if (CommonUtils.startsWithChar(extension, '.')) {
+            if (CommonUtil.startsWithChar(extension, '.')) {
                 fileExtensions[i] = extension;
             }
             else {
@@ -134,27 +184,54 @@ public abstract class AbstractFileSetCheck
     }
 
     /**
-     * Returns the collector for violation messages.
-     * Subclasses can use the collector to find out the violation
-     * messages to fire via the message dispatcher.
+     * Get tab width to report audit events with.
      *
-     * @return the collector for localized messages.
+     * @return the tab width to report audit events with
      */
-    protected final LocalizedMessages getMessageCollector() {
-        return messageCollector;
+    protected final int getTabWidth() {
+        return tabWidth;
+    }
+
+    /**
+     * Set the tab width to report audit events with.
+     *
+     * @param tabWidth an {@code int} value
+     */
+    public final void setTabWidth(int tabWidth) {
+        this.tabWidth = tabWidth;
+    }
+
+    /**
+     * Adds the sorted set of {@link Violation} to the message collector.
+     *
+     * @param violations the sorted set of {@link Violation}.
+     */
+    protected void addViolations(SortedSet<Violation> violations) {
+        context.get().violations.addAll(violations);
     }
 
     @Override
     public final void log(int line, String key, Object... args) {
-        log(line, 0, key, args);
+        context.get().violations.add(
+                new Violation(line,
+                        getMessageBundle(),
+                        key,
+                        args,
+                        getSeverityLevel(),
+                        getId(),
+                        getClass(),
+                        getCustomMessages().get(key)));
     }
 
     @Override
     public final void log(int lineNo, int colNo, String key,
             Object... args) {
-        messageCollector.add(
-                new LocalizedMessage(lineNo,
-                        colNo,
+        final FileContext fileContext = context.get();
+        final int col = 1 + CommonUtil.lengthExpandedTabs(
+                fileContext.fileContents.getLine(lineNo - 1), colNo, tabWidth);
+        fileContext.violations.add(
+                new Violation(lineNo,
+                        col,
                         getMessageBundle(),
                         key,
                         args,
@@ -167,13 +244,28 @@ public abstract class AbstractFileSetCheck
     /**
      * Notify all listeners about the errors in a file.
      * Calls {@code MessageDispatcher.fireErrors()} with
-     * all logged errors and than clears errors' list.
+     * all logged errors and then clears errors' list.
+     *
      * @param fileName the audited file
      */
     protected final void fireErrors(String fileName) {
-        final SortedSet<LocalizedMessage> errors = messageCollector
-                .getMessages();
-        messageCollector.reset();
-        getMessageDispatcher().fireErrors(fileName, errors);
+        final FileContext fileContext = context.get();
+        final SortedSet<Violation> errors = new TreeSet<>(fileContext.violations);
+        fileContext.violations.clear();
+        messageDispatcher.fireErrors(fileName, errors);
     }
+
+    /**
+     * The actual context holder.
+     */
+    private static final class FileContext {
+
+        /** The sorted set for collecting violations. */
+        private final SortedSet<Violation> violations = new TreeSet<>();
+
+        /** The current file contents. */
+        private FileContents fileContents;
+
+    }
+
 }

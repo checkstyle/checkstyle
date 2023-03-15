@@ -1,14 +1,23 @@
+/*
+WhitespaceAfter
+tokens = (default)COMMA, SEMI, TYPECAST, LITERAL_IF, LITERAL_ELSE, LITERAL_WHILE, \
+         LITERAL_DO, LITERAL_FOR, DO_WHILE
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.whitespace.whitespaceafter;
 
 import java.util.Collection;
 import java.util.Map;
 
-public class InputWhitespaceAfterGenerics<A, B extends Collection<?>, C extends D&E, F extends Collection<? extends InputWhitespaceAfterGenerics[]>>
+public class InputWhitespaceAfterGenerics<A, B extends Collection<?>,
+       C extends D&E, F extends Collection<? extends InputWhitespaceAfterGenerics[]>>
 {
 }
 
 //No whitespace after commas
-class BadCommas < A,B,C extends Map < A,String > >
+class BadCommas < A,B,C extends Map < A,String > > // 3 violations
 {
     private java.util.Hashtable < Integer, D > p =
         new java.util.Hashtable < Integer, D > ();

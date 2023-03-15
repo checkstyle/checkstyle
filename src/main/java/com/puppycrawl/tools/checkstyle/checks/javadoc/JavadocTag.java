@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,15 +15,15 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 /**
  * Represents a Javadoc tag. Provides methods to query what type of tag it is.
- * @author Oliver Burn
  */
 public class JavadocTag {
+
     /** The line number of the tag. **/
     private final int lineNo;
     /** The column number of the tag. **/
@@ -35,6 +35,7 @@ public class JavadocTag {
 
     /**
      * Constructs the object.
+     *
      * @param line the line number of the tag
      * @param column the column number of the tag
      * @param tag the tag string
@@ -49,6 +50,7 @@ public class JavadocTag {
 
     /**
      * Constructs the object.
+     *
      * @param line the line number of the tag
      * @param column the column number of the tag
      * @param tag the tag string
@@ -59,6 +61,7 @@ public class JavadocTag {
 
     /**
      * Gets tag name.
+     *
      * @return the tag string
      */
     public String getTagName() {
@@ -67,6 +70,7 @@ public class JavadocTag {
 
     /**
      * Returns first argument.
+     *
      * @return the first argument. null if not set.
      */
     public String getFirstArg() {
@@ -75,6 +79,7 @@ public class JavadocTag {
 
     /**
      * Gets the line number.
+     *
      * @return the line number
      */
     public int getLineNo() {
@@ -83,6 +88,7 @@ public class JavadocTag {
 
     /**
      * Gets column number.
+     *
      * @return the column number
      */
     public int getColumnNo() {
@@ -91,12 +97,15 @@ public class JavadocTag {
 
     @Override
     public String toString() {
-        return "JavadocTag{tag='" + getTagName() + "' lineNo=" + lineNo + ", columnNo=" + columnNo
-                + ", firstArg='" + firstArg + "'}";
+        return "JavadocTag[tag='" + tagInfo.getName()
+                + "' lineNo=" + lineNo
+                + ", columnNo=" + columnNo
+                + ", firstArg='" + firstArg + "']";
     }
 
     /**
      * Checks that the tag is an 'return' tag.
+     *
      * @return whether the tag is an 'return' tag
      */
     public boolean isReturnTag() {
@@ -105,6 +114,7 @@ public class JavadocTag {
 
     /**
      * Checks that the tag is an 'param' tag.
+     *
      * @return whether the tag is an 'param' tag
      */
     public boolean isParamTag() {
@@ -113,6 +123,7 @@ public class JavadocTag {
 
     /**
      * Checks that the tag is an 'throws' or 'exception' tag.
+     *
      * @return whether the tag is an 'throws' or 'exception' tag
      */
     public boolean isThrowsTag() {
@@ -122,6 +133,7 @@ public class JavadocTag {
 
     /**
      * Checks that the tag is a 'see' or 'inheritDoc' tag.
+     *
      * @return whether the tag is a 'see' or 'inheritDoc' tag
      */
     public boolean isSeeOrInheritDocTag() {
@@ -130,6 +142,7 @@ public class JavadocTag {
 
     /**
      * Checks that the tag is a 'inheritDoc' tag.
+     *
      * @return whether the tag is a 'inheritDoc' tag
      */
     public boolean isInheritDocTag() {
@@ -138,6 +151,7 @@ public class JavadocTag {
 
     /**
      * Checks that the tag can contain references to imported classes.
+     *
      * @return whether the tag can contain references to imported classes
      */
     public boolean canReferenceImports() {
@@ -148,4 +162,5 @@ public class JavadocTag {
                 || tagInfo == JavadocTagInfo.THROWS
                 || tagInfo == JavadocTagInfo.EXCEPTION;
     }
+
 }

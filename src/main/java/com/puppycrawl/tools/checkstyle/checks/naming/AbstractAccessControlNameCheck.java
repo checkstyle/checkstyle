@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,16 +15,17 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.naming;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 
 /**
  * Abstract class for checking a class member (field/method)'s name conforms to
- * a format specified by the format property.
+ * a specified pattern.
  *
  * <p>
  * This class extends {@link AbstractNameCheck} with support for access level
@@ -42,10 +43,10 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </ol>
  *
  *
- * @author Rick Giles
  */
 public abstract class AbstractAccessControlNameCheck
     extends AbstractNameCheck {
+
     /** If true, applies the check be public members. */
     private boolean applyToPublic = true;
 
@@ -70,7 +71,7 @@ public abstract class AbstractAccessControlNameCheck
 
     @Override
     protected boolean mustCheckName(DetailAST ast) {
-        return shouldCheckInScope(ast);
+        return shouldCheckInScope(ast.findFirstToken(TokenTypes.MODIFIERS));
     }
 
     /**
@@ -81,18 +82,34 @@ public abstract class AbstractAccessControlNameCheck
      * @return true if we should check such member.
      */
     protected boolean shouldCheckInScope(DetailAST modifiers) {
-        final boolean isPublic = modifiers
-                .branchContains(TokenTypes.LITERAL_PUBLIC);
         final boolean isProtected = modifiers
-                .branchContains(TokenTypes.LITERAL_PROTECTED);
+                .findFirstToken(TokenTypes.LITERAL_PROTECTED) != null;
         final boolean isPrivate = modifiers
-                .branchContains(TokenTypes.LITERAL_PRIVATE);
+                .findFirstToken(TokenTypes.LITERAL_PRIVATE) != null;
+        final boolean isPublic = isPublic(modifiers);
+
         final boolean isPackage = !(isPublic || isProtected || isPrivate);
 
         return applyToPublic && isPublic
                 || applyToProtected && isProtected
                 || applyToPackage && isPackage
                 || applyToPrivate && isPrivate;
+    }
+
+    /**
+     * Checks if given modifiers has public access.
+     * There are 2 cases - it is either has explicit modifier, or it is
+     * in annotation or interface.
+     *
+     * @param modifiers - modifiers to check
+     * @return true if public
+     */
+    private static boolean isPublic(DetailAST modifiers) {
+        return modifiers.findFirstToken(TokenTypes.LITERAL_PUBLIC) != null
+                || ScopeUtil.isInAnnotationBlock(modifiers)
+                || ScopeUtil.isInInterfaceBlock(modifiers)
+                    // interface methods can be private
+                    && modifiers.findFirstToken(TokenTypes.LITERAL_PRIVATE) == null;
     }
 
     /**
@@ -130,4 +147,5 @@ public abstract class AbstractAccessControlNameCheck
     public void setApplyToPrivate(boolean applyTo) {
         applyToPrivate = applyTo;
     }
+
 }

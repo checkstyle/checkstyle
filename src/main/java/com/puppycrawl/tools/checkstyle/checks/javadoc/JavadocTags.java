@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,20 +15,19 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Collection;
 import java.util.List;
 
 /**
  * Value object for combining the list of valid validTags with information
  * about invalid validTags encountered in a certain Javadoc comment.
- * @author Oliver Burn
  */
 public final class JavadocTags {
+
     /** Valid validTags. */
     private final List<JavadocTag> validTags;
     /** Invalid validTags. */
@@ -36,29 +35,31 @@ public final class JavadocTags {
 
     /**
      * Creates an instance.
-     * @param tags the list of valid tags
-     * @param invalidTags the list of invalid tags
+     *
+     * @param tags valid tags
+     * @param invalidTags invalid tags
      */
-    public JavadocTags(List<JavadocTag> tags, List<InvalidJavadocTag> invalidTags) {
-        final List<JavadocTag> validTagsCopy = new ArrayList<>(tags);
-        validTags = Collections.unmodifiableList(validTagsCopy);
-        final List<InvalidJavadocTag> invalidTagsCopy = new ArrayList<>(invalidTags);
-        this.invalidTags = Collections.unmodifiableList(invalidTagsCopy);
+    public JavadocTags(Collection<JavadocTag> tags, Collection<InvalidJavadocTag> invalidTags) {
+        validTags = List.copyOf(tags);
+        this.invalidTags = List.copyOf(invalidTags);
     }
 
     /**
      *  Getter for validTags field.
+     *
      *  @return validTags field
      */
     public List<JavadocTag> getValidTags() {
-        return Collections.unmodifiableList(validTags);
+        return validTags;
     }
 
     /**
      *  Getter for invalidTags field.
+     *
      *  @return invalidTags field
      */
     public List<InvalidJavadocTag> getInvalidTags() {
-        return Collections.unmodifiableList(invalidTags);
+        return invalidTags;
     }
+
 }

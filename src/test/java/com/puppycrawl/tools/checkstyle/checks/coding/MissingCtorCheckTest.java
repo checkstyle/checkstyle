@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,49 +15,62 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.coding.MissingCtorCheck.MSG_KEY;
 
-import java.io.File;
-import java.io.IOException;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Assert;
-import org.junit.Test;
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+public class MissingCtorCheckTest extends AbstractModuleTestSupport {
 
-public class MissingCtorCheckTest extends BaseCheckTestSupport {
     @Override
-    protected String getPath(String filename) throws IOException {
-        return super.getPath("checks" + File.separator
-                + "coding" + File.separator
-                + "missingctor" + File.separator
-                + filename);
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/checks/coding/missingctor";
     }
 
     @Test
     public void testMissingSwitchDefault() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(MissingCtorCheck.class);
 
         final String[] expected = {
-            "3: " + getCheckMessage(MSG_KEY),
+            "9:1: " + getCheckMessage(MSG_KEY),
         };
 
-        verify(checkConfig,
-               getPath("InputMissingCtor.java"),
+        verifyWithInlineConfigParser(
+                getPath("InputMissingCtor.java"),
                expected);
     }
 
     @Test
     public void testTokensNotNull() {
         final MissingCtorCheck check = new MissingCtorCheck();
-        Assert.assertNotNull(check.getAcceptableTokens());
-        Assert.assertNotNull(check.getDefaultTokens());
-        Assert.assertNotNull(check.getRequiredTokens());
+        assertWithMessage("Acceptable tokens should not be null")
+            .that(check.getAcceptableTokens())
+            .isNotNull();
+        assertWithMessage("Default tokens should not be null")
+            .that(check.getDefaultTokens())
+            .isNotNull();
+        assertWithMessage("Required tokens should not be null")
+            .that(check.getRequiredTokens())
+            .isNotNull();
     }
+
+    @Test
+    public void testMissingCtorClassOnOneLine() throws Exception {
+
+        final String[] expected = {
+            "9:1: " + getCheckMessage(MSG_KEY),
+            "10:5: " + getCheckMessage(MSG_KEY),
+            "11:9: " + getCheckMessage(MSG_KEY),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputMissingCtor2.java"),
+                expected);
+    }
+
 }

@@ -1,0 +1,42 @@
+* <p> <source> </p>
+* <li> <source> </li>
+* <tr> <source> </tr>
+* <td> <source> </td>
+* <th> <source> </th>
+* <body> <source> </body>
+* <colgroup> <source> </colgroup>
+* <dd> <source> </dd>
+* <dt> <source> </dt>
+* <head> <source> </head>
+* <html> <source> </html>
+* <option> <source> </option>
+* <tbody> <source> </tbody>
+* <thead> <source> </thead>
+* <tfoot> <source> </tfoot>
+
+* <p> <source/> </p>
+* <li> <source/> </li>
+* <tr> <source/> </tr>
+* <td> <source/> </td>
+* <th> <source/> </th>
+* <body> <source/> </body>
+* <colgroup> <source/> </colgroup>
+* <dd> <source/> </dd>
+* <dt> <source/> </dt>
+* <head> <source/> </head>
+* <html> <source/> </html>
+* <option> <source/> </option>
+* <tbody> <source/> </tbody>
+* <thead> <source/> </thead>
+* <tfoot> <source/> </tfoot>
+
+* <source>
+* <source/>
+* <source attr="something">
+* <source attr="something"/>
+* <source attr="something" attr2="someotherthing">
+* <source attr="something" attr2="someotherthing"/>
+* <source attr="something"
+* attr2="someotherting">
+* <source attr="something"
+* attr2="someotherting"/>

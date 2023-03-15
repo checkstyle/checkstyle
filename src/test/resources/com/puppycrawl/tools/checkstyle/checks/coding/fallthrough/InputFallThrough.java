@@ -1,3 +1,11 @@
+/*
+FallThrough
+checkLastCaseGroup = true
+reliefPattern = (default)falls?[ -]?thr(u|ough)
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.coding.fallthrough;
 
 public class InputFallThrough
@@ -5,13 +13,13 @@ public class InputFallThrough
     void method(int i, int j, boolean cond) {
         while (true) {
             switch (i) {
-            case 0: // no problem
+            case 0: // ok
             case 1:
                 i++;
                 break;
             case 2:
                 i++;
-            case 3: //fall through!!!
+            case 3: // violation 'Fall through from previous branch of the switch statement.'
                 i++;
                 break;
             case 4:
@@ -35,7 +43,7 @@ public class InputFallThrough
             case 11: {
                 i++;
             }
-            case 12: //fall through!!!
+            case 12: // violation 'Fall through from previous branch of the switch statement.'
                 if (false)
                     break;
                 else
@@ -44,13 +52,13 @@ public class InputFallThrough
                 if (true) {
                     return;
                 }
-            case 14:
+            case 14: // violation 'Fall through from previous branch of the switch statement.'
                 if (true) {
                     return;
                 } else {
                     //do nothing
                 }
-            case 15: //fall through!!!
+            case 15: // violation 'Fall through from previous branch of the switch statement.'
                 do {
                     System.identityHashCode("something");
                     return;
@@ -67,7 +75,7 @@ public class InputFallThrough
                 while(cond) {
                     break;
                 }
-            case 19: //fall through!!!
+            case 19: // violation 'Fall through from previous branch of the switch statement.'
                 try {
                     i++;
                     break;
@@ -84,7 +92,7 @@ public class InputFallThrough
                 } catch (Error e) {
                     return;
                 }
-            case 21: //fall through!!!
+            case 21: // violation 'Fall through from previous branch of the switch statement.'
                 try {
                     i++;
                 } catch (RuntimeException e) {
@@ -120,29 +128,29 @@ public class InputFallThrough
                 default:
                     return;
                 }
-            default: //fall through!!!
+            default: // 2 violations
                 // this is the last label
                 i++;
             }
         }
     }
-    
-    
-    
+
+
+
     /* Like above, but all fall throughs with relief comment */
     void methodFallThru(int i, int j, boolean cond) {
       while (true) {
           switch (i) {
           case -1: // FALLTHRU
-              
-          case 0: // no problem
+
+          case 0: // ok
           case 1:
               i++;
               break;
           case 2:
               i++;
               // fallthru
-          case 3: 
+          case 3:
               i++;
               break;
           case 4:
@@ -167,7 +175,7 @@ public class InputFallThrough
               i++;
           }
           // fallthru
-          case 12: 
+          case 12:
               if (false)
                   break;
               else
@@ -176,7 +184,7 @@ public class InputFallThrough
               if (true) {
                   return;
               }
-          case 14:
+          case 14: // violation 'Fall through from previous branch of the switch statement.'
               if (true) {
                   return;
               } else {
@@ -246,10 +254,10 @@ public class InputFallThrough
                   return;
               default:
                   return;
-              }        
+              }
           case 24:
               i++;
-          /* fallthru */ case 25: 
+          /* fallthru */ case 25:
               i++;
               break;
 
@@ -261,7 +269,7 @@ public class InputFallThrough
                   break;
               default:
                   return;
-              } 
+              }
               // fallthru
           default:
               // this is the last label
@@ -270,7 +278,7 @@ public class InputFallThrough
          }
       }
    }
-    
+
    /* Test relief comment. */
    void methodFallThruCC(int i, int j, boolean cond) {
       while (true) {
@@ -295,7 +303,7 @@ public class InputFallThrough
           }
       }
    }
-    
+
    /* Like above, but C-style comments. */
    void methodFallThruC(int i, int j, boolean cond) {
       while (true) {
@@ -337,7 +345,7 @@ public class InputFallThrough
           }
       }
    }
-    
+
    /* C-style comments with other default fallthru-comment. */
    void methodFallThruCOtherWords(int i, int j, boolean cond) {
       while (true) {
@@ -358,7 +366,7 @@ public class InputFallThrough
           }
       }
    }
-    
+
    /* C-style comments with custom fallthru-comment. */
    void methodFallThruCCustomWords(int i, int j, boolean cond) {
       while (true) {
@@ -366,20 +374,20 @@ public class InputFallThrough
           case 0:
               i++; /* Continue with next case */
 
-          case 1:
+          case 1: // violation 'Fall through from previous branch of the switch statement.'
               i++;
           /* Continue with next case */
-          case 2:
+          case 2: // violation 'Fall through from previous branch of the switch statement.'
               i++;
-          /* Continue with next case */case 3:
+          /* Continue with next case */case 3: // violation 'Fall through from prev.*'
                 break;
-          case 4:
+          case 4: // violation 'Fall through from the last branch of the switch statement.'
               i++;
           /* Continue with next case */
           }
       }
    }
-   
+
    void methodFallThruLastCaseGroup(int i, int j, boolean cond) {
        while (true) {
            switch (i){
@@ -388,12 +396,12 @@ public class InputFallThrough
            }
            switch (i){
            case 0:
-               i++; 
+               i++;
                // fallthru
            }
            switch (i){
            case 0:
-               i++; 
+               i++;
            /* fallthru */ }
        }
     }
@@ -413,112 +421,78 @@ public class InputFallThrough
                 switch (hashCode()) { // causing NullPointerException in the past
                     case 1:
                 }
-            default: // violation - no fall through comment
+            default: // violation 'Fall through from previous branch of the switch statement.'
         }
     }
-    
+
     void nextedSwitches2() {
         switch(hashCode()) {
         case 1:
             switch(hashCode()){}
-        case 2:
+        case 2: // violation 'Fall through from previous branch of the switch statement.'
             System.lineSeparator();
             break;
         }
     }
-    
+
     void ifWithoutBreak() {
         switch(hashCode()) {
         case 1:
             if (true) {
                 System.lineSeparator();
             }
-        case 2:
+        case 2: // violation 'Fall through from previous branch of the switch statement.'
             System.lineSeparator();
             break;
         }
     }
-    
+
     void noCommentAtTheEnd() {
         switch(hashCode()) {
         case 1: System.lineSeparator();
 
-        case 2:
+        case 2: // violation 'Fall through from previous branch of the switch statement.'
             System.lineSeparator();
             break;
         }
     }
 
-    void tryResource() throws Exception {
-        switch (hashCode()) {
-        case 1:
-            try (final Resource resource = new Resource()) {
-                return;
-            }
-        case 2:
-            try (final Resource resource = new Resource()) {
-                return;
-            }
-            finally {
-                return;
-            }
-        case 3:
-            try (final Resource resource = new Resource()) {
-                return;
-            }
-            catch (Exception ex) {
-                return;
-            }
-        case 4:
-            try (final Resource resource = new Resource()) {
-            }
-            finally {
-                return;
-            }
-        case 5:
-            try (final Resource resource = new Resource()) {
-                return;
-            }
-            finally {
-            }
-        case 6:
-            try (final Resource resource = new Resource()) {
-            }
-            catch (Exception ex) {
-                return;
-            }
-            // fallthru
-        case 7:
-            try (final Resource resource = new Resource()) {
-            }
-            // fallthru
-        case 8:
-            try (final Resource resource = new Resource()) {
-            }
-            finally {
-            }
-            // fallthru
-        case 9:
-            try (final Resource resource = new Resource()) {
-            }
-            catch (Exception ex) {
-            }
-            // fallthru
-        case 10:
-            try (final Resource resource = new Resource()) {
-                return;
-            }
-            catch (Exception ex) {
-            }
-            // fallthru
-        default:
-            break;
-        }
+    void synchronizedStatement() {
+       switch (hashCode()) {
+           case 1:
+               synchronized (this) {
+                   break;
+               }
+           case 2:
+               // synchronized nested in if
+               if (true) {
+                   synchronized (this) {
+                       break;
+                   }
+               } else {
+                   synchronized (this) {
+                       break;
+                   }
+               }
+           case 3:
+               synchronized (this) {
+               }
+               // fallthru
+           default:
+               break;
+       }
     }
 
-    private static class Resource implements AutoCloseable {
-        @Override
-        public void close() throws Exception {
+    void multipleCasesOnOneLine() {
+        int i = 0;
+        switch (i) {
+        case 0: case 1: i *= i; // fall through
+        case 2: case 3: i *= i; // violation 'Fall through from prev.* br.* switch statement.'
+        case 4: case 5: i *= i; // violation 'Fall through from prev.* br.* switch statement.'
+        case 6: case 7: i *= i; // violation 'Fall through from prev.* br.* switch statement.'
+            break;
+        default:
+            throw new RuntimeException();
         }
     }
 }

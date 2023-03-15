@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,42 +15,43 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.google.checkstyle.test.chapter4formatting.rule412nonemptyblocks;
 
 import static com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck.MSG_KEY_LINE_ALONE;
 import static com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck.MSG_KEY_LINE_BREAK_BEFORE;
-import static com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck.MSG_KEY_LINE_NEW;
 import static com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck.MSG_KEY_LINE_SAME;
 
-import java.io.File;
-import java.io.IOException;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Test;
-
-import com.google.checkstyle.test.base.BaseCheckTestSupport;
+import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-public class RightCurlyTest extends BaseCheckTestSupport {
+public class RightCurlyTest extends AbstractGoogleModuleTestSupport {
+
+    private static final String[] MODULES = {
+        "RightCurlySame", "RightCurlyAlone",
+    };
 
     @Override
-    protected String getPath(String fileName) throws IOException {
-        return super.getPath("chapter4formatting" + File.separator + "rule412nonemptyblocks"
-                + File.separator + fileName);
+    protected String getPackageLocation() {
+        return "com/google/checkstyle/test/chapter4formatting/rule412nonemptyblocks";
     }
 
     @Test
-    public void testRightCurlyAlone() throws Exception {
+    public void testRightCurly() throws Exception {
         final String[] expected = {
             "20:17: " + getCheckMessage(RightCurlyCheck.class, MSG_KEY_LINE_SAME, "}", 17),
             "32:13: " + getCheckMessage(RightCurlyCheck.class, MSG_KEY_LINE_SAME, "}", 13),
             "79:27: " + getCheckMessage(RightCurlyCheck.class, MSG_KEY_LINE_BREAK_BEFORE, "}", 27),
+            "97:5: " + getCheckMessage(RightCurlyCheck.class, MSG_KEY_LINE_ALONE, "}", 5),
+            "108:5: " + getCheckMessage(RightCurlyCheck.class, MSG_KEY_LINE_ALONE, "}", 5),
         };
 
-        final Configuration checkConfig = getCheckConfig("RightCurly", "RightCurlySame");
+        final Configuration checkConfig = createTreeWalkerConfig(getModuleConfigsByIds(MODULES));
         final String filePath = getPath("InputRightCurlyOther.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);
@@ -58,25 +59,25 @@ public class RightCurlyTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testRightCurlySame() throws Exception {
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+    public void testRightCurly2() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        final Configuration checkConfig = getCheckConfig("RightCurly", "RightCurlySame");
-        final String filePath = getPath("InputRightCurlySame.java");
+        final Configuration checkConfig = createTreeWalkerConfig(getModuleConfigsByIds(MODULES));
+        final String filePath = getPath("InputRightCurly2.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 
     @Test
-    public void testRightCurlySameAndLiteralDoDefault() throws Exception {
+    public void testRightCurlyLiteralDoDefault() throws Exception {
         final String[] expected = {
             "62:9: " + getCheckMessage(RightCurlyCheck.class, MSG_KEY_LINE_SAME, "}", 9),
             "67:13: " + getCheckMessage(RightCurlyCheck.class, MSG_KEY_LINE_SAME, "}", 13),
             "83:9: " + getCheckMessage(RightCurlyCheck.class, MSG_KEY_LINE_SAME, "}", 9),
         };
 
-        final Configuration checkConfig = getCheckConfig("RightCurly", "RightCurlySame");
+        final Configuration checkConfig = createTreeWalkerConfig(getModuleConfigsByIds(MODULES));
         final String filePath = getPath("InputRightCurlyDoWhile.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);
@@ -84,39 +85,47 @@ public class RightCurlyTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testRightCurlyAloneOther() throws Exception {
+    public void testRightCurlyOther() throws Exception {
         final String[] expected = {
+            "20:17: " + getCheckMessage(RightCurlyCheck.class, MSG_KEY_LINE_SAME, "}", 17),
+            "32:13: " + getCheckMessage(RightCurlyCheck.class, MSG_KEY_LINE_SAME, "}", 13),
+            "79:27: " + getCheckMessage(RightCurlyCheck.class, MSG_KEY_LINE_BREAK_BEFORE, "}", 27),
             "97:5: " + getCheckMessage(RightCurlyCheck.class, MSG_KEY_LINE_ALONE, "}", 5),
-            "97:6: " + getCheckMessage(RightCurlyCheck.class, MSG_KEY_LINE_NEW, "}", 6),
             "108:5: " + getCheckMessage(RightCurlyCheck.class, MSG_KEY_LINE_ALONE, "}", 5),
-            "108:6: " + getCheckMessage(RightCurlyCheck.class, MSG_KEY_LINE_NEW, "}", 6),
-            "122:6: " + getCheckMessage(RightCurlyCheck.class, MSG_KEY_LINE_NEW, "}", 6),
         };
 
-        final Configuration checkConfig = getCheckConfig("RightCurly", "RightCurlyAlone");
-        final String filePath = getPath("InputRightCurlyOtherAlone.java");
+        final Configuration checkConfig = createTreeWalkerConfig(getModuleConfigsByIds(MODULES));
+        final String filePath = getPath("InputRightCurlyOther2.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 
     @Test
-    public void testRightCurlyAloneSame() throws Exception {
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+    public void testRightCurlyLiteralDo() throws Exception {
+        final String[] expected = {
+            "62:9: " + getCheckMessage(RightCurlyCheck.class, MSG_KEY_LINE_SAME, "}", 9),
+            "67:13: " + getCheckMessage(RightCurlyCheck.class, MSG_KEY_LINE_SAME, "}", 13),
+            "83:9: " + getCheckMessage(RightCurlyCheck.class, MSG_KEY_LINE_SAME, "}", 9),
+        };
 
-        final Configuration checkConfig = getCheckConfig("RightCurly", "RightCurlyAlone");
-        final String filePath = getPath("InputRightCurlySame.java");
+        final Configuration checkConfig = createTreeWalkerConfig(getModuleConfigsByIds(MODULES));
+        final String filePath = getPath("InputRightCurlyDoWhile2.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 
     @Test
-    public void testRightCurlyAloneSameAndLiteralDo() throws Exception {
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+    public void testRightCurlySwitch() throws Exception {
+        final String[] expected = {
+            "12:24: " + getCheckMessage(RightCurlyCheck.class, MSG_KEY_LINE_ALONE, "}", 24),
+            "19:27: " + getCheckMessage(RightCurlyCheck.class, MSG_KEY_LINE_ALONE, "}", 27),
 
-        final Configuration checkConfig = getCheckConfig("RightCurly", "RightCurlyAlone");
-        final String filePath = getPath("InputRightCurlyDoWhileAlone.java");
+        };
+
+        final Configuration checkConfig = createTreeWalkerConfig(getModuleConfigsByIds(MODULES));
+        final String filePath = getPath("InputRightCurlySwitchCase.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);

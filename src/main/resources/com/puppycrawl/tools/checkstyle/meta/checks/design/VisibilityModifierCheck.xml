@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck"
+              name="VisibilityModifier"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;p&gt;
+ Checks visibility of class members. Only static final, immutable or annotated
+ by specified annotation members may be public;
+ other class members must be private unless the property {@code protectedAllowed}
+ or {@code packageAllowed} is set.
+ &lt;/p&gt;
+ &lt;p&gt;
+ Public members are not flagged if the name matches the public
+ member regular expression (contains {@code "^serialVersionUID$"} by
+ default).
+ &lt;/p&gt;
+ &lt;p&gt;
+ Note that Checkstyle 2 used to include {@code "^f[A-Z][a-zA-Z0-9]*$"} in the default pattern
+ to allow names used in container-managed persistence for Enterprise JavaBeans (EJB) 1.1 with
+ the default settings. With EJB 2.0 it is no longer necessary to have public access for
+ persistent fields, so the default has been changed.
+ &lt;/p&gt;
+ &lt;p&gt;
+ Rationale: Enforce encapsulation.
+ &lt;/p&gt;
+ &lt;p&gt;
+ Check also has options making it less strict:
+ &lt;/p&gt;
+ &lt;p&gt;
+ &lt;b&gt;ignoreAnnotationCanonicalNames&lt;/b&gt;- the list of annotations which ignore
+ variables in consideration. If user want to provide short annotation name that
+ type will match to any named the same type without consideration of package.
+ &lt;/p&gt;
+ &lt;p&gt;
+ &lt;b&gt;allowPublicFinalFields&lt;/b&gt;- which allows public final fields.
+ &lt;/p&gt;
+ &lt;p&gt;
+ &lt;b&gt;allowPublicImmutableFields&lt;/b&gt;- which allows immutable fields to be
+ declared as public if defined in final class.
+ &lt;/p&gt;
+ &lt;p&gt;
+ Field is known to be immutable if:
+ &lt;/p&gt;
+ &lt;ul&gt;
+ &lt;li&gt;It's declared as final&lt;/li&gt;
+ &lt;li&gt;Has either a primitive type or instance of class user defined to be immutable
+ (such as String, ImmutableCollection from Guava, etc.)&lt;/li&gt;
+ &lt;/ul&gt;
+ &lt;p&gt;
+ Classes known to be immutable are listed in &lt;b&gt;immutableClassCanonicalNames&lt;/b&gt;
+ by their canonical names.
+ &lt;/p&gt;
+ &lt;p&gt;
+ Property Rationale: Forcing all fields of class to have private modifier by default is
+ good in most cases, but in some cases it drawbacks in too much boilerplate get/set code.
+ One of such cases are immutable classes.
+ &lt;/p&gt;
+ &lt;p&gt;
+ Restriction: Check doesn't check if class is immutable, there's no checking
+ if accessory methods are missing and all fields are immutable, we only check
+ if current field is immutable or final.
+ Under the flag &lt;b&gt;allowPublicImmutableFields&lt;/b&gt;, the enclosing class must
+ also be final, to encourage immutability.
+ Under the flag &lt;b&gt;allowPublicFinalFields&lt;/b&gt;, the final modifier
+ on the enclosing class is optional.
+ &lt;/p&gt;
+ &lt;p&gt;
+ Star imports are out of scope of this Check. So if one of type imported via
+ star import collides with user specified one by its short name - there
+ won't be Check's violation.
+ &lt;/p&gt;</description>
+         <properties>
+            <property default-value="false" name="packageAllowed" type="boolean">
+               <description>Control whether package visible members are allowed.</description>
+            </property>
+            <property default-value="false" name="protectedAllowed" type="boolean">
+               <description>Control whether protected members are allowed.</description>
+            </property>
+            <property default-value="^serialVersionUID$"
+                       name="publicMemberPattern"
+                       type="java.util.regex.Pattern">
+               <description>Specify pattern for public members that should be ignored.</description>
+            </property>
+            <property default-value="false" name="allowPublicFinalFields" type="boolean">
+               <description>Allow final fields to be declared as public.</description>
+            </property>
+            <property default-value="false"
+                       name="allowPublicImmutableFields"
+                       type="boolean">
+               <description>Allow immutable fields to be
+ declared as public if defined in final class.</description>
+            </property>
+            <property default-value="java.io.File, java.lang.Boolean, java.lang.Byte, java.lang.Character, java.lang.Double, java.lang.Float, java.lang.Integer, java.lang.Long, java.lang.Short, java.lang.StackTraceElement, java.lang.String, java.math.BigDecimal, java.math.BigInteger, java.net.Inet4Address, java.net.Inet6Address, java.net.InetSocketAddress, java.net.URI, java.net.URL, java.util.Locale, java.util.UUID"
+                       name="immutableClassCanonicalNames"
+                       type="java.lang.String[]">
+               <description>Specify immutable classes canonical names.</description>
+            </property>
+            <property default-value="com.google.common.annotations.VisibleForTesting, org.junit.ClassRule, org.junit.Rule"
+                       name="ignoreAnnotationCanonicalNames"
+                       type="java.lang.String[]">
+               <description>Specify annotations canonical
+ names which ignore variables in consideration.</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="variable.notPrivate"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>

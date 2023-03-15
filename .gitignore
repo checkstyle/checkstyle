@@ -4,12 +4,12 @@
 .classpath
 .project
 
-# m2e-code-quality Eclipse IDE plugin temporary configuration files for Eclipse CS Checkstyle / PMD / FindBugs Plug-Ins
+# m2e-code-quality Eclipse IDE plugin temporary configuration files for Eclipse CS Checkstyle / PMD / SpotBugs Plug-Ins
 .checkstyle
 .pmd
 .pmdruleset.xml
 .fbExcludeFilterFile
- 
+
 # NetBeans project files
 nbactions.xml
 nb-configuration.xml
@@ -36,3 +36,10 @@ replay_pid*
 
 # NonDex files
 .nondex
+
+# temp folder for files/folders of ci validations
+.ci-temp
+
+# antlr4 grammar generates these
+**/gen
+**/JavaLanguageLexer.tokens

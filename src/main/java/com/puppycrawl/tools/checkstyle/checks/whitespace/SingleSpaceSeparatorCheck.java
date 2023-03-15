@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,25 +15,29 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
+import java.util.Arrays;
+
+import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CodePointUtil;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * <p>
  * Checks that non-whitespace characters are separated by no more than one
  * whitespace. Separating characters by tabs or multiple spaces will be
- * reported. Currently the check doesn't permit horizontal alignment. To inspect
+ * reported. Currently, the check doesn't permit horizontal alignment. To inspect
  * whitespaces before and after comments, set the property
- * <b>validateComments</b> to true.
+ * {@code validateComments} to true.
  * </p>
  *
  * <p>
- * Setting <b>validateComments</b> to false will ignore cases like:
+ * Setting {@code validateComments} to false will ignore cases like:
  * </p>
  *
  * <pre>
@@ -49,25 +53,33 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * </p>
  *
  * <pre>
- * public long toNanos(long d)  { return d;             }  &#47;&#47; 2 violations
+ * public long toNanos(long d)  { return d;             } &#47;&#47; 2 violations
  * public long toMicros(long d) { return d / (C1 / C0); }
  * </pre>
- *
- * <p>
- * Check have following options:
- * </p>
- *
  * <ul>
- * <li>validateComments - Boolean when set to {@code true}, whitespaces
- * surrounding comments will be ignored. Default value is {@code false}.</li>
+ * <li>
+ * Property {@code validateComments} - Control whether to validate whitespaces
+ * surrounding comments.
+ * Type is {@code boolean}.
+ * Default value is {@code false}.
+ * </li>
  * </ul>
- *
  * <p>
  * To configure the check:
  * </p>
  *
  * <pre>
  * &lt;module name=&quot;SingleSpaceSeparator&quot;/&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * int foo()   { // violation, 3 whitespaces
+ *   return  1; // violation, 2 whitespaces
+ * }
+ * int fun1() { // OK, 1 whitespace
+ *   return 3; // OK, 1 whitespace
+ * }
+ * void  fun2() {} // violation, 2 whitespaces
  * </pre>
  *
  * <p>
@@ -76,25 +88,56 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  *
  * <pre>
  * &lt;module name=&quot;SingleSpaceSeparator&quot;&gt;
- * &lt;property name=&quot;validateComments&quot; value=&quot;true&quot;/&gt;
+ *   &lt;property name=&quot;validateComments&quot; value=&quot;true&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * void fun1() {}  // violation, 2 whitespaces before the comment starts
+ * void fun2() { return; }  /* violation here, 2 whitespaces before the comment starts *&#47;
  *
- * @author Robert Whitebit
- * @author Richard Veach
+ * /* violation, 2 whitespaces after the comment ends *&#47;  int a;
+ *
+ * String s; /* OK, 1 whitespace *&#47;
+ *
+ * /**
+ * * This is a Javadoc comment
+ * *&#47;  int b; // violation, 2 whitespaces after the javadoc comment ends
+ *
+ * float f1; // OK, 1 whitespace
+ *
+ * /**
+ * * OK, 1 white space after the doc comment ends
+ * *&#47; float f2;
+ * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code single.space.separator}
+ * </li>
+ * </ul>
+ *
+ * @since 6.19
  */
+@StatelessCheck
 public class SingleSpaceSeparatorCheck extends AbstractCheck {
+
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
     public static final String MSG_KEY = "single.space.separator";
 
-    /** Indicates if whitespaces surrounding comments will be ignored. */
+    /** Control whether to validate whitespaces surrounding comments. */
     private boolean validateComments;
 
     /**
-     * Sets whether or not to validate surrounding whitespaces at comments.
+     * Setter to control whether to validate whitespaces surrounding comments.
      *
      * @param validateComments {@code true} to validate surrounding whitespaces at comments.
      */
@@ -104,11 +147,19 @@ public class SingleSpaceSeparatorCheck extends AbstractCheck {
 
     @Override
     public int[] getDefaultTokens() {
-        return CommonUtils.EMPTY_INT_ARRAY;
+        return getRequiredTokens();
     }
 
-    // -@cs[SimpleAccessorNameNotation] Overrides method from base class.
-    // Issue: https://github.com/sevntu-checkstyle/sevntu.checkstyle/issues/166
+    @Override
+    public int[] getAcceptableTokens() {
+        return getRequiredTokens();
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return CommonUtil.EMPTY_INT_ARRAY;
+    }
+
     @Override
     public boolean isCommentNodesRequired() {
         return validateComments;
@@ -116,7 +167,9 @@ public class SingleSpaceSeparatorCheck extends AbstractCheck {
 
     @Override
     public void beginTree(DetailAST rootAST) {
-        visitEachToken(rootAST);
+        if (rootAST != null) {
+            visitEachToken(rootAST);
+        }
     }
 
     /**
@@ -125,44 +178,56 @@ public class SingleSpaceSeparatorCheck extends AbstractCheck {
      * @param node The node to start examining.
      */
     private void visitEachToken(DetailAST node) {
-        DetailAST sibling = node;
+        DetailAST currentNode = node;
 
-        while (sibling != null) {
-            final int columnNo = sibling.getColumnNo() - 1;
+        do {
+            final int columnNo = currentNode.getColumnNo() - 1;
 
-            if (columnNo >= 0
-                    && !isTextSeparatedCorrectlyFromPrevious(getLine(sibling.getLineNo() - 1),
+            // in such expression: "j  =123", placed at the start of the string index of the second
+            // space character will be: 2 = 0(j) + 1(whitespace) + 1(whitespace). It is a minimal
+            // possible index for the second whitespace between non-whitespace characters.
+            final int minSecondWhitespaceColumnNo = 2;
+
+            if (columnNo >= minSecondWhitespaceColumnNo
+                    && !isTextSeparatedCorrectlyFromPrevious(
+                            getLineCodePoints(currentNode.getLineNo() - 1),
                             columnNo)) {
-                log(sibling.getLineNo(), columnNo, MSG_KEY);
+                log(currentNode, MSG_KEY);
             }
-            if (sibling.getChildCount() > 0) {
-                visitEachToken(sibling.getFirstChild());
+            if (currentNode.hasChildren()) {
+                currentNode = currentNode.getFirstChild();
             }
-
-            sibling = sibling.getNextSibling();
-        }
+            else {
+                while (currentNode.getNextSibling() == null && currentNode.getParent() != null) {
+                    currentNode = currentNode.getParent();
+                }
+                currentNode = currentNode.getNextSibling();
+            }
+        } while (currentNode != null);
     }
 
     /**
      * Checks if characters in {@code line} at and around {@code columnNo} has
      * the correct number of spaces. to return {@code true} the following
-     * conditions must be met:<br />
-     * - the character at {@code columnNo} is the first in the line.<br />
-     * - the character at {@code columnNo} is not separated by whitespaces from
-     * the previous non-whitespace character. <br />
-     * - the character at {@code columnNo} is separated by only one whitespace
-     * from the previous non-whitespace character.<br />
-     * - {@link #validateComments} is disabled and the previous text is the
-     * end of a block comment.
+     * conditions must be met:
+     * <ul>
+     * <li> the character at {@code columnNo} is the first in the line. </li>
+     * <li> the character at {@code columnNo} is not separated by whitespaces from
+     * the previous non-whitespace character. </li>
+     * <li> the character at {@code columnNo} is separated by only one whitespace
+     * from the previous non-whitespace character. </li>
+     * <li> {@link #validateComments} is disabled and the previous text is the
+     * end of a block comment. </li>
+     * </ul>
      *
-     * @param line The line in the file to examine.
+     * @param line Unicode code point array of line in the file to examine.
      * @param columnNo The column position in the {@code line} to examine.
      * @return {@code true} if the text at {@code columnNo} is separated
      *         correctly from the previous token.
      */
-    private boolean isTextSeparatedCorrectlyFromPrevious(String line, int columnNo) {
+    private boolean isTextSeparatedCorrectlyFromPrevious(int[] line, int columnNo) {
         return isSingleSpace(line, columnNo)
-                || !isWhitespace(line, columnNo)
+                || !CommonUtil.isCodePointWhitespace(line, columnNo)
                 || isFirstInLine(line, columnNo)
                 || !validateComments && isBlockCommentEnd(line, columnNo);
     }
@@ -171,76 +236,51 @@ public class SingleSpaceSeparatorCheck extends AbstractCheck {
      * Checks if the {@code line} at {@code columnNo} is a single space, and not
      * preceded by another space.
      *
-     * @param line The line in the file to examine.
+     * @param line Unicode code point array of line in the file to examine.
      * @param columnNo The column position in the {@code line} to examine.
      * @return {@code true} if the character at {@code columnNo} is a space, and
      *         not preceded by another space.
      */
-    private static boolean isSingleSpace(String line, int columnNo) {
-        return !isPrecededByMultipleWhitespaces(line, columnNo)
-                && isSpace(line, columnNo);
+    private static boolean isSingleSpace(int[] line, int columnNo) {
+        return isSpace(line, columnNo) && !CommonUtil.isCodePointWhitespace(line, columnNo - 1);
     }
 
     /**
      * Checks if the {@code line} at {@code columnNo} is a space.
      *
-     * @param line The line in the file to examine.
+     * @param line Unicode code point array of line in the file to examine.
      * @param columnNo The column position in the {@code line} to examine.
      * @return {@code true} if the character at {@code columnNo} is a space.
      */
-    private static boolean isSpace(String line, int columnNo) {
-        return line.charAt(columnNo) == ' ';
-    }
-
-    /**
-     * Checks if the {@code line} at {@code columnNo} is preceded by at least 2
-     * whitespaces.
-     *
-     * @param line The line in the file to examine.
-     * @param columnNo The column position in the {@code line} to examine.
-     * @return {@code true} if there are at least 2 whitespace characters before
-     *         {@code columnNo}.
-     */
-    private static boolean isPrecededByMultipleWhitespaces(String line, int columnNo) {
-        return columnNo >= 1
-                && Character.isWhitespace(line.charAt(columnNo))
-                && Character.isWhitespace(line.charAt(columnNo - 1));
-    }
-
-    /**
-     * Checks if the {@code line} at {@code columnNo} is a whitespace character.
-     *
-     * @param line The line in the file to examine.
-     * @param columnNo The column position in the {@code line} to examine.
-     * @return {@code true} if the character at {@code columnNo} is a
-     *         whitespace.
-     */
-    private static boolean isWhitespace(String line, int columnNo) {
-        return Character.isWhitespace(line.charAt(columnNo));
+    private static boolean isSpace(int[] line, int columnNo) {
+        return line[columnNo] == ' ';
     }
 
     /**
      * Checks if the {@code line} up to and including {@code columnNo} is all
      * non-whitespace text encountered.
      *
-     * @param line The line in the file to examine.
+     * @param line Unicode code point array of line in the file to examine.
      * @param columnNo The column position in the {@code line} to examine.
      * @return {@code true} if the column position is the first non-whitespace
      *         text on the {@code line}.
      */
-    private static boolean isFirstInLine(String line, int columnNo) {
-        return CommonUtils.isBlank(line.substring(0, columnNo + 1));
+    private static boolean isFirstInLine(int[] line, int columnNo) {
+        return CodePointUtil.isBlank(Arrays.copyOfRange(line, 0, columnNo));
     }
 
     /**
      * Checks if the {@code line} at {@code columnNo} is the end of a comment,
      * '*&#47;'.
      *
-     * @param line The line in the file to examine.
+     * @param line Unicode code point array of line in the file to examine.
      * @param columnNo The column position in the {@code line} to examine.
-     * @return {@code true} if the previous text is a end comment block.
+     * @return {@code true} if the previous text is an end comment block.
      */
-    private static boolean isBlockCommentEnd(String line, int columnNo) {
-        return line.substring(0, columnNo).trim().endsWith("*/");
+    private static boolean isBlockCommentEnd(int[] line, int columnNo) {
+        final int[] strippedLine = CodePointUtil
+                .stripTrailing(Arrays.copyOfRange(line, 0, columnNo));
+        return CodePointUtil.endsWith(strippedLine, "*/");
     }
+
 }

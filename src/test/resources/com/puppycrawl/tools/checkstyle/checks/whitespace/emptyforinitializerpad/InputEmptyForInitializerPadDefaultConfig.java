@@ -1,7 +1,10 @@
-////////////////////////////////////////////////////////////////////////////////
-// Test case file for FOR_ITERATION and whitespace.
-// Created: 2003
-////////////////////////////////////////////////////////////////////////////////
+/*
+EmptyForInitializerPad
+option = (default)nospace
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.whitespace.emptyforinitializerpad;
 
 class InputEmptyForInitializerPadDefaultConfig
@@ -10,7 +13,7 @@ class InputEmptyForInitializerPadDefaultConfig
     {
         for (int i = 0; i < 1; i++) {
         }
-        
+
         for (int i = 0; i < 1;i++) {
         }
 
@@ -27,7 +30,7 @@ class InputEmptyForInitializerPadDefaultConfig
         for (int i = 0; i < 1; ) {
             i++;
         }
-        
+
         // test eol, there is no space after second SEMI
         for (int i = 0; i < 1;
             ) {
@@ -39,13 +42,13 @@ class InputEmptyForInitializerPadDefaultConfig
     {
         for ( int i = 0; i < 1; i++ ) {
         }
-        
+
         for ( int i = 0; i < 1; ) {
             i++;
         }
 
         int i = 0;
-        for ( ; i < 1; i++ ) {
+        for ( ; i < 1; i++ ) { // violation '';' is preceded with whitespace'
         }
 
         for (; i < 2; i++ ) {
@@ -54,5 +57,10 @@ class InputEmptyForInitializerPadDefaultConfig
         for (
         ;; ) {
         }
+    }
+
+    void method3() {
+for (
+;;) {}
     }
 }

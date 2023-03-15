@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,16 +15,19 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
@@ -32,23 +35,95 @@ import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
-import com.puppycrawl.tools.checkstyle.utils.JavadocUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <p>
- * Checks for unused import statements.
+ * Checks for unused import statements. Checkstyle uses a simple but very
+ * reliable algorithm to report on unused import statements. An import statement
+ * is considered unused if:
  * </p>
- *  <p>
- * An example of how to configure the check is:
+ * <ul>
+ * <li>
+ * It is not referenced in the file. The algorithm does not support wild-card
+ * imports like {@code import java.io.*;}. Most IDE's provide very sophisticated
+ * checks for imports that handle wild-card imports.
+ * </li>
+ * <li>
+ * It is a duplicate of another import. This is when a class is imported more
+ * than once.
+ * </li>
+ * <li>
+ * The class imported is from the {@code java.lang} package. For example
+ * importing {@code java.lang.String}.
+ * </li>
+ * <li>
+ * The class imported is from the same package.
+ * </li>
+ * <li>
+ * <b>Optionally:</b> it is referenced in Javadoc comments. This check is on by
+ * default, but it is considered bad practice to introduce a compile-time
+ * dependency for documentation purposes only. As an example, the import
+ * {@code java.util.List} would be considered referenced with the Javadoc
+ * comment {@code {@link List}}. The alternative to avoid introducing a compile-time
+ * dependency would be to write the Javadoc comment as {@code {&#64;link java.util.List}}.
+ * </li>
+ * </ul>
+ * <p>
+ * The main limitation of this check is handling the cases where:
+ * </p>
+ * <ul>
+ * <li>
+ * An imported type has the same name as a declaration, such as a member variable.
+ * </li>
+ * <li>
+ * There are two or more imports with the same name.
+ * </li>
+ * </ul>
+ * <p>
+ * For example, in the following case all imports will not be flagged as unused:
+ * </p>
+ * <pre>
+ * import java.awt.Component;
+ * import static AstTreeStringPrinter.printFileAst;
+ * import static DetailNodeTreeStringPrinter.printFileAst;
+ * class FooBar {
+ *   private Object Component; // a bad practice in my opinion
+ *   void method() {
+ *       printFileAst(file); // two imports with the same name
+ *   }
+ * }
+ * </pre>
+ * <ul>
+ * <li>
+ * Property {@code processJavadoc} - Control whether to process Javadoc comments.
+ * Type is {@code boolean}.
+ * Default value is {@code true}.
+ * </li>
+ * </ul>
+ * <p>
+ * To configure the check:
  * </p>
  * <pre>
  * &lt;module name="UnusedImports"/&gt;
  * </pre>
- * Compatible with Java 1.5 source.
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code import.unused}
+ * </li>
+ * </ul>
  *
- * @author Oliver Burn
+ * @since 3.0
  */
+@FileStatefulCheck
 public class UnusedImportsCheck extends AbstractCheck {
 
     /**
@@ -58,18 +133,18 @@ public class UnusedImportsCheck extends AbstractCheck {
     public static final String MSG_KEY = "import.unused";
 
     /** Regex to match class names. */
-    private static final Pattern CLASS_NAME = CommonUtils.createPattern(
+    private static final Pattern CLASS_NAME = CommonUtil.createPattern(
            "((:?[\\p{L}_$][\\p{L}\\p{N}_$]*\\.)*[\\p{L}_$][\\p{L}\\p{N}_$]*)");
     /** Regex to match the first class name. */
-    private static final Pattern FIRST_CLASS_NAME = CommonUtils.createPattern(
+    private static final Pattern FIRST_CLASS_NAME = CommonUtil.createPattern(
            "^" + CLASS_NAME);
     /** Regex to match argument names. */
-    private static final Pattern ARGUMENT_NAME = CommonUtils.createPattern(
+    private static final Pattern ARGUMENT_NAME = CommonUtil.createPattern(
            "[(,]\\s*" + CLASS_NAME.pattern());
 
     /** Regexp pattern to match java.lang package. */
     private static final Pattern JAVA_LANG_PACKAGE_PATTERN =
-        CommonUtils.createPattern("^java\\.lang\\.[a-zA-Z]+$");
+        CommonUtil.createPattern("^java\\.lang\\.[a-zA-Z]+$");
 
     /** Suffix for the star import. */
     private static final String STAR_IMPORT_SUFFIX = ".*";
@@ -77,18 +152,21 @@ public class UnusedImportsCheck extends AbstractCheck {
     /** Set of the imports. */
     private final Set<FullIdent> imports = new HashSet<>();
 
-    /** Set of references - possibly to imports or other things. */
-    private final Set<String> referenced = new HashSet<>();
-
     /** Flag to indicate when time to start collecting references. */
     private boolean collect;
-    /** Flag whether to process Javadoc comments. */
+    /** Control whether to process Javadoc comments. */
     private boolean processJavadoc = true;
 
     /**
-     * Sets whether to process JavaDoc or not.
+     * The scope is being processed.
+     * Types declared in a scope can shadow imported types.
+     */
+    private Frame currentFrame;
+
+    /**
+     * Setter to control whether to process Javadoc comments.
      *
-     * @param value Flag for processing JavaDoc.
+     * @param value Flag for processing Javadoc comments.
      */
     public void setProcessJavadoc(boolean value) {
         processJavadoc = value;
@@ -97,47 +175,26 @@ public class UnusedImportsCheck extends AbstractCheck {
     @Override
     public void beginTree(DetailAST rootAST) {
         collect = false;
+        currentFrame = Frame.compilationUnit();
         imports.clear();
-        referenced.clear();
     }
 
     @Override
     public void finishTree(DetailAST rootAST) {
+        currentFrame.finish();
         // loop over all the imports to see if referenced.
         imports.stream()
             .filter(imprt -> isUnusedImport(imprt.getText()))
-            .forEach(imprt -> log(imprt.getLineNo(),
-                imprt.getColumnNo(),
-                MSG_KEY, imprt.getText()));
+            .forEach(imprt -> log(imprt.getDetailAst(), MSG_KEY, imprt.getText()));
     }
 
     @Override
     public int[] getDefaultTokens() {
-        return new int[] {
-            TokenTypes.IDENT,
-            TokenTypes.IMPORT,
-            TokenTypes.STATIC_IMPORT,
-            // Definitions that may contain Javadoc...
-            TokenTypes.PACKAGE_DEF,
-            TokenTypes.ANNOTATION_DEF,
-            TokenTypes.ANNOTATION_FIELD_DEF,
-            TokenTypes.ENUM_DEF,
-            TokenTypes.ENUM_CONSTANT_DEF,
-            TokenTypes.CLASS_DEF,
-            TokenTypes.INTERFACE_DEF,
-            TokenTypes.METHOD_DEF,
-            TokenTypes.CTOR_DEF,
-            TokenTypes.VARIABLE_DEF,
-        };
+        return getRequiredTokens();
     }
 
     @Override
     public int[] getRequiredTokens() {
-        return getDefaultTokens();
-    }
-
-    @Override
-    public int[] getAcceptableTokens() {
         return new int[] {
             TokenTypes.IDENT,
             TokenTypes.IMPORT,
@@ -153,58 +210,92 @@ public class UnusedImportsCheck extends AbstractCheck {
             TokenTypes.METHOD_DEF,
             TokenTypes.CTOR_DEF,
             TokenTypes.VARIABLE_DEF,
+            TokenTypes.RECORD_DEF,
+            TokenTypes.COMPACT_CTOR_DEF,
+            // Tokens for creating a new frame
+            TokenTypes.OBJBLOCK,
+            TokenTypes.SLIST,
         };
     }
 
     @Override
+    public int[] getAcceptableTokens() {
+        return getRequiredTokens();
+    }
+
+    @Override
     public void visitToken(DetailAST ast) {
-        if (ast.getType() == TokenTypes.IDENT) {
-            if (collect) {
-                processIdent(ast);
-            }
+        switch (ast.getType()) {
+            case TokenTypes.IDENT:
+                if (collect) {
+                    processIdent(ast);
+                }
+                break;
+            case TokenTypes.IMPORT:
+                processImport(ast);
+                break;
+            case TokenTypes.STATIC_IMPORT:
+                processStaticImport(ast);
+                break;
+            case TokenTypes.OBJBLOCK:
+            case TokenTypes.SLIST:
+                currentFrame = currentFrame.push();
+                break;
+            default:
+                collect = true;
+                if (processJavadoc) {
+                    collectReferencesFromJavadoc(ast);
+                }
+                break;
         }
-        else if (ast.getType() == TokenTypes.IMPORT) {
-            processImport(ast);
-        }
-        else if (ast.getType() == TokenTypes.STATIC_IMPORT) {
-            processStaticImport(ast);
-        }
-        else {
-            collect = true;
-            if (processJavadoc) {
-                collectReferencesFromJavadoc(ast);
-            }
+    }
+
+    @Override
+    public void leaveToken(DetailAST ast) {
+        if (TokenUtil.isOfType(ast, TokenTypes.OBJBLOCK, TokenTypes.SLIST)) {
+            currentFrame = currentFrame.pop();
         }
     }
 
     /**
      * Checks whether an import is unused.
+     *
      * @param imprt an import.
      * @return true if an import is unused.
      */
     private boolean isUnusedImport(String imprt) {
         final Matcher javaLangPackageMatcher = JAVA_LANG_PACKAGE_PATTERN.matcher(imprt);
-        return !referenced.contains(CommonUtils.baseClassName(imprt))
+        return !currentFrame.isReferencedType(CommonUtil.baseClassName(imprt))
             || javaLangPackageMatcher.matches();
     }
 
     /**
      * Collects references made by IDENT.
+     *
      * @param ast the IDENT node to process
      */
     private void processIdent(DetailAST ast) {
         final DetailAST parent = ast.getParent();
         final int parentType = parent.getType();
-        if (parentType != TokenTypes.DOT
-            && parentType != TokenTypes.METHOD_DEF
-            || parentType == TokenTypes.DOT
-                && ast.getNextSibling() != null) {
-            referenced.add(ast.getText());
+
+        final boolean isPossibleDotClassOrInMethod = parentType == TokenTypes.DOT
+                || parentType == TokenTypes.METHOD_DEF;
+
+        final boolean isQualifiedIdent = parentType == TokenTypes.DOT
+                && !TokenUtil.isOfType(ast.getPreviousSibling(), TokenTypes.DOT)
+                && ast.getNextSibling() != null;
+
+        if (TokenUtil.isTypeDeclaration(parentType)) {
+            currentFrame.addDeclaredType(ast.getText());
+        }
+        else if (!isPossibleDotClassOrInMethod || isQualifiedIdent) {
+            currentFrame.addReferencedType(ast.getText());
         }
     }
 
     /**
      * Collects the details of imports.
+     *
      * @param ast node containing the import details
      */
     private void processImport(DetailAST ast) {
@@ -216,6 +307,7 @@ public class UnusedImportsCheck extends AbstractCheck {
 
     /**
      * Collects the details of static imports.
+     *
      * @param ast node containing the static import details
      */
     private void processStaticImport(DetailAST ast) {
@@ -229,52 +321,60 @@ public class UnusedImportsCheck extends AbstractCheck {
 
     /**
      * Collects references made in Javadoc comments.
+     *
      * @param ast node to inspect for Javadoc
      */
+    // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/11166
+    @SuppressWarnings("deprecation")
     private void collectReferencesFromJavadoc(DetailAST ast) {
         final FileContents contents = getFileContents();
         final int lineNo = ast.getLineNo();
         final TextBlock textBlock = contents.getJavadocBefore(lineNo);
         if (textBlock != null) {
-            referenced.addAll(collectReferencesFromJavadoc(textBlock));
+            currentFrame.addReferencedTypes(collectReferencesFromJavadoc(textBlock));
         }
     }
 
     /**
      * Process a javadoc {@link TextBlock} and return the set of classes
      * referenced within.
+     *
      * @param textBlock The javadoc block to parse
      * @return a set of classes referenced in the javadoc block
      */
     private static Set<String> collectReferencesFromJavadoc(TextBlock textBlock) {
-        final Set<String> references = new HashSet<>();
-        // process all the @link type tags
+        final List<JavadocTag> tags = new ArrayList<>();
+        // gather all the inline tags, like @link
         // INLINE tags inside BLOCKs get hidden when using ALL
-        getValidTags(textBlock, JavadocUtils.JavadocTagType.INLINE).stream()
+        tags.addAll(getValidTags(textBlock, JavadocUtil.JavadocTagType.INLINE));
+        // gather all the block-level tags, like @throws and @see
+        tags.addAll(getValidTags(textBlock, JavadocUtil.JavadocTagType.BLOCK));
+
+        final Set<String> references = new HashSet<>();
+
+        tags.stream()
             .filter(JavadocTag::canReferenceImports)
             .forEach(tag -> references.addAll(processJavadocTag(tag)));
-        // process all the @throws type tags
-        getValidTags(textBlock, JavadocUtils.JavadocTagType.BLOCK).stream()
-            .filter(JavadocTag::canReferenceImports)
-            .forEach(tag -> references.addAll(matchPattern(tag.getFirstArg(), FIRST_CLASS_NAME)));
         return references;
     }
 
     /**
      * Returns the list of valid tags found in a javadoc {@link TextBlock}.
+     *
      * @param cmt The javadoc block to parse
      * @param tagType The type of tags we're interested in
      * @return the list of tags
      */
     private static List<JavadocTag> getValidTags(TextBlock cmt,
-            JavadocUtils.JavadocTagType tagType) {
-        return JavadocUtils.getJavadocTags(cmt, tagType).getValidTags();
+            JavadocUtil.JavadocTagType tagType) {
+        return JavadocUtil.getJavadocTags(cmt, tagType).getValidTags();
     }
 
     /**
-     * Returns a list of references found in a javadoc {@link JavadocTag}.
+     * Returns a list of references that found in a javadoc {@link JavadocTag}.
+     *
      * @param tag The javadoc tag to parse
-     * @return A list of references found in this tag
+     * @return A list of references that found in this tag
      */
     private static Set<String> processJavadocTag(JavadocTag tag) {
         final Set<String> references = new HashSet<>();
@@ -287,18 +387,141 @@ public class UnusedImportsCheck extends AbstractCheck {
     }
 
     /**
-     * Extracts a list of texts matching a {@link Pattern} from a
+     * Extracts a set of texts matching a {@link Pattern} from a
      * {@link String}.
+     *
      * @param identifier The String to match the pattern against
      * @param pattern The Pattern used to extract the texts
-     * @return A list of texts which matched the pattern
+     * @return A set of texts which matched the pattern
      */
     private static Set<String> matchPattern(String identifier, Pattern pattern) {
         final Set<String> references = new HashSet<>();
         final Matcher matcher = pattern.matcher(identifier);
         while (matcher.find()) {
-            references.add(matcher.group(1));
+            references.add(topLevelType(matcher.group(1)));
         }
         return references;
     }
+
+    /**
+     * If the given type string contains "." (e.g. "Map.Entry"), returns the
+     * top level type (e.g. "Map"), as that is what must be imported for the
+     * type to resolve. Otherwise, returns the type as-is.
+     *
+     * @param type A possibly qualified type name
+     * @return The simple name of the top level type
+     */
+    private static String topLevelType(String type) {
+        final String topLevelType;
+        final int dotIndex = type.indexOf('.');
+        if (dotIndex == -1) {
+            topLevelType = type;
+        }
+        else {
+            topLevelType = type.substring(0, dotIndex);
+        }
+        return topLevelType;
+    }
+
+    /**
+     * Holds the names of referenced types and names of declared inner types.
+     */
+    private static final class Frame {
+
+        /** Parent frame. */
+        private final Frame parent;
+
+        /** Nested types declared in the current scope. */
+        private final Set<String> declaredTypes;
+
+        /** Set of references - possibly to imports or locally declared types. */
+        private final Set<String> referencedTypes;
+
+        /**
+         * Private constructor. Use {@link #compilationUnit()} to create a new top-level frame.
+         *
+         * @param parent the parent frame
+         */
+        private Frame(Frame parent) {
+            this.parent = parent;
+            declaredTypes = new HashSet<>();
+            referencedTypes = new HashSet<>();
+        }
+
+        /**
+         * Adds new inner type.
+         *
+         * @param type the type name
+         */
+        public void addDeclaredType(String type) {
+            declaredTypes.add(type);
+        }
+
+        /**
+         * Adds new type reference to the current frame.
+         *
+         * @param type the type name
+         */
+        public void addReferencedType(String type) {
+            referencedTypes.add(type);
+        }
+
+        /**
+         * Adds new inner types.
+         *
+         * @param types the type names
+         */
+        public void addReferencedTypes(Collection<String> types) {
+            referencedTypes.addAll(types);
+        }
+
+        /**
+         * Filters out all references to locally defined types.
+         *
+         */
+        public void finish() {
+            referencedTypes.removeAll(declaredTypes);
+        }
+
+        /**
+         * Creates new inner frame.
+         *
+         * @return a new frame.
+         */
+        public Frame push() {
+            return new Frame(this);
+        }
+
+        /**
+         * Pulls all referenced types up, except those that are declared in this scope.
+         *
+         * @return the parent frame
+         */
+        public Frame pop() {
+            finish();
+            parent.addReferencedTypes(referencedTypes);
+            return parent;
+        }
+
+        /**
+         * Checks whether this type name is used in this frame.
+         *
+         * @param type the type name
+         * @return {@code true} if the type is used
+         */
+        public boolean isReferencedType(String type) {
+            return referencedTypes.contains(type);
+        }
+
+        /**
+         * Creates a new top-level frame for the compilation unit.
+         *
+         * @return a new frame.
+         */
+        public static Frame compilationUnit() {
+            return new Frame(null);
+        }
+
+    }
+
 }

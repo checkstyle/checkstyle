@@ -1,7 +1,10 @@
-////////////////////////////////////////////////////////////////////////////////
-// Test case file for checkstyle.
-// Created: 2001
-////////////////////////////////////////////////////////////////////////////////
+/*
+WhitespaceAfter
+tokens = SEMI
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.whitespace.whitespaceafter;
 
 class InputWhitespaceAfterBraces
@@ -51,7 +54,7 @@ class InputWhitespaceAfterBraces
         }
 
         // Invalid
-        for(int i = 1;i < 5;i++);
+        for(int i = 1;i < 5;i++); // 2 violations
         for (int i = 1; i < 5; i++)
             testFor();
         for (int i = 1; i < 5;
@@ -100,7 +103,7 @@ class InputWhitespaceAfterBraces
     void whitespaceAfterSemi()
     {
         //reject
-        int i = 1;int j = 2;
+        int i = 1;int j = 2; // violation '';' is not followed by whitespace'
 
         //accept
         for (;;) {
@@ -109,7 +112,7 @@ class InputWhitespaceAfterBraces
 
     /** Empty constructor block. **/
     public InputWhitespaceAfterBraces() {}
-    
+
     /** Empty method block. **/
     public void emptyImplementation() {}
 }

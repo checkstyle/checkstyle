@@ -1,0 +1,19 @@
+        {
+          "level": "${severityLevel}",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "${uri}"
+                },
+                "region": {
+                  "startLine": ${line}
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "${message}"
+          },
+          "ruleId": "${ruleId}"
+        }

@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,34 +15,126 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import java.util.Objects;
 
+import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * <p>
- * Check that the {@code default} is after all the {@code case}s
- * in a {@code switch} statement.
+ * Check that the {@code default} is after all the cases in a {@code switch} statement.
  * </p>
  * <p>
  * Rationale: Java allows {@code default} anywhere within the
- * {@code switch} statement. But if it comes after the last
- * {@code case} then it is more readable.
+ * {@code switch} statement. But it is more readable if it comes after the last {@code case}.
  * </p>
+ * <ul>
+ * <li>
+ * Property {@code skipIfLastAndSharedWithCase} - Control whether to allow {@code default}
+ * along with {@code case} if they are not last.
+ * Type is {@code boolean}.
+ * Default value is {@code false}.
+ * </li>
+ * </ul>
  * <p>
- * An example of how to configure the check is:
+ * To configure the check:
  * </p>
  * <pre>
- * &lt;module name="DefaultComesLast"/&gt;
+ * &lt;module name=&quot;DefaultComesLast&quot;/&gt;
  * </pre>
- * @author o_sukhodolsky
+ * <p>Example:</p>
+ * <pre>
+ * switch (i) {
+ *   case 1:
+ *     break;
+ *   case 2:
+ *     break;
+ *   default: // OK
+ *     break;
+ * }
+ *
+ * switch (i) {
+ *   case 1:
+ *     break;
+ *   case 2:
+ *     break; // OK, no default
+ * }
+ *
+ * switch (i) {
+ *   case 1:
+ *     break;
+ *   default: // violation, 'default' before 'case'
+ *     break;
+ *   case 2:
+ *     break;
+ * }
+ *
+ * switch (i) {
+ *   case 1:
+ *   default: // violation, 'default' before 'case'
+ *     break;
+ *   case 2:
+ *     break;
+ * }
+ * </pre>
+ * <p>To configure the check to allow default label to be not last if it is shared with case:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;DefaultComesLast&quot;&gt;
+ *   &lt;property name=&quot;skipIfLastAndSharedWithCase&quot; value=&quot;true&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * switch (i) {
+ *   case 1:
+ *     break;
+ *   case 2:
+ *   default: // OK
+ *     break;
+ *   case 3:
+ *     break;
+ * }
+ *
+ * switch (i) {
+ *   case 1:
+ *     break;
+ *   default: // violation
+ *   case 2:
+ *     break;
+ * }
+ *
+ * // Switch rules are not subject to fall through, so this is still a violation:
+ * switch (i) {
+ *   case 1 -&gt; x = 9;
+ *   default -&gt; x = 10; // violation
+ *   case 2 -&gt; x = 32;
+ * }
+ * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code default.comes.last}
+ * </li>
+ * <li>
+ * {@code default.comes.last.in.casegroup}
+ * </li>
+ * </ul>
+ *
+ * @since 3.4
  */
+@StatelessCheck
 public class DefaultComesLastCheck extends AbstractCheck {
 
     /**
@@ -58,28 +150,30 @@ public class DefaultComesLastCheck extends AbstractCheck {
     public static final String MSG_KEY_SKIP_IF_LAST_AND_SHARED_WITH_CASE =
             "default.comes.last.in.casegroup";
 
-    /** Whether to process skipIfLastAndSharedWithCaseInSwitch() invocations. */
+    /** Control whether to allow {@code default} along with {@code case} if they are not last. */
     private boolean skipIfLastAndSharedWithCase;
 
     @Override
     public int[] getAcceptableTokens() {
+        return getRequiredTokens();
+    }
+
+    @Override
+    public int[] getDefaultTokens() {
+        return getRequiredTokens();
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
         return new int[] {
             TokenTypes.LITERAL_DEFAULT,
         };
     }
 
-    @Override
-    public int[] getDefaultTokens() {
-        return getAcceptableTokens();
-    }
-
-    @Override
-    public int[] getRequiredTokens() {
-        return getAcceptableTokens();
-    }
-
     /**
-     * Whether to allow default keyword not in last but surrounded with case.
+     * Setter to control whether to allow {@code default} along with
+     * {@code case} if they are not last.
+     *
      * @param newValue whether to ignore checking.
      */
     public void setSkipIfLastAndSharedWithCase(boolean newValue) {
@@ -89,25 +183,25 @@ public class DefaultComesLastCheck extends AbstractCheck {
     @Override
     public void visitToken(DetailAST ast) {
         final DetailAST defaultGroupAST = ast.getParent();
-        //default keywords used in annotations too - not what we're
-        //interested in
-        if (defaultGroupAST.getType() != TokenTypes.ANNOTATION_FIELD_DEF
-                && defaultGroupAST.getType() != TokenTypes.MODIFIERS) {
 
-            if (skipIfLastAndSharedWithCase) {
-                if (Objects.nonNull(findNextSibling(ast, TokenTypes.LITERAL_CASE))) {
-                    log(ast, MSG_KEY_SKIP_IF_LAST_AND_SHARED_WITH_CASE);
-                }
-                else if (ast.getPreviousSibling() == null
-                    && Objects.nonNull(findNextSibling(defaultGroupAST,
-                                                       TokenTypes.CASE_GROUP))) {
-                    log(ast, MSG_KEY);
-                }
+        // Switch rules are not subject to fall through.
+        final boolean isSwitchRule = defaultGroupAST.getType() == TokenTypes.SWITCH_RULE;
+
+        if (skipIfLastAndSharedWithCase && !isSwitchRule) {
+            if (Objects.nonNull(findNextSibling(ast, TokenTypes.LITERAL_CASE))) {
+                log(ast, MSG_KEY_SKIP_IF_LAST_AND_SHARED_WITH_CASE);
             }
-            else if (Objects.nonNull(findNextSibling(defaultGroupAST,
-                                                     TokenTypes.CASE_GROUP))) {
+            else if (ast.getPreviousSibling() == null
+                && Objects.nonNull(findNextSibling(defaultGroupAST,
+                                                   TokenTypes.CASE_GROUP))) {
                 log(ast, MSG_KEY);
             }
+        }
+        else if (Objects.nonNull(findNextSibling(defaultGroupAST,
+                                            TokenTypes.CASE_GROUP))
+                    || Objects.nonNull(findNextSibling(defaultGroupAST,
+                                            TokenTypes.SWITCH_RULE))) {
+            log(ast, MSG_KEY);
         }
     }
 
@@ -130,4 +224,5 @@ public class DefaultComesLastCheck extends AbstractCheck {
         }
         return token;
     }
+
 }

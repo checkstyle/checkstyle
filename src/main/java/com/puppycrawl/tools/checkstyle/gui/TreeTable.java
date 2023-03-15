@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.gui;
 
@@ -25,10 +25,13 @@ import java.awt.FontMetrics;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayDeque;
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Collection;
+import java.util.Deque;
 import java.util.EventObject;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.swing.AbstractAction;
 import javax.swing.Action;
@@ -40,34 +43,46 @@ import javax.swing.LookAndFeel;
 import javax.swing.table.TableCellEditor;
 import javax.swing.tree.TreePath;
 
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.utils.XpathUtil;
+import com.puppycrawl.tools.checkstyle.xpath.ElementNode;
+import com.puppycrawl.tools.checkstyle.xpath.RootNode;
+import com.puppycrawl.tools.checkstyle.xpath.XpathQueryGenerator;
+import net.sf.saxon.trans.XPathException;
+
 /**
  * This example shows how to create a simple TreeTable component,
  * by using a JTree as a renderer (and editor) for the cells in a
  * particular column in the JTable.
- *
  * <a href=
  * "https://docs.oracle.com/cd/E48246_01/apirefs.1111/e13403/oracle/ide/controls/TreeTableModel.html">
  * Original&nbsp;Source&nbsp;Location</a>
  *
- * @author Philip Milne
- * @author Scott Violet
- * @author Lars Kühne
+ * @noinspection ThisEscapedInObjectConstruction
+ * @noinspectionreason ThisEscapedInObjectConstruction - only reference is used and not
+ *      accessed until initialized
  */
-public class TreeTable extends JTable {
+public final class TreeTable extends JTable {
+
+    /** A unique serial version identifier. */
     private static final long serialVersionUID = -8493693409423365387L;
+    /** The newline character. */
+    private static final String NEWLINE = "\n";
     /** A subclass of JTree. */
     private final TreeTableCellRenderer tree;
     /** JTextArea editor. */
     private JTextArea editor;
+    /** JTextArea xpathEditor. */
+    private JTextArea xpathEditor;
     /** Line position map. */
-    private List<Integer> linePositionMap;
+    private List<Integer> linePositionList;
 
     /**
      * Creates TreeTable base on TreeTableModel.
+     *
      * @param treeTableModel Tree table model
      */
     public TreeTable(ParseTreeTableModel treeTableModel) {
-
         // Create the tree. It will be used as a renderer and editor.
         tree = new TreeTableCellRenderer(this, treeTableModel);
 
@@ -94,7 +109,8 @@ public class TreeTable extends JTable {
         // the table.
         if (tree.getRowHeight() < 1) {
             // Metal looks better like this.
-            setRowHeight(getRowHeight());
+            final int height = getRowHeight();
+            setRowHeight(height);
         }
 
         setColumnsInitialWidth();
@@ -128,6 +144,7 @@ public class TreeTable extends JTable {
     private void expandSelectedNode() {
         final TreePath selected = tree.getSelectionPath();
         makeCodeSelection();
+        generateXpath();
 
         if (tree.isExpanded(selected)) {
             tree.collapsePath(selected);
@@ -142,7 +159,21 @@ public class TreeTable extends JTable {
      * Make selection of code in a text area.
      */
     private void makeCodeSelection() {
-        new CodeSelector(tree.getLastSelectedPathComponent(), editor, linePositionMap).select();
+        new CodeSelector(tree.getLastSelectedPathComponent(), editor, linePositionList).select();
+    }
+
+    /**
+     * Generate Xpath.
+     */
+    private void generateXpath() {
+        if (tree.getLastSelectedPathComponent() instanceof DetailAST) {
+            final DetailAST ast = (DetailAST) tree.getLastSelectedPathComponent();
+            final String xpath = XpathQueryGenerator.generateXpathQuery(ast);
+            xpathEditor.setText(xpath);
+        }
+        else {
+            xpathEditor.setText("Xpath is not supported yet for javadoc nodes");
+        }
     }
 
     /**
@@ -162,11 +193,86 @@ public class TreeTable extends JTable {
         final int preferredTreeColumnWidth =
                 Math.toIntExact(Math.round(getPreferredSize().getWidth() * 0.6));
         getColumn("Tree").setPreferredWidth(preferredTreeColumnWidth);
-        // Twenty eight character string to contain "Type" column
+        // Twenty-eight character string to contain "Type" column
         final int widthOfTwentyEightCharacterString =
                 fontMetrics.stringWidth("XXXXXXXXXXXXXXXXXXXXXXXXXXXX");
         final int preferredTypeColumnWidth = widthOfTwentyEightCharacterString + padding;
         getColumn("Type").setPreferredWidth(preferredTypeColumnWidth);
+    }
+
+    /**
+     * Select Node by Xpath.
+     */
+    public void selectNodeByXpath() {
+        final DetailAST rootAST = (DetailAST) tree.getModel().getRoot();
+        if (rootAST.hasChildren()) {
+            final String xpath = xpathEditor.getText();
+
+            try {
+                final Deque<DetailAST> nodes =
+                        XpathUtil.getXpathItems(xpath, new RootNode(rootAST))
+                              .stream()
+                              .map(ElementNode.class::cast)
+                              .map(ElementNode::getUnderlyingNode)
+                              .collect(Collectors.toCollection(ArrayDeque::new));
+                updateTreeTable(xpath, nodes);
+            }
+            catch (XPathException exception) {
+                xpathEditor.setText(xpathEditor.getText() + NEWLINE + exception.getMessage());
+            }
+        }
+        else {
+            xpathEditor.setText("No file Opened");
+        }
+    }
+
+    /**
+     * Updates the Treetable by expanding paths in the tree and highlighting
+     * associated code.
+     *
+     * @param xpath the XPath query to show in case of no match
+     * @param nodes the deque of DetailAST nodes to match in TreeTable and XPath editor
+     */
+    private void updateTreeTable(String xpath, Deque<DetailAST> nodes) {
+        if (nodes.isEmpty()) {
+            xpathEditor.setText("No elements matching XPath query '"
+                    + xpath + "' found.");
+        }
+        else {
+            for (DetailAST node : nodes) {
+                expandTreeTableByPath(node);
+                makeCodeSelection();
+            }
+            xpathEditor.setText(getAllMatchingXpathQueriesText(nodes));
+        }
+    }
+
+    /**
+     * Expands path in tree table to given node so that user can
+     * see the node.
+     *
+     * @param node node to expand table by
+     */
+    private void expandTreeTableByPath(DetailAST node) {
+        TreePath path = new TreePath(node);
+        path = path.pathByAddingChild(node);
+        if (!tree.isExpanded(path)) {
+            tree.expandPath(path);
+        }
+        tree.setSelectionPath(path);
+    }
+
+    /**
+     * Generates a String with all matching XPath queries separated
+     * by newlines.
+     *
+     * @param nodes deque of nodes to generate queries for
+     * @return complete text of all XPath expressions separated by newlines.
+     */
+    private static String getAllMatchingXpathQueriesText(Deque<DetailAST> nodes) {
+        return nodes.stream()
+                .map(XpathQueryGenerator::generateXpathQuery)
+                .collect(Collectors.joining(NEWLINE, "", NEWLINE));
     }
 
     /**
@@ -206,7 +312,7 @@ public class TreeTable extends JTable {
      * Overridden to pass the new rowHeight to the tree.
      */
     @Override
-    public final void setRowHeight(int newRowHeight) {
+    public void setRowHeight(int newRowHeight) {
         super.setRowHeight(newRowHeight);
         if (tree != null && tree.getRowHeight() != newRowHeight) {
             tree.setRowHeight(getRowHeight());
@@ -215,6 +321,7 @@ public class TreeTable extends JTable {
 
     /**
      * Returns tree.
+     *
      * @return the tree that is being shared between the model.
      */
     public JTree getTree() {
@@ -223,6 +330,7 @@ public class TreeTable extends JTable {
 
     /**
      * Sets text area editor.
+     *
      * @param textArea JTextArea component.
      */
     public void setEditor(JTextArea textArea) {
@@ -230,20 +338,30 @@ public class TreeTable extends JTable {
     }
 
     /**
-     * Sets line position map.
-     * @param linePositionMap Line position map.
+     * Sets text area xpathEditor.
+     *
+     * @param xpathTextArea JTextArea component.
      */
-    public void setLinePositionMap(List<Integer> linePositionMap) {
-        final List<Integer> copy = new ArrayList<>(linePositionMap);
-        this.linePositionMap = Collections.unmodifiableList(copy);
+    public void setXpathEditor(JTextArea xpathTextArea) {
+        xpathEditor = xpathTextArea;
+    }
+
+    /**
+     * Sets line positions.
+     *
+     * @param linePositionList positions of lines.
+     */
+    public void setLinePositionList(Collection<Integer> linePositionList) {
+        this.linePositionList = new ArrayList<>(linePositionList);
     }
 
     /**
      * TreeTableCellEditor implementation. Component returned is the
      * JTree.
      */
-    private class TreeTableCellEditor extends BaseCellEditor implements
+    private final class TreeTableCellEditor extends BaseCellEditor implements
             TableCellEditor {
+
         @Override
         public Component getTableCellEditorComponent(JTable table,
                 Object value,
@@ -282,7 +400,7 @@ public class TreeTable extends JTable {
                     if (getColumnClass(counter) == ParseTreeTableModel.class) {
                         final MouseEvent mouseEvent = (MouseEvent) event;
                         final MouseEvent newMouseEvent = new MouseEvent(tree, mouseEvent.getID(),
-                                mouseEvent.getWhen(), mouseEvent.getModifiers(),
+                                mouseEvent.getWhen(), mouseEvent.getModifiersEx(),
                                 mouseEvent.getX() - getCellRect(0, counter, true).x,
                                 mouseEvent.getY(), mouseEvent.getClickCount(),
                                 mouseEvent.isPopupTrigger());
@@ -294,5 +412,7 @@ public class TreeTable extends JTable {
 
             return false;
         }
+
     }
+
 }

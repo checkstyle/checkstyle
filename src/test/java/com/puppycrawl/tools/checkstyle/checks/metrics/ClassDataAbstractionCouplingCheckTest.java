@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,188 +15,192 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.metrics;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.metrics.ClassDataAbstractionCouplingCheck.MSG_KEY;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
-import java.io.File;
-import java.io.IOException;
+import org.antlr.v4.runtime.CommonToken;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Test;
-
-import antlr.CommonHiddenStreamToken;
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
-import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-public class ClassDataAbstractionCouplingCheckTest extends BaseCheckTestSupport {
+public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSupport {
+
     @Override
-    protected String getPath(String filename) throws IOException {
-        return super.getPath("checks" + File.separator
-                + "metrics" + File.separator + filename);
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/checks/metrics/classdataabstractioncoupling";
+    }
+
+    @Test
+    public void testTokens() {
+        final ClassDataAbstractionCouplingCheck check = new ClassDataAbstractionCouplingCheck();
+        assertWithMessage("Required tokens should not be null")
+            .that(check.getRequiredTokens())
+            .isNotNull();
+        assertWithMessage("Acceptable tokens should not be null")
+            .that(check.getAcceptableTokens())
+            .isNotNull();
+        assertWithMessage("Invalid default tokens")
+            .that(check.getAcceptableTokens())
+            .isEqualTo(check.getDefaultTokens());
+        assertWithMessage("Invalid acceptable tokens")
+            .that(check.getRequiredTokens())
+            .isEqualTo(check.getDefaultTokens());
     }
 
     @Test
     public void test() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(ClassDataAbstractionCouplingCheck.class);
-
-        checkConfig.addAttribute("max", "0");
-        checkConfig.addAttribute("excludedClasses", "InnerClass");
 
         final String[] expected = {
-            "6:1: " + getCheckMessage(MSG_KEY, 4, 0, "[AnotherInnerClass, HashMap, HashSet, int]"),
-            "7:5: " + getCheckMessage(MSG_KEY, 1, 0, "[ArrayList]"),
-            "27:1: " + getCheckMessage(MSG_KEY, 2, 0, "[HashMap, HashSet]"),
+            "16:1: " + getCheckMessage(MSG_KEY, 4, 0, "[AnotherInnerClass, HashMap, HashSet, int]"),
+            "17:5: " + getCheckMessage(MSG_KEY, 1, 0, "[ArrayList]"),
+            "37:1: " + getCheckMessage(MSG_KEY, 2, 0, "[HashMap, HashSet]"),
         };
 
-        verify(checkConfig, getPath("InputClassCoupling.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputClassDataAbstractionCoupling.java"), expected);
     }
 
     @Test
-    public void testExludedPackageDirectPackages() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(ClassDataAbstractionCouplingCheck.class);
-
-        checkConfig.addAttribute("max", "0");
-        checkConfig.addAttribute("excludedPackages",
-            "com.puppycrawl.tools.checkstyle.checks.metrics.inputs.c,"
-                + "com.puppycrawl.tools.checkstyle.checks.metrics.inputs.b");
-
+    public void testExcludedPackageDirectPackages() throws Exception {
         final String[] expected = {
-            "8:1: " + getCheckMessage(MSG_KEY, 2, 0, "[AAClass, ABClass]"),
+            "30:1: " + getCheckMessage(MSG_KEY, 2, 0, "[AAClass, ABClass]"),
         };
 
-        verify(checkConfig,
-            getPath("InputClassCouplingExcludedPackagesDirectPackages.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputClassDataAbstractionCouplingExcludedPackagesDirectPackages.java"),
+                expected);
     }
 
     @Test
-    public void testExludedPackageCommonPackages() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(ClassDataAbstractionCouplingCheck.class);
-
-        checkConfig.addAttribute("max", "0");
-        checkConfig.addAttribute("excludedPackages",
-            "com.puppycrawl.tools.checkstyle.checks.metrics.inputs.a");
-
+    public void testExcludedPackageCommonPackages() throws Exception {
         final String[] expected = {
-            "8:1: " + getCheckMessage(MSG_KEY, 2, 0, "[AAClass, ABClass]"),
-            "12:5: " + getCheckMessage(MSG_KEY, 2, 0, "[BClass, CClass]"),
-            "18:1: " + getCheckMessage(MSG_KEY, 1, 0, "[CClass]"),
+            "28:1: " + getCheckMessage(MSG_KEY, 2, 0, "[AAClass, ABClass]"),
+            "32:5: " + getCheckMessage(MSG_KEY, 2, 0, "[BClass, CClass]"),
+            "38:1: " + getCheckMessage(MSG_KEY, 1, 0, "[CClass]"),
         };
-        verify(checkConfig,
-            getPath("InputClassCouplingExcludedPackagesCommonPackage.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputClassDataAbstractionCouplingExcludedPackagesCommonPackage.java"),
+                expected);
     }
 
     @Test
-    public void testExludedPackageWithEndingDot() throws Exception {
+    public void testExcludedPackageWithEndingDot() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(ClassDataAbstractionCouplingCheck.class);
+            createModuleConfig(ClassDataAbstractionCouplingCheck.class);
 
-        checkConfig.addAttribute("max", "0");
-        checkConfig.addAttribute("excludedPackages",
+        checkConfig.addProperty("max", "0");
+        checkConfig.addProperty("excludedPackages",
             "com.puppycrawl.tools.checkstyle.checks.metrics.inputs.a.");
 
         try {
             createChecker(checkConfig);
-            fail("exception expected");
+            assertWithMessage("exception expected").fail();
         }
         catch (CheckstyleException ex) {
-            final String messageStart =
-                "cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker - "
+            assertWithMessage("Invalid exception message")
+                .that(ex.getMessage())
+                .isEqualTo("cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker - "
+                    + "cannot initialize module com.puppycrawl.tools.checkstyle.checks."
+                    + "metrics.ClassDataAbstractionCouplingCheck - "
                     + "Cannot set property 'excludedPackages' to "
-                    + "'com.puppycrawl.tools.checkstyle.checks.metrics.inputs.a.' in module "
-                    + "com.puppycrawl.tools.checkstyle.checks.metrics."
-                    + "ClassDataAbstractionCouplingCheck";
-
-            assertTrue("Invalid exception message, should start with: " + messageStart,
-                ex.getMessage().startsWith(messageStart));
+                    + "'com.puppycrawl.tools.checkstyle.checks.metrics.inputs.a.'");
+            assertWithMessage("Invalid exception message,")
+                .that(ex.getCause().getCause().getCause().getCause().getMessage())
+                .isEqualTo("the following values are not valid identifiers: ["
+                    + "com.puppycrawl.tools.checkstyle.checks.metrics.inputs.a.]");
         }
     }
 
     @Test
-    public void testExludedPackageCommonPackagesAllIgnored() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(ClassDataAbstractionCouplingCheck.class);
-
-        checkConfig.addAttribute("max", "0");
-        checkConfig.addAttribute("excludedPackages",
-            "com.puppycrawl.tools.checkstyle.checks.metrics.inputs.a.aa,"
-                + "com.puppycrawl.tools.checkstyle.checks.metrics.inputs.a.ab,"
-                + "com.puppycrawl.tools.checkstyle.checks.metrics.inputs.b,"
-                + "com.puppycrawl.tools.checkstyle.checks.metrics.inputs.c");
-
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputClassCouplingExcludedPackagesAllIgnored.java"), expected);
+    public void testExcludedPackageCommonPackagesAllIgnored() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputClassDataAbstractionCouplingExcludedPackagesAllIgnored.java"),
+                expected);
     }
 
     @Test
     public void testDefaultConfiguration() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(ClassDataAbstractionCouplingCheck.class);
-
-        createChecker(checkConfig);
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputClassCoupling.java"), expected);
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputClassDataAbstractionCoupling2.java"), expected);
     }
 
     @Test
     public void testWrongToken() {
         final ClassDataAbstractionCouplingCheck classDataAbstractionCouplingCheckObj =
             new ClassDataAbstractionCouplingCheck();
-        final DetailAST ast = new DetailAST();
-        ast.initialize(new CommonHiddenStreamToken(TokenTypes.CTOR_DEF, "ctor"));
+        final DetailAstImpl ast = new DetailAstImpl();
+        ast.initialize(new CommonToken(TokenTypes.CTOR_DEF, "ctor"));
         try {
             classDataAbstractionCouplingCheckObj.visitToken(ast);
-            fail("exception expected");
+            assertWithMessage("exception expected").fail();
         }
         catch (IllegalArgumentException ex) {
-            assertEquals("Invalid exception message",
-                "Unknown type: ctor[0x-1]", ex.getMessage());
+            assertWithMessage("Invalid exception message")
+                .that(ex.getMessage())
+                .isEqualTo("Unknown type: ctor[0x-1]");
         }
     }
 
     @Test
     public void testRegularExpression() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createCheckConfig(ClassDataAbstractionCouplingCheck.class);
-
-        checkConfig.addAttribute("max", "0");
-        checkConfig.addAttribute("excludedClasses", "InnerClass");
-        checkConfig.addAttribute("excludeClassesRegexps", "^Hash.*");
 
         final String[] expected = {
-            "6:1: " + getCheckMessage(MSG_KEY, 2, 0, "[AnotherInnerClass, int]"),
-            "7:5: " + getCheckMessage(MSG_KEY, 1, 0, "[ArrayList]"),
+            "22:1: " + getCheckMessage(MSG_KEY, 2, 0, "[AnotherInnerClass, int]"),
+            "23:5: " + getCheckMessage(MSG_KEY, 1, 0, "[ArrayList]"),
         };
 
-        verify(checkConfig, getPath("InputClassCoupling.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputClassDataAbstractionCoupling3.java"), expected);
     }
 
     @Test
     public void testEmptyRegularExpression() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createCheckConfig(ClassDataAbstractionCouplingCheck.class);
-
-        checkConfig.addAttribute("max", "0");
-        checkConfig.addAttribute("excludedClasses", "InnerClass");
-        checkConfig.addAttribute("excludeClassesRegexps", "");
 
         final String[] expected = {
-            "6:1: " + getCheckMessage(MSG_KEY, 4, 0, "[AnotherInnerClass, HashMap, HashSet, int]"),
-            "7:5: " + getCheckMessage(MSG_KEY, 1, 0, "[ArrayList]"),
-            "27:1: " + getCheckMessage(MSG_KEY, 2, 0, "[HashMap, HashSet]"),
+            "22:1: " + getCheckMessage(MSG_KEY, 4, 0, "[AnotherInnerClass, HashMap, HashSet, int]"),
+            "23:5: " + getCheckMessage(MSG_KEY, 1, 0, "[ArrayList]"),
+            "43:1: " + getCheckMessage(MSG_KEY, 2, 0, "[HashMap, HashSet]"),
         };
 
-        verify(checkConfig, getPath("InputClassCoupling.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputClassDataAbstractionCoupling4.java"), expected);
     }
+
+    @Test
+    public void testClassDataAbstractionCouplingRecords() throws Exception {
+
+        final int maxAbstraction = 1;
+        final String[] expected = {
+            "31:1: " + getCheckMessage(MSG_KEY, 2, maxAbstraction, "[Date, Time]"),
+            "36:1: " + getCheckMessage(MSG_KEY, 2, maxAbstraction, "[Date, Time]"),
+            "46:1: " + getCheckMessage(MSG_KEY, 2, maxAbstraction, "[Date, Time]"),
+            "55:1: " + getCheckMessage(MSG_KEY, 2, maxAbstraction, "[Date, Time]"),
+            "67:5: " + getCheckMessage(MSG_KEY, 3, maxAbstraction, "[Date, Place, Time]"),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputClassDataAbstractionCouplingRecords.java"),
+            expected);
+    }
+
+    @Test
+    public void testNew() throws Exception {
+
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("InputClassDataAbstractionCoupling5.java"), expected);
+    }
+
 }

@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,39 +15,93 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
 import java.util.Locale;
 
+import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
- * <p>Checks the padding of an empty for iterator; that is whether a
- * space is required at an empty for iterator, or such spaces are
+ * <p>
+ * Checks the padding of an empty for iterator; that is whether a white
+ * space is required at an empty for iterator, or such white space is
  * forbidden. No check occurs if there is a line wrap at the iterator, as in
  * </p>
- * <pre class="body">
-for (Iterator foo = very.long.line.iterator();
-      foo.hasNext();
-     )
-   </pre>
+ * <pre>
+ * for (Iterator foo = very.long.line.iterator();
+ *     foo.hasNext();
+ *    )
+ * </pre>
+ * <ul>
+ * <li>
+ * Property {@code option} - Specify policy on how to pad an empty for iterator.
+ * Type is {@code com.puppycrawl.tools.checkstyle.checks.whitespace.PadOption}.
+ * Default value is {@code nospace}.
+ * </li>
+ * </ul>
  * <p>
- * The policy to verify is specified using the {@link PadOption} class and
- * defaults to {@link PadOption#NOSPACE}.
- * </p>
- * <p>
- * An example of how to configure the check is:
+ * To configure the check:
  * </p>
  * <pre>
- * &lt;module name="EmptyForIteratorPad"/&gt;
+ * &lt;module name=&quot;EmptyForIteratorPad&quot;/&gt;
  * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * for (Iterator it = map.entrySet().iterator();  it.hasNext(););  // ok
+ * for (Iterator it = map.entrySet().iterator();  it.hasNext(); ); // violation since whitespace
+ *                                                                 //after semicolon
  *
- * @author Rick Giles
+ * for (Iterator foo = very.long.line.iterator();
+ *       foo.hasNext();
+ *      ); // ok
+ * </pre>
+ * <p>
+ * To configure the check to require white space at an empty for iterator:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;EmptyForIteratorPad&quot;&gt;
+ *   &lt;property name=&quot;option&quot; value=&quot;space&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * for (Iterator it = map.entrySet().iterator();  it.hasNext();); // violation as there is no
+ *                                                                // whitespace after semicolon
+ *
+ * for (Iterator it = map.entrySet().iterator();  it.hasNext(); ); // ok
+ *
+ * for (Iterator foo = very.long.line.iterator();
+ *       foo.hasNext();
+ *      ); // violation as there  is no whitespace after semicolon
+ * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code ws.followed}
+ * </li>
+ * <li>
+ * {@code ws.notFollowed}
+ * </li>
+ * </ul>
+ *
+ * @since 3.0
  */
+@StatelessCheck
 public class EmptyForIteratorPadCheck
     extends AbstractCheck {
 
@@ -66,56 +120,53 @@ public class EmptyForIteratorPadCheck
     /** Semicolon literal. */
     private static final String SEMICOLON = ";";
 
-    /** The policy to enforce. */
+    /** Specify policy on how to pad an empty for iterator. */
     private PadOption option = PadOption.NOSPACE;
 
     /**
-     * Set the option to enforce.
+     * Setter to specify policy on how to pad an empty for iterator.
+     *
      * @param optionStr string to decode option from
      * @throws IllegalArgumentException if unable to decode
      */
     public void setOption(String optionStr) {
-        try {
-            option = PadOption.valueOf(optionStr.trim().toUpperCase(Locale.ENGLISH));
-        }
-        catch (IllegalArgumentException iae) {
-            throw new IllegalArgumentException("unable to parse " + optionStr, iae);
-        }
+        option = PadOption.valueOf(optionStr.trim().toUpperCase(Locale.ENGLISH));
     }
 
     @Override
     public int[] getDefaultTokens() {
-        return getAcceptableTokens();
+        return getRequiredTokens();
     }
 
     @Override
     public int[] getAcceptableTokens() {
-        return new int[] {TokenTypes.FOR_ITERATOR};
+        return getRequiredTokens();
     }
 
     @Override
     public int[] getRequiredTokens() {
-        return getAcceptableTokens();
+        return new int[] {TokenTypes.FOR_ITERATOR};
     }
 
     @Override
     public void visitToken(DetailAST ast) {
-        if (ast.getChildCount() == 0) {
-            //empty for iterator. test pad after semi.
+        if (!ast.hasChildren()) {
+            // empty for iterator. test pad after semi.
             final DetailAST semi = ast.getPreviousSibling();
-            final String line = getLines()[semi.getLineNo() - 1];
+            final int[] line = getLineCodePoints(semi.getLineNo() - 1);
             final int after = semi.getColumnNo() + 1;
-            //don't check if at end of line
-            if (after < line.length()) {
+            // don't check if at end of line
+            if (after < line.length) {
                 if (option == PadOption.NOSPACE
-                    && Character.isWhitespace(line.charAt(after))) {
-                    log(semi.getLineNo(), after, MSG_WS_FOLLOWED, SEMICOLON);
+                    && CommonUtil.isCodePointWhitespace(line, after)) {
+                    log(ast, MSG_WS_FOLLOWED, SEMICOLON);
                 }
                 else if (option == PadOption.SPACE
-                         && !Character.isWhitespace(line.charAt(after))) {
-                    log(semi.getLineNo(), after, MSG_WS_NOT_FOLLOWED, SEMICOLON);
+                         && !CommonUtil.isCodePointWhitespace(line, after)) {
+                    log(ast, MSG_WS_NOT_FOLLOWED, SEMICOLON);
                 }
             }
         }
     }
+
 }

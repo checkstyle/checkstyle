@@ -1,7 +1,10 @@
-////////////////////////////////////////////////////////////////////////////////
-// Test case file for FOR_ITERATION and whitespace.
-// Created: 2003
-////////////////////////////////////////////////////////////////////////////////
+/*
+ModifiedControlVariable
+skipEnhancedForLoopVariable = (default)false
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.coding.modifiedcontrolvariable;
 import java.io.Serializable;
 class InputModifiedControlVariableBothForLoops
@@ -11,14 +14,14 @@ class InputModifiedControlVariableBothForLoops
     {
         //Violations:
         for (int i = 0; i < 1; i++) {
-            i++;
+            i++; // violation
         }
         for (int i = 0; i < 1; i++) {
-            i = i + 1;
+            i = i + 1; // violation
         }
         for (int i = 0; i < 1; i++) {
-            for (int j = 0; j < 1; i++) {
-                --i;
+            for (int j = 0; j < 1; i++) { // violation
+                --i; // violation
             }
         }
         for (int i = 0, j = 0; i < 1; i++) {
@@ -40,20 +43,20 @@ class InputModifiedControlVariableBothForLoops
             };
         }
         for (int k = 0; k < 1; k++) {
-            this.k++;   
+            this.k++;
         }
 
         String[] sa = {"a", "b"};
         for(String s:sa) {}
         for(String s:sa) {
-            s = "new string";
+            s = "new string"; // violation
         }
         for(int i=0;i < 10;) {
             i++;
         }
         for (int i = 0, l = 0,m=0; l < 10; i++,m=m+2) {
             l++;
-            m++;
+            m++; // violation
         }
         for (int i = 0; i < 10; ) {
             i = 11;
@@ -64,11 +67,33 @@ class InputModifiedControlVariableBothForLoops
             w++;
         }
         for (int i=0,k=0; i<10 && k < 10; ++i,++k) {
-            i = i + 3;
-            k = k + 4;
+            i = i + 3; // violation
+            k = k + 4; // violation
         }
         for (int i = 0,j = 0 ; i <10; i++) {
             j++;
+        }
+
+        for (String v : sa) {
+            new NestedClass() {
+                public void method() {}
+            };
+            v = "bad"; // violation
+        }
+        for (int i = 0; i < 10; i += 1) {
+            for (i = 7; i < 10; i += 1) {}
+        }
+        for (String name: new String[] {}) {
+        }
+
+        for (i = 0; i < 10; i++) {
+            String name;
+            name = "";
+        }
+        for (int EXPR = 0; EXPR < 1; EXPR++) {
+            for (int j = 0; j < 1; i++) {
+                i++;
+            }
         }
     }
     private int i;
@@ -82,4 +107,7 @@ class VariableDeclaredBeforeTheFirstBlockBegins {
             String eventData;
         }
     }
+}
+abstract class NestedClass {
+    public abstract void method();
 }

@@ -1,15 +1,22 @@
+/*
+MissingDeprecated
+violateExecutionOnNonTightHtml = (default)false
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.annotation.missingdeprecated;
 
 import java.lang.annotation.Inherited;
 /**
- * 
+ *
  * @author idubinin
  *@deprecated
  *@deprecated
- *stuff
+ *stuff // violation above
  *stuff
  */
-public class InputMissingDeprecatedClass
+public class InputMissingDeprecatedClass // violation
 {
-    
+
 }

@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,25 +15,28 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle;
 
+import static com.google.common.truth.Truth.assertWithMessage;
+
 import java.util.Properties;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class PropertiesExpanderTest {
 
     @Test
     public void testCtorException() {
         try {
-            new PropertiesExpander(null);
-            Assert.fail("exception expected");
+            final Object test = new PropertiesExpander(null);
+            assertWithMessage("exception expected but got " + test).fail();
         }
         catch (IllegalArgumentException ex) {
-            Assert.assertEquals("cannot pass null", ex.getMessage());
+            assertWithMessage("Invalid exception message")
+                    .that(ex.getMessage())
+                    .isEqualTo("cannot pass null");
         }
     }
 
@@ -41,11 +44,22 @@ public class PropertiesExpanderTest {
     public void testDefaultProperties() {
         final Properties properties = new Properties(System.getProperties());
         properties.setProperty("test", "checkstyle");
-        Assert.assertEquals(System.getProperty("user.home"), properties.getProperty("user.home"));
-        Assert.assertEquals("checkstyle", properties.getProperty("test"));
+        final String propertiesUserHome = properties.getProperty("user.home");
+        assertWithMessage("Invalid user.home property")
+                .that(propertiesUserHome)
+                .isEqualTo(System.getProperty("user.home"));
+        assertWithMessage("Invalid checkstyle property")
+                .that(properties.getProperty("test"))
+                .isEqualTo("checkstyle");
 
         final PropertiesExpander expander = new PropertiesExpander(properties);
-        Assert.assertEquals(System.getProperty("user.home"), expander.resolve("user.home"));
-        Assert.assertEquals("checkstyle", expander.resolve("test"));
+        final String expanderUserHome = expander.resolve("user.home");
+        assertWithMessage("Invalid user.home property")
+                .that(expanderUserHome)
+                .isEqualTo(System.getProperty("user.home"));
+        assertWithMessage("Invalid checkstyle property")
+                .that(expander.resolve("test"))
+                .isEqualTo("checkstyle");
     }
+
 }

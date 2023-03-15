@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+  <module>
+    <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.misc.InputCheckNoProps"
+           name="InputCheckNoProps"
+           parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+      <description>Some description for check with no properties</description>
+      <message-keys>
+        <message-key key="test.key1"/>
+        <message-key key="test.key2"/>
+      </message-keys>
+    </check>
+  </module>
+</checkstyle-metadata>
+

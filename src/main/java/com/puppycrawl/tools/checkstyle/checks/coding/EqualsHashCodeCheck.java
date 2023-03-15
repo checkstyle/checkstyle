@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,44 +15,115 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import antlr.collections.AST;
+import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CheckUtils;
+import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 
 /**
  * <p>
  * Checks that classes that either override {@code equals()} or {@code hashCode()} also
  * overrides the other.
- * This checks only verifies that the method declarations match {@link Object#equals(Object)} and
- * {@link Object#hashCode()} exactly to be considered an override. This check does not verify
+ * This check only verifies that the method declarations match {@code Object.equals(Object)} and
+ * {@code Object.hashCode()} exactly to be considered an override. This check does not verify
  * invalid method names, parameters other than {@code Object}, or anything else.
  * </p>
  * <p>
- * Rationale: The contract of equals() and hashCode() requires that
- * equal objects have the same hashCode. Hence, whenever you override
- * equals() you must override hashCode() to ensure that your class can
- * be used in collections that are hash based.
+ * Rationale: The contract of {@code equals()} and {@code hashCode()} requires that
+ * equal objects have the same hashCode. Therefore, whenever you override
+ * {@code equals()} you must override {@code hashCode()} to ensure that your class can
+ * be used in hash-based collections.
  * </p>
  * <p>
- * An example of how to configure the check is:
+ * To configure the check:
  * </p>
  * <pre>
- * &lt;module name="EqualsHashCode"/&gt;
+ * &lt;module name=&quot;EqualsHashCode&quot;/&gt;
  * </pre>
- * @author lkuehne
+ * <p>Example:</p>
+ * <pre>
+ * public static class Example1 {
+ *     public int hashCode() {
+ *         // code
+ *     }
+ *     public boolean equals(String o) { // violation, overloaded implementation of 'equals'
+ *         // code
+ *     }
+ * }
+ * public static class Example2 {
+ *     public boolean equals(Object o) { // violation, no 'hashCode'
+ *         // code
+ *     }
+ *     public boolean equals(String o) {
+ *         // code
+ *     }
+ * }
+ * public static class Example3 {
+ *     public int hashCode() {
+ *         // code
+ *     }
+ *     public boolean equals(Object o) { // OK
+ *         // code
+ *     }
+ *     public boolean equals(String o) {
+ *         // code
+ *     }
+ * }
+ * public static class Example4 {
+ *     public int hashCode() {
+ *         // code
+ *     }
+ *     public boolean equals(java.lang.Object o) { // OK
+ *         // code
+ *    }
+ * }
+ * public static class Example5 {
+ *     public static int hashCode(int i) {
+ *         // code
+ *     }
+ *     public boolean equals(Object o) { // violation, overloaded implementation of 'hashCode'
+ *         // code
+ *     }
+ * }
+ * public static class Example6 {
+ *     public int hashCode() { // violation, overloaded implementation of 'equals'
+ *         // code
+ *     }
+ *     public static boolean equals(Object o, Object o2) {
+ *         // code
+ *     }
+ * }
+ * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code equals.noEquals}
+ * </li>
+ * <li>
+ * {@code equals.noHashCode}
+ * </li>
+ * </ul>
+ *
+ * @since 3.0
  */
+@FileStatefulCheck
 public class EqualsHashCodeCheck
         extends AbstractCheck {
+
     // implementation note: we have to use the following members to
     // keep track of definitions in different inner classes
 
@@ -76,17 +147,17 @@ public class EqualsHashCodeCheck
 
     @Override
     public int[] getDefaultTokens() {
-        return getAcceptableTokens();
+        return getRequiredTokens();
     }
 
     @Override
     public int[] getAcceptableTokens() {
-        return new int[] {TokenTypes.METHOD_DEF};
+        return getRequiredTokens();
     }
 
     @Override
     public int[] getRequiredTokens() {
-        return getAcceptableTokens();
+        return new int[] {TokenTypes.METHOD_DEF};
     }
 
     @Override
@@ -109,17 +180,16 @@ public class EqualsHashCodeCheck
      * Determines if an AST is a valid Equals method implementation.
      *
      * @param ast the AST to check
-     * @return true if the {code ast} is a Equals method.
+     * @return true if the {code ast} is an Equals method.
      */
     private static boolean isEqualsMethod(DetailAST ast) {
         final DetailAST modifiers = ast.getFirstChild();
         final DetailAST parameters = ast.findFirstToken(TokenTypes.PARAMETERS);
 
-        return CheckUtils.isEqualsMethod(ast)
-                && modifiers.branchContains(TokenTypes.LITERAL_PUBLIC)
+        return CheckUtil.isEqualsMethod(ast)
                 && isObjectParam(parameters.getFirstChild())
-                && (ast.branchContains(TokenTypes.SLIST)
-                        || modifiers.branchContains(TokenTypes.LITERAL_NATIVE));
+                && (ast.findFirstToken(TokenTypes.SLIST) != null
+                        || modifiers.findFirstToken(TokenTypes.LITERAL_NATIVE) != null);
     }
 
     /**
@@ -130,21 +200,18 @@ public class EqualsHashCodeCheck
      */
     private static boolean isHashCodeMethod(DetailAST ast) {
         final DetailAST modifiers = ast.getFirstChild();
-        final AST type = ast.findFirstToken(TokenTypes.TYPE);
-        final AST methodName = ast.findFirstToken(TokenTypes.IDENT);
+        final DetailAST methodName = ast.findFirstToken(TokenTypes.IDENT);
         final DetailAST parameters = ast.findFirstToken(TokenTypes.PARAMETERS);
 
-        return type.getFirstChild().getType() == TokenTypes.LITERAL_INT
-                && "hashCode".equals(methodName.getText())
-                && modifiers.branchContains(TokenTypes.LITERAL_PUBLIC)
-                && !modifiers.branchContains(TokenTypes.LITERAL_STATIC)
+        return "hashCode".equals(methodName.getText())
                 && parameters.getFirstChild() == null
-                && (ast.branchContains(TokenTypes.SLIST)
-                        || modifiers.branchContains(TokenTypes.LITERAL_NATIVE));
+                && (ast.findFirstToken(TokenTypes.SLIST) != null
+                        || modifiers.findFirstToken(TokenTypes.LITERAL_NATIVE) != null);
     }
 
     /**
      * Determines if an AST is a formal param of type Object.
+     *
      * @param paramNode the AST to check
      * @return true if firstChild is a parameter of an Object type.
      */
@@ -162,14 +229,9 @@ public class EqualsHashCodeCheck
                 return objBlockWithHashCode.remove(detailASTDetailASTEntry.getKey()) == null;
             }).forEach(detailASTDetailASTEntry -> {
                 final DetailAST equalsAST = detailASTDetailASTEntry.getValue();
-                log(equalsAST.getLineNo(), equalsAST.getColumnNo(), MSG_KEY_HASHCODE);
+                log(equalsAST, MSG_KEY_HASHCODE);
             });
-        objBlockWithHashCode.entrySet().forEach(detailASTDetailASTEntry -> {
-            final DetailAST equalsAST = detailASTDetailASTEntry.getValue();
-            log(equalsAST.getLineNo(), equalsAST.getColumnNo(), MSG_KEY_EQUALS);
-        });
-
-        objBlockWithEquals.clear();
-        objBlockWithHashCode.clear();
+        objBlockWithHashCode.forEach((key, equalsAST) -> log(equalsAST, MSG_KEY_EQUALS));
     }
+
 }

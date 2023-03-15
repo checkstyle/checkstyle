@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,125 +15,133 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks;
 
 import static com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck.MSG_KEY;
 
-import java.io.File;
-import java.io.IOException;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Test;
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+public class FinalParametersCheckTest extends AbstractModuleTestSupport {
 
-public class FinalParametersCheckTest extends BaseCheckTestSupport {
     @Override
-    protected String getPath(String filename) throws IOException {
-        return super.getPath("checks" + File.separator + filename);
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/checks/finalparameters";
     }
 
     @Test
     public void testDefaultTokens() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(FinalParametersCheck.class);
         final String[] expected = {
-            "23:26: " + getCheckMessage(MSG_KEY, "s"),
-            "38:26: " + getCheckMessage(MSG_KEY, "i"),
-            "43:26: " + getCheckMessage(MSG_KEY, "s"),
-            "53:17: " + getCheckMessage(MSG_KEY, "s"),
-            "69:17: " + getCheckMessage(MSG_KEY, "s"),
-            "75:17: " + getCheckMessage(MSG_KEY, "s"),
-            "90:45: " + getCheckMessage(MSG_KEY, "e"),
-            "93:36: " + getCheckMessage(MSG_KEY, "e"),
-            "110:18: " + getCheckMessage(MSG_KEY, "aParam"),
-            "113:18: " + getCheckMessage(MSG_KEY, "args"),
-            "116:18: " + getCheckMessage(MSG_KEY, "args"),
+            "27:26: " + getCheckMessage(MSG_KEY, "s"),
+            "42:26: " + getCheckMessage(MSG_KEY, "i"),
+            "47:26: " + getCheckMessage(MSG_KEY, "s"),
+            "57:17: " + getCheckMessage(MSG_KEY, "s"),
+            "73:17: " + getCheckMessage(MSG_KEY, "s"),
+            "79:17: " + getCheckMessage(MSG_KEY, "s"),
+            "94:45: " + getCheckMessage(MSG_KEY, "e"),
+            "97:36: " + getCheckMessage(MSG_KEY, "e"),
+            "114:18: " + getCheckMessage(MSG_KEY, "aParam"),
+            "117:18: " + getCheckMessage(MSG_KEY, "args"),
+            "120:18: " + getCheckMessage(MSG_KEY, "args"),
         };
-        verify(checkConfig, getPath("InputFinalParameters.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputFinalParameters.java"), expected);
     }
 
     @Test
     public void testCtorToken() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(FinalParametersCheck.class);
-        checkConfig.addAttribute("tokens", "CTOR_DEF");
         final String[] expected = {
-            "23:26: " + getCheckMessage(MSG_KEY, "s"),
-            "38:26: " + getCheckMessage(MSG_KEY, "i"),
-            "43:26: " + getCheckMessage(MSG_KEY, "s"),
+            "28:27: " + getCheckMessage(MSG_KEY, "s"),
+            "43:27: " + getCheckMessage(MSG_KEY, "i"),
+            "48:27: " + getCheckMessage(MSG_KEY, "s"),
         };
-        verify(checkConfig, getPath("InputFinalParameters.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputFinalParameters2.java"), expected);
     }
 
     @Test
     public void testMethodToken() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(FinalParametersCheck.class);
-        checkConfig.addAttribute("tokens", "METHOD_DEF");
         final String[] expected = {
-            "53:17: " + getCheckMessage(MSG_KEY, "s"),
-            "69:17: " + getCheckMessage(MSG_KEY, "s"),
-            "75:17: " + getCheckMessage(MSG_KEY, "s"),
-            "90:45: " + getCheckMessage(MSG_KEY, "e"),
-            "93:36: " + getCheckMessage(MSG_KEY, "e"),
-            "110:18: " + getCheckMessage(MSG_KEY, "aParam"),
-            "113:18: " + getCheckMessage(MSG_KEY, "args"),
-            "116:18: " + getCheckMessage(MSG_KEY, "args"),
+            "58:17: " + getCheckMessage(MSG_KEY, "s"),
+            "74:17: " + getCheckMessage(MSG_KEY, "s"),
+            "80:17: " + getCheckMessage(MSG_KEY, "s"),
+            "95:45: " + getCheckMessage(MSG_KEY, "e"),
+            "98:36: " + getCheckMessage(MSG_KEY, "e"),
+            "115:18: " + getCheckMessage(MSG_KEY, "aParam"),
+            "118:18: " + getCheckMessage(MSG_KEY, "args"),
+            "121:18: " + getCheckMessage(MSG_KEY, "args"),
         };
-        verify(checkConfig, getPath("InputFinalParameters.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputFinalParameters3.java"), expected);
     }
 
     @Test
     public void testCatchToken() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(FinalParametersCheck.class);
-        checkConfig.addAttribute("tokens", "LITERAL_CATCH");
         final String[] expected = {
-            "125:16: " + getCheckMessage(MSG_KEY, "npe"),
-            "131:16: " + getCheckMessage(MSG_KEY, "e"),
-            "134:16: " + getCheckMessage(MSG_KEY, "e"),
+            "130:16: " + getCheckMessage(MSG_KEY, "npe"),
+            "136:16: " + getCheckMessage(MSG_KEY, "e"),
+            "139:16: " + getCheckMessage(MSG_KEY, "e"),
         };
-        verify(checkConfig, getPath("InputFinalParameters.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputFinalParameters4.java"), expected);
     }
 
     @Test
     public void testForEachClauseToken() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(FinalParametersCheck.class);
-        checkConfig.addAttribute("tokens", "FOR_EACH_CLAUSE");
         final String[] expected = {
-            "152:13: " + getCheckMessage(MSG_KEY, "s"),
-            "160:13: " + getCheckMessage(MSG_KEY, "s"),
+            "157:13: " + getCheckMessage(MSG_KEY, "s"),
+            "165:13: " + getCheckMessage(MSG_KEY, "s"),
         };
-        verify(checkConfig, getPath("InputFinalParameters.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputFinalParameters5.java"), expected);
     }
 
     @Test
     public void testIgnorePrimitiveTypesParameters() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(FinalParametersCheck.class);
-        checkConfig.addAttribute("ignorePrimitiveTypes", "true");
         final String[] expected = {
-            "6:22: " + getCheckMessage(MSG_KEY, "k"),
-            "7:15: " + getCheckMessage(MSG_KEY, "s"),
-            "7:25: " + getCheckMessage(MSG_KEY, "o"),
-            "8:15: " + getCheckMessage(MSG_KEY, "array"),
-            "9:31: " + getCheckMessage(MSG_KEY, "s"),
-            "10:22: " + getCheckMessage(MSG_KEY, "l"),
-            "10:32: " + getCheckMessage(MSG_KEY, "s"),
+            "14:22: " + getCheckMessage(MSG_KEY, "k"),
+            "15:15: " + getCheckMessage(MSG_KEY, "s"),
+            "15:25: " + getCheckMessage(MSG_KEY, "o"),
+            "16:15: " + getCheckMessage(MSG_KEY, "array"),
+            "17:31: " + getCheckMessage(MSG_KEY, "s"),
+            "18:22: " + getCheckMessage(MSG_KEY, "l"),
+            "18:32: " + getCheckMessage(MSG_KEY, "s"),
         };
-        verify(checkConfig, getPath("InputFinalParametersPrimitiveTypes.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputFinalParametersPrimitiveTypes.java"), expected);
+    }
+
+    @Test
+    public void testPrimitiveTypesParameters() throws Exception {
+        final String[] expected = {
+            "13:14: " + getCheckMessage(MSG_KEY, "i"),
+            "14:15: " + getCheckMessage(MSG_KEY, "i"),
+            "14:22: " + getCheckMessage(MSG_KEY, "k"),
+            "14:32: " + getCheckMessage(MSG_KEY, "s"),
+            "15:15: " + getCheckMessage(MSG_KEY, "s"),
+            "15:25: " + getCheckMessage(MSG_KEY, "o"),
+            "15:35: " + getCheckMessage(MSG_KEY, "l"),
+            "16:15: " + getCheckMessage(MSG_KEY, "array"),
+            "17:15: " + getCheckMessage(MSG_KEY, "i"),
+            "17:22: " + getCheckMessage(MSG_KEY, "x"),
+            "17:31: " + getCheckMessage(MSG_KEY, "s"),
+            "18:15: " + getCheckMessage(MSG_KEY, "x"),
+            "18:22: " + getCheckMessage(MSG_KEY, "l"),
+            "18:32: " + getCheckMessage(MSG_KEY, "s"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputFinalParametersPrimitiveTypes2.java"), expected);
     }
 
     @Test
     public void testReceiverParameters() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(FinalParametersCheck.class);
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputFinalParametersReceiver.java"), expected);
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputFinalParametersReceiver.java"), expected);
     }
+
 }

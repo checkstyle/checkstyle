@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle;
 
@@ -25,16 +25,20 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import com.google.common.collect.ImmutableMap;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * Default implementation of the Configuration interface.
- * @author lkuehne
  */
 public final class DefaultConfiguration implements Configuration {
+
+    /** A unique serial version identifier. */
     private static final long serialVersionUID = 1157875385356127169L;
+
+    /** Constant for optimization. */
+    private static final Configuration[] EMPTY_CONFIGURATION_ARRAY = new Configuration[0];
 
     /** The name of this configuration. */
     private final String name;
@@ -42,39 +46,65 @@ public final class DefaultConfiguration implements Configuration {
     /** The list of child Configurations. */
     private final List<Configuration> children = new ArrayList<>();
 
-    /** The map from attribute names to attribute values. */
-    private final Map<String, String> attributeMap = new HashMap<>();
+    /** The map from property names to property values. */
+    private final Map<String, String> propertyMap = new HashMap<>();
 
     /** The map containing custom messages. */
     private final Map<String, String> messages = new HashMap<>();
 
+    /** The thread mode configuration. */
+    private final ThreadModeSettings threadModeSettings;
+
     /**
      * Instantiates a DefaultConfiguration.
+     *
      * @param name the name for this DefaultConfiguration.
      */
     public DefaultConfiguration(String name) {
+        this(name, ThreadModeSettings.SINGLE_THREAD_MODE_INSTANCE);
+    }
+
+    /**
+     * Instantiates a DefaultConfiguration.
+     *
+     * @param name the name for this DefaultConfiguration.
+     * @param threadModeSettings the thread mode configuration.
+     */
+    public DefaultConfiguration(String name,
+        ThreadModeSettings threadModeSettings) {
         this.name = name;
+        this.threadModeSettings = threadModeSettings;
     }
 
     @Override
     public String[] getAttributeNames() {
-        final Set<String> keySet = attributeMap.keySet();
-        return keySet.toArray(new String[keySet.size()]);
+        return getPropertyNames();
     }
 
     @Override
     public String getAttribute(String attributeName) throws CheckstyleException {
-        if (!attributeMap.containsKey(attributeName)) {
+        return getProperty(attributeName);
+    }
+
+    @Override
+    public String[] getPropertyNames() {
+        final Set<String> keySet = propertyMap.keySet();
+        return keySet.toArray(CommonUtil.EMPTY_STRING_ARRAY);
+    }
+
+    @Override
+    public String getProperty(String propertyName) throws CheckstyleException {
+        if (!propertyMap.containsKey(propertyName)) {
             throw new CheckstyleException(
-                    "missing key '" + attributeName + "' in " + name);
+                    "missing key '" + propertyName + "' in " + name);
         }
-        return attributeMap.get(attributeName);
+        return propertyMap.get(propertyName);
     }
 
     @Override
     public Configuration[] getChildren() {
         return children.toArray(
-            new Configuration[children.size()]);
+                EMPTY_CONFIGURATION_ARRAY);
     }
 
     @Override
@@ -84,6 +114,7 @@ public final class DefaultConfiguration implements Configuration {
 
     /**
      * Makes a configuration a child of this configuration.
+     *
      * @param configuration the child configuration.
      */
     public void addChild(Configuration configuration) {
@@ -92,6 +123,7 @@ public final class DefaultConfiguration implements Configuration {
 
     /**
      * Removes a child of this configuration.
+     *
      * @param configuration the child configuration to remove.
      */
     public void removeChild(final Configuration configuration) {
@@ -99,22 +131,39 @@ public final class DefaultConfiguration implements Configuration {
     }
 
     /**
-     * Adds an attribute to this configuration.
-     * @param attributeName the name of the attribute.
-     * @param value the value of the attribute.
+     * Adds n property to this configuration.
+     *
+     * @param attributeName the name of the property.
+     * @param value the value of the property.
+     * @deprecated This shall be removed in future releases. Please use
+     *      {@code addProperty(String propertyName, String value)} instead.
      */
+    @Deprecated(since = "8.45")
     public void addAttribute(String attributeName, String value) {
-        final String current = attributeMap.get(attributeName);
+        addProperty(attributeName, value);
+    }
+
+    /**
+     * Adds n property to this configuration.
+     *
+     * @param propertyName the name of the property.
+     * @param value the value of the property.
+     */
+    public void addProperty(String propertyName, String value) {
+        final String current = propertyMap.get(propertyName);
+        final String newValue;
         if (current == null) {
-            attributeMap.put(attributeName, value);
+            newValue = value;
         }
         else {
-            attributeMap.put(attributeName, current + "," + value);
+            newValue = current + "," + value;
         }
+        propertyMap.put(propertyName, newValue);
     }
 
     /**
      * Adds a custom message to this configuration.
+     *
      * @param key the message key
      * @param value the custom message pattern
      */
@@ -125,10 +174,21 @@ public final class DefaultConfiguration implements Configuration {
     /**
      * Returns an unmodifiable map instance containing the custom messages
      * for this configuration.
+     *
      * @return unmodifiable map containing custom messages
      */
     @Override
-    public ImmutableMap<String, String> getMessages() {
-        return ImmutableMap.copyOf(messages);
+    public Map<String, String> getMessages() {
+        return new HashMap<>(messages);
     }
+
+    /**
+     * Gets the thread mode configuration.
+     *
+     * @return the thread mode configuration.
+     */
+    public ThreadModeSettings getThreadModeSettings() {
+        return threadModeSettings;
+    }
+
 }

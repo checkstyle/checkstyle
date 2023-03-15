@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.indentation;
 
@@ -26,14 +26,14 @@ import java.util.Set;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * Factory for handlers. Looks up constructor via reflection.
  *
- * @author jrichard
  */
 public class HandlerFactory {
+
     /**
      * Registered handlers.
      */
@@ -42,7 +42,13 @@ public class HandlerFactory {
     /** Cache for created method call handlers. */
     private final Map<DetailAST, AbstractExpressionHandler> createdHandlers = new HashMap<>();
 
-    /** Creates a HandlerFactory. */
+    /**
+     * Creates a HandlerFactory.
+     *
+     * @noinspection OverlyCoupledMethod
+     * @noinspectionreason OverlyCoupledMethod - complex nature of indentation check
+     *      requires this coupling
+     */
     public HandlerFactory() {
         register(TokenTypes.CASE_GROUP, CaseHandler.class);
         register(TokenTypes.LITERAL_SWITCH, SwitchHandler.class);
@@ -64,8 +70,10 @@ public class HandlerFactory {
         register(TokenTypes.INTERFACE_DEF, ClassDefHandler.class);
         register(TokenTypes.IMPORT, ImportHandler.class);
         register(TokenTypes.ARRAY_INIT, ArrayInitHandler.class);
+        register(TokenTypes.ANNOTATION_ARRAY_INIT, AnnotationArrayInitHandler.class);
         register(TokenTypes.METHOD_CALL, MethodCallHandler.class);
         register(TokenTypes.CTOR_CALL, MethodCallHandler.class);
+        register(TokenTypes.SUPER_CTOR_CALL, MethodCallHandler.class);
         register(TokenTypes.LABELED_STAT, LabelHandler.class);
         register(TokenTypes.STATIC_INIT, StaticInitHandler.class);
         register(TokenTypes.INSTANCE_INIT, SlistHandler.class);
@@ -76,19 +84,23 @@ public class HandlerFactory {
         register(TokenTypes.LAMBDA, LambdaHandler.class);
         register(TokenTypes.ANNOTATION_DEF, ClassDefHandler.class);
         register(TokenTypes.ANNOTATION_FIELD_DEF, MethodDefHandler.class);
+        register(TokenTypes.SWITCH_RULE, SwitchRuleHandler.class);
+        register(TokenTypes.LITERAL_YIELD, YieldHandler.class);
+        register(TokenTypes.RECORD_DEF, ClassDefHandler.class);
+        register(TokenTypes.COMPACT_CTOR_DEF, MethodDefHandler.class);
     }
 
     /**
      * Registers a handler.
      *
+     * @param <T> type of the handler class object.
      * @param type
      *                type from TokenTypes
      * @param handlerClass
      *                the handler to register
-     * @param <T> type of the handler class object.
      */
     private <T> void register(int type, Class<T> handlerClass) {
-        final Constructor<T> ctor = CommonUtils.getConstructor(handlerClass,
+        final Constructor<T> ctor = CommonUtil.getConstructor(handlerClass,
                 IndentationCheck.class,
                 // current AST
                 DetailAST.class,
@@ -148,7 +160,7 @@ public class HandlerFactory {
         }
         else {
             final Constructor<?> handlerCtor = typeHandlers.get(ast.getType());
-            resultHandler = (AbstractExpressionHandler) CommonUtils.invokeConstructor(
+            resultHandler = (AbstractExpressionHandler) CommonUtil.invokeConstructor(
                 handlerCtor, indentCheck, ast, parent);
         }
         return resultHandler;
@@ -181,4 +193,5 @@ public class HandlerFactory {
     public void clearCreatedHandlers() {
         createdHandlers.clear();
     }
+
 }

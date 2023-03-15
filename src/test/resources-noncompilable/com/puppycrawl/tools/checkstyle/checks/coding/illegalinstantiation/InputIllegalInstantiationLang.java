@@ -1,7 +1,16 @@
+/*
+IllegalInstantiation
+classes = java.lang.Boolean,java.lang.String
+tokens = (default)CLASS_DEF
+
+
+*/
+
+//non-compiled with javac: compiling on jdk before 9
 package java.lang;
 
-class Input {
-    Boolean obj = new Boolean();
+class InputIllegalInstantiationLang {
+    Boolean obj = new Boolean(); // violation
     Integer obj2 = new Integer();
 }
 
@@ -9,5 +18,5 @@ class Boolean{}
 class Integer{}
 
 class Input2 {
-	String a = new String();
+	String a = new String(); // violation
 }

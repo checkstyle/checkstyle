@@ -1,8 +1,23 @@
-////////////////////////////////////////////////////////////////////////////////
-// Test case file for checkstyle.
-// Created: Feb-2001
-// Ignore error
-////////////////////////////////////////////////////////////////////////////////
+/*
+WhitespaceAround
+allowEmptyConstructors = (default)false
+allowEmptyMethods = (default)false
+allowEmptyTypes = (default)false
+allowEmptyLoops = (default)false
+allowEmptyLambdas = (default)false
+allowEmptyCatches = (default)false
+ignoreEnhancedForColon = (default)true
+tokens = (default)ASSIGN, BAND, BAND_ASSIGN, BOR, BOR_ASSIGN, BSR, BSR_ASSIGN, BXOR, \
+         BXOR_ASSIGN, COLON, DIV, DIV_ASSIGN, DO_WHILE, EQUAL, GE, GT, LAMBDA, LAND, \
+         LCURLY, LE, LITERAL_CATCH, LITERAL_DO, LITERAL_ELSE, LITERAL_FINALLY, \
+         LITERAL_FOR, LITERAL_IF, LITERAL_RETURN, LITERAL_SWITCH, LITERAL_SYNCHRONIZED, \
+         LITERAL_TRY, LITERAL_WHILE, LOR, LT, MINUS, MINUS_ASSIGN, MOD, MOD_ASSIGN, \
+         NOT_EQUAL, PLUS, PLUS_ASSIGN, QUESTION, RCURLY, SL, SLIST, SL_ASSIGN, SR, \
+         SR_ASSIGN, STAR, STAR_ASSIGN, LITERAL_ASSERT, TYPE_EXTENSION_AND
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.whitespace.whitespacearound;
 
 /**
@@ -144,27 +159,27 @@ final class InputWhitespaceAroundSimple
     // A very, very long line that is OK because it matches the regexp "^.*is OK.*regexp.*$"
     // long line that has a tab ->	<- and would be OK if tab counted as 1 char
     // tabs that count as one char because of their position ->	<-   ->	<-, OK
- 
-    /** some lines to test the error column after tabs */
+
+    /** some lines to test the violation column after tabs */
     void errorColumnAfterTabs()
     {
         // with tab-width 8 all statements below start at the same column,
         // with different combinations of ' ' and '\t' before the statement
-                int tab0 =1;
-        	int tab1 =1;
-         	int tab2 =1;
-		int tab3 =1;
-  	  	int tab4 =1;
-  	        int tab5 =1;
+                int tab0 =1; // violation ''=' is not followed by whitespace'
+        	int tab1 =1; // violation ''=' is not followed by whitespace'
+         	int tab2 =1; // violation ''=' is not followed by whitespace'
+		int tab3 =1; // violation ''=' is not followed by whitespace'
+  	  	int tab4 =1; // violation ''=' is not followed by whitespace'
+  	        int tab5 =1; // violation ''=' is not followed by whitespace'
     }
 
-    // FIXME:
-    /* FIXME: a
-     * FIXME:
-     * TODO
+    // MEMME:
+    /* MEMME: a
+     * MEMME:
+     * OOOO
      */
     /* NOTHING */
-    /* YES */ /* FIXME: x */ /* YES!! */
+    /* YES */ /* MEMME: x */ /* YES!! */
 
     /** test long comments **/
     void veryLong()
@@ -197,7 +212,7 @@ final class InputWhitespaceAroundSimple
     }
 }
 
-/** Test class for variable naming in for each clauses. */
+/** Test class for variable naming in for each clause. */
 class InputWhitespaceAroundSimple2
 {
     /** Some more Javadoc. */
@@ -220,6 +235,6 @@ enum MyEnum1
     /** XYZ constant */
     XYZ;
 
-    /** Should be mSomeMemeber */
+    /** Should be mSomeMember */
     private int someMember;
 }

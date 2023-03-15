@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,68 +15,55 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyForInitializerPadCheck.MSG_NOT_PRECEDED;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyForInitializerPadCheck.MSG_PRECEDED;
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
-import java.io.File;
-import java.io.IOException;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Before;
-import org.junit.Test;
-
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class EmptyForInitializerPadCheckTest
-    extends BaseCheckTestSupport {
-    private DefaultConfiguration checkConfig;
-
-    @Before
-    public void setUp() {
-        checkConfig = createCheckConfig(EmptyForInitializerPadCheck.class);
-    }
+    extends AbstractModuleTestSupport {
 
     @Override
-    protected String getPath(String filename) throws IOException {
-        return super.getPath("checks" + File.separator
-                + "whitespace" + File.separator + "emptyforinitializerpad"
-                + File.separator + filename);
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/checks/whitespace/emptyforinitializerpad";
     }
 
     @Test
     public void testGetRequiredTokens() {
         final EmptyForInitializerPadCheck checkObj = new EmptyForInitializerPadCheck();
         final int[] expected = {TokenTypes.FOR_INIT};
-        assertArrayEquals("Default required tokens are invalid",
-            expected, checkObj.getRequiredTokens());
+        assertWithMessage("Default required tokens are invalid")
+            .that(checkObj.getRequiredTokens())
+            .isEqualTo(expected);
     }
 
     @Test
     public void testDefault() throws Exception {
         final String[] expected = {
-            "48:14: " + getCheckMessage(MSG_PRECEDED, ";"),
+            "51:15: " + getCheckMessage(MSG_PRECEDED, ";"),
         };
-        verify(checkConfig, getPath("InputEmptyForInitializerPadDefaultConfig.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyForInitializerPadDefaultConfig.java"), expected);
     }
 
     @Test
     public void testSpaceOption() throws Exception {
-        checkConfig.addAttribute("option", PadOption.SPACE.toString());
         final String[] expected = {
-            "51:13: " + getCheckMessage(MSG_NOT_PRECEDED, ";"),
+            "54:14: " + getCheckMessage(MSG_NOT_PRECEDED, ";"),
         };
-        verify(checkConfig, getPath("InputEmptyForInitializerPad.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyForInitializerPad.java"), expected);
     }
 
     @Test
@@ -87,7 +74,9 @@ public class EmptyForInitializerPadCheckTest
         final int[] expected = {
             TokenTypes.FOR_INIT,
         };
-        assertArrayEquals("Default acceptable tokens are invalid", expected, actual);
+        assertWithMessage("Default acceptable tokens are invalid")
+            .that(actual)
+            .isEqualTo(expected);
     }
 
     /* Additional test for jacoco, since valueOf()
@@ -97,7 +86,9 @@ public class EmptyForInitializerPadCheckTest
     @Test
     public void testPadOptionValueOf() {
         final PadOption option = PadOption.valueOf("NOSPACE");
-        assertEquals("Result of valueOf is invalid", PadOption.NOSPACE, option);
+        assertWithMessage("Result of valueOf is invalid")
+            .that(option)
+            .isEqualTo(PadOption.NOSPACE);
     }
 
     /* Additional test for jacoco, since valueOf()
@@ -107,25 +98,50 @@ public class EmptyForInitializerPadCheckTest
     @Test
     public void testWrapOptionValueOf() {
         final WrapOption option = WrapOption.valueOf("EOL");
-        assertEquals("Result of valueOf is invalid", WrapOption.EOL, option);
+        assertWithMessage("Result of valueOf is invalid")
+            .that(option)
+            .isEqualTo(WrapOption.EOL);
+    }
+
+    @Test
+    public void testWithEmoji() throws Exception {
+        final String[] expected = {
+            "23:13: " + getCheckMessage(MSG_NOT_PRECEDED, ";"),
+            "28:25: " + getCheckMessage(MSG_NOT_PRECEDED, ";"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyForInitializerPadWithEmoji.java"), expected);
     }
 
     @Test
     public void testInvalidOption() throws Exception {
-        checkConfig.addAttribute("option", "invalid_option");
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(EmptyForInitializerPadCheck.class);
+        checkConfig.addProperty("option", "invalid_option");
 
         try {
-            final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+            final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-            verify(checkConfig, getPath("InputEmptyForInitializerPad.java"), expected);
-            fail("exception expected");
+            verifyWithInlineConfigParser(
+                    getPath("InputEmptyForInitializerPad2.java"), expected);
+            assertWithMessage("exception expected").fail();
         }
         catch (CheckstyleException ex) {
-            final String messageStart = "cannot initialize module "
-                + "com.puppycrawl.tools.checkstyle.TreeWalker - Cannot set property 'option' to "
-                + "'invalid_option' in module";
-            assertTrue("Invalid exception message, should start with: ",
-                ex.getMessage().startsWith(messageStart));
+            assertWithMessage("Invalid exception message")
+                .that(ex.getMessage())
+                .isEqualTo("cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker - "
+                    + "cannot initialize module com.puppycrawl.tools.checkstyle.checks."
+                    + "whitespace.EmptyForInitializerPadCheck - "
+                    + "Cannot set property 'option' to 'invalid_option'");
         }
+    }
+
+    @Test
+    public void testTrimOptionProperty() throws Exception {
+        final String[] expected = {
+            "15:14: " + getCheckMessage(MSG_NOT_PRECEDED, ";"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyForInitializerPadSetOptionTrim.java"), expected);
     }
 }

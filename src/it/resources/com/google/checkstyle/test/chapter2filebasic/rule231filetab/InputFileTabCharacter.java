@@ -120,9 +120,9 @@ final class InputFileTabCharacter
     // A very, very long line that is OK because it matches the regexp "^.*is OK.*regexp.*$"
     // long line that has a tab ->	<- and would be OK if tab counted as 1 char //warn
     // tabs that count as one char because of their position ->	<-   ->	<- //warn
- 
-    /** some lines to test the error column after tabs */
-    void errorColumnAfterTabs()
+
+    /** some lines to test the column after tabs */
+    void violateColumnAfterTabs()
     {
         // with tab-width 8 all statements below start at the same column,
         // with different combinations of ' ' and '\t' before the statement
@@ -134,13 +134,13 @@ final class InputFileTabCharacter
   	        int tab5 =1; //warn
     }
 
-    // FIXME:
-    /* FIXME: a
-     * FIXME:
-     * TODO
+    // MEMME:
+    /* MEMME: a
+     * MEMME:
+     * OOOO
      */
     /* NOTHING */
-    /* YES */ /* FIXME: x */ /* YES!! */
+    /* YES */ /* MEMME: x */ /* YES!! */
 
     /** test long comments **/
     void veryLong()
@@ -173,7 +173,7 @@ final class InputFileTabCharacter
     }
 }
 
-/** Test class for variable naming in for each clauses. */
+/** Test class for variable naming in for each clause. */
 class InputSimple2
 {
     /** Some more Javadoc. */
@@ -196,6 +196,6 @@ enum MyEnum1
     /** XYZ constant */
     XYZ;
 
-    /** Should be mSomeMemeber */
+    /** Should be mSomeMember */
     private int someMember;
 }

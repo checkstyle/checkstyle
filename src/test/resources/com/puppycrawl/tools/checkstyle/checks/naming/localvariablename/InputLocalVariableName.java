@@ -1,8 +1,11 @@
-////////////////////////////////////////////////////////////////////////////////
-// Test case file for checkstyle.
-// Created: Feb-2001
-// Ignore error
-////////////////////////////////////////////////////////////////////////////////
+/*
+LocalVariableName
+format = (default)^[a-z][a-zA-Z0-9]*$
+allowOneCharVarInForLoop = (default)false
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.naming.localvariablename;
 import java.io.*;
 /**
@@ -16,7 +19,7 @@ import java.io.*;
 final class InputLocalVariableName
 {
     // Long line ----------------------------------------------------------------
-    // Contains a tab ->	<-
+    // Contains a tab ->        <-
     // Contains trailing whitespace ->
 
     // Name format tests
@@ -116,7 +119,7 @@ final class InputLocalVariableName
     {
         // normal decl
         int abc = 0;
-        int ABC = 0;
+        int ABC = 0; // violation
 
         // final decls
         final int cde = 0;
@@ -127,9 +130,9 @@ final class InputLocalVariableName
         {
             String innerBlockVariable = "";
         }
-        for (int I = 0; I < 1; I++)
+        for (int I = 0; I < 1; I++) // violation
         {
-            String InnerBlockVariable = "";
+            String InnerBlockVariable = ""; // violation
         }
     }
 
@@ -142,29 +145,29 @@ final class InputLocalVariableName
     private static final int BAD__NAME = 3;
 
     // A very, very long line that is OK because it matches the regexp "^.*is OK.*regexp.*$"
-    // long line that has a tab ->	<- and would be OK if tab counted as 1 char
-    // tabs that count as one char because of their position ->	<-   ->	<-, OK
+    // long line that has a tab ->        <- and would be OK if tab counted as 1 char
+    // tabs that count as one char because of their position ->        <-   ->        <-, OK
 
-    /** some lines to test the error column after tabs */
+    /** some lines to test the violation column after tabs */
     void errorColumnAfterTabs()
     {
         // with tab-width 8 all statements below start at the same column,
         // with different combinations of ' ' and '\t' before the statement
                 int tab0 =1;
-        	int tab1 =1;
-         	int tab2 =1;
-		int tab3 =1;
-  	  	int tab4 =1;
-  	        int tab5 =1;
+                int tab1 =1;
+                 int tab2 =1;
+                int tab3 =1;
+                    int tab4 =1;
+                  int tab5 =1;
     }
 
-    // FIXME:
-    /* FIXME: a
-     * FIXME:
-     * TODO
+    // MEMME:
+    /* MEMME: a
+     * MEMME:
+     * OOOO
      */
     /* NOTHING */
-    /* YES */ /* FIXME: x */ /* YES!! */
+    /* YES */ /* MEMME: x */ /* YES!! */
 
     /** test long comments **/
     void veryLong()
@@ -197,17 +200,18 @@ final class InputLocalVariableName
     }
 }
 
-/** Test class for variable naming in for each clauses. */
+/** Test class for variable naming in for each clause. */
 class InputLocalVariableName2
 {
     /** Some more Javadoc. */
     public void doSomething()
     {
         //"O" should be named "o"
-        for (Object O : new java.util.ArrayList())
+        for (Object O : new java.util.ArrayList()) // violation
         {
 
         }
+        for (final int k_ : new int[] {}) {}
     }
 }
 
@@ -220,6 +224,6 @@ enum InputLocalVariableNameEnum1
     /** XYZ constant */
     XYZ;
 
-    /** Should be mSomeMemeber */
+    /** Should be mSomeMember */
     private int someMember;
 }

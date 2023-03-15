@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.indentation;
 
@@ -25,9 +25,9 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 /**
  * Handler for inner classes.
  *
- * @author jrichard
  */
 public class ObjectBlockHandler extends BlockParentHandler {
+
     /**
      * Construct an instance of this handler with the given indentation check,
      * abstract syntax tree, and parent handler.
@@ -66,7 +66,7 @@ public class ObjectBlockHandler extends BlockParentHandler {
         final DetailAST parentAST = getMainAst().getParent();
         IndentLevel indent = getParent().getIndent();
         if (parentAST.getType() == TokenTypes.LITERAL_NEW) {
-            indent.addAcceptedIndent(super.getIndentImpl());
+            indent = IndentLevel.addAcceptable(indent, super.getIndentImpl());
         }
         else if (parentAST.getType() == TokenTypes.ENUM_CONSTANT_DEF) {
             indent = super.getIndentImpl();
@@ -89,16 +89,18 @@ public class ObjectBlockHandler extends BlockParentHandler {
     @Override
     protected IndentLevel curlyIndent() {
         final IndentLevel indent = super.curlyIndent();
-        indent.addAcceptedIndent(indent.getFirstIndentLevel() + getLineWrappingIndentation());
-        return indent;
+        return IndentLevel.addAcceptable(indent, indent.getFirstIndentLevel()
+                + getLineWrappingIndentation());
     }
 
     /**
      * A shortcut for {@code IndentationCheck} property.
+     *
      * @return value of lineWrappingIndentation property
      *         of {@code IndentationCheck}
      */
     private int getLineWrappingIndentation() {
         return getIndentCheck().getLineWrappingIndentation();
     }
+
 }

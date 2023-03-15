@@ -1,13 +1,21 @@
+/*
+FinalLocalVariable
+validateEnhancedForLoopVariable = (default)false
+tokens = PARAMETER_DEF
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.coding.finallocalvariable;
 
-public class InputFinalLocalVariableNativeMethods
+public class InputFinalLocalVariableNativeMethods // ok
 {
-    public native String nativeFoo(int a, int b);    
+    public native String nativeFoo(int a, int b);
     private native double average(int n1, int n2);
 
      static {
          System.loadLibrary("foo");
-     }        
+     }
 
      public void print () {
          String str = nativeFoo(1, 4);

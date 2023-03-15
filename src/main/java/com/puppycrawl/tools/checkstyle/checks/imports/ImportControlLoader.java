@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
@@ -34,29 +34,53 @@ import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
-import com.puppycrawl.tools.checkstyle.api.AbstractLoader;
+import com.puppycrawl.tools.checkstyle.XmlLoader;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 
 /**
  * Responsible for loading the contents of an import control configuration file.
- * @author Oliver Burn
  */
-final class ImportControlLoader extends AbstractLoader {
+public final class ImportControlLoader extends XmlLoader {
+
     /** The public ID for the configuration dtd. */
     private static final String DTD_PUBLIC_ID_1_0 =
         "-//Puppy Crawl//DTD Import Control 1.0//EN";
+
+    /** The new public ID for version 1_0 of the configuration dtd. */
+    private static final String DTD_PUBLIC_CS_ID_1_0 =
+        "-//Checkstyle//DTD ImportControl Configuration 1.0//EN";
 
     /** The public ID for the configuration dtd. */
     private static final String DTD_PUBLIC_ID_1_1 =
         "-//Puppy Crawl//DTD Import Control 1.1//EN";
 
+    /** The new public ID for version 1_1 of the configuration dtd. */
+    private static final String DTD_PUBLIC_CS_ID_1_1 =
+        "-//Checkstyle//DTD ImportControl Configuration 1.1//EN";
+
     /** The public ID for the configuration dtd. */
     private static final String DTD_PUBLIC_ID_1_2 =
         "-//Puppy Crawl//DTD Import Control 1.2//EN";
 
+    /** The new public ID for version 1_2 of the configuration dtd. */
+    private static final String DTD_PUBLIC_CS_ID_1_2 =
+        "-//Checkstyle//DTD ImportControl Configuration 1.2//EN";
+
     /** The public ID for the configuration dtd. */
     private static final String DTD_PUBLIC_ID_1_3 =
-            "-//Puppy Crawl//DTD Import Control 1.3//EN";
+        "-//Puppy Crawl//DTD Import Control 1.3//EN";
+
+    /** The new public ID for version 1_3 of the configuration dtd. */
+    private static final String DTD_PUBLIC_CS_ID_1_3 =
+        "-//Checkstyle//DTD ImportControl Configuration 1.3//EN";
+
+    /** The public ID for the configuration dtd. */
+    private static final String DTD_PUBLIC_ID_1_4 =
+        "-//Puppy Crawl//DTD Import Control 1.4//EN";
+
+    /** The new public ID for version 1_4 of the configuration dtd. */
+    private static final String DTD_PUBLIC_CS_ID_1_4 =
+        "-//Checkstyle//DTD ImportControl Configuration 1.4//EN";
 
     /** The resource for the configuration dtd. */
     private static final String DTD_RESOURCE_NAME_1_0 =
@@ -72,13 +96,20 @@ final class ImportControlLoader extends AbstractLoader {
 
     /** The resource for the configuration dtd. */
     private static final String DTD_RESOURCE_NAME_1_3 =
-            "com/puppycrawl/tools/checkstyle/checks/imports/import_control_1_3.dtd";
+        "com/puppycrawl/tools/checkstyle/checks/imports/import_control_1_3.dtd";
 
-    /** The map to lookup the resource name by the id. */
+    /** The resource for the configuration dtd. */
+    private static final String DTD_RESOURCE_NAME_1_4 =
+        "com/puppycrawl/tools/checkstyle/checks/imports/import_control_1_4.dtd";
+
+    /** The map to look up the resource name by the id. */
     private static final Map<String, String> DTD_RESOURCE_BY_ID = new HashMap<>();
 
     /** Name for attribute 'pkg'. */
     private static final String PKG_ATTRIBUTE_NAME = "pkg";
+
+    /** Name for attribute 'name'. */
+    private static final String NAME_ATTRIBUTE_NAME = "name";
 
     /** Name for attribute 'strategyOnMismatch'. */
     private static final String STRATEGY_ON_MISMATCH_ATTRIBUTE_NAME = "strategyOnMismatch";
@@ -92,21 +123,31 @@ final class ImportControlLoader extends AbstractLoader {
     /** Qualified name for element 'subpackage'. */
     private static final String SUBPACKAGE_ELEMENT_NAME = "subpackage";
 
+    /** Qualified name for element 'file'. */
+    private static final String FILE_ELEMENT_NAME = "file";
+
     /** Qualified name for element 'allow'. */
     private static final String ALLOW_ELEMENT_NAME = "allow";
 
-    /** Used to hold the {@link ImportControl} objects. */
-    private final Deque<ImportControl> stack = new ArrayDeque<>();
+    /** Used to hold the {@link AbstractImportControl} objects. */
+    private final Deque<AbstractImportControl> stack = new ArrayDeque<>();
 
     static {
         DTD_RESOURCE_BY_ID.put(DTD_PUBLIC_ID_1_0, DTD_RESOURCE_NAME_1_0);
         DTD_RESOURCE_BY_ID.put(DTD_PUBLIC_ID_1_1, DTD_RESOURCE_NAME_1_1);
         DTD_RESOURCE_BY_ID.put(DTD_PUBLIC_ID_1_2, DTD_RESOURCE_NAME_1_2);
         DTD_RESOURCE_BY_ID.put(DTD_PUBLIC_ID_1_3, DTD_RESOURCE_NAME_1_3);
+        DTD_RESOURCE_BY_ID.put(DTD_PUBLIC_ID_1_4, DTD_RESOURCE_NAME_1_4);
+        DTD_RESOURCE_BY_ID.put(DTD_PUBLIC_CS_ID_1_0, DTD_RESOURCE_NAME_1_0);
+        DTD_RESOURCE_BY_ID.put(DTD_PUBLIC_CS_ID_1_1, DTD_RESOURCE_NAME_1_1);
+        DTD_RESOURCE_BY_ID.put(DTD_PUBLIC_CS_ID_1_2, DTD_RESOURCE_NAME_1_2);
+        DTD_RESOURCE_BY_ID.put(DTD_PUBLIC_CS_ID_1_3, DTD_RESOURCE_NAME_1_3);
+        DTD_RESOURCE_BY_ID.put(DTD_PUBLIC_CS_ID_1_4, DTD_RESOURCE_NAME_1_4);
     }
 
     /**
      * Constructs an instance.
+     *
      * @throws ParserConfigurationException if an error occurs.
      * @throws SAXException if an error occurs.
      */
@@ -125,40 +166,69 @@ final class ImportControlLoader extends AbstractLoader {
             final String pkg = safeGet(attributes, PKG_ATTRIBUTE_NAME);
             final MismatchStrategy strategyOnMismatch = getStrategyForImportControl(attributes);
             final boolean regex = containsRegexAttribute(attributes);
-            stack.push(new ImportControl(pkg, regex, strategyOnMismatch));
+            stack.push(new PkgImportControl(pkg, regex, strategyOnMismatch));
         }
         else if (SUBPACKAGE_ELEMENT_NAME.equals(qName)) {
-            final String name = safeGet(attributes, "name");
+            final String name = safeGet(attributes, NAME_ATTRIBUTE_NAME);
             final MismatchStrategy strategyOnMismatch = getStrategyForSubpackage(attributes);
             final boolean regex = containsRegexAttribute(attributes);
-            stack.push(new ImportControl(stack.peek(), name, regex, strategyOnMismatch));
+            final PkgImportControl parentImportControl = (PkgImportControl) stack.peek();
+            final AbstractImportControl importControl = new PkgImportControl(parentImportControl,
+                    name, regex, strategyOnMismatch);
+            parentImportControl.addChild(importControl);
+            stack.push(importControl);
         }
-        else if (ALLOW_ELEMENT_NAME.equals(qName) || "disallow".equals(qName)) {
-            // Need to handle either "pkg" or "class" attribute.
-            // May have "exact-match" for "pkg"
-            // May have "local-only"
-            final boolean isAllow = ALLOW_ELEMENT_NAME.equals(qName);
-            final boolean isLocalOnly = attributes.getValue("local-only") != null;
-            final String pkg = attributes.getValue(PKG_ATTRIBUTE_NAME);
+        else if (FILE_ELEMENT_NAME.equals(qName)) {
+            final String name = safeGet(attributes, NAME_ATTRIBUTE_NAME);
             final boolean regex = containsRegexAttribute(attributes);
-            final AbstractImportRule rule;
-            if (pkg == null) {
-                // handle class names which can be normal class names or regular
-                // expressions
-                final String clazz = safeGet(attributes, "class");
-                rule = new ClassImportRule(isAllow, isLocalOnly, clazz, regex);
-            }
-            else {
-                final boolean exactMatch =
-                        attributes.getValue("exact-match") != null;
-                rule = new PkgImportRule(isAllow, isLocalOnly, pkg, exactMatch, regex);
-            }
+            final PkgImportControl parentImportControl = (PkgImportControl) stack.peek();
+            final AbstractImportControl importControl = new FileImportControl(parentImportControl,
+                    name, regex);
+            parentImportControl.addChild(importControl);
+            stack.push(importControl);
+        }
+        else {
+            final AbstractImportRule rule = createImportRule(qName, attributes);
             stack.peek().addImportRule(rule);
         }
     }
 
     /**
+     * Constructs an instance of an import rule based on the given {@code name} and
+     * {@code attributes}.
+     *
+     * @param qName The qualified name.
+     * @param attributes The attributes attached to the element.
+     * @return The created import rule.
+     * @throws SAXException if an error occurs.
+     */
+    private static AbstractImportRule createImportRule(String qName, Attributes attributes)
+            throws SAXException {
+        // Need to handle either "pkg" or "class" attribute.
+        // May have "exact-match" for "pkg"
+        // May have "local-only"
+        final boolean isAllow = ALLOW_ELEMENT_NAME.equals(qName);
+        final boolean isLocalOnly = attributes.getValue("local-only") != null;
+        final String pkg = attributes.getValue(PKG_ATTRIBUTE_NAME);
+        final boolean regex = containsRegexAttribute(attributes);
+        final AbstractImportRule rule;
+        if (pkg == null) {
+            // handle class names which can be normal class names or regular
+            // expressions
+            final String clazz = safeGet(attributes, "class");
+            rule = new ClassImportRule(isAllow, isLocalOnly, clazz, regex);
+        }
+        else {
+            final boolean exactMatch =
+                    attributes.getValue("exact-match") != null;
+            rule = new PkgImportRule(isAllow, isLocalOnly, pkg, exactMatch, regex);
+        }
+        return rule;
+    }
+
+    /**
      * Check if the given attributes contain the regex attribute.
+     *
      * @param attributes the attributes.
      * @return if the regex attribute is contained.
      */
@@ -169,44 +239,31 @@ final class ImportControlLoader extends AbstractLoader {
     @Override
     public void endElement(String namespaceUri, String localName,
         String qName) {
-        if (SUBPACKAGE_ELEMENT_NAME.equals(qName)) {
+        if (SUBPACKAGE_ELEMENT_NAME.equals(qName) || FILE_ELEMENT_NAME.equals(qName)) {
             stack.pop();
         }
     }
 
     /**
      * Loads the import control file from a file.
+     *
      * @param uri the uri of the file to load.
-     * @return the root {@link ImportControl} object.
+     * @return the root {@link PkgImportControl} object.
      * @throws CheckstyleException if an error occurs.
      */
-    public static ImportControl load(URI uri) throws CheckstyleException {
-
-        InputStream inputStream = null;
-        try {
-            inputStream = uri.toURL().openStream();
-            final InputSource source = new InputSource(inputStream);
-            return load(source, uri);
-        }
-        catch (MalformedURLException ex) {
-            throw new CheckstyleException("syntax error in url " + uri, ex);
-        }
-        catch (IOException ex) {
-            throw new CheckstyleException("unable to find " + uri, ex);
-        }
-        finally {
-            closeStream(inputStream);
-        }
+    public static PkgImportControl load(URI uri) throws CheckstyleException {
+        return loadUri(uri);
     }
 
     /**
      * Loads the import control file from a {@link InputSource}.
+     *
      * @param source the source to load from.
      * @param uri uri of the source being loaded.
-     * @return the root {@link ImportControl} object.
+     * @return the root {@link PkgImportControl} object.
      * @throws CheckstyleException if an error occurs.
      */
-    private static ImportControl load(InputSource source,
+    private static PkgImportControl load(InputSource source,
         URI uri) throws CheckstyleException {
         try {
             final ImportControlLoader loader = new ImportControlLoader();
@@ -223,32 +280,37 @@ final class ImportControlLoader extends AbstractLoader {
     }
 
     /**
-     * This method exists only due to bug in cobertura library
-     * https://github.com/cobertura/cobertura/issues/170
-     * @param inputStream the InputStream to close
+     * Loads the import control file from a URI.
+     *
+     * @param uri the uri of the file to load.
+     * @return the root {@link PkgImportControl} object.
      * @throws CheckstyleException if an error occurs.
      */
-    private static void closeStream(InputStream inputStream) throws CheckstyleException {
-        if (inputStream != null) {
-            try {
-                inputStream.close();
-            }
-            catch (IOException ex) {
-                throw new CheckstyleException("unable to close input stream", ex);
-            }
+    private static PkgImportControl loadUri(URI uri) throws CheckstyleException {
+        try (InputStream inputStream = uri.toURL().openStream()) {
+            final InputSource source = new InputSource(inputStream);
+            return load(source, uri);
+        }
+        catch (MalformedURLException ex) {
+            throw new CheckstyleException("syntax error in url " + uri, ex);
+        }
+        catch (IOException ex) {
+            throw new CheckstyleException("unable to find " + uri, ex);
         }
     }
 
     /**
-     * Returns root ImportControl.
-     * @return the root {@link ImportControl} object loaded.
+     * Returns root PkgImportControl.
+     *
+     * @return the root {@link PkgImportControl} object loaded.
      */
-    private ImportControl getRoot() {
-        return stack.peek();
+    private PkgImportControl getRoot() {
+        return (PkgImportControl) stack.peek();
     }
 
     /**
      * Utility to get a strategyOnMismatch property for "import-control" tag.
+     *
      * @param attributes collect to get attribute from.
      * @return the value of the attribute.
      */
@@ -263,6 +325,7 @@ final class ImportControlLoader extends AbstractLoader {
 
     /**
      * Utility to get a strategyOnMismatch property for "subpackage" tag.
+     *
      * @param attributes collect to get attribute from.
      * @return the value of the attribute.
      */
@@ -281,6 +344,7 @@ final class ImportControlLoader extends AbstractLoader {
     /**
      * Utility to safely get an attribute. If it does not exist an exception
      * is thrown.
+     *
      * @param attributes collect to get attribute from.
      * @param name name of the attribute to get.
      * @return the value of the attribute.
@@ -296,4 +360,5 @@ final class ImportControlLoader extends AbstractLoader {
         }
         return returnValue;
     }
+
 }

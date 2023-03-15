@@ -44,15 +44,15 @@ public class InputRightCurlyDoWhile {
                         if( prog < user ) {
                             String.CASE_INSENSITIVE_ORDER.equals("My number is less than yours.");
                         } else {
-                            String.CASE_INSENSITIVE_ORDER.equals("My number is greater than yours.");
+                            String.CASE_INSENSITIVE_ORDER.equals("My number is greater than yours");
                         }
                     } else {
-                        String.CASE_INSENSITIVE_ORDER.equals("Error!");
+                        String.CASE_INSENSITIVE_ORDER.equals("Violation!");
                     }
                 }
             } while( user != prog );
         } else {
-            String.CASE_INSENSITIVE_ORDER.equals("Error!");
+            String.CASE_INSENSITIVE_ORDER.equals("Violation!");
         }
         String.CASE_INSENSITIVE_ORDER.equals("Goodbye!");
     }

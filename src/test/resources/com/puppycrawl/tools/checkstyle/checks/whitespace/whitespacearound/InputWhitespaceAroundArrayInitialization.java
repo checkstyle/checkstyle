@@ -1,32 +1,48 @@
+/*
+WhitespaceAround
+allowEmptyConstructors = (default)false
+allowEmptyMethods = (default)false
+allowEmptyTypes = (default)false
+allowEmptyLoops = (default)false
+allowEmptyLambdas = (default)false
+allowEmptyCatches = (default)false
+ignoreEnhancedForColon = (default)true
+tokens = ARRAY_INIT
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.whitespace.whitespacearound;
 
 public class InputWhitespaceAroundArrayInitialization {
-    
+
     public void arrayInitTest() {
-        
-        final int[] COLORS = new int[]{5 }; // missing WS before "{"
-        
+
+        final int[] COLORS = new int[]{5 }; // violation ''{' is not preceded with whitespace'
+
         final int[] COLORS1 = new int[] {5 }; // valid
-        
-        final String[][] COLORS2 = {{"Green"}, {"Red"}}; //missing WS before inner array
-        
-        final String[][] COLORS21 = { {"Green", "Red"},{"White"} }; //missing WS between "," and "{"
-        
+
+        final String[][] COLORS2 = {{""}, {""}}; // violation ''{' is not preceded with whitespace'
+
+        final String[][] COLORS21
+                = { {"", ""},{""} }; // violation ''{' is not preceded with whitespace'
+
         final String[][] COLORS22 = { {"White", "Yellow"}, {"Pink"} }; //valid
-        
+
         final String[][][] COLORS31 = { { {"Black", "Blue"}, {"Gray", "White"}},
-        		                       { {"Green", "Brown", "Magneta"}},
-        		                       { {"Red", "Purple", "Violet"}} }; //valid
-        
-        final String[][][] COLORS32 = { {{"Red", "Green"},{"Pink"}} }; //missing WS before "{"Red"" and ",{"Pink""
-       
-        final String[][][] COLORS33 = {{{"White"}}}; //missing WS before "{"
-        
-        final String[][][][] COLORS41 = { { { {"Orange"}, {"Green"}}, { {"Purple"}}}, { { {"Yellow"}}} }; //valid
-        
-        final String[][][][] COLORS42 = { { {{"White", "Blue"}, //missing WS between "{"
-                                             {"Gray", "Black"},},},
-                                             { { {"Red"}}}};
+                                       { {"Green", "Brown", "Magneta"}},
+                                       { {"Red", "Purple", "Violet"}} }; //valid
+
+        final String[][][] COLORS32 = { {{"Red", "Green"},{"Pink"}} }; // 2 violations
+
+        final String[][][] COLORS33 = {{{"White"}}}; // 2 violations
+
+        final String[][][][] COLORS41 = { { { {"Green"}}, { {"Purple"}}}, { { {"Yellow"}}} };//valid
+
+        final String[][][][] COLORS42 = {
+                { {{"", ""}, // violation ''{' is not preceded with whitespace'
+                   {"Gray", "Black"},},},
+                   { { {"Red"}}}};
 
     }
 

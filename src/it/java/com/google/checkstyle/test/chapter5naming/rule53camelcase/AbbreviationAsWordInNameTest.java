@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,55 +15,54 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.google.checkstyle.test.chapter5naming.rule53camelcase;
 
-import java.io.File;
 import java.io.IOException;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import com.google.checkstyle.test.base.BaseCheckTestSupport;
+import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.naming.AbbreviationAsWordInNameCheck;
 
-public class AbbreviationAsWordInNameTest extends BaseCheckTestSupport {
+public class AbbreviationAsWordInNameTest extends AbstractGoogleModuleTestSupport {
 
     private static final String MSG_KEY = "abbreviation.as.word";
     private final Class<AbbreviationAsWordInNameCheck> clazz = AbbreviationAsWordInNameCheck.class;
 
     @Override
-    protected String getPath(String fileName) throws IOException {
-        return super.getPath("chapter5naming" + File.separator + "rule53camelcase"
-                + File.separator + fileName);
+    protected String getPackageLocation() {
+        return "com/google/checkstyle/test/chapter5naming/rule53camelcase";
     }
 
     @Test
     public void testAbbreviationAsWordInName() throws Exception {
-
-        final int maxCapitalCount = 2;
+        final int maxCapitalCount = 1;
 
         final String[] expected = {
-            "50: " + getWarningMessage("newCustomerID", maxCapitalCount),
-            "52: " + getWarningMessage("supportsIPv6OnIOS", maxCapitalCount),
-            "54: " + getWarningMessage("XMLHTTPRequest", maxCapitalCount),
-            "58: " + getWarningMessage("newCustomerID", maxCapitalCount),
-            "60: " + getWarningMessage("supportsIPv6OnIOS", maxCapitalCount),
-            "62: " + getWarningMessage("XMLHTTPRequest", maxCapitalCount),
-            "67: " + getWarningMessage("newCustomerID", maxCapitalCount),
-            "69: " + getWarningMessage("supportsIPv6OnIOS", maxCapitalCount),
-            "71: " + getWarningMessage("XMLHTTPRequest", maxCapitalCount),
+            "51:9: " + getWarningMessage("newCustomerID", maxCapitalCount),
+            "53:13: " + getWarningMessage("supportsIPv6OnIOS", maxCapitalCount),
+            "55:10: " + getWarningMessage("XMLHTTPRequest", maxCapitalCount),
+            "59:13: " + getWarningMessage("newCustomerID", maxCapitalCount),
+            "61:17: " + getWarningMessage("supportsIPv6OnIOS", maxCapitalCount),
+            "63:14: " + getWarningMessage("XMLHTTPRequest", maxCapitalCount),
+            "69:17: " + getWarningMessage("newCustomerID", maxCapitalCount),
+            "71:21: " + getWarningMessage("supportsIPv6OnIOS", maxCapitalCount),
+            "73:18: " + getWarningMessage("XMLHTTPRequest", maxCapitalCount),
         };
 
         final String filePath = getPath("InputAbbreviationAsWordInTypeNameCheck.java");
 
-        final Configuration checkConfig = getCheckConfig("AbbreviationAsWordInName");
+        final Configuration checkConfig = getModuleConfig("AbbreviationAsWordInName");
         final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 
-    private String getWarningMessage(String typeName, int expectedCapitalCount) {
+    private String getWarningMessage(String typeName, int expectedCapitalCount)
+            throws IOException {
         return getCheckMessage(clazz, MSG_KEY, typeName, expectedCapitalCount);
     }
+
 }

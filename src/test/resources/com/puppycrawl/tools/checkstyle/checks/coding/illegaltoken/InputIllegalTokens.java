@@ -1,3 +1,10 @@
+/*
+IllegalToken
+tokens = (default)LABELED_STAT
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.coding.illegaltoken;
 
 /**
@@ -16,9 +23,9 @@ public class InputIllegalTokens
                 break;
         }
     }
-    
+
     public native void nativeMethod();
-    
+
     public void methodWithLiterals()
     {
         final String ref = "<a href=\"";
@@ -26,9 +33,9 @@ public class InputIllegalTokens
     }
 
     public void methodWithLabels() {
-        label:
+        label: // violation
         {
-            anotherLabel: // some comment href
+            anotherLabel: // violation
             do {
                 continue anotherLabel;
             } while (false);

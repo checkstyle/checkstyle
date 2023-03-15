@@ -1,17 +1,21 @@
 /*
-Input test file for RequireThisCheck.
-Created: 2017
- */
+RequireThis
+checkFields = (default)true
+checkMethods = false
+validateOnlyOverlapping = false
+
+
+*/
 
 package com.puppycrawl.tools.checkstyle.checks.coding.requirethis;
 
-class InputRequireThisAllowLocalVars {
+class InputRequireThisAllowLocalVars { // ok
 
     private String s1 = "foo1";
     String s2 = "foo2";
 
     InputRequireThisAllowLocalVars() {
-        s1 = "bar1"; // Violation. Requires "this".
+        s1 = "bar1"; // violation 'Reference to instance variable 's1' needs "this.".'
         String s2;
         s2 = "bar2"; // No violation. Local var allowed.
     }
@@ -19,7 +23,7 @@ class InputRequireThisAllowLocalVars {
     public int getS1() {
         String s1 = null;
         s1 = "bar"; // No violation
-        s1 = s1;    // Violation. "this" required here to resolve any confusion due to overlapping.
+        s1 = s1; // violation 'Reference to instance variable 's1' needs "this.".'
         return 1;
     }
 
@@ -32,18 +36,18 @@ class InputRequireThisAllowLocalVars {
 
     String getS2() {
         String s2 = null;
-        s2+=s2; // Violation. "this" required here to resolve any confusion due to overlapping.
+        s2+=s2; // violation 'Reference to instance variable 's2' needs "this.".'
         return "return";
     }
 
     String getS2(String s2) {
-        s2 = null; // Violation. Requires "this". s2 is a param not a local var.
+        s2 = null; // violation 'Reference to instance variable 's2' needs "this.".'
         return s2; // No violation. param is returned.
     }
 
     String getS2(int a) {
         String s2 = " ";
-        s2 += s2;  // Violation. "this" required here to resolve any confusion due to overlapping.
-        return s1; // Violation. Requires "this".
+        s2 += s2; // violation 'Reference to instance variable 's2' needs "this.".'
+        return s1; // violation 'Reference to instance variable 's1' needs "this.".'
     }
 }

@@ -1,3 +1,14 @@
+/*
+ConstantName
+format = (default)^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$
+applyToPublic = (default)true
+applyToProtected = (default)true
+applyToPackage = (default)true
+applyToPrivate = (default)true
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.naming.constantname;
 
 
@@ -42,15 +53,15 @@ public class InputConstantNameMemberExtended
 
 interface In
 {
-    public int mPublic = 0;
-    int mProtected = 0;
-    int mPackage = 0;
-    int mPrivate = 0;
+    public int mPublic = 0; // violation
+    int mProtected = 0; // violation
+    int mPackage = 0; // violation
+    int mPrivate = 0; // violation
 
-    public int _public = 0;
-    int _protected = 0;
-    int _package = 0;
-    int _private = 0;
+    public int _public = 0; // violation
+    int _protected = 0; // violation
+    int _package = 0; // violation
+    int _private = 0; // violation
 }
 
 enum Direction {

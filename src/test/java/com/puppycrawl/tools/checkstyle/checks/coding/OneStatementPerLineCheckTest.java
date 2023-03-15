@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,95 +15,109 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck.MSG_KEY;
 
-import java.io.File;
-import java.io.IOException;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Assert;
-import org.junit.Test;
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-
-public class OneStatementPerLineCheckTest extends BaseCheckTestSupport {
-    @Override
-    protected String getPath(String filename) throws IOException {
-        return super.getPath("checks" + File.separator
-                + "coding" + File.separator
-                + "onestatementperline" + File.separator
-                + filename);
-    }
+public class OneStatementPerLineCheckTest extends AbstractModuleTestSupport {
 
     @Override
-    protected String getNonCompilablePath(String filename) throws IOException {
-        return super.getNonCompilablePath("checks" + File.separator
-                + "coding" + File.separator
-                + "onestatementperline" + File.separator
-                + filename);
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/checks/coding/onestatementperline";
     }
 
     @Test
     public void testMultiCaseClass() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(OneStatementPerLineCheck.class);
         final String[] expected = {
-            "24:59: " + getCheckMessage(MSG_KEY),
-            "104:21: " + getCheckMessage(MSG_KEY),
-            "131:14: " + getCheckMessage(MSG_KEY),
-            "157:15: " + getCheckMessage(MSG_KEY),
-            "169:23: " + getCheckMessage(MSG_KEY),
-            "189:19: " + getCheckMessage(MSG_KEY),
-            "192:59: " + getCheckMessage(MSG_KEY),
+            "13:59: " + getCheckMessage(MSG_KEY),
+            "93:21: " + getCheckMessage(MSG_KEY),
+            "120:14: " + getCheckMessage(MSG_KEY),
+            "146:15: " + getCheckMessage(MSG_KEY),
+            "158:23: " + getCheckMessage(MSG_KEY),
+            "178:19: " + getCheckMessage(MSG_KEY),
+            "181:59: " + getCheckMessage(MSG_KEY),
         };
 
-        verify(checkConfig,
-            getPath("InputOneStatementPerLineSingleLine.java"),
+        verifyWithInlineConfigParser(
+                getPath("InputOneStatementPerLineSingleLine.java"),
             expected);
     }
 
     @Test
     public void testTokensNotNull() {
         final OneStatementPerLineCheck check = new OneStatementPerLineCheck();
-        Assert.assertNotNull(check.getAcceptableTokens());
-        Assert.assertNotNull(check.getDefaultTokens());
-        Assert.assertNotNull(check.getRequiredTokens());
+        assertWithMessage("Acceptable tokens should not be null")
+            .that(check.getAcceptableTokens())
+            .isNotNull();
+        assertWithMessage("Default tokens should not be null")
+            .that(check.getDefaultTokens())
+            .isNotNull();
+        assertWithMessage("Required tokens should not be null")
+            .that(check.getRequiredTokens())
+            .isNotNull();
     }
 
     @Test
     public void testWithMultilineStatements() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(OneStatementPerLineCheck.class);
         final String[] expected = {
-            "44:21: " + getCheckMessage(MSG_KEY),
-            "61:17: " + getCheckMessage(MSG_KEY),
-            "69:17: " + getCheckMessage(MSG_KEY),
-            "81:10: " + getCheckMessage(MSG_KEY),
-            "90:28: " + getCheckMessage(MSG_KEY),
-            "135:39: " + getCheckMessage(MSG_KEY),
-            "168:110: " + getCheckMessage(MSG_KEY),
-            "179:107: " + getCheckMessage(MSG_KEY),
+            "49:21: " + getCheckMessage(MSG_KEY),
+            "66:17: " + getCheckMessage(MSG_KEY),
+            "74:17: " + getCheckMessage(MSG_KEY),
+            "86:10: " + getCheckMessage(MSG_KEY),
+            "95:28: " + getCheckMessage(MSG_KEY),
+            "140:39: " + getCheckMessage(MSG_KEY),
+            "173:46: " + getCheckMessage(MSG_KEY),
+            "184:47: " + getCheckMessage(MSG_KEY),
         };
 
-        verify(checkConfig,
-            getPath("InputOneStatementPerLineMultiline.java"),
+        verifyWithInlineConfigParser(
+                getPath("InputOneStatementPerLineMultiline.java"),
             expected);
     }
 
     @Test
     public void oneStatementNonCompilableInputTest() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(OneStatementPerLineCheck.class);
         final String[] expected = {
-            "32:6: " + getCheckMessage(MSG_KEY),
-            "37:58: " + getCheckMessage(MSG_KEY),
-            "38:58: " + getCheckMessage(MSG_KEY),
-            "38:74: " + getCheckMessage(MSG_KEY),
-            "39:50: " + getCheckMessage(MSG_KEY),
-            "43:91: " + getCheckMessage(MSG_KEY),
+            "39:4: " + getCheckMessage(MSG_KEY),
+            "44:54: " + getCheckMessage(MSG_KEY),
+            "45:54: " + getCheckMessage(MSG_KEY),
+            "45:70: " + getCheckMessage(MSG_KEY),
+            "46:46: " + getCheckMessage(MSG_KEY),
+            "50:81: " + getCheckMessage(MSG_KEY),
         };
 
-        verify(checkConfig, getNonCompilablePath("InputOneStatementPerLine.java"), expected);
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputOneStatementPerLine.java"), expected);
     }
+
+    @Test
+    public void testResourceReferenceVariableIgnored() throws Exception {
+        final String[] expected = {
+            "32:42: " + getCheckMessage(MSG_KEY),
+            "36:43: " + getCheckMessage(MSG_KEY),
+            "42:46: " + getCheckMessage(MSG_KEY),
+            "46:46: " + getCheckMessage(MSG_KEY),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputOneStatementPerLineTryWithResources.java"),
+                expected);
+    }
+
+    @Test
+    public void testResourcesIgnored() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputOneStatementPerLineTryWithResourcesIgnore.java"),
+                expected);
+    }
+
 }

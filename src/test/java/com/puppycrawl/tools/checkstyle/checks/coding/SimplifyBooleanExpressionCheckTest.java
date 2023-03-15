@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,50 +15,58 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.coding.SimplifyBooleanExpressionCheck.MSG_KEY;
 
-import java.io.File;
-import java.io.IOException;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Assert;
-import org.junit.Test;
-
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 
 public class SimplifyBooleanExpressionCheckTest
-    extends BaseCheckTestSupport {
+    extends AbstractModuleTestSupport {
+
     @Override
-    protected String getPath(String filename) throws IOException {
-        return super.getPath("checks" + File.separator
-                + "coding" + File.separator
-                + "simplifybooleanexpression" + File.separator
-                + filename);
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/checks/coding/simplifybooleanexpression";
     }
 
     @Test
     public void testIt() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(SimplifyBooleanExpressionCheck.class);
         final String[] expected = {
-            "20:18: " + getCheckMessage(MSG_KEY),
-            "41:36: " + getCheckMessage(MSG_KEY),
-            "42:36: " + getCheckMessage(MSG_KEY),
-            "43:16: " + getCheckMessage(MSG_KEY),
-            "43:32: " + getCheckMessage(MSG_KEY),
+            "22:18: " + getCheckMessage(MSG_KEY),
+            "43:36: " + getCheckMessage(MSG_KEY),
+            "44:36: " + getCheckMessage(MSG_KEY),
+            "45:16: " + getCheckMessage(MSG_KEY),
+            "45:32: " + getCheckMessage(MSG_KEY),
+            "95:27: " + getCheckMessage(MSG_KEY),
+            "96:24: " + getCheckMessage(MSG_KEY),
+            "98:27: " + getCheckMessage(MSG_KEY),
+            "104:23: " + getCheckMessage(MSG_KEY),
+            "106:17: " + getCheckMessage(MSG_KEY),
+            "109:21: " + getCheckMessage(MSG_KEY),
+            "110:23: " + getCheckMessage(MSG_KEY),
+            "111:20: " + getCheckMessage(MSG_KEY),
         };
-        verify(checkConfig, getPath("InputSimplifyBooleanExpression.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputSimplifyBooleanExpression.java"), expected);
     }
 
     @Test
     public void testTokensNotNull() {
         final SimplifyBooleanExpressionCheck check = new SimplifyBooleanExpressionCheck();
-        Assert.assertNotNull(check.getAcceptableTokens());
-        Assert.assertNotNull(check.getDefaultTokens());
-        Assert.assertNotNull(check.getRequiredTokens());
+        assertWithMessage("Acceptable tokens should not be null")
+            .that(check.getAcceptableTokens())
+            .isNotNull();
+        assertWithMessage("Default tokens should not be null")
+            .that(check.getDefaultTokens())
+            .isNotNull();
+        assertWithMessage("Required tokens should not be null")
+            .that(check.getRequiredTokens())
+            .isNotNull();
     }
+
 }

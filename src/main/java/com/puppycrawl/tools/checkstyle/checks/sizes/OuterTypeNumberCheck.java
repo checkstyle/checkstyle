@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,18 +15,58 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.sizes;
 
+import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * Checks for the number of defined types at the "outer" level.
- * @author oliverb
+ * <p>
+ * Checks for the number of types declared at the <i>outer</i> (or <i>root</i>) level in a file.
+ * </p>
+ * <p>
+ * Rationale: It is considered good practice to only define one outer type per file.
+ * </p>
+ * <ul>
+ * <li>
+ * Property {@code max} - Specify the maximum number of outer types allowed.
+ * Type is {@code int}.
+ * Default value is {@code 1}.
+ * </li>
+ * </ul>
+ * <p>
+ * To configure the check to accept 1 outer type per file:
+ * </p>
+ * <pre>
+ * &lt;module name="OuterTypeNumber"/&gt;
+ * </pre>
+ * <p>
+ * To configure the check to accept 2 outer types per file:
+ * </p>
+ * <pre>
+ * &lt;module name="OuterTypeNumber"&gt;
+ *   &lt;property name="max" value="2"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code maxOuterTypes}
+ * </li>
+ * </ul>
+ *
+ * @since 5.0
  */
+@FileStatefulCheck
 public class OuterTypeNumberCheck extends AbstractCheck {
 
     /**
@@ -35,7 +75,7 @@ public class OuterTypeNumberCheck extends AbstractCheck {
      */
     public static final String MSG_KEY = "maxOuterTypes";
 
-    /** The maximum allowed number of outer types. */
+    /** Specify the maximum number of outer types allowed. */
     private int max = 1;
     /** Tracks the current depth in types. */
     private int currentDepth;
@@ -44,18 +84,23 @@ public class OuterTypeNumberCheck extends AbstractCheck {
 
     @Override
     public int[] getDefaultTokens() {
-        return getAcceptableTokens();
+        return getRequiredTokens();
     }
 
     @Override
     public int[] getAcceptableTokens() {
-        return new int[] {TokenTypes.CLASS_DEF, TokenTypes.INTERFACE_DEF,
-            TokenTypes.ENUM_DEF, TokenTypes.ANNOTATION_DEF, };
+        return getRequiredTokens();
     }
 
     @Override
     public int[] getRequiredTokens() {
-        return getAcceptableTokens();
+        return new int[] {
+            TokenTypes.CLASS_DEF,
+            TokenTypes.INTERFACE_DEF,
+            TokenTypes.ENUM_DEF,
+            TokenTypes.ANNOTATION_DEF,
+            TokenTypes.RECORD_DEF,
+        };
     }
 
     @Override
@@ -85,10 +130,12 @@ public class OuterTypeNumberCheck extends AbstractCheck {
     }
 
     /**
-     * Sets the maximum allowed number of outer types.
+     * Setter to specify the maximum number of outer types allowed.
+     *
      * @param max the new number.
      */
     public void setMax(int max) {
         this.max = max;
     }
+
 }

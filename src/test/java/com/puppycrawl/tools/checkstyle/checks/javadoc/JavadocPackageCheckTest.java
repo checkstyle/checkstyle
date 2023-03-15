@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,121 +15,134 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck.MSG_LEGACY_PACKAGE_HTML;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck.MSG_PACKAGE_INFO;
 
 import java.io.File;
-import java.io.IOException;
+import java.util.Collections;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.api.Configuration;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import com.puppycrawl.tools.checkstyle.api.FileText;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class JavadocPackageCheckTest
-    extends BaseCheckTestSupport {
-    @Override
-    protected String getPath(String filename) throws IOException {
-        return super.getPath("checks" + File.separator
-                + "javadoc" + File.separator + filename);
-    }
+    extends AbstractModuleTestSupport {
 
     @Override
-    protected DefaultConfiguration createCheckerConfig(
-        Configuration config) {
-        final DefaultConfiguration dc = new DefaultConfiguration("root");
-        dc.addChild(config);
-        return dc;
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/checks/javadoc/javadocpackage";
     }
 
     @Test
     public void testMissing() throws Exception {
-        final Configuration checkConfig = createCheckConfig(JavadocPackageCheck.class);
         final String[] expected = {
-            "0: " + getCheckMessage(MSG_PACKAGE_INFO),
+            "1: " + getCheckMessage(MSG_PACKAGE_INFO),
         };
-        verify(
-            createChecker(checkConfig),
-            getPath("InputBadCls.java"),
-            getPath("InputBadCls.java"),
+        verifyWithInlineConfigParser(
+            getPath("InputJavadocPackageBadCls.java"),
             expected);
     }
 
     @Test
     public void testMissingWithAllowLegacy() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(JavadocPackageCheck.class);
-        checkConfig.addAttribute("allowLegacy", "true");
         final String[] expected = {
-            "0: " + getCheckMessage(MSG_PACKAGE_INFO),
+            "1: " + getCheckMessage(MSG_PACKAGE_INFO),
         };
-        verify(
-            createChecker(checkConfig),
-            getPath("InputBadCls.java"),
-            getPath("InputBadCls.java"),
+        verifyWithInlineConfigParser(
+            getPath("InputJavadocPackageBadCls2.java"),
             expected);
     }
 
     @Test
     public void testWithMultipleFiles() throws Exception {
-        final Configuration checkConfig = createCheckConfig(JavadocPackageCheck.class);
-        final String path1 = getPath("InputNoJavadoc.java");
-        final String path2 = getPath("InputBadTag.java");
         final String[] expected = {
-            "0: " + getCheckMessage(MSG_PACKAGE_INFO),
+            "1: " + getCheckMessage(MSG_PACKAGE_INFO),
         };
-        verify(
-            createChecker(checkConfig),
-            new File[] {new File(path1), new File(path2)},
-            path1,
-            expected);
+        verifyWithInlineConfigParser(getPath("InputJavadocPackageNoJavadoc.java"),
+            getPath("InputJavadocPackageBadTag.java"), expected);
     }
 
     @Test
     public void testBoth() throws Exception {
-        final Configuration checkConfig = createCheckConfig(JavadocPackageCheck.class);
         final String[] expected = {
-            "0: " + getCheckMessage(MSG_LEGACY_PACKAGE_HTML),
+            "1: " + getCheckMessage(MSG_LEGACY_PACKAGE_HTML),
         };
-        verify(createChecker(checkConfig),
-            getPath("bothfiles" + File.separator + "InputIgnored.java"),
-            getPath("bothfiles" + File.separator + "InputIgnored.java"), expected);
+        verifyWithInlineConfigParser(
+            getPath("bothfiles" + File.separator + "InputJavadocPackageBothIgnored.java"),
+            expected);
     }
 
     @Test
     public void testHtmlDisallowed() throws Exception {
-        final Configuration checkConfig = createCheckConfig(JavadocPackageCheck.class);
         final String[] expected = {
-            "0: " + getCheckMessage(MSG_PACKAGE_INFO),
+            "1: " + getCheckMessage(MSG_PACKAGE_INFO),
         };
-        verify(createChecker(checkConfig),
-            getPath("pkghtml" + File.separator + "InputIgnored.java"),
-            getPath("pkghtml" + File.separator + "InputIgnored.java"), expected);
+        verifyWithInlineConfigParser(
+            getPath("pkghtml" + File.separator + "InputJavadocPackageHtmlIgnored.java"),
+            expected);
     }
 
     @Test
     public void testHtmlAllowed() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(JavadocPackageCheck.class);
-        checkConfig.addAttribute("allowLegacy", "true");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(createChecker(checkConfig),
-            getPath("pkghtml" + File.separator + "InputIgnored.java"),
-            getPath("pkghtml" + File.separator + "package-info.java"), expected);
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+            getPath("pkghtml" + File.separator + "InputJavadocPackageHtmlIgnored2.java"),
+            getPath("noparentfile" + File.separator + "package-info.java"),
+            expected);
     }
 
     @Test
     public void testAnnotation() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(JavadocPackageCheck.class);
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(createChecker(checkConfig),
-            getPath("pkginfo" + File.separator + "annotation"
-                    + File.separator + "package-info.java"),
-            getPath("pkginfo" + File.separator + "annotation"
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+            getPath("annotation"
                     + File.separator + "package-info.java"), expected);
     }
+
+    /**
+     * Using direct call to check here because there is no other way
+     * to reproduce exception with invalid canonical path.
+     */
+    @Test
+    public void testCheckstyleExceptionIfFailedToGetCanonicalPathToFile() {
+        final JavadocPackageCheck check = new JavadocPackageCheck();
+        final File fileWithInvalidPath = new File("\u0000\u0000\u0000");
+        final FileText mockFileText = new FileText(fileWithInvalidPath, Collections.emptyList());
+        final String expectedExceptionMessage =
+                "Exception while getting canonical path to file " + fileWithInvalidPath.getPath();
+        try {
+            check.processFiltered(fileWithInvalidPath, mockFileText);
+            assertWithMessage("CheckstyleException expected to be thrown").fail();
+        }
+        catch (CheckstyleException ex) {
+            assertWithMessage("Invalid exception message. Expected: " + expectedExceptionMessage)
+                .that(ex.getMessage())
+                .isEqualTo(expectedExceptionMessage);
+        }
+    }
+
+    @Test
+    public void testNonJava() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+            getPath("InputJavadocPackageNotJava.txt"),
+            expected);
+    }
+
+    @Test
+    public void testWithFileWithoutParent() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("annotation" + File.separator + "package-info.java"),
+                expected);
+    }
+
 }

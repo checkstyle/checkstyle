@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.indentation;
 
@@ -24,15 +24,16 @@ import java.util.BitSet;
 /**
  * Encapsulates representation of notion of expected indentation levels.
  * Provide a way to have multiple acceptable levels.
- *
- * @author o_sukhodolsky
+ * This class is immutable.
  */
 public class IndentLevel {
+
     /** Set of acceptable indentation levels. */
     private final BitSet levels = new BitSet();
 
     /**
      * Creates new instance with one acceptable indentation level.
+     *
      * @param indent acceptable indentation level.
      */
     public IndentLevel(int indent) {
@@ -41,6 +42,7 @@ public class IndentLevel {
 
     /**
      * Creates new instance for nested structure.
+     *
      * @param base parent's level
      * @param offsets offsets from parent's level.
      */
@@ -54,7 +56,15 @@ public class IndentLevel {
     }
 
     /**
+     * Creates new instance with no acceptable indentation level.
+     * This is only used internally to combine multiple levels.
+     */
+    private IndentLevel() {
+    }
+
+    /**
      * Checks whether we have more than one level.
+     *
      * @return whether we have more than one level.
      */
     public final boolean isMultiLevel() {
@@ -63,6 +73,7 @@ public class IndentLevel {
 
     /**
      * Checks if given indentation is acceptable.
+     *
      * @param indent indentation to check.
      * @return true if given indentation is acceptable,
      *         false otherwise.
@@ -72,10 +83,11 @@ public class IndentLevel {
     }
 
     /**
-     * Returns true if indent less then minimal of
+     * Returns true if indent less than minimal of
      * acceptable indentation levels, false otherwise.
+     *
      * @param indent indentation to check.
-     * @return true if {@code indent} less then minimal of
+     * @return true if {@code indent} less than minimal of
      *         acceptable indentation levels, false otherwise.
      */
     public boolean isGreaterThan(int indent) {
@@ -83,23 +95,38 @@ public class IndentLevel {
     }
 
     /**
-     * Adds one more acceptable indentation level.
-     * @param indent new acceptable indentation.
+     * Adds one or more acceptable indentation level.
+     *
+     * @param base class to add new indentations to.
+     * @param additions new acceptable indentation.
+     * @return New acceptable indentation level instance.
      */
-    public void addAcceptedIndent(int indent) {
-        levels.set(indent);
+    public static IndentLevel addAcceptable(IndentLevel base, int... additions) {
+        final IndentLevel result = new IndentLevel();
+        result.levels.or(base.levels);
+        for (int addition : additions) {
+            result.levels.set(addition);
+        }
+        return result;
     }
 
     /**
-     * Adds one more acceptable indentation level.
-     * @param indent new acceptable indentation.
+     * Combines 2 acceptable indentation level classes.
+     *
+     * @param base class to add new indentations to.
+     * @param addition new acceptable indentation.
+     * @return New acceptable indentation level instance.
      */
-    public void addAcceptedIndent(IndentLevel indent) {
-        levels.or(indent.levels);
+    public static IndentLevel addAcceptable(IndentLevel base, IndentLevel addition) {
+        final IndentLevel result = new IndentLevel();
+        result.levels.or(base.levels);
+        result.levels.or(addition.levels);
+        return result;
     }
 
     /**
      * Returns first indentation level.
+     *
      * @return indentation level.
      */
     public int getFirstIndentLevel() {
@@ -108,6 +135,7 @@ public class IndentLevel {
 
     /**
      * Returns last indentation level.
+     *
      * @return indentation level.
      */
     public int getLastIndentLevel() {
@@ -116,17 +144,22 @@ public class IndentLevel {
 
     @Override
     public String toString() {
+        final String result;
         if (levels.cardinality() == 1) {
-            return String.valueOf(levels.nextSetBit(0));
+            result = String.valueOf(levels.nextSetBit(0));
         }
-        final StringBuilder sb = new StringBuilder();
-        for (int i = levels.nextSetBit(0); i >= 0;
-            i = levels.nextSetBit(i + 1)) {
-            if (sb.length() > 0) {
-                sb.append(", ");
+        else {
+            final StringBuilder sb = new StringBuilder(50);
+            for (int i = levels.nextSetBit(0); i >= 0;
+                 i = levels.nextSetBit(i + 1)) {
+                if (sb.length() > 0) {
+                    sb.append(", ");
+                }
+                sb.append(i);
             }
-            sb.append(i);
+            result = sb.toString();
         }
-        return sb.toString();
+        return result;
     }
+
 }

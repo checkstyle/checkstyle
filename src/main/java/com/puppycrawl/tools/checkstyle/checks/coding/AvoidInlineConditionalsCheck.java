@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,27 +15,65 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * Detects inline conditionals.
- *
- * <p>An example inline conditional is this:
+ * <p>
+ * Detects inline conditionals. Here is one example of an inline conditional:
+ * </p>
  * <pre>
  * String a = getParameter("a");
- * String b = (a==null || a.length&lt;1) ? null : a.substring(1);
+ * String b = (a==null || a.length()&lt;1) ? null : a.substring(1);
  * </pre>
- * Rationale: Some developers find inline conditionals hard to read,
- * so their company's coding standards forbids them.
+ * <p>
+ * Rationale: Some developers find inline conditionals hard to read, so
+ * their employer's coding standards forbid them.
+ * </p>
+ * <p>
+ * To configure the check:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;AvoidInlineConditionals&quot;/&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * int x = 5;
+ * boolean foobar = (x == 5); // OK
  *
- * @author lkuehne
+ * String text;
+ * text = (text == null) ? "" : text; // violation
+ *
+ * String b;
+ * if (a != null &amp;&amp; a.length() &gt;= 1) { // OK
+ *   b = a.substring(1);
+ * } else {
+ *   b = null;
+ * }
+ *
+ * b = (a != null &amp;&amp; a.length() &gt;= 1) ? a.substring(1) : null; // violation
+ * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code inline.conditional.avoid}
+ * </li>
+ * </ul>
+ *
+ * @since 3.1
  */
+@StatelessCheck
 public class AvoidInlineConditionalsCheck extends AbstractCheck {
 
     /**
@@ -46,17 +84,17 @@ public class AvoidInlineConditionalsCheck extends AbstractCheck {
 
     @Override
     public int[] getDefaultTokens() {
-        return new int[] {TokenTypes.QUESTION};
+        return getRequiredTokens();
     }
 
     @Override
     public int[] getRequiredTokens() {
-        return getDefaultTokens();
+        return new int[] {TokenTypes.QUESTION};
     }
 
     @Override
     public int[] getAcceptableTokens() {
-        return new int[] {TokenTypes.QUESTION};
+        return getRequiredTokens();
     }
 
     @Override
@@ -64,6 +102,7 @@ public class AvoidInlineConditionalsCheck extends AbstractCheck {
         // the only place a QUESTION token can occur is in inline conditionals
         // so no need to do any further tricks here - pretty trivial Check!
 
-        log(ast.getLineNo(), ast.getColumnNo(), MSG_KEY);
+        log(ast, MSG_KEY);
     }
+
 }

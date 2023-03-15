@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,13 +15,11 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.internal;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static com.google.common.truth.Truth.assertWithMessage;
 
 import java.io.IOException;
 import java.util.Collections;
@@ -42,46 +40,49 @@ import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.revwalk.RevCommit;
 import org.eclipse.jgit.revwalk.RevWalk;
 import org.eclipse.jgit.storage.file.FileRepositoryBuilder;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * Validate commit message has proper structure.
  *
- * Commits to check are resolved from different places according
+ * <p>Commits to check are resolved from different places according
  * to type of commit in current HEAD. If current HEAD commit is
  * non-merge commit , previous commits are resolved due to current
  * HEAD commit. Otherwise if it is a merge commit, it will invoke
- * resolving previous commits due to commits which was merged.
+ * resolving previous commits due to commits which was merged.</p>
  *
- * After calculating commits to start with ts resolves previous
+ * <p>After calculating commits to start with ts resolves previous
  * commits according to COMMITS_RESOLUTION_MODE variable.
  * At default(BY_LAST_COMMIT_AUTHOR) it checks first commit author
  * and return all consecutive commits with same author. Second
  * mode(BY_COUNTER) makes returning first PREVIOUS_COMMITS_TO_CHECK_COUNT
- * commits after starter commit.
+ * commits after starter commit.</p>
  *
- * Resolved commits are filtered according to author. If commit author
+ * <p>Resolved commits are filtered according to author. If commit author
  * belong to list USERS_EXCLUDED_FROM_VALIDATION then this commit will
- * not be validated.
+ * not be validated.</p>
  *
- * Filtered commit list is checked if their messages has proper structure.
+ * <p>Filtered commit list is checked if their messages has proper structure.</p>
  *
- * @author <a href="mailto:piotr.listkiewicz@gmail.com">liscju</a>
  */
 public class CommitValidationTest {
 
     private static final List<String> USERS_EXCLUDED_FROM_VALIDATION =
-            Collections.singletonList("Roman Ivanov");
+            Collections.singletonList("dependabot[bot]");
 
     private static final String ISSUE_COMMIT_MESSAGE_REGEX_PATTERN = "^Issue #\\d+: .*$";
     private static final String PR_COMMIT_MESSAGE_REGEX_PATTERN = "^Pull #\\d+: .*$";
+    private static final String RELEASE_COMMIT_MESSAGE_REGEX_PATTERN =
+            "^\\[maven-release-plugin] .*$";
+    private static final String REVERT_COMMIT_MESSAGE_REGEX_PATTERN =
+            "^Revert .*$";
     private static final String OTHER_COMMIT_MESSAGE_REGEX_PATTERN =
-            "^(minor|config|infra|doc|spelling): .*$";
+            "^(minor|config|infra|doc|spelling|dependency|supplemental): .*$";
 
     private static final String ACCEPTED_COMMIT_MESSAGE_REGEX_PATTERN =
               "(" + ISSUE_COMMIT_MESSAGE_REGEX_PATTERN + ")|"
               + "(" + PR_COMMIT_MESSAGE_REGEX_PATTERN + ")|"
+              + "(" + RELEASE_COMMIT_MESSAGE_REGEX_PATTERN + ")|"
               + "(" + OTHER_COMMIT_MESSAGE_REGEX_PATTERN + ")";
 
     private static final Pattern ACCEPTED_COMMIT_MESSAGE_PATTERN =
@@ -94,50 +95,115 @@ public class CommitValidationTest {
     private static final CommitsResolutionMode COMMITS_RESOLUTION_MODE =
             CommitsResolutionMode.BY_LAST_COMMIT_AUTHOR;
 
-    private static List<RevCommit> lastCommits;
-
-    @BeforeClass
-    public static void setUp() throws Exception {
-        lastCommits = getCommitsToCheck();
-    }
-
     @Test
-    public void testHasCommits() {
-        assertTrue("must have at least one commit to validate",
-                lastCommits != null && !lastCommits.isEmpty());
+    public void testHasCommits() throws Exception {
+        final List<RevCommit> lastCommits = getCommitsToCheck();
+
+        assertWithMessage("must have at least one commit to validate")
+                .that(lastCommits)
+                .isNotEmpty();
     }
 
     @Test
     public void testCommitMessage() {
-        assertEquals("should not accept commit message with periods on end", 3,
-                validateCommitMessage("minor: Test. Test."));
-        assertEquals("should not accept commit message with spaces on end", 3,
-                validateCommitMessage("minor: Test. "));
-        assertEquals("should not accept commit message with tabs on end", 3,
-                validateCommitMessage("minor: Test.\t"));
-        assertEquals("should not accept commit message with period on end, ignoring new line",
-                3, validateCommitMessage("minor: Test.\n"));
-        assertEquals("should not accept commit message with missing prefix", 1,
-                validateCommitMessage("Test. Test"));
-        assertEquals("should not accept commit message with missing prefix", 1,
-                validateCommitMessage("Test. Test\n"));
-        assertEquals("should not accept commit message with multiple lines with text", 2,
-                validateCommitMessage("minor: Test.\nTest"));
-        assertEquals("should accept commit message with a new line on end", 0,
-                validateCommitMessage("minor: Test\n"));
-        assertEquals("should accept commit message with multiple new lines on end", 0,
-                validateCommitMessage("minor: Test\n\n"));
-        assertEquals("should accept commit message that ends properly", 0,
-                validateCommitMessage("minor: Test. Test"));
-        assertEquals("should accept commit message with less than or equal to 200 characters",
-                4, validateCommitMessage("minor: Test Test Test Test Test"
+        assertWithMessage("should not accept commit message with periods on end")
+            .that(validateCommitMessage("minor: Test. Test."))
+            .isEqualTo(3);
+        assertWithMessage("should not accept commit message with spaces on end")
+            .that(validateCommitMessage("minor: Test. "))
+            .isEqualTo(3);
+        assertWithMessage("should not accept commit message with tabs on end")
+            .that(validateCommitMessage("minor: Test.\t"))
+            .isEqualTo(3);
+        assertWithMessage("should not accept commit message with period on end, ignoring new line")
+            .that(validateCommitMessage("minor: Test.\n"))
+            .isEqualTo(3);
+        assertWithMessage("should not accept commit message with missing prefix")
+            .that(validateCommitMessage("Test. Test"))
+            .isEqualTo(1);
+        assertWithMessage("should not accept commit message with missing prefix")
+            .that(validateCommitMessage("Test. Test\n"))
+            .isEqualTo(1);
+        assertWithMessage("should not accept commit message with multiple lines with text")
+            .that(validateCommitMessage("minor: Test.\nTest"))
+            .isEqualTo(2);
+        assertWithMessage("should accept commit message with a new line on end")
+            .that(validateCommitMessage("minor: Test\n"))
+            .isEqualTo(0);
+        assertWithMessage("should accept commit message with multiple new lines on end")
+            .that(validateCommitMessage("minor: Test\n\n"))
+            .isEqualTo(0);
+        assertWithMessage("should accept commit message that ends properly")
+            .that(validateCommitMessage("minor: Test. Test"))
+            .isEqualTo(0);
+        assertWithMessage("should accept commit message with less than or equal to 200 characters")
+            .that(validateCommitMessage("minor: Test Test Test Test Test"
                 + "Test Test Test Test Test Test Test Test Test Test Test Test Test Test "
                 + "Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test "
-                + "Test Test Test Test Test Test Test  Test Test Test Test Test Test"));
+                + "Test Test Test Test Test Test Test  Test Test Test Test Test Test"))
+            .isEqualTo(4);
     }
 
     @Test
-    public void testCommitMessageHasProperStructure() {
+    public void testReleaseCommitMessage() {
+        assertWithMessage("should accept release commit message for preparing release")
+                .that(validateCommitMessage("[maven-release-plugin] "
+                        + "prepare release checkstyle-10.8.0"))
+                .isEqualTo(0);
+        assertWithMessage("should accept release commit message for preparing for "
+                + "next development iteration")
+                .that(validateCommitMessage("[maven-release-plugin] prepare for next "
+                        + "development iteration"))
+                .isEqualTo(0);
+    }
+
+    @Test
+    public void testRevertCommitMessage() {
+        assertWithMessage("should accept proper revert commit message")
+                .that(validateCommitMessage("Revert \"doc: release notes for 10.8.0\""
+                    + "\nThis reverts commit ff873c3c22161656794c969bb28a8cb09595f.\n"))
+                .isEqualTo(0);
+        assertWithMessage("should accept proper revert commit message")
+                .that(validateCommitMessage("Revert \"doc: release notes for 10.8.0\""))
+                .isEqualTo(0);
+        assertWithMessage("should not accept revert commit message with invalid prefix")
+                .that(validateCommitMessage("This reverts commit "
+                        + "ff873c3c22161656794c969bb28a8cb09595f.\n"))
+                .isEqualTo(1);
+    }
+
+    @Test
+    public void testSupplementalPrefix() {
+        assertWithMessage("should accept commit message with supplemental prefix")
+                .that(0)
+                .isEqualTo(validateCommitMessage("supplemental: Test message for supplemental for"
+                        + " Issue #XXXX"));
+        assertWithMessage("should not accept commit message with periods on end")
+                .that(3)
+                .isEqualTo(validateCommitMessage("supplemental: Test. Test."));
+        assertWithMessage("should not accept commit message with spaces on end")
+                .that(3)
+                .isEqualTo(validateCommitMessage("supplemental: Test. "));
+        assertWithMessage("should not accept commit message with tabs on end")
+                .that(3)
+                .isEqualTo(validateCommitMessage("supplemental: Test.\t"));
+        assertWithMessage("should not accept commit message with period on end, ignoring new line")
+                .that(3)
+                .isEqualTo(validateCommitMessage("supplemental: Test.\n"));
+        assertWithMessage("should not accept commit message with multiple lines with text")
+                .that(2)
+                .isEqualTo(validateCommitMessage("supplemental: Test.\nTest"));
+        assertWithMessage("should accept commit message with a new line on end")
+                .that(0)
+                .isEqualTo(validateCommitMessage("supplemental: Test\n"));
+        assertWithMessage("should accept commit message with multiple new lines on end")
+                .that(0)
+                .isEqualTo(validateCommitMessage("supplemental: Test\n\n"));
+    }
+
+    @Test
+    public void testCommitMessageHasProperStructure() throws Exception {
+        final List<RevCommit> lastCommits = getCommitsToCheck();
         for (RevCommit commit : filterValidCommits(lastCommits)) {
             final String commitMessage = commit.getFullMessage();
             final int error = validateCommitMessage(commitMessage);
@@ -145,7 +211,9 @@ public class CommitValidationTest {
             if (error != 0) {
                 final String commitId = commit.getId().getName();
 
-                fail(getInvalidCommitMessageFormattingError(commitId, commitMessage) + error);
+                assertWithMessage(
+                        getInvalidCommitMessageFormattingError(commitId, commitMessage) + error)
+                                .fail();
             }
         }
     }
@@ -155,13 +223,17 @@ public class CommitValidationTest {
         final String trimRight = commitMessage.replaceAll("[\\r\\n]+$", "");
         final int result;
 
-        if (!ACCEPTED_COMMIT_MESSAGE_PATTERN.matcher(message).matches()) {
+        if (message.matches(REVERT_COMMIT_MESSAGE_REGEX_PATTERN)) {
+            // revert commits are excluded from validation
+            result = 0;
+        }
+        else if (!ACCEPTED_COMMIT_MESSAGE_PATTERN.matcher(message).matches()) {
             // improper prefix
             result = 1;
         }
         else if (!trimRight.equals(message)) {
-            // single line of text (multiple new lines are allowed on end because of
-            // git (1 new line) and github's web ui (2 new lines))
+            // single-line of text (multiple new lines are allowed on end because of
+            // git (1 new line) and GitHub's web ui (2 new lines))
             result = 2;
         }
         else if (INVALID_POSTFIX_PATTERN.matcher(message).matches()) {
@@ -209,7 +281,8 @@ public class CommitValidationTest {
     private static RevCommitsPair resolveRevCommitsPair(Repository repo) {
         RevCommitsPair revCommitIteratorPair;
 
-        try (RevWalk revWalk = new RevWalk(repo)) {
+        try (RevWalk revWalk = new RevWalk(repo);
+             Git git = new Git(repo)) {
             final Iterator<RevCommit> first;
             final Iterator<RevCommit> second;
             final ObjectId headId = repo.resolve(Constants.HEAD);
@@ -218,16 +291,11 @@ public class CommitValidationTest {
             if (isMergeCommit(headCommit)) {
                 final RevCommit firstParent = headCommit.getParent(0);
                 final RevCommit secondParent = headCommit.getParent(1);
-
-                try (Git git = new Git(repo)) {
-                    first = git.log().add(firstParent).call().iterator();
-                    second = git.log().add(secondParent).call().iterator();
-                }
+                first = git.log().add(firstParent).call().iterator();
+                second = git.log().add(secondParent).call().iterator();
             }
             else {
-                try (Git git = new Git(repo)) {
-                    first = git.log().call().iterator();
-                }
+                first = git.log().call().iterator();
                 second = Collections.emptyIterator();
             }
 
@@ -235,7 +303,7 @@ public class CommitValidationTest {
                     new RevCommitsPair(new OmitMergeCommitsIterator(first),
                             new OmitMergeCommitsIterator(second));
         }
-        catch (GitAPIException | IOException ex) {
+        catch (GitAPIException | IOException ignored) {
             revCommitIteratorPair = new RevCommitsPair();
         }
 
@@ -301,19 +369,23 @@ public class CommitValidationTest {
     }
 
     private enum CommitsResolutionMode {
-        BY_COUNTER, BY_LAST_COMMIT_AUTHOR
+
+        BY_COUNTER,
+        BY_LAST_COMMIT_AUTHOR,
+
     }
 
-    private static class RevCommitsPair {
+    private static final class RevCommitsPair {
+
         private final Iterator<RevCommit> first;
         private final Iterator<RevCommit> second;
 
-        RevCommitsPair() {
+        private RevCommitsPair() {
             first = Collections.emptyIterator();
             second = Collections.emptyIterator();
         }
 
-        RevCommitsPair(Iterator<RevCommit> first, Iterator<RevCommit> second) {
+        private RevCommitsPair(Iterator<RevCommit> first, Iterator<RevCommit> second) {
             this.first = first;
             this.second = second;
         }
@@ -325,13 +397,14 @@ public class CommitValidationTest {
         public Iterator<RevCommit> getSecond() {
             return second;
         }
+
     }
 
-    private static class OmitMergeCommitsIterator implements Iterator<RevCommit> {
+    private static final class OmitMergeCommitsIterator implements Iterator<RevCommit> {
 
         private final Iterator<RevCommit> revCommitIterator;
 
-        OmitMergeCommitsIterator(Iterator<RevCommit> revCommitIterator) {
+        private OmitMergeCommitsIterator(Iterator<RevCommit> revCommitIterator) {
             this.revCommitIterator = revCommitIterator;
         }
 
@@ -353,5 +426,7 @@ public class CommitValidationTest {
         public void remove() {
             throw new UnsupportedOperationException("remove");
         }
+
     }
+
 }

@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,72 +15,118 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.metrics;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.metrics.JavaNCSSCheck.MSG_CLASS;
 import static com.puppycrawl.tools.checkstyle.checks.metrics.JavaNCSSCheck.MSG_FILE;
 import static com.puppycrawl.tools.checkstyle.checks.metrics.JavaNCSSCheck.MSG_METHOD;
+import static com.puppycrawl.tools.checkstyle.checks.metrics.JavaNCSSCheck.MSG_RECORD;
 
-import java.io.File;
-import java.io.IOException;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Assert;
-import org.junit.Test;
-
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * Test case for the JavaNCSS-Check.
  *
- * @author Lars Ködderitzsch
  */
 // -@cs[AbbreviationAsWordInName] Test should be named as its main class.
-public class JavaNCSSCheckTest extends BaseCheckTestSupport {
+public class JavaNCSSCheckTest extends AbstractModuleTestSupport {
+
     @Override
-    protected String getPath(String filename) throws IOException {
-        return super.getPath("checks" + File.separator
-                + "metrics" + File.separator + filename);
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/checks/metrics/javancss";
     }
 
     @Test
     public void test() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(JavaNCSSCheck.class);
-
-        checkConfig.addAttribute("methodMaximum", "0");
-        checkConfig.addAttribute("classMaximum", "1");
-        checkConfig.addAttribute("fileMaximum", "2");
 
         final String[] expected = {
-            "2:1: " + getCheckMessage(MSG_FILE, 39, 2),
-            "9:1: " + getCheckMessage(MSG_CLASS, 22, 1),
-            "14:5: " + getCheckMessage(MSG_METHOD, 2, 0),
-            "21:5: " + getCheckMessage(MSG_METHOD, 4, 0),
-            "30:5: " + getCheckMessage(MSG_METHOD, 12, 0),
-            "42:13: " + getCheckMessage(MSG_METHOD, 2, 0),
-            "49:5: " + getCheckMessage(MSG_CLASS, 2, 1),
-            "56:1: " + getCheckMessage(MSG_CLASS, 10, 1),
-            "61:5: " + getCheckMessage(MSG_METHOD, 8, 0),
-            "80:1: " + getCheckMessage(MSG_CLASS, 4, 1),
-            "81:5: " + getCheckMessage(MSG_METHOD, 1, 0),
-            "82:5: " + getCheckMessage(MSG_METHOD, 1, 0),
-            "83:5: " + getCheckMessage(MSG_METHOD, 1, 0),
+            "12:1: " + getCheckMessage(MSG_FILE, 39, 2),
+            "19:1: " + getCheckMessage(MSG_CLASS, 22, 1),
+            "24:5: " + getCheckMessage(MSG_METHOD, 2, 0),
+            "31:5: " + getCheckMessage(MSG_METHOD, 4, 0),
+            "40:5: " + getCheckMessage(MSG_METHOD, 12, 0),
+            "52:13: " + getCheckMessage(MSG_METHOD, 2, 0),
+            "59:5: " + getCheckMessage(MSG_CLASS, 2, 1),
+            "66:1: " + getCheckMessage(MSG_CLASS, 10, 1),
+            "71:5: " + getCheckMessage(MSG_METHOD, 8, 0),
+            "90:1: " + getCheckMessage(MSG_CLASS, 4, 1),
+            "91:5: " + getCheckMessage(MSG_METHOD, 1, 0),
+            "92:5: " + getCheckMessage(MSG_METHOD, 1, 0),
+            "93:5: " + getCheckMessage(MSG_METHOD, 1, 0),
         };
 
-        verify(checkConfig, getPath("InputJavaNCSS.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputJavaNCSS.java"), expected);
+    }
+
+    @Test
+    public void testEqualToMax() throws Exception {
+
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("InputJavaNCSS2.java"), expected);
     }
 
     @Test
     public void testDefaultConfiguration() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(JavaNCSSCheck.class);
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputJavaNCSS3.java"), expected);
+    }
 
-        createChecker(checkConfig);
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputJavaNCSS.java"), expected);
+    @Test
+    public void testRecordsAndCompactCtors() throws Exception {
+
+        final String[] expected = {
+            "12:1: " + getCheckMessage(MSG_FILE, 89, 2),
+            "16:1: " + getCheckMessage(MSG_CLASS, 87, 3),
+            "18:5: " + getCheckMessage(MSG_CLASS, 7, 3),
+            "36:5: " + getCheckMessage(MSG_RECORD, 6, 4),
+            "45:5: " + getCheckMessage(MSG_RECORD, 15, 4),
+            "56:9: " + getCheckMessage(MSG_METHOD, 8, 7),
+            "75:5: " + getCheckMessage(MSG_RECORD, 6, 4),
+            "109:5: " + getCheckMessage(MSG_RECORD, 8, 4),
+            "130:5: " + getCheckMessage(MSG_CLASS, 11, 3),
+            "151:5: " + getCheckMessage(MSG_RECORD, 12, 4),
+            "152:9: " + getCheckMessage(MSG_METHOD, 11, 7),
+            "166:5: " + getCheckMessage(MSG_CLASS, 12, 3),
+            "167:9: " + getCheckMessage(MSG_METHOD, 11, 7),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputJavaNCSSRecordsAndCompactCtors.java"),
+                expected);
+    }
+
+    @Test
+    public void testForMutation() throws Exception {
+        final String[] expected = {
+            "13:1: " + getCheckMessage(MSG_CLASS, 84, 80),
+            "16:5: " + getCheckMessage(MSG_CLASS, 83, 80),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavaNCSSResolveMutation.java"),
+                expected);
+    }
+
+    @Test
+    public void testRecordMax() throws Exception {
+        final String[] expected = {
+            "14:1: " + getCheckMessage(MSG_CLASS, 152, 80),
+            "15:5: " + getCheckMessage(MSG_RECORD, 151, 150),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputJavaNCSSRecordsMax.java"),
+                expected);
     }
 
     @Test
@@ -116,9 +162,15 @@ public class JavaNCSSCheckTest extends BaseCheckTestSupport {
             TokenTypes.LABELED_STAT,
             TokenTypes.LITERAL_CASE,
             TokenTypes.LITERAL_DEFAULT,
+            TokenTypes.RECORD_DEF,
+            TokenTypes.COMPACT_CTOR_DEF,
         };
-        Assert.assertNotNull(actual);
-        Assert.assertArrayEquals(expected, actual);
+        assertWithMessage("Acceptable tokens should not be null")
+            .that(actual)
+            .isNotNull();
+        assertWithMessage("Invalid acceptable tokens")
+            .that(actual)
+            .isEqualTo(expected);
     }
 
     @Test
@@ -154,8 +206,15 @@ public class JavaNCSSCheckTest extends BaseCheckTestSupport {
             TokenTypes.LABELED_STAT,
             TokenTypes.LITERAL_CASE,
             TokenTypes.LITERAL_DEFAULT,
+            TokenTypes.RECORD_DEF,
+            TokenTypes.COMPACT_CTOR_DEF,
         };
-        Assert.assertNotNull(actual);
-        Assert.assertArrayEquals(expected, actual);
+        assertWithMessage("Required tokens should not be null")
+            .that(actual)
+            .isNotNull();
+        assertWithMessage("Invalid required tokens")
+            .that(actual)
+            .isEqualTo(expected);
     }
+
 }

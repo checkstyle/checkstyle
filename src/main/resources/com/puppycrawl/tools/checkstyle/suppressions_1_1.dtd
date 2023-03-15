@@ -1,10 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
 <!-- Add the following to any file that is to be validated against this DTD:
 
 <!DOCTYPE suppressions PUBLIC
-    "-//Puppy Crawl//DTD Suppressions 1.1//EN"
-    "http://checkstyle.sourceforge.net/dtds/suppressions_1_1.dtd">
+    "-//Checkstyle//DTD SuppressionFilter Configuration 1.1//EN"
+    "https://checkstyle.org/dtds/suppressions_1_1.dtd">
 -->
 
 <!ELEMENT suppressions (suppress*)>

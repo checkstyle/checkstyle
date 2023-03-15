@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,131 +15,153 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.MethodParamPadCheck.MSG_LINE_PREVIOUS;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.MethodParamPadCheck.MSG_WS_NOT_PRECEDED;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.MethodParamPadCheck.MSG_WS_PRECEDED;
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
-import java.io.File;
-import java.io.IOException;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Before;
-import org.junit.Test;
-
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class MethodParamPadCheckTest
-    extends BaseCheckTestSupport {
-    private DefaultConfiguration checkConfig;
-
-    @Before
-    public void setUp() {
-        checkConfig = createCheckConfig(MethodParamPadCheck.class);
-    }
+    extends AbstractModuleTestSupport {
 
     @Override
-    protected String getPath(String filename) throws IOException {
-        return super.getPath("checks" + File.separator
-                + "whitespace" + File.separator
-                + "methodparampad" + File.separator + filename);
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/checks/whitespace/methodparampad";
     }
 
     @Test
     public void testGetRequiredTokens() {
         final MethodParamPadCheck checkObj = new MethodParamPadCheck();
-        assertArrayEquals(
-            "MethodParamPadCheck#getRequiredTockens should return empty array by default",
-            CommonUtils.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
+        assertWithMessage("MethodParamPadCheck#getRequiredTokens should return empty array "
+                + "by default")
+            .that(checkObj.getRequiredTokens())
+            .isEqualTo(CommonUtil.EMPTY_INT_ARRAY);
     }
 
     @Test
     public void testDefault() throws Exception {
         final String[] expected = {
-            "11:32: " + getCheckMessage(MSG_WS_PRECEDED, "("),
-            "13:15: " + getCheckMessage(MSG_WS_PRECEDED, "("),
-            "17:9: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
-            "20:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
-            "27:24: " + getCheckMessage(MSG_WS_PRECEDED, "("),
-            "32:9: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
-            "36:39: " + getCheckMessage(MSG_WS_PRECEDED, "("),
-            "38:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
-            "42:16: " + getCheckMessage(MSG_WS_PRECEDED, "("),
-            "44:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
-            "50:21: " + getCheckMessage(MSG_WS_PRECEDED, "("),
-            "52:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
-            "56:18: " + getCheckMessage(MSG_WS_PRECEDED, "("),
-            "58:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
-            "61:36: " + getCheckMessage(MSG_WS_PRECEDED, "("),
-            "63:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
-            "74:15: " + getCheckMessage(MSG_WS_PRECEDED, "("),
-            "79:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
+            "21:32: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "23:15: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "27:9: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
+            "30:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
+            "37:24: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "42:9: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
+            "46:39: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "48:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
+            "52:16: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "54:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
+            "60:21: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "62:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
+            "66:18: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "68:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
+            "71:36: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "73:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
+            "84:15: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "89:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
         };
-        verify(checkConfig, getPath("InputMethodParamPad.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputMethodParamPad.java"), expected);
     }
 
     @Test
     public void testAllowLineBreaks() throws Exception {
-        checkConfig.addAttribute("allowLineBreaks", "true");
         final String[] expected = {
-            "11:32: " + getCheckMessage(MSG_WS_PRECEDED, "("),
-            "13:15: " + getCheckMessage(MSG_WS_PRECEDED, "("),
-            "27:24: " + getCheckMessage(MSG_WS_PRECEDED, "("),
-            "36:39: " + getCheckMessage(MSG_WS_PRECEDED, "("),
-            "42:16: " + getCheckMessage(MSG_WS_PRECEDED, "("),
-            "50:21: " + getCheckMessage(MSG_WS_PRECEDED, "("),
-            "56:18: " + getCheckMessage(MSG_WS_PRECEDED, "("),
-            "61:36: " + getCheckMessage(MSG_WS_PRECEDED, "("),
-            "74:15: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "21:33: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "23:15: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "37:24: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "46:39: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "52:16: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "60:21: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "66:18: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "71:36: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "84:15: " + getCheckMessage(MSG_WS_PRECEDED, "("),
         };
-        verify(checkConfig, getPath("InputMethodParamPad.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputMethodParamPad2.java"), expected);
     }
 
     @Test
     public void testSpaceOption() throws Exception {
-        checkConfig.addAttribute("option", "space");
         final String[] expected = {
-            "6:31: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "("),
-            "8:14: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "("),
-            "17:9: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
-            "20:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
-            "23:23: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "("),
-            "32:9: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
-            "35:58: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "("),
-            "38:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
-            "41:15: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "("),
-            "44:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
-            "47:28: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "("),
-            "49:20: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "("),
-            "52:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
-            "54:56: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "("),
-            "55:17: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "("),
-            "58:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
-            "60:35: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "("),
+            "16:32: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "("),
+            "18:14: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "("),
+            "27:9: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
+            "30:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
+            "33:23: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "("),
+            "42:9: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
+            "46:40: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "("),
+            "49:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
+            "52:15: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "("),
+            "55:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
+            "58:28: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "("),
+            "60:20: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "("),
             "63:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
-            "66:25: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "("),
-            "69:66: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "("),
-            "70:57: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "("),
-            "79:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
+            "66:40: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "("),
+            "67:17: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "("),
+            "70:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
+            "72:35: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "("),
+            "75:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
+            "78:25: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "("),
+            "82:45: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "("),
+            "84:35: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "("),
+            "93:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
         };
-        verify(checkConfig, getPath("InputMethodParamPad.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputMethodParamPad3.java"), expected);
+    }
+
+    @Test
+    public void testMethodParamPadRecords() throws Exception {
+        final String[] expected = {
+            "19:25: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "20:34: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "31:26: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "32:23: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "37:26: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "38:33: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "44:26: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "45:18: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "51:34: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "57:34: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputMethodParamPadRecords.java"), expected);
     }
 
     @Test
     public void test1322879() throws Exception {
-        checkConfig.addAttribute("option", PadOption.SPACE.toString());
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputMethodParamPadWhitespaceAround.java"),
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputMethodParamPadWhitespaceAround.java"),
                expected);
+    }
+
+    @Test
+    public void testMethodParamPadCheckWithEmoji() throws Exception {
+        final String[] expected = {
+            "19:31: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "21:30: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "25:28: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "32:36: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "36:70: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "38:31: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "41:24: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "47:24: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "50:23: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputMethodParamPadCheckWithEmoji.java"), expected);
     }
 
     @Test
@@ -153,26 +175,38 @@ public class MethodParamPadCheckTest
             TokenTypes.METHOD_DEF,
             TokenTypes.SUPER_CTOR_CALL,
             TokenTypes.ENUM_CONSTANT_DEF,
+            TokenTypes.RECORD_DEF,
         };
-        assertArrayEquals("Default acceptable tokens are invalid", expected, actual);
+        assertWithMessage("Default acceptable tokens are invalid")
+            .that(actual)
+            .isEqualTo(expected);
     }
 
     @Test
     public void testInvalidOption() throws Exception {
-        checkConfig.addAttribute("option", "invalid_option");
-
         try {
-            final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+            final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-            verify(checkConfig, getPath("InputMethodParamPad.java"), expected);
-            fail("exception expected");
+            verifyWithInlineConfigParser(getPath("InputMethodParamPad4.java"), expected);
+            assertWithMessage("exception expected").fail();
         }
         catch (CheckstyleException ex) {
-            final String messageStart = "cannot initialize module "
-                + "com.puppycrawl.tools.checkstyle.TreeWalker - Cannot set property 'option' to "
-                + "'invalid_option' in module";
-            assertTrue("Invalid exception message, should start with: " + messageStart,
-                ex.getMessage().startsWith(messageStart));
+            assertWithMessage("Invalid exception message")
+                .that(ex.getMessage())
+                .isEqualTo("cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker - "
+                    + "cannot initialize module com.puppycrawl.tools.checkstyle.checks."
+                    + "whitespace.MethodParamPadCheck - "
+                    + "Cannot set property 'option' to 'invalid_option'");
         }
+    }
+
+    @Test
+    public void testTrimOptionProperty() throws Exception {
+        final String[] expected = {
+            "15:24: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "("),
+            "26:27: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "("),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputMethodParamPadSetOptionTrim.java"), expected);
     }
 }

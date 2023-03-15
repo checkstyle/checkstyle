@@ -1,35 +1,39 @@
-////////////////////////////////////////////////////////////////////////////////
-// Input test file for testing empty LITERAL_CASE.
-// Created: 2017
-////////////////////////////////////////////////////////////////////////////////
+/*
+EmptyBlock
+option = TEXT
+tokens = LITERAL_CASE
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.blocks.emptyblock;
 
 class InputEmptyBlockCase
 {
     void method1(int a) {
         switch (a) {}
-        switch (a) {case 1: ; } // no violation
-        switch (a) {case 1:{}}  // 1 violation
+        switch (a) {case 1: ; } // ok
+        switch (a) {case 1:{}}  // violation 'Empty case block'
         switch (a) {
             case 1:
         }
         switch (a) {
-            case 1: // 1 violation
-            {}
+            case 1:
+            {}  // violation 'Empty case block'
         }
         switch (a) {
-            case 1: // 1 violation if checking statements
-            {// none if checking text
+            case 1:
+            {   // ok
             }
         }
     }
 
     public void method2(char c) {
-        switch(c) { case 0: } // no violation
-        switch(c) { case 0: {} method1(1); } // 1 violation
-        switch(c) { case 0: method1(0); {} } // no violation
-        switch(c) { case 0: case 1: {} } // 1 violation
-        switch(c) { case 0: {} case 1: {// 2 violations if checking statements
+        switch(c) { case 0: }   // ok
+        switch(c) { case 0: {} method1(1); }    // violation 'Empty case block'
+        switch(c) { case 0: method1(0); {} }    // ok
+        switch(c) { case 0: case 1: {} }    // violation 'Empty case block'
+        switch(c) { case 0: {} case 1: {    // violation 'Empty case block'
         }
         }
     }

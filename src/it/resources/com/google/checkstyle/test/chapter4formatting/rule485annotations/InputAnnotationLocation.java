@@ -37,23 +37,23 @@ class InputAnnotationLocation
         public int a;
 
         @MyAnnotation1 public int b;
-        
+
         @MyAnnotation2
         @MyAnnotation1
         public int c;
-        
+
         @MyAnnotation1
         public int d;
-        
+
         @MyAnnotation2
         @MyAnnotation1 public InnerClass()
         {
-            // TODO Auto-generated constructor stub
+            // OOOO Auto-generated constructor stub
         }
         @MyAnnotation1
             @MyAnnotation2 //warn
         void foo1() {}
-        
+
         @MyAnnotation1
             @MyAnnotation2 //warn
         void foo2() {}
@@ -66,29 +66,31 @@ class InputAnnotationLocation
         @MyAnnotation2 @MyAnnotation1 public int a;
 
         @MyAnnotation1 public int b;
-        
+
         @MyAnnotation2
         @MyAnnotation1
         public int c;
-        
+
         @MyAnnotation1
         public int d;
-        
+
         @MyAnnotation1
            @MyAnnotation2 void foo1() {} //warn
-        
+
         @MyAnnotation1
           @MyAnnotation2 //warn
         void foo2() {}
-        
+
         @MyAnnotation1 void foo42() {}
     };
-    
+
 }
 
 @MyAnnotation1
  @MyAnnotation2 //warn
 class Foo {}
+
+@MyAnnotationWithParam(value = "bar") class Bar {} //warn
 
 @interface MyAnnotation1 {}
 
@@ -100,4 +102,4 @@ class Foo {}
 
 @interface MyAnnotationWithParam {
 
-	String value();}
+    String value();}

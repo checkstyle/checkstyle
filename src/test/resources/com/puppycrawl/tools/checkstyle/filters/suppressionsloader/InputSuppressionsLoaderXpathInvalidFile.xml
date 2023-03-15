@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suppressions PUBLIC
+    "-//Checkstyle//DTD SuppressionXpathFilter Experimental Configuration 1.1//EN"
+    "https://checkstyle.org/dtds/suppressions_1_1_xpath_experimental.dtd">
+<suppressions>
+  <suppress-xpath files="a[l" checks="abc"/>
+</suppressions>

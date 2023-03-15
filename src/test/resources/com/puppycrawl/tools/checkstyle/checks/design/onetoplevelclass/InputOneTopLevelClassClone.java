@@ -1,3 +1,9 @@
+/*
+OneTopLevelClass
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.design.onetoplevelclass;
 public class InputOneTopLevelClassClone
 {/* class body */
@@ -6,45 +12,45 @@ public class InputOneTopLevelClassClone
         super.equals(new String());
         super.clone();
     }
-    
+
     public Object clone() throws CloneNotSupportedException
     {
         return super.clone();
     }
-    
+
     public void method() throws CloneNotSupportedException
     {
         super.clone();
     }
-    
+
     {
         super.clone();
     }
 }
 
-class NoSuperClone
+class NoSuperClone // violation
 {
 }
 
-class InnerClone
+class InnerClone // violation
 {
 }
 
-class CloneWithTypeArguments<T> extends CloneWithTypeArgumentsAndNoSuper<T>
+class CloneWithTypeArguments<T> extends CloneWithTypeArgumentsAndNoSuper<T> // violation
 {
 }
 
-class CloneWithTypeArgumentsAndNoSuper<T>
+class CloneWithTypeArgumentsAndNoSuper<T> // violation
 {
 }
 
-class MyClassWithGenericSuperMethod
+class MyClassWithGenericSuperMethod // violation
 {
 }
 
-class AnotherClass {
+class AnotherClass { // violation
 }
 
-class NativeTest {
+class NativeTest { // violation
     public native Object clone();
 }

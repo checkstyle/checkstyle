@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks;
 
@@ -25,26 +25,122 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Optional;
+import java.util.regex.Pattern;
 
+import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * Maintains a set of check suppressions from {@link SuppressWarnings}
- * annotations.
- * @author Trevor Robinson
- * @author St&eacute;phane Galland
+ * <p>
+ * Maintains a set of check suppressions from {@code @SuppressWarnings} annotations.
+ * It allows to prevent Checkstyle from reporting violations from parts of code that were
+ * annotated with {@code @SuppressWarnings} and using name of the check to be excluded.
+ * It is possible to suppress all the checkstyle warnings with the argument {@code "all"}.
+ * You can also use a {@code checkstyle:} prefix to prevent compiler
+ * from processing these annotations.
+ * You can also define aliases for check names that need to be suppressed.
+ * </p>
+ * <ul>
+ * <li>
+ * Property {@code aliasList} - Specify aliases for check names that can be used in code
+ * within {@code SuppressWarnings}.
+ * Type is {@code java.lang.String[]}.
+ * Default value is {@code null}.
+ * </li>
+ * </ul>
+ * <p>
+ * To use default module configuration:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;TreeWalker&quot;&gt;
+ *   &lt;module name=&quot;MemberName&quot;/&gt;
+ *   &lt;module name=&quot;ConstantName&quot;/&gt;
+ *   &lt;module name=&quot;ParameterNumber&quot;&gt;
+ *     &lt;property name=&quot;id&quot; value=&quot;ParamNumberId&quot;/&gt;
+ *   &lt;/module&gt;
+ *   &lt;module name=&quot;NoWhitespaceAfter&quot;/&gt;
+ *
+ *   &lt;module name=&quot;SuppressWarningsHolder&quot;/&gt;
+ * &lt;/module&gt;
+ * &lt;module name=&quot;SuppressWarningsFilter&quot;/&gt;
+ * </pre>
+ * <pre>
+ * class Test {
+ *
+ *     private int K; // violation
+ *     &#64;SuppressWarnings({"membername"})
+ *     private int J; // violation suppressed
+ *
+ *     private static final int i = 0; // violation
+ *     &#64;SuppressWarnings("checkstyle:constantname")
+ *     private static final int m = 0; // violation suppressed
+ *
+ *     public void needsLotsOfParameters (int a, // violation
+ *       int b, int c, int d, int e, int f, int g, int h) {
+ *       // ...
+ *     }
+ *
+ *     &#64;SuppressWarnings("ParamNumberId")
+ *     public void needsLotsOfParameters1 (int a, // violation suppressed
+ *       int b, int c, int d, int e, int f, int g, int h) {
+ *       //  ...
+ *     }
+ *
+ *    private int [] ARR; // 2 violations
+ *    &#64;SuppressWarnings("all")
+ *    private int [] ARRAY; // violations suppressed
+ * }
+ * </pre>
+ * <p>
+ * The general rule is that the argument of the {@code @SuppressWarnings} will be
+ * matched against class name of the check in any letter case. Adding {@code check}
+ * suffix is also accepted.
+ * </p>
+ * <p>
+ * If {@code aliasList} property was provided you can use your own names e.g. below
+ * code will work if there was provided a {@code ParameterNumberCheck=paramnum} in
+ * the {@code aliasList}:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;TreeWalker&quot;&gt;
+ *   &lt;module name=&quot;ParameterNumber&quot;/&gt;
+ *
+ *   &lt;module name=&quot;SuppressWarningsHolder&quot;&gt;
+ *     &lt;property name=&quot;aliasList&quot; value=
+ *       &quot;com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck=paramnum&quot;/&gt;
+ *   &lt;/module&gt;
+ * &lt;/module&gt;
+ * &lt;module name=&quot;SuppressWarningsFilter&quot;/&gt;
+ * </pre>
+ * <pre>
+ * class Test {
+ *
+ *     public void needsLotsOfParameters (int a, // violation
+ *       int b, int c, int d, int e, int f, int g, int h) {
+ *       // ...
+ *     }
+ *
+ *     &#64;SuppressWarnings("paramnum")
+ *     public void needsLotsOfParameters1 (int a, // violation suppressed
+ *       int b, int c, int d, int e, int f, int g, int h) {
+ *       //  ...
+ *     }
+ *
+ * }
+ * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ *
+ * @since 5.7
  */
+@StatelessCheck
 public class SuppressWarningsHolder
     extends AbstractCheck {
-
-    /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
-     */
-    public static final String MSG_KEY = "suppress.warnings.invalid.target";
 
     /**
      * Optional prefix for warning suppressions that are only intended to be
@@ -53,13 +149,13 @@ public class SuppressWarningsHolder
      * suppression {@code "checkstyle:fallthrough"} or {@code "checkstyle:FallThrough"}.
      * To suppress the warning in both tools, just use {@code "fallthrough"}.
      */
-    public static final String CHECKSTYLE_PREFIX = "checkstyle:";
+    private static final String CHECKSTYLE_PREFIX = "checkstyle:";
 
     /** Java.lang namespace prefix, which is stripped from SuppressWarnings */
     private static final String JAVA_LANG_PREFIX = "java.lang.";
 
     /** Suffix to be removed from subclasses of Check. */
-    private static final String CHECK_SUFFIX = "Check";
+    private static final String CHECK_SUFFIX = "check";
 
     /** Special warning id for matching all the warnings. */
     private static final String ALL_WARNING_MATCHING_ID = "all";
@@ -71,34 +167,43 @@ public class SuppressWarningsHolder
      * A thread-local holder for the list of suppression entries for the last
      * file parsed.
      */
-    private static final ThreadLocal<List<Entry>> ENTRIES = new ThreadLocal<List<Entry>>() {
-        @Override
-        protected List<Entry> initialValue() {
-            return new LinkedList<>();
-        }
-    };
+    private static final ThreadLocal<List<Entry>> ENTRIES =
+            ThreadLocal.withInitial(LinkedList::new);
+
+    /**
+     * Compiled pattern used to match whitespace in text block content.
+     */
+    private static final Pattern WHITESPACE = Pattern.compile("\\s+");
+
+    /**
+     * Compiled pattern used to match preceding newline in text block content.
+     */
+    private static final Pattern NEWLINE = Pattern.compile("\\n");
 
     /**
      * Returns the default alias for the source name of a check, which is the
-     * source name in lower case with any dotted prefix or "Check" suffix
-     * removed.
+     * source name in lower case with any dotted prefix or "Check"/"check"
+     * suffix removed.
+     *
      * @param sourceName the source name of the check (generally the class
      *        name)
      * @return the default alias for the given check
      */
     public static String getDefaultAlias(String sourceName) {
         int endIndex = sourceName.length();
-        if (sourceName.endsWith(CHECK_SUFFIX)) {
+        final String sourceNameLower = sourceName.toLowerCase(Locale.ENGLISH);
+        if (sourceNameLower.endsWith(CHECK_SUFFIX)) {
             endIndex -= CHECK_SUFFIX.length();
         }
-        final int startIndex = sourceName.lastIndexOf('.') + 1;
-        return sourceName.substring(startIndex, endIndex).toLowerCase(Locale.ENGLISH);
+        final int startIndex = sourceNameLower.lastIndexOf('.') + 1;
+        return sourceNameLower.substring(startIndex, endIndex);
     }
 
     /**
      * Returns the alias for the source name of a check. If an alias has been
-     * explicitly registered via {@link #registerAlias(String, String)}, that
+     * explicitly registered via {@link #setAliasList(String...)}, that
      * alias is returned; otherwise, the default alias is used.
+     *
      * @param sourceName the source name of the check (generally the class
      *        name)
      * @return the current alias for the given check
@@ -113,20 +218,21 @@ public class SuppressWarningsHolder
 
     /**
      * Registers an alias for the source name of a check.
+     *
      * @param sourceName the source name of the check (generally the class
      *        name)
      * @param checkAlias the alias used in {@link SuppressWarnings} annotations
      */
-    public static void registerAlias(String sourceName, String checkAlias) {
+    private static void registerAlias(String sourceName, String checkAlias) {
         CHECK_ALIAS_MAP.put(sourceName, checkAlias);
     }
 
     /**
-     * Registers a list of source name aliases based on a comma-separated list
-     * of {@code source=alias} items, such as {@code
-     * com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck=
-     * paramnum}.
-     * @param aliasList the list of comma-separated alias assignments
+     * Setter to specify aliases for check names that can be used in code
+     * within {@code SuppressWarnings}.
+     *
+     * @param aliasList comma-separated alias assignments
+     * @throws IllegalArgumentException when alias item does not have '='
      */
     public void setAliasList(String... aliasList) {
         for (String sourceAlias : aliasList) {
@@ -145,6 +251,7 @@ public class SuppressWarningsHolder
     /**
      * Checks for a suppression of a check with the given source name and
      * location in the last file processed.
+     *
      * @param event audit event.
      * @return whether the check with the given name is suppressed at the given
      *         source location
@@ -159,12 +266,13 @@ public class SuppressWarningsHolder
         for (Entry entry : entries) {
             final boolean afterStart = isSuppressedAfterEventStart(line, column, entry);
             final boolean beforeEnd = isSuppressedBeforeEventEnd(line, column, entry);
+            final String checkName = entry.getCheckName();
             final boolean nameMatches =
-                ALL_WARNING_MATCHING_ID.equals(entry.getCheckName())
-                    || entry.getCheckName().equalsIgnoreCase(checkAlias);
-            final boolean idMatches = event.getModuleId() != null
-                && event.getModuleId().equals(entry.getCheckName());
-            if (afterStart && beforeEnd && (nameMatches || idMatches)) {
+                ALL_WARNING_MATCHING_ID.equals(checkName)
+                    || checkName.equalsIgnoreCase(checkAlias)
+                    || getDefaultAlias(checkName).equalsIgnoreCase(checkAlias);
+            if (afterStart && beforeEnd
+                    && (nameMatches || checkName.equals(event.getModuleId()))) {
                 suppressed = true;
                 break;
             }
@@ -175,6 +283,7 @@ public class SuppressWarningsHolder
     /**
      * Checks whether suppression entry position is after the audit event occurrence position
      * in the source file.
+     *
      * @param line the line number in the source file where the event occurred.
      * @param column the column number in the source file where the event occurred.
      * @param entry suppression entry.
@@ -190,6 +299,7 @@ public class SuppressWarningsHolder
     /**
      * Checks whether suppression entry position is before the audit event occurrence position
      * in the source file.
+     *
      * @param line the line number in the source file where the event occurred.
      * @param column the column number in the source file where the event occurred.
      * @param entry suppression entry.
@@ -204,17 +314,17 @@ public class SuppressWarningsHolder
 
     @Override
     public int[] getDefaultTokens() {
-        return getAcceptableTokens();
+        return getRequiredTokens();
     }
 
     @Override
     public int[] getAcceptableTokens() {
-        return new int[] {TokenTypes.ANNOTATION};
+        return getRequiredTokens();
     }
 
     @Override
     public int[] getRequiredTokens() {
-        return getAcceptableTokens();
+        return new int[] {TokenTypes.ANNOTATION};
     }
 
     @Override
@@ -231,41 +341,42 @@ public class SuppressWarningsHolder
             identifier = identifier.substring(JAVA_LANG_PREFIX.length());
         }
         if ("SuppressWarnings".equals(identifier)) {
+            getAnnotationTarget(ast).ifPresent(targetAST -> {
+                addSuppressions(getAllAnnotationValues(ast), targetAST);
+            });
+        }
+    }
 
-            final List<String> values = getAllAnnotationValues(ast);
-            if (!isAnnotationEmpty(values)) {
-                final DetailAST targetAST = getAnnotationTarget(ast);
+    /**
+     * Method to populate list of suppression entries.
+     *
+     * @param values
+     *            - list of check names
+     * @param targetAST
+     *            - annotation target
+     */
+    private static void addSuppressions(List<String> values, DetailAST targetAST) {
+        // get text range of target
+        final int firstLine = targetAST.getLineNo();
+        final int firstColumn = targetAST.getColumnNo();
+        final DetailAST nextAST = targetAST.getNextSibling();
+        final int lastLine;
+        final int lastColumn;
+        if (nextAST == null) {
+            lastLine = Integer.MAX_VALUE;
+            lastColumn = Integer.MAX_VALUE;
+        }
+        else {
+            lastLine = nextAST.getLineNo();
+            lastColumn = nextAST.getColumnNo();
+        }
 
-                if (targetAST == null) {
-                    log(ast.getLineNo(), MSG_KEY);
-                }
-                else {
-                    // get text range of target
-                    final int firstLine = targetAST.getLineNo();
-                    final int firstColumn = targetAST.getColumnNo();
-                    final DetailAST nextAST = targetAST.getNextSibling();
-                    final int lastLine;
-                    final int lastColumn;
-                    if (nextAST == null) {
-                        lastLine = Integer.MAX_VALUE;
-                        lastColumn = Integer.MAX_VALUE;
-                    }
-                    else {
-                        lastLine = nextAST.getLineNo();
-                        lastColumn = nextAST.getColumnNo() - 1;
-                    }
-
-                    // add suppression entries for listed checks
-                    final List<Entry> entries = ENTRIES.get();
-                    for (String value : values) {
-                        String checkName = value;
-                        // strip off the checkstyle-only prefix if present
-                        checkName = removeCheckstylePrefixIfExists(checkName);
-                        entries.add(new Entry(checkName, firstLine, firstColumn,
-                                lastLine, lastColumn));
-                    }
-                }
-            }
+        final List<Entry> entries = ENTRIES.get();
+        for (String value : values) {
+            // strip off the checkstyle-only prefix if present
+            final String checkName = removeCheckstylePrefixIfExists(value);
+            entries.add(new Entry(checkName, firstLine, firstColumn,
+                    lastLine, lastColumn));
         }
     }
 
@@ -286,12 +397,14 @@ public class SuppressWarningsHolder
 
     /**
      * Get all annotation values.
+     *
      * @param ast annotation token
      * @return list values
+     * @throws IllegalArgumentException if there is an unknown annotation value type.
      */
     private static List<String> getAllAnnotationValues(DetailAST ast) {
         // get values of annotation
-        List<String> values = null;
+        List<String> values = Collections.emptyList();
         final DetailAST lparenAST = ast.findFirstToken(TokenTypes.LPAREN);
         if (lparenAST != null) {
             final DetailAST nextAST = lparenAST.getNextSibling();
@@ -321,74 +434,38 @@ public class SuppressWarningsHolder
     }
 
     /**
-     * Checks that annotation is empty.
-     * @param values list of values in the annotation
-     * @return whether annotation is empty or contains some values
-     */
-    private static boolean isAnnotationEmpty(List<String> values) {
-        return values == null;
-    }
-
-    /**
      * Get target of annotation.
+     *
      * @param ast the AST node to get the child of
      * @return get target of annotation
+     * @throws IllegalArgumentException if there is an unexpected container type.
      */
-    private static DetailAST getAnnotationTarget(DetailAST ast) {
-        final DetailAST targetAST;
+    private static Optional<DetailAST> getAnnotationTarget(DetailAST ast) {
+        final Optional<DetailAST> result;
         final DetailAST parentAST = ast.getParent();
         switch (parentAST.getType()) {
             case TokenTypes.MODIFIERS:
             case TokenTypes.ANNOTATIONS:
-                targetAST = getAcceptableParent(parentAST);
+            case TokenTypes.ANNOTATION:
+            case TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR:
+                result = Optional.of(parentAST.getParent());
+                break;
+            case TokenTypes.LITERAL_DEFAULT:
+                result = Optional.empty();
+                break;
+            case TokenTypes.ANNOTATION_ARRAY_INIT:
+                result = getAnnotationTarget(parentAST);
                 break;
             default:
                 // unexpected container type
                 throw new IllegalArgumentException("Unexpected container AST: " + parentAST);
-        }
-        return targetAST;
-    }
-
-    /**
-     * Returns parent of given ast if parent has one of the following types:
-     * ANNOTATION_DEF, PACKAGE_DEF, CLASS_DEF, ENUM_DEF, ENUM_CONSTANT_DEF, CTOR_DEF,
-     * METHOD_DEF, PARAMETER_DEF, VARIABLE_DEF, ANNOTATION_FIELD_DEF, TYPE, LITERAL_NEW,
-     * LITERAL_THROWS, TYPE_ARGUMENT, IMPLEMENTS_CLAUSE, DOT.
-     * @param child an ast
-     * @return returns ast - parent of given
-     */
-    private static DetailAST getAcceptableParent(DetailAST child) {
-        final DetailAST result;
-        final DetailAST parent = child.getParent();
-        switch (parent.getType()) {
-            case TokenTypes.ANNOTATION_DEF:
-            case TokenTypes.PACKAGE_DEF:
-            case TokenTypes.CLASS_DEF:
-            case TokenTypes.INTERFACE_DEF:
-            case TokenTypes.ENUM_DEF:
-            case TokenTypes.ENUM_CONSTANT_DEF:
-            case TokenTypes.CTOR_DEF:
-            case TokenTypes.METHOD_DEF:
-            case TokenTypes.PARAMETER_DEF:
-            case TokenTypes.VARIABLE_DEF:
-            case TokenTypes.ANNOTATION_FIELD_DEF:
-            case TokenTypes.TYPE:
-            case TokenTypes.LITERAL_NEW:
-            case TokenTypes.LITERAL_THROWS:
-            case TokenTypes.TYPE_ARGUMENT:
-            case TokenTypes.IMPLEMENTS_CLAUSE:
-            case TokenTypes.DOT:
-                result = parent;
-                break;
-            default:
-                // it's possible case, but shouldn't be processed here
-                result = null;
         }
         return result;
     }
 
     /**
      * Returns the n'th child of an AST node.
+     *
      * @param ast the AST node to get the child of
      * @param index the index of the child to get
      * @return the n'th child of the given AST node, or {@code null} if none
@@ -403,6 +480,7 @@ public class SuppressWarningsHolder
 
     /**
      * Returns the Java identifier represented by an AST.
+     *
      * @param ast an AST node for an IDENT or DOT
      * @return the Java identifier represented by the given AST subtree
      * @throws IllegalArgumentException if the AST is invalid
@@ -424,6 +502,7 @@ public class SuppressWarningsHolder
 
     /**
      * Returns the literal string expression represented by an AST.
+     *
      * @param ast an AST node for an EXPR
      * @return the Java string represented by the given AST expression
      *         or empty string if expression is too complex
@@ -445,6 +524,10 @@ public class SuppressWarningsHolder
             case TokenTypes.DOT:
                 expr = firstChild.getLastChild().getText();
                 break;
+            case TokenTypes.TEXT_BLOCK_LITERAL_BEGIN:
+                final String textBlockContent = firstChild.getFirstChild().getText();
+                expr = getContentWithoutPrecedingWhitespace(textBlockContent);
+                break;
             default:
                 // annotations with complex expressions cannot suppress warnings
         }
@@ -453,6 +536,7 @@ public class SuppressWarningsHolder
 
     /**
      * Returns the annotation values represented by an AST.
+     *
      * @param ast an AST node for an EXPR or ANNOTATION_ARRAY_INIT
      * @return the list of Java string represented by the given AST for an
      *         expression or annotation array initializer
@@ -476,6 +560,7 @@ public class SuppressWarningsHolder
 
     /**
      * Method looks at children and returns list of expressions in strings.
+     *
      * @param parent ast, that contains children
      * @return list of expressions in strings
      */
@@ -491,8 +576,27 @@ public class SuppressWarningsHolder
         return valueList;
     }
 
+    /**
+     * Remove preceding newline and whitespace from the content of a text block.
+     *
+     * @param textBlockContent the actual text in a text block.
+     * @return content of text block with preceding whitespace and newline removed.
+     */
+    private static String getContentWithoutPrecedingWhitespace(String textBlockContent) {
+        final String contentWithNoPrecedingNewline =
+            NEWLINE.matcher(textBlockContent).replaceAll("");
+        return WHITESPACE.matcher(contentWithNoPrecedingNewline).replaceAll("");
+    }
+
+    @Override
+    public void destroy() {
+        super.destroy();
+        ENTRIES.remove();
+    }
+
     /** Records a particular suppression for a region of a file. */
-    private static class Entry {
+    private static final class Entry {
+
         /** The source name of the suppressed check. */
         private final String checkName;
         /** The suppression region for the check - first line. */
@@ -506,13 +610,14 @@ public class SuppressWarningsHolder
 
         /**
          * Constructs a new suppression region entry.
+         *
          * @param checkName the source name of the suppressed check
          * @param firstLine the first line of the suppression region
          * @param firstColumn the first column of the suppression region
          * @param lastLine the last line of the suppression region
          * @param lastColumn the last column of the suppression region
          */
-        Entry(String checkName, int firstLine, int firstColumn,
+        private Entry(String checkName, int firstLine, int firstColumn,
             int lastLine, int lastColumn) {
             this.checkName = checkName;
             this.firstLine = firstLine;
@@ -522,7 +627,8 @@ public class SuppressWarningsHolder
         }
 
         /**
-         * Gets he source name of the suppressed check.
+         * Gets the source name of the suppressed check.
+         *
          * @return the source name of the suppressed check
          */
         public String getCheckName() {
@@ -531,6 +637,7 @@ public class SuppressWarningsHolder
 
         /**
          * Gets the first line of the suppression region.
+         *
          * @return the first line of the suppression region
          */
         public int getFirstLine() {
@@ -539,6 +646,7 @@ public class SuppressWarningsHolder
 
         /**
          * Gets the first column of the suppression region.
+         *
          * @return the first column of the suppression region
          */
         public int getFirstColumn() {
@@ -547,6 +655,7 @@ public class SuppressWarningsHolder
 
         /**
          * Gets the last line of the suppression region.
+         *
          * @return the last line of the suppression region
          */
         public int getLastLine() {
@@ -555,10 +664,13 @@ public class SuppressWarningsHolder
 
         /**
          * Gets the last column of the suppression region.
+         *
          * @return the last column of the suppression region
          */
         public int getLastColumn() {
             return lastColumn;
         }
+
     }
+
 }

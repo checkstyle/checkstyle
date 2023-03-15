@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,30 +15,25 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.google.checkstyle.test.chapter4formatting.rule43onestatement;
 
-import java.io.File;
-import java.io.IOException;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Test;
-
-import com.google.checkstyle.test.base.BaseCheckTestSupport;
+import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck;
 
-public class OneStatementPerLineTest extends BaseCheckTestSupport {
+public class OneStatementPerLineTest extends AbstractGoogleModuleTestSupport {
 
     @Override
-    protected String getPath(String fileName) throws IOException {
-        return super.getPath("chapter4formatting" + File.separator + "rule43onestatement"
-                + File.separator + fileName);
+    protected String getPackageLocation() {
+        return "com/google/checkstyle/test/chapter4formatting/rule43onestatement";
     }
 
     @Test
     public void testOneStatement() throws Exception {
-
         final String msg = getCheckMessage(OneStatementPerLineCheck.class,
             "multiple.statements.line");
 
@@ -66,7 +61,7 @@ public class OneStatementPerLineTest extends BaseCheckTestSupport {
             "307:39: " + msg,
         };
 
-        final Configuration checkConfig = getCheckConfig("OneStatementPerLine");
+        final Configuration checkConfig = getModuleConfig("OneStatementPerLine");
         final String filePath = getPath("InputOneStatementPerLine.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);
@@ -75,7 +70,6 @@ public class OneStatementPerLineTest extends BaseCheckTestSupport {
 
     @Test
     public void testOneStatementNonCompilableInput() throws Exception {
-
         final String msg = getCheckMessage(OneStatementPerLineCheck.class,
             "multiple.statements.line");
 
@@ -85,15 +79,14 @@ public class OneStatementPerLineTest extends BaseCheckTestSupport {
             "38:58: " + msg,
             "38:74: " + msg,
             "39:50: " + msg,
-            "43:91: " + msg,
+            "43:85: " + msg,
         };
 
-        final Configuration checkConfig = getCheckConfig("OneStatementPerLine");
-        final String filePath = new File("src/test/resources-noncompilable/"
-            + "com/puppycrawl/tools/checkstyle/checks/coding/onestatementperline/"
-            + "InputOneStatementPerLine.java").getCanonicalPath();
+        final Configuration checkConfig = getModuleConfig("OneStatementPerLine");
+        final String filePath = getNonCompilablePath("InputOneStatementPerLine.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
+
 }

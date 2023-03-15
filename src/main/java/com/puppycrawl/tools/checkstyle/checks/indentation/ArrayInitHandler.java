@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.indentation;
 
@@ -25,9 +25,14 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 /**
  * Handler for array initialization blocks.
  *
- * @author jrichard
  */
 public class ArrayInitHandler extends BlockParentHandler {
+
+    /**
+     * Constant to define that the required character does not exist at any position.
+     */
+    private static final int NOT_EXIST = -1;
+
     /**
      * Construct an instance of this handler with the given indentation check,
      * abstract syntax tree, and parent handler.
@@ -45,14 +50,16 @@ public class ArrayInitHandler extends BlockParentHandler {
     protected IndentLevel getIndentImpl() {
         final DetailAST parentAST = getMainAst().getParent();
         final int type = parentAST.getType();
+        final IndentLevel indentLevel;
         if (type == TokenTypes.LITERAL_NEW || type == TokenTypes.ASSIGN) {
             // note: assumes new or assignment is line to align with
-            return new IndentLevel(getLineStart(parentAST));
+            indentLevel = new IndentLevel(getLineStart(parentAST));
         }
         else {
             // at this point getParent() is instance of BlockParentHandler
-            return ((BlockParentHandler) getParent()).getChildrenExpectedIndent();
+            indentLevel = ((BlockParentHandler) getParent()).getChildrenExpectedIndent();
         }
+        return indentLevel;
     }
 
     @Override
@@ -67,9 +74,18 @@ public class ArrayInitHandler extends BlockParentHandler {
 
     @Override
     protected IndentLevel curlyIndent() {
-        final IndentLevel level = new IndentLevel(getIndent(), getBraceAdjustment());
-        level.addAcceptedIndent(level.getLastIndentLevel() + getLineWrappingIndentation());
-        return level;
+        int offset = 0;
+
+        final DetailAST lcurly = getLeftCurly();
+
+        if (isOnStartOfLine(lcurly)
+            && lcurly.getParent().getType() != TokenTypes.ARRAY_INIT) {
+            offset = getBraceAdjustment();
+        }
+
+        final IndentLevel level = new IndentLevel(getIndent(), offset);
+        return IndentLevel.addAcceptable(level, level.getLastIndentLevel()
+                + getLineWrappingIndentation());
     }
 
     @Override
@@ -89,31 +105,32 @@ public class ArrayInitHandler extends BlockParentHandler {
 
     @Override
     protected IndentLevel getChildrenExpectedIndent() {
-        final IndentLevel expectedIndent =
+        IndentLevel expectedIndent =
             new IndentLevel(getIndent(), getIndentCheck().getArrayInitIndent(),
                     getIndentCheck().getLineWrappingIndentation());
 
-        final int firstLine = getFirstLine(Integer.MAX_VALUE, getListChild());
+        final int firstLine = getFirstLine(getListChild());
         final int lcurlyPos = expandedTabsColumnNo(getLeftCurly());
         final int firstChildPos =
             getNextFirstNonBlankOnLineAfter(firstLine, lcurlyPos);
-        if (firstChildPos >= 0) {
-            expectedIndent.addAcceptedIndent(firstChildPos);
-            expectedIndent.addAcceptedIndent(lcurlyPos + getLineWrappingIndentation());
+
+        if (firstChildPos != NOT_EXIST) {
+            expectedIndent = IndentLevel.addAcceptable(expectedIndent, firstChildPos, lcurlyPos
+                    + getLineWrappingIndentation());
         }
         return expectedIndent;
     }
 
     /**
      * Returns column number of first non-blank char after
-     * specified column on specified line or -1 if
+     * specified column on specified line or {@code NOT_EXIST} if
      * such char doesn't exist.
      *
      * @param lineNo   number of line on which we search
      * @param columnNo number of column after which we search
      *
      * @return column number of first non-blank char after
-     *         specified column on specified line or -1 if
+     *         specified column on specified line or {@code NOT_EXIST} if
      *         such char doesn't exist.
      */
     private int getNextFirstNonBlankOnLineAfter(int lineNo, int columnNo) {
@@ -126,19 +143,19 @@ public class ArrayInitHandler extends BlockParentHandler {
         }
 
         if (realColumnNo == lineLength) {
-            return -1;
+            realColumnNo = NOT_EXIST;
         }
-        else {
-            return realColumnNo;
-        }
+        return realColumnNo;
     }
 
     /**
      * A shortcut for {@code IndentationCheck} property.
+     *
      * @return value of lineWrappingIndentation property
      *         of {@code IndentationCheck}
      */
     private int getLineWrappingIndentation() {
         return getIndentCheck().getLineWrappingIndentation();
     }
+
 }

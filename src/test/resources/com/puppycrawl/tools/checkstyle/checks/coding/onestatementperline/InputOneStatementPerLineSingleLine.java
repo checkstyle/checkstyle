@@ -1,27 +1,16 @@
-////////////////////////////////////////////////////////////////////////////////
-//checkstyle: Checks Java source code for adherence to a set of rules.
-//Copyright (C) 2001-2004  Oliver Burn
-//
-//This library is free software; you can redistribute it and/or
-//modify it under the terms of the GNU Lesser General Public
-//License as published by the Free Software Foundation; either
-//version 2.1 of the License, or (at your option) any later version.
-//
-//This library is distributed in the hope that it will be useful,
-//but WITHOUT ANY WARRANTY; without even the implied warranty of
-//MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-//Lesser General Public License for more details.
-//
-//You should have received a copy of the GNU Lesser General Public
-//License along with this library; if not, write to the Free Software
-//Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+/*
+OneStatementPerLine
+treatTryResourcesAsStatement = (default)false
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.coding.onestatementperline;
 
 /**
  * Two import statements on the same line are illegal.
  */
-import java.io.EOFException; import java.io.BufferedReader;
+import java.io.EOFException; import java.io.BufferedReader; // violation
 
 /**
  * This Class contains no logic, but serves as test-input for the unit tests for the
@@ -33,7 +22,7 @@ public class InputOneStatementPerLineSingleLine {
   /**
    * Dummy innerclass to test the behaviour in the case of a smalltalk-style
    * statements (<code>myObject.firstMethod().secondMethod().thirdMethod()</code>).
-   * For this programming style each method must return the obejct itself <code>this</code>.
+   * For this programming style each method must return the object itself <code>this</code>.
    */
   class SmallTalkStyle {
     SmallTalkStyle doSomething1() {
@@ -68,14 +57,14 @@ public class InputOneStatementPerLineSingleLine {
   }
 
   /**
-   * The illegal format is used in a coment. Therefor the whole method is legal.
+   * The illegal format is used in a comment. Therefor the whole method is legal.
    */
   public void doLegalComment() {
     one = 1;
-    //one = 1; two = 2;
+    //one = 1; two = 2; // ok
     two = 2;
     /*
-     * one = 1; two = 2;
+     * one = 1; two = 2; // ok
      */
   }
 
@@ -85,14 +74,14 @@ public class InputOneStatementPerLineSingleLine {
   public void doLegalString() {
     one = 1;
     two = 2;
-    System.identityHashCode("one = 1; two = 2");
+    System.identityHashCode("one = 1; two = 2"); // ok
   }
 
   /**
    * Within the for-header there are 3 Statements, but this is legal.
    */
   public void doLegalForLoop() {
-    for (int i = 0; i < 20; i++) {
+    for (int i = 0; i < 20; i++) { // ok
       one = i;
     }
   }
@@ -101,7 +90,7 @@ public class InputOneStatementPerLineSingleLine {
    * Simplest form of an illegal layout.
    */
   public void doIllegal() {
-    one = 1; two = 2;
+    one = 1; two = 2; // violation
   }
 
   /**
@@ -128,7 +117,7 @@ public class InputOneStatementPerLineSingleLine {
    */
   public void doIllegal2() {
     one = 1
-    ; two = 2;
+    ; two = 2; // violation
   }
 
   /**
@@ -154,7 +143,7 @@ public class InputOneStatementPerLineSingleLine {
   /**
    * Two declaration statements on the same line are illegal.
    */
-  int a; int b;
+  int a; int b; // violation
 
   /**
    * Two declaration statements which are not on the same line
@@ -166,7 +155,7 @@ public class InputOneStatementPerLineSingleLine {
   /**
    * Two assignment (declaration) statements on the same line are illegal.
    */
-  int e = 1; int f = 2;
+  int e = 1; int f = 2; // violation
 
   /**
    * Two assignment (declaration) statements on the different lines
@@ -186,10 +175,10 @@ public class InputOneStatementPerLineSingleLine {
     int var2 = 2;
 
     //Two increment statements on the same line are illegal.
-    var1++; var2++;
+    var1++; var2++; // violation
 
     //Two object creation statements on the same line are illegal.
-    Object obj1 = new Object(); Object obj2 = new Object();
+    Object obj1 = new Object(); Object obj2 = new Object(); // violation
   }
 
   /**
@@ -238,4 +227,11 @@ public class InputOneStatementPerLineSingleLine {
      */
     for (;;) { one = 5; }
   }
+
+  public void foo6() {
+      bar(() -> {
+          return;}, () -> {return;});
+  }
+
+  void bar(Runnable r1, Runnable r2) { }
 }

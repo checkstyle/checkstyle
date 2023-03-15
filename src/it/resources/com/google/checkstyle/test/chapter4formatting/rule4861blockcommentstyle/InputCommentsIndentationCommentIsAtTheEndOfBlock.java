@@ -1,7 +1,7 @@
 package com.google.checkstyle.test.chapter4formatting.rule4861blockcommentstyle;
 
-import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.utils.CheckUtils;
+
+
 
 /**
  * Contains examples of using comments at the end of the block.
@@ -10,7 +10,7 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlock {
 
     public void foo1() {
         foo2();
-        // TODO: missing functionality
+        // OOOO: missing functionality
     }
 
     public void foo2() {
@@ -30,14 +30,14 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlock {
 
     public void foooooooooooooooooooooooooooooooooooooooooo() { }
 
-     /////////////////////////////// warn (a single line border to separate a group of methods)
+     /////////////////////////////// warn (a single-line border to separate a group of methods)
 
     public void foo7() {
         int a = 0;
 // warn
     }
 
-    /////////////////////////////// (a single line border to separate a group of methods)
+    /////////////////////////////// (a single-line border to separate a group of methods)
 
     public void foo8() {}
 
@@ -59,61 +59,61 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlock {
     //    }
 
     public void foo11() {
-        CheckUtils
-            .getFirstNode(new DetailAST())
-            .getFirstChild()
-            .getNextSibling();
+        String
+            .valueOf(new Integer(0))
+            .trim()
+            .length();
         // comment
     }
 
     public void foo12() {
-        CheckUtils
-            .getFirstNode(new DetailAST())
-            .getFirstChild()
-            .getNextSibling();
+        String
+            .valueOf(new Integer(0))
+            .trim()
+            .length();
                   // warn
     }
 
     public void foo13() {
-        CheckUtils.getFirstNode(new DetailAST())
-                .getFirstChild()
-                .getNextSibling();
+        String.valueOf(new Integer(0))
+                .trim()
+                .length();
         // comment
     }
 
     public void foo14() {
-        CheckUtils.getFirstNode(new DetailAST())
-            .getFirstChild()
-            .getNextSibling();
+        String.valueOf(new Integer(0))
+            .trim()
+            .length();
                                // warn
     }
 
     public void foo15() {
-        CheckUtils
-              .getFirstNode(new DetailAST());
+        String
+              .valueOf(new Integer(0));
         // comment
     }
 
     public void foo16() {
-        CheckUtils
-            .getFirstNode(new DetailAST());
+        String
+            .valueOf(new Integer(0));
                      // warn
     }
 
     public void foo17() {
-        CheckUtils
-            .getFirstNode(new DetailAST())
-            .getFirstChild()
+        String
+            .valueOf(new Integer(0))
+            .trim()
             // comment
-            .getNextSibling();
+            .length();
     }
 
     public void foo18() {
-        CheckUtils
-            .getFirstNode(new DetailAST())
-            .getFirstChild()
+        String
+            .valueOf(new Integer(0))
+            .trim()
                              // warn
-            .getNextSibling();
+            .length();
     }
 
     public void foo19() {
@@ -191,7 +191,7 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlock {
         // block
         foo17();
 
-        // TODO
+        // OOOO
     }
 
     public String foo28() {

@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.gui;
 
@@ -31,9 +31,9 @@ import com.puppycrawl.tools.checkstyle.gui.MainFrameModel.ParseMode;
 /**
  * The model that backs the parse tree in the GUI.
  *
- * @author Lars Kühne
  */
 public class ParseTreeTableModel implements TreeModel {
+
     /** Presentation model. */
     private final ParseTreeTablePresentation pModel;
 
@@ -44,6 +44,7 @@ public class ParseTreeTableModel implements TreeModel {
 
     /**
      * Initialise pModel.
+     *
      * @param parseTree DetailAST parse tree.
      */
     public ParseTreeTableModel(DetailAST parseTree) {
@@ -53,10 +54,11 @@ public class ParseTreeTableModel implements TreeModel {
 
     /**
      * Sets parse tree.
+     *
      * @param parseTree DetailAST parse tree.
      */
     protected final void setParseTree(DetailAST parseTree) {
-        pModel.setParseTree(parseTree);
+        pModel.setRoot(parseTree);
         final Object[] path = {pModel.getRoot()};
         // no need to setup remaining info, as the call results in a
         // table structure changed event anyway - we just pass nulls
@@ -65,6 +67,7 @@ public class ParseTreeTableModel implements TreeModel {
 
     /**
      * Set parse mode.
+     *
      * @param mode ParseMode enum
      */
     protected void setParseMode(ParseMode mode) {
@@ -73,6 +76,7 @@ public class ParseTreeTableModel implements TreeModel {
 
     /**
      * Returns number of available column.
+     *
      * @return the number of available column.
      */
     public int getColumnCount() {
@@ -81,6 +85,7 @@ public class ParseTreeTableModel implements TreeModel {
 
     /**
      * Returns column name of specified column number.
+     *
      * @param column the column number
      * @return the name for column number {@code column}.
      */
@@ -90,6 +95,7 @@ public class ParseTreeTableModel implements TreeModel {
 
     /**
      * Returns type of specified column number.
+     *
      * @param column the column number
      * @return the type for column number {@code column}.
      */
@@ -101,6 +107,7 @@ public class ParseTreeTableModel implements TreeModel {
 
     /**
      * Returns the value to be displayed for node at column number.
+     *
      * @param node the node
      * @param column the column number
      * @return the value to be displayed for node {@code node},
@@ -152,10 +159,11 @@ public class ParseTreeTableModel implements TreeModel {
     }
 
     /**
-     * Notify all listeners that have registered interest for
+     * Notify all listeners that have registered interest in
      * 'tree structure changed' event.  The event instance
      * is lazily created using the parameters passed into
      * the fire method.
+     *
      * @param source The Object responsible for generating the event.
      * @param path An array of Object identifying the path to the parent of the modified items.
      * @param childIndices An array of int that specifies the index values of the removed items.
@@ -183,7 +191,7 @@ public class ParseTreeTableModel implements TreeModel {
     }
 
     /**
-     * Indicates whether the the value for node {@code node},
+     * Indicates whether the value for node {@code node},
      * at column number {@code column} is editable.
      *
      * @param column the column number
@@ -192,4 +200,5 @@ public class ParseTreeTableModel implements TreeModel {
     public boolean isCellEditable(int column) {
         return pModel.isCellEditable(column);
     }
+
 }

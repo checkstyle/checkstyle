@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,96 +15,112 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.coding.DefaultComesLastCheck.MSG_KEY;
 import static com.puppycrawl.tools.checkstyle.checks.coding.DefaultComesLastCheck.MSG_KEY_SKIP_IF_LAST_AND_SHARED_WITH_CASE;
 
-import java.io.File;
-import java.io.IOException;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Assert;
-import org.junit.Test;
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
-
-public class DefaultComesLastCheckTest extends BaseCheckTestSupport {
-
-    private DefaultConfiguration checkConfig;
+public class DefaultComesLastCheckTest extends AbstractModuleTestSupport {
 
     @Override
-    protected String getPath(String filename) throws IOException {
-        return super.getPath("checks" + File.separator
-                + "coding" + File.separator + "defaultcomeslast" + File.separator + filename);
-    }
-
-    @Override
-    protected String getNonCompilablePath(String filename) throws IOException {
-        return super.getNonCompilablePath("checks" + File.separator
-                + "coding" + File.separator + filename);
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/checks/coding/defaultcomeslast";
     }
 
     @Test
     public void testSkipIfLastAndSharedWithCase() throws Exception {
-        checkConfig = createCheckConfig(DefaultComesLastCheck.class);
-        checkConfig.addAttribute("skipIfLastAndSharedWithCase", "true");
         final String[] expected = {
-            "17:13: " + getCheckMessage(MSG_KEY_SKIP_IF_LAST_AND_SHARED_WITH_CASE),
-            "25:13: " + getCheckMessage(MSG_KEY_SKIP_IF_LAST_AND_SHARED_WITH_CASE),
-            "33:21: " + getCheckMessage(MSG_KEY_SKIP_IF_LAST_AND_SHARED_WITH_CASE),
-            "37:13: " + getCheckMessage(MSG_KEY_SKIP_IF_LAST_AND_SHARED_WITH_CASE),
-            "57:13: " + getCheckMessage(MSG_KEY_SKIP_IF_LAST_AND_SHARED_WITH_CASE),
-            "77:13: " + getCheckMessage(MSG_KEY_SKIP_IF_LAST_AND_SHARED_WITH_CASE),
-            "89:13: " + getCheckMessage(MSG_KEY_SKIP_IF_LAST_AND_SHARED_WITH_CASE),
-            "98:13: " + getCheckMessage(MSG_KEY),
+            "23:13: " + getCheckMessage(MSG_KEY_SKIP_IF_LAST_AND_SHARED_WITH_CASE),
+            "31:13: " + getCheckMessage(MSG_KEY_SKIP_IF_LAST_AND_SHARED_WITH_CASE),
+            "39:21: " + getCheckMessage(MSG_KEY_SKIP_IF_LAST_AND_SHARED_WITH_CASE),
+            "43:13: " + getCheckMessage(MSG_KEY_SKIP_IF_LAST_AND_SHARED_WITH_CASE),
+            "63:13: " + getCheckMessage(MSG_KEY_SKIP_IF_LAST_AND_SHARED_WITH_CASE),
+            "83:13: " + getCheckMessage(MSG_KEY_SKIP_IF_LAST_AND_SHARED_WITH_CASE),
+            "95:13: " + getCheckMessage(MSG_KEY_SKIP_IF_LAST_AND_SHARED_WITH_CASE),
+            "104:13: " + getCheckMessage(MSG_KEY),
         };
 
-        verify(checkConfig, getPath("InputSkipIfLastAndSharedWithCase.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputDefaultComesLastSkipIfLastAndSharedWithCase.java"),
+                expected);
     }
 
     @Test
     public void testDefault() throws Exception {
-        checkConfig = createCheckConfig(DefaultComesLastCheck.class);
         final String[] expected = {
-            "25:9: " + getCheckMessage(MSG_KEY),
-            "32:24: " + getCheckMessage(MSG_KEY),
-            "37:13: " + getCheckMessage(MSG_KEY),
-            "45:13: " + getCheckMessage(MSG_KEY),
-            "53:13: " + getCheckMessage(MSG_KEY),
-            "61:21: " + getCheckMessage(MSG_KEY),
-            "65:13: " + getCheckMessage(MSG_KEY),
-            "69:21: " + getCheckMessage(MSG_KEY),
-            "74:13: " + getCheckMessage(MSG_KEY),
-            "85:13: " + getCheckMessage(MSG_KEY),
-            "96:13: " + getCheckMessage(MSG_KEY),
-            "106:13: " + getCheckMessage(MSG_KEY),
-            "114:13: " + getCheckMessage(MSG_KEY),
-            "125:13: " + getCheckMessage(MSG_KEY),
+            "31:9: " + getCheckMessage(MSG_KEY),
+            "38:24: " + getCheckMessage(MSG_KEY),
+            "43:13: " + getCheckMessage(MSG_KEY),
+            "51:13: " + getCheckMessage(MSG_KEY),
+            "59:13: " + getCheckMessage(MSG_KEY),
+            "67:21: " + getCheckMessage(MSG_KEY),
+            "71:13: " + getCheckMessage(MSG_KEY),
+            "75:21: " + getCheckMessage(MSG_KEY),
+            "80:13: " + getCheckMessage(MSG_KEY),
+            "91:13: " + getCheckMessage(MSG_KEY),
+            "102:13: " + getCheckMessage(MSG_KEY),
+            "112:13: " + getCheckMessage(MSG_KEY),
+            "120:13: " + getCheckMessage(MSG_KEY),
+            "131:13: " + getCheckMessage(MSG_KEY),
         };
-        verify(checkConfig,
-               getPath("InputDefaultComesLast.java"),
+        verifyWithInlineConfigParser(
+                getPath("InputDefaultComesLast.java"),
                expected);
     }
 
     @Test
     public void testDefaultMethodsInJava8()
             throws Exception {
-        checkConfig = createCheckConfig(DefaultComesLastCheck.class);
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig,
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
                 getPath("InputDefaultComesLastDefaultMethodsInInterface.java"),
                 expected);
     }
 
     @Test
+    public void testDefaultComesLastSwitchExpressions() throws Exception {
+        final String[] expected = {
+            "16:13: " + getCheckMessage(MSG_KEY),
+            "32:13: " + getCheckMessage(MSG_KEY),
+            "46:13: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputDefaultComesLastSwitchExpressions.java"),
+            expected);
+    }
+
+    @Test
+    public void testDefaultComesLastSwitchExpressionsSkipIfLast() throws Exception {
+
+        final String[] expected = {
+            "33:13: " + getCheckMessage(MSG_KEY),
+            "48:13: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputDefaultComesLastSwitchExpressionsSkipIfLast.java"),
+            expected);
+    }
+
+    @Test
     public void testTokensNotNull() {
         final DefaultComesLastCheck check = new DefaultComesLastCheck();
-        Assert.assertNotNull(check.getAcceptableTokens());
-        Assert.assertNotNull(check.getDefaultTokens());
-        Assert.assertNotNull(check.getRequiredTokens());
+        assertWithMessage("Acceptable tokens should not be null")
+                .that(check.getAcceptableTokens())
+                .isNotNull();
+        assertWithMessage("Default tokens should not be null")
+                .that(check.getDefaultTokens())
+                .isNotNull();
+        assertWithMessage("Required tokens should not be null")
+                .that(check.getRequiredTokens())
+                .isNotNull();
     }
+
 }

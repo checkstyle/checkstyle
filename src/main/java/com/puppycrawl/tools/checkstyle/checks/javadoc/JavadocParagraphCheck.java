@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,63 +15,131 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
+import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
-import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
-import com.puppycrawl.tools.checkstyle.utils.JavadocUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 
 /**
+ * <p>
+ * Checks the Javadoc paragraph.
+ * </p>
+ * <p>
  * Checks that:
+ * </p>
  * <ul>
- * <li>There is one blank line between each of two paragraphs
- * and one blank line before the at-clauses block if it is present.</li>
+ * <li>There is one blank line between each of two paragraphs.</li>
  * <li>Each paragraph but the first has &lt;p&gt; immediately
  * before the first word, with no space after.</li>
  * </ul>
- *
- * <p>The check can be specified by option allowNewlineParagraph,
- * which says whether the &lt;p&gt; tag should be placed immediately before
- * the first word.
- *
- * <p>Default configuration:
+ * <ul>
+ * <li>
+ * Property {@code violateExecutionOnNonTightHtml} - Control when to print violations
+ * if the Javadoc being examined by this check violates the tight html rules defined at
+ * <a href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules">
+ * Tight-HTML Rules</a>.
+ * Type is {@code boolean}.
+ * Default value is {@code false}.
+ * </li>
+ * <li>
+ * Property {@code allowNewlineParagraph} - Control whether the &lt;p&gt; tag
+ * should be placed immediately before the first word.
+ * Type is {@code boolean}.
+ * Default value is {@code true}.
+ * </li>
+ * </ul>
+ * <p>
+ * To configure the default check:
  * </p>
  * <pre>
  * &lt;module name=&quot;JavadocParagraph&quot;/&gt;
  * </pre>
- *
- * <p>To allow newlines and spaces immediately after the &lt;p&gt; tag:
+ * <p>
+ * By default, the check will report a violation if there is a new line
+ * or whitespace after the &lt;p&gt; tag:
+ * </p>
+ * <pre>
+ * &#47;**
+ *  * No tag (ok).
+ *  *
+ *  * &lt;p&gt;Tag immediately before the text (ok).
+ *  * &lt;p&gt;No blank line before the tag (violation).
+ *  *
+ *  * &lt;p&gt;
+ *  * New line after tag (violation).
+ *  *
+ *  * &lt;p&gt; Whitespace after tag (violation).
+ *  *
+ *  *&#47;
+ * public class TestClass {
+ * }
+ * </pre>
+ * <p>
+ * To allow newlines and spaces immediately after the &lt;p&gt; tag:
+ * </p>
  * <pre>
  * &lt;module name=&quot;JavadocParagraph&quot;&gt;
- *      &lt;property name=&quot;allowNewlineParagraph&quot;
- *                   value==&quot;false&quot;/&gt;
- * &lt;/module&quot;&gt;
+ *   &lt;property name=&quot;allowNewlineParagraph&quot; value=&quot;false&quot;/&gt;
+ * &lt;/module&gt;
  * </pre>
- *
- * <p>In case of allowNewlineParagraph set to false
+ * <p>
+ * In case of {@code allowNewlineParagraph} set to {@code false}
  * the following example will not have any violations:
+ * </p>
  * <pre>
- *   /**
- *    * &lt;p&gt;
- *    * Some Javadoc.
- *    *
- *    * &lt;p&gt;  Some Javadoc.
- *    *
- *    * &lt;p&gt;
- *    * &lt;pre&gt;
- *    * Some preformatted Javadoc.
- *    * &lt;/pre&gt;
- *    *
- *    *&#47;
+ * &#47;**
+ *  * No tag (ok).
+ *  *
+ *  * &lt;p&gt;Tag immediately before the text (ok).
+ *  * &lt;p&gt;No blank line before the tag (violation).
+ *  *
+ *  * &lt;p&gt;
+ *  * New line after tag (ok).
+ *  *
+ *  * &lt;p&gt; Whitespace after tag (ok).
+ *  *
+ *  *&#47;
+ * public class TestClass {
+ * }
  * </pre>
- * @author maxvetrenko
- * @author Vladislav Lisetskiy
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code javadoc.missed.html.close}
+ * </li>
+ * <li>
+ * {@code javadoc.paragraph.line.before}
+ * </li>
+ * <li>
+ * {@code javadoc.paragraph.misplaced.tag}
+ * </li>
+ * <li>
+ * {@code javadoc.paragraph.redundant.paragraph}
+ * </li>
+ * <li>
+ * {@code javadoc.paragraph.tag.after}
+ * </li>
+ * <li>
+ * {@code javadoc.parse.rule.error}
+ * </li>
+ * <li>
+ * {@code javadoc.wrong.singleton.html.tag}
+ * </li>
+ * </ul>
  *
+ * @since 6.0
  */
+@StatelessCheck
 public class JavadocParagraphCheck extends AbstractJavadocCheck {
 
     /**
@@ -99,12 +167,14 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
     public static final String MSG_MISPLACED_TAG = "javadoc.paragraph.misplaced.tag";
 
     /**
-     * Whether the &lt;p&gt; tag should be placed immediately before the first word.
+     * Control whether the &lt;p&gt; tag should be placed immediately before the first word.
      */
     private boolean allowNewlineParagraph = true;
 
     /**
-     * Sets allowNewlineParagraph.
+     * Setter to control whether the &lt;p&gt; tag should be placed
+     * immediately before the first word.
+     *
      * @param value value to set.
      */
     public void setAllowNewlineParagraph(boolean value) {
@@ -125,40 +195,32 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
     }
 
     @Override
-    public int[] getAcceptableTokens() {
-        return new int[] {TokenTypes.BLOCK_COMMENT_BEGIN};
-    }
-
-    @Override
-    public int[] getRequiredTokens() {
-        return getAcceptableTokens();
-    }
-
-    @Override
     public void visitJavadocToken(DetailNode ast) {
         if (ast.getType() == JavadocTokenTypes.NEWLINE && isEmptyLine(ast)) {
             checkEmptyLine(ast);
         }
         else if (ast.getType() == JavadocTokenTypes.HTML_ELEMENT
-                && JavadocUtils.getFirstChild(ast).getType() == JavadocTokenTypes.P_TAG_OPEN) {
+                && JavadocUtil.getFirstChild(ast).getType() == JavadocTokenTypes.P_TAG_START) {
             checkParagraphTag(ast);
         }
     }
 
     /**
      * Determines whether or not the next line after empty line has paragraph tag in the beginning.
+     *
      * @param newline NEWLINE node.
      */
     private void checkEmptyLine(DetailNode newline) {
         final DetailNode nearestToken = getNearestNode(newline);
-        if (!isLastEmptyLine(newline) && nearestToken.getType() == JavadocTokenTypes.TEXT
-                && !CommonUtils.isBlank(nearestToken.getText())) {
+        if (nearestToken.getType() == JavadocTokenTypes.TEXT
+                && !CommonUtil.isBlank(nearestToken.getText())) {
             log(newline.getLineNumber(), MSG_TAG_AFTER);
         }
     }
 
     /**
      * Determines whether or not the line with paragraph tag has previous empty line.
+     *
      * @param tag html tag.
      */
     private void checkParagraphTag(DetailNode tag) {
@@ -176,31 +238,33 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
 
     /**
      * Returns nearest node.
+     *
      * @param node DetailNode node.
      * @return nearest node.
      */
     private static DetailNode getNearestNode(DetailNode node) {
-        DetailNode tag = JavadocUtils.getNextSibling(node);
+        DetailNode tag = JavadocUtil.getNextSibling(node);
         while (tag.getType() == JavadocTokenTypes.LEADING_ASTERISK
                 || tag.getType() == JavadocTokenTypes.NEWLINE) {
-            tag = JavadocUtils.getNextSibling(tag);
+            tag = JavadocUtil.getNextSibling(tag);
         }
         return tag;
     }
 
     /**
      * Determines whether or not the line is empty line.
+     *
      * @param newLine NEWLINE node.
      * @return true, if line is empty line.
      */
     private static boolean isEmptyLine(DetailNode newLine) {
         boolean result = false;
-        DetailNode previousSibling = JavadocUtils.getPreviousSibling(newLine);
+        DetailNode previousSibling = JavadocUtil.getPreviousSibling(newLine);
         if (previousSibling != null
                 && previousSibling.getParent().getType() == JavadocTokenTypes.JAVADOC) {
             if (previousSibling.getType() == JavadocTokenTypes.TEXT
-                    && CommonUtils.isBlank(previousSibling.getText())) {
-                previousSibling = JavadocUtils.getPreviousSibling(previousSibling);
+                    && CommonUtil.isBlank(previousSibling.getText())) {
+                previousSibling = JavadocUtil.getPreviousSibling(previousSibling);
             }
             result = previousSibling != null
                     && previousSibling.getType() == JavadocTokenTypes.LEADING_ASTERISK;
@@ -210,35 +274,37 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
 
     /**
      * Determines whether or not the line with paragraph tag is first line in javadoc.
+     *
      * @param paragraphTag paragraph tag.
      * @return true, if line with paragraph tag is first line in javadoc.
      */
     private static boolean isFirstParagraph(DetailNode paragraphTag) {
         boolean result = true;
-        DetailNode previousNode = JavadocUtils.getPreviousSibling(paragraphTag);
+        DetailNode previousNode = JavadocUtil.getPreviousSibling(paragraphTag);
         while (previousNode != null) {
             if (previousNode.getType() == JavadocTokenTypes.TEXT
-                    && !CommonUtils.isBlank(previousNode.getText())
+                    && !CommonUtil.isBlank(previousNode.getText())
                 || previousNode.getType() != JavadocTokenTypes.LEADING_ASTERISK
                     && previousNode.getType() != JavadocTokenTypes.NEWLINE
                     && previousNode.getType() != JavadocTokenTypes.TEXT) {
                 result = false;
                 break;
             }
-            previousNode = JavadocUtils.getPreviousSibling(previousNode);
+            previousNode = JavadocUtil.getPreviousSibling(previousNode);
         }
         return result;
     }
 
     /**
      * Finds and returns nearest empty line in javadoc.
+     *
      * @param node DetailNode node.
      * @return Some nearest empty line in javadoc.
      */
     private static DetailNode getNearestEmptyLine(DetailNode node) {
-        DetailNode newLine = JavadocUtils.getPreviousSibling(node);
+        DetailNode newLine = JavadocUtil.getPreviousSibling(node);
         while (newLine != null) {
-            final DetailNode previousSibling = JavadocUtils.getPreviousSibling(newLine);
+            final DetailNode previousSibling = JavadocUtil.getPreviousSibling(newLine);
             if (newLine.getType() == JavadocTokenTypes.NEWLINE && isEmptyLine(newLine)) {
                 break;
             }
@@ -248,34 +314,16 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
     }
 
     /**
-     * Tests if NEWLINE node is a last node in javadoc.
-     * @param newLine NEWLINE node.
-     * @return true, if NEWLINE node is a last node in javadoc.
-     */
-    private static boolean isLastEmptyLine(DetailNode newLine) {
-        boolean result = true;
-        DetailNode nextNode = JavadocUtils.getNextSibling(newLine);
-        while (nextNode != null && nextNode.getType() != JavadocTokenTypes.JAVADOC_TAG) {
-            if (nextNode.getType() == JavadocTokenTypes.TEXT
-                    && !CommonUtils.isBlank(nextNode.getText())
-                    || nextNode.getType() == JavadocTokenTypes.HTML_ELEMENT) {
-                result = false;
-                break;
-            }
-            nextNode = JavadocUtils.getNextSibling(nextNode);
-        }
-        return result;
-    }
-
-    /**
      * Tests whether the paragraph tag is immediately followed by the text.
+     *
      * @param tag html tag.
      * @return true, if the paragraph tag is immediately followed by the text.
      */
     private static boolean isImmediatelyFollowedByText(DetailNode tag) {
-        final DetailNode nextSibling = JavadocUtils.getNextSibling(tag);
+        final DetailNode nextSibling = JavadocUtil.getNextSibling(tag);
         return nextSibling.getType() == JavadocTokenTypes.NEWLINE
                 || nextSibling.getType() == JavadocTokenTypes.EOF
-                || CommonUtils.startsWithChar(nextSibling.getText(), ' ');
+                || CommonUtil.startsWithChar(nextSibling.getText(), ' ');
     }
+
 }

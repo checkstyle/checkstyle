@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,51 +15,43 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.gui;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static com.google.common.truth.Truth.assertWithMessage;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Locale;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.powermock.api.mockito.PowerMockito;
-import org.powermock.core.classloader.annotations.PrepareForTest;
-import org.powermock.modules.junit4.PowerMockRunner;
-import org.powermock.reflect.Whitebox;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.gui.MainFrameModel.ParseMode;
 
-@RunWith(PowerMockRunner.class)
-public class MainFrameModelTest {
+public class MainFrameModelTest extends AbstractModuleTestSupport {
 
-    private static final String FILE_NAME_TEST_DATA = "InputJavadocAttributesAndMethods.java";
-    private static final String FILE_NAME_NON_JAVA = "NotJavaFile.notjava";
+    private static final String FILE_NAME_TEST_DATA = "InputMainFrameModel.java";
     private static final String FILE_NAME_NON_EXISTENT = "non-existent.file";
-    private static final String FILE_NAME_NON_COMPILABLE = "InputIncorrectClass.java";
+    private static final String FILE_NAME_NON_JAVA = "NotJavaFile.notjava";
+    private static final String FILE_NAME_NON_COMPILABLE = "InputMainFrameModelIncorrectClass.java";
 
     private MainFrameModel model;
     private File testData;
 
-    private static String getPath(String filename) {
-        return "src/test/resources/com/puppycrawl/tools/checkstyle/gui/" + filename;
+    @Override
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/gui/mainframemodel";
     }
 
-    private static String getNonCompilablePath(String filename) {
-        return "src/test/resources-noncompilable/com/puppycrawl/tools/checkstyle/" + filename;
-    }
-
-    @Before
-    public void prepareTestData() {
+    @BeforeEach
+    public void prepareTestData() throws IOException {
         model = new MainFrameModel();
         testData = new File(getPath(FILE_NAME_TEST_DATA));
     }
@@ -69,40 +61,28 @@ public class MainFrameModelTest {
         for (final ParseMode parseMode : ParseMode.values()) {
             switch (parseMode) {
                 case PLAIN_JAVA:
-                    assertEquals("Plain Java", parseMode.toString());
+                    assertWithMessage("Invalid toString result")
+                        .that(parseMode.toString())
+                        .isEqualTo("Plain Java");
                     break;
                 case JAVA_WITH_COMMENTS:
-                    assertEquals("Java with comments", parseMode.toString());
+                    assertWithMessage("Invalid toString result")
+                        .that(parseMode.toString())
+                        .isEqualTo("Java with comments");
                     break;
                 case JAVA_WITH_JAVADOC_AND_COMMENTS:
-                    assertEquals("Java with comments and Javadocs", parseMode.toString());
+                    assertWithMessage("Invalid toString result")
+                        .that(parseMode.toString())
+                        .isEqualTo("Java with comments and Javadocs");
                     break;
                 default:
-                    fail("Unexpected enum value");
+                    assertWithMessage("Unexpected enum value").fail();
             }
         }
     }
 
     @Test
-    public void testShouldAcceptFile() {
-        final File directory = PowerMockito.mock(File.class);
-        PowerMockito.when(directory.isDirectory()).thenReturn(true);
-        assertTrue(MainFrameModel.shouldAcceptFile(directory));
-
-        final File javaFile = new File(getPath(FILE_NAME_TEST_DATA));
-        assertTrue(MainFrameModel.shouldAcceptFile(javaFile));
-
-        final File nonJavaFile = PowerMockito.mock(File.class);
-        PowerMockito.when(nonJavaFile.isDirectory()).thenReturn(false);
-        PowerMockito.when(nonJavaFile.getName()).thenReturn(FILE_NAME_NON_JAVA);
-        assertFalse(MainFrameModel.shouldAcceptFile(nonJavaFile));
-
-        final File nonExistentFile = new File(getPath(FILE_NAME_NON_EXISTENT));
-        assertFalse(MainFrameModel.shouldAcceptFile(nonExistentFile));
-    }
-
-    @Test
-    public void testOpenFileWithParseModePlainJava() throws CheckstyleException {
+    public void testOpenFileWithParseModePlainJava() throws Exception {
         // Default parse mode: Plain Java
         model.openFile(testData);
         verifyCorrectTestDataInFrameModel();
@@ -112,7 +92,7 @@ public class MainFrameModelTest {
     }
 
     @Test
-    public void testOpenFileWithParseModeJavaWithComments() throws CheckstyleException {
+    public void testOpenFileWithParseModeJavaWithComments() throws Exception {
         model.setParseMode(ParseMode.JAVA_WITH_COMMENTS);
         model.openFile(testData);
 
@@ -120,7 +100,7 @@ public class MainFrameModelTest {
     }
 
     @Test
-    public void testOpenFileWithParseModeJavaWithJavadocAndComments() throws CheckstyleException {
+    public void testOpenFileWithParseModeJavaWithJavadocAndComments() throws Exception {
         model.setParseMode(ParseMode.JAVA_WITH_JAVADOC_AND_COMMENTS);
         model.openFile(testData);
 
@@ -128,31 +108,7 @@ public class MainFrameModelTest {
     }
 
     @Test
-    @PrepareForTest(ParseMode.class)
-    public void testOpenFileWithUnknownParseMode() throws CheckstyleException {
-        final ParseMode unknownParseMode = PowerMockito.mock(ParseMode.class);
-        Whitebox.setInternalState(unknownParseMode, "ordinal", 3);
-
-        PowerMockito.when(unknownParseMode.toString()).thenReturn("Unknown parse mode");
-        PowerMockito.mockStatic(ParseMode.class);
-        PowerMockito.when(ParseMode.values()).thenReturn(
-                new ParseMode[] {
-                    ParseMode.PLAIN_JAVA, ParseMode.JAVA_WITH_COMMENTS,
-                    ParseMode.JAVA_WITH_JAVADOC_AND_COMMENTS, unknownParseMode, });
-
-        try {
-            model.setParseMode(unknownParseMode);
-            model.openFile(testData);
-
-            fail("Expected IllegalArgumentException is not thrown.");
-        }
-        catch (IllegalArgumentException ex) {
-            assertEquals("Unknown mode: Unknown parse mode", ex.getMessage());
-        }
-    }
-
-    @Test
-    public void testOpenFileNullParameter() throws CheckstyleException {
+    public void testOpenFileNullParameter() throws Exception {
         model.openFile(testData);
 
         model.openFile(null);
@@ -162,58 +118,144 @@ public class MainFrameModelTest {
     }
 
     @Test
-    public void testOpenFileNonExistentFile() {
+    public void testOpenFileNullParameter2() throws Exception {
+        model.openFile(null);
+
+        assertWithMessage("Test is null")
+            .that(model.getText())
+            .isNull();
+        assertWithMessage("Title is expected value")
+            .that(model.getTitle())
+            .isEqualTo("Checkstyle GUI");
+        assertWithMessage("Reload action should be disabled")
+                .that(model.isReloadActionEnabled())
+                .isFalse();
+        assertWithMessage("Current file is null")
+            .that(model.getCurrentFile())
+            .isNull();
+    }
+
+    @Test
+    public void testOpenFileNonExistentFile() throws IOException {
         final File nonExistentFile = new File(getPath(FILE_NAME_NON_EXISTENT));
 
         try {
             model.openFile(nonExistentFile);
 
-            fail("Expected CheckstyleException is not thrown.");
+            assertWithMessage("Expected CheckstyleException is not thrown.").fail();
         }
         catch (CheckstyleException ex) {
             final String expectedMsg = String.format(Locale.ROOT,
                     "FileNotFoundException occurred while opening file %s.",
                     nonExistentFile.getPath());
 
-            assertEquals(expectedMsg, ex.getMessage());
+            assertWithMessage("Invalid exception message")
+                .that(ex.getMessage())
+                .isEqualTo(expectedMsg);
         }
     }
 
     @Test
-    public void testOpenFileNonCompilableFile() {
+    public void testOpenFileNonCompilableFile() throws IOException {
         final File nonCompilableFile = new File(getNonCompilablePath(FILE_NAME_NON_COMPILABLE));
 
         try {
             model.openFile(nonCompilableFile);
 
-            fail("Expected CheckstyleException is not thrown.");
+            assertWithMessage("Expected CheckstyleException is not thrown.").fail();
         }
         catch (CheckstyleException ex) {
             final String expectedMsg = String.format(Locale.ROOT,
-                    "NoViableAltException occurred while opening file %s.",
+                    "IllegalStateException occurred while parsing file %s.",
                     nonCompilableFile.getPath());
 
-            assertEquals(expectedMsg, ex.getMessage());
+            assertWithMessage("Invalid exception message")
+                .that(ex.getMessage())
+                .isEqualTo(expectedMsg);
         }
     }
 
-    private void verifyCorrectTestDataInFrameModel() {
-        assertEquals(testData, model.getCurrentFile());
+    private void verifyCorrectTestDataInFrameModel() throws IOException {
+        assertWithMessage("Invalid current file")
+            .that(model.getCurrentFile())
+            .isEqualTo(testData);
 
         final String expectedTitle = "Checkstyle GUI : " + FILE_NAME_TEST_DATA;
-        assertEquals(expectedTitle, model.getTitle());
+        assertWithMessage("Invalid model title")
+            .that(model.getTitle())
+            .isEqualTo(expectedTitle);
 
-        assertTrue(model.isReloadActionEnabled());
+        assertWithMessage("Reload action should be enabled")
+                .that(model.isReloadActionEnabled())
+                .isTrue();
 
-        final int expectedLines = 17;
-        assertEquals(expectedLines, model.getLinesToPosition().size());
+        final int expectedLines = 19;
+        assertWithMessage("Invalid lines to position")
+            .that(model.getLinesToPosition())
+            .hasSize(expectedLines);
 
         final String testDataFileNameWithoutPostfix = FILE_NAME_TEST_DATA.replace(".java", "");
-        assertTrue(model.getText().contains(testDataFileNameWithoutPostfix));
+        assertWithMessage("Invalid model text: " + model.getText())
+                .that(model.getText())
+                .contains(testDataFileNameWithoutPostfix);
 
         final File expectedLastDirectory = new File(getPath(""));
-        assertEquals(expectedLastDirectory, model.getLastDirectory());
+        assertWithMessage("Invalid model last directory")
+            .that(model.getLastDirectory())
+            .isEqualTo(expectedLastDirectory);
 
-        assertNotNull(model.getParseTreeTableModel());
+        assertWithMessage("ParseTree table model should not be null")
+            .that(model.getParseTreeTableModel())
+            .isNotNull();
     }
+
+    @Test
+    public void testShouldAcceptDirectory() {
+        final File directory = mock(File.class);
+        when(directory.isDirectory()).thenReturn(true);
+        assertWithMessage("MainFrame should accept directory")
+                .that(MainFrameModel.shouldAcceptFile(directory))
+                .isTrue();
+    }
+
+    @Test
+    public void testShouldAcceptFile() throws IOException {
+        final File javaFile = new File(getPath(FILE_NAME_TEST_DATA));
+        assertWithMessage("MainFrame should accept java file")
+                .that(MainFrameModel.shouldAcceptFile(javaFile))
+                .isTrue();
+    }
+
+    @Test
+    public void testShouldNotAcceptNonJavaFile() {
+        final File nonJavaFile = mock(File.class);
+        when(nonJavaFile.isDirectory()).thenReturn(false);
+        when(nonJavaFile.getName()).thenReturn(FILE_NAME_NON_JAVA);
+        assertWithMessage("MainFrame should not accept non-Java file")
+                .that(MainFrameModel.shouldAcceptFile(nonJavaFile))
+                .isFalse();
+    }
+
+    @Test
+    public void testShouldNotAcceptNonExistentFile() throws IOException {
+        final File nonExistentFile = new File(getPath(FILE_NAME_NON_EXISTENT));
+        assertWithMessage("MainFrame should not accept non-existent file")
+                .that(MainFrameModel.shouldAcceptFile(nonExistentFile))
+                .isFalse();
+    }
+
+    @Test
+    public void testOpenFileForUnknownParseMode() throws IOException {
+        final File javaFile = new File(getPath(FILE_NAME_TEST_DATA));
+        final ParseMode mock = mock(ParseMode.class);
+        model.setParseMode(mock);
+        final IllegalArgumentException ex = assertThrows(IllegalArgumentException.class, () -> {
+            model.openFile(javaFile);
+        });
+        assertWithMessage("Invalid error message")
+                .that(ex)
+                .hasMessageThat()
+                .startsWith("Unknown mode:");
+    }
+
 }

@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle;
 
@@ -26,8 +26,10 @@ import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 
 /**
  * Represents the default formatter for log message.
- * Default log message format is: [SEVERITY LEVEL] filePath:lineNo:columnNo: message. [CheckName]
- * @author Andrei Selkin
+ * Default log message format is:
+ * [SEVERITY LEVEL] filePath:lineNo:columnNo: message. [CheckName]
+ * When the module id of the message has been set, the format is:
+ * [SEVERITY LEVEL] filePath:lineNo:columnNo: message. [ModuleId]
  */
 public class AuditEventDefaultFormatter implements AuditEventFormatter {
 
@@ -62,9 +64,15 @@ public class AuditEventDefaultFormatter implements AuditEventFormatter {
         if (event.getColumn() > 0) {
             sb.append(':').append(event.getColumn());
         }
-        sb.append(": ").append(message);
-        final String checkShortName = getCheckShortName(event);
-        sb.append(" [").append(checkShortName).append(']');
+        sb.append(": ").append(message).append(" [");
+        if (event.getModuleId() == null) {
+            final String checkShortName = getCheckShortName(event);
+            sb.append(checkShortName);
+        }
+        else {
+            sb.append(event.getModuleId());
+        }
+        sb.append(']');
 
         return sb.toString();
     }
@@ -73,6 +81,7 @@ public class AuditEventDefaultFormatter implements AuditEventFormatter {
      * Returns the length of the buffer for StringBuilder.
      * bufferLength = fileNameLength + messageLength + lengthOfAllSeparators +
      * + severityNameLength + checkNameLength.
+     *
      * @param event audit event.
      * @param severityLevelNameLength length of severity level name.
      * @return the length of the buffer for StringBuilder.
@@ -85,30 +94,18 @@ public class AuditEventDefaultFormatter implements AuditEventFormatter {
 
     /**
      * Returns check name without 'Check' suffix.
+     *
      * @param event audit event.
      * @return check name without 'Check' suffix.
      */
     private static String getCheckShortName(AuditEvent event) {
         final String checkFullName = event.getSourceName();
-        final String checkShortName;
-        final int lastDotIndex = checkFullName.lastIndexOf('.');
-        if (lastDotIndex == -1) {
-            if (checkFullName.endsWith(SUFFIX)) {
-                checkShortName = checkFullName.substring(0, checkFullName.lastIndexOf(SUFFIX));
-            }
-            else {
-                checkShortName = checkFullName.substring(0, checkFullName.length());
-            }
-        }
-        else {
-            if (checkFullName.endsWith(SUFFIX)) {
-                checkShortName = checkFullName.substring(lastDotIndex + 1,
-                    checkFullName.lastIndexOf(SUFFIX));
-            }
-            else {
-                checkShortName = checkFullName.substring(lastDotIndex + 1, checkFullName.length());
-            }
+        String checkShortName = checkFullName.substring(checkFullName.lastIndexOf('.') + 1);
+        if (checkShortName.endsWith(SUFFIX)) {
+            final int endIndex = checkShortName.length() - SUFFIX.length();
+            checkShortName = checkShortName.substring(0, endIndex);
         }
         return checkShortName;
     }
+
 }

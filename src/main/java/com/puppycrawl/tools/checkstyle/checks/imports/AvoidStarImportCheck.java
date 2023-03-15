@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,13 +15,14 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
+import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
@@ -29,7 +30,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * <p>
- * Check that finds import statements that use the * notation.
+ * Checks that there are no import statements that use the {@code *} notation.
  * </p>
  * <p>
  * Rationale: Importing all classes from a package or static
@@ -38,30 +39,145 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * library introduces name clashes.
  * </p>
  * <p>
- * An example of how to configure the check is:
+ * Note that property {@code excludes} is not recursive, subpackages of excluded
+ * packages are not automatically excluded.
+ * </p>
+ * <ul>
+ * <li>
+ * Property {@code excludes} - Specify packages where starred class imports are
+ * allowed and classes where starred static member imports are allowed.
+ * Type is {@code java.lang.String[]}.
+ * Default value is {@code ""}.
+ * </li>
+ * <li>
+ * Property {@code allowClassImports} - Control whether to allow starred class
+ * imports like {@code import java.util.*;}.
+ * Type is {@code boolean}.
+ * Default value is {@code false}.
+ * </li>
+ * <li>
+ * Property {@code allowStaticMemberImports} - Control whether to allow starred
+ * static member imports like {@code import static org.junit.Assert.*;}.
+ * Type is {@code boolean}.
+ * Default value is {@code false}.
+ * </li>
+ * </ul>
+ * <p>
+ * To configure the check:
+ * </p>
+ * <pre>
+ * &lt;module name="AvoidStarImport"/&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * import java.util.Scanner;         // OK
+ * import java.io.*;                 // violation
+ * import static java.lang.Math.*;   // violation
+ * import java.util.*;               // violation
+ * import java.net.*;                // violation
+ * </pre>
+ * <p>
+ * To configure the check so that star imports from packages
+ * {@code java.io and java.net} as well as static members from class
+ * {@code java.lang.Math} are allowed:
  * </p>
  * <pre>
  * &lt;module name="AvoidStarImport"&gt;
  *   &lt;property name="excludes" value="java.io,java.net,java.lang.Math"/&gt;
- *   &lt;property name="allowClassImports" value="false"/&gt;
- *   &lt;property name="allowStaticMemberImports" value="false"/&gt;
  * &lt;/module&gt;
  * </pre>
- * The optional "excludes" property allows for certain packages like
- * java.io or java.net to be exempted from the rule. It also is used to
- * allow certain classes like java.lang.Math or java.io.File to be
- * excluded in order to support static member imports.
+ * <p>Example:</p>
+ * <pre>
+ * import java.util.Scanner;         // OK
+ * import java.io.*;                 // OK
+ * import static java.lang.Math.*;   // OK
+ * import java.util.*;               // violation
+ * import java.net.*;                // OK
+ * </pre>
+ * <p>
+ * To configure the check so that star imports from all packages are allowed:
+ * </p>
+ * <pre>
+ * &lt;module name="AvoidStarImport"&gt;
+ *   &lt;property name="allowClassImports" value="true"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * import java.util.Scanner;         // OK
+ * import java.io.*;                 // OK
+ * import static java.lang.Math.*;   // violation
+ * import java.util.*;               // OK
+ * import java.net.*;                // OK
+ * </pre>
+ * <p>
+ * To configure the check so that starred static member imports from all packages are allowed:
+ * </p>
+ * <pre>
+ * &lt;module name="AvoidStarImport"&gt;
+ *   &lt;property name="allowStaticMemberImports" value="true"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * import java.util.Scanner;         // OK
+ * import java.io.*;                 // violation
+ * import static java.lang.Math.*;   // OK
+ * import java.util.*;               // violation
+ * import java.net.*;                // violation
+ * </pre>
+ * <p>
+ * To configure the check so that star imports from packages
+ * {@code java.io and java.net} are allowed:
+ * </p>
+ * <pre>
+ * &lt;module name="AvoidStarImport"&gt;
+ *   &lt;property name="allowClassImports" value="true"/&gt;
+ *   &lt;property name="excludes" value="java.io,java.net"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * import java.util.Scanner;         // OK
+ * import java.io.*;                 // OK
+ * import static java.lang.Math.*;   // violation
+ * import java.util.*;               // OK
+ * import java.net.*;                // OK
+ * </pre>
+ * <p>
+ * To configure the check so that star imports from packages
+ * {@code java.io and java.net} as well as static members imports
+ * from all packages are allowed:
+ * </p>
+ * <pre>
+ * &lt;module name="AvoidStarImport"&gt;
+ *   &lt;property name="allowStaticMemberImports" value="true"/&gt;
+ *   &lt;property name="excludes" value="java.io,java.net"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * import java.util.Scanner;         // OK
+ * import java.io.*;                 // OK
+ * import static java.lang.Math.*;   // OK
+ * import java.util.*;               // violation
+ * import java.net.*;                // OK
+ * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code import.avoidStar}
+ * </li>
+ * </ul>
  *
- * <p>The optional "allowClassImports" when set to true, will allow starred
- * class imports but will not affect static member imports.
- *
- * <p>The optional "allowStaticMemberImports" when set to true will allow
- * starred static member imports but will not affect class imports.
- *
- * @author Oliver Burn
- * @author <a href="bschneider@vecna.com">Bill Schneider</a>
- * @author Travis Schneeberger
+ * @since 3.0
  */
+@StatelessCheck
 public class AvoidStarImportCheck
     extends AbstractCheck {
 
@@ -74,23 +190,32 @@ public class AvoidStarImportCheck
     /** Suffix for the star import. */
     private static final String STAR_IMPORT_SUFFIX = ".*";
 
-    /** The packages/classes to exempt from this check. */
-    private final List<String> excludes = new ArrayList<>();
+    /**
+     * Specify packages where starred class imports are
+     * allowed and classes where starred static member imports are allowed.
+     */
+    private final Set<String> excludes = new HashSet<>();
 
-    /** Whether to allow all class imports. */
+    /**
+     * Control whether to allow starred class imports like
+     * {@code import java.util.*;}.
+     */
     private boolean allowClassImports;
 
-    /** Whether to allow all static member imports. */
+    /**
+     * Control whether to allow starred static member imports like
+     * {@code import static org.junit.Assert.*;}.
+     */
     private boolean allowStaticMemberImports;
 
     @Override
     public int[] getDefaultTokens() {
-        return new int[] {TokenTypes.IMPORT, TokenTypes.STATIC_IMPORT};
+        return getRequiredTokens();
     }
 
     @Override
     public int[] getAcceptableTokens() {
-        return new int[] {TokenTypes.IMPORT, TokenTypes.STATIC_IMPORT};
+        return getRequiredTokens();
     }
 
     @Override
@@ -108,14 +233,13 @@ public class AvoidStarImportCheck
     }
 
     /**
-     * Sets the list of packages or classes to be exempt from the check.
-     * The excludes can contain a .* or not.
-     * @param excludesParam a list of package names/fully-qualifies class names
-     *     where star imports are ok.
+     * Setter to specify packages where starred class imports are
+     * allowed and classes where starred static member imports are allowed.
+     *
+     * @param excludesParam package names/fully-qualifies class names
+     *     where star imports are ok
      */
     public void setExcludes(String... excludesParam) {
-        excludes.clear();
-
         for (final String exclude : excludesParam) {
             if (exclude.endsWith(STAR_IMPORT_SUFFIX)) {
                 excludes.add(exclude);
@@ -127,7 +251,9 @@ public class AvoidStarImportCheck
     }
 
     /**
-     * Sets whether or not to allow all non-static class imports.
+     * Setter to control whether to allow starred class imports like
+     * {@code import java.util.*;}.
+     *
      * @param allow true to allow false to disallow
      */
     public void setAllowClassImports(boolean allow) {
@@ -135,7 +261,9 @@ public class AvoidStarImportCheck
     }
 
     /**
-     * Sets whether or not to allow all static member imports.
+     * Setter to control whether to allow starred static member imports like
+     * {@code import static org.junit.Assert.*;}.
+     *
      * @param allow true to allow false to disallow
      */
     public void setAllowStaticMemberImports(boolean allow) {
@@ -144,12 +272,13 @@ public class AvoidStarImportCheck
 
     @Override
     public void visitToken(final DetailAST ast) {
-        if (!allowClassImports && ast.getType() == TokenTypes.IMPORT) {
-            final DetailAST startingDot = ast.getFirstChild();
-            logsStarredImportViolation(startingDot);
+        if (ast.getType() == TokenTypes.IMPORT) {
+            if (!allowClassImports) {
+                final DetailAST startingDot = ast.getFirstChild();
+                logsStarredImportViolation(startingDot);
+            }
         }
-        else if (!allowStaticMemberImports
-            && ast.getType() == TokenTypes.STATIC_IMPORT) {
+        else if (!allowStaticMemberImports) {
             // must navigate past the static keyword
             final DetailAST startingDot = ast.getFirstChild().getNextSibling();
             logsStarredImportViolation(startingDot);
@@ -159,13 +288,14 @@ public class AvoidStarImportCheck
     /**
      * Gets the full import identifier.  If the import is a starred import and
      * it's not excluded then a violation is logged.
+     *
      * @param startingDot the starting dot for the import statement
      */
     private void logsStarredImportViolation(DetailAST startingDot) {
         final FullIdent name = FullIdent.createFullIdent(startingDot);
         final String importText = name.getText();
         if (importText.endsWith(STAR_IMPORT_SUFFIX) && !excludes.contains(importText)) {
-            log(startingDot.getLineNo(), MSG_KEY, importText);
+            log(startingDot, MSG_KEY, importText);
         }
     }
 

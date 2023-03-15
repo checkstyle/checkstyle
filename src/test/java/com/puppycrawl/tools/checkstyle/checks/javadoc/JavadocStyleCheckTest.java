@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,34 +15,31 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck.MSG_EMPTY;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck.MSG_EXTRA_HTML;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck.MSG_INCOMPLETE_TAG;
-import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck.MSG_JAVADOC_MISSING;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck.MSG_NO_PERIOD;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck.MSG_UNCLOSED_HTML;
-import static org.junit.Assert.assertArrayEquals;
 
 import java.io.File;
-import java.io.IOException;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class JavadocStyleCheckTest
-    extends BaseCheckTestSupport {
+    extends AbstractModuleTestSupport {
+
     @Override
-    protected String getPath(String filename) throws IOException {
-        return super.getPath("checks" + File.separator
-                + "javadoc" + File.separator + filename);
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/checks/javadoc/javadocstyle";
     }
 
     @Test
@@ -61,357 +58,553 @@ public class JavadocStyleCheckTest
             TokenTypes.METHOD_DEF,
             TokenTypes.PACKAGE_DEF,
             TokenTypes.VARIABLE_DEF,
+            TokenTypes.RECORD_DEF,
+            TokenTypes.COMPACT_CTOR_DEF,
         };
 
-        assertArrayEquals("Default acceptable tokens are invalid", expected, actual);
+        assertWithMessage("Default acceptable tokens are invalid")
+            .that(actual)
+            .isEqualTo(expected);
     }
 
     @Test
-    public void testDefaultSettings()
+    public void testJavadocStyleDefaultSettingsOne()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(JavadocStyleCheck.class);
         final String[] expected = {
-            "20: " + getCheckMessage(MSG_NO_PERIOD),
-            "53: " + getCheckMessage(MSG_NO_PERIOD),
-            "63:11: " + getCheckMessage(MSG_UNCLOSED_HTML,
-                "<b>This guy is missing end of bold tag"),
-            "66:7: " + getCheckMessage(MSG_EXTRA_HTML, "</td>Extra tag shouldn't be here"),
-            "68:19: " + getCheckMessage(MSG_UNCLOSED_HTML, "<code>dummy."),
-            "74: " + getCheckMessage(MSG_NO_PERIOD),
-            "75:23: " + getCheckMessage(MSG_UNCLOSED_HTML, "<b>should fail"),
-            "81: " + getCheckMessage(MSG_NO_PERIOD),
-            "82:31: " + getCheckMessage(MSG_UNCLOSED_HTML, "<b>should fail"),
-            "88: " + getCheckMessage(MSG_NO_PERIOD),
-            "89:31: " + getCheckMessage(MSG_EXTRA_HTML, "</code>"),
-            "90: " + getCheckMessage(MSG_INCOMPLETE_TAG, "    * should fail <"),
-            "109:39: " + getCheckMessage(MSG_EXTRA_HTML, "</img>"),
-            "186:8: " + getCheckMessage(MSG_UNCLOSED_HTML, "<blockquote>"),
-            "193: " + getCheckMessage(MSG_NO_PERIOD),
-            "238: " + getCheckMessage(MSG_NO_PERIOD),
-            "335:33: " + getCheckMessage(MSG_EXTRA_HTML, "</string>"),
-            "361:37: " + getCheckMessage(MSG_UNCLOSED_HTML, "<code>"),
-            "372: " + getCheckMessage(MSG_NO_PERIOD),
-            "378:15: " + getCheckMessage(MSG_UNCLOSED_HTML,
-                "<b>Note:<b> it's unterminated tag.</p>"),
-            "382: " + getCheckMessage(MSG_NO_PERIOD),
-            "386: " + getCheckMessage(MSG_NO_PERIOD),
-            "393: " + getCheckMessage(MSG_NO_PERIOD),
-            "405: " + getCheckMessage(MSG_NO_PERIOD),
-            "418: " + getCheckMessage(MSG_NO_PERIOD),
+            "23: " + getCheckMessage(MSG_NO_PERIOD),
+            "48: " + getCheckMessage(MSG_NO_PERIOD),
+            "56:11: " + getCheckMessage(MSG_UNCLOSED_HTML,
+                    "<b>This guy is missing end of bold tag // violation"),
+            "59:7: " + getCheckMessage(MSG_EXTRA_HTML, "</td>Extra tag"
+                    + " shouldn't be here // violation"),
+            "60:49: " + getCheckMessage(MSG_EXTRA_HTML, "</style> // violation"),
+            "61:19: " + getCheckMessage(MSG_UNCLOSED_HTML, "<code>dummy. // violation"),
+            "65: " + getCheckMessage(MSG_NO_PERIOD),
+            "66:23: " + getCheckMessage(MSG_UNCLOSED_HTML, "<b>should fail // violation"),
+            "70: " + getCheckMessage(MSG_NO_PERIOD),
+            "71:31: " + getCheckMessage(MSG_UNCLOSED_HTML, "<b>should fail // violation"),
+            "75: " + getCheckMessage(MSG_NO_PERIOD),
+            "76:31: " + getCheckMessage(MSG_EXTRA_HTML, "</code> // violation"),
+            "77: " + getCheckMessage(MSG_INCOMPLETE_TAG, "    * should fail <"),
+            "92:39: " + getCheckMessage(MSG_EXTRA_HTML, "</img> // violation"),
         };
 
-        verify(checkConfig, getPath("InputJavadocStyle.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocStyleDefaultSettingsOne.java"), expected);
     }
 
     @Test
-    public void testFirstSentence() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(JavadocStyleCheck.class);
-        checkConfig.addAttribute("checkFirstSentence", "true");
-        checkConfig.addAttribute("checkHtml", "false");
+    public void testJavadocStyleDefaultSettingsTwo()
+            throws Exception {
         final String[] expected = {
-            "20: " + getCheckMessage(MSG_NO_PERIOD),
-            "53: " + getCheckMessage(MSG_NO_PERIOD),
-            "74: " + getCheckMessage(MSG_NO_PERIOD),
-            "81: " + getCheckMessage(MSG_NO_PERIOD),
-            "88: " + getCheckMessage(MSG_NO_PERIOD),
-            "193: " + getCheckMessage(MSG_NO_PERIOD),
-            "238: " + getCheckMessage(MSG_NO_PERIOD),
-            "372: " + getCheckMessage(MSG_NO_PERIOD),
-            "382: " + getCheckMessage(MSG_NO_PERIOD),
-            "386: " + getCheckMessage(MSG_NO_PERIOD),
-            "393: " + getCheckMessage(MSG_NO_PERIOD),
-            "405: " + getCheckMessage(MSG_NO_PERIOD),
-            "418: " + getCheckMessage(MSG_NO_PERIOD),
+            "61:8: " + getCheckMessage(MSG_UNCLOSED_HTML, "<blockquote> // violation"),
+            "66: " + getCheckMessage(MSG_NO_PERIOD),
+            "98: " + getCheckMessage(MSG_NO_PERIOD),
         };
 
-        verify(checkConfig, getPath("InputJavadocStyle.java"), expected);
+        verifyWithInlineConfigParser(
+            getPath("InputJavadocStyleDefaultSettingsTwo.java"), expected);
     }
 
     @Test
-    public void testFirstSentenceFormat() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(JavadocStyleCheck.class);
-        checkConfig.addAttribute("checkFirstSentence", "true");
-        checkConfig.addAttribute("checkHtml", "false");
-        checkConfig.addAttribute("endOfSentenceFormat",
-                "([.][ \t\n\r\f<])|([.]$)");
+    public void testJavadocStyleDefaultSettingsThree()
+            throws Exception {
         final String[] expected = {
-            "20: " + getCheckMessage(MSG_NO_PERIOD),
-            "32: " + getCheckMessage(MSG_NO_PERIOD),
-            "39: " + getCheckMessage(MSG_NO_PERIOD),
-            "53: " + getCheckMessage(MSG_NO_PERIOD),
-            "74: " + getCheckMessage(MSG_NO_PERIOD),
-            "81: " + getCheckMessage(MSG_NO_PERIOD),
-            "88: " + getCheckMessage(MSG_NO_PERIOD),
-            "193: " + getCheckMessage(MSG_NO_PERIOD),
-            "238: " + getCheckMessage(MSG_NO_PERIOD),
-            "372: " + getCheckMessage(MSG_NO_PERIOD),
-            "382: " + getCheckMessage(MSG_NO_PERIOD),
-            "386: " + getCheckMessage(MSG_NO_PERIOD),
-            "393: " + getCheckMessage(MSG_NO_PERIOD),
-            "405: " + getCheckMessage(MSG_NO_PERIOD),
-            "418: " + getCheckMessage(MSG_NO_PERIOD),
+            "103:21: " + getCheckMessage(MSG_EXTRA_HTML, "</string> // violation"),
         };
 
-        verify(checkConfig, getPath("InputJavadocStyle.java"), expected);
+        verifyWithInlineConfigParser(
+            getPath("InputJavadocStyleDefaultSettingsThree.java"), expected);
     }
 
     @Test
-    public void testHtml() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(JavadocStyleCheck.class);
-        checkConfig.addAttribute("checkFirstSentence", "false");
-        checkConfig.addAttribute("checkHtml", "true");
+    public void testJavadocStyleDefaultSettingsFour()
+            throws Exception {
         final String[] expected = {
-            "63:11: " + getCheckMessage(MSG_UNCLOSED_HTML,
-                "<b>This guy is missing end of bold tag"),
-            "66:7: " + getCheckMessage(MSG_EXTRA_HTML, "</td>Extra tag shouldn't be here"),
-            "68:19: " + getCheckMessage(MSG_UNCLOSED_HTML, "<code>dummy."),
-            "75:23: " + getCheckMessage(MSG_UNCLOSED_HTML, "<b>should fail"),
-            "82:31: " + getCheckMessage(MSG_UNCLOSED_HTML, "<b>should fail"),
-            "89:31: " + getCheckMessage(MSG_EXTRA_HTML, "</code>"),
-            "90: " + getCheckMessage(MSG_INCOMPLETE_TAG, "    * should fail <"),
-            "109:39: " + getCheckMessage(MSG_EXTRA_HTML, "</img>"),
-            "186:8: " + getCheckMessage(MSG_UNCLOSED_HTML, "<blockquote>"),
-            "335:33: " + getCheckMessage(MSG_EXTRA_HTML, "</string>"),
-            "361:37: " + getCheckMessage(MSG_UNCLOSED_HTML, "<code>"),
-            "378:15: " + getCheckMessage(MSG_UNCLOSED_HTML,
-                "<b>Note:<b> it's unterminated tag.</p>"),
+            "29:33: " + getCheckMessage(MSG_UNCLOSED_HTML, "<code> // violation"),
+            "40: " + getCheckMessage(MSG_NO_PERIOD),
+            "46:11: " + getCheckMessage(MSG_UNCLOSED_HTML,
+                                         "<b>Note:<b> it's unterminated tag.</p> // violation"),
+            "50: " + getCheckMessage(MSG_NO_PERIOD),
+            "54: " + getCheckMessage(MSG_NO_PERIOD),
+            "61: " + getCheckMessage(MSG_NO_PERIOD),
+            "73: " + getCheckMessage(MSG_NO_PERIOD),
+            "86: " + getCheckMessage(MSG_NO_PERIOD),
         };
 
-        verify(checkConfig, getPath("InputJavadocStyle.java"), expected);
+        verifyWithInlineConfigParser(
+            getPath("InputJavadocStyleDefaultSettingsFour.java"), expected);
+    }
+
+    @Test
+    public void testJavadocStyleFirstSentenceOne() throws Exception {
+        final String[] expected = {
+            "23: " + getCheckMessage(MSG_NO_PERIOD),
+            "48: " + getCheckMessage(MSG_NO_PERIOD),
+            "65: " + getCheckMessage(MSG_NO_PERIOD),
+            "70: " + getCheckMessage(MSG_NO_PERIOD),
+            "75: " + getCheckMessage(MSG_NO_PERIOD),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocStyleFirstSentenceOne.java"), expected);
+    }
+
+    @Test
+    public void testJavadocStyleFirstSentenceTwo() throws Exception {
+        final String[] expected = {
+            "66: " + getCheckMessage(MSG_NO_PERIOD),
+            "99: " + getCheckMessage(MSG_NO_PERIOD),
+        };
+
+        verifyWithInlineConfigParser(
+            getPath("InputJavadocStyleFirstSentenceTwo.java"), expected);
+    }
+
+    @Test
+    public void testJavadocStyleFirstSentenceThree() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+            getPath("InputJavadocStyleFirstSentenceThree.java"), expected);
+    }
+
+    @Test
+    public void testJavadocStyleFirstSentenceFour() throws Exception {
+        final String[] expected = {
+            "40: " + getCheckMessage(MSG_NO_PERIOD),
+            "50: " + getCheckMessage(MSG_NO_PERIOD),
+            "54: " + getCheckMessage(MSG_NO_PERIOD),
+            "61: " + getCheckMessage(MSG_NO_PERIOD),
+            "73: " + getCheckMessage(MSG_NO_PERIOD),
+            "86: " + getCheckMessage(MSG_NO_PERIOD),
+        };
+
+        verifyWithInlineConfigParser(
+            getPath("InputJavadocStyleFirstSentenceFour.java"), expected);
+    }
+
+    @Test
+    public void testJavadocStyleFirstSentenceFormatOne() throws Exception {
+        final String[] expected = {
+            "23: " + getCheckMessage(MSG_NO_PERIOD),
+            "33: " + getCheckMessage(MSG_NO_PERIOD),
+            "38: " + getCheckMessage(MSG_NO_PERIOD),
+            "48: " + getCheckMessage(MSG_NO_PERIOD),
+            "65: " + getCheckMessage(MSG_NO_PERIOD),
+            "70: " + getCheckMessage(MSG_NO_PERIOD),
+            "75: " + getCheckMessage(MSG_NO_PERIOD),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocStyleFirstSentenceFormatOne.java"), expected);
+    }
+
+    @Test
+    public void testJavadocStyleFirstSentenceFormatTwo() throws Exception {
+        final String[] expected = {
+            "66: " + getCheckMessage(MSG_NO_PERIOD),
+            "99: " + getCheckMessage(MSG_NO_PERIOD),
+        };
+
+        verifyWithInlineConfigParser(
+            getPath("InputJavadocStyleFirstSentenceFormatTwo.java"), expected);
+    }
+
+    @Test
+    public void testJavadocStyleFirstSentenceFormatThree() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+            getPath("InputJavadocStyleFirstSentenceFormatThree.java"), expected);
+    }
+
+    @Test
+    public void testJavadocStyleFirstSentenceFormatFour() throws Exception {
+        final String[] expected = {
+            "40: " + getCheckMessage(MSG_NO_PERIOD),
+            "50: " + getCheckMessage(MSG_NO_PERIOD),
+            "54: " + getCheckMessage(MSG_NO_PERIOD),
+            "61: " + getCheckMessage(MSG_NO_PERIOD),
+            "73: " + getCheckMessage(MSG_NO_PERIOD),
+            "86: " + getCheckMessage(MSG_NO_PERIOD),
+        };
+
+        verifyWithInlineConfigParser(
+            getPath("InputJavadocStyleFirstSentenceFormatFour.java"), expected);
+    }
+
+    @Test
+    public void testHtml1() throws Exception {
+        final String[] expected = {
+            "55:11: " + getCheckMessage(MSG_UNCLOSED_HTML,
+                "<b>This guy is missing end of bold tag // violation"),
+            "58:7: " + getCheckMessage(MSG_EXTRA_HTML, "</td>Extra tag "
+                + "shouldn't be here // violation"),
+            "59:49: " + getCheckMessage(MSG_EXTRA_HTML, "</style> // violation"),
+            "60:19: " + getCheckMessage(MSG_UNCLOSED_HTML, "<code>dummy. // violation"),
+            "65:23: " + getCheckMessage(MSG_UNCLOSED_HTML, "<b>should fail // violation"),
+            "70:31: " + getCheckMessage(MSG_UNCLOSED_HTML, "<b>should fail // violation"),
+            "75:31: " + getCheckMessage(MSG_EXTRA_HTML, "</code> // violation"),
+            "76: " + getCheckMessage(MSG_INCOMPLETE_TAG, "    * should fail <"),
+            "91:39: " + getCheckMessage(MSG_EXTRA_HTML, "</img> // violation"),
+        };
+
+        verifyWithInlineConfigParser(
+            getPath("InputJavadocStyleHtml1.java"), expected);
+    }
+
+    @Test
+    public void testHtml2() throws Exception {
+        final String[] expected = {
+            "67:8: " + getCheckMessage(MSG_UNCLOSED_HTML, "<blockquote> // violation"),
+        };
+
+        verifyWithInlineConfigParser(
+            getPath("InputJavadocStyleHtml2.java"), expected);
+    }
+
+    @Test
+    public void testHtml3() throws Exception {
+        final String[] expected = {
+            "102:21: " + getCheckMessage(MSG_EXTRA_HTML, "</string> // violation"),
+        };
+
+        verifyWithInlineConfigParser(
+            getPath("InputJavadocStyleHtml3.java"), expected);
+    }
+
+    @Test
+    public void testHtml4() throws Exception {
+        final String[] expected = {
+            "28:33: " + getCheckMessage(MSG_UNCLOSED_HTML, "<code> // violation"),
+            "45:11: " + getCheckMessage(MSG_UNCLOSED_HTML,
+                    "<b>Note:<b> it's unterminated tag.</p> // violation"),
+        };
+
+        verifyWithInlineConfigParser(
+            getPath("InputJavadocStyleHtml4.java"), expected);
     }
 
     @Test
     public void testHtmlComment() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(JavadocStyleCheck.class);
-        checkConfig.addAttribute("checkFirstSentence", "false");
-        checkConfig.addAttribute("checkHtml", "true");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("InputJavadocStyleHtmlComment.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocStyleHtmlComment.java"), expected);
     }
 
     @Test
-    public void testOnInputWithNoJavadoc() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(JavadocStyleCheck.class);
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+    public void testOnInputWithNoJavadoc1() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("InputNoJavadoc.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocStyleNoJavadoc1.java"), expected);
+    }
+
+    @Test
+    public void testOnInputWithNoJavadoc2() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocStyleNoJavadoc2.java"), expected);
     }
 
     @Test
     public void testScopePublic()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(JavadocStyleCheck.class);
-        checkConfig.addAttribute("checkFirstSentence", "true");
-        checkConfig.addAttribute("checkHtml", "true");
-        checkConfig.addAttribute("checkEmptyJavadoc", "true");
-        checkConfig.addAttribute("scope", "public");
         final String[] expected = {
-            "88: " + getCheckMessage(MSG_NO_PERIOD),
-            "89:31: " + getCheckMessage(MSG_EXTRA_HTML, "</code>"),
-            "90: " + getCheckMessage(MSG_INCOMPLETE_TAG, "    * should fail <"),
-            "205: " + getCheckMessage(MSG_EMPTY),
-            "230: " + getCheckMessage(MSG_EMPTY),
-            "238: " + getCheckMessage(MSG_NO_PERIOD),
-            "335:33: " + getCheckMessage(MSG_EXTRA_HTML, "</string>"),
-            "382: " + getCheckMessage(MSG_NO_PERIOD),
-            "386: " + getCheckMessage(MSG_NO_PERIOD),
-            "418: " + getCheckMessage(MSG_NO_PERIOD),
+            "75: " + getCheckMessage(MSG_NO_PERIOD),
+            "76:31: " + getCheckMessage(MSG_EXTRA_HTML, "</code> // violation"),
+            "77: " + getCheckMessage(MSG_INCOMPLETE_TAG, "    * should fail <"),
+            "175: " + getCheckMessage(MSG_EMPTY),
+            "193: " + getCheckMessage(MSG_EMPTY),
+            "198: " + getCheckMessage(MSG_NO_PERIOD),
+            "292:21: " + getCheckMessage(MSG_EXTRA_HTML, "</string> // violation"),
+            "334: " + getCheckMessage(MSG_NO_PERIOD),
+            "338: " + getCheckMessage(MSG_NO_PERIOD),
+            "370: " + getCheckMessage(MSG_NO_PERIOD),
         };
 
-        verify(checkConfig, getPath("InputJavadocStyle.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocStyle5.java"), expected);
     }
 
     @Test
     public void testScopeProtected()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(JavadocStyleCheck.class);
-        checkConfig.addAttribute("checkFirstSentence", "true");
-        checkConfig.addAttribute("checkHtml", "true");
-        checkConfig.addAttribute("checkEmptyJavadoc", "true");
-        checkConfig.addAttribute("scope", "protected");
         final String[] expected = {
-            "74: " + getCheckMessage(MSG_NO_PERIOD),
-            "75:23: " + getCheckMessage(MSG_UNCLOSED_HTML, "<b>should fail"),
-            "88: " + getCheckMessage(MSG_NO_PERIOD),
-            "89:31: " + getCheckMessage(MSG_EXTRA_HTML, "</code>"),
-            "90: " + getCheckMessage(MSG_INCOMPLETE_TAG, "    * should fail <"),
-            "205: " + getCheckMessage(MSG_EMPTY),
-            "211: " + getCheckMessage(MSG_EMPTY),
-            "230: " + getCheckMessage(MSG_EMPTY),
-            "238: " + getCheckMessage(MSG_NO_PERIOD),
-            "335:33: " + getCheckMessage(MSG_EXTRA_HTML, "</string>"),
-            "382: " + getCheckMessage(MSG_NO_PERIOD),
-            "386: " + getCheckMessage(MSG_NO_PERIOD),
-            "418: " + getCheckMessage(MSG_NO_PERIOD),
+            "65: " + getCheckMessage(MSG_NO_PERIOD),
+            "66:23: " + getCheckMessage(MSG_UNCLOSED_HTML, "<b>should fail // violation"),
+            "75: " + getCheckMessage(MSG_NO_PERIOD),
+            "76:31: " + getCheckMessage(MSG_EXTRA_HTML, "</code> // violation"),
+            "77: " + getCheckMessage(MSG_INCOMPLETE_TAG, "    * should fail <"),
+            "176: " + getCheckMessage(MSG_EMPTY),
+            "180: " + getCheckMessage(MSG_EMPTY),
+            "194: " + getCheckMessage(MSG_EMPTY),
+            "199: " + getCheckMessage(MSG_NO_PERIOD),
+            "293:21: " + getCheckMessage(MSG_EXTRA_HTML, "</string> // violation"),
+            "335: " + getCheckMessage(MSG_NO_PERIOD),
+            "339: " + getCheckMessage(MSG_NO_PERIOD),
+            "371: " + getCheckMessage(MSG_NO_PERIOD),
         };
 
-        verify(checkConfig, getPath("InputJavadocStyle.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocStyle6.java"), expected);
     }
 
     @Test
     public void testScopePackage()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(JavadocStyleCheck.class);
-        checkConfig.addAttribute("checkFirstSentence", "true");
-        checkConfig.addAttribute("checkHtml", "true");
-        checkConfig.addAttribute("checkEmptyJavadoc", "true");
-        checkConfig.addAttribute("scope", "package");
         final String[] expected = {
-            "74: " + getCheckMessage(MSG_NO_PERIOD),
-            "75:23: " + getCheckMessage(MSG_UNCLOSED_HTML, "<b>should fail"),
-            "81: " + getCheckMessage(MSG_NO_PERIOD),
-            "82:31: " + getCheckMessage(MSG_UNCLOSED_HTML, "<b>should fail"),
-            "88: " + getCheckMessage(MSG_NO_PERIOD),
-            "89:31: " + getCheckMessage(MSG_EXTRA_HTML, "</code>"),
-            "90: " + getCheckMessage(MSG_INCOMPLETE_TAG, "    * should fail <"),
-            "205: " + getCheckMessage(MSG_EMPTY),
-            "211: " + getCheckMessage(MSG_EMPTY),
-            "218: " + getCheckMessage(MSG_EMPTY),
-            "230: " + getCheckMessage(MSG_EMPTY),
-            "238: " + getCheckMessage(MSG_NO_PERIOD),
-            "335:33: " + getCheckMessage(MSG_EXTRA_HTML, "</string>"),
-            "382: " + getCheckMessage(MSG_NO_PERIOD),
-            "386: " + getCheckMessage(MSG_NO_PERIOD),
-            "393: " + getCheckMessage(MSG_NO_PERIOD),
-            "405: " + getCheckMessage(MSG_NO_PERIOD),
-            "418: " + getCheckMessage(MSG_NO_PERIOD),
+            "65: " + getCheckMessage(MSG_NO_PERIOD),
+            "66:24: " + getCheckMessage(MSG_UNCLOSED_HTML, "<b>should fail // violation"),
+            "70: " + getCheckMessage(MSG_NO_PERIOD),
+            "71:32: " + getCheckMessage(MSG_UNCLOSED_HTML, "<b>should fail // violation"),
+            "75: " + getCheckMessage(MSG_NO_PERIOD),
+            "76:32: " + getCheckMessage(MSG_EXTRA_HTML, "</code> // violation"),
+            "77: " + getCheckMessage(MSG_INCOMPLETE_TAG, "     * should fail <"),
+            "175: " + getCheckMessage(MSG_EMPTY),
+            "179: " + getCheckMessage(MSG_EMPTY),
+            "184: " + getCheckMessage(MSG_EMPTY),
+            "193: " + getCheckMessage(MSG_EMPTY),
+            "198: " + getCheckMessage(MSG_NO_PERIOD),
+            "292:21: " + getCheckMessage(MSG_EXTRA_HTML, "</string> // violation"),
+            "334: " + getCheckMessage(MSG_NO_PERIOD),
+            "338: " + getCheckMessage(MSG_NO_PERIOD),
+            "345: " + getCheckMessage(MSG_NO_PERIOD),
+            "357: " + getCheckMessage(MSG_NO_PERIOD),
+            "370: " + getCheckMessage(MSG_NO_PERIOD),
         };
 
-        verify(checkConfig, getPath("InputJavadocStyle.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocStyle7.java"), expected);
     }
 
     @Test
-    public void testEmptyJavadoc() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(JavadocStyleCheck.class);
-        checkConfig.addAttribute("checkFirstSentence", "false");
-        checkConfig.addAttribute("checkHtml", "false");
-        checkConfig.addAttribute("checkEmptyJavadoc", "true");
+    public void testEmptyJavadoc1() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+            getPath("InputJavadocStyleEmptyJavadoc1.java"), expected);
+    }
+
+    @Test
+    public void testEmptyJavadoc2() throws Exception {
         final String[] expected = {
-            "205: " + getCheckMessage(MSG_EMPTY),
-            "211: " + getCheckMessage(MSG_EMPTY),
-            "218: " + getCheckMessage(MSG_EMPTY),
-            "225: " + getCheckMessage(MSG_EMPTY),
-            "230: " + getCheckMessage(MSG_EMPTY),
+            "75: " + getCheckMessage(MSG_EMPTY),
+            "79: " + getCheckMessage(MSG_EMPTY),
+            "84: " + getCheckMessage(MSG_EMPTY),
+            "89: " + getCheckMessage(MSG_EMPTY),
+            "93: " + getCheckMessage(MSG_EMPTY),
         };
 
-        verify(checkConfig, getPath("InputJavadocStyle.java"), expected);
+        verifyWithInlineConfigParser(
+            getPath("InputJavadocStyleEmptyJavadoc2.java"), expected);
+    }
+
+    @Test
+    public void testEmptyJavadoc3() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+            getPath("InputJavadocStyleEmptyJavadoc3.java"), expected);
+    }
+
+    @Test
+    public void testEmptyJavadoc4() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+            getPath("InputJavadocStyleEmptyJavadoc4.java"), expected);
     }
 
     @Test
     public void testExcludeScope()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(JavadocStyleCheck.class);
-        checkConfig.addAttribute("scope", "private");
-        checkConfig.addAttribute("excludeScope", "protected");
         final String[] expected = {
-            "20: " + getCheckMessage(MSG_NO_PERIOD),
-            "53: " + getCheckMessage(MSG_NO_PERIOD),
-            "63:11: " + getCheckMessage(MSG_UNCLOSED_HTML,
-                "<b>This guy is missing end of bold tag"),
-            "66:7: " + getCheckMessage(MSG_EXTRA_HTML, "</td>Extra tag shouldn't be here"),
-            "68:19: " + getCheckMessage(MSG_UNCLOSED_HTML, "<code>dummy."),
-            "81: " + getCheckMessage(MSG_NO_PERIOD),
-            "82:31: " + getCheckMessage(MSG_UNCLOSED_HTML, "<b>should fail"),
-            "109:39: " + getCheckMessage(MSG_EXTRA_HTML, "</img>"),
-            "186:8: " + getCheckMessage(MSG_UNCLOSED_HTML, "<blockquote>"),
-            "193: " + getCheckMessage(MSG_NO_PERIOD),
-            "361:37: " + getCheckMessage(MSG_UNCLOSED_HTML, "<code>"),
-            "372: " + getCheckMessage(MSG_NO_PERIOD),
-            "378:15: " + getCheckMessage(MSG_UNCLOSED_HTML,
-                "<b>Note:<b> it's unterminated tag.</p>"),
-            "393: " + getCheckMessage(MSG_NO_PERIOD),
-            "405: " + getCheckMessage(MSG_NO_PERIOD),
+            "23: " + getCheckMessage(MSG_NO_PERIOD),
+            "48: " + getCheckMessage(MSG_NO_PERIOD),
+            "56:11: " + getCheckMessage(MSG_UNCLOSED_HTML,
+                    "<b>This guy is missing end of bold tag // violation"),
+            "59:7: " + getCheckMessage(MSG_EXTRA_HTML, "</td>Extra tag "
+                    + "shouldn't be here // violation"),
+            "60:49: " + getCheckMessage(MSG_EXTRA_HTML, "</style> // violation"),
+            "61:19: " + getCheckMessage(MSG_UNCLOSED_HTML, "<code>dummy. // violation"),
+            "70: " + getCheckMessage(MSG_NO_PERIOD),
+            "71:31: " + getCheckMessage(MSG_UNCLOSED_HTML, "<b>should fail // violation"),
+            "92:39: " + getCheckMessage(MSG_EXTRA_HTML, "</img> // violation"),
+            "161:8: " + getCheckMessage(MSG_UNCLOSED_HTML, "<blockquote> // violation"),
+            "166: " + getCheckMessage(MSG_NO_PERIOD),
+            "314:33: " + getCheckMessage(MSG_UNCLOSED_HTML, "<code> // violation"),
+            "325: " + getCheckMessage(MSG_NO_PERIOD),
+            "331:11: " + getCheckMessage(MSG_UNCLOSED_HTML,
+                    "<b>Note:<b> it's unterminated tag.</p> // violation"),
+            "346: " + getCheckMessage(MSG_NO_PERIOD),
+            "358: " + getCheckMessage(MSG_NO_PERIOD),
         };
 
-        verify(checkConfig, getPath("InputJavadocStyle.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocStyle9.java"), expected);
     }
 
     @Test
     public void packageInfoInheritDoc() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(JavadocStyleCheck.class);
         final String[] expected = {
-            "1: " + getCheckMessage(MSG_NO_PERIOD),
+            "16: " + getCheckMessage(MSG_NO_PERIOD),
         };
 
-        verify(createChecker(checkConfig),
-               getPath("pkginfo" + File.separator + "invalidinherit" + File.separator
+        verifyWithInlineConfigParser(
+                getPath("pkginfo" + File.separator + "invalidinherit" + File.separator
                    + "package-info.java"),
                expected);
     }
 
     @Test
     public void packageInfoInvalid() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(JavadocStyleCheck.class);
         final String[] expected = {
-            "1: " + getCheckMessage(MSG_NO_PERIOD),
+            "16: " + getCheckMessage(MSG_NO_PERIOD),
         };
 
-        verify(createChecker(checkConfig),
-               getPath("pkginfo" + File.separator + "invalidformat" + File.separator
+        verifyWithInlineConfigParser(
+                getPath("pkginfo" + File.separator + "invalidformat" + File.separator
                    + "package-info.java"),
                expected);
     }
 
     @Test
     public void packageInfoAnnotation() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(JavadocStyleCheck.class);
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verify(createChecker(checkConfig),
-               getPath("pkginfo" + File.separator + "annotation" + File.separator
+        verifyWithInlineConfigParser(
+                getPath("pkginfo" + File.separator + "annotation" + File.separator
                    + "package-info.java"),
                expected);
     }
 
     @Test
     public void packageInfoMissing() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(JavadocStyleCheck.class);
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("bothfiles" + File.separator + "package-info.java"),
+               expected);
+    }
+
+    @Test
+    public void packageInfoMissingPeriod() throws Exception {
         final String[] expected = {
-            "1: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "16: " + getCheckMessage(MSG_NO_PERIOD),
         };
 
-        verify(createChecker(checkConfig),
-               getPath("bothfiles" + File.separator + "package-info.java"),
+        verifyWithInlineConfigParser(
+                getPath("missingperiod" + File.separator + "package-info.java"),
+               expected);
+    }
+
+    @Test
+    public void testNothing() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocStyleNothing.java"),
                expected);
     }
 
     @Test
     public void packageInfoValid() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(JavadocStyleCheck.class);
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verify(createChecker(checkConfig),
-               getPath("pkginfo" + File.separator + "valid" + File.separator + "package-info.java"),
+        verifyWithInlineConfigParser(
+               getPath("pkginfo" + File.separator + "valid"
+                       + File.separator + "package-info.java"),
                expected);
     }
 
     @Test
     public void testRestrictedTokenSet()
             throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(JavadocStyleCheck.class);
-        checkConfig.addAttribute("tokens", "METHOD_DEF");
-        checkConfig.addAttribute("scope", "public");
-        checkConfig.addAttribute("checkFirstSentence", "true");
-        checkConfig.addAttribute("checkEmptyJavadoc", "false");
-        checkConfig.addAttribute("checkHtml", "false");
         final String[] expected = {
-            "88: " + getCheckMessage(MSG_NO_PERIOD),
-            "386: " + getCheckMessage(MSG_NO_PERIOD),
-            "418: " + getCheckMessage(MSG_NO_PERIOD),
+            "73: " + getCheckMessage(MSG_NO_PERIOD),
+            "336: " + getCheckMessage(MSG_NO_PERIOD),
+            "368: " + getCheckMessage(MSG_NO_PERIOD),
         };
-        verify(checkConfig, getPath("InputJavadocStyle.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocStyle10.java"), expected);
+    }
+
+    @Test
+    public void testJavadocStyleRecordsAndCompactCtors() throws Exception {
+        final String[] expected = {
+            "23: " + getCheckMessage(MSG_NO_PERIOD),
+            "43: " + getCheckMessage(MSG_NO_PERIOD),
+            "52:16: " + getCheckMessage(MSG_UNCLOSED_HTML,
+                    "<b>This guy is missing end of bold tag // violation"),
+            "55:12: " + getCheckMessage(MSG_EXTRA_HTML, "</td>Extra tag "
+                    + "shouldn't be here // violation"),
+            "56:54: " + getCheckMessage(MSG_EXTRA_HTML, "</style> // violation"),
+            "58:24: " + getCheckMessage(MSG_UNCLOSED_HTML, "<code>dummy. // violation"),
+            "70: " + getCheckMessage(MSG_NO_PERIOD),
+            "71:36: " + getCheckMessage(MSG_EXTRA_HTML, "</code> // violation"),
+            "72: " + getCheckMessage(MSG_INCOMPLETE_TAG, "         * should fail <"),
+            "87:37: " + getCheckMessage(MSG_UNCLOSED_HTML, "<code> // violation"),
+            "102: " + getCheckMessage(MSG_NO_PERIOD),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputJavadocStyleRecordsAndCompactCtors.java"),
+            expected);
+    }
+
+    @Test
+    public void testHtmlTagToString() {
+        final HtmlTag tag = new HtmlTag("id", 3, 5, true, false, "<a href=\"URL\"/>");
+        assertWithMessage("Invalid toString result")
+            .that(tag.toString())
+            .isEqualTo("HtmlTag[id='id', lineNo=3, position=5, text='<a href=\"URL\"/>', "
+                + "closedTag=true, incompleteTag=false]");
+    }
+
+    @Test
+    public void testNeverEndingXmlCommentInsideJavadoc() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocStyleNeverEndingXmlComment.java"), expected);
+    }
+
+    @Test
+    public void testInterfaceMemberScopeIsPublic()
+            throws Exception {
+        final String[] expected = {
+            "20: " + getCheckMessage(MSG_EMPTY),
+            "23: " + getCheckMessage(MSG_EMPTY),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocStyleInterfaceMemberScopeIsPublic.java"),
+                expected);
+    }
+
+    @Test
+    public void testEnumCtorScopeIsPrivate()
+            throws Exception {
+        final String[] expected = {
+            "20: " + getCheckMessage(MSG_EMPTY),
+            "23: " + getCheckMessage(MSG_EMPTY),
+            "31: " + getCheckMessage(MSG_EMPTY),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocStyleEnumCtorScopeIsPrivate.java"),
+                expected);
+    }
+
+    @Test
+    public void testLowerCasePropertyForTag() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocStyleCheckOptionLowercaseProperty.java"), expected);
     }
 }

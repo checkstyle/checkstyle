@@ -1,14 +1,14 @@
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 // Test case file for checkstyle.
 // Created: 2001
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 package com.google.checkstyle.test.chapter4formatting.rule413emptyblocks;
 
-import java.io.*; 
+import java.io.*;
 import java.awt.Dimension;
 import java.awt.Color;
 
-class Block {
+class InputEmptyBlock {
     boolean flag;
     void doSm() {}
     void foo() {
@@ -50,7 +50,7 @@ class Block {
             finally {} //warn
         }
     }
-    
+
     Inner anon = new Inner(){
         boolean flag;
         void doSm() {}
@@ -73,3 +73,7 @@ class Block {
         }
     };
 }
+
+interface InterfaceEndingWithSemiColon2 {
+    public void fooEmpty();
+}; // ok until #7541

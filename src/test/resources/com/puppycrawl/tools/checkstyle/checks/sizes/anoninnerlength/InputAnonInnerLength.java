@@ -1,7 +1,10 @@
-////////////////////////////////////////////////////////////////////////////////
-// Test case file for checkstyle.
-// Created: 2002
-////////////////////////////////////////////////////////////////////////////////
+/*
+AnonInnerLength
+max = (default)20
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.sizes.anoninnerlength;
 
 import java.awt.event.MouseEvent;
@@ -47,7 +50,7 @@ public class InputAnonInnerLength
     /**
        anon inner in member variable initialization which is 21 lines long
     */
-    private Runnable mRunnable1 = new Runnable() {
+    private Runnable mRunnable1 = new Runnable() { // violation
         public void run() // should not have to be documented, class is anon.
         {
             System.identityHashCode("running");

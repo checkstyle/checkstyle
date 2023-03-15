@@ -1,26 +1,16 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
-//
-// This library is free software; you can redistribute it and/or
-// modify it under the terms of the GNU Lesser General Public
-// License as published by the Free Software Foundation; either
-// version 2.1 of the License, or (at your option) any later version.
-//
-// This library is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-// Lesser General Public License for more details.
-//
-// You should have received a copy of the GNU Lesser General Public
-// License along with this library; if not, write to the Free Software
-// Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+/*
+EmptyCatchBlock
+exceptionVariableName = (default)^$
+commentFormat = (default).*
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.blocks.emptycatchblock;
 import java.io.IOException;
 public class InputEmptyCatchBlockDefault
 {
-    
+
     private void foo() {
         try {
             throw new RuntimeException();
@@ -28,42 +18,42 @@ public class InputEmptyCatchBlockDefault
             //Expected
         }
     }
-    
+
     private void foo1() {
         try {
             throw new RuntimeException();
-        } catch (Exception e) {}
-        
+        } catch (Exception e) {} // violation
+
     }
-    
+
     private void foo2() {
         try {
             throw new IOException();
         } catch (IOException | NullPointerException | ArithmeticException ignore) {
-        }
+        } // violation above
     }
-    
+
     private void foo3() { // comment
         try {
             throw new IOException();
         } catch (IOException | NullPointerException | ArithmeticException e) { //This is expected
         }
     }
-    
+
     private void foo4() {
         try {
             throw new IOException();
         } catch (IOException | NullPointerException | ArithmeticException e) { /* This is expected*/
         }
     }
-    
+
     private void foo5() {
         try {
             throw new IOException();
-        } catch (IOException | NullPointerException | ArithmeticException e) { // Some singleline comment
+        } catch (IOException | NullPointerException | ArithmeticException e) { // singleline comment
         }
     }
-    
+
     private void foo6() {
         try {
             throw new IOException();
@@ -71,29 +61,29 @@ public class InputEmptyCatchBlockDefault
             int k = 0;
         }
     }
-    
+
     public void testTryCatch()
     {
         try {
             int y=0;
             int u=8;
             int e=u-y;
-            return; 
-        } 
+            return;
+        }
         catch (Exception e) {
             System.identityHashCode(e);
-            return; 
+            return;
         }
         finally
         {
-            return; 
+            return;
         }
     }
-    
+
     public void testTryCatch2()
     {
         try {
-        } 
+        }
         catch (Exception e) { //OK
             //This is expected
             /* This is expected */
@@ -103,34 +93,34 @@ public class InputEmptyCatchBlockDefault
         {
         }
     }
-    
+
     public void testTryCatch3()
     {
         try {
             int y=0;
             int u=8;
             int e=u-y;
-        } 
+        }
         catch (IllegalArgumentException e) {
             System.identityHashCode(e); //some comment
-            return; 
+            return;
         }
         catch (IllegalStateException ex) {
                 System.identityHashCode(ex);
-                return; 
+                return;
         }
     }
-    
+
     public void testTryCatch4()
     {
         int y=0;
         int u=8;
         try {
             int e=u-y;
-        } 
+        }
         catch (IllegalArgumentException e) {
             System.identityHashCode(e);
-            return; 
+            return;
         }
     }
     public void setFormats() {
@@ -141,7 +131,7 @@ public class InputEmptyCatchBlockDefault
             if (k != null)
                 k = "ss";
             else {
-                return; 
+                return;
             }
         }
     }
@@ -153,7 +143,7 @@ public class InputEmptyCatchBlockDefault
             if (k != null) {
                 k = "ss";
             } else {
-                return; 
+                return;
             }
         }
     }
@@ -165,7 +155,7 @@ public class InputEmptyCatchBlockDefault
             if (k != null) {
                 k = "ss";
                 return;
-            } 
+            }
         }
     }
     public void setFormats3() {
@@ -175,11 +165,11 @@ public class InputEmptyCatchBlockDefault
             Object k = null;
             if (k != null) {
                 k = "ss";
-                
-            } 
+
+            }
         }
     }
-    
+
     private void some() {
         try {
             throw new IOException();
@@ -232,8 +222,8 @@ public class InputEmptyCatchBlockDefault
             //This is expected
         }
     }
-    
-    private void emptyMultilineComent() {
+
+    private void emptyMultilineComment() {
         try {
             throw new IOException();
         } catch (IOException e) {

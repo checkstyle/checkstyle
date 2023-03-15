@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.indentation;
 
@@ -25,9 +25,9 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 /**
  * Handler for labels.
  *
- * @author jrichard
  */
 public class LabelHandler extends AbstractExpressionHandler {
+
     /**
      * The types of expressions that are children of a label.
      */
@@ -51,8 +51,7 @@ public class LabelHandler extends AbstractExpressionHandler {
     @Override
     protected IndentLevel getIndentImpl() {
         final IndentLevel level = new IndentLevel(super.getIndentImpl(), -getBasicOffset());
-        level.addAcceptedIndent(super.getIndentImpl());
-        return level;
+        return IndentLevel.addAcceptable(level, super.getIndentImpl());
     }
 
     /**
@@ -73,4 +72,5 @@ public class LabelHandler extends AbstractExpressionHandler {
 
         checkExpressionSubtree(parent, expected, true, false);
     }
+
 }

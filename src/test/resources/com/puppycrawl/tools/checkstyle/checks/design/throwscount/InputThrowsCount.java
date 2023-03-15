@@ -1,3 +1,11 @@
+/*
+ThrowsCount
+max = (default)4
+ignorePrivateMethods = (default)true
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.design.throwscount;
 
 import java.awt.AWTException;
@@ -10,28 +18,28 @@ public class InputThrowsCount {
     {
     }
 
-    void methdo2() throws java.awt.AWTException
+    void method2() throws java.awt.AWTException
     {
     }
 
-    void method3() throws Exception, AWTException, SQLException,
+    void method3() throws Exception, AWTException, SQLException, // violation
             FileNotFoundException, EOFException
     {
     }
 
-    void method4() throws Exception, java.awt.AWTException, java.sql.SQLException,
+    void method4() throws Exception, java.awt.AWTException, java.sql.SQLException, // violation
             java.io.FileNotFoundException, java.io.EOFException
     {
     }
 
-    void method5() throws Exception, AWTException, Throwable, SQLException,
+    void method5() throws Exception, AWTException, Throwable, SQLException, // violation
             FileNotFoundException, EOFException
     {
     }
 
     void method6() {
     }
-    
+
     private void method7() throws Exception, AWTException, SQLException,
             FileNotFoundException, EOFException {
     }
@@ -39,7 +47,7 @@ public class InputThrowsCount {
 
 class SubClass extends InputThrowsCount {
     @Override
-    void method1() {        
+    void method1() {
     }
 
     @Deprecated
@@ -50,12 +58,12 @@ class SubClass extends InputThrowsCount {
     @Override
     void method5() throws Exception, AWTException, Throwable {
     }
-    
+
     @SuppressWarnings("deprecation")
-    final void method2(Object ...objects) throws Exception, AWTException, SQLException,
-            FileNotFoundException, EOFException{
+    final void method2(Object ...objects) throws Exception, // violation
+            AWTException, SQLException, FileNotFoundException, EOFException{
     }
-    
+
     @java.lang.Override
     void method3() throws Exception {
     }

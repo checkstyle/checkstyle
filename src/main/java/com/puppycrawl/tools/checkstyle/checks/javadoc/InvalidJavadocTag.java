@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,15 +15,15 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 /**
  * Value object for storing data about an invalid Javadoc validTags.
- * @author Oliver Burn
  */
 public final class InvalidJavadocTag {
+
     /** The line in which the invalid tag occurs. */
     private final int line;
     /** The column in which the invalid tag occurs. */
@@ -33,6 +33,7 @@ public final class InvalidJavadocTag {
 
     /**
      * Creates an instance.
+     *
      * @param line the line of the tag
      * @param col the column of the tag
      * @param name the name of the invalid tag
@@ -45,6 +46,7 @@ public final class InvalidJavadocTag {
 
     /**
      *  Getter for line field.
+     *
      *  @return line field
      */
     public int getLine() {
@@ -53,6 +55,7 @@ public final class InvalidJavadocTag {
 
     /**
      *  Getter for col field.
+     *
      *  @return col field
      */
     public int getCol() {
@@ -61,9 +64,11 @@ public final class InvalidJavadocTag {
 
     /**
      *  Getter for name field.
+     *
      *  @return name field
      */
     public String getName() {
         return name;
     }
+
 }

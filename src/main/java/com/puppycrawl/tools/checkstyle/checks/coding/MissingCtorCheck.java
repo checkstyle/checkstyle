@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,28 +15,62 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * <p>
- * Checks that classes (except abstract one) define a ctor and don't rely
+ * Checks that classes (except abstract ones) define a constructor and don't rely
  * on the default one.
  * </p>
  * <p>
- * An example of how to configure the check is:
+ * To configure the check:
  * </p>
  * <pre>
- * &lt;module name="MissingCtor"/&gt;
+ * &lt;module name=&quot;MissingCtor&quot;/&gt;
  * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * class ExampleOk { // OK
+ *   private int a;
+ *   ExampleOk(int a) {
+ *     this.a = a;
+ *   }
+ * }
+ * class ExampleDefaultCtor { // OK
+ *   private String s;
+ *   ExampleDefaultCtor() {
+ *     s = "foobar";
+ *   }
+ * }
+ * class InvalidExample { // violation, class must have a constructor.
+ *   public void test() {}
+ * }
+ * abstract class AbstractExample { // OK
+ *   public abstract void test() {}
+ * }
+ * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code missing.ctor}
+ * </li>
+ * </ul>
  *
- * @author o_sukhodolsky
+ * @since 3.4
  */
+@StatelessCheck
 public class MissingCtorCheck extends AbstractCheck {
 
     /**
@@ -47,26 +81,27 @@ public class MissingCtorCheck extends AbstractCheck {
 
     @Override
     public int[] getDefaultTokens() {
-        return new int[] {TokenTypes.CLASS_DEF};
+        return getRequiredTokens();
     }
 
     @Override
     public int[] getAcceptableTokens() {
-        return getDefaultTokens();
+        return getRequiredTokens();
     }
 
     @Override
     public int[] getRequiredTokens() {
-        return getDefaultTokens();
+        return new int[] {TokenTypes.CLASS_DEF};
     }
 
     @Override
     public void visitToken(DetailAST ast) {
         final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
-        if (!modifiers.branchContains(TokenTypes.ABSTRACT)
+        if (modifiers.findFirstToken(TokenTypes.ABSTRACT) == null
                 && ast.findFirstToken(TokenTypes.OBJBLOCK)
                     .findFirstToken(TokenTypes.CTOR_DEF) == null) {
-            log(ast.getLineNo(), MSG_KEY);
+            log(ast, MSG_KEY);
         }
     }
+
 }

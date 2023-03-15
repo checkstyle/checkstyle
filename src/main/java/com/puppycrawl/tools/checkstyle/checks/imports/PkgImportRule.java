@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,15 +15,15 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
 /**
  * Represents whether a package is allowed to be imported or not.
- * @author Oliver Burn
  */
 class PkgImportRule extends AbstractImportRule {
+
     /** Package to control access to. */
     private final String pkgName;
 
@@ -32,6 +32,7 @@ class PkgImportRule extends AbstractImportRule {
 
     /**
      * Constructs an instance.
+     *
      * @param allow whether to allow access.
      * @param localOnly whether the rule is to be applied locally only
      * @param pkgName the package to apply the rule on.
@@ -39,7 +40,7 @@ class PkgImportRule extends AbstractImportRule {
      * @param regExp whether the package name is to be interpreted as a regular
      *        expression.
      */
-    PkgImportRule(final boolean allow, final boolean localOnly,
+    /* package */ PkgImportRule(final boolean allow, final boolean localOnly,
         final String pkgName, final boolean exactMatch, final boolean regExp) {
         super(allow, localOnly, regExp);
         this.pkgName = pkgName;
@@ -48,6 +49,7 @@ class PkgImportRule extends AbstractImportRule {
 
     /**
      * Verifies whether a package name is used.
+     *
      * @param forImport the import to check.
      * @return a result {@link AccessResult} indicating whether it can be used.
      */
@@ -78,4 +80,5 @@ class PkgImportRule extends AbstractImportRule {
 
         return calculateResult(pkgMatch);
     }
+
 }

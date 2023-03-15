@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,38 +15,42 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import static com.puppycrawl.tools.checkstyle.checks.coding.AbstractSuperCheck.MSG_KEY;
 
-import java.io.File;
-import java.io.IOException;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Test;
-
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 
 public class SuperFinalizeCheckTest
-    extends BaseCheckTestSupport {
+    extends AbstractModuleTestSupport {
+
     @Override
-    protected String getPath(String filename) throws IOException {
-        return super.getPath("checks" + File.separator
-                + "coding" + File.separator
-                + "superfinalize" + File.separator
-                + filename);
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/checks/coding/superfinalize";
     }
 
     @Test
     public void testIt() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(SuperFinalizeCheck.class);
         final String[] expected = {
-            "27:17: " + getCheckMessage(MSG_KEY, "finalize", "super.finalize"),
             "34:17: " + getCheckMessage(MSG_KEY, "finalize", "super.finalize"),
+            "41:17: " + getCheckMessage(MSG_KEY, "finalize", "super.finalize"),
+            "83:20: " + getCheckMessage(MSG_KEY, "finalize", "super.finalize"),
         };
-        verify(checkConfig, getPath("InputSuperFinalizeVariations.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputSuperFinalizeVariations.java"), expected);
     }
+
+    @Test
+    public void testMethodReference() throws Exception {
+        final String[] expected = {
+            "23:20: " + getCheckMessage(MSG_KEY, "finalize", "super.finalize"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputSuperFinalizeMethodReference.java"), expected);
+    }
+
 }

@@ -1,14 +1,17 @@
-////////////////////////////////////////////////////////////////////////////////
-// Test case file for checkstyle.
-// Created: 2001
-////////////////////////////////////////////////////////////////////////////////
+/*
+WhitespaceAfter
+tokens = TYPECAST
+
+
+*/
+
 package com . puppycrawl
     .tools.
     checkstyle.checks.whitespace.whitespaceafter;
 
 /**
  * Class for testing whitespace issues.
- * error missing author tag
+ * violation missing author tag
  **/
 class InputWhitespaceAfterTypeCast
 {
@@ -85,7 +88,7 @@ class InputWhitespaceAfterTypeCast
     private void testCasts()
     {
         Object o = (Object) new Object(); // ok
-        o = (Object)o; // error
+        o = (Object)o; // violation ''typecast' is not followed by whitespace'
         o = ( Object ) o; // ok
         o = (Object)
             o; // ok
@@ -181,14 +184,14 @@ class InputWhitespaceAfterTypeCast
     }
 
 
-    /** bug 806243 (NoWhitespaceBeforeCheck error for anonymous inner class) */
+    /** bug 806243 (NoWhitespaceBeforeCheck violation for anonymous inner class) */
     private int i ;
     //           ^ whitespace
     private int i1, i2, i3 ;
     //                    ^ whitespace
     private int i4, i5, i6;
 
-    /** bug 806243 (NoWhitespaceBeforeCheck error for anonymous inner class) */
+    /** bug 806243 (NoWhitespaceBeforeCheck violation for anonymous inner class) */
     void bug806243()
     {
         Object o = new InputWhitespaceAfterTypeCast() {
@@ -202,7 +205,7 @@ class InputWhitespaceAfterTypeCast
 }
 
 /**
- * Bug 806242 (NoWhitespaceBeforeCheck error with an interface).
+ * Bug 806242 (NoWhitespaceBeforeCheck violation with an interface).
  * @author o_sukhodolsky
  * @version 1.0
  */
@@ -213,7 +216,7 @@ interface IFoo
 }
 
 /**
- * Avoid Whitespace errors in for loop.
+ * Avoid Whitespace violations in for loop.
  * @author lkuehne
  * @version 1.0
  */
@@ -223,15 +226,15 @@ class SpecialCasesInForLoop
     {
         // avoid conflict between WhiteSpaceAfter ';' and ParenPad(nospace)
         for (int i = 0; i++ < 5;) {
-	    //                  ^ no whitespace
-	}
+        //                  ^ no whitespace
+    }
 
         // bug 895072
-	// avoid confilct between ParenPad(space) and NoWhiteSpace before ';'
-	int i = 0;
-	for ( ; i < 5; i++ ) {
-	//   ^ whitespace
-	}
+    // avoid conflict between ParenPad(space) and NoWhiteSpace before ';'
+    int i = 0;
+    for ( ; i < 5; i++ ) {
+    //   ^ whitespace
+    }
         for (int anInt : getSomeInts()) {
             //Should be ignored
         }

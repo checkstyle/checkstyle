@@ -1,6 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2017 the original author or authors.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,88 +15,219 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
-import java.util.Arrays;
+import java.util.BitSet;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
- * <p>Checks the padding of parentheses; that is whether a space is required
+ * <p>
+ * Checks the policy on the padding of parentheses; that is whether a space is required
  * after a left parenthesis and before a right parenthesis, or such spaces are
- * forbidden, with the exception that it does
- * not check for padding of the right parenthesis at an empty for iterator and
- * empty for initializer.
- * Use Check {@link EmptyForIteratorPadCheck EmptyForIteratorPad} to validate
- * empty for iterators and {@link EmptyForInitializerPadCheck EmptyForInitializerPad}
- * to validate empty for initializers. Typecasts are also not checked, as there is
- * {@link TypecastParenPadCheck TypecastParenPad} to validate them.
+ * forbidden. No check occurs at the right parenthesis after an empty for
+ * iterator, at the left parenthesis before an empty for initialization, or at
+ * the right parenthesis of a try-with-resources resource specification where
+ * the last resource variable has a trailing semicolon.
+ * Use Check <a href="https://checkstyle.org/config_whitespace.html#EmptyForIteratorPad">
+ * EmptyForIteratorPad</a> to validate empty for iterators and
+ * <a href="https://checkstyle.org/config_whitespace.html#EmptyForInitializerPad">
+ * EmptyForInitializerPad</a> to validate empty for initializers.
+ * Typecasts are also not checked, as there is
+ * <a href="https://checkstyle.org/config_whitespace.html#TypecastParenPad">
+ * TypecastParenPad</a> to validate them.
  * </p>
+ * <ul>
+ * <li>
+ * Property {@code option} - Specify policy on how to pad parentheses.
+ * Type is {@code com.puppycrawl.tools.checkstyle.checks.whitespace.PadOption}.
+ * Default value is {@code nospace}.
+ * </li>
+ * <li>
+ * Property {@code tokens} - tokens to check
+ * Type is {@code java.lang.String[]}.
+ * Validation type is {@code tokenSet}.
+ * Default value is:
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION">
+ * ANNOTATION</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">
+ * ANNOTATION_FIELD_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_CALL">
+ * CTOR_CALL</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
+ * CTOR_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#DOT">
+ * DOT</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_CONSTANT_DEF">
+ * ENUM_CONSTANT_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#EXPR">
+ * EXPR</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_CATCH">
+ * LITERAL_CATCH</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_DO">
+ * LITERAL_DO</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_FOR">
+ * LITERAL_FOR</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_IF">
+ * LITERAL_IF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_NEW">
+ * LITERAL_NEW</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_SWITCH">
+ * LITERAL_SWITCH</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_SYNCHRONIZED">
+ * LITERAL_SYNCHRONIZED</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_WHILE">
+ * LITERAL_WHILE</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_CALL">
+ * METHOD_CALL</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+ * METHOD_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#QUESTION">
+ * QUESTION</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RESOURCE_SPECIFICATION">
+ * RESOURCE_SPECIFICATION</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#SUPER_CTOR_CALL">
+ * SUPER_CTOR_CALL</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">
+ * LAMBDA</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
+ * RECORD_DEF</a>.
+ * </li>
+ * </ul>
  * <p>
- * The policy to verify is specified using the {@link PadOption} class and
- * defaults to {@link PadOption#NOSPACE}.
- * </p>
- * <p> By default the check will check parentheses that occur with the following
- * tokens:
- *  {@link TokenTypes#ANNOTATION ANNOTATION},
- *  {@link TokenTypes#ANNOTATION_FIELD_DEF ANNOTATION_FIELD_DEF},
- *  {@link TokenTypes#CTOR_DEF CTOR_DEF},
- *  {@link TokenTypes#CTOR_CALL CTOR_CALL},
- *  {@link TokenTypes#DOT DOT},
- *  {@link TokenTypes#ENUM_CONSTANT_DEF ENUM_CONSTANT_DEF},
- *  {@link TokenTypes#EXPR EXPR},
- *  {@link TokenTypes#LITERAL_CATCH LITERAL_CATCH},
- *  {@link TokenTypes#LITERAL_DO LITERAL_DO},
- *  {@link TokenTypes#LITERAL_FOR LITERAL_FOR},
- *  {@link TokenTypes#LITERAL_IF LITERAL_IF},
- *  {@link TokenTypes#LITERAL_NEW LITERAL_NEW},
- *  {@link TokenTypes#LITERAL_SWITCH LITERAL_SWITCH},
- *  {@link TokenTypes#LITERAL_SYNCHRONIZED LITERAL_SYNCHRONIZED},
- *  {@link TokenTypes#LITERAL_WHILE LITERAL_WHILE},
- *  {@link TokenTypes#METHOD_CALL METHOD_CALL},
- *  {@link TokenTypes#METHOD_DEF METHOD_DEF},
- *  {@link TokenTypes#RESOURCE_SPECIFICATION RESOURCE_SPECIFICATION},
- *  {@link TokenTypes#SUPER_CTOR_CALL SUPER_CTOR_CALL},
- *  {@link TokenTypes#QUESTION QUESTION},
- *  {@link TokenTypes#LAMBDA LAMBDA},
- * </p>
- * <p>
- * An example of how to configure the check is:
+ * To configure the check:
  * </p>
  * <pre>
- * &lt;module name="ParenPad"/&gt;
+ * &lt;module name=&quot;ParenPad&quot;/&gt;
  * </pre>
  * <p>
- * An example of how to configure the check to require spaces for the
- * parentheses of constructor, method, and super constructor invocations is:
+ * Example:
  * </p>
  * <pre>
- * &lt;module name="ParenPad"&gt;
- *     &lt;property name="tokens"
- *               value="CTOR_CALL, METHOD_CALL, SUPER_CTOR_CALL"/&gt;
- *     &lt;property name="option" value="space"/&gt;
+ * class Foo {
+ *
+ *   int n;
+ *
+ *   public void fun() {  // OK
+ *     bar( 1);  // violation, space after left parenthesis
+ *   }
+ *
+ *   public void bar(int k ) {  // violation, space before right parenthesis
+ *     while (k &gt; 0) {  // OK
+ *     }
+ *
+ *     Test obj = new Test(k);  // OK
+ *   }
+ *
+ *   public void fun2() {  // OK
+ *     switch( n) {  // violation, space after left parenthesis
+ *       case 2:
+ *         bar(n);  // OK
+ *       default:
+ *         break;
+ *     }
+ *   }
+ *
+ * }
+ * </pre>
+ * <p>
+ * To configure the check to require spaces for the
+ * parentheses of constructor, method, and super constructor calls:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;ParenPad&quot;&gt;
+ *   &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_FOR, LITERAL_CATCH,
+ *     SUPER_CTOR_CALL&quot;/&gt;
+ *   &lt;property name=&quot;option&quot; value=&quot;space&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
- * @author Oliver Burn
- * @author Vladislav Lisetskiy
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * class Foo {
+ *
+ *   int x;
+ *
+ *   public Foo(int n) {
+ *   }
+ *
+ *   public void fun() {
+ *     try {
+ *       System.out.println(x);
+ *     } catch( IOException e) {  // violation, no space before right parenthesis
+ *     } catch( Exception e ) {  // OK
+ *     }
+ *
+ *     for ( int i = 0; i &lt; x; i++ ) {  // OK
+ *     }
+ *   }
+ *
+ * }
+ *
+ * class Bar extends Foo {
+ *
+ *   public Bar() {
+ *     super(1 );  // violation, no space after left parenthesis
+ *   }
+ *
+ *   public Bar(int k) {
+ *     super( k ); // OK
+ *
+ *     for ( int i = 0; i &lt; k; i++) {  // violation, no space before right parenthesis
+ *     }
+ *   }
+ *
+ * }
+ * </pre>
+ * <p>
+ * The following cases are not checked:
+ * </p>
+ * <pre>
+ * for ( ; i &lt; j; i++, j--) // no check after left parenthesis
+ * for (Iterator it = xs.iterator(); it.hasNext(); ) // no check before right parenthesis
+ * try (Closeable resource = acquire(); ) // no check before right parenthesis
+ * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code ws.followed}
+ * </li>
+ * <li>
+ * {@code ws.notFollowed}
+ * </li>
+ * <li>
+ * {@code ws.notPreceded}
+ * </li>
+ * <li>
+ * {@code ws.preceded}
+ * </li>
+ * </ul>
+ *
+ * @since 3.0
  */
 public class ParenPadCheck extends AbstractParenPadCheck {
 
     /**
-     * The array of Acceptable Tokens.
+     * Tokens that this check handles.
      */
-    private final int[] acceptableTokens;
+    private final BitSet acceptableTokens;
 
     /**
-     * Initializes and sorts acceptableTokens to make binary search over it possible.
+     * Initializes acceptableTokens.
      */
     public ParenPadCheck() {
-        acceptableTokens = makeAcceptableTokens();
-        Arrays.sort(acceptableTokens);
+        acceptableTokens = TokenUtil.asBitSet(makeAcceptableTokens());
     }
 
     @Override
@@ -111,7 +242,7 @@ public class ParenPadCheck extends AbstractParenPadCheck {
 
     @Override
     public int[] getRequiredTokens() {
-        return CommonUtils.EMPTY_INT_ARRAY;
+        return CommonUtil.EMPTY_INT_ARRAY;
     }
 
     @Override
@@ -120,7 +251,6 @@ public class ParenPadCheck extends AbstractParenPadCheck {
             case TokenTypes.METHOD_CALL:
                 processLeft(ast);
                 processRight(ast.findFirstToken(TokenTypes.RPAREN));
-                processExpression(ast);
                 break;
             case TokenTypes.DOT:
             case TokenTypes.EXPR:
@@ -137,6 +267,9 @@ public class ParenPadCheck extends AbstractParenPadCheck {
             case TokenTypes.LAMBDA:
                 visitTokenWithOptionalParentheses(ast);
                 break;
+            case TokenTypes.RESOURCE_SPECIFICATION:
+                visitResourceSpecification(ast);
+                break;
             default:
                 processLeft(ast.findFirstToken(TokenTypes.LPAREN));
                 processRight(ast.findFirstToken(TokenTypes.RPAREN));
@@ -148,6 +281,7 @@ public class ParenPadCheck extends AbstractParenPadCheck {
      * {@link TokenTypes#ENUM_CONSTANT_DEF}, {@link TokenTypes#ANNOTATION}
      * {@link TokenTypes#LITERAL_SYNCHRONIZED}, {@link TokenTypes#LITERAL_NEW} and
      * {@link TokenTypes#LAMBDA}.
+     *
      * @param ast the token to check.
      */
     private void visitTokenWithOptionalParentheses(DetailAST ast) {
@@ -159,7 +293,31 @@ public class ParenPadCheck extends AbstractParenPadCheck {
     }
 
     /**
+     * Checks parens in {@link TokenTypes#RESOURCE_SPECIFICATION}.
+     *
+     * @param ast the token to check.
+     */
+    private void visitResourceSpecification(DetailAST ast) {
+        processLeft(ast.findFirstToken(TokenTypes.LPAREN));
+        final DetailAST rparen = ast.findFirstToken(TokenTypes.RPAREN);
+        if (!hasPrecedingSemiColon(rparen)) {
+            processRight(rparen);
+        }
+    }
+
+    /**
+     * Checks that a token is preceded by a semicolon.
+     *
+     * @param ast the token to check
+     * @return whether a token is preceded by a semicolon
+     */
+    private static boolean hasPrecedingSemiColon(DetailAST ast) {
+        return ast.getPreviousSibling().getType() == TokenTypes.SEMI;
+    }
+
+    /**
      * Checks parens in {@link TokenTypes#LITERAL_FOR}.
+     *
      * @param ast the token to check.
      */
     private void visitLiteralFor(DetailAST ast) {
@@ -176,44 +334,46 @@ public class ParenPadCheck extends AbstractParenPadCheck {
     /**
      * Checks parens inside {@link TokenTypes#EXPR}, {@link TokenTypes#QUESTION}
      * and {@link TokenTypes#METHOD_CALL}.
+     *
      * @param ast the token to check.
      */
     private void processExpression(DetailAST ast) {
-        if (ast.branchContains(TokenTypes.LPAREN)) {
-            DetailAST childAst = ast.getFirstChild();
-            while (childAst != null) {
-                if (childAst.getType() == TokenTypes.LPAREN) {
-                    processLeft(childAst);
-                    processExpression(childAst);
-                }
-                else if (childAst.getType() == TokenTypes.RPAREN && !isInTypecast(childAst)) {
-                    processRight(childAst);
-                }
-                else if (!isAcceptableToken(childAst)) {
-                    //Traverse all subtree tokens which will never be configured
-                    //to be launched in visitToken()
-                    processExpression(childAst);
-                }
-                childAst = childAst.getNextSibling();
+        DetailAST currentNode = ast.getFirstChild();
+        while (currentNode != null) {
+            if (currentNode.getType() == TokenTypes.LPAREN) {
+                processLeft(currentNode);
             }
+            else if (currentNode.getType() == TokenTypes.RPAREN && !isInTypecast(currentNode)) {
+                processRight(currentNode);
+            }
+            else if (currentNode.hasChildren() && !isAcceptableToken(currentNode)) {
+                // Traverse all subtree tokens which will never be configured
+                // to be launched in visitToken()
+                currentNode = currentNode.getFirstChild();
+                continue;
+            }
+
+            // Go up after processing the last child
+            while (currentNode.getNextSibling() == null && currentNode.getParent() != ast) {
+                currentNode = currentNode.getParent();
+            }
+            currentNode = currentNode.getNextSibling();
         }
     }
 
     /**
      * Checks whether AcceptableTokens contains the given ast.
+     *
      * @param ast the token to check.
      * @return true if the ast is in AcceptableTokens.
      */
     private boolean isAcceptableToken(DetailAST ast) {
-        boolean result = false;
-        if (Arrays.binarySearch(acceptableTokens, ast.getType()) >= 0) {
-            result = true;
-        }
-        return result;
+        return acceptableTokens.get(ast.getType());
     }
 
     /**
      * Returns array of acceptable tokens.
+     *
      * @return acceptableTokens.
      */
     private static int[] makeAcceptableTokens() {
@@ -238,12 +398,14 @@ public class ParenPadCheck extends AbstractParenPadCheck {
             TokenTypes.RESOURCE_SPECIFICATION,
             TokenTypes.SUPER_CTOR_CALL,
             TokenTypes.LAMBDA,
+            TokenTypes.RECORD_DEF,
         };
     }
 
     /**
      * Checks whether {@link TokenTypes#RPAREN} is a closing paren
      * of a {@link TokenTypes#TYPECAST}.
+     *
      * @param ast of a {@link TokenTypes#RPAREN} to check.
      * @return true if ast is a closing paren of a {@link TokenTypes#TYPECAST}.
      */
@@ -251,7 +413,7 @@ public class ParenPadCheck extends AbstractParenPadCheck {
         boolean result = false;
         if (ast.getParent().getType() == TokenTypes.TYPECAST) {
             final DetailAST firstRparen = ast.getParent().findFirstToken(TokenTypes.RPAREN);
-            if (firstRparen.getLineNo() == ast.getLineNo()
+            if (TokenUtil.areOnSameLine(firstRparen, ast)
                     && firstRparen.getColumnNo() == ast.getColumnNo()) {
                 result = true;
             }
@@ -261,35 +423,38 @@ public class ParenPadCheck extends AbstractParenPadCheck {
 
     /**
      * Checks that a token follows an empty for iterator.
+     *
      * @param ast the token to check
      * @return whether a token follows an empty for iterator
      */
     private static boolean isFollowsEmptyForIterator(DetailAST ast) {
         boolean result = false;
         final DetailAST parent = ast.getParent();
-        //Only traditional for statements are examined, not for-each statements
+        // Only traditional for statements are examined, not for-each statements
         if (parent.findFirstToken(TokenTypes.FOR_EACH_CLAUSE) == null) {
             final DetailAST forIterator =
                 parent.findFirstToken(TokenTypes.FOR_ITERATOR);
-            result = forIterator.getChildCount() == 0;
+            result = !forIterator.hasChildren();
         }
         return result;
     }
 
     /**
      * Checks that a token precedes an empty for initializer.
+     *
      * @param ast the token to check
      * @return whether a token precedes an empty for initializer
      */
     private static boolean isPrecedingEmptyForInit(DetailAST ast) {
         boolean result = false;
         final DetailAST parent = ast.getParent();
-        //Only traditional for statements are examined, not for-each statements
+        // Only traditional for statements are examined, not for-each statements
         if (parent.findFirstToken(TokenTypes.FOR_EACH_CLAUSE) == null) {
             final DetailAST forIterator =
                     parent.findFirstToken(TokenTypes.FOR_INIT);
-            result = forIterator.getChildCount() == 0;
+            result = !forIterator.hasChildren();
         }
         return result;
     }
+
 }
