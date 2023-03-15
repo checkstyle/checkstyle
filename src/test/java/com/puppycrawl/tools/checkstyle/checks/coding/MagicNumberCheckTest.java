@@ -500,4 +500,48 @@ public class MagicNumberCheckTest
         verifyWithInlineConfigParser(
                 getPath("InputMagicNumberAnnotationElement.java"), expected);
     }
+
+    @Test
+    public void testMagicNumberRecordsDefault2()
+            throws Exception {
+        final String[] expected = {
+            "27:57: " + getCheckMessage(MSG_KEY, "5"),
+            "28:41: " + getCheckMessage(MSG_KEY, "3"),
+            "29:44: " + getCheckMessage(MSG_KEY, "3"),
+            "30:35: " + getCheckMessage(MSG_KEY, "8"),
+            "31:45: " + getCheckMessage(MSG_KEY, "0x10000"),
+            "41:29: " + getCheckMessage(MSG_KEY, "2.0"),
+            "42:32: " + getCheckMessage(MSG_KEY, "1.5_0"),
+            "44:19: " + getCheckMessage(MSG_KEY, "2.0"),
+            "45:26: " + getCheckMessage(MSG_KEY, "1.5"),
+            "53:33: " + getCheckMessage(MSG_KEY, "2.0"),
+            "54:36: " + getCheckMessage(MSG_KEY, "1.5_0"),
+            "55:23: " + getCheckMessage(MSG_KEY, "2.0"),
+            "56:30: " + getCheckMessage(MSG_KEY, "1.5"),
+            "66:33: " + getCheckMessage(MSG_KEY, "2.0"),
+            "67:36: " + getCheckMessage(MSG_KEY, "1.5_0"),
+            "68:23: " + getCheckMessage(MSG_KEY, "2.0"),
+            "69:30: " + getCheckMessage(MSG_KEY, "1.5"),
+            "76:33: " + getCheckMessage(MSG_KEY, "2.0"),
+            "77:36: " + getCheckMessage(MSG_KEY, "1.5_0"),
+            "78:23: " + getCheckMessage(MSG_KEY, "2.0"),
+            "79:30: " + getCheckMessage(MSG_KEY, "1.5"),
+            "88:33: " + getCheckMessage(MSG_KEY, "2.0"),
+            "89:36: " + getCheckMessage(MSG_KEY, "1.5_0"),
+            "90:23: " + getCheckMessage(MSG_KEY, "2.0"),
+            "91:30: " + getCheckMessage(MSG_KEY, "1.5"),
+            "98:33: " + getCheckMessage(MSG_KEY, "2.0"),
+            "99:36: " + getCheckMessage(MSG_KEY, "1.5_0"),
+            "100:23: " + getCheckMessage(MSG_KEY, "2.0"),
+            "101:30: " + getCheckMessage(MSG_KEY, "1.5"),
+            "107:32: " + getCheckMessage(MSG_KEY, "12"),
+            "110:33: " + getCheckMessage(MSG_KEY, "2.0"),
+            "111:36: " + getCheckMessage(MSG_KEY, "1.5_0"),
+            "112:23: " + getCheckMessage(MSG_KEY, "2.0"),
+            "113:30: " + getCheckMessage(MSG_KEY, "1.5"),
+
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputMagicNumber_10.java"), expected);
+    }
 }
