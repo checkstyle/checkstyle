@@ -154,6 +154,25 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * &lt;module name=&quot;VisibilityModifier&quot;/&gt;
  * </pre>
  * <p>
+ * Example with default values:
+ * </p>
+ * <pre>
+ * public class MyClass
+ * {
+ *  private int myPrivateField1; // Ok, has a visibility modifier
+ *  private final int myPrivateField2; // Ok, has a private visibility
+ *  public long serialVersionUID = 123456789L; // Ok, matches the patern ^serialVersionUID$
+ *  public static final int MY_CONSTANT = 42; // Ok, static final
+ * }
+ * public class MyClass
+ * {
+ * int myPrivateField; // Violation, must have a visibility modifier
+ * protected String myProtectedField; // Violation, protected visibility is not allowed
+ * public final int MY_CONSTANT = 42; // Violation, public final fields are not allowed
+ * public int NOT_CONSTANT = 42; // Violation, not (static final,immutable,matching the patteern)
+ * }
+ * </pre>
+ * <p>
  * To configure the check so that it allows package visible members:
  * </p>
  * <pre>
