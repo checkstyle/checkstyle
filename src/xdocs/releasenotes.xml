@@ -10,6 +10,17 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 10.9.1">
+      <div class="releaseDate">16.03.2023</div>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            A false negative about the rule ClassMemberImpliedModifier.
+            Author: Andrei Paikin
+            <a href="https://github.com/checkstyle/checkstyle/issues/11569">#11569</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 10.9.0">
       <div class="releaseDate">16.03.2023</div>
       <p>New:</p>
