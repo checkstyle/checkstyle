@@ -10,6 +10,65 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 10.9.0">
+      <div class="releaseDate">16.03.2023</div>
+      <p>New:</p>
+        <ul>
+          <li>
+            LITERAL_SWITCH token support in RightCurlyCheck.
+            Author: Kevin222004
+            <a href="https://github.com/checkstyle/checkstyle/issues/9994">#9994</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Give better names to release actions and files.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/12807">#12807</a>
+          </li>
+          <li>
+            Use Shellcheck to resolve violations code in Shell Script.
+            Author: shubh220922
+            <a href="https://github.com/checkstyle/checkstyle/issues/11637">#11637</a>
+          </li>
+          <li>
+            Expand XPath IT Regression Testing.
+            Author: zyrate
+            <a href="https://github.com/checkstyle/checkstyle/issues/6207">#6207</a>
+          </li>
+          <li>
+            emphasize mutability of collectors.
+            Author: Rick Ossendrijver
+            <a href="https://github.com/checkstyle/checkstyle/issues/12777">#12777</a>
+          </li>
+          <li>
+            Add conditional to run on:push workflows only in checkstyle repository.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/12824">#12824</a>
+          </li>
+          <li>
+            Make grep always return exit code 0 in set-milestone.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/12821">#12821</a>
+          </li>
+          <li>
+            Specify violation messages in input files.
+            Author: zyrate
+            <a href="https://github.com/checkstyle/checkstyle/issues/11214">#11214</a>
+          </li>
+          <li>
+            update doc for SuppressWarnings.
+            Author: zyrate
+            <a href="https://github.com/checkstyle/checkstyle/issues/7575">#7575</a>
+          </li>
+          <li>
+            Update doc for JavadocMethod.
+            Author: Aritra Sinha
+            <a href="https://github.com/checkstyle/checkstyle/issues/7598">#7598</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 10.8.1">
       <div class="releaseDate">09.03.2023</div>
       <p>Bug fixes:</p>
