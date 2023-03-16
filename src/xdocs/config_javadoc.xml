@@ -3596,11 +3596,8 @@ class Test
         </source>
         <p>
             To configure the check to validate <code>@param</code> tags:
-            To configure the check to validate <code>@param</code> tags:
         </p>
         <source>
-&lt;module name="NonEmptyAtclauseDescription"&gt;
-  &lt;property name="javadocTokens" value="PARAM_LITERAL"/&gt;
 &lt;module name="NonEmptyAtclauseDescription"&gt;
   &lt;property name="javadocTokens" value="PARAM_LITERAL"/&gt;
 &lt;/module&gt;
