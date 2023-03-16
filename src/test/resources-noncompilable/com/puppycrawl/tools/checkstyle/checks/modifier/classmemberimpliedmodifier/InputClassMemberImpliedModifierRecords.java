@@ -7,7 +7,7 @@ violateImpliedStaticOnNestedRecord = (default)true
 
 */
 
-//non-compiled with javac: Compilable with Java14
+//non-compiled with javac: Compilable with Java19
 package com.puppycrawl.tools.checkstyle.checks.modifier.classmemberimpliedmodifier;
 
 public class InputClassMemberImpliedModifierRecords {
@@ -37,11 +37,9 @@ public class InputClassMemberImpliedModifierRecords {
         public enum InnerEnum2{} // violation
     }
 
-    void method() {
-        Object obj = new Object() {
-            // Implied modifier 'static' should be explicit. [ClassMemberImpliedModifier]
-            public record BadRecord() {} // violation
-            public static record OkRecord() {} // ok
-        };
-    }
+    Object obj = new Object() {
+        // Implied modifier 'static' should be explicit. [ClassMemberImpliedModifier]
+        public record BadRecord() {} // violation
+        public static record OkRecord() {} // ok
+    };
 }
