@@ -37,10 +37,8 @@ public class InputClassMemberImpliedModifierNoViolationRecords {
         public enum InnerEnum2{} // violation
     }
 
-    void method() {
-        Object obj = new Object() {
-            public record BadRecord() {} // ok
-            public static record OkRecord() {} // ok
-        };
-    }
+    Object obj = new Object() {
+        public record BadRecord() {} // ok
+        public static record OkRecord() {} // ok
+    };
 }
