@@ -37,7 +37,7 @@ if [ -z "$ISSUE_NUMBERS" ]; then
 fi
 
 echo "Fetching latest milestone."
-MILESTONE=$(curl -s \
+MILESTONE=$(curl --fail-with-body -s \
   -H "Accept: application/vnd.github+json" \
   -H "Authorization: Bearer $GITHUB_TOKEN"\
   https://api.github.com/repos/checkstyle/checkstyle/milestones)
@@ -50,7 +50,7 @@ function setMilestoneOnIssue {
   ISSUE_NUMBER=$1
   echo "Setting milestone $MILESTONE_TITLE to issue #$ISSUE_NUMBER."
   BODY="{\"milestone\": $MILESTONE_NUMBER}"
-  curl -s \
+  curl --fail-with-body -s \
     -X PATCH \
     -H "Accept: application/vnd.github+json" \
     -H "Authorization: Bearer $GITHUB_TOKEN"\

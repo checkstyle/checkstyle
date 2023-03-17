@@ -16,7 +16,7 @@ TARGET_VERSION=$1
 echo TARGET_VERSION="$TARGET_VERSION"
 
 echo "Updating milestone at github"
-MILESTONE_ID=$(curl -s \
+MILESTONE_ID=$(curl --fail-with-body -s \
                 -H "Authorization: token $GITHUB_TOKEN" \
                 -X GET https://api.github.com/repos/checkstyle/checkstyle/milestones?state=open \
                 | jq ".[0] | .number")
@@ -24,7 +24,7 @@ MILESTONE_ID=$(curl -s \
 echo TARGET_VERSION="$TARGET_VERSION"
 echo MILESTONE_ID="$MILESTONE_ID"
 
-curl \
+curl --fail-with-body \
   -X PATCH https://api.github.com/repos/checkstyle/checkstyle/milestones/"$MILESTONE_ID" \
   -H "Authorization: token $GITHUB_TOKEN" \
   -d "{ \"title\": \"$TARGET_VERSION\" }"
