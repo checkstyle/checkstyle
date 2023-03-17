@@ -1,9 +1,9 @@
 #############################################################################
-# GitHub Action to Update github.io
+# GitHub Action to Publish Release Notes on Twitter.
 #
 #############################################################################
-name: "R: Update github.io"
-run-name: "R: Update github.io ${{ inputs.version }}"
+name: "R: Publish Release Notes on Twitter"
+run-name: "R: Publish Release Notes on Twitter ${{ inputs.version }}"
 on:
   workflow_dispatch:
     inputs:
@@ -25,14 +25,13 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  update:
-    name: update github.io ${{ inputs.version }}
+  publish-releasenotes-twitter:
+    name: Publish Release Notes on Twitter ${{ inputs.version }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the latest code
         uses: actions/checkout@v3
         with:
-          repository: checkstyle/checkstyle
           fetch-depth: 0
       - name: Setup local maven cache
         uses: actions/cache@v2
@@ -40,14 +39,11 @@ jobs:
           path: ~/.m2/repository
           key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
       - name: Run Shell Script
+        env:
+          GITHUB_READ_ONLY_TOKEN: ${{ secrets.READ_ONLY_TOKEN_GITHUB }}
+          TWITTER_CONSUMER_KEY: ${{ secrets.TWITTER_CONSUMER_KEY }}
+          TWITTER_CONSUMER_SECRET: ${{ secrets.TWITTER_CONSUMER_SECRET }}
+          TWITTER_ACCESS_TOKEN: ${{ secrets.TWITTER_ACCESS_TOKEN }}
+          TWITTER_ACCESS_TOKEN_SECRET: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
         run: |
-          ./.ci/generate-website.sh ${{ inputs.version }}
-      - name: Checkout checkstyle.github.io repo
-        uses: actions/checkout@v3
-        with:
-          repository: checkstyle/checkstyle.github.io
-          token: ${{ secrets.PAT }}
-          path: .ci-temp/checkstyle.github.io/
-      - name: Commit and Push to checkstyle.github.io repo
-        run: |
-          ./.ci/push-website-to-github-io.sh ${{ inputs.version }}
+          ./.ci/release-publish-releasenotes-twitter.sh ${{ inputs.version }}

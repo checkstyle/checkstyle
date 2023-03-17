@@ -1,9 +1,9 @@
 #############################################################################
-# GitHub Action to Publish Release Notes GitHub Page.
+# GitHub Action to Upload '-all' Jar.
 #
 #############################################################################
-name: "R: Publish GitHub Page"
-run-name: "R: Publish GitHub Page ${{ inputs.version }}"
+name: "R: Upload '-all' Jar"
+run-name: "R: Upload '-all' Jar ${{ inputs.version }}"
 on:
   workflow_dispatch:
     inputs:
@@ -19,27 +19,33 @@ on:
         type: string
         required: true
 
+permissions:
+  contents: write
+
 concurrency:
   group: ${{ github.workflow }}
     -${{ github.event.pull_request.number || github.ref }}-${{ inputs.concurrency-group }}
   cancel-in-progress: true
 
 jobs:
-  publish:
-    name: Publish releasenotes GitHub Page ${{ inputs.version }}
+  upload-all-jar:
+    name: Upload '-all' jar ${{ inputs.version }}
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
     steps:
       - name: Checkout the latest code
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          ref: master
+
       - name: Setup local maven cache
         uses: actions/cache@v2
         with:
           path: ~/.m2/repository
           key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
-      - name: Run Shell Script
+
+      - name: Run GitHub Update Script
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ github.token }}
         run: |
-          ./.ci/update-github-page.sh ${{ inputs.version }}
+          ./.ci/release-upload-all-jar.sh ${{ inputs.version }}
