@@ -720,16 +720,11 @@ expr
         | BAND_ASSIGN | BOR_ASSIGN | BXOR_ASSIGN | SR_ASSIGN | BSR_ASSIGN
         | SL_ASSIGN | MOD_ASSIGN)
       expr                                                                 #binOp
-    | lambdaExpression                                                     #lambdaExp
+    | lambdaParameters LAMBDA (expr | block)                               #lambdaExp
     ;
 
 typeCastParameters
     : typeType[true] (BAND typeType[true])*
-    ;
-
-// Java8
-lambdaExpression
-    : lambdaParameters LAMBDA lambdaBody
     ;
 
 // Java8
@@ -741,12 +736,6 @@ lambdaParameters
 
 multiLambdaParams
     : id (COMMA id)*
-    ;
-
-// Java8
-lambdaBody
-    : expression
-    | block
     ;
 
 primary
