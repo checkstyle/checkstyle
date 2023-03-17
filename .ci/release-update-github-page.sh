@@ -33,7 +33,7 @@ fi
 
 cd .ci-temp/checkstyle
 
-curl https://api.github.com/repos/checkstyle/checkstyle/releases \
+curl --fail-with-body https://api.github.com/repos/checkstyle/checkstyle/releases \
  -H "Authorization: token $GITHUB_TOKEN" \
  -o /var/tmp/cs-releases.json
 
@@ -82,7 +82,7 @@ echo "JSON Body"
 cat body.json
 
 echo "Creating Github release"
-curl \
+curl --fail-with-body \
   -X POST https://api.github.com/repos/checkstyle/checkstyle/releases \
   -H "Accept: application/vnd.github+json" \
   -H "Authorization: token $GITHUB_TOKEN" \
