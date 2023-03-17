@@ -103,6 +103,16 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
     /** String representation of the right shift operator. */
     private static final String RIGHT_SHIFT = ">>";
 
+    /**
+     * The tokens here are technically expressions, but should
+     * not return an EXPR token as their root.
+     */
+    private static final int[] EXPRESSIONS_WITH_NO_EXPR_ROOT = {
+        TokenTypes.CTOR_CALL,
+        TokenTypes.SUPER_CTOR_CALL,
+        TokenTypes.LAMBDA,
+    };
+
     /** Token stream to check for hidden tokens. */
     private final BufferedTokenStream tokens;
 
@@ -1297,21 +1307,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
 
     @Override
     public DetailAstImpl visitExpression(JavaLanguageParser.ExpressionContext ctx) {
-        final DetailAstImpl expression = visit(ctx.expr());
-        DetailAstImpl exprRoot = createImaginary(TokenTypes.EXPR);
-        exprRoot.addChild(expression);
-
-        final int[] expressionsWithNoExprRoot = {
-            TokenTypes.CTOR_CALL,
-            TokenTypes.SUPER_CTOR_CALL,
-            TokenTypes.LAMBDA,
-        };
-
-        if (TokenUtil.isOfType(expression, expressionsWithNoExprRoot)) {
-            exprRoot = exprRoot.getFirstChild();
-        }
-
-        return exprRoot;
+        return buildExpressionNode(ctx.expr());
     }
 
     @Override
@@ -1495,7 +1491,23 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
 
     @Override
     public DetailAstImpl visitLambdaExp(JavaLanguageParser.LambdaExpContext ctx) {
-        return flattenedTree(ctx);
+        final DetailAstImpl lambda = create(ctx.LAMBDA());
+        lambda.addChild(visit(ctx.lambdaParameters()));
+
+        final JavaLanguageParser.BlockContext blockContext = ctx.block();
+        final DetailAstImpl rightHandLambdaChild;
+        if (blockContext != null) {
+            rightHandLambdaChild = visit(blockContext);
+        }
+        else {
+            // Lambda expression child is built the same way that we build
+            // the initial expression node in visitExpression, i.e. with
+            // an imaginary EXPR node. This results in nested EXPR nodes
+            // in the AST.
+            rightHandLambdaChild = buildExpressionNode(ctx.expr());
+        }
+        lambda.addChild(rightHandLambdaChild);
+        return lambda;
     }
 
     @Override
@@ -1625,14 +1637,6 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
             addLastSibling(typeType, visit(ctx.typeType(i + 1)));
         }
         return typeType;
-    }
-
-    @Override
-    public DetailAstImpl visitLambdaExpression(JavaLanguageParser.LambdaExpressionContext ctx) {
-        final DetailAstImpl lambda = create(ctx.LAMBDA());
-        lambda.addChild(visit(ctx.lambdaParameters()));
-        lambda.addChild(visit(ctx.lambdaBody()));
-        return lambda;
     }
 
     @Override
@@ -2158,6 +2162,28 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
             ast = tree.accept(this);
         }
         return ast;
+    }
+
+    /**
+     * Builds an expression node. This is used to build the root of an expression with
+     * an imaginary {@code EXPR} node.
+     *
+     * @param exprNode expression to build node for
+     * @return expression DetailAstImpl node
+     */
+    private DetailAstImpl buildExpressionNode(ParseTree exprNode) {
+        final DetailAstImpl expression = visit(exprNode);
+
+        final DetailAstImpl exprRoot;
+        if (TokenUtil.isOfType(expression, EXPRESSIONS_WITH_NO_EXPR_ROOT)) {
+            exprRoot = expression;
+        }
+        else {
+            // create imaginary 'EXPR' node as root of expression
+            exprRoot = createImaginary(TokenTypes.EXPR);
+            exprRoot.addChild(expression);
+        }
+        return exprRoot;
     }
 
     /**
