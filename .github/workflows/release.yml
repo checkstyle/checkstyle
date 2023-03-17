@@ -73,7 +73,7 @@ jobs:
 
   publish-releasenotes-twitter:
     uses: ./.github/workflows/release-publish-releasenotes-twitter.yml
-    needs: maven-perform
+    needs: update-github-page
     with:
       version: ${{ inputs.version }}
       concurrency-group: publish-releasenotes-twitter
