@@ -16,7 +16,7 @@ import javax.swing.JMenuItem;
 
 public class InputVariableDeclarationUsageDistanceAnonymous {
     public void method() {
-        JMenuItem prefs = new JMenuItem("Preferences..."); // violation
+        JMenuItem prefs = new JMenuItem("Preferences..."); // violation 'Distance .* is 4.'
 
         nothing();
         nothing();
