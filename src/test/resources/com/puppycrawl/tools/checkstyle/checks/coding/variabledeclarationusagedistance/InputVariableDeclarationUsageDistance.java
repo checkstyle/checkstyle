@@ -80,7 +80,7 @@ public class InputVariableDeclarationUsageDistance {
     }
 
     public void testMethod3() {
-        int count; // violation
+        int count; // violation 'Distance between .* declaration and its first usage is 4.'
         int a = 3;
         int b = 3;
         a = a + b;
@@ -228,7 +228,7 @@ public class InputVariableDeclarationUsageDistance {
 
     public void testMethod14() {
         Session s = openSession();
-        Transaction t = s.beginTransaction(); // violation
+        Transaction t = s.beginTransaction(); // violation 'Distance .* is 5.'
         A a = new A();
         E d1 = new E();
         C1 c = new C1();
@@ -488,7 +488,7 @@ public class InputVariableDeclarationUsageDistance {
 
     public void testIssue32_9() {
         Options options = new Options();
-        Option myOption = null; // violation
+        Option myOption = null; // violation 'Distance .* is 7.'
         options.addBindFile(null);
         options.addBindFile(null);
         options.addBindFile(null);
@@ -500,7 +500,7 @@ public class InputVariableDeclarationUsageDistance {
 
     public void testIssue32_10() {
         Options options = new Options();
-        Option myOption = null; // violation
+        Option myOption = null; // violation 'Distance .* is 6.'
         options.addBindFile(null);
         options.addBindFile(null);
         options.addBindFile(null);
@@ -513,7 +513,7 @@ public class InputVariableDeclarationUsageDistance {
     public int testIssue32_11(String toDir)
             throws Exception
     {
-        int count = 0; // violation
+        int count = 0; // violation 'Distance .* is 4.'
         String[] files = {};
 
         System.identityHashCode("Data archival started");
@@ -900,7 +900,7 @@ class New2 {
     }
 
     void f() {
-        int a = 1; // violation
+        int a = 1; // violation 'Distance between .* declaration and its first usage is 4.'
         System.lineSeparator();
         System.lineSeparator();
         System.lineSeparator();
@@ -910,7 +910,7 @@ class New2 {
     }
 
     void h() {
-        int a = 1; // violation
+        int a = 1; // violation 'Distance between .* declaration and its first usage is 4.'
         System.lineSeparator();
         System.lineSeparator();
         System.lineSeparator();
@@ -976,7 +976,7 @@ class New2 {
     }
 
     void tryWithoutFinally() {
-        int a = 1; // violation
+        int a = 1; // violation 'Distance between .* declaration and its first usage is 4.'
         System.lineSeparator();
         System.lineSeparator();
         System.lineSeparator();
@@ -1063,7 +1063,7 @@ class New2 {
     static int field;
 
     private void n() {
-        long a = 0; // violation
+        long a = 0; // violation 'Distance between .* declaration and its first usage is 4.'
 
         New2.field = 1;
         New2.field = 2;
