@@ -14,7 +14,7 @@ import java.util.*;
 
 public class InputVariableDeclarationUsageDistanceGeneral2 {
     private void o() {
-        boolean first = true; // violation
+        boolean first = true; // violation 'Distance .* is 5.'
         do {
             System.lineSeparator();
             System.lineSeparator();
@@ -26,7 +26,7 @@ public class InputVariableDeclarationUsageDistanceGeneral2 {
     }
 
     private static void checkInvariants() {
-        Set<Integer> allInvariants = new HashSet<Integer>(); // violation
+        Set<Integer> allInvariants = new HashSet<Integer>(); // violation 'Distance .* is 2.'
         for (int i = 0; i < 10; i++)
             for (int j = 0; j < 10; j++) {
                 for (int k = 0; k < 10; k++) {
@@ -56,7 +56,7 @@ public class InputVariableDeclarationUsageDistanceGeneral2 {
 
     void method() throws Exception {
         // Until https://github.com/checkstyle/checkstyle/issues/11968
-        String a = ""; // violation
+        String a = ""; // violation 'Distance between .* declaration and its first usage is 2.'
         try (AutoCloseable i = new java.io.StringReader(a)) {
         }
         finally {
