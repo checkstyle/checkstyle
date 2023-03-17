@@ -20,4 +20,16 @@ public class InputVariableDeclarationUsageDistanceDefault2 {
         method();
         for (int i=0; i< 123; i++);
     }
+
+    void methodTry() {
+        String a = "";
+        method();
+        method();
+        method();
+        try (AutoCloseable i = new java.io.StringReader(a)) {
+        }
+        catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

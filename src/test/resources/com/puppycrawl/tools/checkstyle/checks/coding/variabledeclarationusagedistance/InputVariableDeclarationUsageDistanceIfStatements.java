@@ -69,4 +69,14 @@ public class InputVariableDeclarationUsageDistanceIfStatements {
 
         return 0;
     }
+
+    void methodTry() {
+        String a = ""; // violation 'Distance between .* declaration and its first usage is 2.'
+        testConsecutiveIfStatements();
+        try (AutoCloseable i = new java.io.StringReader(a)) {
+        }
+        catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
