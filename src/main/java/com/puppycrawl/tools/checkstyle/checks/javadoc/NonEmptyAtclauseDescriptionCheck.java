@@ -55,8 +55,8 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * </li>
  * </ul>
  * <p>
- * To configure the default check that will check {@code @param}, {@code @return},
- * {@code @throws}, {@code @deprecated}:
+ * To configure the default check that will check {@code @param}, {@code @deprecated},
+ * {@code @throws}, {@code @return}:
  * </p>
  * <pre>
  * &lt;module name="NonEmptyAtclauseDescription"/&gt;
@@ -67,26 +67,27 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * <pre>
  * class Test
  * {
- * &#47;**
- * * Violation for param "b" and at tags "deprecated", "throws".
- * * &#64;param a Some javadoc // OK
- * * &#64;param b
- * * &#64;deprecated
- * * &#64;throws Exception
- * *&#47;
- * public int method(String a, int b) throws Exception
- * {
- * return 1;
- * }
+ *  // Violation for param "b" and at tags "deprecated", "throws" and "return".
+ *  &#47;**
+ *  * Some summary.
+ *  * &#64;param a Some description
+ *  * &#64;param b
+ *  * &#64;deprecated
+ *  * &#64;throws Exception
+ *  * &#64;return
+ *  *&#47;
+ * public int method(String a, int b) throws Exception {
+ *   return 1;
+ *  }
  * }
  * </pre>
  * <p>
- * To configure the check to validate only {@code @param} and {@code @return} tags:
+ * To configure the check to validate {@code @param} tags:
  * </p>
  * <pre>
  * &lt;module name="NonEmptyAtclauseDescription"&gt;
- *   &lt;property name="javadocTokens" value="PARAM_LITERAL,RETURN_LITERAL"/&gt;
- * &lt;/module&gt;
+ *   &lt;property name="javadocTokens" value="PARAM_LITERAL"/&gt;
+ *  &lt;/module&gt;
  * </pre>
  * <p>
  * Example:
@@ -94,17 +95,130 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * <pre>
  * class Test
  * {
- * &#47;**
- * * Violation for param "b". Tags "deprecated", "throws" are ignored.
- * * &#64;param a Some javadoc // OK
- * * &#64;param b
- * * &#64;deprecated
- * * &#64;throws Exception
- * *&#47;
- * public int method(String a, int b) throws Exception
- * {
- * return 1;
+ *  // Violation 4 lines below on param tag.
+ *  &#47;**
+ *  * Some summary.
+ *  * &#64;param a Some description
+ *  * &#64;param b
+ *  * &#64;deprecated
+ *  * &#64;throws Exception
+ *  * &#64;return
+ *  *&#47;
+ * public int method(String a, int b) throws Exception {
+ *   return 1;
+ *  }
  * }
+ * </pre>
+ * <p>
+ * To configure the check to validate {@code @return} tags:
+ * </p>
+ * <pre>
+ * &lt;module name="NonEmptyAtclauseDescription"&gt;
+ *   &lt;property name="javadocTokens" value="RETURN_LITERAL"/&gt;
+ *  &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * class Test
+ * {
+ *  // Violation 7 lines below on return tag.
+ *  &#47;**
+ *  * Some summary.
+ *  * &#64;param a Some description
+ *  * &#64;param b
+ *  * &#64;deprecated
+ *  * &#64;throws Exception
+ *  * &#64;return
+ *  *&#47;
+ * public int method(String a, int b) throws Exception {
+ *   return 1;
+ *  }
+ * }
+ * </pre>
+ * <p>
+ * To configure the check to validate {@code @throws} tags:
+ * </p>
+ * <pre>
+ * &lt;module name="NonEmptyAtclauseDescription"&gt;
+ *    &lt;property name="javadocTokens" value="THROWS_LITERAL"/&gt;
+ *   &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * class Test
+ * {
+ *  // Violation 6 lines below on throws tag.
+ *  &#47;**
+ *  * Some summary.
+ *  * &#64;param a Some description
+ *  * &#64;param b
+ *  * &#64;deprecated
+ *  * &#64;throws Exception
+ *  * &#64;return
+ *  *&#47;
+ * public int method(String a, int b) throws Exception {
+ *   return 1;
+ *  }
+ * }
+ * </pre>
+ * <p>
+ * To configure the check to validate {@code @deprecated} tags:
+ * </p>
+ * <pre>
+ * &lt;module name="NonEmptyAtclauseDescription"&gt;
+ *    &lt;property name="javadocTokens" value="DEPRECATED_LITERAL"/&gt;
+ *  &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * class Test
+ * {
+ *  // Violation 5 lines below on deprecated tag.
+ *  &#47;**
+ *  * Some summary.
+ *  * &#64;param a Some description
+ *  * &#64;param b
+ *  * &#64;deprecated
+ *  * &#64;throws Exception
+ *  * &#64;return
+ *  *&#47;
+ * public int method(String a, int b) throws Exception {
+ *   return 1;
+ *  }
+ * }
+ * </pre>
+ * <p>
+ * To configure the check to validate {@code @exception} tags:
+ * </p>
+ * <pre>
+ * &lt;module name="NonEmptyAtclauseDescription"&gt;
+ *    &lt;property name="javadocTokens" value="EXCEPTION_LITERAL"/&gt;
+ *   &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * class Test
+ * {
+ *  // Violation 6 lines below on exception tag.
+ *  &#47;**
+ *  * Some summary.
+ *  * &#64;param a Some description
+ *  * &#64;param b
+ *  * &#64;deprecated
+ *  * &#64;exception Exception
+ *  * &#64;return
+ *  *&#47;
+ * public int method(String a, int b) throws Exception {
+ *   return 1;
+ *  }
  * }
  * </pre>
  * <p>
