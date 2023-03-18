@@ -161,7 +161,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * {
  *  private int myPrivateField1; // Ok, has a visibility modifier
  *  private final int myPrivateField2; // Ok, has a private visibility
- *  public long serialVersionUID = 123456789L; // Ok, matches the patern ^serialVersionUID$
+ *  public long serialVersionUID = 123456789L; // Ok, matches the pattern ^serialVersionUID$
  *  public static final int MY_CONSTANT = 42; // Ok, static final
  * }
  * public class MyClass
@@ -169,7 +169,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * int myPrivateField; // Violation, must have a visibility modifier
  * protected String myProtectedField; // Violation, protected visibility is not allowed
  * public final int MY_CONSTANT = 42; // Violation, public final fields are not allowed
- * public int NOT_CONSTANT = 42; // Violation, not (static final,immutable,matching the patteern)
+ * public int NOT_CONSTANT = 42; // Violation, not static final, immutable, matching the pattern
  * }
  * </pre>
  * <p>
