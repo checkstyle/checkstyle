@@ -37,6 +37,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
+          ref: master
       - name: Download ncal
         run: |
           sudo apt-get install ncal
