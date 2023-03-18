@@ -346,7 +346,8 @@
       <property name="violationSuppressXPath"
                 value="//ClassOrInterfaceDeclaration[@SimpleName='Main'
         or @SimpleName='Checker' or @SimpleName='CheckstyleAntTask'
-        or @SimpleName='TranslationCheck']"/>
+        or @SimpleName='TranslationCheck'
+        or @SimpleName='AbstractAutomaticBean']"/>
     </properties>
   </rule>
   <rule ref="category/java/design.xml/CognitiveComplexity">
