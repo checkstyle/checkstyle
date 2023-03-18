@@ -544,23 +544,35 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
      * @param extensions the set of file extensions. A missing
      *     initial '.' character of an extension is automatically added.
      */
-    public final void setFileExtensions(String... extensions) {
-        if (extensions == null) {
-            fileExtensions = null;
-        }
-        else {
-            fileExtensions = new String[extensions.length];
-            for (int i = 0; i < extensions.length; i++) {
-                final String extension = extensions[i];
-                if (CommonUtil.startsWithChar(extension, '.')) {
-                    fileExtensions[i] = extension;
-                }
-                else {
-                    fileExtensions[i] = "." + extension;
-                }
-            }
+public final void setFileExtensions(String... extensions) {
+    if (extensions == null) {
+        fileExtensions = null;
+        return;
+    }
+
+    boolean allInCorrectFormat = true;
+    for (String extension : extensions) {
+        if (!CommonUtil.startsWithChar(extension, '.')) {
+            allInCorrectFormat = false;
+            break;
         }
     }
+
+    if (allInCorrectFormat) {
+        fileExtensions = extensions;
+    } else {
+        fileExtensions = new String[extensions.length];
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < extensions.length; i++) {
+            sb.setLength(0);
+            if (!CommonUtil.startsWithChar(extensions[i], '.')) {
+                sb.append('.');
+            }
+            sb.append(extensions[i]);
+            fileExtensions[i] = sb.toString();
+        }
+    }
+}
 
     /**
      * Sets the factory for creating submodules.
