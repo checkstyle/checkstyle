@@ -31,12 +31,13 @@ concurrency:
 jobs:
   new-milestone-and-issues-in-other-repos:
     name: New Milestone, Create issues for ${{ inputs.version }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
       - name: Checkout the latest code
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
+          ref: master
       - name: Download ncal
         run: |
           sudo apt-get install ncal

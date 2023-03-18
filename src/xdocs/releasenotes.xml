@@ -10,6 +10,35 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 10.9.2">
+      <div class="releaseDate">18.03.2023</div>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            Improve performance of lambda processing.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/12809">#12809</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Make twitter-releasenotes job depend on update-github-page.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/12857">#12857</a>
+          </li>
+          <li>
+            Restore curl --fail-with-body.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/12451">#12451</a>
+          </li>
+          <li>
+            Specify violation messages in input files.
+            Author: jxr98
+            <a href="https://github.com/checkstyle/checkstyle/issues/11214">#11214</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 10.9.1">
       <div class="releaseDate">16.03.2023</div>
       <p>Bug fixes:</p>

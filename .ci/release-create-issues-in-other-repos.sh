@@ -16,14 +16,14 @@ TARGET_VERSION=$1
 echo TARGET_VERSION="$TARGET_VERSION"
 
 echo "Creation of issue in eclipse-cs repo ..."
-curl -i -H "Authorization: token $GITHUB_TOKEN" \
+curl --fail-with-body -i -H "Authorization: token $GITHUB_TOKEN" \
   -d "{ \"title\": \"upgrade to checkstyle $TARGET_VERSION\", \
         \"body\": \"https://checkstyle.org/releasenotes.html#Release_$TARGET_VERSION\" \
         }" \
   -X POST https://api.github.com/repos/checkstyle/eclipse-cs/issues
 
 echo "Creation of issue in sonar-checkstyle repo ..."
-curl -i -H "Authorization: token $GITHUB_TOKEN" \
+curl --fail-with-body -i -H "Authorization: token $GITHUB_TOKEN" \
   -d "{ \"title\": \"upgrade to checkstyle $TARGET_VERSION\", \
         \"body\": \"https://checkstyle.org/releasenotes.html#Release_$TARGET_VERSION\" \
         }" \

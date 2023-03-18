@@ -20,7 +20,7 @@ permissions:
 jobs:
   set-milestone:
     if: github.repository == 'checkstyle/checkstyle'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
       - name: Checkout the latest code
         uses: actions/checkout@v3
