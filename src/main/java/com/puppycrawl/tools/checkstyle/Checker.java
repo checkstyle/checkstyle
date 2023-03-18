@@ -544,23 +544,43 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
      * @param extensions the set of file extensions. A missing
      *     initial '.' character of an extension is automatically added.
      */
-    public final void setFileExtensions(String... extensions) {
-        if (extensions == null) {
-            fileExtensions = null;
-        }
-        else {
-            fileExtensions = new String[extensions.length];
-            for (int i = 0; i < extensions.length; i++) {
-                final String extension = extensions[i];
-                if (CommonUtil.startsWithChar(extension, '.')) {
-                    fileExtensions[i] = extension;
-                }
-                else {
-                    fileExtensions[i] = "." + extension;
-                }
-            }
-        }
+   public final void setFileExtensions(String... extensions) {
+    if (extensions == null) {
+        fileExtensions = null;
+        return;
     }
+
+    fileExtensions = new String[extensions.length];
+    boolean allExtensionsCorrect = true;
+
+    for (int i = 0; i < extensions.length; i++) {
+        String extension = extensions[i];
+
+        if (!CommonUtil.startsWithChar(extension, '.')) {
+            allExtensionsCorrect = false;
+            break;
+        }
+
+        fileExtensions[i] = extension;
+    }
+
+    if (!allExtensionsCorrect) {
+        StringBuilder sb = new StringBuilder();
+
+        for (String extension : extensions) {
+            sb.append(extension.startsWith(".") ? extension : "." + extension);
+            sb.append(",");
+        }
+
+        sb.deleteCharAt(sb.length() - 1);
+        String formattedExtensions = sb.toString();
+
+        LOGGER.warn("Invalid file extensions: {}. Extensions will be automatically formatted to: {}", extensions, formattedExtensions);
+
+        fileExtensions = formattedExtensions.split(",");
+    }
+}
+
 
     /**
      * Sets the factory for creating submodules.
