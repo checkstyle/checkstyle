@@ -3572,7 +3572,9 @@ class Class3 {}
           <code>@return</code>,<code>@throws</code>, <code>@deprecated</code>:
         </p>
         <source>
-&lt;module name=&quot;NonEmptyAtclauseDescription&quot;/&gt;
+&lt;module name="NonEmptyAtclauseDescription"&gt;
+  &lt;property name="javadocTokens" value="PARAM_LITERAL"/&gt;
+&lt;/module&gt;
         </source>
         <p>
         Example:
@@ -3580,10 +3582,43 @@ class Class3 {}
         <source>
 class Test
 {
+  // Violation for param "b" and at tags "return", "deprecated" and "throws".
   /**
-  * Violation for param "b" and at tags "deprecated", "throws".
+  * Some summary.
   * <code>@param</code> a Some javadoc // OK
   * <code>@param</code> b
+  * <code>@return</code>
+  * <code>@deprecated</code>
+  * <code>@throws</code> Exception
+
+  */
+  public int method(String a) throws Exception
+  {
+    return 1;
+  }
+}
+        </source>
+
+        <p>
+            To configure the check to validate <code>@param</code> tags:
+        </p>
+        <source>
+&lt;module name="NonEmptyAtclauseDescription"&gt;
+  &lt;property name="javadocTokens" value="PARAM_LITERAL"/&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+              Example:
+        </p>
+        <source>
+class Test
+{
+  // Violation 4 lines below on param tag.
+  /**
+  * Some summary.
+  * <code>@param</code> a Some javadoc // OK
+  * <code>@param</code> b
+  * <code>@return</code>
   * <code>@deprecated</code>
   * <code>@throws</code> Exception
   */
@@ -3594,12 +3629,11 @@ class Test
 }
         </source>
         <p>
-          To configure the check to validate only <code>@param</code> and
-          <code>@return</code> tags:
+            To configure the check to validate <code>@return</code> tags:
         </p>
         <source>
-&lt;module name=&quot;NonEmptyAtclauseDescription&quot;&gt;
-  &lt;property name="javadocTokens" value="PARAM_LITERAL,RETURN_LITERAL"/&gt;
+&lt;module name="NonEmptyAtclauseDescription"&gt;
+  &lt;property name="javadocTokens" value="RETURN_LITERAL"/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -3608,12 +3642,101 @@ class Test
         <source>
 class Test
 {
+  // Violation 5 lines below on return tag.
   /**
-  * Violation for param "b". Tags "deprecated", "throws" are ignored.
+  * Some summary.
   * <code>@param</code> a Some javadoc // OK
   * <code>@param</code> b
+  * <code>@return</code>
   * <code>@deprecated</code>
   * <code>@throws</code> Exception
+  */
+  public int method(String a, int b) throws Exception
+  {
+    return 1;
+  }
+}
+        </source>
+        <p>
+              To configure the check to validate <code>@throws</code> tags:
+        </p>
+        <source>
+&lt;module name="NonEmptyAtclauseDescription"&gt;
+  &lt;property name="javadocTokens" value="THROWS_LITERAL"/&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+              Example:
+        </p>
+        <source>
+class Test
+{
+  // Violation 7 lines below on throws tag.
+  /**
+  * Some summary.
+  * <code>@param</code> a Some javadoc // OK
+  * <code>@param</code> b
+  * <code>@return</code>
+  * <code>@deprecated</code>
+  * <code>@throws</code> Exception
+  */
+  public int method(String a, int b) throws Exception
+  {
+    return 1;
+  }
+}
+        </source>
+        <p>
+              To configure the check to validate <code>@deprecated</code> tags:
+        </p>
+        <source>
+&lt;module name="NonEmptyAtclauseDescription"&gt;
+  &lt;property name="javadocTokens" value="DEPRECATED_LITERAL"/&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+              Example:
+        </p>
+        <source>
+class Test
+{
+  // Violation 6 lines below on deprecated tag.
+  /**
+  * Some summary.
+  * <code>@param</code> a Some javadoc // OK
+  * <code>@param</code> b
+  * <code>@return</code>
+  * <code>@deprecated</code>
+  * <code>@throws</code> Exception
+  */
+  public int method(String a, int b) throws Exception
+  {
+    return 1;
+  }
+}
+        </source>
+        <p>
+              To configure the check to validate <code>@exception</code> tags:
+        </p>
+        <source>
+&lt;module name="NonEmptyAtclauseDescription"&gt;
+  &lt;property name="javadocTokens" value="EXCEPTION_LITERAL"/&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+              Example:
+        </p>
+        <source>
+class Test
+{
+  // Violation 7 lines below on exception tag.
+  /**
+  * Some summary.
+  * <code>@param</code> a Some javadoc // OK
+  * <code>@param</code> b
+  * <code>@return</code>
+  * <code>@deprecated</code>
+  * <code>@exception</code> Exception
   */
   public int method(String a, int b) throws Exception
   {
