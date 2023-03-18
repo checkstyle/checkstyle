@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.internal;
 
+import static com.google.common.collect.ImmutableSet.toImmutableSet;
 import static com.google.common.truth.Truth.assertWithMessage;
 
 import java.io.File;
@@ -33,7 +34,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 import javax.xml.parsers.ParserConfigurationException;
 
@@ -110,7 +110,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
             "IllegalType - memberModifiers",
             "MagicNumber - constantWaiverParentToken",
             "MultipleStringLiterals - ignoreOccurrenceContext",
-        }).collect(Collectors.toSet()));
+        }).collect(toImmutableSet()));
 
     private static final List<List<Node>> CHECK_PROPERTIES = new ArrayList<>();
     private static final Map<String, String> CHECK_PROPERTY_DOC = new HashMap<>();

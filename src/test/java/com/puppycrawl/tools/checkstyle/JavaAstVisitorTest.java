@@ -30,7 +30,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
@@ -107,7 +106,7 @@ public class JavaAstVisitorTest extends AbstractModuleTestSupport {
                 .filter(method -> method.getName().contains("visit"))
                 .filter(method -> method.getModifiers() == Modifier.PUBLIC)
                 .map(Method::getName)
-                .collect(Collectors.toSet());
+                .collect(toImmutableSet());
 
         final ImmutableSet<String> filteredVisitMethodNames = Arrays.stream(visitMethods)
                 .filter(method -> method.getName().contains("visit"))

@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.meta;
 
+import static com.google.common.collect.ImmutableList.toImmutableList;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -28,7 +30,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import com.puppycrawl.tools.checkstyle.Checker;
@@ -102,7 +103,7 @@ public final class MetadataGeneratorUtil {
                                     || fileName.endsWith("Check.java")
                                     || fileName.endsWith("Filter.java");
                         })
-                        .collect(Collectors.toList()));
+                        .collect(toImmutableList()));
             }
         }
         root.process(validFiles);

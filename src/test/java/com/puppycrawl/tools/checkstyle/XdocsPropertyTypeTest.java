@@ -19,13 +19,13 @@
 
 package com.puppycrawl.tools.checkstyle;
 
+import static com.google.common.collect.ImmutableSet.toImmutableSet;
 import static com.google.common.truth.Truth.assertWithMessage;
 
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Objects;
 import java.util.Set;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.api.Test;
@@ -46,7 +46,7 @@ public class XdocsPropertyTypeTest {
             .map(field -> field.getAnnotation(XdocsPropertyType.class))
             .filter(Objects::nonNull)
             .map(XdocsPropertyType::value)
-            .collect(Collectors.toSet());
+            .collect(toImmutableSet());
 
         assertWithMessage("All property types should be used")
             .that(propertyTypes)

@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.internal;
 
+import static com.google.common.collect.ImmutableSet.toImmutableSet;
 import static com.google.common.truth.Truth.assertWithMessage;
 
 import java.io.IOException;
@@ -32,7 +33,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
@@ -76,7 +76,7 @@ public class XdocsUrlTest {
                     return AbstractCheck.class.isAssignableFrom(clazz)
                             || AbstractFileSetCheck.class.isAssignableFrom(clazz);
                 })
-                .collect(Collectors.toSet());
+                .collect(toImmutableSet());
         for (Class<?> check : treeWalkerOrFileSetCheckSet) {
             final String checkName = check.getSimpleName();
             if (!TREE_WORKER.equals(checkName)) {

@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.internal;
 
+import static com.google.common.collect.ImmutableList.toImmutableList;
 import static com.google.common.truth.Truth.assertWithMessage;
 
 import java.io.IOException;
@@ -29,7 +30,6 @@ import java.util.List;
 import java.util.Spliterator;
 import java.util.Spliterators;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 import org.eclipse.jgit.api.Git;
@@ -319,7 +319,7 @@ public class CommitValidationTest {
         final Spliterator<RevCommit> spliterator =
             Spliterators.spliteratorUnknownSize(previousCommitsIterator, Spliterator.ORDERED);
         return StreamSupport.stream(spliterator, false).limit(PREVIOUS_COMMITS_TO_CHECK_COUNT)
-            .collect(Collectors.toList());
+            .collect(toImmutableList());
     }
 
     private static List<RevCommit> getCommitsByLastCommitAuthor(

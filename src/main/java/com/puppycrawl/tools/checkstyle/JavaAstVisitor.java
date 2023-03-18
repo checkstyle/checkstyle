@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle;
 
+import static com.google.common.collect.ImmutableList.toImmutableList;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
@@ -419,7 +421,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
         // Process all children except C style array declarators
         processChildren(methodDef, ctx.children.stream()
                 .filter(child -> !(child instanceof JavaLanguageParser.ArrayDeclaratorContext))
-                .collect(Collectors.toList()));
+                .collect(toImmutableList()));
 
         // We add C style array declarator brackets to TYPE ast
         final DetailAstImpl typeAst = (DetailAstImpl) methodDef.findFirstToken(TokenTypes.TYPE);
@@ -483,7 +485,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
         final List<ParseTree> children = ctx.children
                 .stream()
                 .filter(child -> !(child instanceof JavaLanguageParser.ArrayDeclaratorContext))
-                .collect(Collectors.toList());
+                .collect(toImmutableList());
         processChildren(methodDef, children);
 
         // We add C style array declarator brackets to TYPE ast
@@ -834,7 +836,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
         // Process all children except C style array declarators
         processChildren(annotationFieldDef, ctx.children.stream()
                 .filter(child -> !(child instanceof JavaLanguageParser.ArrayDeclaratorContext))
-                .collect(Collectors.toList()));
+                .collect(toImmutableList()));
 
         // We add C style array declarator brackets to TYPE ast
         final DetailAstImpl typeAst =
@@ -881,7 +883,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
         // filter 'LITERAL_SUPER'
         processChildren(primaryCtorCall, ctx.children.stream()
                    .filter(child -> !child.equals(ctx.LITERAL_SUPER()))
-                   .collect(Collectors.toList()));
+                   .collect(toImmutableList()));
         return primaryCtorCall;
     }
 
@@ -1119,7 +1121,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
         // filter mods
         processChildren(catchParameterDef, ctx.children.stream()
                 .filter(child -> !(child instanceof JavaLanguageParser.VariableModifierContext))
-                .collect(Collectors.toList()));
+                .collect(toImmutableList()));
         return catchParameterDef;
     }
 
@@ -1542,7 +1544,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
                 (Token) ctx.DOUBLE_COLON().getPayload());
         final List<ParseTree> children = ctx.children.stream()
                 .filter(child -> !child.equals(ctx.DOUBLE_COLON()))
-                .collect(Collectors.toList());
+                .collect(toImmutableList());
         processChildren(doubleColon, children);
         return doubleColon;
     }
@@ -1552,7 +1554,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
         final DetailAstImpl root = create(ctx.QUESTION());
         processChildren(root, ctx.children.stream()
                 .filter(child -> !child.equals(ctx.QUESTION()))
-                .collect(Collectors.toList()));
+                .collect(toImmutableList()));
         return root;
     }
 

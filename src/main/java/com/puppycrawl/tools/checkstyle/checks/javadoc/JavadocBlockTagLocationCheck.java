@@ -19,11 +19,12 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
+import static com.google.common.collect.ImmutableSet.toImmutableSet;
+
 import java.util.Arrays;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
@@ -197,7 +198,7 @@ public class JavadocBlockTagLocationCheck extends AbstractJavadocCheck {
      * @param values user's values.
      */
     public final void setTags(String... values) {
-        tags = Arrays.stream(values).collect(Collectors.toSet());
+        tags = Arrays.stream(values).collect(toImmutableSet());
     }
 
     /**

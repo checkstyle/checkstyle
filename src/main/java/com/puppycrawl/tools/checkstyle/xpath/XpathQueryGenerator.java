@@ -19,9 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle.xpath;
 
+import static com.google.common.collect.ImmutableList.toImmutableList;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import com.puppycrawl.tools.checkstyle.TreeWalkerAuditEvent;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -143,7 +144,7 @@ public class XpathQueryGenerator {
         return getMatchingAstElements()
             .stream()
             .map(XpathQueryGenerator::generateXpathQuery)
-            .collect(Collectors.toList());
+            .collect(toImmutableList());
     }
 
     /**

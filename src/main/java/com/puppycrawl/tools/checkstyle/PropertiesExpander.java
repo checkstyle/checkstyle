@@ -19,10 +19,11 @@
 
 package com.puppycrawl.tools.checkstyle;
 
+import static com.google.common.collect.ImmutableMap.toImmutableMap;
+
 import java.util.Map;
 import java.util.Properties;
 import java.util.function.Function;
-import java.util.stream.Collectors;
 
 /**
  * Resolves external properties from an
@@ -48,7 +49,7 @@ public final class PropertiesExpander
         }
         values = properties.stringPropertyNames()
                 .stream()
-                .collect(Collectors.toMap(Function.identity(), properties::getProperty));
+                .collect(toImmutableMap(Function.identity(), properties::getProperty));
     }
 
     @Override
