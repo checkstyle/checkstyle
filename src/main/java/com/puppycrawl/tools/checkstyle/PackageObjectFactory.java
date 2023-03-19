@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle;
 
+import static com.google.common.collect.ImmutableList.toImmutableList;
+
 import java.io.IOException;
 import java.util.Collections;
 import java.util.HashMap;
@@ -388,7 +390,7 @@ public class PackageObjectFactory implements ModuleFactory {
         final List<String> possibleNames = packages.stream()
             .map(packageName -> packageName + PACKAGE_SEPARATOR + name)
             .flatMap(className -> Stream.of(className, className + CHECK_SUFFIX))
-            .collect(Collectors.toList());
+            .collect(toImmutableList());
         Object instance = null;
         for (String possibleName : possibleNames) {
             instance = createObject(possibleName);

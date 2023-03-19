@@ -234,6 +234,7 @@
     <forbiddenapis.version>3.4</forbiddenapis.version>
     <json-schema-validator.version>1.2.0</json-schema-validator.version>
     <error-prone.version>2.18.0</error-prone.version>
+    <error-prone-support.version>0.8.0</error-prone-support.version>
     <checkerframework.version>3.27.0</checkerframework.version>
   </properties>
 
@@ -2301,7 +2302,7 @@
                     <arg>-Xpkginfo:always</arg>
                     <arg>-XDcompilePolicy=simple</arg>
                     <arg>
-                      -Xplugin:ErrorProne
+                      -Xplugin:ErrorProne -XepPatchLocation:IN_PLACE -XepPatchChecks:CollectorMutability
                     </arg>
                   </compilerArgs>
                   <annotationProcessorPaths>
@@ -2309,6 +2310,11 @@
                       <groupId>com.google.errorprone</groupId>
                       <artifactId>error_prone_core</artifactId>
                       <version>${error-prone.version}</version>
+                    </path>
+                    <path>
+                      <groupId>tech.picnic.error-prone-support</groupId>
+                      <artifactId>error-prone-contrib</artifactId>
+                      <version>${error-prone-support.version}</version>
                     </path>
                   </annotationProcessorPaths>
                 </configuration>
@@ -2353,7 +2359,7 @@
                     <arg>-Xpkginfo:always</arg>
                     <arg>-XDcompilePolicy=simple</arg>
                     <arg>
-                      -Xplugin:ErrorProne \
+                      -Xplugin:ErrorProne -XepPatchLocation:IN_PLACE -XepPatchChecks:CollectorMutability \
                       -XepExcludedPaths:.*[\\/]resources[\\/].*
                     </arg>
                   </compilerArgs>
@@ -2362,6 +2368,11 @@
                       <groupId>com.google.errorprone</groupId>
                       <artifactId>error_prone_core</artifactId>
                       <version>${error-prone.version}</version>
+                    </path>
+                    <path>
+                      <groupId>tech.picnic.error-prone-support</groupId>
+                      <artifactId>error-prone-contrib</artifactId>
+                      <version>${error-prone-support.version}</version>
                     </path>
                   </annotationProcessorPaths>
                 </configuration>

@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.internal.utils;
 
+import static com.google.common.collect.ImmutableSet.toImmutableSet;
+
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Field;
@@ -151,7 +153,7 @@ public final class CheckUtil {
         final String packageName = "com.puppycrawl.tools.checkstyle";
         return getCheckstyleModulesRecursive(packageName, loader).stream()
                 .filter(ModuleReflectionUtil::isCheckstyleTreeWalkerCheck)
-                .collect(Collectors.toSet());
+                .collect(toImmutableSet());
     }
 
     /**
@@ -183,7 +185,7 @@ public final class CheckUtil {
                 .map(ClassPath.ClassInfo::load)
                 .filter(ModuleReflectionUtil::isCheckstyleModule)
                 .filter(CheckUtil::isFromAllowedPackages)
-                .collect(Collectors.toSet());
+                .collect(toImmutableSet());
     }
 
     /**

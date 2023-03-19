@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.internal;
 
+import static com.google.common.collect.ImmutableMap.toImmutableMap;
+import static com.google.common.collect.ImmutableSet.toImmutableSet;
 import static com.google.common.truth.Truth.assertWithMessage;
 
 import java.io.IOException;
@@ -158,7 +160,7 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
     private static Map<String, String> getAllowedDirectoryAndChecks() {
         return SIMPLE_CHECK_NAMES
             .stream()
-            .collect(Collectors.toMap(id -> id.toLowerCase(Locale.ENGLISH), Function.identity()));
+            .collect(toImmutableMap(id -> id.toLowerCase(Locale.ENGLISH), Function.identity()));
     }
 
     private static Set<String> getInternalModules() {
@@ -167,7 +169,7 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
                 final String[] packageTokens = moduleName.split("\\.");
                 return packageTokens[packageTokens.length - 1];
             })
-            .collect(Collectors.toSet());
+            .collect(toImmutableSet());
     }
 
     @BeforeEach

@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle;
 
+import static com.google.common.collect.ImmutableList.toImmutableList;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.Checker.EXCEPTION_MSG;
 import static com.puppycrawl.tools.checkstyle.DefaultLogger.AUDIT_FINISHED_MESSAGE;
@@ -50,7 +51,6 @@ import java.util.Properties;
 import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
-import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
@@ -1624,7 +1624,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
                     .filter(line -> !getCheckMessage(AUDIT_FINISHED_MESSAGE).equals(line))
                     .limit(expected.length)
                     .sorted()
-                    .collect(Collectors.toList());
+                    .collect(toImmutableList());
             Arrays.sort(expected);
 
             for (int i = 0; i < expected.length; i++) {

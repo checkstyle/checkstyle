@@ -19,13 +19,14 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
+import static com.google.common.collect.ImmutableList.toImmutableList;
+
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser;
 import com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser.ParseErrorMessage;
@@ -187,7 +188,7 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
         validateDefaultJavadocTokens();
         if (javadocTokens.isEmpty()) {
             javadocTokens.addAll(
-                    Arrays.stream(getDefaultJavadocTokens()).boxed().collect(Collectors.toList()));
+                    Arrays.stream(getDefaultJavadocTokens()).boxed().collect(toImmutableList()));
         }
         else {
             final int[] acceptableJavadocTokens = getAcceptableJavadocTokens();

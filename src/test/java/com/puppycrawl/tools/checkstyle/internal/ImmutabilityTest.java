@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.internal;
 
+import static com.google.common.collect.ImmutableMap.toImmutableMap;
 import static com.tngtech.archunit.base.DescribedPredicate.doNot;
 import static com.tngtech.archunit.base.DescribedPredicate.not;
 import static com.tngtech.archunit.lang.conditions.ArchPredicates.are;
@@ -31,7 +32,6 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.function.Function;
-import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
@@ -219,7 +219,7 @@ public class ImmutabilityTest {
      */
     private static final Map<String, ModuleDetails> MODULE_DETAILS_MAP =
         XmlMetaReader.readAllModulesIncludingThirdPartyIfAny().stream()
-            .collect(Collectors.toMap(ModuleDetails::getFullQualifiedName,
+            .collect(toImmutableMap(ModuleDetails::getFullQualifiedName,
                                       Function.identity()));
 
     /**

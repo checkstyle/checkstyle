@@ -19,6 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle;
 
+import static com.google.common.collect.ImmutableList.toImmutableList;
+import static com.google.common.collect.ImmutableSet.toImmutableSet;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -32,7 +35,6 @@ import java.util.Locale;
 import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.apache.commons.logging.Log;
@@ -220,7 +222,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
 
         final List<File> targetFiles = files.stream()
                 .filter(file -> CommonUtil.matchesFileExtension(file, fileExtensions))
-                .collect(Collectors.toList());
+                .collect(toImmutableList());
         processFiles(targetFiles);
 
         // Finish up
@@ -247,7 +249,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
             .filter(ExternalResourceHolder.class::isInstance)
             .map(ExternalResourceHolder.class::cast)
             .flatMap(resource -> resource.getExternalResourceLocations().stream())
-            .collect(Collectors.toSet());
+            .collect(toImmutableSet());
     }
 
     /** Notify all listeners about the audit start. */

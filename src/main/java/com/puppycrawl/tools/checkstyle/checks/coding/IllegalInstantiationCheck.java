@@ -19,10 +19,11 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import static com.google.common.collect.ImmutableSet.toImmutableSet;
+
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
@@ -417,7 +418,7 @@ public class IllegalInstantiationCheck
      * @param names class names
      */
     public void setClasses(String... names) {
-        classes = Arrays.stream(names).collect(Collectors.toSet());
+        classes = Arrays.stream(names).collect(toImmutableSet());
     }
 
 }

@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.grammar;
 
+import static com.google.common.collect.ImmutableList.toImmutableList;
 import static com.google.common.truth.Truth.assertWithMessage;
 
 import java.lang.reflect.Field;
@@ -27,7 +28,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 import org.antlr.v4.runtime.VocabularyImpl;
 import org.junit.jupiter.api.Test;
@@ -734,7 +734,7 @@ public class GeneratedJavaTokenTypesTest {
         final String[] nullableSymbolicNames = vocabulary.getSymbolicNames();
         final List<String> allTokenNames = Arrays.stream(nullableSymbolicNames)
                 .filter(Objects::nonNull)
-                .collect(Collectors.toList());
+                .collect(toImmutableList());
 
         // Since the following tokens are not declared in the 'tokens' block,
         // they will always appear last in the list of symbolic names provided

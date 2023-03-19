@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import static com.google.common.collect.ImmutableSet.toImmutableSet;
+
 import java.util.ArrayDeque;
 import java.util.BitSet;
 import java.util.Deque;
@@ -26,7 +28,6 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
@@ -357,7 +358,7 @@ public final class ModifiedControlVariableCheck extends AbstractCheck {
         final Set<String> initializedVariables = getForInitVariables(ast);
         final Set<String> iteratingVariables = getForIteratorVariables(ast);
         return initializedVariables.stream().filter(iteratingVariables::contains)
-            .collect(Collectors.toSet());
+            .collect(toImmutableSet());
     }
 
     /**

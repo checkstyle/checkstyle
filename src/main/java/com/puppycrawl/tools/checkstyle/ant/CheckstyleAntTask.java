@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.ant;
 
+import static com.google.common.collect.ImmutableList.toImmutableList;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -31,7 +33,6 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Properties;
-import java.util.stream.Collectors;
 
 import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.DirectoryScanner;
@@ -587,7 +588,7 @@ public class CheckstyleAntTask extends Task {
         return Arrays.stream(fileNames)
             .map(name -> scanner.getBasedir() + File.separator + name)
             .map(File::new)
-            .collect(Collectors.toList());
+            .collect(toImmutableList());
     }
 
     /**

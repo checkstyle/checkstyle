@@ -19,12 +19,13 @@
 
 package com.puppycrawl.tools.checkstyle.utils;
 
+import static com.google.common.collect.ImmutableSet.toImmutableSet;
+
 import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Modifier;
 import java.util.Collection;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import com.google.common.reflect.ClassPath;
 import com.puppycrawl.tools.checkstyle.TreeWalkerFilter;
@@ -61,7 +62,7 @@ public final class ModuleReflectionUtil {
                 .flatMap(pkg -> classPath.getTopLevelClasses(pkg).stream())
                 .map(ClassPath.ClassInfo::load)
                 .filter(ModuleReflectionUtil::isCheckstyleModule)
-                .collect(Collectors.toSet());
+                .collect(toImmutableSet());
     }
 
     /**

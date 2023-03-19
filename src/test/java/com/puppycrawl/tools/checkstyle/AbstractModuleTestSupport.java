@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle;
 
+import static com.google.common.collect.ImmutableList.toImmutableList;
 import static com.google.common.truth.Truth.assertWithMessage;
 
 import java.io.ByteArrayInputStream;
@@ -406,7 +407,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
         final Checker checker = createChecker(config);
         final List<File> files = Arrays.stream(filenames)
                 .map(File::new)
-                .collect(Collectors.toList());
+                .collect(toImmutableList());
         checker.process(files);
         checker.destroy();
     }
@@ -427,10 +428,10 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
         final List<Integer> actualViolationLines = actualViolations.stream()
                 .map(violation -> violation.substring(0, violation.indexOf(':')))
                 .map(Integer::valueOf)
-                .collect(Collectors.toList());
+                .collect(toImmutableList());
         final List<Integer> expectedViolationLines = testInputViolations.stream()
                 .map(TestInputViolation::getLineNo)
-                .collect(Collectors.toList());
+                .collect(toImmutableList());
         assertWithMessage("Violation lines for %s differ.", file)
                 .that(actualViolationLines)
                 .isEqualTo(expectedViolationLines);

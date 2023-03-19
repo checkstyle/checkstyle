@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.utils;
 
+import static com.google.common.collect.ImmutableMap.toImmutableMap;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.Arrays;
@@ -109,7 +111,7 @@ public final class TokenUtil {
      */
     public static Map<Integer, String> invertMap(Map<String, Integer> map) {
         return map.entrySet().stream()
-            .collect(Collectors.toMap(Map.Entry::getValue, Map.Entry::getKey));
+            .collect(toImmutableMap(Map.Entry::getValue, Map.Entry::getKey));
     }
 
     /**
