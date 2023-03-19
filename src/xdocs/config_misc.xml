@@ -2341,18 +2341,35 @@ messages.properties: Key 'ok' missing.
 
       <subsection name="Examples" id="Translation_Examples">
         <p>
+          Note, that files with the same path and base name but which have different
+          extensions will be considered as files that belong to different resource bundles.
+        </p>
+        <p>
           To configure the check to check only files which have '.properties' and '.translations'
           extensions:
         </p>
         <source>
 &lt;module name=&quot;Translation&quot;&gt;
   &lt;property name=&quot;fileExtensions&quot; value=&quot;properties, translations&quot;/&gt;
+  &lt;property name=&quot;requiredTranslations&quot; value=&quot;fr&quot;/&gt;
 &lt;/module&gt;
         </source>
         <p>
-          Note, that files with the same path and base name but which have different
-          extensions will be considered as files that belong to different resource bundles.
+          Example:
         </p>
+        <source>
+#messages.properties
+hello=Hello
+cancel=Cancel
+
+#messages.translations
+hello=Hallo
+ok=OK
+        </source>
+        <source>
+messages.properties: Properties file 'messages_fr.properties' is missing.
+messages.translations: Properties file 'messages_fr.translations' is missing.
+        </source>
         <p>
           An example of how to configure the check to validate only bundles which base names
           start with "ButtonLabels":
@@ -2360,9 +2377,25 @@ messages.properties: Key 'ok' missing.
         <source>
 &lt;module name=&quot;Translation&quot;&gt;
   &lt;property name=&quot;baseName&quot; value=&quot;^ButtonLabels.*$&quot;/&gt;
+  &lt;property name=&quot;requiredTranslations&quot; value=&quot;fr&quot;/&gt;
 &lt;/module&gt;
         </source>
+        <p>
+          Example:
+        </p>
+        <source>
+#ButtonLabels.properties
+hello=Hello
+cancel=Cancel
 
+#ButtonLabels_fr.properties
+hello=Bonjour
+name=Nom
+        </source>
+        <source>
+ButtonLabels.properties: Key 'name' is missing.
+ButtonLabels_fr.properties: Key 'cancel' is missing.
+        </source>
         <p>
           To configure the check to check existence of Japanese and French translations:
         </p>
@@ -2372,29 +2405,29 @@ messages.properties: Key 'ok' missing.
 &lt;/module&gt;
         </source>
         <p>
-          The following example shows how the check works if there is a message bundle which
-          element name contains language code, county code, platform name.
-          Consider that we have the below configuration:
+          Example:
         </p>
         <source>
-&lt;module name=&quot;Translation&quot;&gt;
-  &lt;property name=&quot;requiredTranslations&quot; value=&quot;es, fr, de&quot;/&gt;
-&lt;/module&gt;
+#messages.properties
+hello=Hello
+cancel=Cancel
+
+#messages_ja.properties
+greeting=こんにちは
+age=年齢
+
+#messages_fr.properties
+greeting=Bonjour
+name=Nom
         </source>
-        <p>
-          As we can see from the configuration, the TranslationCheck was configured to check
-          an existence of 'es', 'fr' and 'de' translations. Let's assume that we have the resource
-          bundle:
-        </p>
         <source>
-messages_home.properties
-messages_home_es_US.properties
-messages_home_fr_CA_UNIX.properties
+messages.properties: Key 'age' missing.
+messages.properties: Key 'name' missing.
+messages_fr.properties: Key 'age' missing.
+messages_fr.properties: Key 'cancel' missing.
+messages_ja.properties: Key 'cancel' missing.
+messages_ja.properties: Key 'name' missing.
         </source>
-        <p>
-          Than the check will rise the following violation:
-          "0: Properties file 'messages_home_de.properties' is missing."
-        </p>
       </subsection>
 
       <subsection name="Example of Usage" id="Translation_Example_of_Usage">
