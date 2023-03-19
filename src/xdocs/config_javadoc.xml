@@ -3569,7 +3569,7 @@ class Class3 {}
       <subsection name="Examples" id="NonEmptyAtclauseDescription_Examples">
         <p>
           To configure the default check that will check <code>@param</code>,
-          <code>@return</code>,<code>@throws</code>, <code>@deprecated</code>:
+          <code>@deprecated</code>,<code>@throws</code>,<code>@return</code>:
         </p>
         <source>
 &lt;module name=&quot;NonEmptyAtclauseDescription&quot;/&gt;
@@ -3580,26 +3580,27 @@ class Class3 {}
         <source>
 class Test
 {
+  // Violation for param "b" and at tags "deprecated", "throws" and "return".
   /**
-  * Violation for param "b" and at tags "deprecated", "throws".
-  * <code>@param</code> a Some javadoc // OK
+  * Some summary.
+  * <code>@param</code> a Some description
   * <code>@param</code> b
   * <code>@deprecated</code>
   * <code>@throws</code> Exception
+  * <code>@return</code>
   */
-  public int method(String a, int b) throws Exception
-  {
+  public int method(String a, int b) throws Exception {
     return 1;
   }
 }
         </source>
         <p>
-          To configure the check to validate only <code>@param</code> and
-          <code>@return</code> tags:
+          To configure the check to validate <code>@param</code>,
+          <code>@throws</code> tags:
         </p>
         <source>
-&lt;module name=&quot;NonEmptyAtclauseDescription&quot;&gt;
-  &lt;property name="javadocTokens" value="PARAM_LITERAL,RETURN_LITERAL"/&gt;
+&lt;module name="NonEmptyAtclauseDescription"&gt;
+  &lt;property name="javadocTokens" value="PARAM_LITERAL,THROWS_LITERAL"/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -3608,15 +3609,16 @@ class Test
         <source>
 class Test
 {
+  // Violation for param "b" and at tag "throws".
   /**
-  * Violation for param "b". Tags "deprecated", "throws" are ignored.
-  * <code>@param</code> a Some javadoc // OK
+  * Some summary.
+  * <code>@param</code> a Some description
   * <code>@param</code> b
   * <code>@deprecated</code>
   * <code>@throws</code> Exception
+  * <code>@return</code>
   */
-  public int method(String a, int b) throws Exception
-  {
+  public int method(String a, int b) throws Exception {
     return 1;
   }
 }
