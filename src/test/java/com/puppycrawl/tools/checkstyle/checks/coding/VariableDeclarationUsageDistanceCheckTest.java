@@ -75,6 +75,7 @@ public class VariableDeclarationUsageDistanceCheckTest extends
             "1001:9: " + getCheckMessage(MSG_KEY, "a", 3, 1),
             "1036:9: " + getCheckMessage(MSG_KEY, "c", 3, 1),
             "1066:9: " + getCheckMessage(MSG_KEY, "a", 4, 1),
+            "1075:9: " + getCheckMessage(MSG_KEY, "a", 2, 1),
         };
         verifyWithInlineConfigParser(
                 getPath("InputVariableDeclarationUsageDistanceGeneral.java"), expected);
@@ -85,7 +86,7 @@ public class VariableDeclarationUsageDistanceCheckTest extends
         final String[] expected = {
             "17:9: " + getCheckMessage(MSG_KEY, "first", 5, 1),
             "29:9: " + getCheckMessage(MSG_KEY, "allInvariants", 2, 1),
-            "59:9: " + getCheckMessage(MSG_KEY, "a", 2, 1),
+            "58:9: " + getCheckMessage(MSG_KEY, "a", 2, 1),
         };
         verifyWithInlineConfigParser(
                 getPath("InputVariableDeclarationUsageDistanceGeneral2.java"), expected);
@@ -102,7 +103,7 @@ public class VariableDeclarationUsageDistanceCheckTest extends
             "50:9: " + getCheckMessage(MSG_KEY, "c", 3, 1),
             "51:9: " + getCheckMessage(MSG_KEY, "d", 4, 1),
             "63:9: " + getCheckMessage(MSG_KEY, "a", 4, 1),
-
+            "74:9: " + getCheckMessage(MSG_KEY, "a", 2, 1),
         };
         verifyWithInlineConfigParser(
             getPath("InputVariableDeclarationUsageDistanceIfStatements.java"), expected);
@@ -120,6 +121,7 @@ public class VariableDeclarationUsageDistanceCheckTest extends
             "913:9: " + getCheckMessage(MSG_KEY, "a", 4, 3),
             "979:9: " + getCheckMessage(MSG_KEY, "a", 4, 3),
             "1066:9: " + getCheckMessage(MSG_KEY, "a", 4, 3),
+            "1075:9: " + getCheckMessage(MSG_KEY, "a", 4, 3),
         };
         verifyWithInlineConfigParser(
                 getPath("InputVariableDeclarationUsageDistance.java"), expected);
@@ -227,6 +229,7 @@ public class VariableDeclarationUsageDistanceCheckTest extends
             "1001:9: " + getCheckMessage(MSG_KEY_EXT, "a", 3, 1),
             "1036:9: " + getCheckMessage(MSG_KEY_EXT, "c", 3, 1),
             "1066:9: " + getCheckMessage(MSG_KEY_EXT, "a", 4, 1),
+            "1075:9: " + getCheckMessage(MSG_KEY_EXT, "a", 2, 1),
         };
         verifyWithInlineConfigParser(
                 getPath("InputVariableDeclarationUsageDistanceFinal.java"), expected);
@@ -303,6 +306,7 @@ public class VariableDeclarationUsageDistanceCheckTest extends
             "156:17: " + getCheckMessage(MSG_KEY, "n", 2, maxDistance),
             "177:17: " + getCheckMessage(MSG_KEY, "count", 3, maxDistance),
             "197:17: " + getCheckMessage(MSG_KEY, "count", 3, maxDistance),
+            "207:9: " + getCheckMessage(MSG_KEY, "a", 2, maxDistance),
         };
 
         final String filename = "InputVariableDeclarationUsageDistanceCheckSwitchExpressions.java";
@@ -314,6 +318,7 @@ public class VariableDeclarationUsageDistanceCheckTest extends
         final int maxDistance = 1;
         final String[] expected = {
             "16:9: " + getCheckMessage(MSG_KEY, "i", 2, maxDistance),
+            "93:9: " + getCheckMessage(MSG_KEY, "a", 2, maxDistance),
         };
 
         final String filename = "InputVariableDeclarationUsageDistanceCheckSwitchExpressions2.java";

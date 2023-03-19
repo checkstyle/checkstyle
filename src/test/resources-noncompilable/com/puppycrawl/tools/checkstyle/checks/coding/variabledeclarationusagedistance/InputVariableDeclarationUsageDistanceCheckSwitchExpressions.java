@@ -202,6 +202,22 @@ public class InputVariableDeclarationUsageDistanceCheckSwitchExpressions {
         }
         return false;
     }
+
+    public void doNothing() {
+    }
+
+    public int methodTry() {
+        String a = ""; // violation 'Distance .* is 2.'
+        String b = "abc";
+        doNothing();
+        try (AutoCloseable i = new java.io.StringReader(a)) {
+            b.replace(a.charAt(0),'b');
+        }
+        catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return 0;
+    }
 }
 
 
