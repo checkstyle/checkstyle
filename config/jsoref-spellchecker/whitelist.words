@@ -12,6 +12,7 @@ abstractfileset
 abstractjavadoc
 ABx
 ACEM
+Aceptar
 Acheckstyle
 acm
 Aconfig
@@ -1213,6 +1214,7 @@ sourcepath
 sourcesets
 spacebar
 specialescape
+Speichern
 spellchecker
 spliterator
 spotbugs
@@ -1322,6 +1324,7 @@ treeset
 treetable
 treewalker
 TRequest
+Tsch
 tschneeberger
 tstamp
 tt
