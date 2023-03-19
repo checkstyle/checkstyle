@@ -137,6 +137,20 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * &lt;/module&gt;
  * </pre>
  * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * # Ok
+ * messages.properties
+ * messages.translations
+ *
+ * # Violation: extension without translations or properties
+ * messages.txt
+ *
+ * # Violation: extension without translations or properties
+ * messages.xml
+ * </pre>
+ * <p>
  * Note, that files with the same path and base name but which have different
  * extensions will be considered as files that belong to different resource bundles.
  * </p>
@@ -150,12 +164,38 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * &lt;/module&gt;
  * </pre>
  * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * # Ok
+ * ButtonLabels.properties
+ * ButtonLabels.translations
+ *
+ * # Violation: base name does not start with "ButtonLabels"
+ * MessageLabels.properties
+ *
+ * # Violation: base name does not start with "ButtonLabels"
+ * MessageLabels.translations
+ * </pre>
+ * <p>
  * To configure the check to check existence of Japanese and French translations:
  * </p>
  * <pre>
  * &lt;module name="Translation"&gt;
  *   &lt;property name="requiredTranslations" value="ja, fr"/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * # Ok
+ * messages.properties
+ * messages_ja.properties
+ * messages_fr.translations
+ *
+ * # Violation: missing translations for ja, fr
+ * messages_es.properties
  * </pre>
  * <p>
  * The following example shows how the check works if there is a message bundle
@@ -168,19 +208,19 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * &lt;/module&gt;
  * </pre>
  * <p>
- * As we can see from the configuration, the TranslationCheck was configured
- * to check an existence of 'es', 'fr' and 'de' translations. Let's assume that
- * we have the resource bundle:
+ * Example:
  * </p>
  * <pre>
- * messages_home.properties
- * messages_home_es_US.properties
- * messages_home_fr_CA_UNIX.properties
+ * # Ok
+ * messages.properties
+ * messages_es.properties
+ * messages_fr.properties
+ * messages_de.properties
+ *
+ * # Violation: missing translation for es, fr and de
+ * messages.properties
+ * messages_en.properties
  * </pre>
- * <p>
- * Than the check will rise the following violation: "0: Properties file
- * 'messages_home_de.properties' is missing."
- * </p>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.Checker}
  * </p>
