@@ -89,4 +89,14 @@ public class InputVariableDeclarationUsageDistanceCheckSwitchExpressions2 {
         int u = 0;
         switch (u) { };
     }
+
+    public int methodTry() {
+        String a = "";
+        try (AutoCloseable i = new java.io.StringReader(a)) {
+        }
+        catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return 0;
+    }
 }

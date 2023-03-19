@@ -1071,4 +1071,14 @@ class New6 {
         New6.field = (int)a;
     }
 
+    void methodTry() {
+        String a = "";
+        n();
+        n();
+        try (AutoCloseable i = new java.io.StringReader(a)) {
+        }
+        catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
