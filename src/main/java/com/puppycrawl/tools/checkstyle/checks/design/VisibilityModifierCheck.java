@@ -154,6 +154,22 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * &lt;module name=&quot;VisibilityModifier&quot;/&gt;
  * </pre>
  * <p>
+ * Example with default values:
+ * </p>
+ * <pre>
+ * public class MyClass
+ * {
+ * private int myPrivateField1; // Ok, has a visibility modifier
+ * private final int myPrivateField2; // Ok, has a private visibility
+ * public long serialVersionUID = 123456789L; // Ok, matches the pattern ^serialVersionUID$
+ * public static final int MY_CONSTANT = 42; // Ok, static final
+ * int myPrivateField3; // Violation, must have a visibility modifier
+ * protected String myProtectedField; // Violation, protected visibility is not allowed
+ * public final int MY_CONSTANT = 42; // Violation, public immutable fields are not allowed
+ * public int NOT_CONSTANT = 42; // Violation, not static final, immutable, matching the pattern
+ * }
+ * </pre>
+ * <p>
  * To configure the check so that it allows package visible members:
  * </p>
  * <pre>
@@ -162,12 +178,68 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * &lt;/module&gt;
  * </pre>
  * <p>
+ * Example of allowed package visible members:
+ * </p>
+ * <pre>
+ * public class MyClass
+ * {
+ * private int myPrivateField1; // Ok, has a visibility modifier
+ * private final int myPrivateField2; // Ok, has a private visibility
+ * public long serialVersionUID = 123456789L; // Ok, matches the pattern ^serialVersionUID$
+ * public static final int MY_CONSTANT = 42; // Ok, static final
+ * int myPrivateField3; // Ok, package visible field
+ * protected String myProtectedField; // Violation, protected visibility is not allowed
+ * public final int MY_CONSTANT = 42; // Violation, public immutable fields are not allowed
+ * public int NOT_CONSTANT = 42; // Violation, not static final, immutable, matching the pattern
+ * }
+ * </pre>
+  * <p>
+ * To configure the check so that it allows protected visible members:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;VisibilityModifier&quot;&gt;
+ *   &lt;property name=&quot;protectedAllowed&quot; value=&quot;true&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example of allowed protected visible members:
+ * </p>
+ * <pre>
+ * public class MyClass
+ * {
+ * private int myPrivateField1; // Ok, has a visibility modifier
+ * private final int myPrivateField2; // Ok, has a private visibility
+ * public long serialVersionUID = 123456789L; // Ok, matches the pattern ^serialVersionUID$
+ * public static final int MY_CONSTANT = 42; // Ok, static final
+ * int myPrivateField3; // Violation, must have a visibility modifier
+ * protected String myProtectedField; // Ok, protected is allowed
+ * public final int MY_CONSTANT = 42; // Violation, public immutable fields are not allowed
+ * public int NOT_CONSTANT = 42; // Violation, not static final, immutable, matching the pattern
+ * }
+ * </pre>
+ * <p>
  * To configure the check so that it allows no public members:
  * </p>
  * <pre>
  * &lt;module name=&quot;VisibilityModifier&quot;&gt;
  *   &lt;property name=&quot;publicMemberPattern&quot; value=&quot;^$&quot;/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example of not allowed public members:
+ * </p>
+ * <pre>
+ * public class MyClass
+ * {
+ * private int myPrivateField1; // Ok, has a visibility modifier
+ * private final int myPrivateField2; // Ok, has a private visibility
+ * public long serialVersionUID = 123456789L; // Violation, not matched the pattern '^$'
+ * public static final int MY_CONSTANT = 42; // Ok, static final
+ * int myPrivateField3; // Violation, must have a visibility modifier
+ * protected String myProtectedField; // Violation, protected visibility is not allowed
+ * public final int MY_CONSTANT = 42; // Violation, public immutable fields are not allowed
+ * public int NOT_CONSTANT = 42; // Violation, not static final, immutable, matching the pattern
+ * }
  * </pre>
  * <p>
  * To configure the Check so that it allows public immutable fields (mostly for immutable classes):
@@ -181,21 +253,15 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * Example of allowed public immutable fields:
  * </p>
  * <pre>
- * public class ImmutableClass
+ * public final class MyClass
  * {
- *   public final ImmutableSet&lt;String&gt; includes; // No warning
- *   public final ImmutableSet&lt;String&gt; excludes; // No warning
- *   public final java.lang.String notes; // No warning
- *   public final BigDecimal value; // No warning
- *
- *   public ImmutableClass(Collection&lt;String&gt; includes, Collection&lt;String&gt; excludes,
- *                BigDecimal value, String notes)
- *   {
- *     this.includes = ImmutableSet.copyOf(includes);
- *     this.excludes = ImmutableSet.copyOf(excludes);
- *     this.value = value;
- *     this.notes = notes;
- *   }
+ * public final java.lang.String notes; // Ok, from immutable class canonical names
+ * public final String MyString; // Ok, immutable
+ * public final int MyInt; // Ok, immutable
+ * public final Set&lt;String&gt; mySet1 = new HashSet&lt;&gt;(); // Violation, HashSet is mutable
+ * public final ImmutableSet&lt;String&gt; mySet2; // Violation, mutable
+ * public final ImmutableSet&lt;Object&gt; objects1; // violation, Object class is mutable
+ * public final ImmutableMap&lt;String, Object&gt; objects2; // violation, Object class is mutable
  * }
  * </pre>
  * <p>
@@ -212,23 +278,15 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * Example of allowed public immutable fields:
  * </p>
  * <pre>
- * public class ImmutableClass
+ * public final class MyClass
  * {
- *   public final ImmutableSet&lt;String&gt; includes; // No warning
- *   public final ImmutableSet&lt;String&gt; excludes; // No warning
- *   public final java.lang.String notes; // Warning here because
- *                                        //'java.lang.String' wasn't specified as allowed class
- *   public final int someValue; // No warning
- *
- *   public ImmutableClass(Collection&lt;String&gt; includes, Collection&lt;String&gt; excludes,
- *                String notes, int someValue)
- *   {
- *     this.includes = ImmutableSet.copyOf(includes);
- *     this.excludes = ImmutableSet.copyOf(excludes);
- *     this.value = value;
- *     this.notes = notes;
- *     this.someValue = someValue;
- *   }
+ * public final java.lang.String notes; // Violation, 'java lang String' not a allowed class
+ * public final String MyString; // Violation, mutable
+ * public final int MyInt; // Ok, immutable
+ * public final Set&lt;String&gt; mySet1 = new HashSet&lt;&gt;(); // Violation, HashSet is mutable
+ * public final ImmutableSet&lt;String&gt; mySet2; // Violation, mutable
+ * public final ImmutableSet&lt;Object&gt; objects1; // violation, Object class is mutable
+ * public final ImmutableMap&lt;String, Object&gt; objects2; // violation, Object class is mutable
  * }
  * </pre>
  * <p>
@@ -248,18 +306,15 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * Example of how the check works:
  * </p>
  * <pre>
- * public final class Test {
- *   public final String s;
- *   public final ImmutableSet&lt;String&gt; names;
- *   public final ImmutableSet&lt;Object&gt; objects; // violation (Object class is mutable)
- *   public final ImmutableMap&lt;String, Object&gt; links; // violation (Object class is mutable)
- *
- *   public Test() {
- *     s = "Hello!";
- *     names = ImmutableSet.of();
- *     objects = ImmutableSet.of();
- *     links = ImmutableMap.of();
- *   }
+ * public final class MyClass
+ * {
+ * public final java.lang.String notes; // Ok, from immutable class canonical names
+ * public final String MyString; // Ok, immutable
+ * public final int MyInt; // Ok, immutable
+ * public final Set&lt;String&gt; mySet1 = new HashSet&lt;&gt;(); // Violation, HashSet is mutable
+ * public final ImmutableSet&lt;String&gt; mySet2; // Ok, immutable
+ * public final ImmutableSet&lt;Object&gt; objects1; // violation, Object class is mutable
+ * public final ImmutableMap&lt;String, Object&gt; objects2; // violation, Object class is mutable
  * }
  * </pre>
  * <p>
@@ -275,12 +330,20 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * Example of allowed field:
  * </p>
  * <pre>
- * class SomeClass
+ * class MyClass
  * {
- *   &#64;com.annotation.CustomAnnotation
- *   String annotatedString; // no warning
- *   &#64;CustomAnnotation
- *   String shortCustomAnnotated; // no warning
+ * &#64;com.annotation.CustomAnnotation
+ * String annotatedString; // Ok
+ * &#64;CustomAnnotation
+ * String shortCustomAnnotated; // Ok
+ * &#64;mypackage.annotation.CustomAnnotation
+ * String customAnnotatedAnotherPackage; // violation
+ * &#64;org.junit.Rule
+ * public TemporaryFolder publicJUnitRule = new TemporaryFolder(); // violation
+ * &#64;org.junit.ClassRule
+ * public static TemporaryFolder publicJUnitClassRule = new TemporaryFolder(); // violation
+ * &#64;com.google.common.annotations.VisibleForTesting
+ * public String testString = ""; // violation
  * }
  * </pre>
  * <p>
@@ -294,14 +357,20 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * Example of allowed fields:
  * </p>
  * <pre>
- * class SomeClass
+ * class MyClass
  * {
- *   &#64;org.junit.Rule
- *   public TemporaryFolder publicJUnitRule = new TemporaryFolder(); // no warning
- *   &#64;org.junit.ClassRule
- *   public static TemporaryFolder publicJUnitClassRule = new TemporaryFolder(); // no warning
- *   &#64;com.google.common.annotations.VisibleForTesting
- *   public String testString = ""; // no warning
+ * &#64;com.annotation.CustomAnnotation
+ * String annotatedString; // violation
+ * &#64;CustomAnnotation
+ * String shortCustomAnnotated; // violation
+ * &#64;mypackage.annotation.CustomAnnotation
+ * String customAnnotatedAnotherPackage; // violation
+ * &#64;org.junit.Rule
+ * public TemporaryFolder publicJUnitRule = new TemporaryFolder(); // Ok
+ * &#64;org.junit.ClassRule
+ * public static TemporaryFolder publicJUnitClassRule = new TemporaryFolder(); // Ok
+ * &#64;com.google.common.annotations.VisibleForTesting
+ * public String testString = ""; // Ok
  * }
  * </pre>
  * <p>
@@ -317,15 +386,20 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * Example of allowed fields:
  * </p>
  * <pre>
- * class SomeClass
+ * class MyClass
  * {
- *   &#64;CustomAnnotation
- *   String customAnnotated; // no warning
- *   &#64;com.annotation.CustomAnnotation
- *   String customAnnotated1; // no warning
- *   &#64;mypackage.annotation.CustomAnnotation
- *   String customAnnotatedAnotherPackage; // another package but short name matches
- *                                         // so no violation
+ * &#64;com.annotation.CustomAnnotation
+ * String annotatedString; // violation
+ * &#64;CustomAnnotation
+ * String shortCustomAnnotated; // Ok
+ * &#64;mypackage.annotation.CustomAnnotation
+ * String customAnnotatedAnotherPackage; // violation
+ * &#64;org.junit.Rule
+ * public TemporaryFolder publicJUnitRule = new TemporaryFolder(); // violation
+ * &#64;org.junit.ClassRule
+ * public static TemporaryFolder publicJUnitClassRule = new TemporaryFolder(); // violation
+ * &#64;com.google.common.annotations.VisibleForTesting
+ * public String testString = ""; // violation
  * }
  * </pre>
  * <p>
@@ -374,11 +448,11 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * </p>
  * <pre>
  * public class InputPublicImmutable {
- *   public final int someIntValue;
- *   public final ImmutableSet&lt;String&gt; includes;
- *   public final java.lang.String notes;
- *   public final BigDecimal value;
- *   public final List list;
+ *   public final int someIntValue; // Ok
+ *   public final ImmutableSet&lt;String&gt; includes; // Ok
+ *   public final java.lang.String notes; // Ok
+ *   public final BigDecimal value; // Ok
+ *   public final List list; // Ok
  *
  *   public InputPublicImmutable(Collection&lt;String&gt; includes,
  *         BigDecimal value, String notes, int someValue, List l) {
