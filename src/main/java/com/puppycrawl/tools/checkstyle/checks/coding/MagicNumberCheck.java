@@ -525,8 +525,11 @@ public class MagicNumberCheck extends AbstractCheck {
      */
     private static boolean isFieldDeclaration(DetailAST ast) {
         DetailAST varDefAST = ast;
-        while (varDefAST != null
-                && varDefAST.getType() != TokenTypes.VARIABLE_DEF) {
+        while (true) {
+            if (varDefAST.getType() == TokenTypes.EXPR) {
+                varDefAST = findVariableDef(varDefAST);
+                break;
+            }
             varDefAST = varDefAST.getParent();
         }
 
@@ -535,6 +538,25 @@ public class MagicNumberCheck extends AbstractCheck {
         return varDefAST != null
                 && (varDefAST.getParent().getParent().getType() == TokenTypes.CLASS_DEF
                 || varDefAST.getParent().getParent().getType() == TokenTypes.RECORD_DEF);
+    }
+
+    /**
+     * Find Variable def ast.
+     *
+     * @param node expr token
+     * @return variable def
+     */
+    private static DetailAST findVariableDef(DetailAST node) {
+        DetailAST tempNode = node;
+        DetailAST ans = null;
+        while (tempNode.getType() != TokenTypes.OBJBLOCK) {
+            if (tempNode.getType() == TokenTypes.VARIABLE_DEF) {
+                ans = tempNode;
+                break;
+            }
+            tempNode = tempNode.getParent();
+        }
+        return ans;
     }
 
     /**
