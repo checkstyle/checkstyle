@@ -1425,7 +1425,29 @@ class Test {
         <source>
 &lt;module name=&quot;VisibilityModifier&quot;/&gt;
         </source>
-
+        <p>Example with default values:</p>
+        <source>
+public class MyClass
+{
+ private int myPrivateField1;
+ public long serialVersionUID = 123456789L;
+ public static final int MY_CONSTANT = 42;
+ int myPrivateField3; // Violation
+ protected String myProtectedField; // Violation
+ public final int MY_CONSTANT2 = 42; // Violation
+ public int NOT_CONSTANT = 42; // Violation
+ public final java.lang.String notes; // Violation
+ public final Set&lt;String&gt; mySet1 = new HashSet&lt;&gt;(); // Violation
+ public final ImmutableSet&lt;String&gt; mySet2; // Violation
+ public final ImmutableMap&lt;String, Object&gt; objects1; // violation
+ @com.annotation.CustomAnnotation
+ String annotatedString; // violation
+ @CustomAnnotation
+ String shortCustomAnnotated; // violation
+ @com.google.common.annotations.VisibleForTesting
+ public String testString = "";
+}
+        </source>
         <p>
           To configure the check so that it allows package visible members:
         </p>
@@ -1434,7 +1456,60 @@ class Test {
   &lt;property name=&quot;packageAllowed&quot; value=&quot;true&quot;/&gt;
 &lt;/module&gt;
         </source>
-
+        <p>Example of allowed package visible members:</p>
+        <source>
+public class MyClass
+{
+ private int myPrivateField1;
+ public long serialVersionUID = 123456789L;
+ public static final int MY_CONSTANT = 42;
+ int myPrivateField3;
+ protected String myProtectedField; // Violation
+ public final int MY_CONSTANT2 = 42; // Violation
+ public int NOT_CONSTANT = 42; // Violation
+ public final java.lang.String notes; // Violation
+ public final Set&lt;String&gt; mySet1 = new HashSet&lt;&gt;(); // Violation
+ public final ImmutableSet&lt;String&gt; mySet2; // Violation
+ public final ImmutableMap&lt;String, Object&gt; objects1; // violation
+ @com.annotation.CustomAnnotation
+ String annotatedString;
+ @CustomAnnotation
+ String shortCustomAnnotated;
+ @com.google.common.annotations.VisibleForTesting
+ public String testString = "";
+}
+        </source>
+        <p>
+          To configure the check so that it allows protected visible members:
+        </p>
+        <source>
+&lt;module name=&quot;VisibilityModifier&quot;&gt;
+  &lt;property name=&quot;protectedAllowed&quot; value=&quot;true&quot;/&gt;
+&lt;/module&gt;
+        </source>
+        <p>Example of allowed protected visible members:</p>
+        <source>
+public class MyClass
+{
+ private int myPrivateField1;
+ public long serialVersionUID = 123456789L;
+ public static final int MY_CONSTANT = 42;
+ int myPrivateField3; // Violation
+ protected String myProtectedField;
+ public final int MY_CONSTANT2 = 42; // Violation
+ public int NOT_CONSTANT = 42; // Violation
+ public final java.lang.String notes; // Violation
+ public final Set&lt;String&gt; mySet1 = new HashSet&lt;&gt;(); // Violation
+ public final ImmutableSet&lt;String&gt; mySet2; // Violation
+ public final ImmutableMap&lt;String, Object&gt; objects1; // violation
+ @com.annotation.CustomAnnotation
+ String annotatedString; // violation
+ @CustomAnnotation
+ String shortCustomAnnotated; // violation
+ @com.google.common.annotations.VisibleForTesting
+ public String testString = "";
+}
+        </source>
         <p>
           To configure the check so that it allows no public members:
         </p>
@@ -1442,6 +1517,29 @@ class Test {
 &lt;module name=&quot;VisibilityModifier&quot;&gt;
   &lt;property name=&quot;publicMemberPattern&quot; value=&quot;^$&quot;/&gt;
 &lt;/module&gt;
+        </source>
+        <p>Example of not allowed public members:</p>
+        <source>
+public class MyClass
+{
+ private int myPrivateField1;
+ public long serialVersionUID = 123456789L; // Violation
+ public static final int MY_CONSTANT = 42;
+ int myPrivateField3; // Violation
+ protected String myProtectedField; // Violation
+ public final int MY_CONSTANT2 = 42; // Violation
+ public int NOT_CONSTANT = 42; // Violation
+ public final java.lang.String notes; // Violation
+ public final Set&lt;String&gt; mySet1 = new HashSet&lt;&gt;(); // Violation
+ public final ImmutableSet&lt;String&gt; mySet2; // Violation
+ public final ImmutableMap&lt;String, Object&gt; objects1; // violation
+ @com.annotation.CustomAnnotation
+ String annotatedString; // violation
+ @CustomAnnotation
+ String shortCustomAnnotated; // violation
+ @com.google.common.annotations.VisibleForTesting
+ public String testString = "";
+}
         </source>
         <p>
           To configure the Check so that it allows public immutable fields
@@ -1456,21 +1554,25 @@ class Test {
           Example of allowed public immutable fields:
         </p>
         <source>
-public class ImmutableClass
+public final class MyClass
 {
-  public final ImmutableSet&lt;String&gt; includes; // No warning
-  public final ImmutableSet&lt;String&gt; excludes; // No warning
-  public final java.lang.String notes; // No warning
-  public final BigDecimal value; // No warning
-
-  public ImmutableClass(Collection&lt;String&gt; includes, Collection&lt;String&gt; excludes,
-               BigDecimal value, String notes)
-  {
-    this.includes = ImmutableSet.copyOf(includes);
-    this.excludes = ImmutableSet.copyOf(excludes);
-    this.value = value;
-    this.notes = notes;
-  }
+ private int myPrivateField1;
+ public long serialVersionUID = 123456789L;
+ public static final int MY_CONSTANT = 42;
+ int myPrivateField3; // Violation
+ protected String myProtectedField; // Violation
+ public final int MY_CONSTANT2 = 42;
+ public int NOT_CONSTANT = 42; // Violation
+ public final java.lang.String notes;
+ public final Set&lt;String&gt; mySet1 = new HashSet&lt;&gt;(); // Violation
+ public final ImmutableSet&lt;String&gt; mySet2; // Violation
+ public final ImmutableMap&lt;String, Object&gt; objects1; // violation
+ @com.annotation.CustomAnnotation
+ String annotatedString; // violation
+ @CustomAnnotation
+ String shortCustomAnnotated; // violation
+ @com.google.common.annotations.VisibleForTesting
+ public String testString = "";
 }
         </source>
         <p>
@@ -1487,26 +1589,27 @@ public class ImmutableClass
           Example of allowed public immutable fields:
         </p>
         <source>
-public class ImmutableClass
+public final class MyClass
 {
-  public final ImmutableSet&lt;String&gt; includes; // No warning
-  public final ImmutableSet&lt;String&gt; excludes; // No warning
-  public final java.lang.String notes; // Warning here because
-                                       //'java.lang.String' wasn't specified as allowed class
-  public final int someValue; // No warning
-
-  public ImmutableClass(Collection&lt;String&gt; includes, Collection&lt;String&gt; excludes,
-               String notes, int someValue)
-  {
-    this.includes = ImmutableSet.copyOf(includes);
-    this.excludes = ImmutableSet.copyOf(excludes);
-    this.value = value;
-    this.notes = notes;
-    this.someValue = someValue;
-  }
+ private int myPrivateField1;
+ public long serialVersionUID = 123456789L;
+ public static final int MY_CONSTANT = 42;
+ int myPrivateField3; // Violation
+ protected String myProtectedField; // Violation
+ public final int MY_CONSTANT2 = 42;
+ public int NOT_CONSTANT = 42; // Violation
+ public final java.lang.String notes; // Violation
+ public final Set&lt;String&gt; mySet1 = new HashSet&lt;&gt;(); // Violation
+ public final ImmutableSet&lt;String&gt; mySet2; // Violation
+ public final ImmutableMap&lt;String, Object&gt; objects1; // violation
+ @com.annotation.CustomAnnotation
+ String annotatedString; // violation
+ @CustomAnnotation
+ String shortCustomAnnotated; // violation
+ @com.google.common.annotations.VisibleForTesting
+ public String testString = "";
 }
         </source>
-
         <p>
           Note, if allowPublicImmutableFields is set to true, the check will also check whether
           generic type parameters are immutable. If at least one generic type parameter is mutable,
@@ -1524,18 +1627,25 @@ public class ImmutableClass
           Example of how the check works:
         </p>
         <source>
-public final class Test {
-  public final String s;
-  public final ImmutableSet&lt;String&gt; names;
-  public final ImmutableSet&lt;Object&gt; objects; // violation (Object class is mutable)
-  public final ImmutableMap&lt;String, Object&gt; links; // violation (Object class is mutable)
-
-  public Test() {
-    s = "Hello!";
-    names = ImmutableSet.of();
-    objects = ImmutableSet.of();
-    links = ImmutableMap.of();
-  }
+public final class MyClass
+{
+ private int myPrivateField1;
+ public long serialVersionUID = 123456789L;
+ public static final int MY_CONSTANT = 42;
+ int myPrivateField3; // Violation
+ protected String myProtectedField; // Violation
+ public final int MY_CONSTANT2 = 42;
+ public int NOT_CONSTANT = 42; // Violation
+ public final java.lang.String notes;
+ public final Set&lt;String&gt; mySet1 = new HashSet&lt;&gt;(); // Violation
+ public final ImmutableSet&lt;String&gt; mySet2;
+ public final ImmutableMap&lt;String, Object&gt; objects1; // violation
+ @com.annotation.CustomAnnotation
+ String annotatedString; // violation
+ @CustomAnnotation
+ String shortCustomAnnotated; // violation
+ @com.google.common.annotations.VisibleForTesting
+ public String testString = "";
 }
         </source>
         <p>
@@ -1551,12 +1661,25 @@ public final class Test {
           Example of allowed field:
         </p>
         <source>
-class SomeClass
+public final class MyClass
 {
-  @com.annotation.CustomAnnotation
-  String annotatedString; // no warning
-  @CustomAnnotation
-  String shortCustomAnnotated; // no warning
+ private int myPrivateField1;
+ public long serialVersionUID = 123456789L;
+ public static final int MY_CONSTANT = 42;
+ int myPrivateField3; // Violation
+ protected String myProtectedField; // Violation
+ public final int MY_CONSTANT2 = 42; // Violation
+ public int NOT_CONSTANT = 42; // Violation
+ public final java.lang.String notes; // Violation
+ public final Set&lt;String&gt; mySet1 = new HashSet&lt;&gt;(); // Violation
+ public final ImmutableSet&lt;String&gt; mySet2; // Violation
+ public final ImmutableMap&lt;String, Object&gt; objects1; // violation
+ @com.annotation.CustomAnnotation
+ String annotatedString;
+ @CustomAnnotation
+ String shortCustomAnnotated;
+ @com.google.common.annotations.VisibleForTesting
+ public String testString = ""; // violation
 }
         </source>
 
@@ -1571,17 +1694,27 @@ class SomeClass
           Example of allowed fields:
         </p>
         <source>
-class SomeClass
+public final class MyClass
 {
-  @org.junit.Rule
-  public TemporaryFolder publicJUnitRule = new TemporaryFolder(); // no warning
-  @org.junit.ClassRule
-  public static TemporaryFolder publicJUnitClassRule = new TemporaryFolder(); // no warning
-  @com.google.common.annotations.VisibleForTesting
-  public String testString = ""; // no warning
+ private int myPrivateField1;
+ public long serialVersionUID = 123456789L;
+ public static final int MY_CONSTANT = 42;
+ int myPrivateField3; // Violation
+ protected String myProtectedField; // Violation
+ public final int MY_CONSTANT2 = 42; // Violation
+ public int NOT_CONSTANT = 42; // Violation
+ public final java.lang.String notes; // Violation
+ public final Set&lt;String&gt; mySet1 = new HashSet&lt;&gt;(); // Violation
+ public final ImmutableSet&lt;String&gt; mySet2; // Violation
+ public final ImmutableMap&lt;String, Object&gt; objects1; // violation
+ @com.annotation.CustomAnnotation
+ String annotatedString; // violation
+ @CustomAnnotation
+ String shortCustomAnnotated; // violation
+ @com.google.common.annotations.VisibleForTesting
+ public String testString = "";
 }
         </source>
-
         <p>
           To configure the Check passing fields annotated with short annotation name:
         </p>
@@ -1595,18 +1728,27 @@ class SomeClass
           Example of allowed fields:
         </p>
         <source>
-class SomeClass
+public final class MyClass
 {
-  @CustomAnnotation
-  String customAnnotated; // no warning
-  @com.annotation.CustomAnnotation
-  String customAnnotated1; // no warning
-  @mypackage.annotation.CustomAnnotation
-  String customAnnotatedAnotherPackage; // another package but short name matches
-                                        // so no violation
+ private int myPrivateField1;
+ public long serialVersionUID = 123456789L;
+ public static final int MY_CONSTANT = 42;
+ int myPrivateField3; // Violation
+ protected String myProtectedField; // Violation
+ public final int MY_CONSTANT2 = 42; // Violation
+ public int NOT_CONSTANT = 42; // Violation
+ public final java.lang.String notes; // Violation
+ public final Set&lt;String&gt; mySet1 = new HashSet&lt;&gt;(); // Violation
+ public final ImmutableSet&lt;String&gt; mySet2; // Violation
+ public final ImmutableMap&lt;String, Object&gt; objects1; // violation
+ @com.annotation.CustomAnnotation
+ String annotatedString; // Violation
+ @CustomAnnotation
+ String shortCustomAnnotated;
+ @com.google.common.annotations.VisibleForTesting
+ public String testString = ""; // violation
 }
         </source>
-
         <p>
           To understand the difference between allowPublicImmutableFields and
           allowPublicFinalFields options, please, study the following examples.
@@ -1653,11 +1795,11 @@ public class InputPublicImmutable {
         </p>
         <source>
 public class InputPublicImmutable {
-  public final int someIntValue;
-  public final ImmutableSet&lt;String&gt; includes;
-  public final java.lang.String notes;
-  public final BigDecimal value;
-  public final List list;
+  public final int someIntValue; // Ok
+  public final ImmutableSet&lt;String&gt; includes; // Ok
+  public final java.lang.String notes; // Ok
+  public final BigDecimal value; // Ok
+  public final List list; // Ok
 
   public InputPublicImmutable(Collection&lt;String&gt; includes,
         BigDecimal value, String notes, int someValue, List l) {
