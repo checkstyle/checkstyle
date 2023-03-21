@@ -31,11 +31,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import com.puppycrawl.tools.checkstyle.AbstractAutomaticBean.OutputStreamOptions;
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.MetadataGeneratorLogger;
 import com.puppycrawl.tools.checkstyle.TreeWalker;
-import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.RootModule;
 
@@ -72,8 +72,7 @@ public final class MetadataGeneratorUtil {
         treeWalkerConfig.addChild(scraperCheckConfig);
         checker.configure(defaultConfiguration);
 
-        checker.addListener(new MetadataGeneratorLogger(out,
-                AutomaticBean.OutputStreamOptions.NONE));
+        checker.addListener(new MetadataGeneratorLogger(out, OutputStreamOptions.NONE));
 
         dumpMetadata(checker, path, moduleFolders);
     }

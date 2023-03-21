@@ -807,6 +807,10 @@
                 <rule>
                   <element>CLASS</element>
                   <excludes>
+                    <!-- until https://github.com/checkstyle/checkstyle/issues/12873 -->
+                    <exclude>
+                      com.puppycrawl.tools.checkstyle.api.AutomaticBean*
+                    </exclude>
                     <!-- Parser related classes -->
                     <exclude>
                       com.puppycrawl.tools.checkstyle.grammar.java.JavaLanguageParser*
@@ -4201,6 +4205,7 @@
                 <mutator>PRIMITIVE_RETURNS</mutator>
               </mutators>
               <targetClasses>
+                <param>com.puppycrawl.tools.checkstyle.AbstractAutomaticBean*</param>
                 <param>com.puppycrawl.tools.checkstyle.AuditEventDefaultFormatter*</param>
                 <param>com.puppycrawl.tools.checkstyle.ConfigurationLoader*</param>
                 <param>com.puppycrawl.tools.checkstyle.DefaultConfiguration*</param>
@@ -4230,6 +4235,7 @@
                 <param>com.puppycrawl.tools.checkstyle.grammar.CommentListener*</param>
               </targetClasses>
               <targetTests>
+                <param>com.puppycrawl.tools.checkstyle.AbstractAutomaticBeanTest</param>
                 <param>com.puppycrawl.tools.checkstyle.AuditEventDefaultFormatterTest</param>
                 <param>com.puppycrawl.tools.checkstyle.XdocsPropertyTypeTest</param>
                 <param>com.puppycrawl.tools.checkstyle.ConfigurationLoaderTest</param>
@@ -4251,6 +4257,10 @@
                 <param>com.puppycrawl.tools.checkstyle.filefilters.BeforeExecutionExclusionFileFilterTest</param>
                 <!-- This test is the primary user of metadataGeneratorLogger -->
                 <param>com.puppycrawl.tools.checkstyle.meta.MetadataGeneratorUtilTest</param>
+                <!-- kills mutation in AbstractAutomaticBean -->
+                <param>com.puppycrawl.tools.checkstyle.checks.naming.ParameterNameCheckTest</param>
+                <!-- kills mutation in AbstractAutomaticBean -->
+                <param>com.puppycrawl.tools.checkstyle.checks.coding.IllegalTypeCheckTest</param>
               </targetTests>
               <coverageThreshold>100</coverageThreshold>
               <mutationThreshold>96</mutationThreshold>
@@ -4567,10 +4577,6 @@
                 <param>com.puppycrawl.tools.checkstyle.filters.SuppressWithPlainTextCommentFilterTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheckTest</param>
-                <!-- kills mutation in AutomaticBean -->
-                <param>com.puppycrawl.tools.checkstyle.checks.naming.ParameterNameCheckTest</param>
-                <!-- kills mutation in AutomaticBean -->
-                <param>com.puppycrawl.tools.checkstyle.checks.coding.IllegalTypeCheckTest</param>
               </targetTests>
               <excludedTestClasses>
                 <param>*.Input*</param>
