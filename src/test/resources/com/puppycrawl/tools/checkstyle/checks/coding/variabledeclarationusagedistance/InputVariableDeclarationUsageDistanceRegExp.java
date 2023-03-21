@@ -1070,5 +1070,15 @@ class New3 {
         New3.field = 3;
         New3.field = (int)a;
     }
-
+    void methodTry() {
+        String a = "";
+        String b = "abc";
+        n();
+        try (AutoCloseable i = new java.io.StringReader(a)) {
+            b.replace(a.charAt(0),'b');
+        }
+        catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
