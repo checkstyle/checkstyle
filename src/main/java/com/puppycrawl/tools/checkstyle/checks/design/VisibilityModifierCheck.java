@@ -154,6 +154,25 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * &lt;module name=&quot;VisibilityModifier&quot;/&gt;
  * </pre>
  * <p>
+ * Example with default values:
+ * </p>
+ * <pre>
+ * public class MyClass
+ * {
+ *  private int myPrivateField1; // Ok, has a visibility modifier
+ *  private final int myPrivateField2; // Ok, has a private visibility
+ *  public long serialVersionUID = 123456789L; // Ok, matches the pattern ^serialVersionUID$
+ *  public static final int MY_CONSTANT = 42; // Ok, static final
+ * }
+ * public class MyClass
+ * {
+ * int myPrivateField; // Violation, must have a visibility modifier
+ * protected String myProtectedField; // Violation, protected visibility is not allowed
+ * public final int MY_CONSTANT = 42; // Violation, public immutable fields are not allowed
+ * public int NOT_CONSTANT = 42; // Violation, not static final, immutable, matching the pattern
+ * }
+ * </pre>
+ * <p>
  * To configure the check so that it allows package visible members:
  * </p>
  * <pre>
@@ -162,12 +181,40 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * &lt;/module&gt;
  * </pre>
  * <p>
+ * Example of allowed package visible members:
+ * </p>
+ * <pre>
+ * class MyClass
+ * {
+ * private int myPrivateField1; // Ok, has a visibility modifier
+ * int myField1; // Ok, package visible field
+ * }
+ * public class MyClass
+ * {
+ * int myPackageField; // Violation, public class has member with package level visibility
+ * }
+ * </pre>
+ * <p>
  * To configure the check so that it allows no public members:
  * </p>
  * <pre>
  * &lt;module name=&quot;VisibilityModifier&quot;&gt;
  *   &lt;property name=&quot;publicMemberPattern&quot; value=&quot;^$&quot;/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example of not allowed public members:
+ * </p>
+ * <pre>
+ * public class MyClass
+ * {
+ * private int myPrivateField1; // Ok
+ * public static final int MY_CONSTANT = 42; // Ok, static final
+ * }
+ * public class MyClass
+ * {
+ * public long serialVersionUID = 123456789L; // Violation, not matched the pattern '^$'
+ * }
  * </pre>
  * <p>
  * To configure the Check so that it allows public immutable fields (mostly for immutable classes):
@@ -181,21 +228,14 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * Example of allowed public immutable fields:
  * </p>
  * <pre>
- * public class ImmutableClass
+ * public final class ImmutableClass
  * {
- *   public final ImmutableSet&lt;String&gt; includes; // No warning
- *   public final ImmutableSet&lt;String&gt; excludes; // No warning
- *   public final java.lang.String notes; // No warning
- *   public final BigDecimal value; // No warning
- *
- *   public ImmutableClass(Collection&lt;String&gt; includes, Collection&lt;String&gt; excludes,
- *                BigDecimal value, String notes)
- *   {
- *     this.includes = ImmutableSet.copyOf(includes);
- *     this.excludes = ImmutableSet.copyOf(excludes);
- *     this.value = value;
- *     this.notes = notes;
- *   }
+ * public final java.lang.String notes; // Ok, from immutable class canonical names
+ * public final BigDecimal value; // Ok, from immutable class canonical names
+ * }
+ * public final class MutableClass
+ * {
+ * public final Set&lt;String&gt; mySet = new HashSet&lt;&gt;(); // Violation, HashSet is mutable
  * }
  * </pre>
  * <p>
@@ -212,23 +252,14 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * Example of allowed public immutable fields:
  * </p>
  * <pre>
- * public class ImmutableClass
+ * public final class ImmutableClass
  * {
- *   public final ImmutableSet&lt;String&gt; includes; // No warning
- *   public final ImmutableSet&lt;String&gt; excludes; // No warning
- *   public final java.lang.String notes; // Warning here because
- *                                        //'java.lang.String' wasn't specified as allowed class
- *   public final int someValue; // No warning
- *
- *   public ImmutableClass(Collection&lt;String&gt; includes, Collection&lt;String&gt; excludes,
- *                String notes, int someValue)
- *   {
- *     this.includes = ImmutableSet.copyOf(includes);
- *     this.excludes = ImmutableSet.copyOf(excludes);
- *     this.value = value;
- *     this.notes = notes;
- *     this.someValue = someValue;
- *   }
+ * public final int someValue; // Ok, immutable
+ * }
+ * public final class MutableClass
+ * {
+ * public final java.lang.String notes; // Violation, 'java lang String' not a allowed class
+ * public final BigDecimal value; // Violation, Big Decimal was not specified as allowed class
  * }
  * </pre>
  * <p>
@@ -248,18 +279,15 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * Example of how the check works:
  * </p>
  * <pre>
- * public final class Test {
- *   public final String s;
- *   public final ImmutableSet&lt;String&gt; names;
- *   public final ImmutableSet&lt;Object&gt; objects; // violation (Object class is mutable)
- *   public final ImmutableMap&lt;String, Object&gt; links; // violation (Object class is mutable)
- *
- *   public Test() {
- *     s = "Hello!";
- *     names = ImmutableSet.of();
- *     objects = ImmutableSet.of();
- *     links = ImmutableMap.of();
- *   }
+ * public final class ImmutableClass
+ * {
+ * public final String MyString; // Ok, immutable
+ * public final ImmutableSet&lt;String&gt; immutables; // Ok, immutable
+ * }
+ * public final class MutableClass
+ * {
+ * public final ImmutableSet&lt;Object&gt; objects1; // violation, Object class is mutable
+ * public final ImmutableMap&lt;String, Object&gt; objects2; // violation, Object class is mutable
  * }
  * </pre>
  * <p>
@@ -275,12 +303,12 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * Example of allowed field:
  * </p>
  * <pre>
- * class SomeClass
+ * class MyClass
  * {
  *   &#64;com.annotation.CustomAnnotation
- *   String annotatedString; // no warning
+ *   String annotatedString; // Ok, annotated
  *   &#64;CustomAnnotation
- *   String shortCustomAnnotated; // no warning
+ *   String shortCustomAnnotated; // Ok, annotated
  * }
  * </pre>
  * <p>
@@ -294,14 +322,14 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * Example of allowed fields:
  * </p>
  * <pre>
- * class SomeClass
+ * class MyClass
  * {
  *   &#64;org.junit.Rule
- *   public TemporaryFolder publicJUnitRule = new TemporaryFolder(); // no warning
+ *   public TemporaryFolder publicJUnitRule = new TemporaryFolder(); // Ok, annotated
  *   &#64;org.junit.ClassRule
- *   public static TemporaryFolder publicJUnitClassRule = new TemporaryFolder(); // no warning
+ *   public static TemporaryFolder publicJUnitClassRule = new TemporaryFolder(); // Ok, annotated
  *   &#64;com.google.common.annotations.VisibleForTesting
- *   public String testString = ""; // no warning
+ *   public String testString = ""; // Ok, annotated
  * }
  * </pre>
  * <p>
@@ -374,11 +402,11 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * </p>
  * <pre>
  * public class InputPublicImmutable {
- *   public final int someIntValue;
- *   public final ImmutableSet&lt;String&gt; includes;
- *   public final java.lang.String notes;
- *   public final BigDecimal value;
- *   public final List list;
+ *   public final int someIntValue; // Ok
+ *   public final ImmutableSet&lt;String&gt; includes; // Ok
+ *   public final java.lang.String notes; // Ok
+ *   public final BigDecimal value; // Ok
+ *   public final List list; // Ok
  *
  *   public InputPublicImmutable(Collection&lt;String&gt; includes,
  *         BigDecimal value, String notes, int someValue, List l) {
