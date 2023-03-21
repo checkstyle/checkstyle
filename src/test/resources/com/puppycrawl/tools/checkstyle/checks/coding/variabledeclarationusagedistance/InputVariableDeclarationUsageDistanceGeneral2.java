@@ -10,6 +10,10 @@ ignoreFinal = false
 
 package com.puppycrawl.tools.checkstyle.checks.coding.variabledeclarationusagedistance;
 
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.InputStream;
+import java.nio.file.Files;
 import java.util.*;
 
 public class InputVariableDeclarationUsageDistanceGeneral2 {
@@ -54,13 +58,38 @@ public class InputVariableDeclarationUsageDistanceGeneral2 {
         }
     }
 
-    void method() throws Exception {
-        // Until https://github.com/checkstyle/checkstyle/issues/11968
-        String a = ""; // violation 'Distance between .* declaration and its first usage is 2.'
-        try (AutoCloseable i = new java.io.StringReader(a)) {
+    public class MyResource implements AutoCloseable {
+        public void close() throws Exception {
+            System.out.println("Closing!");
         }
-        finally {
-            a.equals("");
+    }
+
+    void method() throws Exception {
+        byte[] buf=new byte[10]; // violation 'Distance .* is 3.'
+
+        File b = new File("");
+        try(MyResource myResource= new MyResource();
+            InputStream finstr = Files.newInputStream(b.toPath());
+            BufferedInputStream in = new BufferedInputStream(finstr,buf.length)){
+            int length;
+            while((length=in.read(buf))!=-1){
+                System.out.println(buf.toString());
+            }
+        }
+    }
+
+    void methodTry() {
+        File a = new File(""); // violation 'Distance .* is 2.'
+        p();
+        p();
+        String b = "abc";
+        try (MyResource myResource= new MyResource();) {
+            String c = b.toString();
+        }
+        catch (Exception e) {
+            throw new RuntimeException(e);
+        }finally {
+            File d = a;
         }
     }
 }
