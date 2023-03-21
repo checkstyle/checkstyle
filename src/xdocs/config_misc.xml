@@ -2350,6 +2350,30 @@ messages.properties: Key 'ok' missing.
 &lt;/module&gt;
         </source>
         <p>
+          Example:
+        </p>
+        <source>
+#messages.properties
+message_error=Error
+message_warning=Warning
+message_info=Info
+
+#messages.translations
+message.error=An error has occurred in translation
+message.warning=A warning has occurred in translation
+        </source>
+        <source>
+# Ok
+messages.properties
+messages.translations
+
+# Violation: extension without translations
+messages.properties
+
+# Violation: extension without properties
+messages.translations
+        </source>
+        <p>
           Note, that files with the same path and base name but which have different
           extensions will be considered as files that belong to different resource bundles.
         </p>
@@ -2362,7 +2386,27 @@ messages.properties: Key 'ok' missing.
   &lt;property name=&quot;baseName&quot; value=&quot;^ButtonLabels.*$&quot;/&gt;
 &lt;/module&gt;
         </source>
+        <p>
+          Example:
+        </p>
+        <source>
+#ButtonLabels.properties
+button_fr.ok=OK
+button_ja.cancel=Cancel
 
+#ButtonLabels.translations
+button.ok=OK in translation
+button.cancel=Cancel in translation
+        </source>
+        <source>
+# Ok
+ButtonLabels.properties
+ButtonLabels.translations
+
+# Violation: base name does not start with "ButtonLabels"
+messages.properties
+messages.translations
+        </source>
         <p>
           To configure the check to check existence of Japanese and French translations:
         </p>
@@ -2370,6 +2414,27 @@ messages.properties: Key 'ok' missing.
 &lt;module name=&quot;Translation&quot;&gt;
   &lt;property name=&quot;requiredTranslations&quot; value=&quot;ja, fr&quot;/&gt;
 &lt;/module&gt;
+        </source>
+        <p>
+          Example:
+        </p>
+        <source>
+#messages_ja.properties
+message_error_ja=エラーが発生しました
+message_warning_ja=警告が発生しました
+
+#messages_fr.properties
+message_error_fr=Une erreur s'est produite
+message_warning_fr=Attention
+message_info_fr=Information
+        </source>
+        <source>
+# Ok
+messages_ja.properties
+messages_fr.translations
+
+# Violation: missing translations for ja, fr
+messages.properties
         </source>
         <p>
           The following example shows how the check works if there is a message bundle which
@@ -2382,19 +2447,33 @@ messages.properties: Key 'ok' missing.
 &lt;/module&gt;
         </source>
         <p>
-          As we can see from the configuration, the TranslationCheck was configured to check
-          an existence of 'es', 'fr' and 'de' translations. Let's assume that we have the resource
-          bundle:
+          Example:
         </p>
         <source>
-messages_home.properties
-messages_home_es_US.properties
-messages_home_fr_CA_UNIX.properties
+#messages_es.properties
+message_error_es=Ha ocurrido un error
+message_warning_es=Advertencia
+message_info_es=Información
+
+#messages_fr.properties
+message_error_fr=Une erreur s'est produite
+message_warning_fr=Attention
+message_info_fr=Information
+
+#messages_de.properties
+message_error_de=Es ist ein Fehler aufgetreten
+message_warning_de=Warnung
+message_info_de=Information
         </source>
-        <p>
-          Than the check will rise the following violation:
-          "0: Properties file 'messages_home_de.properties' is missing."
-        </p>
+        <source>
+# Ok
+messages_es.properties
+messages_fr.properties
+messages_de.properties
+
+# Violation: missing translation for es, fr and de
+messages.properties
+        </source>
       </subsection>
 
       <subsection name="Example of Usage" id="Translation_Example_of_Usage">

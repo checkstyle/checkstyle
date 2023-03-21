@@ -137,6 +137,30 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * &lt;/module&gt;
  * </pre>
  * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * #messages.properties
+ * message_error=Error
+ * message_warning=Warning
+ * message_info=Info
+ *
+ * #messages.translations
+ * message.error=An error has occurred in translation
+ * message.warning=A warning has occurred in translation
+ * </pre>
+ * <pre>
+ * # Ok
+ * messages.properties
+ * messages.translations
+ *
+ * # Violation: extension without translations
+ * messages.properties
+ *
+ * # Violation: extension without properties
+ * messages.translations
+ * </pre>
+ * <p>
  * Note, that files with the same path and base name but which have different
  * extensions will be considered as files that belong to different resource bundles.
  * </p>
@@ -150,12 +174,54 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * &lt;/module&gt;
  * </pre>
  * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * #ButtonLabels.properties
+ * button_fr.ok=OK
+ * button_ja.cancel=Cancel
+ *
+ * #ButtonLabels.translations
+ * button.ok=OK in translation
+ * button.cancel=Cancel in translation
+ * </pre>
+ * <pre>
+ * # Ok
+ * ButtonLabels.properties
+ * ButtonLabels.translations
+ *
+ * # Violation: base name does not start with "ButtonLabels"
+ * messages.properties
+ * messages.translations
+ * </pre>
+ * <p>
  * To configure the check to check existence of Japanese and French translations:
  * </p>
  * <pre>
  * &lt;module name="Translation"&gt;
  *   &lt;property name="requiredTranslations" value="ja, fr"/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * #messages_ja.properties
+ * message_error_ja=エラーが発生しました
+ * message_warning_ja=警告が発生しました
+ *
+ * #messages_fr.properties
+ * message_error_fr=Une erreur s'est produite
+ * message_warning_fr=Attention
+ * message_info_fr=Information
+ * </pre>
+ * <pre>
+ * # Ok
+ * messages_ja.properties
+ * messages_fr.translations
+ *
+ * # Violation: missing translations for ja, fr
+ * messages.properties
  * </pre>
  * <p>
  * The following example shows how the check works if there is a message bundle
@@ -168,19 +234,33 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * &lt;/module&gt;
  * </pre>
  * <p>
- * As we can see from the configuration, the TranslationCheck was configured
- * to check an existence of 'es', 'fr' and 'de' translations. Let's assume that
- * we have the resource bundle:
+ * Example:
  * </p>
  * <pre>
- * messages_home.properties
- * messages_home_es_US.properties
- * messages_home_fr_CA_UNIX.properties
+ * #messages_es.properties
+ * message_error_es=Ha ocurrido un error
+ * message_warning_es=Advertencia
+ * message_info_es=Información
+ *
+ * #messages_fr.properties
+ * message_error_fr=Une erreur s'est produite
+ * message_warning_fr=Attention
+ * message_info_fr=Information
+ *
+ * #messages_de.properties
+ * message_error_de=Es ist ein Fehler aufgetreten
+ * message_warning_de=Warnung
+ * message_info_de=Information
  * </pre>
- * <p>
- * Than the check will rise the following violation: "0: Properties file
- * 'messages_home_de.properties' is missing."
- * </p>
+ * <pre>
+ * # Ok
+ * messages_es.properties
+ * messages_fr.properties
+ * messages_de.properties
+ *
+ * # Violation: missing translation for es, fr and de
+ * messages.properties
+ * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.Checker}
  * </p>
