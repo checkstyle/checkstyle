@@ -23,6 +23,7 @@ import static com.google.common.truth.Truth.assertWithMessage;
 
 import java.util.regex.Pattern;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.filefilters.BeforeExecutionExclusionFileFilter;
@@ -98,6 +99,17 @@ public class BeforeExecutionFileFilterSetTest {
         assertWithMessage("Invalid filter set size")
                 .that(filterSet.getBeforeExecutionFileFilters())
                 .isEmpty();
+    }
+
+    /*
+      Due to low level configuration setup of BeforeExecutionFileFilterSet, conventional
+      input validation cannot be done here hence, pure JUnit testing has been
+      done for the time being
+    */
+    @Test
+    public void testEmptyToString() {
+        final BeforeExecutionFileFilterSet filterSet = new BeforeExecutionFileFilterSet();
+        Assertions.assertNotEquals(filterSet.toString(), "");
     }
 
 }
