@@ -21,6 +21,7 @@ adf
 adoptium
 adoptopenjdk
 adr
+Advertencia
 AFilter
 aggregators
 Agoogle
@@ -75,6 +76,7 @@ atlassian
 atn
 attlist
 attr
+aufgetreten
 autoboxing
 autobuild
 autocomplete
@@ -361,6 +363,7 @@ edb
 edef
 edu
 Eghj
+ein
 ej
 ejb
 elasticsearch
@@ -387,6 +390,7 @@ equalsavoidnull
 equalshashcode
 equalsverifier
 erial
+erreur
 ERRORLEVEL
 errorprone
 esac
@@ -419,6 +423,7 @@ FDCF
 Fdesign
 FDF
 FEF
+Fehler
 fenum
 ffd
 fff
@@ -586,6 +591,7 @@ Incompatabilities
 indentcontinuationlines
 Inet
 infinispan
+Informaci
 initializedfields
 Inlined
 innerassignment
@@ -952,6 +958,7 @@ OAuth
 objblock
 oburn
 OCP
+ocurrido
 ogg
 OI
 olddomain
@@ -1060,6 +1067,7 @@ println
 PRINTSTACKTRACE
 priva
 PRMC
+produite
 programpractice
 Proguard
 propertycachefile
@@ -1399,6 +1407,7 @@ Vuillamy
 Wadl
 Wakelock
 Warni
+Warnung
 wbr
 Weakento
 Webflow
