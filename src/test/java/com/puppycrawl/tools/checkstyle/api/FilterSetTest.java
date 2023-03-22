@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.api;
 
 import static com.google.common.truth.Truth.assertWithMessage;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.Objects;
 
@@ -100,6 +101,20 @@ public class FilterSetTest {
         assertWithMessage("invalid accept response")
                 .that(filterSet.accept(null))
                 .isFalse();
+    }
+
+    /*
+      Due to low level configuration setup of FilterSet, conventional
+      input validation cannot be done here hence, pure JUnit testing has been
+      done for the time being
+    */
+    @Test
+    public void testUnmodifiableSet() {
+        final FilterSet filterSet = new FilterSet();
+        final Filter filter = new FilterSet();
+        filterSet.addFilter(filter);
+        assertThrows(UnsupportedOperationException.class,
+            () -> filterSet.getFilters().add(filter));
     }
 
     private static final class DummyFilter implements Filter {
