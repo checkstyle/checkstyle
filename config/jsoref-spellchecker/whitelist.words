@@ -259,8 +259,8 @@ cpp
 crlf
 cron
 crossplatform
-CSOFF
-CSON
+csoff
+cson
 css
 cstyle
 csv
