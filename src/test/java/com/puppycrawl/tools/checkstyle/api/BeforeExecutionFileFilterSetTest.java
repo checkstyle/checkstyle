@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.api;
 
 import static com.google.common.truth.Truth.assertWithMessage;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.regex.Pattern;
 
@@ -98,6 +99,18 @@ public class BeforeExecutionFileFilterSetTest {
         assertWithMessage("Invalid filter set size")
                 .that(filterSet.getBeforeExecutionFileFilters())
                 .isEmpty();
+    }
+
+    // Due to low level configuration setup of BeforeExecutionFileFilterSet, conventional
+    // input validation cannot be done here hence, pure JUnit testing has been
+    // done for the time being
+    @Test
+    public void testUnmodifiableSet() {
+        final BeforeExecutionFileFilterSet filterSet = new BeforeExecutionFileFilterSet();
+        final BeforeExecutionFileFilter filter = new BeforeExecutionExclusionFileFilter();
+        filterSet.addBeforeExecutionFileFilter(filter);
+        assertThrows(UnsupportedOperationException.class,
+            () -> filterSet.getBeforeExecutionFileFilters().add(filter));
     }
 
 }
