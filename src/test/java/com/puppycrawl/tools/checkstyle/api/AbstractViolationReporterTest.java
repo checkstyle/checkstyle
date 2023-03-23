@@ -23,6 +23,7 @@ import static com.google.common.truth.Truth.assertWithMessage;
 
 import java.util.SortedSet;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
@@ -131,6 +132,18 @@ public class AbstractViolationReporterTest {
                     .that(ex.getMessage())
                     .isEqualTo("Unmatched braces in the pattern.");
         }
+    }
+
+    /*
+      Due to low level configuration setup of AbstractViolationReporter, conventional
+      input validation cannot be done here hence, pure JUnit testing has been
+      done for the time being
+    */
+    @Test
+    public void testSetSeverity() {
+        final EmptyCheck obj = new EmptyCheck();
+        obj.setSeverity("ignore");
+        Assertions.assertEquals(obj.getSeverityLevel(), SeverityLevel.IGNORE);
     }
 
     public static class EmptyCheck extends AbstractCheck {
