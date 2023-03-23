@@ -524,17 +524,22 @@ public class MagicNumberCheck extends AbstractCheck {
      * @return {@code true} if {@code ast} is in the scope of field declaration
      */
     private static boolean isFieldDeclaration(DetailAST ast) {
-        DetailAST varDefAST = ast;
-        while (varDefAST != null
-                && varDefAST.getType() != TokenTypes.VARIABLE_DEF) {
-            varDefAST = varDefAST.getParent();
+        DetailAST varDefAST = null;
+        DetailAST node = ast;
+        while (node.getType() != TokenTypes.OBJBLOCK) {
+            if (node.getType() == TokenTypes.VARIABLE_DEF) {
+                varDefAST = node;
+                break;
+            }
+            node = node.getParent();
         }
 
         // contains variable declaration
         // and it is directly inside class or record declaration
         return varDefAST != null
                 && (varDefAST.getParent().getParent().getType() == TokenTypes.CLASS_DEF
-                || varDefAST.getParent().getParent().getType() == TokenTypes.RECORD_DEF);
+                || varDefAST.getParent().getParent().getType() == TokenTypes.RECORD_DEF
+                || varDefAST.getParent().getParent().getType() == TokenTypes.LITERAL_NEW);
     }
 
     /**
