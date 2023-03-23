@@ -117,6 +117,18 @@ public class FilterSetTest {
             () -> filterSet.getFilters().add(filter));
     }
 
+    /*
+      Input based test does not call toString, but this method might
+      be useful for third party integrations
+    */
+    @Test
+    public void testEmptyToString() {
+        final FilterSet filterSet = new FilterSet();
+        assertWithMessage("toString() result shouldn't be an empty string")
+                .that(filterSet.toString())
+                .isNotEmpty();
+    }
+
     private static final class DummyFilter implements Filter {
 
         private final boolean acceptValue;
