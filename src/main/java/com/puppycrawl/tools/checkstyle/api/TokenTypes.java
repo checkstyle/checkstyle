@@ -312,7 +312,7 @@ public final class TokenTypes {
      *
      * <p>For example:</p>
      * <pre>
-     * final int PI = 3.14;
+     * final double PI = 3.14;
      * </pre>
      * <p>parses as:</p>
      * <pre>
