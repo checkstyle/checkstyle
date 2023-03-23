@@ -24,6 +24,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.regex.Pattern;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.filefilters.BeforeExecutionExclusionFileFilter;
@@ -107,12 +108,18 @@ public class BeforeExecutionFileFilterSetTest {
       done for the time being
     */
     @Test
+<<<<<<< Updated upstream
     public void testUnmodifiableSet() {
         final BeforeExecutionFileFilterSet filterSet = new BeforeExecutionFileFilterSet();
         final BeforeExecutionFileFilter filter = new BeforeExecutionExclusionFileFilter();
         filterSet.addBeforeExecutionFileFilter(filter);
         assertThrows(UnsupportedOperationException.class,
             () -> filterSet.getBeforeExecutionFileFilters().add(filter));
+=======
+    public void testEmptyToString() {
+        final BeforeExecutionFileFilterSet filterSet = new BeforeExecutionFileFilterSet();
+        Assertions.assertNotEquals(filterSet.toString(), "");
+>>>>>>> Stashed changes
     }
 
 }
