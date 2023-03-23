@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.api;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import java.util.Set;
 import java.util.regex.Pattern;
 
 import org.junit.jupiter.api.Test;
@@ -111,8 +112,10 @@ public class BeforeExecutionFileFilterSetTest {
         final BeforeExecutionFileFilterSet filterSet = new BeforeExecutionFileFilterSet();
         final BeforeExecutionFileFilter filter = new BeforeExecutionExclusionFileFilter();
         filterSet.addBeforeExecutionFileFilter(filter);
+        final Set<BeforeExecutionFileFilter> excFilterSet =
+            filterSet.getBeforeExecutionFileFilters();
         assertThrows(UnsupportedOperationException.class,
-            () -> filterSet.getBeforeExecutionFileFilters().add(filter));
+            () -> excFilterSet.add(filter));
     }
 
 }
