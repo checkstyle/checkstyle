@@ -708,6 +708,31 @@ return '&#92;ufeff' + content;           // OK, non-printable escape character.
   &lt;property name="minimumNumber" value="1"/&gt;
 &lt;/module&gt;
         </source>
+        <p>
+          Example:
+        </p>
+        <source>
+public class Test {
+  public static void main(String[] args) {
+    int x = 1;
+    switch (x) { // OK
+      case 1:
+        System.out.println("hi");
+        break;
+      default:
+        System.out.println("Default");
+        break;
+    }
+
+    int y = 1;
+    switch (y) { // Violation
+      case 1:
+        System.out.println("hi");
+        break;
+    }
+  }
+}
+        </source>
 
         <p>
           To configure the check to produce a violation on a
@@ -719,6 +744,22 @@ return '&#92;ufeff' + content;           // OK, non-printable escape character.
   &lt;property name="limitedTokens" value="EXPR"/&gt;
   &lt;property name="minimumNumber" value="1"/&gt;
 &lt;/module&gt;
+        </source>
+        <p>
+          Example:
+        </p>
+        <source>
+public class Test {
+  public static void main(String[] args) {
+    for (int i = 0; i != 10; i++) { // OK
+      System.out.println(i);
+    }
+    int k = 0;
+    for (; ; ) { // Violation
+      System.out.println(k);
+    }
+  }
+}
         </source>
 
         <p>
@@ -735,6 +776,29 @@ return '&#92;ufeff' + content;           // OK, non-printable escape character.
   &lt;property name="sumTokenCounts" value="true"/&gt;
 &lt;/module&gt;
         </source>
+        <p>
+          Example:
+        </p>
+        <source>
+public class Test {
+  public void foo() {
+    if (this == null) { // Violation
+      System.out.println("xyz");
+    }
+    if (this != null) { // Violation
+      System.out.println("xyz");
+    }
+
+    Object obj = new Object();
+    if (obj == null) { // OK
+      System.out.println("xyz");
+    }
+    if (obj != null) { // OK
+      System.out.println("xyz");
+    }
+  }
+}
+        </source>
 
         <p>
           To configure the check to produce a violation on a <code>String</code>
@@ -748,10 +812,26 @@ return '&#92;ufeff' + content;           // OK, non-printable escape character.
   &lt;property name="maximumDepth" value="1"/&gt;
 &lt;/module&gt;
         </source>
+        <p>
+          Example:
+        </p>
+        <source>
+public class Test {
+  public void foo() {
+    String str = "abc";
+    if (str.equals("abc")) { // Ok
+      System.out.println("equal.");
+    }
+    if (str == "abc") { // Violation
+      System.out.println("equal.");
+    }
+  }
+}
+        </source>
 
         <p>
           To configure the check to produce a violation on an assert statement
-          that may have side effects (formatted for browser display):
+          that may have side effects:
         </p>
         <source>
 &lt;module name="DescendantToken"&gt;
@@ -762,6 +842,19 @@ return '&#92;ufeff' + content;           // OK, non-printable escape character.
     METHOD_CALL"/&gt;
   &lt;property name="maximumNumber" value="0"/&gt;
 &lt;/module&gt;
+        </source>
+        <p>
+          Example:
+        </p>
+        <source>
+public class Test {
+  public void foo() {
+    int a = 5;
+    assert a++ == 0 : "is not"; // Violation
+    System.out.println(a);
+    assert a == 0 : "is not"; // OK
+  }
+}
         </source>
 
         <p>
@@ -776,6 +869,26 @@ return '&#92;ufeff' + content;           // OK, non-printable escape character.
   &lt;property name="minimumNumber" value="1"/&gt;
 &lt;/module&gt;
         </source>
+        <p>
+          Example:
+        </p>
+        <source>
+public class Test {
+  public void foo() {
+    int[] array = new int[] {1, 2, 3, 4, 5};
+
+    for (int i = 0; i != array.length; i++) { // OK
+      System.out.println(i);
+    }
+
+    int j = 0;
+    for (; j != array.length;) { // Violation
+      System.out.println(j);
+      j++;
+    }
+  }
+}
+        </source>
 
         <p>
           To configure the check to produce a violation on a switch that is
@@ -789,6 +902,31 @@ return '&#92;ufeff' + content;           // OK, non-printable escape character.
   &lt;property name="minimumDepth" value="1"/&gt;
 &lt;/module&gt;
         </source>
+        <p>
+          Example:
+        </p>
+        <source>
+public class Test {
+  public void foo() {
+    int x = 1;
+    int y = 2;
+    switch (x) { // OK
+      case 1:
+        System.out.println("xyz");
+        break;
+    }
+    switch (y) { // OK
+      case 1:
+        switch (y) { // Violation
+          case 2:
+            System.out.println("xyz");
+            break;
+        }
+        break;
+    }
+  }
+}
+        </source>
 
         <p>
           To configure the check to produce a violation on a return statement
@@ -800,6 +938,23 @@ return '&#92;ufeff' + content;           // OK, non-printable escape character.
   &lt;property name="limitedTokens" value="LITERAL_RETURN"/&gt;
   &lt;property name="maximumNumber" value="0"/&gt;
 &lt;/module&gt;
+        </source>
+        <p>
+          Example:
+        </p>
+        <source>
+public class Test {
+  public void foo() {
+    try {
+      // Some code
+    } catch (Exception e) {
+        System.out.println("xyz");
+        return; // Violation
+    } finally {
+        System.out.println("xyz");
+    }
+  }
+}
         </source>
 
         <p>
@@ -813,6 +968,38 @@ return '&#92;ufeff' + content;           // OK, non-printable escape character.
   &lt;property name="maximumNumber" value="0"/&gt;
 &lt;/module&gt;
         </source>
+        <p>
+          Example:
+        </p>
+        <source>
+public class Test {
+  public void foo() {
+    try {
+        // Some code
+    } catch (Exception e) { // OK
+        System.out.println("xyz");
+        return;
+    } finally { // OK
+        System.out.println("xyz");
+    }
+    try {
+        // Some code
+    } catch (Exception e) {
+        try { // Violation
+          // Some code
+      } catch (Exception ex) {
+          // handle exception
+      }
+    } finally {
+        try { // Violation
+          // Some code
+      } catch (Exception e) {
+          // handle exception
+      }
+    }
+  }
+}
+        </source>
 
         <p>To configure the check to produce a violation on a switch with too many cases:</p>
         <source>
@@ -820,8 +1007,38 @@ return '&#92;ufeff' + content;           // OK, non-printable escape character.
   &lt;property name="tokens" value="LITERAL_SWITCH"/&gt;
   &lt;property name="limitedTokens" value="LITERAL_CASE"/&gt;
   &lt;property name="maximumDepth" value="2"/&gt;
-  &lt;property name="maximumNumber" value="10"/&gt;
+  &lt;property name="maximumNumber" value="2"/&gt;
 &lt;/module&gt;
+        </source>
+        <p>
+          Example:
+        </p>
+        <source>
+public class Test {
+  public void foo() {
+    int x = 1;
+    switch (x) { // OK
+      case 1:
+        // Some code
+        break;
+      default:
+        // Some code
+        break;
+    }
+
+    switch (x) { // Violation
+      case 1:
+        // Some code
+        break;
+      case 2:
+        // Some code
+        break;
+      default:
+        // Some code
+        break;
+    }
+  }
+}
         </source>
 
         <p>
@@ -833,8 +1050,22 @@ return '&#92;ufeff' + content;           // OK, non-printable escape character.
   &lt;property name="tokens" value="METHOD_DEF"/&gt;
   &lt;property name="limitedTokens" value="VARIABLE_DEF"/&gt;
   &lt;property name="maximumDepth" value="2"/&gt;
-  &lt;property name="maximumNumber" value="10"/&gt;
+  &lt;property name="maximumNumber" value="1"/&gt;
 &lt;/module&gt;
+        </source>
+        <p>
+          Example:
+        </p>
+        <source>
+public class Test {
+  public void foo() { // OK
+    int var1 = 1;
+  }
+  public void boo() { // Violation
+    int var1 = 1;
+    int var2 = 2;
+  }
+}
         </source>
 
         <p>
@@ -845,8 +1076,31 @@ return '&#92;ufeff' + content;           // OK, non-printable escape character.
 &lt;module name="DescendantToken"&gt;
   &lt;property name="tokens" value="METHOD_DEF"/&gt;
   &lt;property name="limitedTokens" value="LITERAL_RETURN"/&gt;
-  &lt;property name="maximumNumber" value="3"/&gt;
+  &lt;property name="maximumNumber" value="2"/&gt;
 &lt;/module&gt;
+        </source>
+        <p>
+          Example:
+        </p>
+        <source>
+public class Test {
+  public int foo(int x) { // OK
+    if (x == -1) {
+        return -1;
+    } else if (x == 0) {
+        return 0;
+    }
+  }
+  public int boo(int x) { // Violation
+    if (x == -1) {
+        return -1;
+    } else if (x == 0) {
+        return 0;
+    } else {
+        return x;
+    }
+  }
+}
         </source>
 
         <p>
@@ -858,8 +1112,20 @@ return '&#92;ufeff' + content;           // OK, non-printable escape character.
   &lt;property name="tokens" value="INTERFACE_DEF"/&gt;
   &lt;property name="limitedTokens" value="VARIABLE_DEF"/&gt;
   &lt;property name="maximumDepth" value="2"/&gt;
-  &lt;property name="maximumNumber" value="0"/&gt;
+  &lt;property name="maximumNumber" value="1"/&gt;
 &lt;/module&gt;
+        </source>
+        <p>
+          Example:
+        </p>
+        <source>
+public interface Foo { // OK
+  int FIELD_1 = 1;
+}
+public interface Boo { // Violation
+  int FIELD_1 = 1;
+  int FIELD_2 = 2;
+}
         </source>
 
         <p>
@@ -873,6 +1139,21 @@ return '&#92;ufeff' + content;           // OK, non-printable escape character.
   &lt;property name="maximumNumber" value="1"/&gt;
 &lt;/module&gt;
         </source>
+        <p>
+          Example:
+        </p>
+        <source>
+public class Foo {
+  public void foo() throws Exception { // OK
+      // ...
+  }
+}
+public class Boo {
+  public void boo() throws Exception1, Exception2 { // Violation
+      // ...
+  }
+}
+        </source>
 
         <p>
           To configure the check to produce a violation on a method
@@ -882,8 +1163,26 @@ return '&#92;ufeff' + content;           // OK, non-printable escape character.
 &lt;module name="DescendantToken"&gt;
   &lt;property name="tokens" value="METHOD_DEF"/&gt;
   &lt;property name="limitedTokens" value="EXPR"/&gt;
-  &lt;property name="maximumNumber" value="200"/&gt;
+  &lt;property name="maximumNumber" value="2"/&gt;
 &lt;/module&gt;
+        </source>
+        <p>
+          Example:
+        </p>
+        <source>
+public class Foo {
+  public void foo() { // OK
+      int x = 1;
+      int z = x + 2;
+  }
+}
+public class Boo {
+  public void boo() { // Violation
+      int x = 1;
+      int y = 2;
+      int z = x + y;
+  }
+}
         </source>
 
         <p>
@@ -899,6 +1198,19 @@ return '&#92;ufeff' + content;           // OK, non-printable escape character.
     value="Empty statement is not allowed."/&gt;
 &lt;/module&gt;
         </source>
+        <p>
+          Example:
+        </p>
+        <source>
+public class Test {
+  public void foo() { // OK
+      System.out.println("Hello");
+  }
+  public void boo() {
+      ; // Violation
+  }
+}
+        </source>
 
         <p>
           To configure the check to produce a violation on a class
@@ -909,8 +1221,24 @@ return '&#92;ufeff' + content;           // OK, non-printable escape character.
   &lt;property name="tokens" value="CLASS_DEF"/&gt;
   &lt;property name="limitedTokens" value="VARIABLE_DEF"/&gt;
   &lt;property name="maximumDepth" value="2"/&gt;
-  &lt;property name="maximumNumber" value="10"/&gt;
+  &lt;property name="maximumNumber" value="1"/&gt;
 &lt;/module&gt;
+        </source>
+        <p>
+          Example:
+        </p>
+        <source>
+public class Foo { // OK
+  private int field1;
+
+  // Some code
+}
+public class Boo { // Violation
+  private int field1;
+  private int field2;
+
+  // Some code
+}
         </source>
       </subsection>
 
