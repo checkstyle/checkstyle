@@ -100,15 +100,6 @@
   </mutation>
 
   <mutation unstable="false">
-    <sourceFile>FilterSet.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.api.FilterSet</mutatedClass>
-    <mutatedMethod>toString</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.returns.EmptyObjectReturnValsMutator</mutator>
-    <description>replaced return value with &quot;&quot; for com/puppycrawl/tools/checkstyle/api/FilterSet::toString</description>
-    <lineContent>return filters.toString();</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
     <sourceFile>FullIdent.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.api.FullIdent</mutatedClass>
     <mutatedMethod>createFullIdentBelow</mutatedMethod>
