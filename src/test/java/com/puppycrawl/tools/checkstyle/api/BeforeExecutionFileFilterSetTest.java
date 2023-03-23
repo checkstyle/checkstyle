@@ -115,4 +115,16 @@ public class BeforeExecutionFileFilterSetTest {
             () -> filterSet.getBeforeExecutionFileFilters().add(filter));
     }
 
+    /*
+      Input based test does not call toString, but this method might be
+      useful for third party integrations.
+    */
+    @Test
+    public void testEmptyToString() {
+        final BeforeExecutionFileFilterSet filterSet = new BeforeExecutionFileFilterSet();
+        assertWithMessage("toString() result shouldn't be an empty string")
+                .that(filterSet.toString())
+                .isNotEmpty();
+    }
+
 }
