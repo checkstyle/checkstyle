@@ -26,6 +26,7 @@ import java.util.Objects;
 
 import org.junit.jupiter.api.Test;
 
+import com.google.common.truth.Truth;
 import com.puppycrawl.tools.checkstyle.filters.SeverityMatchFilter;
 
 public class FilterSetTest {
@@ -115,6 +116,16 @@ public class FilterSetTest {
         filterSet.addFilter(filter);
         assertThrows(UnsupportedOperationException.class,
             () -> filterSet.getFilters().add(filter));
+    }
+
+    /*
+      This comment is not related to this code. Input based test does not call
+      toString, but this method might be useful for third party integrations
+    */
+    @Test
+    public void testEmptyToString() {
+        final FilterSet filterSet = new FilterSet();
+        Truth.assertThat(filterSet.toString()).isNotEmpty();
     }
 
     private static final class DummyFilter implements Filter {
