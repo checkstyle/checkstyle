@@ -13,7 +13,7 @@
 PROJECT_DIR=$PWD/
 INSPECTIONS_PATH=$PWD/config/intellij-idea-inspections.xml
 RESULTS_DIR=$PWD/target/inspection-results
-NOISE_LVL=v3
+NOISE_LVL=v1
 # we need to export this variable as it is required for idea.sh script
 export IDEA_PROPERTIES=$PWD/config/intellij-idea-inspections.properties
 
@@ -52,7 +52,9 @@ if [[ $PROBLEM_COUNT -gt 0 ]] && [[ "$CIRCLECI" == "true" ]]; then
     echo -e "\n\n\n\n"
     echo "ATTENTION GITHUB CONTRIBUTOR:"
     echo "There are inspection problems."
-    echo "Review results in 'ARTIFACTS' tab in the CircleCI UI above."
+    echo "Review results in 'ARTIFACTS' tab in the CircleCI UI above, or follow the link below:"
+    CIRCLECI_APP_URL="https://app.circleci.com/pipelines/github/checkstyle/checkstyle"
+    echo "$CIRCLECI_APP_URL/17861/workflows/$CIRCLE_WORKFLOW_ID/jobs/$CIRCLE_BUILD_NUM/artifacts"
     exit 1;
 elif [[ $PROBLEM_COUNT -gt 0 ]]; then
     echo "There are inspection problems. Review results at $RESULTS_DIR folder. Files:"
