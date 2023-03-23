@@ -10,15 +10,6 @@
   </mutation>
 
   <mutation unstable="false">
-    <sourceFile>BeforeExecutionFileFilterSet.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.api.BeforeExecutionFileFilterSet</mutatedClass>
-    <mutatedMethod>toString</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.returns.EmptyObjectReturnValsMutator</mutator>
-    <description>replaced return value with &quot;&quot; for com/puppycrawl/tools/checkstyle/api/BeforeExecutionFileFilterSet::toString</description>
-    <lineContent>return beforeExecutionFileFilters.toString();</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
     <sourceFile>FileContents.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.api.FileContents</mutatedClass>
     <mutatedMethod>getBlockComments</mutatedMethod>
