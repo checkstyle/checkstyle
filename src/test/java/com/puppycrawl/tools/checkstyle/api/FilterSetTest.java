@@ -23,6 +23,7 @@ import static com.google.common.truth.Truth.assertWithMessage;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.Objects;
+import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
@@ -113,8 +114,9 @@ public class FilterSetTest {
         final FilterSet filterSet = new FilterSet();
         final Filter filter = new FilterSet();
         filterSet.addFilter(filter);
+        final Set<Filter> subFilterSet = filterSet.getFilters();
         assertThrows(UnsupportedOperationException.class,
-            () -> filterSet.getFilters().add(filter));
+            () -> subFilterSet.add(filter));
     }
 
     private static final class DummyFilter implements Filter {
