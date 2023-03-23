@@ -708,6 +708,33 @@ return '&#92;ufeff' + content;           // OK, non-printable escape character.
   &lt;property name="minimumNumber" value="1"/&gt;
 &lt;/module&gt;
         </source>
+        <p>
+          Example:
+        </p>
+        <source>
+public class DescendantToken {
+  public static void main(String[] args) {
+      int x = 1;
+
+      switch (x) { // OK
+          case 1:
+              System.out.println("hi");
+              break;
+          default:
+              System.out.println("Default");
+              break;
+      }
+
+      int y = 1;
+
+      switch (y) { // Violation
+          case 1:
+              System.out.println("hi");
+              break;
+      }
+  }
+}
+        </source>
 
         <p>
           To configure the check to produce a violation on a
@@ -719,6 +746,22 @@ return '&#92;ufeff' + content;           // OK, non-printable escape character.
   &lt;property name="limitedTokens" value="EXPR"/&gt;
   &lt;property name="minimumNumber" value="1"/&gt;
 &lt;/module&gt;
+        </source>
+        <p>
+          Example:
+        </p>
+        <source>
+public class DescendantToken {
+  public static void main(String[] args) {
+      for (int i = 0; i != 10; i++) { // OK
+          System.out.println(i);
+      }
+      int k = 0;
+      for (; ; ) { // Violation
+          System.out.println(k);
+      }
+  }
+}
         </source>
 
         <p>
@@ -735,6 +778,31 @@ return '&#92;ufeff' + content;           // OK, non-printable escape character.
   &lt;property name="sumTokenCounts" value="true"/&gt;
 &lt;/module&gt;
         </source>
+        <p>
+          Example:
+        </p>
+        <source>
+public class DescendantToken {
+  public void exampleMethod() {
+      if (this == null) { // Violation
+          System.out.println("this is null");
+      }
+
+      if (this != null) { // Violation
+          System.out.println("this is not null");
+      }
+
+      Object obj = new Object();
+      if (obj == null) { // OK
+          System.out.println("obj is null");
+      }
+
+      if (obj != null) { // OK
+          System.out.println("obj is not null");
+      }
+  }
+}
+        </source>
 
         <p>
           To configure the check to produce a violation on a <code>String</code>
@@ -747,6 +815,22 @@ return '&#92;ufeff' + content;           // OK, non-printable escape character.
   &lt;property name="maximumNumber" value="0"/&gt;
   &lt;property name="maximumDepth" value="1"/&gt;
 &lt;/module&gt;
+        </source>
+        <p>
+          Example:
+        </p>
+        <source>
+public class DescendantToken {
+  public void exampleMethod() {
+      String str = "Hello, world!";
+      if (str.equals("Hello, world!")) { // Ok
+          System.out.println("Strings are equal.");
+      }
+      if (str == "Hello, world!") { // Violation
+          System.out.println("Strings are equal.");
+      }
+  }
+}
         </source>
 
         <p>
@@ -763,6 +847,19 @@ return '&#92;ufeff' + content;           // OK, non-printable escape character.
   &lt;property name="maximumNumber" value="0"/&gt;
 &lt;/module&gt;
         </source>
+        <p>
+          Example:
+        </p>
+        <source>
+public class DescendantToken {
+  public void exampleMethod() {
+      int a = 5;
+      assert a++ == 0 : "a is not positive"; // Violation
+      System.out.println(a);
+      assert a == 0 : "a is not positive"; // OK
+  }
+}
+        </source>
 
         <p>
           To configure the check to produce a violation on an initializer in
@@ -775,6 +872,26 @@ return '&#92;ufeff' + content;           // OK, non-printable escape character.
   &lt;property name="limitedTokens" value="EXPR"/&gt;
   &lt;property name="minimumNumber" value="1"/&gt;
 &lt;/module&gt;
+        </source>
+        <p>
+          Example:
+        </p>
+        <source>
+public class DescendantToken {
+  public void exampleMethod() {
+      int[] array = new int[] {1, 2, 3, 4, 5};
+
+      for (int i = 0; i != array.length; i++) { // OK
+          System.out.println(array[i]);
+      }
+
+      int j = 0;
+      for (; j != array.length;) { // Violation
+          System.out.println(array[j]);
+          j++;
+      }
+  }
+}
         </source>
 
         <p>
@@ -789,6 +906,34 @@ return '&#92;ufeff' + content;           // OK, non-printable escape character.
   &lt;property name="minimumDepth" value="1"/&gt;
 &lt;/module&gt;
         </source>
+        <p>
+          Example:
+        </p>
+        <source>
+public class DescendantToken {
+  public void exampleMethod() {
+      int x = 1;
+      int y = 2;
+      switch (x) { // OK
+          case 1:
+              System.out.println("Switch statement");
+              break;
+          default:
+              System.out.println("Default case");
+              break;
+      }
+      switch (y) { // OK
+          case 1:
+              switch (y) { // Violation
+                  case 2:
+                      System.out.println("Nested switch statement");
+                      break;
+              }
+              break;
+      }
+  }
+}
+        </source>
 
         <p>
           To configure the check to produce a violation on a return statement
@@ -800,6 +945,24 @@ return '&#92;ufeff' + content;           // OK, non-printable escape character.
   &lt;property name="limitedTokens" value="LITERAL_RETURN"/&gt;
   &lt;property name="maximumNumber" value="0"/&gt;
 &lt;/module&gt;
+        </source>
+        <p>
+          Example:
+        </p>
+        <source>
+public class DescendantToken {
+  public void exampleMethod() {
+      try {
+          // Some code
+      } catch (Exception e) {
+          System.out.println("Caught exception");
+          return; // Violation
+      } finally {
+          System.out.println("Finally block");
+          // OK
+      }
+  }
+}
         </source>
 
         <p>
@@ -813,6 +976,39 @@ return '&#92;ufeff' + content;           // OK, non-printable escape character.
   &lt;property name="maximumNumber" value="0"/&gt;
 &lt;/module&gt;
         </source>
+        <p>
+          Example:
+        </p>
+        <source>
+public class DescendantToken {
+  public void exampleMethod() {
+      try {
+          // Some code
+      } catch (Exception e) { // OK
+          System.out.println("Caught exception");
+          return;
+      } finally { // OK
+          System.out.println("Finally block");
+
+      }
+      try {
+          // Some code
+      } catch (Exception e) {
+          try { // Violation
+              // Some code
+          } catch (Exception ex) {
+              // handle exception
+          }
+      } finally {
+          try { // Violation
+              // Some code
+          } catch (Exception e) {
+              // handle exception
+          }
+      }
+  }
+}
+        </source>
 
         <p>To configure the check to produce a violation on a switch with too many cases:</p>
         <source>
@@ -822,6 +1018,43 @@ return '&#92;ufeff' + content;           // OK, non-printable escape character.
   &lt;property name="maximumDepth" value="2"/&gt;
   &lt;property name="maximumNumber" value="10"/&gt;
 &lt;/module&gt;
+        </source>
+        <p>
+          Example:
+        </p>
+        <source>
+public class DescendantToken {
+  public void exampleMethod() {
+      int x = 1;
+      switch (x) { // OK
+          case 1:
+              // Some code
+              break;
+          default:
+              // Some code
+              break;
+      }
+
+      switch (x) { // Violation
+          case 1:
+              // Some code
+              break;
+          case 2:
+              // Some code
+              break;
+          .
+          .
+          .
+          .
+          case 11:
+              // Some code
+              break;
+          default:
+              // Some code
+              break;
+      }
+  }
+}
         </source>
 
         <p>
@@ -836,6 +1069,27 @@ return '&#92;ufeff' + content;           // OK, non-printable escape character.
   &lt;property name="maximumNumber" value="10"/&gt;
 &lt;/module&gt;
         </source>
+        <p>
+          Example:
+        </p>
+        <source>
+public class DescendantToken {
+  public void exampleMethod1() { // OK
+      int var1 = 1;
+      int var2 = 2;
+  }
+  public void exampleMethod2() { // Violation
+      int var1 = 1;
+      int var2 = 2;
+      .
+      .
+      .
+      .
+      int var11 = 11;
+
+  }
+}
+        </source>
 
         <p>
           To configure the check to produce a violation on a method
@@ -847,6 +1101,33 @@ return '&#92;ufeff' + content;           // OK, non-printable escape character.
   &lt;property name="limitedTokens" value="LITERAL_RETURN"/&gt;
   &lt;property name="maximumNumber" value="3"/&gt;
 &lt;/module&gt;
+        </source>
+        <p>
+          Example:
+        </p>
+        <source>
+public class DescendantToken {
+  public int exampleMethod1(int x) { // OK
+      if (x == -1) {
+          return -1;
+      } else if (x == 0) {
+          return 0;
+      }
+  }
+  public int exampleMethod2(int x) { // Violation
+      if (x == -1) {
+          return -1;
+      } else if (x == 0) {
+          return 0;
+      } else if (x == 1) {
+          return 1;
+      } else if (x == 2) {
+          return 2;
+      } else {
+          return x;
+      }
+  }
+}
         </source>
 
         <p>
@@ -861,6 +1142,23 @@ return '&#92;ufeff' + content;           // OK, non-printable escape character.
   &lt;property name="maximumNumber" value="0"/&gt;
 &lt;/module&gt;
         </source>
+        <p>
+          Example:
+        </p>
+        <source>
+public interface DescendantToken { // OK
+  int FIELD_1 = 1;
+  int FIELD_2 = 2;
+}
+public interface DescendantToken { // Violation
+  int FIELD_1 = 1;
+  int FIELD_2 = 2;
+  .
+  .
+  .
+  int FIELD_11 = 11;
+}
+        </source>
 
         <p>
           To configure the check to produce a violation on a method
@@ -873,6 +1171,21 @@ return '&#92;ufeff' + content;           // OK, non-printable escape character.
   &lt;property name="maximumNumber" value="1"/&gt;
 &lt;/module&gt;
         </source>
+        <p>
+          Example:
+        </p>
+        <source>
+public class DescendantToken {
+  public void exampleMethod1() throws Exception { // OK
+      // ...
+  }
+}
+public class DescendantToken {
+  public void exampleMethod2() throws Exception1, Exception2, Exception3 { // Violation
+      // ...
+  }
+}
+        </source>
 
         <p>
           To configure the check to produce a violation on a method
@@ -884,6 +1197,30 @@ return '&#92;ufeff' + content;           // OK, non-printable escape character.
   &lt;property name="limitedTokens" value="EXPR"/&gt;
   &lt;property name="maximumNumber" value="200"/&gt;
 &lt;/module&gt;
+        </source>
+        <p>
+          Example:
+        </p>
+        <source>
+public class DescendantToken {
+  public void exampleMethod1() { // OK
+      int x = 1;
+      int y = 2;
+      int z = x + y;
+  }
+}
+public class DescendantToken {
+  public void exampleMethod2() { // Violation
+      int x = 1;
+      int y = 2;
+      int z = x + y;
+      int a = 4;
+      int b = 5;
+      int c = 6;
+      int d = a + b + c;
+      // ... 200 more expressions
+  }
+}
         </source>
 
         <p>
@@ -899,6 +1236,19 @@ return '&#92;ufeff' + content;           // OK, non-printable escape character.
     value="Empty statement is not allowed."/&gt;
 &lt;/module&gt;
         </source>
+        <p>
+          Example:
+        </p>
+        <source>
+public class DescendantToken {
+  public void exampleMethod1() { // OK
+      System.out.println("Hello");
+  }
+  public void exampleMethod2() { // Violation
+      ;
+  }
+}
+        </source>
 
         <p>
           To configure the check to produce a violation on a class
@@ -911,6 +1261,27 @@ return '&#92;ufeff' + content;           // OK, non-printable escape character.
   &lt;property name="maximumDepth" value="2"/&gt;
   &lt;property name="maximumNumber" value="10"/&gt;
 &lt;/module&gt;
+        </source>
+        <p>
+          Example:
+        </p>
+        <source>
+public class DescendantToken { // OK
+  private int field1;
+  private int field2;
+
+  // Some code
+}
+public class DescendantToken { // Violation
+  private int field1;
+  private int field2;
+  .
+  .
+  .
+  private int field11;
+
+  // Some code
+}
         </source>
       </subsection>
 
