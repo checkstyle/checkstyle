@@ -24,6 +24,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.Objects;
 
+import com.google.common.truth.Truth;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.filters.SeverityMatchFilter;
@@ -115,6 +116,17 @@ public class FilterSetTest {
         filterSet.addFilter(filter);
         assertThrows(UnsupportedOperationException.class,
             () -> filterSet.getFilters().add(filter));
+    }
+
+    /*
+      Due to low level configuration setup of FilterSet, conventional
+      input validation cannot be done here hence, pure JUnit testing has been
+      done for the time being
+    */
+    @Test
+    public void testEmptyToString() {
+        final FilterSet filterSet = new FilterSet();
+        Truth.assertThat(filterSet.toString()).isNotEmpty();
     }
 
     private static final class DummyFilter implements Filter {
