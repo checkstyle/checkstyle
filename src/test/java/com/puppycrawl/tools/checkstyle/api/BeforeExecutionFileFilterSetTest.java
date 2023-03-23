@@ -24,6 +24,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.regex.Pattern;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.filefilters.BeforeExecutionExclusionFileFilter;
@@ -113,6 +114,16 @@ public class BeforeExecutionFileFilterSetTest {
         filterSet.addBeforeExecutionFileFilter(filter);
         assertThrows(UnsupportedOperationException.class,
             () -> filterSet.getBeforeExecutionFileFilters().add(filter));
+    }
+
+    /*
+      This comment is not related to this code. Input based test does not call
+      toString, but this method might be useful for third party integrations
+    */
+    @Test
+    public void testEmptyToString() {
+        final BeforeExecutionFileFilterSet filterSet = new BeforeExecutionFileFilterSet();
+        Assertions.assertNotEquals(filterSet.toString(), "");
     }
 
 }
