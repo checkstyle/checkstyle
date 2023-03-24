@@ -34,20 +34,24 @@ jobs:
         with:
           repository: checkstyle/checkstyle
           fetch-depth: 0
+
       - name: Setup local maven cache
         uses: actions/cache@v2
         with:
           path: ~/.m2/repository
           key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
+
       - name: Run Shell Script
         run: |
           ./.ci/generate-website.sh ${{ inputs.version }}
+
       - name: Checkout checkstyle.github.io repo
         uses: actions/checkout@v3
         with:
           repository: checkstyle/checkstyle.github.io
           token: ${{ secrets.PAT }}
           path: .ci-temp/checkstyle.github.io/
+
       - name: Commit and Push to checkstyle.github.io repo
         run: |
           ./.ci/release-update-github-io.sh ${{ inputs.version }}

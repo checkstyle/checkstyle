@@ -45,8 +45,10 @@ jobs:
           reaction: rocket
         env:
           GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
+
       - run: 'echo We print it here for this action to work'
         if: 'true'
+
       - name: Getting PR description
         run: |
           wget -q "${{github.event.issue.pull_request.url}}" -O info.json

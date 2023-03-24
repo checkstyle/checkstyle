@@ -30,20 +30,24 @@ jobs:
     steps:
       - name: Checkout the latest code
         uses: actions/checkout@v3
+
       - name: Setup local maven cache
         uses: actions/cache@v2
         with:
           path: ~/.m2/repository
           key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
+
       - name: Modify File
         run: |
           ./.ci/bump-version.sh ${{ inputs.version }}
+
       - name: Push commit
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email 'github-actions[bot]@users.noreply.github.com'
           git commit -am "minor: Bump version to ${{ inputs.version }}-SNAPSHOT"
           git push
+
       - name: GitHub Milestone
         env:
           GITHUB_TOKEN: ${{ github.token }}

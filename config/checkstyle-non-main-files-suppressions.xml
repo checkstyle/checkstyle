@@ -157,4 +157,7 @@
   <!-- other images that do not support newer curl commands -->
   <suppress id="properCurlCommand" files=".ci[\\/]sonar-break-build\.sh"/>
 
+  <!-- We use negative suppression to check workflow files only. -->
+  <suppress id="workflowJobStepSpacing" files="^.((?!github[\\/]workflows[\\/]).)*$" />
+
 </suppressions>

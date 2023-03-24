@@ -29,16 +29,19 @@ jobs:
     steps:
       - name: Checkout the latest code
         uses: actions/checkout@v3
+
       - name: Setup local maven cache
         uses: actions/cache@v2
         with:
           path: ~/.m2/repository
           key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
+
       - name: Run Shell Script
         env:
           READ_ONLY_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           ./.ci/release-update-xdoc-with-releasenotes.sh ${{ inputs.version }}
+
       - name: Commit and Push
         run: |
             git config user.name 'github-actions[bot]'
