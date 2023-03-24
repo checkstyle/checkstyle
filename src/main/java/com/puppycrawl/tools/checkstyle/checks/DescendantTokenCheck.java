@@ -104,6 +104,33 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * &lt;/module&gt;
  * </pre>
  * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * public class DescendantToken {
+ *  public static void main(String[] args) {
+ *      int x = 1;
+ *
+ *      switch (x) { // OK
+ *           case 1:
+ *               System.out.println("hi");
+ *               break;
+ *           default:
+ *               System.out.println("Default");
+ *               break;
+ *       }
+ *
+ *       int y = 1;
+ *
+ *       switch (y) { // Violation
+ *           case 1:
+ *               System.out.println("hi");
+ *               break;
+ *       }
+ *   }
+ * }
+ * </pre>
+ * <p>
  * To configure the check to produce a violation on a condition in {@code for}
  * which performs no check:
  * </p>
@@ -113,6 +140,22 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *   &lt;property name=&quot;limitedTokens&quot; value=&quot;EXPR&quot;/&gt;
  *   &lt;property name=&quot;minimumNumber&quot; value=&quot;1&quot;/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * public class DescendantToken {
+ *   public static void main(String[] args) {
+ *       for (int i = 0; i != 10; i++) { // OK
+ *           System.out.println(i);
+ *       }
+ *       int k = 0;
+ *       for (; ; ) { // Violation
+ *           System.out.println(k);
+ *       }
+ *   }
+ * }
  * </pre>
  * <p>
  * To configure the check to produce a violation on comparing {@code this} with
@@ -128,6 +171,31 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * &lt;/module&gt;
  * </pre>
  * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * public class DescendantToken {
+ *   public void exampleMethod() {
+ *       if (this == null) { // Violation
+ *           System.out.println("this is null");
+ *       }
+ *
+ *       if (this != null) { // Violation
+ *           System.out.println("this is not null");
+ *       }
+ *
+ *       Object obj = new Object();
+ *       if (obj == null) { // OK
+ *           System.out.println("obj is null");
+ *       }
+ *
+ *       if (obj != null) { // OK
+ *           System.out.println("obj is not null");
+ *       }
+ *   }
+ * }
+ * </pre>
+ * <p>
  * To configure the check to produce a violation on a {@code String} literal equality check:
  * </p>
  * <pre>
@@ -139,8 +207,24 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * &lt;/module&gt;
  * </pre>
  * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * public class DescendantToken {
+ *  public void exampleMethod() {
+ *    String str = "Hello, world!";
+ *    if (str.equals("Hello, world!")) { // Ok
+ *        System.out.println("Strings are equal.");
+ *   }
+ *    if (str == "Hello, world!") { // Violation
+ *        System.out.println("Strings are equal.");
+ *   }
+ *  }
+ * }
+ * </pre>
+ * <p>
  * To configure the check to produce a violation on an assert statement that may
- * have side effects (formatted for browser display):
+ * have side effects:
  * </p>
  * <pre>
  * &lt;module name=&quot;DescendantToken&quot;&gt;
@@ -151,6 +235,19 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *     METHOD_CALL&quot;/&gt;
  *   &lt;property name=&quot;maximumNumber&quot; value=&quot;0&quot;/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * public class DescendantToken {
+ *   public void exampleMethod() {
+ *       int a = 5;
+ *       assert a++ == 0 : "a is not positive"; // Violation
+ *       System.out.println(a);
+ *       assert a == 0 : "a is not positive"; // OK
+ *   }
+ * }
  * </pre>
  * <p>
  * To configure the check to produce a violation on an initializer in {@code for}
@@ -164,6 +261,26 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * &lt;/module&gt;
  * </pre>
  * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * public class DescendantToken {
+ *   public void exampleMethod() {
+ *       int[] array = new int[] {1, 2, 3, 4, 5};
+ *
+ *       for (int i = 0; i != array.length; i++) { // OK
+ *           System.out.println(array[i]);
+ *       }
+ *
+ *       int j = 0;
+ *       for (; j != array.length;) { // Violation
+ *           System.out.println(array[j]);
+ *           j++;
+ *      }
+ *   }
+ * }
+ * </pre>
+ * <p>
  * To configure the check to produce a violation on a switch that is nested in another switch:
  * </p>
  * <pre>
@@ -173,6 +290,34 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *   &lt;property name=&quot;maximumNumber&quot; value=&quot;0&quot;/&gt;
  *   &lt;property name=&quot;minimumDepth&quot; value=&quot;1&quot;/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * public class DescendantToken {
+ *   public void exampleMethod() {
+ *       int x = 1;
+ *       int y = 2;
+ *       switch (x) { // OK
+ *           case 1:
+ *               System.out.println("Switch statement");
+ *               break;
+ *           default:
+ *               System.out.println("Default case");
+ *               break;
+ *       }
+ *       switch (y) { // OK
+ *           case 1:
+ *               switch (y) { // Violation
+ *                   case 2:
+ *                       System.out.println("Nested switch statement");
+ *                       break;
+ *               }
+ *               break;
+ *       }
+ *   }
+ * }
  * </pre>
  * <p>
  * To configure the check to produce a violation on a return statement from
@@ -186,6 +331,23 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * &lt;/module&gt;
  * </pre>
  * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * public class DescendantToken {
+ *   public void exampleMethod() {
+ *       try {
+ *           // Some code
+ *       } catch (Exception e) {
+ *           System.out.println("Caught exception");
+ *           return; // Violation
+ *       } finally {
+ *           System.out.println("Finally block");
+ *       }
+ *   }
+ * }
+ * </pre>
+ * <p>
  * To configure the check to produce a violation on a try statement within a catch or finally block:
  * </p>
  * <pre>
@@ -196,6 +358,39 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * &lt;/module&gt;
  * </pre>
  * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * public class DescendantToken {
+ *   public void exampleMethod() {
+ *       try {
+ *           // Some code
+ *       } catch (Exception e) { // OK
+ *           System.out.println("Caught exception");
+ *           return;
+ *       } finally { // OK
+ *           System.out.println("Finally block");
+ *
+ *       }
+ *       try {
+ *           // Some code
+ *       } catch (Exception e) {
+ *           try { // Violation
+ *               // Some code
+ *           } catch (Exception ex) {
+ *               // handle exception
+ *           }
+ *       } finally {
+ *           try { // Violation
+ *               // Some code
+ *           } catch (Exception e) {
+ *               // handle exception
+ *           }
+ *       }
+ *   }
+ * }
+ * </pre>
+ * <p>
  * To configure the check to produce a violation on a switch with too many cases:
  * </p>
  * <pre>
@@ -203,8 +398,41 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *   &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_SWITCH&quot;/&gt;
  *   &lt;property name=&quot;limitedTokens&quot; value=&quot;LITERAL_CASE&quot;/&gt;
  *   &lt;property name=&quot;maximumDepth&quot; value=&quot;2&quot;/&gt;
- *   &lt;property name=&quot;maximumNumber&quot; value=&quot;10&quot;/&gt;
+ *   &lt;property name=&quot;maximumNumber&quot; value=&quot;2&quot;/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * public class DescendantToken {
+ *   public void exampleMethod() {
+ *       int x = 1;
+ *       switch (x) { // OK
+ *           case 1:
+ *               // Some code
+ *               break;
+ *           default:
+ *               // Some code
+ *               break;
+ *       }
+ *
+ *       switch (x) { // Violation
+ *           case 1:
+ *               // Some code
+ *               break;
+ *           case 2:
+ *               // Some code
+ *               break;
+ *           case 3:
+ *               // Some code
+ *               break;
+ *           default:
+ *               // Some code
+ *               break;
+ *       }
+ *   }
+ * }
  * </pre>
  * <p>
  * To configure the check to produce a violation on a method with too many local variables:
@@ -214,8 +442,24 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *   &lt;property name=&quot;tokens&quot; value=&quot;METHOD_DEF&quot;/&gt;
  *   &lt;property name=&quot;limitedTokens&quot; value=&quot;VARIABLE_DEF&quot;/&gt;
  *   &lt;property name=&quot;maximumDepth&quot; value=&quot;2&quot;/&gt;
- *   &lt;property name=&quot;maximumNumber&quot; value=&quot;10&quot;/&gt;
+ *   &lt;property name=&quot;maximumNumber&quot; value=&quot;2&quot;/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * public class DescendantToken {
+ *   public void exampleMethod1() { // OK
+ *       int var1 = 1;
+ *       int var2 = 2;
+ *   }
+ *   public void exampleMethod2() { // Violation
+ *       int var1 = 1;
+ *       int var2 = 2;
+ *       int var3 = 3;
+ *   }
+ * }
  * </pre>
  * <p>
  * To configure the check to produce a violation on a method with too many returns:
@@ -224,8 +468,33 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * &lt;module name=&quot;DescendantToken&quot;&gt;
  *   &lt;property name=&quot;tokens&quot; value=&quot;METHOD_DEF&quot;/&gt;
  *   &lt;property name=&quot;limitedTokens&quot; value=&quot;LITERAL_RETURN&quot;/&gt;
- *   &lt;property name=&quot;maximumNumber&quot; value=&quot;3&quot;/&gt;
+ *   &lt;property name=&quot;maximumNumber&quot; value=&quot;2&quot;/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * public class DescendantToken {
+ *   public int exampleMethod1(int x) { // OK
+ *       if (x == -1) {
+ *           return -1;
+ *       } else if (x == 0) {
+ *           return 0;
+ *       }
+ *   }
+ *   public int exampleMethod2(int x) { // Violation
+ *       if (x == -1) {
+ *           return -1;
+ *       } else if (x == 0) {
+ *           return 0;
+ *       } else if (x == 1) {
+ *           return 1;
+ *       } else {
+ *           return x;
+ *       }
+ *   }
+ * }
  * </pre>
  * <p>
  * To configure the check to produce a violation on an interface with too many fields:
@@ -235,8 +504,22 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *   &lt;property name=&quot;tokens&quot; value=&quot;INTERFACE_DEF&quot;/&gt;
  *   &lt;property name=&quot;limitedTokens&quot; value=&quot;VARIABLE_DEF&quot;/&gt;
  *   &lt;property name=&quot;maximumDepth&quot; value=&quot;2&quot;/&gt;
- *   &lt;property name=&quot;maximumNumber&quot; value=&quot;0&quot;/&gt;
+ *   &lt;property name=&quot;maximumNumber&quot; value=&quot;2&quot;/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * public interface DescendantToken { // OK
+ *   int FIELD_1 = 1;
+ *   int FIELD_2 = 2;
+ * }
+ * public interface DescendantToken { // Violation
+ *   int FIELD_1 = 1;
+ *   int FIELD_2 = 2;
+ *   int FIELD_3 = 3;
+ * }
  * </pre>
  * <p>
  * To configure the check to produce a violation on a method which throws too many exceptions:
@@ -249,14 +532,52 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * &lt;/module&gt;
  * </pre>
  * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * public class DescendantToken {
+ *   public void exampleMethod1() throws Exception { // OK
+ *       // ...
+ *   }
+ * }
+ * public class DescendantToken {
+ *   public void exampleMethod2() throws Exception1, Exception2 { // Violation
+ *       // ...
+ *   }
+ * }
+ * </pre>
+ * <p>
  * To configure the check to produce a violation on a method with too many expressions:
  * </p>
  * <pre>
  * &lt;module name=&quot;DescendantToken&quot;&gt;
  *   &lt;property name=&quot;tokens&quot; value=&quot;METHOD_DEF&quot;/&gt;
  *   &lt;property name=&quot;limitedTokens&quot; value=&quot;EXPR&quot;/&gt;
- *   &lt;property name=&quot;maximumNumber&quot; value=&quot;200&quot;/&gt;
+ *   &lt;property name=&quot;maximumNumber&quot; value=&quot;3&quot;/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * public class DescendantToken {
+ *   public void exampleMethod1() { // OK
+ *       int x = 1;
+ *       int y = 2;
+ *       int z = x + y;
+ *   }
+ * }
+ * public class DescendantToken {
+ *   public void exampleMethod2() { // Violation
+ *       int x = 1;
+ *       int y = 2;
+ *       int z = x + y;
+ *       int a = 4;
+ *       int b = 5;
+ *       int c = 6;
+ *       int d = a + b + c;
+ *   }
+ * }
  * </pre>
  * <p>
  * To configure the check to produce a violation on an empty statement:
@@ -272,6 +593,19 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * &lt;/module&gt;
  * </pre>
  * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * public class DescendantToken {
+ *   public void exampleMethod1() { // OK
+ *       System.out.println("Hello");
+ *   }
+ *   public void exampleMethod2() { 
+ *       ; // Violation
+ *   }
+ * }
+ * </pre>
+ * <p>
  * To configure the check to produce a violation on a class with too many fields:
  * </p>
  * <pre>
@@ -279,8 +613,26 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *   &lt;property name=&quot;tokens&quot; value=&quot;CLASS_DEF&quot;/&gt;
  *   &lt;property name=&quot;limitedTokens&quot; value=&quot;VARIABLE_DEF&quot;/&gt;
  *   &lt;property name=&quot;maximumDepth&quot; value=&quot;2&quot;/&gt;
- *   &lt;property name=&quot;maximumNumber&quot; value=&quot;10&quot;/&gt;
+ *   &lt;property name=&quot;maximumNumber&quot; value=&quot;2&quot;/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * public class DescendantToken { // OK
+ *   private int field1;
+ *   private int field2;
+ *
+ *   // Some code
+ * }
+ * public class DescendantToken { // Violation
+ *   private int field1;
+ *   private int field2;
+ *   private int field3;
+ *
+ *   // Some code
+ * }
  * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
