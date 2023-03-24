@@ -54,8 +54,10 @@ jobs:
           reaction: rocket
         env:
           GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
+
       - run: 'echo We print it here for this action to work'
         if: 'true'
+
       - name: Getting PR description
         env:
           ISSUE_BODY: ${{ github.event.issue.body }}
