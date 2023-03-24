@@ -43,5 +43,6 @@ jobs:
       - name: Run Shell Script
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPOSITORY_OWNER: ${{ github.repository_owner }}
         run: |
           ./.ci/release-update-github-page.sh ${{ inputs.version }}
