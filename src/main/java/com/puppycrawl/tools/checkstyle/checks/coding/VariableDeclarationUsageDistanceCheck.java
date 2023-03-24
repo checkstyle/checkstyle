@@ -77,7 +77,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *
  *   public void foo1() {
  *     int num;        // violation, distance = 4
- *     final int PI;   // OK, final variables not checked
+ *     final double PI;   // OK, final variables not checked
  *     System.out.println("Statement 1");
  *     System.out.println("Statement 2");
  *     System.out.println("Statement 3");
@@ -146,7 +146,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *
  *   public void foo1() {
  *     int num;        // OK, distance = 4
- *     final int PI;   // OK, final variables not checked
+ *     final double PI;   // OK, final variables not checked
  *     System.out.println("Statement 1");
  *     System.out.println("Statement 2");
  *     System.out.println("Statement 3");
@@ -185,7 +185,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *
  *   public void foo1() {
  *     int num;        // OK, variable ignored
- *     final int PI;   // OK, final variables not checked
+ *     final double PI;   // OK, final variables not checked
  *     System.out.println("Statement 1");
  *     System.out.println("Statement 2");
  *     System.out.println("Statement 3");
@@ -221,7 +221,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *
  *   public void foo1() {
  *     int num;        // violation, distance = 4
- *     final int PI;   // OK, final variables not checked
+ *     final double PI;   // OK, final variables not checked
  *     System.out.println("Statement 1");
  *     System.out.println("Statement 2");
  *     System.out.println("Statement 3");
@@ -257,7 +257,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *
  *   public void foo1() {
  *     int num;        // violation, distance = 4
- *     final int PI;   // violation, distance = 5
+ *     final double PI;   // violation, distance = 5
  *     System.out.println("Statement 1");
  *     System.out.println("Statement 2");
  *     System.out.println("Statement 3");

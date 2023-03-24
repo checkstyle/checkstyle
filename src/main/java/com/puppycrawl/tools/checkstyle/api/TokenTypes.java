@@ -312,7 +312,7 @@ public final class TokenTypes {
      *
      * <p>For example:</p>
      * <pre>
-     * final int PI = 3.14;
+     * final double PI = 3.14;
      * </pre>
      * <p>parses as:</p>
      * <pre>
@@ -320,7 +320,7 @@ public final class TokenTypes {
      *  |--MODIFIERS -&gt; MODIFIERS
      *  |   `--FINAL -&gt; final
      *  |--TYPE -&gt; TYPE
-     *  |   `--LITERAL_INT -&gt; int
+     *  |   `--LITERAL_DOUBLE -&gt; int
      *  |--IDENT -&gt; PI
      *  |--ASSIGN -&gt; =
      *  |   `--EXPR -&gt; EXPR
