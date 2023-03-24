@@ -253,12 +253,22 @@ public class FinalClassCheck
      * @return true if given class should be declared as final otherwise false
      */
     private static boolean shouldBeDeclaredAsFinal(ClassDesc desc) {
-        return desc.isWithPrivateCtor()
+        return (desc.isWithPrivateCtor() || isClassPrivate(desc.getTypeDeclarationAst()))
                 && !(desc.isDeclaredAsAbstract()
                     || desc.isSuperClassOfAnonymousInnerClass())
                 && !desc.isDeclaredAsFinal()
                 && !desc.isWithNonPrivateCtor()
                 && !desc.isWithNestedSubclass();
+    }
+
+    /**
+     * Check if class is private.
+     *
+     * @param desc description of class
+     * @return true if class is private
+     */
+    private static boolean isClassPrivate(DetailAST desc) {
+        return desc.getFirstChild().findFirstToken(TokenTypes.LITERAL_PRIVATE) != null;
     }
 
     /**
