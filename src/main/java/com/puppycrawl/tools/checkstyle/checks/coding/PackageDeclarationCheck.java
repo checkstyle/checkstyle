@@ -146,11 +146,6 @@ public final class PackageDeclarationCheck extends AbstractCheck {
     }
 
     @Override
-    public void beginTree(DetailAST ast) {
-        defined = false;
-    }
-
-    @Override
     public void finishTree(DetailAST ast) {
         if (!defined && ast != null) {
             log(ast, MSG_KEY_MISSING);
