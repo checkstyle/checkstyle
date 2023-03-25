@@ -2341,18 +2341,35 @@ messages.properties: Key 'ok' missing.
 
       <subsection name="Examples" id="Translation_Examples">
         <p>
+          Note, that files with the same path and base name but which have different
+          extensions will be considered as files that belong to different resource bundles.
+        </p>
+        <p>
           To configure the check to check only files which have '.properties' and '.translations'
           extensions:
         </p>
         <source>
 &lt;module name=&quot;Translation&quot;&gt;
   &lt;property name=&quot;fileExtensions&quot; value=&quot;properties, translations&quot;/&gt;
+  &lt;property name=&quot;requiredTranslations&quot; value=&quot;fr&quot;/&gt;
 &lt;/module&gt;
         </source>
         <p>
-          Note, that files with the same path and base name but which have different
-          extensions will be considered as files that belong to different resource bundles.
+          Example:
         </p>
+        <source>
+#messages.properties
+hello=Hello
+cancel=Cancel
+
+#messages.translations
+hello=Hallo
+ok=OK
+        </source>
+        <source>
+messages.properties: Properties file 'messages_fr.properties' is missing.
+messages.translations: Properties file 'messages_fr.translations' is missing.
+        </source>
         <p>
           An example of how to configure the check to validate only bundles which base names
           start with "ButtonLabels":
@@ -2360,9 +2377,25 @@ messages.properties: Key 'ok' missing.
         <source>
 &lt;module name=&quot;Translation&quot;&gt;
   &lt;property name=&quot;baseName&quot; value=&quot;^ButtonLabels.*$&quot;/&gt;
+  &lt;property name=&quot;requiredTranslations&quot; value=&quot;fr&quot;/&gt;
 &lt;/module&gt;
         </source>
+        <p>
+          Example:
+        </p>
+        <source>
+#ButtonLabels.properties
+save=Save
+cancel=Cancel
 
+#ButtonLabels.translations
+save=Speichern
+ok=OK
+        </source>
+        <source>
+ButtonLabels.properties: Properties file 'ButtonLabels_fr.properties' is missing.
+ButtonLabels.translations: Properties file 'ButtonLabels_fr.translations' is missing.
+        </source>
         <p>
           To configure the check to check existence of Japanese and French translations:
         </p>
@@ -2370,6 +2403,22 @@ messages.properties: Key 'ok' missing.
 &lt;module name=&quot;Translation&quot;&gt;
   &lt;property name=&quot;requiredTranslations&quot; value=&quot;ja, fr&quot;/&gt;
 &lt;/module&gt;
+        </source>
+        <p>
+          Example:
+        </p>
+        <source>
+#messages_ja.properties
+greeting=こんにちは
+age=年齢
+
+#messages_fr.properties
+greeting=Bonjour
+name=Nom
+        </source>
+        <source>
+messages_ja.properties: Key 'name' is missing.
+messages_fr.translations: Key 'age' is missing.
         </source>
         <p>
           The following example shows how the check works if there is a message bundle which
@@ -2382,19 +2431,29 @@ messages.properties: Key 'ok' missing.
 &lt;/module&gt;
         </source>
         <p>
-          As we can see from the configuration, the TranslationCheck was configured to check
-          an existence of 'es', 'fr' and 'de' translations. Let's assume that we have the resource
-          bundle:
+          Example:
         </p>
         <source>
-messages_home.properties
-messages_home_es_US.properties
-messages_home_fr_CA_UNIX.properties
+#messages_es.properties
+hello=Hola
+bye=Adiós
+ok=Aceptar
+
+#messages_fr.properties
+hello=Bonjour
+cancel=Annuler
+
+#messages_de.properties
+hello=Hallo
+bye=Tschüss
+ok=OK
         </source>
-        <p>
-          Than the check will rise the following violation:
-          "0: Properties file 'messages_home_de.properties' is missing."
-        </p>
+        <source>
+messages_es.properties: Key 'cancel' is missing.
+messages_fr.properties: Key 'ok' is missing.
+messages_fr.properties: Key 'bye' is missing.
+messages_de.properties: Key 'cancel' is missing.
+        </source>
       </subsection>
 
       <subsection name="Example of Usage" id="Translation_Example_of_Usage">
