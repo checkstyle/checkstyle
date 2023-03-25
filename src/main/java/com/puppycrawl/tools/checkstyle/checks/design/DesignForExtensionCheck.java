@@ -251,6 +251,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *   &#42; Do not extend ...
  *   &#42;/
  *   public int foo2() {return 8;} // violation, required javadoc is not present .
+ *
  *   public int foo3() {return 3;} // violation, required javadoc is not present .
  *
  *   /&#42;&#42;
