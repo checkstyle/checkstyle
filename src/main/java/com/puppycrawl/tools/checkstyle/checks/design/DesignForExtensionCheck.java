@@ -180,18 +180,28 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * to be designed for extension.
  * </p>
  * <pre>
- * &lt;module name=&quot;DesignForExtension&quot;&gt;
+ * &lt;module name=&quot; DesignForExtension &quot;&gt;
  *   &lt;property name=&quot;ignoredAnnotations&quot; value=&quot;Override, Test&quot;/&gt;
- * &lt;/module&gt;
+ * &lt;/module&gt; // Checks for ignoredAnnotations
  * </pre>
  * <pre>
  * public class A {
  *   &#64;Override
  *   public int foo() {
- *     return 2;
+ *     return 2;         // OK
  *   }
  *
- *   public int foo2() {return 8;} // violation
+ *   public int foo2() {return 8;}  // violation, required annotation is not present .
+ *
+ *
+ *   &#64;Override
+ *   public int foo3() {
+ *       return 9 ;         // OK
+ *    }
+ *
+ *    public int foo() {return 7;}  // violation, required annotation is not present .
+ *
+ *
  * }
  *
  * public class B {
@@ -203,17 +213,21 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *     return 1;
  *   }
  *
- *   public int foo3() {return 3;} // violation
+ *   public int foo3() {return 3;} // violation, required annotation is not present .
  * }
  *
  * public class FooTest {
  *   &#64;Test
  *   public void testFoo() {
  *     final B b = new A();
- *     assertEquals(2, b.foo());
+ *     assertEquals(2, b.foo()); //OK
  *   }
  *
- *   public int foo4() {return 4;} // violation
+ *   public int foo4() {return 4;} // violation, required annotation is not present .
+ *
+ *   public int foo() {return 6;} // violation, required annotation is not present .
+ *
+ *
  * }
  * </pre>
  * <p>
@@ -224,21 +238,26 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * &lt;module name=&quot;DesignForExtension&quot;&gt;
  *   &lt;property name=&quot;requiredJavadocPhrase&quot;
  *     value=&quot;This implementation&quot;/&gt;
- * &lt;/module&gt;
+ * &lt;/module&gt;  // Checks for requiredJavadocPhrase
  * </pre>
  * <pre>
  * public class A {
  *   /&#42;&#42;
  *   &#42; This implementation ...
  *   &#42;/
- *   public int foo() {return 2;} // ok, required javadoc phrase in comment
+ *   public int foo() {return 2;} // OK
  *
  *   /&#42;&#42;
  *   &#42; Do not extend ...
  *   &#42;/
- *   public int foo2() {return 8;} // violation, required javadoc phrase not in comment
+ *   public int foo2() {return 8;} // violation, required javadoc is not present .
+ *   public int foo3() {return 3;} // violation, required javadoc is not present .
  *
- *   public int foo3() {return 3;} // violation, required javadoc phrase not in comment
+ *   /&#42;&#42;
+ *    &#42; This implementation ...
+ *    &#42;/
+ *    public int foo() {return 9;} // OK
+ *
  * }
  * </pre>
  * <p>
@@ -250,7 +269,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * &lt;module name=&quot;DesignForExtension&quot;&gt;
  *   &lt;property name=&quot;requiredJavadocPhrase&quot;
  *     value=&quot;This[\s\S]*implementation&quot;/&gt;
- * &lt;/module&gt;
+ * &lt;/module&gt; // Checks for requiredJavadocPhrase (spanning multiple lines)
  * </pre>
  * <pre>
  * public class A {
@@ -258,14 +277,22 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *   &#42; This
  *   &#42; implementation ...
  *   &#42;/
- *   public int foo() {return 2;} // ok, required javadoc phrase in comment
+ *   public int foo() {return 2;} // OK
  *
  *   /&#42;&#42;
  *   &#42; Do not extend ...
  *   &#42;/
- *   public int foo2() {return 8;} // violation, required javadoc phrase not in comment
+ *   public int foo2() {return 8;} // violation, required javadoc is not present .
  *
- *   public int foo3() {return 3;} // violation, required javadoc phrase not in comment
+ *   public int foo3() {return 3;} //  violation, required javadoc is not present .
+ *
+ *   &#42;&#42;
+ *   &#42; This
+ *   &#42; implementation ...
+ *   &#42;/
+ *   public int foo() {return 8;} // OK
+ *
+ *
  * }
  * </pre>
  * <p>
