@@ -47,6 +47,7 @@ import com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck;
 import com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck;
+import com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheck;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import de.thetaphi.forbiddenapis.SuppressForbidden;
 
@@ -93,27 +94,29 @@ public class SuppressWithNearbyTextFilterTest
         final int expectedLineLength = 90;
 
         final String[] violationMessages = {
-            "15: " + getRegexpSinglelineCheckMessage(),
-            "28: " + getLineLengthCheckMessage(expectedLineLength, 94),
-            "33: " + getLineLengthCheckMessage(expectedLineLength, 93),
-            "33: " + getRegexpSinglelineCheckMessage(),
-            "39: " + getLineLengthCheckMessage(expectedLineLength, 93),
-            "44: " + getRegexpSinglelineCheckMessage(),
-            "49: " + getLineLengthCheckMessage(expectedLineLength, 95),
-            "54: " + getRegexpSinglelineCheckMessage(),
-            "58: " + getLineLengthCheckMessage(expectedLineLength, 97),
+            "18: " + getRegexpSinglelineCheckMessage(),
+            "31: " + getLineLengthCheckMessage(expectedLineLength, 94),
+            "36: " + getLineLengthCheckMessage(expectedLineLength, 154),
+            "36: " + getRegexpSinglelineCheckMessage(),
+            "36:1: " + getCheckMessage(FileTabCharacterCheck.class, "containsTab"),
+            "42: " + getLineLengthCheckMessage(expectedLineLength, 93),
+            "47: " + getRegexpSinglelineCheckMessage(),
+            "52: " + getLineLengthCheckMessage(expectedLineLength, 95),
+            "57: " + getRegexpSinglelineCheckMessage(),
+            "61: " + getLineLengthCheckMessage(expectedLineLength, 97),
         };
 
         final String[] suppressedMessages = {
-            "33: " + getLineLengthCheckMessage(expectedLineLength, 93),
-            "33: " + getRegexpSinglelineCheckMessage(),
-            "39: " + getLineLengthCheckMessage(expectedLineLength, 93),
-            "49: " + getLineLengthCheckMessage(expectedLineLength, 95),
-            "54: " + getRegexpSinglelineCheckMessage(),
-            "58: " + getLineLengthCheckMessage(expectedLineLength, 97),
+            "36: " + getLineLengthCheckMessage(expectedLineLength, 154),
+            "36: " + getRegexpSinglelineCheckMessage(),
+            "36:1: " + getCheckMessage(FileTabCharacterCheck.class, "containsTab"),
+            "42: " + getLineLengthCheckMessage(expectedLineLength, 93),
+            "52: " + getLineLengthCheckMessage(expectedLineLength, 95),
+            "57: " + getRegexpSinglelineCheckMessage(),
+            "61: " + getLineLengthCheckMessage(expectedLineLength, 97),
         };
 
-        verifyFilterWithInlineConfigParserSortedActualViolations(
+        verifyFilterWithInlineConfigParser(
             getPath("InputSuppressWithNearbyTextFilterNearbyTextPattern.css"),
             violationMessages, removeSuppressed(violationMessages, suppressedMessages)
         );

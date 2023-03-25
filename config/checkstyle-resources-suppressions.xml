@@ -91,6 +91,8 @@
 
   <!-- intentional problem for testing -->
   <suppress checks="FileTabCharacter"
+            files="[\\/]InputSuppressWithNearbyTextFilterNearbyTextPattern\.css"/>
+  <suppress checks="FileTabCharacter"
     files="[\\/]InputJavadocWithCrAsNewline\.javadoc"/>
   <suppress checks="FileTabCharacter"
     files="[\\/]InputLeadingAsterisksExtended\.javadoc"/>
