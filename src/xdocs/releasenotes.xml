@@ -10,6 +10,89 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 10.9.3">
+      <div class="releaseDate">25.03.2023</div>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            False positive about MagicNumber.
+            Author: Kevin222004
+            <a href="https://github.com/checkstyle/checkstyle/issues/12687">#12687</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Fail set-milestone if no milestone is found.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/12909">#12909</a>
+          </li>
+          <li>
+            Add repository owner environment variable in release process.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/12840">#12840</a>
+          </li>
+          <li>
+            doc: describe in cli doc that folder can be used.
+            Author: Roman Ivanov
+          </li>
+          <li>
+            Keep spacing between job steps consistent.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/12851">#12851</a>
+          </li>
+          <li>
+            Resolve pitest suppression for BeforeExecutionFileFilterSet.
+            Author: Shubh Srivastava
+            <a href="https://github.com/checkstyle/checkstyle/issues/12878">#12878</a>
+          </li>
+          <li>
+            Typo in Documentation of VariableDeclarationUsageDistance.
+            Author: jxr98
+            <a href="https://github.com/checkstyle/checkstyle/issues/12898">#12898</a>
+          </li>
+          <li>
+            Kill surviving mutation in FilterSet.java.
+            Author: Shubh Srivastava
+            <a href="https://github.com/checkstyle/checkstyle/issues/12887">#12887</a>
+          </li>
+          <li>
+            Deprecate com.puppycrawl.tools.checkstyle.api.AutomaticBean.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/5337">#5337</a>
+          </li>
+          <li>
+            Expand XPath IT Regression Testing.
+            Author: zyrate
+            <a href="https://github.com/checkstyle/checkstyle/issues/6207">#6207</a>
+          </li>
+          <li>
+            Resolve pitest suppression for FilterSet.
+            Author: Shubh Srivastava
+            <a href="https://github.com/checkstyle/checkstyle/issues/12879">#12879</a>
+          </li>
+          <li>
+            Update doc for SuppressionCommentFilter.
+            Author: Shubh Srivastava
+            <a href="https://github.com/checkstyle/checkstyle/issues/12827">#12827</a>
+          </li>
+          <li>
+            Use Shellcheck to resolve violations code in Shell Script.
+            Author: shubh220922
+            <a href="https://github.com/checkstyle/checkstyle/issues/11637">#11637</a>
+          </li>
+          <li>
+            Update doc for NonEmptyAtclauseDescription.
+            Author: shivam
+            <a href="https://github.com/checkstyle/checkstyle/issues/7604">#7604</a>
+          </li>
+          <li>
+            Ensure new-milestone-and-issues-in-other-repos always pulls latest commit.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/12866">#12866</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 10.9.2">
       <div class="releaseDate">18.03.2023</div>
       <p>Bug fixes:</p>
