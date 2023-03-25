@@ -157,4 +157,8 @@
   <!-- other images that do not support newer curl commands -->
   <suppress id="properCurlCommand" files=".ci[\\/]sonar-break-build\.sh"/>
 
+  <!-- just for the demo with 3 checks -->
+  <suppress id="lineLength"
+            files="src[\\/]test[\\/]resources[\\/].*[\\/]suppresswithnearbytextfilter[\\/]InputSuppressWithNearbyTextFilterNearbyTextPattern\.css"/>
+
 </suppressions>
