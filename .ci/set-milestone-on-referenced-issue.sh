@@ -43,6 +43,12 @@ MILESTONE=$(curl --fail-with-body -s \
   https://api.github.com/repos/checkstyle/checkstyle/milestones)
 MILESTONE_NUMBER=$(echo "$MILESTONE" | jq .[0].number)
 MILESTONE_TITLE=$(echo "$MILESTONE" | jq -r .[0].title)
+
+if [ "$MILESTONE_NUMBER" == "null" ]; then
+  echo "[ERROR] No milestone is found."
+  exit 1
+fi
+
 echo "MILESTONE_NUMBER=$MILESTONE_NUMBER"
 echo "MILESTONE_TITLE=$MILESTONE_TITLE"
 
