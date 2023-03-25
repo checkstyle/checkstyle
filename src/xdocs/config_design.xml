@@ -188,17 +188,24 @@ public abstract class Plant {
         <source>
 &lt;module name=&quot;DesignForExtension&quot;&gt;
   &lt;property name=&quot;ignoredAnnotations&quot; value=&quot;Override, Test&quot;/&gt;
-&lt;/module&gt;
+&lt;/module&gt; // Checks for ignoredAnnotations
         </source>
 
         <source>
 public class A {
   @Override
   public int foo() {
-    return 2;
+    return 2;  // OK
   }
 
-  public int foo2() {return 8;} // violation
+  public int foo2() {return 8;} // violation, required annotation is not present .
+
+            @Override
+            public int foo3() {
+            return 9 ;         // OK
+                }
+
+            public int foo() {return 7;}  // violation, required annotation is not present .
 }
 
 public class B {
@@ -210,17 +217,21 @@ public class B {
     return 1;
   }
 
-  public int foo3() {return 3;} // violation
-}
+  public int foo3() {return 3;} // violation, required annotation is not present .
+            }
+
+
 
 public class FooTest {
   @Test
   public void testFoo() {
     final B b = new A();
-    assertEquals(2, b.foo());
+    assertEquals(2, b.foo()); //OK
   }
 
-  public int foo4() {return 4;} // violation
+            public int foo4() {return 4;} // violation, required annotation is not present .
+
+            public int foo() {return 6;} // violation, required annotation is not present .
 }
         </source>
         <p>
@@ -230,21 +241,24 @@ public class FooTest {
         <source>
 &lt;module name=&quot;DesignForExtension&quot;&gt;
   &lt;property name=&quot;requiredJavadocPhrase&quot; value=&quot;This implementation&quot;/&gt;
-&lt;/module&gt;
+&lt;/module&gt;    // Checks for requiredJavadocPhrase
         </source>
         <source>
 public class A {
-      /&#42;&#42;
-       &#42; This implementation ...
-       &#42;/
-      public int foo() {return 2;} // ok, required javadoc phrase in comment
+            public class A {
+            /**
+            * This implementation ...
+            */
+            public int foo() {return 2;} // OK
 
-      /&#42;&#42;
-       &#42; Do not extend ...
-       &#42;/
-      public int foo2() {return 8;} // violation, required javadoc phrase not in comment
 
-  public int foo3() {return 3;} // violation, required javadoc phrase not in comment
+            /**
+            * Do not extend ...
+            */
+            public int foo2() {return 8;} // violation, required javadoc is not present .
+
+
+            public int foo3() {return 3;} // violation, required javadoc is not present .
 }
         </source>
         <p>
@@ -256,22 +270,32 @@ public class A {
 &lt;module name=&quot;DesignForExtension&quot;&gt;
   &lt;property name=&quot;requiredJavadocPhrase&quot;
           value=&quot;This[\s\S]*implementation&quot;/&gt;
-&lt;/module&gt;
+&lt;/module&gt;  // Checks for requiredJavadocPhrase (spanning multiple lines)
         </source>
         <source>
 public class A {
-    /&#42;&#42;
-     &#42; This
-     &#42; implementation ...
-     &#42;/
-    public int foo() {return 2;} // ok, required javadoc phrase in comment
+            /**
+            * This
+            * implementation ...
+            */
+            public int foo() {return 2;} // OK
 
-    /&#42;&#42;
-     &#42; Do not extend ...
-     &#42;/
-    public int foo2() {return 8;} // violation, required javadoc phrase not in comment
+            /**
+            * Do not extend ...
+            */
+            public int foo2() {return 8;} // violation, required javadoc is not present .
 
-    public int foo3() {return 3;} // violation, required javadoc phrase not in comment
+            public int foo3() {return 3;} //  violation, required javadoc is not present .
+
+
+            /**
+            * This
+            * implementation ...
+            */
+            public int foo() {return 8;} // OK
+
+
+
 }
         </source>
       </subsection>
