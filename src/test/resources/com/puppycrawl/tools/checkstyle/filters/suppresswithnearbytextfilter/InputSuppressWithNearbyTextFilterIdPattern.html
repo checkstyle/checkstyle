@@ -1,0 +1,42 @@
+/*
+SuppressWithNearbyTextFilter
+nearbyTextPattern = (default)SUPPRESS CHECKSTYLE (\\w+)
+checkPattern = (default).*
+messagePattern = (default)(null)
+idPattern = ignoreMe
+lineRange = (default)0
+
+com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck
+id = ignoreMe
+fileExtensions = (default)all files
+ignorePattern = (default)^(package|import) .*
+max = (default)80
+
+com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck
+format = this should not appear
+message = (default)(null)
+ignoreCase = (default)false
+minimum = (default)0
+maximum = (default)0
+ignoreComments = (default)false
+
+
+*/
+// violation 9 lines above 'Line matches the illegal pattern .*'
+
+<!DOCTYPE html>
+// violation below 'Line matches the illegal pattern .*'
+<html lang="this should not appear"> <!-- SUPPRESS CHECKSTYLE a -->
+<head>
+</head>
+<body>
+// filtered violation below 'Line is longer than 80 characters (found 83).'
+    <div class="really-long-class-name-abcefghijkl"> <!-- SUPPRESS CHECKSTYLE a -->
+        <ul>
+            <li>Eggs</li>
+// filtered violation below 'Line is longer than 80 characters (found 84).'
+            <li>Long item name abcedfghijklmnopq</li> <!-- SUPPRESS CHECKSTYLE a -->
+        </ul>
+    </div>
+</body>
+</html>
