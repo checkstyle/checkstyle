@@ -9,26 +9,26 @@ recordMaximum = (default)150
 */
 
 // should give an ncss of 35
-package com.puppycrawl.tools.checkstyle.checks.metrics.javancss; // violation
+package com.puppycrawl.tools.checkstyle.checks.metrics.javancss; // violation 'NCSS: 39 (Max: 2)'
 
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
 
 //should give an ncss of 22
-public class InputJavaNCSS { // violation
+public class InputJavaNCSS { // violation 'NCSS: 22 (Max: 1)'
 
     private Object mObject;
 
     //should count as 2
-    private void testMethod1() { // violation
+    private void testMethod1() { // violation 'NCSS: 2 (Max: 0)'
 
         //should count as 1
         int x = 1, y = 2;
     }
 
     //should count as 4
-    private void testMethod2() { // violation
+    private void testMethod2() { // violation 'NCSS: 4 (Max: 0)'
 
         int abc = 0;
 
@@ -37,7 +37,7 @@ public class InputJavaNCSS { // violation
     }
 
     //should give an ncss of 12
-    private void testMethod3() { // violation
+    private void testMethod3() { // violation 'NCSS: 12 (Max: 0)'
 
         int a = 0;
         switch (a) {
@@ -49,26 +49,26 @@ public class InputJavaNCSS { // violation
         ItemListener lis = new ItemListener() {
 
             //should give an ncss of 2
-            public void itemStateChanged(ItemEvent e) { // violation
+            public void itemStateChanged(ItemEvent e) { // violation 'NCSS: 2 (Max: 0)'
                 System.identityHashCode("Hello");
             }
         };
     }
 
     //should give an ncss of 2
-    private class TestInnerClass { // violation
+    private class TestInnerClass { // violation 'NCSS: 2 (Max: 1)'
 
         private Object test;
     }
 }
 
 //should give an ncss of 10
-class TestTopLevelNestedClass { // violation
+class TestTopLevelNestedClass { // violation 'NCSS: 10 (Max: 1)'
 
     private Object mObject;
 
     //should give an ncss of 8
-    private void testMethod() { // violation
+    private void testMethod() { // violation 'NCSS: 8 (Max: 0)'
 
         for (int i=0; i<10; i++) {
 
@@ -87,8 +87,8 @@ class TestTopLevelNestedClass { // violation
     }
 }
 
-class Input0 { // violation
-    static { } // violation
-    { } // violation
-    public Input0() { } // violation
+class Input0 { // violation 'NCSS: 4 (Max: 1)'
+    static { } // violation 'NCSS: 1 (Max: 0)'
+    { } // violation 'NCSS: 1 (Max: 0)'
+    public Input0() { } // violation 'NCSS: 1 (Max: 0)'
 }
