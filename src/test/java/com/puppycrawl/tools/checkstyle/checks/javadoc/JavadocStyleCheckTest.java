@@ -522,15 +522,42 @@ public class JavadocStyleCheckTest
     }
 
     @Test
-    public void testRestrictedTokenSet()
+    public void testRestrictedTokenSet1()
             throws Exception {
         final String[] expected = {
             "73: " + getCheckMessage(MSG_NO_PERIOD),
-            "336: " + getCheckMessage(MSG_NO_PERIOD),
-            "368: " + getCheckMessage(MSG_NO_PERIOD),
         };
         verifyWithInlineConfigParser(
-                getPath("InputJavadocStyle10.java"), expected);
+                getPath("InputJavadocStyleRestrictedTokenSet1.java"), expected);
+    }
+
+    @Test
+    public void testRestrictedTokenSet2()
+            throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocStyleRestrictedTokenSet2.java"), expected);
+    }
+
+    @Test
+    public void testRestrictedTokenSet3()
+            throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocStyleRestrictedTokenSet3.java"), expected);
+    }
+
+    @Test
+    public void testRestrictedTokenSet4()
+            throws Exception {
+        final String[] expected = {
+            "59: " + getCheckMessage(MSG_NO_PERIOD),
+            "91: " + getCheckMessage(MSG_NO_PERIOD),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocStyleRestrictedTokenSet4.java"), expected);
     }
 
     @Test
