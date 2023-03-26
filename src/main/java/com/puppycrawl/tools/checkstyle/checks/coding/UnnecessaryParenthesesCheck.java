@@ -176,7 +176,13 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#POST_INC">
  * POST_INC</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#POST_DEC">
- * POST_DEC</a>.
+ * POST_DEC</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BXOR">
+ * BXOR</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BOR">
+ * BOR</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BAND">
+ * BAND</a>.
  * </li>
  * </ul>
  * <p>
@@ -365,6 +371,13 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
         TokenTypes.POST_DEC,
     };
 
+    /** Token types for bitwise binary operator. */
+    private static final int[] BITWISE_BINARY_OPERATORS = {
+        TokenTypes.BXOR,
+        TokenTypes.BOR,
+        TokenTypes.BAND,
+    };
+
     /**
      * Used to test if logging a warning in a parent node may be skipped
      * because a warning was already logged on an immediate child node.
@@ -417,6 +430,9 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
             TokenTypes.BNOT,
             TokenTypes.POST_INC,
             TokenTypes.POST_DEC,
+            TokenTypes.BXOR,
+            TokenTypes.BOR,
+            TokenTypes.BAND,
         };
     }
 
@@ -464,6 +480,9 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
             TokenTypes.BNOT,
             TokenTypes.POST_INC,
             TokenTypes.POST_DEC,
+            TokenTypes.BXOR,
+            TokenTypes.BOR,
+            TokenTypes.BAND,
         };
     }
 
@@ -598,7 +617,7 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
     }
 
     /**
-     * Checks if conditional, relational, unary and postfix operators
+     * Checks if conditional, relational, bitwise binary operator, unary and postfix operators
      * in expressions are surrounded by unnecessary parentheses.
      *
      * @param ast the {@code DetailAST} to check if it is surrounded by
@@ -609,11 +628,26 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
     private static boolean unnecessaryParenAroundOperators(DetailAST ast) {
         final int type = ast.getType();
         final int parentType = ast.getParent().getType();
-        final boolean isConditional = TokenUtil.isOfType(type, CONDITIONALS_AND_RELATIONAL);
-        boolean result = TokenUtil.isOfType(parentType, CONDITIONALS_AND_RELATIONAL);
-        if (isConditional) {
-            if (type == TokenTypes.LOR) {
-                result = result && !TokenUtil.isOfType(parentType, TokenTypes.LAND);
+        final boolean isConditionalOrBitwiseBinaryOperator =
+                isConditionalOrBitwiseBinary(type);
+        boolean result = isConditionalOrBitwiseBinary(parentType);
+        if (isConditionalOrBitwiseBinaryOperator) {
+            switch (type) {
+                case TokenTypes.BOR:
+                    result = result(parentType, TokenTypes.BAND)
+                            && result(parentType, TokenTypes.BXOR);
+                    break;
+                case TokenTypes.BXOR:
+                    result = result(parentType, TokenTypes.BAND);
+                    break;
+                case TokenTypes.LOR:
+                    result = result(parentType, TokenTypes.LAND)
+                            && result(parentType, BITWISE_BINARY_OPERATORS);
+                    break;
+                case TokenTypes.LAND:
+                    result = result(parentType, BITWISE_BINARY_OPERATORS);
+                    break;
+                default:
             }
             result = result && !TokenUtil.isOfType(parentType, TokenTypes.EQUAL,
                 TokenTypes.NOT_EQUAL);
@@ -622,6 +656,29 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
             result = result && TokenUtil.isOfType(type, UNARY_AND_POSTFIX);
         }
         return result;
+    }
+
+    /**
+     * Check if the Token type is conditional, relational or bitwise binary.
+     *
+     * @param type Token type
+     * @return true if token type is of conditional, relational or bitwise binary
+     */
+    private static boolean isConditionalOrBitwiseBinary(int type) {
+        return TokenUtil.isOfType(type, CONDITIONALS_AND_RELATIONAL)
+                || TokenUtil.isOfType(type, BITWISE_BINARY_OPERATORS);
+    }
+
+    /**
+     * Check the result for various case in unnecessaryParenAroundOperators.
+     *
+     * @param type Token Type
+     * @param types Token Type
+     * @return boolean for unnecessaryParenAroundOperators
+     */
+    private static boolean result(int type, int... types) {
+        return isConditionalOrBitwiseBinary(type)
+                && !TokenUtil.isOfType(type, types);
     }
 
     /**
