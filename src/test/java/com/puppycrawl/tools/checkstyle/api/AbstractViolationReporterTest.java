@@ -23,6 +23,7 @@ import static com.google.common.truth.Truth.assertWithMessage;
 
 import java.util.SortedSet;
 
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
@@ -33,7 +34,12 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Tests to ensure that default message bundle is determined correctly.
  *
  */
-public class AbstractViolationReporterTest {
+public class AbstractViolationReporterTest extends AbstractModuleTestSupport {
+
+    @Override
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/api/abstractviolationreporter";
+    }
 
     private final AbstractCheck emptyCheck = new EmptyCheck();
 
@@ -132,6 +138,17 @@ public class AbstractViolationReporterTest {
                     .isEqualTo("Unmatched braces in the pattern.");
         }
     }
+
+    @Test
+    public void testSetSeverity() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(AbstractCheck.class);
+        checkConfig.addProperty("severityLevel", "ignore");
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verify(checkConfig, getPath("InputViolationReportercheckSetSevertiy.java"), expected);
+    }
+
+
 
     public static class EmptyCheck extends AbstractCheck {
 
