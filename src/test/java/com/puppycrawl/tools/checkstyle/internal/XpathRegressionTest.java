@@ -118,7 +118,6 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
             "MutableException",
             "PackageName",
             "ParameterAssignment",
-            "ParameterName",
             "ParameterNumber",
             "RedundantModifier",
             "ReturnCount",
