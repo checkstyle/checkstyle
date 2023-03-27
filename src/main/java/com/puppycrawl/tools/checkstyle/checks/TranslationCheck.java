@@ -74,7 +74,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </pre>
  * <p>
  * The Translation check will find the typo in the German {@code hello} key,
- * The missing {@code ok} key in the default resource file and the missing
+ * the missing {@code ok} key in the default resource file and the missing
  * {@code cancel} key in the German resource file:
  * </p>
  * <pre>
@@ -95,7 +95,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <p>
  * Attention: the check will perform the validation of ISO codes if the option
  * is used. So, if you specify, for example, "mm" for language code,
- * TranslationCheck will rise a violation that the language code is incorrect.
+ * TranslationCheck will raise a violation that the language code is incorrect.
  * </p>
  * <p>
  * Attention: this Check could produce false-positives if it is used with
@@ -229,7 +229,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * {@code translation.missingTranslationFile}
  * </li>
  * </ul>
- *
  * @since 3.0
  */
 
