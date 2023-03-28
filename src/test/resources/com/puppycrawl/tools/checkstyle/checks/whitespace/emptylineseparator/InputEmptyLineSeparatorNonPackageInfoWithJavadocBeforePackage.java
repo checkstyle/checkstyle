@@ -11,8 +11,8 @@ tokens = (default)PACKAGE_DEF, IMPORT, STATIC_IMPORT, CLASS_DEF, INTERFACE_DEF, 
 */
 
 /** Comment1
- Comment2 */
-package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator; // violation
+ Comment2 */ // violation below ''package' should be separated from previous line.'
+package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator;
 
 public class InputEmptyLineSeparatorNonPackageInfoWithJavadocBeforePackage {
 }
