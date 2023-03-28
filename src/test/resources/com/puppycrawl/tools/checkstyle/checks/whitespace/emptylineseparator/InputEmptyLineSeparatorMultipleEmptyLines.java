@@ -11,7 +11,7 @@ tokens = (default)PACKAGE_DEF, IMPORT, STATIC_IMPORT, CLASS_DEF, INTERFACE_DEF, 
 */
 
 
-package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator; // violation
+package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator; // violation ''package' has more than 1 empty lines before.'
 
 
 import java.util.*; // violation ''import' has more than 1 empty lines before.'
