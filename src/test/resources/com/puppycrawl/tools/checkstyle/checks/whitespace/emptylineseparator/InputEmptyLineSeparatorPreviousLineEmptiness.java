@@ -29,7 +29,7 @@ public class InputEmptyLineSeparatorPreviousLineEmptiness {
         base = 33;
     }
 
-    public InputEmptyLineSeparatorPreviousLineEmptiness(int base) { // violation
+    public InputEmptyLineSeparatorPreviousLineEmptiness(int base) { // violation '.*1 empty line.*'
 
 
         this.base = base;
