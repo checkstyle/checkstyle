@@ -100,7 +100,6 @@ public final class InlineConfigParser {
             "com.puppycrawl.tools.checkstyle.checks.whitespace.MethodParamPadCheck",
             "com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck",
             "com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck",
-            "com.puppycrawl.tools.checkstyle.checks.coding.PackageDeclarationCheck",
             "com.puppycrawl.tools.checkstyle.checks.regexp.RegexpCheck",
             "com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyForInitializerPadCheck",
             "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck",
