@@ -8,8 +8,8 @@ tokens = (default)PACKAGE_DEF, IMPORT, STATIC_IMPORT, CLASS_DEF, INTERFACE_DEF, 
          COMPACT_CTOR_DEF
 
 
-*/
-package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator; // violation
+*/ // violation below ''package' should be separated from previous line.'
+package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator;
 
 
 
@@ -236,7 +236,7 @@ public class InputEmptyLineSeparatorWithComments2 {
     // ok
     public interface Interface2 { }
     // ok
-    public // violation
+    public // violation ''INTERFACE_DEF' should be separated from previous line.'
     // .
     interface Interface3 { }
 
