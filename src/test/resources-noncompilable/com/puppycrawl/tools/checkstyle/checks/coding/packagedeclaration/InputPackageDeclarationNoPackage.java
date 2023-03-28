@@ -6,5 +6,5 @@ matchDirectoryStructure = (default)true
 */
 
 // comment
-class InputPackageDeclarationNoPackage { // violation
+class InputPackageDeclarationNoPackage { // violation 'Missing package declaration.'
 }
