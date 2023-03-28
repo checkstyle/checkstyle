@@ -180,38 +180,36 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * public abstract class Foo {
  *   private int bar;
  *
- *   public int method1() {return 2;}  // Violation. No javadoc.
+ *   public int m1() {return 2;}  // Violation. No javadoc.
  *
- *   public int method2() {return 8;}  // Violation. No javadoc.
+ *   public int m2() {return 8;}  // Violation. No javadoc.
  *
- *   private void method3() {method4();}  // OK. Private method.
+ *   private void m3() {m4();}  // OK. Private method.
  *
- *   protected void method4() { }  // OK. No implementation.
+ *   protected void m4() { }  // OK. No implementation.
  *
- *   public abstract void method5();  // OK. Abstract method.
+ *   public abstract void m5();  // OK. Abstract method.
  *
  *   &#47;**
  *    * This implementation ...
  *    &#64;return some int value.
  *    *&#47;
- *   public int method6() {return 1;}  // OK. Have javadoc on overridable method.
+ *   public int m6() {return 1;}  // OK. Have javadoc on overridable method.
  *
  *   &#47;**
  *    * Some comments ...
  *    *&#47;
- *   public int method7() {return 1;}  // OK. Have javadoc on overridable method.
+ *   public int m7() {return 1;}  // OK. Have javadoc on overridable method.
  *
  *   &#47;**
  *    * This
  *    * implementation ...
  *    *&#47;
- *   public int method8() {return 2;}  // OK. Have javadoc on overridable method
+ *   public int m8() {return 2;}  // OK. Have javadoc on overridable method
  *
  *   &#64;Override
  *   public String toString() {  // Violation. No javadoc for @Override method
- *     return "Foo{" +
- *         "bar=" + bar +
- *         '}';
+ *     return "";
  *   }
  * }
  * </pre>
@@ -229,38 +227,36 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * public abstract class Foo {
  *   private int bar;
  *
- *   public int method1() {return 2;}  // Violation. No javadoc.
+ *   public int m1() {return 2;}  // Violation. No javadoc.
  *
- *   public int method2() {return 8;}  // Violation. No javadoc.
+ *   public int m2() {return 8;}  // Violation. No javadoc.
  *
- *   private void method3() {method4();}  // OK. Private method.
+ *   private void m3() {m4();}  // OK. Private method.
  *
- *   protected void method4() { }  // OK. No implementation.
+ *   protected void m4() { }  // OK. No implementation.
  *
- *   public abstract void method5();  // OK. Abstract method.
+ *   public abstract void m5();  // OK. Abstract method.
  *
  *   &#47;**
  *    * This implementation ...
  *    &#64;return some int value.
  *    *&#47;
- *   public int method6() {return 1;}  // OK. Have javadoc on overridable method.
+ *   public int m6() {return 1;}  // OK. Have javadoc on overridable method.
  *
  *   &#47;**
  *    * Some comments ...
  *    *&#47;
- *   public int method7() {return 1;}  // OK. Have javadoc on overridable method.
+ *   public int m7() {return 1;}  // OK. Have javadoc on overridable method.
  *
  *   &#47;**
  *    * This
  *    * implementation ...
  *    *&#47;
- *   public int method8() {return 2;}  // OK. Have javadoc on overridable method.
+ *   public int m8() {return 2;}  // OK. Have javadoc on overridable method.
  *
  *   &#64;Override
  *   public String toString() {  // OK. Have javadoc on overridable method.
- *     return "Foo{" +
- *         "bar=" + bar +
- *         '}';
+ *     return ""
  *   }
  * }
  * </pre>
@@ -278,39 +274,36 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * public abstract class Foo {
  *   private int bar;
  *
- *   public int method1() {return 2;}  // Violation. No javadoc.
+ *   public int m1() {return 2;}  // Violation. No javadoc.
  *
- *   public int method2() {return 8;}  // Violation. No javadoc.
+ *   public int m2() {return 8;}  // Violation. No javadoc.
  *
- *   private void method3() {method4();}  // OK. Private method.
+ *   private void m3() {m4();}  // OK. Private method.
  *
- *   protected void method4() { }  // OK. No implementation.
+ *   protected void m4() { }  // OK. No implementation.
  *
- *   public abstract void method5();  // OK. Abstract method.
+ *   public abstract void m5();  // OK. Abstract method.
  *
  *   &#47;**
  *    * This implementation ...
  *    &#64;return some int value.
  *    *&#47;
- *   public int method6() {return 1;}  // OK. Have required javadoc.
+ *   public int m6() {return 1;}  // OK. Have required javadoc.
  *
  *   &#47;**
  *    * Some comments ...
  *    *&#47;
- *   public int method7() {return 1;}  // Violation. No required javadoc.
+ *   public int m7() {return 1;}  // Violation. No required javadoc.
  *
  *   &#47;**
  *    * This
  *    * implementation ...
  *    *&#47;
- *   public int method8() {return 2;}  // Violation. No required javadoc.
+ *   public int m8() {return 2;}  // Violation. No required javadoc.
  *
  *   &#64;Override
  *   public String toString() {  // Violation. No required javadoc.
- *     return "Foo{" +
- *         "bar=" + bar +
- *         '}';
- *   }
+ *     return "";
  * }
  * </pre>
  * <p>
@@ -329,38 +322,36 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * public abstract class Foo {
  *   private int bar;
  *
- *   public int method1() {return 2;}  // Violation. No javadoc.
+ *   public int m1() {return 2;}  // Violation. No javadoc.
  *
- *   public int method2() {return 8;}  // Violation. No javadoc.
+ *   public int m2() {return 8;}  // Violation. No javadoc.
  *
- *   private void method3() {method4();}
+ *   private void m3() {m4();}
  *
- *   protected void method4() { }  // OK. No implementation.
+ *   protected void m4() { }  // OK. No implementation.
  *
- *   public abstract void method5();  // OK. Abstract method.
+ *   public abstract void m5();  // OK. Abstract method.
  *
  *   &#47;**
  *    * This implementation ...
  *    &#64;return some int value.
  *    *&#47;
- *   public int method6() {return 1;}  // OK. Have required javadoc.
+ *   public int m6() {return 1;}  // OK. Have required javadoc.
  *
  *   &#47;**
  *    * Some comments ...
  *    *&#47;
- *   public int method7() {return 1;}  // Violation. No required javadoc.
+ *   public int m7() {return 1;}  // Violation. No required javadoc.
  *
  *   &#47;**
  *    * This
  *    * implementation ...
  *    *&#47;
- *   public int method8() {return 2;}  // OK. Have required javadoc.
+ *   public int m8() {return 2;}  // OK. Have required javadoc.
  *
  *   &#64;Override
  *   public String toString() {  // Violation. No required javadoc.
- *     return "Foo{" +
- *         "bar=" + bar +
- *         '}';
+ *     return "";
  *   }
  * }
  * </pre>
