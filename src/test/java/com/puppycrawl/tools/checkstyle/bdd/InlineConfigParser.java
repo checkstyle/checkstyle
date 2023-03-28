@@ -98,10 +98,6 @@ public final class InlineConfigParser {
      */
     private static final Set<String> SUPPRESSED_CHECKS = new HashSet<>(Arrays.asList(
             "com.puppycrawl.tools.checkstyle.checks.whitespace.MethodParamPadCheck",
-<<<<<<< HEAD
-=======
-            "com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck",
->>>>>>> 4b05db623 (Issue #11214: Specified violation messages in JavaNCSSCheck)
             "com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.PackageDeclarationCheck",
             "com.puppycrawl.tools.checkstyle.checks.regexp.RegexpCheck",
