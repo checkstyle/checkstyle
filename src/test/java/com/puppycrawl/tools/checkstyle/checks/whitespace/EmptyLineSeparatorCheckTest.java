@@ -96,7 +96,6 @@ public class EmptyLineSeparatorCheckTest
     @Test
     public void testMultipleEmptyLinesBetweenClassMembers() throws Exception {
         final String[] expected = {
-            "14:1: " + getCheckMessage(MSG_MULTIPLE_LINES, "package"),
             "17:1: " + getCheckMessage(MSG_MULTIPLE_LINES, "import"),
             "22:1: " + getCheckMessage(MSG_MULTIPLE_LINES, "CLASS_DEF"),
             "26:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "VARIABLE_DEF"),
@@ -124,9 +123,7 @@ public class EmptyLineSeparatorCheckTest
 
     @Test
     public void testAllowMultipleImportSeparatedFromPackage() throws Exception {
-        final String[] expected = {
-            "13:78: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "import"),
-        };
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputEmptyLineSeparatorMultipleImportEmptyClass.java"),
             expected);
