@@ -297,6 +297,7 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
             "13:8: " + getCheckMessage(MSG_KEY, "java.util.Set"),
             "16:8: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.checks.imports."
                     + "unusedimports.InputUnusedImportsShadowed"),
+            "22:15: " + getCheckMessage(MSG_KEY, "java.lang.String.format"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputUnusedImportsShadowed.java"), expected);
