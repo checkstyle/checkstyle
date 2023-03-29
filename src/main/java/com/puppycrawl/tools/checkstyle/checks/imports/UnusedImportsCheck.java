@@ -278,19 +278,34 @@ public class UnusedImportsCheck extends AbstractCheck {
         final DetailAST parent = ast.getParent();
         final int parentType = parent.getType();
 
-        final boolean isPossibleDotClassOrInMethod = parentType == TokenTypes.DOT
-                || parentType == TokenTypes.METHOD_DEF;
-
-        final boolean isQualifiedIdent = parentType == TokenTypes.DOT
-                && !TokenUtil.isOfType(ast.getPreviousSibling(), TokenTypes.DOT)
-                && ast.getNextSibling() != null;
-
         if (TokenUtil.isTypeDeclaration(parentType)) {
             currentFrame.addDeclaredType(ast.getText());
         }
-        else if (!isPossibleDotClassOrInMethod || isQualifiedIdent) {
-            currentFrame.addReferencedType(ast.getText());
+        else {
+            final boolean isPossibleDotClassOrInMethod = parentType == TokenTypes.DOT
+                    || parentType == TokenTypes.METHOD_DEF || parentType == TokenTypes.METHOD_REF;
+            final boolean isQualifiedIdent = parentType == TokenTypes.DOT
+                    && !TokenUtil.isOfType(ast.getPreviousSibling(), TokenTypes.DOT)
+                    && ast.getNextSibling() != null;
+            final boolean isQualifiedIdentFromMethodRef = isQualifiedIdentFromMethodRef(ast);
+            if (!isPossibleDotClassOrInMethod || isQualifiedIdent
+                    || isQualifiedIdentFromMethodRef) {
+                currentFrame.addReferencedType(ast.getText());
+            }
         }
+    }
+
+    /**
+     * Checks whether ast is a method reference usage.
+     *
+     * @param ast current node under process
+     * @return a boolean indicates whether ast is a possible method reference
+     */
+    private static boolean isQualifiedIdentFromMethodRef(DetailAST ast) {
+        final DetailAST parent = ast.getParent();
+        final int parentType = parent.getType();
+        return parentType == TokenTypes.METHOD_REF
+                && ast.getNextSibling() != null;
     }
 
     /**
