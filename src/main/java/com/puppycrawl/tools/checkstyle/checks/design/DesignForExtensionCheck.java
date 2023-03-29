@@ -256,7 +256,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *
  *   &#64;Override
  *   public String toString() {  // OK. Have javadoc on overridable method.
- *     return ""
+ *     return "";
  *   }
  * }
  * </pre>
@@ -304,6 +304,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *   &#64;Override
  *   public String toString() {  // Violation. No required javadoc.
  *     return "";
+ *   }
  * }
  * </pre>
  * <p>
