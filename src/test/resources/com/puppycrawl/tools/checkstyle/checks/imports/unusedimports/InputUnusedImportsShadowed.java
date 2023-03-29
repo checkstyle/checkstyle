@@ -19,6 +19,10 @@ import com.puppycrawl.tools.checkstyle.checks.imports.unusedimports.InputUnusedI
 import com.puppycrawl.tools.checkstyle.checks.imports.unusedimports.InputUnusedImportsShadowed.Inner; // ok
 import com.puppycrawl.tools.checkstyle.checks.imports.unusedimports.InputUnusedImportsShadowed.Nested; // ok
 import com.puppycrawl.tools.checkstyle.checks.imports.unusedimports.InputUnusedImportsShadowed.Nested.List.Map.Entry; // ok
+import static java.lang.String.format; // violation
+import java.util.Objects; // ok
+import java.util.Optional; //ok
+
 
 @Deprecated(foo = Foo.class, classes = {Inner.class})
 public class InputUnusedImportsShadowed
@@ -88,6 +92,18 @@ public class InputUnusedImportsShadowed
             class List {
             }
         }
+    }
+
+    void testMethodRef()
+    {
+        Optional<String> test = Optional.empty();
+        test.map(String::format);
+    }
+
+    void testMethodRefWithClass()
+    {
+        Optional<String> test = Optional.empty();
+        test.map(Objects::nonNull);
     }
 
 }
