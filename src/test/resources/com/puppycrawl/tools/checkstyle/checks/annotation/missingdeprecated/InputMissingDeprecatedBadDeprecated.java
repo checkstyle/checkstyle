@@ -10,44 +10,44 @@ package com.puppycrawl.tools.checkstyle.checks.annotation.missingdeprecated;
 /**
  * @deprecated
  *  stuff
- */
-public class InputMissingDeprecatedBadDeprecated // violation
+ */ // violation below '.*@java.lang.Deprecated annotation.*@deprecated Javadoc tag.*description.'
+public class InputMissingDeprecatedBadDeprecated
 {
     /**
      * @deprecated        stuff
      */
-    protected InputMissingDeprecatedBadDeprecated() { // violation
-
+    protected InputMissingDeprecatedBadDeprecated() {
+    // violation above '.*@java.lang.Deprecated annotation.*@deprecated Javadoc tag.*description.'
     }
 
     /**
      * @deprecated stuff
-     */
-    public String toString() { // violation
+     */ // violation below '.*@java.lang.Deprecated annotation.*@deprecated Javadoc.*description.'
+    public String toString() {
         return "";
     }
 
     /**
      * @deprecated stuff
      */
-    enum Rock { // violation
+    enum Rock { // violation '.*@java.lang.Deprecated annotation.*@deprecated.*description.'
 
         /**
          * @deprecated stuff
          */
-        Metallica // violation
+        Metallica // violation '.*@java.lang.Deprecated annotation.*@deprecated.*description.'
     }
 }
 
 /**
  * @deprecated stuff
  */
-interface Foo1 { // violation
+interface Foo1 { // violation '.*@java.lang.Deprecated annotation.*@deprecated.*description.'
 
     /**
      * @deprecated stuff
      */
-    interface Bar { // violation
+    interface Bar { // violation '.*@java.lang.Deprecated annotation.*@deprecated.*description.'
 
     }
 }
@@ -55,10 +55,10 @@ interface Foo1 { // violation
 /**
  * @deprecated stuff
  */
-@interface Bleh { // violation
+@interface Bleh { // violation '.*@java.lang.Deprecated annotation.*@deprecated.*description.'
 
     /**
      * @deprecated stuff
      */
-    int bleh(); // violation
+    int bleh(); // violation '.*@java.lang.Deprecated annotation.*@deprecated.*description.'
 }
