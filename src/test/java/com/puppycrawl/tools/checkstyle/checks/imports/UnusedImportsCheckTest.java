@@ -302,4 +302,13 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
                 getPath("InputUnusedImportsShadowed.java"), expected);
     }
 
+    @Test
+    public void testStaticMethodRefImports() throws Exception {
+        final String[] expected = {
+            "10:15: " + getCheckMessage(MSG_KEY, "java.lang.String.format"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputUnusedImportsFromStaticMethodRef.java"), expected);
+    }
+
 }
