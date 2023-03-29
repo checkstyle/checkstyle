@@ -6,8 +6,8 @@ ModifierOrder
 
 //non-compiled with javac: Compilable with Java15
 package com.puppycrawl.tools.checkstyle.checks.modifier.modifierorder;
-
-sealed public class InputModifierOrderSealedAndNonSealed // violation
+// violation below ''public' modifier out of order with the JLS suggestions.'
+sealed public class InputModifierOrderSealedAndNonSealed
     permits Circle, Square, Rectangle {
 }
 
@@ -23,8 +23,8 @@ final class TransparentRectangle extends Rectangle {
 }
 
 sealed class Square extends InputModifierOrderSealedAndNonSealed implements Squircle {
-    sealed private class OtherSquare extends Square permits OtherSquare2 { // violation
-    }
+    sealed private class OtherSquare extends Square permits OtherSquare2 {
+    } // violation above ''private' modifier out of order with the JLS suggestions.'
 
     private final class OtherSquare2 extends OtherSquare {
     }
@@ -40,23 +40,23 @@ final strictfp class FilledRectangle extends Rectangle {
 
 sealed interface Squircle permits Circle, Square, Ellipse, Square.StaticClass { // ok
 }
-
-strictfp sealed interface Rhombus permits Parallelogram, Parallelogram.Diamond, // violation
+// violation below ''sealed' modifier out of order with the JLS suggestions.'
+strictfp sealed interface Rhombus permits Parallelogram, Parallelogram.Diamond,
         Parallelogram.Trapezoid {
 
 }
 
 record Parallelogram(int x, int y, double z) implements Rhombus{
-    final public record Diamond(int x, int y, double z)implements Rhombus { // violation
-    }
-
-    strictfp static public final record Trapezoid(int x, int y, // violation
+    final public record Diamond(int x, int y, double z)implements Rhombus {
+    } // violation above ''public' modifier out of order with the JLS suggestions.'
+// violation below ''static' modifier out of order with the JLS suggestions.'
+    strictfp static public final record Trapezoid(int x, int y,
         double z)implements Rhombus {
     }
 }
 
-strictfp non-sealed interface Ellipse extends Squircle { // violation
-
+strictfp non-sealed interface Ellipse extends Squircle {
+// violation above ''non-sealed' modifier out of order with the JLS suggestions.'
 }
 
 class Oval implements Ellipse {
