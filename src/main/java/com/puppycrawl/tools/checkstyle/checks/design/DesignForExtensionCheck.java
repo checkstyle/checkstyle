@@ -205,10 +205,10 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *    * This
  *    * implementation ...
  *    *&#47;
- *   public int m8() {return 2;}  // OK. Have javadoc on overridable method
+ *   public int m8() {return 2;}  // OK. Have javadoc on overridable method.
  *
  *   &#64;Override
- *   public String toString() {  // Violation. No javadoc for @Override method
+ *   public String toString() {  // Violation. No javadoc for @Override method.
  *     return "";
  *   }
  * }
