@@ -137,7 +137,6 @@ public abstract class Plant {
 }
         </source>
       </subsection>
-
       <subsection name="Properties" id="DesignForExtension_Properties">
         <div class="wrapper">
           <table>
@@ -170,108 +169,190 @@ public abstract class Plant {
           </table>
         </div>
       </subsection>
-
       <subsection name="Examples" id="DesignForExtension_Examples">
         <p>
           To configure the check:
         </p>
-
         <source>
 &lt;module name=&quot;DesignForExtension&quot;/&gt;
         </source>
-
-        <p>
-          To configure the check to allow methods which have @Override and @Test annotations to be
-          designed for extension.
-        </p>
-
+        <p>Example:</p>
         <source>
-&lt;module name=&quot;DesignForExtension&quot;&gt;
-  &lt;property name=&quot;ignoredAnnotations&quot; value=&quot;Override, Test&quot;/&gt;
-&lt;/module&gt;
-        </source>
+public abstract class Foo {
+  private int bar;
 
-        <source>
-public class A {
-  @Override
-  public int foo() {
-    return 2;
-  }
+  public int m1() {return 2;}  // Violation. No javadoc.
 
-  public int foo2() {return 8;} // violation
-}
+  public int m2() {return 8;}  // Violation. No javadoc.
 
-public class B {
+  private void m3() {m4();}  // OK. Private method.
+
+  protected void m4() { }  // OK. No implementation.
+
+  public abstract void m5();  // OK. Abstract method.
+
   /**
    * This implementation ...
-     @return some int value.
+   @return some int value.
    */
-  public int foo() {
-    return 1;
+  public int m6() {return 1;}  // OK. Have javadoc on overridable method.
+
+  /**
+   * Some comments ...
+   */
+  public int m7() {return 1;}  // OK. Have javadoc on overridable method.
+
+  /**
+   * This
+   * implementation ...
+   */
+  public int m8() {return 2;}  // OK. Have javadoc on overridable method
+
+  @Override
+  public String toString() {  // Violation. No javadoc for @Override method
+    return "";
   }
-
-  public int foo3() {return 3;} // violation
-}
-
-public class FooTest {
-  @Test
-  public void testFoo() {
-    final B b = new A();
-    assertEquals(2, b.foo());
-  }
-
-  public int foo4() {return 4;} // violation
 }
         </source>
         <p>
-          To configure the check to allow methods which contain a specified comment text
-          pattern in their javadoc to be designed for extension.
+          To configure the check to allow methods which have @Override annotations to be
+          designed for extension.
         </p>
         <source>
-&lt;module name=&quot;DesignForExtension&quot;&gt;
-  &lt;property name=&quot;requiredJavadocPhrase&quot; value=&quot;This implementation&quot;/&gt;
+&lt;module name="DesignForExtension"&gt;
+  &lt;property name="ignoredAnnotations" value="Override"/&gt;
 &lt;/module&gt;
         </source>
+        <p>Example:</p>
         <source>
-public class A {
-      /&#42;&#42;
-       &#42; This implementation ...
-       &#42;/
-      public int foo() {return 2;} // ok, required javadoc phrase in comment
+public abstract class Foo {
+  private int bar;
 
-      /&#42;&#42;
-       &#42; Do not extend ...
-       &#42;/
-      public int foo2() {return 8;} // violation, required javadoc phrase not in comment
+  public int m1() {return 2;}  // Violation. No javadoc.
 
-  public int foo3() {return 3;} // violation, required javadoc phrase not in comment
+  public int m2() {return 8;}  // Violation. No javadoc.
+
+  private void m3() {m4();}  // OK. Private method.
+
+  protected void m4() { }  // OK. No implementation.
+
+  public abstract void m5();  // OK. Abstract method.
+
+  /**
+   * This implementation ...
+   @return some int value.
+   */
+  public int m6() {return 1;}  // OK. Have javadoc on overridable method.
+
+  /**
+   * Some comments ...
+   */
+  public int m7() {return 1;}  // OK. Have javadoc on overridable method.
+
+  /**
+   * This
+   * implementation ...
+   */
+  public int m8() {return 2;}  // OK. Have javadoc on overridable method.
+
+  @Override
+  public String toString() {  // OK. Have javadoc on overridable method.
+    return "";
+  }
+}
+        </source>
+        <p>To configure the check to allow methods which contain a specified comment text pattern in
+          their javadoc to be designed for extension.
+        </p>
+        <source>
+&lt;module name="DesignForExtension"&gt;
+  &lt;property name="requiredJavadocPhrase" value="This implementation"/&gt;
+&lt;/module&gt;
+        </source>
+        <p>Example:</p>
+        <source>
+public abstract class Foo {
+  private int bar;
+
+  public int m1() {return 2;}  // Violation. No javadoc.
+
+  public int m2() {return 8;}  // Violation. No javadoc.
+
+  private void m3() {m4();}  // OK. Private method.
+
+  protected void m4() { }  // OK. No implementation.
+
+  public abstract void m5();  // OK. Abstract method.
+
+  /**
+   * This implementation ...
+   @return some int value.
+   */
+  public int m6() {return 1;}  // OK. Have required javadoc.
+
+  /**
+   * Some comments ...
+   */
+  public int m7() {return 1;}  // Violation. No required javadoc.
+
+  /**
+   * This
+   * implementation ...
+   */
+  public int m8() {return 2;}  // Violation. No required javadoc.
+
+  @Override
+  public String toString() {  // Violation. No required javadoc.
+    return "";
+  }
 }
         </source>
         <p>
-          To configure the check to allow methods which contain a specified comment text
-          pattern in their javadoc which can span multiple lines
-          to be designed for extension.
+          To configure the check to allow methods which contain a specified comment text pattern in
+          their javadoc which can span multiple lines to be designed for extension.
         </p>
         <source>
-&lt;module name=&quot;DesignForExtension&quot;&gt;
-  &lt;property name=&quot;requiredJavadocPhrase&quot;
-          value=&quot;This[\s\S]*implementation&quot;/&gt;
+&lt;module name="DesignForExtension"&gt;
+  &lt;property name="requiredJavadocPhrase"
+    value="This[\s\S]*implementation"/&gt;
 &lt;/module&gt;
         </source>
+        <p>Example:</p>
         <source>
-public class A {
-    /&#42;&#42;
-     &#42; This
-     &#42; implementation ...
-     &#42;/
-    public int foo() {return 2;} // ok, required javadoc phrase in comment
+public abstract class Foo {
+  private int bar;
 
-    /&#42;&#42;
-     &#42; Do not extend ...
-     &#42;/
-    public int foo2() {return 8;} // violation, required javadoc phrase not in comment
+  public int m1() {return 2;}  // Violation. No javadoc.
 
-    public int foo3() {return 3;} // violation, required javadoc phrase not in comment
+  public int m2() {return 8;}  // Violation. No javadoc.
+
+  private void m3() {m4();}
+
+  protected void m4() { }  // OK. No implementation.
+
+  public abstract void m5();  // OK. Abstract method.
+
+  /**
+   * This implementation ...
+   @return some int value.
+   */
+  public int m6() {return 1;}  // OK. Have required javadoc.
+
+  /**
+   * Some comments ...
+   */
+  public int m7() {return 1;}  // Violation. No required javadoc.
+
+  /**
+   * This
+   * implementation ...
+   */
+  public int m8() {return 2;}  // OK. Have required javadoc.
+
+  @Override
+  public String toString() {  // Violation. No required javadoc.
+    return "";
+  }
 }
         </source>
       </subsection>
