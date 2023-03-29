@@ -361,6 +361,7 @@ edb
 edef
 edu
 Eghj
+Ei
 ej
 ejb
 elasticsearch
@@ -1279,6 +1280,7 @@ Sys
 sysextensions
 sysprop
 systemout
+tac
 Taglib
 taglist
 taskdef
@@ -1363,6 +1365,7 @@ unusedlocalvariable
 uppercased
 upperell
 upsss
+urandom
 uri
 url
 userguide
