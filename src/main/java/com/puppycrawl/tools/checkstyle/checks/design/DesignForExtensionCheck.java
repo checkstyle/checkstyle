@@ -175,45 +175,89 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <pre>
  * &lt;module name=&quot;DesignForExtension&quot;/&gt;
  * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * public abstract class Foo {
+ *   private int bar;
+ *
+ *   public int m1() {return 2;}  // Violation. No javadoc.
+ *
+ *   public int m2() {return 8;}  // Violation. No javadoc.
+ *
+ *   private void m3() {m4();}  // OK. Private method.
+ *
+ *   protected void m4() { }  // OK. No implementation.
+ *
+ *   public abstract void m5();  // OK. Abstract method.
+ *
+ *   &#47;**
+ *    * This implementation ...
+ *    &#64;return some int value.
+ *    *&#47;
+ *   public int m6() {return 1;}  // OK. Have javadoc on overridable method.
+ *
+ *   &#47;**
+ *    * Some comments ...
+ *    *&#47;
+ *   public int m7() {return 1;}  // OK. Have javadoc on overridable method.
+ *
+ *   &#47;**
+ *    * This
+ *    * implementation ...
+ *    *&#47;
+ *   public int m8() {return 2;}  // OK. Have javadoc on overridable method
+ *
+ *   &#64;Override
+ *   public String toString() {  // Violation. No javadoc for @Override method
+ *     return "";
+ *   }
+ * }
+ * </pre>
  * <p>
- * To configure the check to allow methods which have @Override and @Test annotations
+ * To configure the check to allow methods which have @Override annotations
  * to be designed for extension.
  * </p>
  * <pre>
  * &lt;module name=&quot;DesignForExtension&quot;&gt;
- *   &lt;property name=&quot;ignoredAnnotations&quot; value=&quot;Override, Test&quot;/&gt;
+ *   &lt;property name=&quot;ignoredAnnotations&quot; value=&quot;Override&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>Example:</p>
  * <pre>
- * public class A {
- *   &#64;Override
- *   public int foo() {
- *     return 2;
- *   }
+ * public abstract class Foo {
+ *   private int bar;
  *
- *   public int foo2() {return 8;} // violation
- * }
+ *   public int m1() {return 2;}  // Violation. No javadoc.
  *
- * public class B {
+ *   public int m2() {return 8;}  // Violation. No javadoc.
+ *
+ *   private void m3() {m4();}  // OK. Private method.
+ *
+ *   protected void m4() { }  // OK. No implementation.
+ *
+ *   public abstract void m5();  // OK. Abstract method.
+ *
  *   &#47;**
  *    * This implementation ...
- *      &#64;return some int value.
+ *    &#64;return some int value.
  *    *&#47;
- *   public int foo() {
- *     return 1;
+ *   public int m6() {return 1;}  // OK. Have javadoc on overridable method.
+ *
+ *   &#47;**
+ *    * Some comments ...
+ *    *&#47;
+ *   public int m7() {return 1;}  // OK. Have javadoc on overridable method.
+ *
+ *   &#47;**
+ *    * This
+ *    * implementation ...
+ *    *&#47;
+ *   public int m8() {return 2;}  // OK. Have javadoc on overridable method.
+ *
+ *   &#64;Override
+ *   public String toString() {  // OK. Have javadoc on overridable method.
+ *     return "";
  *   }
- *
- *   public int foo3() {return 3;} // violation
- * }
- *
- * public class FooTest {
- *   &#64;Test
- *   public void testFoo() {
- *     final B b = new A();
- *     assertEquals(2, b.foo());
- *   }
- *
- *   public int foo4() {return 4;} // violation
  * }
  * </pre>
  * <p>
@@ -222,23 +266,45 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </p>
  * <pre>
  * &lt;module name=&quot;DesignForExtension&quot;&gt;
- *   &lt;property name=&quot;requiredJavadocPhrase&quot;
- *     value=&quot;This implementation&quot;/&gt;
+ *   &lt;property name=&quot;requiredJavadocPhrase&quot; value=&quot;This implementation&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>Example:</p>
  * <pre>
- * public class A {
- *   /&#42;&#42;
- *   &#42; This implementation ...
- *   &#42;/
- *   public int foo() {return 2;} // ok, required javadoc phrase in comment
+ * public abstract class Foo {
+ *   private int bar;
  *
- *   /&#42;&#42;
- *   &#42; Do not extend ...
- *   &#42;/
- *   public int foo2() {return 8;} // violation, required javadoc phrase not in comment
+ *   public int m1() {return 2;}  // Violation. No javadoc.
  *
- *   public int foo3() {return 3;} // violation, required javadoc phrase not in comment
+ *   public int m2() {return 8;}  // Violation. No javadoc.
+ *
+ *   private void m3() {m4();}  // OK. Private method.
+ *
+ *   protected void m4() { }  // OK. No implementation.
+ *
+ *   public abstract void m5();  // OK. Abstract method.
+ *
+ *   &#47;**
+ *    * This implementation ...
+ *    &#64;return some int value.
+ *    *&#47;
+ *   public int m6() {return 1;}  // OK. Have required javadoc.
+ *
+ *   &#47;**
+ *    * Some comments ...
+ *    *&#47;
+ *   public int m7() {return 1;}  // Violation. No required javadoc.
+ *
+ *   &#47;**
+ *    * This
+ *    * implementation ...
+ *    *&#47;
+ *   public int m8() {return 2;}  // Violation. No required javadoc.
+ *
+ *   &#64;Override
+ *   public String toString() {  // Violation. No required javadoc.
+ *     return "";
+ *   }
  * }
  * </pre>
  * <p>
@@ -252,20 +318,42 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *     value=&quot;This[\s\S]*implementation&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>Example:</p>
  * <pre>
- * public class A {
- *   /&#42;&#42;
- *   &#42; This
- *   &#42; implementation ...
- *   &#42;/
- *   public int foo() {return 2;} // ok, required javadoc phrase in comment
+ * public abstract class Foo {
+ *   private int bar;
  *
- *   /&#42;&#42;
- *   &#42; Do not extend ...
- *   &#42;/
- *   public int foo2() {return 8;} // violation, required javadoc phrase not in comment
+ *   public int m1() {return 2;}  // Violation. No javadoc.
  *
- *   public int foo3() {return 3;} // violation, required javadoc phrase not in comment
+ *   public int m2() {return 8;}  // Violation. No javadoc.
+ *
+ *   private void m3() {m4();}
+ *
+ *   protected void m4() { }  // OK. No implementation.
+ *
+ *   public abstract void m5();  // OK. Abstract method.
+ *
+ *   &#47;**
+ *    * This implementation ...
+ *    &#64;return some int value.
+ *    *&#47;
+ *   public int m6() {return 1;}  // OK. Have required javadoc.
+ *
+ *   &#47;**
+ *    * Some comments ...
+ *    *&#47;
+ *   public int m7() {return 1;}  // Violation. No required javadoc.
+ *
+ *   &#47;**
+ *    * This
+ *    * implementation ...
+ *    *&#47;
+ *   public int m8() {return 2;}  // OK. Have required javadoc.
+ *
+ *   &#64;Override
+ *   public String toString() {  // Violation. No required javadoc.
+ *     return "";
+ *   }
  * }
  * </pre>
  * <p>
