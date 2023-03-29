@@ -8,10 +8,10 @@ tokens = (default)PACKAGE_DEF, IMPORT, STATIC_IMPORT, CLASS_DEF, INTERFACE_DEF, 
          COMPACT_CTOR_DEF
 
 
-*/
+*/ // violation two lines below ''package' has more than 1 empty lines before.'
 
 
-package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator; // violation
+package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator;
 
 
 import java.util.*; // violation ''import' has more than 1 empty lines before.'

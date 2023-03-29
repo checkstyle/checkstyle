@@ -8,9 +8,9 @@ tokens = (default)PACKAGE_DEF, IMPORT, STATIC_IMPORT, CLASS_DEF, INTERFACE_DEF, 
          COMPACT_CTOR_DEF
 
 
-*/
+*/ // violation one line below ''import' should be separated from previous line.'
 
-package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator;import java.util.List; // violation
+package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator;import java.util.List;
 
 import java.util.Calendar;
 import java.util.Date;
