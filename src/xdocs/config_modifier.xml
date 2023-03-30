@@ -511,8 +511,6 @@ public interface RoadFeature {
             annotation.order</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fmodifier+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22mod.order%22">
-            mod.order</a>
           </li>
         </ul>
         <p>
