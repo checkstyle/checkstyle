@@ -3,8 +3,12 @@ on:
   push:
     branches:
       - master
+    paths:
+      - '.github/workflows/**'
   pull_request:
     branches: '*'
+    paths:
+      - '.github/workflows/**'
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
@@ -14,8 +18,11 @@ jobs:
   actionlint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
       - name: Check workflow files
         uses: docker://rhysd/actionlint:latest
         with:
-          args: -color
+          # Until https://github.com/checkstyle/checkstyle/issues/12696
+          args: -ignore ".* was deprecated.*"
