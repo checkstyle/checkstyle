@@ -285,10 +285,14 @@ public class UnusedImportsCheck extends AbstractCheck {
                 && !TokenUtil.isOfType(ast.getPreviousSibling(), TokenTypes.DOT)
                 && ast.getNextSibling() != null;
 
+        final boolean isPossibleDotMethodRefMethodName = parentType == TokenTypes.METHOD_REF
+                && ast.getPreviousSibling() != null;
+
         if (TokenUtil.isTypeDeclaration(parentType)) {
             currentFrame.addDeclaredType(ast.getText());
         }
-        else if (!isPossibleDotClassOrInMethod || isQualifiedIdent) {
+        else if (!isPossibleDotMethodRefMethodName
+                && (!isPossibleDotClassOrInMethod || isQualifiedIdent)) {
             currentFrame.addReferencedType(ast.getText());
         }
     }
