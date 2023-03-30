@@ -90,7 +90,7 @@ line 5: ////////////////////////////////////////////////////////////////////
                 a different line separator), see examples below.
               </td>
               <td><a href="property_types.html#String">String</a></td>
-              <td><code>null</code></td>
+              <td><code>asd</code></td>
               <td>5.0</td>
             </tr>
             <tr>
