@@ -1000,7 +1000,7 @@
       </subsection>
       <subsection name="Suppressions" id="Sun_Suppressions">
         <p>
-          It is possible to suppress some violations by embeded filters
+          It is pasdasdossible to suppress some violations by embeded filters
           <a href="config_filters.html#SuppressionFilter">
             SuppressionFilter</a>
           and
