@@ -76,7 +76,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <blockquote>The class must document its self-use of overridable methods.
  * By convention, a method that invokes overridable methods contains a description
  * of these invocations at the end of its documentation comment. The description
- * begins with the phrase “This implementation.”
+ * begins with the phrase "This implementation."
  * </blockquote>
  * <blockquote>
  * The best solution to this problem is to prohibit subclassing in classes that
@@ -177,35 +177,43 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </pre>
  * <p>Example:</p>
  * <pre>
- * public abstract class Foo {
+ * public class A {
+ *   protected void foo1() {};  // OK. Abstract method.
+ *
+ *   protected static void foo2() {};  // OK. protected and static method.
+ *
+ *   protected final void foo3() {};  // OK. protected and final method.
+ *   }
+ *
+ * public class B extends A {
+ *   protected void foo1() { int arg; };  // Violation. The @Override annotation is missing.
+ *
+ *   protected static void foo2() { int arg; };  // Violation. The @Override annotation is missing.
+ *
+ *   protected final void foo3() { int arg; };  // Violation. The @Override annotation is missing.
+ *   }
+ *
+ * public class C {
  *   private int bar;
  *
- *   public int m1() {return 2;}  // Violation. No javadoc.
+ *   public int foo4() { return 1; }  // Violation, required javadoc phrase not in comment.
  *
- *   public int m2() {return 8;}  // Violation. No javadoc.
+ *   private void foo5() { foo6(); }  // OK. Private method.
  *
- *   private void m3() {m4();}  // OK. Private method.
+ *   protected void foo6() { }  // OK. No implementation.
  *
- *   protected void m4() { }  // OK. No implementation.
+ *   public abstract void foo7();  // OK. Abstract method.
  *
- *   public abstract void m5();  // OK. Abstract method.
+ *   /&#42;&#42;
+ *   &#42; This
+ *   &#42; implementation ...
+ *   &#42;/
+ *   public int foo8() {return 8;}  // OK. Required javadoc phrase in comment.
  *
- *   &#47;**
- *    * This implementation ...
- *    &#64;return some int value.
- *    *&#47;
- *   public int m6() {return 1;}  // OK. Have javadoc on overridable method.
- *
- *   &#47;**
- *    * Some comments ...
- *    *&#47;
- *   public int m7() {return 1;}  // OK. Have javadoc on overridable method.
- *
- *   &#47;**
- *    * This
- *    * implementation ...
- *    *&#47;
- *   public int m8() {return 2;}  // OK. Have javadoc on overridable method.
+ *   /&#42;&#42;
+ *   &#42; Do not extend ...
+ *   &#42;/
+ *   public int foo9() {return 9;}  // Violation, required javadoc phrase not in comment.
  *
  *   &#64;Override
  *   public String toString() {  // Violation. No javadoc for @Override method.
@@ -224,38 +232,46 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </pre>
  * <p>Example:</p>
  * <pre>
- * public abstract class Foo {
+ * public class A {
+ *   protected void foo1() {};  // OK. Abstract method.
+ *
+ *   protected static void foo2() {};  // OK. protected and static method.
+ *
+ *   protected final void foo3() {};  // OK. protected and final method.
+ *   }
+ *
+ * public class B extends A {
+ *   protected void foo1() { int arg; };  // Violation. The @Override annotation is missing.
+ *
+ *   protected static void foo2() { int arg; };  // Violation. The @Override annotation is missing.
+ *
+ *   protected final void foo3() { int arg; };  // Violation. The @Override annotation is missing.
+ *   }
+ *
+ * public class C {
  *   private int bar;
  *
- *   public int m1() {return 2;}  // Violation. No javadoc.
+ *   public int foo4() { return 1; }  // Violation, required javadoc phrase not in comment.
  *
- *   public int m2() {return 8;}  // Violation. No javadoc.
+ *   private void foo5() { foo6(); }  // OK. Private method.
  *
- *   private void m3() {m4();}  // OK. Private method.
+ *   protected void foo6() { }  // OK. No implementation.
  *
- *   protected void m4() { }  // OK. No implementation.
+ *   public abstract void foo7();  // OK. Abstract method.
  *
- *   public abstract void m5();  // OK. Abstract method.
+ *   /&#42;&#42;
+ *   &#42; This
+ *   &#42; implementation ...
+ *   &#42;/
+ *   public int foo8() {return 8;}  // OK. Required javadoc phrase in comment.
  *
- *   &#47;**
- *    * This implementation ...
- *    &#64;return some int value.
- *    *&#47;
- *   public int m6() {return 1;}  // OK. Have javadoc on overridable method.
- *
- *   &#47;**
- *    * Some comments ...
- *    *&#47;
- *   public int m7() {return 1;}  // OK. Have javadoc on overridable method.
- *
- *   &#47;**
- *    * This
- *    * implementation ...
- *    *&#47;
- *   public int m8() {return 2;}  // OK. Have javadoc on overridable method.
+ *   /&#42;&#42;
+ *   &#42; Do not extend ...
+ *   &#42;/
+ *   public int foo9() {return 9;}  // Violation, required javadoc phrase not in comment.
  *
  *   &#64;Override
- *   public String toString() {  // OK. Have javadoc on overridable method.
+ *   public String toString() {  // Violation. No javadoc for @Override method.
  *     return "";
  *   }
  * }
@@ -271,38 +287,46 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </pre>
  * <p>Example:</p>
  * <pre>
- * public abstract class Foo {
+ * public class A {
+ *   protected void foo1() {};  // OK. Abstract method.
+ *
+ *   protected static void foo2() {};  // OK. protected and static method.
+ *
+ *   protected final void foo3() {};  // OK. protected and final method.
+ *   }
+ *
+ * public class B extends A {
+ *   protected void foo1() { int arg; };  // Violation. The @Override annotation is missing.
+ *
+ *   protected static void foo2() { int arg; };  // Violation. The @Override annotation is missing.
+ *
+ *   protected final void foo3() { int arg; };  // Violation. The @Override annotation is missing.
+ *   }
+ *
+ * public class C {
  *   private int bar;
  *
- *   public int m1() {return 2;}  // Violation. No javadoc.
+ *   public int foo4() { return 1; }  // Violation, required javadoc phrase not in comment.
  *
- *   public int m2() {return 8;}  // Violation. No javadoc.
+ *   private void foo5() { foo6(); }  // OK. Private method.
  *
- *   private void m3() {m4();}  // OK. Private method.
+ *   protected void foo6() { }  // OK. No implementation.
  *
- *   protected void m4() { }  // OK. No implementation.
+ *   public abstract void foo7();  // OK. Abstract method.
  *
- *   public abstract void m5();  // OK. Abstract method.
+ *   /&#42;&#42;
+ *   &#42; This
+ *   &#42; implementation ...
+ *   &#42;/
+ *   public int foo8() {return 8;}  // OK. Required javadoc phrase in comment.
  *
- *   &#47;**
- *    * This implementation ...
- *    &#64;return some int value.
- *    *&#47;
- *   public int m6() {return 1;}  // OK. Have required javadoc.
- *
- *   &#47;**
- *    * Some comments ...
- *    *&#47;
- *   public int m7() {return 1;}  // Violation. No required javadoc.
- *
- *   &#47;**
- *    * This
- *    * implementation ...
- *    *&#47;
- *   public int m8() {return 2;}  // Violation. No required javadoc.
+ *   /&#42;&#42;
+ *   &#42; Do not extend ...
+ *   &#42;/
+ *   public int foo9() {return 9;}  // Violation, required javadoc phrase not in comment.
  *
  *   &#64;Override
- *   public String toString() {  // Violation. No required javadoc.
+ *   public String toString() {  // Violation. No javadoc for @Override method.
  *     return "";
  *   }
  * }
@@ -320,38 +344,46 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </pre>
  * <p>Example:</p>
  * <pre>
- * public abstract class Foo {
+ * public class A {
+ *   protected void foo1() {};  // OK. Abstract method.
+ *
+ *   protected static void foo2() {};  // OK. protected and static method.
+ *
+ *   protected final void foo3() {};  // OK. protected and final method.
+ *   }
+ *
+ * public class B extends A {
+ *   protected void foo1() { int arg; };  // Violation. The @Override annotation is missing.
+ *
+ *   protected static void foo2() { int arg; };  // Violation. The @Override annotation is missing.
+ *
+ *   protected final void foo3() { int arg; };  // Violation. The @Override annotation is missing.
+ *   }
+ *
+ * public class C {
  *   private int bar;
  *
- *   public int m1() {return 2;}  // Violation. No javadoc.
+ *   public int foo4() { return 1; }  // Violation, required javadoc phrase not in comment.
  *
- *   public int m2() {return 8;}  // Violation. No javadoc.
+ *   private void foo5() { foo6(); }  // OK. Private method.
  *
- *   private void m3() {m4();}
+ *   protected void foo6() { }  // OK. No implementation.
  *
- *   protected void m4() { }  // OK. No implementation.
+ *   public abstract void foo7();  // OK. Abstract method.
  *
- *   public abstract void m5();  // OK. Abstract method.
+ *   /&#42;&#42;
+ *   &#42; This
+ *   &#42; implementation ...
+ *   &#42;/
+ *   public int foo8() {return 8;}  // OK. Required javadoc phrase in comment.
  *
- *   &#47;**
- *    * This implementation ...
- *    &#64;return some int value.
- *    *&#47;
- *   public int m6() {return 1;}  // OK. Have required javadoc.
- *
- *   &#47;**
- *    * Some comments ...
- *    *&#47;
- *   public int m7() {return 1;}  // Violation. No required javadoc.
- *
- *   &#47;**
- *    * This
- *    * implementation ...
- *    *&#47;
- *   public int m8() {return 2;}  // OK. Have required javadoc.
+ *   /&#42;&#42;
+ *   &#42; Do not extend ...
+ *   &#42;/
+ *   public int foo9() {return 9;}  // Violation, required javadoc phrase not in comment.
  *
  *   &#64;Override
- *   public String toString() {  // Violation. No required javadoc.
+ *   public String toString() {  // Violation. No javadoc for @Override method.
  *     return "";
  *   }
  * }
@@ -383,7 +415,7 @@ public class DesignForExtensionCheck extends AbstractCheck {
      * Specify annotations which allow the check to skip the method from validation.
      */
     private Set<String> ignoredAnnotations = Arrays.stream(new String[] {"Test", "Before", "After",
-        "BeforeClass", "AfterClass", }).collect(Collectors.toSet());
+            "BeforeClass", "AfterClass", }).collect(Collectors.toSet());
 
     /**
      * Specify the comment text pattern which qualifies a method as designed for extension.
@@ -438,7 +470,7 @@ public class DesignForExtensionCheck extends AbstractCheck {
         if (!hasJavadocComment(ast)
                 && canBeOverridden(ast)
                 && (isNativeMethod(ast)
-                    || !hasEmptyImplementation(ast))
+                || !hasEmptyImplementation(ast))
                 && !hasIgnoredAnnotation(ast, ignoredAnnotations)
                 && !ScopeUtil.isInRecordBlock(ast)) {
             final DetailAST classDef = getNearestClassOrEnumDefinition(ast);
@@ -513,10 +545,10 @@ public class DesignForExtensionCheck extends AbstractCheck {
      */
     private boolean hasValidJavadocComment(DetailAST detailAST) {
         final String javadocString =
-            JavadocUtil.getBlockCommentContent(detailAST);
+                JavadocUtil.getBlockCommentContent(detailAST);
 
         final Matcher requiredJavadocPhraseMatcher =
-            requiredJavadocPhrase.matcher(javadocString);
+                requiredJavadocPhrase.matcher(javadocString);
 
         return requiredJavadocPhraseMatcher.find();
     }
@@ -545,10 +577,10 @@ public class DesignForExtensionCheck extends AbstractCheck {
         final DetailAST methodImplCloseBrace = methodImplOpenBrace.getLastChild();
         final Predicate<DetailAST> predicate = currentNode -> {
             return currentNode != methodImplCloseBrace
-                && !TokenUtil.isCommentType(currentNode.getType());
+                    && !TokenUtil.isCommentType(currentNode.getType());
         };
         final Optional<DetailAST> methodBody =
-            TokenUtil.findFirstTokenByPredicate(methodImplOpenBrace, predicate);
+                TokenUtil.findFirstTokenByPredicate(methodImplOpenBrace, predicate);
         if (methodBody.isPresent()) {
             hasEmptyBody = false;
         }
@@ -566,11 +598,11 @@ public class DesignForExtensionCheck extends AbstractCheck {
     private static boolean canBeOverridden(DetailAST methodDef) {
         final DetailAST modifiers = methodDef.findFirstToken(TokenTypes.MODIFIERS);
         return ScopeUtil.getSurroundingScope(methodDef).isIn(Scope.PROTECTED)
-            && !ScopeUtil.isInInterfaceOrAnnotationBlock(methodDef)
-            && modifiers.findFirstToken(TokenTypes.LITERAL_PRIVATE) == null
-            && modifiers.findFirstToken(TokenTypes.ABSTRACT) == null
-            && modifiers.findFirstToken(TokenTypes.FINAL) == null
-            && modifiers.findFirstToken(TokenTypes.LITERAL_STATIC) == null;
+                && !ScopeUtil.isInInterfaceOrAnnotationBlock(methodDef)
+                && modifiers.findFirstToken(TokenTypes.LITERAL_PRIVATE) == null
+                && modifiers.findFirstToken(TokenTypes.ABSTRACT) == null
+                && modifiers.findFirstToken(TokenTypes.FINAL) == null
+                && modifiers.findFirstToken(TokenTypes.LITERAL_STATIC) == null;
     }
 
     /**
@@ -583,10 +615,10 @@ public class DesignForExtensionCheck extends AbstractCheck {
     private static boolean hasIgnoredAnnotation(DetailAST methodDef, Set<String> annotations) {
         final DetailAST modifiers = methodDef.findFirstToken(TokenTypes.MODIFIERS);
         final Optional<DetailAST> annotation = TokenUtil.findFirstTokenByPredicate(modifiers,
-            currentToken -> {
-                return currentToken.getType() == TokenTypes.ANNOTATION
-                    && annotations.contains(getAnnotationName(currentToken));
-            });
+                currentToken -> {
+                    return currentToken.getType() == TokenTypes.ANNOTATION
+                            && annotations.contains(getAnnotationName(currentToken));
+                });
         return annotation.isPresent();
     }
 
@@ -612,7 +644,7 @@ public class DesignForExtensionCheck extends AbstractCheck {
     private static DetailAST getNearestClassOrEnumDefinition(DetailAST ast) {
         DetailAST searchAST = ast;
         while (searchAST.getType() != TokenTypes.CLASS_DEF
-               && searchAST.getType() != TokenTypes.ENUM_DEF) {
+                && searchAST.getType() != TokenTypes.ENUM_DEF) {
             searchAST = searchAST.getParent();
         }
         return searchAST;
@@ -627,8 +659,8 @@ public class DesignForExtensionCheck extends AbstractCheck {
     private static boolean canBeSubclassed(DetailAST classDef) {
         final DetailAST modifiers = classDef.findFirstToken(TokenTypes.MODIFIERS);
         return classDef.getType() != TokenTypes.ENUM_DEF
-            && modifiers.findFirstToken(TokenTypes.FINAL) == null
-            && hasDefaultOrExplicitNonPrivateCtor(classDef);
+                && modifiers.findFirstToken(TokenTypes.FINAL) == null
+                && hasDefaultOrExplicitNonPrivateCtor(classDef);
     }
 
     /**
