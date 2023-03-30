@@ -15,9 +15,6 @@ on:
       version:
         type: string
         required: true
-      concurrency-group:
-        type: string
-        required: true
 
 permissions:
   contents: write
@@ -25,7 +22,7 @@ permissions:
 
 concurrency:
   group: ${{ github.workflow }}
-    -${{ github.event.pull_request.number || github.ref }}-${{ inputs.concurrency-group }}
+    -${{ github.event.pull_request.number || github.ref }}-new-milestone-and-issues-in-other-repos
   cancel-in-progress: true
 
 jobs:
