@@ -176,7 +176,13 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#POST_INC">
  * POST_INC</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#POST_DEC">
- * POST_DEC</a>.
+ * POST_DEC</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BXOR">
+ * BXOR</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BOR">
+ * BOR</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BAND">
+ * BAND</a>.
  * </li>
  * </ul>
  * <p>
@@ -365,6 +371,13 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
         TokenTypes.POST_DEC,
     };
 
+    /** Token types for bitwise binary operator. */
+    private static final int[] BITWISE_BINARY_OPERATORS = {
+        TokenTypes.BXOR,
+        TokenTypes.BOR,
+        TokenTypes.BAND,
+    };
+
     /**
      * Used to test if logging a warning in a parent node may be skipped
      * because a warning was already logged on an immediate child node.
@@ -417,6 +430,9 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
             TokenTypes.BNOT,
             TokenTypes.POST_INC,
             TokenTypes.POST_DEC,
+            TokenTypes.BXOR,
+            TokenTypes.BOR,
+            TokenTypes.BAND,
         };
     }
 
@@ -464,6 +480,9 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
             TokenTypes.BNOT,
             TokenTypes.POST_INC,
             TokenTypes.POST_DEC,
+            TokenTypes.BXOR,
+            TokenTypes.BOR,
+            TokenTypes.BAND,
         };
     }
 
@@ -598,7 +617,7 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
     }
 
     /**
-     * Checks if conditional, relational, unary and postfix operators
+     * Checks if conditional, relational, bitwise binary operator, unary and postfix operators
      * in expressions are surrounded by unnecessary parentheses.
      *
      * @param ast the {@code DetailAST} to check if it is surrounded by
@@ -608,20 +627,84 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
      */
     private static boolean unnecessaryParenAroundOperators(DetailAST ast) {
         final int type = ast.getType();
-        final int parentType = ast.getParent().getType();
-        final boolean isConditional = TokenUtil.isOfType(type, CONDITIONALS_AND_RELATIONAL);
-        boolean result = TokenUtil.isOfType(parentType, CONDITIONALS_AND_RELATIONAL);
-        if (isConditional) {
-            if (type == TokenTypes.LOR) {
-                result = result && !TokenUtil.isOfType(parentType, TokenTypes.LAND);
-            }
-            result = result && !TokenUtil.isOfType(parentType, TokenTypes.EQUAL,
-                TokenTypes.NOT_EQUAL);
+        final boolean isConditionalOrRelational =
+                TokenUtil.isOfType(type, CONDITIONALS_AND_RELATIONAL);
+        final boolean isBitwise = TokenUtil.isOfType(type, BITWISE_BINARY_OPERATORS);
+        final boolean hasUnnecessaryParantheses;
+        if (isConditionalOrRelational) {
+            hasUnnecessaryParantheses = checkConditionalOrRelationalOperator(ast);
+        }
+        else if (isBitwise) {
+            hasUnnecessaryParantheses = checkBitwiseBinaryOperator(ast);
         }
         else {
-            result = result && TokenUtil.isOfType(type, UNARY_AND_POSTFIX);
+            hasUnnecessaryParantheses = TokenUtil.isOfType(type, UNARY_AND_POSTFIX)
+                    && isBitWiseBinaryOrConditionalOperator(ast.getParent().getType());
         }
-        return result;
+        return hasUnnecessaryParantheses;
+    }
+
+    /**
+     * Check if conditional or logical operator has unnecessary parentheses.
+     *
+     * @param ast to check if surrounded by unnecessary parentheses
+     * @return true if Unnecessary parenthesis
+     */
+    private static boolean checkConditionalOrRelationalOperator(DetailAST ast) {
+        final int type = ast.getType();
+        final int parentType = ast.getParent().getType();
+        final boolean isParentEqualityOperator =
+                TokenUtil.isOfType(parentType, TokenTypes.EQUAL, TokenTypes.NOT_EQUAL);
+        final boolean result;
+        if (type == TokenTypes.LOR) {
+            result = !TokenUtil.isOfType(parentType, TokenTypes.LAND)
+                    && !TokenUtil.isOfType(parentType, BITWISE_BINARY_OPERATORS);
+        }
+        else if (type == TokenTypes.LAND) {
+            result = !TokenUtil.isOfType(parentType, BITWISE_BINARY_OPERATORS);
+        }
+        else {
+            result = true;
+        }
+        return result && !isParentEqualityOperator
+                && isBitWiseBinaryOrConditionalOperator(parentType);
+    }
+
+    /**
+     * Check if Bitwise binary operator has unnecessary parentheses.
+     *
+     * @param ast to check if surrounded by unnecessary parentheses
+     * @return true if Unnecessary parenthesis
+     */
+    private static boolean checkBitwiseBinaryOperator(DetailAST ast) {
+        final int type = ast.getType();
+        final int parentType = ast.getParent().getType();
+        final boolean isParentEqualityOperator =
+                TokenUtil.isOfType(parentType, TokenTypes.EQUAL, TokenTypes.NOT_EQUAL);
+        final boolean result;
+        if (type == TokenTypes.BOR) {
+            result = !TokenUtil.isOfType(parentType, TokenTypes.BAND, TokenTypes.BXOR);
+        }
+        else if (type == TokenTypes.BXOR) {
+            result = !TokenUtil.isOfType(parentType, TokenTypes.BAND);
+        }
+        // we deal with bitwise AND here.
+        else {
+            result = true;
+        }
+        return result && !isParentEqualityOperator
+                && isBitWiseBinaryOrConditionalOperator(parentType);
+    }
+
+    /**
+     * Check if token type is BitWise Binary Or Conditional Operator.
+     *
+     * @param type Token type to check
+     * @return true if it is BitWise Binary Or Conditional Operator
+     */
+    private static boolean isBitWiseBinaryOrConditionalOperator(int type) {
+        return TokenUtil.isOfType(type, CONDITIONALS_AND_RELATIONAL)
+                || TokenUtil.isOfType(type, BITWISE_BINARY_OPERATORS);
     }
 
     /**
