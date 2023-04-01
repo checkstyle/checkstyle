@@ -33,6 +33,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
@@ -169,6 +170,14 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testWriteTagRecordsAndCompactCtors() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(WriteTagCheck.class);
+        checkConfig.addProperty("tag", "@incomplete");
+        checkConfig.addProperty("tagSeverity", "error");
+        checkConfig.addProperty("tagFormat", "\\S");
+        checkConfig.addProperty("tokens",
+                "INTERFACE_DEF , CLASS_DEF , ENUM_DEF , ANNOTATION_DEF, RECORD_DEF,"
+                        + " COMPACT_CTOR_DEF, CTOR_DEF");
+
         final String[] expected = {
             "15: " + getCheckMessage(MSG_MISSING_TAG, "@incomplete"),
             "19: " + getCheckMessage(MSG_TAG_FORMAT, "@incomplete", "\\S"),
@@ -181,7 +190,7 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
             "58: " + getCheckMessage(MSG_MISSING_TAG, "@incomplete"),
             "62: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete", "// violation"),
         };
-        verifyWithInlineConfigParser(
+        verify(checkConfig,
             getNonCompilablePath("InputWriteTagRecordsAndCompactCtors.java"), expected);
     }
 
