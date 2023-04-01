@@ -692,10 +692,10 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
                 if (isChild(currentStatementAst, variableAst)) {
                     variableUsageExpressions.add(currentStatementAst);
                 }
-                // If expression doesn't contain variable and this variable
+                // If expression is not zero-distance token and this variable
                 // hasn't been met yet, then distance + 1.
                 else if (variableUsageExpressions.isEmpty()
-                        && currentStatementAst.getType() != TokenTypes.VARIABLE_DEF) {
+                        && !isZeroDistanceToken(currentStatementAst.getType())) {
                     distance++;
                 }
             }
@@ -1009,6 +1009,22 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
     private boolean isVariableMatchesIgnorePattern(String variable) {
         final Matcher matcher = ignoreVariablePattern.matcher(variable);
         return matcher.matches();
+    }
+
+    /**
+     * Check if the token should be ignored for distance counting.
+     *
+     * @param type
+     *        Type.
+     * @return true if it is, otherwise false.
+     */
+    private static boolean isZeroDistanceToken(int type) {
+        return type == TokenTypes.VARIABLE_DEF
+                || type == TokenTypes.TYPE
+                || type == TokenTypes.MODIFIERS
+                || type == TokenTypes.RESOURCE
+                || type == TokenTypes.EXTENDS_CLAUSE
+                || type == TokenTypes.IMPLEMENTS_CLAUSE;
     }
 
 }
