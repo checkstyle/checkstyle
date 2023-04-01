@@ -56,7 +56,7 @@
         <blockquote>The class must document its self-use of overridable methods.
 By convention, a method that invokes overridable methods contains a description
 of these invocations at the end of its documentation comment. The description
-begins with the phrase “This implementation.”
+begins with the phrase "This implementation."
         </blockquote>
         <blockquote>The best solution to this problem is to prohibit subclassing in classes that
 are not designed and documented to be safely subclassed.

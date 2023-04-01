@@ -415,7 +415,7 @@ public class DesignForExtensionCheck extends AbstractCheck {
      * Specify annotations which allow the check to skip the method from validation.
      */
     private Set<String> ignoredAnnotations = Arrays.stream(new String[] {"Test", "Before", "After",
-            "BeforeClass", "AfterClass", }).collect(Collectors.toSet());
+        "BeforeClass", "AfterClass", }).collect(Collectors.toSet());
 
     /**
      * Specify the comment text pattern which qualifies a method as designed for extension.
