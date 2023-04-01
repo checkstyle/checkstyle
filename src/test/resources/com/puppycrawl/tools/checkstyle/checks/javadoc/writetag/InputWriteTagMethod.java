@@ -19,7 +19,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.writetag;
  */
 class InputWriteTagMethod
 {
-    // violation 2 lines below , 'Javadoc tag .*'
+    // violation 2 lines below , 'Add a constructor comment.*'
     /**
      * @todo Add a constructor comment
      */
@@ -31,7 +31,7 @@ class InputWriteTagMethod
     {
     }
 
-    // violation 2 lines below , 'Javadoc tag .*'
+    // violation 2 lines below , 'Add a comment.*'
     /**
      * @todo Add a comment
      */
