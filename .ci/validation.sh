@@ -482,8 +482,15 @@ check-since-version)
 
   if [ -f "$NEW_CHECK_FILE" ]; then
     echo "New Check detected: $NEW_CHECK_FILE"
-    CS_POM_VERSION="$(getCheckstylePomVersion)"
-    CS_RELEASE_VERSION=$(echo "$CS_POM_VERSION" | cut -d '-' -f 1)
+    CS_RELEASE_VERSION="$(getCheckstylePomVersionWithoutSnapshot)"
+    if [[ $CS_RELEASE_VERSION != *.0 ]]; then
+      echo "last version is bug fix, we will bump second digit in it";
+      MAJOR=$(echo $CS_RELEASE_VERSION | cut -d. -f1)
+      MINOR=$(echo $CS_RELEASE_VERSION | cut -d. -f2)
+      PATCH=$(echo $CS_RELEASE_VERSION | cut -d. -f3)
+      CS_RELEASE_VERSION=$MAJOR"."$((MINOR+1))".0"
+    fi
+
     echo "CS Release version: $CS_RELEASE_VERSION"
     echo "Grep for @since $CS_RELEASE_VERSION"
     grep "* @since $CS_RELEASE_VERSION" "$NEW_CHECK_FILE"
