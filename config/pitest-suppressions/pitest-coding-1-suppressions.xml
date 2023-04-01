@@ -156,10 +156,10 @@
   <mutation unstable="false">
     <sourceFile>VariableDeclarationUsageDistanceCheck.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck</mutatedClass>
-    <mutatedMethod>getFirstNodeInsideTryCatchFinallyBlocks</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
-    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getLastChild with receiver</description>
-    <lineContent>final DetailAST finalBlock = currentNode.getLastChild();</lineContent>
+    <mutatedMethod>calculateDistanceBetweenScopes</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_0</mutator>
+    <description>RemoveSwitch 0 (case value 10)</description>
+    <lineContent>switch (blockWithVariableUsage.getType()) {</lineContent>
   </mutation>
 
   <mutation unstable="false">
