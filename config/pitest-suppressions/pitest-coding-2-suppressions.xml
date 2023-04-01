@@ -8,7 +8,7 @@
     <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getNextSibling</description>
     <lineContent>catchStmt = catchStmt.getNextSibling();</lineContent>
   </mutation>
-
+  
   <mutation unstable="false">
     <sourceFile>FallThroughCheck.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck</mutatedClass>
