@@ -17,7 +17,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.writetag;
  * @doubletag second text
  * @emptytag
  */
-class InputWriteTagMissingTag // violation
+class InputWriteTagMissingTag // violation  'Missing @missingtag tag.'
 {
     /**
      * @todo Add a constructor comment

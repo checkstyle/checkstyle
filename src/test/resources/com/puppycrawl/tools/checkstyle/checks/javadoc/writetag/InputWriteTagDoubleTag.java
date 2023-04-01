@@ -9,8 +9,8 @@ tokens = (default)INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF
 */
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc.writetag;
-// violation 6 lines below , 'Javadoc tag .*'
-// violation 6 lines below , 'Javadoc tag .*'
+// violation 5 lines below 'Must contain non-whitespace characters.'
+// violation 6 lines below 'Must contain non-whitespace characters.'
 /**
  * Testing tag writing
  * @author Daniel Grenner
