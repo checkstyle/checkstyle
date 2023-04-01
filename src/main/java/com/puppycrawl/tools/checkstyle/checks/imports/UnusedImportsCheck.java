@@ -278,18 +278,23 @@ public class UnusedImportsCheck extends AbstractCheck {
         final DetailAST parent = ast.getParent();
         final int parentType = parent.getType();
 
-        final boolean isPossibleDotClassOrInMethod = parentType == TokenTypes.DOT
-                || parentType == TokenTypes.METHOD_DEF;
+        final boolean isPossibleMethodRefMethodName = parentType == TokenTypes.METHOD_REF
+                && ast.getPreviousSibling() != null
+                && ast.getPreviousSibling().getType() == TokenTypes.IDENT;
 
-        final boolean isQualifiedIdent = parentType == TokenTypes.DOT
-                && !TokenUtil.isOfType(ast.getPreviousSibling(), TokenTypes.DOT)
-                && ast.getNextSibling() != null;
+        if (!isPossibleMethodRefMethodName) {
+            final boolean isPossibleDotClassOrInMethod = parentType == TokenTypes.DOT
+                    || parentType == TokenTypes.METHOD_DEF;
 
-        if (TokenUtil.isTypeDeclaration(parentType)) {
-            currentFrame.addDeclaredType(ast.getText());
-        }
-        else if (!isPossibleDotClassOrInMethod || isQualifiedIdent) {
-            currentFrame.addReferencedType(ast.getText());
+            final boolean isQualifiedIdent = parentType == TokenTypes.DOT
+                    && !TokenUtil.isOfType(ast.getPreviousSibling(), TokenTypes.DOT)
+                    && ast.getNextSibling() != null;
+            if (TokenUtil.isTypeDeclaration(parentType)) {
+                currentFrame.addDeclaredType(ast.getText());
+            }
+            else if (!isPossibleDotClassOrInMethod || isQualifiedIdent) {
+                currentFrame.addReferencedType(ast.getText());
+            }
         }
     }
 
