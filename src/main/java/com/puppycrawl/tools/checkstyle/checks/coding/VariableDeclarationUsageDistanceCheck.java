@@ -692,10 +692,17 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
                 if (isChild(currentStatementAst, variableAst)) {
                     variableUsageExpressions.add(currentStatementAst);
                 }
+                // Skip all Resource nodes which don't contain the variable
+                else if (currentStatementAst.getType() == TokenTypes.RESOURCE) {
+                    currentStatementAst = currentStatementAst.getNextSibling();
+                    continue;
+                }
                 // If expression doesn't contain variable and this variable
                 // hasn't been met yet, then distance + 1.
                 else if (variableUsageExpressions.isEmpty()
-                        && currentStatementAst.getType() != TokenTypes.VARIABLE_DEF) {
+                        && currentStatementAst.getType() != TokenTypes.VARIABLE_DEF
+                        && currentStatementAst.getType() != TokenTypes.TYPE
+                        && currentStatementAst.getType() != TokenTypes.MODIFIERS) {
                     distance++;
                 }
             }
