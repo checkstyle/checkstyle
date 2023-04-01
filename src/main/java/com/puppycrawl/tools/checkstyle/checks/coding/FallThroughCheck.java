@@ -422,7 +422,7 @@ public class FallThroughCheck extends AbstractCheck {
                 final DetailAST catchBody =
                         catchStmt.findFirstToken(TokenTypes.SLIST);
                 isTerminated = isTerminated(catchBody, useBreak, useContinue);
-                catchStmt = catchStmt.getNextSibling();
+                catchStmt = catchStmt;
             }
         }
         return isTerminated;
