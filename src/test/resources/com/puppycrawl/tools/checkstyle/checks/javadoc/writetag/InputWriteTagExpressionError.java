@@ -12,7 +12,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.writetag;
 
 /**
  * Testing tag writing
- * @author Daniel Grenner  // violation
+ * @author Daniel Grenner  // violation 'The tagFormat requires ABC, not Daniel Grenner.'
  * @incomplete This class needs more code...
  * @doubletag first text
  * @doubletag second text
