@@ -12,21 +12,21 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.writetag;
 
 class InputWriteTagEnumsAndAnnotations {
     /**
-     * @incomplete This enum needs more code... // violation
+     * @incomplete This enum needs more code... // violation 'The content cannot be empty.'
      */
     enum InputWriteTag {
         /**
-         * @incomplete This enum constant needs more code... // violation
+         * @incomplete This enum constant needs more code... // violation 'The content cannot be empty.'
          */
         FOO;
     }
 
     /**
-     * @incomplete This annotation needs more code... // violation
+     * @incomplete This annotation needs more code... // violation 'The content cannot be empty.'
      */
     @interface InputWriteTag2a {
         /**
-         * @incomplete This annotation field needs more code... // violation
+         * @incomplete This annotation field needs more code... // violation 'The content cannot be empty.'
          */
         int foo() default 0;
     }
