@@ -10,6 +10,9 @@ ignoreFinal = false
 
 package com.puppycrawl.tools.checkstyle.checks.coding.variabledeclarationusagedistance;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.util.*;
 
 public class InputVariableDeclarationUsageDistanceGeneral2 {
@@ -51,16 +54,6 @@ public class InputVariableDeclarationUsageDistanceGeneral2 {
             }
         } else if (false) {
         } else {
-        }
-    }
-
-    void method() throws Exception {
-        // Until https://github.com/checkstyle/checkstyle/issues/11968
-        String a = ""; // violation 'Distance between .* declaration and its first usage is 2.'
-        try (AutoCloseable i = new java.io.StringReader(a)) {
-        }
-        finally {
-            a.equals("");
         }
     }
 }
