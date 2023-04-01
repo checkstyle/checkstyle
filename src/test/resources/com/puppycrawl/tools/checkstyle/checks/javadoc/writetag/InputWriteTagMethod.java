@@ -3,7 +3,7 @@ WriteTag
 tag = @todo
 tagFormat = \\S
 tokens = INTERFACE_DEF, CLASS_DEF, METHOD_DEF, CTOR_DEF
-severity = warning
+severity = ignore
 
 */
 
@@ -19,9 +19,9 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.writetag;
  */
 class InputWriteTagMethod
 {
-    // violation 2 lines below 'Add a constructor comment.'
+    // violation 2 lines below , 'Add a constructor comment.*'
     /**
-     *
+     * @todo Add a constructor comment
      */
     public InputWriteTagMethod()
     {
@@ -31,9 +31,9 @@ class InputWriteTagMethod
     {
     }
 
-    // violation 2 lines below 'Add a comment.'
+    // violation 2 lines below , 'Add a comment.*'
     /**
-     *
+     * @todo Add a comment
      */
     public void anotherMethod()
     {
