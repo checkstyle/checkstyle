@@ -278,19 +278,37 @@ public class UnusedImportsCheck extends AbstractCheck {
         final DetailAST parent = ast.getParent();
         final int parentType = parent.getType();
 
-        final boolean isPossibleDotClassOrInMethod = parentType == TokenTypes.DOT
-                || parentType == TokenTypes.METHOD_DEF;
-
-        final boolean isQualifiedIdent = parentType == TokenTypes.DOT
-                && !TokenUtil.isOfType(ast.getPreviousSibling(), TokenTypes.DOT)
-                && ast.getNextSibling() != null;
-
         if (TokenUtil.isTypeDeclaration(parentType)) {
             currentFrame.addDeclaredType(ast.getText());
         }
-        else if (!isPossibleDotClassOrInMethod || isQualifiedIdent) {
-            currentFrame.addReferencedType(ast.getText());
+        else {
+            final boolean isPossibleMethodRefMethodName = isMethodReference(ast);
+            if (!isPossibleMethodRefMethodName) {
+                final boolean isPossibleDotClassOrInMethod = parentType == TokenTypes.DOT
+                        || parentType == TokenTypes.METHOD_DEF;
+                final boolean isQualifiedIdent = parentType == TokenTypes.DOT
+                        && !TokenUtil.isOfType(ast.getPreviousSibling(), TokenTypes.DOT)
+                        && ast.getNextSibling() != null;
+                if (!isPossibleDotClassOrInMethod || isQualifiedIdent) {
+                    currentFrame.addReferencedType(ast.getText());
+                }
+            }
         }
+    }
+
+    /**
+     * Checks whether ast is a method reference.
+     *
+     * @param ast current node under process
+     * @return a boolean which indicates whether this ast is a method reference
+     */
+    private static boolean isMethodReference(DetailAST ast) {
+        final DetailAST parent = ast.getParent();
+        final int parentType = parent.getType();
+        return parentType == TokenTypes.METHOD_REF
+                && ast.getPreviousSibling() != null
+                && List.of(TokenTypes.IDENT, TokenTypes.TYPE_ARGUMENTS)
+                .contains(ast.getPreviousSibling().getType());
     }
 
     /**
