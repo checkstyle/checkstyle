@@ -392,13 +392,52 @@ public class FinalLocalVariableCheck extends AbstractCheck {
                 TokenTypes.CASE_GROUP,
                 TokenTypes.SWITCH_RULE,
             };
-            if (!isInSpecificCodeBlocks(ident, blockTypes)) {
+            if (candidate.assignedInFallThroughCaseGroup
+                    || !isInSpecificCodeBlocks(ident, blockTypes)) {
                 candidate.alreadyAssigned = true;
             }
         }
         else {
             candidate.assigned = true;
         }
+        if (isInFallThroughCaseGroup(ident)) {
+            candidate.assignedInFallThroughCaseGroup = true;
+        }
+    }
+
+    /**
+     * Checks whether the scope of a node is in a fall-through case group. Traverses up
+     * the tree until it finds a {@link TokenTypes#CASE_GROUP} and checks if that group
+     * is a fall-through case group.
+     *
+     * @param ident identifier.
+     * @return true if the scope of a node is in a fall-through case group.
+     */
+    private static boolean isInFallThroughCaseGroup(DetailAST ident) {
+        boolean isInFallThroughCaseGroup = false;
+        for (DetailAST token = ident; token != null; token = token.getParent()) {
+            final int type = token.getType();
+            if (type == TokenTypes.CASE_GROUP) {
+                isInFallThroughCaseGroup = isCaseGroupFallThrough(token);
+                break;
+            }
+        }
+        return isInFallThroughCaseGroup;
+    }
+
+    /**
+     * Checks whether a case group is a fall-through case group. A case group is
+     * fall-through if does not contain a break, return, yield or throw statement.
+     *
+     * @param caseGroup case group identifier.
+     * @return true if the case group is a fall-through case group.
+     */
+    private static boolean isCaseGroupFallThrough(DetailAST caseGroup) {
+        final DetailAST slist = caseGroup.findFirstToken(TokenTypes.SLIST);
+        return slist.findFirstToken(TokenTypes.LITERAL_BREAK) == null
+                && slist.findFirstToken(TokenTypes.LITERAL_RETURN) == null
+                && slist.findFirstToken(TokenTypes.LITERAL_YIELD) == null
+                && slist.findFirstToken(TokenTypes.LITERAL_THROW) == null;
     }
 
     /**
@@ -833,6 +872,11 @@ public class FinalLocalVariableCheck extends AbstractCheck {
         private boolean assigned;
         /** Whether the variable is already assigned. */
         private boolean alreadyAssigned;
+        /**
+         * Whether the variable is assigned in fall through case group. Such assignment
+         * should be counted as a separate assignment.
+         */
+        private boolean assignedInFallThroughCaseGroup;
 
         /**
          * Creates new instance.

@@ -320,4 +320,25 @@ public class FinalLocalVariableCheckTest
             getPath("InputFinalLocalVariableConstructor.java"),
             expected);
     }
+
+    @Test
+    public void testFallThroughCaseGroup() throws Exception {
+        final String[] expected = {
+            "25:13: " + getCheckMessage(MSG_KEY, "b"),
+            "82:13: " + getCheckMessage(MSG_KEY, "b"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputFinalLocalVariableFallThroughCaseGroup.java"),
+                expected);
+    }
+
+    @Test
+    public void testFallThroughCaseGroupSwitchExpressions() throws Exception {
+        final String[] expected = {
+            "52:13: " + getCheckMessage(MSG_KEY, "b"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputFinalLocalVariableFallThroughCaseGroup.java"),
+                expected);
+    }
 }
