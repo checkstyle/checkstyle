@@ -394,7 +394,7 @@ public class SuppressWithNearbyTextFilter extends AbstractAutomaticBean implemen
      * @return {@link FileText} instance.
      * @throws IllegalStateException if the file could not be read.
      */
-    private static FileText getFileText(String fileName) {
+    public static FileText getFileText(String fileName) {
         final File file = new File(fileName);
         FileText result = null;
 
