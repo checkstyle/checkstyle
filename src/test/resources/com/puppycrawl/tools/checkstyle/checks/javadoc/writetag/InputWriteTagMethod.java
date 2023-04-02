@@ -19,9 +19,9 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.writetag;
  */
 class InputWriteTagMethod
 {
-    // violation 2 lines below , 'Javadoc tag .*'
+    // violation 2 lines below 'Must contain non-whitespace characters.'
     /**
-     * @todo Add a constructor comment
+     * @todo
      */
     public InputWriteTagMethod()
     {
@@ -31,9 +31,9 @@ class InputWriteTagMethod
     {
     }
 
-    // violation 2 lines below , 'Javadoc tag .*'
+    // violation 2 lines below 'Must contain non-whitespace characters.'
     /**
-     * @todo Add a comment
+     * @todo
      */
     public void anotherMethod()
     {
