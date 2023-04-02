@@ -13,7 +13,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.writetag;
 /**
  * Testing tag writing
  * @author Daniel Grenner
- * missing tag intentionally
+ * @incomplete
  * @doubletag first text
  * @doubletag second text
  * @emptytag

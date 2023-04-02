@@ -9,14 +9,14 @@ tokens = (default)INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF
 */
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc.writetag;
-// violation 5 lines below 'Must contain non-whitespace characters.'
-// violation 6 lines below 'Must contain non-whitespace characters.'
+// violation 5 lines below '@doubletag appeared at the same time'
+// violation 6 lines below '@doubletag appeared at the same time'
 /**
  * Testing tag writing
  * @author Daniel Grenner
  * @incomplete This class needs more code...
- * @doubletag
- * @doubletag
+ * @doubletag first text
+ * @doubletag second text
  * @emptytag
  */
 class InputWriteTagDoubleTag
