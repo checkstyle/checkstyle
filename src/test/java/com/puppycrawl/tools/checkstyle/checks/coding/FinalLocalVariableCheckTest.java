@@ -320,4 +320,20 @@ public class FinalLocalVariableCheckTest
             getPath("InputFinalLocalVariableConstructor.java"),
             expected);
     }
+
+    @Test
+    public void testFallThroughCaseGroup() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputFinalLocalVariableFallThroughCaseGroup.java"),
+                expected);
+    }
+
+    @Test
+    public void testFallThroughCaseGroupSwitchExpressions() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputFinalLocalVariableFallThroughCaseGroup.java"),
+                expected);
+    }
 }

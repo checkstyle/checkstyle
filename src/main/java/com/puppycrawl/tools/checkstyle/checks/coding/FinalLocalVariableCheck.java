@@ -392,13 +392,39 @@ public class FinalLocalVariableCheck extends AbstractCheck {
                 TokenTypes.CASE_GROUP,
                 TokenTypes.SWITCH_RULE,
             };
-            if (!isInSpecificCodeBlocks(ident, blockTypes)) {
+            if (candidate.assignedInFallThroughCaseGroup
+                    || !isInSpecificCodeBlocks(ident, blockTypes)) {
                 candidate.alreadyAssigned = true;
             }
         }
         else {
             candidate.assigned = true;
         }
+        if (isInFallThroughCaseGroup(ident)) {
+            candidate.assignedInFallThroughCaseGroup = true;
+        }
+    }
+
+    /**
+     * Checks whether the scope of a node is in a case group without break. Traverses up
+     * the tree until it finds a {@link TokenTypes#CASE_GROUP} and checks if it contains
+     * a {@link TokenTypes#LITERAL_BREAK}.
+     *
+     * @param ident identifier.
+     * @return true if the scope of a node is in a fall through case group.
+     */
+    private static boolean isInFallThroughCaseGroup(DetailAST ident) {
+        boolean isInFallThroughCaseGroup = false;
+        for (DetailAST token = ident.getParent(); token != null; token = token.getParent()) {
+            final int type = token.getType();
+            if (type == TokenTypes.CASE_GROUP) {
+                isInFallThroughCaseGroup = token
+                        .findFirstToken(TokenTypes.SLIST)
+                        .findFirstToken(TokenTypes.LITERAL_BREAK) == null;
+                break;
+            }
+        }
+        return isInFallThroughCaseGroup;
     }
 
     /**
@@ -833,6 +859,11 @@ public class FinalLocalVariableCheck extends AbstractCheck {
         private boolean assigned;
         /** Whether the variable is already assigned. */
         private boolean alreadyAssigned;
+        /**
+         * Whether the variable is assigned in fall through case group. Such assignment
+         * should be counted as a separate assignment.
+         */
+        private boolean assignedInFallThroughCaseGroup;
 
         /**
          * Creates new instance.
