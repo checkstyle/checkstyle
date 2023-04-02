@@ -22,16 +22,23 @@ package com.puppycrawl.tools.checkstyle.filters;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
 import static com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck.MSG_KEY;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.mockStatic;
+import static org.mockito.Mockito.times;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
+import org.mockito.MockedStatic;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Violation;
@@ -40,6 +47,7 @@ import com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck;
 import com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
+import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
 
 public class SuppressWithNearbyTextFilterTest extends AbstractModuleTestSupport {
 
@@ -509,6 +517,29 @@ public class SuppressWithNearbyTextFilterTest extends AbstractModuleTestSupport 
         assertWithMessage("cachedFileAbsolutePath has not changed")
                 .that(cachedFileAbsolutePath1)
                 .isNotEqualTo(cachedFileAbsolutePath2);
+    }
+
+    @Test
+    public void testGetFileTextIsInvokedOnlyOnceDuringFileProcessing() throws Exception {
+        try (MockedStatic<FilterUtil> mock = mockStatic(FilterUtil.class)) {
+            final SuppressWithNearbyTextFilter filter = new SuppressWithNearbyTextFilter();
+            final String filename = getPath("InputSuppressWithNearbyTextFilterDefaultConfig.java");
+            mock.when(() -> FilterUtil.getFileText(anyString()))
+                    .thenReturn(new FileText(new File(filename), StandardCharsets.UTF_8.name()));
+
+            filter.accept(buildDummyAuditEvent(filename));
+            filter.accept(buildDummyAuditEvent(filename));
+            filter.accept(buildDummyAuditEvent(filename));
+            filter.accept(buildDummyAuditEvent(filename));
+
+            mock.verify(
+                    () -> FilterUtil.getFileText(anyString()),
+                    times(1)
+            );
+            assertWithMessage("Invalid cachedFileAbsolutePath value")
+                    .that(TestUtil.getInternalState(filter, "cachedFileAbsolutePath").toString())
+                    .isEqualTo(filename);
+        }
     }
 
     /**
