@@ -15,8 +15,8 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.writetag;
  * Testing tag writing
  * @author Daniel Grenner
  * @incomplete This class needs more code...
- * @doubletag first text
- * @doubletag second text
+ * @doubletag
+ * @doubletag
  * @emptytag
  */
 class InputWriteTagDoubleTag

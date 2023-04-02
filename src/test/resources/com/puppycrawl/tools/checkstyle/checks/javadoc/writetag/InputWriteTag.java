@@ -12,7 +12,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.writetag;
 // violation 3 lines below 'Must contain non-whitespace characters.'
 /**
  * Testing tag writing
- * @author Daniel Grenner
+ * missing tag intentionally
  * @incomplete This class needs more code...
  * @doubletag first text
  * @doubletag second text
