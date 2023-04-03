@@ -24,13 +24,13 @@ public class InputJavadocMethodNoJavadocOnlyPrivateScope //comment test
     void foo3() {}
     private void foo4() {}
 
-    /** @return wrong, in scope */ // violation
+    /** @return wrong, in scope */ // violation 'Unused Javadoc tag.'
     public void foo5() {}
     /** @return correct, out of scope */ // ok
     protected void foo6() {}
-    /** @return wrong, in scope */ // violation
+    /** @return wrong, in scope */ // violation 'Unused Javadoc tag.'
     void foo7() {}
-    /** @return wrong, in scope */ // violation
+    /** @return wrong, in scope */ // violation 'Unused Javadoc tag.'
     private void foo8() {}
 
     protected class ProtectedInner { // ignored
