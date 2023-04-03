@@ -459,6 +459,50 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressWithNearbyTextFilter.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter regex of compile.</message>
+    <lineContent>eventIdRegexp = Pattern.compile(format);</lineContent>
+    <details>
+      found   : String
+      required: @Regex String
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressWithNearbyTextFilter.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter regex of compile.</message>
+    <lineContent>eventMessageRegexp = Pattern.compile(format);</lineContent>
+    <details>
+      found   : String
+      required: @Regex String
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressWithNearbyTextFilter.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter regex of compile.</message>
+    <lineContent>eventSourceRegexp = Pattern.compile(format);</lineContent>
+    <details>
+      found   : String
+      required: @Regex String
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressWithNearbyTextFilter.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter regex of compile.</message>
+    <lineContent>private Pattern nearbyTextPattern = Pattern.compile(DEFAULT_NEARBY_TEXT_PATTERN);</lineContent>
+    <details>
+      found   : String
+      required: @Regex String
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressWithPlainTextCommentFilter.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter regex of compile.</message>
