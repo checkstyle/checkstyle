@@ -34,9 +34,9 @@ public class InputJavadocMethodTypeParamsTags<A,B1,C456 extends Comparable> // o
 
     /**
      * Some explanation.
-     * @param <BB> The wrong type param // violation
+     * @param <BB> The wrong type param // violation 'Unused @param tag for '<BB>'.'
      */
-    public <Z> void doSomethingElse() // violation
+    public <Z> void doSomethingElse() // violation 'Expected @param tag for '<Z>'.'
     {
     }
 
@@ -61,9 +61,9 @@ public class InputJavadocMethodTypeParamsTags<A,B1,C456 extends Comparable> // o
 
     /**
      * Some explanation.
-     * @param <Z The wrong type param // violation
+     * @param <Z The wrong type param // violation 'Unused @param tag for '<Z.'
      */
-    public <Z> void unclosedGenericParam() // violation
+    public <Z> void unclosedGenericParam() // violation 'Expected @param tag for '<Z>'.'
     {
     }
 }
