@@ -24,7 +24,7 @@ public class InputJavadocMethodEnum {
         };
 
         /** Test constructor */
-        DAY(int i) { // violation
+        DAY(int i) { // violation 'Expected @param tag for 'i''
         }
     }
 }
