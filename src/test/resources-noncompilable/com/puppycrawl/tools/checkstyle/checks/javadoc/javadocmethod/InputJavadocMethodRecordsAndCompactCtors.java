@@ -25,7 +25,8 @@ public class InputJavadocMethodRecordsAndCompactCtors {
         public void doSomething4(String properties) {
             // here is NPE possible
             if (properties.charAt(0) == 0) {
-                throw new IllegalArgumentException("cannot have char with code 0"); // violation
+                // violation below '.* @throws .* 'IllegalArgumentException'.'
+                throw new IllegalArgumentException("cannot have char with code 0");
             }
         }
 
@@ -37,7 +38,8 @@ public class InputJavadocMethodRecordsAndCompactCtors {
          */
         public void doSomething5(String properties) {
             // here is NPE possible
-            if (properties.charAt(0) == 0) { // violation below
+            if (properties.charAt(0) == 0) {
+                // violation below '.* @throws .* 'java.lang.IllegalArgumentException'.'
                 throw new java.lang.IllegalArgumentException("cannot have char with code 0");
             }
         }
@@ -50,13 +52,14 @@ public class InputJavadocMethodRecordsAndCompactCtors {
         /**
          * exception is explitly thrown in code missed in javadoc
          *
-         * @param properties some value // violation
+         * @param properties some value // violation 'Unused Javadoc tag.'
          * @throws java.lang.IllegalStateException when argument is wrong // ok
          */
         public MySecondRecord {
             // here is NPE possible
             if (props.charAt(0) == 0) {
-                throw new IllegalArgumentException("cannot have char with code 0"); // violation
+                // violation below '.* @throws .* 'IllegalArgumentException'.'
+                throw new IllegalArgumentException("cannot have char with code 0");
             }
         }
     }
@@ -66,13 +69,14 @@ public class InputJavadocMethodRecordsAndCompactCtors {
         /**
          * exception is explitly thrown in code missed in javadoc
          *
-         * @param properties some value // violation
+         * @param properties some value // violation 'Unused Javadoc tag.'
          * @throws java.lang.IllegalStateException when argument is wrong // ok
          */
         public MyThirdRecord {
             // here is NPE possible
             if (myString.charAt(0) == 0) {
-                throw new IllegalArgumentException("cannot have char with code 0"); // violation
+                // violation below '.* @throws .* 'IllegalArgumentException'.'
+                throw new IllegalArgumentException("cannot have char with code 0");
             }
         }
     }
@@ -82,14 +86,16 @@ public class InputJavadocMethodRecordsAndCompactCtors {
         /**
          * exception is explitly thrown in code missed in javadoc
          *
-         * @param properties some value // violation
+         * @param properties some value // violation 'Unused @param tag for 'properties'.'
          * @throws java.lang.IllegalStateException when argument is wrong // ok
          */
-        public MyFourthRecord(int myInt) { // violation
+        // violation below 'Expected @param tag for 'myInt'.'
+        public MyFourthRecord(int myInt) {
             this("my string");
             // here is NPE possible
             if (myString.charAt(0) == 0) {
-                throw new IllegalArgumentException("cannot have char with code 0"); // violation
+                // violation below '.* @throws .* 'IllegalArgumentException'.'
+                throw new IllegalArgumentException("cannot have char with code 0");
             }
         }
     }

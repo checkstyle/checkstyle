@@ -26,7 +26,7 @@ public class InputJavadocMethodGenerics <E extends java.lang.Exception,
     /**
      * RuntimeException is not declared.
      */
-    public void method2() throws RE // violation
+    public void method2() throws RE // violation 'Expected @throws tag for 'RE'.'
     {
     }
 
@@ -42,7 +42,8 @@ public class InputJavadocMethodGenerics <E extends java.lang.Exception,
      * @throws RE in some cases
      * @throws NPE in some other cases
      */
-    public <NPE extends NullPointerException> void method4() throws NPE, RE // violation
+    // violation below '.* @param .* '<NPE>'.'
+    public <NPE extends NullPointerException> void method4() throws NPE, RE
     {
     }
 
@@ -52,8 +53,9 @@ public class InputJavadocMethodGenerics <E extends java.lang.Exception,
          * @throws E in some case
          * @throws RE in some other cases
          */
-        public void method1() throws RuntimeException, RE, // violation
-            java.lang.RuntimeException // violation
+        // violation below 'Expected @throws tag for 'RuntimeException'.'
+        public void method1() throws RuntimeException, RE,
+            java.lang.RuntimeException // violation '.* @throws .* 'java.lang.RuntimeException'.'
         {
         }
     }

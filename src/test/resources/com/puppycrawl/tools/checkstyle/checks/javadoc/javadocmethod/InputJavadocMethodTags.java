@@ -27,13 +27,13 @@ class InputJavadocMethodTags1
     {
     }
 
-    /** @param unused asd **/ // violation
+    /** @param unused asd **/ // violation 'Unused @param tag for 'unused'.'
     void method2()
     {
     }
 
     /** missing return **/
-    int method3() // violation
+    int method3() // violation '@return tag should be present and have description.'
     {
         return 3;
     }
@@ -42,14 +42,14 @@ class InputJavadocMethodTags1
      * <p>missing return
      * @param aOne ignored
      **/
-    int method4(int aOne) // violation
+    int method4(int aOne) // violation '@return tag should be present and have description.'
     {
         return aOne;
     }
 
     /** missing throws **/
     void method5()
-        throws Exception // violation
+        throws Exception // violation 'Expected @throws tag for 'Exception'.'
     {
     }
 
@@ -58,7 +58,7 @@ class InputJavadocMethodTags1
      * @see need to see tags to avoid shortcut logic
      **/
     void method6()
-        throws Exception // violation
+        throws Exception // violation 'Expected @throws tag for 'Exception'.'
     {
     }
 
@@ -69,7 +69,7 @@ class InputJavadocMethodTags1
     }
 
     /** missing param **/
-    void method8(int aOne) // violation
+    void method8(int aOne) // violation 'Expected @param tag for 'aOne'.'
     {
     }
 
@@ -77,18 +77,18 @@ class InputJavadocMethodTags1
      * @see missing param
      * @see need to see tags to avoid shortcut logic
      **/
-    void method9(int aOne) // violation
+    void method9(int aOne) // violation 'Expected @param tag for 'aOne'.'
     {
     }
 
-    /** @param WrongParam problem **/ // violation
+    /** @param WrongParam problem **/ // violation 'Unused @param tag for 'WrongParam'.'
     void method10(int aOne, int aTwo) // 2 violations
     {
     }
 
     /**
-     * @param Unneeded parameter // violation
-     * @return also unneeded // violation
+     * @param Unneeded parameter // violation 'Unused @param tag for 'Unneeded'.'
+     * @return also unneeded // violation 'Unused Javadoc tag.'
      **/
     void method11()
     {
@@ -96,7 +96,7 @@ class InputJavadocMethodTags1
 
     /**
      * @return first one
-     * @return duplicate // violation
+     * @return duplicate // violation 'Duplicate @return tag.'
      **/
     int method12()
     {
@@ -265,13 +265,13 @@ class InputJavadocMethodTags1
      * no exception tag for IOException, but here is a tag for its subclass.
      * @exception java.io.FileNotFoundException for another reasons
      */
-    void method24() throws IOException // violation
+    void method24() throws IOException // violation 'Expected @throws tag for 'IOException'.'
     {
     }
 
     /**
      * Bug 841942, "ArrayIndexOutOfBounds in JavadocStyle".
-     * @param aParam there is no such param in the method. // violation
+     * @param aParam there is no such param in the method. // violation 'Un.* @param .* 'aParam'.'
      * The problem should be reported with correct line number.
      */
 
@@ -353,7 +353,7 @@ enum InputJavadocMethodTagsEnum
     /** @return This tag is valid here and expected with Java 8 */
     String someField2();
     /** {@inheritDoc} */
-    String someField3(); // violation
+    String someField3(); // violation 'Invalid use of the '@inheritDoc' tag.'
 }
 
 /**
@@ -393,7 +393,7 @@ class WrongException extends RuntimeException // ok
     /** @return
      * nothing
      * @return
-     * oops */ // violation above
+     * oops */ // violation above 'Duplicate @return tag.'
     String[] results() default {};
 }
 class MoreExamples {

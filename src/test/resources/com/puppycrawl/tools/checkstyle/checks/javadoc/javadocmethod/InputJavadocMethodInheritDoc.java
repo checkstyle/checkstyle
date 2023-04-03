@@ -15,12 +15,12 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocmethod;
 public class InputJavadocMethodInheritDoc
 {
     /** {@inheritDoc} */
-    InputJavadocMethodInheritDoc() // violation
+    InputJavadocMethodInheritDoc() // violation 'Invalid use of the '@inheritDoc' tag.'
     {
     }
 
     /** {@inheritDoc} */
-    private void privateMethod() // violation
+    private void privateMethod() // violation 'Invalid use of the '@inheritDoc' tag.'
     {
     }
 
@@ -40,22 +40,23 @@ public class InputJavadocMethodInheritDoc
     }
 
     /** {@inheritDoc} */
-    private static void privateStaticMethod() // violation
+    private static void privateStaticMethod() // violation 'Invalid use of the '@inheritDoc' tag.'
     {
     }
 
     /** {@inheritDoc} */
-    static void packageStaticMethod() // violation
+    static void packageStaticMethod() // violation 'Invalid use of the '@inheritDoc' tag.'
     {
     }
 
     /** {@inheritDoc} */
-    protected static void protectedStaticMethod() // violation
+    // violation below 'Invalid use of the '@inheritDoc' tag.'
+    protected static void protectedStaticMethod()
     {
     }
 
     /** {@inheritDoc} */
-    public static void publicStaticMethod() // violation
+    public static void publicStaticMethod() // violation 'Invalid use of the '@inheritDoc' tag.'
     {
     }
 }
