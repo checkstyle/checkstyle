@@ -21,7 +21,8 @@ public class InputJavadocMethodThrowsDetection {
 
     /** Simple, trivial case. */
     void topLevel() {
-        throw new UnsupportedOperationException(""); // violation
+        // violation below 'Expected @throws tag for 'UnsupportedOperationException'.'
+        throw new UnsupportedOperationException("");
     }
 
     /**
@@ -32,10 +33,12 @@ public class InputJavadocMethodThrowsDetection {
      */
     int nestedWithinIf(int x) {
         if (x > 0) {
-            throw new UnsupportedOperationException(""); // violation
+            // violation below 'Expected @throws tag for 'UnsupportedOperationException'.'
+            throw new UnsupportedOperationException("");
         }
         if (x < 0) {
-            throw new IllegalArgumentException(""); // violation
+            // violation below 'Expected @throws tag for 'IllegalArgumentException'.'
+            throw new IllegalArgumentException("");
         }
         return 0;
     }
@@ -48,11 +51,13 @@ public class InputJavadocMethodThrowsDetection {
     void nestedWithinIfLeadingComment(int x) {
         if (x > 0) {
             // some comment in front
-            throw new UnsupportedOperationException(""); // violation
+            // violation below 'Expected @throws tag for 'UnsupportedOperationException'.'
+            throw new UnsupportedOperationException("");
         }
         if (x < 0) {
             // some comment in front
-            throw new IllegalArgumentException(""); // violation
+            // violation below 'Expected @throws tag for 'IllegalArgumentException'.'
+            throw new IllegalArgumentException("");
         }
     }
 
@@ -63,10 +68,12 @@ public class InputJavadocMethodThrowsDetection {
      */
     void nestedWithinIfElse(int x) {
         if (x > 0) {
-            throw new UnsupportedOperationException(""); // violation
+            // violation below 'Expected @throws tag for 'UnsupportedOperationException'.'
+            throw new UnsupportedOperationException("");
         }
         else {
-            throw new IllegalArgumentException(""); // violation
+            // violation below 'Expected @throws tag for 'IllegalArgumentException'.'
+            throw new IllegalArgumentException("");
         }
     }
 
@@ -77,10 +84,12 @@ public class InputJavadocMethodThrowsDetection {
      */
     void nestedWithinIfElseIf(int x) {
         if (x > 0) {
-            throw new UnsupportedOperationException(""); // violation
+            // violation below 'Expected @throws tag for 'UnsupportedOperationException'.'
+            throw new UnsupportedOperationException("");
         }
         else if (x < 0) {
-            throw new IllegalArgumentException(""); // violation
+            // violation below 'Expected @throws tag for 'IllegalArgumentException'.'
+            throw new IllegalArgumentException("");
         }
     }
 
@@ -92,7 +101,8 @@ public class InputJavadocMethodThrowsDetection {
     void doubleNestedIf(int x) {
         if (x >= 0) {
             if (x <= 0) {
-                throw new IllegalArgumentException("0"); // violation
+                // violation below 'Expected @throws tag for 'IllegalArgumentException'.'
+                throw new IllegalArgumentException("0");
             }
         }
     }
@@ -106,7 +116,8 @@ public class InputJavadocMethodThrowsDetection {
         if (x >= 0)
             if (x <= 0)
                 if (x == 0)
-                    throw new IllegalArgumentException("0"); // violation
+                    // violation below 'Expected @throws tag for 'IllegalArgumentException'.'
+                    throw new IllegalArgumentException("0");
     }
 
     /**
@@ -118,7 +129,8 @@ public class InputJavadocMethodThrowsDetection {
         if (x > 0) {
             x = 0;
         }
-        throw new UnsupportedOperationException(""); // violation
+        // violation below 'Expected @throws tag for 'UnsupportedOperationException'.'
+        throw new UnsupportedOperationException("");
     }
 
     /**
@@ -133,7 +145,8 @@ public class InputJavadocMethodThrowsDetection {
         try {
             System.out.println("foo");
         } catch (Exception e) {
-            throw new RuntimeException(e); // violation
+            // violation below 'Expected @throws tag for 'RuntimeException'.'
+            throw new RuntimeException(e);
         }
     }
 
@@ -146,7 +159,8 @@ public class InputJavadocMethodThrowsDetection {
             try {
                 System.out.println("foo");
             } catch (Exception e) {
-                throw new RuntimeException(e); // violation
+                // violation below 'Expected @throws tag for 'RuntimeException'.'
+                throw new RuntimeException(e);
             }
         }
     }
