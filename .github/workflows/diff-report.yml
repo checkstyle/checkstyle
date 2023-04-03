@@ -152,7 +152,7 @@ jobs:
         run: |
           cd checkstyle
           bash
-          MAIN_REPO_GIT_URL="https://github.com/checkstyle/checkstyle.git"
+          MAIN_REPO_GIT_URL="https://github.com/stoyanK7/checkstyle.git"
           git remote add upstream $MAIN_REPO_GIT_URL
           git fetch upstream
           cd ../
@@ -174,42 +174,44 @@ jobs:
 
       - name: Prepare environment
         run: |
-          mv project.properties ./contribution/checkstyle-tester/
-          mv ./*.xml ./contribution/checkstyle-tester/
-          sudo apt install groovy
+#          mv project.properties ./contribution/checkstyle-tester/
+#          mv ./*.xml ./contribution/checkstyle-tester/
+#          sudo apt install groovy
+           echo "<h1>heello</h1>" > ./contribution/checkstyle-tester/reports/diff/index.html
 
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v1
+      #      - name: Generate report
+#        env:
+#          BRANCH: ${{ needs.parse_body.outputs.branch }}
+#        run: |
+#          cd contribution/checkstyle-tester
+#          bash
+#          REF="origin/$BRANCH"
+#          REPO="../../checkstyle"
+#          BASE_BRANCH="upstream/master"
+#          export MAVEN_OPTS="-Xmx2048m"
+#          if [ -f new_module_config.xml ]; then
+#            groovy diff.groovy -r "$REPO" -p "$REF" -pc new_module_config.xml -m single\
+#              -l project.properties -xm "-Dcheckstyle.failsOnError=false"\
+#              --allowExcludes
+#          elif [ -f patch_config.xml ]; then
+#            groovy diff.groovy -r "$REPO" -b "$BASE_BRANCH" -p "$REF" -bc diff_config.xml\
+#              -pc patch_config.xml -l project.properties -xm "-Dcheckstyle.failsOnError=false"\
+#              --allowExcludes
+#          else
+#            groovy diff.groovy -r "$REPO" -b "$BASE_BRANCH" -p "$REF" -c diff_config.xml\
+#              -l project.properties -xm "-Dcheckstyle.failsOnError=false"\
+#              --allowExcludes
+#          fi
+
+      - name: Share artifact
+        if: failure() || success()
+        uses: actions/upload-artifact@v3
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ env.AWS_REGION }}
+          name: diff-results
+          path: contribution/checkstyle-tester/reports/diff
+          retention-days: 1
 
-      - name: Generate report
-        env:
-          BRANCH: ${{ needs.parse_body.outputs.branch }}
-        run: |
-          cd contribution/checkstyle-tester
-          bash
-          REF="origin/$BRANCH"
-          REPO="../../checkstyle"
-          BASE_BRANCH="upstream/master"
-          export MAVEN_OPTS="-Xmx2048m"
-          if [ -f new_module_config.xml ]; then
-            groovy diff.groovy -r "$REPO" -p "$REF" -pc new_module_config.xml -m single\
-              -l project.properties -xm "-Dcheckstyle.failsOnError=false"\
-              --allowExcludes
-          elif [ -f patch_config.xml ]; then
-            groovy diff.groovy -r "$REPO" -b "$BASE_BRANCH" -p "$REF" -bc diff_config.xml\
-              -pc patch_config.xml -l project.properties -xm "-Dcheckstyle.failsOnError=false"\
-              --allowExcludes
-          else
-            groovy diff.groovy -r "$REPO" -b "$BASE_BRANCH" -p "$REF" -c diff_config.xml\
-              -l project.properties -xm "-Dcheckstyle.failsOnError=false"\
-              --allowExcludes
-          fi
-
-      - name: Copy Report to AWS S3 Bucket
+      - name: Build comment
         env:
           LABEL: ${{ needs.parse_body.outputs.report_label }}
         run: |
@@ -218,7 +220,6 @@ jobs:
          FOLDER="${{needs.parse_body.outputs.commit_sha}}_$TIME"
          DIFF="./contribution/checkstyle-tester/reports/diff"
          LINK="https://${{env.AWS_BUCKET_NAME}}.s3.${{env.AWS_REGION}}.amazonaws.com"
-         aws s3 cp $DIFF "s3://${{env.AWS_BUCKET_NAME}}/$FOLDER/reports/diff/" --recursive
          if [ -n "$LABEL" ]; then
            echo "$LABEL: " > message
          fi
