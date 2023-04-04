@@ -39,7 +39,7 @@ import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
  *
  * @see XMLLogger
  */
-public class DefaultLogger extends AutomaticBean implements AuditListener {
+public class DefaultLogger extends AbstractAutomaticBean implements AuditListener {
 
     /**
      * A key pointing to the add exception
@@ -69,6 +69,20 @@ public class DefaultLogger extends AutomaticBean implements AuditListener {
 
     /** Formatter for the log message. */
     private final AuditEventFormatter formatter;
+
+    /**
+     * Creates a new {@code DefaultLogger} instance.
+     *
+     * @param outputStream where to log audit events
+     * @param outputStreamOptions if {@code CLOSE} that should be closed in auditFinished()
+     * @noinspection deprecation
+     * @noinspectionreason We are forced to keep AutomaticBean compatability
+     *     because of maven-checkstyle-plugin. Until #12873.
+     */
+    public DefaultLogger(OutputStream outputStream,
+                         AutomaticBean.OutputStreamOptions outputStreamOptions) {
+        this(outputStream, OutputStreamOptions.valueOf(outputStreamOptions.name()));
+    }
 
     /**
      * Creates a new {@code DefaultLogger} instance.

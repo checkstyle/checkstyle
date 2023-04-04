@@ -12,6 +12,7 @@ TARGET_VERSION=$1
 echo TARGET_VERSION="$TARGET_VERSION"
 
 checkForVariable "GITHUB_TOKEN"
+checkForVariable "REPOSITORY_OWNER"
 
 checkout_from https://github.com/checkstyle/contribution
 
@@ -27,13 +28,13 @@ if [ -d .ci-temp/checkstyle ]; then
   cd ../../
 else
   cd .ci-temp/
-  git clone https://github.com/checkstyle/checkstyle
+  git clone https://github.com/"$REPOSITORY_OWNER"/checkstyle
   cd ../
 fi
 
 cd .ci-temp/checkstyle
 
-curl --fail-with-body https://api.github.com/repos/checkstyle/checkstyle/releases \
+curl --fail-with-body https://api.github.com/repos/"$REPOSITORY_OWNER"/checkstyle/releases \
  -H "Authorization: token $GITHUB_TOKEN" \
  -o /var/tmp/cs-releases.json
 
@@ -50,7 +51,7 @@ BUILDER_RESOURCE_DIR="contribution/releasenotes-builder/src/main/resources/com/g
 
 java -jar contribution/releasenotes-builder/target/releasenotes-builder-1.0-all.jar \
      -localRepoPath checkstyle \
-     -remoteRepoPath checkstyle/checkstyle \
+     -remoteRepoPath "$REPOSITORY_OWNER"/checkstyle \
      -startRef "$START_REF" \
      -endRef "$END_REF" \
      -releaseNumber "$TARGET_VERSION" \
@@ -83,7 +84,7 @@ cat body.json
 
 echo "Creating Github release"
 curl --fail-with-body \
-  -X POST https://api.github.com/repos/checkstyle/checkstyle/releases \
+  -X POST https://api.github.com/repos/"$REPOSITORY_OWNER"/checkstyle/releases \
   -H "Accept: application/vnd.github+json" \
   -H "Authorization: token $GITHUB_TOKEN" \
   --data @body.json

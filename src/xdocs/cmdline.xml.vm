@@ -37,7 +37,8 @@ java -D&lt;property&gt;=&lt;value&gt;  \
      [-t | --tree] [-T | --treeWithComments] [-J | --treeWithJavadoc] [-j | --javadocTree] \
      [-V | --version] [-b | --branch-matching-xpath &lt;xpathQuery&gt;] [-h | --help] \
      [-e | --exclude &lt;excludedPath&gt;] [-E | --executeIgnoredModules] [-d | --debug] \
-     [-x | --exclude-regexp &lt;excludedPathPattern&gt;] \ file...
+     [-x | --exclude-regexp &lt;excludedPathPattern&gt;] \
+     file(s) or folder(s) ...
         </source>
       </p>
 

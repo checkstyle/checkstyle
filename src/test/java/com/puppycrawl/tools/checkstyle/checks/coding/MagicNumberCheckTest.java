@@ -500,4 +500,77 @@ public class MagicNumberCheckTest
         verifyWithInlineConfigParser(
                 getPath("InputMagicNumberAnnotationElement.java"), expected);
     }
+
+    @Test
+    public void testMagicNumber()
+            throws Exception {
+        final String[] expected = {
+            "38:29: " + getCheckMessage(MSG_KEY, "3.0"),
+            "39:32: " + getCheckMessage(MSG_KEY, "1.5_0"),
+            "40:19: " + getCheckMessage(MSG_KEY, "3.0"),
+            "41:26: " + getCheckMessage(MSG_KEY, "1.5"),
+            "49:50: " + getCheckMessage(MSG_KEY, "5"),
+            "50:42: " + getCheckMessage(MSG_KEY, "3"),
+            "51:44: " + getCheckMessage(MSG_KEY, "3"),
+            "52:37: " + getCheckMessage(MSG_KEY, "8"),
+            "55:33: " + getCheckMessage(MSG_KEY, "3.0"),
+            "56:36: " + getCheckMessage(MSG_KEY, "1.5_0"),
+            "57:23: " + getCheckMessage(MSG_KEY, "3.0"),
+            "58:30: " + getCheckMessage(MSG_KEY, "1.5"),
+            "68:33: " + getCheckMessage(MSG_KEY, "3.0"),
+            "69:36: " + getCheckMessage(MSG_KEY, "1.5_0"),
+            "70:23: " + getCheckMessage(MSG_KEY, "3.0"),
+            "71:30: " + getCheckMessage(MSG_KEY, "1.5"),
+            "78:33: " + getCheckMessage(MSG_KEY, "3.0"),
+            "79:36: " + getCheckMessage(MSG_KEY, "1.5_0"),
+            "80:23: " + getCheckMessage(MSG_KEY, "3.0"),
+            "81:30: " + getCheckMessage(MSG_KEY, "1.5"),
+            "90:33: " + getCheckMessage(MSG_KEY, "3.0"),
+            "91:36: " + getCheckMessage(MSG_KEY, "1.5_0"),
+            "92:23: " + getCheckMessage(MSG_KEY, "3.0"),
+            "93:30: " + getCheckMessage(MSG_KEY, "1.5"),
+            "100:33: " + getCheckMessage(MSG_KEY, "3.0"),
+            "101:36: " + getCheckMessage(MSG_KEY, "1.5_0"),
+            "102:23: " + getCheckMessage(MSG_KEY, "3.0"),
+            "103:30: " + getCheckMessage(MSG_KEY, "1.5"),
+            "112:33: " + getCheckMessage(MSG_KEY, "3.0"),
+            "113:36: " + getCheckMessage(MSG_KEY, "1.5_0"),
+            "114:23: " + getCheckMessage(MSG_KEY, "3.0"),
+            "115:30: " + getCheckMessage(MSG_KEY, "1.5"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputMagicNumber_10.java"), expected);
+    }
+
+    @Test
+    public void testMagicNumber2() throws Exception {
+        final String[] expected = {
+            "25:17: " + getCheckMessage(MSG_KEY, "9"),
+            "27:20: " + getCheckMessage(MSG_KEY, "5.5"),
+            "28:19: " + getCheckMessage(MSG_KEY, "12.2f"),
+            "33:28: " + getCheckMessage(MSG_KEY, "45"),
+            "41:21: " + getCheckMessage(MSG_KEY, "9"),
+            "43:24: " + getCheckMessage(MSG_KEY, "5.5"),
+            "44:23: " + getCheckMessage(MSG_KEY, "12.2f"),
+            "49:46: " + getCheckMessage(MSG_KEY, "5"),
+            "50:38: " + getCheckMessage(MSG_KEY, "5"),
+            "51:40: " + getCheckMessage(MSG_KEY, "5"),
+            "52:31: " + getCheckMessage(MSG_KEY, "5"),
+            "53:49: " + getCheckMessage(MSG_KEY, "5"),
+            "66:50: " + getCheckMessage(MSG_KEY, "5"),
+            "67:42: " + getCheckMessage(MSG_KEY, "5"),
+            "68:44: " + getCheckMessage(MSG_KEY, "5"),
+            "69:35: " + getCheckMessage(MSG_KEY, "5"),
+            "70:53: " + getCheckMessage(MSG_KEY, "5"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputMagicNumber_11.java"), expected);
+    }
+
+    @Test
+    public void testMagicNumber3() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputMagicNumber_12.java"), expected);
+    }
 }

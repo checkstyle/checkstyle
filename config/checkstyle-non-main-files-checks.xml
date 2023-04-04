@@ -119,4 +119,12 @@
     <property name="fileExtensions" value="sh"/>
     <property name="message" value="space is required after comment start"/>
   </module>
+
+  <module name="RegexpMultiline">
+    <property name="id" value="workflowJobStepSpacing"/>
+    <property name="format" value="\n(?!\s{4}steps:|\s+#).+\n\s{6}\-\s.+:\s.*"/>
+    <property name="fileExtensions" value="yml, yaml"/>
+    <property name="message"
+              value="Workflow job steps should have empty lines between each other"/>
+  </module>
 </module>

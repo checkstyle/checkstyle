@@ -24,7 +24,7 @@ permissions:
   pull-requests: write
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  group: ${{ github.workflow }}-${{ github.event.issue.number || github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -45,8 +45,10 @@ jobs:
           reaction: rocket
         env:
           GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
+
       - run: 'echo We print it here for this action to work'
         if: 'true'
+
       - name: Getting PR description
         run: |
           wget -q "${{github.event.issue.pull_request.url}}" -O info.json
@@ -99,6 +101,9 @@ jobs:
           mvn -e --no-transfer-progress clean site -Pno-validations -Dmaven.javadoc.skip=false
 
       - name: Copy site to AWS S3 Bucket
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPOSITORY_OWNER: ${{ github.repository_owner }}
         run: |
           bash
           TIME=$(date +%Y%H%M%S)
@@ -107,10 +112,18 @@ jobs:
           LINK="https://${{env.AWS_BUCKET_NAME}}.s3.${{env.AWS_REGION}}.amazonaws.com"
           aws s3 cp "$SITE" "s3://${{env.AWS_BUCKET_NAME}}/$FOLDER/" --recursive
           echo "$LINK/$FOLDER/index.html" > message
+          cd checkstyle
+          ./.ci/generate-extra-site-links.sh ${{ github.event.issue.number }} "$LINK/$FOLDER"
 
       - name: Set output
         id: out
-        run: echo "message=$(cat message)" >> "$GITHUB_OUTPUT"
+        run: |
+          EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
+          {
+            echo "message<<$EOF"
+            cat message
+            echo "$EOF"
+          } >> "$GITHUB_OUTPUT"
 
   # should be always last step
   send_message:
@@ -139,7 +152,13 @@ jobs:
 
       - name: Set message
         id: out
-        run: echo "message=$(cat message)" >> "$GITHUB_OUTPUT"
+        run: |
+          EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
+          {
+            echo "message<<$EOF"
+            cat message
+            echo "$EOF"
+          } >> "$GITHUB_OUTPUT"
 
       - name: Comment PR
         uses: checkstyle/contribution/comment-action@master

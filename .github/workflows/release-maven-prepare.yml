@@ -33,18 +33,22 @@ jobs:
         with:
           fetch-depth: 0
           ref: master
+
       - name: Setup local maven cache
         uses: actions/cache@v2
         with:
           path: ~/.m2/repository
           key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
+
       - name: Commit and Push Credentials
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email 'github-actions[bot]@users.noreply.github.com'
+
       - name: Run Shell Script
         run: |
           ./.ci/release-maven-prepare.sh ${{ inputs.version }}
+
       - name: Push commit
         run: |
           git push origin master --tags

@@ -64,6 +64,10 @@
     <allow class="java.text.MessageFormat"/>
   </file>
 
+  <file name="AbstractAutomaticBean">
+    <allow class="java.beans.PropertyDescriptor" local-only="true"/>
+  </file>
+
   <subpackage name="utils">
 
     <allow pkg="java.lang.reflect" local-only="true" />
@@ -78,6 +82,9 @@
       <allow class="com.puppycrawl.tools.checkstyle.xpath.AbstractNode"/>
       <allow class="com.puppycrawl.tools.checkstyle.xpath.ElementNode"/>
       <allow class="com.puppycrawl.tools.checkstyle.xpath.RootNode"/>
+    </file>
+    <file name="ModuleReflectionUtil">
+      <allow class="com.puppycrawl.tools.checkstyle.AbstractAutomaticBean"/>
     </file>
   </subpackage>
 
@@ -98,6 +105,8 @@
     <allow pkg="com.puppycrawl.tools.checkstyle.grammar"/>
     <allow pkg="java.lang.reflect" local-only="true"/>
     <allow pkg="java.nio.charset" local-only="true"/>
+    <!-- until https://github.com/checkstyle/checkstyle/issues/12873 -->
+    <allow class="com.puppycrawl.tools.checkstyle.AbstractAutomaticBean" local-only="true"/>
     <allow class="java.beans.PropertyDescriptor" local-only="true"/>
     <allow class="java.nio.file.Files" local-only="true"/>
     <allow class="java.text.MessageFormat" local-only="true"/>
@@ -166,11 +175,18 @@
     </subpackage>
   </subpackage>
 
+  <subpackage name="filefilters">
+    <file name="BeforeExecutionExclusionFileFilter">
+      <allow class="com.puppycrawl.tools.checkstyle.AbstractAutomaticBean"/>
+    </file>
+  </subpackage>
+
   <subpackage name="filters">
     <disallow pkg="com\.puppycrawl\.tools\.checkstyle\.checks\.[^.]+" regex="true"/>
 
     <allow pkg="net.sf.saxon"/>
     <allow class="java.lang.ref.WeakReference" local-only="true"/>
+    <allow class="com.puppycrawl.tools.checkstyle.AbstractAutomaticBean" local-only="true"/>
     <allow class="com.puppycrawl.tools.checkstyle.TreeWalkerAuditEvent" local-only="true"/>
     <allow class="com.puppycrawl.tools.checkstyle.TreeWalkerFilter" local-only="true"/>
     <allow class="com.puppycrawl.tools.checkstyle.XmlLoader" local-only="true"/>
@@ -226,6 +242,7 @@
     <allow class="com.puppycrawl.tools.checkstyle.utils.TokenUtil"/>
 
     <file name="MetadataGeneratorUtil">
+      <allow class="com.puppycrawl.tools.checkstyle.AbstractAutomaticBean.OutputStreamOptions"/>
       <allow class="com.puppycrawl.tools.checkstyle.MetadataGeneratorLogger"/>
     </file>
 
@@ -257,4 +274,9 @@
       <allow pkg="org.antlr.v4.runtime"/>
     </file>
   </subpackage>
+
+  <file name="Main">
+    <allow class="com.puppycrawl.tools.checkstyle.AbstractAutomaticBean.OutputStreamOptions"
+           local-only="true"/>
+  </file>
 </import-control>

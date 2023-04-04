@@ -10,24 +10,6 @@
   </mutation>
 
   <mutation unstable="false">
-    <sourceFile>BeforeExecutionFileFilterSet.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.api.BeforeExecutionFileFilterSet</mutatedClass>
-    <mutatedMethod>getBeforeExecutionFileFilters</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
-    <description>replaced call to java/util/Collections::unmodifiableSet with argument</description>
-    <lineContent>return Collections.unmodifiableSet(beforeExecutionFileFilters);</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>BeforeExecutionFileFilterSet.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.api.BeforeExecutionFileFilterSet</mutatedClass>
-    <mutatedMethod>toString</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.returns.EmptyObjectReturnValsMutator</mutator>
-    <description>replaced return value with &quot;&quot; for com/puppycrawl/tools/checkstyle/api/BeforeExecutionFileFilterSet::toString</description>
-    <lineContent>return beforeExecutionFileFilters.toString();</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
     <sourceFile>FileContents.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.api.FileContents</mutatedClass>
     <mutatedMethod>getBlockComments</mutatedMethod>
@@ -106,24 +88,6 @@
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
     <description>Removed assignment to member variable lineBreaks</description>
     <lineContent>lineBreaks = null;</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>FilterSet.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.api.FilterSet</mutatedClass>
-    <mutatedMethod>getFilters</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
-    <description>replaced call to java/util/Collections::unmodifiableSet with argument</description>
-    <lineContent>return Collections.unmodifiableSet(filters);</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>FilterSet.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.api.FilterSet</mutatedClass>
-    <mutatedMethod>toString</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.returns.EmptyObjectReturnValsMutator</mutator>
-    <description>replaced return value with &quot;&quot; for com/puppycrawl/tools/checkstyle/api/FilterSet::toString</description>
-    <lineContent>return filters.toString();</lineContent>
   </mutation>
 
   <mutation unstable="false">

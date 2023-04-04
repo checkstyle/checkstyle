@@ -54,8 +54,10 @@ jobs:
           reaction: rocket
         env:
           GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
+
       - run: 'echo We print it here for this action to work'
         if: 'true'
+
       - name: Getting PR description
         env:
           ISSUE_BODY: ${{ github.event.issue.body }}
@@ -224,7 +226,13 @@ jobs:
 
       - name: Set output
         id: out
-        run: echo "::set-output name=message::$(cat message)"
+        run: |
+          EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
+          {
+            echo "message<<$EOF"
+            cat message
+            echo "$EOF"
+          } >> "$GITHUB_OUTPUT"
 
   # should be always last step
   send_message:
@@ -254,7 +262,13 @@ jobs:
 
       - name: Set message
         id: out
-        run: echo "::set-output name=message::$(cat message)"
+        run: |
+          EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
+          {
+            echo "message<<$EOF"
+            cat message
+            echo "$EOF"
+          } >> "$GITHUB_OUTPUT"
 
       - name: Comment PR
         uses: checkstyle/contribution/comment-action@master

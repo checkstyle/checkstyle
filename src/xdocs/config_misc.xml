@@ -708,73 +708,70 @@ return '&#92;ufeff' + content;           // OK, non-printable escape character.
   &lt;property name="minimumNumber" value="1"/&gt;
 &lt;/module&gt;
         </source>
-
         <p>
-          To configure the check to produce a violation on a
-          condition in <code>for</code> which performs no check:
+          Example:
         </p>
         <source>
-&lt;module name="DescendantToken"&gt;
-  &lt;property name="tokens" value="FOR_CONDITION"/&gt;
-  &lt;property name="limitedTokens" value="EXPR"/&gt;
-  &lt;property name="minimumNumber" value="1"/&gt;
-&lt;/module&gt;
+class Test {
+  public static void main(String[] args) {
+    int x = 1;
+    switch (x) { // ok
+      case 1:
+        System.out.println("hi");
+        break;
+      default:
+        System.out.println("Default");
+        break;
+    }
+
+    int y = 1;
+    switch (y) { // violation
+      case 1:
+        System.out.println("hi");
+        break;
+    }
+  }
+}
         </source>
 
-        <p>
-          To configure the check to produce a violation on
-          comparing <code>this</code> with <code>null</code> (i.e. <code>this ==
-          null</code> and <code>this != null</code>):
-        </p>
+        <p>To configure the check to produce a violation on a switch with too many cases:</p>
         <source>
 &lt;module name="DescendantToken"&gt;
-  &lt;property name="tokens" value="EQUAL,NOT_EQUAL"/&gt;
-  &lt;property name="limitedTokens" value="LITERAL_THIS,LITERAL_NULL"/&gt;
+  &lt;property name="tokens" value="LITERAL_SWITCH"/&gt;
+  &lt;property name="limitedTokens" value="LITERAL_CASE"/&gt;
+  &lt;property name="maximumDepth" value="2"/&gt;
   &lt;property name="maximumNumber" value="1"/&gt;
-  &lt;property name="maximumDepth" value="1"/&gt;
-  &lt;property name="sumTokenCounts" value="true"/&gt;
 &lt;/module&gt;
         </source>
-
         <p>
-          To configure the check to produce a violation on a <code>String</code>
-          literal equality check:
+          Example:
         </p>
         <source>
-&lt;module name="DescendantToken"&gt;
-  &lt;property name="tokens" value="EQUAL,NOT_EQUAL"/&gt;
-  &lt;property name="limitedTokens" value="STRING_LITERAL"/&gt;
-  &lt;property name="maximumNumber" value="0"/&gt;
-  &lt;property name="maximumDepth" value="1"/&gt;
-&lt;/module&gt;
-        </source>
+class Test {
+  public void foo() {
+    int x = 1;
+    switch (x) { // ok
+      case 1:
+        // Some code
+        break;
+      default:
+        // Some code
+        break;
+    }
 
-        <p>
-          To configure the check to produce a violation on an assert statement
-          that may have side effects (formatted for browser display):
-        </p>
-        <source>
-&lt;module name="DescendantToken"&gt;
-  &lt;property name="tokens" value="LITERAL_ASSERT"/&gt;
-  &lt;property name="limitedTokens" value="ASSIGN,DEC,INC,POST_DEC,
-    POST_INC,PLUS_ASSIGN,MINUS_ASSIGN,STAR_ASSIGN,DIV_ASSIGN,MOD_ASSIGN,
-    BSR_ASSIGN,SR_ASSIGN,SL_ASSIGN,BAND_ASSIGN,BXOR_ASSIGN,BOR_ASSIGN,
-    METHOD_CALL"/&gt;
-  &lt;property name="maximumNumber" value="0"/&gt;
-&lt;/module&gt;
-        </source>
-
-        <p>
-          To configure the check to produce a violation on an initializer in
-          <code>for</code> performs no setup (where a <code>while</code>
-          statement could be used instead):
-        </p>
-        <source>
-&lt;module name="DescendantToken"&gt;
-  &lt;property name="tokens" value="FOR_INIT"/&gt;
-  &lt;property name="limitedTokens" value="EXPR"/&gt;
-  &lt;property name="minimumNumber" value="1"/&gt;
-&lt;/module&gt;
+    switch (x) { // violation
+      case 1:
+        // Some code
+        break;
+      case 2:
+        // Some code
+        break;
+      default:
+        // Some code
+        break;
+    }
+  }
+}
         </source>
 
         <p>
@@ -789,6 +786,92 @@ return '&#92;ufeff' + content;           // OK, non-printable escape character.
   &lt;property name="minimumDepth" value="1"/&gt;
 &lt;/module&gt;
         </source>
+        <p>
+          Example:
+        </p>
+        <source>
+class Test {
+  public void foo() {
+    int x = 1;
+    int y = 2;
+    switch (x) { // ok
+      case 1:
+        System.out.println("xyz");
+        break;
+    }
+    switch (y) { // violation
+      case 1:
+        switch (y) {
+          case 2:
+            System.out.println("xyz");
+            break;
+        }
+        break;
+    }
+  }
+}
+        </source>
+
+        <p>
+          To configure the check to produce a violation on a
+          condition in <code>for</code> which performs no check:
+        </p>
+        <source>
+&lt;module name="DescendantToken"&gt;
+  &lt;property name="tokens" value="FOR_CONDITION"/&gt;
+  &lt;property name="limitedTokens" value="EXPR"/&gt;
+  &lt;property name="minimumNumber" value="1"/&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          Example:
+        </p>
+        <source>
+class Test {
+  public static void main(String[] args) {
+    for (int i = 0; i != 10; i++) { // ok
+      System.out.println(i);
+    }
+    int k = 0;
+    for (; ; ) { // violation
+      System.out.println(k);
+    }
+  }
+}
+        </source>
+
+        <p>
+          To configure the check to produce a violation on an initializer in
+          <code>for</code> performs no setup (where a <code>while</code>
+          statement could be used instead):
+        </p>
+        <source>
+&lt;module name="DescendantToken"&gt;
+  &lt;property name="tokens" value="FOR_INIT"/&gt;
+  &lt;property name="limitedTokens" value="EXPR"/&gt;
+  &lt;property name="minimumNumber" value="1"/&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          Example:
+        </p>
+        <source>
+class Test {
+  public void foo() {
+    int[] array = new int[] {1, 2, 3, 4, 5};
+
+    for (int i = 0; i != array.length; i++) { // ok
+      System.out.println(i);
+    }
+
+    int j = 0;
+    for (; j != array.length;) { // violation
+      System.out.println(j);
+      j++;
+    }
+  }
+}
+        </source>
 
         <p>
           To configure the check to produce a violation on a return statement
@@ -800,6 +883,23 @@ return '&#92;ufeff' + content;           // OK, non-printable escape character.
   &lt;property name="limitedTokens" value="LITERAL_RETURN"/&gt;
   &lt;property name="maximumNumber" value="0"/&gt;
 &lt;/module&gt;
+        </source>
+        <p>
+          Example:
+        </p>
+        <source>
+class Test {
+  public void foo() {
+    try {
+      // Some code
+    } catch (Exception e) {
+        System.out.println("xyz");
+        return; // violation
+    } finally {
+        System.out.println("xyz");
+    }
+  }
+}
         </source>
 
         <p>
@@ -813,15 +913,37 @@ return '&#92;ufeff' + content;           // OK, non-printable escape character.
   &lt;property name="maximumNumber" value="0"/&gt;
 &lt;/module&gt;
         </source>
-
-        <p>To configure the check to produce a violation on a switch with too many cases:</p>
+        <p>
+          Example:
+        </p>
         <source>
-&lt;module name="DescendantToken"&gt;
-  &lt;property name="tokens" value="LITERAL_SWITCH"/&gt;
-  &lt;property name="limitedTokens" value="LITERAL_CASE"/&gt;
-  &lt;property name="maximumDepth" value="2"/&gt;
-  &lt;property name="maximumNumber" value="10"/&gt;
-&lt;/module&gt;
+class Test {
+  public void foo() {
+    try {
+        // Some code
+    } catch (Exception e) { // ok
+        System.out.println("xyz");
+        return;
+    } finally { // ok
+        System.out.println("xyz");
+    }
+    try {
+        // Some code
+    } catch (Exception e) {
+        try { // violation
+          // Some code
+      } catch (Exception ex) {
+          // handle exception
+      }
+    } finally {
+        try { // violation
+          // Some code
+      } catch (Exception e) {
+          // handle exception
+      }
+    }
+  }
+}
         </source>
 
         <p>
@@ -833,8 +955,22 @@ return '&#92;ufeff' + content;           // OK, non-printable escape character.
   &lt;property name="tokens" value="METHOD_DEF"/&gt;
   &lt;property name="limitedTokens" value="VARIABLE_DEF"/&gt;
   &lt;property name="maximumDepth" value="2"/&gt;
-  &lt;property name="maximumNumber" value="10"/&gt;
+  &lt;property name="maximumNumber" value="1"/&gt;
 &lt;/module&gt;
+        </source>
+        <p>
+          Example:
+        </p>
+        <source>
+class Test {
+  public void foo() { // ok
+    int var1 = 1;
+  }
+  public void boo() { // violation
+    int var1 = 1;
+    int var2 = 2;
+  }
+}
         </source>
 
         <p>
@@ -845,21 +981,31 @@ return '&#92;ufeff' + content;           // OK, non-printable escape character.
 &lt;module name="DescendantToken"&gt;
   &lt;property name="tokens" value="METHOD_DEF"/&gt;
   &lt;property name="limitedTokens" value="LITERAL_RETURN"/&gt;
-  &lt;property name="maximumNumber" value="3"/&gt;
+  &lt;property name="maximumNumber" value="2"/&gt;
 &lt;/module&gt;
         </source>
-
         <p>
-          To configure the check to produce a violation on an interface
-          with too many fields:
+          Example:
         </p>
         <source>
-&lt;module name="DescendantToken"&gt;
-  &lt;property name="tokens" value="INTERFACE_DEF"/&gt;
-  &lt;property name="limitedTokens" value="VARIABLE_DEF"/&gt;
-  &lt;property name="maximumDepth" value="2"/&gt;
-  &lt;property name="maximumNumber" value="0"/&gt;
-&lt;/module&gt;
+class Test {
+  public int foo(int x) { // ok
+    if (x == -1) {
+        return -1;
+    } else if (x == 0) {
+        return 0;
+    }
+  }
+  public int boo(int x) { // violation
+    if (x == -1) {
+        return -1;
+    } else if (x == 0) {
+        return 0;
+    } else {
+        return x;
+    }
+  }
+}
         </source>
 
         <p>
@@ -873,6 +1019,21 @@ return '&#92;ufeff' + content;           // OK, non-printable escape character.
   &lt;property name="maximumNumber" value="1"/&gt;
 &lt;/module&gt;
         </source>
+        <p>
+          Example:
+        </p>
+        <source>
+class Foo {
+  public void foo() throws ArithmeticException { // ok
+      // ...
+  }
+}
+class Boo {
+  public void boo() throws ArithmeticException, ArithmeticException { // violation
+      // ...
+  }
+}
+        </source>
 
         <p>
           To configure the check to produce a violation on a method
@@ -882,8 +1043,26 @@ return '&#92;ufeff' + content;           // OK, non-printable escape character.
 &lt;module name="DescendantToken"&gt;
   &lt;property name="tokens" value="METHOD_DEF"/&gt;
   &lt;property name="limitedTokens" value="EXPR"/&gt;
-  &lt;property name="maximumNumber" value="200"/&gt;
+  &lt;property name="maximumNumber" value="2"/&gt;
 &lt;/module&gt;
+        </source>
+        <p>
+          Example:
+        </p>
+        <source>
+class Foo {
+  public void foo() { // ok
+      int x = 1;
+      int z = x + 2;
+  }
+}
+class Boo {
+  public void boo() { // violation
+      int x = 1;
+      int y = 2;
+      int z = x + y;
+  }
+}
         </source>
 
         <p>
@@ -899,18 +1078,148 @@ return '&#92;ufeff' + content;           // OK, non-printable escape character.
     value="Empty statement is not allowed."/&gt;
 &lt;/module&gt;
         </source>
+        <p>
+          Example:
+        </p>
+        <source>
+class Test {
+  public void foo() { // ok
+      System.out.println("Hello");
+  }
+  public void boo() {
+      ; // violation
+  }
+}
+        </source>
 
         <p>
-          To configure the check to produce a violation on a class
+          To configure the check to produce a violation on a class or interface
           with too many fields:
         </p>
         <source>
 &lt;module name="DescendantToken"&gt;
-  &lt;property name="tokens" value="CLASS_DEF"/&gt;
+  &lt;property name="tokens" value="CLASS_DEF,INTERFACE_DEF"/&gt;
   &lt;property name="limitedTokens" value="VARIABLE_DEF"/&gt;
   &lt;property name="maximumDepth" value="2"/&gt;
-  &lt;property name="maximumNumber" value="10"/&gt;
+  &lt;property name="maximumNumber" value="1"/&gt;
 &lt;/module&gt;
+        </source>
+        <p>
+          Example:
+        </p>
+        <source>
+class A { // ok
+  private int field1;
+
+  // Some code
+}
+class B { // violation
+  private int field1;
+  private int field2;
+
+  // Some code
+}
+interface C { // ok
+  int FIELD_1 = 1;
+}
+interface D { // violation
+  int FIELD_1 = 1;
+  int FIELD_2 = 2;
+}
+        </source>
+
+        <p>
+          To configure the check to produce a violation on
+          comparing <code>this</code> with <code>null</code>:
+        </p>
+        <source>
+&lt;module name="DescendantToken"&gt;
+  &lt;property name="tokens" value="EQUAL,NOT_EQUAL"/&gt;
+  &lt;property name="limitedTokens" value="LITERAL_THIS,LITERAL_NULL"/&gt;
+  &lt;property name="maximumNumber" value="1"/&gt;
+  &lt;property name="maximumDepth" value="1"/&gt;
+  &lt;property name="sumTokenCounts" value="true"/&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          Example:
+        </p>
+        <source>
+class Test {
+  public void foo() {
+    if (this == null) { // violation
+      System.out.println("xyz");
+    }
+    if (this != null) { // violation
+      System.out.println("xyz");
+    }
+
+    Object obj = new Object();
+    if (obj == null) { // ok
+      System.out.println("xyz");
+    }
+    if (obj != null) { // ok
+      System.out.println("xyz");
+    }
+  }
+}
+        </source>
+
+        <p>
+          To configure the check to produce a violation on a <code>String</code>
+          literal equality check:
+        </p>
+        <source>
+&lt;module name="DescendantToken"&gt;
+  &lt;property name="tokens" value="EQUAL,NOT_EQUAL"/&gt;
+  &lt;property name="limitedTokens" value="STRING_LITERAL"/&gt;
+  &lt;property name="maximumNumber" value="0"/&gt;
+  &lt;property name="maximumDepth" value="1"/&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          Example:
+        </p>
+        <source>
+class Test {
+  public void foo() {
+    String str = "abc";
+    if (str.equals("abc")) { // ok
+      System.out.println("equal.");
+    }
+    if (str == "abc") { // violation
+      System.out.println("equal.");
+    }
+  }
+}
+        </source>
+
+        <p>
+          To configure the check to produce a violation on an assert statement
+          that may have side effects:
+        </p>
+        <source>
+&lt;module name="DescendantToken"&gt;
+  &lt;property name="tokens" value="LITERAL_ASSERT"/&gt;
+  &lt;property name="limitedTokens" value="ASSIGN,DEC,INC,POST_DEC,
+    POST_INC,PLUS_ASSIGN,MINUS_ASSIGN,STAR_ASSIGN,DIV_ASSIGN,MOD_ASSIGN,
+    BSR_ASSIGN,SR_ASSIGN,SL_ASSIGN,BAND_ASSIGN,BXOR_ASSIGN,BOR_ASSIGN,
+    METHOD_CALL"/&gt;
+  &lt;property name="maximumNumber" value="0"/&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          Example:
+        </p>
+        <source>
+class Test {
+  public void foo() {
+    int a = 5;
+    assert a++ == 0 : "is not"; // violation
+    System.out.println(a);
+    assert a == 0 : "is not"; // ok
+  }
+}
         </source>
       </subsection>
 
@@ -2341,18 +2650,35 @@ messages.properties: Key 'ok' missing.
 
       <subsection name="Examples" id="Translation_Examples">
         <p>
+          Note, that files with the same path and base name but which have different
+          extensions will be considered as files that belong to different resource bundles.
+        </p>
+        <p>
           To configure the check to check only files which have '.properties' and '.translations'
           extensions:
         </p>
         <source>
 &lt;module name=&quot;Translation&quot;&gt;
   &lt;property name=&quot;fileExtensions&quot; value=&quot;properties, translations&quot;/&gt;
+  &lt;property name=&quot;requiredTranslations&quot; value=&quot;fr&quot;/&gt;
 &lt;/module&gt;
         </source>
         <p>
-          Note, that files with the same path and base name but which have different
-          extensions will be considered as files that belong to different resource bundles.
+          Example:
         </p>
+        <source>
+#messages.properties
+hello=Hello
+cancel=Cancel
+
+#messages.translations
+hello=Hallo
+ok=OK
+        </source>
+        <source>
+messages.properties: Properties file 'messages_fr.properties' is missing.
+messages.translations: Properties file 'messages_fr.translations' is missing.
+        </source>
         <p>
           An example of how to configure the check to validate only bundles which base names
           start with "ButtonLabels":
@@ -2360,9 +2686,25 @@ messages.properties: Key 'ok' missing.
         <source>
 &lt;module name=&quot;Translation&quot;&gt;
   &lt;property name=&quot;baseName&quot; value=&quot;^ButtonLabels.*$&quot;/&gt;
+  &lt;property name=&quot;requiredTranslations&quot; value=&quot;fr&quot;/&gt;
 &lt;/module&gt;
         </source>
+        <p>
+          Example:
+        </p>
+        <source>
+#ButtonLabels.properties
+hello=Hello
+cancel=Cancel
 
+#ButtonLabels_fr.properties
+hello=Bonjour
+name=Nom
+        </source>
+        <source>
+ButtonLabels.properties: Key 'name' is missing.
+ButtonLabels_fr.properties: Key 'cancel' is missing.
+        </source>
         <p>
           To configure the check to check existence of Japanese and French translations:
         </p>
@@ -2372,29 +2714,29 @@ messages.properties: Key 'ok' missing.
 &lt;/module&gt;
         </source>
         <p>
-          The following example shows how the check works if there is a message bundle which
-          element name contains language code, county code, platform name.
-          Consider that we have the below configuration:
+          Example:
         </p>
         <source>
-&lt;module name=&quot;Translation&quot;&gt;
-  &lt;property name=&quot;requiredTranslations&quot; value=&quot;es, fr, de&quot;/&gt;
-&lt;/module&gt;
+#messages.properties
+hello=Hello
+cancel=Cancel
+
+#messages_ja.properties
+greeting=こんにちは
+age=年齢
+
+#messages_fr.properties
+greeting=Bonjour
+name=Nom
         </source>
-        <p>
-          As we can see from the configuration, the TranslationCheck was configured to check
-          an existence of 'es', 'fr' and 'de' translations. Let's assume that we have the resource
-          bundle:
-        </p>
         <source>
-messages_home.properties
-messages_home_es_US.properties
-messages_home_fr_CA_UNIX.properties
+messages.properties: Key 'age' missing.
+messages.properties: Key 'name' missing.
+messages_fr.properties: Key 'age' missing.
+messages_fr.properties: Key 'cancel' missing.
+messages_ja.properties: Key 'cancel' missing.
+messages_ja.properties: Key 'name' missing.
         </source>
-        <p>
-          Than the check will rise the following violation:
-          "0: Properties file 'messages_home_de.properties' is missing."
-        </p>
       </subsection>
 
       <subsection name="Example of Usage" id="Translation_Example_of_Usage">
