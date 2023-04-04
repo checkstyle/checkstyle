@@ -76,6 +76,14 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testCommentWithExtraSpaces() throws Exception {
+        final String[] expected = {
+            "17:13: " + getCheckMessage(MSG_FALL_THROUGH),
+        };
+        verifyWithInlineConfigParser(getPath("InputFallThrough4.java"), expected);
+    }
+
+    @Test
     public void testStringSwitch() throws Exception {
         final String[] expected = {
             "21:9: " + getCheckMessage(MSG_FALL_THROUGH),
