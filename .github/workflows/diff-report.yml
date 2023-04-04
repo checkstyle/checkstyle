@@ -227,12 +227,8 @@ jobs:
       - name: Set output
         id: out
         run: |
-          EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
-          {
-            echo "message<<$EOF"
-            cat message
-            echo "$EOF"
-          } >> "$GITHUB_OUTPUT"
+          cd checkstyle
+          ./.ci/append-to-github-output.sh "message" "$(cat ../message)"
 
   # should be always last step
   send_message:
@@ -240,6 +236,8 @@ jobs:
     needs: [ parse_body, make_report ]
     if: failure() || success()
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
       - name: Get message
         env:
@@ -263,12 +261,7 @@ jobs:
       - name: Set message
         id: out
         run: |
-          EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
-          {
-            echo "message<<$EOF"
-            cat message
-            echo "$EOF"
-          } >> "$GITHUB_OUTPUT"
+          ./.ci/append-to-github-output.sh "message" "$(cat message)"
 
       - name: Comment PR
         uses: checkstyle/contribution/comment-action@master
