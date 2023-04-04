@@ -49,8 +49,8 @@ public class InputUnnecessaryParenthesesIfStatement2 {
         if ((b == c) == a
                 && (
                         ( // violation 'Unnecessary parentheses around expression'
-                            (b==c)==(d>=b)==a!=(c==d))
-                    || (b<=c)!=a==(c>=d))) {
+                            (b==c)==d>=b==a!=(c==d))
+                    || b<=c!=a==c>=d)) {
             return;
         }
 
@@ -59,29 +59,29 @@ public class InputUnnecessaryParenthesesIfStatement2 {
                         && (a // violation 'Unnecessary parentheses around expression'
                         && (b==c))) // violation 'Unnecessary parentheses around expression'
                 || (a // violation 'Unnecessary parentheses around expression'
-                || a!=(b<=c)) // ok
-                || (a==(b!=d==(c==b) && a!=(b<=c)))) { // violation 'parentheses around expression'
+                || a!=b<=c) // ok
+                || (a==(b!=d==(c==b) && a!=b<=c))) { // violation 'parentheses around expression'
                                                        // after '||'
             return;
         }
 
         if (a==(b>=c && a==(c==d && d!=b)) // ok
-                && a==(c<=d)) { // ok
+                && a==c<=d) { // ok
             return;
         }
 
-        if (a && a==(b<=c)==(a
+        if (a && a==b<=c==(a
                 && (b<=c))) { // violation 'Unnecessary parentheses around expression'
             return;
         }
 
         if (a==(b==c) // ok
-                || a!=(b<=c)) { // ok
+                || a!=b<=c) { // ok
             return;
         }
 
         if ((b==0) == (c==d) // ok
-                && (Integer.valueOf(d) instanceof Integer) == true) { // ok
+                && Integer.valueOf(d) instanceof Integer == true) { // ok
             return;
         }
     }
