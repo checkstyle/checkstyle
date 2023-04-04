@@ -15,7 +15,7 @@
     <mutatedMethod>matchesComment</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
     <description>removed call to java/util/regex/Matcher::start</description>
-    <lineContent>lineNo, matcher.start(), lineNo, matcher.end());</lineContent>
+    <lineContent>lineNo, matcher.start(), lineNo, matcher.end();</lineContent>
   </mutation>
 
   <mutation unstable="false">
