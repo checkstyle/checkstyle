@@ -43,7 +43,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <pre>
  * class MyClass {
  *   public &lt;T&gt; void method1() {} // OK
- *   public &lt;a&gt; void method2() {} // violation,  name 'a' must match pattern '^[A-Z]$'
+ *   public &lt;a&gt; void method2() {} // violation, name 'a' must match pattern '^[A-Z]$'
  *   public &lt;K, V&gt; void method3() {} // OK
  *   public &lt;k, V&gt; void method4() {} // violation, name 'k' must match pattern '^[A-Z]$'
  * }
