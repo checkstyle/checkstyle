@@ -525,7 +525,7 @@ public class FallThroughCheck extends AbstractCheck {
         final Matcher matcher = pattern.matcher(line);
         return matcher.find()
                 && getFileContents().hasIntersectionWithComment(
-                        lineNo, matcher.start(), lineNo, matcher.end());
+                        lineNo, -1, lineNo, matcher.end());
     }
 
 }
