@@ -84,12 +84,12 @@ public class InputJavadocMethodProtectedScopeJavadoc // ignore - need javadoc //
     }
 
     /** Here should be an error, In scope */
-    protected void method(Class<Object> aA) // violation
+    protected void method(Class<Object> aA) // violation 'Expected @param tag for 'aA'.'
     {
     }
 
     /** Here should be an error, In scope */
-    public void method(StringBuffer aA) // violation
+    public void method(StringBuffer aA) // violation 'Expected @param tag for 'aA'.'
     {
     }
 
