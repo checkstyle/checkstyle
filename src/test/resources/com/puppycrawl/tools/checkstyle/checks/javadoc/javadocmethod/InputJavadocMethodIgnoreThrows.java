@@ -36,9 +36,11 @@ public class InputJavadocMethodIgnoreThrows {
             }
             return value;
         } catch (NumberFormatException ex) {
-            throw new IllegalArgumentException("Invalid number", ex); // violation
+            // violation below '.* @throws .* 'IllegalArgumentException'.'
+            throw new IllegalArgumentException("Invalid number", ex);
         } finally {
-            throw new IllegalStateException("Should never reach here"); // violation
+            // violation below '.* @throws .* 'IllegalStateException'.'
+            throw new IllegalStateException("Should never reach here");
         }
     }
 
@@ -54,7 +56,8 @@ public class InputJavadocMethodIgnoreThrows {
                 throw new IllegalArgumentException("null"); // ok, try
             }
         } catch (IllegalArgumentException ex) {
-            throw new IllegalArgumentException(ex.toString()); // violation
+            // violation below '.* @throws .* 'IllegalArgumentException'.'
+            throw new IllegalArgumentException(ex.toString());
         }
     }
 
@@ -134,7 +137,8 @@ public class InputJavadocMethodIgnoreThrows {
     private static void keepTryWithoutCatch() {
         try (Scanner sc = new Scanner(System.in)) {
             if (sc.nextInt() <= 0) {
-                throw new IllegalArgumentException(""); // violation
+                // violation below '.* @throws .* 'IllegalArgumentException'.'
+                throw new IllegalArgumentException("");
             }
         }
     }
@@ -190,7 +194,8 @@ public class InputJavadocMethodIgnoreThrows {
             return x -> value;
         } catch (NumberFormatException ex) {
             if (s.length() == 1) {
-                throw new IllegalArgumentException("Invalid number", ex); // violation
+                // violation below '.* @throws .* 'IllegalArgumentException'.'
+                throw new IllegalArgumentException("Invalid number", ex);
             }
             return x -> {
                 throw new UnsupportedOperationException(""); // ok, inside lambda
