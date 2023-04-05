@@ -7159,6 +7159,10 @@ if (!(f &gt;= g) // ok
 }
 if ((++f) &gt; g &amp;&amp; a) { // violation, unnecessary paren
 }
+if ((a &amp; d) | b) {} // unnecessary paren
+if ((a | d) &amp; c) {} // ok
+if(f&gt;= 0 &amp; (f&lt;=8 ^ g&lt;=11) &amp; g&gt;=8) { } // ok
+if(f&gt;= 0 | (f&lt;=8 ^ g&lt;=11) | g&gt;=8) { } // unnecessary paren
         </source>
       </subsection>
 
@@ -7259,6 +7263,12 @@ if ((++f) &gt; g &amp;&amp; a) { // violation, unnecessary paren
                 POST_INC</a>
                 ,<a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#POST_DEC">
                 POST_DEC</a>
+                ,<a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BXOR">
+                BXOR</a>
+                ,<a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BOR">
+                BOR</a>
+                ,<a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BAND">
+                BAND</a>
                   .
               </td>
               <td>
@@ -7344,6 +7354,12 @@ if ((++f) &gt; g &amp;&amp; a) { // violation, unnecessary paren
                   POST_INC</a>
                 ,<a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#POST_DEC">
                   POST_DEC</a>
+                ,<a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BXOR">
+                BXOR</a>
+                ,<a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BOR">
+                BOR</a>
+                ,<a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BAND">
+                BAND</a>
                   .
               </td>
               <td>3.4</td>
