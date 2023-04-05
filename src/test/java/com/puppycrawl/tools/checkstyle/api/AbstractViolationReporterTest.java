@@ -23,6 +23,7 @@ import static com.google.common.truth.Truth.assertWithMessage;
 
 import java.util.SortedSet;
 
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
@@ -33,7 +34,12 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Tests to ensure that default message bundle is determined correctly.
  *
  */
-public class AbstractViolationReporterTest {
+public class AbstractViolationReporterTest extends AbstractModuleTestSupport {
+
+    @Override
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/api/abstractviolationreporter";
+    }
 
     private final AbstractCheck emptyCheck = new EmptyCheck();
 
@@ -77,6 +83,14 @@ public class AbstractViolationReporterTest {
         assertWithMessage("Invalid severity")
                 .that(emptyCheck.getSeverity())
                 .isEqualTo("error");
+    }
+
+    @Test
+    public void testSetSeverity() throws Exception {
+        final Configuration checkConfig =
+        createModuleConfig(SetSeverity.class);
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verify(checkConfig, getPath("InputAbstractViolationReporterSetSeverity.java"), expected);
     }
 
     @Test
@@ -150,6 +164,19 @@ public class AbstractViolationReporterTest {
             return CommonUtil.EMPTY_INT_ARRAY;
         }
 
+    }
+
+    public static class SetSeverity extends AbstractViolationReporter {
+
+        @Override
+        public void log(int line, String key, Object... args) {
+
+        }
+
+        @Override
+        public void log(int line, int col, String key, Object... args) {
+
+        }
     }
 
 }
