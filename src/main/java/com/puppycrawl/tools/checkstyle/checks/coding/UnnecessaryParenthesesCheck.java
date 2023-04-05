@@ -176,7 +176,13 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#POST_INC">
  * POST_INC</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#POST_DEC">
- * POST_DEC</a>.
+ * POST_DEC</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BXOR">
+ * BXOR</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BOR">
+ * BOR</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BAND">
+ * BAND</a>.
  * </li>
  * </ul>
  * <p>
@@ -340,10 +346,14 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
         TokenTypes.STAR_ASSIGN,
     };
 
-    /** Token types for conditional and relational operators. */
-    private static final int[] CONDITIONALS_AND_RELATIONAL = {
+    /** Token types for conditional operators. */
+    private static final int[] CONDITIONAL_OPERATOR = {
         TokenTypes.LOR,
         TokenTypes.LAND,
+    };
+
+    /** Token types for relation operator. */
+    private static final int[] RELATIONAL_OPERATOR = {
         TokenTypes.LITERAL_INSTANCEOF,
         TokenTypes.GT,
         TokenTypes.LT,
@@ -363,6 +373,13 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
         TokenTypes.BNOT,
         TokenTypes.POST_INC,
         TokenTypes.POST_DEC,
+    };
+
+    /** Token types for bitwise binary operator. */
+    private static final int[] BITWISE_BINARY_OPERATORS = {
+        TokenTypes.BXOR,
+        TokenTypes.BOR,
+        TokenTypes.BAND,
     };
 
     /**
@@ -417,6 +434,9 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
             TokenTypes.BNOT,
             TokenTypes.POST_INC,
             TokenTypes.POST_DEC,
+            TokenTypes.BXOR,
+            TokenTypes.BOR,
+            TokenTypes.BAND,
         };
     }
 
@@ -464,6 +484,9 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
             TokenTypes.BNOT,
             TokenTypes.POST_INC,
             TokenTypes.POST_DEC,
+            TokenTypes.BXOR,
+            TokenTypes.BOR,
+            TokenTypes.BAND,
         };
     }
 
@@ -598,7 +621,47 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
     }
 
     /**
-     * Checks if conditional, relational, unary and postfix operators
+     * To get the precedence of operator.
+     *
+     * @param type type to get
+     * @return precedences
+     */
+    private static int getOperatorPrecedence(int type) {
+        final int precedence;
+        switch (type) {
+            case TokenTypes.LOR:
+                precedence = 1;
+                break;
+            case TokenTypes.LAND:
+                precedence = 2;
+                break;
+            case TokenTypes.BOR:
+                precedence = 1 + 2;
+                break;
+            case TokenTypes.BXOR:
+                precedence = 2 + 2;
+                break;
+            case TokenTypes.BAND:
+                precedence = 1 + 2 + 2;
+                break;
+            case TokenTypes.NOT_EQUAL:
+            case TokenTypes.EQUAL:
+                precedence = 2 + 2 + 2;
+                break;
+            case TokenTypes.LT:
+            case TokenTypes.GT:
+            case TokenTypes.LE:
+            case TokenTypes.GE:
+                precedence = 2 + 2 + 2 + 1;
+                break;
+            default:
+                precedence = 2 + 2 + 2 + 2;
+        }
+        return precedence;
+    }
+
+    /**
+     * Checks if conditional, relational, bitwise binary operator, unary and postfix operators
      * in expressions are surrounded by unnecessary parentheses.
      *
      * @param ast the {@code DetailAST} to check if it is surrounded by
@@ -607,21 +670,40 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
      *         unnecessary parentheses.
      */
     private static boolean unnecessaryParenAroundOperators(DetailAST ast) {
-        final int type = ast.getType();
-        final int parentType = ast.getParent().getType();
-        final boolean isConditional = TokenUtil.isOfType(type, CONDITIONALS_AND_RELATIONAL);
-        boolean result = TokenUtil.isOfType(parentType, CONDITIONALS_AND_RELATIONAL);
-        if (isConditional) {
-            if (type == TokenTypes.LOR) {
-                result = result && !TokenUtil.isOfType(parentType, TokenTypes.LAND);
+        final int childType = ast.getType();
+        final boolean hasUnnecessaryParentheses;
+        if (isBitWiseBinaryConditionalOrRelationalOrPostfixUnaryOperator(childType)) {
+            final int parentType = ast.getParent().getType();
+            final int childPrecedence = getOperatorPrecedence(childType);
+            final int parentPrecedence = getOperatorPrecedence(parentType);
+            if (childPrecedence == parentPrecedence
+                    && (TokenUtil.isOfType(ast, CONDITIONAL_OPERATOR)
+                    || TokenUtil.isOfType(ast, BITWISE_BINARY_OPERATORS))) {
+                hasUnnecessaryParentheses = true;
             }
-            result = result && !TokenUtil.isOfType(parentType, TokenTypes.EQUAL,
-                TokenTypes.NOT_EQUAL);
+            else {
+                hasUnnecessaryParentheses = childPrecedence > parentPrecedence;
+            }
         }
         else {
-            result = result && TokenUtil.isOfType(type, UNARY_AND_POSTFIX);
+            hasUnnecessaryParentheses = false;
         }
-        return result;
+        return hasUnnecessaryParentheses;
+    }
+
+    /**
+     * Check if token type is BitWise Binary Or Conditional or Relational Operator
+     * Or Postfix or Unary.
+     *
+     * @param type Token type to check
+     * @return true if it is BitWise Binary Or Conditional or Relational Operator
+     *          Or Postfix or Unary Operator.
+     */
+    private static boolean isBitWiseBinaryConditionalOrRelationalOrPostfixUnaryOperator(int type) {
+        return TokenUtil.isOfType(type, CONDITIONAL_OPERATOR)
+                || TokenUtil.isOfType(type, RELATIONAL_OPERATOR)
+                || TokenUtil.isOfType(type, BITWISE_BINARY_OPERATORS)
+                || TokenUtil.isOfType(type, UNARY_AND_POSTFIX);
     }
 
     /**
