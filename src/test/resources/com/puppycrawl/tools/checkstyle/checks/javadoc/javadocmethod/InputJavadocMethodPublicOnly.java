@@ -74,22 +74,22 @@ public class InputJavadocMethodPublicOnly // ignore - need javadoc
     }
 
     /** Here should be an error, In scope */
-    private void method(int aA) // violation
+    private void method(int aA) // violation 'Expected @param tag for 'aA'.'
     {
     }
 
     /** Here should be an error, In scope */
-    void method(Long aA) // violation
+    void method(Long aA) // violation 'Expected @param tag for 'aA'.'
     {
     }
 
     /** Here should be an error, In scope */
-    protected void method(Class<Object> aA) // violation
+    protected void method(Class<Object> aA) // violation 'Expected @param tag for 'aA'.'
     {
     }
 
     /** Here should be an error, In scope */
-    public void method(StringBuffer aA) // violation
+    public void method(StringBuffer aA) // violation 'Expected @param tag for 'aA'.'
     {
     }
 
@@ -99,7 +99,7 @@ public class InputJavadocMethodPublicOnly // ignore - need javadoc
        Writing a little documentation should not be worse than not
        writing any documentation at all.
      */
-    private void method(String aA) // violation
+    private void method(String aA) // violation 'Expected @param tag for 'aA'.'
     {
     }
 
