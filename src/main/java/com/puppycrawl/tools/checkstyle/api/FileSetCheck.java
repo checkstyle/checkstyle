@@ -79,6 +79,6 @@ public interface FileSetCheck
      * perform any checks that need to be done across a set of files. In this
      * method, the implementation is responsible for the logging of violations.
      */
-    void finishProcessing();
+    void finishProcessing() throws CheckstyleException;
 
 }

@@ -1417,6 +1417,7 @@
         <version>3.0.0</version>
         <configuration>
           <argLine>-Dfile.encoding=UTF-8 @{surefire.options}</argLine>
+          <argLine>-Duser.language=en -Duser.region=GB</argLine>
           <systemPropertyVariables>
             <jacoco-agent.destfile>${project.build.directory}/jacoco.exec</jacoco-agent.destfile>
             <!-- Virtual AWT driver for GUI unit tests -->
