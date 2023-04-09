@@ -74,7 +74,8 @@ class InputRegexpSemantic13
             // can never happen, empty compound statement is another workaround
         }
         catch (UnsupportedOperationException handledException) {
-            System.out.println(handledException.getMessage()); // violation
+            System.out.println(handledException.getMessage());
+            // violation above 'Line .* illegal pattern '(?i)SYSTEM\\.(OUT)|(ERR)\\.PRINT(LN)?\\(''
         }
         catch (SecurityException ex) { /* hello */ }
         catch (StringIndexOutOfBoundsException ex) {}
