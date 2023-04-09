@@ -15,8 +15,8 @@ public class InputMissingDeprecatedBadJavadoc
     /**
      * @Deprecated this is not the same
      */
-    @Deprecated
-    protected InputMissingDeprecatedBadJavadoc() { // violation above
+    @Deprecated // violation '.*@java.lang.Deprecated annotation and @deprecated.*description.'
+    protected InputMissingDeprecatedBadJavadoc() {
 
     }
 
@@ -33,7 +33,7 @@ public class InputMissingDeprecatedBadJavadoc
         /**
          *
          */
-        @Bleh2(bleh=1) // violation
+        @Bleh2(bleh=1) // violation '.*@java.lang.Deprecated annotation.*@deprecated.*description.'
         @Deprecated
         Metallica
     }
@@ -42,8 +42,8 @@ public class InputMissingDeprecatedBadJavadoc
 /**
  *
  */
-@Deprecated
-interface Foo2 { // violation above
+@Deprecated // violation '.*@java.lang.Deprecated annotation and @deprecated.*description.'
+interface Foo2 {
     @Deprecated
     interface Bar {
 
@@ -52,13 +52,13 @@ interface Foo2 { // violation above
 
 /**
  */
-@Deprecated
-@interface Bleh2 { // violation above
+@Deprecated // violation '.*@java.lang.Deprecated annotation and @deprecated.*description.'
+@interface Bleh2 {
 
     /**
      *
      * @return
      */
-    @Deprecated
-    int bleh(); // violation above
+    @Deprecated // violation '.*@java.lang.Deprecated annotation and @deprecated.*description.'
+    int bleh();
 }

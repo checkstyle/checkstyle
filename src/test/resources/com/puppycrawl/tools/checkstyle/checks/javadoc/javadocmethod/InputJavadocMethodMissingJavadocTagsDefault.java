@@ -19,7 +19,8 @@ public class InputJavadocMethodMissingJavadocTagsDefault {
      * @param number to return
      * @throws ThreadDeath sometimes
      */
-    int missingReturn(int number) throws ThreadDeath { // violation
+    // violation below '@return tag should be present and have description.'
+    int missingReturn(int number) throws ThreadDeath {
         return number;
     }
 
@@ -29,7 +30,8 @@ public class InputJavadocMethodMissingJavadocTagsDefault {
      * @return number
      * @throws ThreadDeath sometimes
      */
-    int missingParam(int number) throws ThreadDeath { // violation
+    // violation below 'Expected @param tag for 'number'.'
+    int missingParam(int number) throws ThreadDeath {
         return number;
     }
 
@@ -60,7 +62,7 @@ public class InputJavadocMethodMissingJavadocTagsDefault {
      * @return
      * @throws java.util.NoSuchElementException sometimes
      */
-    private int missingReturnInTheMiddle(int number) { // violation
+    private int missingReturnInTheMiddle(int number) { // violation '@return tag .*.'
         return number;
     }
 
@@ -70,7 +72,7 @@ public class InputJavadocMethodMissingJavadocTagsDefault {
      * @param number to return
      * @return
      */
-    private int missingReturnAtTheEnd(int number) { // violation
+    private int missingReturnAtTheEnd(int number) { // violation '@return tag .*.'
         return number;
     }
 
@@ -81,7 +83,8 @@ public class InputJavadocMethodMissingJavadocTagsDefault {
      * @return
      *
      */
-    private int missingReturnAtTheEndFollowedByEmptyLine(int number) { // violation
+    // violation below '@return tag .*.'
+    private int missingReturnAtTheEndFollowedByEmptyLine(int number) {
         return number;
     }
 }

@@ -5,5 +5,5 @@ violateExecutionOnNonTightHtml = (default)false
 
 */
 
-/** @deprecated */
-package com.puppycrawl.tools.checkstyle.checks.annotation.missingdeprecated; // violation
+/** @deprecated */ // violation below '.*@java.lang.Deprecated annotation and @deprecated.*'
+package com.puppycrawl.tools.checkstyle.checks.annotation.missingdeprecated;
