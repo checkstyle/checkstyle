@@ -5,15 +5,16 @@ set -e
 source ./.ci/util.sh
 
 checkForVariable "GITHUB_TOKEN"
+checkForVariable "REPOSITORY_OWNER"
 
 echo "Close previous milestone at github"
 MILESTONE_NUMBER=$(curl --fail-with-body -s \
                 -H "Authorization: token $GITHUB_TOKEN" \
-                -X GET https://api.github.com/repos/checkstyle/checkstyle/milestones?state=open \
+                -X GET https://api.github.com/repos/"$REPOSITORY_OWNER"/checkstyle/milestones?state=open \
                 | jq ".[0] | .number")
 curl --fail-with-body -i -H "Authorization: token $GITHUB_TOKEN" \
   -d "{ \"state\": \"closed\" }" \
-  -X PATCH https://api.github.com/repos/checkstyle/checkstyle/milestones/"$MILESTONE_NUMBER"
+  -X PATCH https://api.github.com/repos/"$REPOSITORY_OWNER"/checkstyle/milestones/"$MILESTONE_NUMBER"
 
 
 echo "Creation of new milestone ..."
@@ -32,4 +33,4 @@ curl --fail-with-body -i -H "Authorization: token $GITHUB_TOKEN" \
         \"description\": \"\", \
         \"due_on\": \"$LAST_SUNDAY_DATETIME\" \
         }" \
-  -X POST https://api.github.com/repos/checkstyle/checkstyle/milestones
+  -X POST https://api.github.com/repos/"$REPOSITORY_OWNER"/checkstyle/milestones

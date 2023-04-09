@@ -15,16 +15,13 @@ on:
       version:
         type: string
         required: true
-      concurrency-group:
-        type: string
-        required: true
 
 permissions:
   contents: write
 
 concurrency:
   group: ${{ github.workflow }}
-    -${{ github.event.pull_request.number || github.ref }}-${{ inputs.concurrency-group }}
+    -${{ github.event.pull_request.number || github.ref }}-upload-all-jar
   cancel-in-progress: true
 
 jobs:
@@ -47,5 +44,6 @@ jobs:
       - name: Run GitHub Update Script
         env:
           GITHUB_TOKEN: ${{ github.token }}
+          REPOSITORY_OWNER: ${{ github.repository_owner }}
         run: |
           ./.ci/release-upload-all-jar.sh ${{ inputs.version }}

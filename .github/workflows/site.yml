@@ -24,7 +24,7 @@ permissions:
   pull-requests: write
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  group: ${{ github.workflow }}-${{ github.event.issue.number || github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -72,7 +72,7 @@ jobs:
       # 0, because we need access to all branches to create a report.
       # ref - branch to checkout.
       - name: Download checkstyle
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         env:
           USER_LOGIN: ${{ github.event.issue.user.login }}
         with:
@@ -101,6 +101,9 @@ jobs:
           mvn -e --no-transfer-progress clean site -Pno-validations -Dmaven.javadoc.skip=false
 
       - name: Copy site to AWS S3 Bucket
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPOSITORY_OWNER: ${{ github.repository_owner }}
         run: |
           bash
           TIME=$(date +%Y%H%M%S)
@@ -109,10 +112,14 @@ jobs:
           LINK="https://${{env.AWS_BUCKET_NAME}}.s3.${{env.AWS_REGION}}.amazonaws.com"
           aws s3 cp "$SITE" "s3://${{env.AWS_BUCKET_NAME}}/$FOLDER/" --recursive
           echo "$LINK/$FOLDER/index.html" > message
+          cd checkstyle
+          ./.ci/generate-extra-site-links.sh ${{ github.event.issue.number }} "$LINK/$FOLDER"
 
       - name: Set output
         id: out
-        run: echo "message=$(cat message)" >> "$GITHUB_OUTPUT"
+        run: |
+          cd checkstyle
+          ./.ci/append-to-github-output.sh "message" "$(cat ../message)"
 
   # should be always last step
   send_message:
@@ -120,6 +127,9 @@ jobs:
     needs: [ generate_site ]
     if: failure() || success()
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
       - name: Get message
         env:
           MSG: ${{needs.generate_site.outputs.message}}
@@ -141,7 +151,8 @@ jobs:
 
       - name: Set message
         id: out
-        run: echo "message=$(cat message)" >> "$GITHUB_OUTPUT"
+        run: |
+          ./.ci/append-to-github-output.sh "message" "$(cat message)"
 
       - name: Comment PR
         uses: checkstyle/contribution/comment-action@master

@@ -15,13 +15,10 @@ on:
       version:
         type: string
         required: true
-      concurrency-group:
-        type: string
-        required: true
 
 concurrency:
   group: ${{ github.workflow }}
-    -${{ github.event.pull_request.number || github.ref }}-${{ inputs.concurrency-group }}
+    -${{ github.event.pull_request.number || github.ref }}-publish-releasenotes-twitter
   cancel-in-progress: true
 
 jobs:
@@ -47,5 +44,6 @@ jobs:
           TWITTER_CONSUMER_SECRET: ${{ secrets.TWITTER_CONSUMER_SECRET }}
           TWITTER_ACCESS_TOKEN: ${{ secrets.TWITTER_ACCESS_TOKEN }}
           TWITTER_ACCESS_TOKEN_SECRET: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
+          REPOSITORY_OWNER: ${{ github.repository_owner }}
         run: |
           ./.ci/release-publish-releasenotes-twitter.sh ${{ inputs.version }}

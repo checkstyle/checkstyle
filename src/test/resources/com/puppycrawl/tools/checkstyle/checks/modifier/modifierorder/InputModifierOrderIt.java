@@ -12,17 +12,17 @@ package com.puppycrawl.tools.checkstyle.checks.modifier.modifierorder;
  * - use of 'public' in interface definition
  * @author lkuehne
  */
-strictfp final class InputModifierOrderIt // violation
+strictfp final class InputModifierOrderIt // violation ''final'.*out of order.*JLS suggestions.'
 {
 
     /** Illegal order of modifiers for variables */
-    static private boolean sModifierOrderVar = false; // violation
+    static private boolean sModifierOrderVar = false; // violation ''private'.*JLS suggestions.'
 
     /**
      * Illegal order of modifiers for methods. Make sure that the
      * first and last modifier from the JLS sequence is used.
      */
-    strictfp private void doStuff() // violation
+    strictfp private void doStuff() // violation ''private' modifier.*order.*JLS suggestions.'
     {
     }
 
@@ -32,13 +32,13 @@ strictfp final class InputModifierOrderIt // violation
     }
 
     /** Illegal order of annotation - must come first */
-    private @MyAnnotation2 void someMethod2() // violation
-    {
+    private @MyAnnotation2 void someMethod2()
+    { // violation above ''@MyAnnotation2' annotation modifier.*precede non-annotation modifiers.'
     }
 
     /** Annotation in middle of other modifiers otherwise in correct order */
-    private @MyAnnotation2 strictfp void someMethod3() // violation
-    {
+    private @MyAnnotation2 strictfp void someMethod3()
+    { // violation above ''@MyAnnotation2' annotation modifier.*precede non-annotation modifiers.'
     }
 
     /** Correct order */
@@ -47,8 +47,8 @@ strictfp final class InputModifierOrderIt // violation
     }
 
     /** Annotation in middle of other modifiers otherwise in correct order */
-    @MyAnnotation2 private static @MyAnnotation4 strictfp void someMethod5() // violation
-    {
+    @MyAnnotation2 private static @MyAnnotation4 strictfp void someMethod5()
+    { // violation above ''@MyAnnotation4' annotation modifier.*precede non-annotation modifiers.'
     }
 
     /** holder for redundant 'public' modifier check. */
@@ -155,7 +155,7 @@ interface InputDefaultPublicModifier
     }
 
     /** wrong order */
-    strictfp default void b() // violation
+    strictfp default void b() // violation ''default' modifier out of order .*JLS suggestions.'
     {
     }
 }

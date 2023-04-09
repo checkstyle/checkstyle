@@ -15,9 +15,6 @@ on:
       version:
         type: string
         required: true
-      concurrency-group:
-        type: string
-        required: true
 
 permissions:
   contents: write
@@ -25,7 +22,7 @@ permissions:
 
 concurrency:
   group: ${{ github.workflow }}
-    -${{ github.event.pull_request.number || github.ref }}-${{ inputs.concurrency-group }}
+    -${{ github.event.pull_request.number || github.ref }}-new-milestone-and-issues-in-other-repos
   cancel-in-progress: true
 
 jobs:
@@ -52,11 +49,13 @@ jobs:
       - name: Close/Create Milestone
         env:
           GITHUB_TOKEN: ${{ github.token }}
+          REPOSITORY_OWNER: ${{ github.repository_owner }}
         run: |
           ./.ci/release-close-create-milestone.sh
 
       - name: Creation of issue in other Repositories
         env:
           GITHUB_TOKEN: ${{ secrets.PAT }}
+          REPOSITORY_OWNER: ${{ github.repository_owner }}
         run: |
           ./.ci/release-create-issues-in-other-repos.sh ${{ inputs.version }}

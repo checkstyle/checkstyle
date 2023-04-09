@@ -25,6 +25,8 @@ or set of validation rules (best practices).
 [![][closed issues img]][closed issues]
 [![][link check img]][link check]
 
+[![][milestone img]][milestone]
+
 Members chat: [![][gitter_mem img]][gitter_mem]
 Contributors chat: [![][gitter_con img]][gitter_con]
 
@@ -191,3 +193,6 @@ are in the file named "LICENSE.apache20" in this directory.
 
 [checker framework]:https://github.com/checkstyle/checkstyle/actions/workflows/checker-framework.yml
 [checker framework img]:https://github.com/checkstyle/checkstyle/actions/workflows/checker-framework.yml/badge.svg
+
+[milestone]:https://github.com/checkstyle/checkstyle/actions/workflows/set-milestone-on-referenced-issue.yml
+[milestone img]:https://github.com/checkstyle/checkstyle/actions/workflows/set-milestone-on-referenced-issue.yml/badge.svg

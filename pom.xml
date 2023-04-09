@@ -6255,7 +6255,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-enforcer-plugin</artifactId>
-        <version>3.2.1</version>
+        <version>3.3.0</version>
         <executions>
           <execution>
             <id>enforce-versions</id>
@@ -6996,6 +6996,8 @@
             <excludedLink>http://dl.acm.org/*</excludedLink>
             <!-- permanent SSLException -->
             <excludedLink>https://git-scm.com</excludedLink>
+            <!-- too frequent to return 500 -->
+            <excludedLink>https://docs.oracle.com/javase/specs/jls/se17/html/jls-15.html#jls-15.28</excludedLink>
             <!-- I do not know how to resolve this "302 Found" response -->
             <excludedLink>https://plus.google.com/+CheckstyleJava</excludedLink>
             <!-- 302 redirect to
