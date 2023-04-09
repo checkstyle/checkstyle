@@ -517,15 +517,26 @@ public class FallThroughCheck extends AbstractCheck {
      * @param lineNo The line number in the file.
      * @return True if a match was found inside a comment.
      */
-    // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/11166
-    @SuppressWarnings("deprecation")
     private boolean matchesComment(Pattern pattern, int lineNo) {
         final String line = getLine(lineNo - 1);
-
-        final Matcher matcher = pattern.matcher(line);
-        return matcher.find()
-                && getFileContents().hasIntersectionWithComment(
-                        lineNo, matcher.start(), lineNo, matcher.end());
+        final String commentOnLine = findCommentInLine(line);
+        final Matcher matcher = pattern.matcher(commentOnLine);
+        return matcher.find();
     }
 
+    /**
+     * Find Comments on String.
+     *
+     * @param line line to get comment
+     * @return String of comment
+     */
+    private String findCommentInLine(String line) {
+        String comment = line;
+        final Pattern pattern = Pattern.compile("(?<=//|/\\*).*", Pattern.DOTALL);
+        final Matcher matcher = pattern.matcher(comment);
+        if (matcher.find()) {
+            comment = matcher.group();
+        }
+        return comment;
+    }
 }
