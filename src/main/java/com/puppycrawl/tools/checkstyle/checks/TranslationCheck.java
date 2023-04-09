@@ -55,9 +55,9 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 /**
  * <p>
  * Ensures the correct translation of code by checking property files for consistency
- * regarding their keys. Two property files describing one and the same context
+ * regarding their keys. Two property files describing the same context
  * are consistent if they contain the same keys. TranslationCheck also can check
- * an existence of required translations which must exist in project, if
+ * an existence of required translations which must exist in a project, if
  * {@code requiredTranslations} option is used.
  * </p>
  * <p>
@@ -89,18 +89,18 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <a href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes">ISO 639-1</a>.
  * Default value is empty String Set which means that only the existence of default
  * translation is checked. Note, if you specify language codes (or just one
- * language code) of required translations the check will also check for existence
- * of default translation files in project.
+ * language code) of required translations, the check will also check for the existence
+ * of default translation files in the project.
  * </p>
  * <p>
  * Attention: the check will perform the validation of ISO codes if the option
  * is used. So, if you specify, for example, "mm" for language code,
- * TranslationCheck will rise violation that the language code is incorrect.
+ * TranslationCheck will raise a violation that the language code is incorrect.
  * </p>
  * <p>
  * Attention: this Check could produce false-positives if it is used with
  * <a href="https://checkstyle.org/config.html#Checker">Checker</a> that use cache
- * (property "cacheFile") This is known design problem, will be addressed at
+ * (property "cacheFile") This is a known design problem, and will be addressed at
  * <a href="https://github.com/checkstyle/checkstyle/issues/3539">issue</a>.
  * </p>
  * <ul>
@@ -122,7 +122,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </li>
  * <li>
  * Property {@code requiredTranslations} - Specify language codes of required
- * translations which must exist in project.
+ * translations which must exist in the project.
  * Type is {@code java.lang.String[]}.
  * Default value is {@code ""}.
  * </li>
@@ -158,13 +158,13 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * messages.translations: Properties file 'messages_fr.translations' is missing.
  * </pre>
  * <p>
- * An example of how to configure the check to validate only bundles which base
+ * An example of how to configure the check to validate only bundles whose base
  * names start with "ButtonLabels":
  * </p>
  * <pre>
  * &lt;module name="Translation"&gt;
- *   &lt;property name="baseName" value="^ButtonLabels.*$"/&gt;
- *   &lt;property name="requiredTranslations" value="fr"/&gt;
+ * &lt;property name="baseName" value="^ButtonLabels.*$"/&gt;
+ * &lt;property name="requiredTranslations" value="fr"/&gt;
  * &lt;/module&gt;
  * </pre>
  * <p>
@@ -184,7 +184,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * ButtonLabels_fr.properties: Key 'cancel' is missing.
  * </pre>
  * <p>
- * To configure the check to check existence of Japanese and French translations:
+ * To configure the check to check the existence of Japanese and French translations:
  * </p>
  * <pre>
  * &lt;module name="Translation"&gt;
@@ -229,9 +229,9 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * {@code translation.missingTranslationFile}
  * </li>
  * </ul>
- *
  * @since 3.0
  */
+
 @GlobalStatefulCheck
 public class TranslationCheck extends AbstractFileSetCheck {
 
