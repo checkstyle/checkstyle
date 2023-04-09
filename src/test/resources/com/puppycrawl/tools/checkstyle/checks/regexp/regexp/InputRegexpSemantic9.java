@@ -74,7 +74,8 @@ class InputRegexpSemantic9
             // can never happen, empty compound statement is another workaround
         }
         catch (UnsupportedOperationException handledException) {
-            System.out.println(handledException.getMessage()); // violation
+            System.out.println(handledException.getMessage());
+            // violation above 'Line matches the illegal pattern 'Bad line :('.'
         }
         catch (SecurityException ex) { /* hello */ }
         catch (StringIndexOutOfBoundsException ex) {}
@@ -88,6 +89,7 @@ class InputRegexpSemantic9
         // something
         }
         finally {
+
             // something
         }
         try {

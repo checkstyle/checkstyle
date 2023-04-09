@@ -23,13 +23,13 @@ import java.io.File;
 class InputRegexpSemantic5
 {
     /* Boolean instantiation in a static initializer */
-    static { // violation below
-        Boolean x = new Boolean(true);
+    static {
+        Boolean x = new Boolean(true); // violation '.*duplicate pattern 'Boolean x = new Boolean''
     }
 
     /* Boolean instantiation in a non-static initializer */
-    { // violation below
-        Boolean x = new Boolean(true);
+    {
+        Boolean x = new Boolean(true); // violation '.*duplicate pattern 'Boolean x = new Boolean''
         Boolean[] y = new Boolean[]{Boolean.TRUE, Boolean.FALSE};
     }
 
