@@ -271,7 +271,7 @@ public class InputFallThrough
                   return;
               }
               // fallthru
-          default:
+          default: // violation 'Fall through from the last branch of the switch statement'
               // this is the last label
               i++;
           // fallthru
@@ -297,7 +297,7 @@ public class InputFallThrough
               i++;
           /* fallthru */case 4:
                 break;
-          case 5:
+          case 5: // violation 'Fall through from the last branch of the switch statement'
               i++;
           // fallthru
           }
@@ -318,7 +318,7 @@ public class InputFallThrough
               i++;
           /* fallthru */case 3:
                 break;
-          case 4:
+          case 4: // violation 'Fall through from the last branch of the switch statement'
               i++;
           /* fallthru */
           }
@@ -339,7 +339,7 @@ public class InputFallThrough
               i++;
           /*fallthru*/case 3:
                 break;
-          case 4:
+          case 4: // violation 'Fall through from the last branch of the switch statement'
               i++;
           /*fallthru*/
           }
@@ -360,7 +360,7 @@ public class InputFallThrough
               i++;
           /* falls through */case 3:
                 break;
-          case 4:
+          case 4: // violation 'Fall through from the last branch of the switch statement'
               i++;
           /* falls through */
           }
@@ -391,16 +391,16 @@ public class InputFallThrough
    void methodFallThruLastCaseGroup(int i, int j, boolean cond) {
        while (true) {
            switch (i){
-           case 0:
+           case 0: // violation 'Fall through from the last branch of the switch statement'
                i++; // fallthru
            }
            switch (i){
-           case 0:
+           case 0: // violation 'Fall through from the last branch of the switch statement'
                i++;
                // fallthru
            }
            switch (i){
-           case 0:
+           case 0: // violation 'Fall through from the last branch of the switch statement'
                i++;
            /* fallthru */ }
        }
@@ -487,7 +487,7 @@ public class InputFallThrough
         int i = 0;
         switch (i) {
         case 0: case 1: i *= i; // fall through
-        case 2: case 3: i *= i; // violation 'Fall through from prev.* br.* switch statement.'
+        case 2: case 3: i *= i;
         case 4: case 5: i *= i; // violation 'Fall through from prev.* br.* switch statement.'
         case 6: case 7: i *= i; // violation 'Fall through from prev.* br.* switch statement.'
             break;
