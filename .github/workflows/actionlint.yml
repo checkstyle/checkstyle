@@ -23,6 +23,3 @@ jobs:
 
       - name: Check workflow files
         uses: docker://rhysd/actionlint:latest
-        with:
-          # Until https://github.com/checkstyle/checkstyle/issues/12696
-          args: -ignore ".* was deprecated.*"
