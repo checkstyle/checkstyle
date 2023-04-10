@@ -58,6 +58,9 @@ jobs:
       - run: 'echo We print it here for this action to work'
         if: 'true'
 
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
       - name: Getting PR description
         env:
           ISSUE_BODY: ${{ github.event.issue.body }}
@@ -74,30 +77,30 @@ jobs:
         run: |
           grep "^Diff Regression projects:" text | cat > temp
           sed 's/Diff Regression projects: //' temp > projects_link
-          echo "::set-output name=projects_link::$(cat projects_link)"
+          ./.ci/append-to-github-output.sh "projects_link" "$(cat projects_link)"
 
           grep "^Diff Regression config:" text | cat > temp
           sed 's/Diff Regression config: //' temp > config_link
-          echo "::set-output name=config_link::$(cat config_link)"
+          ./.ci/append-to-github-output.sh "config_link" "$(cat config_link)"
 
           grep "^New module config:" text | cat > temp
           sed 's/New module config: //' temp > new_module_config_link
-          echo "::set-output name=new_module_config_link::$(cat new_module_config_link)"
+          ./.ci/append-to-github-output.sh "new_module_config_link" "$(cat new_module_config_link)"
 
           grep "^Diff Regression patch config:" text | cat > temp
           sed 's/Diff Regression patch config: //' temp > patch_config_link
-          echo "::set-output name=patch_config_link::$(cat patch_config_link)"
+          ./.ci/append-to-github-output.sh "patch_config_link" "$(cat patch_config_link)"
 
           grep "^Report label:" text | cat > temp
           sed 's/Report label: //' temp > report_label
-          echo "::set-output name=report_label::$(cat report_label)"
+          ./.ci/append-to-github-output.sh "report_label" "$(cat report_label)"
 
       - name: Set branch
         id: branch
         run: |
-          echo "::set-output name=ref::$(cat branch)"
+          ./.ci/append-to-github-output.sh "ref" "$(cat branch)"
           # shellcheck disable=SC2002
-          echo "::set-output name=commit_sha::$(cat commit_sha | cut -c 1-7)"
+          ./.ci/append-to-github-output.sh "commit_sha" "$(cat commit_sha | cut -c 1-7)"
 
           echo "GITHUB_OUTPUT:"
           # need to 'echo' to see output in Github CI
