@@ -5,7 +5,7 @@ set -e
 NAME=$1
 VALUE=$2
 
-if [[ -z "$NAME" || -z "$VALUE" ]]; then
+if [[ "$#" != "2" ]]; then
   echo "not all parameters are set"
   echo "Usage: $BASH_SCRIPT <variable name> <variable value>"
   exit 1
