@@ -16,9 +16,10 @@ public class InputJavadocMethodsNotSkipWritten {
     /**
      * Description.
      *
-     * @param BAD // violation
+     * @param BAD
      *            This param doesn't exist.
      */
+    // violation 3 lines above 'Unused @param tag for 'BAD'.'
     @MyAnnotation
     public void InputJavadocMethodsNotSkipWritten() {
     }
@@ -26,9 +27,10 @@ public class InputJavadocMethodsNotSkipWritten {
     /**
      * Description.
      *
-     * @param BAD // violation
+     * @param BAD
      *            This param doesn't exist.
      */
+    // violation 3 lines above 'Unused @param tag for 'BAD'.'
     @MyAnnotation
     public void test() {
     }
