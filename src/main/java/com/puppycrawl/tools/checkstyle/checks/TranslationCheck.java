@@ -163,8 +163,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </p>
  * <pre>
  * &lt;module name="Translation"&gt;
- * &lt;property name="baseName" value="^ButtonLabels.*$"/&gt;
- * &lt;property name="requiredTranslations" value="fr"/&gt;
+ *   &lt;property name="baseName" value="^ButtonLabels.*$"/&gt;
+ *   &lt;property name="requiredTranslations" value="fr"/&gt;
  * &lt;/module&gt;
  * </pre>
  * <p>

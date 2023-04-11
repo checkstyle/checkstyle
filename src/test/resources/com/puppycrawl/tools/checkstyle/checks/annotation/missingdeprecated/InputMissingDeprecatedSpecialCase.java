@@ -9,21 +9,21 @@ package com.puppycrawl.tools.checkstyle.checks.annotation.missingdeprecated;
 
 /**
  * @deprecated bleh
- * @deprecated boo // violation
+ * @deprecated boo // violation 'Duplicate @deprecated tag.'
  */
 @Deprecated
 public class InputMissingDeprecatedSpecialCase
 {
     /**
      * @deprecated bleh
-     * @deprecated boo // violation
+     * @deprecated boo // violation 'Duplicate @deprecated tag.'
      */
-    public int i; // violation
+    public int i; // violation 'Must include both @java.lang.Deprecated annotation.*@deprecated.*'
 
     /**
      * @deprecated
      */
-    public void foo() { // violation
+    public void foo() { // violation 'Must.*@java.lang.Deprecated annotation.*@deprecated.*'
 
     }
 
@@ -37,7 +37,7 @@ public class InputMissingDeprecatedSpecialCase
 
     /**
      * @deprecated
-     * @deprecated // violation
+     * @deprecated // violation 'Duplicate @deprecated tag.'
      */
     @Deprecated
     public void foo3() {
@@ -46,7 +46,7 @@ public class InputMissingDeprecatedSpecialCase
 
     /**
      * @deprecated bleh
-     * @deprecated // violation
+     * @deprecated // violation 'Duplicate @deprecated tag.'
      */
     @Deprecated
     public void foo4() {
@@ -55,7 +55,7 @@ public class InputMissingDeprecatedSpecialCase
 
     /**
      * @deprecated
-     * @deprecated bleh // violation
+     * @deprecated bleh // violation 'Duplicate @deprecated tag.'
      */
     @Deprecated
     public void foo5() {
@@ -96,21 +96,21 @@ public class InputMissingDeprecatedSpecialCase
     /**
      * @deprecated
      */
-    int[] dontUse3() { // violation
+    int[] dontUse3() { // violation 'Must.*@java.lang.Deprecated annotation.*@deprecated.*'
         return null;
     }
 
     /**
      * @deprecated
      */
-    <T> T dontUse4() { // violation
+    <T> T dontUse4() { // violation 'Must.*@java.lang.Deprecated annotation.*@deprecated.*'
         return null;
     }
 
     /**
      * @deprecated
      */
-    java.lang.String dontUse5() { // violation
+    java.lang.String dontUse5() { // violation '.*@java.lang.Deprecated annotation.*@deprecated.*'
         return null;
     }
 }

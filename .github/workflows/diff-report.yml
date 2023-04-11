@@ -166,7 +166,7 @@ jobs:
       # fetch-depth default: 1
       # Don't need history for all branches and tags here.
       - name: Download contribution
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           repository: checkstyle/contribution
           ref: master
@@ -226,7 +226,9 @@ jobs:
 
       - name: Set output
         id: out
-        run: echo "::set-output name=message::$(cat message)"
+        run: |
+          cd checkstyle
+          ./.ci/append-to-github-output.sh "message" "$(cat ../message)"
 
   # should be always last step
   send_message:
@@ -234,6 +236,8 @@ jobs:
     needs: [ parse_body, make_report ]
     if: failure() || success()
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
       - name: Get message
         env:
@@ -256,7 +260,8 @@ jobs:
 
       - name: Set message
         id: out
-        run: echo "::set-output name=message::$(cat message)"
+        run: |
+          ./.ci/append-to-github-output.sh "message" "$(cat message)"
 
       - name: Comment PR
         uses: checkstyle/contribution/comment-action@master
