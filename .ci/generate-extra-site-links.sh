@@ -41,6 +41,8 @@ do
   # Extract the line number of the earliest change in the file, i.e. '90'.
   EARLIEST_CHANGE_LINE_NUMBER=$(echo "$PR_DIFF" | grep -A 5 "diff.*$CURRENT_XDOC_PATH" | grep @@ |
     head -1 | grep -oEi "[0-9]+" | head -1)
+  # Add 3 to the number because diffs contain 3 lines of context.
+  EARLIEST_CHANGE_LINE_NUMBER=$((EARLIEST_CHANGE_LINE_NUMBER + 3))
   echo "EARLIEST_CHANGE_LINE_NUMBER=$EARLIEST_CHANGE_LINE_NUMBER"
 
   # Find the id of the nearest subsection to the change.

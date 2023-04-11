@@ -24,7 +24,7 @@ permissions:
   pull-requests: write
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  group: ${{ github.workflow }}-${{ github.event.issue.number || github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -72,7 +72,7 @@ jobs:
       # 0, because we need access to all branches to create a report.
       # ref - branch to checkout.
       - name: Download checkstyle
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         env:
           USER_LOGIN: ${{ github.event.issue.user.login }}
         with:
@@ -118,10 +118,8 @@ jobs:
       - name: Set output
         id: out
         run: |
-          EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
-          echo "message<<$EOF" >> "$GITHUB_OUTPUT"
-          cat message >> "$GITHUB_OUTPUT"
-          echo "$EOF" >> "$GITHUB_OUTPUT"
+          cd checkstyle
+          ./.ci/append-to-github-output.sh "message" "$(cat ../message)"
 
   # should be always last step
   send_message:
@@ -129,6 +127,9 @@ jobs:
     needs: [ generate_site ]
     if: failure() || success()
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
       - name: Get message
         env:
           MSG: ${{needs.generate_site.outputs.message}}
@@ -151,10 +152,7 @@ jobs:
       - name: Set message
         id: out
         run: |
-          EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
-          echo "message<<$EOF" >> "$GITHUB_OUTPUT"
-          cat message >> "$GITHUB_OUTPUT"
-          echo "$EOF" >> "$GITHUB_OUTPUT"
+          ./.ci/append-to-github-output.sh "message" "$(cat message)"
 
       - name: Comment PR
         uses: checkstyle/contribution/comment-action@master

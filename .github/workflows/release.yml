@@ -45,7 +45,6 @@ jobs:
     needs: maven-perform
     with:
       version: ${{ inputs.version }}
-      concurrency-group: update-github-page
     secrets: inherit
     permissions:
       contents: write
@@ -55,7 +54,6 @@ jobs:
     needs: update-github-page
     with:
       version: ${{ inputs.version }}
-      concurrency-group: upload-all-jar
     secrets: inherit
     permissions:
       contents: write
@@ -65,7 +63,6 @@ jobs:
     needs: update-github-page
     with:
       version: ${{ inputs.version }}
-      concurrency-group: new-milestone-and-issues-in-other-repos
     secrets: inherit
     permissions:
       contents: write
@@ -76,7 +73,6 @@ jobs:
     needs: update-github-page
     with:
       version: ${{ inputs.version }}
-      concurrency-group: publish-releasenotes-twitter
     secrets: inherit
 
   update-github-io:
@@ -84,7 +80,6 @@ jobs:
     needs: maven-perform
     with:
       version: ${{ inputs.version }}
-      concurrency-group: update-github-io
     secrets: inherit
 
   copy-github-io-to-sourceforge:

@@ -15,16 +15,13 @@ on:
       version:
         type: string
         required: true
-      concurrency-group:
-        type: string
-        required: true
 
 permissions:
   contents: write
 
 concurrency:
   group: ${{ github.workflow }}
-    -${{ github.event.pull_request.number || github.ref }}-${{ inputs.concurrency-group }}
+    -${{ github.event.pull_request.number || github.ref }}-upload-all-jar
   cancel-in-progress: true
 
 jobs:
