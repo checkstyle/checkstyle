@@ -9,7 +9,7 @@ tokens = (default)INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF
 */
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc.writetag;
-
+// violation 8 lines below , 'Type Javadoc comment is missing @missingtag tag.*'
 /** Testing tag writing
  * @author Daniel Grenner
  * @incomplete This class needs more code...
@@ -17,7 +17,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.writetag;
  * @doubletag second text
  * @emptytag
  */
-class InputWriteTagMissingTag // violation
+class InputWriteTagMissingTag // violation 'Type Javadoc comment is missing @missingtag tag.'
 {
     /**
      * @todo Add a constructor comment
