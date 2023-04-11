@@ -140,7 +140,7 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testRegularExError() throws Exception {
         final String[] expected = {
-            "15: " + getCheckMessage(MSG_TAG_FORMAT, "@author", "ABC")
+            "15: " + getCheckMessage(MSG_TAG_FORMAT, "@author", "ABC"),
         };
         verifyWithInlineConfigParser(getPath("InputWriteTagExpressionError.java"), expected);
     }
