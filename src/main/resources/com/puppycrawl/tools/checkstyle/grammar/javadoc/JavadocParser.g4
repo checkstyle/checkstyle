@@ -1147,7 +1147,7 @@ javadocTag: AUTHOR_LITERAL (WS | NEWLINE)+ description
       | PARAM_LITERAL (WS | NEWLINE | {!isNextJavadocTag()}? LEADING_ASTERISK)+ PARAMETER_NAME
           (WS | NEWLINE)* ((WS | NEWLINE) description)?
 
-      | RETURN_LITERAL (WS | NEWLINE)+ description
+      | RETURN_LITERAL (WS | NEWLINE)* ((WS | NEWLINE) description)?
 
       | SEE_LITERAL (WS | NEWLINE | {!isNextJavadocTag()}? LEADING_ASTERISK)+
           (reference | STRING | htmlElement) (WS | NEWLINE)* ((WS | NEWLINE) description)?

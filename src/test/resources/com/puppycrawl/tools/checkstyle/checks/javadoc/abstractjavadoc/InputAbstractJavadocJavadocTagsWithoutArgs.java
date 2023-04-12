@@ -33,7 +33,7 @@ public class InputAbstractJavadocJavadocTagsWithoutArgs implements Serializable{
 
     }
 
-    /**@return*/ // violation
+    /**@return*/ // ok
     public static int method3() {
         return -1;
     }
