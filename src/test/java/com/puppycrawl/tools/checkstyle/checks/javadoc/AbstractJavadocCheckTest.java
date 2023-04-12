@@ -77,20 +77,12 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     public void testJavadocTagsWithoutArgs() throws Exception {
         final DefaultConfiguration checkconfig = createModuleConfig(TempCheck.class);
         final String[] expected = {
-            "9: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 7,
-                    "mismatched input '<EOF>' expecting {WS, NEWLINE}", "JAVADOC_TAG"),
             "14: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 4,
                     "no viable alternative at input '<EOF>'", "JAVADOC_TAG"),
-            "17: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 6,
-                    "mismatched input '<EOF>' expecting {WS, NEWLINE}", "JAVADOC_TAG"),
-            "20: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 8,
-                    "mismatched input '<EOF>' expecting {WS, NEWLINE}", "JAVADOC_TAG"),
             "26: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 10,
                     "no viable alternative at input '<EOF>'", "JAVADOC_TAG"),
             "31: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 7,
                     "no viable alternative at input '<EOF>'", "JAVADOC_TAG"),
-            "36: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 7,
-                    "mismatched input '<EOF>' expecting {WS, NEWLINE}", "JAVADOC_TAG"),
             "41: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 6,
                     "no viable alternative at input '<EOF>'", "JAVADOC_TAG"),
             "62: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 13,

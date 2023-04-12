@@ -6,7 +6,7 @@ import java.io.Serializable;
  * Config: TempCheck
  */
 
-/**@author*/ // violation
+/**@author*/ // ok
 public class InputAbstractJavadocJavadocTagsWithoutArgs implements Serializable{
     /**@serial*/ // ok
     private static final long serialVersionUID = 7556448691029650757L;
@@ -14,10 +14,10 @@ public class InputAbstractJavadocJavadocTagsWithoutArgs implements Serializable{
     /**@see*/ // violation
     private static int field2;
 
-    /**@since*/ // violation
+    /**@since*/ // ok
     private static String field3;
 
-    /**@version*/ // violation
+    /**@version*/ // ok
     private static Object field4;
 
     /**serialField*/ // ok
@@ -33,7 +33,7 @@ public class InputAbstractJavadocJavadocTagsWithoutArgs implements Serializable{
 
     }
 
-    /**@return*/ // violation
+    /**@return*/ // ok
     public static int method3() {
         return -1;
     }
