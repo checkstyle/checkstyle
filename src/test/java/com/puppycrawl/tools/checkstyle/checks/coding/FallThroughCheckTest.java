@@ -116,7 +116,6 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
             "432:9: " + getCheckMessage(MSG_FALL_THROUGH),
             "444:9: " + getCheckMessage(MSG_FALL_THROUGH),
             "454:9: " + getCheckMessage(MSG_FALL_THROUGH),
-            "490:9: " + getCheckMessage(MSG_FALL_THROUGH),
             "491:9: " + getCheckMessage(MSG_FALL_THROUGH),
             "492:9: " + getCheckMessage(MSG_FALL_THROUGH),
         };
@@ -240,4 +239,14 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
                 expected);
     }
 
+    @Test
+    public void testLastCase() throws Exception {
+        final String[] expected = {
+            "48:11: " + getCheckMessage(MSG_FALL_THROUGH_LAST),
+            "83:11: " + getCheckMessage(MSG_FALL_THROUGH_LAST),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputFallThrough4.java"),
+                expected);
+    }
 }
