@@ -2053,6 +2053,7 @@
             <excludedLink>http://maven.apache.org/plugins/maven-eclipse-plugin/</excludedLink>
             <excludedLink>http://maven.apache.org/plugins/maven-install-plugin/</excludedLink>
             <excludedLink>http://maven.apache.org/plugins/maven-linkcheck-plugin/</excludedLink>
+            <excludedLink>http://www.mojohaus.org/build-helper-maven-plugin/</excludedLink>
             <!-- until new plugins are released to generate link with trailing '/' -->
             <excludedLink>https://www.mojohaus.org/exec-maven-plugin</excludedLink>
             <!-- permanent 403 -->
