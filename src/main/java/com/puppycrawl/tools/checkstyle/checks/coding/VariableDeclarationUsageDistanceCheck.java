@@ -695,7 +695,7 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
                 // If expression doesn't contain variable and this variable
                 // hasn't been met yet, then distance + 1.
                 else if (variableUsageExpressions.isEmpty()
-                        && currentStatementAst.getType() != TokenTypes.VARIABLE_DEF) {
+                        && !isStatementVariableDefinition(currentStatementAst.getType())) {
                     distance++;
                 }
             }
@@ -1009,6 +1009,20 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
     private boolean isVariableMatchesIgnorePattern(String variable) {
         final Matcher matcher = ignoreVariablePattern.matcher(variable);
         return matcher.matches();
+    }
+
+    /**
+     * Check if the statement is variable definition or resource or modifier or type.
+     *
+     * @param type
+     *        Type of the statement.
+     * @return true if the statement is, otherwise false.
+     */
+    private static boolean isStatementVariableDefinition(int type) {
+        return type == TokenTypes.VARIABLE_DEF
+                || type == TokenTypes.TYPE
+                || type == TokenTypes.MODIFIERS
+                || type == TokenTypes.RESOURCE;
     }
 
 }
