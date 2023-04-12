@@ -840,33 +840,6 @@
   <mutation unstable="false">
     <sourceFile>NonEmptyAtclauseDescriptionCheck.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.NonEmptyAtclauseDescriptionCheck</mutatedClass>
-    <mutatedMethod>hasOnlyEmptyText</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
-    <description>removed conditional - replaced equality check with true</description>
-    <lineContent>if (child.getType() != JavadocTokenTypes.TEXT</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>NonEmptyAtclauseDescriptionCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.NonEmptyAtclauseDescriptionCheck</mutatedClass>
-    <mutatedMethod>hasOnlyEmptyText</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailNode::getText</description>
-    <lineContent>|| !CommonUtil.isBlank(child.getText())) {</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>NonEmptyAtclauseDescriptionCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.NonEmptyAtclauseDescriptionCheck</mutatedClass>
-    <mutatedMethod>hasOnlyEmptyText</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
-    <description>removed conditional - replaced equality check with false</description>
-    <lineContent>|| !CommonUtil.isBlank(child.getText())) {</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>NonEmptyAtclauseDescriptionCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.NonEmptyAtclauseDescriptionCheck</mutatedClass>
     <mutatedMethod>visitJavadocToken</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
     <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailNode::getText</description>
