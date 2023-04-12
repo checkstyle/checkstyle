@@ -69,4 +69,18 @@ public class InputNonEmptyAtclauseDescriptionTwo
     int bar() {
         return 1;
     }
+
+    /**
+     *
+     * @return
+     *
+     * @throws Exception
+     *
+     */ // violation 4 lines above
+    // violation 3 lines above
+        public int foo7() throws Exception
+        {
+                return 1;
+        }
+
 }
