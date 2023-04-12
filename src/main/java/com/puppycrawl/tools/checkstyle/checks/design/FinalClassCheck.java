@@ -216,13 +216,10 @@ public class FinalClassCheck
     private void visitCtor(DetailAST ast) {
         if (!ScopeUtil.isInEnumBlock(ast) && !ScopeUtil.isInRecordBlock(ast)) {
             final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
-            // Can be only of type ClassDesc, preceding if statements guarantee it.
-            final ClassDesc desc = (ClassDesc) typeDeclarations.getFirst();
             if (modifiers.findFirstToken(TokenTypes.LITERAL_PRIVATE) == null) {
+                // Can be only of type ClassDesc, preceding if statements guarantee it.
+                final ClassDesc desc = (ClassDesc) typeDeclarations.getFirst();
                 desc.registerNonPrivateCtor();
-            }
-            else {
-                desc.registerPrivateCtor();
             }
         }
     }
@@ -249,16 +246,53 @@ public class FinalClassCheck
     /**
      * Checks whether a class should be declared as final or not.
      *
-     * @param desc description of the class
+     * @param classDesc description of the class
      * @return true if given class should be declared as final otherwise false
      */
-    private static boolean shouldBeDeclaredAsFinal(ClassDesc desc) {
-        return desc.isWithPrivateCtor()
-                && !(desc.isDeclaredAsAbstract()
-                    || desc.isSuperClassOfAnonymousInnerClass())
-                && !desc.isDeclaredAsFinal()
-                && !desc.isWithNonPrivateCtor()
-                && !desc.isWithNestedSubclass();
+    private static boolean shouldBeDeclaredAsFinal(ClassDesc classDesc) {
+        final boolean isAbstract = classDesc.isDeclaredAsAbstract();
+        final boolean isSuperClassOfAnonymousInnerClass =
+                classDesc.isSuperClassOfAnonymousInnerClass();
+        final boolean declaredAsFinal = classDesc.isDeclaredAsFinal();
+        final boolean withNestedSubClass = classDesc.isWithNestedSubclass();
+        final boolean shouldBeFinal;
+
+        if (classDesc.isWithNonPrivateCtor()) {
+            shouldBeFinal = false;
+        }
+        else if (hasImplicitConstructor(classDesc.getTypeDeclarationAst())) {
+            shouldBeFinal = !(isAbstract || isSuperClassOfAnonymousInnerClass)
+                    && !declaredAsFinal
+                    && !withNestedSubClass
+                    && isClassPrivate(classDesc.getTypeDeclarationAst());
+        }
+        else {
+            shouldBeFinal = !(isAbstract || isSuperClassOfAnonymousInnerClass)
+                    && !declaredAsFinal
+                    && !withNestedSubClass;
+        }
+        return shouldBeFinal;
+    }
+
+    /**
+     * Check it the constructor is default. default means there is no constructor
+     * defined.
+     *
+     * @param desc class to check
+     * @return boolean value for default constructor
+     */
+    private static boolean hasImplicitConstructor(DetailAST desc) {
+        return desc.getLastChild().findFirstToken(TokenTypes.CTOR_DEF) == null;
+    }
+
+    /**
+     * Check if class is private.
+     *
+     * @param desc description of class
+     * @return true if class is private
+     */
+    private static boolean isClassPrivate(DetailAST desc) {
+        return desc.getFirstChild().findFirstToken(TokenTypes.LITERAL_PRIVATE) != null;
     }
 
     /**
@@ -510,9 +544,6 @@ public class FinalClassCheck
         /** Does class have non-private ctors. */
         private boolean withNonPrivateCtor;
 
-        /** Does class have private ctors. */
-        private boolean withPrivateCtor;
-
         /** Does class have nested subclass. */
         private boolean withNestedSubclass;
 
@@ -533,11 +564,6 @@ public class FinalClassCheck
             declaredAsAbstract = modifiers.findFirstToken(TokenTypes.ABSTRACT) != null;
         }
 
-        /** Adds private ctor. */
-        private void registerPrivateCtor() {
-            withPrivateCtor = true;
-        }
-
         /** Adds non-private ctor. */
         private void registerNonPrivateCtor() {
             withNonPrivateCtor = true;
@@ -551,15 +577,6 @@ public class FinalClassCheck
         /** Adds anonymous inner class. */
         private void registerSuperClassOfAnonymousInnerClass() {
             superClassOfAnonymousInnerClass = true;
-        }
-
-        /**
-         *  Does class have private ctors.
-         *
-         *  @return true if class has private ctors
-         */
-        private boolean isWithPrivateCtor() {
-            return withPrivateCtor;
         }
 
         /**
