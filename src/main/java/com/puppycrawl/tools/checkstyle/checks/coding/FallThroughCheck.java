@@ -26,7 +26,6 @@ import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CodePointUtil;
 
 /**
  * <p>
@@ -239,6 +238,11 @@ public class FallThroughCheck extends AbstractCheck {
         return getRequiredTokens();
     }
 
+    @Override
+    public boolean isCommentNodesRequired() {
+        return true;
+    }
+
     /**
      * Setter to define the RegExp to match the relief comment that suppresses
      * the warning about a fall through.
@@ -267,7 +271,7 @@ public class FallThroughCheck extends AbstractCheck {
             final DetailAST slist = ast.findFirstToken(TokenTypes.SLIST);
 
             if (slist != null && !isTerminated(slist, true, true)
-                && !hasFallThroughComment(ast, nextGroup)) {
+                && !hasFallThroughComment(ast)) {
                 if (isLastGroup) {
                     log(ast, MSG_FALL_THROUGH_LAST);
                 }
@@ -343,6 +347,11 @@ public class FallThroughCheck extends AbstractCheck {
         DetailAST lastStmt = slistAst.getLastChild();
 
         if (lastStmt.getType() == TokenTypes.RCURLY) {
+            lastStmt = lastStmt.getPreviousSibling();
+        }
+
+        if (lastStmt != null && (lastStmt.getType() == TokenTypes.SINGLE_LINE_COMMENT
+                || lastStmt.getType() == TokenTypes.BLOCK_COMMENT_BEGIN)) {
             lastStmt = lastStmt.getPreviousSibling();
         }
 
@@ -486,25 +495,25 @@ public class FallThroughCheck extends AbstractCheck {
      * </pre>
      *
      * @param currentCase AST of the case that falls through to the next case.
-     * @param nextCase AST of the next case.
      * @return True if a relief comment was found
      */
-    private boolean hasFallThroughComment(DetailAST currentCase, DetailAST nextCase) {
-        boolean allThroughComment = false;
-        final int endLineNo = nextCase.getLineNo();
-
-        if (matchesComment(reliefPattern, endLineNo)) {
-            allThroughComment = true;
+    private boolean hasFallThroughComment(DetailAST currentCase) {
+        final DetailAST nextCase = currentCase.getNextSibling();
+        DetailAST commentAst;
+        if (nextCase.getType() == TokenTypes.CASE_GROUP) {
+            commentAst = nextCase.getFirstChild();
         }
         else {
-            final int startLineNo = currentCase.getLineNo();
-            for (int i = endLineNo - 2; i > startLineNo - 1; i--) {
-                final int[] line = getLineCodePoints(i);
-                if (!CodePointUtil.isBlank(line)) {
-                    allThroughComment = matchesComment(reliefPattern, i + 1);
-                    break;
-                }
+            commentAst = currentCase;
+        }
+        boolean allThroughComment = false;
+        while (commentAst != null) {
+            if (commentAst.getFirstChild() != null
+                    && matchesComment(reliefPattern, commentAst.getFirstChild().getText())) {
+                allThroughComment = true;
+                break;
             }
+            commentAst = commentAst.getNextSibling();
         }
         return allThroughComment;
     }
@@ -514,18 +523,11 @@ public class FallThroughCheck extends AbstractCheck {
      * possible match is within a comment.
      *
      * @param pattern The regular expression pattern to use.
-     * @param lineNo The line number in the file.
+     * @param line to check the relief pattern.
      * @return True if a match was found inside a comment.
      */
-    // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/11166
-    @SuppressWarnings("deprecation")
-    private boolean matchesComment(Pattern pattern, int lineNo) {
-        final String line = getLine(lineNo - 1);
-
+    private static boolean matchesComment(Pattern pattern, String line) {
         final Matcher matcher = pattern.matcher(line);
-        return matcher.find()
-                && getFileContents().hasIntersectionWithComment(
-                        lineNo, matcher.start(), lineNo, matcher.end());
+        return matcher.find();
     }
-
 }
