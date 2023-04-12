@@ -73,13 +73,13 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testJavadocTagsWithoutArgs() throws Exception {
         final String[] expected = {
-            "16: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 4,
+            "14: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 4,
                     "no viable alternative at input '<EOF>'", "JAVADOC_TAG"),
-            "29: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 10,
+            "26: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 10,
                     "no viable alternative at input '<EOF>'", "JAVADOC_TAG"),
             "35: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 7,
                     "no viable alternative at input '<EOF>'", "JAVADOC_TAG"),
-            "46: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 6,
+            "41: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 6,
                     "no viable alternative at input '<EOF>'", "JAVADOC_TAG"),
         };
         verifyWithInlineConfigParser(

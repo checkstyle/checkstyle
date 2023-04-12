@@ -7,6 +7,13 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.abstractjavadoc;
 
 import java.io.Serializable;
 
+<<<<<<< HEAD
+=======
+/*
+ * Config: TempCheck
+ */
+
+>>>>>>> f2846d5df (Issue #12864: Update Javadoc description to be optional)
 /**@author*/ // ok
 public class InputAbstractJavadocJavadocTagsWithoutArgs implements Serializable{
 
@@ -75,11 +82,7 @@ public class InputAbstractJavadocJavadocTagsWithoutArgs implements Serializable{
     }
 
     /**
-<<<<<<< HEAD
-     * {@linkplain }
-=======
      * {@linkplain } // ok
->>>>>>> 642ace96c (Issue #13043: Modify link javadoc tag reference to be optional)
      */
     // violation 2 lines above 'Javadoc comment at column 19 has parse error.'
     // Details: no viable alternative at input '}' while parsing REFERENCE
