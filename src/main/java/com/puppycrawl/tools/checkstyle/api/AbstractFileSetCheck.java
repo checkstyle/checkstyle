@@ -103,7 +103,7 @@ public abstract class AbstractFileSetCheck
     }
 
     @Override
-    public void finishProcessing() {
+    public void finishProcessing() throws CheckstyleException {
         // No code by default, should be overridden only by demand at subclasses
     }
 
@@ -248,7 +248,7 @@ public abstract class AbstractFileSetCheck
      *
      * @param fileName the audited file
      */
-    protected final void fireErrors(String fileName) {
+    protected final void fireErrors(String fileName) throws CheckstyleException {
         final FileContext fileContext = context.get();
         final SortedSet<Violation> errors = new TreeSet<>(fileContext.violations);
         fileContext.violations.clear();

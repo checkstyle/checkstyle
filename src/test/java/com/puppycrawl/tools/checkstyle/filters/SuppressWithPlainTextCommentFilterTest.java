@@ -330,7 +330,7 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
     }
 
     @Test
-    public void testAcceptNullViolation() {
+    public void testAcceptNullViolation() throws CheckstyleException {
         final SuppressWithPlainTextCommentFilter filter = new SuppressWithPlainTextCommentFilter();
         final AuditEvent auditEvent = new AuditEvent(this);
         assertWithMessage("Filter should accept audit event")
@@ -537,7 +537,7 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
             filter.accept(auditEvent);
             assertWithMessage(IllegalStateException.class.getSimpleName() + " is expected").fail();
         }
-        catch (IllegalStateException ex) {
+        catch (IllegalStateException | CheckstyleException ex) {
             assertWithMessage("Invalid exception message")
                 .that(ex.getMessage())
                 .isEqualTo("Cannot read source file: " + fileName);
@@ -646,7 +646,7 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
     }
 
     @Test
-    public void testFilterWithDirectory() throws IOException {
+    public void testFilterWithDirectory() throws IOException, CheckstyleException {
         final SuppressWithPlainTextCommentFilter filter = new SuppressWithPlainTextCommentFilter();
         final AuditEvent event = new AuditEvent(this, getPath(""), new Violation(1, 1,
                 "bundle", "key", null, SeverityLevel.ERROR, "moduleId", getClass(),

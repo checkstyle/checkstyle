@@ -224,7 +224,14 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
 
         // Finish up
         // It may also log!!!
-        fileSetChecks.forEach(FileSetCheck::finishProcessing);
+        fileSetChecks.forEach(fileSetCheck -> {
+            try {
+                fileSetCheck.finishProcessing();
+            }
+            catch (CheckstyleException ex) {
+                log.error("Unable to finish processing", ex);
+            }
+        });
 
         // It may also log!!!
         fileSetChecks.forEach(FileSetCheck::destroy);
@@ -395,7 +402,7 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
      * @param errors the audit errors from the file
      */
     @Override
-    public void fireErrors(String fileName, SortedSet<Violation> errors) {
+    public void fireErrors(String fileName, SortedSet<Violation> errors) throws CheckstyleException {
         final String stripped = CommonUtil.relativizeAndNormalizePath(basedir, fileName);
         boolean hasNonFilteredViolations = false;
         for (final Violation element : errors) {

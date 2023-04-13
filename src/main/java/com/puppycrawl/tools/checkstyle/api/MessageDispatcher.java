@@ -46,6 +46,6 @@ public interface MessageDispatcher {
      * @param fileName the audited file
      * @param errors the violations from the file
      */
-    void fireErrors(String fileName, SortedSet<Violation> errors);
+    void fireErrors(String fileName, SortedSet<Violation> errors) throws CheckstyleException;
 
 }

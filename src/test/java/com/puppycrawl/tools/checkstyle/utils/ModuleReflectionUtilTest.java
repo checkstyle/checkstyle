@@ -37,6 +37,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import com.puppycrawl.tools.checkstyle.api.BeforeExecutionFileFilter;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.Filter;
 import com.puppycrawl.tools.checkstyle.api.RootModule;
@@ -244,7 +245,7 @@ public class ModuleReflectionUtilTest {
         }
 
         @Override
-        public boolean accept(AuditEvent event) {
+        public boolean accept(AuditEvent event) throws CheckstyleException {
             return false;
         }
 

@@ -149,7 +149,6 @@ public class CheckerTest extends AbstractModuleTestSupport {
                 .that(fileFilter.wasCalled())
                 .isFalse();
     }
-
     @Test
     public void testAddListener() throws Exception {
         final Checker checker = new Checker();
@@ -297,7 +296,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testAddFilter() {
+    public void testAddFilter() throws CheckstyleException {
         final Checker checker = new Checker();
         final DebugFilter filter = new DebugFilter();
 
@@ -314,7 +313,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testRemoveFilter() {
+    public void testRemoveFilter() throws CheckstyleException {
         final Checker checker = new Checker();
         final DebugFilter filter = new DebugFilter();
         final DebugFilter f2 = new DebugFilter();
@@ -1685,7 +1684,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
     public static class DummyFilter implements Filter {
 
         @Override
-        public boolean accept(AuditEvent event) {
+        public boolean accept(AuditEvent event) throws CheckstyleException {
             return false;
         }
 
@@ -1905,7 +1904,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         }
 
         @Override
-        public void finishProcessing() {
+        public void finishProcessing() throws CheckstyleException {
             methodCalls.add("finishProcessing");
             super.finishProcessing();
         }
