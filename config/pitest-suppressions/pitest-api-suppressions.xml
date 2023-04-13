@@ -1,15 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suppressedMutations>
   <mutation unstable="false">
-    <sourceFile>AbstractViolationReporter.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.api.AbstractViolationReporter</mutatedClass>
-    <mutatedMethod>setSeverity</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
-    <description>Removed assignment to member variable severityLevel</description>
-    <lineContent>severityLevel = SeverityLevel.getInstance(severity);</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
     <sourceFile>FileContents.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.api.FileContents</mutatedClass>
     <mutatedMethod>getBlockComments</mutatedMethod>
