@@ -143,7 +143,7 @@ import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
  * <pre>
  * class MyClass {
  *   public MyClass() {} // OK
- *   public void MyClass() {} // violation,  method Name 'MyClass' must not
+ *   public void MyClass() {} // violation, method Name 'MyClass' must not
  *                            // equal the enclosing class name
  * }
  * </pre>
