@@ -242,6 +242,15 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testUnusedLocalVarTestWarningSeverity() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("InputUnusedLocalVariableTestWarningSeverity.java"),
+                expected);
+    }
+
+    @Test
     public void testUnusedLocalVarEnum() throws Exception {
         final String[] expected = {
             "22:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "a"),
