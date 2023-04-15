@@ -33,6 +33,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
@@ -150,11 +151,11 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
             "15: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete",
                     "This enum needs more code... // violation"),
             "19: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete",
-                "This enum constant needs more code... // violation"),
+                    "This enum constant needs more code... // violation"),
             "25: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete",
-                "This annotation needs more code... // violation"),
+                    "This annotation needs more code... // violation"),
             "29: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete",
-                "This annotation field needs more code... // violation"),
+                    "This annotation field needs more code... // violation"),
         };
         verifyWithInlineConfigParser(getPath("InputWriteTagEnumsAndAnnotations.java"), expected);
     }
@@ -169,6 +170,13 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testWriteTagRecordsAndCompactCtors() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(WriteTagCheck.class);
+        checkConfig.addProperty("tag", "@incomplete");
+        checkConfig.addProperty("tagSeverity", "error");
+        checkConfig.addProperty("tagFormat", "\\S");
+        checkConfig.addProperty("tokens",
+                "INTERFACE_DEF , CLASS_DEF , ENUM_DEF , ANNOTATION_DEF, RECORD_DEF,"
+                        + " COMPACT_CTOR_DEF, CTOR_DEF");
         final String[] expected = {
             "15: " + getCheckMessage(MSG_MISSING_TAG, "@incomplete"),
             "19: " + getCheckMessage(MSG_TAG_FORMAT, "@incomplete", "\\S"),
@@ -181,7 +189,7 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
             "58: " + getCheckMessage(MSG_MISSING_TAG, "@incomplete"),
             "62: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete", "// violation"),
         };
-        verifyWithInlineConfigParser(
+        verify(checkConfig,
             getNonCompilablePath("InputWriteTagRecordsAndCompactCtors.java"), expected);
     }
 
