@@ -150,11 +150,11 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
             "15: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete",
                     "This enum needs more code... // violation"),
             "19: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete",
-                "This enum constant needs more code... // violation"),
+                    "This enum constant needs more code... // violation"),
             "25: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete",
-                "This annotation needs more code... // violation"),
+                    "This annotation needs more code... // violation"),
             "29: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete",
-                "This annotation field needs more code... // violation"),
+                    "This annotation field needs more code... // violation"),
         };
         verifyWithInlineConfigParser(getPath("InputWriteTagEnumsAndAnnotations.java"), expected);
     }
@@ -171,7 +171,7 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
     public void testWriteTagRecordsAndCompactCtors() throws Exception {
         final String[] expected = {
             "15: " + getCheckMessage(MSG_MISSING_TAG, "@incomplete"),
-            "19: " + getCheckMessage(MSG_TAG_FORMAT, "@incomplete", "\\S"),
+            "19: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete", "// violation"),
             "26: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete", "// violation"),
             "33: " + getCheckMessage(MSG_MISSING_TAG, "@incomplete"),
             "37: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete", "// violation"),
