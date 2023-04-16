@@ -1750,6 +1750,20 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FallThroughCheck.java</fileName>
+    <specifier>not.interned</specifier>
+    <message>attempting to use a non-@Interned comparison operand</message>
+    <lineContent>if (node == currentCase.getLastChild().getLastChild()) {</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FallThroughCheck.java</fileName>
+    <specifier>not.interned</specifier>
+    <message>attempting to use a non-@Interned comparison operand</message>
+    <lineContent>if (node == currentCase.getLastChild().getLastChild()) {</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter prevScopeUninitializedVariableData of updateAllUninitializedVariables.</message>
