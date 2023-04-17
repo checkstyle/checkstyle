@@ -76,6 +76,16 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testTryCatchInSwitch() throws Exception {
+        final String[] expected = {
+            "40:21: " + getCheckMessage(MSG_FALL_THROUGH),
+            "78:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "113:13: " + getCheckMessage(MSG_FALL_THROUGH),
+        };
+        verifyWithInlineConfigParser(getPath("InputFallThroughTryCatchInSwitch.java"), expected);
+    }
+
+    @Test
     public void testStringSwitch() throws Exception {
         final String[] expected = {
             "21:9: " + getCheckMessage(MSG_FALL_THROUGH),
