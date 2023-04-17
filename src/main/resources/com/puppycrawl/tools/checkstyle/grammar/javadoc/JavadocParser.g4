@@ -1137,7 +1137,7 @@ reference:  PACKAGE_CLASS (HASH MEMBER parameters?)?
 
 parameters: LEFT_BRACE (ARGUMENT | COMMA | WS | NEWLINE | LEADING_ASTERISK)* RIGHT_BRACE;
 
-javadocTag: AUTHOR_LITERAL (WS | NEWLINE)+ description
+javadocTag: AUTHOR_LITERAL (WS | NEWLINE)* ((WS | NEWLINE) description)?
 
     | DEPRECATED_LITERAL (WS | NEWLINE)* ((WS | NEWLINE) description)?
 
@@ -1147,7 +1147,7 @@ javadocTag: AUTHOR_LITERAL (WS | NEWLINE)+ description
       | PARAM_LITERAL (WS | NEWLINE | {!isNextJavadocTag()}? LEADING_ASTERISK)+ PARAMETER_NAME
           (WS | NEWLINE)* ((WS | NEWLINE) description)?
 
-      | RETURN_LITERAL (WS | NEWLINE)+ description
+      | RETURN_LITERAL (WS | NEWLINE)* ((WS | NEWLINE) description)?
 
       | SEE_LITERAL (WS | NEWLINE | {!isNextJavadocTag()}? LEADING_ASTERISK)+
           (reference | STRING | htmlElement) (WS | NEWLINE)* ((WS | NEWLINE) description)?
@@ -1160,12 +1160,12 @@ javadocTag: AUTHOR_LITERAL (WS | NEWLINE)+ description
       | SERIAL_FIELD_LITERAL (WS | NEWLINE)* ((WS | NEWLINE) FIELD_NAME)? (WS | NEWLINE)*
           ((WS | NEWLINE) FIELD_TYPE)? (WS | NEWLINE)* ((WS | NEWLINE) description)?
 
-      | SINCE_LITERAL (WS | NEWLINE)+ description
+      | SINCE_LITERAL (WS | NEWLINE)* ((WS | NEWLINE) description)?
 
       | THROWS_LITERAL (WS | NEWLINE | {!isNextJavadocTag()}? LEADING_ASTERISK)+ CLASS_NAME
           (WS | NEWLINE)* ((WS | NEWLINE) description)?
 
-      | VERSION_LITERAL (WS | NEWLINE)+ description
+      | VERSION_LITERAL (WS | NEWLINE)* ((WS | NEWLINE) description)?
 
       | CUSTOM_NAME (WS | NEWLINE)* ((WS | NEWLINE) description)?
     ;
