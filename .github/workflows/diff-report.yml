@@ -116,16 +116,6 @@ jobs:
       message: ${{ steps.out.outputs.message }}
     steps:
 
-      - name: Download files
-        env:
-          NEW_MODULE_CONFIG_LINK: ${{ needs.parse_body.outputs.new_module_config_link }}
-          DIFF_CONFIG_LINK: ${{ needs.parse_body.outputs.config_link }}
-          PATCH_CONFIG_LINK: ${{ needs.parse_body.outputs.patch_config_link }}
-          LINK_FROM_PR: ${{ needs.parse_body.outputs.projects_link }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          ./.ci/diff-report.sh download-files
-
       # fetch-depth - number of commits to fetch.
       # 0 indicates all history for all branches and tags.
       # 0, because we need access to all branches to create a report.
@@ -137,6 +127,16 @@ jobs:
           ref: master
           path: checkstyle
           fetch-depth: 0
+
+      - name: Download files
+        env:
+          NEW_MODULE_CONFIG_LINK: ${{ needs.parse_body.outputs.new_module_config_link }}
+          DIFF_CONFIG_LINK: ${{ needs.parse_body.outputs.config_link }}
+          PATCH_CONFIG_LINK: ${{ needs.parse_body.outputs.patch_config_link }}
+          LINK_FROM_PR: ${{ needs.parse_body.outputs.projects_link }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          ./.ci/diff-report.sh download-files
 
       # set main checkstyle repo as an upstream
       # Diff report will be generated taking upstream's master branch as a base branch
