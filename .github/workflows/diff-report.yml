@@ -116,6 +116,18 @@ jobs:
       message: ${{ steps.out.outputs.message }}
     steps:
 
+      # fetch-depth - number of commits to fetch.
+      # 0 indicates all history for all branches and tags.
+      # 0, because we need access to all branches to create a report.
+      # ref - branch to checkout.
+      - name: Download checkstyle
+        uses: actions/checkout@v3
+        with:
+          repository: ${{ env.USER_LOGIN }}/checkstyle
+          ref: master
+          path: checkstyle
+          fetch-depth: 0
+
       - name: Download files
         env:
           NEW_MODULE_CONFIG_LINK: ${{ needs.parse_body.outputs.new_module_config_link }}
@@ -136,18 +148,6 @@ jobs:
           if [ -n "$PATCH_CONFIG_LINK" ]; then
             wget -q "$PATCH_CONFIG_LINK" -O patch_config.xml
           fi
-
-      # fetch-depth - number of commits to fetch.
-      # 0 indicates all history for all branches and tags.
-      # 0, because we need access to all branches to create a report.
-      # ref - branch to checkout.
-      - name: Download checkstyle
-        uses: actions/checkout@v3
-        with:
-          repository: ${{ env.USER_LOGIN }}/checkstyle
-          ref: master
-          path: checkstyle
-          fetch-depth: 0
 
       # set main checkstyle repo as an upstream
       # Diff report will be generated taking upstream's master branch as a base branch
