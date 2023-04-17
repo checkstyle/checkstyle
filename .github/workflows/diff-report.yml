@@ -136,7 +136,9 @@ jobs:
           LINK_FROM_PR: ${{ needs.parse_body.outputs.projects_link }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          cd checkstyle
           ./.ci/diff-report.sh download-files
+          cd ../
 
       # set main checkstyle repo as an upstream
       # Diff report will be generated taking upstream's master branch as a base branch
