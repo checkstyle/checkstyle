@@ -320,4 +320,17 @@ public class VariableDeclarationUsageDistanceCheckTest extends
         verifyWithInlineConfigParser(getNonCompilablePath(filename), expected);
     }
 
+    @Test
+    public void testGeneral3Class() throws Exception {
+        final String[] expected = {
+            "28:9: " + getCheckMessage(MSG_KEY, "a", 4, 1),
+            "44:9: " + getCheckMessage(MSG_KEY, "a", 2, 1),
+            "63:9: " + getCheckMessage(MSG_KEY, "a", 4, 1),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputVariableDeclarationUsageDistanceGeneral3.java"),
+                expected);
+    }
+
 }
