@@ -681,7 +681,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
      *         of the current ast node, null if no such node exists
      */
     private static DetailAST getLoopAstParent(DetailAST ast) {
-        DetailAST loopAstParent = ast.getParent();
+        DetailAST loopAstParent = ast;
         while (loopAstParent != null
             && !isLoopAst(loopAstParent.getType())) {
             loopAstParent = loopAstParent.getParent();
