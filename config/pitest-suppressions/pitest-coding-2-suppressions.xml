@@ -3,15 +3,6 @@
   <mutation unstable="false">
     <sourceFile>FallThroughCheck.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck</mutatedClass>
-    <mutatedMethod>checkTry</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getNextSibling</description>
-    <lineContent>catchStmt = catchStmt.getNextSibling();</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>FallThroughCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck</mutatedClass>
     <mutatedMethod>matchesComment</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
     <description>removed call to java/util/regex/Matcher::start</description>
