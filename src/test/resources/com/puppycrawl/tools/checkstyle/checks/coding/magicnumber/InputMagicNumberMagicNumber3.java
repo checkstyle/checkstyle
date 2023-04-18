@@ -19,7 +19,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class InputMagicNumber_12 {
+public class InputMagicNumberMagicNumber3 {
 
     Object obj = new Object() {
 
