@@ -17,12 +17,13 @@ com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder
 
 package com.puppycrawl.tools.checkstyle.checks.coding.magicnumber;
 
-public class InputMagicNumber_9 {
+public class InputMagicNumberLocalVariables {
     @SuppressWarnings("MagicNumber")
     private int A = 8; // ok
 
+    @SuppressWarnings("MagicNumber")
     void method() {
-        int b = 8; // violation
+        int b = 8; // ok
     }
 
     void method2() {
