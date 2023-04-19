@@ -124,7 +124,6 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
             "432:9: " + getCheckMessage(MSG_FALL_THROUGH),
             "444:9: " + getCheckMessage(MSG_FALL_THROUGH),
             "454:9: " + getCheckMessage(MSG_FALL_THROUGH),
-            "490:9: " + getCheckMessage(MSG_FALL_THROUGH),
             "491:9: " + getCheckMessage(MSG_FALL_THROUGH),
             "492:9: " + getCheckMessage(MSG_FALL_THROUGH),
         };
@@ -248,4 +247,51 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
                 expected);
     }
 
+    @Test
+    public void testLastCase() throws Exception {
+        final String[] expected = {
+            "48:11: " + getCheckMessage(MSG_FALL_THROUGH_LAST),
+            "83:11: " + getCheckMessage(MSG_FALL_THROUGH_LAST),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputFallThrough4.java"),
+                expected);
+    }
+
+    @Test
+    public void testIfElse() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputFallThrough5.java"),
+                expected);
+    }
+
+    @Test
+    public void testFallThrough() throws Exception {
+        final String[] expected = {
+            "23:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "27:13: " + getCheckMessage(MSG_FALL_THROUGH),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputFallThrough6.java"),
+                expected);
+    }
+
+    @Test
+    public void testFallThroughComment() throws Exception {
+        final String[] expected = {
+            "43:13: " + getCheckMessage(MSG_FALL_THROUGH),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputFallThroughFallThroughLotsOfComment.java"),
+                expected);
+    }
+
+    @Test
+    public void testFallThroughComment2() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputFallThroughFallThroughLotsOfComment2.java"),
+                expected);
+    }
 }
