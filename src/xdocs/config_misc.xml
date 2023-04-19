@@ -2547,9 +2547,9 @@ public class Test {
         <p>
           Ensures the correct translation of code by checking property files for
           consistency regarding their keys. Two property files
-          describing one and the same context are consistent if they
+          describing the same context are consistent if they
           contain the same keys. TranslationCheck also can check an existence of required
-          translations which must exist in project, if <code>requiredTranslations</code>
+          translations which must exist in the project, if <code>requiredTranslations</code>
           option is used.
         </p>
 
@@ -2586,18 +2586,18 @@ messages.properties: Key 'ok' missing.
           <a href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes">ISO 639-1</a>.
           Default value is empty String Set which means that only the existence
           of default translation is checked. Note, if you specify language codes (or just
-          one language code) of required translations the check will also check for
-          existence of default translation files in project.
+          one language code) of required translations, the check will also check for
+          the existence of default translation files in the project.
         </p>
         <p>
           Attention: the check will perform the validation of ISO codes if the option
           is used. So, if you specify, for example, "mm" for language code, TranslationCheck
-          will rise violation that the language code is incorrect.
+          will raise a violation that the language code is incorrect.
         </p>
         <p>
           Attention: this Check could produce false-positives if it
           is used with <a href="config.html#Checker">Checker</a> that use cache (property
-          "cacheFile") This is known design problem, will be addressed at
+          "cacheFile") This is a known design problem and will be addressed at
           <a href="https://github.com/checkstyle/checkstyle/issues/3539">issue</a>.
         </p>
       </subsection>
@@ -2638,7 +2638,7 @@ messages.properties: Key 'ok' missing.
             <tr>
               <td>requiredTranslations</td>
               <td>
-                Specify language codes of required translations which must exist in project.
+                Specify language codes of required translations which must exist in the project.
               </td>
               <td><a href="property_types.html#String.5B.5D">String[]</a></td>
               <td><code>{}</code></td>
@@ -2680,7 +2680,7 @@ messages.properties: Properties file 'messages_fr.properties' is missing.
 messages.translations: Properties file 'messages_fr.translations' is missing.
         </source>
         <p>
-          An example of how to configure the check to validate only bundles which base names
+          An example of how to configure the check to validate only bundles whose base names
           start with "ButtonLabels":
         </p>
         <source>
@@ -2706,7 +2706,7 @@ ButtonLabels.properties: Key 'name' is missing.
 ButtonLabels_fr.properties: Key 'cancel' is missing.
         </source>
         <p>
-          To configure the check to check existence of Japanese and French translations:
+          To configure the check to check the existence of Japanese and French translations:
         </p>
         <source>
 &lt;module name=&quot;Translation&quot;&gt;
