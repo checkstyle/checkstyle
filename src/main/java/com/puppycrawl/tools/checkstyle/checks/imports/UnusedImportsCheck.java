@@ -277,20 +277,33 @@ public class UnusedImportsCheck extends AbstractCheck {
     private void processIdent(DetailAST ast) {
         final DetailAST parent = ast.getParent();
         final int parentType = parent.getType();
-
-        final boolean isPossibleDotClassOrInMethod = parentType == TokenTypes.DOT
-                || parentType == TokenTypes.METHOD_DEF;
-
-        final boolean isQualifiedIdent = parentType == TokenTypes.DOT
-                && !TokenUtil.isOfType(ast.getPreviousSibling(), TokenTypes.DOT)
-                && ast.getNextSibling() != null;
+        final boolean isClassOrMethod = parentType == TokenTypes.DOT
+                || parentType == TokenTypes.METHOD_DEF || parentType == TokenTypes.METHOD_REF;
 
         if (TokenUtil.isTypeDeclaration(parentType)) {
             currentFrame.addDeclaredType(ast.getText());
         }
-        else if (!isPossibleDotClassOrInMethod || isQualifiedIdent) {
+        else if (!isClassOrMethod || isQualifiedIdentifier(ast)) {
             currentFrame.addReferencedType(ast.getText());
         }
+    }
+
+    /**
+     * Checks whether ast is a fully qualified identifier.
+     *
+     * @param ast to check
+     * @return true if given ast is a fully qualified identifier
+     */
+    private static boolean isQualifiedIdentifier(DetailAST ast) {
+        final DetailAST parent = ast.getParent();
+        final int parentType = parent.getType();
+
+        final boolean isQualifiedIdent = parentType == TokenTypes.DOT
+                && !TokenUtil.isOfType(ast.getPreviousSibling(), TokenTypes.DOT)
+                && ast.getNextSibling() != null;
+        final boolean isQualifiedIdentFromMethodRef = parentType == TokenTypes.METHOD_REF
+                && ast.getNextSibling() != null;
+        return isQualifiedIdent || isQualifiedIdentFromMethodRef;
     }
 
     /**
