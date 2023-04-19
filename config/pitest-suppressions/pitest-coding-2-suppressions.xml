@@ -12,10 +12,10 @@
   <mutation unstable="false">
     <sourceFile>FinalLocalVariableCheck.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck</mutatedClass>
-    <mutatedMethod>isInAbstractOrNativeMethod</mutatedMethod>
+    <mutatedMethod>getLoopAstParent</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
     <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getParent with receiver</description>
-    <lineContent>DetailAST parent = ast.getParent();</lineContent>
+    <lineContent>DetailAST loopAstParent = ast.getParent();</lineContent>
   </mutation>
 
   <mutation unstable="false">
