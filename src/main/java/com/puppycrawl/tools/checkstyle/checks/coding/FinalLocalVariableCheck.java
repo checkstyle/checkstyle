@@ -724,15 +724,15 @@ public class FinalLocalVariableCheck extends AbstractCheck {
      */
     private static boolean isInAbstractOrNativeMethod(DetailAST ast) {
         boolean abstractOrNative = false;
-        DetailAST parent = ast.getParent();
-        while (parent != null && !abstractOrNative) {
-            if (parent.getType() == TokenTypes.METHOD_DEF) {
+        DetailAST currentAst = ast;
+        while (currentAst != null && !abstractOrNative) {
+            if (currentAst.getType() == TokenTypes.METHOD_DEF) {
                 final DetailAST modifiers =
-                    parent.findFirstToken(TokenTypes.MODIFIERS);
+                    currentAst.findFirstToken(TokenTypes.MODIFIERS);
                 abstractOrNative = modifiers.findFirstToken(TokenTypes.ABSTRACT) != null
                         || modifiers.findFirstToken(TokenTypes.LITERAL_NATIVE) != null;
             }
-            parent = parent.getParent();
+            currentAst = currentAst.getParent();
         }
         return abstractOrNative;
     }
