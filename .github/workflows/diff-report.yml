@@ -66,7 +66,9 @@ jobs:
           ISSUE_BODY: ${{ github.event.issue.body }}
           PULL_REQUEST_URL: ${{ github.event.issue.pull_request.url }}
         run: |
-          echo "$ISSUE_BODY" > text
+          # convert windows line endings to unix in event text
+          echo "$ISSUE_BODY" > windows.txt
+          tr -d '\15\32' < windows.txt > text
           echo "$USER_LOGIN" > user
           wget -q "$PULL_REQUEST_URL" -O info.json
           jq --raw-output .head.ref info.json > branch
