@@ -9,7 +9,7 @@ tokens = ANNOTATION_DEF, ENUM_DEF, ANNOTATION_FIELD_DEF, ENUM_CONSTANT_DEF
 */
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc.writetag;
-
+// violation 3, 7, 13, 17 lines below , '@incomplete must match pattern '\\S'.*'
 class InputWriteTagEnumsAndAnnotations {
     /**
      * @incomplete This enum needs more code... // violation
