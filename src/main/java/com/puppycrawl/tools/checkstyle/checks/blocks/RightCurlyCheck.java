@@ -293,12 +293,15 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * {@code line.alone}
  * </li>
  * <li>
+ * {@code line.break.after}
+ * </li>
+ * <li>
  * {@code line.break.before}
  * </li>
  * <li>
  * {@code line.same}
  * </li>
- * </ul>
+ * <li>
  *
  * @since 3.0
  */
@@ -322,6 +325,12 @@ public class RightCurlyCheck extends AbstractCheck {
      * file.
      */
     public static final String MSG_KEY_LINE_SAME = "line.same";
+
+     /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY_LINE_BREAK_AFTER = "line.break.after";
 
     /**
      * Specify the policy on placement of a right curly brace (<code>'}'</code>).
@@ -371,6 +380,7 @@ public class RightCurlyCheck extends AbstractCheck {
             TokenTypes.RECORD_DEF,
             TokenTypes.COMPACT_CTOR_DEF,
             TokenTypes.LITERAL_SWITCH,
+            TokenTypes.VARIABLE_DEF,
         };
     }
 
@@ -409,6 +419,9 @@ public class RightCurlyCheck extends AbstractCheck {
         }
         else if (shouldBeAloneOnLine(option, details, getLine(details.rcurly.getLineNo() - 1))) {
             violation = MSG_KEY_LINE_ALONE;
+        }
+        else if(isRightcurlyFollowedBySemicolonHasLineBreakAfter(option, details)) {
+            violation = MSG_KEY_LINE_BREAK_AFTER;
         }
         return violation;
     }
@@ -578,6 +591,17 @@ public class RightCurlyCheck extends AbstractCheck {
         return !TokenUtil.areOnSameLine(rightCurly, previousToken);
     }
 
+      private static boolean isRightcurlyFollowedBySemicolonHasLineBreakAfter(RightCurlyOption
+                                                                              bracePolicy,
+                                                                              Details details) {
+        DetailAST tokenAfterTheNextToken = Details.getNextToken(details.nextToken);
+
+          return tokenAfterTheNextToken != null
+            && bracePolicy == RightCurlyOption.ALONE_OR_SINGLELINE
+            && isRightcurlyFollowedBySemicolon(details)
+            && TokenUtil.areOnSameLine(details.rcurly, tokenAfterTheNextToken);
+      }
+
     /**
      * Structure that contains all details for validation.
      */
@@ -640,6 +664,9 @@ public class RightCurlyCheck extends AbstractCheck {
                     break;
                 case TokenTypes.LITERAL_SWITCH:
                     details = getDetailsForSwitch(ast);
+                    break;
+                case TokenTypes.VARIABLE_DEF:
+                    details = getDetailsForAnonymousInnerClass(ast);
                     break;
                 default:
                     details = getDetailsForOthers(ast);
@@ -777,6 +804,47 @@ public class RightCurlyCheck extends AbstractCheck {
                 }
             }
             return new Details(lcurly, rcurly, getNextToken(ast), true);
+        }
+
+        /**
+         * Collects validation details for anonymomus inner class.
+         *
+         * @param ast a {@code DetailAST} value
+         * @return an object containing all details to make a validation
+         */
+        private static Details getDetailsForAnonymousInnerClass(DetailAST ast) {
+
+            DetailAST rcurly = null;
+            DetailAST lcurly = null;
+            DetailAST nextToken;
+
+            DetailAST ansNode = checkIfDeclarationHasAnonymousInnerClass(ast);
+
+            if(ansNode != null){
+                rcurly = ansNode.getLastChild();
+                lcurly = ansNode.getFirstChild();
+                nextToken = getNextToken(ansNode);
+            }
+            else {
+                nextToken = getNextToken(ast.getLastChild());
+            }
+            return new Details(lcurly, rcurly, nextToken, false);
+        }
+
+        private static DetailAST checkIfDeclarationHasAnonymousInnerClass(DetailAST ast){
+        DetailAST ansNode = null;
+
+        DetailAST childNode = ast.getLastChild().getPreviousSibling();
+
+        while(childNode != null){
+            if(childNode.getType() == TokenTypes.OBJBLOCK){
+                ansNode = childNode;
+                break;
+            }
+            childNode = childNode.getLastChild();
+        }
+
+        return ansNode;
         }
 
         /**
