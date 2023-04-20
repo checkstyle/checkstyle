@@ -293,12 +293,15 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * {@code line.alone}
  * </li>
  * <li>
+ * {@code line.break.after}
+ * </li>
+ * <li>
  * {@code line.break.before}
  * </li>
  * <li>
  * {@code line.same}
  * </li>
- * </ul>
+ * <li>
  *
  * @since 3.0
  */
@@ -322,6 +325,12 @@ public class RightCurlyCheck extends AbstractCheck {
      * file.
      */
     public static final String MSG_KEY_LINE_SAME = "line.same";
+
+     /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY_LINE_BREAK_AFTER = "line.break.after";
 
     /**
      * Specify the policy on placement of a right curly brace (<code>'}'</code>).
@@ -371,6 +380,7 @@ public class RightCurlyCheck extends AbstractCheck {
             TokenTypes.RECORD_DEF,
             TokenTypes.COMPACT_CTOR_DEF,
             TokenTypes.LITERAL_SWITCH,
+            TokenTypes.VARIABLE_DEF,
         };
     }
 
@@ -383,11 +393,17 @@ public class RightCurlyCheck extends AbstractCheck {
     public void visitToken(DetailAST ast) {
         final Details details = Details.getDetails(ast);
         final DetailAST rcurly = details.rcurly;
+        final DetailAST semiColon = details.nextToken;
 
         if (rcurly != null) {
             final String violation = validate(details);
             if (!violation.isEmpty()) {
-                log(rcurly, violation, "}", rcurly.getColumnNo() + 1);
+                if(ast.getType() == TokenTypes.VARIABLE_DEF && details.nextToken.getType() == TokenTypes.SEMI){
+                    log(semiColon, violation, ";", rcurly.getColumnNo() + 2);
+                }
+                else {
+                    log(rcurly, violation, "}", rcurly.getColumnNo() + 1);
+                }
             }
         }
     }
@@ -406,6 +422,9 @@ public class RightCurlyCheck extends AbstractCheck {
         }
         else if (shouldBeOnSameLine(option, details)) {
             violation = MSG_KEY_LINE_SAME;
+        }
+        else if(isRightcurlyFollowedBySemicolonHasLineBreakAfter(option, details)) {
+            violation = MSG_KEY_LINE_BREAK_AFTER;
         }
         else if (shouldBeAloneOnLine(option, details, getLine(details.rcurly.getLineNo() - 1))) {
             violation = MSG_KEY_LINE_ALONE;
@@ -579,6 +598,24 @@ public class RightCurlyCheck extends AbstractCheck {
     }
 
     /**
+     * Checks if the right curly is followed by semicolon has line break after.
+     *
+     * @param bracePolicy option for placing the right curly brace
+     * @param details Details for validation
+     * @return true if a right curly followed by semicolon has line break after
+     */
+    private static boolean isRightcurlyFollowedBySemicolonHasLineBreakAfter(RightCurlyOption
+                                                                              bracePolicy,
+                                                                              Details details) {
+        DetailAST tokenAfterTheNextToken = Details.getNextToken(details.nextToken);
+
+        return tokenAfterTheNextToken != null
+            && bracePolicy == RightCurlyOption.ALONE_OR_SINGLELINE
+            && isRightcurlyFollowedBySemicolon(details)
+            && TokenUtil.areOnSameLine(details.rcurly, tokenAfterTheNextToken);
+    }
+
+    /**
      * Structure that contains all details for validation.
      */
     private static final class Details {
@@ -640,6 +677,9 @@ public class RightCurlyCheck extends AbstractCheck {
                     break;
                 case TokenTypes.LITERAL_SWITCH:
                     details = getDetailsForSwitch(ast);
+                    break;
+                case TokenTypes.VARIABLE_DEF:
+                    details = getDetailsForAnonymousInnerClass(ast);
                     break;
                 default:
                     details = getDetailsForOthers(ast);
@@ -777,6 +817,51 @@ public class RightCurlyCheck extends AbstractCheck {
                 }
             }
             return new Details(lcurly, rcurly, getNextToken(ast), true);
+        }
+
+        /**
+         * Collects validation details for anonymous inner class.
+         *
+         * @param ast a {@code DetailAST} value
+         * @return an object containing all details to make a validation
+         */
+        private static Details getDetailsForAnonymousInnerClass(DetailAST ast) {
+
+            DetailAST rcurly = null;
+            DetailAST lcurly = null;
+            DetailAST nextToken = null;
+
+            DetailAST ansNode = checkIfDeclarationHasAnonymousInnerClass(ast);
+
+            if(ansNode != null){
+                rcurly = ansNode.getLastChild();
+                lcurly = ansNode.getFirstChild();
+                nextToken = getNextToken(ansNode);
+            }
+
+            return new Details(lcurly, rcurly, nextToken, false);
+        }
+
+        /**
+         * Checks if VARIABLE_DEF token has an anonymous inner class declaration or not.
+         *
+         * @param ast a {@code DetailAST} value
+         * @return the node containing the OBJ_BLOCK of the anonymous inner class
+         */
+        private static DetailAST checkIfDeclarationHasAnonymousInnerClass(DetailAST ast){
+        DetailAST ansNode = null;
+
+        DetailAST childNode = ast.getLastChild().getPreviousSibling();
+
+        while(childNode != null){
+            if(childNode.getType() == TokenTypes.OBJBLOCK){
+                ansNode = childNode;
+                break;
+            }
+            childNode = childNode.getLastChild();
+        }
+
+        return ansNode;
         }
 
         /**
