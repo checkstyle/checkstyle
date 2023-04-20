@@ -559,7 +559,7 @@ public class ImportControlCheck extends AbstractCheck implements ExternalResourc
 
     @Override
     public Set<String> getExternalResourceLocations() {
-        return Collections.singleton(file.toString());
+        return Collections.singleton(file.toASCIIString());
     }
 
     /**
@@ -608,7 +608,7 @@ public class ImportControlCheck extends AbstractCheck implements ExternalResourc
                 file = uri;
             }
             catch (CheckstyleException ex) {
-                throw new IllegalArgumentException(UNABLE_TO_LOAD + uri, ex);
+                throw new IllegalArgumentException(UNABLE_TO_LOAD + uri.toASCIIString(), ex);
             }
         }
     }
