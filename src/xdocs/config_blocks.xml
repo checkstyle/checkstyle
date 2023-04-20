@@ -1584,6 +1584,10 @@ class Test {
             line.alone</a>
           </li>
           <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fblocks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22line.break.after%22">
+            line.break.after</a>
+          </li>
+          <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fblocks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22line.break.before%22">
             line.break.before</a>
           </li>
