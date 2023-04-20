@@ -190,7 +190,7 @@ jobs:
           REF="origin/$BRANCH"
           REPO="../../checkstyle"
           BASE_BRANCH="upstream/master"
-          export MAVEN_OPTS="-Xmx2048m"
+          export MAVEN_OPTS="-Xmx5g"
           if [ -f new_module_config.xml ]; then
             groovy diff.groovy -r "$REPO" -p "$REF" -pc new_module_config.xml -m single\
               -l project.properties -xm "-Dcheckstyle.failsOnError=false"\
