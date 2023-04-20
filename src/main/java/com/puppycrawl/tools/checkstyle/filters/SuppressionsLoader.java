@@ -220,7 +220,7 @@ public final class SuppressionsLoader
             throws CheckstyleException {
         // figure out if this is a File or a URL
         final URI uri = CommonUtil.getUriByFilename(filename);
-        final InputSource source = new InputSource(uri.toString());
+        final InputSource source = new InputSource(uri.toASCIIString());
         return loadSuppressions(source, filename);
     }
 
@@ -249,7 +249,7 @@ public final class SuppressionsLoader
             throws CheckstyleException {
         // figure out if this is a File or a URL
         final URI uri = CommonUtil.getUriByFilename(filename);
-        final InputSource source = new InputSource(uri.toString());
+        final InputSource source = new InputSource(uri.toASCIIString());
         return loadXpathSuppressions(source, filename);
     }
 
