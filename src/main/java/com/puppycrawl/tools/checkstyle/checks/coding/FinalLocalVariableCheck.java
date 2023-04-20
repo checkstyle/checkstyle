@@ -411,7 +411,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
     private static boolean isInSpecificCodeBlocks(DetailAST node, int... blockTypes) {
         boolean returnValue = false;
         for (int blockType : blockTypes) {
-            for (DetailAST token = node.getParent(); token != null; token = token.getParent()) {
+            for (DetailAST token = node; token != null; token = token.getParent()) {
                 final int type = token.getType();
                 if (type == blockType) {
                     returnValue = true;
