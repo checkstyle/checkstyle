@@ -23,6 +23,7 @@ import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck.MSG_KEY_LINE_ALONE;
 import static com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck.MSG_KEY_LINE_BREAK_BEFORE;
 import static com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck.MSG_KEY_LINE_SAME;
+import static com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck.MSG_KEY_LINE_BREAK_AFTER;
 
 import org.junit.jupiter.api.Test;
 
@@ -820,5 +821,14 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputRightCurlyTestSwitchExpression7.java"), expected);
+    }
+
+    @Test
+    public void testRightCurlyFollowedBySemicolonHasLineBreakAfter() throws Exception {
+        final String[] expected = {
+            "20:10: " + getCheckMessage(MSG_KEY_LINE_BREAK_AFTER, ";", 10),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputRightCurlyFollowedBySemicolonHasLineBreakAfter.java"), expected);
     }
 }
