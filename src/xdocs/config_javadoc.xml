@@ -4327,6 +4327,7 @@ public class Test {
          Requires user defined Javadoc tag to be present in Javadoc comment with
          defined format. To define the format for a tag, set property tagFormat to a regular
          expression. Property tagSeverity is used for severity of events when the tag exists.
+         No violation reported in case there is no javadoc.
         </p>
       </subsection>
 
@@ -4444,6 +4445,9 @@ public class Test {
 public class Test { // violation as required tag is missed
   /** some doc */
   void foo() {} // OK, as methods are not checked by default
+}
+
+class Test2 { // OK, no javadoc
 }
         </source>
         <p>
