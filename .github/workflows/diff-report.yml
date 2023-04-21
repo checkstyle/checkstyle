@@ -83,25 +83,7 @@ jobs:
       - name: Parsing content of PR description
         id: parse
         run: |
-          grep "^Diff Regression projects:" text | cat > temp
-          sed 's/Diff Regression projects: //' temp > projects_link
-          ./.ci/append-to-github-output.sh "projects_link" "$(cat projects_link)"
-
-          grep "^Diff Regression config:" text | cat > temp
-          sed 's/Diff Regression config: //' temp > config_link
-          ./.ci/append-to-github-output.sh "config_link" "$(cat config_link)"
-
-          grep "^New module config:" text | cat > temp
-          sed 's/New module config: //' temp > new_module_config_link
-          ./.ci/append-to-github-output.sh "new_module_config_link" "$(cat new_module_config_link)"
-
-          grep "^Diff Regression patch config:" text | cat > temp
-          sed 's/Diff Regression patch config: //' temp > patch_config_link
-          ./.ci/append-to-github-output.sh "patch_config_link" "$(cat patch_config_link)"
-
-          grep "^Report label:" text | cat > temp
-          sed 's/Report label: //' temp > report_label
-          ./.ci/append-to-github-output.sh "report_label" "$(cat report_label)"
+          ./.ci diff-report.sh parse-pr-description-text
 
       - name: Set branch
         id: branch
