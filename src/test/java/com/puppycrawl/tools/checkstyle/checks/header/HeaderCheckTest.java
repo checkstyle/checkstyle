@@ -297,7 +297,7 @@ public class HeaderCheckTest extends AbstractModuleTestSupport {
             .isEqualTo(1);
         assertWithMessage("Invalid resource location")
             .that(results.iterator().next())
-            .isEqualTo(uri.toString());
+            .isEqualTo(uri.toASCIIString());
     }
 
     @Test
