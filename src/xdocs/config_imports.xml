@@ -2454,8 +2454,7 @@ public class MyClass{ };
       <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="UnusedImports_Description">
         <p>
-          Checks for unused import statements. Checkstyle uses a simple but
-          very reliable algorithm to report on unused import statements. An
+          Checks for unused import statements. An
           import statement is considered unused if:
         </p>
 
@@ -2465,11 +2464,6 @@ public class MyClass{ };
             wild-card imports like <code>import
             java.io.*;</code>. Most IDE's provide very sophisticated checks
             for imports that handle wild-card imports.
-          </li>
-
-          <li>
-            It is a duplicate of another import. This is when a class is
-            imported more than once.
           </li>
 
           <li>
@@ -2499,23 +2493,12 @@ public class MyClass{ };
             An imported type has the same name as a declaration, such as a member variable.
           </li>
           <li>
-            There are two or more imports with the same name.
+            There are two or more static imports with the same method name
+            (javac can distinguish imports with same name but different parameters, but checkstyle
+            can not due to <a href="https://checkstyle.org/writingchecks.html#Limitations">
+            limitation.</a>)
           </li>
         </ul>
-        <p>
-          For example, in the following case all imports will not be flagged as unused:
-        </p>
-        <source>
-import java.awt.Component;
-import static AstTreeStringPrinter.printFileAst;
-import static DetailNodeTreeStringPrinter.printFileAst;
-class FooBar {
-  private Object Component; // a bad practice in my opinion
-  void method() {
-      printFileAst(file); // two imports with the same name
-  }
-}
-        </source>
       </subsection>
 
       <subsection name="Properties" id="UnusedImports_Properties">
@@ -2545,6 +2528,64 @@ class FooBar {
         </p>
         <source>
 &lt;module name=&quot;UnusedImports&quot;/&gt;
+        </source>
+        <p>Example:</p>
+        <source>
+import java.awt.Component; // limitation as it match field name in code
+
+// no ability to recognize what import is not used
+import static java.util.Map.copyOf;
+import static java.util.Arrays.copyOf;
+
+import java.lang.String; // violation
+
+import java.util.Stack;  // OK
+import java.util.Map;   // violation
+
+import java.util.List; // OK
+
+&#47;&#42;&#42;
+&#42; &#64;link List
+&#42;&#47;
+class MyClass{
+    Stack stack = new Stack();
+    private Object Component;
+    int[] arr = {0,0};
+    int[] array = copyOf(arr , 1);
+}
+        </source>
+        <p>
+          To configure the check so that it ignores the imports referenced in Javadoc comments:
+        </p>
+        <source>
+&lt;module name=&quot;UnusedImports&quot;&gt;
+  &lt;property name=&quot;processJavadoc&quot; value=&quot;false&quot;/&gt;
+&lt;/module&gt;
+        </source>
+        <p>Example:</p>
+        <source>
+import java.awt.Component; // limitation as it match field name in code
+
+// no ability to recognize what import is not used
+import static java.util.Map.copyOf;
+import static java.util.Arrays.copyOf;
+
+import java.lang.String; // violation
+
+import java.util.Stack;  // OK
+import java.util.Map;   // violation
+
+import java.util.List; // violation
+
+&#47;&#42;&#42;
+&#42; &#64;link List
+&#42;&#47;
+class MyClass{
+    Stack stack = new Stack();
+    private Object Component;
+    int[] arr = {0,0};
+    int[] array = copyOf(arr , 1);
+}
         </source>
       </subsection>
 
