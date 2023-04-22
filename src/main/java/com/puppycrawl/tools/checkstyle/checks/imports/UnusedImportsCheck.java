@@ -109,6 +109,52 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <pre>
  * &lt;module name="UnusedImports"/&gt;
  * </pre>
+ * <p>Example:</p>
+ * <source>
+ * package com.example;
+ * 
+ * import com.example.Demo;  // violation, class from the same package should not be imported
+ * 
+ * import java.util.Scanner; // OK
+ * import java.util.Scanner; // violation, class should not be imported more than once
+ * 
+ * import java.lang.String; // violation, imported from "java.lang" package
+ * 
+ * import java.util.Stack;  // OK
+ * import java.util.Map;   // violation, this class is not referenced
+ * 
+ * Stack stack = new Stack();
+ * 
+ * @link List // violation
+ * @link java.util.List  // OK
+ * </source>
+ * <p>
+ * To configure the check so that it ignores the imports referenced in Javadoc comments:
+ * </p>
+ * <source>
+ * &lt;module name=&quot;UnusedImports&quot;&gt;
+ *   &lt;property name=&quot;processJavadoc&quot; value=&quot;false&quot;/&gt;
+ * &lt;/module&gt;
+ * </source>
+ * <p>Example:</p>
+ * <source>
+ * package com.example;
+ * 
+ * import com.example.Demo;  // violation, class from the same package should not be imported
+ * 
+ * import java.util.Scanner; // OK
+ * import java.util.Scanner; // violation, class should not be imported more than once
+ * 
+ * import java.lang.String; // violation, imported from "java.lang" package
+ * 
+ * import java.util.Stack;  // OK
+ * import java.util.Map;   // violation, this class is not referenced
+ * 
+ * Stack stack = new Stack();
+ * 
+ * @link List // OK
+ * @link java.util.List  // OK
+ * </source>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
