@@ -11,8 +11,8 @@ tokens = INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF, COMPACT
 //non-compiled with javac: Compilable with Java14
 package com.puppycrawl.tools.checkstyle.checks.javadoc.writetag;
 
-// violation below , 'Type Javadoc comment is missing @incomplete tag'
-public class InputWriteTagRecordsAndCompactCtors { // violation
+
+public class InputWriteTagRecordsAndCompactCtors { // violation 'missing @incomplete tag.'
 
     // violation 2 lines below 'Type Javadoc tag @incomplete must match pattern '\\S''
     /**
@@ -21,45 +21,45 @@ public class InputWriteTagRecordsAndCompactCtors { // violation
     class TestClass {
     }
 
-    // violation 2 lines below , 'Javadoc tag .*'
+    // violation 2 lines below 'Failed to recognize 'record' introduced in Java 14.'
     /**
-     * @incomplete // violation
+     * @incomplete Failed to recognize 'record' introduced in Java 14.
      */
     record MyRecord1() {
 
     }
 
-    // violation below , 'Type Javadoc comment is missing @incomplete tag'
-    record MyRecord2(String myString) { // violation
 
-        // violation 2 lines below , 'Javadoc tag .*'
+    record MyRecord2(String myString) { // violation 'missing @incomplete tag.'
+
+        // violation 2 lines below 'Failed to recognize 'record' introduced in Java 14.'
         /**
-         * @incomplete // violation
+         * @incomplete Failed to recognize 'record' introduced in Java 14.
          */
         public MyRecord2 {
         }
     }
 
-    // violation below , 'Type Javadoc comment is missing @incomplete tag'
-    record MyRecord3(int x) { // violation
 
-        // violation 2 lines below , 'Javadoc tag .*'
+    record MyRecord3(int x) { // violation 'Type Javadoc comment is missing @incomplete tag.*'
+
+        // violation 2 lines below 'Failed to recognize 'record' introduced in Java 14.'
         /**
-         * @incomplete // violation
+         * @incomplete Failed to recognize 'record' introduced in Java 14.
          */
         MyRecord3() {
             this(3);
         }
     }
 
-    // violation below , 'Type Javadoc comment is missing @incomplete tag'
-    record MyRecord4(int y) { // violation
-        // violation below , 'Type Javadoc comment is missing @incomplete tag'
-        private record MyRecord5(int z) { // violation
 
-            // violation 2 lines below , 'Javadoc tag .*'
+    record MyRecord4(int y) { // violation 'Type Javadoc comment is missing @incomplete tag.*'
+
+        private record MyRecord5(int z) { // violation 'missing @incomplete tag.'
+
+            // violation 2 lines below 'Failed to recognize 'record' introduced in Java 14.'
             /**
-             * @incomplete // violation
+             * @incomplete Failed to recognize 'record' introduced in Java 14.
              */
             public MyRecord5 {
             }
