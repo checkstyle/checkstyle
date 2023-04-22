@@ -41,8 +41,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <p>
- * Checks for unused import statements. Checkstyle uses a simple but very
- * reliable algorithm to report on unused import statements. An import statement
+ * Checks for unused import statements. An import statement
  * is considered unused if:
  * </p>
  * <ul>
@@ -50,10 +49,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * It is not referenced in the file. The algorithm does not support wild-card
  * imports like {@code import java.io.*;}. Most IDE's provide very sophisticated
  * checks for imports that handle wild-card imports.
- * </li>
- * <li>
- * It is a duplicate of another import. This is when a class is imported more
- * than once.
  * </li>
  * <li>
  * The class imported is from the {@code java.lang} package. For example
@@ -79,23 +74,11 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * An imported type has the same name as a declaration, such as a member variable.
  * </li>
  * <li>
- * There are two or more imports with the same name.
+ * There are two or more static imports with the same method name
+ * (javac can distinguish imports with same name but different parameters, but checkstyle can not
+ * due to <a href="https://checkstyle.org/writingchecks.html#Limitations">limitation.</a>)
  * </li>
  * </ul>
- * <p>
- * For example, in the following case all imports will not be flagged as unused:
- * </p>
- * <pre>
- * import java.awt.Component;
- * import static AstTreeStringPrinter.printFileAst;
- * import static DetailNodeTreeStringPrinter.printFileAst;
- * class FooBar {
- *   private Object Component; // a bad practice in my opinion
- *   void method() {
- *       printFileAst(file); // two imports with the same name
- *   }
- * }
- * </pre>
  * <ul>
  * <li>
  * Property {@code processJavadoc} - Control whether to process Javadoc comments.
@@ -108,6 +91,66 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </p>
  * <pre>
  * &lt;module name="UnusedImports"/&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * // limitation as it match field name in code
+ * import java.awt.Component; //OK
+ *
+ * // no ability to recognize what import is not used
+ * import static java.util.Map.copyOf; //OK
+ * import static java.util.Arrays.copyOf; //OK
+ *
+ * import java.lang.String; // violation
+ *
+ * import java.util.Stack;  // OK
+ * import java.util.Map;   // violation
+ *
+ * import java.util.List; // OK
+ *
+ * &#47;&#42;&#42;
+ *  &#42; &#64;link List
+ * &#42;&#47;
+ * class MyClass{
+ *   Stack stack = new Stack();
+ *   private Object Component;
+ *   int[] arr = {0,0};
+ *   int[] array = copyOf(arr , 1);
+ * }
+ * </pre>
+ * <p>
+ * To configure the check so that it ignores the imports referenced in Javadoc comments:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;UnusedImports&quot;&gt;
+ *   &lt;property name=&quot;processJavadoc&quot; value=&quot;false&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * // limitation as it match field name in code
+ * import java.awt.Component; //OK
+ *
+ * // no ability to recognize what import is not used
+ * import static java.util.Map.copyOf; //OK
+ * import static java.util.Arrays.copyOf; //OK
+ *
+ * import java.lang.String; // violation
+ *
+ * import java.util.Stack;  // OK
+ * import java.util.Map;   // violation
+ *
+ * import java.util.List; // violation
+ *
+ * &#47;&#42;&#42;
+ *  &#42; &#64;link List
+ * &#42;&#47;
+ * class MyClass{
+ *   Stack stack = new Stack();
+ *   private Object Component;
+ *   int[] arr = {0,0};
+ *   int[] array = copyOf(arr , 1);
+ * }
  * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
