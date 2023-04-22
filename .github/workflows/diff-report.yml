@@ -83,7 +83,7 @@ jobs:
       - name: Parsing content of PR description
         id: parse
         run: |
-          ./.ci diff-report.sh parse-pr-description-text
+          ./.ci/diff-report.sh parse-pr-description-text
 
       - name: Set branch
         id: branch
