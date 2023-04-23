@@ -5,9 +5,20 @@
               name="FinalClass"
               parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
- Checks that a class that has only private constructors and has no descendant
- classes is declared as final.
- &lt;/p&gt;</description>
+ Check that identifies classes that can be declared as final are explicitly made final.
+ The following is the type of classes that can be identified:
+ &lt;/p&gt;
+ &lt;ol&gt;
+   &lt;li&gt;
+       Private classes with implicit constructor.
+   &lt;/li&gt;
+   &lt;li&gt;
+       Classes with all the type of modifier which contains only private constructor.
+   &lt;/li&gt;
+   &lt;li&gt;
+       Class must not have any descendant class.
+   &lt;/li&gt;
+ &lt;/ol&gt;</description>
          <message-keys>
             <message-key key="final.class"/>
          </message-keys>
