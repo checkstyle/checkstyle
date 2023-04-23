@@ -106,6 +106,22 @@ public class FinalLocalVariableCheckTest
     }
 
     @Test
+    public void testNestedScopes() throws Exception {
+
+        final String[] expected = {
+            "12:33: " + getCheckMessage(MSG_KEY, "num"),
+            "19:20: " + getCheckMessage(MSG_KEY, "p"),
+            "23:21: " + getCheckMessage(MSG_KEY, "p"),
+            "33:21: " + getCheckMessage(MSG_KEY, "x"),
+            "37:21: " + getCheckMessage(MSG_KEY, "y"),
+            "41:21: " + getCheckMessage(MSG_KEY, "z"),
+            "43:25: " + getCheckMessage(MSG_KEY, "b"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputFinalLocalVariableCheckNestedScopes.java"), expected);
+    }
+
+    @Test
     public void testNativeMethods() throws Exception {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
