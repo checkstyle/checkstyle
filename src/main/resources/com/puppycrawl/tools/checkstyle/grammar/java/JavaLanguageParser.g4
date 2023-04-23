@@ -853,8 +853,18 @@ arguments
     : LPAREN expressionList? RPAREN
     ;
 
+/**
+ * We do for patterns as we do for expressions; namely we have one parent
+ * 'PATTERN_DEF' node, then have all nested pattern definitions inside of
+ * the parent node.
+ */
 pattern
+    : innerPattern
+    ;
+
+innerPattern
     : guardedPattern
+    | recordPattern
     | primaryPattern
     ;
 
@@ -874,16 +884,20 @@ guard: ( LAND | LITERAL_WHEN );
 
 primaryPattern
     : typePattern                                                          #patternVariableDef
-    | LPAREN
-      // Set of production rules below should mirror `pattern` production rule
-      // above. We do not reuse `pattern` production rule here to avoid a bunch
-      // of nested `PATTERN_DEF` nodes, as we also do for expressions.
-      (guardedPattern | primaryPattern)
-      RPAREN                                                               #parenPattern
+    | LPAREN innerPattern RPAREN                                           #parenPattern
+    | recordPattern                                                        #recordPatternDef
     ;
 
 typePattern
     : mods+=modifier* type=typeType[true] id
+    ;
+
+recordPattern
+    : mods+=modifier* type=typeType[true] LPAREN recordComponentPatternList? RPAREN id?
+    ;
+
+recordComponentPatternList
+    : innerPattern (COMMA innerPattern)*
     ;
 
 permittedSubclassesAndInterfaces
