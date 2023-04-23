@@ -54,15 +54,39 @@ public class AtclauseOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testCorrect() throws Exception {
+    public void testCorrect1() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
-                getPath("InputAtclauseOrderCorrect.java"), expected);
+                getPath("InputAtclauseOrderCorrect1.java"), expected);
     }
 
     @Test
-    public void testIncorrect() throws Exception {
+    public void testCorrect2() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("InputAtclauseOrderCorrect2.java"), expected);
+    }
+
+    @Test
+    public void testCorrect3() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("InputAtclauseOrderCorrect3.java"), expected);
+    }
+
+    @Test
+    public void testCorrect4() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("InputAtclauseOrderCorrect4.java"), expected);
+    }
+
+    @Test
+    public void testIncorrect1() throws Exception {
         final String tagOrder = "[@author, @version, @param, @return, @throws, @exception, @see,"
                 + " @since, @serial, @serialField, @serialData, @deprecated]";
         final String[] expected = {
@@ -80,46 +104,117 @@ public class AtclauseOrderCheckTest extends AbstractModuleTestSupport {
             "110: " + getCheckMessage(MSG_KEY, tagOrder),
             "111: " + getCheckMessage(MSG_KEY, tagOrder),
             "112: " + getCheckMessage(MSG_KEY, tagOrder),
-            "126: " + getCheckMessage(MSG_KEY, tagOrder),
-            "134: " + getCheckMessage(MSG_KEY, tagOrder),
-            "135: " + getCheckMessage(MSG_KEY, tagOrder),
-            "145: " + getCheckMessage(MSG_KEY, tagOrder),
-            "146: " + getCheckMessage(MSG_KEY, tagOrder),
-            "156: " + getCheckMessage(MSG_KEY, tagOrder),
-            "157: " + getCheckMessage(MSG_KEY, tagOrder),
-            "164: " + getCheckMessage(MSG_KEY, tagOrder),
-            "172: " + getCheckMessage(MSG_KEY, tagOrder),
-            "183: " + getCheckMessage(MSG_KEY, tagOrder),
-            "194: " + getCheckMessage(MSG_KEY, tagOrder),
-            "196: " + getCheckMessage(MSG_KEY, tagOrder),
-            "210: " + getCheckMessage(MSG_KEY, tagOrder),
-            "213: " + getCheckMessage(MSG_KEY, tagOrder),
-            "224: " + getCheckMessage(MSG_KEY, tagOrder),
-            "234: " + getCheckMessage(MSG_KEY, tagOrder),
-            "241: " + getCheckMessage(MSG_KEY, tagOrder),
-            "248: " + getCheckMessage(MSG_KEY, tagOrder),
-            "258: " + getCheckMessage(MSG_KEY, tagOrder),
-            "259: " + getCheckMessage(MSG_KEY, tagOrder),
-            "270: " + getCheckMessage(MSG_KEY, tagOrder),
-            "272: " + getCheckMessage(MSG_KEY, tagOrder),
-            "286: " + getCheckMessage(MSG_KEY, tagOrder),
-            "288: " + getCheckMessage(MSG_KEY, tagOrder),
-            "289: " + getCheckMessage(MSG_KEY, tagOrder),
-            "299: " + getCheckMessage(MSG_KEY, tagOrder),
         };
         verifyWithInlineConfigParser(
-                getPath("InputAtclauseOrderIncorrect.java"), expected);
+                getPath("InputAtclauseOrderIncorrect1.java"), expected);
     }
 
     @Test
-    public void testIncorrectCustom() throws Exception {
+    public void testIncorrect2() throws Exception {
+        final String tagOrder = "[@author, @version, @param, @return, @throws, @exception, @see,"
+                + " @since, @serial, @serialField, @serialData, @deprecated]";
+        final String[] expected = {
+            "20: " + getCheckMessage(MSG_KEY, tagOrder),
+            "22: " + getCheckMessage(MSG_KEY, tagOrder),
+            "23: " + getCheckMessage(MSG_KEY, tagOrder),
+            "33: " + getCheckMessage(MSG_KEY, tagOrder),
+            "41: " + getCheckMessage(MSG_KEY, tagOrder),
+            "42: " + getCheckMessage(MSG_KEY, tagOrder),
+            "52: " + getCheckMessage(MSG_KEY, tagOrder),
+            "53: " + getCheckMessage(MSG_KEY, tagOrder),
+            "63: " + getCheckMessage(MSG_KEY, tagOrder),
+            "64: " + getCheckMessage(MSG_KEY, tagOrder),
+            "74: " + getCheckMessage(MSG_KEY, tagOrder),
+            "77: " + getCheckMessage(MSG_KEY, tagOrder),
+            "88: " + getCheckMessage(MSG_KEY, tagOrder),
+            "98: " + getCheckMessage(MSG_KEY, tagOrder),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputAtclauseOrderIncorrect2.java"), expected);
+    }
+
+    @Test
+    public void testIncorrect3() throws Exception {
+        final String tagOrder = "[@author, @version, @param, @return, @throws, @exception, @see,"
+                + " @since, @serial, @serialField, @serialData, @deprecated]";
+        final String[] expected = {
+            "20: " + getCheckMessage(MSG_KEY, tagOrder),
+            "22: " + getCheckMessage(MSG_KEY, tagOrder),
+            "23: " + getCheckMessage(MSG_KEY, tagOrder),
+            "33: " + getCheckMessage(MSG_KEY, tagOrder),
+            "40: " + getCheckMessage(MSG_KEY, tagOrder),
+            "48: " + getCheckMessage(MSG_KEY, tagOrder),
+            "61: " + getCheckMessage(MSG_KEY, tagOrder),
+            "68: " + getCheckMessage(MSG_KEY, tagOrder),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputAtclauseOrderIncorrect3.java"), expected);
+    }
+
+    @Test
+    public void testIncorrect4() throws Exception {
+        final String tagOrder = "[@author, @version, @param, @return, @throws, @exception, @see,"
+                + " @since, @serial, @serialField, @serialData, @deprecated]";
+        final String[] expected = {
+            "20: " + getCheckMessage(MSG_KEY, tagOrder),
+            "22: " + getCheckMessage(MSG_KEY, tagOrder),
+            "23: " + getCheckMessage(MSG_KEY, tagOrder),
+            "33: " + getCheckMessage(MSG_KEY, tagOrder),
+            "40: " + getCheckMessage(MSG_KEY, tagOrder),
+            "50: " + getCheckMessage(MSG_KEY, tagOrder),
+            "52: " + getCheckMessage(MSG_KEY, tagOrder),
+            "65: " + getCheckMessage(MSG_KEY, tagOrder),
+            "66: " + getCheckMessage(MSG_KEY, tagOrder),
+            "76: " + getCheckMessage(MSG_KEY, tagOrder),
+            "78: " + getCheckMessage(MSG_KEY, tagOrder),
+            "91: " + getCheckMessage(MSG_KEY, tagOrder),
+            "93: " + getCheckMessage(MSG_KEY, tagOrder),
+            "94: " + getCheckMessage(MSG_KEY, tagOrder),
+            "104: " + getCheckMessage(MSG_KEY, tagOrder),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputAtclauseOrderIncorrect4.java"), expected);
+    }
+
+    @Test
+    public void testIncorrectCustom1() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("InputAtclauseOrderIncorrectCustom1.java"), expected);
+    }
+
+    @Test
+    public void testIncorrectCustom2() throws Exception {
         final String tagOrder = "[@since, @version, @param, @return, @throws, @exception,"
                 + " @deprecated, @see, @serial, @serialField, @serialData, @author]";
         final String[] expected = {
-            "123: " + getCheckMessage(MSG_KEY, tagOrder),
+            "30: " + getCheckMessage(MSG_KEY, tagOrder),
         };
         verifyWithInlineConfigParser(
-                getPath("InputAtclauseOrderIncorrectCustom.java"), expected);
+                getPath("InputAtclauseOrderIncorrectCustom2.java"), expected);
+    }
+
+    @Test
+    public void testIncorrectCustom3() throws Exception {
+        final String tagOrder = "[@since, @version, @param, @return, @throws, @exception,"
+                + " @deprecated, @see, @serial, @serialField, @serialData, @author]";
+        final String[] expected = {
+            "30: " + getCheckMessage(MSG_KEY, tagOrder),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputAtclauseOrderIncorrectCustom3.java"), expected);
+    }
+
+    @Test
+    public void testIncorrectCustom4() throws Exception {
+        final String tagOrder = "[@since, @version, @param, @return, @throws, @exception,"
+                + " @deprecated, @see, @serial, @serialField, @serialData, @author]";
+        final String[] expected = {
+            "30: " + getCheckMessage(MSG_KEY, tagOrder),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputAtclauseOrderIncorrectCustom4.java"), expected);
     }
 
     @Test
@@ -163,11 +258,35 @@ public class AtclauseOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testAtclauseOrderLotsOfRecords() throws Exception {
+    public void testAtclauseOrderLotsOfRecords1() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputAtclauseOrderLotsOfRecords.java"), expected);
+                getNonCompilablePath("InputAtclauseOrderLotsOfRecords1.java"), expected);
+    }
+
+    @Test
+    public void testAtclauseOrderLotsOfRecords2() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputAtclauseOrderLotsOfRecords2.java"), expected);
+    }
+
+    @Test
+    public void testAtclauseOrderLotsOfRecords3() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputAtclauseOrderLotsOfRecords3.java"), expected);
+    }
+
+    @Test
+    public void testAtclauseOrderLotsOfRecords4() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputAtclauseOrderLotsOfRecords4.java"), expected);
     }
 
     @Test
