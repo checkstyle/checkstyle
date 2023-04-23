@@ -477,7 +477,6 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
      * @return true if statements between declaration and usage of variable are
      *         initialization methods.
      */
-    // -@cs[CyclomaticComplexity] no easy way to split this logic into multiple methods
     private static boolean isInitializationSequence(
             DetailAST variableUsageAst, String variableName) {
         boolean result = true;
@@ -534,8 +533,8 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
                 // be true
                 anotherVariableDeclarationFound = true;
             }
-            else if (type != TokenTypes.SEMI) {
-                result = false;
+            else {
+                result = type == TokenTypes.SEMI;
             }
 
             currentSiblingAst = currentSiblingAst.getPreviousSibling();
