@@ -16,8 +16,6 @@ validate_url () {
     # to determine what "mode" we should generate report with.
     echo "URL is empty."
   elif [[ "$URL" == *: ]]; then
-    # We were not able to match in previous 'sed' command, so user has
-    # incorrectly supplied parameters in PR description.
     echo "Parameter '${URL}' is incorrectly formatted, please use the following format:"
     echo "'Parameter name: https://gist.githubusercontent.com/username/gist_id/raw/file'"
     echo "Parameter name and URL must be separated by a colon and single space only."
@@ -26,7 +24,7 @@ validate_url () {
     echo "URL '${URL}' must be a direct raw link to a gist or GitHub file."
     exit 1
   elif ! [[ "$URL" =~ $VALID_URL_REGEX ]]; then
-    echo "URL '${URL}' is invalid."
+    echo "URL '${URL}' does not match regexp '${VALID_URL_REGEX}'."
     exit 1
   else
     echo "URL '${URL}' is valid."
