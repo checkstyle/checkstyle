@@ -110,7 +110,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * &lt;module name="UnusedImports"/&gt;
  * </pre>
  * <p>Example:</p>
- * <source>
+ * <pre>
  * package com.example;
  * 
  * import com.example.Demo;  // violation, class from the same package should not be imported
@@ -127,17 +127,17 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * 
  * @link List // violation
  * @link java.util.List  // OK
- * </source>
+ * </pre>
  * <p>
  * To configure the check so that it ignores the imports referenced in Javadoc comments:
  * </p>
- * <source>
+ * <pre>
  * &lt;module name=&quot;UnusedImports&quot;&gt;
  *   &lt;property name=&quot;processJavadoc&quot; value=&quot;false&quot;/&gt;
  * &lt;/module&gt;
- * </source>
+ * </pre>
  * <p>Example:</p>
- * <source>
+ * <pre>
  * package com.example;
  * 
  * import com.example.Demo;  // violation, class from the same package should not be imported
@@ -154,7 +154,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * 
  * @link List // OK
  * @link java.util.List  // OK
- * </source>
+ * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
