@@ -116,7 +116,7 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck
         }
         catch (final IOException ex) {
             throw new CheckstyleException(
-                    "unable to load header file " + headerFile, ex);
+                    "unable to load header file " + headerFile.toASCIIString(), ex);
         }
     }
 
@@ -205,7 +205,7 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck
             result = Collections.emptySet();
         }
         else {
-            result = Collections.singleton(headerFile.toString());
+            result = Collections.singleton(headerFile.toASCIIString());
         }
 
         return result;
