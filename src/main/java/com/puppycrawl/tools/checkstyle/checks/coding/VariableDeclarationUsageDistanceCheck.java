@@ -692,10 +692,10 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
                 if (isChild(currentStatementAst, variableAst)) {
                     variableUsageExpressions.add(currentStatementAst);
                 }
-                // If expression doesn't contain variable and this variable
+                // If expression is not zero-distance and this variable
                 // hasn't been met yet, then distance + 1.
                 else if (variableUsageExpressions.isEmpty()
-                        && currentStatementAst.getType() != TokenTypes.VARIABLE_DEF) {
+                        && !isZeroDistanceToken(currentStatementAst.getType())) {
                     distance++;
                 }
             }
@@ -1009,6 +1009,21 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
     private boolean isVariableMatchesIgnorePattern(String variable) {
         final Matcher matcher = ignoreVariablePattern.matcher(variable);
         return matcher.matches();
+    }
+
+    /**
+     * Check if the statement is zero-distance token.
+     * Modifiers, types and resources are indicators of function or class or variable definitions.
+     *
+     * @param type
+     *        Type of the statement.
+     * @return true if the statement is, otherwise false.
+     */
+    private static boolean isZeroDistanceToken(int type) {
+        return type == TokenTypes.VARIABLE_DEF
+                || type == TokenTypes.TYPE
+                || type == TokenTypes.MODIFIERS
+                || type == TokenTypes.RESOURCE;
     }
 
 }
