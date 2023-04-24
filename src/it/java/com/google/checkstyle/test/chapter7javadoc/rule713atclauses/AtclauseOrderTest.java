@@ -34,56 +34,107 @@ public class AtclauseOrderTest extends AbstractGoogleModuleTestSupport {
     }
 
     @Test
-    public void testCorrect() throws Exception {
+    public void testCorrect1() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         final Configuration checkConfig = getModuleConfig("AtclauseOrder");
-        final String filePath = getPath("InputCorrectAtClauseOrderCheck.java");
+        final String filePath = getPath("InputCorrectAtClauseOrderCheck1.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 
     @Test
-    public void testIncorrect() throws Exception {
+    public void testCorrect2() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        final Configuration checkConfig = getModuleConfig("AtclauseOrder");
+        final String filePath = getPath("InputCorrectAtClauseOrderCheck2.java");
+
+        final Integer[] warnList = getLinesWithWarn(filePath);
+        verify(checkConfig, filePath, expected, warnList);
+    }
+
+    @Test
+    public void testCorrect3() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        final Configuration checkConfig = getModuleConfig("AtclauseOrder");
+        final String filePath = getPath("InputCorrectAtClauseOrderCheck3.java");
+
+        final Integer[] warnList = getLinesWithWarn(filePath);
+        verify(checkConfig, filePath, expected, warnList);
+    }
+
+    @Test
+    public void testIncorrect1() throws Exception {
         final String tagOrder = "[@param, @return, @throws, @deprecated]";
         final String msg = getCheckMessage(AtclauseOrderCheck.class, "at.clause.order", tagOrder);
 
         final String[] expected = {
             "40: " + msg,
             "51: " + msg,
-            "62: " + msg,
-            "69: " + msg,
-            "86: " + msg,
-            "87: " + msg,
-            "99: " + msg,
+            "73: " + msg,
+            "74: " + msg,
+            "84: " + msg,
+            "85: " + msg,
+            "98: " + msg,
             "101: " + msg,
-            "123: " + msg,
-            "124: " + msg,
-            "134: " + msg,
-            "135: " + msg,
-            "153: " + msg,
-            "161: " + msg,
-            "172: " + msg,
-            "183: " + msg,
-            "185: " + msg,
-            "199: " + msg,
-            "202: " + msg,
-            "213: " + msg,
-            "223: " + msg,
-            "230: " + msg,
-            "237: " + msg,
-            "247: " + msg,
-            "248: " + msg,
-            "259: " + msg,
-            "261: " + msg,
+            "112: " + msg,
         };
 
         final Configuration checkConfig = getModuleConfig("AtclauseOrder");
-        final String filePath = getPath("InputIncorrectAtClauseOrderCheck.java");
+        final String filePath = getPath("InputIncorrectAtClauseOrderCheck1.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 
+    @Test
+    public void testIncorrect2() throws Exception {
+        final String tagOrder = "[@param, @return, @throws, @deprecated]";
+        final String msg = getCheckMessage(AtclauseOrderCheck.class, "at.clause.order", tagOrder);
+
+        final String[] expected = {
+            "19: " + msg,
+            "26: " + msg,
+            "59: " + msg,
+            "67: " + msg,
+            "78: " + msg,
+            "85: " + msg,
+            "92: " + msg,
+        };
+
+        final Configuration checkConfig = getModuleConfig("AtclauseOrder");
+        final String filePath = getPath("InputIncorrectAtClauseOrderCheck2.java");
+
+        final Integer[] warnList = getLinesWithWarn(filePath);
+        verify(checkConfig, filePath, expected, warnList);
+    }
+
+    @Test
+    public void testIncorrect3() throws Exception {
+        final String tagOrder = "[@param, @return, @throws, @deprecated]";
+        final String msg = getCheckMessage(AtclauseOrderCheck.class, "at.clause.order", tagOrder);
+
+        final String[] expected = {
+            "20: " + msg,
+            "21: " + msg,
+            "33: " + msg,
+            "35: " + msg,
+            "58: " + msg,
+            "69: " + msg,
+            "71: " + msg,
+            "86: " + msg,
+            "87: " + msg,
+            "98: " + msg,
+            "100: " + msg,
+        };
+
+        final Configuration checkConfig = getModuleConfig("AtclauseOrder");
+        final String filePath = getPath("InputIncorrectAtClauseOrderCheck3.java");
+
+        final Integer[] warnList = getLinesWithWarn(filePath);
+        verify(checkConfig, filePath, expected, warnList);
+    }
 }
