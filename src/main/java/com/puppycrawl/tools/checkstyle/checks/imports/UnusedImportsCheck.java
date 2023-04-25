@@ -75,7 +75,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * An imported type has the same name as a declaration, such as a member variable.
  * </li>
  * <li>
- * There are two or more imports with the same name.
+ * There are two or more static imports with the same method name.
  * </li>
  * </ul>
  * <p>
@@ -109,20 +109,18 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <pre>
  * import demo.Demo;  // violation, Unused import - demo.Demo
  *
- * import java.lang.String; // violation, Unused import - java.lang.String
+ * import java.lang.String; // violation
  *
  * import java.util.Stack;  // OK
- * import java.util.Map;   // violation, Unused import - java.util.Map
+ * import java.util.Map;   // violation
  *
  * import java.util.List; // OK
  *
  * &#47;&#42;&#42;
- *  &#42; @link List
+ *  &#42; &#64;link List
  * &#42;&#47;
  * class MyClass{
- *  public static void main(String args[]){
  *   Stack stack = new Stack();
- *  }
  * }
  * </pre>
  * <p>
@@ -137,20 +135,18 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <pre>
  * import demo.Demo;  // violation, Unused import - demo.Demo
  *
- * import java.lang.String; // violation, Unused import - java.lang.String
+ * import java.lang.String; // violation
  *
  * import java.util.Stack;  // OK
- * import java.util.Map;   // violation, Unused import - java.util.Map
+ * import java.util.Map;   // violation
  *
- * import java.util.List; // violation, Unused import - java.util.List
+ * import java.util.List; // violation
  *
  * &#47;&#42;&#42;
- *  &#42; @link List
+ *  &#42; &#64;link List
  * &#42;&#47;
  * class MyClass{
- *  public static void main(String args[]){
  *   Stack stack = new Stack();
- *  }
  * }
  * </pre>
  * <p>

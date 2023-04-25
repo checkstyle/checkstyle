@@ -39,7 +39,7 @@
  An imported type has the same name as a declaration, such as a member variable.
  &lt;/li&gt;
  &lt;li&gt;
- There are two or more imports with the same name.
+ There are two or more static imports with the same method name.
  &lt;/li&gt;
  &lt;/ul&gt;
  &lt;p&gt;
