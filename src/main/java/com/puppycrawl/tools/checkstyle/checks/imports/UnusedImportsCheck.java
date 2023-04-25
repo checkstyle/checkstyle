@@ -52,10 +52,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * checks for imports that handle wild-card imports.
  * </li>
  * <li>
- * It is a duplicate of another import. This is when a class is imported more
- * than once.
- * </li>
- * <li>
  * The class imported is from the {@code java.lang} package. For example
  * importing {@code java.lang.String}.
  * </li>
@@ -111,16 +107,23 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </pre>
  * <p>Example:</p>
  * <pre>
- * package com.example;
- * import com.example.Demo;  // violation, class from the same package should not be imported
- * import java.util.Scanner; // OK
- * import java.util.Scanner; // violation, class should not be imported more than once
- * import java.lang.String; // violation, imported from "java.lang" package
+ * import demo.Demo;  // violation, Unused import - demo.Demo
+ *
+ * import java.lang.String; // violation, Unused import - java.lang.String
+ *
  * import java.util.Stack;  // OK
- * import java.util.Map;   // violation, this class is not referenced
- * Stack stack = new Stack();
- * &#64;link List // violation
- * &#64;link java.util.List  // OK
+ * import java.util.Map;   // violation, Unused import - java.util.Map
+ *
+ * import java.util.List; // OK
+ *
+ * &#47;&#42;&#42;
+ *  &#42; @link List
+ * &#42;&#47;
+ * class MyClass{
+ *  public static void main(String args[]){
+ *   Stack stack = new Stack();
+ *  }
+ * }
  * </pre>
  * <p>
  * To configure the check so that it ignores the imports referenced in Javadoc comments:
@@ -132,16 +135,23 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </pre>
  * <p>Example:</p>
  * <pre>
- * package com.example;
- * import com.example.Demo;  // violation, class from the same package should not be imported
- * import java.util.Scanner; // OK
- * import java.util.Scanner; // violation, class should not be imported more than once
- * import java.lang.String; // violation, imported from "java.lang" package
+ * import demo.Demo;  // violation, Unused import - demo.Demo
+ *
+ * import java.lang.String; // violation, Unused import - java.lang.String
+ *
  * import java.util.Stack;  // OK
- * import java.util.Map;   // violation, this class is not referenced
- * Stack stack = new Stack();
- * &#64;link List // OK
- * &#64;link java.util.List  // OK
+ * import java.util.Map;   // violation, Unused import - java.util.Map
+ *
+ * import java.util.List; // violation, Unused import - java.util.List
+ *
+ * &#47;&#42;&#42;
+ *  &#42; @link List
+ * &#42;&#47;
+ * class MyClass{
+ *  public static void main(String args[]){
+ *   Stack stack = new Stack();
+ *  }
+ * }
  * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}

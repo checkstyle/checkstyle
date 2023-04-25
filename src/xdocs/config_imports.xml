@@ -2468,11 +2468,6 @@ public class MyClass{ };
           </li>
 
           <li>
-            It is a duplicate of another import. This is when a class is
-            imported more than once.
-          </li>
-
-          <li>
             The class imported is from the <code>java.lang</code>
             package. For example importing <code>java.lang.String</code>.
           </li>
@@ -2548,22 +2543,23 @@ class FooBar {
         </source>
         <p>Example:</p>
         <source>
-package com.example;
+import demo.Demo;  // violation, Unused import - demo.Demo
 
-import com.example.Demo;  // violation, class from the same package should not be imported
-
-import java.util.Scanner; // OK
-import java.util.Scanner; // violation, class should not be imported more than once
-
-import java.lang.String; // violation, imported from "java.lang" package
+import java.lang.String; // violation, Unused import - java.lang.String
 
 import java.util.Stack;  // OK
-import java.util.Map;   // violation, this class is not referenced
+import java.util.Map;   // violation, Unused import - java.util.Map
 
-Stack stack = new Stack();
+import java.util.List; // OK
 
-&#64;link List // violation
-&#64;link java.util.List  // OK
+&#47;&#42;&#42;
+&#42; @link List
+&#42;&#47;
+class MyClass{
+    public static void main(String args[]){
+        Stack stack = new Stack();
+    }
+}
         </source>
         <p>
           To configure the check so that it ignores the imports referenced in Javadoc comments:
@@ -2575,22 +2571,23 @@ Stack stack = new Stack();
         </source>
         <p>Example:</p>
         <source>
-package com.example;
+import demo.Demo;  // violation, Unused import - demo.Demo
 
-import com.example.Demo;  // violation, class from the same package should not be imported
-
-import java.util.Scanner; // OK
-import java.util.Scanner; // violation, class should not be imported more than once
-
-import java.lang.String; // violation, imported from "java.lang" package
+import java.lang.String; // violation, Unused import - java.lang.String
 
 import java.util.Stack;  // OK
-import java.util.Map;   // violation, this class is not referenced
+import java.util.Map;   // violation, Unused import - java.util.Map
 
-Stack stack = new Stack();
+import java.util.List; // violation, Unused import - java.util.List
 
-&#64;link List // OK
-&#64;link java.util.List  // OK
+&#47;&#42;&#42;
+&#42; @link List
+&#42;&#47;
+class MyClass{
+    public static void main(String args[]){
+            Stack stack = new Stack();
+    }
+}
         </source>
       </subsection>
 
