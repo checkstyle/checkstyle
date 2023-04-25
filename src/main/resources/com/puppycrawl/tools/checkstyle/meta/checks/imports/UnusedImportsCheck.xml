@@ -16,10 +16,6 @@
  checks for imports that handle wild-card imports.
  &lt;/li&gt;
  &lt;li&gt;
- It is a duplicate of another import. This is when a class is imported more
- than once.
- &lt;/li&gt;
- &lt;li&gt;
  The class imported is from the {@code java.lang} package. For example
  importing {@code java.lang.String}.
  &lt;/li&gt;
