@@ -20,7 +20,7 @@ import org.apache.commons.io.ByteOrderMark;
 
 import static sun.tools.util.ModifierFilter.ALL_ACCESS;
 
-import com.google.common.collect.HashMultimap;  // violation
+import com.google.common.collect.HashMultimap;  // violation should be before static import
 
 import antlr.*;
 import antlr.CommonASTWithHiddenTokens;
