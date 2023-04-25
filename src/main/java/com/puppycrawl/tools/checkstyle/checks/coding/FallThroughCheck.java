@@ -19,14 +19,14 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import java.util.regex.Matcher;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CodePointUtil;
 
 /**
  * <p>
@@ -239,6 +239,11 @@ public class FallThroughCheck extends AbstractCheck {
         return getRequiredTokens();
     }
 
+    @Override
+    public boolean isCommentNodesRequired() {
+        return true;
+    }
+
     /**
      * Setter to define the RegExp to match the relief comment that suppresses
      * the warning about a fall through.
@@ -267,7 +272,7 @@ public class FallThroughCheck extends AbstractCheck {
             final DetailAST slist = ast.findFirstToken(TokenTypes.SLIST);
 
             if (slist != null && !isTerminated(slist, true, true)
-                && !hasFallThroughComment(ast, nextGroup)) {
+                && !hasFallThroughComment(ast)) {
                 if (isLastGroup) {
                     log(ast, MSG_FALL_THROUGH_LAST);
                 }
@@ -346,6 +351,16 @@ public class FallThroughCheck extends AbstractCheck {
             lastStmt = lastStmt.getPreviousSibling();
         }
 
+        while (lastStmt != null) {
+            if (lastStmt.getType() == TokenTypes.SINGLE_LINE_COMMENT
+                || lastStmt.getType() == TokenTypes.BLOCK_COMMENT_BEGIN) {
+                lastStmt = lastStmt.getPreviousSibling();
+            }
+            else {
+                break;
+            }
+        }
+
         return lastStmt != null
             && isTerminated(lastStmt, useBreak, useContinue);
     }
@@ -361,13 +376,37 @@ public class FallThroughCheck extends AbstractCheck {
      */
     private boolean checkIf(final DetailAST ast, boolean useBreak,
                             boolean useContinue) {
-        final DetailAST thenStmt = ast.findFirstToken(TokenTypes.RPAREN)
-                .getNextSibling();
-        final DetailAST elseStmt = thenStmt.getNextSibling();
+        DetailAST thenStmt = ast.findFirstToken(TokenTypes.RPAREN);
+        thenStmt = getNextASTLeaveComment(thenStmt);
+
+        DetailAST elseStmt = thenStmt;
+        elseStmt = getNextASTLeaveComment(elseStmt);
 
         return elseStmt != null
                 && isTerminated(thenStmt, useBreak, useContinue)
-                && isTerminated(elseStmt.getFirstChild(), useBreak, useContinue);
+                && isTerminated(elseStmt.getLastChild(), useBreak, useContinue);
+    }
+
+    /**
+     * This method will skip the comment content while finding the next ast of current ast.
+     *
+     * @param ast current ast
+     * @return next ast after skipping comment
+     */
+    private static DetailAST getNextASTLeaveComment(DetailAST ast) {
+        final DetailAST result;
+        if (ast.getNextSibling() != null) {
+            DetailAST tempAst = ast.getNextSibling();
+            while (tempAst.getType() == TokenTypes.SINGLE_LINE_COMMENT
+                    || tempAst.getType() == TokenTypes.BLOCK_COMMENT_BEGIN) {
+                tempAst = tempAst.getNextSibling();
+            }
+            result = tempAst;
+        }
+        else {
+            result = ast;
+        }
+        return result;
     }
 
     /**
@@ -486,46 +525,53 @@ public class FallThroughCheck extends AbstractCheck {
      * </pre>
      *
      * @param currentCase AST of the case that falls through to the next case.
-     * @param nextCase AST of the next case.
      * @return True if a relief comment was found
      */
-    private boolean hasFallThroughComment(DetailAST currentCase, DetailAST nextCase) {
-        boolean allThroughComment = false;
-        final int endLineNo = nextCase.getLineNo();
+    private boolean hasFallThroughComment(DetailAST currentCase) {
+        final DetailAST nextCase = currentCase.getNextSibling();
+        final DetailAST startAST;
+        final DetailAST stopAST;
 
-        if (matchesComment(reliefPattern, endLineNo)) {
-            allThroughComment = true;
+        if (nextCase.getType() == TokenTypes.CASE_GROUP) {
+            startAST = currentCase.getLastChild();
+            stopAST = nextCase.getLastChild();
         }
         else {
-            final int startLineNo = currentCase.getLineNo();
-            for (int i = endLineNo - 2; i > startLineNo - 1; i--) {
-                final int[] line = getLineCodePoints(i);
-                if (!CodePointUtil.isBlank(line)) {
-                    allThroughComment = matchesComment(reliefPattern, i + 1);
-                    break;
-                }
-            }
+            // When we have last case group of switch statement then comment might
+            // be the sibling of that case, or it might be as child of that last
+            // case group AST, so we need all the comment from last case group
+            // till the end of switch case to verify if there is relief comment.
+            startAST = currentCase;
+            stopAST = currentCase.getParent().getLastChild();
         }
-        return allThroughComment;
+
+        final List<DetailAST> commentContentNodes = getCommentContentNodes(startAST, stopAST);
+        return commentContentNodes.stream()
+                .map(DetailAST::getText)
+                .anyMatch(comment -> reliefPattern.matcher(comment).find());
     }
 
     /**
-     * Does a regular expression match on the given line and checks that a
-     * possible match is within a comment.
+     * This method will return the comment content node between two nodes.
      *
-     * @param pattern The regular expression pattern to use.
-     * @param lineNo The line number in the file.
-     * @return True if a match was found inside a comment.
+     * @param fromNode starting node
+     * @param toNode last node to check
+     * @return list of commentContent node
      */
-    // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/11166
-    @SuppressWarnings("deprecation")
-    private boolean matchesComment(Pattern pattern, int lineNo) {
-        final String line = getLine(lineNo - 1);
-
-        final Matcher matcher = pattern.matcher(line);
-        return matcher.find()
-                && getFileContents().hasIntersectionWithComment(
-                        lineNo, matcher.start(), lineNo, matcher.end());
+    private static List<DetailAST> getCommentContentNodes(DetailAST fromNode, DetailAST toNode) {
+        final List<DetailAST> result = new LinkedList<>();
+        DetailAST node = fromNode;
+        while (!node.equals(toNode)) {
+            if (node.getType() == TokenTypes.COMMENT_CONTENT) {
+                result.add(node);
+            }
+            DetailAST visitNode = node.getFirstChild();
+            while (visitNode == null) {
+                visitNode = node.getNextSibling();
+                node = node.getParent();
+            }
+            node = visitNode;
+        }
+        return result;
     }
-
 }
