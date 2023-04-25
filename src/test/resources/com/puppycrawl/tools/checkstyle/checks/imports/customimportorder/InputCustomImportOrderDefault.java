@@ -13,21 +13,23 @@ sortImportsInGroupAlphabetically = true
 package com.puppycrawl.tools.checkstyle.checks.imports.customimportorder;
 
 import static java.io.File.createTempFile;
-import static java.awt.Button.ABORT; // violation
-import static java.awt.print.Paper.*; // violation
+import static java.awt.Button.ABORT; // violation - in ASCII order 'A' should go before 'c',
+// as all uppercase come before lowercase letters
+import static java.awt.print.Paper.*; // violation - in ASCII order 'P' should go before 'c',
+// as all uppercase come before lowercase letters
 import static javax.swing.WindowConstants.*;
 
-import java.awt.Button; // violation
-import java.awt.Frame; // violation
-import java.awt.Dialog; // violation
-import java.awt.color.ColorSpace; // violation
-import java.awt.event.ActionEvent; // violation
-import javax.swing.JComponent; // violation
-import javax.swing.JTable; // violation
-import java.io.File; // violation
-import java.io.IOException; // violation
-import java.io.InputStream; // violation
-import java.io.Reader; // violation
+import java.awt.Button; // violation should be at the end
+import java.awt.Frame; // violation should be at the end
+import java.awt.Dialog; // violation should be at the end
+import java.awt.color.ColorSpace; // violation should be at the end
+import java.awt.event.ActionEvent; // violation should be at the end
+import javax.swing.JComponent; // violation should be at the end
+import javax.swing.JTable; // violation should be at the end
+import java.io.File; // violation should be at the end
+import java.io.IOException; // violation should be at the end
+import java.io.InputStream; // violation should be at the end
+import java.io.Reader; // violation should be at the end
 
 import com.puppycrawl.tools.checkstyle.*;
 

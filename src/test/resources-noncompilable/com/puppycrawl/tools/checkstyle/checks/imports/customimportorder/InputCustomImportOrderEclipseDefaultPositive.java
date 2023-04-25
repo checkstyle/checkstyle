@@ -19,19 +19,19 @@ import static java.io.File.createTempFile;
 import static javax.swing.WindowConstants.*;
 import static org.junit.Assert.assertEquals;
 
-import java.awt.Button; // violation
-import java.awt.Dialog; // violation
-import java.io.InputStream; // violation
+import java.awt.Button; // violation should be at the start
+import java.awt.Dialog; // violation should be at the start
+import java.io.InputStream; // violation should be at the start
 
-import javax.swing.JComponent; // violation
-import javax.swing.JTable; // violation
+import javax.swing.JComponent; // violation should be before static imports
+import javax.swing.JTable; // violation should be before static imports
 
-import org.junit.Test; // violation
-import org.mockito.Mock; // violation
+import org.junit.Test; // violation should be before static imports
+import org.mockito.Mock; // violation should be before static imports
 
 import com.some.api.DetailClass;
 
-import sun.tools.java.ArrayType; // violation
+import sun.tools.java.ArrayType; // violation should be before static imports
 
 public class InputCustomImportOrderEclipseDefaultPositive {
 }

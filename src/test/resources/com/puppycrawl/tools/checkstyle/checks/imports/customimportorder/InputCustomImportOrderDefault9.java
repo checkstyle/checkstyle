@@ -17,7 +17,7 @@ import static java.awt.Button.ABORT;
 import static java.awt.print.Paper.*;
 import static javax.swing.WindowConstants.*;
 
-import java.awt.Button; // violation
+import java.awt.Button; // violation should be in SAME_PACKAGE
 import java.awt.Frame;
 import java.awt.Dialog;
 import java.awt.color.ColorSpace;
@@ -29,9 +29,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.Reader;
 
-import com.puppycrawl.tools.checkstyle.*; // violation
+import com.puppycrawl.tools.checkstyle.*; // violation should be at the end
 
-import com.google.common.collect.*; // violation
+import com.google.common.collect.*; // violation should be in THIRD PARTY PACKAGE
 import org.junit.*;
 
 public class InputCustomImportOrderDefault9 {

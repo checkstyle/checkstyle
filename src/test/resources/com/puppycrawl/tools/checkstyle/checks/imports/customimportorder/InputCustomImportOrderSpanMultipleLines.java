@@ -27,7 +27,7 @@ import java.util.
 
 // comment within import group
 
-import java.util. // violation
+import java.util. // violation there should be no preceding line space in same group
 
     BitSet
     ;
@@ -42,22 +42,22 @@ import java.util.HashMap;
 
 
 // comment within import group
-import java.util.HashSet; // violation
+import java.util.HashSet; // violation there should be no line space in same group
 
 // comment between import groups
 
-import org.apache.tools.ant.*; // violation
+import org.apache.tools.ant.*; // violation there should be no line space in same group
 import org.apache.commons.beanutils.*;
 // comment between import groups
 
 
-import com.puppycrawl.tools.checkstyle.*; // violation
+import com.puppycrawl.tools.checkstyle.*; // violation should be in the NONGROUP group
 
 
 // comment between import groups
-import picocli.*; // violation
+import picocli.*; // violation should be in the NONGROUP group
 
 // comment within import group
-import picocli.CommandLine; // violation
+import picocli.CommandLine; // violation should be in the NONGROUP group
 
 class InputCustomImportOrderSpanMultipleLines {}

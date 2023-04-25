@@ -14,8 +14,8 @@ sortImportsInGroupAlphabetically = true
 package com.puppycrawl.tools.checkstyle.checks.imports.customimportorder;
 
 import   java . util . * ;
-import    static   java.util.Collections   .*; // violation
-import static java.lang.String . CASE_INSENSITIVE_ORDER; // violation
+import    static   java.util.Collections   .*; // violation STATIC group should be first
+import static java.lang.String . CASE_INSENSITIVE_ORDER; // violation STATIC group should be first
 
 
 import java . // 2 violations

@@ -20,25 +20,32 @@ import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderOption;
 
 // every import from javadoc package has comment in brackets indicating presence of keywords
 // Javadoc, Check, Tag. For example J_T = Javadoc, no Check, Tag
-import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl; // violation
+import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl; 
+// violation should be in THIRD PARTY PACKAGE 
 
 // STANDARD - keyword Check
 
-import com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck; // violation
+import com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck; 
+// violation should be in THIRD PARTY PACKAGE 
 import com.puppycrawl.tools.checkstyle.checks.javadoc.AtclauseOrderCheck; // (_C_)
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagContinuationIndentationCheck; // (JCT)
 
 // SPECIAL_IMPORTS - keyword Tag
 
-import com.puppycrawl.tools.checkstyle.checks.javadoc.InvalidJavadocTag; // violation
+import com.puppycrawl.tools.checkstyle.checks.javadoc.InvalidJavadocTag; 
+// violation should be in THIRD PARTY PACKAGE
 //import com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser; // (__T)
-import com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheck; // violation
+import com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheck; 
+// violation should be in SAME_PACKAGE(6)
 
 import com.puppycrawl.tools.checkstyle.*;
 //import com.puppycrawl.tools.checkstyle.checks.javadoc.HtmlTag;
-import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag; // violation
-import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck; // violation
-import com.puppycrawl.tools.checkstyle.checks.javadoc.NonEmptyAtclauseDescriptionCheck; // violation
+import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag; 
+// violation should be in THIRD PARTY PACKAGE 
+import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck; 
+// violation should be in THIRD PARTY PACKAGE 
+import com.puppycrawl.tools.checkstyle.checks.javadoc.NonEmptyAtclauseDescriptionCheck; 
+// violation should be in SAME_PACKAGE(6)
 
 public class InputCustomImportOrder_OverlappingPatterns {
 }
