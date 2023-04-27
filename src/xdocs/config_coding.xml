@@ -7259,6 +7259,12 @@ if ((++f) &gt; g &amp;&amp; a) { // violation, unnecessary paren
                 POST_INC</a>
                 ,<a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#POST_DEC">
                 POST_DEC</a>
+                ,<a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BXOR">
+                BXOR</a>
+                ,<a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BOR">
+                BOR</a>
+                ,<a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BAND">
+                BAND</a>
                   .
               </td>
               <td>
@@ -7393,6 +7399,42 @@ if (x==(a &lt;= 15)) { // ok
 }
 if (x==(y == z)) { // ok
     return;
+}
+        </source>
+        <p>
+          To configure the check to detect unnecessary parentheses around bitwise inclusive OR
+          <code> '|' </code>, bitwise AND <code> '&amp;' </code>, bitwise exclusive OR
+          <code> '^' </code>:
+        </p>
+        <source>
+&lt;module name=&quot;UnnecessaryParentheses&quot;&gt;
+  &lt;property name=&quot;tokens&quot; value=&quot;BOR, BAND, BXOR&quot; /&gt;
+&lt;/module&gt;
+        </source>
+        <source>
+class Test {
+
+    void method() {
+        int x = 9, y = 8;
+        if(x&gt;= 0 ^ (x&lt;=8 &amp; y&lt;=11) // violation, unnecessary parenthesis
+            ^ y&gt;=8) {
+            return;
+        }
+         if(x&gt;= 0 ^ x&lt;=8 &amp; y&lt;=11 ^ y&gt;=8) { // ok
+            return;
+        }
+        if(x&gt;= 0 || (x&lt;=8 &amp; y&lt;=11) // violation, unnecessary parenthesis
+            &amp;&amp; y&gt;=8) {
+            return;
+        }
+        if(x&gt;= 0 || x&lt;=8 &amp; y&lt;=11 &amp;&amp; y&gt;=8) { // ok
+            return;
+        }
+        if(x&gt;= 0 &amp; (x&lt;=8 ^ y&lt;=11) &amp; y&gt;=8) { // ok
+            return;
+        }
+    }
+
 }
         </source>
       </subsection>

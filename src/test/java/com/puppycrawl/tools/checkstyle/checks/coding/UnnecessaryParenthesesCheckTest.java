@@ -277,4 +277,65 @@ public class UnnecessaryParenthesesCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
                 getPath("InputUnnecessaryParenthesesIdentifier.java"), expected);
     }
+
+    @Test
+    public void testOperator1() throws Exception {
+        final String[] expected = {
+            "20:17: " + getCheckMessage(MSG_EXPR),
+            "22:17: " + getCheckMessage(MSG_EXPR),
+            "24:17: " + getCheckMessage(MSG_EXPR),
+            "26:17: " + getCheckMessage(MSG_EXPR),
+            "28:17: " + getCheckMessage(MSG_EXPR),
+            "30:17: " + getCheckMessage(MSG_EXPR),
+            "32:17: " + getCheckMessage(MSG_EXPR),
+            "34:17: " + getCheckMessage(MSG_EXPR),
+            "36:17: " + getCheckMessage(MSG_EXPR),
+            "38:17: " + getCheckMessage(MSG_EXPR),
+            "40:17: " + getCheckMessage(MSG_EXPR),
+            "42:17: " + getCheckMessage(MSG_EXPR),
+            "47:19: " + getCheckMessage(MSG_EXPR),
+            "49:18: " + getCheckMessage(MSG_EXPR),
+            "51:18: " + getCheckMessage(MSG_EXPR),
+            "53:17: " + getCheckMessage(MSG_EXPR),
+            "55:18: " + getCheckMessage(MSG_EXPR),
+            "57:19: " + getCheckMessage(MSG_EXPR),
+            "59:18: " + getCheckMessage(MSG_EXPR),
+            "61:19: " + getCheckMessage(MSG_EXPR),
+            "63:18: " + getCheckMessage(MSG_EXPR),
+            "65:18: " + getCheckMessage(MSG_EXPR),
+            "67:19: " + getCheckMessage(MSG_EXPR),
+            "69:18: " + getCheckMessage(MSG_EXPR),
+            "85:20: " + getCheckMessage(MSG_EXPR),
+            "102:14: " + getCheckMessage(MSG_EXPR),
+            "106:13: " + getCheckMessage(MSG_EXPR),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputUnnecessaryParenthesesOperator.java"), expected);
+    }
+
+    @Test
+    public void testOperator2() throws Exception {
+        final String[] expected = {
+            "66:18: " + getCheckMessage(MSG_EXPR),
+            "67:17: " + getCheckMessage(MSG_EXPR),
+            "68:25: " + getCheckMessage(MSG_EXPR),
+            "82:14: " + getCheckMessage(MSG_EXPR),
+            "83:19: " + getCheckMessage(MSG_EXPR),
+            "92:21: " + getCheckMessage(MSG_EXPR),
+            "95:19: " + getCheckMessage(MSG_EXPR),
+            "98:20: " + getCheckMessage(MSG_EXPR),
+            "101:21: " + getCheckMessage(MSG_EXPR),
+            "107:20: " + getCheckMessage(MSG_EXPR),
+            "110:21: " + getCheckMessage(MSG_EXPR),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputUnnecessaryParenthesesOperator2.java"), expected);
+    }
+
+    @Test
+    public void testOperator3() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputUnnecessaryParenthesesOperator3.java"), expected);
+    }
 }
