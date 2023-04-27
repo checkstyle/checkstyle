@@ -2543,8 +2543,6 @@ class FooBar {
         </source>
         <p>Example:</p>
         <source>
-import demo.Demo;  // violation, Unused import - demo.Demo
-
 import java.lang.String; // violation
 
 import java.util.Stack;  // OK
@@ -2569,8 +2567,6 @@ class MyClass{
         </source>
         <p>Example:</p>
         <source>
-import demo.Demo;  // violation, Unused import - demo.Demo
-
 import java.lang.String; // violation
 
 import java.util.Stack;  // OK

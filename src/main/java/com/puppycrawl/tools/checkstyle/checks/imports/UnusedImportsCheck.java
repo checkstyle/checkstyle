@@ -107,8 +107,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </pre>
  * <p>Example:</p>
  * <pre>
- * import demo.Demo;  // violation, Unused import - demo.Demo
- *
  * import java.lang.String; // violation
  *
  * import java.util.Stack;  // OK
@@ -133,8 +131,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </pre>
  * <p>Example:</p>
  * <pre>
- * import demo.Demo;  // violation, Unused import - demo.Demo
- *
  * import java.lang.String; // violation
  *
  * import java.util.Stack;  // OK
