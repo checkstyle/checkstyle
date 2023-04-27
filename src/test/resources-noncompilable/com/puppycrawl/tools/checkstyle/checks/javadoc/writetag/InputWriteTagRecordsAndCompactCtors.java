@@ -8,7 +8,6 @@ tokens = INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF, COMPACT
 
 */
 
-//non-compiled with javac: Compilable with Java14
 package com.puppycrawl.tools.checkstyle.checks.javadoc.writetag;
 
 
@@ -21,9 +20,9 @@ public class InputWriteTagRecordsAndCompactCtors { // violation 'missing @incomp
     class TestClass {
     }
 
-    // violation 2 lines below 'Failed to recognize 'record' introduced in Java 14.'
+    // violation 2 lines below 'This class needs more code.'
     /**
-     * @incomplete Failed to recognize 'record' introduced in Java 14.
+     * @incomplete This class needs more code...
      */
     record MyRecord1() {
 
@@ -32,9 +31,9 @@ public class InputWriteTagRecordsAndCompactCtors { // violation 'missing @incomp
 
     record MyRecord2(String myString) { // violation 'missing @incomplete tag.'
 
-        // violation 2 lines below 'Failed to recognize 'record' introduced in Java 14.'
+        // violation 2 lines below 'This class needs more code.'
         /**
-         * @incomplete Failed to recognize 'record' introduced in Java 14.
+         * @incomplete This class needs more code...
          */
         public MyRecord2 {
         }
@@ -43,9 +42,9 @@ public class InputWriteTagRecordsAndCompactCtors { // violation 'missing @incomp
 
     record MyRecord3(int x) { // violation 'Type Javadoc comment is missing @incomplete tag.*'
 
-        // violation 2 lines below 'Failed to recognize 'record' introduced in Java 14.'
+        // violation 2 lines below 'This class needs more code.'
         /**
-         * @incomplete Failed to recognize 'record' introduced in Java 14.
+         * @incomplete This class needs more code...
          */
         MyRecord3() {
             this(3);
@@ -57,9 +56,9 @@ public class InputWriteTagRecordsAndCompactCtors { // violation 'missing @incomp
 
         private record MyRecord5(int z) { // violation 'missing @incomplete tag.'
 
-            // violation 2 lines below 'Failed to recognize 'record' introduced in Java 14.'
+            // violation 2 lines below 'This class needs more code.'
             /**
-             * @incomplete Failed to recognize 'record' introduced in Java 14.
+             * @incomplete This class needs more code...
              */
             public MyRecord5 {
             }
