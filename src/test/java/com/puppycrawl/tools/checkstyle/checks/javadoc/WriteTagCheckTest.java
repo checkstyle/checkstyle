@@ -169,20 +169,20 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testWriteTagRecordsAndCompactCtors() throws Exception {
         final String[] expected = {
-            "15: " + getCheckMessage(MSG_MISSING_TAG, "@incomplete"),
-            "19: " + getCheckMessage(MSG_TAG_FORMAT, "@incomplete", "\\S"),
-            "26: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete",
-                    "Failed to recognize 'record' introduced in Java 14."),
-            "33: " + getCheckMessage(MSG_MISSING_TAG, "@incomplete"),
-            "37: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete",
-                    "Failed to recognize 'record' introduced in Java 14."),
-            "44: " + getCheckMessage(MSG_MISSING_TAG, "@incomplete"),
-            "48: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete",
-                    "Failed to recognize 'record' introduced in Java 14."),
-            "56: " + getCheckMessage(MSG_MISSING_TAG, "@incomplete"),
-            "58: " + getCheckMessage(MSG_MISSING_TAG, "@incomplete"),
-            "62: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete",
-                    "Failed to recognize 'record' introduced in Java 14."),
+            "14: " + getCheckMessage(MSG_MISSING_TAG, "@incomplete"),
+            "18: " + getCheckMessage(MSG_TAG_FORMAT, "@incomplete", "\\S"),
+            "25: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete",
+                    "This class needs more code..."),
+            "32: " + getCheckMessage(MSG_MISSING_TAG, "@incomplete"),
+            "36: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete",
+                    "This class needs more code..."),
+            "43: " + getCheckMessage(MSG_MISSING_TAG, "@incomplete"),
+            "47: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete",
+                    "This class needs more code..."),
+            "55: " + getCheckMessage(MSG_MISSING_TAG, "@incomplete"),
+            "57: " + getCheckMessage(MSG_MISSING_TAG, "@incomplete"),
+            "61: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete",
+                    "This class needs more code..."),
         };
         verifyWithInlineConfigParser(
             getNonCompilablePath("InputWriteTagRecordsAndCompactCtors.java"), expected);
