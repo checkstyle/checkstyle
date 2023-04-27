@@ -52,10 +52,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * checks for imports that handle wild-card imports.
  * </li>
  * <li>
- * It is a duplicate of another import. This is when a class is imported more
- * than once.
- * </li>
- * <li>
  * The class imported is from the {@code java.lang} package. For example
  * importing {@code java.lang.String}.
  * </li>
@@ -79,7 +75,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * An imported type has the same name as a declaration, such as a member variable.
  * </li>
  * <li>
- * There are two or more imports with the same name.
+ * There are two or more static imports with the same method name.
  * </li>
  * </ul>
  * <p>
@@ -108,6 +104,46 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </p>
  * <pre>
  * &lt;module name="UnusedImports"/&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * import java.lang.String; // violation
+ *
+ * import java.util.Stack;  // OK
+ * import java.util.Map;   // violation
+ *
+ * import java.util.List; // OK
+ *
+ * &#47;&#42;&#42;
+ *  &#42; &#64;link List
+ * &#42;&#47;
+ * class MyClass{
+ *   Stack stack = new Stack();
+ * }
+ * </pre>
+ * <p>
+ * To configure the check so that it ignores the imports referenced in Javadoc comments:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;UnusedImports&quot;&gt;
+ *   &lt;property name=&quot;processJavadoc&quot; value=&quot;false&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * import java.lang.String; // violation
+ *
+ * import java.util.Stack;  // OK
+ * import java.util.Map;   // violation
+ *
+ * import java.util.List; // violation
+ *
+ * &#47;&#42;&#42;
+ *  &#42; &#64;link List
+ * &#42;&#47;
+ * class MyClass{
+ *   Stack stack = new Stack();
+ * }
  * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
