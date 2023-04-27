@@ -163,6 +163,10 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * }
  * </pre>
  * <p>
+ * For all the above examples, the handling of 'record' introduced in Java 14 and 'class'
+ * is the same.
+ * </p>
+ * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
  * <p>
