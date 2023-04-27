@@ -4499,6 +4499,9 @@ public class Test {
   void foo() {}
 }
         </source>
+        <p>
+        For all the above examples, the handling of 'record' introduced in Java 14 and 'class' is the same.
+        </p>
       </subsection>
 
       <subsection name="Example of Usage" id="WriteTag_Example_of_Usage">
