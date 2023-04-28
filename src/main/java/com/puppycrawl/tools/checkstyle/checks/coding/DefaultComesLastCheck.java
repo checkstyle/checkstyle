@@ -214,7 +214,7 @@ public class DefaultComesLastCheck extends AbstractCheck {
      */
     private static DetailAST findNextSibling(DetailAST ast, int tokenType) {
         DetailAST token = null;
-        DetailAST node = ast.getNextSibling();
+        DetailAST node = ast;
         while (node != null) {
             if (node.getType() == tokenType) {
                 token = node;
