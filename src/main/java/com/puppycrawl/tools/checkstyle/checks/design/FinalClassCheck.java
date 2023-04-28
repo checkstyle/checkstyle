@@ -40,9 +40,20 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <p>
- * Checks that a class that has only private constructors and has no descendant
- * classes is declared as final.
+ * Check that identifies classes that can be declared as final are explicitly made final.
+ * The following is the type of classes that can be identified:
  * </p>
+ * <ol>
+ *   <li>
+ *       Private classes with implicit constructor.
+ *   </li>
+ *   <li>
+ *       Classes with all the type of modifier which contains only private constructor.
+ *   </li>
+ *   <li>
+ *       Class must not have any descendant class.
+ *   </li>
+ * </ol>
  * <p>
  * To configure the check:
  * </p>
@@ -81,6 +92,15 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *
  *     private TestAnonymousInnerClasses() {
  *     }
+ * }
+ * class Class1 {
+ *
+ *     private class Class2 { // violation, class should be declared final
+ *     }
+ *
+ *     public class Class3 { // ok
+ *     }
+ *
  * }
  * </pre>
  * <p>
@@ -216,13 +236,10 @@ public class FinalClassCheck
     private void visitCtor(DetailAST ast) {
         if (!ScopeUtil.isInEnumBlock(ast) && !ScopeUtil.isInRecordBlock(ast)) {
             final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
-            // Can be only of type ClassDesc, preceding if statements guarantee it.
-            final ClassDesc desc = (ClassDesc) typeDeclarations.getFirst();
             if (modifiers.findFirstToken(TokenTypes.LITERAL_PRIVATE) == null) {
+                // Can be only of type ClassDesc, preceding if statements guarantee it.
+                final ClassDesc desc = (ClassDesc) typeDeclarations.getFirst();
                 desc.registerNonPrivateCtor();
-            }
-            else {
-                desc.registerPrivateCtor();
             }
         }
     }
@@ -249,16 +266,27 @@ public class FinalClassCheck
     /**
      * Checks whether a class should be declared as final or not.
      *
-     * @param desc description of the class
+     * @param classDesc description of the class
      * @return true if given class should be declared as final otherwise false
      */
-    private static boolean shouldBeDeclaredAsFinal(ClassDesc desc) {
-        return desc.isWithPrivateCtor()
-                && !(desc.isDeclaredAsAbstract()
-                    || desc.isSuperClassOfAnonymousInnerClass())
-                && !desc.isDeclaredAsFinal()
-                && !desc.isWithNonPrivateCtor()
-                && !desc.isWithNestedSubclass();
+    private static boolean shouldBeDeclaredAsFinal(ClassDesc classDesc) {
+        final boolean shouldBeFinal;
+
+        if (classDesc.isWithImplicitConstructor()) {
+            shouldBeFinal = !(classDesc.isDeclaredAsAbstract()
+                    || classDesc.isSuperClassOfAnonymousInnerClass())
+                    && !classDesc.isDeclaredAsFinal()
+                    && !classDesc.isWithNestedSubclass()
+                    && classDesc.isPrivateClass();
+        }
+        else {
+            shouldBeFinal = !(classDesc.isDeclaredAsAbstract()
+                    || classDesc.isSuperClassOfAnonymousInnerClass())
+                    && !classDesc.isDeclaredAsFinal()
+                    && !classDesc.isWithNestedSubclass()
+                    && !classDesc.isWithNonPrivateCtor();
+        }
+        return shouldBeFinal;
     }
 
     /**
@@ -507,11 +535,14 @@ public class FinalClassCheck
         /** Is class declared as abstract. */
         private final boolean declaredAsAbstract;
 
+        /** Is class contains private modifier. */
+        private final boolean privateClass;
+
+        /** Does class have implicit constructor. */
+        private final boolean withImplicitConstructor;
+
         /** Does class have non-private ctors. */
         private boolean withNonPrivateCtor;
-
-        /** Does class have private ctors. */
-        private boolean withPrivateCtor;
 
         /** Does class have nested subclass. */
         private boolean withNestedSubclass;
@@ -531,11 +562,10 @@ public class FinalClassCheck
             final DetailAST modifiers = classAst.findFirstToken(TokenTypes.MODIFIERS);
             declaredAsFinal = modifiers.findFirstToken(TokenTypes.FINAL) != null;
             declaredAsAbstract = modifiers.findFirstToken(TokenTypes.ABSTRACT) != null;
-        }
-
-        /** Adds private ctor. */
-        private void registerPrivateCtor() {
-            withPrivateCtor = true;
+            withImplicitConstructor =
+                    classAst.getLastChild().findFirstToken(TokenTypes.CTOR_DEF) == null;
+            privateClass = classAst.findFirstToken(TokenTypes.MODIFIERS)
+                    .findFirstToken(TokenTypes.LITERAL_PRIVATE) != null;
         }
 
         /** Adds non-private ctor. */
@@ -551,15 +581,6 @@ public class FinalClassCheck
         /** Adds anonymous inner class. */
         private void registerSuperClassOfAnonymousInnerClass() {
             superClassOfAnonymousInnerClass = true;
-        }
-
-        /**
-         *  Does class have private ctors.
-         *
-         *  @return true if class has private ctors
-         */
-        private boolean isWithPrivateCtor() {
-            return withPrivateCtor;
         }
 
         /**
@@ -607,5 +628,22 @@ public class FinalClassCheck
             return superClassOfAnonymousInnerClass;
         }
 
+        /**
+         * Does class have implicit constructor.
+         *
+         * @return true if class have implicit constructor
+         */
+        private boolean isWithImplicitConstructor() {
+            return withImplicitConstructor;
+        }
+
+        /**
+         * Does class is private.
+         *
+         * @return true if class is private
+         */
+        private boolean isPrivateClass() {
+            return privateClass;
+        }
     }
 }
