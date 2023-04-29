@@ -126,21 +126,16 @@ jobs:
           LINK_FROM_PR: ${{ needs.parse_body.outputs.projects_link }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          pwd
-          cd checkstyle
           ./.ci/diff-report.sh download-files
-          cd ../
 
       # set main checkstyle repo as an upstream
       # Diff report will be generated taking upstream's master branch as a base branch
       - name: set upstream
         run: |
-          cd checkstyle
           bash
           MAIN_REPO_GIT_URL="https://github.com/checkstyle/checkstyle.git"
           git remote add upstream $MAIN_REPO_GIT_URL
           git fetch upstream
-          cd ../
 
       - name: Setup local maven cache
         uses: actions/cache@v3
@@ -212,7 +207,6 @@ jobs:
       - name: Set output
         id: out
         run: |
-          cd checkstyle
           ./.ci/append-to-github-output.sh "message" "$(cat ../message)"
 
   # should be always last step
