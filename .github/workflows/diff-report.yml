@@ -126,6 +126,7 @@ jobs:
           LINK_FROM_PR: ${{ needs.parse_body.outputs.projects_link }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          pwd
           cd checkstyle
           ./.ci/diff-report.sh download-files
           cd ../
