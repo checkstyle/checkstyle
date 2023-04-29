@@ -146,7 +146,8 @@ jobs:
 
       - name: Prepare environment
         run: |
-          mv project.properties ./contribution/checkstyle-tester/
+          pwd
+          mv ../../project.properties ./contribution/checkstyle-tester/
           mv ./*.xml ./contribution/checkstyle-tester/
           sudo apt install groovy
 
