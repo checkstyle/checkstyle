@@ -108,8 +108,6 @@ jobs:
 
       - name: Download checkstyle
         uses: actions/checkout@v3
-        with:
-          ref: ${{ github.event.pull_request.head.ref }}
 
       - name: Download files
         env:
@@ -129,6 +127,9 @@ jobs:
           MAIN_REPO_GIT_URL="https://github.com/checkstyle/checkstyle.git"
           git remote add upstream $MAIN_REPO_GIT_URL
           git fetch upstream
+          FORK_REPO_GIT_URL="https://github.com/$USER_LOGIN/checkstyle.git"
+          git remote add forked $FORK_REPO_GIT_URL
+          git fetch forked
 
       - name: Setup local maven cache
         uses: actions/cache@v3
@@ -161,7 +162,7 @@ jobs:
         run: |
           cd contribution/checkstyle-tester
           bash
-          REF="$BRANCH"
+          REF="forked/$BRANCH"
           REPO="../../../checkstyle"
           BASE_BRANCH="upstream/master"
           export MAVEN_OPTS="-Xmx5g"
