@@ -112,11 +112,6 @@ jobs:
       # ref - branch to checkout.
       - name: Download checkstyle
         uses: actions/checkout@v3
-        with:
-          repository: ${{ env.USER_LOGIN }}/checkstyle
-          ref: master
-          path: checkstyle
-          fetch-depth: 0
 
       - name: Download files
         env:
