@@ -106,12 +106,10 @@ jobs:
       message: ${{ steps.out.outputs.message }}
     steps:
 
-      # fetch-depth - number of commits to fetch.
-      # 0 indicates all history for all branches and tags.
-      # 0, because we need access to all branches to create a report.
-      # ref - branch to checkout.
       - name: Download checkstyle
         uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
 
       - name: Download files
         env:
@@ -163,7 +161,7 @@ jobs:
         run: |
           cd contribution/checkstyle-tester
           bash
-          REF="origin/$BRANCH"
+          REF="$BRANCH"
           REPO="../../../checkstyle"
           BASE_BRANCH="upstream/master"
           export MAVEN_OPTS="-Xmx5g"
