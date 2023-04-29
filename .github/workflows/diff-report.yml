@@ -146,9 +146,8 @@ jobs:
 
       - name: Prepare environment
         run: |
-          pwd
-          mv ../../project.properties ./contribution/checkstyle-tester/
-          mv ./*.xml ./contribution/checkstyle-tester/
+          mv .ci-temp/project.properties ./contribution/checkstyle-tester/
+          mv .ci-temp/*.xml ./contribution/checkstyle-tester/
           sudo apt install groovy
 
       - name: Configure AWS Credentials
