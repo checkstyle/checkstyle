@@ -164,7 +164,7 @@ jobs:
           cd contribution/checkstyle-tester
           bash
           REF="origin/$BRANCH"
-          REPO="../../checkstyle"
+          REPO="../../../checkstyle"
           BASE_BRANCH="upstream/master"
           export MAVEN_OPTS="-Xmx5g"
           if [ -f new_module_config.xml ]; then
