@@ -106,17 +106,8 @@ jobs:
       message: ${{ steps.out.outputs.message }}
     steps:
 
-      # fetch-depth - number of commits to fetch.
-      # 0 indicates all history for all branches and tags.
-      # 0, because we need access to all branches to create a report.
-      # ref - branch to checkout.
       - name: Download checkstyle
         uses: actions/checkout@v3
-        with:
-          repository: ${{ env.USER_LOGIN }}/checkstyle
-          ref: master
-          path: checkstyle
-          fetch-depth: 0
 
       - name: Download files
         env:
@@ -126,20 +117,19 @@ jobs:
           LINK_FROM_PR: ${{ needs.parse_body.outputs.projects_link }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          cd checkstyle
           ./.ci/diff-report.sh download-files
-          cd ../
 
       # set main checkstyle repo as an upstream
       # Diff report will be generated taking upstream's master branch as a base branch
       - name: set upstream
         run: |
-          cd checkstyle
           bash
           MAIN_REPO_GIT_URL="https://github.com/checkstyle/checkstyle.git"
           git remote add upstream $MAIN_REPO_GIT_URL
           git fetch upstream
-          cd ../
+          FORK_REPO_GIT_URL="https://github.com/$USER_LOGIN/checkstyle.git"
+          git remote add forked $FORK_REPO_GIT_URL
+          git fetch forked
 
       - name: Setup local maven cache
         uses: actions/cache@v3
@@ -147,23 +137,20 @@ jobs:
           path: ~/.m2/repository
           key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
 
-      # fetch-depth default: 1
-      # Don't need history for all branches and tags here.
       - name: Download contribution
         uses: actions/checkout@v3
         with:
           repository: checkstyle/contribution
-          ref: master
-          path: contribution
+          path: .ci-temp/contribution
 
       - name: Prepare environment
         run: |
-          mv project.properties ./contribution/checkstyle-tester/
-          mv ./*.xml ./contribution/checkstyle-tester/
+          mv .ci-temp/project.properties ./.ci-temp/contribution/checkstyle-tester/
+          mv .ci-temp/*.xml ./.ci-temp/contribution/checkstyle-tester/
           sudo apt install groovy
 
       - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: aws-actions/configure-aws-credentials@v2
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -173,10 +160,10 @@ jobs:
         env:
           BRANCH: ${{ needs.parse_body.outputs.branch }}
         run: |
-          cd contribution/checkstyle-tester
+          cd .ci-temp/contribution/checkstyle-tester
           bash
-          REF="origin/$BRANCH"
-          REPO="../../checkstyle"
+          REF="forked/$BRANCH"
+          REPO="../../../../checkstyle"
           BASE_BRANCH="upstream/master"
           export MAVEN_OPTS="-Xmx5g"
           if [ -f new_module_config.xml ]; then
@@ -200,19 +187,18 @@ jobs:
          bash
          TIME=$(date +%Y%H%M%S)
          FOLDER="${{needs.parse_body.outputs.commit_sha}}_$TIME"
-         DIFF="./contribution/checkstyle-tester/reports/diff"
+         DIFF="./.ci-temp/contribution/checkstyle-tester/reports/diff"
          LINK="https://${{env.AWS_BUCKET_NAME}}.s3.${{env.AWS_REGION}}.amazonaws.com"
          aws s3 cp $DIFF "s3://${{env.AWS_BUCKET_NAME}}/$FOLDER/reports/diff/" --recursive
          if [ -n "$LABEL" ]; then
-           echo "$LABEL: " > message
+           echo "$LABEL: " > .ci-temp/message
          fi
-         echo "$LINK/$FOLDER/reports/diff/index.html" >> message
+         echo "$LINK/$FOLDER/reports/diff/index.html" >> .ci-temp/message
 
       - name: Set output
         id: out
         run: |
-          cd checkstyle
-          ./.ci/append-to-github-output.sh "message" "$(cat ../message)"
+          ./.ci/append-to-github-output.sh "message" "$(cat .ci-temp/message)"
 
   # should be always last step
   send_message:

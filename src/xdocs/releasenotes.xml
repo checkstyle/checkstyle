@@ -10,6 +10,145 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 10.10.0">
+      <div class="releaseDate">26.04.2023</div>
+      <p>New:</p>
+        <ul>
+          <li>
+            New filter: SuppressWithNearbyTextFilter to suppress checks with inline comments in any
+            file type.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/11939">#11939</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Enforce file size on Java inputs.
+            Author: Omar Bakry, sd9616
+            <a href="https://github.com/checkstyle/checkstyle/issues/11163">#11163</a>
+          </li>
+          <li>
+            Specify violation messages in input files.
+            Author: shivam, sd9616, Sloent
+            <a href="https://github.com/checkstyle/checkstyle/issues/11214">#11214</a>
+          </li>
+          <li>
+            Improvements to diff report generation.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/12991">#12991</a>
+          </li>
+          <li>
+            Resolve pitest for FinalLocalVariableCheck.
+            Author: coderdeadpool
+            <a href="https://github.com/checkstyle/checkstyle/issues/12671">#12671</a>
+          </li>
+          <li>
+            Resolve pitest suppression for FinalLocalVariableCheck.
+            Author: coderdeadpool
+            <a href="https://github.com/checkstyle/checkstyle/issues/12997">#12997</a>
+          </li>
+          <li>
+            Add more unit test cases for VariableDeclarationUsageDistanceCheck.
+            Author: Xinrui Jiang
+            <a href="https://github.com/checkstyle/checkstyle/issues/12976">#12976</a>
+          </li>
+          <li>
+            check_issues job have warning on deprecation.
+            Author: Omar Bakry
+            <a href="https://github.com/checkstyle/checkstyle/issues/12978">#12978</a>
+          </li>
+          <li>
+            Fix windows line endings in GitHub event text.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/12995">#12995</a>
+          </li>
+          <li>
+            doc: remove extra space.
+            Author: 7h3-3mp7y-m4n
+          </li>
+          <li>
+            Resolve pitest suppression for FallThroughCheck.
+            Author: shivam
+            <a href="https://github.com/checkstyle/checkstyle/issues/12943">#12943</a>
+          </li>
+          <li>
+            Resolve pitest suppression for AbstractViolationReporter.
+            Author: Shubh Srivastava
+            <a href="https://github.com/checkstyle/checkstyle/issues/12876">#12876</a>
+          </li>
+          <li>
+            Use Environment Files instead of `set-output` in GitHub Actions..
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/12696">#12696</a>
+          </li>
+          <li>
+            Expand XPath IT Regression Testing.
+            Author: Omar Bakry, sd9616
+            <a href="https://github.com/checkstyle/checkstyle/issues/6207">#6207</a>
+          </li>
+          <li>
+            Create script for appending text to $GITHUB_OUTPUT.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/12954">#12954</a>
+          </li>
+          <li>
+            Github CI does not run upon `Github, rebase` action.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/11134">#11134</a>
+          </li>
+          <li>
+            Grammar error in documentation of AbstractClassNameCheck.xml .
+            Author: bhganesh
+            <a href="https://github.com/checkstyle/checkstyle/issues/12932">#12932</a>
+          </li>
+          <li>
+            Diff-Report action does not post link to report in GitHub comment.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/12794">#12794</a>
+          </li>
+          <li>
+            Re-enable action lint.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/12678">#12678</a>
+          </li>
+          <li>
+            Update doc for VisibilityModifier.
+            Author: Omar Bakry
+            <a href="https://github.com/checkstyle/checkstyle/issues/7616">#7616</a>
+          </li>
+          <li>
+            Add 3 to earliest change variable to compensate for diff context.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/12940">#12940</a>
+          </li>
+          <li>
+            Fix concurrency group for site action.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/12942">#12942</a>
+          </li>
+          <li>
+            Generate site workflow should provide more specific links.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/12853">#12853</a>
+          </li>
+          <li>
+            Update doc for DesignForExtension.
+            Author: ziweiwang98
+            <a href="https://github.com/checkstyle/checkstyle/issues/7608">#7608</a>
+          </li>
+          <li>
+            Update doc for DescendantToken.
+            Author: shivam
+            <a href="https://github.com/checkstyle/checkstyle/issues/7587">#7587</a>
+          </li>
+          <li>
+            Update doc for Translation.
+            Author: shivam
+            <a href="https://github.com/checkstyle/checkstyle/issues/7593">#7593</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 10.9.3">
       <div class="releaseDate">25.03.2023</div>
       <p>Bug fixes:</p>

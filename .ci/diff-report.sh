@@ -16,8 +16,6 @@ validate_url () {
     # to determine what "mode" we should generate report with.
     echo "URL is empty."
   elif [[ "$URL" == *: ]]; then
-    # We were not able to match in previous 'sed' command, so user has
-    # incorrectly supplied parameters in PR description.
     echo "Parameter '${URL}' is incorrectly formatted, please use the following format:"
     echo "'Parameter name: https://gist.githubusercontent.com/username/gist_id/raw/file'"
     echo "Parameter name and URL must be separated by a colon and single space only."
@@ -26,7 +24,7 @@ validate_url () {
     echo "URL '${URL}' must be a direct raw link to a gist or GitHub file."
     exit 1
   elif ! [[ "$URL" =~ $VALID_URL_REGEX ]]; then
-    echo "URL '${URL}' is invalid."
+    echo "URL '${URL}' does not match regexp '${VALID_URL_REGEX}'."
     exit 1
   else
     echo "URL '${URL}' is valid."
@@ -38,6 +36,7 @@ case $1 in
 # Downloads all files necessary to generate regression report to the parent directory.
 download-files)
   checkForVariable "GITHUB_TOKEN"
+  mkdir .ci-temp
   echo "Downloading files..."
 
   # check for projects link from PR, if not found use default from contribution repo
@@ -47,27 +46,27 @@ download-files)
   curl --fail-with-body -X GET "${LINK}" \
     -H "Accept: application/vnd.github+json" \
     -H "Authorization: token $GITHUB_TOKEN" \
-    -o ../project.properties
+    -o .ci-temp/project.properties
 
   if [ -n "$NEW_MODULE_CONFIG_LINK" ]; then
     curl --fail-with-body -X GET "${NEW_MODULE_CONFIG_LINK}" \
       -H "Accept: application/vnd.github+json" \
       -H "Authorization: token $GITHUB_TOKEN" \
-      -o ../new_module_config.xml
+      -o .ci-temp/new_module_config.xml
   fi
 
   if [ -n "$DIFF_CONFIG_LINK" ]; then
     curl --fail-with-body -X GET "${DIFF_CONFIG_LINK}" \
       -H "Accept: application/vnd.github+json" \
       -H "Authorization: token $GITHUB_TOKEN" \
-      -o ../diff_config.xml
+      -o .ci-temp/diff_config.xml
   fi
 
   if [ -n "$PATCH_CONFIG_LINK" ]; then
     curl --fail-with-body -X GET "${PATCH_CONFIG_LINK}" \
       -H "Accept: application/vnd.github+json" \
       -H "Authorization: token $GITHUB_TOKEN" \
-      -o ../patch_config.xml
+      -o .ci-temp/patch_config.xml
   fi
   ;;
 
