@@ -191,14 +191,14 @@ jobs:
          LINK="https://${{env.AWS_BUCKET_NAME}}.s3.${{env.AWS_REGION}}.amazonaws.com"
          aws s3 cp $DIFF "s3://${{env.AWS_BUCKET_NAME}}/$FOLDER/reports/diff/" --recursive
          if [ -n "$LABEL" ]; then
-           echo "$LABEL: " > message
+           echo "$LABEL: " > .ci-temp/message
          fi
-         echo "$LINK/$FOLDER/reports/diff/index.html" >> message
+         echo "$LINK/$FOLDER/reports/diff/index.html" >> .ci-temp/message
 
       - name: Set output
         id: out
         run: |
-          ./.ci/append-to-github-output.sh "message" "$(cat ../message)"
+          ./.ci/append-to-github-output.sh "message" "$(cat .ci-temp/message)"
 
   # should be always last step
   send_message:
