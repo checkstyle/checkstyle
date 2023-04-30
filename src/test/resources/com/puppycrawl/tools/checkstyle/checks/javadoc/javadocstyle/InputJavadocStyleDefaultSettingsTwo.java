@@ -105,4 +105,11 @@ public class InputJavadocStyleDefaultSettingsTwo
          */
         value2, // ok
     }
+
+   /**
+    * {@return a string} // ok
+    */
+    public String foo() {
+        return "Hello, world";
+    }
 }
