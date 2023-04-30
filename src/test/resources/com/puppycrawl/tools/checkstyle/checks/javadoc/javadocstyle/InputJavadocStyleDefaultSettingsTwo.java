@@ -113,4 +113,7 @@ public class InputJavadocStyleDefaultSettingsTwo
      *
      */
     public void method20() {}
+
+    /** Set of all class field names.*/
+    public String field; // ok
 }
