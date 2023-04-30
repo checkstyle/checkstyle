@@ -5,8 +5,7 @@
               name="UnusedImports"
               parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
- Checks for unused import statements. Checkstyle uses a simple but very
- reliable algorithm to report on unused import statements. An import statement
+ Checks for unused import statements. An import statement
  is considered unused if:
  &lt;/p&gt;
  &lt;ul&gt;
@@ -41,21 +40,7 @@
  &lt;li&gt;
  There are two or more static imports with the same method name.
  &lt;/li&gt;
- &lt;/ul&gt;
- &lt;p&gt;
- For example, in the following case all imports will not be flagged as unused:
- &lt;/p&gt;
- &lt;pre&gt;
- import java.awt.Component;
- import static AstTreeStringPrinter.printFileAst;
- import static DetailNodeTreeStringPrinter.printFileAst;
- class FooBar {
-   private Object Component; // a bad practice in my opinion
-   void method() {
-       printFileAst(file); // two imports with the same name
-   }
- }
- &lt;/pre&gt;</description>
+ &lt;/ul&gt;</description>
          <properties>
             <property default-value="true" name="processJavadoc" type="boolean">
                <description>Control whether to process Javadoc comments.</description>

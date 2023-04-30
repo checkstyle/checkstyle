@@ -2454,8 +2454,7 @@ public class MyClass{ };
       <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="UnusedImports_Description">
         <p>
-          Checks for unused import statements. Checkstyle uses a simple but
-          very reliable algorithm to report on unused import statements. An
+          Checks for unused import statements. An
           import statement is considered unused if:
         </p>
 
@@ -2497,20 +2496,6 @@ public class MyClass{ };
             There are two or more static imports with the same method name.
           </li>
         </ul>
-        <p>
-          For example, in the following case all imports will not be flagged as unused:
-        </p>
-        <source>
-import java.awt.Component;
-import static AstTreeStringPrinter.printFileAst;
-import static DetailNodeTreeStringPrinter.printFileAst;
-class FooBar {
-  private Object Component; // a bad practice in my opinion
-  void method() {
-      printFileAst(file); // two imports with the same name
-  }
-}
-        </source>
       </subsection>
 
       <subsection name="Properties" id="UnusedImports_Properties">
@@ -2543,6 +2528,12 @@ class FooBar {
         </source>
         <p>Example:</p>
         <source>
+import java.awt.Component; // limitation as it match field name in code
+
+// no ability to recognize what import is not used
+import static AstTreeStringPrinter.printFileAst;
+import static DetailNodeTreeStringPrinter.printFileAst;
+
 import java.lang.String; // violation
 
 import java.util.Stack;  // OK
@@ -2555,6 +2546,7 @@ import java.util.List; // OK
 &#42;&#47;
 class MyClass{
     Stack stack = new Stack();
+    private Object Component;
 }
         </source>
         <p>
@@ -2567,6 +2559,11 @@ class MyClass{
         </source>
         <p>Example:</p>
         <source>
+import java.awt.Component; // limitation as it match field name in code
+
+// no ability to recognize what import is not used
+import static AstTreeStringPrinter.printFileAst;
+import static DetailNodeTreeStringPrinter.printFileAst;
 import java.lang.String; // violation
 
 import java.util.Stack;  // OK
@@ -2579,6 +2576,7 @@ import java.util.List; // violation
 &#42;&#47;
 class MyClass{
     Stack stack = new Stack();
+    private Object Component;
 }
         </source>
       </subsection>

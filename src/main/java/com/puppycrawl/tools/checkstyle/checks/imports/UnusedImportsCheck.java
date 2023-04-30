@@ -41,8 +41,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <p>
- * Checks for unused import statements. Checkstyle uses a simple but very
- * reliable algorithm to report on unused import statements. An import statement
+ * Checks for unused import statements. An import statement
  * is considered unused if:
  * </p>
  * <ul>
@@ -78,20 +77,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * There are two or more static imports with the same method name.
  * </li>
  * </ul>
- * <p>
- * For example, in the following case all imports will not be flagged as unused:
- * </p>
- * <pre>
- * import java.awt.Component;
- * import static AstTreeStringPrinter.printFileAst;
- * import static DetailNodeTreeStringPrinter.printFileAst;
- * class FooBar {
- *   private Object Component; // a bad practice in my opinion
- *   void method() {
- *       printFileAst(file); // two imports with the same name
- *   }
- * }
- * </pre>
  * <ul>
  * <li>
  * Property {@code processJavadoc} - Control whether to process Javadoc comments.
@@ -107,6 +92,12 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </pre>
  * <p>Example:</p>
  * <pre>
+ * import java.awt.Component; // limitation as it match field name in code
+ *
+ * // no ability to recognize what import is not used
+ * import static AstTreeStringPrinter.printFileAst;
+ * import static DetailNodeTreeStringPrinter.printFileAst;
+ *
  * import java.lang.String; // violation
  *
  * import java.util.Stack;  // OK
@@ -119,6 +110,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * &#42;&#47;
  * class MyClass{
  *   Stack stack = new Stack();
+ *   private Object Component;
  * }
  * </pre>
  * <p>
@@ -131,6 +123,12 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </pre>
  * <p>Example:</p>
  * <pre>
+ * import java.awt.Component; // limitation as it match field name in code
+ *
+ * // no ability to recognize what import is not used
+ * import static AstTreeStringPrinter.printFileAst;
+ * import static DetailNodeTreeStringPrinter.printFileAst;
+ *
  * import java.lang.String; // violation
  *
  * import java.util.Stack;  // OK
@@ -143,6 +141,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * &#42;&#47;
  * class MyClass{
  *   Stack stack = new Stack();
+ *   private Object Component;
  * }
  * </pre>
  * <p>
