@@ -692,10 +692,9 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
                 if (isChild(currentStatementAst, variableAst)) {
                     variableUsageExpressions.add(currentStatementAst);
                 }
-                // If expression doesn't contain variable and this variable
-                // hasn't been met yet, then distance + 1.
+                // If expression hasn't been met yet, then distance + 1.
                 else if (variableUsageExpressions.isEmpty()
-                        && currentStatementAst.getType() != TokenTypes.VARIABLE_DEF) {
+                        && !isZeroDistanceToken(currentStatementAst.getType())) {
                     distance++;
                 }
             }
@@ -1009,6 +1008,40 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
     private boolean isVariableMatchesIgnorePattern(String variable) {
         final Matcher matcher = ignoreVariablePattern.matcher(variable);
         return matcher.matches();
+    }
+
+    /**
+     * Check if the token should be ignored for distance counting.
+     * For example,
+     * <pre>
+     *     try (final AutoCloseable t = new java.io.StringReader(a);) {
+     *     }
+     * </pre>
+     * final is a zero-distance token and should be ignored for distance counting.
+     * <pre>
+     *     class Table implements Comparator&lt;Integer&gt;{
+     *     }
+     * </pre>
+     * An inner class may be defined. Both tokens implements and extends
+     * are zero-distance tokens.
+     * <pre>
+     *     public int method(Object b){
+     *     }
+     * </pre>
+     * public is a modifier and zero-distance token. int is a type and
+     * zero-distance token.
+     *
+     * @param type
+     *        Token type of the ast node.
+     * @return true if it should be ignored for distance counting, otherwise false.
+     */
+    private static boolean isZeroDistanceToken(int type) {
+        return type == TokenTypes.VARIABLE_DEF
+                || type == TokenTypes.TYPE
+                || type == TokenTypes.MODIFIERS
+                || type == TokenTypes.RESOURCE
+                || type == TokenTypes.EXTENDS_CLAUSE
+                || type == TokenTypes.IMPLEMENTS_CLAUSE;
     }
 
 }
