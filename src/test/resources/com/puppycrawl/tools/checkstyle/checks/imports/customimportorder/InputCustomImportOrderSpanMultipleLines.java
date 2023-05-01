@@ -27,7 +27,7 @@ import java.util.
 
 // comment within import group
 
-import java.util. // violation
+import java.util. // violation 'Extra separation in import group before .*'
 
     BitSet
     ;
@@ -42,22 +42,23 @@ import java.util.HashMap;
 
 
 // comment within import group
-import java.util.HashSet; // violation
+import java.util.HashSet; // violation 'Extra separation in import group before .*'
 
 // comment between import groups
 
-import org.apache.tools.ant.*; // violation
+import org.apache.tools.ant.*; // violation 'Extra separation in import group before .*'
 import org.apache.commons.beanutils.*;
 // comment between import groups
 
 
-import com.puppycrawl.tools.checkstyle.*; // violation
+import com.puppycrawl.tools.checkstyle.*; 
+// violation 'Wrong order for 'com.puppycrawl.tools.checkstyle.*' import.'
 
 
 // comment between import groups
-import picocli.*; // violation
+import picocli.*; // violation 'Wrong order for 'picocli.*' import.'
 
 // comment within import group
-import picocli.CommandLine; // violation
+import picocli.CommandLine; // violation 'Wrong order for 'picocli.CommandLine' import.'
 
 class InputCustomImportOrderSpanMultipleLines {}

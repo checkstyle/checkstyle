@@ -17,7 +17,7 @@ import static java.awt.Button.ABORT;
 import static java.awt.print.Paper.*;
 import static javax.swing.WindowConstants.*;
 
-import java.awt.Button; // violation
+import java.awt.Button; // violation 'Wrong order for 'java.awt.Button' import.'
 import java.awt.Frame;
 import java.awt.Dialog;
 import java.awt.color.ColorSpace;
@@ -29,9 +29,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.Reader;
 
-import com.puppycrawl.tools.checkstyle.*; // violation
+import com.puppycrawl.tools.checkstyle.*; 
+// violation 'Wrong order for 'com.puppycrawl.tools.checkstyle.*' import.'
 
-import com.google.common.collect.*; // violation
+import com.google.common.collect.*; // violation 'Wrong order for 'com.google.common.collect.*' import.'
 import org.junit.*;
 
 public class InputCustomImportOrderDefault9 {
