@@ -13,11 +13,13 @@ sortImportsInGroupAlphabetically = true
 package com.puppycrawl.tools.checkstyle.checks.imports.customimportorder;
 import static java.awt.Button.ABORT;
 import static javax.swing.WindowConstants.*;
-import static java.io.File.createTempFile; // violation since it should come before"java.swing"
+import static java.io.File.createTempFile; 
+// violation 'Wrong order for 'java.io.File.createTempFile' import.'
 import java.util.*;
 import java.util.StringTokenizer;
 import com.puppycrawl.tools.checkstyle.checks.*;
-import com.puppycrawl.tools.checkstyle.*; // violation should be before"checkstyle.checks"
+import com.puppycrawl.tools.checkstyle.*; 
+// violation 'Wrong order for 'com.puppycrawl.tools.checkstyle.*' import.'
 import org.apache.commons.beanutils.*;
 
 public class InputCustomImportOrder_NoSeparator {

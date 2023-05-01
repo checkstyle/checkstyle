@@ -12,4 +12,4 @@ sortImportsInGroupAlphabetically = (default)false
 
 
 package com.puppycrawl.tools.checkstyle.checks.imports.customimportorder; import static java.io.File.createTempFile; import java.util.Map; class InputCustomImportOrderSingleLine2 {} 
-// violation seperate group need new line
+// violation 'No separation in import group before 'java.util.Map''

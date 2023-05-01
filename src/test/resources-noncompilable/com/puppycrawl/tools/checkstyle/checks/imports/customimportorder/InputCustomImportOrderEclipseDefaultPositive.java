@@ -19,19 +19,19 @@ import static java.io.File.createTempFile;
 import static javax.swing.WindowConstants.*;
 import static org.junit.Assert.assertEquals;
 
-import java.awt.Button; // violation should be at the start
-import java.awt.Dialog; // violation should be at the start
-import java.io.InputStream; // violation should be at the start
+import java.awt.Button; // violation 'Wrong order for 'java.awt.Button' import.'
+import java.awt.Dialog; // violation 'Wrong order for 'java.awt.Dialog' import.'
+import java.io.InputStream; // violation 'Wrong order for 'java.io.InputStream' import.'
 
-import javax.swing.JComponent; // violation should be before static imports
-import javax.swing.JTable; // violation should be before static imports
+import javax.swing.JComponent; // violation 'Wrong order for 'javax.swing.JComponent' import.'
+import javax.swing.JTable; // violation 'Wrong order for 'javax.swing.JTable' import.'
 
-import org.junit.Test; // violation should be before static imports
-import org.mockito.Mock; // violation should be before static imports
+import org.junit.Test; // violation 'Wrong order for 'org.junit.Test' import.'
+import org.mockito.Mock; // violation 'Wrong order for 'org.mockito.Mock' import.'
 
 import com.some.api.DetailClass;
 
-import sun.tools.java.ArrayType; // violation should be before static imports
+import sun.tools.java.ArrayType; // violation 'Wrong order for 'sun.tools.java.ArrayType' import.'
 
 public class InputCustomImportOrderEclipseDefaultPositive {
 }

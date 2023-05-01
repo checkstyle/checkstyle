@@ -14,7 +14,6 @@ package com.puppycrawl.tools.checkstyle.checks.imports.customimportorder;
 
 import javax.xml.transform.Source;
 
-import org.w3c.dom.Node; // violation should be before javax
-// as it is ordered before STANDARD_JAVA_PACKAGE
+import org.w3c.dom.Node; // violation 'Wrong order for 'org.w3c.dom.Node' import.'
 
 class InputCustomImportOrderPossibleIndexOutOfBoundsException {}

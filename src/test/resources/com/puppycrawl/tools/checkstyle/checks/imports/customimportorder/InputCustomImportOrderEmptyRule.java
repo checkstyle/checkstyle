@@ -14,7 +14,7 @@ package com.puppycrawl.tools.checkstyle.checks.imports.customimportorder;
 
 import java.util.Map;
 
-import java.util.List; // violation should be in the SAME_PACKAGE and same group
+import java.util.List; // violation 'Wrong order for 'java.util.List' import.'
 
 public class InputCustomImportOrderEmptyRule {
 }
