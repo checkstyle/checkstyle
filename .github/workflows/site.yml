@@ -115,7 +115,7 @@ jobs:
           bash
           TIME=$(date +%Y%H%M%S)
           FOLDER="${{needs.parse_pr_info.outputs.commit_sha}}_$TIME"
-          SITE="./checkstyle/target/site"
+          SITE=".ci-temp/checkstyle/target/site"
           LINK="https://${{env.AWS_BUCKET_NAME}}.s3.${{env.AWS_REGION}}.amazonaws.com"
           aws s3 cp "$SITE" "s3://${{env.AWS_BUCKET_NAME}}/$FOLDER/" --recursive
           echo "$LINK/$FOLDER/index.html" > .ci-temp/message
