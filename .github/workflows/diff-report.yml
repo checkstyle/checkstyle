@@ -71,14 +71,20 @@ jobs:
         env:
           ISSUE_BODY: ${{ github.event.issue.body }}
           PULL_REQUEST_URL: ${{ github.event.issue.pull_request.url }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          mkdir -p .ci-temp
           # convert windows line endings to unix in event text
-          echo "$ISSUE_BODY" > windows.txt
-          tr -d '\15\32' < windows.txt > text
-          echo "$USER_LOGIN" > user
-          wget -q "$PULL_REQUEST_URL" -O info.json
-          jq --raw-output .head.ref info.json > branch
-          jq --raw-output .head.sha info.json > commit_sha
+          echo "$ISSUE_BODY" > .ci-temp/windows.txt
+          tr -d '\15\32' < .ci-temp/windows.txt > .ci-temp/text
+
+          curl --fail-with-body -X GET "${PULL_REQUEST_URL}" \
+              -H "Accept: application/vnd.github+json" \
+              -H "Authorization: token $GITHUB_TOKEN" \
+              -o .ci-temp/info.json
+
+          jq --raw-output .head.ref .ci-temp/info.json > .ci-temp/branch
+          jq --raw-output .head.sha .ci-temp/info.json > .ci-temp/commit_sha
 
       - name: Parsing content of PR description
         id: parse
@@ -88,9 +94,9 @@ jobs:
       - name: Set branch
         id: branch
         run: |
-          ./.ci/append-to-github-output.sh "ref" "$(cat branch)"
+          ./.ci/append-to-github-output.sh "ref" "$(cat .ci-temp/branch)"
           # shellcheck disable=SC2002
-          ./.ci/append-to-github-output.sh "commit_sha" "$(cat commit_sha | cut -c 1-7)"
+          ./.ci/append-to-github-output.sh "commit_sha" "$(cat .ci-temp/commit_sha | cut -c 1-7)"
 
           echo "GITHUB_OUTPUT:"
           # need to 'echo' to see output in Github CI

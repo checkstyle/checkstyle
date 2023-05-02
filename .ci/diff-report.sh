@@ -76,11 +76,11 @@ download-files)
 parse-pr-description-text)
 
   # parse parameters from PR description text
-  PROJECTS_FILE_PARAMETER=$(grep "^Diff Regression projects:" text || true)
-  CONFIG_PARAMETER=$(grep "^Diff Regression config:" text || true)
-  NEW_MODULE_CONFIG_PARAMETER=$(grep "^New module config:" text || true)
-  PATCH_CONFIG_PARAMETER=$(grep "^Diff Regression patch config:" text || true)
-  REPORT_LABEL_PARAMETER=$(grep "^Report label:" text || true)
+  PROJECTS_FILE_PARAMETER=$(grep "^Diff Regression projects:" .ci-temp/text || true)
+  CONFIG_PARAMETER=$(grep "^Diff Regression config:" .ci-temp/text || true)
+  NEW_MODULE_CONFIG_PARAMETER=$(grep "^New module config:" .ci-temp/text || true)
+  PATCH_CONFIG_PARAMETER=$(grep "^Diff Regression patch config:" .ci-temp/text || true)
+  REPORT_LABEL_PARAMETER=$(grep "^Report label:" .ci-temp/text || true)
 
   echo "Parameters parsed from PR description:"
   echo "PROJECTS_FILE_PARAMETER: '$PROJECTS_FILE_PARAMETER'"
