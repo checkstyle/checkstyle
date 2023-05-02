@@ -131,10 +131,10 @@ jobs:
         run: |
           bash
           MAIN_REPO_GIT_URL="https://github.com/checkstyle/checkstyle.git"
-          git remote add upstream $MAIN_REPO_GIT_URL
+          git remote add upstream "$MAIN_REPO_GIT_URL"
           git fetch upstream
           FORK_REPO_GIT_URL="https://github.com/$USER_LOGIN/checkstyle.git"
-          git remote add forked $FORK_REPO_GIT_URL
+          git remote add forked "$FORK_REPO_GIT_URL"
           git fetch forked
 
       - name: Setup local maven cache
