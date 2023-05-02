@@ -50,16 +50,23 @@ jobs:
         if: 'true'
 
       - name: Getting PR description
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          wget -q "${{github.event.issue.pull_request.url}}" -O info.json
-          jq .head.ref info.json > branch
-          jq .head.sha info.json > commit_sha
+          mkdir -p .ci-temp
+          curl --fail-with-body -X GET "${{github.event.issue.pull_request.url}}" \
+              -H "Accept: application/vnd.github+json" \
+              -H "Authorization: token $GITHUB_TOKEN" \
+              -o .ci-temp/info.json
+
+          jq .head.ref .ci-temp/info.json > .ci-temp/branch
+          jq .head.sha .ci-temp/info.json > .ci-temp/commit_sha
 
       - name: Set branch
         id: branch
         run: |
-          echo "ref=$(xargs < branch)" >> "$GITHUB_OUTPUT"
-          echo "commit_sha=$(xargs < commit_sha | cut -c 1-7)" >> "$GITHUB_OUTPUT"
+          echo "ref=$(xargs < .ci-temp/branch)" >> "$GITHUB_OUTPUT"
+          echo "commit_sha=$(xargs < .ci-temp/commit_sha | cut -c 1-7)" >> "$GITHUB_OUTPUT"
 
   generate_site:
     needs: parse_pr_info
@@ -71,14 +78,14 @@ jobs:
       # 0 indicates all history for all branches and tags.
       # 0, because we need access to all branches to create a report.
       # ref - branch to checkout.
-      - name: Download checkstyle
+      - name: Download checkstyle for PR
         uses: actions/checkout@v3
         env:
           USER_LOGIN: ${{ github.event.issue.user.login }}
         with:
           repository: ${{ env.USER_LOGIN }}/checkstyle
           ref: ${{needs.parse_pr_info.outputs.branch}}
-          path: checkstyle
+          path: .ci-temp/checkstyle
           fetch-depth: 0
 
       - name: Configure AWS Credentials
@@ -96,8 +103,8 @@ jobs:
 
       - name: Generate site
         run: |
-          cd checkstyle
           bash
+          cd .ci-temp/checkstyle
           mvn -e --no-transfer-progress clean site -Pno-validations -Dmaven.javadoc.skip=false
 
       - name: Copy site to AWS S3 Bucket
@@ -111,15 +118,13 @@ jobs:
           SITE="./checkstyle/target/site"
           LINK="https://${{env.AWS_BUCKET_NAME}}.s3.${{env.AWS_REGION}}.amazonaws.com"
           aws s3 cp "$SITE" "s3://${{env.AWS_BUCKET_NAME}}/$FOLDER/" --recursive
-          echo "$LINK/$FOLDER/index.html" > message
-          cd checkstyle
+          echo "$LINK/$FOLDER/index.html" > .ci-temp/message
           ./.ci/generate-extra-site-links.sh ${{ github.event.issue.number }} "$LINK/$FOLDER"
 
       - name: Set output
         id: out
         run: |
-          cd checkstyle
-          ./.ci/append-to-github-output.sh "message" "$(cat ../message)"
+          ./.ci/append-to-github-output.sh "message" "$(cat .ci-temp/message)"
 
   # should be always last step
   send_message:
@@ -138,21 +143,26 @@ jobs:
             JOBS_LINK="https://github.com/checkstyle/checkstyle/actions/runs/${{github.run_id}}"
             API_LINK="https://api.github.com/repos/checkstyle/checkstyle/actions/runs/"
             API_LINK="${API_LINK}${{github.run_id}}/jobs"
-            wget $API_LINK -O info.json
-            jq '.jobs' info.json > "jobs"
-            jq '.[] | select(.conclusion == "failure") | .name' jobs > job_name
-            jq '.[] | select(.conclusion == "failure") | .steps' jobs > steps
-            jq '.[] | select(.conclusion == "failure") | .name' steps > step_name
-            echo "Site generation job failed on phase $(cat job_name)," > message
-            echo "step $(cat step_name).<br>Link: $JOBS_LINK" >> message
+
+            curl --fail-with-body -X GET "${API_LINK}" \
+              -H "Accept: application/vnd.github+json" \
+              -H "Authorization: token $GITHUB_TOKEN" \
+              -o .ci-temp/info.json
+
+            jq '.jobs' .ci-temp/info.json > ".ci-temp/jobs"
+            jq '.[] | select(.conclusion == "failure") | .name' .ci-temp/jobs > .ci-temp/job_name
+            jq '.[] | select(.conclusion == "failure") | .steps' .ci-temp/jobs > .ci-temp/steps
+            jq '.[] | select(.conclusion == "failure") | .name' .ci-temp/steps > .ci-temp/step_name
+            echo "Site generation job failed on phase $(cat .ci-temp/job_name)," > .ci-temp/message
+            echo "step $(cat .ci-temp/step_name).<br>Link: $JOBS_LINK" >> .ci-temp/message
           else
-            echo "$MSG" > message
+            echo "$MSG" > .ci-temp/message
           fi
 
       - name: Set message
         id: out
         run: |
-          ./.ci/append-to-github-output.sh "message" "$(cat message)"
+          ./.ci/append-to-github-output.sh "message" "$(cat .ci-temp/message)"
 
       - name: Comment PR
         uses: checkstyle/contribution/comment-action@master
