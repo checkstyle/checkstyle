@@ -184,16 +184,16 @@ jobs:
         env:
           LABEL: ${{ needs.parse_body.outputs.report_label }}
         run: |
-         bash
-         TIME=$(date +%Y%H%M%S)
-         FOLDER="${{needs.parse_body.outputs.commit_sha}}_$TIME"
-         DIFF="./.ci-temp/contribution/checkstyle-tester/reports/diff"
-         LINK="https://${{env.AWS_BUCKET_NAME}}.s3.${{env.AWS_REGION}}.amazonaws.com"
-         aws s3 cp $DIFF "s3://${{env.AWS_BUCKET_NAME}}/$FOLDER/reports/diff/" --recursive
-         if [ -n "$LABEL" ]; then
-           echo "$LABEL: " > .ci-temp/message
-         fi
-         echo "$LINK/$FOLDER/reports/diff/index.html" >> .ci-temp/message
+          bash
+          TIME=$(date +%Y%H%M%S)
+          FOLDER="${{needs.parse_body.outputs.commit_sha}}_$TIME"
+          DIFF="./.ci-temp/contribution/checkstyle-tester/reports/diff"
+          LINK="https://${{env.AWS_BUCKET_NAME}}.s3.${{env.AWS_REGION}}.amazonaws.com"
+          aws s3 cp $DIFF "s3://${{env.AWS_BUCKET_NAME}}/$FOLDER/reports/diff/" --recursive
+          if [ -n "$LABEL" ]; then
+            echo "$LABEL: " > .ci-temp/message
+          fi
+          echo "$LINK/$FOLDER/reports/diff/index.html" >> .ci-temp/message
 
       - name: Set output
         id: out
@@ -212,26 +212,32 @@ jobs:
       - name: Get message
         env:
           MSG: ${{ needs.make_report.outputs.message }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-         if [ -z "$MSG" ]; then
-           JOBS_LINK="https://github.com/checkstyle/checkstyle/actions/runs/${{github.run_id}}"
-           API_LINK="https://api.github.com/repos/checkstyle/checkstyle/actions/runs/"
-           API_LINK="${API_LINK}${{github.run_id}}/jobs"
-           wget $API_LINK -O info.json
-           jq '.jobs' info.json > "jobs"
-           jq '.[] | select(.conclusion == "failure") | .name' jobs > job_name
-           jq '.[] | select(.conclusion == "failure") | .steps' jobs > steps
-           jq '.[] | select(.conclusion == "failure") | .name' steps > step_name
-           echo "Report generation job failed on phase $(cat job_name)," > message
-           echo "step $(cat step_name).<br>Link: $JOBS_LINK" >> message
-         else
-           echo "$MSG" > message
-         fi
+          if [ -z "$MSG" ]; then
+            JOBS_LINK="https://github.com/checkstyle/checkstyle/actions/runs/${{github.run_id}}"
+            API_LINK="https://api.github.com/repos/checkstyle/checkstyle/actions/runs/"
+            API_LINK="${API_LINK}${{github.run_id}}/jobs"
+
+            curl --fail-with-body -X GET "${API_LINK}" \
+              -H "Accept: application/vnd.github+json" \
+              -H "Authorization: token $GITHUB_TOKEN" \
+              -o .ci-temp/info.json
+
+            jq '.jobs' .ci-temp/info.json > ".ci-temp/jobs"
+            jq '.[] | select(.conclusion == "failure") | .name' .ci-temp/jobs > .ci-temp/job_name
+            jq '.[] | select(.conclusion == "failure") | .steps' .ci-temp/jobs > .ci-temp/steps
+            jq '.[] | select(.conclusion == "failure") | .name' .ci-temp/steps > .ci-temp/step_name
+            echo "Report generation failed on phase $(cat .ci-temp/job_name)," > .ci-temp/message
+            echo "step $(cat .ci-temp/step_name).<br>Link: $JOBS_LINK" >> .ci-temp/message
+          else
+            echo "$MSG" > .ci-temp/message
+          fi
 
       - name: Set message
         id: out
         run: |
-          ./.ci/append-to-github-output.sh "message" "$(cat message)"
+          ./.ci/append-to-github-output.sh "message" "$(cat .ci-temp/message)"
 
       - name: Comment PR
         uses: checkstyle/contribution/comment-action@master
