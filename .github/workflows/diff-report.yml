@@ -220,6 +220,7 @@ jobs:
           MSG: ${{ needs.make_report.outputs.message }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          mkdir -p .ci-temp
           if [ -z "$MSG" ]; then
             JOBS_LINK="https://github.com/checkstyle/checkstyle/actions/runs/${{github.run_id}}"
             API_LINK="https://api.github.com/repos/checkstyle/checkstyle/actions/runs/"
