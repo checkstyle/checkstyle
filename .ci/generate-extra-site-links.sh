@@ -63,8 +63,8 @@ do
   CURRENT_XDOC_NAME=$(echo "$CURRENT_XDOC_PATH" | sed 's/src\/xdocs\/\(.*\)\.xml/\1/')
   echo "CURRENT_XDOC_NAME=$CURRENT_XDOC_NAME"
 
-  echo "" >> ../message # Add new line between each xdoc link.
-  echo "$AWS_FOLDER_LINK/$CURRENT_XDOC_NAME.html#$SUBSECTION_ID" >> ../message
+  echo "" >> .ci-temp/message # Add new line between each xdoc link.
+  echo "$AWS_FOLDER_LINK/$CURRENT_XDOC_NAME.html#$SUBSECTION_ID" >> .ci-temp/message
 
   # Reset variable.
   SUBSECTION_ID=""
