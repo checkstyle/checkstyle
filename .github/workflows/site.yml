@@ -74,6 +74,9 @@ jobs:
     outputs:
       message: ${{ steps.out.outputs.message}}
     steps:
+      - name: Checkout repository from origin 
+        uses: actions/checkout@v3
+
       # fetch-depth - number of commits to fetch.
       # 0 indicates all history for all branches and tags.
       # 0, because we need access to all branches to create a report.
@@ -144,6 +147,7 @@ jobs:
             JOBS_LINK="https://github.com/checkstyle/checkstyle/actions/runs/${{github.run_id}}"
             API_LINK="https://api.github.com/repos/checkstyle/checkstyle/actions/runs/"
             API_LINK="${API_LINK}${{github.run_id}}/jobs"
+            echo "API_LINK=${API_LINK}"
 
             curl --fail-with-body -X GET "${API_LINK}" \
               -H "Accept: application/vnd.github+json" \
