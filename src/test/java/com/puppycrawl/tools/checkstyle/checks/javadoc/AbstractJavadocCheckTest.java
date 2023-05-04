@@ -93,11 +93,6 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
                     "mismatched input '<EOF>' expecting {WS, NEWLINE}", "JAVADOC_TAG"),
             "41: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 6,
                     "no viable alternative at input '<EOF>'", "JAVADOC_TAG"),
-            "62: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 13,
-                    "mismatched input '}' expecting {LEADING_ASTERISK, WS, NEWLINE}",
-                    "JAVADOC_INLINE_TAG"),
-            "69: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 19,
-                    "no viable alternative at input '}'", "REFERENCE"),
         };
         verify(checkconfig, getPath("InputAbstractJavadocJavadocTagsWithoutArgs.java"), expected);
     }
