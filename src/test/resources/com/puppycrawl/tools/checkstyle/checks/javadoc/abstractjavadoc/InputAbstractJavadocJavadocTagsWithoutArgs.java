@@ -59,14 +59,14 @@ public class InputAbstractJavadocJavadocTagsWithoutArgs implements Serializable{
     }
 
     /**
-     * {@link} // violation
+     * {@link} // ok
      */
     public void method7() {
 
     }
 
     /**
-     * {@linkplain } // violation
+     * {@linkplain } // ok
      */
     public void method8() {
 
