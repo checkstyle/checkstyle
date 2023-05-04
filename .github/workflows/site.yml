@@ -74,7 +74,7 @@ jobs:
     outputs:
       message: ${{ steps.out.outputs.message}}
     steps:
-      - name: Checkout repository from origin 
+      - name: Checkout repository from origin
         uses: actions/checkout@v3
 
       # fetch-depth - number of commits to fetch.
