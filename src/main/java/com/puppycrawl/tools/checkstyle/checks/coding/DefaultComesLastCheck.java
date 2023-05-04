@@ -19,8 +19,6 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import java.util.Objects;
-
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -188,41 +186,32 @@ public class DefaultComesLastCheck extends AbstractCheck {
         final boolean isSwitchRule = defaultGroupAST.getType() == TokenTypes.SWITCH_RULE;
 
         if (skipIfLastAndSharedWithCase && !isSwitchRule) {
-            if (Objects.nonNull(findNextSibling(ast, TokenTypes.LITERAL_CASE))) {
+            if (isNextSiblingOf(ast, TokenTypes.LITERAL_CASE)) {
                 log(ast, MSG_KEY_SKIP_IF_LAST_AND_SHARED_WITH_CASE);
             }
             else if (ast.getPreviousSibling() == null
-                && Objects.nonNull(findNextSibling(defaultGroupAST,
-                                                   TokenTypes.CASE_GROUP))) {
+                && isNextSiblingOf(defaultGroupAST,
+                                                   TokenTypes.CASE_GROUP)) {
                 log(ast, MSG_KEY);
             }
         }
-        else if (Objects.nonNull(findNextSibling(defaultGroupAST,
-                                            TokenTypes.CASE_GROUP))
-                    || Objects.nonNull(findNextSibling(defaultGroupAST,
-                                            TokenTypes.SWITCH_RULE))) {
+        else if (isNextSiblingOf(defaultGroupAST,
+                                            TokenTypes.CASE_GROUP)
+                    || isNextSiblingOf(defaultGroupAST,
+                                            TokenTypes.SWITCH_RULE)) {
             log(ast, MSG_KEY);
         }
     }
 
     /**
-     * Return token type only if passed tokenType in argument is found or returns -1.
+     * Return true only if passed tokenType in argument is found or returns false.
      *
      * @param ast root node.
      * @param tokenType tokentype to be processed.
-     * @return token if desired token is found or else null.
+     * @return true if desired token is found or else false.
      */
-    private static DetailAST findNextSibling(DetailAST ast, int tokenType) {
-        DetailAST token = null;
-        DetailAST node = ast.getNextSibling();
-        while (node != null) {
-            if (node.getType() == tokenType) {
-                token = node;
-                break;
-            }
-            node = node.getNextSibling();
-        }
-        return token;
+    private static boolean isNextSiblingOf(DetailAST ast, int tokenType) {
+        return ast.getNextSibling() != null && ast.getNextSibling().getType() == tokenType;
     }
 
 }

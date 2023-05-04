@@ -123,4 +123,13 @@ public class DefaultComesLastCheckTest extends AbstractModuleTestSupport {
                 .isNotNull();
     }
 
+    @Test
+    public void testDefaultMethodsInJava8Interface2()
+            throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputDefaultComesLastDefaultMethodsInInterface2.java"),
+                expected);
+    }
+
 }
