@@ -10,6 +10,43 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 10.11.0">
+      <div class="releaseDate">10.05.2023</div>
+      <p>New:</p>
+        <ul>
+          <li>
+            False Negative: UnnecessaryParenthesesCheck.
+            Author: Kevin222004
+            <a href="https://github.com/checkstyle/checkstyle/issues/11109">#11109</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            VariableDeclarationUsageDistance not able to handle try with resources properly.
+            Author: jxr98
+            <a href="https://github.com/checkstyle/checkstyle/issues/11968">#11968</a>
+          </li>
+          <li>
+            Not last return javadoc tag cause parse error.
+            Author: Omar Bakry
+            <a href="https://github.com/checkstyle/checkstyle/issues/12864">#12864</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Kill survivng mutation in DefaultComesLastCheck.java.
+            Author: jxr98
+            <a href="https://github.com/checkstyle/checkstyle/issues/12889">#12889</a>
+          </li>
+          <li>
+            make_report has warning on deprecation .
+            Author: Omar Bakry
+            <a href="https://github.com/checkstyle/checkstyle/issues/13031">#13031</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 10.10.0">
       <div class="releaseDate">26.04.2023</div>
       <p>New:</p>
