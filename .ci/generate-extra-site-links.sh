@@ -59,8 +59,9 @@ do
   # Read the file from the earliest change to the top. It would read first row 90, then 89, 88..1.
   done < <(head -n "$EARLIEST_CHANGE_LINE_NUMBER" "$CURRENT_XDOC_PATH" | tac)
 
-  # Extract file name from path, i.e. 'config_misc'.
-  CURRENT_XDOC_NAME=$(echo "$CURRENT_XDOC_PATH" | sed 's/src\/xdocs\/\(.*\)\.xml/\1/')
+  # Extract file name from path, i.e. 'config_misc' and remove '.vm' if it exists.
+  CURRENT_XDOC_NAME=$(echo "$CURRENT_XDOC_PATH" | sed 's/src\/xdocs\/\(.*\)\.xml/\1/' |
+    sed 's/.vm//')
   echo "CURRENT_XDOC_NAME=$CURRENT_XDOC_NAME"
 
   echo "" >> .ci-temp/message # Add new line between each xdoc link.
