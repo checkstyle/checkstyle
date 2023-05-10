@@ -1952,20 +1952,31 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
 
     @Override
     public DetailAstImpl visitPattern(JavaLanguageParser.PatternContext ctx) {
-        final ParserRuleContext primaryPattern = ctx.primaryPattern();
+        final JavaLanguageParser.InnerPatternContext innerPattern = ctx.innerPattern();
+        final ParserRuleContext primaryPattern = innerPattern.primaryPattern();
+        final ParserRuleContext recordPattern = innerPattern.recordPattern();
         final boolean isSimpleTypePattern = primaryPattern != null
                 && primaryPattern.getChild(0) instanceof JavaLanguageParser.TypePatternContext;
 
         final DetailAstImpl pattern;
-        if (isSimpleTypePattern) {
+
+        if (recordPattern != null) {
+            pattern = visit(recordPattern);
+        }
+        else if (isSimpleTypePattern) {
             // For simple type pattern like 'Integer i`, we do not add `PATTERN_DEF` parent
-            pattern = visit(ctx.primaryPattern());
+            pattern = visit(primaryPattern);
         }
         else {
             pattern = createImaginary(TokenTypes.PATTERN_DEF);
             pattern.addChild(visit(ctx.getChild(0)));
         }
         return pattern;
+    }
+
+    @Override
+    public DetailAstImpl visitInnerPattern(JavaLanguageParser.InnerPatternContext ctx) {
+        return flattenedTree(ctx);
     }
 
     @Override
@@ -1986,6 +1997,11 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
     }
 
     @Override
+    public DetailAstImpl visitRecordPatternDef(JavaLanguageParser.RecordPatternDefContext ctx) {
+        return flattenedTree(ctx);
+    }
+
+    @Override
     public DetailAstImpl visitTypePattern(
             JavaLanguageParser.TypePatternContext ctx) {
         final DetailAstImpl type = visit(ctx.type);
@@ -1994,6 +2010,24 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
         patternVariableDef.addChild(type);
         patternVariableDef.addChild(visit(ctx.id()));
         return patternVariableDef;
+    }
+
+    @Override
+    public DetailAstImpl visitRecordPattern(JavaLanguageParser.RecordPatternContext ctx) {
+        final DetailAstImpl recordPattern = createImaginary(TokenTypes.RECORD_PATTERN_DEF);
+        recordPattern.addChild(createModifiers(ctx.mods));
+        processChildren(recordPattern,
+                ctx.children.subList(ctx.mods.size(), ctx.children.size()));
+        return recordPattern;
+    }
+
+    @Override
+    public DetailAstImpl visitRecordComponentPatternList(
+            JavaLanguageParser.RecordComponentPatternListContext ctx) {
+        final DetailAstImpl recordComponents =
+                createImaginary(TokenTypes.RECORD_PATTERN_COMPONENTS);
+        processChildren(recordComponents, ctx.children);
+        return recordComponents;
     }
 
     @Override
