@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.blocks;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck.MSG_KEY_LINE_ALONE;
+import static com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck.MSG_KEY_LINE_BREAK_AFTER;
 import static com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck.MSG_KEY_LINE_BREAK_BEFORE;
 import static com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck.MSG_KEY_LINE_SAME;
 
@@ -820,5 +821,20 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputRightCurlyTestSwitchExpression7.java"), expected);
+    }
+
+    @Test
+    public void testRightCurlyFollowedBySemicolonHasLineBreakAfter() throws Exception {
+        final String[] expected = {
+            "20:10: " + getCheckMessage(MSG_KEY_LINE_BREAK_AFTER, ";", 10),
+            "23:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
+            "26:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
+            "32:10: " + getCheckMessage(MSG_KEY_LINE_BREAK_AFTER, ";", 10),
+            "39:10: " + getCheckMessage(MSG_KEY_LINE_BREAK_AFTER, ";", 10),
+            "48:10: " + getCheckMessage(MSG_KEY_LINE_BREAK_AFTER, ";", 10),
+            "53:10: " + getCheckMessage(MSG_KEY_LINE_BREAK_AFTER, ";", 10),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputRightCurlyFollowedBySemicolonHasLineBreakAfter.java"), expected);
     }
 }
