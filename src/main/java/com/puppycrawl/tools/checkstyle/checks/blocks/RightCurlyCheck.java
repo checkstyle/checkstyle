@@ -393,7 +393,7 @@ public class RightCurlyCheck extends AbstractCheck {
     public void visitToken(DetailAST ast) {
         final Details details = Details.getDetails(ast);
         final DetailAST rcurly = details.rcurly;
-
+ 
         if (rcurly != null) {
             final String violation = validate(details);
             if (!violation.isEmpty()) {
