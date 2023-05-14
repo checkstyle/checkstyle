@@ -1,6 +1,7 @@
 image: Visual Studio 2019
 version: '{build}'
 skip_tags: true
+ver: jimmy
 
 clone_depth: 10
 branches:
