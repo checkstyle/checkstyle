@@ -88,14 +88,16 @@
     </section>
 
     <section name="Development Cycle">
-      <p>
-        <b>Releases will happen at the end of each month</b>
-        if functional changes exist in the
-        <a href="https://github.com/checkstyle/checkstyle/commits/master">
-            master branch of our repo</a>.
-        For the exact day, please follow our
-        <a href="https://github.com/checkstyle/checkstyle/milestones">milestones</a>.
-      </p>
+      <b>Release:</b><br/>
+      <ul>
+        <li>happens at the end of each month if functional changes exist in the
+          <a href="https://github.com/checkstyle/checkstyle/commits/master">
+          master branch of our repo</a>
+        </li>
+        <li>can happen by request by any user who is impacted,
+          but it is not always guaranteed.</li>
+      </ul>
+
       <p>
         Checkstyle is following own view of
           Hybrid Romantic and Semantic Versioning: This is in the form of
