@@ -1041,7 +1041,9 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
                 || type == TokenTypes.MODIFIERS
                 || type == TokenTypes.RESOURCE
                 || type == TokenTypes.EXTENDS_CLAUSE
-                || type == TokenTypes.IMPLEMENTS_CLAUSE;
+                || type == TokenTypes.IMPLEMENTS_CLAUSE
+                || type == TokenTypes.LITERAL_THROWS
+                || type == TokenTypes.PARAMETERS;
     }
 
 }
