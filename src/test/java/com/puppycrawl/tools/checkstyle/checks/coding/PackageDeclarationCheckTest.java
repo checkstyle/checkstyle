@@ -38,6 +38,17 @@ public class PackageDeclarationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testInMultiThreadedEnvironment() throws Exception {
+
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("InputPackageDeclarationPlain.java"),
+                getPath("InputPackageDeclarationWithCommentOnly.java"),
+                expected);
+    }
+
+    @Test
     public void testDefaultNoPackage() throws Exception {
 
         final String[] expected = {
