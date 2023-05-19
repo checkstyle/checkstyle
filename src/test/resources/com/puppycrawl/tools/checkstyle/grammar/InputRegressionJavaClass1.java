@@ -342,6 +342,9 @@ public class InputRegressionJavaClass1 {
         // ast error handling
         vint = vboolean ? (vint = 1) : (vint = 0);
         varray[vint] = Integer.parseInt("0");
+        
+        // Some compilers allow 'final' preceding the type.
+        vboolean = f9 instanceof final Object;
     }
 
     public @interface innerAnnotation {}
