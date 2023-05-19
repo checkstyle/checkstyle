@@ -64,15 +64,6 @@
   </mutation>
 
   <mutation unstable="false">
-    <sourceFile>PackageDeclarationCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.PackageDeclarationCheck</mutatedClass>
-    <mutatedMethod>beginTree</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
-    <description>Removed assignment to member variable defined</description>
-    <lineContent>defined = false;</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
     <sourceFile>ReturnCountCheck.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck</mutatedClass>
     <mutatedMethod>leaveToken</mutatedMethod>
