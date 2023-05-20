@@ -350,4 +350,12 @@ public class VariableDeclarationUsageDistanceCheckTest extends
                 getPath("InputVariableDeclarationUsageDistanceTryResources.java"), expected);
     }
 
+    @Test
+    public void testVariableDeclarationUsageDistanceMethodDefinition() throws Exception {
+        final String[] expected = {
+            "29:9: " + getCheckMessage(MSG_KEY, "a", 2, 1),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputVariableDeclarationUsageDistanceMethodDefinition.java"), expected);
+    }
 }

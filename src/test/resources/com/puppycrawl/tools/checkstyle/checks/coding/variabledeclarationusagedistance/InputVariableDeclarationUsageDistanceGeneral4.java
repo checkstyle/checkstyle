@@ -37,6 +37,7 @@ public class InputVariableDeclarationUsageDistanceGeneral4 {
             public void mm() {
             }
             void nn(Boolean m) {
+                System.out.println("temp");
                 if(z<0){
                     System.out.println();
                 }
