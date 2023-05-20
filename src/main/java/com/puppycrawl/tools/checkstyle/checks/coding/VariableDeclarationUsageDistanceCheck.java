@@ -652,6 +652,10 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
                             getFirstNodeInsideTryCatchFinallyBlocks(blockWithVariableUsage,
                                 variable);
                         break;
+                    case TokenTypes.CLASS_DEF:
+                    case TokenTypes.METHOD_DEF:
+                        exprWithVariableUsage = blockWithVariableUsage.getLastChild();
+                        break;
                     default:
                         exprWithVariableUsage = blockWithVariableUsage.getFirstChild();
                 }
@@ -1039,11 +1043,7 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
         return type == TokenTypes.VARIABLE_DEF
                 || type == TokenTypes.TYPE
                 || type == TokenTypes.MODIFIERS
-                || type == TokenTypes.RESOURCE
-                || type == TokenTypes.EXTENDS_CLAUSE
-                || type == TokenTypes.IMPLEMENTS_CLAUSE
-                || type == TokenTypes.LITERAL_THROWS
-                || type == TokenTypes.PARAMETERS;
+                || type == TokenTypes.RESOURCE;
     }
 
 }

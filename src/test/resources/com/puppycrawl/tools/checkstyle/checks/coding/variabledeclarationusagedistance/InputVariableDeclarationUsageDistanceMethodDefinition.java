@@ -33,6 +33,7 @@ public class InputVariableDeclarationUsageDistanceMethodDefinition {
 
             public <T> Iterator<T> method(T[] b) throws Exception {
                 d = c + 1;
+                System.out.println(d);
                 if (a > 0) {
                     System.out.println(b.length);
                 }
