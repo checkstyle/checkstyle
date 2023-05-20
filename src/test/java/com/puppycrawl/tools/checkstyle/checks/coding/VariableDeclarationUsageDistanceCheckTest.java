@@ -332,7 +332,7 @@ public class VariableDeclarationUsageDistanceCheckTest extends
     @Test
     public void testGeneralClass4() throws Exception {
         final String[] expected = {
-            "26:9: " + getCheckMessage(MSG_KEY, "z", 2, 1),
+            "26:9: " + getCheckMessage(MSG_KEY, "z", 3, 1),
         };
 
         verifyWithInlineConfigParser(
