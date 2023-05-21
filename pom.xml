@@ -874,12 +874,12 @@
                     <limit>
                       <counter>LINE</counter>
                       <value>COVEREDRATIO</value>
-                      <minimum>0.09</minimum>
+                      <minimum>0.76</minimum>
                     </limit>
                     <limit>
                       <counter>BRANCH</counter>
                       <value>COVEREDRATIO</value>
-                      <minimum>0.00</minimum>
+                      <minimum>0.75</minimum>
                     </limit>
                   </limits>
                 </rule>
