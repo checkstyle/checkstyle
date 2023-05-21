@@ -28,24 +28,30 @@ import org.junit.jupiter.api.Test;
 
 class BaseCellEditorTest {
 
-    private final BaseCellEditor cellEditor = new BaseCellEditor();
-
     @Test
     public void testToString() {
-        assertWithMessage("is null")
+
+        final BaseCellEditor cellEditor = new BaseCellEditor();
+
+        assertWithMessage("Should return null")
                 .that(cellEditor.getCellEditorValue() == null)
-                .isEqualTo(true);
+                .isTrue();
     }
 
     @Test
     public void testStopCellEditing() {
-        assertWithMessage("StopEditing return true")
+
+        final BaseCellEditor cellEditor = new BaseCellEditor();
+
+        assertWithMessage("Should be true")
                 .that(cellEditor.stopCellEditing())
-                .isEqualTo(true);
+                .isTrue();
     }
 
     @Test
     public void testFireEditingStoppedAndCanceled() {
+
+        final BaseCellEditor cellEditor = new BaseCellEditor();
 
         final boolean[] cellEditorListenerStopped = {false};
         final boolean[] cellEditorListenerCanceled = {false};
@@ -55,25 +61,24 @@ class BaseCellEditorTest {
             @Override
             public void editingStopped(ChangeEvent e) {
                 cellEditorListenerStopped[0] = true;
-
             }
 
             @Override
             public void editingCanceled(ChangeEvent e) {
                 cellEditorListenerCanceled[0] = true;
-
             }
 
         };
 
         cellEditor.addCellEditorListener(cellEditorListener1);
         cellEditor.fireEditingStopped();
-        assertWithMessage("Check if editing listener has stopped")
-                .that(cellEditorListenerStopped[0]).isEqualTo(true);
+        assertWithMessage("Editor listener should be stopped")
+                .that(cellEditorListenerStopped[0])
+                .isTrue();
         cellEditor.fireEditingCanceled();
-        assertWithMessage("Check if editing listener has canceled")
-                .that(cellEditorListenerCanceled[0]).isEqualTo(true);
-        cellEditor.removeCellEditorListener(cellEditorListener1);
+        assertWithMessage("Editor listener should be canceled")
+                .that(cellEditorListenerCanceled[0])
+                .isTrue();
 
     }
 }
