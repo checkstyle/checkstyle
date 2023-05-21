@@ -41,7 +41,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * The calculation of the length of a line takes into account the number of
  * expanded spaces for a tab character ({@code '\t'}). The default number of spaces is {@code 8}.
  * To specify a different number of spaces, the user can set
- * <a href="https://checkstyle.org/config.html#TreeWalker">{@code TreeWalker}</a>
+ * <a href="https://checkstyle.org/config.html#Checker">{@code Checker}</a>
  * property {@code tabWidth} which applies to all Checks, including {@code LineLength};
  * or can set property {@code tabWidth} for {@code LineLength} alone.
  * </li>
