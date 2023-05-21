@@ -28,19 +28,19 @@ import org.junit.jupiter.api.Test;
 
 class BaseCellEditorTest {
 
-    private final BaseCellEditor bce = new BaseCellEditor();
+    private final BaseCellEditor cellEditor = new BaseCellEditor();
 
     @Test
     public void testToString() {
         assertWithMessage("is null")
-                .that(bce.getCellEditorValue() == null)
+                .that(cellEditor.getCellEditorValue() == null)
                 .isEqualTo(true);
     }
 
     @Test
     public void testStopCellEditing() {
         assertWithMessage("StopEditing return true")
-                .that(bce.stopCellEditing())
+                .that(cellEditor.stopCellEditing())
                 .isEqualTo(true);
     }
 
@@ -66,14 +66,14 @@ class BaseCellEditorTest {
 
         };
 
-        bce.addCellEditorListener(cellEditorListener1);
-        bce.fireEditingStopped();
+        cellEditor.addCellEditorListener(cellEditorListener1);
+        cellEditor.fireEditingStopped();
         assertWithMessage("Check if editing listener has stopped")
                 .that(cellEditorListenerStopped[0]).isEqualTo(true);
-        bce.fireEditingCanceled();
+        cellEditor.fireEditingCanceled();
         assertWithMessage("Check if editing listener has canceled")
                 .that(cellEditorListenerCanceled[0]).isEqualTo(true);
-        bce.removeCellEditorListener(cellEditorListener1);
+        cellEditor.removeCellEditorListener(cellEditorListener1);
 
     }
 }
