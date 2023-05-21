@@ -211,4 +211,22 @@ public class TreeTableTest extends AbstractGuiTestSupport {
                 .that(xpathTextArea.getText())
                 .isEqualTo(expected);
     }
+
+    @Test
+    public void testTreeModelAdapterMethods() throws IOException {
+        final MainFrame mainFrame = new MainFrame();
+        mainFrame.openFile(new File(getPath("InputTreeTableXpathAreaPanel.java")));
+
+        assertWithMessage("Value at Column (0, 3) expected to equal 0")
+                .that(treeTable.getValueAt(0, 3).equals(0))
+                .isEqualTo(true);
+
+        assertWithMessage("getColumn class expected to return string class")
+                .that(treeTable.getColumnClass(4).equals(String.class))
+                .isEqualTo(true);
+
+        assertWithMessage("Selected cell expected not be editable")
+                .that(treeTable.isCellEditable(1, 0))
+                .isEqualTo(false);
+    }
 }
