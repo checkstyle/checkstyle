@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -179,7 +179,6 @@ public class SingleSpaceSeparatorCheck extends AbstractCheck {
      */
     private void visitEachToken(DetailAST node) {
         DetailAST currentNode = node;
-        final DetailAST parent = node.getParent();
 
         do {
             final int columnNo = currentNode.getColumnNo() - 1;
@@ -199,7 +198,7 @@ public class SingleSpaceSeparatorCheck extends AbstractCheck {
                 currentNode = currentNode.getFirstChild();
             }
             else {
-                while (currentNode.getNextSibling() == null && currentNode.getParent() != parent) {
+                while (currentNode.getNextSibling() == null && currentNode.getParent() != null) {
                     currentNode = currentNode.getParent();
                 }
                 currentNode = currentNode.getNextSibling();

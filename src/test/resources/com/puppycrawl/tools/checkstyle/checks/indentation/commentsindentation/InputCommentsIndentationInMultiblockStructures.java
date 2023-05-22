@@ -16,18 +16,18 @@ public class InputCommentsIndentationInMultiblockStructures {
 
         if (true) {
             assert true;
-        // violation
+        // violation '.* incorrect .* level 8, expected is 12, .* same .* as line 18.'
         }
         else {}
 
         if (true) {
             assert true;
-                // violation
+                // violation '.* incorrect .* level 16, expected is 12, 8,.*same .* as line 24, 26.'
         } else {}
 
         if (true) {
             assert true;
-// violation
+// violation '.* incorrect .* level 0, expected is 12, 8, .* same .* as line 29, 31.'
         } else {}
 
         try {
@@ -37,18 +37,18 @@ public class InputCommentsIndentationInMultiblockStructures {
 
         try {
             assert true;
-        // violation
+        // violation '.* incorrect .* level 8, expected is 12, .* same .* as line 39.'
         }
         catch (Exception ex) {}
 
         try {
             assert true;
-// violation
+// violation '.* incorrect .* level 0, expected is 12, 8, .* same .* as line 45, 47.'
         } catch (Exception ex) {}
 
         try {
             assert true;
-                // violation
+                // violation '.* incorrect .* level 16, expected is 12, 8,.* same.* as line 50, 52.'
         } catch (Exception ex) {}
 
         try {
@@ -58,18 +58,18 @@ public class InputCommentsIndentationInMultiblockStructures {
 
         try {
             assert true;
-        // violation
+        // violation '.* incorrect .* level 8, expected is 12, .* same .* as line 60.'
         }
         finally {}
 
         try {
             assert true;
-// violation
+// violation '.* incorrect .* level 0, expected is 12, 8, .* same .* as line 66, 68.'
         } finally {}
 
         try {
             assert true;
-                // violation
+                // violation '.* incorrect .* level 16, expected is 12, 8,.* same.* as line 71, 73.'
         } finally {}
 
         try {} catch (Exception ex) {
@@ -79,18 +79,18 @@ public class InputCommentsIndentationInMultiblockStructures {
 
         try {} catch (Exception ex) {
             assert true;
-        // violation
+        // violation '.* incorrect .* level 8, expected is 12, .* same .* as line 81.'
         }
         finally {}
 
         try {} catch (Exception ex) {
             assert true;
-// violation
+// violation '.* incorrect .* level 0, expected is 12, 8, .* same .* as line 87, 89.'
         } finally {}
 
         try {} catch (Exception ex) {
             assert true;
-                // violation
+                // violation '.* incorrect .* level 16, expected is 12, 8,.*same.* as line 92, 94.'
         } finally {}
 
         try {} catch (ClassCastException ex) {
@@ -100,18 +100,18 @@ public class InputCommentsIndentationInMultiblockStructures {
 
         try {} catch (ClassCastException ex) {
             assert true;
-        // violation
+        // violation '.* incorrect .* level 8, expected is 12, .* same .* as line 102.'
         }
         catch (Exception ex) {}
 
         try {} catch (ClassCastException ex) {
             assert true;
-// violation
+// violation '.* incorrect .* level 0, expected is 12, 8, .* same .* as line 108, 110.'
         } catch (Exception ex) {}
 
         try {} catch (ClassCastException ex) {
             assert true;
-                // violation
+                // violation '.* incorrect .* level 16, expected is 12, 8,.*same.*as line 113, 115.'
         } catch (Exception ex) {}
 
         do {
@@ -121,18 +121,18 @@ public class InputCommentsIndentationInMultiblockStructures {
 
         do {
             assert true;
-        // violation
+        // violation '.* incorrect .* level 8, expected is 12, .* same .* as line 123.'
         }
         while (false);
 
         do {
             assert true;
-                // violation
+                // violation '.* incorrect .* level 16, expected is 12, 8,.*same.*as line 129, 131.'
         } while (false);
 
         do {
             assert true;
-// violation
+// violation '.* incorrect .* level 0, expected is 12, 8, .* same .* as line 134, 136.'
         } while (false);
     }
 }

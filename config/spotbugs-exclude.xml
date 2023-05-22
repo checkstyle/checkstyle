@@ -178,6 +178,12 @@
     <Bug pattern="SLS_SUSPICIOUS_LOOP_SEARCH"/>
   </Match>
   <Match>
+    <!-- Better to use DetailAstImpl here to avoid needless dependency of API package. -->
+    <Class name="com.puppycrawl.tools.checkstyle.JavaAstVisitor"/>
+    <Method name="addLastSibling"/>
+    <Bug pattern="OCP_OVERLY_CONCRETE_PARAMETER"/>
+  </Match>
+  <Match>
     <!-- Unable to resolve the item. -->
     <Class name="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
     <Method name="findLastChildWhichContainsSpecifiedToken"/>
@@ -213,15 +219,12 @@
       IMC_IMMATURE_CLASS_NO_EQUALS,
       IMC_IMMATURE_CLASS_NO_TOSTRING,
       IMC_IMMATURE_CLASS_PRINTSTACKTRACE,
-      ITC_INHERITANCE_TYPE_CHECKING,
       MOM_MISLEADING_OVERLOAD_MODEL,
       NFF_NON_FUNCTIONAL_FIELD,
       NMCS_NEEDLESS_MEMBER_COLLECTION_SYNCHRONIZATION,
-      OCP_OVERLY_CONCRETE_PARAMETER,
       OPM_OVERLY_PERMISSIVE_METHOD,
       PMB_INSTANCE_BASED_THREAD_LOCAL,
       SEO_SUBOPTIMAL_EXPRESSION_ORDER,
-      SGSU_SUSPICIOUS_GETTER_SETTER_USE,
       STT_STRING_PARSING_A_FIELD,
       WEM_WEAK_EXCEPTION_MESSAGING,
       " />
@@ -234,5 +237,13 @@
     <!-- Till https://github.com/spotbugs/spotbugs/issues/1867 -->
     <Class name="com.puppycrawl.tools.checkstyle.gui.ListToTreeSelectionModelWrapper"/>
     <Bug pattern="MC_OVERRIDABLE_METHOD_CALL_IN_CONSTRUCTOR"/>
+  </Match>
+  <Match>
+    <!-- Checks and filters are treated differently. -->
+    <Or>
+      <Class name="com.puppycrawl.tools.checkstyle.Checker"/>
+      <Class name="com.puppycrawl.tools.checkstyle.TreeWalker"/>
+    </Or>
+    <Bug pattern="ITC_INHERITANCE_TYPE_CHECKING"/>
   </Match>
 </FindBugsFilter>

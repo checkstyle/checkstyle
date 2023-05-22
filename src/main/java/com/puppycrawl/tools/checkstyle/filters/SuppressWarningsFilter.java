@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -19,15 +19,15 @@
 
 package com.puppycrawl.tools.checkstyle.filters;
 
+import com.puppycrawl.tools.checkstyle.AbstractAutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
-import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.Filter;
 import com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder;
 
 /**
  * <p>
  * Filter {@code SuppressWarningsFilter} uses annotation
- * {@code SuppressWarnings} to suppress audit events.
+ * {@code @SuppressWarnings} to suppress audit events.
  * </p>
  * <p>
  * Rationale: Same as for {@code SuppressionCommentFilter}. In the contrary to it here,
@@ -120,7 +120,7 @@ import com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder;
  * @since 5.7
  */
 public class SuppressWarningsFilter
-    extends AutomaticBean
+    extends AbstractAutomaticBean
     implements Filter {
 
     @Override

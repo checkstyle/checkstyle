@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -34,6 +34,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.LineNumberReader;
+import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -54,11 +55,11 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
+import com.puppycrawl.tools.checkstyle.AbstractAutomaticBean.OutputStreamOptions;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
-import com.puppycrawl.tools.checkstyle.api.AutomaticBean.OutputStreamOptions;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.Context;
@@ -86,6 +87,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * CheckerTest.
  *
  * @noinspection ClassWithTooManyDependencies
+ * @noinspectionreason ClassWithTooManyDependencies - complex tests require a large number
+ *      of imports
  */
 public class CheckerTest extends AbstractModuleTestSupport {
 
@@ -488,7 +491,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
             .that(context.get("basedir"))
             .isEqualTo("testBaseDir");
 
-        final Field sLocale = Violation.class.getDeclaredField("sLocale");
+        final Field sLocale = LocalizedMessage.class.getDeclaredField("sLocale");
         sLocale.setAccessible(true);
         final Locale locale = (Locale) sLocale.get(null);
         assertWithMessage("Locale is set to unexpected value")
@@ -762,6 +765,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
      * Test doesn't need to be serialized.
      *
      * @noinspection SerializableInnerClassWithNonSerializableOuterClass
+     * @noinspectionreason SerializableInnerClassWithNonSerializableOuterClass - mocked file
+     *      for test does not require serialization
      */
     @Test
     public void testCatchErrorInProcessFilesMethod() throws Exception {
@@ -777,6 +782,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
              * Test is checking catch clause when exception is thrown.
              *
              * @noinspection ProhibitedExceptionThrown
+             * @noinspectionreason ProhibitedExceptionThrown - we require mocked file to
+             *      throw exception as part of test
              */
             @Override
             public long lastModified() {
@@ -812,6 +819,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
      * Test doesn't need to be serialized.
      *
      * @noinspection SerializableInnerClassWithNonSerializableOuterClass
+     * @noinspectionreason SerializableInnerClassWithNonSerializableOuterClass - mocked file
+     *      for test does not require serialization
      */
     @Test
     public void testCatchErrorWithNoFileName() throws Exception {
@@ -827,6 +836,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
              * Test is checking catch clause when exception is thrown.
              *
              * @noinspection ProhibitedExceptionThrown
+             * @noinspectionreason ProhibitedExceptionThrown - we require mocked file to
+             *      throw exception as part of test
              */
             @Override
             public long lastModified() {
@@ -1115,6 +1126,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
      * Test doesn't need to be serialized.
      *
      * @noinspection SerializableInnerClassWithNonSerializableOuterClass
+     * @noinspectionreason SerializableInnerClassWithNonSerializableOuterClass - mocked file
+     *      for test does not require serialization
      */
     @Test
     public void testCatchErrorWithCache() throws Exception {
@@ -1140,6 +1153,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
              * Test is checking catch clause when exception is thrown.
              *
              * @noinspection ProhibitedExceptionThrown
+             * @noinspectionreason ProhibitedExceptionThrown - we require mocked file to
+             *      throw exception as part of test
              */
             @Override
             public File getAbsoluteFile() {
@@ -1189,6 +1204,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
      * Test doesn't need to be serialized.
      *
      * @noinspection SerializableInnerClassWithNonSerializableOuterClass
+     * @noinspectionreason SerializableInnerClassWithNonSerializableOuterClass - mocked file
+     *      for test does not require serialization
      */
     @Test
     public void testCatchErrorWithCacheWithNoFileName() throws Exception {
@@ -1209,6 +1226,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
              * Test is checking catch clause when exception is thrown.
              *
              * @noinspection ProhibitedExceptionThrown
+             * @noinspectionreason ProhibitedExceptionThrown - we require mocked file to
+             *      throw exception as part of test
              */
             @Override
             public String getAbsolutePath() {
@@ -1256,6 +1275,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
      * Test doesn't need to be serialized.
      *
      * @noinspection SerializableInnerClassWithNonSerializableOuterClass
+     * @noinspectionreason SerializableInnerClassWithNonSerializableOuterClass - mocked file
+     *      for test does not require serialization
      */
     @Test
     public void testExceptionWithNoFileName() {
@@ -1269,6 +1290,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
              * Test is checking catch clause when exception is thrown.
              *
              * @noinspection ProhibitedExceptionThrown
+             * @noinspectionreason ProhibitedExceptionThrown - we require mocked file to
+             *      throw exception as part of test
              */
             @Override
             public String getAbsolutePath() {
@@ -1300,6 +1323,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
      * Test doesn't need to be serialized.
      *
      * @noinspection SerializableInnerClassWithNonSerializableOuterClass
+     * @noinspectionreason SerializableInnerClassWithNonSerializableOuterClass - mocked file
+     *      for test does not require serialization
      */
     @Test
     public void testExceptionWithCacheAndNoFileName() throws Exception {
@@ -1319,6 +1344,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
              * Test is checking catch clause when exception is thrown.
              *
              * @noinspection ProhibitedExceptionThrown
+             * @noinspectionreason ProhibitedExceptionThrown - we require mocked file to
+             *      throw exception as part of test
              */
             @Override
             public String getAbsolutePath() {
@@ -1613,6 +1640,46 @@ public class CheckerTest extends AbstractModuleTestSupport {
         }
 
         checker.destroy();
+    }
+
+    @Test
+    public void testCachedFile() throws Exception {
+        final Checker checker = createChecker(createModuleConfig(TranslationCheck.class));
+        final OutputStream infoStream = new ByteArrayOutputStream();
+        final OutputStream errorStream = new ByteArrayOutputStream();
+        final DefaultLoggerWithCounter loggerWithCounter =
+            new DefaultLoggerWithCounter(infoStream, OutputStreamOptions.CLOSE,
+                                         errorStream, OutputStreamOptions.CLOSE);
+        checker.addListener(loggerWithCounter);
+        final File cacheFile = File.createTempFile("cacheFile", ".txt", temporaryFolder);
+        checker.setCacheFile(cacheFile.getAbsolutePath());
+
+        final File testFile = File.createTempFile("testFile", ".java", temporaryFolder);
+        final List<File> files = List.of(testFile, testFile);
+        checker.process(files);
+
+        assertWithMessage("Cached file should not be processed twice")
+            .that(loggerWithCounter.fileStartedCount)
+            .isEqualTo(1);
+
+        checker.destroy();
+    }
+
+    public static class DefaultLoggerWithCounter extends DefaultLogger {
+
+        private int fileStartedCount;
+
+        public DefaultLoggerWithCounter(OutputStream infoStream,
+                                        OutputStreamOptions infoStreamOptions,
+                                        OutputStream errorStream,
+                                        OutputStreamOptions errorStreamOptions) {
+            super(infoStream, infoStreamOptions, errorStream, errorStreamOptions);
+        }
+
+        @Override
+        public void fileStarted(AuditEvent event) {
+            fileStartedCount++;
+        }
     }
 
     public static class DummyFilter implements Filter {

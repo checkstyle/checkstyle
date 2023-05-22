@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -45,7 +45,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 // -@cs[AbbreviationAsWordInName] We can not change it as,
 // check's name is part of API (used in configurations).
 public class XMLLogger
-    extends AutomaticBean
+    extends AbstractAutomaticBean
     implements AuditListener {
 
     /** Decimal radix. */
@@ -72,6 +72,22 @@ public class XMLLogger
      * Helper writer that allows easy encoding and printing.
      */
     private final PrintWriter writer;
+
+    /**
+     * Creates a new {@code XMLLogger} instance.
+     * Sets the output to a defined stream.
+     *
+     * @param outputStream the stream to write logs to.
+     * @param outputStreamOptions if {@code CLOSE} stream should be closed in auditFinished()
+     * @throws IllegalArgumentException if outputStreamOptions is null.
+     * @noinspection deprecation
+     * @noinspectionreason We are forced to keep AutomaticBean compatability
+     *     because of maven-checkstyle-plugin. Until #12873.
+     */
+    public XMLLogger(OutputStream outputStream,
+                     AutomaticBean.OutputStreamOptions outputStreamOptions) {
+        this(outputStream, OutputStreamOptions.valueOf(outputStreamOptions.name()));
+    }
 
     /**
      * Creates a new {@code XMLLogger} instance.
@@ -333,7 +349,7 @@ public class XMLLogger
     /**
      * The registered file messages.
      */
-    private static class FileMessages {
+    private static final class FileMessages {
 
         /** The file error events. */
         private final List<AuditEvent> errors = Collections.synchronizedList(new ArrayList<>());

@@ -553,7 +553,9 @@
           </tr>
           <tr>
             <td><a href="config_javadoc.html#MissingJavadocPackage">MissingJavadocPackage</a></td>
-            <td>Checks for missing Javadoc comments in package-info.java files.</td>
+            <td>
+              Checks for missing package definition Javadoc comments in package-info.java files.
+            </td>
           </tr>
           <tr>
             <td><a href="config_javadoc.html#MissingJavadocType">MissingJavadocType</a></td>

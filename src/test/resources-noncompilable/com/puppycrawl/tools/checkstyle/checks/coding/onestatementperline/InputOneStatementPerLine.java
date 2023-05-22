@@ -66,4 +66,17 @@ public class InputOneStatementPerLine {
 
   private static void good() {
   }
+
+  InputOneStatementPerLine method(foo a) {
+    foo obj = () -> {
+      method(() ->
+             {method(null);}).method(null); // ok
+    };
+    return this;
+  }
+
+  interface foo {
+    void method();
+  }
+
 }

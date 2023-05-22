@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 import java.util.regex.Matcher;
@@ -52,6 +53,9 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <p>
  * Does not perform checks for author and version tags for inner classes,
  * as they should be redundant because of outer class.
+ * </p>
+ * <p>
+ * Does not perform checks for type definitions that do not have any Javadoc comments.
  * </p>
  * <p>
  * Error messages about type parameters and record components for which no param tags are present
@@ -93,7 +97,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </li>
  * <li>
  * Property {@code allowedAnnotations} - Specify annotations that allow
- * missed documentation. Only short names are allowed, e.g. {@code Generated}.
+ * skipping validation at all. Only short names are allowed, e.g. {@code Generated}.
  * Type is {@code java.lang.String[]}.
  * Default value is {@code Generated}.
  * </li>
@@ -121,12 +125,72 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * &lt;module name="JavadocType"/&gt;
  * </pre>
  * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * &#47;**
+ *  * &#64;author a
+ *  * &#64;version $Revision1$
+ *  *&#47;
+ * public class ClassA { // OK
+ *     &#47;** *&#47;
+ *     private class ClassB {} // OK
+ * }
+ *
+ * &#47;**
+ *  * &#64;author
+ *  * &#64;version abc
+ *  * &#64;unknownTag value // violation
+ *  *&#47;
+ * public class ClassC {} // OK
+ *
+ * &#47;** *&#47;
+ * public class ClassD&lt;T&gt; {} // violation, as param tag for &lt;T&gt; is missing
+ *
+ * &#47;** *&#47;
+ * private class ClassE&lt;T&gt; {} // violation, as param tag for &lt;T&gt; is missing
+ *
+ * &#47;** *&#47;
+ * &#64;Generated
+ * public class ClassF&lt;T&gt; {} // OK
+ * </pre>
+ * <p>
  * To configure the check for {@code public} scope:
  * </p>
  * <pre>
  * &lt;module name="JavadocType"&gt;
  *   &lt;property name="scope" value="public"/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * &#47;**
+ *  * &#64;author a
+ *  * &#64;version $Revision1$
+ *  *&#47;
+ * public class ClassA { // OK
+ *     &#47;** *&#47;
+ *     private class ClassB {} // OK
+ * }
+ *
+ * &#47;**
+ *  * &#64;author
+ *  * &#64;version abc
+ *  * &#64;unknownTag value // violation
+ *  *&#47;
+ * public class ClassC {} // OK
+ *
+ * &#47;** *&#47;
+ * public class ClassD&lt;T&gt; {} // violation, as param tag for &lt;T&gt; is missing
+ *
+ * &#47;** *&#47;
+ * private class ClassE&lt;T&gt; {} // OK
+ *
+ * &#47;** *&#47;
+ * &#64;Generated
+ * public class ClassF&lt;T&gt; {} // OK
  * </pre>
  * <p>
  * To configure the check for an {@code @author} tag:
@@ -137,12 +201,72 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * &lt;/module&gt;
  * </pre>
  * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * &#47;**
+ *  * &#64;author a
+ *  * &#64;version $Revision1$
+ *  *&#47;
+ * public class ClassA { // OK
+ *     &#47;** *&#47;
+ *     private class ClassB {} // OK, as author tag check is ignored for inner class
+ * }
+ *
+ * &#47;**
+ *  * &#64;author
+ *  * &#64;version abc
+ *  * &#64;unknownTag value // violation
+ *  *&#47;
+ * public class ClassC {} // violation, as author format with only whitespace or new line is invalid
+ *
+ * &#47;** *&#47;
+ * public class ClassD {} // violation, as author tag is missing
+ *
+ * &#47;** *&#47;
+ * private class ClassE {} // violation, as author tag is missing
+ *
+ * &#47;** *&#47;
+ * &#64;Generated
+ * public class ClassF&lt;T&gt; {} // OK
+ * </pre>
+ * <p>
  * To configure the check for a CVS revision version tag:
  * </p>
  * <pre>
  * &lt;module name="JavadocType"&gt;
  *   &lt;property name="versionFormat" value="\$Revision.*\$"/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * &#47;**
+ *  * &#64;author a
+ *  * &#64;version $Revision1$
+ *  *&#47;
+ * public class ClassA { // OK
+ *     &#47;** *&#47;
+ *     private class ClassB {} // OK, as version tag check is ignored for inner class
+ * }
+ *
+ * &#47;**
+ *  * &#64;author
+ *  * &#64;version abc
+ *  * &#64;unknownTag value // violation
+ *  *&#47;
+ * public class ClassC {} // violation, as version format is invalid
+ *
+ * &#47;** *&#47;
+ * public class ClassD {} // violation, as version tag is missing
+ *
+ * &#47;** *&#47;
+ * private class ClassE {} // violation, as version tag is missing
+ *
+ * &#47;** *&#47;
+ * &#64;Generated
+ * public class ClassF&lt;T&gt; {} // OK
  * </pre>
  * <p>
  * To configure the check for {@code private} classes only:
@@ -154,23 +278,131 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * &lt;/module&gt;
  * </pre>
  * <p>
- * Example that allows missing comments for classes annotated with
- * {@code @SpringBootApplication} and {@code @Configuration}:
+ * Example:
  * </p>
  * <pre>
- * &#64;SpringBootApplication // no violations about missing comment on class
- * public class Application {}
+ * &#47;**
+ *  * &#64;author a
+ *  * &#64;version $Revision1$
+ *  *&#47;
+ * public class ClassA { // OK
+ *     &#47;** *&#47;
+ *     private class ClassB {} // OK
+ * }
  *
- * &#64;Configuration // no violations about missing comment on class
- * class DatabaseConfiguration {}
+ * &#47;**
+ *  * &#64;author
+ *  * &#64;version abc
+ *  * &#64;unknownTag value // OK
+ *  *&#47;
+ * public class ClassC {} // OK
+ *
+ * &#47;** *&#47;
+ * public class ClassD&lt;T&gt; {} // OK
+ *
+ * &#47;** *&#47;
+ * private class ClassE&lt;T&gt; {} // violation, as param tag for &lt;T&gt; is missing
+ *
+ * &#47;** *&#47;
+ * &#64;Generated
+ * public class ClassF&lt;T&gt; {} // OK
  * </pre>
  * <p>
- * Use following configuration:
+ * To configure the check that allows missing {@code @param} tags:
+ * </p>
+ * <pre>
+ * &lt;module name="JavadocType"&gt;
+ *   &lt;property name="allowMissingParamTags" value="true"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * &#47;**
+ *  * &#64;author a
+ *  * &#64;version $Revision1$
+ *  *&#47;
+ * public class ClassA { // OK
+ *     &#47;** *&#47;
+ *     private class ClassB {} // OK
+ * }
+ *
+ * &#47;**
+ *  * &#64;author
+ *  * &#64;version abc
+ *  * &#64;unknownTag value // violation
+ *  *&#47;
+ * public class ClassC {} // OK
+ *
+ * &#47;** *&#47;
+ * public class ClassD&lt;T&gt; {} // OK, as missing param tag is allowed
+ *
+ * &#47;** *&#47;
+ * private class ClassE&lt;T&gt; {} // OK, as missing param tag is allowed
+ *
+ * &#47;** *&#47;
+ * &#64;Generated
+ * public class ClassF&lt;T&gt; {} // OK
+ * </pre>
+ * <p>
+ * To configure the check that allows unknown tags:
+ * </p>
+ * <pre>
+ * &lt;module name="JavadocType"&gt;
+ *   &lt;property name="allowUnknownTags" value="true"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * &#47;**
+ *  * &#64;author a
+ *  * &#64;version $Revision1$
+ *  *&#47;
+ * public class ClassA { // OK
+ *     &#47;** *&#47;
+ *     private class ClassB {} // OK
+ * }
+ *
+ * &#47;**
+ *  * &#64;author
+ *  * &#64;version abc
+ *  * &#64;unknownTag value // OK, as unknown tag is allowed
+ *  *&#47;
+ * public class ClassC {} // OK
+ *
+ * &#47;** *&#47;
+ * public class ClassD {} // OK
+ *
+ * &#47;** *&#47;
+ * private class ClassE {} // OK
+ *
+ * &#47;** *&#47;
+ * &#64;Generated
+ * public class ClassF&lt;T&gt; {} // OK
+ * </pre>
+ * <p>
+ * To configure a check that allows skipping validation at all for classes annotated
+ * with {@code @SpringBootApplication} and {@code @Configuration}:
  * </p>
  * <pre>
  * &lt;module name="JavadocType"&gt;
  *   &lt;property name="allowedAnnotations" value="SpringBootApplication,Configuration"/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * &#47;** *&#47;
+ * &#64;SpringBootApplication // no violations about missing param tag on class
+ * public class Application&lt;T&gt; {}
+ *
+ * &#47;** *&#47;
+ * &#64;Configuration // no violations about missing param tag on class
+ * class DatabaseConfiguration&lt;T&gt; {}
  * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
@@ -267,7 +499,7 @@ public class JavadocTypeCheck
     private boolean allowUnknownTags;
 
     /**
-     * Specify annotations that allow missed documentation.
+     * Specify annotations that allow skipping validation at all.
      * Only short names are allowed, e.g. {@code Generated}.
      */
     private Set<String> allowedAnnotations = Set.of("Generated");
@@ -328,7 +560,7 @@ public class JavadocTypeCheck
     }
 
     /**
-     * Setter to specify annotations that allow missed documentation.
+     * Setter to specify annotations that allow skipping validation at all.
      * Only short names are allowed, e.g. {@code Generated}.
      *
      * @param userAnnotations user's value.
@@ -442,7 +674,7 @@ public class JavadocTypeCheck
      * @param tagName the required tag name.
      * @param formatPattern regexp for the tag value.
      */
-    private void checkTag(DetailAST ast, List<JavadocTag> tags, String tagName,
+    private void checkTag(DetailAST ast, Iterable<JavadocTag> tags, String tagName,
                           Pattern formatPattern) {
         if (formatPattern != null) {
             boolean hasTag = false;
@@ -471,7 +703,7 @@ public class JavadocTypeCheck
      * @param recordComponentName the name of the type parameter
      */
     private void checkComponentParamTag(DetailAST ast,
-                                        List<JavadocTag> tags,
+                                        Collection<JavadocTag> tags,
                                         String recordComponentName) {
 
         final boolean found = tags
@@ -494,7 +726,7 @@ public class JavadocTypeCheck
      * @param typeParamName the name of the type parameter
      */
     private void checkTypeParamTag(DetailAST ast,
-            List<JavadocTag> tags, String typeParamName) {
+            Collection<JavadocTag> tags, String typeParamName) {
         final String typeParamNameWithBrackets =
             OPEN_ANGLE_BRACKET + typeParamName + CLOSE_ANGLE_BRACKET;
 

@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -26,6 +26,7 @@ import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class ParameterNameCheckTest
@@ -66,6 +67,17 @@ public class ParameterNameCheckTest
         };
         verifyWithInlineConfigParser(
                 getPath("InputParameterNameOne.java"), expected);
+    }
+
+    @Test
+    public void testWhitespaceInAccessModifierProperty() throws Exception {
+        final String pattern = "^h$";
+        final String[] expected = {
+            "14:69: " + getCheckMessage(MSG_INVALID_PATTERN, "parameter1", pattern),
+            "18:31: " + getCheckMessage(MSG_INVALID_PATTERN, "parameter2", pattern),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputParameterNameWhitespaceInAccessModifierProperty.java"), expected);
     }
 
     @Test
@@ -165,6 +177,28 @@ public class ParameterNameCheckTest
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputParameterNameLambda.java"), expected);
+    }
+
+    @Test
+    public void testWhitespaceInConfig() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputParameterNameWhitespaceInConfig.java"), expected);
+    }
+
+    @Test
+    public void testSetAccessModifiers() throws Exception {
+        final AccessModifierOption[] input = {
+            AccessModifierOption.PACKAGE,
+        };
+        final ParameterNameCheck check = new ParameterNameCheck();
+        check.setAccessModifiers(input);
+
+        assertWithMessage("check creates its own instance of access modifier array")
+            .that(System.identityHashCode(
+                TestUtil.getClassDeclaredField(ParameterNameCheck.class, "accessModifiers")
+                        .get(check)))
+            .isNotEqualTo(System.identityHashCode(input));
     }
 
 }

@@ -145,7 +145,7 @@ class Invalid implements Serializable
             Google Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+AtclauseOrder">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+AtclauseOrder">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -236,7 +236,7 @@ public class TestClass {
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+InvalidJavadocPosition">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+InvalidJavadocPosition">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -389,7 +389,7 @@ public int field;
       <subsection name="Example of Usage" id="JavadocBlockTagLocation_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocBlockTagLocation">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocBlockTagLocation">
               Checkstyle Style</a>
           </li>
         </ul>
@@ -569,7 +569,7 @@ public void method();
       <subsection name="Example of Usage" id="JavadocContentLocation_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocContentLocation">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocContentLocation">
               Checkstyle Style</a>
           </li>
         </ul>
@@ -770,7 +770,39 @@ public int checkReturnTag(final int aTagIndex,
         <source>
 &lt;module name="JavadocMethod"/&gt;
         </source>
+        <p> Example:</p>
+        <source>
+public class Test {
 
+  /**
+   *
+   */
+  Test(int x) {             // violation, param tag missing for x
+  }
+
+  /**
+   *
+   */
+  public int foo(int p1) {  // violation, param tag missing for p1
+      return p1;            // violation, return tag missing
+  }
+
+  /**
+   *
+   * @param p1 The first number
+   */
+  @Deprecated
+  private int boo(int p1) {
+      return p1;            // violation, return tag missing
+  }
+
+  /**
+   *
+   */
+  void bar(int p1) {        // violation, param tag missing for p1
+  }                         // ok, no return tag for void method
+}
+        </source>
         <p>
           To configure the check for only <code>public</code>
           modifier, ignoring any missing param tags is:
@@ -782,15 +814,203 @@ public int checkReturnTag(final int aTagIndex,
   &lt;property name=&quot;allowMissingParamTags&quot; value=&quot;true&quot;/&gt;
 &lt;/module&gt;
         </source>
+        <p>Example: </p>
+        <source>
+public class Test {
 
+  /**
+   *
+   */
+  Test(int x) {             // ok, only public methods checked
+  }
+
+  /**
+   *
+   */
+  public int foo(int p1) {  // ok, missing param tags allowed
+      return p1;            // violation, return tag missing
+  }
+
+  /**
+   *
+   * @param p1 The first number
+   */
+  @Deprecated
+  private int boo(int p1) {
+      return p1;            // ok, only public methods checked
+  }
+
+  /**
+   *
+   */
+  void bar(int p1) {        // ok, missing param tags allowed
+  }                         // ok, no return tag for void method
+}
+        </source>
         <p>
-          To configure the check for methods which are in <code>private</code>
-          and <code>package</code>, but not any other modifier:
+            To configure the check for methods which are in <code>private</code> and
+          <code>package</code>, but not any other modifier:
         </p>
         <source>
 &lt;module name="JavadocMethod"&gt;
   &lt;property name="accessModifiers" value="private, package"/&gt;
 &lt;/module&gt;
+        </source>
+        <p> Example:</p>
+        <source>
+class Test {
+
+  /**
+   *
+   */
+  Test(int x) {             // violation, param tag missing for x
+  }
+
+  /**
+   *
+   */
+  public int foo(int p1) {  // ok, public methods not checked
+      return p1;
+  }
+
+  /**
+   *
+   * @param p1 The first number
+   */
+  @Deprecated
+  private int boo(int p1) {
+      return p1;            // violation, return tag missing
+  }
+
+  /**
+   *
+   */
+  void bar(int p1) {        // violation, param tag missing for p1
+  }                         // ok, no return tag for void method
+}
+        </source>
+        <p>
+              To configure the check to ignore any missing return tags:
+        </p>
+        <source>
+&lt;module name="JavadocMethod"&gt;
+    &lt;property name="allowMissingReturnTag" value="true"/&gt;
+&lt;/module&gt;
+        </source>
+        <p> Example:</p>
+        <source>
+public class Test {
+
+  /**
+   *
+   */
+  Test(int x) {             // violation, param tag missing for x
+  }
+
+  /**
+   *
+   */
+  public int foo(int p1) {  // violation, param tag missing for p1
+      return p1;            // ok, missing return tag allowed
+  }
+
+  /**
+   *
+   * @param p1 The first number
+   */
+  @Deprecated
+  private int boo(int p1) {
+      return p1;            // ok, missing return tag allowed
+  }
+
+  /**
+   *
+   */
+  void bar(int p1) {        // violation, param tag missing for p1
+  }                         // ok, no return tag for void method
+}
+        </source>
+        <p>
+              To configure the check to ignore Methods with annotation <code>Deprecated</code>:
+        </p>
+        <source>
+&lt;module name="JavadocMethod"&gt;
+    &lt;property name="allowedAnnotations" value="Deprecated"/&gt;
+&lt;/module&gt;
+        </source>
+        <p> Example:</p>
+        <source>
+public class Test {
+
+  /**
+   *
+   */
+  Test(int x) {             // violation, param tag missing for x
+  }
+
+  /**
+   *
+   */
+  public int foo(int p1) {  // violation, param tag missing for p1
+      return p1;            // violation, return tag missing
+  }
+
+  /**
+   *
+   * @param p1 The first number
+   */
+  @Deprecated
+  private int boo(int p1) {
+      return p1;            // ok, Deprecated methods not checked
+  }
+
+  /**
+   *
+   */
+  void bar(int p1) {        // violation, param tag missing for p1
+  }                         // ok, no return tag for void method
+}
+        </source>
+        <p>
+              To configure the check only for tokens which are Constructor Definitions:
+        </p>
+        <source>
+&lt;module name="JavadocMethod"&gt;
+    &lt;property name="tokens" value="CTOR_DEF"/&gt;
+&lt;/module&gt;
+        </source>
+        <p> Example:</p>
+        <source>
+public class Test {
+
+  /**
+   *
+   */
+  Test(int x) {             // violation, param tag missing for x
+  }
+
+  /**
+   *
+   */
+  public int foo(int p1) {  // ok, method not checked
+      return p1;            // ok, method not checked
+  }
+
+  /**
+   *
+   * @param p1 The first number
+   */
+  @Deprecated
+  private int boo(int p1) {
+      return p1;            // ok, method not checked
+  }
+
+  /**
+   *
+   */
+  void bar(int p1) {        // ok, method not checked
+  }
+}
         </source>
 
         <p>
@@ -801,6 +1021,7 @@ public int checkReturnTag(final int aTagIndex,
   &lt;property name="validateThrows" value="true"/&gt;
 &lt;/module&gt;
         </source>
+        <p> Example:</p>
         <source>
 /**
  * Actual exception thrown is child class of class that is declared in throws.
@@ -879,9 +1100,7 @@ public Runnable printLater(String s) {
     };
 }
         </source>
-
       </subsection>
-
       <subsection name="Example of Usage" id="JavadocMethod_Example_of_Usage">
         <ul>
           <li>
@@ -893,7 +1112,7 @@ public Runnable printLater(String s) {
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocMethod">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocMethod">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -1043,7 +1262,7 @@ class Code {}
       <subsection name="Example of Usage" id="JavadocMissingLeadingAsterisk_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocMissingLeadingAsterisk">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocMissingLeadingAsterisk">
               Checkstyle Style</a>
           </li>
         </ul>
@@ -1160,7 +1379,7 @@ class TestClass {
         id="JavadocMissingWhitespaceAfterAsterisk_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocMissingWhitespaceAfterAsterisk">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocMissingWhitespaceAfterAsterisk">
               Checkstyle Style</a>
           </li>
         </ul>
@@ -1275,7 +1494,7 @@ class TestClass {
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocPackage">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocPackage">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -1428,7 +1647,7 @@ public class TestClass {
             Google Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocParagraph">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocParagraph">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -1519,7 +1738,7 @@ public class TestClass {
           </li>
           <li>
            Check that a package Javadoc comment is well-formed (as
-           described above) and NOT missing from any package-info.java files.
+           described above).
           </li>
           <li>
             Check for allowed HTML tags. The list of allowed HTML tags
@@ -1535,7 +1754,7 @@ public class TestClass {
 
         <p>
           These checks were patterned after the checks made by the <a
-          href="http://maven-doccheck.sourceforge.net/">DocCheck</a>
+          href="https://maven-doccheck.sourceforge.net">DocCheck</a>
           doclet available from Sun. Note: Original Sun's DocCheck tool does not exist anymore.
         </p>
       </subsection>
@@ -1804,7 +2023,7 @@ public class Test {
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocStyle">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocStyle">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -1823,10 +2042,6 @@ public class Test {
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.incompleteTag%22">
             javadoc.incompleteTag</a>
-          </li>
-          <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.missing%22">
-            javadoc.missing</a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.noPeriod%22">
@@ -1971,7 +2186,7 @@ public class Test {
             Google Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocTagContinuationIndentation">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocTagContinuationIndentation">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -2036,6 +2251,10 @@ public class Test {
           classes, as they should be redundant because of outer class.
         </p>
         <p>
+          Does not perform checks for type definitions that do not have
+          any Javadoc comments.
+        </p>
+        <p>
           Error messages about type parameters and record components for which no
           param tags are present can be suppressed by defining property
           <code>allowMissingParamTags</code>.
@@ -2098,7 +2317,7 @@ public class Test {
             <tr>
               <td>allowedAnnotations</td>
               <td>
-                Specify annotations that allow missed documentation.
+                Specify annotations that allow skipping validation at all.
                 Only short names are allowed, e.g. <code>Generated</code>.
               </td>
               <td><a href="property_types.html#String.5B.5D">String[]</a></td>
@@ -2148,6 +2367,34 @@ public class Test {
         <source>
 &lt;module name="JavadocType"/&gt;
         </source>
+        <p>Example:</p>
+        <source>
+/**
+ * @author a
+ * @version $Revision1$
+ */
+public class ClassA { // OK
+    /** */
+    private class ClassB {} // OK
+}
+
+/**
+ * @author
+ * @version abc
+ * @unknownTag value // violation
+ */
+public class ClassC {} // OK
+
+/** */
+public class ClassD&lt;T&gt; {} // violation, as param tag for &lt;T&gt; is missing
+
+/** */
+private class ClassE&lt;T&gt; {} // violation, as param tag for &lt;T&gt; is missing
+
+/** */
+@Generated
+public class ClassF&lt;T&gt; {} // OK
+        </source>
 
         <p>
           To configure the check for <code>public</code> scope:
@@ -2156,6 +2403,34 @@ public class Test {
 &lt;module name="JavadocType"&gt;
   &lt;property name="scope" value="public"/&gt;
 &lt;/module&gt;
+        </source>
+        <p>Example:</p>
+        <source>
+/**
+ * @author a
+ * @version $Revision1$
+ */
+public class ClassA { // OK
+    /** */
+    private class ClassB {} // OK
+}
+
+/**
+ * @author
+ * @version abc
+ * @unknownTag value // violation
+ */
+public class ClassC {} // OK
+
+/** */
+public class ClassD&lt;T&gt; {} // violation, as param tag for &lt;T&gt; is missing
+
+/** */
+private class ClassE&lt;T&gt; {} // OK
+
+/** */
+@Generated
+public class ClassF&lt;T&gt; {} // OK
         </source>
 
         <p>
@@ -2166,6 +2441,34 @@ public class Test {
   &lt;property name="authorFormat" value="\S"/&gt;
 &lt;/module&gt;
         </source>
+        <p>Example:</p>
+        <source>
+/**
+ * @author a
+ * @version $Revision1$
+ */
+public class ClassA { // OK
+    /** */
+    private class ClassB {} // OK, as author tag check is ignored for inner class
+}
+
+/**
+ * @author
+ * @version abc
+ * @unknownTag value // violation
+ */
+public class ClassC {} // violation, as author format with only whitespace or new line is invalid
+
+/** */
+public class ClassD {} // violation, as author tag is missing
+
+/** */
+private class ClassE {} // violation, as author tag is missing
+
+/** */
+@Generated
+public class ClassF&lt;T&gt; {} // OK
+        </source>
 
         <p>
           To configure the check for a CVS revision version tag:
@@ -2174,6 +2477,34 @@ public class Test {
 &lt;module name="JavadocType"&gt;
   &lt;property name="versionFormat" value="\$Revision.*\$"/&gt;
 &lt;/module&gt;
+        </source>
+        <p>Example:</p>
+        <source>
+/**
+ * @author a
+ * @version $Revision1$
+ */
+public class ClassA { // OK
+    /** */
+    private class ClassB {} // OK, as version tag check is ignored for inner class
+}
+
+/**
+ * @author
+ * @version abc
+ * @unknownTag value // violation
+ */
+public class ClassC {} // violation, as version format is invalid
+
+/** */
+public class ClassD {} // violation, as version tag is missing
+
+/** */
+private class ClassE {} // violation, as version tag is missing
+
+/** */
+@Generated
+public class ClassF&lt;T&gt; {} // OK
         </source>
 
         <p>
@@ -2185,23 +2516,130 @@ public class Test {
   &lt;property name="excludeScope" value="package"/&gt;
 &lt;/module&gt;
         </source>
+        <p>Example:</p>
+        <source>
+/**
+ * @author a
+ * @version $Revision1$
+ */
+public class ClassA { // OK
+    /** */
+    private class ClassB {} // OK
+}
+
+/**
+ * @author
+ * @version abc
+ * @unknownTag value // OK
+ */
+public class ClassC {} // OK
+
+/** */
+public class ClassD&lt;T&gt; {} // OK
+
+/** */
+private class ClassE&lt;T&gt; {} // violation, as param tag for &lt;T&gt; is missing
+
+/** */
+@Generated
+public class ClassF&lt;T&gt; {} // OK
+        </source>
 
         <p>
-          Example that allows missing comments for classes annotated with
-          <code>@SpringBootApplication</code> and <code>@Configuration</code>:
+          To configure the check that allows missing <code>@param</code> tags:
         </p>
         <source>
-@SpringBootApplication // no violations about missing comment on class
-public class Application {}
-
-@Configuration // no violations about missing comment on class
-class DatabaseConfiguration {}
+&lt;module name="JavadocType"&gt;
+  &lt;property name="allowMissingParamTags" value="true"/&gt;
+&lt;/module&gt;
         </source>
-        <p>Use following configuration:</p>
+        <p>Example:</p>
+        <source>
+/**
+ * @author a
+ * @version $Revision1$
+ */
+public class ClassA { // OK
+    /** */
+    private class ClassB {} // OK
+}
+
+/**
+ * @author
+ * @version abc
+ * @unknownTag value // violation
+ */
+public class ClassC {} // OK
+
+/** */
+public class ClassD&lt;T&gt; {} // OK, as missing param tag is allowed
+
+/** */
+private class ClassE&lt;T&gt; {} // OK, as missing param tag is allowed
+
+/** */
+@Generated
+public class ClassF&lt;T&gt; {} // OK
+        </source>
+
+        <p>
+            To configure the check that allows unknown tags:
+        </p>
+        <source>
+&lt;module name="JavadocType"&gt;
+  &lt;property name="allowUnknownTags" value="true"/&gt;
+&lt;/module&gt;
+        </source>
+        <p>Example:</p>
+        <source>
+/**
+ * @author a
+ * @version $Revision1$
+ */
+public class ClassA { // OK
+  /** */
+  private class ClassB {} // OK
+}
+
+/**
+ * @author
+ * @version abc
+ * @unknownTag value // OK, as unknown tag is allowed
+ */
+public class ClassC {} // OK
+
+/** */
+public class ClassD {} // OK
+
+/** */
+private class ClassE {} // OK
+
+/** */
+@Generated
+public class ClassF&lt;T&gt; {} // OK
+        </source>
+
+        <p>
+          To configure a check that allows skipping validation at all
+          for classes annotated with <code>@SpringBootApplication</code>
+          and <code>@Configuration</code>:
+        </p>
         <source>
 &lt;module name="JavadocType"&gt;
   &lt;property name="allowedAnnotations" value="SpringBootApplication,Configuration"/&gt;
 &lt;/module&gt;
+        </source>
+        <p>
+          Example:
+        </p>
+        <source>
+/** */
+@SpringBootApplication // no violations about missing param tag on class
+public class Application&lt;T&gt; {}
+
+/** */
+@Configuration // no violations about missing param tag on class
+class DatabaseConfiguration&lt;T&gt; {}
         </source>
       </subsection>
 
@@ -2212,7 +2650,7 @@ class DatabaseConfiguration {}
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocType">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocType">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -2438,7 +2876,7 @@ private int logger; // OK
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocVariable">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocVariable">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -2743,7 +3181,7 @@ public class Test {
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingJavadocMethod">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingJavadocMethod">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -2779,7 +3217,7 @@ public class Test {
       <p>Since Checkstyle 8.22</p>
       <subsection name="Description" id="MissingJavadocPackage_Description">
         <p>
-            Checks for missing Javadoc comments in package-info.java files.
+            Checks for missing package definition Javadoc comments in package-info.java files.
         </p>
 
         <p>
@@ -2787,6 +3225,11 @@ public class Test {
           in the package-info.java file and it gets used in the production of the Javadocs.
           See <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html#packagecomment">
           link</a> for more info.
+        </p>
+
+        <p>
+          This check specifically only validates package definitions. It will not validate any
+          methods or interfaces declared in the package-info.java file.
         </p>
       </subsection>
 
@@ -2813,7 +3256,7 @@ package com.checkstyle.api; // violation
       <subsection name="Example of Usage" id="MissingJavadocPackage_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingJavadocPackage">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingJavadocPackage">
                 Checkstyle Style</a>
           </li>
         </ul>
@@ -2885,7 +3328,8 @@ package com.checkstyle.api; // violation
               <td>skipAnnotations</td>
               <td>
                 specify annotations that allow missed documentation.
-                Only short names are allowed, e.g. <code>Generated</code>.
+                If annotation is present in target sources in multiple forms of qualified
+                name, all forms should be listed in this property.
               </td>
               <td><a href="property_types.html#String.5B.5D">String[]</a></td>
               <td><code>Generated</code></td>
@@ -2979,10 +3423,15 @@ protected class PublicClass {}
 class PackagePrivateClass {}
         </source>
 
-        <p>
-          Example that allows missing comments for classes annotated with
+        <p>To configure a check that allows missing comments for classes annotated with
           <code>@SpringBootApplication</code> and <code>@Configuration</code>:
         </p>
+        <source>
+&lt;module name="MissingJavadocType"&gt;
+  &lt;property name="skipAnnotations" value="SpringBootApplication,Configuration"/&gt;
+&lt;/module&gt;
+        </source>
+        <p>Example:</p>
         <source>
 @SpringBootApplication // no violations about missing comment on class
 public class Application {}
@@ -2990,11 +3439,27 @@ public class Application {}
 @Configuration // no violations about missing comment on class
 class DatabaseConfiguration {}
         </source>
-        <p>Use following configuration:</p>
+
+        <p>To configure a check that allows missing comments for classes annotated with
+          <code>@Annotation</code> and <code>@MyClass.Annotation</code>:
+        </p>
         <source>
 &lt;module name="MissingJavadocType"&gt;
-  &lt;property name="skipAnnotations" value="SpringBootApplication,Configuration"/&gt;
+  &lt;property name="skipAnnotations" value="Annotation,MyClass.Annotation"/&gt;
 &lt;/module&gt;
+        </source>
+        <p>
+          Example:
+        </p>
+        <source>
+@Annotation // ok
+class Class1 {}
+
+@MyClass.Annotation // ok
+class Class2 {}
+
+@com.mycompany.MyClass.Annotation // violation, as this form is missed in config
+class Class3 {}
         </source>
       </subsection>
 
@@ -3005,7 +3470,7 @@ class DatabaseConfiguration {}
             Google Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingJavadocType">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingJavadocType">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -3104,7 +3569,7 @@ class DatabaseConfiguration {}
       <subsection name="Examples" id="NonEmptyAtclauseDescription_Examples">
         <p>
           To configure the default check that will check <code>@param</code>,
-          <code>@return</code>,<code>@throws</code>, <code>@deprecated</code>:
+          <code>@deprecated</code>,<code>@throws</code>,<code>@return</code>:
         </p>
         <source>
 &lt;module name=&quot;NonEmptyAtclauseDescription&quot;/&gt;
@@ -3115,26 +3580,27 @@ class DatabaseConfiguration {}
         <source>
 class Test
 {
+  // Violation for param "b" and at tags "deprecated", "throws" and "return".
   /**
-  * Violation for param "b" and at tags "deprecated", "throws".
-  * <code>@param</code> a Some javadoc // OK
+  * Some summary.
+  * <code>@param</code> a Some description
   * <code>@param</code> b
   * <code>@deprecated</code>
   * <code>@throws</code> Exception
+  * <code>@return</code>
   */
-  public int method(String a, int b) throws Exception
-  {
+  public int method(String a, int b) throws Exception {
     return 1;
   }
 }
         </source>
         <p>
-          To configure the check to validate only <code>@param</code> and
-          <code>@return</code> tags:
+          To configure the check to validate <code>@param</code>,
+          <code>@throws</code> tags:
         </p>
         <source>
-&lt;module name=&quot;NonEmptyAtclauseDescription&quot;&gt;
-  &lt;property name="javadocTokens" value="PARAM_LITERAL,RETURN_LITERAL"/&gt;
+&lt;module name="NonEmptyAtclauseDescription"&gt;
+  &lt;property name="javadocTokens" value="PARAM_LITERAL,THROWS_LITERAL"/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -3143,15 +3609,16 @@ class Test
         <source>
 class Test
 {
+  // Violation for param "b" and at tag "throws".
   /**
-  * Violation for param "b". Tags "deprecated", "throws" are ignored.
-  * <code>@param</code> a Some javadoc // OK
+  * Some summary.
+  * <code>@param</code> a Some description
   * <code>@param</code> b
   * <code>@deprecated</code>
   * <code>@throws</code> Exception
+  * <code>@return</code>
   */
-  public int method(String a, int b) throws Exception
-  {
+  public int method(String a, int b) throws Exception {
     return 1;
   }
 }
@@ -3165,7 +3632,7 @@ class Test
             Google Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NonEmptyAtclauseDescription">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+NonEmptyAtclauseDescription">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -3286,7 +3753,7 @@ public boolean testMethod(int firstParam) {
                 Google Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+RequireEmptyLineBeforeBlockTagGroup">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+RequireEmptyLineBeforeBlockTagGroup">
                 Checkstyle Style</a>
           </li>
         </ul>
@@ -3568,7 +4035,7 @@ public int foobar() {
             Google Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SingleLineJavadoc">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+SingleLineJavadoc">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -3797,7 +4264,7 @@ public class Test {
             Google Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SummaryJavadoc">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+SummaryJavadoc">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -4037,7 +4504,7 @@ public class Test {
       <subsection name="Example of Usage" id="WriteTag_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+WriteTag">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+WriteTag">
             Checkstyle Style</a>
           </li>
         </ul>

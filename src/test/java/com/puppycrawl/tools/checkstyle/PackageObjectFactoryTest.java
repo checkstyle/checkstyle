@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -23,12 +23,14 @@ import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.PackageObjectFactory.AMBIGUOUS_MODULE_NAME_EXCEPTION_MESSAGE;
 import static com.puppycrawl.tools.checkstyle.PackageObjectFactory.BASE_PACKAGE;
 import static com.puppycrawl.tools.checkstyle.PackageObjectFactory.CHECK_SUFFIX;
+import static com.puppycrawl.tools.checkstyle.PackageObjectFactory.ModuleLoadOption.SEARCH_REGISTERED_PACKAGES;
 import static com.puppycrawl.tools.checkstyle.PackageObjectFactory.ModuleLoadOption.TRY_IN_ALL_REGISTERED_PACKAGES;
 import static com.puppycrawl.tools.checkstyle.PackageObjectFactory.NULL_LOADER_MESSAGE;
 import static com.puppycrawl.tools.checkstyle.PackageObjectFactory.NULL_PACKAGE_MESSAGE;
 import static com.puppycrawl.tools.checkstyle.PackageObjectFactory.PACKAGE_SEPARATOR;
 import static com.puppycrawl.tools.checkstyle.PackageObjectFactory.STRING_SEPARATOR;
 import static com.puppycrawl.tools.checkstyle.PackageObjectFactory.UNABLE_TO_INSTANTIATE_EXCEPTION_MESSAGE;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.mockStatic;
 
 import java.io.File;
@@ -154,12 +156,12 @@ public class PackageObjectFactoryTest {
             assertWithMessage("Exception is expected").fail();
         }
         catch (CheckstyleException ex) {
-            final Violation exceptionMessage = new Violation(1,
-                    Definitions.CHECKSTYLE_BUNDLE, UNABLE_TO_INSTANTIATE_EXCEPTION_MESSAGE,
-                    new String[] {name, null}, null, factory.getClass(), null);
+            final LocalizedMessage exceptionMessage = new LocalizedMessage(
+                    Definitions.CHECKSTYLE_BUNDLE, factory.getClass(),
+                    UNABLE_TO_INSTANTIATE_EXCEPTION_MESSAGE, name, null);
             assertWithMessage("Invalid exception message")
                 .that(ex.getMessage())
-                .isEqualTo(exceptionMessage.getViolation());
+                .isEqualTo(exceptionMessage.getMessage());
         }
     }
 
@@ -175,12 +177,12 @@ public class PackageObjectFactoryTest {
                 final String attemptedNames = BASE_PACKAGE + PACKAGE_SEPARATOR + name
                     + STRING_SEPARATOR + name + CHECK_SUFFIX + STRING_SEPARATOR
                     + BASE_PACKAGE + PACKAGE_SEPARATOR + name + CHECK_SUFFIX;
-                final Violation exceptionMessage = new Violation(1,
-                    Definitions.CHECKSTYLE_BUNDLE, UNABLE_TO_INSTANTIATE_EXCEPTION_MESSAGE,
-                    new String[] {name, attemptedNames}, null, factory.getClass(), null);
+                final LocalizedMessage exceptionMessage = new LocalizedMessage(
+                    Definitions.CHECKSTYLE_BUNDLE, factory.getClass(),
+                    UNABLE_TO_INSTANTIATE_EXCEPTION_MESSAGE, name, attemptedNames);
                 assertWithMessage("Invalid exception message")
                     .that(ex.getMessage())
-                    .isEqualTo(exceptionMessage.getViolation());
+                    .isEqualTo(exceptionMessage.getMessage());
             }
         }
     }
@@ -248,12 +250,12 @@ public class PackageObjectFactoryTest {
         catch (CheckstyleException ex) {
             final String optionalNames = barPackage + PACKAGE_SEPARATOR + name
                     + STRING_SEPARATOR + fooPackage + PACKAGE_SEPARATOR + name;
-            final Violation exceptionMessage = new Violation(1,
-                    Definitions.CHECKSTYLE_BUNDLE, AMBIGUOUS_MODULE_NAME_EXCEPTION_MESSAGE,
-                    new String[] {name, optionalNames}, null, getClass(), null);
+            final LocalizedMessage exceptionMessage = new LocalizedMessage(
+                    Definitions.CHECKSTYLE_BUNDLE, getClass(),
+                    AMBIGUOUS_MODULE_NAME_EXCEPTION_MESSAGE, name, optionalNames);
             assertWithMessage("Invalid exception message")
                 .that(ex.getMessage())
-                .isEqualTo(exceptionMessage.getViolation());
+                .isEqualTo(exceptionMessage.getMessage());
         }
     }
 
@@ -276,12 +278,12 @@ public class PackageObjectFactoryTest {
                     + checkName + STRING_SEPARATOR
                     + package1 + PACKAGE_SEPARATOR + checkName + STRING_SEPARATOR
                     + package2 + PACKAGE_SEPARATOR + checkName;
-            final Violation exceptionMessage = new Violation(1,
-                    Definitions.CHECKSTYLE_BUNDLE, UNABLE_TO_INSTANTIATE_EXCEPTION_MESSAGE,
-                    new String[] {name, attemptedNames}, null, getClass(), null);
+            final LocalizedMessage exceptionMessage = new LocalizedMessage(
+                    Definitions.CHECKSTYLE_BUNDLE, getClass(),
+                    UNABLE_TO_INSTANTIATE_EXCEPTION_MESSAGE, name, attemptedNames);
             assertWithMessage("Invalid exception message")
                 .that(ex.getMessage())
-                .isEqualTo(exceptionMessage.getViolation());
+                .isEqualTo(exceptionMessage.getMessage());
         }
     }
 
@@ -439,7 +441,7 @@ public class PackageObjectFactoryTest {
      * to initialize private field {@code PackageObjectFactory.thirdPartyNameToFullModuleNames}.
      * Since the method and the field both are private, the {@link TestUtil} is required to ensure
      * that the field is changed. Also, the expected exception should be thrown from the static
-     * method {@link ModuleReflectionUtil#getCheckstyleModules}, so {@link Mockito#mockStatic}
+     * method {@link ModuleReflectionUtil#isCheckstyleModule}, so {@link Mockito#mockStatic}
      * is required to mock this exception.
      *
      * @throws Exception when the code tested throws an exception
@@ -478,6 +480,41 @@ public class PackageObjectFactoryTest {
         }
     }
 
+    @Test
+    public void testCreateObjectWithNameContainingPackageSeparator() throws Exception {
+        final ClassLoader classLoader = ClassLoader.getSystemClassLoader();
+        final Set<String> packages = Collections.singleton(BASE_PACKAGE);
+        final PackageObjectFactory objectFactory =
+            new PackageObjectFactory(packages, classLoader, TRY_IN_ALL_REGISTERED_PACKAGES);
+
+        final Object object = objectFactory.createModule(MockClass.class.getName());
+        assertWithMessage("Object should be an instance of MockClass")
+            .that(object)
+            .isInstanceOf(MockClass.class);
+    }
+
+    @Test
+    public void testCreateModuleWithTryInAllRegisteredPackages() {
+        final ClassLoader classLoader = ClassLoader.getSystemClassLoader();
+        final Set<String> packages = Collections.singleton(BASE_PACKAGE);
+        final PackageObjectFactory objectFactory =
+            new PackageObjectFactory(packages, classLoader, SEARCH_REGISTERED_PACKAGES);
+        final CheckstyleException ex = assertThrows(CheckstyleException.class, () -> {
+            objectFactory.createModule("PackageObjectFactoryTest$MockClass");
+        });
+
+        assertWithMessage("Invalid exception message")
+            .that(ex.getMessage())
+            .startsWith(
+                "Unable to instantiate 'PackageObjectFactoryTest$MockClass' class, it is also "
+                    + "not possible to instantiate it as "
+                    + "com.puppycrawl.tools.checkstyle.PackageObjectFactoryTest$MockClass, "
+                    + "PackageObjectFactoryTest$MockClassCheck, "
+                    + "com.puppycrawl.tools.checkstyle.PackageObjectFactoryTest$MockClassCheck"
+            );
+
+    }
+
     private static final class FailConstructorFileSet extends AbstractFileSetCheck {
 
         private FailConstructorFileSet() {
@@ -491,4 +528,7 @@ public class PackageObjectFactoryTest {
 
     }
 
+    public static class MockClass {
+        // Mock class for testing purposes.
+    }
 }

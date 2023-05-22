@@ -255,7 +255,7 @@ public boolean equals(Object obj) { return true; }
             Google Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+AnnotationLocation">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+AnnotationLocation">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -451,7 +451,7 @@ class Bar implements Foo {
       <subsection name="Example of Usage" id="AnnotationOnSameLine_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+AnnotationOnSameLine">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+AnnotationOnSameLine">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -608,48 +608,107 @@ class Bar implements Foo {
           Example:
         </p>
         <source>
+@SuppressWarnings("unchecked") // OK
 @Deprecated // OK
-@SomeArrays(pooches={DOGS.LEO}) // Violation - COMPACT_NO_ARRAY
-@SuppressWarnings({""}) // Violation - COMPACT_NO_ARRAY
+@SomeArrays({"unchecked","unused"}) // OK
 public class TestOne
 {
 
 }
 
-@SomeArrays(pooches={DOGS.LEO}, um={}, test={"bleh"}) // Violation - COMPACT_NO_ARRAY
-@SuppressWarnings("") // OK
-@Deprecated() // Violation - cannot have closing parenthesis
+@SuppressWarnings(value={"unchecked"}) // Violation - parameter 'value' shouldn't be used
+@Deprecated() // Violation - cannot have a closing parenthesis
+@SomeArrays(value={"unchecked","unused",}) // Violation - cannot have a trailing array comma
 class TestTwo {
 
 }
         </source>
         <p>
           To configure the check to enforce an <code>expanded</code> style,
-          with a trailing array comma set to <code>never</code>
-          and always including the closing parenthesis.
+            with a closing parenthesis and a trailing array comma set to <code>never</code>.
         </p>
         <source>
 &lt;module name=&quot;AnnotationUseStyle&quot;&gt;
   &lt;property name=&quot;elementStyle&quot; value=&quot;expanded&quot;/&gt;
+  &lt;property name=&quot;closingParens&quot; value=&quot;never&quot;/&gt;
   &lt;property name=&quot;trailingArrayComma&quot; value=&quot;never&quot;/&gt;
-  &lt;property name=&quot;closingParens&quot; value=&quot;always&quot;/&gt;
 &lt;/module&gt;
         </source>
         <p>
           Example:
         </p>
         <source>
-@Deprecated // Violation - must have closing parenthesis
-@SomeArrays(pooches={DOGS.LEO}) // OK
-@SuppressWarnings({""}) // Violation - EXPANDED
+@SuppressWarnings("unchecked") // Violation - parameters should be referenced
+@Deprecated // OK
+@SomeArrays({"unchecked","unused"}) // Violation - parameters should be referenced
 public class TestOne
 {
 
 }
 
-@SomeArrays(pooches={DOGS.LEO}, um={}, test={"bleh"}) // OK
-@SuppressWarnings("") // Violation - EXPANDED
+@SuppressWarnings(value={"unchecked"}) // OK
+@Deprecated() // Violation - cannot have a closing parenthesis
+@SomeArrays(value={"unchecked","unused",}) // Violation - cannot have a trailing array comma
+class TestTwo {
+
+}
+        </source>
+        <p>
+          To configure the check to enforce a <code>compact</code> style,
+            with always including a closing parenthesis and ignoring a trailing array comma.
+        </p>
+        <source>
+&lt;module name=&quot;AnnotationUseStyle&quot;&gt;
+  &lt;property name=&quot;elementStyle&quot; value=&quot;compact&quot;/&gt;
+  &lt;property name=&quot;closingParens&quot; value=&quot;always&quot;/&gt;
+  &lt;property name=&quot;trailingArrayComma&quot; value=&quot;ignore&quot;/&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          Example:
+        </p>
+        <source>
+@SuppressWarnings("unchecked") // OK
+@Deprecated // Violation - must have a closing parenthesis
+@SomeArrays({"unchecked","unused"}) // OK
+public class TestOne
+{
+
+}
+
+@SuppressWarnings(value={"unchecked"}) // Violation - parameter 'value' shouldn't be used
 @Deprecated() // OK
+@SomeArrays(value={"unchecked","unused",}) // Violation - parameter 'value' shouldn't be used
+class TestTwo {
+
+}
+        </source>
+        <p>
+          To configure the check to enforce a trailing array comma,
+            with ignoring the elementStyle and a closing parenthesis.
+        </p>
+        <source>
+&lt;module name=&quot;AnnotationUseStyle&quot;&gt;
+  &lt;property name=&quot;elementStyle&quot; value=&quot;ignore&quot;/&gt;
+  &lt;property name=&quot;closingParens&quot; value=&quot;ignore&quot;/&gt;
+  &lt;property name=&quot;trailingArrayComma&quot; value=&quot;always&quot;/&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          Example:
+        </p>
+        <source>
+@SuppressWarnings("unchecked") // OK
+@Deprecated // OK
+@SomeArrays({"unchecked","unused"}) // Violation - must have a trailing array comma
+public class TestOne
+{
+
+}
+
+@SuppressWarnings(value={"unchecked"}) // Violation - must have a trailing array comma
+@Deprecated() // OK
+@SomeArrays(value={"unchecked","unused",}) // OK
 class TestTwo {
 
 }
@@ -659,7 +718,7 @@ class TestTwo {
       <subsection name="Example of Usage" id="AnnotationUseStyle_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+AnnotationUseStyle">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+AnnotationUseStyle">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -833,7 +892,7 @@ public static final int CONST = 12; // violation, tight HTML rules not obeyed
       <subsection name="Example of Usage" id="MissingDeprecated_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingDeprecated">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingDeprecated">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -1024,7 +1083,7 @@ class Test5 {
       <subsection name="Example of Usage" id="MissingOverride_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingOverride">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingOverride">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -1099,7 +1158,7 @@ package com.example.annotations.packageannotation; //ok
       <subsection name="Example of Usage" id="PackageAnnotation_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+PackageAnnotation">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+PackageAnnotation">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -1263,6 +1322,30 @@ package com.example.annotations.packageannotation; //ok
         <source> &lt;module name=&quot;SuppressWarnings&quot;/&gt;
         </source>
 
+        <p>Example:</p>
+        <source>
+@SuppressWarnings("") // violation
+class TestA {
+  @SuppressWarnings("") // violation
+  final int num1 = 1;
+  @SuppressWarnings("all") // ok
+  final int num2 = 2;
+  @SuppressWarnings("unused") // ok
+  final int num3 = 3;
+
+  void foo1(@SuppressWarnings("unused") int param) {} // ok
+
+  @SuppressWarnings("all") // ok
+  void foo2(int param) {}
+  @SuppressWarnings("unused") // ok
+  void foo3(int param) {}
+  @SuppressWarnings(true?"all":"unused") // ok
+  void foo4(int param) {}
+}
+@SuppressWarnings("unchecked") // ok
+class TestB {}
+        </source>
+
         <p>
           To configure the check so that the "unchecked" and "unused"
           warnings cannot be suppressed on anything
@@ -1280,12 +1363,36 @@ package com.example.annotations.packageannotation; //ok
     &quot;/&gt;
 &lt;/module&gt;
         </source>
+
+        <p>Example:</p>
+        <source>
+@SuppressWarnings("") // ok
+class TestA {
+  @SuppressWarnings("") // ok
+  final int num1 = 1;
+  @SuppressWarnings("all") // ok
+  final int num2 = 2;
+  @SuppressWarnings("unused") // ok
+  final int num3 = 3;
+
+  void foo1(@SuppressWarnings("unused") int param) {} // ok
+
+  @SuppressWarnings("all") // ok
+  void foo2(int param) {}
+  @SuppressWarnings("unused") // violation
+  void foo3(int param) {}
+  @SuppressWarnings(true?"all":"unused") // violation
+  void foo4(int param) {}
+}
+@SuppressWarnings("unchecked") // violation
+class TestB {}
+        </source>
       </subsection>
 
       <subsection name="Example of Usage" id="SuppressWarnings_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressWarnings">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressWarnings">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -1321,7 +1428,11 @@ package com.example.annotations.packageannotation; //ok
           <code>@SuppressWarnings</code> annotations. It allows to
           prevent Checkstyle from reporting violations from parts of code
           that were annotated with <code>@SuppressWarnings</code> and
-          using name of the check to be excluded. You can also define
+          using name of the check to be excluded. It is possible to suppress
+          all the checkstyle warnings with the argument
+          <code>"all"</code>.
+          You can also use a <code>checkstyle:</code> prefix to prevent compiler from
+          processing these annotations. You can also define
           aliases for check names that need to be suppressed.
         </p>
       </subsection>
@@ -1355,51 +1466,80 @@ package com.example.annotations.packageannotation; //ok
       </subsection>
 
       <subsection name="Examples" id="SuppressWarningsHolder_Examples">
-        <p>To prevent <code>FooCheck</code> violations from being reported write:</p>
+        <p>To use default module configuration:</p>
         <source>
-@SuppressWarnings("foo") interface I { }
-@SuppressWarnings("foo") enum E { }
-@SuppressWarnings("foo") InputSuppressWarningsFilter() { }
-        </source>
-        <p>Some real check examples:</p>
-        <p>This will prevent from invocation of the MemberNameCheck:</p>
-        <source>
-@SuppressWarnings({"membername"})
-private int J;
-        </source>
-        <p>You can also use a <code>checkstyle</code> prefix to prevent compiler from
-           processing these annotations.
-           For example this will prevent ConstantNameCheck:
-        </p>
-        <source>
-@SuppressWarnings("checkstyle:constantname")
-private static final int m = 0;
-        </source>
+&lt;module name=&quot;TreeWalker&quot;&gt;
+  &lt;module name=&quot;MemberName&quot;/&gt;
+  &lt;module name=&quot;ConstantName&quot;/&gt;
+  &lt;module name=&quot;ParameterNumber&quot;&gt;
+    &lt;property name=&quot;id&quot; value=&quot;ParamNumberId&quot;/&gt;
+  &lt;/module&gt;
+  &lt;module name=&quot;NoWhitespaceAfter&quot;/&gt;
 
+  &lt;module name=&quot;SuppressWarningsHolder&quot;/&gt;
+&lt;/module&gt;
+&lt;module name=&quot;SuppressWarningsFilter&quot;/&gt;
+        </source>
+        <source>
+class Test {
+
+   private int K; // violation
+   @SuppressWarnings({"membername"})
+   private int J; // violation suppressed
+
+   private static final int i = 0; // violation
+   @SuppressWarnings("checkstyle:constantname")
+   private static final int m = 0; // violation suppressed
+
+   public void needsLotsOfParameters (int a, // violation
+      int b, int c, int d, int e, int f, int g, int h) {
+      // ...
+   }
+
+   @SuppressWarnings("ParamNumberId")
+   public void needsLotsOfParameters1 (int a, // violation suppressed
+      int b, int c, int d, int e, int f, int g, int h) {
+      // ...
+   }
+
+   private int [] ARR; // 2 violations
+   @SuppressWarnings("all")
+   private int [] ARRAY; // violations suppressed
+}
+        </source>
         <p>The general rule is that the argument of the <code>@SuppressWarnings</code> will be
-          matched against class name of the checker in lower case and without <code>Check</code>
-          suffix if present.
+          matched against class name of the check in any letter case. Adding <code>check</code>
+          suffix is also accepted.
         </p>
         <p>If <code>aliasList</code> property was provided you can use your own names e.g. below
              code will work if there was provided a <code>ParameterNumberCheck=paramnum</code> in
              the <code>aliasList</code>:
         </p>
         <source>
-@SuppressWarnings("paramnum")
-public void needsLotsOfParameters(@SuppressWarnings("unused") int a,
-  int b, int c, int d, int e, int f, int g, int h) {
-  ...
-}
-        </source>
+&lt;module name=&quot;TreeWalker&quot;&gt;
+  &lt;module name=&quot;ParameterNumber&quot;/&gt;
 
-        <p>
-          It is possible to suppress all the checkstyle warnings with the argument
-          <code>"all"</code>:
-        </p>
+  &lt;module name=&quot;SuppressWarningsHolder&quot;&gt;
+    &lt;property name=&quot;aliasList&quot; value=
+      &quot;com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck=paramnum&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+&lt;module name=&quot;SuppressWarningsFilter&quot;/&gt;
+        </source>
         <source>
-@SuppressWarnings("all")
-public void someFunctionWithInvalidStyle() {
-  //...
+class Test {
+
+   public void needsLotsOfParameters (int a, // violation
+      int b, int c, int d, int e, int f, int g, int h) {
+      // ...
+   }
+
+   @SuppressWarnings("paramnum")
+   public void needsLotsOfParameters1 (int a, // violation suppressed
+      int b, int c, int d, int e, int f, int g, int h) {
+      // ...
+   }
+
 }
         </source>
 
@@ -1408,8 +1548,12 @@ public void someFunctionWithInvalidStyle() {
       <subsection name="Example of Usage" id="SuppressWarningsHolder_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressWarningsHolder">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressWarningsHolder">
             Checkstyle Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressWarningsHolder">
+            Google Style</a>
           </li>
         </ul>
       </subsection>

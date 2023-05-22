@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -78,12 +78,12 @@ public abstract class AbstractPathTestSupport {
 
     /**
      * Reads the contents of a file.
-     * IDEA inspection RedundantThrows suppressed as a false positive.
      *
      * @param filename the name of the file whose contents are to be read
      * @return contents of the file with all {@code \r\n} replaced by {@code \n}
      * @throws IOException if I/O exception occurs while reading
      * @noinspection RedundantThrows
+     * @noinspectionreason RedundantThrows - false positive
      */
     protected static String readFile(String filename) throws IOException {
         return toLfLineEnding(Files.readString(Paths.get(filename)));

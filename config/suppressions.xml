@@ -5,9 +5,8 @@
     "https://checkstyle.org/dtds/suppressions_1_2.dtd">
 
 <suppressions>
-  <!-- can't split long messages between lines -->
-  <suppress id="lineLengthXml" files="google_checks\.xml" lines="56,127"/>
   <!-- don't validate generated files -->
+  <suppress id="lineLengthXml" files="releasenotes_old_8\-0_8\-34\.xml"/>
   <suppress id="lineLengthXml" files="releasenotes_old_6\-0_7\-8\.xml"/>
   <suppress id="lineLengthXml" files="releasenotes_old_1\-0_5\-9\.xml"/>
   <suppress id="lineLengthXml" files="[\\/]meta[\\/]"/>
@@ -26,7 +25,8 @@
   <suppress checks="AbstractClassNameCheck"
              files="AbstractCheckTest.java|AbstractClassNameCheckTest.java|
                     |AbstractJavadocCheckTest.java|
-                    |AbstractViolationReporterTest.java|AbstractFileSetCheckTest.java"/>
+                    |AbstractViolationReporterTest.java|AbstractFileSetCheckTest.java|
+                    |AbstractAutomaticBeanTest.java"/>
 
   <!-- Tone down the checking for test code -->
   <suppress checks="ExecutableStatementCount|JavaNCSS"
@@ -62,6 +62,9 @@
   <suppress checks="MethodCount" files="[\\/]UnusedLocalVariableCheck.java"/>
   <!-- parse method needs catching Exceptions to print context of execution -->
   <suppress checks="IllegalCatch" files="[\\/]src[\\/]test[\\/].*[\\/]InlineConfigParser\.java"/>
+  <!-- exception maybe thrown while executing the static block -->
+  <suppress checks="IllegalCatch" files="[\\/]src[\\/]test[\\/].*[\\/]XpathFileGeneratorAuditListenerTest\.java"/>
+
 
   <!-- we need that set of converters -->
   <suppress checks="ClassDataAbstractionCoupling" files="AutomaticBean\.java"/>
@@ -71,7 +74,7 @@
   <suppress checks="ClassDataAbstractionCoupling"
              files="(CheckerTest|AbstractModuleTestSupport|AbstractItModuleTestSupport|
                     |CheckstyleAntTaskTest|
-                    |TranslationCheckTest|ViolationTest|AbstractFileSetCheckTest|
+                    |TranslationCheckTest|LocalizedMessageTest|AbstractFileSetCheckTest|
                     |AbstractCheckTest)\.java"/>
   <suppress checks="ClassDataAbstractionCoupling"
              files="XpathFileGeneratorAuditListenerTest\.java"/>
@@ -91,6 +94,7 @@
   <suppress checks="ExecutableStatementCount" files="HandlerFactory\.java"/>
 
   <suppress id="noSourceforgeNetLinks" files="[\\/]releasenotes.xml"/>
+  <suppress id="noSourceforgeNetLinks" files="[\\/]releasenotes_old_8\-0_8\-34\.xml"/>
   <suppress id="noSourceforgeIoLinks" files="[\\/]index.xml.vm"/>
 
   <!-- usage of div class="wrap-content" render even indented content properly -->

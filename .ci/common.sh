@@ -75,7 +75,7 @@ function should_run_job {
          # Identifies if the files involved in the commits between head and previous
          # is more than the list of skippable files
          if [[ $(git diff --name-only "$HEAD" "$PREVIOUS_COMMIT" \
-                    | grep -vE "$SKIP_FILES" | cat | wc -c | sed 's/^ *//' ) > 0 ]]; then
+                    | grep -vE "$SKIP_FILES" | cat | wc -c | sed 's/^ *//' ) -gt 0 ]]; then
               SKIP_JOB_BY_FILES="false"
          else
               SKIP_JOB_BY_FILES="true"
@@ -94,8 +94,8 @@ function should_run_job {
     fi
 
     # Note: this command only works in master branch
-    if [ $(git log -1 --format=%B | grep -E "\[maven-release-plugin\] prepare release" \
-              | cat | wc -l) -lt 1 ];
+    if [ "$(git log -1 --format=%B | grep -E "\[maven-release-plugin\] prepare release" \
+              | cat | wc -l)" -lt 1 ];
     then
         SKIP_JOB_BY_COMMIT="false"
     else

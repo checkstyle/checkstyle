@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suppressedMutations>
+  <mutation unstable="false">
+    <sourceFile>AbstractElementNode.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.xpath.AbstractElementNode</mutatedClass>
+    <mutatedMethod>getPrecedingSiblings</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
+    <description>replaced call to java/util/Collections::unmodifiableList with argument</description>
+    <lineContent>return Collections.unmodifiableList(siblings.subList(0, indexAmongSiblings));</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>AbstractElementNode.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.xpath.AbstractElementNode</mutatedClass>
+    <mutatedMethod>iterateAxis</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_8</mutator>
+    <description>RemoveSwitch 8 (case value 8)</description>
+    <lineContent>switch (axisNumber) {</lineContent>
+  </mutation>
+
+  <mutation unstable="true">
+    <sourceFile>AbstractRootNode.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.xpath.AbstractRootNode</mutatedClass>
+    <mutatedMethod>iterateAxis</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_1</mutator>
+    <description>RemoveSwitch 1 (case value 1)</description>
+    <lineContent>switch (axisNumber) {</lineContent>
+  </mutation>
+
+  <mutation unstable="true">
+    <sourceFile>AbstractRootNode.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.xpath.AbstractRootNode</mutatedClass>
+    <mutatedMethod>iterateAxis</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_2</mutator>
+    <description>RemoveSwitch 2 (case value 2)</description>
+    <lineContent>switch (axisNumber) {</lineContent>
+  </mutation>
+
+  <mutation unstable="true">
+    <sourceFile>AbstractRootNode.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.xpath.AbstractRootNode</mutatedClass>
+    <mutatedMethod>iterateAxis</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_5</mutator>
+    <description>RemoveSwitch 5 (case value 5)</description>
+    <lineContent>switch (axisNumber) {</lineContent>
+  </mutation>
+
+  <mutation unstable="true">
+    <sourceFile>AbstractRootNode.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.xpath.AbstractRootNode</mutatedClass>
+    <mutatedMethod>iterateAxis</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_8</mutator>
+    <description>RemoveSwitch 8 (case value 8)</description>
+    <lineContent>switch (axisNumber) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>DescendantIterator.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.xpath.iterators.DescendantIterator</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable descendantEnum</description>
+    <lineContent>descendantEnum = null;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FollowingIterator.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.xpath.iterators.FollowingIterator</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable descendantEnum</description>
+    <lineContent>descendantEnum = null;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FollowingIterator.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.xpath.iterators.FollowingIterator</mutatedClass>
+    <mutatedMethod>next</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable siblingEnum</description>
+    <lineContent>siblingEnum = null;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>PrecedingIterator.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.xpath.iterators.PrecedingIterator</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable descendantEnum</description>
+    <lineContent>descendantEnum = null;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>PrecedingIterator.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.xpath.iterators.PrecedingIterator</mutatedClass>
+    <mutatedMethod>next</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable previousSiblingEnum</description>
+    <lineContent>previousSiblingEnum = null;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>ReverseListIterator.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.xpath.iterators.ReverseListIterator</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable items</description>
+    <lineContent>this.items = null;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>RootNode.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.xpath.RootNode</mutatedClass>
+    <mutatedMethod>getColumnNumber</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getColumnNo</description>
+    <lineContent>return detailAst.getColumnNo();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>RootNode.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.xpath.RootNode</mutatedClass>
+    <mutatedMethod>getColumnNumber</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.returns.PrimitiveReturnsMutator</mutator>
+    <description>replaced int return with 0 for com/puppycrawl/tools/checkstyle/xpath/RootNode::getColumnNumber</description>
+    <lineContent>return detailAst.getColumnNo();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>XpathQueryGenerator.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.xpath.XpathQueryGenerator</mutatedClass>
+    <mutatedMethod>findChildWithTextAttributeRecursively</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getNextSibling</description>
+    <lineContent>ast = ast.getNextSibling()) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>XpathQueryGenerator.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.xpath.XpathQueryGenerator</mutatedClass>
+    <mutatedMethod>findPositionAmongSiblings</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getPreviousSibling</description>
+    <lineContent>cur = cur.getPreviousSibling();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>XpathQueryGenerator.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.xpath.XpathQueryGenerator</mutatedClass>
+    <mutatedMethod>hasAtLeastOneSiblingWithSameTokenType</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getNextSibling</description>
+    <lineContent>next = next.getNextSibling();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>XpathQueryGenerator.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.xpath.XpathQueryGenerator</mutatedClass>
+    <mutatedMethod>hasAtLeastOneSiblingWithSameTokenType</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getPreviousSibling</description>
+    <lineContent>prev = prev.getPreviousSibling();</lineContent>
+  </mutation>
+</suppressedMutations>

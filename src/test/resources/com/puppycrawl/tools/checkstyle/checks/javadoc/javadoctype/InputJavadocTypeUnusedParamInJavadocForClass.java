@@ -17,8 +17,8 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctype;
 /**
  * InputJavadocTypeUnusedParamInJavadocForClass.
  *
- * @param BAD This is bad.   // violation
- * @param <BAD> This doesn't exist.   // violation
+ * @param BAD This is bad.   // violation 'Unused @param tag for 'BAD'.'
+ * @param <BAD> This doesn't exist.   // violation 'Unused @param tag for '<BAD>'.'
  * @param
  */
 public class InputJavadocTypeUnusedParamInJavadocForClass {

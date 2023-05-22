@@ -28,6 +28,7 @@ public class InputMissingJavadocMethodAllowedAnnotations implements SomeInterfac
     @ThisIsOkToo
     public void allowed2() {}
 
+    // violation below 'Missing a Javadoc comment.'
     @com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadocmethod.ThisIsOk
     public void allowed3() {}
 

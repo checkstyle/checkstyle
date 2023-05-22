@@ -19,5 +19,6 @@ class InputParenPadTryWithResources {
         try (AutoCloseable a = null; AutoCloseable b = null; ) {} // ok
         try (AutoCloseable a = null ) {} // violation
         try (AutoCloseable a = null; AutoCloseable b = null ) {} // violation
+        try ( AutoCloseable a = null) {} // violation
     }
 }

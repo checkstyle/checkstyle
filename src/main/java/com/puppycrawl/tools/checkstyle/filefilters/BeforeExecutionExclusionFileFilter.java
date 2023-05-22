@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -21,7 +21,7 @@ package com.puppycrawl.tools.checkstyle.filefilters;
 
 import java.util.regex.Pattern;
 
-import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
+import com.puppycrawl.tools.checkstyle.AbstractAutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.BeforeExecutionFileFilter;
 
 /**
@@ -89,7 +89,7 @@ import com.puppycrawl.tools.checkstyle.api.BeforeExecutionFileFilter;
  *
  * @since 7.2
  */
-public final class BeforeExecutionExclusionFileFilter extends AutomaticBean
+public final class BeforeExecutionExclusionFileFilter extends AbstractAutomaticBean
         implements BeforeExecutionFileFilter {
 
     /** Define regular expression to match the file name against. */

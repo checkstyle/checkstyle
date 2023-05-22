@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -128,11 +128,9 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testBroken() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(ImportControlCheck.class);
-        checkConfig.addProperty("file", getPath("InputImportControlBroken.xml"));
         try {
             final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-            verify(checkConfig, getPath("InputImportControl8.java"), expected);
+            verifyWithInlineConfigParser(getPath("InputImportControl8.java"), expected);
             assertWithMessage("Test should fail if exception was not thrown").fail();
         }
         catch (CheckstyleException ex) {
@@ -230,6 +228,15 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testWithoutRegexAndWithStrategyOnMismatch() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+            getPath("InputImportControlWithoutRegexAndWithStrategyOnMismatch.java"),
+            expected);
+    }
+
+    @Test
     public void testPkgRegExpInParent() throws Exception {
         final String[] expected = {"13:1: " + getCheckMessage(MSG_DISALLOWED, "java.io.File")};
 
@@ -279,12 +286,9 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testResourceUnableToLoad() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(ImportControlCheck.class);
-        checkConfig.addProperty("file", getResourcePath("import-control_unknown.xml"));
-
         try {
             final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-            verify(checkConfig, getPath("InputImportControl18.java"), expected);
+            verifyWithInlineConfigParser(getPath("InputImportControl18.java"), expected);
             assertWithMessage("Test should fail if exception was not thrown").fail();
         }
         catch (CheckstyleException ex) {
@@ -337,16 +341,15 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
         checkerConfig.addProperty("cacheFile", cacheFile.getPath());
 
         final String filePath = File.createTempFile("empty", ".java", temporaryFolder).getPath();
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verify(checkerConfig, filePath, expected);
+        execute(checkerConfig, filePath);
         // One more time to use cache.
-        verify(checkerConfig, filePath, expected);
+        execute(checkerConfig, filePath);
 
         final String contents = Files.readString(cacheFile.toPath());
         assertWithMessage("External resource is not present in cache")
-                .that(contents.contains("InputImportControlOneRegExp.xml"))
-                .isTrue();
+                .that(contents)
+                .contains("InputImportControlOneRegExp.xml");
     }
 
     @Test
@@ -403,18 +406,23 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testFileNameNoExtension() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(ImportControlCheck.class);
-        checkConfig.addProperty("file",
-                getResourcePath("InputImportControlFileNameNoExtension.xml"));
-        final DefaultConfiguration treewalkerConfig = createModuleConfig(TreeWalker.class);
-        treewalkerConfig.addProperty("fileExtensions", "");
-        treewalkerConfig.addChild(checkConfig);
+    public void testWithRegex() throws Exception {
         final String[] expected = {
-            "11:1: " + getCheckMessage(MSG_DISALLOWED, "java.awt.Image"),
+            "11:1: " + getCheckMessage(MSG_DISALLOWED, "java.io.File"),
         };
 
-        verify(treewalkerConfig, getPath("InputImportControlFileNameNoExtension"), expected);
+        verifyWithInlineConfigParser(
+            getPath("InputImportControlWithRegex.java"), expected);
+    }
+
+    @Test
+    public void testFileNameNoExtension() throws Exception {
+        final String[] expected = {
+            "13:1: " + getCheckMessage(MSG_DISALLOWED, "java.awt.Image"),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputImportControlFileNameNoExtension"), expected);
     }
 
     /**

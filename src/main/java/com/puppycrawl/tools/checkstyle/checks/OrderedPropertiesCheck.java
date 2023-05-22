@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -217,7 +217,7 @@ public class OrderedPropertiesCheck extends AbstractFileSetCheck {
      * @noinspectionreason ClassExtendsConcreteCollection - we require order from
      *      file to be maintained by {@code put} method
      */
-    private static class SequencedProperties extends Properties {
+    private static final class SequencedProperties extends Properties {
 
         /** A unique serial version identifier. */
         private static final long serialVersionUID = 1L;

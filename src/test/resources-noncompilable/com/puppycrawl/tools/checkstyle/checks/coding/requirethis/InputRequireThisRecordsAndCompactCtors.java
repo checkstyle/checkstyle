@@ -15,9 +15,9 @@ public class InputRequireThisRecordsAndCompactCtors {
         static int i; // all fields must be static in a record definition
 
         public MyRecord1 {
-            method1(); // violation
-            method2(42); // violation
-            method3(); // violation
+            method1(); // violation 'Method call to 'method1' needs "this.".'
+            method2(42); // violation 'Method call to 'method2' needs "this.".'
+            method3(); // violation 'Method call to 'method3' needs "this.".'
         }
 
         void method1() {
@@ -27,7 +27,7 @@ public class InputRequireThisRecordsAndCompactCtors {
         void method2(int i) {
             i++;
             this.i = i;
-            method1(); // violation
+            method1(); // violation 'Method call to 'method1' needs "this.".'
             try {
                 this.method1(); // ok
             }
@@ -53,9 +53,9 @@ public class InputRequireThisRecordsAndCompactCtors {
         static int i;
 
         public MyClass(int i) {
-            method1(); // violation
-            method2(i); // violation
-            method3(); // violation
+            method1(); // violation 'Method call to 'method1' needs "this.".'
+            method2(i); // violation 'Method call to 'method2' needs "this.".'
+            method3(); // violation 'Method call to 'method3' needs "this.".'
         }
 
         void method1() {
@@ -65,7 +65,7 @@ public class InputRequireThisRecordsAndCompactCtors {
         void method2(int i) {
             i++;
             this.i = i;
-            method1(); // violation
+            method1(); // violation 'Method call to 'method1' needs "this.".'
             try {
                 this.method1(); // ok
             }

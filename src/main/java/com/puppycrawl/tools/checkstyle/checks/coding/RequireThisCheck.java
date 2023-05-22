@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -275,7 +275,8 @@ public class RequireThisCheck extends AbstractCheck {
         TokenTypes.PARAMETER_DEF,
         TokenTypes.TYPE_ARGUMENT,
         TokenTypes.RECORD_DEF,
-        TokenTypes.RECORD_COMPONENT_DEF
+        TokenTypes.RECORD_COMPONENT_DEF,
+        TokenTypes.RESOURCE
     );
     /** Set of all assign tokens. */
     private static final BitSet ASSIGN_TOKENS = TokenUtil.asBitSet(
@@ -362,6 +363,8 @@ public class RequireThisCheck extends AbstractCheck {
             TokenTypes.IDENT,
             TokenTypes.RECORD_DEF,
             TokenTypes.COMPACT_CTOR_DEF,
+            TokenTypes.LITERAL_TRY,
+            TokenTypes.RESOURCE,
         };
     }
 
@@ -406,8 +409,13 @@ public class RequireThisCheck extends AbstractCheck {
             case TokenTypes.RECORD_DEF:
                 current.push(frames.get(ast));
                 break;
+            case TokenTypes.LITERAL_TRY:
+                if (ast.getFirstChild().getType() == TokenTypes.RESOURCE_SPECIFICATION) {
+                    current.push(frames.get(ast));
+                }
+                break;
             default:
-                // do nothing
+                break;
         }
     }
 
@@ -425,8 +433,13 @@ public class RequireThisCheck extends AbstractCheck {
             case TokenTypes.RECORD_DEF:
                 current.pop();
                 break;
+            case TokenTypes.LITERAL_TRY:
+                if (current.peek().getType() == FrameType.TRY_WITH_RESOURCES_FRAME) {
+                    current.pop();
+                }
+                break;
             default:
-                // do nothing
+                break;
         }
     }
 
@@ -521,7 +534,7 @@ public class RequireThisCheck extends AbstractCheck {
      */
     private static boolean isInCompactConstructor(DetailAST ast) {
         boolean isInCompactCtor = false;
-        DetailAST parent = ast.getParent();
+        DetailAST parent = ast;
         while (parent != null) {
             if (parent.getType() == TokenTypes.COMPACT_CTOR_DEF) {
                 isInCompactCtor = true;
@@ -551,10 +564,15 @@ public class RequireThisCheck extends AbstractCheck {
                 break;
             case TokenTypes.PARAMETER_DEF:
                 if (!CheckUtil.isReceiverParameter(ast)
-                        && !isLambdaParameter(ast)
-                        && ast.getParent().getType() != TokenTypes.LITERAL_CATCH) {
+                        && !isLambdaParameter(ast)) {
                     final DetailAST parameterIdent = ast.findFirstToken(TokenTypes.IDENT);
                     frame.addIdent(parameterIdent);
+                }
+                break;
+            case TokenTypes.RESOURCE:
+                final DetailAST resourceIdent = ast.findFirstToken(TokenTypes.IDENT);
+                if (resourceIdent != null) {
+                    frame.addIdent(resourceIdent);
                 }
                 break;
             case TokenTypes.CLASS_DEF:
@@ -569,15 +587,7 @@ public class RequireThisCheck extends AbstractCheck {
                 frameStack.addFirst(new BlockFrame(frame, ast));
                 break;
             case TokenTypes.METHOD_DEF:
-                final DetailAST methodFrameNameIdent = ast.findFirstToken(TokenTypes.IDENT);
-                final DetailAST mods = ast.findFirstToken(TokenTypes.MODIFIERS);
-                if (mods.findFirstToken(TokenTypes.LITERAL_STATIC) == null) {
-                    ((ClassFrame) frame).addInstanceMethod(methodFrameNameIdent);
-                }
-                else {
-                    ((ClassFrame) frame).addStaticMethod(methodFrameNameIdent);
-                }
-                frameStack.addFirst(new MethodFrame(frame, methodFrameNameIdent));
+                collectMethodDeclarations(frameStack, ast, frame);
                 break;
             case TokenTypes.CTOR_DEF:
             case TokenTypes.COMPACT_CTOR_DEF:
@@ -590,8 +600,6 @@ public class RequireThisCheck extends AbstractCheck {
                 break;
             case TokenTypes.LITERAL_CATCH:
                 final AbstractFrame catchFrame = new CatchFrame(frame, ast);
-                catchFrame.addIdent(ast.findFirstToken(TokenTypes.PARAMETER_DEF).findFirstToken(
-                        TokenTypes.IDENT));
                 frameStack.addFirst(catchFrame);
                 break;
             case TokenTypes.LITERAL_FOR:
@@ -601,7 +609,12 @@ public class RequireThisCheck extends AbstractCheck {
             case TokenTypes.LITERAL_NEW:
                 if (isAnonymousClassDef(ast)) {
                     frameStack.addFirst(new AnonymousClassFrame(frame,
-                            ast.getFirstChild().toString()));
+                            ast.toString()));
+                }
+                break;
+            case TokenTypes.LITERAL_TRY:
+                if (ast.getFirstChild().getType() == TokenTypes.RESOURCE_SPECIFICATION) {
+                    frameStack.addFirst(new TryWithResourcesFrame(frame, ast));
                 }
                 break;
             default:
@@ -634,6 +647,26 @@ public class RequireThisCheck extends AbstractCheck {
     }
 
     /**
+     * Collects {@code METHOD_DEF} declarations.
+     *
+     * @param frameStack stack containing the FrameTree being built.
+     * @param ast AST to parse.
+     * @param frame current frame.
+     */
+    private static void collectMethodDeclarations(Deque<AbstractFrame> frameStack,
+                                                  DetailAST ast, AbstractFrame frame) {
+        final DetailAST methodFrameNameIdent = ast.findFirstToken(TokenTypes.IDENT);
+        final DetailAST mods = ast.findFirstToken(TokenTypes.MODIFIERS);
+        if (mods.findFirstToken(TokenTypes.LITERAL_STATIC) == null) {
+            ((ClassFrame) frame).addInstanceMethod(methodFrameNameIdent);
+        }
+        else {
+            ((ClassFrame) frame).addStaticMethod(methodFrameNameIdent);
+        }
+        frameStack.addFirst(new MethodFrame(frame, methodFrameNameIdent));
+    }
+
+    /**
      * Ends parsing of the AST for declarations.
      *
      * @param frameStack Stack containing the FrameTree being built.
@@ -656,6 +689,11 @@ public class RequireThisCheck extends AbstractCheck {
                 break;
             case TokenTypes.LITERAL_NEW:
                 if (isAnonymousClassDef(ast)) {
+                    frameStack.remove();
+                }
+                break;
+            case TokenTypes.LITERAL_TRY:
+                if (ast.getFirstChild().getType() == TokenTypes.RESOURCE_SPECIFICATION) {
                     frames.put(ast, frameStack.poll());
                 }
                 break;
@@ -848,28 +886,14 @@ public class RequireThisCheck extends AbstractCheck {
      * @param ident ident token.
      * @return true if field can be referenced from a static context.
      */
-    private boolean canBeReferencedFromStaticContext(DetailAST ident) {
-        AbstractFrame variableDeclarationFrame = findFrame(ident, false);
-        while (variableDeclarationFrame.getType() == FrameType.BLOCK_FRAME
-            || variableDeclarationFrame.getType() == FrameType.FOR_FRAME) {
-            variableDeclarationFrame = variableDeclarationFrame.getParent();
-        }
-
+    private static boolean canBeReferencedFromStaticContext(DetailAST ident) {
         boolean staticContext = false;
 
-        if (variableDeclarationFrame.getType() == FrameType.CLASS_FRAME) {
-            final DetailAST codeBlockDefinition = getCodeBlockDefinitionToken(ident);
-            if (codeBlockDefinition != null) {
-                final DetailAST modifiers = codeBlockDefinition.getFirstChild();
-                staticContext = codeBlockDefinition.getType() == TokenTypes.STATIC_INIT
-                    || modifiers.findFirstToken(TokenTypes.LITERAL_STATIC) != null;
-            }
-        }
-        else {
-            final DetailAST frameNameIdent = variableDeclarationFrame.getFrameNameIdent();
-            final DetailAST definitionToken = frameNameIdent.getParent();
-            staticContext = definitionToken.findFirstToken(TokenTypes.MODIFIERS)
-                .findFirstToken(TokenTypes.LITERAL_STATIC) != null;
+        final DetailAST codeBlockDefinition = getCodeBlockDefinitionToken(ident);
+        if (codeBlockDefinition != null) {
+            final DetailAST modifiers = codeBlockDefinition.getFirstChild();
+            staticContext = codeBlockDefinition.getType() == TokenTypes.STATIC_INIT
+                || modifiers.findFirstToken(TokenTypes.LITERAL_STATIC) != null;
         }
         return !staticContext;
     }
@@ -882,10 +906,9 @@ public class RequireThisCheck extends AbstractCheck {
      *         definition was not found.
      */
     private static DetailAST getCodeBlockDefinitionToken(DetailAST ident) {
-        DetailAST parent = ident.getParent();
+        DetailAST parent = ident;
         while (parent != null
                && parent.getType() != TokenTypes.METHOD_DEF
-               && parent.getType() != TokenTypes.CTOR_DEF
                && parent.getType() != TokenTypes.STATIC_INIT) {
             parent = parent.getParent();
         }
@@ -917,17 +940,11 @@ public class RequireThisCheck extends AbstractCheck {
      * @return true if the field usage frame is inside constructor frame.
      */
     private static boolean isInsideConstructorFrame(AbstractFrame frame) {
-        boolean assignmentInConstructor = false;
         AbstractFrame fieldUsageFrame = frame;
-        if (fieldUsageFrame.getType() == FrameType.BLOCK_FRAME) {
-            while (fieldUsageFrame.getType() == FrameType.BLOCK_FRAME) {
-                fieldUsageFrame = fieldUsageFrame.getParent();
-            }
-            if (fieldUsageFrame.getType() == FrameType.CTOR_FRAME) {
-                assignmentInConstructor = true;
-            }
+        while (fieldUsageFrame.getType() == FrameType.BLOCK_FRAME) {
+            fieldUsageFrame = fieldUsageFrame.getParent();
         }
-        return assignmentInConstructor;
+        return fieldUsageFrame.getType() == FrameType.CTOR_FRAME;
     }
 
     /**
@@ -1184,7 +1201,7 @@ public class RequireThisCheck extends AbstractCheck {
      */
     private static boolean isLambdaParameter(DetailAST ast) {
         DetailAST parent;
-        for (parent = ast.getParent(); parent != null; parent = parent.getParent()) {
+        for (parent = ast; parent != null; parent = parent.getParent()) {
             if (parent.getType() == TokenTypes.LAMBDA) {
                 break;
             }
@@ -1238,6 +1255,8 @@ public class RequireThisCheck extends AbstractCheck {
         CATCH_FRAME,
         /** For frame type. */
         FOR_FRAME,
+        /** Try with resources frame type. */
+        TRY_WITH_RESOURCES_FRAME
 
     }
 
@@ -1313,29 +1332,29 @@ public class RequireThisCheck extends AbstractCheck {
         /**
          * Check whether the frame contains a field or a variable with the given name.
          *
-         * @param nameToFind the IDENT ast of the name we're looking for.
+         * @param identToFind the IDENT ast of the name we're looking for.
          * @return whether it was found.
          */
-        protected boolean containsFieldOrVariable(DetailAST nameToFind) {
-            return containsFieldOrVariableDef(varIdents, nameToFind);
+        protected boolean containsFieldOrVariable(DetailAST identToFind) {
+            return containsFieldOrVariableDef(varIdents, identToFind);
         }
 
         /**
          * Check whether the frame contains a given name.
          *
-         * @param nameToFind IDENT ast of the name we're looking for.
+         * @param identToFind IDENT ast of the name we're looking for.
          * @param lookForMethod whether we are looking for a method name.
          * @return whether it was found.
          */
-        protected AbstractFrame getIfContains(DetailAST nameToFind, boolean lookForMethod) {
+        protected AbstractFrame getIfContains(DetailAST identToFind, boolean lookForMethod) {
             final AbstractFrame frame;
 
             if (!lookForMethod
-                && containsFieldOrVariable(nameToFind)) {
+                && containsFieldOrVariable(identToFind)) {
                 frame = this;
             }
             else {
-                frame = parent.getIfContains(nameToFind, lookForMethod);
+                frame = parent.getIfContains(identToFind, lookForMethod);
             }
             return frame;
         }
@@ -1368,8 +1387,8 @@ public class RequireThisCheck extends AbstractCheck {
          * @return true if ast is correspondent to ident.
          */
         protected boolean isProperDefinition(DetailAST ident, DetailAST ast) {
-            final String nameToFind = ident.getText();
-            return nameToFind.equals(ast.getText())
+            final String identToFind = ident.getText();
+            return identToFind.equals(ast.getText())
                 && CheckUtil.isBeforeInSource(ast, ident);
         }
     }
@@ -1438,7 +1457,7 @@ public class RequireThisCheck extends AbstractCheck {
          * @param parent parent frame.
          * @param ident frame name ident.
          */
-        /* package */ ClassFrame(AbstractFrame parent, DetailAST ident) {
+        private ClassFrame(AbstractFrame parent, DetailAST ident) {
             super(parent, ident);
             instanceMembers = new HashSet<>();
             instanceMethods = new HashSet<>();
@@ -1529,38 +1548,43 @@ public class RequireThisCheck extends AbstractCheck {
         public boolean hasFinalField(final DetailAST instanceMember) {
             boolean result = false;
             for (DetailAST member : instanceMembers) {
-                final DetailAST mods = member.getParent().findFirstToken(TokenTypes.MODIFIERS);
-                final boolean finalMod = mods.findFirstToken(TokenTypes.FINAL) != null;
-                if (finalMod && isAstSimilar(member, instanceMember)) {
+                final DetailAST parent = member.getParent();
+                if (parent.getType() == TokenTypes.RECORD_COMPONENT_DEF) {
                     result = true;
-                    break;
+                }
+                else {
+                    final DetailAST mods = parent.findFirstToken(TokenTypes.MODIFIERS);
+                    final boolean finalMod = mods.findFirstToken(TokenTypes.FINAL) != null;
+                    if (finalMod && isAstSimilar(member, instanceMember)) {
+                        result = true;
+                    }
                 }
             }
             return result;
         }
 
         @Override
-        protected boolean containsFieldOrVariable(DetailAST nameToFind) {
-            return containsFieldOrVariableDef(instanceMembers, nameToFind)
-                    || containsFieldOrVariableDef(staticMembers, nameToFind);
+        protected boolean containsFieldOrVariable(DetailAST identToFind) {
+            return containsFieldOrVariableDef(instanceMembers, identToFind)
+                    || containsFieldOrVariableDef(staticMembers, identToFind);
         }
 
         @Override
         protected boolean isProperDefinition(DetailAST ident, DetailAST ast) {
-            final String nameToFind = ident.getText();
-            return nameToFind.equals(ast.getText());
+            final String identToFind = ident.getText();
+            return identToFind.equals(ast.getText());
         }
 
         @Override
-        protected AbstractFrame getIfContains(DetailAST nameToFind, boolean lookForMethod) {
+        protected AbstractFrame getIfContains(DetailAST identToFind, boolean lookForMethod) {
             AbstractFrame frame = null;
 
-            if (lookForMethod && containsMethod(nameToFind)
-                || containsFieldOrVariable(nameToFind)) {
+            if (containsMethod(identToFind)
+                || containsFieldOrVariable(identToFind)) {
                 frame = this;
             }
             else if (getParent() != null) {
-                frame = getParent().getIfContains(nameToFind, lookForMethod);
+                frame = getParent().getIfContains(identToFind, lookForMethod);
             }
             return frame;
         }
@@ -1686,6 +1710,24 @@ public class RequireThisCheck extends AbstractCheck {
             return FrameType.CATCH_FRAME;
         }
 
+        @Override
+        protected AbstractFrame getIfContains(DetailAST identToFind, boolean lookForMethod) {
+            final AbstractFrame frame;
+
+            if (!lookForMethod
+                    && containsFieldOrVariable(identToFind)) {
+                frame = this;
+            }
+            else if (getParent().getType() == FrameType.TRY_WITH_RESOURCES_FRAME) {
+                // Skip try-with-resources frame because resources cannot be accessed from catch
+                frame = getParent().getParent().getIfContains(identToFind, lookForMethod);
+            }
+            else {
+                frame = getParent().getIfContains(identToFind, lookForMethod);
+            }
+            return frame;
+        }
+
     }
 
     /**
@@ -1706,6 +1748,29 @@ public class RequireThisCheck extends AbstractCheck {
         @Override
         public FrameType getType() {
             return FrameType.FOR_FRAME;
+        }
+
+    }
+
+    /**
+     * A frame initiated on entering a try-with-resources construct;
+     * holds local resources for the try block.
+     */
+    private static class TryWithResourcesFrame extends AbstractFrame {
+
+        /**
+         * Creates try-with-resources frame.
+         *
+         * @param parent parent frame.
+         * @param ident ident frame name ident.
+         */
+        protected TryWithResourcesFrame(AbstractFrame parent, DetailAST ident) {
+            super(parent, ident);
+        }
+
+        @Override
+        public FrameType getType() {
+            return FrameType.TRY_WITH_RESOURCES_FRAME;
         }
 
     }

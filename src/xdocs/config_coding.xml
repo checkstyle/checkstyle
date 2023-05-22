@@ -200,7 +200,7 @@ int[] a2 = new int[]{
       <subsection name="Example of Usage" id="ArrayTrailingComma_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ArrayTrailingComma">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+ArrayTrailingComma">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -303,7 +303,7 @@ class MyClass {
       <subsection name="Example of Usage" id="AvoidDoubleBraceInitialization_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+AvoidDoubleBraceInitialization">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+AvoidDoubleBraceInitialization">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -381,7 +381,7 @@ b = (a != null &amp;&amp; a.length() &gt;= 1) ? a.substring(1) : null; // violat
       <subsection name="Example of Usage" id="AvoidInlineConditionals_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+AvoidInlineConditionals">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+AvoidInlineConditionals">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -455,7 +455,7 @@ class MyClass extends SomeOtherClass {
       <subsection name="Example of Usage" id="AvoidNoArgumentSuperConstructorCall_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+AvoidNoArgumentSuperConstructorCall">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+AvoidNoArgumentSuperConstructorCall">
               Checkstyle Style</a>
           </li>
         </ul>
@@ -604,7 +604,7 @@ record Test(String str) {
       <subsection name="Example of Usage" id="CovariantEquals_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+CovariantEquals">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+CovariantEquals">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -814,7 +814,7 @@ public class Test {
       <subsection name="Example of Usage" id="DeclarationOrder_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+DeclarationOrder">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+DeclarationOrder">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -981,7 +981,7 @@ case 2 -&gt; x = 32;
       <subsection name="Example of Usage" id="DefaultComesLast_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+DefaultComesLast">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+DefaultComesLast">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -1056,7 +1056,7 @@ public void foo() {
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+EmptyStatement">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+EmptyStatement">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -1172,7 +1172,7 @@ nullString.equalsIgnoreCase("My_Sweet_String");  // OK
       <subsection name="Example of Usage" id="EqualsAvoidNull_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+EqualsAvoidNull">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+EqualsAvoidNull">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -1299,7 +1299,7 @@ public static class Example6 {
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+EqualsHashCode">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+EqualsHashCode">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -1444,7 +1444,7 @@ public class Test {
       <subsection name="Example of Usage" id="ExplicitInitialization_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ExplicitInitialization">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+ExplicitInitialization">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -1669,7 +1669,7 @@ switch (i) {
             Google Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+FallThrough">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+FallThrough">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -1841,7 +1841,7 @@ public class MyClass {
       <subsection name="Example of Usage" id="FinalLocalVariable_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+FinalLocalVariable">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+FinalLocalVariable">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -2220,7 +2220,7 @@ public class Demo extends SomeClass {
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+HiddenField">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+HiddenField">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -2380,7 +2380,7 @@ try {
       <subsection name="Example of Usage" id="IllegalCatch_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+IllegalCatch">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+IllegalCatch">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -2465,25 +2465,6 @@ try {
               <td><code>{}</code></td>
               <td>3.0</td>
             </tr>
-
-            <tr>
-              <td>tokens</td>
-              <td>tokens to check</td>
-
-              <td>
-                subset of tokens
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
-                CLASS_DEF</a>
-                  .
-              </td>
-
-              <td>
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
-                CLASS_DEF</a>
-                  .
-              </td>
-              <td>3.0</td>
-            </tr>
           </table>
         </div>
       </subsection>
@@ -2515,19 +2496,12 @@ public class MyTest {
         </source>
         <p>
           To configure the check to find instantiations of <code>java.lang.Boolean</code>
-          and <code>java.lang.Integer</code>. NOTE: Even if property <code>tokens</code>
-          is completely removed from the following configuration, Checkstyle will produce the
-          same results for violation. This is because if property <code>tokens</code> is not
-          defined in the configuration, Checkstyle will supply it with list of default tokens
-          <code>CLASS_DEF, LITERAL_NEW, PACKAGE_DEF, IMPORT</code> for this check. The property is
-          defined in this example only to provide clarity:
+          and <code>java.lang.Integer</code>:
         </p>
         <source>
 &lt;module name=&quot;IllegalInstantiation&quot;&gt;
   &lt;property name=&quot;classes&quot; value=&quot;java.lang.Boolean,
     java.lang.Integer&quot;/&gt;
-  &lt;property name=&quot;tokens&quot; value=&quot;CLASS_DEF, LITERAL_NEW,
-    PACKAGE_DEF, IMPORT&quot;/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>
@@ -2541,41 +2515,6 @@ public class MyTest {
 
   public void myTest (boolean a, int b) {
     Boolean c = new Boolean(a); // OK
-    java.lang.Boolean d = new java.lang.Boolean(a); // violation, instantiation of
-                                                    // java.lang.Boolean should be avoided
-
-    Integer e = new Integer(b); // violation, instantiation of
-                                // java.lang.Integer should be avoided
-    Integer f = Integer.valueOf(b); // OK
-  }
-}
-        </source>
-        <p>
-          To configure the check to allow violations for local classes vs classes
-          defined in the check, for example <code>java.lang.Boolean</code>, property
-          <code>tokens</code> must be defined to not mention <code>CLASS_DEF</code>, so its
-          value should be <code>LITERAL_NEW, PACKAGE_DEF, IMPORT</code>:
-        </p>
-        <source>
-&lt;module name=&quot;IllegalInstantiation&quot;&gt;
-  &lt;property name=&quot;classes&quot; value=&quot;java.lang.Boolean,
-    java.lang.Integer&quot;/&gt;
-  &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_NEW, PACKAGE_DEF,
-    IMPORT&quot;/&gt;
-&lt;/module&gt;
-        </source>
-        <p>Example:</p>
-        <source>
-public class MyTest {
-  public class Boolean {
-    boolean a;
-
-    public Boolean (boolean a) { this.a = a; }
-  }
-
-  public void myTest (boolean a, int b) {
-    Boolean c = new Boolean(a); // violation, instantiation of
-                                // java.lang.Boolean should be avoided
     java.lang.Boolean d = new java.lang.Boolean(a); // violation, instantiation of
                                                     // java.lang.Boolean should be avoided
 
@@ -2612,7 +2551,7 @@ public class MyTest {
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+IllegalInstantiation">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+IllegalInstantiation">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -2778,7 +2717,7 @@ public class Test {
       <subsection name="Example of Usage" id="IllegalThrows_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+IllegalThrows">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+IllegalThrows">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -2891,7 +2830,7 @@ public native void myTest(); // violation
       <subsection name="Example of Usage" id="IllegalToken_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+IllegalToken">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+IllegalToken">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -3079,7 +3018,7 @@ public void myTest() {
             Google Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+IllegalTokenText">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+IllegalTokenText">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -3469,7 +3408,7 @@ public class Main {
       <subsection name="Example of Usage" id="IllegalType_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+IllegalType">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+IllegalType">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -3600,7 +3539,7 @@ class MyClass {
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+InnerAssignment">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+InnerAssignment">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -3916,7 +3855,7 @@ class TestHashCode {
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MagicNumber">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+MagicNumber">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -4125,7 +4064,7 @@ public class Test {
       <subsection name="Example of Usage" id="MatchXpath_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MatchXpath">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+MatchXpath">
               Checkstyle Style</a>
           </li>
         </ul>
@@ -4200,7 +4139,7 @@ abstract class AbstractExample { // OK
       <subsection name="Example of Usage" id="MissingCtor_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingCtor">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingCtor">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -4386,7 +4325,7 @@ static int showSwitchExpressionExhaustiveness(Color color) {
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingSwitchDefault">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingSwitchDefault">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -4536,7 +4475,7 @@ for (String arg: args1) {
       <subsection name="Example of Usage" id="ModifiedControlVariable_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ModifiedControlVariable">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+ModifiedControlVariable">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -4727,7 +4666,7 @@ public class MyClass {
       <subsection name="Example of Usage" id="MultipleStringLiterals_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MultipleStringLiterals">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+MultipleStringLiterals">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -4816,7 +4755,7 @@ public class Test {
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MultipleVariableDeclarations">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+MultipleVariableDeclarations">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -4931,7 +4870,7 @@ for(int i=0; i&lt;10; i++) {
       <subsection name="Example of Usage" id="NestedForDepth_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NestedForDepth">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+NestedForDepth">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -5052,7 +4991,7 @@ if (true) {
       <subsection name="Example of Usage" id="NestedIfDepth_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NestedIfDepth">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+NestedIfDepth">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -5211,7 +5150,7 @@ try {
       <subsection name="Example of Usage" id="NestedTryDepth_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NestedTryDepth">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+NestedTryDepth">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -5294,7 +5233,7 @@ String[] foo4 = { "FOO", "BAR" }; // OK
       <subsection name="Example of Usage" id="NoArrayTrailingComma_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NoArrayTrailingComma">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+NoArrayTrailingComma">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -5457,7 +5396,7 @@ public class Foo {
       <subsection name="Example of Usage" id="NoClone_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NoClone">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+NoClone">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -5563,7 +5502,7 @@ enum Foo10 { FOO, BAR } // OK
       <subsection name="Example of Usage" id="NoEnumTrailingComma_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NoEnumTrailingComma">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+NoEnumTrailingComma">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -5642,7 +5581,7 @@ public class Test {
             Google Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NoFinalizer">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+NoFinalizer">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -5782,7 +5721,7 @@ try (Reader r = new PipedReader(); s2; Reader s3 = new PipedReader() // violatio
             Google Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+OneStatementPerLine">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+OneStatementPerLine">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -5854,7 +5793,7 @@ public void foo(String s, int i) {}
             Google Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+OverloadMethodsDeclarationOrder">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+OverloadMethodsDeclarationOrder">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -5965,7 +5904,7 @@ public class AnnotationLocationCheck extends AbstractCheck {
       <subsection name="Example of Usage" id="PackageDeclaration_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+PackageDeclaration">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+PackageDeclaration">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -6059,7 +5998,7 @@ class MyClass {
       <subsection name="Example of Usage" id="ParameterAssignment_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ParameterAssignment">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+ParameterAssignment">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -6322,7 +6261,7 @@ public class D {
       <subsection name="Example of Usage" id="RequireThis_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+RequireThis">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+RequireThis">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -6650,7 +6589,7 @@ public class Test {
       <subsection name="Example of Usage" id="ReturnCount_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ReturnCount">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+ReturnCount">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -6745,7 +6684,7 @@ public class Test {
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SimplifyBooleanExpression">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+SimplifyBooleanExpression">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -6869,7 +6808,7 @@ public class Test {
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SimplifyBooleanReturn">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+SimplifyBooleanReturn">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -6959,7 +6898,7 @@ if (name == getName()) {}
       <subsection name="Example of Usage" id="StringLiteralEquality_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+StringLiteralEquality">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+StringLiteralEquality">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -7045,7 +6984,7 @@ class C {
       <subsection name="Example of Usage" id="SuperClone_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuperClone">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuperClone">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -7122,7 +7061,7 @@ public class B {
       <subsection name="Example of Usage" id="SuperFinalize_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuperFinalize">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuperFinalize">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -7320,6 +7259,12 @@ if ((++f) &gt; g &amp;&amp; a) { // violation, unnecessary paren
                 POST_INC</a>
                 ,<a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#POST_DEC">
                 POST_DEC</a>
+                ,<a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BXOR">
+                BXOR</a>
+                ,<a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BOR">
+                BOR</a>
+                ,<a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BAND">
+                BAND</a>
                   .
               </td>
               <td>
@@ -7456,12 +7401,48 @@ if (x==(y == z)) { // ok
     return;
 }
         </source>
+        <p>
+          To configure the check to detect unnecessary parentheses around bitwise inclusive OR
+          <code> '|' </code>, bitwise AND <code> '&amp;' </code>, bitwise exclusive OR
+          <code> '^' </code>:
+        </p>
+        <source>
+&lt;module name=&quot;UnnecessaryParentheses&quot;&gt;
+  &lt;property name=&quot;tokens&quot; value=&quot;BOR, BAND, BXOR&quot; /&gt;
+&lt;/module&gt;
+        </source>
+        <source>
+class Test {
+
+    void method() {
+        int x = 9, y = 8;
+        if(x&gt;= 0 ^ (x&lt;=8 &amp; y&lt;=11) // violation, unnecessary parenthesis
+            ^ y&gt;=8) {
+            return;
+        }
+         if(x&gt;= 0 ^ x&lt;=8 &amp; y&lt;=11 ^ y&gt;=8) { // ok
+            return;
+        }
+        if(x&gt;= 0 || (x&lt;=8 &amp; y&lt;=11) // violation, unnecessary parenthesis
+            &amp;&amp; y&gt;=8) {
+            return;
+        }
+        if(x&gt;= 0 || x&lt;=8 &amp; y&lt;=11 &amp;&amp; y&gt;=8) { // ok
+            return;
+        }
+        if(x&gt;= 0 &amp; (x&lt;=8 ^ y&lt;=11) &amp; y&gt;=8) { // ok
+            return;
+        }
+    }
+
+}
+        </source>
       </subsection>
 
       <subsection name="Example of Usage" id="UnnecessaryParentheses_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+UnnecessaryParentheses">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+UnnecessaryParentheses">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -7645,7 +7626,7 @@ enum C {
                   id="UnnecessarySemicolonAfterOuterTypeDeclaration_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+UnnecessarySemicolonAfterOuterTypeDeclaration">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+UnnecessarySemicolonAfterOuterTypeDeclaration">
               Checkstyle Style</a>
           </li>
         </ul>
@@ -7812,7 +7793,7 @@ class A {
                   id="UnnecessarySemicolonAfterTypeMemberDeclaration_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+UnnecessarySemicolonAfterTypeMemberDeclaration">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+UnnecessarySemicolonAfterTypeMemberDeclaration">
               Checkstyle Style</a>
           </li>
         </ul>
@@ -7904,7 +7885,7 @@ enum NoSemicolon {
                   id="UnnecessarySemicolonInEnumeration_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+UnnecessarySemicolonInEnumeration">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+UnnecessarySemicolonInEnumeration">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -8018,7 +7999,7 @@ class A {
                   id="UnnecessarySemicolonInTryWithResources_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+UnnecessarySemicolonInTryWithResources">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+UnnecessarySemicolonInTryWithResources">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -8133,7 +8114,7 @@ class Test {
       <subsection name="Example of Usage" id="UnusedLocalVariable_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+UnusedLocalVariable">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+UnusedLocalVariable">
                 Checkstyle Style</a>
           </li>
         </ul>
@@ -8239,7 +8220,7 @@ public class Test {
 
   public void foo1() {
     int num;        // violation, distance = 4
-    final int PI;   // OK, final variables not checked
+    final double PI;   // OK, final variables not checked
     System.out.println("Statement 1");
     System.out.println("Statement 2");
     System.out.println("Statement 3");
@@ -8313,7 +8294,7 @@ public class Test {
 
   public void foo1() {
     int num;        // OK, distance = 4
-    final int PI;   // OK, final variables not checked
+    final double PI;   // OK, final variables not checked
     System.out.println("Statement 1");
     System.out.println("Statement 2");
     System.out.println("Statement 3");
@@ -8352,7 +8333,7 @@ public class Test {
 
   public void foo1() {
     int num;        // OK, variable ignored
-    final int PI;   // OK, final variables not checked
+    final double PI;   // OK, final variables not checked
     System.out.println("Statement 1");
     System.out.println("Statement 2");
     System.out.println("Statement 3");
@@ -8388,7 +8369,7 @@ public class Test {
 
   public void foo1() {
     int num;        // violation, distance = 4
-    final int PI;   // OK, final variables not checked
+    final double PI;   // OK, final variables not checked
     System.out.println("Statement 1");
     System.out.println("Statement 2");
     System.out.println("Statement 3");
@@ -8424,7 +8405,7 @@ public class Test {
 
   public void foo1() {
     int num;        // violation, distance = 4
-    final int PI;   // violation, distance = 5
+    final double PI;   // violation, distance = 5
     System.out.println("Statement 1");
     System.out.println("Statement 2");
     System.out.println("Statement 3");
@@ -8455,7 +8436,7 @@ public class Test {
             Google Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+VariableDeclarationUsageDistance">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+VariableDeclarationUsageDistance">
             Checkstyle Style</a>
           </li>
         </ul>

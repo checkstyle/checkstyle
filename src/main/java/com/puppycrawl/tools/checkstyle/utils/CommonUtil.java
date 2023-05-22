@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -277,8 +277,9 @@ public final class CommonUtil {
      * <p>
      * It is faster version of {@link String#startsWith(String)} optimized for
      *  one-character prefixes at the expense of
-     * some readability. Suggested by SimplifyStartsWith PMD rule:
-     * http://pmd.sourceforge.net/pmd-5.3.1/pmd-java/rules/java/optimizations.html#SimplifyStartsWith
+     * some readability. Suggested by
+     * <a href="https://docs.pmd-code.org/latest/pmd_rules_java_performance.html#simplifystartswith">
+     * SimplifyStartsWith</a> PMD rule:
      * </p>
      *
      * @param value
@@ -297,8 +298,9 @@ public final class CommonUtil {
      * <p>
      * It is faster version of {@link String#endsWith(String)} optimized for
      *  one-character suffixes at the expense of
-     * some readability. Suggested by SimplifyStartsWith PMD rule:
-     * http://pmd.sourceforge.net/pmd-5.3.1/pmd-java/rules/java/optimizations.html#SimplifyStartsWith
+     * some readability. Suggested by
+     * <a href="https://docs.pmd-code.org/latest/pmd_rules_java_performance.html#simplifystartswith">
+     * SimplifyStartsWith</a> PMD rule:
      * </p>
      *
      * @param value

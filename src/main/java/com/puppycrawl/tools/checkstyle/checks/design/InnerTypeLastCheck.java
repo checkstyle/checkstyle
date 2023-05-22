@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -94,7 +94,7 @@ public class InnerTypeLastCheck extends AbstractCheck {
     );
 
     /** Meet a root class. */
-    private boolean rootClass = true;
+    private boolean rootClass;
 
     @Override
     public int[] getDefaultTokens() {
@@ -127,7 +127,7 @@ public class InnerTypeLastCheck extends AbstractCheck {
             rootClass = false;
         }
         else {
-            DetailAST nextSibling = ast.getNextSibling();
+            DetailAST nextSibling = ast;
             while (nextSibling != null) {
                 if (!ScopeUtil.isInCodeBlock(ast)
                         && CLASS_MEMBER_TOKENS.get(nextSibling.getType())) {

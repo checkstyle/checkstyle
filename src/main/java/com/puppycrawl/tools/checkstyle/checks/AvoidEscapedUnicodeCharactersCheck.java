@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -175,7 +175,7 @@ public class AvoidEscapedUnicodeCharactersCheck
     public static final String MSG_KEY = "forbid.escaped.unicode.char";
 
     /** Regular expression for Unicode chars. */
-    private static final Pattern UNICODE_REGEXP = Pattern.compile("\\\\u+[a-fA-F0-9]{4}");
+    private static final Pattern UNICODE_REGEXP = Pattern.compile("\\\\u+[a-fA-F\\d]{4}");
 
     /**
      * Regular expression Unicode control characters.
@@ -184,8 +184,8 @@ public class AvoidEscapedUnicodeCharactersCheck
      *     Appendix:Control characters</a>
      */
     private static final Pattern UNICODE_CONTROL = Pattern.compile("\\\\u+"
-            + "(00[0-1][0-9A-Fa-f]"
-            + "|00[8-9][0-9A-Fa-f]"
+            + "(00[0-1][\\dA-Fa-f]"
+            + "|00[8-9][\\dA-Fa-f]"
             + "|00[aA][dD]"
             + "|034[fF]"
             + "|070[fF]"
@@ -198,8 +198,8 @@ public class AvoidEscapedUnicodeCharactersCheck
 
     /**
      * Regular expression for all escaped chars.
-     * See "EscapeSequence" at
-     * https://docs.oracle.com/javase/specs/jls/se15/html/jls-3.html#jls-3.10.7
+     * See <a href="https://docs.oracle.com/javase/specs/jls/se15/html/jls-3.html#jls-3.10.7">
+     * EscapeSequence</a>
      */
     private static final Pattern ALL_ESCAPED_CHARS = Pattern.compile("^("
             + UNICODE_REGEXP.pattern()

@@ -73,7 +73,7 @@
       <subsection name="Example of Usage" id="AnonInnerLength_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+AnonInnerLength">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+AnonInnerLength">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -191,7 +191,7 @@
       <subsection name="Example of Usage" id="ExecutableStatementCount_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ExecutableStatementCount">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+ExecutableStatementCount">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -289,7 +289,7 @@
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+FileLength">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+FileLength">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -446,7 +446,7 @@ class Test {
       <subsection name="Example of Usage" id="LambdaBodyLength_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LambdaBodyLength">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+LambdaBodyLength">
               Checkstyle Style</a>
           </li>
         </ul>
@@ -635,7 +635,7 @@ import java.util.regex.Pattern; // The length of this comment will be taken into
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LineLength">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+LineLength">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -835,7 +835,7 @@ public class ExampleClass {
       <subsection name="Example of Usage" id="MethodCount_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MethodCount">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+MethodCount">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -1073,7 +1073,7 @@ public class MyTest {
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MethodLength">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+MethodLength">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -1162,7 +1162,7 @@ public class MyTest {
       <subsection name="Example of Usage" id="OuterTypeNumber_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+OuterTypeNumber">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+OuterTypeNumber">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -1304,7 +1304,7 @@ public void needsLotsOfParameters(int a,
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ParameterNumber">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+ParameterNumber">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -1461,7 +1461,7 @@ private record MyRecord2(int x, int y, String str, Node node) { // violation
       <subsection name="Example of Usage" id="RecordComponentNumber_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+RecordComponentNumber">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+RecordComponentNumber">
               Checkstyle Style</a>
           </li>
         </ul>

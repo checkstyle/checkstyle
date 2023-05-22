@@ -36,7 +36,7 @@ if [ ! -f "$ECJ_PATH" ]; then
         echo please update "config/org.eclipse.jdt.core.prefs" file
         exit 1
     fi
-    mkdir -p $(dirname "$ECJ_PATH")
+    mkdir -p "$(dirname "$ECJ_PATH")"
     cp "$ECJ_JAR" "$ECJ_PATH"
     cd ..
 fi

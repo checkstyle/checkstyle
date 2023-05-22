@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -465,6 +465,34 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
         verifyWithInlineConfigParser(
                 getPath("InputAbbreviationAsWordInNameReceiver.java"),
                 expected);
+    }
+
+    @Test
+    public void testInputAbbreviationAsWordInNameTypeSnakeStyle() throws Exception {
+        final String[] expected = {
+            "13:20: " + getWarningMessage("FLAG_IS_FIRST_RUN", 4),
+            "16:17: " + getWarningMessage("HYBRID_LOCK_PATH", 4),
+            "21:17: " + getWarningMessage("__DEMOS__TESTS_VAR", 4),
+            "28:16: " + getWarningMessage("TESTING_FAM_23456", 4),
+            "33:16: " + getWarningMessage("TESTING_23456_FAM", 4),
+            "38:16: " + getWarningMessage("_234VIOLATION", 4),
+            "41:16: " + getWarningMessage("VIOLATION23456", 4),
+            "72:21: " + getWarningMessage("getIsFIRST_Run", 4),
+            "77:21: " + getWarningMessage("getBoolean_VALUES", 4),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputAbbreviationAsWordInNameTypeSnakeStyle.java"), expected);
+    }
+
+    @Test
+    public void testAnnotation() throws Exception {
+        final String[] expected = {
+            "16:12: " + getWarningMessage("readMETHOD", 4),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputAbbreviationAsWordInNameAnnotation.java"), expected);
     }
 
 }

@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -224,6 +224,29 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
         };
         verifyWithInlineConfigParser(
                 getPath("InputUnusedLocalVariableNestedClasses2.java"),
+                expected);
+    }
+
+    @Test
+    public void testUnusedLocalVarNestedClasses3() throws Exception {
+        final String[] expected = {
+            "36:17: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "p2"),
+            "54:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "o"),
+            "93:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "b"),
+            "95:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "a"),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputUnusedLocalVariableNestedClasses3.java"),
+                expected);
+    }
+
+    @Test
+    public void testUnusedLocalVarTestWarningSeverity() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("InputUnusedLocalVariableTestWarningSeverity.java"),
                 expected);
     }
 

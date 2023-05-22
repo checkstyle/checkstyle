@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -376,7 +376,7 @@ public final class MethodCountCheck extends AbstractCheck {
      * class. Objects of this class are used on the Stack to count the
      * methods for each class and layer.
      */
-    private static class MethodCounter {
+    private static final class MethodCounter {
 
         /** Maintains the counts. */
         private final Map<Scope, Integer> counts = new EnumMap<>(Scope.class);
@@ -395,7 +395,7 @@ public final class MethodCountCheck extends AbstractCheck {
          *        The surrounding scope definition (class, enum, etc.) which to count all methods
          *        for.
          */
-        /* package */ MethodCounter(DetailAST scopeDefinition) {
+        private MethodCounter(DetailAST scopeDefinition) {
             this.scopeDefinition = scopeDefinition;
         }
 

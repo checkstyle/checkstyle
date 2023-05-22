@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -29,6 +29,7 @@ import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.xpath.AbstractNode;
+import net.sf.saxon.om.NamespaceUri;
 import net.sf.saxon.om.NodeInfo;
 import net.sf.saxon.om.TreeInfo;
 
@@ -62,7 +63,7 @@ public class ReverseListIteratorTest {
 
     private static class TestNode extends AbstractNode {
 
-        /* package */ TestNode() {
+        private TestNode() {
             super(null);
         }
 
@@ -111,7 +112,7 @@ public class ReverseListIteratorTest {
         }
 
         @Override
-        public String getAttributeValue(String uri, String local) {
+        public String getAttributeValue(NamespaceUri uri, String local) {
             return null;
         }
 

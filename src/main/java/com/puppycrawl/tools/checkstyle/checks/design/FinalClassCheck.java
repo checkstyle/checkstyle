@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -27,6 +27,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Optional;
 import java.util.function.Function;
+import java.util.function.ToIntFunction;
 
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
@@ -170,7 +171,7 @@ public class FinalClassCheck
             case TokenTypes.INTERFACE_DEF:
             case TokenTypes.RECORD_DEF:
                 final TypeDeclarationDescription description = new TypeDeclarationDescription(
-                    extractQualifiedTypeName(ast), typeDeclarations.size(), ast);
+                    extractQualifiedTypeName(ast), 0, ast);
                 typeDeclarations.push(description);
                 break;
 
@@ -271,7 +272,7 @@ public class FinalClassCheck
                                                            ClassDesc currentClass) {
         final String superClassName = getSuperClassName(currentClass.getTypeDeclarationAst());
         if (superClassName != null) {
-            final Function<ClassDesc, Integer> nestedClassCountProvider = classDesc -> {
+            final ToIntFunction<ClassDesc> nestedClassCountProvider = classDesc -> {
                 return CheckUtil.typeDeclarationNameMatchingCount(qualifiedClassName,
                                                                   classDesc.getQualifiedName());
             };
@@ -294,7 +295,7 @@ public class FinalClassCheck
                                                          String outerTypeDeclName) {
         final String superClassName = CheckUtil.getShortNameOfAnonInnerClass(literalNewAst);
 
-        final Function<ClassDesc, Integer> anonClassCountProvider = classDesc -> {
+        final ToIntFunction<ClassDesc> anonClassCountProvider = classDesc -> {
             return getAnonSuperTypeMatchingCount(outerTypeDeclName, classDesc.getQualifiedName());
         };
         getNearestClassWithSameName(superClassName, anonClassCountProvider)
@@ -338,11 +339,13 @@ public class FinalClassCheck
      * @param countProvider the function to apply to calculate the name matching count
      * @return {@link Optional} of {@link ClassDesc} object of the nearest class with the same name.
      * @noinspection CallToStringConcatCanBeReplacedByOperator
+     * @noinspectionreason CallToStringConcatCanBeReplacedByOperator - operator causes
+     *      pitest to fail
      */
     private Optional<ClassDesc> getNearestClassWithSameName(String className,
-        Function<ClassDesc, Integer> countProvider) {
+        ToIntFunction<ClassDesc> countProvider) {
         final String dotAndClassName = PACKAGE_SEPARATOR.concat(className);
-        final Comparator<ClassDesc> longestMatch = Comparator.comparingInt(countProvider::apply);
+        final Comparator<ClassDesc> longestMatch = Comparator.comparingInt(countProvider);
         return innerClasses.entrySet().stream()
                 .filter(entry -> entry.getKey().endsWith(dotAndClassName))
                 .map(Map.Entry::getValue)
@@ -457,7 +460,7 @@ public class FinalClassCheck
          * @param depth Depth of nesting of type declaration
          * @param typeDeclarationAst Type declaration ast node
          */
-        /* package */ TypeDeclarationDescription(String qualifiedName, int depth,
+        private TypeDeclarationDescription(String qualifiedName, int depth,
                                           DetailAST typeDeclarationAst) {
             this.qualifiedName = qualifiedName;
             this.depth = depth;
@@ -523,7 +526,7 @@ public class FinalClassCheck
          *  @param depth class nesting level
          *  @param classAst classAst node
          */
-        /* package */ ClassDesc(String qualifiedName, int depth, DetailAST classAst) {
+        private ClassDesc(String qualifiedName, int depth, DetailAST classAst) {
             super(qualifiedName, depth, classAst);
             final DetailAST modifiers = classAst.findFirstToken(TokenTypes.MODIFIERS);
             declaredAsFinal = modifiers.findFirstToken(TokenTypes.FINAL) != null;

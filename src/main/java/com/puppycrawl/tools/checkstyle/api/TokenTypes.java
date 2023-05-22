@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -29,6 +29,7 @@ import com.puppycrawl.tools.checkstyle.grammar.java.JavaLanguageLexer;
  * the circular dependency between packages.</p>
  *
  * @noinspection ClassWithTooManyDependents
+ * @noinspectionreason ClassWithTooManyDependents - this class is a core part of our API
  */
 public final class TokenTypes {
 
@@ -311,7 +312,7 @@ public final class TokenTypes {
      *
      * <p>For example:</p>
      * <pre>
-     * final int PI = 3.14;
+     * final double PI = 3.14;
      * </pre>
      * <p>parses as:</p>
      * <pre>
@@ -319,7 +320,7 @@ public final class TokenTypes {
      *  |--MODIFIERS -&gt; MODIFIERS
      *  |   `--FINAL -&gt; final
      *  |--TYPE -&gt; TYPE
-     *  |   `--LITERAL_INT -&gt; int
+     *  |   `--LITERAL_DOUBLE -&gt; int
      *  |--IDENT -&gt; PI
      *  |--ASSIGN -&gt; =
      *  |   `--EXPR -&gt; EXPR
@@ -1824,6 +1825,8 @@ public final class TokenTypes {
      *
      * @see FullIdent
      * @noinspection HtmlTagCanBeJavadocTag
+     * @noinspectionreason HtmlTagCanBeJavadocTag - encoded symbols were not decoded
+     *      when replaced with Javadoc tag
      **/
     public static final int DOT = JavaLanguageLexer.DOT;
     /**
@@ -3595,6 +3598,8 @@ public final class TokenTypes {
      * @see #EXPR
      * @see #COLON
      * @noinspection HtmlTagCanBeJavadocTag
+     * @noinspectionreason HtmlTagCanBeJavadocTag - encoded symbols were not decoded
+     *      when replaced with Javadoc tag
      **/
     public static final int QUESTION = JavaLanguageLexer.QUESTION;
     /**
@@ -3628,7 +3633,6 @@ public final class TokenTypes {
     public static final int LOR = JavaLanguageLexer.LOR;
     /**
      * The {@code &&} (conditional AND) operator.
-     *
      *
      * <p>For example:</p>
      * <pre>
@@ -3729,6 +3733,8 @@ public final class TokenTypes {
      *
      * @see #EXPR
      * @noinspection HtmlTagCanBeJavadocTag
+     * @noinspectionreason HtmlTagCanBeJavadocTag - encoded symbols were not decoded
+     *      when replaced with Javadoc tag
      **/
     public static final int NOT_EQUAL = JavaLanguageLexer.NOT_EQUAL;
     /**
@@ -4175,6 +4181,8 @@ public final class TokenTypes {
      * Language Specification, &sect;15.15.6</a>
      * @see #EXPR
      * @noinspection HtmlTagCanBeJavadocTag
+     * @noinspectionreason HtmlTagCanBeJavadocTag - encoded symbols were not decoded
+     *      when replaced with Javadoc tag
      **/
     public static final int LNOT = JavaLanguageLexer.LNOT;
     /**
@@ -6146,7 +6154,7 @@ public final class TokenTypes {
      * <p>For example:</p>
      * <pre>
      * switch(o) {
-     *     case String s &amp;&amp; s.length() &gt; 4: // guarded pattern, `PATTERN_DEF`
+     *     case String s when s.length() &gt; 4: // guarded pattern, `PATTERN_DEF`
      *         break;
      *     case String s: // type pattern, no `PATTERN_DEF`
      *         break;
@@ -6163,7 +6171,7 @@ public final class TokenTypes {
      * |   |--CASE_GROUP -&gt; CASE_GROUP
      * |   |   |--LITERAL_CASE -&gt; case
      * |   |   |   |--PATTERN_DEF -&gt; PATTERN_DEF
-     * |   |   |   |   `--LAND -&gt; &amp;&amp;
+     * |   |   |   |   `--LITERAL_WHEN -&gt; when
      * |   |   |   |       |--PATTERN_VARIABLE_DEF -&gt; PATTERN_VARIABLE_DEF
      * |   |   |   |       |   |--MODIFIERS -&gt; MODIFIERS
      * |   |   |   |       |   |--TYPE -&gt; TYPE
@@ -6206,6 +6214,251 @@ public final class TokenTypes {
      */
     public static final int PATTERN_DEF =
         JavaLanguageLexer.PATTERN_DEF;
+
+    /**
+     * A {@code when} clause. Appears as part of a switch label in a guarded pattern definition.
+     *
+     * <p>For example:</p>
+     * <pre>
+     * return switch (o) {
+     *     case Integer i when i &gt;= 0 -&gt; i;
+     *     default -&gt; 2;
+     * };
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * LITERAL_RETURN -&gt; return
+     *  `--EXPR -&gt; EXPR
+     *      `--LITERAL_SWITCH -&gt; switch
+     *          |--LPAREN -&gt; (
+     *          |--EXPR -&gt; EXPR
+     *          |   `--IDENT -&gt; o
+     *          |--RPAREN -&gt; )
+     *          |--LCURLY -&gt; {
+     *          |--SWITCH_RULE -&gt; SWITCH_RULE
+     *          |   |--LITERAL_CASE -&gt; case
+     *          |   |   `--PATTERN_DEF -&gt; PATTERN_DEF
+     *          |   |       `--LITERAL_WHEN -&gt; when
+     *          |   |           |--PATTERN_VARIABLE_DEF -&gt; PATTERN_VARIABLE_DEF
+     *          |   |           |   |--MODIFIERS -&gt; MODIFIERS
+     *          |   |           |   |--TYPE -&gt; TYPE
+     *          |   |           |   |   `--IDENT -&gt; Integer
+     *          |   |           |   `--IDENT -&gt; i
+     *          |   |           `--GE -&gt; &gt;=
+     *          |   |               |--IDENT -&gt; i
+     *          |   |               `--NUM_INT -&gt; 0
+     *          |   |--LAMBDA -&gt; -&gt;
+     *          |   |--EXPR -&gt; EXPR
+     *          |   |   `--IDENT -&gt; i
+     *          |   `--SEMI -&gt; ;
+     *          |--SWITCH_RULE -&gt; SWITCH_RULE
+     *          |   |--LITERAL_DEFAULT -&gt; default
+     *          |   |--LAMBDA -&gt; -&gt;
+     *          |   |--EXPR -&gt; EXPR
+     *          |   |   `--NUM_INT -&gt; 2
+     *          |   `--SEMI -&gt; ;
+     *          `--RCURLY -&gt; }
+     * </pre>
+     *
+     * @see <a href="https://docs.oracle.com/javase/specs/jls/se17/html/jls-14.html#jls-14.30">
+     * Java Language Specification, &sect;14.30</a>
+     * @see #LITERAL_SWITCH
+     * @see #PATTERN_VARIABLE_DEF
+     * @see #LITERAL_INSTANCEOF
+     * @see #SWITCH_RULE
+     *
+     * @since 10.7.0
+     */
+    public static final int LITERAL_WHEN =
+        JavaLanguageLexer.LITERAL_WHEN;
+
+    /**
+     * A {@code record} pattern definition. A record pattern consists of a type,
+     * a (possibly empty) record component pattern list which is used to match against
+     * the corresponding record components, and an optional identifier. Appears as part of
+     * an {@code instanceof} expression or a {@code case} label in a switch.
+     *
+     * <p>For example:</p>
+     * <pre>
+     * record R(Object o){}
+     * if (o instanceof R(String s) myRecord) {}
+     * switch (o) {
+     *     case R(String s) myRecord -&gt; {}
+     * }
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * |--RECORD_DEF -&gt; RECORD_DEF
+     * |   |--MODIFIERS -&gt; MODIFIERS
+     * |   |--LITERAL_RECORD -&gt; record
+     * |   |--IDENT -&gt; R
+     * |   |--LPAREN -&gt; (
+     * |   |--RECORD_COMPONENTS -&gt; RECORD_COMPONENTS
+     * |   |   `--RECORD_COMPONENT_DEF -&gt; RECORD_COMPONENT_DEF
+     * |   |       |--ANNOTATIONS -&gt; ANNOTATIONS
+     * |   |       |--TYPE -&gt; TYPE
+     * |   |       |   `--IDENT -&gt; Object
+     * |   |       `--IDENT -&gt; o
+     * |   |--RPAREN -&gt; )
+     * |   `--OBJBLOCK -&gt; OBJBLOCK
+     * |       |--LCURLY -&gt; {
+     * |       `--RCURLY -&gt; }
+     * |--LITERAL_IF -&gt; if
+     * |   |--LPAREN -&gt; (
+     * |   |--EXPR -&gt; EXPR
+     * |   |   `--LITERAL_INSTANCEOF -&gt; instanceof
+     * |   |       |--IDENT -&gt; o
+     * |   |       `--RECORD_PATTERN_DEF -&gt; RECORD_PATTERN_DEF
+     * |   |           |--MODIFIERS -&gt; MODIFIERS
+     * |   |           |--TYPE -&gt; TYPE
+     * |   |           |   `--IDENT -&gt; R
+     * |   |           |--LPAREN -&gt; (
+     * |   |           |--RECORD_PATTERN_COMPONENTS -&gt; RECORD_PATTERN_COMPONENTS
+     * |   |           |   `--PATTERN_VARIABLE_DEF -&gt; PATTERN_VARIABLE_DEF
+     * |   |           |       |--MODIFIERS -&gt; MODIFIERS
+     * |   |           |       |--TYPE -&gt; TYPE
+     * |   |           |       |   `--IDENT -&gt; String
+     * |   |           |       `--IDENT -&gt; s
+     * |   |           |--RPAREN -&gt; )
+     * |   |           `--IDENT -&gt; myRecord
+     * |   |--RPAREN -&gt; )
+     * |   `--SLIST -&gt; {
+     * |       `--RCURLY -&gt; }
+     * |--LITERAL_SWITCH -&gt; switch
+     * |   |--LPAREN -&gt; (
+     * |   |--EXPR -&gt; EXPR
+     * |   |   `--IDENT -&gt; o
+     * |   |--RPAREN -&gt; )
+     * |   |--LCURLY -&gt; {
+     * |   |--SWITCH_RULE -&gt; SWITCH_RULE
+     * |   |   |--LITERAL_CASE -&gt; case
+     * |   |   |   `--RECORD_PATTERN_DEF -&gt; RECORD_PATTERN_DEF
+     * |   |   |       |--MODIFIERS -&gt; MODIFIERS
+     * |   |   |       |--TYPE -&gt; TYPE
+     * |   |   |       |   `--IDENT -&gt; R
+     * |   |   |       |--LPAREN -&gt; (
+     * |   |   |       |--RECORD_PATTERN_COMPONENTS -&gt; RECORD_PATTERN_COMPONENTS
+     * |   |   |       |   `--PATTERN_VARIABLE_DEF -&gt; PATTERN_VARIABLE_DEF
+     * |   |   |       |       |--MODIFIERS -&gt; MODIFIERS
+     * |   |   |       |       |--TYPE -&gt; TYPE
+     * |   |   |       |       |   `--IDENT -&gt; String
+     * |   |   |       |       `--IDENT -&gt; s
+     * |   |   |       |--RPAREN -&gt; )
+     * |   |   |       `--IDENT -&gt; myRecord
+     * |   |   |--LAMBDA -&gt; -&gt;
+     * |   |   `--SLIST -&gt; {
+     * |   |       `--RCURLY -&gt; }
+     * |   `--RCURLY -&gt; }
+     * `--RCURLY -&gt; }
+     * </pre>
+     *
+     * @see <a href="https://openjdk.org/jeps/405">JEP 405: Record Patterns</a>
+     * @see #LITERAL_WHEN
+     * @see #PATTERN_VARIABLE_DEF
+     * @see #LITERAL_INSTANCEOF
+     * @see #SWITCH_RULE
+     *
+     * @since 10.12.0
+     */
+    public static final int RECORD_PATTERN_DEF =
+        JavaLanguageLexer.RECORD_PATTERN_DEF;
+
+    /**
+     * A (possibly empty) record component pattern list which is used to match against
+     * the corresponding record components. Appears as part of a record pattern definition.
+     *
+     * <p>For example:</p>
+     * <pre>
+     * record R(Object o){}
+     * if (o instanceof R(String myComponent)) {}
+     * switch (o) {
+     *     case R(String myComponent) when "component".equalsIgnoreCase(myComponent) -&gt; {}
+     * }
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * |--RECORD_DEF -&gt; RECORD_DEF
+     * |   |--MODIFIERS -&gt; MODIFIERS
+     * |   |--LITERAL_RECORD -&gt; record
+     * |   |--IDENT -&gt; R
+     * |   |--LPAREN -&gt; (
+     * |   |--RECORD_COMPONENTS -&gt; RECORD_COMPONENTS
+     * |   |   `--RECORD_COMPONENT_DEF -&gt; RECORD_COMPONENT_DEF
+     * |   |       |--ANNOTATIONS -&gt; ANNOTATIONS
+     * |   |       |--TYPE -&gt; TYPE
+     * |   |       |   `--IDENT -&gt; Object
+     * |   |       `--IDENT -&gt; o
+     * |   |--RPAREN -&gt; )
+     * |   `--OBJBLOCK -&gt; OBJBLOCK
+     * |       |--LCURLY -&gt; {
+     * |       `--RCURLY -&gt; }
+     * |--LITERAL_IF -&gt; if
+     * |   |--LPAREN -&gt; (
+     * |   |--EXPR -&gt; EXPR
+     * |   |   `--LITERAL_INSTANCEOF -&gt; instanceof
+     * |   |       |--IDENT -&gt; o
+     * |   |       `--RECORD_PATTERN_DEF -&gt; RECORD_PATTERN_DEF
+     * |   |           |--MODIFIERS -&gt; MODIFIERS
+     * |   |           |--TYPE -&gt; TYPE
+     * |   |           |   `--IDENT -&gt; R
+     * |   |           |--LPAREN -&gt; (
+     * |   |           |--RECORD_PATTERN_COMPONENTS -&gt; RECORD_PATTERN_COMPONENTS
+     * |   |           |   `--PATTERN_VARIABLE_DEF -&gt; PATTERN_VARIABLE_DEF
+     * |   |           |       |--MODIFIERS -&gt; MODIFIERS
+     * |   |           |       |--TYPE -&gt; TYPE
+     * |   |           |       |   `--IDENT -&gt; String
+     * |   |           |       `--IDENT -&gt; myComponent
+     * |   |           `--RPAREN -&gt; )
+     * |   |--RPAREN -&gt; )
+     * |   `--SLIST -&gt; {
+     * |       `--RCURLY -&gt; }
+     * |--LITERAL_SWITCH -&gt; switch
+     * |   |--LPAREN -&gt; (
+     * |   |--EXPR -&gt; EXPR
+     * |   |   `--IDENT -&gt; o
+     * |   |--RPAREN -&gt; )
+     * |   |--LCURLY -&gt; {
+     * |   |--SWITCH_RULE -&gt; SWITCH_RULE
+     * |   |   |--LITERAL_CASE -&gt; case
+     * |   |   |   `--PATTERN_DEF -&gt; PATTERN_DEF
+     * |   |   |       `--LITERAL_WHEN -&gt; when
+     * |   |   |           |--RECORD_PATTERN_DEF -&gt; RECORD_PATTERN_DEF
+     * |   |   |           |   |--MODIFIERS -&gt; MODIFIERS
+     * |   |   |           |   |--TYPE -&gt; TYPE
+     * |   |   |           |   |   `--IDENT -&gt; R
+     * |   |   |           |   |--LPAREN -&gt; (
+     * |   |   |           |   |--RECORD_PATTERN_COMPONENTS -&gt; RECORD_PATTERN_COMPONENTS
+     * |   |   |           |   |   `--PATTERN_VARIABLE_DEF -&gt; PATTERN_VARIABLE_DEF
+     * |   |   |           |   |       |--MODIFIERS -&gt; MODIFIERS
+     * |   |   |           |   |       |--TYPE -&gt; TYPE
+     * |   |   |           |   |       |   `--IDENT -&gt; String
+     * |   |   |           |   |       `--IDENT -&gt; myComponent
+     * |   |   |           |   `--RPAREN -&gt; )
+     * |   |   |           `--METHOD_CALL -&gt; (
+     * |   |   |               |--DOT -&gt; .
+     * |   |   |               |   |--STRING_LITERAL -&gt; "component"
+     * |   |   |               |   `--IDENT -&gt; equalsIgnoreCase
+     * |   |   |               |--ELIST -&gt; ELIST
+     * |   |   |               |   `--EXPR -&gt; EXPR
+     * |   |   |               |       `--IDENT -&gt; myComponent
+     * |   |   |               `--RPAREN -&gt; )
+     * |   |   |--LAMBDA -&gt; -&gt;
+     * |   |   `--SLIST -&gt; {
+     * |   |       `--RCURLY -&gt; }
+     * |   `--RCURLY -&gt; }
+     * `--RCURLY -&gt; }
+     * </pre>
+     *
+     * @see <a href="https://openjdk.org/jeps/405">JEP 405: Record Patterns</a>
+     * @see #LITERAL_WHEN
+     * @see #PATTERN_VARIABLE_DEF
+     * @see #LITERAL_INSTANCEOF
+     * @see #SWITCH_RULE
+     *
+     * @since 10.12.0
+     */
+    public static final int RECORD_PATTERN_COMPONENTS =
+            JavaLanguageLexer.RECORD_PATTERN_COMPONENTS;
 
     /** Prevent instantiation. */
     private TokenTypes() {

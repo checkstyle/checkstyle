@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -51,8 +51,11 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
     /** The tokens the check is interested in. */
     private final Set<String> tokens = new HashSet<>();
 
-    /** The tab width for column reporting. */
-    private int tabWidth = CommonUtil.DEFAULT_TAB_WIDTH;
+    /**
+     * The tab width for column reporting. Default is uninitialized as the value is inherited from
+     * the parent module.
+     */
+    private int tabWidth;
 
     /**
      * Returns the default token a check is interested in. Only used if the
@@ -327,7 +330,7 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
     /**
      * The actual context holder.
      */
-    private static class FileContext {
+    private static final class FileContext {
 
         /** The sorted set for collecting violations. */
         private final SortedSet<Violation> violations = new TreeSet<>();

@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -77,7 +77,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *
  *   public void foo1() {
  *     int num;        // violation, distance = 4
- *     final int PI;   // OK, final variables not checked
+ *     final double PI;   // OK, final variables not checked
  *     System.out.println("Statement 1");
  *     System.out.println("Statement 2");
  *     System.out.println("Statement 3");
@@ -146,7 +146,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *
  *   public void foo1() {
  *     int num;        // OK, distance = 4
- *     final int PI;   // OK, final variables not checked
+ *     final double PI;   // OK, final variables not checked
  *     System.out.println("Statement 1");
  *     System.out.println("Statement 2");
  *     System.out.println("Statement 3");
@@ -185,7 +185,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *
  *   public void foo1() {
  *     int num;        // OK, variable ignored
- *     final int PI;   // OK, final variables not checked
+ *     final double PI;   // OK, final variables not checked
  *     System.out.println("Statement 1");
  *     System.out.println("Statement 2");
  *     System.out.println("Statement 3");
@@ -221,7 +221,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *
  *   public void foo1() {
  *     int num;        // violation, distance = 4
- *     final int PI;   // OK, final variables not checked
+ *     final double PI;   // OK, final variables not checked
  *     System.out.println("Statement 1");
  *     System.out.println("Statement 2");
  *     System.out.println("Statement 3");
@@ -257,7 +257,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *
  *   public void foo1() {
  *     int num;        // violation, distance = 4
- *     final int PI;   // violation, distance = 5
+ *     final double PI;   // violation, distance = 5
  *     System.out.println("Statement 1");
  *     System.out.println("Statement 2");
  *     System.out.println("Statement 3");
@@ -522,6 +522,8 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
      * @param variableIdentAst
      *        Variable which distance is calculated for.
      * @return entry which contains expression with variable usage and distance.
+     *         If variable usage is not found, then the expression node is null,
+     *         although the distance can be greater than zero.
      */
     private static Entry<DetailAST, Integer> calculateDistanceInSingleScope(
             DetailAST semicolonAst, DetailAST variableIdentAst) {
@@ -530,8 +532,7 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
         DetailAST currentAst = semicolonAst;
         DetailAST variableUsageAst = null;
 
-        while (!firstUsageFound && currentAst != null
-                && currentAst.getType() != TokenTypes.RCURLY) {
+        while (!firstUsageFound && currentAst != null) {
             if (currentAst.getFirstChild() != null) {
                 if (isChild(currentAst, variableIdentAst)) {
                     dist = getDistToVariableUsageInChildNode(currentAst, variableIdentAst, dist);
@@ -543,11 +544,6 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
                 }
             }
             currentAst = currentAst.getNextSibling();
-        }
-
-        // If variable wasn't used after its declaration, distance is 0.
-        if (!firstUsageFound) {
-            dist = 0;
         }
 
         return new SimpleEntry<>(variableUsageAst, dist);
@@ -691,16 +687,14 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
         final List<DetailAST> variableUsageExpressions = new ArrayList<>();
         int distance = 0;
         DetailAST currentStatementAst = statementAst;
-        while (currentStatementAst != null
-                && currentStatementAst.getType() != TokenTypes.RCURLY) {
+        while (currentStatementAst != null) {
             if (currentStatementAst.getFirstChild() != null) {
                 if (isChild(currentStatementAst, variableAst)) {
                     variableUsageExpressions.add(currentStatementAst);
                 }
-                // If expression doesn't contain variable and this variable
-                // hasn't been met yet, then distance + 1.
+                // If expression hasn't been met yet, then distance + 1.
                 else if (variableUsageExpressions.isEmpty()
-                        && currentStatementAst.getType() != TokenTypes.VARIABLE_DEF) {
+                        && !isZeroDistanceToken(currentStatementAst.getType())) {
                     distance++;
                 }
             }
@@ -741,10 +735,7 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
 
             final int currentNodeType = currentNode.getType();
 
-            if (currentNodeType == TokenTypes.SLIST) {
-                firstNodeInsideBlock = currentNode.getFirstChild();
-            }
-            else if (currentNodeType != TokenTypes.EXPR) {
+            if (currentNodeType != TokenTypes.EXPR) {
                 firstNodeInsideBlock = currentNode;
             }
         }
@@ -769,37 +760,26 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
         DetailAST firstNodeInsideBlock = null;
 
         if (!isVariableInOperatorExpr(block, variable)) {
-            DetailAST currentNode = block.getLastChild();
-            final List<DetailAST> variableUsageExpressions =
-                    new ArrayList<>();
+            final Optional<DetailAST> slistToken = TokenUtil
+                .findFirstTokenByPredicate(block, token -> token.getType() == TokenTypes.SLIST);
+            final DetailAST lastNode = block.getLastChild();
+            DetailAST previousNode = lastNode.getPreviousSibling();
 
-            while (currentNode != null
-                    && currentNode.getType() == TokenTypes.LITERAL_ELSE) {
-                final DetailAST previousNode =
-                        currentNode.getPreviousSibling();
+            if (slistToken.isEmpty()
+                && lastNode.getType() == TokenTypes.LITERAL_ELSE) {
 
-                // Checking variable usage inside IF block.
-                if (isChild(previousNode, variable)) {
-                    variableUsageExpressions.add(previousNode);
-                }
-
-                // Looking into ELSE block, get its first child and analyze it.
-                currentNode = currentNode.getFirstChild();
-
-                if (currentNode.getType() == TokenTypes.LITERAL_IF) {
-                    currentNode = currentNode.getLastChild();
-                }
-                else if (isChild(currentNode, variable)) {
-                    variableUsageExpressions.add(currentNode);
-                    currentNode = null;
-                }
+                // Is if statement without '{}' and has a following else branch,
+                // then change previousNode to the if statement body.
+                previousNode = previousNode.getPreviousSibling();
             }
 
-            // If IF block doesn't include ELSE then analyze variable usage
-            // only inside IF block.
-            if (currentNode != null
-                    && isChild(currentNode, variable)) {
-                variableUsageExpressions.add(currentNode);
+            final List<DetailAST> variableUsageExpressions = new ArrayList<>();
+            if (isChild(previousNode, variable)) {
+                variableUsageExpressions.add(previousNode);
+            }
+
+            if (isChild(lastNode, variable)) {
+                variableUsageExpressions.add(lastNode);
             }
 
             // If variable usage exists in several related blocks, then
@@ -828,18 +808,8 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
      */
     private static DetailAST getFirstNodeInsideSwitchBlock(
             DetailAST block, DetailAST variable) {
-        final DetailAST currentNode = getFirstCaseGroupOrSwitchRule(block);
         final List<DetailAST> variableUsageExpressions =
-                new ArrayList<>();
-
-        // Checking variable usage inside all CASE_GROUP and SWITCH_RULE ast's.
-        TokenUtil.forEachChild(block, currentNode.getType(), node -> {
-            final DetailAST lastNodeInCaseGroup =
-                node.getLastChild();
-            if (isChild(lastNodeInCaseGroup, variable)) {
-                variableUsageExpressions.add(lastNodeInCaseGroup);
-            }
-        });
+                getVariableUsageExpressionsInsideSwitchBlock(block, variable);
 
         // If variable usage exists in several related blocks, then
         // firstNodeInsideBlock = null, otherwise if variable usage exists
@@ -854,15 +824,32 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
     }
 
     /**
-     * Helper method for getFirstNodeInsideSwitchBlock to return the first CASE_GROUP or
-     * SWITCH_RULE ast.
+     * Helper method for getFirstNodeInsideSwitchBlock to return all variable
+     * usage expressions inside a given switch block.
      *
      * @param block the switch block to check.
-     * @return DetailAST of the first CASE_GROUP or SWITCH_RULE.
+     * @param variable variable which is checked for in switch block.
+     * @return List of usages or empty list if none are found.
      */
-    private static DetailAST getFirstCaseGroupOrSwitchRule(DetailAST block) {
-        return Optional.ofNullable(block.findFirstToken(TokenTypes.CASE_GROUP))
-            .orElseGet(() -> block.findFirstToken(TokenTypes.SWITCH_RULE));
+    private static List<DetailAST> getVariableUsageExpressionsInsideSwitchBlock(DetailAST block,
+                                                                            DetailAST variable) {
+        final Optional<DetailAST> firstToken = TokenUtil.findFirstTokenByPredicate(block, child -> {
+            return child.getType() == TokenTypes.SWITCH_RULE
+                    || child.getType() == TokenTypes.CASE_GROUP;
+        });
+
+        final List<DetailAST> variableUsageExpressions = new ArrayList<>();
+
+        firstToken.ifPresent(token -> {
+            TokenUtil.forEachChild(block, token.getType(), child -> {
+                final DetailAST lastNodeInCaseGroup = child.getLastChild();
+                if (isChild(lastNodeInCaseGroup, variable)) {
+                    variableUsageExpressions.add(lastNodeInCaseGroup);
+                }
+            });
+        });
+
+        return variableUsageExpressions;
     }
 
     /**
@@ -959,7 +946,7 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
 
         // Variable may be met in ELSE declaration
         // So, check variable usage in these declarations.
-        if (!isVarInOperatorDeclaration && operator.getType() == TokenTypes.LITERAL_IF) {
+        if (!isVarInOperatorDeclaration) {
             final DetailAST elseBlock = operator.getLastChild();
 
             if (elseBlock.getType() == TokenTypes.LITERAL_ELSE) {
@@ -1021,6 +1008,40 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
     private boolean isVariableMatchesIgnorePattern(String variable) {
         final Matcher matcher = ignoreVariablePattern.matcher(variable);
         return matcher.matches();
+    }
+
+    /**
+     * Check if the token should be ignored for distance counting.
+     * For example,
+     * <pre>
+     *     try (final AutoCloseable t = new java.io.StringReader(a);) {
+     *     }
+     * </pre>
+     * final is a zero-distance token and should be ignored for distance counting.
+     * <pre>
+     *     class Table implements Comparator&lt;Integer&gt;{
+     *     }
+     * </pre>
+     * An inner class may be defined. Both tokens implements and extends
+     * are zero-distance tokens.
+     * <pre>
+     *     public int method(Object b){
+     *     }
+     * </pre>
+     * public is a modifier and zero-distance token. int is a type and
+     * zero-distance token.
+     *
+     * @param type
+     *        Token type of the ast node.
+     * @return true if it should be ignored for distance counting, otherwise false.
+     */
+    private static boolean isZeroDistanceToken(int type) {
+        return type == TokenTypes.VARIABLE_DEF
+                || type == TokenTypes.TYPE
+                || type == TokenTypes.MODIFIERS
+                || type == TokenTypes.RESOURCE
+                || type == TokenTypes.EXTENDS_CLAUSE
+                || type == TokenTypes.IMPLEMENTS_CLAUSE;
     }
 
 }

@@ -29,5 +29,5 @@ public class InputDescendantTokenIllegalTokens3
         }
     }
 
-    public native void nativeMethod(); // violation
+    public native void nativeMethod(); // violation 'Using 'native' is not allowed'
 }

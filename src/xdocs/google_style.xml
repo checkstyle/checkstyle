@@ -2302,24 +2302,65 @@
         <p>
           It is possible to suppress some violations by embeded filters
           <a href="config_filters.html#SuppressionFilter">
-            SuppressionFilter</a>
-          and
+            SuppressionFilter</a>,
           <a href="config_filters.html#SuppressionXpathFilter">
-            SuppressionXpathFilter</a>.
-          Location of config file for <i>SuppressionFilter</i> can be defined by system property
-          <i>org.checkstyle.google.suppressionfilter.config</i> (default value is
-          <i>checkstyle-suppressions.xml</i>).
-          Location of config file for <i>SuppressionXpathFilter</i>
+            SuppressionXpathFilter</a>,
+          <a href="config_filters.html#SuppressWithNearbyCommentFilter">
+            SuppressWithNearbyCommentFilter</a>,
+          <a href="config_filters.html#SuppressionCommentFilter">
+            SuppressionCommentFilter</a>
+          and
+          <a href="config_filters.html#SuppressWarningsFilter">
+            SuppressWarningsFilter</a>.
+        </p>
+        <p>
+          Location of config file for
+          <a href="config_filters.html#SuppressionFilter">SuppressionFilter</a> can
+          be defined by system property <i>org.checkstyle.google.suppressionfilter.config</i>
+          (default value is <i>checkstyle-suppressions.xml</i>).
+        </p>
+        <p>
+          Location of config file for
+          <a href="config_filters.html#SuppressionXpathFilter">SuppressionXpathFilter</a>
           can be defined by system property
           <i>org.checkstyle.google.suppressionxpathfilter.config</i> (default value is
           <i>checkstyle-xpath-suppressions.xml</i>).
+        </p>
+        <p>
+          To suppress a check in the next line of code using
+          <a href="config_filters.html#SuppressWithNearbyCommentFilter">
+            SuppressWithNearbyCommentFilter</a>precede the line of code with
+          <i>// CHECKSTYLE.SUPPRESS: NameOfTheCheck</i> (replace <i>NameOfTheCheck</i> with
+          the actual check to be suppressed).
+        </p>
+        <p>
+          To suppress a check on a block of code using
+          <a href="config_filters.html#SuppressionCommentFilter">SuppressionCommentFilter</a>
+          add <i>// CHECKSTYLE.OFF: NameOfTheCheck</i> before the beginning of the code block and
+          <i>// CHECKSTYLE.ON: NameOfTheCheck</i> after the end of the code block (replace
+          <i>NameOfTheCheck</i> with the actual check to be suppressed).
+        </p>
+        <p>
+          To suppress a check using
+          <a href="config_filters.html#SuppressWarningsFilter">SuppressWarningsFilter</a>
+          use Java's<i>@SuppressWarnings({"checkstyle:name_of_the_check", ...})</i> annotation.
+          Each value passed in the array parameter must meet the format
+          <i>checkstyle:name_of_the_check</i> where the <i>checkstyle:</i> is optional and
+          <i>name_of_the_check</i> is the actual name of check to be suppressed in lowercase
+          format.
         </p>
         <p>
           For more details please review exact configuration of Filters in google_checks.xml:
           <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressionFilter">
                     SuppressionFilter</a>,
           <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressionXpathFilter">
-                    SuppressionXpathFilter</a>.
+                    SuppressionXpathFilter</a>
+          <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressWithNearbyCommentFilter">
+                    SuppressWithNearbyCommentFilter</a>,
+          <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressionCommentFilter">
+                    SuppressionCommentFilter</a>,
+          <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressWarningsFilter">
+                    SuppressWarningsFilter</a>,
         </p>
       </subsection>
     </section>

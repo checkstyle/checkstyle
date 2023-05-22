@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -22,10 +22,16 @@ package com.puppycrawl.tools.checkstyle.checks.sizes;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.sizes.OuterTypeNumberCheck.MSG_KEY;
 
+import java.io.File;
+import java.util.Optional;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.JavaParser;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class OuterTypeNumberCheckTest extends AbstractModuleTestSupport {
@@ -102,6 +108,39 @@ public class OuterTypeNumberCheckTest extends AbstractModuleTestSupport {
 
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputOuterTypeNumberRecords.java"), expected);
+    }
+
+    /**
+     * Checks if the private field {@code currentDepth} and {@code outerNum} is
+     * properly cleared during the start of processing the next file in the
+     * check as they are file specific values.
+     *
+     * @throws Exception if there is an error.
+     */
+    @Test
+    public void testClearState() throws Exception {
+        final OuterTypeNumberCheck check = new OuterTypeNumberCheck();
+        final DetailAST root = JavaParser.parseFile(
+                new File(getPath("InputOuterTypeNumberSimple.java")),
+                JavaParser.Options.WITHOUT_COMMENTS);
+        final Optional<DetailAST> classDef = TestUtil.findTokenInAstByPredicate(root,
+            ast -> ast.getType() == TokenTypes.CLASS_DEF);
+
+        assertWithMessage("Ast should contain CLASS_DEF")
+                .that(classDef.isPresent())
+                .isTrue();
+        assertWithMessage("State is not cleared on beginTree")
+                .that(
+                    TestUtil.isStatefulFieldClearedDuringBeginTree(check, classDef.get(),
+                            "currentDepth",
+                            currentDepth -> ((Number) currentDepth).intValue() == 0))
+                .isTrue();
+        assertWithMessage("State is not cleared on beginTree")
+                .that(
+                    TestUtil.isStatefulFieldClearedDuringBeginTree(check, classDef.get(),
+                            "outerNum",
+                            outerNum -> ((Number) outerNum).intValue() == 0))
+                .isTrue();
     }
 
 }

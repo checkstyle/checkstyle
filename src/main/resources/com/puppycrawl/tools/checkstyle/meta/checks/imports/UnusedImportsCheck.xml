@@ -5,8 +5,7 @@
               name="UnusedImports"
               parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
- Checks for unused import statements. Checkstyle uses a simple but very
- reliable algorithm to report on unused import statements. An import statement
+ Checks for unused import statements. An import statement
  is considered unused if:
  &lt;/p&gt;
  &lt;ul&gt;
@@ -14,10 +13,6 @@
  It is not referenced in the file. The algorithm does not support wild-card
  imports like {@code import java.io.*;}. Most IDE's provide very sophisticated
  checks for imports that handle wild-card imports.
- &lt;/li&gt;
- &lt;li&gt;
- It is a duplicate of another import. This is when a class is imported more
- than once.
  &lt;/li&gt;
  &lt;li&gt;
  The class imported is from the {@code java.lang} package. For example
@@ -36,20 +31,18 @@
  &lt;/li&gt;
  &lt;/ul&gt;
  &lt;p&gt;
- The main limitation of this check is handling the case where an imported type
- has the same name as a declaration, such as a member variable.
+ The main limitation of this check is handling the cases where:
  &lt;/p&gt;
- &lt;p&gt;
- For example, in the following case the import {@code java.awt.Component}
- will not be flagged as unused:
- &lt;/p&gt;
- &lt;pre&gt;
- import java.awt.Component;
- class FooBar {
-   private Object Component; // a bad practice in my opinion
-   ...
- }
- &lt;/pre&gt;</description>
+ &lt;ul&gt;
+ &lt;li&gt;
+ An imported type has the same name as a declaration, such as a member variable.
+ &lt;/li&gt;
+ &lt;li&gt;
+ There are two or more static imports with the same method name
+ (javac can distinguish imports with same name but different parameters, but checkstyle can not
+ due to &lt;a href="https://checkstyle.org/writingchecks.html#Limitations"&gt;limitation.&lt;/a&gt;)
+ &lt;/li&gt;
+ &lt;/ul&gt;</description>
          <properties>
             <property default-value="true" name="processJavadoc" type="boolean">
                <description>Control whether to process Javadoc comments.</description>

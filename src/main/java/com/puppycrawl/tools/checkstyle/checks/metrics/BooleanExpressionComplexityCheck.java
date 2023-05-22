@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -336,7 +336,7 @@ public final class BooleanExpressionComplexityCheck extends AbstractCheck {
      * Represents context (method/expression) in which we check complexity.
      *
      */
-    private class Context {
+    private final class Context {
 
         /**
          * Should we perform check in current context or not.
@@ -351,9 +351,8 @@ public final class BooleanExpressionComplexityCheck extends AbstractCheck {
          *
          * @param checking should we check in current context or not.
          */
-        /* package */ Context(boolean checking) {
+        private Context(boolean checking) {
             this.checking = checking;
-            count = 0;
         }
 
         /**

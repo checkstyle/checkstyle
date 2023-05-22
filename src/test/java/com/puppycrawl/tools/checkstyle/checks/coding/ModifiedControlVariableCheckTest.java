@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -129,6 +129,37 @@ public class ModifiedControlVariableCheckTest
         catch (IllegalStateException ex) {
             // it is OK
         }
+    }
+
+    @Test
+    public void testVariousAssignments() throws Exception {
+        final String[] expected = {
+            "14:15: " + getCheckMessage(MSG_KEY, "i"),
+            "15:15: " + getCheckMessage(MSG_KEY, "k"),
+            "21:15: " + getCheckMessage(MSG_KEY, "i"),
+            "22:15: " + getCheckMessage(MSG_KEY, "k"),
+            "28:15: " + getCheckMessage(MSG_KEY, "i"),
+            "29:15: " + getCheckMessage(MSG_KEY, "k"),
+            "35:15: " + getCheckMessage(MSG_KEY, "i"),
+            "36:15: " + getCheckMessage(MSG_KEY, "k"),
+            "42:15: " + getCheckMessage(MSG_KEY, "i"),
+            "43:15: " + getCheckMessage(MSG_KEY, "k"),
+            "48:15: " + getCheckMessage(MSG_KEY, "i"),
+            "49:15: " + getCheckMessage(MSG_KEY, "k"),
+            "55:15: " + getCheckMessage(MSG_KEY, "i"),
+            "56:15: " + getCheckMessage(MSG_KEY, "k"),
+            "62:15: " + getCheckMessage(MSG_KEY, "i"),
+            "63:15: " + getCheckMessage(MSG_KEY, "k"),
+            "69:15: " + getCheckMessage(MSG_KEY, "i"),
+            "70:15: " + getCheckMessage(MSG_KEY, "k"),
+            "76:15: " + getCheckMessage(MSG_KEY, "i"),
+            "77:15: " + getCheckMessage(MSG_KEY, "k"),
+            "83:14: " + getCheckMessage(MSG_KEY, "i"),
+            "84:14: " + getCheckMessage(MSG_KEY, "k"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputModifiedControlVariableTestVariousAssignments.java"),
+                expected);
     }
 
     /**

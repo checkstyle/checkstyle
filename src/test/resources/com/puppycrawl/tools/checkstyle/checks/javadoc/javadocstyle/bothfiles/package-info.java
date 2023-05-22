@@ -13,4 +13,4 @@ tokens = (default)ANNOTATION_DEF, ANNOTATION_FIELD_DEF, CLASS_DEF, CTOR_DEF, \
 
 */
 
-package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocstyle.bothfiles; // violation
+package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocstyle.bothfiles;

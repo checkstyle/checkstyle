@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -194,6 +194,8 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </ul>
  *
  * @noinspection HtmlTagCanBeJavadocTag
+ * @noinspectionreason HtmlTagCanBeJavadocTag - encoded symbols were not decoded
+ *      when replaced with Javadoc tag
  * @since 3.4
  */
 @StatelessCheck

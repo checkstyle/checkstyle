@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -139,8 +139,8 @@ public class XpathFilterElementTest extends AbstractModuleTestSupport {
         }
         catch (IllegalArgumentException ex) {
             assertWithMessage("Message should be: Failed to initialise regular expression")
-                    .that(ex.getMessage().contains("Failed to initialise regular expression"))
-                    .isTrue();
+                    .that(ex.getMessage())
+                    .contains("Failed to initialise regular expression");
         }
     }
 
@@ -154,8 +154,8 @@ public class XpathFilterElementTest extends AbstractModuleTestSupport {
         }
         catch (IllegalArgumentException ex) {
             assertWithMessage("Message should be: Incorrect xpath query")
-                    .that(ex.getMessage().contains("Incorrect xpath query"))
-                    .isTrue();
+                    .that(ex.getMessage())
+                    .contains("Incorrect xpath query");
         }
     }
 
@@ -338,8 +338,8 @@ public class XpathFilterElementTest extends AbstractModuleTestSupport {
         }
         catch (IllegalStateException ex) {
             assertWithMessage("Exception message does not match expected one")
-                    .that(ex.getMessage().contains("Cannot initialize context and evaluate query"))
-                    .isTrue();
+                    .that(ex.getMessage())
+                    .contains("Cannot initialize context and evaluate query");
         }
     }
 

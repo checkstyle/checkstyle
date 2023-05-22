@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -266,7 +266,7 @@ public final class NPathComplexityCheck extends AbstractCheck {
     private final TokenEnd processingTokenEnd = new TokenEnd();
 
     /** NP value for current range. */
-    private BigInteger currentRangeValue = INITIAL_VALUE;
+    private BigInteger currentRangeValue;
 
     /** Specify the maximum threshold allowed. */
     private int max = DEFAULT_MAX;
@@ -428,7 +428,7 @@ public final class NPathComplexityCheck extends AbstractCheck {
     private void visitConditional(DetailAST ast, int basicBranchingFactor) {
         int expressionValue = basicBranchingFactor;
         DetailAST bracketed;
-        for (bracketed = ast.findFirstToken(TokenTypes.LPAREN).getNextSibling();
+        for (bracketed = ast.findFirstToken(TokenTypes.LPAREN);
                 bracketed.getType() != TokenTypes.RPAREN;
                 bracketed = bracketed.getNextSibling()) {
             expressionValue += countConditionalOperators(bracketed);
@@ -629,7 +629,7 @@ public final class NPathComplexityCheck extends AbstractCheck {
      * Coordinates of token end. Used to prevent inline ternary
      * operator from being processed twice.
      */
-    private static class TokenEnd {
+    private static final class TokenEnd {
 
         /** End line of token. */
         private int endLineNo;
@@ -674,7 +674,7 @@ public final class NPathComplexityCheck extends AbstractCheck {
     /**
      * Class that store range value and expression value.
      */
-    private static class Values {
+    private static final class Values {
 
         /** NP value for range. */
         private final BigInteger rangeValue;
@@ -688,7 +688,7 @@ public final class NPathComplexityCheck extends AbstractCheck {
          * @param valueOfRange NP value for range
          * @param valueOfExpression NP value for expression
          */
-        /* package */ Values(BigInteger valueOfRange, BigInteger valueOfExpression) {
+        private Values(BigInteger valueOfRange, BigInteger valueOfExpression) {
             rangeValue = valueOfRange;
             expressionValue = valueOfExpression;
         }

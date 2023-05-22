@@ -1,3 +1,8 @@
+/*
+JavadocPackage
+
+*/
+
 /**
  * This is a valid package documentation.  <--- See the period after the
  * first sentence.

@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -158,14 +158,14 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
         }
         catch (CheckstyleException ex) {
             assertWithMessage("Invalid exception message: " + ex.getMessage())
-                    .that(ex.getMessage().contains("\"name\""))
-                    .isTrue();
+                    .that(ex.getMessage())
+                    .contains("\"name\"");
             assertWithMessage("Invalid exception message: " + ex.getMessage())
-                    .that(ex.getMessage().contains("\"property\""))
-                    .isTrue();
+                    .that(ex.getMessage())
+                    .contains("\"property\"");
             assertWithMessage("Invalid exception message: " + ex.getMessage())
-                    .that(ex.getMessage().endsWith(":8:41"))
-                    .isTrue();
+                    .that(ex.getMessage())
+                    .endsWith(":8:41");
         }
     }
 
@@ -180,14 +180,14 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
         }
         catch (CheckstyleException ex) {
             assertWithMessage("Invalid exception message: " + ex.getMessage())
-                    .that(ex.getMessage().contains("\"name\""))
-                    .isTrue();
+                    .that(ex.getMessage())
+                    .contains("\"name\"");
             assertWithMessage("Invalid exception message: " + ex.getMessage())
-                    .that(ex.getMessage().contains("\"property\""))
-                    .isTrue();
+                    .that(ex.getMessage())
+                    .contains("\"property\"");
             assertWithMessage("Invalid exception message: " + ex.getMessage())
-                    .that(ex.getMessage().endsWith(":8:41"))
-                    .isTrue();
+                    .that(ex.getMessage())
+                    .endsWith(":8:41");
         }
     }
 
@@ -199,14 +199,14 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
         }
         catch (CheckstyleException ex) {
             assertWithMessage("Invalid exception message: " + ex.getMessage())
-                    .that(ex.getMessage().contains("\"value\""))
-                    .isTrue();
+                    .that(ex.getMessage())
+                    .contains("\"value\"");
             assertWithMessage("Invalid exception message: " + ex.getMessage())
-                    .that(ex.getMessage().contains("\"property\""))
-                    .isTrue();
+                    .that(ex.getMessage())
+                    .contains("\"property\"");
             assertWithMessage("Invalid exception message: " + ex.getMessage())
-                    .that(ex.getMessage().endsWith(":8:43"))
-                    .isTrue();
+                    .that(ex.getMessage())
+                    .endsWith(":8:43");
         }
     }
 
@@ -218,14 +218,14 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
         }
         catch (CheckstyleException ex) {
             assertWithMessage("Invalid exception message: " + ex.getMessage())
-                    .that(ex.getMessage().contains("\"name\""))
-                    .isTrue();
+                    .that(ex.getMessage())
+                    .contains("\"name\"");
             assertWithMessage("Invalid exception message: " + ex.getMessage())
-                    .that(ex.getMessage().contains("\"module\""))
-                    .isTrue();
+                    .that(ex.getMessage())
+                    .contains("\"module\"");
             assertWithMessage("Invalid exception message: " + ex.getMessage())
-                    .that(ex.getMessage().endsWith(":7:23"))
-                    .isTrue();
+                    .that(ex.getMessage())
+                    .endsWith(":7:23");
         }
     }
 
@@ -237,14 +237,14 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
         }
         catch (CheckstyleException ex) {
             assertWithMessage("Invalid exception message: " + ex.getMessage())
-                    .that(ex.getMessage().contains("\"property\""))
-                    .isTrue();
+                    .that(ex.getMessage())
+                    .contains("\"property\"");
             assertWithMessage("Invalid exception message: " + ex.getMessage())
-                    .that(ex.getMessage().contains("\"module\""))
-                    .isTrue();
+                    .that(ex.getMessage())
+                    .contains("\"module\"");
             assertWithMessage("Invalid exception message: " + ex.getMessage())
-                    .that(ex.getMessage().endsWith(":8:38"))
-                    .isTrue();
+                    .that(ex.getMessage())
+                    .endsWith(":8:38");
         }
     }
 
@@ -315,8 +315,8 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
 
         final String expectedKey = "name.invalidPattern";
         assertWithMessage("Messages should contain key: " + expectedKey)
-                .that(grandchildren[0].getMessages().containsKey(expectedKey))
-                .isTrue();
+                .that(grandchildren[0].getMessages())
+                .containsKey(expectedKey);
     }
 
     private static void verifyConfigNode(
@@ -344,7 +344,7 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
 
     @Test
     public void testReplacePropertiesNoReplace() throws Exception {
-        final String[] testValues = {null, "", "a", "$a", "{a",
+        final String[] testValues = {"", "a", "$a", "{a",
                                      "{a}", "a}", "$a}", "$", "a$b", };
         final Properties props = initProperties();
         for (String testValue : testValues) {

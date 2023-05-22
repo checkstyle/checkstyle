@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -43,8 +43,10 @@ public class CodeSelectorPresentation {
      * Constructor.
      *
      * @param ast ast node.
-     * @param lines2position list to map lines.
+     * @param lines2position positions of lines.
      * @noinspection AssignmentOrReturnOfFieldWithMutableType
+     * @noinspectionreason AssignmentOrReturnOfFieldWithMutableType - mutability is
+     *      expected in list of lines of code
      */
     public CodeSelectorPresentation(DetailAST ast, List<Integer> lines2position) {
         node = ast;
@@ -57,6 +59,8 @@ public class CodeSelectorPresentation {
      * @param node DetailNode node.
      * @param lines2position list to map lines.
      * @noinspection AssignmentOrReturnOfFieldWithMutableType
+     * @noinspectionreason AssignmentOrReturnOfFieldWithMutableType - mutability is expected
+     *      in list of lines of code
      */
     public CodeSelectorPresentation(DetailNode node, List<Integer> lines2position) {
         this.node = node;

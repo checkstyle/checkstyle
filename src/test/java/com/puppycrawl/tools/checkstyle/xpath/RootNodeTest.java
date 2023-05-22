@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -33,7 +33,6 @@ import com.puppycrawl.tools.checkstyle.JavaParser;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import net.sf.saxon.om.AxisInfo;
-import net.sf.saxon.om.NamespaceBinding;
 import net.sf.saxon.om.NodeInfo;
 import net.sf.saxon.tree.iter.AxisIterator;
 import net.sf.saxon.tree.iter.EmptyIterator;
@@ -76,8 +75,8 @@ public class RootNodeTest extends AbstractPathTestSupport {
             .hasSize(1);
         final NodeInfo firstNode = nodes.get(0);
         assertWithMessage("Should return true, because selected node is RootNode")
-                .that(firstNode instanceof RootNode)
-                .isTrue();
+                .that(firstNode)
+                .isInstanceOf(RootNode.class);
         assertWithMessage("Result node should have same reference as expected")
             .that(rootNode)
             .isEqualTo(firstNode);
@@ -199,9 +198,8 @@ public class RootNodeTest extends AbstractPathTestSupport {
 
     @Test
     public void testGetDeclaredNamespaces() {
-        final NamespaceBinding[] namespaceBindings = {new NamespaceBinding("prefix", "uri")};
         try {
-            rootNode.getDeclaredNamespaces(namespaceBindings);
+            rootNode.getDeclaredNamespaces(null);
             assertWithMessage("Exception is excepted").fail();
         }
         catch (UnsupportedOperationException ex) {

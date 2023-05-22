@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -97,6 +97,12 @@ public interface DetailAST {
      *      Usage of this method is no longer accepted. We encourage
      *      traversal of subtrees to be written per the needs of each check
      *      to avoid unintended side effects.
+     * @noinspection DeprecatedIsStillUsed, RedundantSuppression
+     * @noinspectionreason DeprecatedIsStillUsed - Method used in unit testing
+     * @noinspectionreason RedundantSuppression - Inspections shows false positive for
+     *      redundant suppression, see
+     *      <a href="https://github.com/checkstyle/checkstyle/issues/12359">here</a>
+     *      for more details.
      */
     @Deprecated(since = "8.43")
     boolean branchContains(int type);

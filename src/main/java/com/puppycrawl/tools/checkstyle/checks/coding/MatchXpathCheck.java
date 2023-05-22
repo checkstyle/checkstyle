@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -290,7 +290,7 @@ public class MatchXpathCheck extends AbstractCheck {
                     xpathExpression.createDynamicContext(rootNode);
             final List<Item> matchingItems = xpathExpression.evaluate(xpathDynamicContext);
             return matchingItems.stream()
-                    .map(item -> ((AbstractNode) item).getUnderlyingNode())
+                    .map(item -> (DetailAST) ((AbstractNode) item).getUnderlyingNode())
                     .collect(Collectors.toList());
         }
         catch (XPathException ex) {

@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -222,7 +222,7 @@ public final class JavaParser {
      * @param token to create the AST
      * @return DetailAST with SINGLE_LINE_COMMENT type
      */
-    private static DetailAST createSlCommentNode(CommonToken token) {
+    private static DetailAST createSlCommentNode(Token token) {
         final DetailAstImpl slComment = new DetailAstImpl();
         slComment.setType(TokenTypes.SINGLE_LINE_COMMENT);
         slComment.setText("//");
@@ -245,7 +245,7 @@ public final class JavaParser {
     /**
      * Custom error listener to provide detailed exception message.
      */
-    private static class CheckstyleErrorListener extends BaseErrorListener {
+    private static final class CheckstyleErrorListener extends BaseErrorListener {
 
         @Override
         public void syntaxError(Recognizer<?, ?> recognizer, Object offendingSymbol,

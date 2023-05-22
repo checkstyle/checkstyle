@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -39,11 +39,13 @@ import org.xml.sax.SAXException;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 
 /**
- * Custom class loader is needed to pass URLs to pretend these are loaded from the classpath
- * though we can't add/change the files for testing. The class loader is nested in this class,
- * so the custom class loader we are using is safe.
+ * Tests loading of package names from XML files.
  *
  * @noinspection ClassLoaderInstantiation
+ * @noinspectionreason ClassLoaderInstantiation - Custom class loader is needed to pass URLs to
+ *      pretend these are loaded from the classpath though we can't add/change the files for
+ *      testing. The class loader is nested in this class, so the custom class loader we
+ *      are using is safe.
  */
 public class PackageNamesLoaderTest extends AbstractPathTestSupport {
 
@@ -227,16 +229,17 @@ public class PackageNamesLoaderTest extends AbstractPathTestSupport {
     }
 
     /**
-     * Custom class loader is needed to pass URLs to pretend these are loaded from the classpath
-     * though we can't add/change the files for testing.
+     * Mocked ClassLoader for testing URL loading.
      *
      * @noinspection CustomClassloader
+     * @noinspectionreason CustomClassloader - needed to pass URLs to pretend these are loaded
+     *      from the classpath though we can't add/change the files for testing
      */
-    private static class TestUrlsClassLoader extends ClassLoader {
+    private static final class TestUrlsClassLoader extends ClassLoader {
 
         private final Enumeration<URL> urls;
 
-        /* package */ TestUrlsClassLoader(Enumeration<URL> urls) {
+        private TestUrlsClassLoader(Enumeration<URL> urls) {
             this.urls = urls;
         }
 
@@ -247,11 +250,13 @@ public class PackageNamesLoaderTest extends AbstractPathTestSupport {
     }
 
     /**
-     * Custom class loader is needed to throw an exception to test a catch statement.
+     * Mocked ClassLoader for testing exceptions.
      *
      * @noinspection CustomClassloader
+     * @noinspectionreason CustomClassloader - needed to throw an exception to
+     *      test a catch statement
      */
-    private static class TestIoExceptionClassLoader extends ClassLoader {
+    private static final class TestIoExceptionClassLoader extends ClassLoader {
         @Override
         public Enumeration<URL> getResources(String name) throws IOException {
             throw new IOException("test");

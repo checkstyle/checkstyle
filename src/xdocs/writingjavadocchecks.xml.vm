@@ -831,7 +831,7 @@ Checkstyle ends with 5 errors.
       Javadoc Checks as well as regular Checks extend
         <a href="apidocs/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck.html">
         AbstractCheck</a> class. So integrating new Javadoc Check is similar to
-        <a href="writingchecks.html#Integrate_your_Check">integrating other Checks</a>.
+        <a href="writingchecks.html#Integrating_Checks">integrating other Checks</a>.
       </p>
     </section>
 

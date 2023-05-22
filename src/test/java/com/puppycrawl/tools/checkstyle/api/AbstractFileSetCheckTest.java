@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -261,6 +261,20 @@ public class AbstractFileSetCheckTest extends AbstractModuleTestSupport {
         assertWithMessage("finishProcessing was called twice")
                 .that(check.finishProcessingCount)
                 .isEqualTo(2);
+    }
+
+    /**
+     * S2384 - Mutable members should not be stored or returned directly.
+     * Inspection is valid, a pure unit test is required as this condition can't be recreated in
+     * a test with checks and input file as none of the checks try to modify the fileExtensions.
+     */
+    @Test
+    public void testCopiedArrayIsReturned() {
+        final DummyFileSetCheck check = new DummyFileSetCheck();
+        check.setFileExtensions(".tmp");
+        assertWithMessage("Extensions should be copied")
+            .that(check.getFileExtensions())
+            .isNotSameInstanceAs(check.getFileExtensions());
     }
 
     public static class DummyFileSetCheck extends AbstractFileSetCheck {

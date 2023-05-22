@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -102,7 +102,7 @@ public class XdocsUrlTest {
     public void testXdocsUrl() throws Exception {
         final SAXParserFactory parserFactory = SAXParserFactory.newInstance();
         final SAXParser parser = parserFactory.newSAXParser();
-        final CheckTest checkHandler = new CheckTest();
+        final DummyHandler checkHandler = new DummyHandler();
         try (InputStream input = Files.newInputStream(AVAILABLE_CHECKS_PATH)) {
             parser.parse(input, checkHandler);
         }
@@ -139,19 +139,15 @@ public class XdocsUrlTest {
                 assertWithMessage(moduleNameErrorMsg)
                         .that(moduleFileNames)
                         .isNotNull();
-                boolean match = false;
                 final String checkNameWithSuffix = checkNameInAttribute + SUFFIX_CHECK;
-                if (moduleFileNames.contains(checkNameWithSuffix)) {
-                    match = true;
-                }
                 assertWithMessage(checkNameModuleErrorMsg)
-                        .that(match)
-                        .isTrue();
+                        .that(moduleFileNames)
+                        .contains(checkNameWithSuffix);
             }
         }
     }
 
-    public static final class CheckTest extends DefaultHandler {
+    public static final class DummyHandler extends DefaultHandler {
 
         private static final String SPLIT_CHECK_NAME_IN_ATTRIBUTE = "#";
 

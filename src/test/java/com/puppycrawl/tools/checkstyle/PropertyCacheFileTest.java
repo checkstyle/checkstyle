@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -32,6 +32,7 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.URI;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -267,15 +268,16 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
     @Test
     public void testPathToCacheContainsOnlyFileName() throws IOException {
         final Configuration config = new DefaultConfiguration("myName");
-        final String filePath = "temp.cache";
-        final PropertyCacheFile cache = new PropertyCacheFile(config, filePath);
+        final String fileName = "temp.cache";
+        final Path filePath = Paths.get(fileName);
+        final PropertyCacheFile cache = new PropertyCacheFile(config, fileName);
 
         // no exception expected
         cache.persist();
         assertWithMessage("Cache file does not exist")
-                .that(Files.exists(Paths.get(filePath)))
+                .that(Files.exists(filePath))
                 .isTrue();
-        Files.delete(Paths.get(filePath));
+        Files.delete(filePath);
     }
 
     @Test
@@ -329,10 +331,11 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
     }
 
     /**
-     * Temp comment.
-     * until #11589
+     * Test functionality when toByteArray throws an exception.
      *
      * @noinspection ResultOfMethodCallIgnored
+     * @noinspectionreason ResultOfMethodCallIgnored - Setup for mockito to only
+     *                     mock toByteArray to throw exception.
      */
     @Test
     public void testNonExistentResource() throws IOException {

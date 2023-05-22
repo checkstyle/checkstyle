@@ -8,8 +8,9 @@ echo "Building docker image"
 docker pull sonarqube
 echo "Running docker container"
 docker run -dit -p 9000:9000 --name sonar sonarqube:latest
+
 echo "sleeping 60 sec to let sonar start up"
-sleep "60"
+sleep 60s
 
 ./.ci/sonar.sh
 

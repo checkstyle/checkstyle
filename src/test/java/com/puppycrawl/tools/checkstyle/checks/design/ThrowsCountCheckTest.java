@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -115,6 +115,21 @@ public class ThrowsCountCheckTest extends AbstractModuleTestSupport {
         };
         verifyWithInlineConfigParser(
                 getPath("InputThrowsCountMethodWithAnnotation.java"), expected);
+    }
+
+    @Test
+    public void testOverriding() throws Exception {
+        final String[] expected = {
+            "17:20: " + getCheckMessage(MSG_KEY, 1, 0),
+            "21:20: " + getCheckMessage(MSG_KEY, 1, 0),
+            "25:20: " + getCheckMessage(MSG_KEY, 5, 0),
+            "31:20: " + getCheckMessage(MSG_KEY, 5, 0),
+            "37:20: " + getCheckMessage(MSG_KEY, 6, 0),
+            "46:28: " + getCheckMessage(MSG_KEY, 5, 0),
+            "67:43: " + getCheckMessage(MSG_KEY, 5, 0),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputThrowsCount4.java"), expected);
     }
 
 }

@@ -22,7 +22,7 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlock {
 
     public void foo2() {
         foo3();
-                         // violation
+                         // violation '.* incorrect .* level 25, expected is 8,.*same.*as line 24.'
     }
 
     public void foo3() {
@@ -36,12 +36,12 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlock {
     }
 
     public void foooooooooooooooooooooooooooooooooooooooooo() { }
-
-     /////////////////////////////// violation (a single-line border to separate a group of methods)
+    // violation below '.* incorrect .* level 5, expected is 4, .* same .* as line 42.'
+     /////////////////////////////// (a single-line border to separate a group of methods)
 
     public void foo7() {
         int a = 0;
-// violation
+// violation '.* incorrect .* level 0, expected is 8, .* same .* as line 43.'
     }
 
     /////////////////////////////// (a single-line border to separate a group of methods)
@@ -51,14 +51,14 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlock {
     public class TestClass {
         public void test() {
             int a = 0;
-               // violation
+               // violation '.* incorrect .* level 15, expected is 12, .* same .* as line 53.'
         }
-          // violation
+          // violation '.* incorrect .* level 10, expected is 8, .* same .* as line 52.'
     }
 
     public void foo9() {
         this.foo1();
-             // violation
+             // violation '.* incorrect .* level 13, expected is 8, .* same .* as line 60.'
     }
 
     //    public void foo10() {
@@ -78,7 +78,7 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlock {
             .valueOf(new Integer(0))
             .trim()
             .length();
-                  // violation
+                  // violation '.* incorrect .* level 18, expected is 8, .* same .* as line 77.'
     }
 
     public void foo13() {
@@ -92,7 +92,7 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlock {
         String.valueOf(new Integer(0))
             .trim()
             .length();
-                               // violation
+                               // violation '.* incorrect .* level 31, expected is 8,.*as line 92.'
     }
 
     public void foo15() {
@@ -104,7 +104,7 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlock {
     public void foo16() {
         String
             .valueOf(new Integer(0));
-                     // violation
+                     // violation '.* incorrect .* level 21, expected is 8,.* same .* as line 105.'
     }
 
     public void foo17() {
@@ -119,7 +119,7 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlock {
         String
             .valueOf(new Integer(0))
             .trim()
-                             // violation
+                             // violation '.* incorrect .* level 29, expected is 12,.*as line 123.'
             .length();
     }
 
@@ -142,7 +142,7 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlock {
             }
         })).
             run();
-                          // violation
+                          // violation '.* incorrect .* level 26, expected is 8, .* as line 138.'
     }
 
     public void foo21() {
@@ -168,7 +168,7 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlock {
         String s = String.format(java.util.Locale.ENGLISH, "The array element "
                 + "immediately following the end of the collection should be nulled",
             array[1]);
-                                 // violation
+                                 // violation '.*incorrect.*level 33, expected is 8,.*as line 168.'
     }
 
     public void foo23() {
@@ -178,7 +178,7 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlock {
 
     public void foo24() {
         new Object();
-                     // violation
+                     // violation '.* incorrect .* level 21, expected is 8,.* same .* as line 180.'
     }
 
     public String foo25() {
@@ -190,7 +190,7 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlock {
     public String foo26() {
         return String.format(java.util.Locale.ENGLISH, "%d",
             1);
-                                  // violation
+                                  // violation '.*incorrect.*level 34, expected is 8,.*as line 191.'
     }
 
     public void foo27() {
@@ -212,13 +212,13 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlock {
         int a = 5;
         return String.format(java.util.Locale.ENGLISH, "%d",
             1);
-                          // violation
+                          // violation '.* incorrect .* level 26, expected is 8, .* as line 213.'
     }
 
     public void foo30() {
         // comment
         int a = 5;
-//        violation
+//        violation '.* incorrect .* level 0, expected is 8, .* same .* as line 220.'
     }
 
     public void foo31() {
@@ -232,13 +232,13 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlock {
         String s = new String ("A"
             + "B"
             + "C");
-            // violation
+            // violation '.* incorrect .* level 12, expected is 8, .* same .* as line 232.'
     }
 
     public void foo33() {
         // comment
         this.foo22();
-//        violation
+//        violation '.* incorrect .* level 0, expected is 8, .* same .* as line 240.'
     }
 
     public void foo34() throws Exception {
@@ -252,14 +252,14 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlock {
         throw new Exception("",
             new Exception()
         );
-            // violation
+            // violation '.* incorrect .* level 12, expected is 8, .* same .* as line 252.'
     }
 
     public void foo36() throws Exception {
         throw new Exception("",
             new Exception()
         );
-// violation
+// violation '.* incorrect .* level 0, expected is 8, .* same .* as line 259.'
     }
 
     public void foo37() throws Exception {
@@ -269,19 +269,19 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlock {
 
     public void foo38() throws Exception {
         throw new Exception("", new Exception());
-              // violation
+              // violation '.* incorrect .* level 14, expected is 8, .* same .* as line 271.'
     }
 
     public void foo39() throws Exception {
         throw new Exception("",
             new Exception());
-         // violation
+         // violation '.* incorrect .* level 9, expected is 8, .* same .* as line 276.'
     }
 
     public void foo40() throws Exception {
         int a = 88;
         throw new Exception("", new Exception());
-         // violation
+         // violation '.* incorrect .* level 9, expected is 8, .* same .* as line 283.'
     }
 
     public void foo41() throws Exception {
@@ -320,13 +320,13 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlock {
         int ar = 5;
         // comment
         ar = 6;
-         // violation
+         // violation '.* incorrect .* level 9, expected is 8, .* same .* as line 322.'
     }
 
     public void foo46() {
 // comment
 // block
-// violation
+// violation '.* incorrect .* level 0, expected is 4, .* same .* as line 330.'
     }
 
     public void foo47() {
@@ -340,7 +340,7 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlock {
         int a = 5;
 // comment
 // block
-// violation
+// violation '.* incorrect .* level 0, expected is 8, .* same .* as line 340.'
     }
 
     public void foo49() {
@@ -359,7 +359,7 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlock {
         return String
             .valueOf("11"
             );
-         // violation
+         // violation '.* incorrect .* level 9, expected is 8, .* same .* as line 359.'
     }
 
     public String foo52() {
@@ -384,10 +384,11 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlock {
     }
 
     void foo55() {
+        // violation below '.* incorrect .* level 12, expected is 8, .* same .* as line 389.'
             /* violation */
         new Object()
             .toString();
-            // violation
+            // violation '.* incorrect .* level 12, expected is 8, .* same .* as line 389.'
     }
 
     void foo56() {
@@ -397,14 +398,14 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlock {
 
     void foo57() {
         new Object().toString();
-            // violation
+            // violation '.* incorrect .* level 12, expected is 8, .* same .* as line 400.'
     }
 
     void foo58() {
         /*
            comment
            */
-        // violation
+        // violation '.* incorrect .* level 8, expected is 10, .* same .* as line 409.'
           foo1();
           // comment
     }
@@ -461,7 +462,7 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlock {
     void foo64()  {
         foo1();
 
-//  violation
+//  violation '.* incorrect .* level 0, expected is 8, .* same .* as line 463.'
     }
 
     void foo65() {
@@ -476,7 +477,7 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlock {
         if (true) {
             getClass();
         }
-
+        // violation below '.* incorrect .* level 10, expected is 8, .* same .* as line 477.'
           /* violation */
     }
 
@@ -486,7 +487,7 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlock {
         } finally {
             hashCode();
         }
-
+        // violation below '.* incorrect .* level 10, expected is 8, .* same .* as line 485.'
           /* violation */
     }
 
@@ -494,7 +495,7 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlock {
         for (int i = 0; i < 0; i++) {
             getClass();
         }
-
+        // violation below '.* incorrect .* level 10, expected is 8, .* same .* as line 495.'
           /* violation */
     }
 
@@ -502,7 +503,7 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlock {
         while (true) {
             getClass();
         }
-
+        // violation below '.* incorrect .* level 10, expected is 8, .* same .* as line 503.'
           /* violation */
     }
 
@@ -510,7 +511,7 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlock {
         do {
             getClass();
         } while (true);
-
+        // violation below '.* incorrect .* level 10, expected is 8, .* same .* as line 511.'
           /* violation */
     }
 
@@ -522,27 +523,27 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlock {
                 break;
         }
 
-          // violation
+          // violation '.* incorrect .* level 10, expected is 8, .* same .* as line 519.'
     }
 
     void foo72() {
         int u = 1;
 
 /* comment */
-// violation
+// violation '.* incorrect .* level 0, expected is 8, .* same .* as line 530.'
     }
 
     void foo73() {
         class Foo { }
 
 /* comment */
-// violation
+// violation '.* incorrect .* level 0, expected is 8, .* same .* as line 537.'
     }
 
     interface Bar1 {
         interface NestedBar { }
 
-// violation
+// violation '.* incorrect .* level 0, expected is 8, .* same .* as line 544.'
     }
 
     static class Bar2 {
@@ -550,23 +551,23 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlock {
             A;
         }
 
-    // violation
+    // violation '.* incorrect .* level 4, expected is 8, .* same .* as line 550.'
     }
 
     static class Bar3 {
         @interface Foo { }
-            // violation
+            // violation '.* incorrect .* level 12, expected is 8, .* same .* as line 558.'
     }
 
     void foo74() {
         getClass(); // comment
 // comment
-// comment
+// violation '.* incorrect .* level 0, expected is 8, .* same .* as line 563.'
     }
 
     void foo75() {
         getClass();
-// comment
+// violation '.* incorrect .* level 0, expected is 8, .* same .* as line 569.'
         // comment
     }
 
@@ -581,7 +582,7 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlock {
         return 0;
         /* test
 * test */
-//         test
+//         violation '.* incorrect .* level 0, expected is 8, .* same .* as line 582.'
     }
 
     void foo77() {
@@ -593,7 +594,7 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlock {
         /* violation */
         new Object()
             .toString();
-            // violation
+            // violation '.* incorrect .* level 12, expected is 8, .* same .* as line 595.'
     }
     void foo79() {
         /* violation */

@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -61,6 +61,13 @@ public class NoWhitespaceAfterCheckTest
         };
         verifyWithInlineConfigParser(
                 getPath("InputNoWhitespaceAfterTestDefault.java"), expected);
+    }
+
+    @Test
+    public void testAssignment() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputNoWhitespaceAfterTestAssignment.java"), expected);
     }
 
     @Test
@@ -345,6 +352,17 @@ public class NoWhitespaceAfterCheckTest
 
         verifyWithInlineConfigParser(
                 getPath("InputNoWhitespaceAfterWithEmoji.java"), expected);
+    }
+
+    @Test
+    public void testNoWhitespaceAfterSynchronized() throws Exception {
+        final String[] expected = {
+            "18:9: " + getCheckMessage(MSG_KEY, "synchronized"),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputNoWhitespaceAfterSynchronized.java"),
+                expected);
     }
 
     /**

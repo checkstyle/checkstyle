@@ -1,0 +1,1163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suppressedErrors>
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/LocalizedMessage.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter baseName of getBundle.</message>
+    <lineContent>return ResourceBundle.getBundle(bundle, sLocale, sourceClass.getClassLoader(),</lineContent>
+    <details>
+      found   : @SignatureUnknown String
+      required: @BinaryName String
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/LocalizedMessage.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter baseName of toBundleName.</message>
+    <lineContent>final String bundleName = toBundleName(baseName, locale);</lineContent>
+    <details>
+      found   : @SignatureUnknown String
+      required: @BinaryName String
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/PackageObjectFactory.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter name of forName.</message>
+    <lineContent>clazz = Class.forName(className, true, moduleClassLoader);</lineContent>
+    <details>
+      found   : @SignatureUnknown String
+      required: @ClassGetName String
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/BaseCellEditor.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>((CellEditorListener) listeners[i + 1]).editingCanceled(new ChangeEvent(this));</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/BaseCellEditor.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>((CellEditorListener) listeners[i + 1]).editingStopped(new ChangeEvent(this));</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/BaseCellEditor.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>final Object[] listeners = listenerList.getListenerList();</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/BaseCellEditor.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>final Object[] listeners = listenerList.getListenerList();</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/BaseCellEditor.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>listenerList.add(CellEditorListener.class, listener);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/BaseCellEditor.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>listenerList.remove(CellEditorListener.class, listener);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/CodeSelector.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>editor.moveCaretPosition(pModel.getSelectionEnd());</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/CodeSelector.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>editor.requestFocusInWindow();</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/CodeSelector.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>editor.setCaretPosition(pModel.getSelectionStart());</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/CodeSelector.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>editor.setSelectedTextColor(Color.blue);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/ListToTreeSelectionModelWrapper.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>final TreePath selPath = treeTable.getTree().getPathForRow(counter);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/ListToTreeSelectionModelWrapper.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>final int max = listSelectionModel.getMaxSelectionIndex();</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/ListToTreeSelectionModelWrapper.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>final int min = listSelectionModel.getMinSelectionIndex();</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/ListToTreeSelectionModelWrapper.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>getListSelectionModel().addListSelectionListener(event -&gt; {</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/ListToTreeSelectionModelWrapper.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>if (listSelectionModel.isSelectedIndex(counter)) {</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/Main.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>mainFrame.pack();</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/Main.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>mainFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/Main.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>mainFrame.setTitle(&quot;Checkstyle GUI&quot;);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/Main.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>mainFrame.setVisible(true);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/MainFrame.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>JOptionPane.showMessageDialog(this, ex.getMessage());</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/MainFrame.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>add(splitPane, BorderLayout.CENTER);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/MainFrame.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>add(xpathAreaPanel, BorderLayout.PAGE_END);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/MainFrame.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>buttonPanel.add(openFileButton);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/MainFrame.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>buttonPanel.add(reloadFileButton);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/MainFrame.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>buttonPanel.setLayout(new GridLayout(1, 2));</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/MainFrame.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>expandButton.setName(&quot;expandButton&quot;);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/MainFrame.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>expandButton.setText(&quot;Expand/Collapse&quot;);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/MainFrame.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>fileChooser.setFileFilter(filter);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/MainFrame.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>final Border title = BorderFactory.createTitledBorder(&quot;Xpath Query&quot;);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/MainFrame.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>final File file = fileChooser.getSelectedFile();</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/MainFrame.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>final int returnCode = fileChooser.showOpenDialog(MainFrame.this);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/MainFrame.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>findNodeButton.setName(&quot;findNodeButton&quot;);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/MainFrame.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>findNodeButton.setText(&quot;Find node by Xpath&quot;);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/MainFrame.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>mainPanel.add(buttonPanel);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/MainFrame.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>mainPanel.add(modesPanel, BorderLayout.LINE_END);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/MainFrame.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>mainPanel.add(xpathButtonsPanel, BorderLayout.LINE_START);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/MainFrame.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>mainPanel.setLayout(new BorderLayout());</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/MainFrame.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>mainPanel.setLayout(new BorderLayout());</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/MainFrame.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>modesCombobox.addActionListener(event -&gt; {</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/MainFrame.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>modesCombobox.setName(&quot;modesCombobox&quot;);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/MainFrame.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>modesCombobox.setSelectedIndex(0);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/MainFrame.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>modesLabel.setBorder(BorderFactory.createEmptyBorder(0, leftIndentation, 0, 0));</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/MainFrame.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>modesLabel.setBorder(BorderFactory.createEmptyBorder(0, leftIndentation, 0, 0));</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/MainFrame.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>modesLabel.setDisplayedMnemonic(KeyEvent.VK_M);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/MainFrame.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>modesLabel.setLabelFor(modesCombobox);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/MainFrame.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>modesPanel.add(modesCombobox);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/MainFrame.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>modesPanel.add(modesLabel);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/MainFrame.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>openFileButton.setMnemonic(KeyEvent.VK_O);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/MainFrame.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>openFileButton.setName(&quot;openFileButton&quot;);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/MainFrame.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>openFileButton.setText(&quot;Open File&quot;);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/MainFrame.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>private final class ExpandCollapseAction extends AbstractAction {</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/MainFrame.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>private final class FileSelectionAction extends AbstractAction {</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/MainFrame.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>private final class FindNodeByXpathAction extends AbstractAction {</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/MainFrame.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>private final class ReloadAction extends AbstractAction {</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/MainFrame.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>public MainFrame() {</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/MainFrame.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>reloadAction.setEnabled(false);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/MainFrame.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>reloadAction.setEnabled(model.isReloadActionEnabled());</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/MainFrame.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>reloadFileButton.setMnemonic(KeyEvent.VK_R);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/MainFrame.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>reloadFileButton.setText(&quot;Reload File&quot;);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/MainFrame.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>setIconImage(Toolkit.getDefaultToolkit().getImage(MainFrame.class.getResource(ICON)));</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/MainFrame.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>setIconImage(Toolkit.getDefaultToolkit().getImage(MainFrame.class.getResource(ICON)));</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/MainFrame.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>setIconImage(Toolkit.getDefaultToolkit().getImage(MainFrame.class.getResource(ICON)));</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/MainFrame.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>setLayout(new BorderLayout());</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/MainFrame.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>setTitle(model.getTitle());</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/MainFrame.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>splitPane.setResizeWeight(0.7);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/MainFrame.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>textArea.setEditable(false);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/MainFrame.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>textAreaPanel.add(createButtonsPanel(), BorderLayout.PAGE_END);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/MainFrame.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>textAreaPanel.add(textAreaScrollPane);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/MainFrame.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>textAreaPanel.setLayout(new BorderLayout());</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/MainFrame.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>xpathAreaPanel.add(createXpathButtonsPanel(), BorderLayout.PAGE_END);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/MainFrame.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>xpathAreaPanel.add(xpathTextArea);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/MainFrame.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>xpathAreaPanel.setBorder(title);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/MainFrame.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>xpathAreaPanel.setLayout(new BorderLayout());</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/MainFrame.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>xpathButtonsPanel.add(expandButton);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/MainFrame.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>xpathButtonsPanel.add(findNodeButton);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/MainFrame.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>xpathButtonsPanel.setLayout(new FlowLayout());</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/MainFrame.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>xpathTextArea.setName(&quot;xpathTextArea&quot;);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/MainFrame.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>xpathTextArea.setVisible(!xpathTextArea.isVisible());</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/MainFrame.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>xpathTextArea.setVisible(!xpathTextArea.isVisible());</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/MainFrame.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>xpathTextArea.setVisible(false);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/ParseTreeTableModel.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>((TreeModelListener) listeners[i + 1]).treeStructureChanged(event);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/ParseTreeTableModel.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>final Object[] listeners = listenerList.getListenerList();</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/ParseTreeTableModel.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>listenerList.add(TreeModelListener.class, listener);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/ParseTreeTableModel.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>listenerList.remove(TreeModelListener.class, listener);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/TreeTable.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>LookAndFeel.installColorsAndFont(this, &quot;Tree.background&quot;,</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/TreeTable.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>Math.toIntExact(Math.round(getPreferredSize().getWidth() * 0.6));</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/TreeTable.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>Math.toIntExact(Math.round(getPreferredSize().getWidth() * 0.6));</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/TreeTable.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>addMouseListener(new MouseAdapter() {</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/TreeTable.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>final Class&lt;?&gt; editingClass = getColumnClass(editingColumn);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/TreeTable.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>final DetailAST ast = (DetailAST) tree.getLastSelectedPathComponent();</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/TreeTable.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>final DetailAST rootAST = (DetailAST) tree.getModel().getRoot();</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/TreeTable.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>final FontMetrics fontMetrics = getFontMetrics(getFont());</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/TreeTable.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>final FontMetrics fontMetrics = getFontMetrics(getFont());</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/TreeTable.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>final KeyStroke stroke = KeyStroke.getKeyStroke(&quot;ENTER&quot;);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/TreeTable.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>final MouseEvent newMouseEvent = new MouseEvent(tree, mouseEvent.getID(),</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/TreeTable.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>final String xpath = xpathEditor.getText();</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/TreeTable.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>final TreePath selected = tree.getSelectionPath();</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/TreeTable.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>final int height = getRowHeight();</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/TreeTable.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>final int widthOfSixCharacterString = fontMetrics.stringWidth(&quot;XXXXXX&quot;);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/TreeTable.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>fontMetrics.stringWidth(&quot;XXXXXXXXXXXXXXXXXXXXXXXXXXXX&quot;);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/TreeTable.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>for (int counter = getColumnCount() - 1; counter &gt;= 0;</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/TreeTable.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>getActionMap().put(command, expand);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/TreeTable.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>getActionMap().put(command, expand);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/TreeTable.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>getColumn(&quot;Column&quot;).setMaxWidth(widthOfColumnContainingSixCharacterString);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/TreeTable.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>getColumn(&quot;Line&quot;).setMaxWidth(widthOfColumnContainingSixCharacterString);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/TreeTable.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>getColumn(&quot;Tree&quot;).setPreferredWidth(preferredTreeColumnWidth);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/TreeTable.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>getColumn(&quot;Type&quot;).setPreferredWidth(preferredTypeColumnWidth);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/TreeTable.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>getInputMap().put(stroke, command);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/TreeTable.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>getInputMap().put(stroke, command);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/TreeTable.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>if (!tree.isExpanded(path)) {</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/TreeTable.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>if (getColumnClass(counter) == ParseTreeTableModel.class) {</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/TreeTable.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>if (tree != null &amp;&amp; tree.getRowHeight() != newRowHeight) {</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/TreeTable.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>if (tree.getLastSelectedPathComponent() instanceof DetailAST) {</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/TreeTable.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>if (tree.getRowHeight() &lt; 1) {</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/TreeTable.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>if (tree.isExpanded(selected)) {</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/TreeTable.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>mouseEvent.getWhen(), mouseEvent.getModifiersEx(),</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/TreeTable.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>mouseEvent.getWhen(), mouseEvent.getModifiersEx(),</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/TreeTable.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>mouseEvent.getX() - getCellRect(0, counter, true).x,</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/TreeTable.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>mouseEvent.getX() - getCellRect(0, counter, true).x,</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/TreeTable.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>mouseEvent.getY(), mouseEvent.getClickCount(),</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/TreeTable.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>mouseEvent.getY(), mouseEvent.getClickCount(),</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/TreeTable.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>mouseEvent.isPopupTrigger());</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/TreeTable.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>new CodeSelector(tree.getLastSelectedPathComponent(), editor, linePositionList).select();</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/TreeTable.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>public TreeTable(ParseTreeTableModel treeTableModel) {</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/TreeTable.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>setDefaultEditor(ParseTreeTableModel.class, new TreeTableCellEditor());</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/TreeTable.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>setDefaultRenderer(ParseTreeTableModel.class, tree);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/TreeTable.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>setIntercellSpacing(new Dimension(0, 0));</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/TreeTable.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>setModel(new TreeTableModelAdapter(treeTableModel, tree));</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/TreeTable.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>setSelectionModel(selectionWrapper.getListSelectionModel());</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/TreeTable.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>setShowGrid(false);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/TreeTable.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>super.setRowHeight(newRowHeight);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/TreeTable.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>super.updateUI();</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/TreeTable.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>tree.collapsePath(selected);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/TreeTable.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>tree.dispatchEvent(newMouseEvent);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/TreeTable.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>tree.expandPath(path);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/TreeTable.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>tree.expandPath(selected);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/TreeTable.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>tree.setRowHeight(getRowHeight());</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/TreeTable.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>tree.setSelectionModel(selectionWrapper);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/TreeTable.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>tree.setSelectionPath(path);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/TreeTable.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>tree.setSelectionPath(selected);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/TreeTable.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>xpathEditor.setText(xpathEditor.getText() + NEWLINE + exception.getMessage());</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/TreeTable.java</fileName>
+    <specifier>override.effect.warning.inheritance</specifier>
+    <message>method in com.puppycrawl.tools.checkstyle.gui.TreeTable.TreeTableCellEditor</message>
+    <lineContent>public boolean isCellEditable(EventObject event) {</lineContent>
+    <details>
+      isCellEditable(java.util.EventObject)
+      overrides a method with @UI effect in javax.swing.CellEditor
+      isCellEditable(java.util.EventObject)
+      and another method with an @AlwaysSafe effect in com.puppycrawl.tools.checkstyle.gui.BaseCellEditor
+      isCellEditable(java.util.EventObject)
+      This is discouraged.
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/TreeTableCellRenderer.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>&amp;&amp; treeTable.getRowHeight() != newRowHeight) {</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/TreeTableCellRenderer.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>UIManager.getColor(COLOR_KEY_TABLE_SELECTION_BACKGROUND));</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/TreeTableCellRenderer.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>UIManager.getColor(COLOR_KEY_TABLE_SELECTION_FOREGROUND));</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/TreeTableCellRenderer.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>final TreeCellRenderer tcr = getCellRenderer();</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/TreeTableCellRenderer.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>graph.translate(0, -visibleRow * getRowHeight());</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/TreeTableCellRenderer.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>graph.translate(0, -visibleRow * getRowHeight());</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/TreeTableCellRenderer.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>setBackground(UIManager.getColor(colorKey));</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/TreeTableCellRenderer.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>setBackground(UIManager.getColor(colorKey));</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/TreeTableCellRenderer.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>super(model);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/TreeTableCellRenderer.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>super.paint(graph);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/TreeTableCellRenderer.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>super.setBounds(x, 0, w, treeTable.getHeight());</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/TreeTableCellRenderer.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>super.setBounds(x, 0, w, treeTable.getHeight());</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/TreeTableCellRenderer.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>super.setRowHeight(newRowHeight);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/TreeTableCellRenderer.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>super.updateUI();</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/TreeTableCellRenderer.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>treeTable.setRowHeight(getRowHeight());</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/TreeTableModelAdapter.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>final TreePath treePath = tree.getPathForRow(row);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/TreeTableModelAdapter.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>return tree.getRowCount();</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/TreeTableModelAdapter.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>tree.addTreeExpansionListener(new UpdatingTreeExpansionListener());</lineContent>
+  </checkerFrameworkError>
+</suppressedErrors>

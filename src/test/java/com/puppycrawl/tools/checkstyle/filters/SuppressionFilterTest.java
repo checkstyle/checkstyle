@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -37,7 +37,6 @@ import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import com.puppycrawl.tools.checkstyle.api.Violation;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class SuppressionFilterTest extends AbstractModuleTestSupport {
 
@@ -161,7 +160,7 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testLocalFileExternalResourceContentDoesNotChange() throws Exception {
+    public void testUseCacheLocalFileExternalResourceContentDoesNotChange() throws Exception {
         final DefaultConfiguration filterConfig = createModuleConfig(SuppressionFilter.class);
         filterConfig.addProperty("file", getPath("InputSuppressionFilterNone.xml"));
 
@@ -170,15 +169,14 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
         checkerConfig.addProperty("cacheFile", cacheFile.getPath());
 
         final String filePath = File.createTempFile("file", ".java", temporaryFolder).getPath();
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verify(checkerConfig, filePath, expected);
+        execute(checkerConfig, filePath);
         // One more time to use cache.
-        verify(checkerConfig, filePath, expected);
+        execute(checkerConfig, filePath);
     }
 
     @Test
-    public void testRemoteFileExternalResourceContentDoesNotChange() throws Exception {
+    public void testUseCacheRemoteFileExternalResourceContentDoesNotChange() throws Exception {
         final String[] urlCandidates = {
             "https://checkstyle.org/files/suppressions_none.xml",
             "https://raw.githubusercontent.com/checkstyle/checkstyle/master/src/site/resources/"
@@ -204,9 +202,8 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
 
         final String pathToEmptyFile =
                 File.createTempFile("file", ".java", temporaryFolder).getPath();
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verify(firstCheckerConfig, pathToEmptyFile, expected);
+        execute(firstCheckerConfig, pathToEmptyFile);
 
         // One more time to use cache.
         final DefaultConfiguration secondFilterConfig =
@@ -217,7 +214,7 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
         final DefaultConfiguration secondCheckerConfig = createRootConfig(secondFilterConfig);
         secondCheckerConfig.addProperty("cacheFile", cacheFile.getPath());
 
-        verify(secondCheckerConfig, pathToEmptyFile, expected);
+        execute(secondCheckerConfig, pathToEmptyFile);
     }
 
     private static boolean isConnectionAvailableAndStable(String url) throws Exception {

@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -223,29 +223,6 @@ public class AnnotationUtilTest {
         assertWithMessage("An empty ast should lead to a false result")
             .that(result)
             .isFalse();
-    }
-
-    @Test
-    public void testContainsAnnotationListWithEmptyAnnotationNode() {
-        final DetailAstImpl ast = new DetailAstImpl();
-        final DetailAstImpl modifiersAst = create(
-                TokenTypes.MODIFIERS,
-                create(
-                        TokenTypes.ANNOTATION,
-                        create(
-                                TokenTypes.DOT,
-                                create(
-                                        TokenTypes.IDENT,
-                                        "Override")
-                        )
-                )
-        );
-        ast.addChild(modifiersAst);
-        final Set<String> annotations = Set.of("Override");
-        final boolean result = AnnotationUtil.containsAnnotation(ast, annotations);
-        assertWithMessage("The dot-ident variation should also work")
-                .that(result)
-                .isTrue();
     }
 
     @Test

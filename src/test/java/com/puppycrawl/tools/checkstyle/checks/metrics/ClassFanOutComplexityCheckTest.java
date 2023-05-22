@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -282,6 +282,16 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
                 getPath("InputClassFanOutComplexityMultiCatchBitwiseOr.java"), expected);
     }
 
+    @Test
+    public void testThrows() throws Exception {
+        final String[] expected = {
+            "25:1: " + getCheckMessage(MSG_KEY, 2, 0),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputClassFanOutComplexityThrows.java"), expected);
+    }
+
     /**
      * We cannot reproduce situation when visitToken is called and leaveToken is not.
      * So, we have to use reflection to be sure that even in such situation
@@ -332,6 +342,32 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
                 .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check, classDef.get(),
                         "classesContexts",
                         classContexts -> ((Collection<?>) classContexts).size() == 1))
+                .isTrue();
+    }
+
+    /**
+     * We cannot reproduce situation when visitToken is called and leaveToken is not.
+     * So, we have to use reflection to be sure that even in such situation
+     * state of the field will be cleared.
+     *
+     * @throws Exception when code tested throws exception
+     */
+    @Test
+    public void testClearStatePackageName() throws Exception {
+        final ClassFanOutComplexityCheck check = new ClassFanOutComplexityCheck();
+        final DetailAST root = JavaParser.parseFile(
+                new File(getPath("InputClassFanOutComplexity.java")),
+                JavaParser.Options.WITHOUT_COMMENTS);
+        final Optional<DetailAST> packageDef = TestUtil.findTokenInAstByPredicate(root,
+            ast -> ast.getType() == TokenTypes.PACKAGE_DEF);
+
+        assertWithMessage("Ast should contain PACKAGE_DEF")
+                .that(packageDef.isPresent())
+                .isTrue();
+        assertWithMessage("State is not cleared on beginTree")
+                .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check, packageDef.get(),
+                        "packageName",
+                        packageName -> ((String) packageName).isEmpty()))
                 .isTrue();
     }
 

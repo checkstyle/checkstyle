@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -79,6 +79,7 @@ public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
      * <p>Configures the environment for each test.</p>
      * <ul>
      * <li>Start output capture for {@link System#err} and {@link System#out}</li>
+     * <li>Turn off colors for picocli to not conflict with tests if they are auto turned on.</li>
      * </ul>
      *
      * @param systemErr wrapper for {@code System.err}
@@ -88,6 +89,8 @@ public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
     public void setUp(@SysErr Capturable systemErr, @SysOut Capturable systemOut) {
         systemErr.captureMuted();
         systemOut.captureMuted();
+
+        System.setProperty("picocli.ansi", "false");
     }
 
     @Test
@@ -302,9 +305,8 @@ public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
         }
         catch (IllegalArgumentException ex) {
             assertWithMessage("Invalid error message")
-                    .that(ex.getMessage()
-                            .contains("mismatched input '<EOF>' expecting JAVADOC_INLINE_TAG_END"))
-                    .isTrue();
+                    .that(ex.getMessage())
+                    .contains("mismatched input '<EOF>' expecting JAVADOC_INLINE_TAG_END");
         }
         final long size = FileUtils.sizeOf(DESTFILE);
         assertWithMessage("File '" + DESTFILE + "' must be empty")
@@ -339,9 +341,8 @@ public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
         }
         catch (CheckstyleException ex) {
             assertWithMessage("Invalid error message")
-                    .that(ex.getMessage()
-                            .contains("InputJavadocPropertiesGeneratorParseError.java"))
-                    .isTrue();
+                    .that(ex.getMessage())
+                    .contains("InputJavadocPropertiesGeneratorParseError.java");
 
             final Throwable cause = ex.getCause();
             assertWithMessage("Invalid error message")
