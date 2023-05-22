@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -31,12 +31,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import com.puppycrawl.tools.checkstyle.AbstractAutomaticBean.OutputStreamOptions;
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.MetadataGeneratorLogger;
 import com.puppycrawl.tools.checkstyle.TreeWalker;
-import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import com.puppycrawl.tools.checkstyle.api.RootModule;
 
 /** Class which handles all the metadata generation and writing calls. */
 public final class MetadataGeneratorUtil {
@@ -71,8 +72,7 @@ public final class MetadataGeneratorUtil {
         treeWalkerConfig.addChild(scraperCheckConfig);
         checker.configure(defaultConfiguration);
 
-        checker.addListener(new MetadataGeneratorLogger(out,
-                AutomaticBean.OutputStreamOptions.NONE));
+        checker.addListener(new MetadataGeneratorLogger(out, OutputStreamOptions.NONE));
 
         dumpMetadata(checker, path, moduleFolders);
     }
@@ -81,12 +81,12 @@ public final class MetadataGeneratorUtil {
      * Process files using the checker passed and write to corresponding XML files.
      *
      * @param moduleFolders folders to check
-     * @param checker checker
+     * @param root root module
      * @param path rootPath
      * @throws CheckstyleException checkstyleException
      * @throws IOException ioException
      */
-    private static void dumpMetadata(Checker checker, String path, String... moduleFolders)
+    private static void dumpMetadata(RootModule root, String path, String... moduleFolders)
             throws CheckstyleException,
             IOException {
         final List<File> validFiles = new ArrayList<>();
@@ -104,6 +104,6 @@ public final class MetadataGeneratorUtil {
                         .collect(Collectors.toList()));
             }
         }
-        checker.process(validFiles);
+        root.process(validFiles);
     }
 }

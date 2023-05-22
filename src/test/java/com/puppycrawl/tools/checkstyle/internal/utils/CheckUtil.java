@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -60,7 +60,7 @@ public final class CheckUtil {
     }
 
     public static Set<String> getConfigCheckStyleModules() {
-        return getCheckStyleModulesReferencedInConfig("config/checkstyle_checks.xml");
+        return getCheckStyleModulesReferencedInConfig("config/checkstyle-checks.xml");
     }
 
     public static Set<String> getConfigSunStyleModules() {
@@ -87,15 +87,15 @@ public final class CheckUtil {
             }
 
             return name;
-        }).collect(Collectors.toSet());
+        }).collect(Collectors.toCollection(HashSet::new));
     }
 
     /**
-     * Gets a set of names of checkstyle's checks which are referenced in checkstyle_checks.xml.
+     * Gets a set of names of checkstyle's checks which are referenced in checkstyle-checks.xml.
      *
      * @param configFilePath
-     *            file path of checkstyle_checks.xml.
-     * @return names of checkstyle's checks which are referenced in checkstyle_checks.xml.
+     *            file path of checkstyle-checks.xml.
+     * @return names of checkstyle's checks which are referenced in checkstyle-checks.xml.
      */
     private static Set<String> getCheckStyleModulesReferencedInConfig(String configFilePath) {
         try {
@@ -205,7 +205,8 @@ public final class CheckUtil {
      * @param deepScan scan subclasses.
      * @return a set of checkstyle's module message fields.
      * @throws ClassNotFoundException if the attempt to read a protected class fails.
-     * @noinspection BooleanParameter Test code for easy usage.
+     * @noinspection BooleanParameter
+     * @noinspectionreason BooleanParameter - boolean parameter eases testing
      */
     public static Set<Field> getCheckMessages(Class<?> module, boolean deepScan)
             throws ClassNotFoundException {

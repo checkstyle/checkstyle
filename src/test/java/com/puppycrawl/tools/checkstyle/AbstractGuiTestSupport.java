@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -25,7 +25,7 @@ import java.awt.Component;
 import java.awt.Container;
 import java.awt.GraphicsEnvironment;
 
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 
 /**
  * Abstract base class for testing GUI components.
@@ -35,8 +35,8 @@ public abstract class AbstractGuiTestSupport extends AbstractPathTestSupport {
     /**
      * Validates the graphics environment.
      */
-    @BeforeAll
-    public static void validateGraphicsEnvironment() {
+    @BeforeEach
+    public void validateGraphicsEnvironment() {
         final boolean isHeadless = GraphicsEnvironment.isHeadless();
         assumeFalse(isHeadless, "This test is incompatible with headless environment");
     }

@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -21,7 +21,7 @@ package com.puppycrawl.tools.checkstyle.xpath;
 
 import java.util.List;
 
-import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import net.sf.saxon.om.NamespaceUri;
 import net.sf.saxon.om.NodeInfo;
 import net.sf.saxon.tree.iter.AxisIterator;
 import net.sf.saxon.type.Type;
@@ -71,7 +71,7 @@ public class AttributeNode extends AbstractNode {
      * @return attribute value
      */
     @Override
-    public String getAttributeValue(String namespace, String localPart) {
+    public String getAttributeValue(NamespaceUri namespace, String localPart) {
         throw throwUnsupportedOperationException();
     }
 
@@ -180,7 +180,7 @@ public class AttributeNode extends AbstractNode {
      * @return underlying node
      */
     @Override
-    public DetailAST getUnderlyingNode() {
+    public Object getUnderlyingNode() {
         throw throwUnsupportedOperationException();
     }
 

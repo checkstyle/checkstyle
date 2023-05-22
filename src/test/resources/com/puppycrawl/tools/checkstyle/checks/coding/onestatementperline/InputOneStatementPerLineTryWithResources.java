@@ -51,4 +51,14 @@ OutputStream s9=new PipedOutputStream();s2;OutputStream s10 = new PipedOutputStr
              OutputStream s11 = new PipedOutputStream(); s2;) {
         }
     }
+
+    void testNestedInLambda() {
+        Runnable r = () -> {
+            try (OutputStream s1 = new PipedOutputStream();
+                 OutputStream s2 = new PipedOutputStream();) { // ok
+            }
+            catch (IOException e) {
+            }
+        };
+    }
 }

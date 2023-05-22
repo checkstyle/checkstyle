@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -28,11 +28,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
+import com.puppycrawl.tools.checkstyle.AbstractAutomaticBean;
 import com.puppycrawl.tools.checkstyle.PropertyType;
 import com.puppycrawl.tools.checkstyle.TreeWalkerAuditEvent;
 import com.puppycrawl.tools.checkstyle.TreeWalkerFilter;
 import com.puppycrawl.tools.checkstyle.XdocsPropertyType;
-import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
@@ -260,7 +260,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * @since 5.0
  */
 public class SuppressWithNearbyCommentFilter
-    extends AutomaticBean
+    extends AbstractAutomaticBean
     implements TreeWalkerFilter {
 
     /** Format to turn checkstyle reporting off. */
@@ -532,7 +532,7 @@ public class SuppressWithNearbyCommentFilter
          * @param filter the {@code SuppressWithNearbyCommentFilter} with the context
          * @throws IllegalArgumentException if unable to parse expanded text.
          */
-        /* package */ Tag(String text, int line, SuppressWithNearbyCommentFilter filter) {
+        private Tag(String text, int line, SuppressWithNearbyCommentFilter filter) {
             this.text = text;
 
             // Expand regexp for check and message

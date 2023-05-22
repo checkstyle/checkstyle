@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -24,9 +24,9 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import com.puppycrawl.tools.checkstyle.AbstractAutomaticBean;
 import com.puppycrawl.tools.checkstyle.TreeWalkerAuditEvent;
 import com.puppycrawl.tools.checkstyle.TreeWalkerFilter;
-import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.ExternalResourceHolder;
 import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
@@ -504,7 +504,7 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  *
  * @since 8.6
  */
-public class SuppressionXpathFilter extends AutomaticBean implements
+public class SuppressionXpathFilter extends AbstractAutomaticBean implements
         TreeWalkerFilter, ExternalResourceHolder {
 
     /** Set of individual xpath suppresses. */

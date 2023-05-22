@@ -2,16 +2,16 @@
 set -e
 
 source ./.ci/util.sh
-
-checkForVariable() {
-  VAR_NAME=$1
-  if [ -v "${!VAR_NAME}" ]; then
-    echo "Error: Define $1 environment variable"
-    exit 1
-  fi
-}
-
 checkForVariable "READ_ONLY_TOKEN"
+
+if [[ -z $1 ]]; then
+  echo "version is not set"
+  echo "Usage: $BASH_SOURCE <version>"
+  exit 1
+fi
+
+TARGET_VERSION=$1
+echo TARGET_VERSION="$TARGET_VERSION"
 
 checkout_from https://github.com/checkstyle/contribution
 
@@ -31,11 +31,9 @@ else
   cd ../
 fi
 
-CS_RELEASE_VERSION="$(getCheckstylePomVersion)"
-echo CS_RELEASE_VERSION="$CS_RELEASE_VERSION"
-
 cd .ci-temp/checkstyle
-LATEST_RELEASE_TAG=$(curl -s https://api.github.com/repos/checkstyle/checkstyle/releases/latest \
+LATEST_RELEASE_TAG=$(curl --fail-with-body -s -H "Authorization: token $READ_ONLY_TOKEN" \
+                       https://api.github.com/repos/checkstyle/checkstyle/releases/latest \
                        | jq ".tag_name")
 echo LATEST_RELEASE_TAG="$LATEST_RELEASE_TAG"
 
@@ -47,11 +45,13 @@ java -jar contribution/releasenotes-builder/target/releasenotes-builder-1.0-all.
      -localRepoPath checkstyle \
      -remoteRepoPath checkstyle/checkstyle \
      -startRef "$LATEST_RELEASE_TAG" \
-     -releaseNumber "$CS_RELEASE_VERSION" \
+     -releaseNumber "$TARGET_VERSION" \
      -githubAuthToken "$READ_ONLY_TOKEN" \
      -generateXdoc \
-     -xdocTemplate $BUILDER_RESOURCE_DIR/templates/xdoc_freemarker.template \
-     -publishXdoc -publishXdocWithPush
+     -xdocTemplate $BUILDER_RESOURCE_DIR/templates/xdoc_freemarker.template
 
-echo "releasenotes.xml after commit:"
-head "checkstyle/src/xdocs/releasenotes.xml" -n 100
+cd ../
+sed -i '12r .ci-temp/xdoc.xml' src/xdocs/releasenotes.xml
+
+echo "releasenotes.xml:"
+head "src/xdocs/releasenotes.xml" -n 100

@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -44,7 +44,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <li>
  * Property {@code format} - Specifies valid identifiers.
  * Type is {@code java.util.regex.Pattern}.
- * Default value is {@code "^[a-z]+(\.[a-zA-Z_][a-zA-Z0-9_]*)*$"}.
+ * Default value is {@code "^[a-z]+(\.[a-zA-Z_]\w*)*$"}.
  * </li>
  * </ul>
  * <p>
@@ -56,7 +56,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <p>Code Example:</p>
  * <pre>
  * package com; // OK
- * package COM; // violation, name 'COM' must match pattern '^[a-z]+(\.[a-zA-Z_][a-zA-Z0-9_]*)*$'
+ * package COM; // violation, name 'COM' must match pattern '^[a-z]+(\.[a-zA-Z_]\w*)*$'
  * package com.checkstyle.checks; // OK
  * package com.A.checkstyle.checks; // OK
  * package com.checkstyle1.checks; // OK
@@ -114,7 +114,7 @@ public class PackageNameCheck
     // Uppercase letters seem rather uncommon, but they're allowed in
     // https://docs.oracle.com/javase/specs/
     //  second_edition/html/packages.doc.html#40169
-    private Pattern format = Pattern.compile("^[a-z]+(\\.[a-zA-Z_][a-zA-Z0-9_]*)*$");
+    private Pattern format = Pattern.compile("^[a-z]+(\\.[a-zA-Z_]\\w*)*$");
 
     /**
      * Setter to specifies valid identifiers.

@@ -450,7 +450,7 @@ public static final int A_SETPOINT = 1;
       <subsection name="Example of Usage" id="Regexp_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+Regexp">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+Regexp">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -728,7 +728,7 @@ void method() {
       <subsection name="Example of Usage" id="RegexpMultiline_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+RegexpMultiline">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+RegexpMultiline">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -1005,7 +1005,7 @@ src/main/main_class.java  //violation, file names should be in Camel Case
       <subsection name="Example of Usage" id="RegexpOnFilename_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+RegexpOnFilename">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+RegexpOnFilename">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -1226,7 +1226,7 @@ CREATE DATABASE MyDB;
       <subsection name="Example of Usage" id="RegexpSingleline_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+RegexpSingleline">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+RegexpSingleline">
             Checkstyle Style</a>
           </li>
           <li>
@@ -1466,7 +1466,7 @@ class Foo{
       <subsection name="Example of Usage" id="RegexpSinglelineJava_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+RegexpSinglelineJava">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+RegexpSinglelineJava">
             Checkstyle Style</a>
           </li>
         </ul>

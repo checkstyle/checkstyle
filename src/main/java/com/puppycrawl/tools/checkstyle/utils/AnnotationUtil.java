@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -123,18 +123,35 @@ public final class AnnotationUtil {
 
         if (!annotations.isEmpty()) {
             final DetailAST firstMatchingAnnotation = findFirstAnnotation(ast, annotationNode -> {
-                DetailAST identNode = annotationNode.findFirstToken(TokenTypes.IDENT);
-                if (identNode == null) {
-                    identNode = annotationNode.findFirstToken(TokenTypes.DOT)
-                            .findFirstToken(TokenTypes.IDENT);
-                }
-
-                return annotations.contains(identNode.getText());
+                final String annotationFullIdent = getAnnotationFullIdent(annotationNode);
+                return annotations.contains(annotationFullIdent);
             });
             result = firstMatchingAnnotation != null;
         }
 
         return result;
+    }
+
+    /**
+     * Gets the full ident text of the annotation AST.
+     *
+     * @param annotationNode The annotation AST.
+     * @return The full ident text.
+     */
+    private static String getAnnotationFullIdent(DetailAST annotationNode) {
+        final DetailAST identNode = annotationNode.findFirstToken(TokenTypes.IDENT);
+        final String annotationString;
+
+        // If no `IDENT` is found, then we have a `DOT` -> more than 1 qualifier
+        if (identNode == null) {
+            final DetailAST dotNode = annotationNode.findFirstToken(TokenTypes.DOT);
+            annotationString = FullIdent.createFullIdent(dotNode).getText();
+        }
+        else {
+            annotationString = identNode.getText();
+        }
+
+        return annotationString;
     }
 
     /**

@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -72,7 +72,7 @@ public class MethodDefHandler extends BlockParentHandler {
     /**
      * Gets the start line of the method, excluding any annotations. This is required because the
      * current {@link TokenTypes#METHOD_DEF} may not always be the start as seen in
-     * https://github.com/checkstyle/checkstyle/issues/3145.
+     * <a href="https://github.com/checkstyle/checkstyle/issues/3145">#3145</a>.
      *
      * @param mainAst
      *            The method definition ast.

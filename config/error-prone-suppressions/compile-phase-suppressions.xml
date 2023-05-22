@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suppressedErrors>
+  <error>
+    <sourceFile>JavadocNodeImpl.java</sourceFile>
+    <bugPattern>ArrayHashCode</bugPattern>
+    <description>hashcode method on array does not hash array contents</description>
+    <lineContent>+ &quot;, children=&quot; + Objects.hashCode(children)</lineContent>
+  </error>
+</suppressedErrors>

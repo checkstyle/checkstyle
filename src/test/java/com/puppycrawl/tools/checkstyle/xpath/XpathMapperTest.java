@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -1265,7 +1265,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
     private static DetailAST[] convertToArray(List<NodeInfo> nodes) {
         final DetailAST[] result = new DetailAST[nodes.size()];
         for (int i = 0; i < nodes.size(); i++) {
-            final AbstractNode abstractNode = (AbstractNode) nodes.get(i);
+            final ElementNode abstractNode = (ElementNode) nodes.get(i);
             result[i] = abstractNode.getUnderlyingNode();
         }
         return result;

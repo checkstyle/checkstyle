@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -38,9 +38,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * This class was modeled after documentation located at
  * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html">
  * javadoc</a>
- *
  * and
- *
  * <a href="https://www.oracle.com/technical-resources/articles/java/javadoc-tool.html">
  * how to write</a>.
  * </p>

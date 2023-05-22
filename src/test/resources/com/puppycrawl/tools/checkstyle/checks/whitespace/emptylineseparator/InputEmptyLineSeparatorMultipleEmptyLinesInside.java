@@ -15,7 +15,7 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator;
 public abstract class InputEmptyLineSeparatorMultipleEmptyLinesInside
 {
     public InputEmptyLineSeparatorMultipleEmptyLinesInside() {
-        // violation
+        // violation 'There is more than 1 empty line after this line.'
 
 
     }
@@ -27,27 +27,28 @@ public abstract class InputEmptyLineSeparatorMultipleEmptyLinesInside
     abstract int generateSrc(String s);
 
     static {
-        // violation
+        // violation 'There is more than 1 empty line after this line.'
 
 
     }
 
     {
-        // violation
+        // violation 'There is more than 1 empty line after this line.'
 
 
     }
 
-    private static void foo() { // violation
+    private static void foo() { // violation 'There is more than 1 empty line after this line.'
 
 
         // 1 empty line above should cause a violation
 
-        // violation
+        // violation 'There is more than 1 empty line after this line.'
 
 
 
         // 2 empty lines above should cause violations
     }
 }
-class SecondClassReturnWithVeryVeryVeryLongName{} // violation
+class // violation ''CLASS_DEF' should be separated from previous line.'
+SecondClassReturnWithVeryVeryVeryLongName{}

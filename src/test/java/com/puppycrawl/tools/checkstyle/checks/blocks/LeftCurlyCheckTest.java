@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -512,4 +512,42 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
         }
     }
 
+    @Test
+    public void testTrimOptionProperty() throws Exception {
+        final String[] expected = {
+            "13:12: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 12),
+            "20:16: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 16),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputLeftCurlyWithTrimOptionProperty.java"), expected);
+    }
+
+    @Test
+    public void testForEnumConstantDef() throws Exception {
+        final String[] expected = {
+            "14:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
+            "19:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputLeftCurlyEnumConstantDef.java"), expected);
+    }
+
+    @Test
+    public void commentBeforeLeftCurly() throws Exception {
+        final String[] expected = {
+            "32:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputLeftCurlyCommentBeforeLeftCurly.java"), expected);
+    }
+
+    @Test
+    public void commentBeforeLeftCurly2() throws Exception {
+        final String[] expected = {
+            "54:9: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 9),
+            "66:29: " + getCheckMessage(MSG_KEY_LINE_BREAK_AFTER, "{", 29),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputLeftCurlyCommentBeforeLeftCurly2.java"), expected);
+    }
 }

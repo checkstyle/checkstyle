@@ -81,4 +81,6 @@ public class InputVisibilityModifierAnnotated {
 
     @org.junit.ClassRule
     public static TemporaryFolder fqPublicJUnitClassRule = new TemporaryFolder();
+
+    @CustomAnnotation @VisibleForTesting Integer initialCapacity;
 }

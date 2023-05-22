@@ -25,12 +25,12 @@ import static org.junit.Assert.assertEquals; // ok
 import java.awt.Button; // ok
 import java.awt.Dialog; // ok
 import java.io.InputStream; // ok
-import javax.swing.JComponent; // violation
+import javax.swing.JComponent; // violation ''javax.swing.JComponent' should be separated from previous imports.'
 import javax.swing.JTable; // ok
 
 import sun.tools.java.ArrayType; // ok
 
-import org.junit.Test; // violation
+import org.junit.Test; // violation 'Wrong order for 'org.junit.Test' import.'
 import org.mockito.Mock; // ok
 
 import com.some.api.DetailClass; // ok

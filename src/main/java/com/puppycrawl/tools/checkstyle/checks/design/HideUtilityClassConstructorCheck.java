@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -185,7 +185,7 @@ public class HideUtilityClassConstructorCheck extends AbstractCheck {
     /**
      * Details of class that are required for validation.
      */
-    private static class Details {
+    private static final class Details {
 
         /** Class ast. */
         private final DetailAST ast;
@@ -203,7 +203,7 @@ public class HideUtilityClassConstructorCheck extends AbstractCheck {
          *
          * @param ast class ast
          * */
-        /* package */ Details(DetailAST ast) {
+        private Details(DetailAST ast) {
             this.ast = ast;
         }
 
@@ -248,10 +248,7 @@ public class HideUtilityClassConstructorCheck extends AbstractCheck {
          */
         public void invoke() {
             final DetailAST objBlock = ast.findFirstToken(TokenTypes.OBJBLOCK);
-            hasNonStaticMethodOrField = false;
-            hasNonPrivateStaticMethodOrField = false;
             hasDefaultCtor = true;
-            hasPublicCtor = false;
             DetailAST child = objBlock.getFirstChild();
 
             while (child != null) {

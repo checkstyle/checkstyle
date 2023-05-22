@@ -50,7 +50,8 @@ public class InputJavadocMethodExtraThrows {
      * @throws java.lang.IllegalArgumentException when argument is wrong // ok
      * @throws java.lang.NullPointerException indicates null was passed // ok
      */
-    public void doSomething2(String properties) throws IllegalStateException { // violation
+    // violation below 'Expected @throws tag for 'IllegalStateException'.'
+    public void doSomething2(String properties) throws IllegalStateException {
         // here is NPE possible
         if (properties.charAt(0) == 0) {
             throw new IllegalArgumentException("cannot have char with code 0");
@@ -65,7 +66,8 @@ public class InputJavadocMethodExtraThrows {
     public void doSomething3(String properties) throws IllegalStateException { // ok
         // here is NPE possible
         if (properties.charAt(0) == 0) {
-            throw new IllegalArgumentException("cannot have char with code 0"); // violation
+            // violation below 'Expected @throws tag for 'IllegalArgumentException'.'
+            throw new IllegalArgumentException("cannot have char with code 0");
         }
     }
 
@@ -77,7 +79,8 @@ public class InputJavadocMethodExtraThrows {
     public void doSomething4(String properties) { // ok
         // here is NPE possible
         if (properties.charAt(0) == 0) {
-            throw new IllegalArgumentException("cannot have char with code 0"); // violation
+            // violation below 'Expected @throws tag for 'IllegalArgumentException'.'
+            throw new IllegalArgumentException("cannot have char with code 0");
         }
     }
 
@@ -89,7 +92,8 @@ public class InputJavadocMethodExtraThrows {
     public void doSomething5(String properties) {
         // here is NPE possible
         if (properties.charAt(0) == 0) {
-            throw new java.lang.IllegalArgumentException( // violation
+            // violation below 'Expected @throws tag for 'java.lang.IllegalArgumentException'.'
+            throw new java.lang.IllegalArgumentException(
                     "cannot have char with code 0");
         }
     }
@@ -129,7 +133,8 @@ public class InputJavadocMethodExtraThrows {
      */
     public void doSomething8(File file) throws IOException { // ok
         if (file == null) {
-            throw new FileNotFoundException(); // violation
+            // violation below 'Expected @throws tag for 'FileNotFoundException'.'
+            throw new FileNotFoundException();
         }
     }
 

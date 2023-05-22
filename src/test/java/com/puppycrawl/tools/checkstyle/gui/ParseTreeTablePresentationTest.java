@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -83,8 +83,8 @@ public class ParseTreeTablePresentationTest extends AbstractPathTestSupport {
     public void testChild() {
         final Object child = new ParseTreeTablePresentation(null).getChild(tree, 1);
         assertWithMessage("Invalid child type")
-                .that(child instanceof DetailAST)
-                .isTrue();
+                .that(child)
+                .isInstanceOf(DetailAST.class);
         final int type = ((DetailAST) child).getType();
         assertWithMessage("Invalid child token type")
             .that(type)
@@ -97,8 +97,8 @@ public class ParseTreeTablePresentationTest extends AbstractPathTestSupport {
         parseTree.setParseMode(ParseMode.JAVA_WITH_JAVADOC_AND_COMMENTS);
         final Object child = parseTree.getChild(tree, 1);
         assertWithMessage("Invalid child type")
-                .that(child instanceof DetailAST)
-                .isTrue();
+                .that(child)
+                .isInstanceOf(DetailAST.class);
         final int type = ((DetailAST) child).getType();
         assertWithMessage("Invalid child token type")
             .that(type)
@@ -162,8 +162,8 @@ public class ParseTreeTablePresentationTest extends AbstractPathTestSupport {
         parseTree.setParseMode(ParseMode.JAVA_WITH_JAVADOC_AND_COMMENTS);
         final Object child = parseTree.getChild(commentContentNode, 0);
         assertWithMessage("Invalid child type")
-                .that(child instanceof DetailNode)
-                .isTrue();
+                .that(child)
+                .isInstanceOf(DetailNode.class);
         final int type = ((DetailNode) child).getType();
         assertWithMessage("Invalid child token type")
             .that(type)
@@ -171,8 +171,8 @@ public class ParseTreeTablePresentationTest extends AbstractPathTestSupport {
         // get Child one more time to test cache of PModel
         final Object childSame = parseTree.getChild(commentContentNode, 0);
         assertWithMessage("Invalid child type")
-                .that(childSame instanceof DetailNode)
-                .isTrue();
+                .that(childSame)
+                .isInstanceOf(DetailNode.class);
         final int sameType = ((DetailNode) childSame).getType();
         assertWithMessage("Invalid child token type")
             .that(sameType)
@@ -186,8 +186,8 @@ public class ParseTreeTablePresentationTest extends AbstractPathTestSupport {
         parseTree.setParseMode(ParseMode.JAVA_WITH_JAVADOC_AND_COMMENTS);
         final Object javadoc = parseTree.getChild(commentContentNode, 0);
         assertWithMessage("Invalid child type")
-                .that(javadoc instanceof DetailNode)
-                .isTrue();
+                .that(javadoc)
+                .isInstanceOf(DetailNode.class);
         final int type = ((DetailNode) javadoc).getType();
         assertWithMessage("Invalid child token type")
             .that(type)
@@ -205,16 +205,16 @@ public class ParseTreeTablePresentationTest extends AbstractPathTestSupport {
         parseTree.setParseMode(ParseMode.JAVA_WITH_JAVADOC_AND_COMMENTS);
         final Object javadoc = parseTree.getChild(commentContentNode, 0);
         assertWithMessage("Invalid child type")
-                .that(javadoc instanceof DetailNode)
-                .isTrue();
+                .that(javadoc)
+                .isInstanceOf(DetailNode.class);
         final int type = ((DetailNode) javadoc).getType();
         assertWithMessage("Invalid child token type")
             .that(type)
             .isEqualTo(JavadocTokenTypes.JAVADOC);
         final Object javadocChild = parseTree.getChild(javadoc, 2);
         assertWithMessage("Invalid child type")
-                .that(javadocChild instanceof DetailNode)
-                .isTrue();
+                .that(javadocChild)
+                .isInstanceOf(DetailNode.class);
         final int childType = ((DetailNode) javadocChild).getType();
         assertWithMessage("Invalid child token type")
             .that(childType)

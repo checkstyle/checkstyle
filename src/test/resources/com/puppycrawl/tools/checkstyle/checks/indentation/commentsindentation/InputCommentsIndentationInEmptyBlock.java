@@ -13,8 +13,8 @@ public class InputCommentsIndentationInEmptyBlock {
         int a = 5, b = 3, v = 6;
         if (a == b
             && v == b || ( a ==1
-                   /// violation
-                       /* violation
+                   /// violation '.* incorrect .* level 19, expected is 31, .* same .* as line 19.'
+                       /* // violation '.* incorrect .* level 23, expected is 31, .* as line 19.'
                         * one fine day ... */
                                && b == 1)   ) {
             // Cannot clearly detect user intention of explanation target.
@@ -37,7 +37,7 @@ public class InputCommentsIndentationInEmptyBlock {
         if (a == b
             && v == b || (a == 1
             && b == 1)) {
-// violation
+// violation '.* incorrect .* level 0, expected is 8, .* same .* as line 41.'
         }
     }
 
@@ -61,7 +61,7 @@ public class InputCommentsIndentationInEmptyBlock {
     private static void foo5() { // trailing
         if (true) // trailing comment
         {
-// violation
+// violation '.* incorrect .* level 0, expected is 8, .* same .* as line 65.'
         }
         if (true) { // trailing comment
 
@@ -75,7 +75,7 @@ public class InputCommentsIndentationInEmptyBlock {
         try {
 
         } catch (Exception e) {
-// violation
+// violation '.* incorrect .* level 0, expected is 8, .* same .* as line 79.'
         }
     }
 
@@ -107,11 +107,11 @@ public class InputCommentsIndentationInEmptyBlock {
         // comment
         };
         String[] array4 = {
-// violation
+// violation '.* incorrect .* level 0, expected is 8, .* same .* as line 111.'
         };
         String[] array5 = {
 
-// violation
+// violation '.* incorrect .* level 0, expected is 8, .* same .* as line 115.'
         };
     }
 }

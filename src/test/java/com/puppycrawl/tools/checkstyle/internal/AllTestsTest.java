@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -226,8 +226,8 @@ public class AllTestsTest {
 
                     assertWithMessage("Test must be named after a production class "
                                + "and must be in the same package of the production class: " + path)
-                            .that(classes != null && classes.contains(fileName))
-                            .isTrue();
+                            .that(classes)
+                            .contains(fileName);
                 }
             }
         }

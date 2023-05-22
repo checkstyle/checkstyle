@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -40,6 +40,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <a href="https://checkstyle.org/styleguides/google-java-style-20180523/javaguide.html#s5.3-camel-case">
  * Google Style Guide</a> to get to know how to avoid long abbreviations in names.
  * </p>
+ * <p>'_' is considered as word separator in identifier name.</p>
  * <p>
  * {@code allowedAbbreviationLength} specifies how many consecutive capital letters are
  * allowed in the identifier.
@@ -294,6 +295,27 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *     public final int customerID = 2;          // violation
  *     public static int nextID = 3;             // OK, ignored
  *     public static final int MAX_ALLOWED = 4;  // violation
+ * }
+ * </pre>
+ * <p>
+ * To configure to check variables, enforce
+ * no abbreviations (essentially camel case) except for
+ * words like 'ALLOWED'.
+ * </p>
+ * <p>Configuration:</p>
+ * <pre>
+ * &lt;module name="AbbreviationAsWordInName"&gt;
+ *     &lt;property name="allowedAbbreviations" value="ALLOWED"/&gt;
+ *     &lt;property name="ignoreStaticFinal" value="false"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * public class MyClass {
+ *     public int counterXYZ = 1;                // OK
+ *     public final int customerID = 2;          // OK
+ *     public static int nextID = 3;             // OK
+ *     public static final int MAX_ALLOWED = 4;  // OK, abbreviation is allowed
  * }
  * </pre>
  * <p>
@@ -583,8 +605,17 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
             else if (abbrStarted) {
                 abbrStarted = false;
 
-                final int endIndex = index - 1;
-                result = getAbbreviationIfIllegal(str, beginIndex, endIndex);
+                final int endIndex;
+                final int allowedLength;
+                if (symbol == '_') {
+                    endIndex = index;
+                    allowedLength = allowedAbbreviationLength + 1;
+                }
+                else {
+                    endIndex = index - 1;
+                    allowedLength = allowedAbbreviationLength;
+                }
+                result = getAbbreviationIfIllegal(str, beginIndex, endIndex, allowedLength);
                 if (result != null) {
                     break;
                 }
@@ -594,7 +625,7 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
         // if abbreviation at the end of name (example: scaleX)
         if (abbrStarted) {
             final int endIndex = str.length() - 1;
-            result = getAbbreviationIfIllegal(str, beginIndex, endIndex);
+            result = getAbbreviationIfIllegal(str, beginIndex, endIndex, allowedAbbreviationLength);
         }
         return result;
     }
@@ -606,13 +637,15 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
      * @param str name
      * @param beginIndex begin index
      * @param endIndex end index
+     * @param allowedLength maximum allowed length for Abbreviation
      * @return the abbreviation if it is bigger than required and not in the
      *         ignore list, otherwise {@code null}
      */
-    private String getAbbreviationIfIllegal(String str, int beginIndex, int endIndex) {
+    private String getAbbreviationIfIllegal(String str, int beginIndex, int endIndex,
+                                            int allowedLength) {
         String result = null;
         final int abbrLength = endIndex - beginIndex;
-        if (abbrLength > allowedAbbreviationLength) {
+        if (abbrLength > allowedLength) {
             final String abbr = getAbbreviation(str, beginIndex, endIndex);
             if (!allowedAbbreviations.contains(abbr)) {
                 result = abbr;

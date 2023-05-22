@@ -19,7 +19,7 @@ public class InputAnnotationUseStyleNoParens
 
 @SomeArrays(pooches={DOGS.LEO}, um={}, duh={"bleh"})
 @SuppressWarnings("") //compact_no_array
-@Deprecated() // violation
+@Deprecated() // violation 'Annotation cannot have closing parenthesis'
 class Dep3 {
 
 }
@@ -36,10 +36,11 @@ enum SON3 {
     ETHAN
 }
 
-@InputAnnotationUseStyleCustomAnnotation6() // violation
+// violation below 'Annotation cannot have closing parenthesis'
+@InputAnnotationUseStyleCustomAnnotation6()
 enum DOGS3 {
 
-    @Deprecated() // violation
+    @Deprecated() // violation 'Annotation cannot have closing parenthesis'
     LEO,
     HERBIE
 }
@@ -81,9 +82,11 @@ class Closing3 {
 class Example9 {}
 @AnnotationWithAnnotationValue(value = @Another)
 class Example10 {}
-@AnnotationWithAnnotationValue(@Another()) // violation
+// violation below 'Annotation cannot have closing parenthesis'
+@AnnotationWithAnnotationValue(@Another())
 class Example11 {}
-@AnnotationWithAnnotationValue(value = @Another()) // violation
+// violation below 'Annotation cannot have closing parenthesis'
+@AnnotationWithAnnotationValue(value = @Another())
 class Example12 {}
 
 class Foo3 {

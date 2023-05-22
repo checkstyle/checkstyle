@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -39,6 +39,9 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Maintains a set of check suppressions from {@code @SuppressWarnings} annotations.
  * It allows to prevent Checkstyle from reporting violations from parts of code that were
  * annotated with {@code @SuppressWarnings} and using name of the check to be excluded.
+ * It is possible to suppress all the checkstyle warnings with the argument {@code "all"}.
+ * You can also use a {@code checkstyle:} prefix to prevent compiler
+ * from processing these annotations.
  * You can also define aliases for check names that need to be suppressed.
  * </p>
  * <ul>
@@ -50,35 +53,52 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </li>
  * </ul>
  * <p>
- * To prevent {@code FooCheck} violations from being reported write:
+ * To use default module configuration:
  * </p>
  * <pre>
- * &#64;SuppressWarnings("foo") interface I { }
- * &#64;SuppressWarnings("foo") enum E { }
- * &#64;SuppressWarnings("foo") InputSuppressWarningsFilter() { }
+ * &lt;module name=&quot;TreeWalker&quot;&gt;
+ *   &lt;module name=&quot;MemberName&quot;/&gt;
+ *   &lt;module name=&quot;ConstantName&quot;/&gt;
+ *   &lt;module name=&quot;ParameterNumber&quot;&gt;
+ *     &lt;property name=&quot;id&quot; value=&quot;ParamNumberId&quot;/&gt;
+ *   &lt;/module&gt;
+ *   &lt;module name=&quot;NoWhitespaceAfter&quot;/&gt;
+ *
+ *   &lt;module name=&quot;SuppressWarningsHolder&quot;/&gt;
+ * &lt;/module&gt;
+ * &lt;module name=&quot;SuppressWarningsFilter&quot;/&gt;
  * </pre>
- * <p>
- * Some real check examples:
- * </p>
- * <p>
- * This will prevent from invocation of the MemberNameCheck:
- * </p>
  * <pre>
- * &#64;SuppressWarnings({"membername"})
- * private int J;
- * </pre>
- * <p>
- * You can also use a {@code checkstyle} prefix to prevent compiler from
- * processing these annotations. For example this will prevent ConstantNameCheck:
- * </p>
- * <pre>
- * &#64;SuppressWarnings("checkstyle:constantname")
- * private static final int m = 0;
+ * class Test {
+ *
+ *     private int K; // violation
+ *     &#64;SuppressWarnings({"membername"})
+ *     private int J; // violation suppressed
+ *
+ *     private static final int i = 0; // violation
+ *     &#64;SuppressWarnings("checkstyle:constantname")
+ *     private static final int m = 0; // violation suppressed
+ *
+ *     public void needsLotsOfParameters (int a, // violation
+ *       int b, int c, int d, int e, int f, int g, int h) {
+ *       // ...
+ *     }
+ *
+ *     &#64;SuppressWarnings("ParamNumberId")
+ *     public void needsLotsOfParameters1 (int a, // violation suppressed
+ *       int b, int c, int d, int e, int f, int g, int h) {
+ *       //  ...
+ *     }
+ *
+ *    private int [] ARR; // 2 violations
+ *    &#64;SuppressWarnings("all")
+ *    private int [] ARRAY; // violations suppressed
+ * }
  * </pre>
  * <p>
  * The general rule is that the argument of the {@code @SuppressWarnings} will be
- * matched against class name of the checker in lower case and without {@code Check}
- * suffix if present.
+ * matched against class name of the check in any letter case. Adding {@code check}
+ * suffix is also accepted.
  * </p>
  * <p>
  * If {@code aliasList} property was provided you can use your own names e.g. below
@@ -86,19 +106,30 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * the {@code aliasList}:
  * </p>
  * <pre>
- * &#64;SuppressWarnings("paramnum")
- * public void needsLotsOfParameters(@SuppressWarnings("unused") int a,
- *   int b, int c, int d, int e, int f, int g, int h) {
- *   ...
- * }
+ * &lt;module name=&quot;TreeWalker&quot;&gt;
+ *   &lt;module name=&quot;ParameterNumber&quot;/&gt;
+ *
+ *   &lt;module name=&quot;SuppressWarningsHolder&quot;&gt;
+ *     &lt;property name=&quot;aliasList&quot; value=
+ *       &quot;com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck=paramnum&quot;/&gt;
+ *   &lt;/module&gt;
+ * &lt;/module&gt;
+ * &lt;module name=&quot;SuppressWarningsFilter&quot;/&gt;
  * </pre>
- * <p>
- * It is possible to suppress all the checkstyle warnings with the argument {@code "all"}:
- * </p>
  * <pre>
- * &#64;SuppressWarnings("all")
- * public void someFunctionWithInvalidStyle() {
- *   //...
+ * class Test {
+ *
+ *     public void needsLotsOfParameters (int a, // violation
+ *       int b, int c, int d, int e, int f, int g, int h) {
+ *       // ...
+ *     }
+ *
+ *     &#64;SuppressWarnings("paramnum")
+ *     public void needsLotsOfParameters1 (int a, // violation suppressed
+ *       int b, int c, int d, int e, int f, int g, int h) {
+ *       //  ...
+ *     }
+ *
  * }
  * </pre>
  * <p>
@@ -124,7 +155,7 @@ public class SuppressWarningsHolder
     private static final String JAVA_LANG_PREFIX = "java.lang.";
 
     /** Suffix to be removed from subclasses of Check. */
-    private static final String CHECK_SUFFIX = "Check";
+    private static final String CHECK_SUFFIX = "check";
 
     /** Special warning id for matching all the warnings. */
     private static final String ALL_WARNING_MATCHING_ID = "all";
@@ -151,8 +182,8 @@ public class SuppressWarningsHolder
 
     /**
      * Returns the default alias for the source name of a check, which is the
-     * source name in lower case with any dotted prefix or "Check" suffix
-     * removed.
+     * source name in lower case with any dotted prefix or "Check"/"check"
+     * suffix removed.
      *
      * @param sourceName the source name of the check (generally the class
      *        name)
@@ -160,11 +191,12 @@ public class SuppressWarningsHolder
      */
     public static String getDefaultAlias(String sourceName) {
         int endIndex = sourceName.length();
-        if (sourceName.endsWith(CHECK_SUFFIX)) {
+        final String sourceNameLower = sourceName.toLowerCase(Locale.ENGLISH);
+        if (sourceNameLower.endsWith(CHECK_SUFFIX)) {
             endIndex -= CHECK_SUFFIX.length();
         }
-        final int startIndex = sourceName.lastIndexOf('.') + 1;
-        return sourceName.substring(startIndex, endIndex).toLowerCase(Locale.ENGLISH);
+        final int startIndex = sourceNameLower.lastIndexOf('.') + 1;
+        return sourceNameLower.substring(startIndex, endIndex);
     }
 
     /**
@@ -237,7 +269,8 @@ public class SuppressWarningsHolder
             final String checkName = entry.getCheckName();
             final boolean nameMatches =
                 ALL_WARNING_MATCHING_ID.equals(checkName)
-                    || checkName.equalsIgnoreCase(checkAlias);
+                    || checkName.equalsIgnoreCase(checkAlias)
+                    || getDefaultAlias(checkName).equalsIgnoreCase(checkAlias);
             if (afterStart && beforeEnd
                     && (nameMatches || checkName.equals(event.getModuleId()))) {
                 suppressed = true;
@@ -562,7 +595,7 @@ public class SuppressWarningsHolder
     }
 
     /** Records a particular suppression for a region of a file. */
-    private static class Entry {
+    private static final class Entry {
 
         /** The source name of the suppressed check. */
         private final String checkName;
@@ -584,7 +617,7 @@ public class SuppressWarningsHolder
          * @param lastLine the last line of the suppression region
          * @param lastColumn the last column of the suppression region
          */
-        /* package */ Entry(String checkName, int firstLine, int firstColumn,
+        private Entry(String checkName, int firstLine, int firstColumn,
             int lastLine, int lastColumn) {
             this.checkName = checkName;
             this.firstLine = firstLine;

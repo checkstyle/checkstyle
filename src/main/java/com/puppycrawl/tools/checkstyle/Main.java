@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -42,13 +42,12 @@ import java.util.stream.Collectors;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import com.puppycrawl.tools.checkstyle.AbstractAutomaticBean.OutputStreamOptions;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
-import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.RootModule;
-import com.puppycrawl.tools.checkstyle.api.Violation;
 import com.puppycrawl.tools.checkstyle.utils.ChainedPropertyUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.XpathUtil;
@@ -103,6 +102,11 @@ public final class Main {
      * @param args the command line arguments.
      * @throws IOException if there is a problem with files access
      * @noinspection UseOfSystemOutOrSystemErr, CallToPrintStackTrace, CallToSystemExit
+     * @noinspectionreason UseOfSystemOutOrSystemErr - driver class for Checkstyle requires
+     *      usage of System.out and System.err
+     * @noinspectionreason CallToPrintStackTrace - driver class for Checkstyle must be able to
+     *      show all details in case of failure
+     * @noinspectionreason CallToSystemExit - driver class must call exit
      **/
     public static void main(String... args) throws IOException {
 
@@ -141,12 +145,12 @@ public final class Main {
         finally {
             // return exit code base on validation of Checker
             if (errorCounter > 0) {
-                final Violation errorCounterViolation = new Violation(1,
-                        Definitions.CHECKSTYLE_BUNDLE, ERROR_COUNTER,
-                        new String[] {String.valueOf(errorCounter)}, null, Main.class, null);
+                final LocalizedMessage errorCounterViolation = new LocalizedMessage(
+                        Definitions.CHECKSTYLE_BUNDLE, Main.class,
+                        ERROR_COUNTER, String.valueOf(errorCounter));
                 // print error count statistic to error output stream,
                 // output stream might be used by validation report content
-                System.err.println(errorCounterViolation.getViolation());
+                System.err.println(errorCounterViolation.getMessage());
             }
         }
         Runtime.getRuntime().exit(exitStatus);
@@ -171,6 +175,8 @@ public final class Main {
      * @throws IOException if a file could not be read.
      * @throws CheckstyleException if something happens processing the files.
      * @noinspection UseOfSystemOutOrSystemErr
+     * @noinspectionreason UseOfSystemOutOrSystemErr - driver class for Checkstyle requires
+     *      usage of System.out and System.err
      */
     private static int execute(ParseResult parseResult, CliOptions options)
             throws IOException, CheckstyleException {
@@ -244,11 +250,11 @@ public final class Main {
      * patterns supplied.
      *
      * @param path The path of the directory/file to check
-     * @param patternsToExclude The list of patterns to exclude from searching or being added as
-     *        files.
+     * @param patternsToExclude The collection of patterns to exclude from searching
+     *        or being added as files.
      * @return True if the directory/file matches one of the patterns.
      */
-    private static boolean isPathExcluded(String path, List<Pattern> patternsToExclude) {
+    private static boolean isPathExcluded(String path, Iterable<Pattern> patternsToExclude) {
         boolean result = false;
 
         for (Pattern pattern : patternsToExclude) {
@@ -270,6 +276,8 @@ public final class Main {
      * @throws IOException if a file could not be read.
      * @throws CheckstyleException if something happens processing the files.
      * @noinspection UseOfSystemOutOrSystemErr
+     * @noinspectionreason UseOfSystemOutOrSystemErr - driver class for Checkstyle requires
+     *      usage of System.out and System.err
      */
     private static int runCli(CliOptions options, List<File> filesToProcess)
             throws IOException, CheckstyleException {
@@ -430,10 +438,10 @@ public final class Main {
             properties.load(stream);
         }
         catch (final IOException ex) {
-            final Violation loadPropertiesExceptionMessage = new Violation(1,
-                    Definitions.CHECKSTYLE_BUNDLE, LOAD_PROPERTIES_EXCEPTION,
-                    new String[] {file.getAbsolutePath()}, null, Main.class, null);
-            throw new CheckstyleException(loadPropertiesExceptionMessage.getViolation(), ex);
+            final LocalizedMessage loadPropertiesExceptionMessage = new LocalizedMessage(
+                    Definitions.CHECKSTYLE_BUNDLE, Main.class,
+                    LOAD_PROPERTIES_EXCEPTION, file.getAbsolutePath());
+            throw new CheckstyleException(loadPropertiesExceptionMessage.getMessage(), ex);
         }
 
         return ChainedPropertyUtil.getResolvedProperties(properties);
@@ -489,7 +497,7 @@ public final class Main {
     private static AuditListener createListener(OutputFormat format, Path outputLocation)
             throws IOException {
         final OutputStream out = getOutputStream(outputLocation);
-        final AutomaticBean.OutputStreamOptions closeOutputStreamOption =
+        final OutputStreamOptions closeOutputStreamOption =
                 getOutputStreamOptions(outputLocation);
         return format.createListener(out, closeOutputStreamOption);
     }
@@ -501,6 +509,8 @@ public final class Main {
      * @return output stream
      * @throws IOException might happen
      * @noinspection UseOfSystemOutOrSystemErr
+     * @noinspectionreason UseOfSystemOutOrSystemErr - driver class for Checkstyle requires
+     *      usage of System.out and System.err
      */
     @SuppressWarnings("resource")
     private static OutputStream getOutputStream(Path outputPath) throws IOException {
@@ -515,18 +525,18 @@ public final class Main {
     }
 
     /**
-     * Create {@link AutomaticBean.OutputStreamOptions} for the given location.
+     * Create {@link OutputStreamOptions} for the given location.
      *
      * @param outputPath output location
      * @return output stream options
      */
-    private static AutomaticBean.OutputStreamOptions getOutputStreamOptions(Path outputPath) {
-        final AutomaticBean.OutputStreamOptions result;
+    private static OutputStreamOptions getOutputStreamOptions(Path outputPath) {
+        final OutputStreamOptions result;
         if (outputPath == null) {
-            result = AutomaticBean.OutputStreamOptions.NONE;
+            result = OutputStreamOptions.NONE;
         }
         else {
-            result = AutomaticBean.OutputStreamOptions.CLOSE;
+            result = OutputStreamOptions.CLOSE;
         }
         return result;
     }
@@ -535,8 +545,8 @@ public final class Main {
      * Enumeration over the possible output formats.
      *
      * @noinspection PackageVisibleInnerClass
+     * @noinspectionreason PackageVisibleInnerClass - we keep this enum package visible for tests
      */
-    // Package-visible for tests.
     enum OutputFormat {
         /** XML output format. */
         XML,
@@ -555,7 +565,7 @@ public final class Main {
          */
         public AuditListener createListener(
             OutputStream out,
-            AutomaticBean.OutputStreamOptions options) throws IOException {
+            OutputStreamOptions options) throws IOException {
             final AuditListener result;
             if (this == XML) {
                 result = new XMLLogger(out, options);
@@ -602,13 +612,21 @@ public final class Main {
      *
      * @noinspection unused, FieldMayBeFinal, CanBeFinal,
      *              MismatchedQueryAndUpdateOfCollection, LocalCanBeFinal
+     * @noinspectionreason FieldMayBeFinal - usage of picocli requires
+     *      suppression of above inspections
+     * @noinspectionreason CanBeFinal - usage of picocli requires
+     *      suppression of above inspections
+     * @noinspectionreason MismatchedQueryAndUpdateOfCollection - list of files is gathered and used
+     *      via reflection by picocli library
+     * @noinspectionreason LocalCanBeFinal - usage of picocli requires
+     *      suppression of above inspections
      */
     @Command(name = "checkstyle", description = "Checkstyle verifies that the specified "
             + "source code files adhere to the specified rules. By default, violations are "
             + "reported to standard out in plain format. Checkstyle requires a configuration "
             + "XML file that configures the checks to apply.",
             mixinStandardHelpOptions = true)
-    private static class CliOptions {
+    private static final class CliOptions {
 
         /** Width of CLI help option. */
         private static final int HELP_WIDTH = 100;
@@ -627,19 +645,14 @@ public final class Main {
 
         /**
          * The checker threads number.
-         * Suppression: CanBeFinal - we use picocli and it use reflection to manage such fields
          * This option has been skipped for CLI options intentionally.
          *
-         * @noinspection CanBeFinal
          */
         private static final int CHECKER_THREADS_NUMBER = DEFAULT_THREAD_COUNT;
 
         /**
          * The tree walker threads number.
-         * Suppression: CanBeFinal - we use picocli and it use reflection to manage such fields
-         * This option has been skipped for CLI options intentionally.
          *
-         * @noinspection CanBeFinal
          */
         private static final int TREE_WALKER_THREADS_NUMBER = DEFAULT_THREAD_COUNT;
 
@@ -676,9 +689,10 @@ public final class Main {
 
         /**
          * Tab character length.
-         * Suppression: CanBeFinal - we use picocli and it use reflection to manage such fields
          *
          * @noinspection CanBeFinal
+         * @noinspectionreason CanBeFinal - we use picocli, and it uses
+         *      reflection to manage such fields
          */
         @Option(names = {"-w", "--tabWidth"},
                 description = "Sets the length of the tab character. "
@@ -696,9 +710,10 @@ public final class Main {
 
         /**
          * Output format.
-         * Suppression: CanBeFinal - we use picocli and it use reflection to manage such fields
          *
          * @noinspection CanBeFinal
+         * @noinspectionreason CanBeFinal - we use picocli, and it uses
+         *      reflection to manage such fields
          */
         @Option(names = "-f",
                 description = "Specifies the output format. Valid values: "
@@ -746,9 +761,10 @@ public final class Main {
 
         /**
          * Option that allows users to specify a list of paths to exclude.
-         * Suppression: CanBeFinal - we use picocli and it use reflection to manage such fields
          *
          * @noinspection CanBeFinal
+         * @noinspectionreason CanBeFinal - we use picocli, and it uses
+         *      reflection to manage such fields
          */
         @Option(names = {"-e", "--exclude"},
                 description = "Directory/file to exclude from CheckStyle. The path can be the "
@@ -758,9 +774,10 @@ public final class Main {
 
         /**
          * Option that allows users to specify a regex of paths to exclude.
-         * Suppression: CanBeFinal - we use picocli and it use reflection to manage such fields
          *
          * @noinspection CanBeFinal
+         * @noinspectionreason CanBeFinal - we use picocli, and it uses
+         *      reflection to manage such fields
          */
         @Option(names = {"-x", "--exclude-regexp"},
                 description = "Directory/file pattern to exclude from CheckStyle. Multiple "

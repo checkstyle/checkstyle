@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -55,7 +55,7 @@ public class BlockCommentPositionTest extends AbstractModuleTestSupport {
                 new BlockCommentPositionTestMetadata("InputBlockCommentPositionOnEnum.java",
                         BlockCommentPosition::isOnEnum, 3),
                 new BlockCommentPositionTestMetadata("InputBlockCommentPositionOnConstructor.java",
-                        BlockCommentPosition::isOnConstructor, 3),
+                        BlockCommentPosition::isOnConstructor, 5),
                 new BlockCommentPositionTestMetadata("InputBlockCommentPositionOnInterface.java",
                         BlockCommentPosition::isOnInterface, 3),
                 new BlockCommentPositionTestMetadata("InputBlockCommentPositionOnAnnotation.java",
@@ -132,7 +132,7 @@ public class BlockCommentPositionTest extends AbstractModuleTestSupport {
         private final Function<DetailAST, Boolean> assertion;
         private final int matchesNum;
 
-        /* package */ BlockCommentPositionTestMetadata(String fileName, Function<DetailAST,
+        private BlockCommentPositionTestMetadata(String fileName, Function<DetailAST,
                 Boolean> assertion, int matchesNum) {
             this.fileName = fileName;
             this.assertion = assertion;

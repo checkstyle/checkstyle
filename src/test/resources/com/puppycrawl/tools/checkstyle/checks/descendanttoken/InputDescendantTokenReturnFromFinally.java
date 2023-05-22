@@ -19,7 +19,7 @@ public class InputDescendantTokenReturnFromFinally {
     public void foo() {
         try {
             System.currentTimeMillis();
-        } finally { // violation
+        } finally { // violation 'Return from finally is not allowed'
             return;
         }
     }
@@ -27,7 +27,7 @@ public class InputDescendantTokenReturnFromFinally {
     public void bar() {
         try {
             System.currentTimeMillis();
-        } finally { // violation
+        } finally { // violation 'Return from finally is not allowed'
             if (System.currentTimeMillis() == 0) {
                 return; // return from if statement
             }

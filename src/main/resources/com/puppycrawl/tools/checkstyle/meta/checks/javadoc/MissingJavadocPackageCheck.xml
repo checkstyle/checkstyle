@@ -5,7 +5,7 @@
               name="MissingJavadocPackage"
               parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
- Checks for missing Javadoc comments in package-info.java files.
+ Checks for missing package definition Javadoc comments in package-info.java files.
  &lt;/p&gt;
  &lt;p&gt;
  Rationale: description and other related documentation for a package can be written up
@@ -13,6 +13,10 @@
  See &lt;a
  href="https://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html#packagecomment"
  &gt;link&lt;/a&gt; for more info.
+ &lt;/p&gt;
+ &lt;p&gt;
+ This check specifically only validates package definitions. It will not validate any methods or
+ interfaces declared in the package-info.java file.
  &lt;/p&gt;</description>
          <message-keys>
             <message-key key="package.javadoc.missing"/>

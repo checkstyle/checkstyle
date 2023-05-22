@@ -72,7 +72,7 @@
         </li>
         <li> Enable array initialisation indentation settings. Author: Vaclav Chalupa. </li>
         <li> Enhance WhitespaceAroundCheck to ignore Annotation Array Initialization curlies as it
-        does for Array Initialization outside of annotations.. Author: Jacob Tomaw </li>
+        does for Array Initialization outside of annotations. Author: Jacob Tomaw </li>
         <li>
           ignore option to the JavadocVariable check. Author: Yuriy Chulovskyy. <a href="https://github.com/checkstyle/checkstyle/issues/98">#98</a>
         </li>
@@ -1283,7 +1283,7 @@
       <ul>
         <li>
           Applied patch 1344344 by sjq to provide the new
-          <a href="config_misc.html#Regexp">Regexp</a> check that can
+          <a href="config_regexp.html#Regexp">Regexp</a> check that can
           provide the functionality of the following
           checks: <a
           href="config_header.html#RegexpHeader">RegexpHeader</a>

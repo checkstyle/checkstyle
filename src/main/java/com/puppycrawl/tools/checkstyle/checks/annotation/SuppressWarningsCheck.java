@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -111,6 +111,29 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <pre>
  * &lt;module name=&quot;SuppressWarnings&quot;/&gt;
  * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * &#64;SuppressWarnings("") // violation
+ * class TestA {
+ *   &#64;SuppressWarnings("") // violation
+ *   final int num1 = 1;
+ *   &#64;SuppressWarnings("all") // ok
+ *   final int num2 = 2;
+ *   &#64;SuppressWarnings("unused") // ok
+ *   final int num3 = 3;
+ *
+ *   void foo1(&#64;SuppressWarnings("unused") int param) {} // ok
+ *
+ *   &#64;SuppressWarnings("all") // ok
+ *   void foo2(int param) {}
+ *   &#64;SuppressWarnings("unused") // ok
+ *   void foo3(int param) {}
+ *   &#64;SuppressWarnings(true?"all":"unused") // ok
+ *   void foo4(int param) {}
+ * }
+ * &#64;SuppressWarnings("unchecked") // ok
+ * class TestB {}
+ * </pre>
  * <p>
  * To configure the check so that the "unchecked" and "unused"
  * warnings cannot be suppressed on anything but variable and parameter declarations.
@@ -126,6 +149,29 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *     ENUM_CONSTANT_DEF,METHOD_DEF,CTOR_DEF
  *     &quot;/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * &#64;SuppressWarnings("") // ok
+ * class TestA {
+ *   &#64;SuppressWarnings("") // ok
+ *   final int num1 = 1;
+ *   &#64;SuppressWarnings("all") // ok
+ *   final int num2 = 2;
+ *   &#64;SuppressWarnings("unused") // ok
+ *   final int num3 = 3;
+ *
+ *   void foo1(&#64;SuppressWarnings("unused") int param) {} // ok
+ *
+ *   &#64;SuppressWarnings("all") // ok
+ *   void foo2(int param) {}
+ *   &#64;SuppressWarnings("unused") // violation
+ *   void foo3(int param) {}
+ *   &#64;SuppressWarnings(true?"all":"unused") // violation
+ *   void foo4(int param) {}
+ * }
+ * &#64;SuppressWarnings("unchecked") // violation
+ * class TestB {}
  * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
@@ -242,18 +288,15 @@ public class SuppressWarningsCheck extends AbstractCheck {
                             case TokenTypes.QUESTION:
                                 walkConditional(fChild);
                                 break;
-                            // param in constant case
-                            // ex: public static final String UNCHECKED = "unchecked";
-                            // @SuppressWarnings(UNCHECKED)
-                            // or
-                            // @SuppressWarnings(SomeClass.UNCHECKED)
-                            case TokenTypes.IDENT:
-                            case TokenTypes.DOT:
-                                break;
                             default:
                                 // Known limitation: cases like @SuppressWarnings("un" + "used") or
                                 // @SuppressWarnings((String) "unused") are not properly supported,
                                 // but they should not cause exceptions.
+                                // Also constant as param
+                                // ex: public static final String UNCHECKED = "unchecked";
+                                // @SuppressWarnings(UNCHECKED)
+                                // or
+                                // @SuppressWarnings(SomeClass.UNCHECKED)
                         }
                     }
                     warning = warning.getNextSibling();

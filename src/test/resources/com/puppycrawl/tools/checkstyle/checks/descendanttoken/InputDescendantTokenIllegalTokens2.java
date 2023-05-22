@@ -28,6 +28,6 @@ public class InputDescendantTokenIllegalTokens2
                 break;
         }
     }
-
-    public native void nativeMethod(); // violation
+    // violation below 'Count of 1 for 'LITERAL_NATIVE' descendant 'LITERAL_NATIVE' exceeds .* 0.'
+    public native void nativeMethod();
 }

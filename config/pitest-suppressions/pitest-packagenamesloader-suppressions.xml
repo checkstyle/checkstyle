@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suppressedMutations>
+  <mutation unstable="false">
+    <sourceFile>PackageNamesLoader.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.PackageNamesLoader</mutatedClass>
+    <mutatedMethod>createIdToResourceNameMap</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/util/Map::put</description>
+    <lineContent>map.put(DTD_PUBLIC_CS_ID, DTD_RESOURCE_NAME);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>PackageNamesLoader.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.PackageNamesLoader</mutatedClass>
+    <mutatedMethod>createIdToResourceNameMap</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
+    <description>replaced call to java/util/Map::put with argument</description>
+    <lineContent>map.put(DTD_PUBLIC_CS_ID, DTD_RESOURCE_NAME);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>PackageNamesLoader.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.PackageNamesLoader</mutatedClass>
+    <mutatedMethod>createIdToResourceNameMap</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/util/Map::put</description>
+    <lineContent>map.put(DTD_PUBLIC_ID, DTD_RESOURCE_NAME);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>PackageNamesLoader.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.PackageNamesLoader</mutatedClass>
+    <mutatedMethod>createIdToResourceNameMap</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
+    <description>replaced call to java/util/Map::put with argument</description>
+    <lineContent>map.put(DTD_PUBLIC_ID, DTD_RESOURCE_NAME);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>PackageNamesLoader.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.PackageNamesLoader</mutatedClass>
+    <mutatedMethod>createIdToResourceNameMap</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.returns.EmptyObjectReturnValsMutator</mutator>
+    <description>replaced return value with Collections.emptyMap for com/puppycrawl/tools/checkstyle/PackageNamesLoader::createIdToResourceNameMap</description>
+    <lineContent>return map;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>PackageNamesLoader.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.PackageNamesLoader</mutatedClass>
+    <mutatedMethod>getPackageNames</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
+    <description>replaced call to java/util/Collections::unmodifiableSet with argument</description>
+    <lineContent>return Collections.unmodifiableSet(result);</lineContent>
+  </mutation>
+</suppressedMutations>

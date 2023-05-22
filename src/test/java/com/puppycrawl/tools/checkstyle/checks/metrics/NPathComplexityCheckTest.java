@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -23,6 +23,7 @@ import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.metrics.NPathComplexityCheck.MSG_KEY;
 
 import java.io.File;
+import java.math.BigInteger;
 import java.util.Collection;
 import java.util.Optional;
 import java.util.SortedSet;
@@ -132,6 +133,15 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
                 .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check, ast, "expressionValues",
                         expressionValues -> ((Collection<Context>) expressionValues).isEmpty()))
                 .isTrue();
+        assertWithMessage("Stateful field is not cleared after beginTree")
+                .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check, ast, "branchVisited",
+                        branchVisited -> !(boolean) branchVisited))
+                .isTrue();
+        assertWithMessage("Stateful field is not cleared after beginTree")
+                .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check, ast,
+                        "currentRangeValue",
+                        currentRangeValue -> currentRangeValue.equals(BigInteger.ZERO)))
+                .isTrue();
     }
 
     @Test
@@ -210,6 +220,32 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
 
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputNPathComplexityCheckSwitchExpression.java"),
+            expected);
+    }
+
+    @Test
+    public void testBranchVisited() throws Exception {
+
+        final String[] expected = {
+            "13:3: " + getCheckMessage(MSG_KEY, 37, 20),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputNPathComplexityCheckBranchVisited.java"),
+            expected);
+    }
+
+    @Test
+    public void testCount() throws Exception {
+
+        final String[] expected = {
+            "11:5: " + getCheckMessage(MSG_KEY, 30, 20),
+            "22:5: " + getCheckMessage(MSG_KEY, 72, 20),
+            "67:5: " + getCheckMessage(MSG_KEY, 23, 20),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputNPathComplexityCheckCount.java"),
             expected);
     }
 
@@ -341,6 +377,7 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
         astTernary.addChild(astTernaryTrue);
 
         final NPathComplexityCheck npathComplexityCheckObj = new NPathComplexityCheck();
+        npathComplexityCheckObj.beginTree(null);
 
         // visiting first ast, set expressionSpatialRange to [2,2 - 4,4]
         npathComplexityCheckObj.visitToken(astIf);

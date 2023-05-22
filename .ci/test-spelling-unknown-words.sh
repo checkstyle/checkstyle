@@ -5,26 +5,27 @@
 # plus `fchurn` which uses `dn` mostly rolled together.
 set -e
 
-spellchecker='.ci/jsoref-spellchecker'
+spellchecker='config/jsoref-spellchecker'
 temp='.ci-temp'
 whitelist_path="$spellchecker/whitelist.words"
 dict="$temp/english.words"
-word_splitter="$spellchecker/spelling-unknown-word-splitter.pl"
-run_output="$spellchecker/unknown.words"
+word_splitter="$temp/spelling-unknown-word-splitter.pl"
+run_output="$temp/unknown.words"
+
+mkdir -p $temp
 
 if [ ! -e "$dict" ]; then
-  mkdir -p $temp
   echo "Retrieve cached english.words from checkstyle.sourceforge.io"
   # english.words is taken from rpm:
   # https://rpmfind.net/linux/fedora/linux/development/rawhide/Everything/aarch64/os/Packages/w/"
   # "words-.*.noarch.rpm"
-  curl -k https://checkstyle.sourceforge.io/reports/english.words -o $dict
+  curl --fail-with-body -k https://checkstyle.sourceforge.io/reports/english.words -o $dict
 fi
 
 if [ ! -e "$word_splitter" ]; then
   echo "Retrieve w"
   w_location='https://raw.githubusercontent.com/jsoref/spelling/master/w'
-  curl -s "$w_location" |\
+  curl --fail-with-body -s "$w_location" |\
     perl -p -n -e "s</usr/share/dict/words><$dict>" > "$word_splitter"
   get_word_splitter_status="${PIPESTATUS[0]} ${PIPESTATUS[1]}"
   if [ "$get_word_splitter_status" != '0 0' ]; then
@@ -72,6 +73,8 @@ diff_output=$(diff -U1 "$whitelist_path" "$run_output" |grep -v "$spellchecker" 
 if [ -z "$diff_output" ]; then
   echo "No new words and misspellings found."
   rm $dict
+  rm $word_splitter
+  rm $run_output
   exit 0
 fi
 
@@ -85,7 +88,7 @@ if [ -z "$new_output" ]; then
   echo "$diff_output"
   echo "EOF"
   rm $dict
-  sleep 5
+  sleep 5s
   exit 1
 fi
 echo "New misspellings found, please review:"
@@ -95,5 +98,5 @@ echo "patch $whitelist_path <<EOF"
 echo "$diff_output"
 echo "EOF"
 rm $dict
-sleep 5
+sleep 5s
 exit 1

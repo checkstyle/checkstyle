@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -41,7 +41,7 @@ public final class SuppressionsStringPrinter {
 
     /** Line and column number config value pattern. */
     private static final Pattern VALID_SUPPRESSION_LINE_COLUMN_NUMBER_REGEX =
-            Pattern.compile("^([0-9]+):([0-9]+)$");
+            Pattern.compile("^(\\d+):(\\d+)$");
 
     /** OS specific line separator. */
     private static final String LINE_SEPARATOR = System.getProperty("line.separator");

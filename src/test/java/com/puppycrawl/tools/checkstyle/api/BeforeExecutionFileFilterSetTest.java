@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -20,7 +20,9 @@
 package com.puppycrawl.tools.checkstyle.api;
 
 import static com.google.common.truth.Truth.assertWithMessage;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import java.util.Set;
 import java.util.regex.Pattern;
 
 import org.junit.jupiter.api.Test;
@@ -98,6 +100,34 @@ public class BeforeExecutionFileFilterSetTest {
         assertWithMessage("Invalid filter set size")
                 .that(filterSet.getBeforeExecutionFileFilters())
                 .isEmpty();
+    }
+
+    /*
+      Due to low level configuration setup of BeforeExecutionFileFilterSet, conventional
+      input validation cannot be done here hence, pure JUnit testing has been
+      done for the time being
+    */
+    @Test
+    public void testUnmodifiableSet() {
+        final BeforeExecutionFileFilterSet filterSet = new BeforeExecutionFileFilterSet();
+        final BeforeExecutionFileFilter filter = new BeforeExecutionExclusionFileFilter();
+        filterSet.addBeforeExecutionFileFilter(filter);
+        final Set<BeforeExecutionFileFilter> excFilterSet =
+            filterSet.getBeforeExecutionFileFilters();
+        assertThrows(UnsupportedOperationException.class,
+            () -> excFilterSet.add(filter));
+    }
+
+    /*
+      Input based test does not call toString, but this method might be
+      useful for third party integrations.
+    */
+    @Test
+    public void testEmptyToString() {
+        final BeforeExecutionFileFilterSet filterSet = new BeforeExecutionFileFilterSet();
+        assertWithMessage("toString() result shouldn't be an empty string")
+                .that(filterSet.toString())
+                .isNotEmpty();
     }
 
 }

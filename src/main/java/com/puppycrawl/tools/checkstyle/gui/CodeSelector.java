@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -21,7 +21,7 @@ package com.puppycrawl.tools.checkstyle.gui;
 
 import java.awt.Color;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
 
 import javax.swing.JTextArea;
 
@@ -43,10 +43,10 @@ public class CodeSelector {
      *
      * @param node ast node.
      * @param editor text area editor.
-     * @param lines2position list to map lines.
+     * @param lines2position positions of lines.
      */
     public CodeSelector(final Object node, final JTextArea editor,
-                        final List<Integer> lines2position) {
+                        final Collection<Integer> lines2position) {
         this.editor = editor;
         if (node instanceof DetailAST) {
             pModel = new CodeSelectorPresentation((DetailAST) node,

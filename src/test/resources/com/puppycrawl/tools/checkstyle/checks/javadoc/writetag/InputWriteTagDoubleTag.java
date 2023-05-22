@@ -1,7 +1,7 @@
 /*
 WriteTag
 tag = @doubletag
-tagFormat = \S
+tagFormat = \\S
 tagSeverity = (default)info
 tokens = (default)INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF
 
@@ -9,13 +9,14 @@ tokens = (default)INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF
 */
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc.writetag;
-
+// violation 6 lines below , '@doubletag appeared at the same time.*'
+// violation 6 lines below , '@doubletag appeared at the same time.*'
 /**
  * Testing tag writing
  * @author Daniel Grenner
  * @incomplete This class needs more code...
- * @doubletag first text  // violation
- * @doubletag second text  // violation
+ * @doubletag first text
+ * @doubletag second text
  * @emptytag
  */
 class InputWriteTagDoubleTag

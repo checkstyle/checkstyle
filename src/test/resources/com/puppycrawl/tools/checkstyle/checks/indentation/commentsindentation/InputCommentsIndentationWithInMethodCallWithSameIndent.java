@@ -20,14 +20,14 @@ public class InputCommentsIndentationWithInMethodCallWithSameIndent {
         // Some comment here
         s1,
         s2
-      // violation
+      // violation '.* incorrect .* level 6, expected is 4, .* same .* as line 24.'
     );
 
     private final boolean isEqualsThree = equals(
         // Some comment here
         s1,
         s2
-          // violation
+          // violation '.* incorrect .* level 10, expected is 4, .* same .* as line 31.'
     );
 
     private boolean equals(String s1, String s2) {

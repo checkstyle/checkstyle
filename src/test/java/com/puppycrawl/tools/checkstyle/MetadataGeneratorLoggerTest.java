@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -27,8 +27,8 @@ import java.io.OutputStream;
 
 import org.junit.jupiter.api.Test;
 
+import com.puppycrawl.tools.checkstyle.AbstractAutomaticBean.OutputStreamOptions;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
-import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import com.puppycrawl.tools.checkstyle.api.Violation;
 import com.puppycrawl.tools.checkstyle.internal.utils.CloseAndFlushTestByteArrayOutputStream;
@@ -39,7 +39,7 @@ public class MetadataGeneratorLoggerTest {
     public void testIgnoreSeverityLevel() {
         final OutputStream outputStream = new ByteArrayOutputStream();
         final MetadataGeneratorLogger logger = new MetadataGeneratorLogger(outputStream,
-                AutomaticBean.OutputStreamOptions.CLOSE);
+                OutputStreamOptions.CLOSE);
         final AuditEvent event = new AuditEvent(this, "fileName",
                 new Violation(1, 2, "bundle", "key",
                         null, SeverityLevel.IGNORE, null, getClass(), "customViolation"));
@@ -55,7 +55,7 @@ public class MetadataGeneratorLoggerTest {
     public void testAddException() {
         final OutputStream outputStream = new ByteArrayOutputStream();
         final MetadataGeneratorLogger logger = new MetadataGeneratorLogger(outputStream,
-                AutomaticBean.OutputStreamOptions.CLOSE);
+                OutputStreamOptions.CLOSE);
         final AuditEvent event = new AuditEvent(1);
         logger.addException(event, new IllegalStateException("Test Exception"));
         logger.auditFinished(event);
@@ -69,7 +69,7 @@ public class MetadataGeneratorLoggerTest {
         try (CloseAndFlushTestByteArrayOutputStream outputStream =
                      new CloseAndFlushTestByteArrayOutputStream()) {
             final MetadataGeneratorLogger logger = new MetadataGeneratorLogger(outputStream,
-                    AutomaticBean.OutputStreamOptions.CLOSE);
+                    OutputStreamOptions.CLOSE);
             logger.auditFinished(new AuditEvent(1));
             assertWithMessage("Unexpected close count")
                     .that(outputStream.getCloseCount())
@@ -82,7 +82,7 @@ public class MetadataGeneratorLoggerTest {
         try (CloseAndFlushTestByteArrayOutputStream outputStream =
                      new CloseAndFlushTestByteArrayOutputStream()) {
             final MetadataGeneratorLogger logger = new MetadataGeneratorLogger(outputStream,
-                    AutomaticBean.OutputStreamOptions.NONE);
+                    OutputStreamOptions.NONE);
             final AuditEvent event = new AuditEvent(1);
             logger.auditFinished(event);
             assertWithMessage("Unexpected close count")
@@ -96,7 +96,7 @@ public class MetadataGeneratorLoggerTest {
         try (CloseAndFlushTestByteArrayOutputStream outputStream =
                      new CloseAndFlushTestByteArrayOutputStream()) {
             final MetadataGeneratorLogger logger = new MetadataGeneratorLogger(outputStream,
-                    AutomaticBean.OutputStreamOptions.NONE);
+                    OutputStreamOptions.NONE);
             final AuditEvent event = new AuditEvent(1);
             logger.auditStarted(event);
             logger.fileFinished(event);

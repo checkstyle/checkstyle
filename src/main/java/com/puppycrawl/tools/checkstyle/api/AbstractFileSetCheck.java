@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -50,11 +50,17 @@ public abstract class AbstractFileSetCheck
     /** The dispatcher errors are fired to. */
     private MessageDispatcher messageDispatcher;
 
-    /** Specify the file type extension of files to process. */
-    private String[] fileExtensions = CommonUtil.EMPTY_STRING_ARRAY;
+    /**
+     * Specify the file type extension of files to process.
+     * Default is uninitialized as the value is inherited from the parent module.
+     */
+    private String[] fileExtensions;
 
-    /** The tab width for column reporting. */
-    private int tabWidth = CommonUtil.DEFAULT_TAB_WIDTH;
+    /**
+     * The tab width for column reporting.
+     * Default is uninitialized as the value is inherited from the parent module.
+     */
+    private int tabWidth;
 
     /**
      * Called to process a file that matches the specified file extensions.
@@ -252,7 +258,7 @@ public abstract class AbstractFileSetCheck
     /**
      * The actual context holder.
      */
-    private static class FileContext {
+    private static final class FileContext {
 
         /** The sorted set for collecting violations. */
         private final SortedSet<Violation> violations = new TreeSet<>();

@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -50,7 +50,7 @@ public abstract class AbstractXpathTestSupport extends AbstractCheckstyleModuleT
     private static final String DELIMITER = " | \n";
 
     private static final Pattern LINE_COLUMN_NUMBER_REGEX =
-            Pattern.compile("([0-9]+):([0-9]+):");
+            Pattern.compile("(\\d+):(\\d+):");
 
     /**
      * The temporary folder to hold intermediate files.
@@ -226,7 +226,7 @@ public abstract class AbstractXpathTestSupport extends AbstractCheckstyleModuleT
          * @param violationLineNumber line no of the violation produced for the check.
          * @param violationColumnNumber column no of the violation produced for the check.
          */
-        /* package */ ViolationPosition(int violationLineNumber,
+        private ViolationPosition(int violationLineNumber,
                               int violationColumnNumber) {
             this.violationLineNumber = violationLineNumber;
             this.violationColumnNumber = violationColumnNumber;

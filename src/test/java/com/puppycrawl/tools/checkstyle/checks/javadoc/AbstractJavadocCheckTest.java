@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -77,20 +77,12 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     public void testJavadocTagsWithoutArgs() throws Exception {
         final DefaultConfiguration checkconfig = createModuleConfig(TempCheck.class);
         final String[] expected = {
-            "9: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 7,
-                    "mismatched input '<EOF>' expecting {WS, NEWLINE}", "JAVADOC_TAG"),
             "14: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 4,
                     "no viable alternative at input '<EOF>'", "JAVADOC_TAG"),
-            "17: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 6,
-                    "mismatched input '<EOF>' expecting {WS, NEWLINE}", "JAVADOC_TAG"),
-            "20: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 8,
-                    "mismatched input '<EOF>' expecting {WS, NEWLINE}", "JAVADOC_TAG"),
             "26: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 10,
                     "no viable alternative at input '<EOF>'", "JAVADOC_TAG"),
             "31: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 7,
                     "no viable alternative at input '<EOF>'", "JAVADOC_TAG"),
-            "36: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 7,
-                    "mismatched input '<EOF>' expecting {WS, NEWLINE}", "JAVADOC_TAG"),
             "41: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 6,
                     "no viable alternative at input '<EOF>'", "JAVADOC_TAG"),
             "62: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 13,
@@ -300,8 +292,8 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
                     + "\"RETURN_LITERAL\" was not found in "
                     + "Acceptable javadoc tokens list in check";
             assertWithMessage("Invalid exception, should start with: " + expected)
-                    .that(ex.getMessage().startsWith(expected))
-                    .isTrue();
+                    .that(ex.getMessage())
+                    .startsWith(expected);
         }
     }
 
@@ -333,8 +325,8 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
                     + JavadocTokenTypes.RETURN_LITERAL + "\" from required"
                     + " javadoc tokens was not found in default javadoc tokens list in check";
             assertWithMessage("Invalid exception, should start with: " + expected)
-                    .that(ex.getMessage().startsWith(expected))
-                    .isTrue();
+                    .that(ex.getMessage())
+                    .startsWith(expected);
         }
     }
 
@@ -346,8 +338,8 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputAbstractJavadocLeaveToken.java"), expected);
         assertWithMessage("Javadoc visit count should be greater than zero")
-                .that(JavadocVisitLeaveCheck.visitCount > 0)
-                .isTrue();
+                .that(JavadocVisitLeaveCheck.visitCount)
+                .isGreaterThan(0);
         assertWithMessage("Javadoc visit and leave count should be equal")
             .that(JavadocVisitLeaveCheck.leaveCount)
             .isEqualTo(JavadocVisitLeaveCheck.visitCount);

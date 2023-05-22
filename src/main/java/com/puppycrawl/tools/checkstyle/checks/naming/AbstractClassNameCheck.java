@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -33,9 +33,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </p>
  * <p>
  * Rationale: Abstract classes are convenience base class implementations of
- * interfaces, not types as such. As such they should be named to indicate this.
- * Also, if names of classes starts with 'Abstract' it's very convenient that
- * they will have abstract modifier.
+ * interfaces. For this reason, it should be made obvious that a given class
+ * is abstract by prefacing the class name with 'Abstract'.
  * </p>
  * <ul>
  * <li>

@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -31,8 +31,8 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <p>
- * Checks the placement of right curly braces ({@code '}'}) for code blocks. This check supports
- * if-else, try-catch-finally blocks, while-loops, for-loops,
+ * Checks the placement of right curly braces (<code>'}'</code>) for code blocks. This check
+ * supports if-else, try-catch-finally blocks, switch statements, while-loops, for-loops,
  * method definitions, class definitions, constructor definitions,
  * instance, static initialization blocks, annotation definitions and enum definitions.
  * For right curly brace of expression blocks of arrays, lambdas and class instances
@@ -161,6 +161,43 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * }
  * </pre>
  * <p>
+ * To configure the check with policy {@code alone} for
+ * <a href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/switch.html">
+ * Switch</a> Statements:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;RightCurly&quot;&gt;
+ *  &lt;property name=&quot;option&quot; value=&quot;alone&quot;/&gt;
+ *  &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_SWITCH&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <pre>
+ * class Test {
+ *
+ *     public void method0() {
+ *         int mode = 0;
+ *         switch (mode) {
+ *             case 1:
+ *                 int x = 1;
+ *                 break;
+ *             default:
+ *                 x = 0;
+ *         } // ok, RightCurly is alone
+ *     }
+ *
+ *     public void method0() {
+ *         int mode = 0;
+ *         switch (mode) {
+ *             case 1:
+ *                 int x = 1;
+ *                 break;
+ *             default:
+ *                 x = 0; } // violation, RightCurly should be alone on a line
+ *     }
+ *
+ * }
+ * </pre>
+ * <p>
  * To configure the check with policy {@code alone_or_singleline} for {@code if} and
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
  * METHOD_DEF</a>
@@ -202,6 +239,47 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *   }                                // OK
  *
  *   public void violate() { bar(); } // OK , because singleline
+ * }
+ * </pre>
+ * <p>
+ * To configure the check with policy {@code alone_or_singleline} for
+ * <a href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/switch.html">
+ * Switch</a>
+ * Statements:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;RightCurly&quot;&gt;
+ *  &lt;property name=&quot;option&quot; value=&quot;alone_or_singleline&quot;/&gt;
+ *  &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_SWITCH&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <pre>
+ * class Test {
+ *
+ *     public void method0() {
+ *         int mode = 0;
+ *         switch (mode) {
+ *             case 1:
+ *                 int x = 1;
+ *                 break;
+ *             default:
+ *                 x = 0;
+ *         } // ok
+ *     }
+ *
+ *     public static void method7() {
+ *         int mode = 0;
+ *         int x;
+ *         switch (mode) { case 1: x = 5; } // ok, RightCurly is on the same line as LeftCurly
+ *     }
+ *
+ *     public void method() {
+ *         int mode = 0;
+ *         int x;
+ *         switch (mode) {
+ *             case 1:
+ *                 x = 1; } // violation, right curly should be alone on line
+ *         }
  * }
  * </pre>
  * <p>
@@ -292,6 +370,7 @@ public class RightCurlyCheck extends AbstractCheck {
             TokenTypes.INTERFACE_DEF,
             TokenTypes.RECORD_DEF,
             TokenTypes.COMPACT_CTOR_DEF,
+            TokenTypes.LITERAL_SWITCH,
         };
     }
 
@@ -466,7 +545,7 @@ public class RightCurlyCheck extends AbstractCheck {
         }
 
         if (nextToken != null && nextToken.getType() == TokenTypes.DO_WHILE) {
-            final DetailAST doWhileSemi = nextToken.getParent().getLastChild();
+            final DetailAST doWhileSemi = nextToken.getParent();
             nextToken = Details.getNextToken(doWhileSemi);
         }
 
@@ -551,17 +630,16 @@ public class RightCurlyCheck extends AbstractCheck {
             switch (ast.getType()) {
                 case TokenTypes.LITERAL_TRY:
                 case TokenTypes.LITERAL_CATCH:
-                case TokenTypes.LITERAL_FINALLY:
-                    details = getDetailsForTryCatchFinally(ast);
+                    details = getDetailsForTryCatch(ast);
                     break;
                 case TokenTypes.LITERAL_IF:
-                case TokenTypes.LITERAL_ELSE:
-                    details = getDetailsForIfElse(ast);
+                    details = getDetailsForIf(ast);
                     break;
                 case TokenTypes.LITERAL_DO:
-                case TokenTypes.LITERAL_WHILE:
-                case TokenTypes.LITERAL_FOR:
-                    details = getDetailsForLoops(ast);
+                    details = getDetailsForDoLoops(ast);
+                    break;
+                case TokenTypes.LITERAL_SWITCH:
+                    details = getDetailsForSwitch(ast);
                     break;
                 default:
                     details = getDetailsForOthers(ast);
@@ -571,12 +649,52 @@ public class RightCurlyCheck extends AbstractCheck {
         }
 
         /**
-         * Collects validation details for LITERAL_TRY, LITERAL_CATCH, and LITERAL_FINALLY.
+         * Collects details about switch statements and expressions.
+         *
+         * @param switchNode switch statement or expression to gather details about
+         * @return new Details about given switch statement or expression
+         */
+        private static Details getDetailsForSwitch(DetailAST switchNode) {
+            final DetailAST lcurly = switchNode.findFirstToken(TokenTypes.LCURLY);
+            final DetailAST rcurly;
+            DetailAST nextToken = null;
+            // skipping switch expression as check only handles statements
+            if (isSwitchExpression(switchNode)) {
+                rcurly = null;
+            }
+            else {
+                rcurly = switchNode.getLastChild();
+                nextToken = getNextToken(switchNode);
+            }
+            return new Details(lcurly, rcurly, nextToken, true);
+        }
+
+        /**
+         * Check whether switch is expression or not.
+         *
+         * @param switchNode switch statement or expression to provide detail
+         * @return true if it is a switch expression
+         */
+        private static boolean isSwitchExpression(DetailAST switchNode) {
+            DetailAST currentNode = switchNode;
+            boolean ans = false;
+
+            while (currentNode != null) {
+                if (currentNode.getType() == TokenTypes.EXPR) {
+                    ans = true;
+                }
+                currentNode = currentNode.getParent();
+            }
+            return ans;
+        }
+
+        /**
+         * Collects validation details for LITERAL_TRY, and LITERAL_CATCH.
          *
          * @param ast a {@code DetailAST} value
          * @return object containing all details to make a validation
          */
-        private static Details getDetailsForTryCatchFinally(DetailAST ast) {
+        private static Details getDetailsForTryCatch(DetailAST ast) {
             final DetailAST lcurly;
             DetailAST nextToken;
             final int tokenType = ast.getType();
@@ -608,12 +726,12 @@ public class RightCurlyCheck extends AbstractCheck {
         }
 
         /**
-         * Collects validation details for LITERAL_IF and LITERAL_ELSE.
+         * Collects validation details for LITERAL_IF.
          *
          * @param ast a {@code DetailAST} value
          * @return object containing all details to make a validation
          */
-        private static Details getDetailsForIfElse(DetailAST ast) {
+        private static Details getDetailsForIf(DetailAST ast) {
             final boolean shouldCheckLastRcurly;
             final DetailAST lcurly;
             DetailAST nextToken = ast.findFirstToken(TokenTypes.LITERAL_ELSE);
@@ -648,7 +766,7 @@ public class RightCurlyCheck extends AbstractCheck {
             final int tokenType = ast.getType();
             if (isTokenWithNoChildSlist(tokenType)) {
                 final DetailAST child = ast.getLastChild();
-                lcurly = child.getFirstChild();
+                lcurly = child;
                 rcurly = child.getLastChild();
             }
             else {
@@ -673,35 +791,19 @@ public class RightCurlyCheck extends AbstractCheck {
         }
 
         /**
-         * Collects validation details for loops' tokens.
+         * Collects validation details for LITERAL_DO loops' tokens.
          *
          * @param ast a {@code DetailAST} value
          * @return an object containing all details to make a validation
          */
-        private static Details getDetailsForLoops(DetailAST ast) {
+        private static Details getDetailsForDoLoops(DetailAST ast) {
+            final DetailAST lcurly = ast.findFirstToken(TokenTypes.SLIST);
+            final DetailAST nextToken = ast.findFirstToken(TokenTypes.DO_WHILE);
             DetailAST rcurly = null;
-            final DetailAST lcurly;
-            final DetailAST nextToken;
-            final int tokenType = ast.getType();
-            final boolean shouldCheckLastRcurly;
-            if (tokenType == TokenTypes.LITERAL_DO) {
-                shouldCheckLastRcurly = false;
-                nextToken = ast.findFirstToken(TokenTypes.DO_WHILE);
-                lcurly = ast.findFirstToken(TokenTypes.SLIST);
-                if (lcurly != null) {
-                    rcurly = lcurly.getLastChild();
-                }
+            if (lcurly != null) {
+                rcurly = lcurly.getLastChild();
             }
-            else {
-                shouldCheckLastRcurly = true;
-                lcurly = ast.findFirstToken(TokenTypes.SLIST);
-                if (lcurly != null) {
-                    // SLIST could be absent in code like "while(true);"
-                    rcurly = lcurly.getLastChild();
-                }
-                nextToken = getNextToken(ast);
-            }
-            return new Details(lcurly, rcurly, nextToken, shouldCheckLastRcurly);
+            return new Details(lcurly, rcurly, nextToken, false);
         }
 
         /**

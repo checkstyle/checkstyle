@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -35,7 +35,6 @@ import java.util.stream.Stream;
 
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
-import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.Context;
@@ -108,6 +107,7 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
      * {@inheritDoc} Creates child module.
      *
      * @noinspection ChainOfInstanceofChecks
+     * @noinspectionreason ChainOfInstanceofChecks - we treat checks and filters differently
      */
     @Override
     public void setupChild(Configuration childConf)
@@ -117,8 +117,8 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
 
         try {
             module = moduleFactory.createModule(name);
-            if (module instanceof AutomaticBean) {
-                final AutomaticBean bean = (AutomaticBean) module;
+            if (module instanceof AbstractAutomaticBean) {
+                final AbstractAutomaticBean bean = (AbstractAutomaticBean) module;
                 bean.contextualize(childContext);
                 bean.configure(childConf);
             }

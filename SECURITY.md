@@ -5,9 +5,9 @@
 We do not support any old versions, all updates for bugs/features/security
 will be released in next planned version.
 
-| Version      | Supported          |
-| ------------ | ------------------ |
-| LATEST only  | :white_check_mark: |
+| Version     | Supported          |
+|-------------|--------------------|
+| LATEST only | :white_check_mark: |
 
 ## Reporting a Vulnerability
 

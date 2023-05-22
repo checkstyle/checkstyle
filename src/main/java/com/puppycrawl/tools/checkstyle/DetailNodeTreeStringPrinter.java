@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -29,7 +29,6 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
-import com.puppycrawl.tools.checkstyle.api.Violation;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 import com.puppycrawl.tools.checkstyle.utils.ParserUtil;
 
@@ -91,15 +90,12 @@ public final class DetailNodeTreeStringPrinter {
      * @return error violation
      */
     private static String getParseErrorMessage(ParseErrorMessage parseErrorMessage) {
-        final Violation lmessage = new Violation(
-                parseErrorMessage.getLineNumber(),
+        final LocalizedMessage message = new LocalizedMessage(
                 "com.puppycrawl.tools.checkstyle.checks.javadoc.messages",
-                parseErrorMessage.getMessageKey(),
-                parseErrorMessage.getMessageArguments(),
-                "",
                 DetailNodeTreeStringPrinter.class,
-                null);
-        return "[ERROR:" + parseErrorMessage.getLineNumber() + "] " + lmessage.getViolation();
+                parseErrorMessage.getMessageKey(),
+                parseErrorMessage.getMessageArguments());
+        return "[ERROR:" + parseErrorMessage.getLineNumber() + "] " + message.getMessage();
     }
 
     /**

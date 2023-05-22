@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -55,8 +55,8 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * </li>
  * </ul>
  * <p>
- * To configure the default check that will check {@code @param}, {@code @return},
- * {@code @throws}, {@code @deprecated}:
+ * To configure the default check that will check {@code @param}, {@code @deprecated},
+ * {@code @throws}, {@code @return}:
  * </p>
  * <pre>
  * &lt;module name="NonEmptyAtclauseDescription"/&gt;
@@ -67,26 +67,27 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * <pre>
  * class Test
  * {
- * &#47;**
- * * Violation for param "b" and at tags "deprecated", "throws".
- * * &#64;param a Some javadoc // OK
- * * &#64;param b
- * * &#64;deprecated
- * * &#64;throws Exception
- * *&#47;
- * public int method(String a, int b) throws Exception
- * {
- * return 1;
- * }
+ *  // Violation for param "b" and at tags "deprecated", "throws" and "return".
+ *  &#47;**
+ *  * Some summary.
+ *  * &#64;param a Some description
+ *  * &#64;param b
+ *  * &#64;deprecated
+ *  * &#64;throws Exception
+ *  * &#64;return
+ *  *&#47;
+ * public int method(String a, int b) throws Exception {
+ *   return 1;
+ *  }
  * }
  * </pre>
  * <p>
- * To configure the check to validate only {@code @param} and {@code @return} tags:
+ * To configure the check to validate {@code @param}, {@code @throws} tags:
  * </p>
  * <pre>
  * &lt;module name="NonEmptyAtclauseDescription"&gt;
- *   &lt;property name="javadocTokens" value="PARAM_LITERAL,RETURN_LITERAL"/&gt;
- * &lt;/module&gt;
+ *   &lt;property name="javadocTokens" value="PARAM_LITERAL,THROWS_LITERAL"/&gt;
+ *  &lt;/module&gt;
  * </pre>
  * <p>
  * Example:
@@ -94,17 +95,18 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * <pre>
  * class Test
  * {
- * &#47;**
- * * Violation for param "b". Tags "deprecated", "throws" are ignored.
- * * &#64;param a Some javadoc // OK
- * * &#64;param b
- * * &#64;deprecated
- * * &#64;throws Exception
- * *&#47;
- * public int method(String a, int b) throws Exception
- * {
- * return 1;
- * }
+ *  // Violation for param "b" and at tag "throws".
+ *  &#47;**
+ *  * Some summary.
+ *  * &#64;param a Some description
+ *  * &#64;param b
+ *  * &#64;deprecated
+ *  * &#64;throws Exception
+ *  * &#64;return
+ *  *&#47;
+ * public int method(String a, int b) throws Exception {
+ *   return 1;
+ *  }
  * }
  * </pre>
  * <p>
@@ -179,8 +181,8 @@ public class NonEmptyAtclauseDescriptionCheck extends AbstractJavadocCheck {
     private static boolean hasOnlyEmptyText(DetailNode description) {
         boolean result = true;
         for (DetailNode child : description.getChildren()) {
-            if (child.getType() != JavadocTokenTypes.TEXT
-                    || !CommonUtil.isBlank(child.getText())) {
+            if (child.getType() != JavadocTokenTypes.LEADING_ASTERISK
+                    && !CommonUtil.isBlank(child.getText())) {
                 result = false;
                 break;
             }

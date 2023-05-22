@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -152,6 +152,19 @@ public class RegexpHeaderCheckTest extends AbstractModuleTestSupport {
             "3: " + getCheckMessage(MSG_HEADER_MISMATCH, "// Created: 2002"),
         };
         verify(checkConfig, getPath("InputRegexpHeaderIgnore.java"), expected);
+    }
+
+    @Test
+    public void testNonMatchingRegexpHeader() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(RegexpHeaderCheck.class);
+        checkConfig.addProperty("header",
+                                "\\/\\/ Nth Line of Header\\n\\/\\/ Nth Line of Header\\n");
+        checkConfig.addProperty("multiLines", "1");
+        final String[] expected = {
+            "1: " + getCheckMessage(MSG_HEADER_MISMATCH, "\\/\\/ Nth Line of Header"),
+        };
+        verify(checkConfig, getPath("InputRegexpHeaderNonMatching.java"), expected);
     }
 
     @Test

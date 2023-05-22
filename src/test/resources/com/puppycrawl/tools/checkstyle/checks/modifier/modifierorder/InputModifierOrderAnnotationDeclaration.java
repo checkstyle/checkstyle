@@ -5,8 +5,8 @@ ModifierOrder
 */
 
 package com.puppycrawl.tools.checkstyle.checks.modifier.modifierorder;
-
-public @InterfaceAnnotation @interface InputModifierOrderAnnotationDeclaration { // violation
+// violation below ''@InterfaceAnnotation' annotation.*not precede non-annotation modifiers.'
+public @InterfaceAnnotation @interface InputModifierOrderAnnotationDeclaration {
     int getValue();
 }
 

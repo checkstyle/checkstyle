@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.api;
 
 import static com.google.common.truth.Truth.assertWithMessage;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.io.File;
 import java.nio.charset.Charset;
@@ -28,6 +29,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Set;
 import java.util.SortedSet;
 
 import org.junit.jupiter.api.Test;
@@ -386,6 +388,18 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
             "1:1: Violation.",
         };
         verify(checkConfig, getPath("InputAbstractCheckTestFileContents.java"), expected);
+    }
+
+    /**
+     * S2384 - Mutable members should not be stored or returned directly.
+     * Sonarqube rule is valid, a pure unit test is required as this condition can't be recreated in
+     * a test with checks and input file as none of the checks try to modify the tokens.
+     */
+    @Test
+    public void testTokensAreUnmodifiable() {
+        final DummyAbstractCheck check = new DummyAbstractCheck();
+        final Set<String> tokenNameSet = check.getTokenNames();
+        assertThrows(UnsupportedOperationException.class, () -> tokenNameSet.add(""));
     }
 
     public static final class DummyAbstractCheck extends AbstractCheck {

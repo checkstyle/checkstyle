@@ -37,7 +37,8 @@ java -D&lt;property&gt;=&lt;value&gt;  \
      [-t | --tree] [-T | --treeWithComments] [-J | --treeWithJavadoc] [-j | --javadocTree] \
      [-V | --version] [-b | --branch-matching-xpath &lt;xpathQuery&gt;] [-h | --help] \
      [-e | --exclude &lt;excludedPath&gt;] [-E | --executeIgnoredModules] [-d | --debug] \
-     [-x | --exclude-regexp &lt;excludedPathPattern&gt;] \ file...
+     [-x | --exclude-regexp &lt;excludedPathPattern&gt;] \
+     file(s) or folder(s) ...
         </source>
       </p>
 
@@ -145,9 +146,8 @@ java -D&lt;property&gt;=&lt;value&gt;  \
 
       <p>
         Note that the <code>-n packageNamesFile</code>
-        option has been dropped for Checkstyle 5.0, because of
-        significant changes regarding package name file handling. See <a
-        href="config.html#Packages"/> for details.
+        option has been dropped for Checkstyle 5.0, because of significant changes regarding
+        package name file handling. See <a href="config.html#Packages">this link</a> for details.
       </p>
 
       <p>
@@ -240,7 +240,7 @@ java -D&lt;property&gt;=&lt;value&gt;  \
       </p>
       <div class="wrap-content">
         <source>
-          mvn clean package -Passembly
+          mvn clean package -Passembly,no-validations
           java -jar target/checkstyle-X.X-SNAPSHOT-all.jar -c /sun_checks.xml MyClass.java
         </source>
       </div>
@@ -343,7 +343,7 @@ java -D&lt;property&gt;=&lt;value&gt;  \
       </div>
       <p>
         <b>Note</b>: Custom modules should be specified with the class'
-        <a href="writingchecks.html#Integrate_your_Check">full classpath</a>
+        <a href="writingchecks.html#Integrating_Checks">full classpath</a>
         in the configuration file and the compiled class be located in the custom
         JAR for Checkstyle to find.
       </p>

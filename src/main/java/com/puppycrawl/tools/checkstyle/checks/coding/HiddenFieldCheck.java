@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -424,8 +424,7 @@ public class HiddenFieldCheck
      */
     private void processLambda(DetailAST ast) {
         final DetailAST firstChild = ast.getFirstChild();
-        if (firstChild != null
-                && firstChild.getType() == TokenTypes.IDENT) {
+        if (TokenUtil.isOfType(firstChild, TokenTypes.IDENT)) {
             final String untypedLambdaParameterName = firstChild.getText();
             if (frame.containsStaticField(untypedLambdaParameterName)
                 || isInstanceField(firstChild, untypedLambdaParameterName)) {
@@ -614,7 +613,7 @@ public class HiddenFieldCheck
      */
     private boolean isIgnoredSetterParam(DetailAST ast, String name) {
         boolean isIgnoredSetterParam = false;
-        if (ignoreSetter && ast.getType() == TokenTypes.PARAMETER_DEF) {
+        if (ignoreSetter) {
             final DetailAST parametersAST = ast.getParent();
             final DetailAST methodAST = parametersAST.getParent();
             if (parametersAST.getChildCount() == 1
@@ -713,8 +712,7 @@ public class HiddenFieldCheck
      */
     private boolean isIgnoredParamOfAbstractMethod(DetailAST ast) {
         boolean result = false;
-        if (ignoreAbstractMethods
-                && ast.getType() == TokenTypes.PARAMETER_DEF) {
+        if (ignoreAbstractMethods) {
             final DetailAST method = ast.getParent().getParent();
             if (method.getType() == TokenTypes.METHOD_DEF) {
                 final DetailAST mods = method.findFirstToken(TokenTypes.MODIFIERS);
@@ -783,7 +781,7 @@ public class HiddenFieldCheck
     /**
      * Holds the names of static and instance fields of a type.
      */
-    private static class FieldFrame {
+    private static final class FieldFrame {
 
         /** Name of the frame, such name of the class or enum declaration. */
         private final String frameName;
@@ -807,7 +805,7 @@ public class HiddenFieldCheck
          * @param staticType is this a static inner type (class or enum).
          * @param frameName name associated with the frame, which can be a
          */
-        /* package */ FieldFrame(FieldFrame parent, boolean staticType, String frameName) {
+        private FieldFrame(FieldFrame parent, boolean staticType, String frameName) {
             this.parent = parent;
             this.staticType = staticType;
             this.frameName = frameName;

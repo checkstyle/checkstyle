@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -38,7 +38,7 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * command does not show previous lines as changed.
  * </p>
  * <p>
- * Example (line 36 should not be in diff):
+ * Example (the line with 'No newline at end of file' should not be in the diff):
  * </p>
  * <pre>
  * &#64;&#64; -32,4 +32,5 &#64;&#64; ForbidWildcardAsReturnTypeCheck.returnTypeClassNamesIgnoreRegex

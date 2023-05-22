@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -41,6 +41,21 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/imports/importorder";
+    }
+
+    @Test
+    public void testGetTokens() {
+        final ImportOrderCheck checkObj = new ImportOrderCheck();
+        final int[] expected = {TokenTypes.IMPORT, TokenTypes.STATIC_IMPORT};
+        assertWithMessage("Default tokens differs from expected")
+            .that(checkObj.getDefaultTokens())
+            .isEqualTo(expected);
+        assertWithMessage("Acceptable tokens differs from expected")
+            .that(checkObj.getAcceptableTokens())
+            .isEqualTo(expected);
+        assertWithMessage("Required tokens differs from expected")
+            .that(checkObj.getRequiredTokens())
+            .isEqualTo(expected);
     }
 
     /* Additional test for jacoco, since valueOf()
@@ -303,6 +318,8 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testHonorsTokenProperty() throws Exception {
         final String[] expected = {
+            "20:1: " + getCheckMessage(MSG_ORDERING, "java.awt.Button.ABORT"),
+            "21:1: " + getCheckMessage(MSG_ORDERING, "java.awt.Dialog"),
             "22:1: " + getCheckMessage(MSG_ORDERING, "java.awt.Button"),
         };
 
@@ -581,8 +598,8 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
         }
         catch (IllegalStateException ex) {
             assertWithMessage("invalid exception message")
-                    .that(ex.getMessage().endsWith(": null"))
-                    .isTrue();
+                    .that(ex.getMessage())
+                    .endsWith(": null");
         }
     }
 

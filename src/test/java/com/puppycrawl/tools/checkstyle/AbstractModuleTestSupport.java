@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -40,8 +40,8 @@ import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
 import com.google.common.collect.Maps;
+import com.puppycrawl.tools.checkstyle.LocalizedMessage.Utf8Control;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
-import com.puppycrawl.tools.checkstyle.api.Violation;
 import com.puppycrawl.tools.checkstyle.bdd.InlineConfigParser;
 import com.puppycrawl.tools.checkstyle.bdd.TestInputConfiguration;
 import com.puppycrawl.tools.checkstyle.bdd.TestInputViolation;
@@ -235,6 +235,33 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
                 testInputConfiguration.createConfiguration();
         verifyViolations(parsedConfig, filePath, testInputConfiguration.getViolations());
         verify(parsedConfig, filePath, expected);
+    }
+
+    /**
+     * Performs verification of two files with their given file paths using specified
+     * configuration of one file only. Also performs verification of the config specified
+     * in the input file. This method needs to be implemented when two given files need to be
+     * checked through a single check only.
+     *
+     * @param filePath1 file path of first file to verify
+     * @param filePath2 file path of second file to verify
+     * @param expected an array of expected messages
+     * @throws Exception if exception occurs during verification process
+     */
+    protected final void verifyWithInlineConfigParser(String filePath1,
+                                                      String filePath2,
+                                                      String... expected)
+            throws Exception {
+        final TestInputConfiguration testInputConfiguration =
+                InlineConfigParser.parse(filePath1);
+        final DefaultConfiguration parsedConfig =
+                testInputConfiguration.createConfiguration();
+        verifyViolations(parsedConfig, filePath1, testInputConfiguration.getViolations());
+        verifyViolations(parsedConfig, filePath2, testInputConfiguration.getViolations());
+        verify(createChecker(parsedConfig),
+                new File[] {new File(filePath1), new File(filePath2)},
+                filePath1,
+                expected);
     }
 
     /**
@@ -508,7 +535,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
                 messageBundle,
                 Locale.getDefault(),
                 Thread.currentThread().getContextClassLoader(),
-                new Violation.Utf8Control());
+                new Utf8Control());
         final String pattern = resourceBundle.getString(messageKey);
         final MessageFormat formatter = new MessageFormat(pattern, Locale.ROOT);
         return formatter.format(arguments);
@@ -554,7 +581,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
     protected static String[] removeSuppressed(String[] actualViolations,
                                                String... suppressedViolations) {
         final List<String> actualViolationsList =
-            Arrays.stream(actualViolations).collect(Collectors.toList());
+            Arrays.stream(actualViolations).collect(Collectors.toCollection(ArrayList::new));
         actualViolationsList.removeAll(Arrays.asList(suppressedViolations));
         return actualViolationsList.toArray(CommonUtil.EMPTY_STRING_ARRAY);
     }
