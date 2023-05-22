@@ -6,7 +6,7 @@ set -e
 pwd
 uname -a
 mvn --version
-curl -I https://sourceforge.net/projects/checkstyle/
+curl --fail-with-body -I https://sourceforge.net/projects/checkstyle/
 mvn -e --no-transfer-progress clean site -Dcheckstyle.ant.skip=true -DskipTests -DskipITs \
    -Dpmd.skip=true -Dspotbugs.skip=true -Djacoco.skip=true -Dcheckstyle.skip=true
 echo "------------ grep of linkcheck.html--BEGIN"

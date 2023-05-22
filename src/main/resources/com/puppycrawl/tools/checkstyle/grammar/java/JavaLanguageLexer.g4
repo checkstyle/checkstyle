@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -109,7 +109,8 @@ tokens {
     LITERAL_YIELD, SWITCH_RULE,
 
     LITERAL_NON_SEALED, LITERAL_SEALED, LITERAL_PERMITS,
-    PERMITS_CLAUSE, PATTERN_DEF
+    PERMITS_CLAUSE, PATTERN_DEF, LITERAL_WHEN,
+    RECORD_PATTERN_DEF, RECORD_PATTERN_COMPONENTS
 }
 
 @header {
@@ -205,6 +206,7 @@ LITERAL_YIELD:           'yield';
 LITERAL_NON_SEALED:      'non-sealed';
 LITERAL_SEALED:          'sealed';
 LITERAL_PERMITS:         'permits';
+LITERAL_WHEN:            'when';
 
 // Literals
 DECIMAL_LITERAL_LONG:    ('0' | [1-9] (Digits? | '_'+ Digits)) [lL];

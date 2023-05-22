@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -19,8 +19,6 @@
 
 package com.puppycrawl.tools.checkstyle.api;
 
-import java.util.EventObject;
-
 /**
  * Raw event for audit.
  * <p>
@@ -37,11 +35,10 @@ import java.util.EventObject;
  *
  * @see AuditListener
  */
-public final class AuditEvent
-    extends EventObject {
+public final class AuditEvent {
 
-    /** Record a version. */
-    private static final long serialVersionUID = -3774725606973812736L;
+    /** The object on which the Event initially occurred. */
+    private final Object source;
     /** Filename event associated with. **/
     private final String fileName;
     /** Violation associated with the event. **/
@@ -72,11 +69,25 @@ public final class AuditEvent
      * @param src source of the event
      * @param fileName file associated with the event
      * @param violation the actual violation
+     * @throws IllegalArgumentException if {@code src} is {@code null}.
      */
     public AuditEvent(Object src, String fileName, Violation violation) {
-        super(src);
+        if (src == null) {
+            throw new IllegalArgumentException("null source");
+        }
+
+        source = src;
         this.fileName = fileName;
         this.violation = violation;
+    }
+
+    /**
+     * The object on which the Event initially occurred.
+     *
+     * @return the object on which the Event initially occurred
+     */
+    public Object getSource() {
+        return source;
     }
 
     /**

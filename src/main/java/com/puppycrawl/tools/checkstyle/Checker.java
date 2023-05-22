@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -40,7 +40,6 @@ import org.apache.commons.logging.LogFactory;
 
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
-import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.BeforeExecutionFileFilter;
 import com.puppycrawl.tools.checkstyle.api.BeforeExecutionFileFilterSet;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
@@ -61,7 +60,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 /**
  * This class provides the functionality to check a set of files.
  */
-public class Checker extends AutomaticBean implements MessageDispatcher, RootModule {
+public class Checker extends AbstractAutomaticBean implements MessageDispatcher, RootModule {
 
     /** Message to use when an exception occurs and should be printed as a violation. */
     public static final String EXCEPTION_MSG = "general.exception";
@@ -324,6 +323,8 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
      * @return a sorted set of violations to be logged.
      * @throws CheckstyleException if error condition within Checkstyle occurs.
      * @noinspection ProhibitedExceptionThrown
+     * @noinspectionreason ProhibitedExceptionThrown - there is no other way to obey
+     *      haltOnException field
      */
     private SortedSet<Violation> processFile(File file) throws CheckstyleException {
         final SortedSet<Violation> fileMessages = new TreeSet<>();
@@ -429,7 +430,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
     @Override
     protected void finishLocalSetup() throws CheckstyleException {
         final Locale locale = new Locale(localeLanguage, localeCountry);
-        Violation.setLocale(locale);
+        LocalizedMessage.setLocale(locale);
 
         if (moduleFactory == null) {
             if (moduleClassLoader == null) {
@@ -457,6 +458,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
      * {@inheritDoc} Creates child module.
      *
      * @noinspection ChainOfInstanceofChecks
+     * @noinspectionreason ChainOfInstanceofChecks - we treat checks and filters differently
      */
     @Override
     protected void setupChild(Configuration childConf)
@@ -467,8 +469,8 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
         try {
             child = moduleFactory.createModule(name);
 
-            if (child instanceof AutomaticBean) {
-                final AutomaticBean bean = (AutomaticBean) child;
+            if (child instanceof AbstractAutomaticBean) {
+                final AbstractAutomaticBean bean = (AbstractAutomaticBean) child;
                 bean.contextualize(childContext);
                 bean.configure(childConf);
             }

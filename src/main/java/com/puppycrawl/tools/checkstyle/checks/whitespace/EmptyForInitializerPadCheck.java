@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -148,13 +148,11 @@ public class EmptyForInitializerPadCheck
     @Override
     public void visitToken(DetailAST ast) {
         if (!ast.hasChildren()) {
-            // empty for initializer. test pad before semi.
-            final DetailAST semi = ast.getNextSibling();
-            final int semiLineIdx = semi.getLineNo() - 1;
-            final int[] line = getLineCodePoints(semiLineIdx);
-            final int before = semi.getColumnNo() - 1;
+            final int lineIdx = ast.getLineNo() - 1;
+            final int[] line = getLineCodePoints(lineIdx);
+            final int before = ast.getColumnNo() - 1;
             // don't check if semi at beginning of line
-            if (!CodePointUtil.hasWhitespaceBefore(before, line)) {
+            if (ast.getColumnNo() > 0 && !CodePointUtil.hasWhitespaceBefore(before, line)) {
                 if (option == PadOption.NOSPACE
                     && CommonUtil.isCodePointWhitespace(line, before)) {
                     log(ast, MSG_PRECEDED, SEMICOLON);

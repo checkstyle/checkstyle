@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -102,6 +102,8 @@ public class DesignForExtensionCheckTest
                 + getCheckMessage(MSG_KEY, "InputDesignForExtensionIgnoredAnnotations", "setAge"),
             "169:5: "
                 + getCheckMessage(MSG_KEY, "InputDesignForExtensionIgnoredAnnotations", "foo24"),
+            "176:5: "
+                + getCheckMessage(MSG_KEY, "InputDesignForExtensionIgnoredAnnotations", "dontUse4"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputDesignForExtensionIgnoredAnnotations.java"), expected);

@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -38,7 +39,7 @@ public final class JavadocTags {
      * @param tags valid tags
      * @param invalidTags invalid tags
      */
-    public JavadocTags(List<JavadocTag> tags, List<InvalidJavadocTag> invalidTags) {
+    public JavadocTags(Collection<JavadocTag> tags, Collection<InvalidJavadocTag> invalidTags) {
         validTags = List.copyOf(tags);
         this.invalidTags = List.copyOf(invalidTags);
     }

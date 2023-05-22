@@ -191,24 +191,6 @@
           </tr>
 
           <tr>
-            <td>classpath</td>
-            <td>
-              The classpath to use when looking up classes. Defaults to the
-              current classpath.
-            </td>
-            <td>No</td>
-          </tr>
-
-          <tr>
-            <td>classpathref</td>
-            <td>
-              The classpath to use when looking up classes, given as a reference
-              to a path defined elsewhere.
-            </td>
-            <td>No</td>
-          </tr>
-
-          <tr>
             <td>executeIgnoredModules</td>
             <td>
               For efficiency, Checkstyle does not invoke modules with a configured severity of
@@ -273,6 +255,10 @@
                 <li>
                   <code>xml</code> - specifies the <a
                   href="apidocs/com/puppycrawl/tools/checkstyle/XMLLogger.html">XMLLogger</a>
+                </li>
+                <li>
+                  <code>sarif</code> - specifies the <a
+                  href="apidocs/com/puppycrawl/tools/checkstyle/SarifLogger.html">SarifLogger</a>
                 </li>
               </ul>
               <p>Defaults to <code>"plain"</code>.</p>
@@ -402,7 +388,7 @@
       <p>
         <b>
           Run checkstyle on a set of files and output messages to standard
-          output in plain format, and a file in XML format
+          output in plain format, and files in XML &amp; SARIF format
         </b>
       </p>
       <source>
@@ -410,6 +396,7 @@
   &lt;fileset dir=&quot;src/checkstyle&quot; includes=&quot;**/*.java&quot;/&gt;
   &lt;formatter type=&quot;plain&quot;/&gt;
   &lt;formatter type=&quot;xml&quot; toFile=&quot;build/checkstyle_errors.xml&quot;/&gt;
+  &lt;formatter type=&quot;sarif&quot; toFile=&quot;build/checkstyle_errors.sarif&quot;/&gt;
 &lt;/checkstyle&gt;
       </source>
 
@@ -464,6 +451,15 @@
 
 &lt;/target&gt;
       </source>
+
+      <p>
+        <b>
+          To run checkstyle with a custom JAR with implementation of custom Checks
+          be sure the custom JAR is found on the classpath. An example can be found at
+          <a href="https://github.com/sevntu-checkstyle/checkstyle-samples/tree/master/ant-project">
+          checkstyle-samples</a>.
+        </b>
+      </p>
 
     </section>
   </body>

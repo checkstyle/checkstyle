@@ -17,9 +17,11 @@ public class InputJavadocMethodConstructor {
     public InputJavadocMethodConstructor() {} // ok
     public InputJavadocMethodConstructor(Runnable p1) { this.field = 0; } // ok
     /** */
-    public InputJavadocMethodConstructor(String p1) { this.field = 0; } // violation
+    // violation below 'Expected @param tag for 'p1''
+    public InputJavadocMethodConstructor(String p1) { this.field = 0; }
     /** Test. */
-    public InputJavadocMethodConstructor(Integer p1) { this.field = 0; } // violation
+    // violation below 'Expected @param tag for 'p1''
+    public InputJavadocMethodConstructor(Integer p1) { this.field = 0; }
     /** Test.
      * @param p1 */
     public InputJavadocMethodConstructor(Long p1) { this.field = 0; } // ok

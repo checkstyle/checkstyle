@@ -31,8 +31,7 @@
  a previous open tag.
  &lt;/li&gt;
  &lt;li&gt;
- Check that a package Javadoc comment is well-formed (as described above) and
- NOT missing from any package-info.java files.
+ Check that a package Javadoc comment is well-formed (as described above).
  &lt;/li&gt;
  &lt;li&gt;
  Check for allowed HTML tags. The list of allowed HTML tags is
@@ -46,7 +45,7 @@
  &lt;/ul&gt;
  &lt;p&gt;
  These checks were patterned after the checks made by the
- &lt;a href="http://maven-doccheck.sourceforge.net/"&gt;DocCheck&lt;/a&gt; doclet
+ &lt;a href="https://maven-doccheck.sourceforge.net"&gt;DocCheck&lt;/a&gt; doclet
  available from Sun. Note: Original Sun's DocCheck tool does not exist anymore.
  &lt;/p&gt;</description>
          <properties>
@@ -87,7 +86,6 @@
             <message-key key="javadoc.empty"/>
             <message-key key="javadoc.extraHtml"/>
             <message-key key="javadoc.incompleteTag"/>
-            <message-key key="javadoc.missing"/>
             <message-key key="javadoc.noPeriod"/>
             <message-key key="javadoc.unclosedHtml"/>
          </message-keys>

@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -49,17 +49,17 @@ public class JavaNCSSCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "12:1: " + getCheckMessage(MSG_FILE, 39, 2),
             "19:1: " + getCheckMessage(MSG_CLASS, 22, 1),
-            "24:5: " + getCheckMessage(MSG_METHOD, 2, 0),
-            "31:5: " + getCheckMessage(MSG_METHOD, 4, 0),
-            "40:5: " + getCheckMessage(MSG_METHOD, 12, 0),
-            "52:13: " + getCheckMessage(MSG_METHOD, 2, 0),
-            "59:5: " + getCheckMessage(MSG_CLASS, 2, 1),
+            "24:3: " + getCheckMessage(MSG_METHOD, 2, 0),
+            "31:3: " + getCheckMessage(MSG_METHOD, 4, 0),
+            "40:3: " + getCheckMessage(MSG_METHOD, 12, 0),
+            "52:7: " + getCheckMessage(MSG_METHOD, 2, 0),
+            "59:3: " + getCheckMessage(MSG_CLASS, 2, 1),
             "66:1: " + getCheckMessage(MSG_CLASS, 10, 1),
-            "71:5: " + getCheckMessage(MSG_METHOD, 8, 0),
+            "71:3: " + getCheckMessage(MSG_METHOD, 8, 0),
             "90:1: " + getCheckMessage(MSG_CLASS, 4, 1),
-            "91:5: " + getCheckMessage(MSG_METHOD, 1, 0),
-            "92:5: " + getCheckMessage(MSG_METHOD, 1, 0),
-            "93:5: " + getCheckMessage(MSG_METHOD, 1, 0),
+            "91:3: " + getCheckMessage(MSG_METHOD, 1, 0),
+            "92:3: " + getCheckMessage(MSG_METHOD, 1, 0),
+            "93:3: " + getCheckMessage(MSG_METHOD, 1, 0),
         };
 
         verifyWithInlineConfigParser(
@@ -88,21 +88,44 @@ public class JavaNCSSCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "12:1: " + getCheckMessage(MSG_FILE, 89, 2),
             "16:1: " + getCheckMessage(MSG_CLASS, 87, 3),
-            "18:5: " + getCheckMessage(MSG_CLASS, 7, 3),
-            "36:5: " + getCheckMessage(MSG_RECORD, 6, 4),
-            "45:5: " + getCheckMessage(MSG_RECORD, 15, 4),
-            "56:9: " + getCheckMessage(MSG_METHOD, 8, 7),
-            "75:5: " + getCheckMessage(MSG_RECORD, 6, 4),
-            "109:5: " + getCheckMessage(MSG_RECORD, 8, 4),
-            "130:5: " + getCheckMessage(MSG_CLASS, 11, 3),
-            "151:5: " + getCheckMessage(MSG_RECORD, 12, 4),
-            "152:9: " + getCheckMessage(MSG_METHOD, 11, 7),
-            "166:5: " + getCheckMessage(MSG_CLASS, 12, 3),
-            "167:9: " + getCheckMessage(MSG_METHOD, 11, 7),
+            "18:3: " + getCheckMessage(MSG_CLASS, 7, 3),
+            "36:3: " + getCheckMessage(MSG_RECORD, 6, 4),
+            "45:3: " + getCheckMessage(MSG_RECORD, 15, 4),
+            "56:5: " + getCheckMessage(MSG_METHOD, 8, 7),
+            "75:3: " + getCheckMessage(MSG_RECORD, 6, 4),
+            "109:3: " + getCheckMessage(MSG_RECORD, 8, 4),
+            "130:3: " + getCheckMessage(MSG_CLASS, 11, 3),
+            "151:3: " + getCheckMessage(MSG_RECORD, 12, 4),
+            "152:5: " + getCheckMessage(MSG_METHOD, 11, 7),
+            "166:3: " + getCheckMessage(MSG_CLASS, 12, 3),
+            "167:5: " + getCheckMessage(MSG_METHOD, 11, 7),
         };
 
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputJavaNCSSRecordsAndCompactCtors.java"),
+                expected);
+    }
+
+    @Test
+    public void testForMutation() throws Exception {
+        final String[] expected = {
+            "13:1: " + getCheckMessage(MSG_CLASS, 84, 80),
+            "16:5: " + getCheckMessage(MSG_CLASS, 83, 80),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavaNCSSResolveMutation.java"),
+                expected);
+    }
+
+    @Test
+    public void testRecordMax() throws Exception {
+        final String[] expected = {
+            "14:1: " + getCheckMessage(MSG_CLASS, 152, 80),
+            "15:5: " + getCheckMessage(MSG_RECORD, 151, 150),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputJavaNCSSRecordsMax.java"),
                 expected);
     }
 

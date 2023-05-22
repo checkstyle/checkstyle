@@ -15,7 +15,7 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator;
 public class InputEmptyLineSeparatorAnnotations {
     @Deprecated
     @SuppressWarnings("unchecked")
-    class SomeClass {} // violation
+    class SomeClass {} // violation ''}' has more than 1 empty lines after.'
 
 
 

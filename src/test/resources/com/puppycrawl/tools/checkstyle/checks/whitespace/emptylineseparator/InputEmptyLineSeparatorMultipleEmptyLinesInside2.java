@@ -15,7 +15,7 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator;
 public abstract class InputEmptyLineSeparatorMultipleEmptyLinesInside2
 {
     public InputEmptyLineSeparatorMultipleEmptyLinesInside2() {
-        // empty lines below should cause a violation
+        // empty lines below
 
 
     }
@@ -27,13 +27,13 @@ public abstract class InputEmptyLineSeparatorMultipleEmptyLinesInside2
     abstract int generateSrc(String s);
 
     static {
-        // empty lines below should cause a violation
+        // empty lines below
 
 
     }
 
     {
-        // empty lines below should cause a violation
+        // empty lines below
 
 
     }
@@ -41,13 +41,14 @@ public abstract class InputEmptyLineSeparatorMultipleEmptyLinesInside2
     private static void foo() {
 
 
-        // 1 empty line above should cause a violation
+        // 1 empty line above
 
-        // 1 empty line above should not cause a violation
+        // 1 empty line above
 
 
 
-        // 2 empty lines above should cause violations
+        // 2 empty lines above
     }
 }
-class SecondClassReturnWithVeryVeryVeryLongName2{} // violation
+class // violation ''CLASS_DEF' should be separated from previous line.'
+SecondClassReturnWithVeryVeryVeryLongName2{}

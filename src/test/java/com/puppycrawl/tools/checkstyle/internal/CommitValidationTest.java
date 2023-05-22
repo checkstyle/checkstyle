@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle.internal;
 import static com.google.common.truth.Truth.assertWithMessage;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -41,7 +40,6 @@ import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.revwalk.RevCommit;
 import org.eclipse.jgit.revwalk.RevWalk;
 import org.eclipse.jgit.storage.file.FileRepositoryBuilder;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -70,16 +68,21 @@ import org.junit.jupiter.api.Test;
 public class CommitValidationTest {
 
     private static final List<String> USERS_EXCLUDED_FROM_VALIDATION =
-            Arrays.asList("Roman Ivanov", "rnveach", "dependabot[bot]");
+            Collections.singletonList("dependabot[bot]");
 
     private static final String ISSUE_COMMIT_MESSAGE_REGEX_PATTERN = "^Issue #\\d+: .*$";
     private static final String PR_COMMIT_MESSAGE_REGEX_PATTERN = "^Pull #\\d+: .*$";
+    private static final String RELEASE_COMMIT_MESSAGE_REGEX_PATTERN =
+            "^\\[maven-release-plugin] .*$";
+    private static final String REVERT_COMMIT_MESSAGE_REGEX_PATTERN =
+            "^Revert .*$";
     private static final String OTHER_COMMIT_MESSAGE_REGEX_PATTERN =
             "^(minor|config|infra|doc|spelling|dependency|supplemental): .*$";
 
     private static final String ACCEPTED_COMMIT_MESSAGE_REGEX_PATTERN =
               "(" + ISSUE_COMMIT_MESSAGE_REGEX_PATTERN + ")|"
               + "(" + PR_COMMIT_MESSAGE_REGEX_PATTERN + ")|"
+              + "(" + RELEASE_COMMIT_MESSAGE_REGEX_PATTERN + ")|"
               + "(" + OTHER_COMMIT_MESSAGE_REGEX_PATTERN + ")";
 
     private static final Pattern ACCEPTED_COMMIT_MESSAGE_PATTERN =
@@ -92,18 +95,13 @@ public class CommitValidationTest {
     private static final CommitsResolutionMode COMMITS_RESOLUTION_MODE =
             CommitsResolutionMode.BY_LAST_COMMIT_AUTHOR;
 
-    private static List<RevCommit> lastCommits;
-
-    @BeforeAll
-    public static void setUp() throws Exception {
-        lastCommits = getCommitsToCheck();
-    }
-
     @Test
-    public void testHasCommits() {
+    public void testHasCommits() throws Exception {
+        final List<RevCommit> lastCommits = getCommitsToCheck();
+
         assertWithMessage("must have at least one commit to validate")
-                .that(lastCommits != null && !lastCommits.isEmpty())
-                .isTrue();
+                .that(lastCommits)
+                .isNotEmpty();
     }
 
     @Test
@@ -147,6 +145,34 @@ public class CommitValidationTest {
     }
 
     @Test
+    public void testReleaseCommitMessage() {
+        assertWithMessage("should accept release commit message for preparing release")
+                .that(validateCommitMessage("[maven-release-plugin] "
+                        + "prepare release checkstyle-10.8.0"))
+                .isEqualTo(0);
+        assertWithMessage("should accept release commit message for preparing for "
+                + "next development iteration")
+                .that(validateCommitMessage("[maven-release-plugin] prepare for next "
+                        + "development iteration"))
+                .isEqualTo(0);
+    }
+
+    @Test
+    public void testRevertCommitMessage() {
+        assertWithMessage("should accept proper revert commit message")
+                .that(validateCommitMessage("Revert \"doc: release notes for 10.8.0\""
+                    + "\nThis reverts commit ff873c3c22161656794c969bb28a8cb09595f.\n"))
+                .isEqualTo(0);
+        assertWithMessage("should accept proper revert commit message")
+                .that(validateCommitMessage("Revert \"doc: release notes for 10.8.0\""))
+                .isEqualTo(0);
+        assertWithMessage("should not accept revert commit message with invalid prefix")
+                .that(validateCommitMessage("This reverts commit "
+                        + "ff873c3c22161656794c969bb28a8cb09595f.\n"))
+                .isEqualTo(1);
+    }
+
+    @Test
     public void testSupplementalPrefix() {
         assertWithMessage("should accept commit message with supplemental prefix")
                 .that(0)
@@ -176,7 +202,8 @@ public class CommitValidationTest {
     }
 
     @Test
-    public void testCommitMessageHasProperStructure() {
+    public void testCommitMessageHasProperStructure() throws Exception {
+        final List<RevCommit> lastCommits = getCommitsToCheck();
         for (RevCommit commit : filterValidCommits(lastCommits)) {
             final String commitMessage = commit.getFullMessage();
             final int error = validateCommitMessage(commitMessage);
@@ -196,7 +223,11 @@ public class CommitValidationTest {
         final String trimRight = commitMessage.replaceAll("[\\r\\n]+$", "");
         final int result;
 
-        if (!ACCEPTED_COMMIT_MESSAGE_PATTERN.matcher(message).matches()) {
+        if (message.matches(REVERT_COMMIT_MESSAGE_REGEX_PATTERN)) {
+            // revert commits are excluded from validation
+            result = 0;
+        }
+        else if (!ACCEPTED_COMMIT_MESSAGE_PATTERN.matcher(message).matches()) {
             // improper prefix
             result = 1;
         }
@@ -344,17 +375,17 @@ public class CommitValidationTest {
 
     }
 
-    private static class RevCommitsPair {
+    private static final class RevCommitsPair {
 
         private final Iterator<RevCommit> first;
         private final Iterator<RevCommit> second;
 
-        /* package */ RevCommitsPair() {
+        private RevCommitsPair() {
             first = Collections.emptyIterator();
             second = Collections.emptyIterator();
         }
 
-        /* package */ RevCommitsPair(Iterator<RevCommit> first, Iterator<RevCommit> second) {
+        private RevCommitsPair(Iterator<RevCommit> first, Iterator<RevCommit> second) {
             this.first = first;
             this.second = second;
         }
@@ -369,11 +400,11 @@ public class CommitValidationTest {
 
     }
 
-    private static class OmitMergeCommitsIterator implements Iterator<RevCommit> {
+    private static final class OmitMergeCommitsIterator implements Iterator<RevCommit> {
 
         private final Iterator<RevCommit> revCommitIterator;
 
-        /* package */ OmitMergeCommitsIterator(Iterator<RevCommit> revCommitIterator) {
+        private OmitMergeCommitsIterator(Iterator<RevCommit> revCommitIterator) {
             this.revCommitIterator = revCommitIterator;
         }
 

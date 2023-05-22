@@ -1,10 +1,17 @@
+/*
+CommentsIndentation
+tokens = (default)SINGLE_LINE_COMMENT, BLOCK_COMMENT_BEGIN
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.indentation.commentsindentation;
 
 public class InputCommentsIndentationCheckWithEmoji {
 
     public void myMethod() {
         String breaks = "J"
-        // warn 'Indentation should be the same level as line 8' 👇🏻
+        // violation '.* incorrect .* level 8, expected is 16, .* same .* as line 15.'
                 + "🥳"
                 // it is OK 👍
                 + "🥳VASd🥳"
@@ -15,9 +22,9 @@ public class InputCommentsIndentationCheckWithEmoji {
 
     public void test() {
         String a = "🥳";
-            // warn 'Indentation should be the same level as line 17' 👆
+            // violation '.* incorrect .* level 12, expected is 8, .* same .* as line 24.'
     }
-        // warn 'Indentation should be the same level as line 22' 👇🏻
+        // violation '.* incorrect .* level 8, expected is 4, .* same .* as line 29.'
 
     String s = String.format(java.util.Locale.ENGLISH, " 🥳 🥳 🥳asdda   🥳"
                     + "🎄" + "🎄  🎄🎄       ",
@@ -36,7 +43,7 @@ public class InputCommentsIndentationCheckWithEmoji {
                 // 👈🏻 comment
             default: a = "🎄".
                         toString();
-                // warn 'Indentation should be the same level as line 38' 🧐
+                // violation '.* incorrect .* level 16, expected is 24, .* same .* as line 45.'
         }
     }
 
@@ -60,11 +67,11 @@ public class InputCommentsIndentationCheckWithEmoji {
                 .toLowerCase()
                 // comment 👆🏻
                 .charAt(0);
-            // warn 'Indentation should be the same level as line 65' 👈🏻
+            // violation '.* incorrect .* level 12, expected is 8, .* same .* as line 72.'
 
         try {
             assert a.equals("🎄") == true;
-        // warn 'Indentation should be the same level as line 66' 👉🏻
+        // violation '.* incorrect .* level 8, expected is 12, .* same .* as line 73.'
         }
         catch (Exception ex) {
 
@@ -78,7 +85,7 @@ public class InputCommentsIndentationCheckWithEmoji {
             // comment
             // ... 🧐
             // block
-            // warn 🤔 'Indentation should be the same level as line 83'
+            // violation '.* incorrect .* level 12, expected is 8, .* same .* as line 90.'
         // comment
         String someStr = "🎄🎄😅";
     }
@@ -87,12 +94,13 @@ public class InputCommentsIndentationCheckWithEmoji {
         if (true) {
             /* some 👌🏻 */
             String k = "🎄🎄😅";
-                /* warn 'Indentation should be the same level as line 91' 👎🏻*/
+            // violation below '.* incorrect .* level 16, expected is 12,.* same .* as line 99.'
+                /* hello there some comment with emoji 👌 */
             int b = Integer.parseInt("🎄🎄😅");
-                /* warn 😏 'Indentation should be the same level as line 94'
+                /* // violation '.* incorrect .* level 16, expected is 12, .* same .* as line 102.'
                 * */
             double d; /* trailing comment */
-                /* warn 'Indentation should be the same level as line 108'
+                /* // violation '.* incorrect .* level 16, expected is 12, .* same .* as line 116.'
              *🎄
                 */
 

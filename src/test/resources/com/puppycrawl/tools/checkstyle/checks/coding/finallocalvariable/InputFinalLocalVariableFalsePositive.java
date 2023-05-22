@@ -28,3 +28,7 @@ public class InputFinalLocalVariableFalsePositive // ok
         }
     }
 }
+
+@SuppressWarnings("removal")
+class testAnnotation {
+}

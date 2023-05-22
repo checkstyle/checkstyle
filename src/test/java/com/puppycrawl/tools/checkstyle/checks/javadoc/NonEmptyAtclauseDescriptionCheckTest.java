@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -90,6 +90,8 @@ public class NonEmptyAtclauseDescriptionCheckTest
             "20: " + getCheckMessage(MSG_KEY),
             "51: " + getCheckMessage(MSG_KEY),
             "60: " + getCheckMessage(MSG_KEY),
+            "75: " + getCheckMessage(MSG_KEY),
+            "77: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(getPath("InputNonEmptyAtclauseDescriptionTwo.java"), expected);
     }

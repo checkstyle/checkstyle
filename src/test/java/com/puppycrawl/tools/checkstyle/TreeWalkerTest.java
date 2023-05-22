@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -76,6 +76,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * TreeWalkerTest.
  *
  * @noinspection ClassWithTooManyDependencies because we are less strict with tests.
+ * @noinspectionreason ClassWithTooManyDependencies - complex tests require a
+ *      large number of imports
  */
 public class TreeWalkerTest extends AbstractModuleTestSupport {
 
@@ -249,9 +251,8 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         }
         catch (CheckstyleException exception) {
             assertWithMessage("Error message is unexpected")
-                    .that(exception.getMessage()
-                            .contains("TreeWalker is not allowed as a parent of"))
-                    .isTrue();
+                    .that(exception.getMessage())
+                    .contains("TreeWalker is not allowed as a parent of");
         }
     }
 
@@ -306,8 +307,8 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         }
         catch (CheckstyleException ex) {
             assertWithMessage("Error message is unexpected")
-                    .that(ex.getMessage().contains("isCommentNodesRequired"))
-                    .isTrue();
+                    .that(ex.getMessage())
+                    .contains("isCommentNodesRequired");
         }
     }
 
@@ -383,8 +384,8 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         }
         catch (CheckstyleException exception) {
             assertWithMessage("Error message is unexpected")
-                    .that(exception.getMessage().contains("occurred while parsing file"))
-                    .isTrue();
+                    .that(exception.getMessage())
+                    .contains("occurred while parsing file");
         }
     }
 
@@ -407,9 +408,8 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         }
         catch (CheckstyleException exception) {
             assertWithMessage("Error message is unexpected")
-                    .that(exception.getMessage()
-                            .contains("IllegalStateException occurred while parsing file"))
-                    .isTrue();
+                    .that(exception.getMessage())
+                    .contains("IllegalStateException occurred while parsing file");
         }
     }
 
@@ -464,8 +464,8 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         catch (CheckstyleException exception) {
             final String message = "IllegalStateException occurred while parsing file";
             assertWithMessage("Error message is unexpected")
-                    .that(exception.getMessage().contains(message))
-                    .isTrue();
+                    .that(exception.getMessage())
+                    .contains(message);
         }
     }
 
@@ -521,6 +521,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
 
         final String[] expected = {
             "6:9: " + getCheckMessage(WhitespaceAfterCheck.class, "ws.notFollowed", "if"),
+            "6:9: " + getCheckMessage(WhitespaceAroundCheck.class, "ws.notFollowed", "if"),
         };
 
         verify(treeWalkerConfig,

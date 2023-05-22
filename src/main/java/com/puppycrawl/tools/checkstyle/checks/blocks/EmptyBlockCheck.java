@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -260,8 +260,7 @@ public class EmptyBlockCheck
                 }
                 if (emptyBlock) {
                     log(leftCurly,
-                        MSG_KEY_BLOCK_NO_STATEMENT,
-                        ast.getText());
+                        MSG_KEY_BLOCK_NO_STATEMENT);
                 }
             }
             else if (!hasText(leftCurly)) {

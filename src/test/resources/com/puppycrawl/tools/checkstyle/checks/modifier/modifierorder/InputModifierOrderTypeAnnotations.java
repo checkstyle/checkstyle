@@ -107,8 +107,8 @@ class MyClass {
 
     // It is annotation on method, but not on type!
     @MethodAnnotation void foo10() {}
-    private @MethodAnnotation void foo11() {} // violation
-
+    private @MethodAnnotation void foo11() {}
+     // violation above ''@MethodAnnotation' annotation modifier.*non-annotation modifiers.'
     public @TypeAnnotation MyClass() {}
     @ConstructorAnnotation public MyClass(String name) {}
 }

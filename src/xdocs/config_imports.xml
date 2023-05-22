@@ -212,7 +212,7 @@ import java.net.*;                // OK
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+AvoidStarImport">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+AvoidStarImport">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -333,7 +333,7 @@ import java.util.*;                        // OK
       <subsection name="Example of Usage" id="AvoidStaticImport_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+AvoidStaticImport">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+AvoidStaticImport">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -961,7 +961,7 @@ import android.*;
             Google Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+CustomImportOrder">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+CustomImportOrder">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -1267,7 +1267,7 @@ public class InputIllegalImport { }
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+IllegalImport">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+IllegalImport">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -1751,7 +1751,7 @@ import java.util.stream.IntStream;
       <subsection name="Example of Usage" id="ImportControl_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ImportControl">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+ImportControl">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -1926,25 +1926,6 @@ import java.util.stream.IntStream;
               <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>7.1</td>
-            </tr>
-
-            <tr>
-              <td>tokens</td>
-              <td>tokens to check</td>
-
-              <td>
-                subset of tokens
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STATIC_IMPORT">
-                    STATIC_IMPORT</a>
-                  .
-              </td>
-
-              <td>
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STATIC_IMPORT">
-                    STATIC_IMPORT</a>
-                  .
-              </td>
-              <td>3.2</td>
             </tr>
           </table>
         </div>
@@ -2214,13 +2195,17 @@ public class SomeClass { }
           the container of the static import, container is the type enclosing the static element
           being imported. When the result of the comparison is 0 (containers are equal),
           we compare the fully qualified import names.
+        </p>
+        <p>
           For e.g. this is what is considered to be container names for the given example:
-
-          import static HttpConstants.COLON     =&gt; HttpConstants
-          import static HttpHeaders.addHeader   =&gt; HttpHeaders
-          import static HttpHeaders.setHeader   =&gt; HttpHeaders
-          import static HttpHeaders.Names.DATE  =&gt; HttpHeaders.Names
-
+        </p>
+        <source>
+import static HttpConstants.COLON     =&gt; HttpConstants
+import static HttpHeaders.addHeader   =&gt; HttpHeaders
+import static HttpHeaders.setHeader   =&gt; HttpHeaders
+import static HttpHeaders.Names.DATE  =&gt; HttpHeaders.Names
+        </source>
+        <p>
           According to this logic, HttpHeaders.Names should come after HttpHeaders.
         </p>
         <p>
@@ -2332,7 +2317,7 @@ public class SomeClass { }
       <subsection name="Example of Usage" id="ImportOrder_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ImportOrder">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+ImportOrder">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -2425,7 +2410,7 @@ public class MyClass{ };
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+RedundantImport">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+RedundantImport">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -2469,8 +2454,7 @@ public class MyClass{ };
       <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="UnusedImports_Description">
         <p>
-          Checks for unused import statements. Checkstyle uses a simple but
-          very reliable algorithm to report on unused import statements. An
+          Checks for unused import statements. An
           import statement is considered unused if:
         </p>
 
@@ -2480,11 +2464,6 @@ public class MyClass{ };
             wild-card imports like <code>import
             java.io.*;</code>. Most IDE's provide very sophisticated checks
             for imports that handle wild-card imports.
-          </li>
-
-          <li>
-            It is a duplicate of another import. This is when a class is
-            imported more than once.
           </li>
 
           <li>
@@ -2507,21 +2486,19 @@ public class MyClass{ };
           </li>
         </ul>
         <p>
-          The main limitation of this check is handling the case where
-          an imported type has the same name as a declaration, such as a
-          member variable.
+          The main limitation of this check is handling the cases where:
         </p>
-        <p>
-          For example, in the following case the import <code>java.awt.Component</code>
-          will not be flagged as unused:
-        </p>
-        <source>
-import java.awt.Component;
-class FooBar {
-  private Object Component; // a bad practice in my opinion
-  ...
-}
-        </source>
+        <ul>
+          <li>
+            An imported type has the same name as a declaration, such as a member variable.
+          </li>
+          <li>
+            There are two or more static imports with the same method name
+            (javac can distinguish imports with same name but different parameters, but checkstyle
+            can not due to <a href="https://checkstyle.org/writingchecks.html#Limitations">
+            limitation.</a>)
+          </li>
+        </ul>
       </subsection>
 
       <subsection name="Properties" id="UnusedImports_Properties">
@@ -2552,6 +2529,66 @@ class FooBar {
         <source>
 &lt;module name=&quot;UnusedImports&quot;/&gt;
         </source>
+        <p>Example:</p>
+        <source>
+// limitation as it match field name in code
+import java.awt.Component; //OK
+
+// no ability to recognize what import is not used
+import static java.util.Map.copyOf; //OK
+import static java.util.Arrays.copyOf; //OK
+
+import java.lang.String; // violation
+
+import java.util.Stack;  // OK
+import java.util.Map;   // violation
+
+import java.util.List; // OK
+
+&#47;&#42;&#42;
+&#42; &#64;link List
+&#42;&#47;
+class MyClass{
+    Stack stack = new Stack();
+    private Object Component;
+    int[] arr = {0,0};
+    int[] array = copyOf(arr , 1);
+}
+        </source>
+        <p>
+          To configure the check so that it ignores the imports referenced in Javadoc comments:
+        </p>
+        <source>
+&lt;module name=&quot;UnusedImports&quot;&gt;
+  &lt;property name=&quot;processJavadoc&quot; value=&quot;false&quot;/&gt;
+&lt;/module&gt;
+        </source>
+        <p>Example:</p>
+        <source>
+// limitation as it match field name in code
+import java.awt.Component; //OK
+
+// no ability to recognize what import is not used
+import static java.util.Map.copyOf; //OK
+import static java.util.Arrays.copyOf; //OK
+
+import java.lang.String; // violation
+
+import java.util.Stack;  // OK
+import java.util.Map;   // violation
+
+import java.util.List; // violation
+
+&#47;&#42;&#42;
+&#42; &#64;link List
+&#42;&#47;
+class MyClass{
+    Stack stack = new Stack();
+    private Object Component;
+    int[] arr = {0,0};
+    int[] array = copyOf(arr , 1);
+}
+        </source>
       </subsection>
 
       <subsection name="Example of Usage" id="UnusedImports_Example_of_Usage">
@@ -2561,7 +2598,7 @@ class FooBar {
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+UnusedImports">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+UnusedImports">
             Checkstyle Style</a>
           </li>
         </ul>

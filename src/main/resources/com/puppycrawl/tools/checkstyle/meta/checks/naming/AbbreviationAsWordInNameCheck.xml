@@ -10,6 +10,7 @@
  &lt;a href="https://checkstyle.org/styleguides/google-java-style-20180523/javaguide.html#s5.3-camel-case"&gt;
  Google Style Guide&lt;/a&gt; to get to know how to avoid long abbreviations in names.
  &lt;/p&gt;
+ &lt;p&gt;'_' is considered as word separator in identifier name.&lt;/p&gt;
  &lt;p&gt;
  {@code allowedAbbreviationLength} specifies how many consecutive capital letters are
  allowed in the identifier.

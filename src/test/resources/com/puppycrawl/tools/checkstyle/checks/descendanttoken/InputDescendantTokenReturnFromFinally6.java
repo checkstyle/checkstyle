@@ -28,7 +28,7 @@ public class InputDescendantTokenReturnFromFinally6 {
         try {
             System.currentTimeMillis();
         } finally {
-            if (System.currentTimeMillis() == 0) { // violation
+            if (System.currentTimeMillis() == 0) { // violation 'custom message'
                 return; // return from if statement
             }
         }

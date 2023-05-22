@@ -19,7 +19,7 @@ package com.puppycrawl.tools.checkstyle.checks.imports.importorder;
 import static io.netty.handler.codec.http.HttpConstants.COLON; // ok
 import static io.netty.handler.codec.http.HttpHeaders.addHeader; // ok
 import static io.netty.handler.codec.http.HttpHeaders.setHeader; // ok
-import static io.netty.handler.codec.http.HttpHeaders.Names.addDate; // violation
+import static io.netty.handler.codec.http.HttpHeaders.Names.addDate; // violation 'Wrong order for .* import.'
 import static io.netty.handler.codec.http.HttpHeaders.Names.DATE; // ok
 
 public class InputImportOrderEclipseStatic2 {

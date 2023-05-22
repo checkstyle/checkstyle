@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -196,8 +196,8 @@ public class MainFrameModelTest extends AbstractModuleTestSupport {
 
         final String testDataFileNameWithoutPostfix = FILE_NAME_TEST_DATA.replace(".java", "");
         assertWithMessage("Invalid model text: " + model.getText())
-                .that(model.getText().contains(testDataFileNameWithoutPostfix))
-                .isTrue();
+                .that(model.getText())
+                .contains(testDataFileNameWithoutPostfix);
 
         final File expectedLastDirectory = new File(getPath(""));
         assertWithMessage("Invalid model last directory")

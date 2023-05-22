@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -379,7 +379,7 @@ public final class PropertyCacheFile {
     /**
      * Class which represents external resource.
      */
-    private static class ExternalResource {
+    private static final class ExternalResource {
 
         /** Location of resource. */
         private final String location;
@@ -392,7 +392,7 @@ public final class PropertyCacheFile {
          * @param location resource location.
          * @param contentHashSum content hash sum.
          */
-        /* package */ ExternalResource(String location, String contentHashSum) {
+        private ExternalResource(String location, String contentHashSum) {
             this.location = location;
             this.contentHashSum = contentHashSum;
         }

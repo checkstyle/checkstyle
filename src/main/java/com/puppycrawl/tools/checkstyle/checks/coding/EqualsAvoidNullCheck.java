@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -551,7 +551,7 @@ public class EqualsAvoidNullCheck extends AbstractCheck {
     /**
      * Holds the names of fields of a type.
      */
-    private static class FieldFrame {
+    private static final class FieldFrame {
 
         /** Parent frame. */
         private final FieldFrame parent;
@@ -576,7 +576,7 @@ public class EqualsAvoidNullCheck extends AbstractCheck {
          *
          * @param parent parent frame.
          */
-        /* package */ FieldFrame(FieldFrame parent) {
+        private FieldFrame(FieldFrame parent) {
             this.parent = parent;
         }
 

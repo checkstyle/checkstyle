@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -34,12 +34,12 @@ import java.util.concurrent.TimeUnit;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
+import com.puppycrawl.tools.checkstyle.AbstractAutomaticBean;
 import com.puppycrawl.tools.checkstyle.PackageNamesLoader;
 import com.puppycrawl.tools.checkstyle.PackageObjectFactory;
 import com.puppycrawl.tools.checkstyle.TreeWalkerAuditEvent;
 import com.puppycrawl.tools.checkstyle.TreeWalkerFilter;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
-import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 
@@ -142,7 +142,7 @@ public final class TestUtil {
     }
 
     /**
-     * Checks if stateful field is cleared during {@link AutomaticBean}'s finishLocalSetup.
+     * Checks if stateful field is cleared during {@link AbstractAutomaticBean}'s finishLocalSetup.
      *
      * @param filter filter object which field is to be verified
      * @param event event to pass into filter methods
@@ -266,6 +266,7 @@ public final class TestUtil {
      * @param fieldName the name of the field
      * @throws RuntimeException if the field  can't be read
      * @noinspection unchecked
+     * @noinspectionreason unchecked - unchecked cast is ok on test code
      */
     public static <T> T getInternalState(Object instance, String fieldName) {
         try {
@@ -288,6 +289,7 @@ public final class TestUtil {
      * @param fieldName the name of the field
      * @throws RuntimeException if the field  can't be read
      * @noinspection unchecked
+     * @noinspectionreason unchecked - unchecked cast is ok on test code
      */
     public static <T> T getInternalStaticState(Class<?> clss, String fieldName) {
         try {
@@ -334,6 +336,7 @@ public final class TestUtil {
      * @return the method's result
      * @throws ReflectiveOperationException if the method invocation failed
      * @noinspection unchecked
+     * @noinspectionreason unchecked - unchecked cast is ok on test code
      */
     public static <T> T invokeMethod(Object instance,
             String methodToExecute, Object... arguments) throws ReflectiveOperationException {
@@ -352,6 +355,7 @@ public final class TestUtil {
      * @return the method's result
      * @throws ReflectiveOperationException if the method invocation failed
      * @noinspection unchecked
+     * @noinspectionreason unchecked - unchecked cast is ok on test code
      */
     public static <T> T invokeStaticMethod(Class<?> clss,
             String methodToExecute, Object... arguments) throws ReflectiveOperationException {
@@ -367,6 +371,7 @@ public final class TestUtil {
      * @return the inner class type
      * @throws ClassNotFoundException if the class not found
      * @noinspection unchecked
+     * @noinspectionreason unchecked - unchecked cast is ok on test code
      */
     public static <T> Class<T> getInnerClassType(Class<?> declaringClass, String name)
             throws ClassNotFoundException {

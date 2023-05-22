@@ -17,7 +17,7 @@
  {@code ^[a-z]+(\.[a-z][a-z0-9]*)*$} to {@code format} for module {@code PackageName}.
  &lt;/p&gt;</description>
          <properties>
-            <property default-value="^[a-z]+(\.[a-zA-Z_][a-zA-Z0-9_]*)*$"
+            <property default-value="^[a-z]+(\.[a-zA-Z_]\w*)*$"
                        name="format"
                        type="java.util.regex.Pattern">
                <description>Specifies valid identifiers.</description>

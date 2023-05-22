@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -272,14 +272,13 @@ public class MethodLengthCheck extends AbstractCheck {
         final Deque<DetailAST> nodes = new ArrayDeque<>();
         nodes.add(ast);
         final BitSet usedLines = new BitSet();
-        final int startLineNo = ast.getLineNo();
         while (!nodes.isEmpty()) {
             final DetailAST node = nodes.removeFirst();
-            final int lineIndex = node.getLineNo() - startLineNo;
+            final int lineIndex = node.getLineNo();
             // text block requires special treatment,
             // since it is the only non-comment token that can span more than one line
             if (node.getType() == TokenTypes.TEXT_BLOCK_LITERAL_BEGIN) {
-                final int endLineIndex = node.getLastChild().getLineNo() - startLineNo;
+                final int endLineIndex = node.getLastChild().getLineNo();
                 usedLines.set(lineIndex, endLineIndex + 1);
             }
             else {

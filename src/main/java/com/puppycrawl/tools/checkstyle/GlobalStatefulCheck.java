@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -36,7 +36,8 @@ import java.lang.annotation.Target;
  * threads at the same time.
  * Checker guarantees that there will be exactly one check instance
  * This is similar to multi-file validation, which checkstyle does not support fully yet.
- * Please refer to https://github.com/checkstyle/checkstyle/issues/3540 for details.
+ * Please refer to <a href="https://github.com/checkstyle/checkstyle/issues/3540">#3540</a>
+ * for details.
  *
  * @noinspection ClassIndependentOfModule, ClassOnlyUsedInOnePackage
  * @noinspectionreason ClassIndependentOfModule - we keep this annotation at top level by design

@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -41,18 +41,18 @@ import org.apache.tools.ant.taskdefs.LogOutputStream;
 import org.apache.tools.ant.types.EnumeratedAttribute;
 import org.apache.tools.ant.types.FileSet;
 import org.apache.tools.ant.types.Path;
-import org.apache.tools.ant.types.Reference;
 
+import com.puppycrawl.tools.checkstyle.AbstractAutomaticBean.OutputStreamOptions;
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.ConfigurationLoader;
 import com.puppycrawl.tools.checkstyle.DefaultLogger;
 import com.puppycrawl.tools.checkstyle.ModuleFactory;
 import com.puppycrawl.tools.checkstyle.PackageObjectFactory;
 import com.puppycrawl.tools.checkstyle.PropertiesExpander;
+import com.puppycrawl.tools.checkstyle.SarifLogger;
 import com.puppycrawl.tools.checkstyle.ThreadModeSettings;
 import com.puppycrawl.tools.checkstyle.XMLLogger;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
-import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.RootModule;
@@ -69,6 +69,8 @@ public class CheckstyleAntTask extends Task {
     private static final String E_XML = "xml";
     /** Poor man's enum for a plain formatter. */
     private static final String E_PLAIN = "plain";
+    /** Poor man's enum for a sarif formatter. */
+    private static final String E_SARIF = "sarif";
 
     /** Suffix for time string. */
     private static final String TIME_SUFFIX = " ms.";
@@ -84,9 +86,6 @@ public class CheckstyleAntTask extends Task {
 
     /** Contains the Properties to override. */
     private final List<Property> overrideProps = new ArrayList<>();
-
-    /** Class path to locate class files. */
-    private Path classpath;
 
     /** Name of file to check. */
     private String fileName;
@@ -196,38 +195,17 @@ public class CheckstyleAntTask extends Task {
     }
 
     /**
-     * Set the class path.
-     *
-     * @param classpath the path to locate classes
-     */
-    public void setClasspath(Path classpath) {
-        if (this.classpath == null) {
-            this.classpath = classpath;
-        }
-        else {
-            this.classpath.append(classpath);
-        }
-    }
-
-    /**
-     * Set the class path from a reference defined elsewhere.
-     *
-     * @param classpathRef the reference to an instance defining the classpath
-     */
-    public void setClasspathRef(Reference classpathRef) {
-        createClasspath().setRefid(classpathRef);
-    }
-
-    /**
      * Creates classpath.
      *
      * @return a created path for locating classes
+     * @deprecated left in implementation until #12556 only to allow users to migrate to new gradle
+     *     plugins. This method will be removed in Checkstyle 11.x.x .
+     * @noinspection DeprecatedIsStillUsed
+     * @noinspectionreason DeprecatedIsStillUsed - until #12556
      */
+    @Deprecated(since = "10.7.0")
     public Path createClasspath() {
-        if (classpath == null) {
-            classpath = new Path(getProject());
-        }
-        return classpath.createPath();
+        return new Path(getProject());
     }
 
     /**
@@ -425,7 +403,7 @@ public class CheckstyleAntTask extends Task {
         }
         catch (final CheckstyleException ex) {
             throw new BuildException(String.format(Locale.ROOT, "Unable to create Root Module: "
-                    + "config {%s}, classpath {%s}.", config, classpath), ex);
+                    + "config {%s}.", config), ex);
         }
         return rootModule;
     }
@@ -482,8 +460,8 @@ public class CheckstyleAntTask extends Task {
             if (formatters.isEmpty()) {
                 final OutputStream debug = new LogOutputStream(this, Project.MSG_DEBUG);
                 final OutputStream err = new LogOutputStream(this, Project.MSG_ERR);
-                listeners[0] = new DefaultLogger(debug, AutomaticBean.OutputStreamOptions.CLOSE,
-                        err, AutomaticBean.OutputStreamOptions.CLOSE);
+                listeners[0] = new DefaultLogger(debug, OutputStreamOptions.CLOSE,
+                        err, OutputStreamOptions.CLOSE);
             }
             else {
                 for (int i = 0; i < formatterCount; i++) {
@@ -618,7 +596,7 @@ public class CheckstyleAntTask extends Task {
     public static class FormatterType extends EnumeratedAttribute {
 
         /** My possible values. */
-        private static final String[] VALUES = {E_XML, E_PLAIN};
+        private static final String[] VALUES = {E_XML, E_PLAIN, E_SARIF};
 
         @Override
         public String[] getValues() {
@@ -679,10 +657,34 @@ public class CheckstyleAntTask extends Task {
                     && E_XML.equals(type.getValue())) {
                 listener = createXmlLogger(task);
             }
+            else if (type != null
+                    && E_SARIF.equals(type.getValue())) {
+                listener = createSarifLogger(task);
+            }
             else {
                 listener = createDefaultLogger(task);
             }
             return listener;
+        }
+
+        /**
+         * Creates Sarif logger.
+         *
+         * @param task the task to possibly log to
+         * @return an SarifLogger instance
+         * @throws IOException if an error occurs
+         */
+        private AuditListener createSarifLogger(Task task) throws IOException {
+            final AuditListener sarifLogger;
+            if (toFile == null || !useFile) {
+                sarifLogger = new SarifLogger(new LogOutputStream(task, Project.MSG_INFO),
+                        OutputStreamOptions.CLOSE);
+            }
+            else {
+                sarifLogger = new SarifLogger(Files.newOutputStream(toFile.toPath()),
+                        OutputStreamOptions.CLOSE);
+            }
+            return sarifLogger;
         }
 
         /**
@@ -698,16 +700,16 @@ public class CheckstyleAntTask extends Task {
             if (toFile == null || !useFile) {
                 defaultLogger = new DefaultLogger(
                     new LogOutputStream(task, Project.MSG_DEBUG),
-                        AutomaticBean.OutputStreamOptions.CLOSE,
+                        OutputStreamOptions.CLOSE,
                         new LogOutputStream(task, Project.MSG_ERR),
-                        AutomaticBean.OutputStreamOptions.CLOSE
+                        OutputStreamOptions.CLOSE
                 );
             }
             else {
                 final OutputStream infoStream = Files.newOutputStream(toFile.toPath());
                 defaultLogger =
-                        new DefaultLogger(infoStream, AutomaticBean.OutputStreamOptions.CLOSE,
-                                infoStream, AutomaticBean.OutputStreamOptions.NONE);
+                        new DefaultLogger(infoStream, OutputStreamOptions.CLOSE,
+                                infoStream, OutputStreamOptions.NONE);
             }
             return defaultLogger;
         }
@@ -723,11 +725,11 @@ public class CheckstyleAntTask extends Task {
             final AuditListener xmlLogger;
             if (toFile == null || !useFile) {
                 xmlLogger = new XMLLogger(new LogOutputStream(task, Project.MSG_INFO),
-                        AutomaticBean.OutputStreamOptions.CLOSE);
+                        OutputStreamOptions.CLOSE);
             }
             else {
                 xmlLogger = new XMLLogger(Files.newOutputStream(toFile.toPath()),
-                        AutomaticBean.OutputStreamOptions.CLOSE);
+                        OutputStreamOptions.CLOSE);
             }
             return xmlLogger;
         }

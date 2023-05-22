@@ -143,7 +143,7 @@ public void foo() {
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+AvoidNestedBlocks">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+AvoidNestedBlocks">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -362,7 +362,7 @@ public class Test {
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+EmptyBlock">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+EmptyBlock">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -614,7 +614,7 @@ try {
             Google Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+EmptyCatchBlock">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+EmptyCatchBlock">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -904,7 +904,7 @@ class Test
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LeftCurly">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+LeftCurly">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -1217,7 +1217,7 @@ allowedFuture.addCallback(result -> {
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NeedBraces">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+NeedBraces">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -1250,8 +1250,8 @@ allowedFuture.addCallback(result -> {
       <subsection name="Description" id="RightCurly_Description">
         <p>
           Checks the placement of right curly braces (<code>'}'</code>) for code blocks.
-          This check supports if-else, try-catch-finally blocks, while-loops, for-loops,
-          method definitions, class definitions, constructor definitions,
+          This check supports if-else, try-catch-finally blocks, switch statements,
+          while-loops, for-loops, method definitions, class definitions, constructor definitions,
           instance, static initialization blocks, annotation definitions and enum definitions.
           For right curly brace of expression blocks of arrays, lambdas and class instances
           please follow issue
@@ -1318,6 +1318,8 @@ allowedFuture.addCallback(result -> {
                   RECORD_DEF</a>
                 ,<a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMPACT_CTOR_DEF">
                   COMPACT_CTOR_DEF</a>
+                ,<a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_SWITCH">
+                  LITERAL_SWITCH</a>
                 .
               </td>
               <td>
@@ -1433,7 +1435,45 @@ public class Test {
   }                              // OK
 }
         </source>
+        <p>
+          To configure the check with policy <code>alone</code> for
+          <a href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/switch.html">
+          Switch</a>
+          Statements:
+        </p>
+        <source>
+&lt;module name=&quot;RightCurly&quot;&gt;
+  &lt;property name=&quot;option&quot; value=&quot;alone&quot;/&gt;
+  &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_SWITCH&quot;/&gt;
+&lt;/module&gt;
+        </source>
 
+        <source>
+class Test {
+
+    public void method0() {
+        int mode = 0;
+        switch (mode) {
+            case 1:
+                int x = 1;
+                break;
+            default:
+                x = 0;
+        } // ok, RightCurly is alone
+    }
+
+    public void method0() {
+        int mode = 0;
+        switch (mode) {
+            case 1:
+                int x = 1;
+                break;
+            default:
+                x = 0; } // violation, RightCurly should be alone on a line
+    }
+
+}
+        </source>
         <p>
           To configure the check with policy <code>alone_or_singleline</code> for <code> if</code>
           and <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
@@ -1477,6 +1517,47 @@ public class Test {
   public void violate() { bar(); } // OK , because singleline
 }
         </source>
+        <p>
+          To configure the check with policy <code>alone_or_singleline</code> for
+          <a href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/switch.html">
+          Switch</a>
+          Statements:
+        </p>
+        <source>
+&lt;module name=&quot;RightCurly&quot;&gt;
+  &lt;property name=&quot;option&quot; value=&quot;alone_or_singleline&quot;/&gt;
+  &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_SWITCH&quot;/&gt;
+&lt;/module&gt;
+        </source>
+        <source>
+class Test {
+
+    public void method0() {
+        int mode = 0;
+        switch (mode) {
+            case 1:
+                int x = 1;
+                break;
+            default:
+                x = 0;
+        } // ok
+    }
+
+    public static void method7() {
+        int mode = 0;
+        int x;
+        switch (mode) { case 1: x = 5; } // ok, RightCurly is on the same line as LeftCurly
+    }
+
+    public void method() {
+        int mode = 0;
+        int x;
+        switch (mode) {
+            case 1:
+                x = 1; } // violation, right curly should be alone on line
+    }
+}
+        </source>
       </subsection>
 
       <subsection name="Example of Usage" id="RightCurly_Example_of_Usage">
@@ -1490,7 +1571,7 @@ public class Test {
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+RightCurly">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+RightCurly">
             Checkstyle Style</a>
           </li>
         </ul>

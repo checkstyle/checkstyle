@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -450,6 +450,26 @@ public class HiddenFieldCheckTest
                 getNonCompilablePath("InputHiddenFieldRecords.java"), expected);
     }
 
+    @Test
+    public void testHiddenFieldLambdasInNestedScope() throws Exception {
+        final String[] expected = {
+            "21:34: " + getCheckMessage(MSG_KEY, "value"),
+        };
+        verifyWithInlineConfigParser(
+            getPath("InputHiddenFieldLambdas2.java"), expected);
+    }
+
+    @Test
+    public void testClassNestedInRecord() throws Exception {
+
+        final String[] expected = {
+            "23:26: " + getCheckMessage(MSG_KEY, "a"),
+        };
+        verifyWithInlineConfigParser(
+            getNonCompilablePath("InputHiddenFieldClassNestedInRecord.java"),
+            expected);
+    }
+
     /**
      * We cannot reproduce situation when visitToken is called and leaveToken is not.
      * So, we have to use reflection to be sure that even in such situation
@@ -475,7 +495,7 @@ public class HiddenFieldCheckTest
                 .isTrue();
     }
 
-    private static class CheckIfStatefulFieldCleared implements Predicate<Object> {
+    private static final class CheckIfStatefulFieldCleared implements Predicate<Object> {
 
         @Override
         public boolean test(Object frame) {

@@ -20,7 +20,7 @@ import static io.netty.handler.codec.http.HttpConstants.COLON; // ok
 import static io.netty.handler.codec.http.HttpHeaders.addHeader; // ok
 import static io.netty.handler.codec.http.HttpHeaders.setHeader; // ok
 import static io.netty.handler.codec.http.HttpHeaders.Names.addDate; // ok
-import static io.netty.handler.codec.http.HttpHeaders.Names.DATE; // violation
+import static io.netty.handler.codec.http.HttpHeaders.Names.DATE; // violation 'Wrong order for .* import.'
 
 public class InputImportOrderEclipseStatic3 {
 }

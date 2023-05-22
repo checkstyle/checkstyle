@@ -244,4 +244,9 @@ public class InputRightCurlyTestAloneOrSingleline {
 
     interface Interface2
     { int i = 1; public void meth1(); }
+
+    private void foo28() {
+        if (true) { return; } else { } if (false) { // 2 violations
+        }
+    }
 }

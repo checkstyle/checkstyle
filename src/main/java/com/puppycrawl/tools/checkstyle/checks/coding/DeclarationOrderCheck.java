@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -480,7 +480,7 @@ public class DeclarationOrderCheck extends AbstractCheck {
     /**
      * Private class to encapsulate the state.
      */
-    private static class ScopeState {
+    private static final class ScopeState {
 
         /** The state the check is in. */
         private int currentScopeState = STATE_STATIC_VARIABLE_DEF;

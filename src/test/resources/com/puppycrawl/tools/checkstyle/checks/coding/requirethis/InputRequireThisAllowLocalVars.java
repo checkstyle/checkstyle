@@ -15,7 +15,7 @@ class InputRequireThisAllowLocalVars { // ok
     String s2 = "foo2";
 
     InputRequireThisAllowLocalVars() {
-        s1 = "bar1"; // violation
+        s1 = "bar1"; // violation 'Reference to instance variable 's1' needs "this.".'
         String s2;
         s2 = "bar2"; // No violation. Local var allowed.
     }
@@ -23,7 +23,7 @@ class InputRequireThisAllowLocalVars { // ok
     public int getS1() {
         String s1 = null;
         s1 = "bar"; // No violation
-        s1 = s1; // violation
+        s1 = s1; // violation 'Reference to instance variable 's1' needs "this.".'
         return 1;
     }
 
@@ -36,18 +36,18 @@ class InputRequireThisAllowLocalVars { // ok
 
     String getS2() {
         String s2 = null;
-        s2+=s2; // violation
+        s2+=s2; // violation 'Reference to instance variable 's2' needs "this.".'
         return "return";
     }
 
     String getS2(String s2) {
-        s2 = null; // violation
+        s2 = null; // violation 'Reference to instance variable 's2' needs "this.".'
         return s2; // No violation. param is returned.
     }
 
     String getS2(int a) {
         String s2 = " ";
-        s2 += s2; // violation
-        return s1; // violation
+        s2 += s2; // violation 'Reference to instance variable 's2' needs "this.".'
+        return s1; // violation 'Reference to instance variable 's1' needs "this.".'
     }
 }

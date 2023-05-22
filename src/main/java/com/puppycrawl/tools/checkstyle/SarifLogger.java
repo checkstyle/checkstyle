@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -33,15 +33,14 @@ import java.util.Locale;
 
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
-import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 
 /**
  * Simple SARIF logger.
  * SARIF stands for the static analysis results interchange format.
- * Reference: https://sarifweb.azurewebsites.net/
+ * See <a href="https://sarifweb.azurewebsites.net/">reference</a>
  */
-public class SarifLogger extends AutomaticBean implements AuditListener {
+public class SarifLogger extends AbstractAutomaticBean implements AuditListener {
 
     /** The length of unicode placeholder. */
     private static final int UNICODE_LENGTH = 4;
@@ -233,7 +232,7 @@ public class SarifLogger extends AutomaticBean implements AuditListener {
 
     /**
      * Escape \b, \f, \n, \r, \t, \", \\ and U+0000 through U+001F.
-     * Reference: https://www.ietf.org/rfc/rfc4627.txt - 2.5. Strings
+     * See <a href="https://www.ietf.org/rfc/rfc4627.txt">reference</a> - 2.5. Strings
      *
      * @param value the value to escape.
      * @return the escaped value if necessary.

@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -175,9 +175,9 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testWithAnonymousClass() throws Exception {
         final String[] expected = {
-            "28:25: " + getCheckMessage(MSG_METHOD, "doSideEffect", ""),
-            "32:24: " + getCheckMessage(MSG_VARIABLE, "bar", "InputRequireThisAnonymousEmpty."),
-            "55:17: " + getCheckMessage(MSG_VARIABLE, "foobar", ""),
+            "29:25: " + getCheckMessage(MSG_METHOD, "doSideEffect", ""),
+            "33:24: " + getCheckMessage(MSG_VARIABLE, "bar", "InputRequireThisAnonymousEmpty."),
+            "56:17: " + getCheckMessage(MSG_VARIABLE, "foobar", ""),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRequireThisAnonymousEmpty.java"),
@@ -250,6 +250,17 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
         };
         verifyWithInlineConfigParser(
                 getPath("InputRequireThisValidateOnlyOverlappingFalse.java"), expected);
+    }
+
+    @Test
+    public void testValidateOnlyOverlappingFalseLeaves() throws Exception {
+        final String[] expected = {
+            "26:31: " + getCheckMessage(MSG_METHOD, "id", ""),
+            "36:16: " + getCheckMessage(MSG_VARIABLE, "_a", ""),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputRequireThisValidateOnlyOverlappingFalseLeaves.java"),
+                expected);
     }
 
     @Test
@@ -330,9 +341,35 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
             "46:21: " + getCheckMessage(MSG_VARIABLE, "z", ""),
             "71:29: " + getCheckMessage(MSG_VARIABLE, "a", ""),
             "71:34: " + getCheckMessage(MSG_VARIABLE, "b", ""),
+            "81:17: " + getCheckMessage(MSG_VARIABLE, "thread", ""),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRequireThisAllowLambdaParameters.java"), expected);
+    }
+
+    @Test
+    public void testTryWithResources() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputRequireThisTryWithResources.java"), expected);
+    }
+
+    @Test
+    public void testTryWithResourcesOnlyOverlappingFalse() throws Exception {
+        final String[] expected = {
+            "44:23: " + getCheckMessage(MSG_VARIABLE, "fldCharset", ""),
+            "57:13: " + getCheckMessage(MSG_VARIABLE, "fldCharset", ""),
+            "69:45: " + getCheckMessage(MSG_METHOD, "methodToInvoke", ""),
+            "77:24: " + getCheckMessage(MSG_METHOD, "methodToInvoke", ""),
+            "103:51: " + getCheckMessage(MSG_VARIABLE, "fldBufferedReader", ""),
+            "107:23: " + getCheckMessage(MSG_VARIABLE, "fldBufferedReader", ""),
+            "107:54: " + getCheckMessage(MSG_VARIABLE, "fldScanner", ""),
+            "110:24: " + getCheckMessage(MSG_VARIABLE, "fldStreamReader", ""),
+            "111:23: " + getCheckMessage(MSG_VARIABLE, "fldBufferedReader", ""),
+            "111:54: " + getCheckMessage(MSG_VARIABLE, "fldScanner", ""),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputRequireThisTryWithResourcesOnlyOverlappingFalse.java"), expected);
     }
 
     @Test
@@ -387,7 +424,9 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testExtendedMethod() throws Exception {
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        final String[] expected = {
+            "31:9: " + getCheckMessage(MSG_VARIABLE, "EXPR", ""),
+        };
         verifyWithInlineConfigParser(
                 getPath("InputRequireThisExtendedMethod.java"), expected);
     }
@@ -444,7 +483,41 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testUnusedMethod() throws Exception {
+    public void testRecordsWithCheckFields() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputRequireThisRecordsWithCheckFields.java"),
+                expected);
+    }
+
+    @Test
+    public void testRecordsWithCheckFieldsOverlap() throws Exception {
+        final String[] expected = {
+            "20:20: " + getCheckMessage(MSG_VARIABLE, "a", ""),
+            "39:20: " + getCheckMessage(MSG_VARIABLE, "a", ""),
+            "46:16: " + getCheckMessage(MSG_VARIABLE, "a", ""),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputRequireThisRecordsWithCheckFieldsOverlap.java"),
+                expected);
+    }
+
+    @Test
+    public void testLocalClassesInsideLambdas() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+            getPath("InputRequireThisLocalClassesInsideLambdas.java"),
+            expected);
+    }
+
+    /**
+     * We cannot confirm the type of the private class unless using reflection.
+     * Until <a href="https://github.com/checkstyle/checkstyle/issues/12666">#12666</a>.
+     *
+     * @throws Exception when code tested throws an exception.
+     */
+    @Test
+    public void testUnusedMethodCatch() throws Exception {
         final DetailAstImpl ident = new DetailAstImpl();
         ident.setText("testName");
 
@@ -460,6 +533,27 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
         assertWithMessage("expected catch frame type")
             .that(TestUtil.invokeMethod(o, "getType").toString())
             .isEqualTo("CATCH_FRAME");
+    }
+
+    /**
+     * We cannot confirm the type of the private class unless using reflection.
+     * Until <a href="https://github.com/checkstyle/checkstyle/issues/12666">#12666</a>.
+     *
+     * @throws Exception when code tested throws an exception.
+     */
+    @Test
+    public void testUnusedMethodFor() throws Exception {
+        final DetailAstImpl ident = new DetailAstImpl();
+        ident.setText("testName");
+
+        final Class<?> cls = Class.forName(RequireThisCheck.class.getName() + "$ForFrame");
+        final Constructor<?> constructor = cls.getDeclaredConstructors()[0];
+        constructor.setAccessible(true);
+        final Object o = constructor.newInstance(null, ident);
+
+        assertWithMessage("expected for frame type")
+            .that(TestUtil.invokeMethod(o, "getType").toString())
+            .isEqualTo("FOR_FRAME");
     }
 
     /**

@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -27,6 +27,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Deque;
 import java.util.EventObject;
 import java.util.List;
@@ -44,7 +45,7 @@ import javax.swing.tree.TreePath;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.utils.XpathUtil;
-import com.puppycrawl.tools.checkstyle.xpath.AbstractNode;
+import com.puppycrawl.tools.checkstyle.xpath.ElementNode;
 import com.puppycrawl.tools.checkstyle.xpath.RootNode;
 import com.puppycrawl.tools.checkstyle.xpath.XpathQueryGenerator;
 import net.sf.saxon.trans.XPathException;
@@ -53,12 +54,13 @@ import net.sf.saxon.trans.XPathException;
  * This example shows how to create a simple TreeTable component,
  * by using a JTree as a renderer (and editor) for the cells in a
  * particular column in the JTable.
- *
  * <a href=
  * "https://docs.oracle.com/cd/E48246_01/apirefs.1111/e13403/oracle/ide/controls/TreeTableModel.html">
  * Original&nbsp;Source&nbsp;Location</a>
  *
  * @noinspection ThisEscapedInObjectConstruction
+ * @noinspectionreason ThisEscapedInObjectConstruction - only reference is used and not
+ *      accessed until initialized
  */
 public final class TreeTable extends JTable {
 
@@ -107,7 +109,8 @@ public final class TreeTable extends JTable {
         // the table.
         if (tree.getRowHeight() < 1) {
             // Metal looks better like this.
-            setRowHeight(getRowHeight());
+            final int height = getRowHeight();
+            setRowHeight(height);
         }
 
         setColumnsInitialWidth();
@@ -209,8 +212,8 @@ public final class TreeTable extends JTable {
                 final Deque<DetailAST> nodes =
                         XpathUtil.getXpathItems(xpath, new RootNode(rootAST))
                               .stream()
-                              .map(AbstractNode.class::cast)
-                              .map(AbstractNode::getUnderlyingNode)
+                              .map(ElementNode.class::cast)
+                              .map(ElementNode::getUnderlyingNode)
                               .collect(Collectors.toCollection(ArrayDeque::new));
                 updateTreeTable(xpath, nodes);
             }
@@ -344,11 +347,11 @@ public final class TreeTable extends JTable {
     }
 
     /**
-     * Sets line position list.
+     * Sets line positions.
      *
-     * @param linePositionList Line position list.
+     * @param linePositionList positions of lines.
      */
-    public void setLinePositionList(List<Integer> linePositionList) {
+    public void setLinePositionList(Collection<Integer> linePositionList) {
         this.linePositionList = new ArrayList<>(linePositionList);
     }
 
@@ -356,7 +359,7 @@ public final class TreeTable extends JTable {
      * TreeTableCellEditor implementation. Component returned is the
      * JTree.
      */
-    private class TreeTableCellEditor extends BaseCellEditor implements
+    private final class TreeTableCellEditor extends BaseCellEditor implements
             TableCellEditor {
 
         @Override

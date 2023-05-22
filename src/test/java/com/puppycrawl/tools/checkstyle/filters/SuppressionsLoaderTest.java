@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -143,14 +143,14 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
         catch (CheckstyleException ex) {
             final String messageStart = "Unable to parse " + fn;
             assertWithMessage("Exception message should start with: " + messageStart)
-                    .that(ex.getMessage().startsWith("Unable to parse " + fn))
-                    .isTrue();
+                    .that(ex.getMessage())
+                    .startsWith("Unable to parse " + fn);
             assertWithMessage("Exception message should contain \"files\"")
-                    .that(ex.getMessage().contains("\"files\""))
-                    .isTrue();
+                    .that(ex.getMessage())
+                    .contains("\"files\"");
             assertWithMessage("Exception message should contain \"suppress\"")
-                    .that(ex.getMessage().contains("\"suppress\""))
-                    .isTrue();
+                    .that(ex.getMessage())
+                    .contains("\"suppress\"");
         }
     }
 
@@ -164,14 +164,14 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
         catch (CheckstyleException ex) {
             final String messageStart = "Unable to parse " + fn;
             assertWithMessage("Exception message should start with: " + messageStart)
-                    .that(ex.getMessage().startsWith(messageStart))
-                    .isTrue();
+                    .that(ex.getMessage())
+                    .startsWith(messageStart);
             assertWithMessage("Exception message should contain \"checks\"")
-                    .that(ex.getMessage().contains("\"checks\""))
-                    .isTrue();
+                    .that(ex.getMessage())
+                    .contains("\"checks\"");
             assertWithMessage("Exception message should contain \"suppress\"")
-                    .that(ex.getMessage().contains("\"suppress\""))
-                    .isTrue();
+                    .that(ex.getMessage())
+                    .contains("\"suppress\"");
         }
     }
 

@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -21,6 +21,8 @@ package com.puppycrawl.tools.checkstyle.api;
 
 import java.util.Map;
 
+import com.puppycrawl.tools.checkstyle.AbstractAutomaticBean;
+
 /**
  * Serves as an abstract base class for all modules that report inspection
  * findings. Such modules have a Severity level which is used for the
@@ -32,7 +34,7 @@ import java.util.Map;
  *      by demand in subclasses
  */
 public abstract class AbstractViolationReporter
-    extends AutomaticBean {
+    extends AbstractAutomaticBean {
 
     /** The severity level of any violations found. */
     private SeverityLevel severityLevel = SeverityLevel.ERROR;

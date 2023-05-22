@@ -18,10 +18,10 @@ package com.puppycrawl.tools.checkstyle.checks.imports.importorder;
 
 import org.antlr.v4.runtime.*; // ok
 
-import java.util.Set; // violation
+import java.util.Set; // violation 'Extra separation in import group before 'java.util.Set''
 
 import static java.lang.Math.*; // 2 violations
-import static org.antlr.v4.runtime.CommonToken.*; // violation
+import static org.antlr.v4.runtime.CommonToken.*; // violation 'Wrong order for 'org.antlr.v4.runtime.CommonToken.*' import.'
 
 public class InputImportOrderStaticOnDemandGroupOrderBottom3
 {

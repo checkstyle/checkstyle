@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -27,13 +27,14 @@ import java.nio.charset.StandardCharsets;
 
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
-import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 
 /**
  * Generates <b>suppressions.xml</b> file, based on violations occurred.
- * See issue #102 https://github.com/checkstyle/checkstyle/issues/102
+ * See issue <a href="https://github.com/checkstyle/checkstyle/issues/102">#102</a>
  */
-public class XpathFileGeneratorAuditListener extends AutomaticBean implements AuditListener {
+public class XpathFileGeneratorAuditListener
+        extends AbstractAutomaticBean
+        implements AuditListener {
 
     /** The " quote character. */
     private static final String QUOTE_CHAR = "\"";

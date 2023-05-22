@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -21,31 +21,24 @@ package com.google.checkstyle.test.chapter5naming.rule528typevariablenames;
 
 import java.util.Map;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 
 public class MethodTypeParameterNameTest extends AbstractGoogleModuleTestSupport {
 
     private static final String MSG_KEY = "name.invalidPattern";
-    private static String format;
 
     @Override
     protected String getPackageLocation() {
         return "com/google/checkstyle/test/chapter5naming/rule528typevariablenames";
     }
 
-    @BeforeAll
-    public static void setConfigurationBuilder() throws CheckstyleException {
-        format = getModuleConfig("ClassTypeParameterName").getProperty("format");
-    }
-
     @Test
     public void testMethodDefault() throws Exception {
         final Configuration checkConfig = getModuleConfig("MethodTypeParameterName");
+        final String format = checkConfig.getProperty("format");
         final Map<String, String> messages = checkConfig.getMessages();
 
         final String[] expected = {

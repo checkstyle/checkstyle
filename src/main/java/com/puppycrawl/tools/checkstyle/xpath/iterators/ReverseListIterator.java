@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.xpath.iterators;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import net.sf.saxon.om.NodeInfo;
@@ -41,9 +42,9 @@ public class ReverseListIterator implements AxisIterator {
     /**
      * Constructor for {@code ReverseListIterator} class.
      *
-     * @param items the list of nodes.
+     * @param items the collection of nodes.
      */
-    public ReverseListIterator(List<? extends NodeInfo> items) {
+    public ReverseListIterator(Collection<? extends NodeInfo> items) {
         if (items == null) {
             this.items = null;
             index = -1;

@@ -53,3 +53,8 @@ interface TestRequireThisEnum
         SATURDAY
     }
 }
+
+@MyAnnotation1(name = "ABC", version = 1)
+class ExtraParenAfterAnnotation {
+    boolean flag = ("abc" == "done"); // violation 'parentheses around assignment right-hand side'
+}

@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -21,8 +21,8 @@ package com.puppycrawl.tools.checkstyle.filters;
 
 import java.util.regex.Pattern;
 
+import com.puppycrawl.tools.checkstyle.AbstractAutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
-import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.Filter;
 
 /**
@@ -196,7 +196,7 @@ import com.puppycrawl.tools.checkstyle.api.Filter;
  *
  * @since 8.23
  */
-public class SuppressionSingleFilter extends AutomaticBean implements Filter {
+public class SuppressionSingleFilter extends AbstractAutomaticBean implements Filter {
 
     /**
      * SuppressFilterElement instance.

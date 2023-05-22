@@ -21,7 +21,7 @@ public class InputRequireThisMethodReferences { // ok
             .collect(Collectors.toCollection(TreeSet::new)));
 
     public InputRequireThisMethodReferences(Set<String> tags) {
-        tags = tags; // violation
+        tags = tags; // violation 'Reference to instance variable 'tags' needs "this.".'
     }
 
     public InputRequireThisMethodReferences() {

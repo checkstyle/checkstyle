@@ -16,7 +16,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.writetag;
  * @incomplete This class needs more code...
  * @doubletag first text
  * @doubletag second text
- * @emptytag  // violation
+ * @emptytag
  */
 class InputWriteTagEmptyTag
 {

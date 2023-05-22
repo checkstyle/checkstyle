@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="phase-package" default="execute">
+  <condition property="run">
+    <or>
+      <not>
+        <isset property="checkstyle.ant.skip"/>
+      </not>
+      <isfalse value="${checkstyle.ant.skip}"/>
+    </or>
+  </condition>
+
+  <target name="execute" if="run">
+    <taskdef resource="com/puppycrawl/tools/checkstyle/ant/checkstyle-ant-task.properties"/>
+
+    <property name="check.config" location="config/checkstyle-sevntu-checks.xml"/>
+
+    <tstamp>
+      <format property="STARTED" pattern="dd/MM/yyyy hh:mm:ss aa" />
+    </tstamp>
+    <echo level="info">Checkstyle started (${check.config}): ${STARTED}</echo>
+
+    <checkstyle config="${check.config}"
+                failOnViolation="false"
+                failureProperty="checkstyle.failure.property"
+                executeIgnoredModules="true"
+                >
+      <fileset dir="src"
+               includes="**/*"
+               excludes="**/it/resources/**/*,**/it/resources-noncompilable/**/*,
+               ,**/test/resources/**/*,**/test/resources-noncompilable/**/*,
+               ,**/gen/**"/>
+      <formatter type="plain"/>
+      <formatter type="xml" toFile="${mvn.project.build.directory}/cs_sevntu_errors.xml"/>
+      <property key="checkstyle.sevntu.cache.file"
+        file="${mvn.project.build.directory}/cachefile_sevntu"/>
+    </checkstyle>
+
+    <tstamp>
+      <format property="FINISHED" pattern="dd/MM/yyyy hh:mm:ss aa"/>
+    </tstamp>
+    <echo level="info">Checkstyle finished (${check.config}) : ${FINISHED}</echo>
+
+    <fail if="checkstyle.failure.property"
+          message="Checkstyle failed: ${checkstyle.failure.property}"
+    />
+  </target>
+</project>

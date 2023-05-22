@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -133,8 +133,8 @@ public class JavaParserTest extends AbstractModuleTestSupport {
             .that(commentContent.getColumnNo())
             .isEqualTo(2);
         assertWithMessage("Unexpected comment content")
-                .that(commentContent.getText().startsWith(" inline comment"))
-                .isTrue();
+                .that(commentContent.getText())
+                .startsWith(" inline comment");
     }
 
     @Test
@@ -173,8 +173,8 @@ public class JavaParserTest extends AbstractModuleTestSupport {
             .that(commentContent.getColumnNo())
             .isEqualTo(6);
         assertWithMessage("Unexpected comment content")
-                .that(commentContent.getText().startsWith(" indented comment"))
-                .isTrue();
+                .that(commentContent.getText())
+                .startsWith(" indented comment");
     }
 
     @Test
@@ -278,7 +278,7 @@ public class JavaParserTest extends AbstractModuleTestSupport {
         private final List<String> lineComments = new ArrayList<>();
         private final List<String> blockComments = new ArrayList<>();
 
-        /* package */ CountComments(DetailAST root) {
+        private CountComments(DetailAST root) {
             forEachChild(root);
         }
 

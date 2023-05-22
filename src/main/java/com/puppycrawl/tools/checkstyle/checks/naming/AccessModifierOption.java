@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -23,8 +23,8 @@ import java.util.Locale;
 
 /**
  * This enum represents access modifiers.
- * Access modifiers names are taken from JLS:
- * https://docs.oracle.com/javase/specs/jls/se8/html/jls-6.html#jls-6.6
+ * Access modifiers names are taken from
+ * <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-6.html#jls-6.6">JLS</a>
  *
  */
 public enum AccessModifierOption {

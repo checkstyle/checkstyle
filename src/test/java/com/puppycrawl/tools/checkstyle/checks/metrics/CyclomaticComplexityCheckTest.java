@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -154,6 +154,16 @@ public class CyclomaticComplexityCheckTest
 
         verifyWithInlineConfigParser(
                 getPath("InputCyclomaticComplexitySwitchBlocks4.java"), expected);
+    }
+
+    @Test
+    public void testDefaultMax() throws Exception {
+        final String[] expected = {
+            "14:5: " + getCheckMessage(MSG_KEY, 12, 10),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputCyclomaticComplexitySwitchBlocks5.java"), expected);
     }
 
 }

@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -26,6 +26,8 @@ import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class RecordComponentNumberCheckTest extends AbstractModuleTestSupport {
@@ -153,4 +155,28 @@ public class RecordComponentNumberCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputRecordComponentNumberPrivateModifier.java"), expected);
     }
+
+    /**
+     * Checks that the check when given an array, creates it's own instance of
+     * the array and is not re-using and possible overwriting the one given to
+     * it. Without this, pitest says {@code Arrays.copyOf} is not needed, but it
+     * is needed for other style checks.
+     *
+     * @throws Exception if an error occurs.
+     */
+    @Test
+    public void testCloneInAccessModifiersProperty() throws Exception {
+        final AccessModifierOption[] input = {
+            AccessModifierOption.PACKAGE,
+        };
+        final RecordComponentNumberCheck check = new RecordComponentNumberCheck();
+        check.setAccessModifiers(input);
+
+        assertWithMessage("check creates its own instance of access modifier array")
+            .that(System.identityHashCode(
+                TestUtil.getClassDeclaredField(RecordComponentNumberCheck.class, "accessModifiers")
+                        .get(check)))
+            .isNotEqualTo(System.identityHashCode(input));
+    }
+
 }

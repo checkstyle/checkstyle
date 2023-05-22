@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -489,7 +489,7 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
     public void testCountMatches() throws Exception {
         final AvoidEscapedUnicodeCharactersCheck check = new AvoidEscapedUnicodeCharactersCheck();
         final int actual = TestUtil.invokeMethod(check, "countMatches",
-                Pattern.compile("\\\\u[a-fA-F0-9]{4}"), "\\u1234");
+                Pattern.compile("\\\\u[a-fA-F\\d]{4}"), "\\u1234");
         assertWithMessage("Unexpected matches count")
             .that(actual)
             .isEqualTo(1);
@@ -523,7 +523,7 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
 
         // Verifying character order
         final String[] expressionParts = expression.split("\\|");
-        final Pattern unicodeCharPattern = Pattern.compile("^\\\\\\\\u[0-9A-F]{4}$");
+        final Pattern unicodeCharPattern = Pattern.compile("^\\\\\\\\u[\\dA-F]{4}$");
         String lastChar = null;
         for (int i = 0; i < expressionParts.length; i++) {
             final String currentChar = expressionParts[i];

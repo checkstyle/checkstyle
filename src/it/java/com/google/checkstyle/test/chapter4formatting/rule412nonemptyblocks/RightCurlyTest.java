@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -116,4 +116,18 @@ public class RightCurlyTest extends AbstractGoogleModuleTestSupport {
         verify(checkConfig, filePath, expected, warnList);
     }
 
+    @Test
+    public void testRightCurlySwitch() throws Exception {
+        final String[] expected = {
+            "12:24: " + getCheckMessage(RightCurlyCheck.class, MSG_KEY_LINE_ALONE, "}", 24),
+            "19:27: " + getCheckMessage(RightCurlyCheck.class, MSG_KEY_LINE_ALONE, "}", 27),
+
+        };
+
+        final Configuration checkConfig = createTreeWalkerConfig(getModuleConfigsByIds(MODULES));
+        final String filePath = getPath("InputRightCurlySwitchCase.java");
+
+        final Integer[] warnList = getLinesWithWarn(filePath);
+        verify(checkConfig, filePath, expected, warnList);
+    }
 }

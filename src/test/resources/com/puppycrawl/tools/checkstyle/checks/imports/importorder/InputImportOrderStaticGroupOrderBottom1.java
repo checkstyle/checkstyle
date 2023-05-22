@@ -18,9 +18,9 @@ package com.puppycrawl.tools.checkstyle.checks.imports.importorder;
 
 import org.antlr.v4.runtime.*; // ok
 
-import java.util.Set; // violation
+import java.util.Set; // violation 'Extra separation in import group before 'java.util.Set''
 
-import static java.lang.Math.PI; // violation
+import static java.lang.Math.PI; // violation 'Extra separation in import group before 'java.lang.Math.PI''
 import static org.antlr.v4.runtime.Recognizer.EOF; // ok
 
 public class InputImportOrderStaticGroupOrderBottom1

@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -303,6 +303,18 @@ public class Antlr4AstRegressionTest extends AbstractTreeTestSupport {
     public void testUnusualAnnotation() throws Exception {
         verifyAst(getPath("ExpectedAntlr4AstRegressionUnusualAnnotation.txt"),
                 getPath("InputAntlr4AstRegressionUnusualAnnotation.java"));
+    }
+
+    @Test
+    public void testLambda() throws Exception {
+        verifyAst(getPath("ExpectedAntlr4AstRegressionLambda.txt"),
+                getPath("InputAntlr4AstRegressionLambda.java"));
+    }
+
+    @Test
+    public void testExpressions() throws Exception {
+        verifyAst(getPath("ExpectedAntlr4AstRegressionExpressions.txt"),
+                getPath("InputAntlr4AstRegressionExpressions.java"));
     }
 
     @Test

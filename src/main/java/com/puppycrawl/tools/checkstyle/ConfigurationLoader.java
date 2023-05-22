@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -24,6 +24,7 @@ import java.net.URI;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Deque;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -132,17 +133,12 @@ public final class ConfigurationLoader {
 
     /** Property resolver. **/
     private final PropertyResolver overridePropsResolver;
-    /** The loaded configurations. **/
-    private final Deque<DefaultConfiguration> configStack = new ArrayDeque<>();
 
     /** Flags if modules with the severity 'ignore' should be omitted. */
     private final boolean omitIgnoredModules;
 
     /** The thread mode configuration. */
     private final ThreadModeSettings threadModeSettings;
-
-    /** The Configuration that is being built. */
-    private Configuration configuration;
 
     /**
      * Creates a new {@code ConfigurationLoader} instance.
@@ -191,12 +187,14 @@ public final class ConfigurationLoader {
      * the caller to close the stream.
      *
      * @param source the source that contains the configuration data
+     * @return the check configurations
      * @throws IOException if an error occurs
      * @throws SAXException if an error occurs
      */
-    private void parseInputSource(InputSource source)
+    private Configuration parseInputSource(InputSource source)
             throws IOException, SAXException {
         saxHandler.parseInputSource(source);
+        return saxHandler.configuration;
     }
 
     /**
@@ -314,8 +312,7 @@ public final class ConfigurationLoader {
             final ConfigurationLoader loader =
                     new ConfigurationLoader(overridePropsResolver,
                             omitIgnoreModules, threadModeSettings);
-            loader.parseInputSource(configSource);
-            return loader.configuration;
+            return loader.parseInputSource(configSource);
         }
         catch (final SAXParseException ex) {
             final String message = String.format(Locale.ROOT, SAX_PARSE_EXCEPTION_FORMAT,
@@ -333,30 +330,26 @@ public final class ConfigurationLoader {
      * with the string value of the corresponding data types. This method must remain
      * outside inner class for easier testing since inner class requires an instance.
      *
-     * <p>Code copied from ant -
-     * http://cvs.apache.org/viewcvs/jakarta-ant/src/main/org/apache/tools/ant/ProjectHelper.java
+     * <p>Code copied from
+     * <a href="https://github.com/apache/ant/blob/master/src/main/org/apache/tools/ant/ProjectHelper.java">
+     * ant
+     * </a>
      *
-     * @param value The string to be scanned for property references.
-     *              May be {@code null}, in which case this
-     *              method returns immediately with no effect.
+     * @param value The string to be scanned for property references. Must
+     *              not be {@code null}.
      * @param props Mapping (String to String) of property names to their
      *              values. Must not be {@code null}.
      * @param defaultValue default to use if one of the properties in value
      *              cannot be resolved from props.
      *
-     * @return the original string with the properties replaced, or
-     *         {@code null} if the original string is {@code null}.
+     * @return the original string with the properties replaced.
      * @throws CheckstyleException if the string contains an opening
      *                           {@code ${} without a closing
      *                           {@code }}
-     * @noinspection MethodWithMultipleReturnPoints
      */
     private static String replaceProperties(
             String value, PropertyResolver props, String defaultValue)
             throws CheckstyleException {
-        if (value == null) {
-            return null;
-        }
 
         final List<String> fragments = new ArrayList<>();
         final List<String> propertyRefs = new ArrayList<>();
@@ -387,18 +380,20 @@ public final class ConfigurationLoader {
 
     /**
      * Parses a string containing {@code ${xxx}} style property
-     * references into two lists. The first list is a collection
+     * references into two collections. The first one is a collection
      * of text fragments, while the other is a set of string property names.
-     * {@code null} entries in the first list indicate a property
-     * reference from the second list.
+     * {@code null} entries in the first collection indicate a property
+     * reference from the second collection.
      *
-     * <p>Code copied from ant -
-     * http://cvs.apache.org/viewcvs/jakarta-ant/src/main/org/apache/tools/ant/ProjectHelper.java
+     * <p>Code copied from
+     * <a href="https://github.com/apache/ant/blob/master/src/main/org/apache/tools/ant/ProjectHelper.java">
+     * ant
+     * </a>
      *
      * @param value     Text to parse. Must not be {@code null}.
-     * @param fragments List to add text fragments to.
+     * @param fragments Collection to add text fragments to.
      *                  Must not be {@code null}.
-     * @param propertyRefs List to add property names to.
+     * @param propertyRefs Collection to add property names to.
      *                     Must not be {@code null}.
      *
      * @throws CheckstyleException if the string contains an opening
@@ -406,8 +401,8 @@ public final class ConfigurationLoader {
      *                           {@code }}
      */
     private static void parsePropertyString(String value,
-                                           List<String> fragments,
-                                           List<String> propertyRefs)
+                                           Collection<String> fragments,
+                                           Collection<String> propertyRefs)
             throws CheckstyleException {
         int prev = 0;
         // search for the next instance of $ from the 'prev' position
@@ -483,13 +478,19 @@ public final class ConfigurationLoader {
         /** Name of the key attribute. */
         private static final String KEY = "key";
 
+        /** The loaded configurations. **/
+        private final Deque<DefaultConfiguration> configStack = new ArrayDeque<>();
+
+        /** The Configuration that is being built. */
+        private Configuration configuration;
+
         /**
          * Creates a new InternalLoader.
          *
          * @throws SAXException if an error occurs
          * @throws ParserConfigurationException if an error occurs
          */
-        /* package */ InternalLoader()
+        private InternalLoader()
                 throws SAXException, ParserConfigurationException {
             super(createIdToResourceNameMap());
         }
@@ -507,12 +508,12 @@ public final class ConfigurationLoader {
                 final DefaultConfiguration conf =
                     new DefaultConfiguration(name, threadModeSettings);
 
-                if (configuration == null) {
+                if (configStack.isEmpty()) {
+                    // save top config
                     configuration = conf;
                 }
-
-                // add configuration to it's parent
-                if (!configStack.isEmpty()) {
+                else {
+                    // add configuration to it's parent
                     final DefaultConfiguration top =
                         configStack.peek();
                     top.addChild(conf);
@@ -522,15 +523,19 @@ public final class ConfigurationLoader {
             }
             else if (PROPERTY.equals(qName)) {
                 // extract value and name
+                final String attributesValue = attributes.getValue(VALUE);
+
                 final String value;
                 try {
-                    value = replaceProperties(attributes.getValue(VALUE),
+                    value = replaceProperties(attributesValue,
                         overridePropsResolver, attributes.getValue(DEFAULT));
                 }
                 catch (final CheckstyleException ex) {
-                    // -@cs[IllegalInstantiation] SAXException is in the overridden method signature
+                    // -@cs[IllegalInstantiation] SAXException is in the overridden
+                    // method signature
                     throw new SAXException(ex);
                 }
+
                 final String name = attributes.getValue(NAME);
 
                 // add to attributes of configuration

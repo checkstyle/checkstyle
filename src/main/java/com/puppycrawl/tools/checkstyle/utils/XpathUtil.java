@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -111,12 +111,12 @@ public final class XpathUtil {
     /**
      * This regexp is used to convert new line to newline tag.
      */
-    private static final Pattern NEWLINE_TO_TAG = Pattern.compile("[\n]");
+    private static final Pattern NEWLINE_TO_TAG = Pattern.compile("\n");
 
     /**
      * This regexp is used to convert carriage return to carriage-return tag.
      */
-    private static final Pattern CARRIAGE_RETURN_TO_TAG = Pattern.compile("[\r]");
+    private static final Pattern CARRIAGE_RETURN_TO_TAG = Pattern.compile("\r");
 
     /** Delimiter to separate xpath results. */
     private static final String DELIMITER = "---------" + System.lineSeparator();
@@ -188,7 +188,7 @@ public final class XpathUtil {
                 JavaParser.Options.WITH_COMMENTS));
             final List<NodeInfo> matchingItems = getXpathItems(xpath, rootNode);
             return matchingItems.stream()
-                .map(item -> ((AbstractNode) item).getUnderlyingNode())
+                .map(item -> ((ElementNode) item).getUnderlyingNode())
                 .map(AstTreeStringPrinter::printBranch)
                 .collect(Collectors.joining(DELIMITER));
         }

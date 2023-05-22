@@ -13,27 +13,13 @@
 
   <rule ref="category/java/design.xml/ImmutableField">
     <properties>
-      <!-- Fields with these annotations will have their value injected by picocli.
-           These fields should not be marked final. -->
-      <property name="ignoredAnnotations"
-               value="picocli.CommandLine$Option
-                     |picocli.CommandLine$Parameters"/>
       <!-- final modifier prevent us from reaching full test coverage,
-             we value full coverage more than final modifier. -->
+             we value full coverage more than final modifier.
+           Picocli fields will have their value injected and should not be marked final. -->
       <property name="violationSuppressXPath"
                value="//ClassOrInterfaceDeclaration[@SimpleName='FileText']
-                        //FieldDeclaration//VariableDeclarator[@Name='fullText']"/>
-    </properties>
-  </rule>
-  <rule ref="category/java/bestpractices.xml/UnusedPrivateField">
-    <properties>
-      <!-- Some fields with picocli annotations will be only used by
-       the picocli and not by the application.
-       They may appear unused by static code analysis tools. -->
-      <property name="ignoredAnnotations"
-               value="picocli.CommandLine.Option
-                     |picocli.CommandLine.Parameters
-                     |picocli.CommandLine.Spec"/>
+                        //FieldDeclaration//VariableDeclarator[@Name='fullText']
+                    | //ClassOrInterfaceDeclaration[@SimpleName='CliOptions']"/>
     </properties>
   </rule>
   <rule ref="category/java/errorprone.xml/CloseResource">
@@ -57,12 +43,11 @@
                         //MethodDeclaration[@Name='iterateAxis']"/>
     </properties>
   </rule>
-  <rule ref="category/java/design.xml/ExcessiveMethodLength">
+  <rule ref="category/java/design.xml/AbstractClassWithoutAnyMethod">
     <properties>
-      <!-- unfortunate cases -->
+      <!-- until https://github.com/checkstyle/checkstyle/issues/12873 -->
       <property name="violationSuppressXPath"
-               value="//ClassOrInterfaceDeclaration[@SimpleName='PackageObjectFactory']
-                        //MethodDeclaration[@Name='fillChecksFromCodingPackage']"/>
+         value="//ClassOrInterfaceDeclaration[@SimpleName='AutomaticBean']"/>
     </properties>
   </rule>
 </ruleset>

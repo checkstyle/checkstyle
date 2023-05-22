@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -62,15 +62,16 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 public class AllChecksTest extends AbstractModuleTestSupport {
 
     private static final Locale[] ALL_LOCALES = {
-        Locale.GERMAN,
+        Locale.CHINESE,
+        Locale.ENGLISH,
         new Locale("es"),
         new Locale("fi"),
         Locale.FRENCH,
+        Locale.GERMAN,
         Locale.JAPANESE,
         new Locale("pt"),
+        new Locale("ru"),
         new Locale("tr"),
-        Locale.CHINESE,
-        Locale.ENGLISH,
     };
 
     private static final Map<String, Set<String>> CHECKSTYLE_TOKENS_IN_CONFIG_TO_IGNORE =
@@ -363,7 +364,7 @@ public class AllChecksTest extends AbstractModuleTestSupport {
         moduleNames.stream().filter(check -> !modulesReferencedInConfig.contains(check))
             .forEach(check -> {
                 final String errorMessage = String.format(Locale.ROOT,
-                    "%s is not referenced in checkstyle_checks.xml", check);
+                    "%s is not referenced in checkstyle-checks.xml", check);
                 assertWithMessage(errorMessage).fail();
             });
     }
@@ -371,7 +372,7 @@ public class AllChecksTest extends AbstractModuleTestSupport {
     @Test
     public void testAllCheckTokensAreReferencedInCheckstyleConfigFile() throws Exception {
         final Configuration configuration = ConfigurationUtil
-                .loadConfiguration("config/checkstyle_checks.xml");
+                .loadConfiguration("config/checkstyle-checks.xml");
 
         validateAllCheckTokensAreReferencedInConfigFile("checkstyle", configuration,
                 CHECKSTYLE_TOKENS_IN_CONFIG_TO_IGNORE, false);
@@ -505,9 +506,9 @@ public class AllChecksTest extends AbstractModuleTestSupport {
         final Set<String> moduleNames = CheckUtil.getSimpleNames(CheckUtil.getCheckstyleModules());
         moduleNames.removeAll(INTERNAL_MODULES);
         for (String moduleName : moduleNames) {
-            assertWithMessage("checkstyle_checks.xml is missing module: " + moduleName)
-                    .that(configChecks.contains(moduleName))
-                    .isTrue();
+            assertWithMessage("checkstyle-checks.xml is missing module: " + moduleName)
+                    .that(configChecks)
+                    .contains(moduleName);
         }
     }
 
@@ -567,8 +568,8 @@ public class AllChecksTest extends AbstractModuleTestSupport {
 
                 assertWithMessage("property '" + key + "' isn't used by any check in package '"
                                       + entry.getKey() + "'")
-                        .that(entry.getValue().contains(key.toString()))
-                        .isTrue();
+                        .that(entry.getValue())
+                        .contains(key.toString());
             }
         }
     }

@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -161,7 +161,7 @@ public class IllegalTokenTextCheckTest
 
     @Test
     public void testAcceptableTokensMakeSense() {
-        final int expectedTokenTypesTotalNumber = 185;
+        final int expectedTokenTypesTotalNumber = 188;
         assertWithMessage("Total number of TokenTypes has changed, acceptable tokens in"
                 + " IllegalTokenTextCheck need to be reconsidered.")
             .that(TokenUtil.getTokenTypesTotalNumber())
@@ -184,8 +184,8 @@ public class IllegalTokenTextCheckTest
             assertWithMessage(TokenUtil.getTokenName(tokenType) + " should not be allowed"
                     + " in this check as its text is a constant"
                     + " (IllegalTokenCheck should be used for such cases).")
-                            .that(tokenTypesWithMutableText.contains(tokenType))
-                            .isTrue();
+                            .that(tokenTypesWithMutableText)
+                            .contains(tokenType);
         }
     }
 

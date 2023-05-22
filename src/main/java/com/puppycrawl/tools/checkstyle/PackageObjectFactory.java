@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
@@ -31,7 +32,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
-import com.puppycrawl.tools.checkstyle.api.Violation;
 import com.puppycrawl.tools.checkstyle.utils.ModuleReflectionUtil;
 
 /**
@@ -209,10 +209,10 @@ public class PackageObjectFactory implements ModuleFactory {
                         + STRING_SEPARATOR + nameCheck + STRING_SEPARATOR
                         + joinPackageNamesWithClassName(nameCheck, packages);
             }
-            final Violation exceptionMessage = new Violation(1,
-                Definitions.CHECKSTYLE_BUNDLE, UNABLE_TO_INSTANTIATE_EXCEPTION_MESSAGE,
-                new String[] {name, attemptedNames}, null, getClass(), null);
-            throw new CheckstyleException(exceptionMessage.getViolation());
+            final LocalizedMessage exceptionMessage = new LocalizedMessage(
+                Definitions.CHECKSTYLE_BUNDLE, getClass(),
+                UNABLE_TO_INSTANTIATE_EXCEPTION_MESSAGE, name, attemptedNames);
+            throw new CheckstyleException(exceptionMessage.getMessage());
         }
         return instance;
     }
@@ -285,10 +285,10 @@ public class PackageObjectFactory implements ModuleFactory {
             final String optionalNames = fullModuleNames.stream()
                     .sorted()
                     .collect(Collectors.joining(STRING_SEPARATOR));
-            final Violation exceptionMessage = new Violation(1,
-                    Definitions.CHECKSTYLE_BUNDLE, AMBIGUOUS_MODULE_NAME_EXCEPTION_MESSAGE,
-                    new String[] {name, optionalNames}, null, getClass(), null);
-            throw new CheckstyleException(exceptionMessage.getViolation());
+            final LocalizedMessage exceptionMessage = new LocalizedMessage(
+                    Definitions.CHECKSTYLE_BUNDLE, getClass(),
+                    AMBIGUOUS_MODULE_NAME_EXCEPTION_MESSAGE, name, optionalNames);
+            throw new CheckstyleException(exceptionMessage.getMessage());
         }
         return returnValue;
     }
@@ -306,7 +306,9 @@ public class PackageObjectFactory implements ModuleFactory {
         try {
             returnValue = ModuleReflectionUtil.getCheckstyleModules(packages, loader).stream()
                 .collect(Collectors.groupingBy(Class::getSimpleName,
-                    Collectors.mapping(Class::getCanonicalName, Collectors.toSet())));
+                    Collectors.mapping(
+                        Class::getCanonicalName,
+                        Collectors.toCollection(HashSet::new))));
         }
         catch (IOException ignore) {
             returnValue = Collections.emptyMap();
@@ -915,6 +917,8 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".filters.SuppressWarningsFilter");
         NAME_TO_FULL_MODULE_NAME.put("SuppressWithNearbyCommentFilter",
                 BASE_PACKAGE + ".filters.SuppressWithNearbyCommentFilter");
+        NAME_TO_FULL_MODULE_NAME.put("SuppressWithNearbyTextFilter",
+                BASE_PACKAGE + ".filters.SuppressWithNearbyTextFilter");
     }
 
     /**

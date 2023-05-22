@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2022 the original author or authors.
+// Copyright (C) 2001-2023 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks.design;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -153,6 +154,45 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * &lt;module name=&quot;VisibilityModifier&quot;/&gt;
  * </pre>
  * <p>
+ * Example with default values:
+ * </p>
+ * <pre>
+ * public class MyClass {
+ * private int myPrivateField1;
+ *
+ * int field1;               // violation, must have a visibility modifier
+ *
+ * protected String field2;  // violation, protected visibility is not allowed
+ *
+ * public int field3 = 42;  // violation, not static final, immutable,
+ *                          // nor matching the pattern
+ *
+ * public long serialVersionUID = 1L;
+ *
+ * public static final int field4 = 42;
+ *
+ * public final int field5 = 42;          // violation, public immutable fields are not allowed
+ * public final java.lang.String notes;   // violation, public immutable fields are not allowed
+ *
+ * public final Set&lt;String&gt; mySet1 = new HashSet&lt;&gt;();  // violation, HashSet is mutable
+ *
+ * public final ImmutableSet&lt;String&gt; mySet2;           // violation,
+ *                                                      // immutable type not in config
+ *
+ * public final ImmutableMap&lt;String, Object&gt; objects1; // violation,
+ *                                                      // immutable type not in config
+ *
+ * &#64;com.annotation.CustomAnnotation
+ * String annotatedString;      // violation, annotation is not configured
+ *
+ * &#64;CustomAnnotation
+ * String shortCustomAnnotated; // violation, annotation is not configured
+ *
+ * &#64;com.google.common.annotations.VisibleForTesting
+ * public String testString = "";
+ * }
+ * </pre>
+ * <p>
  * To configure the check so that it allows package visible members:
  * </p>
  * <pre>
@@ -161,12 +201,137 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * &lt;/module&gt;
  * </pre>
  * <p>
+ * Example of allowed package visible members:
+ * </p>
+ * <pre>
+ * public class MyClass {
+ * private int myPrivateField1;
+ *
+ * int field1;
+ *
+ * protected String field2; // violation, protected visibility is not allowed
+ *
+ * public int field3 = 42;  // violation, not static final, immutable,
+ *                          // nor matching the pattern
+ *
+ * public long serialVersionUID = 1L;
+ *
+ * public static final int field4 = 42;
+ *
+ * public final int field5 = 42;          // violation, public immutable fields are not allowed
+ * public final java.lang.String notes;   // violation, public immutable fields are not allowed
+ *
+ * public final Set&lt;String&gt; mySet1 = new HashSet&lt;&gt;();  // violation, HashSet is mutable
+ *
+ * public final ImmutableSet&lt;String&gt; mySet2;           // violation,
+ *                                                      // immutable type not in config
+ *
+ * public final ImmutableMap&lt;String, Object&gt; objects1; // violation,
+ *                                                      // immutable type not in config
+ *
+ * &#64;com.annotation.CustomAnnotation
+ * String annotatedString;
+ *
+ * &#64;CustomAnnotation
+ * String shortCustomAnnotated;
+ *
+ * &#64;com.google.common.annotations.VisibleForTesting
+ * public String testString = "";
+ * }
+ * </pre>
+  * <p>
+ * To configure the check so that it allows protected visible members:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;VisibilityModifier&quot;&gt;
+ *   &lt;property name=&quot;protectedAllowed&quot; value=&quot;true&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example of allowed protected visible members:
+ * </p>
+ * <pre>
+ * public class MyClass {
+ * private int myPrivateField1;
+ *
+ * int field1;              // violation, must have a visibility modifier
+ *
+ * protected String field2;
+ *
+ * public int field3 = 42;  // violation, not static final, immutable,
+ *                          // nor matching the pattern
+ *
+ * public long serialVersionUID = 1L;
+ *
+ * public static final int field4 = 42;
+ *
+ * public final int field5 = 42;          // violation, public immutable fields are not allowed
+ * public final java.lang.String notes;   // violation, public immutable fields are not allowed
+ *
+ * public final Set&lt;String&gt; mySet1 = new HashSet&lt;&gt;();  // violation, HashSet is mutable
+ *
+ * public final ImmutableSet&lt;String&gt; mySet2;           // violation,
+ *                                                      // immutable type not in config
+ *
+ * public final ImmutableMap&lt;String, Object&gt; objects1; // violation,
+ *                                                      // immutable type not in config
+ *
+ * &#64;com.annotation.CustomAnnotation
+ * String annotatedString;      // violation, annotation is not configured
+ *
+ * &#64;CustomAnnotation
+ * String shortCustomAnnotated; // violation, annotation is not configured
+ *
+ * &#64;com.google.common.annotations.VisibleForTesting
+ * public String testString = "";
+ * }
+ * </pre>
+ * <p>
  * To configure the check so that it allows no public members:
  * </p>
  * <pre>
  * &lt;module name=&quot;VisibilityModifier&quot;&gt;
  *   &lt;property name=&quot;publicMemberPattern&quot; value=&quot;^$&quot;/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example of not allowed public members:
+ * </p>
+ * <pre>
+ * public class MyClass {
+ * private int myPrivateField1;
+ *
+ * int field1;               // violation, must have a visibility modifier
+ *
+ * protected String field2;  // violation, protected visibility is not allowed
+ *
+ * public int field3 = 42;  // violation, not static final, immutable,
+ *                          // nor matching the pattern
+ *
+ * public long serialVersionUID = 1L;  // Violation, not matched the pattern '^$'
+ *
+ * public static final int field4 = 42;
+ *
+ * public final int field5 = 42;          // violation, public immutable fields are not allowed
+ * public final java.lang.String notes;   // violation, public immutable fields are not allowed
+ *
+ * public final Set&lt;String&gt; mySet1 = new HashSet&lt;&gt;();  // violation, HashSet is mutable
+ *
+ * public final ImmutableSet&lt;String&gt; mySet2;           // violation,
+ *                                                      // immutable type not in config
+ *
+ * public final ImmutableMap&lt;String, Object&gt; objects1; // violation,
+ *                                                      // immutable type not in config
+ *
+ * &#64;com.annotation.CustomAnnotation
+ * String annotatedString;      // violation, annotation is not configured
+ *
+ * &#64;CustomAnnotation
+ * String shortCustomAnnotated; // violation, annotation is not configured
+ *
+ * &#64;com.google.common.annotations.VisibleForTesting
+ * public String testString = "";
+ * }
  * </pre>
  * <p>
  * To configure the Check so that it allows public immutable fields (mostly for immutable classes):
@@ -180,21 +345,39 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * Example of allowed public immutable fields:
  * </p>
  * <pre>
- * public class ImmutableClass
- * {
- *   public final ImmutableSet&lt;String&gt; includes; // No warning
- *   public final ImmutableSet&lt;String&gt; excludes; // No warning
- *   public final java.lang.String notes; // No warning
- *   public final BigDecimal value; // No warning
+ * public final class MyClass {
+ * private int myPrivateField1;
  *
- *   public ImmutableClass(Collection&lt;String&gt; includes, Collection&lt;String&gt; excludes,
- *                BigDecimal value, String notes)
- *   {
- *     this.includes = ImmutableSet.copyOf(includes);
- *     this.excludes = ImmutableSet.copyOf(excludes);
- *     this.value = value;
- *     this.notes = notes;
- *   }
+ * int field1;               // violation, must have a visibility modifier
+ *
+ * protected String field2;  // violation, protected visibility is not allowed
+ *
+ * public int field3 = 42;  // violation, not static final, immutable,
+ *                          // nor matching the pattern
+ *
+ * public long serialVersionUID = 1L;
+ *
+ * public static final int field4 = 42;
+ *
+ * public final int field5 = 42;
+ * public final java.lang.String notes;
+ *
+ * public final Set&lt;String&gt; mySet1 = new HashSet&lt;&gt;();  // violation, HashSet is mutable
+ *
+ * public final ImmutableSet&lt;String&gt; mySet2;           // violation,
+ *                                                      // immutable type not in config
+ *
+ * public final ImmutableMap&lt;String, Object&gt; objects1; // violation,
+ *                                                      // immutable type not in config
+ *
+ * &#64;com.annotation.CustomAnnotation
+ * String annotatedString;      // violation, annotation is not configured
+ *
+ * &#64;CustomAnnotation
+ * String shortCustomAnnotated; // violation, annotation is not configured
+ *
+ * &#64;com.google.common.annotations.VisibleForTesting
+ * public String testString = "";
  * }
  * </pre>
  * <p>
@@ -203,31 +386,46 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * <pre>
  * &lt;module name=&quot;VisibilityModifier&quot;&gt;
  *   &lt;property name=&quot;allowPublicImmutableFields&quot; value=&quot;true&quot;/&gt;
- *   &lt;property name=&quot;immutableClassCanonicalNames&quot; value=&quot;
- *   com.google.common.collect.ImmutableSet&quot;/&gt;
+ *   &lt;property name=&quot;immutableClassCanonicalNames&quot;
+ *   value=&quot;com.google.common.collect.ImmutableSet, java.lang.String&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
  * <p>
  * Example of allowed public immutable fields:
  * </p>
  * <pre>
- * public class ImmutableClass
- * {
- *   public final ImmutableSet&lt;String&gt; includes; // No warning
- *   public final ImmutableSet&lt;String&gt; excludes; // No warning
- *   public final java.lang.String notes; // Warning here because
- *                                        //'java.lang.String' wasn't specified as allowed class
- *   public final int someValue; // No warning
+ * public final class MyClass {
+ * private int myPrivateField1;
  *
- *   public ImmutableClass(Collection&lt;String&gt; includes, Collection&lt;String&gt; excludes,
- *                String notes, int someValue)
- *   {
- *     this.includes = ImmutableSet.copyOf(includes);
- *     this.excludes = ImmutableSet.copyOf(excludes);
- *     this.value = value;
- *     this.notes = notes;
- *     this.someValue = someValue;
- *   }
+ * int field1;               // violation, must have a visibility modifier
+ *
+ * protected String field2;  // violation, protected visibility is not allowed
+ *
+ * public int field3 = 42;  // violation, not static final, immutable,
+ *                          // nor matching the pattern
+ *
+ * public long serialVersionUID = 1L;
+ *
+ * public static final int field4 = 42;
+ *
+ * public final int field5 = 42;
+ * public final java.lang.String notes;
+ *
+ * public final Set&lt;String&gt; mySet1 = new HashSet&lt;&gt;();  // violation, HashSet is mutable
+ *
+ * public final ImmutableSet&lt;String&gt; mySet2;
+ *
+ * public final ImmutableMap&lt;String, Object&gt; objects1; // violation
+ *                                                     // immutable type not in config
+ *
+ * &#64;com.annotation.CustomAnnotation
+ * String annotatedString;      // violation, annotation is not configured
+ *
+ * &#64;CustomAnnotation
+ * String shortCustomAnnotated; // violation, annotation is not configured
+ *
+ * &#64;com.google.common.annotations.VisibleForTesting
+ * public String testString = "";
  * }
  * </pre>
  * <p>
@@ -239,26 +437,47 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * &lt;module name=&quot;VisibilityModifier&quot;&gt;
  *   &lt;property name=&quot;allowPublicImmutableFields&quot; value=&quot;true&quot;/&gt;
  *   &lt;property name=&quot;immutableClassCanonicalNames&quot;
- *     value=&quot;com.google.common.collect.ImmutableSet, com.google.common.collect.ImmutableMap,
- *       java.lang.String&quot;/&gt;
+ *     value=&quot;com.google.common.collect.ImmutableSet,
+ *           com.google.common.collect.ImmutableMap,
+ *           java.lang.String&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
  * <p>
  * Example of how the check works:
  * </p>
  * <pre>
- * public final class Test {
- *   public final String s;
- *   public final ImmutableSet&lt;String&gt; names;
- *   public final ImmutableSet&lt;Object&gt; objects; // violation (Object class is mutable)
- *   public final ImmutableMap&lt;String, Object&gt; links; // violation (Object class is mutable)
+ * public final class MyClass {
+ * private int myPrivateField1;
  *
- *   public Test() {
- *     s = "Hello!";
- *     names = ImmutableSet.of();
- *     objects = ImmutableSet.of();
- *     links = ImmutableMap.of();
- *   }
+ * int field1;               // violation, must have a visibility modifier
+ *
+ * protected String field2;  // violation, protected visibility is not allowed
+ *
+ * public int field3 = 42;  // violation, not static final, immutable,
+ *                          // nor matching the pattern
+ *
+ * public long serialVersionUID = 1L;
+ *
+ * public static final int field4 = 42;
+ *
+ * public final int field5 = 42;
+ * public final java.lang.String notes;
+ *
+ * public final Set&lt;String&gt; mySet1 = new HashSet&lt;&gt;();  // violation, HashSet is mutable
+ *
+ * public final ImmutableSet&lt;String&gt; mySet2;
+ *
+ * public final ImmutableMap&lt;String, Object&gt; objects1; // violation
+ *                                                     // 'Object' still considered as mutable
+ *
+ * &#64;com.annotation.CustomAnnotation
+ * String annotatedString;      // violation, annotation is not configured
+ *
+ * &#64;CustomAnnotation
+ * String shortCustomAnnotated; // violation, annotation is not configured
+ *
+ * &#64;com.google.common.annotations.VisibleForTesting
+ * public String testString = "";
  * }
  * </pre>
  * <p>
@@ -266,20 +485,47 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * </p>
  * <pre>
  * &lt;module name=&quot;VisibilityModifier&quot;&gt;
- *   &lt;property name=&quot;ignoreAnnotationCanonicalNames&quot; value=
- *   &quot;com.annotation.CustomAnnotation&quot;/&gt;
+ *   &lt;property name=&quot;ignoreAnnotationCanonicalNames&quot;
+ *      value=&quot;com.annotation.CustomAnnotation&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
  * <p>
  * Example of allowed field:
  * </p>
  * <pre>
- * class SomeClass
- * {
- *   &#64;com.annotation.CustomAnnotation
- *   String annotatedString; // no warning
- *   &#64;CustomAnnotation
- *   String shortCustomAnnotated; // no warning
+ * public final class MyClass {
+ * private int myPrivateField1;
+ *
+ * int field1;               // violation, must have a visibility modifier
+ *
+ * protected String field2;  // violation, protected visibility is not allowed
+ *
+ * public int field3 = 42;  // violation, not static final, immutable,
+ *                          // nor matching the pattern
+ *
+ * public long serialVersionUID = 1L;
+ *
+ * public static final int field4 = 42;
+ *
+ * public final int field5 = 42;          // violation, public immutable fields are not allowed
+ * public final java.lang.String notes;   // violation, public immutable fields are not allowed
+ *
+ * public final Set&lt;String&gt; mySet1 = new HashSet&lt;&gt;();  // violation, HashSet is mutable
+ *
+ * public final ImmutableSet&lt;String&gt; mySet2;           // violation,
+ *                                                      // immutable type not in config
+ *
+ * public final ImmutableMap&lt;String, Object&gt; objects1; // violation,
+ *                                                      // immutable type not in config
+ *
+ * &#64;com.annotation.CustomAnnotation
+ * String annotatedString;
+ *
+ * &#64;CustomAnnotation
+ * String shortCustomAnnotated;
+ *
+ * &#64;com.google.common.annotations.VisibleForTesting
+ * public String testString = ""; // violation, annotation is not configured
  * }
  * </pre>
  * <p>
@@ -293,14 +539,39 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * Example of allowed fields:
  * </p>
  * <pre>
- * class SomeClass
- * {
- *   &#64;org.junit.Rule
- *   public TemporaryFolder publicJUnitRule = new TemporaryFolder(); // no warning
- *   &#64;org.junit.ClassRule
- *   public static TemporaryFolder publicJUnitClassRule = new TemporaryFolder(); // no warning
- *   &#64;com.google.common.annotations.VisibleForTesting
- *   public String testString = ""; // no warning
+ * public final class MyClass {
+ * private int myPrivateField1;
+ *
+ * int field1;               // violation, must have a visibility modifier
+ *
+ * protected String field2;  // violation, protected visibility is not allowed
+ *
+ * public int field3 = 42;  // violation, not static final, immutable,
+ *                          // nor matching the pattern
+ *
+ * public long serialVersionUID = 1L;
+ *
+ * public static final int field4 = 42;
+ *
+ * public final int field5 = 42;          // violation, public immutable fields are not allowed
+ * public final java.lang.String notes;   // violation, public immutable fields are not allowed
+ *
+ * public final Set&lt;String&gt; mySet1 = new HashSet&lt;&gt;();  // violation, HashSet is mutable
+ *
+ * public final ImmutableSet&lt;String&gt; mySet2;           // violation,
+ *                                                      // immutable type not in config
+ *
+ * public final ImmutableMap&lt;String, Object&gt; objects1; // violation,
+ *                                                      // immutable type not in config
+ *
+ * &#64;com.annotation.CustomAnnotation
+ * String annotatedString;      // violation, annotation is not configured
+ *
+ * &#64;CustomAnnotation
+ * String shortCustomAnnotated; // violation, annotation is not configured
+ *
+ * &#64;com.google.common.annotations.VisibleForTesting
+ * public String testString = "";
  * }
  * </pre>
  * <p>
@@ -316,15 +587,39 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * Example of allowed fields:
  * </p>
  * <pre>
- * class SomeClass
- * {
- *   &#64;CustomAnnotation
- *   String customAnnotated; // no warning
- *   &#64;com.annotation.CustomAnnotation
- *   String customAnnotated1; // no warning
- *   &#64;mypackage.annotation.CustomAnnotation
- *   String customAnnotatedAnotherPackage; // another package but short name matches
- *                                         // so no violation
+ * public final class MyClass {
+ * private int myPrivateField1;
+ *
+ * int field1;               // violation, must have a visibility modifier
+ *
+ * protected String field2;  // violation, protected visibility is not allowed
+ *
+ * public int field3 = 42;  // violation, not static final, immutable,
+ *                          // nor matching the pattern
+ *
+ * public long serialVersionUID = 1L;
+ *
+ * public static final int field4 = 42;
+ *
+ * public final int field5 = 42;          // violation, public immutable fields are not allowed
+ * public final java.lang.String notes;   // violation, public immutable fields are not allowed
+ *
+ * public final Set&lt;String&gt; mySet1 = new HashSet&lt;&gt;();  // violation, HashSet is mutable
+ *
+ * public final ImmutableSet&lt;String&gt; mySet2;           // violation,
+ *                                                      // immutable type not in config
+ *
+ * public final ImmutableMap&lt;String, Object&gt; objects1; // violation,
+ *                                                      // immutable type not in config
+ *
+ * &#64;com.annotation.CustomAnnotation
+ * String annotatedString;        // violation, annotation is not configured
+ *
+ * &#64;CustomAnnotation
+ * String shortCustomAnnotated;
+ *
+ * &#64;com.google.common.annotations.VisibleForTesting
+ * public String testString = ""; // violation, annotation is not configured
  * }
  * </pre>
  * <p>
@@ -373,11 +668,11 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * </p>
  * <pre>
  * public class InputPublicImmutable {
- *   public final int someIntValue;
- *   public final ImmutableSet&lt;String&gt; includes;
- *   public final java.lang.String notes;
- *   public final BigDecimal value;
- *   public final List list;
+ *   public final int someIntValue; // ok
+ *   public final ImmutableSet&lt;String&gt; includes; // ok
+ *   public final java.lang.String notes; // ok
+ *   public final BigDecimal value; // ok
+ *   public final List list; // ok
  *
  *   public InputPublicImmutable(Collection&lt;String&gt; includes,
  *         BigDecimal value, String notes, int someValue, List l) {
@@ -475,12 +770,10 @@ public class VisibilityModifierCheck
     private Pattern publicMemberPattern = Pattern.compile("^serialVersionUID$");
 
     /** Set of ignore annotations short names. */
-    private Set<String> ignoreAnnotationShortNames =
-            getClassShortNames(DEFAULT_IGNORE_ANNOTATIONS);
+    private Set<String> ignoreAnnotationShortNames;
 
     /** Set of immutable classes short names. */
-    private Set<String> immutableClassShortNames =
-        getClassShortNames(DEFAULT_IMMUTABLE_TYPES);
+    private Set<String> immutableClassShortNames;
 
     /**
      * Specify annotations canonical names which ignore variables in
@@ -660,8 +953,7 @@ public class VisibilityModifierCheck
      */
     private void visitImport(DetailAST importAst) {
         if (!isStarImport(importAst)) {
-            final DetailAST type = importAst.getFirstChild();
-            final String canonicalName = getCanonicalName(type);
+            final String canonicalName = getCanonicalName(importAst);
             final String shortName = getClassShortName(canonicalName);
 
             // If imported canonical class name is not specified as allowed immutable class,
@@ -824,7 +1116,7 @@ public class VisibilityModifierCheck
         if (isFinalField(variableDef)) {
             final DetailAST type = variableDef.findFirstToken(TokenTypes.TYPE);
             final boolean isCanonicalName = isCanonicalName(type);
-            final String typeName = getTypeName(type, isCanonicalName);
+            final String typeName = getCanonicalName(type);
             if (immutableClassShortNames.contains(typeName)
                     || isCanonicalName && immutableClassCanonicalNames.contains(typeName)) {
                 final DetailAST typeArgs = getGenericTypeArgs(type, isCanonicalName);
@@ -884,8 +1176,7 @@ public class VisibilityModifierCheck
         DetailAST type = typeArgs.findFirstToken(TokenTypes.TYPE_ARGUMENT);
         DetailAST sibling;
         do {
-            final boolean isCanonicalName = isCanonicalName(type);
-            final String typeName = getTypeName(type, isCanonicalName);
+            final String typeName = getCanonicalName(type);
             typeClassNames.add(typeName);
             sibling = type.getNextSibling();
             type = sibling.getNextSibling();
@@ -901,7 +1192,7 @@ public class VisibilityModifierCheck
      * @param typeArgsClassNames type arguments class names.
      * @return true if all generic type arguments are immutable.
      */
-    private boolean areImmutableTypeArguments(List<String> typeArgsClassNames) {
+    private boolean areImmutableTypeArguments(Collection<String> typeArgsClassNames) {
         return typeArgsClassNames.stream().noneMatch(
             typeName -> {
                 return !immutableClassShortNames.contains(typeName)
@@ -918,26 +1209,6 @@ public class VisibilityModifierCheck
     private static boolean isFinalField(DetailAST variableDef) {
         final DetailAST modifiers = variableDef.findFirstToken(TokenTypes.MODIFIERS);
         return modifiers.findFirstToken(TokenTypes.FINAL) != null;
-    }
-
-    /**
-     * Gets the name of type from given ast {@link TokenTypes#TYPE TYPE} node.
-     * If type is specified via its canonical name - canonical name will be returned,
-     * else - short type's name.
-     *
-     * @param type {@link TokenTypes#TYPE TYPE} node.
-     * @param isCanonicalName is given name canonical.
-     * @return String representation of given type's name.
-     */
-    private static String getTypeName(DetailAST type, boolean isCanonicalName) {
-        final String typeName;
-        if (isCanonicalName) {
-            typeName = getCanonicalName(type);
-        }
-        else {
-            typeName = type.getFirstChild().getText();
-        }
-        return typeName;
     }
 
     /**
@@ -962,7 +1233,7 @@ public class VisibilityModifierCheck
      */
     private static String getCanonicalName(DetailAST type) {
         final StringBuilder canonicalNameBuilder = new StringBuilder(256);
-        DetailAST toVisit = type.getFirstChild();
+        DetailAST toVisit = type;
         while (toVisit != null) {
             toVisit = getNextSubTreeNode(toVisit, type);
             if (toVisit != null && toVisit.getType() == TokenTypes.IDENT) {

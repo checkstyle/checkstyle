@@ -35,7 +35,7 @@ public class InputRequireThisCatchVariables extends Thread {
                     debug("Expected exception thrown", err);
                 }
                 else {
-                    ex.printStackTrace(); // violation
+                    ex.printStackTrace(); // violation '.* variable 'ex' needs "this.".'
                 }
             }
             catch (Throwable ex) {
