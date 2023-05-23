@@ -23,12 +23,10 @@ adoptopenjdk
 adr
 AFilter
 aggregators
-Agoogle
 allchecks
 allclasses
 alot
 amazonaws
-Amessages
 androidx
 annotationlocation
 annotationonsameline
@@ -65,7 +63,6 @@ Asrc
 assertj
 ASTNo
 asttreestringprinter
-Asun
 atclause
 atclauseorder
 ATest
@@ -426,6 +423,7 @@ ffd
 fff
 FFFD
 FFFF
+Fgoogle
 Fheader
 fht
 fieldset
@@ -456,6 +454,7 @@ Fjavadoc
 Flas
 flattr
 Fmain
+Fmessages
 Fmetrics
 Fmodifier
 FModule
@@ -471,6 +470,7 @@ Fresources
 Frob
 fsc
 Fsizes
+Fsun
 Ftl
 Ftools
 ftp

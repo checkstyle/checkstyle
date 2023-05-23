@@ -134,7 +134,7 @@ public final class Person {
       <subsection name="Example of Usage" id="ClassMemberImpliedModifier_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+ClassMemberImpliedModifier">
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+ClassMemberImpliedModifier">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -143,7 +143,7 @@ public final class Person {
       <subsection name="Violation Messages" id="ClassMemberImpliedModifier_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fmodifier+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22class.implied.modifier%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fmodifier%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22class.implied.modifier%22">
             class.implied.modifier</a>
           </li>
         </ul>
@@ -381,7 +381,7 @@ public interface RoadFeature {
       <subsection name="Example of Usage" id="InterfaceMemberImpliedModifier_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+InterfaceMemberImpliedModifier">
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+InterfaceMemberImpliedModifier">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -390,7 +390,7 @@ public interface RoadFeature {
       <subsection name="Violation Messages" id="InterfaceMemberImpliedModifier_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fmodifier+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22interface.implied.modifier%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fmodifier%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22interface.implied.modifier%22">
             interface.implied.modifier</a>
           </li>
         </ul>
@@ -490,15 +490,15 @@ public interface RoadFeature {
       <subsection name="Example of Usage" id="ModifierOrder_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ModifierOrder">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ModifierOrder">
             Google Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Asun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ModifierOrder">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ModifierOrder">
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+ModifierOrder">
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+ModifierOrder">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -507,11 +507,11 @@ public interface RoadFeature {
       <subsection name="Violation Messages" id="ModifierOrder_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fmodifier+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22annotation.order%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fmodifier%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22annotation.order%22">
             annotation.order</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fmodifier+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22mod.order%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fmodifier%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22mod.order%22">
             mod.order</a>
           </li>
         </ul>
@@ -754,11 +754,11 @@ public class ClassExtending extends ClassExample {
       <subsection name="Example of Usage" id="RedundantModifier_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Asun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+RedundantModifier">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+RedundantModifier">
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+RedundantModifier">
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+RedundantModifier">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -767,7 +767,7 @@ public class ClassExtending extends ClassExample {
       <subsection name="Violation Messages" id="RedundantModifier_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fmodifier+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22redundantModifier%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fmodifier%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22redundantModifier%22">
             redundantModifier</a>
           </li>
         </ul>

@@ -443,7 +443,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Asun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+InvalidJavadocPosition">
+                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+InvalidJavadocPosition">
                     config
                   </a>
                   <br/>
@@ -492,7 +492,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Asun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MultipleVariableDeclarations">
+                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MultipleVariableDeclarations">
                     config
                   </a>
                   <br/>
@@ -1016,9 +1016,9 @@
         </p>
         <p>
           For more details please review exact configuration of Filters in sun_checks.xml:
-          <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Asun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressionFilter">
+          <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressionFilter">
                     SuppressionFilter</a>,
-          <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Asun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressionXpathFilter">
+          <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressionXpathFilter">
                     SuppressionXpathFilter</a>.
         </p>
       </subsection>
