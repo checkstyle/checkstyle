@@ -62,6 +62,14 @@ public class InnerAssignmentCheckTest
     }
 
     @Test
+    public void testEnhancedSwitchExpression() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputInnerAssignmentWithEnhancedSwitch.java"),
+                expected);
+    }
+
+    @Test
     public void testLambdaExpression() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
