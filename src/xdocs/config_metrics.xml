@@ -178,7 +178,7 @@ public class Test
       <subsection name="Example of Usage" id="BooleanExpressionComplexity_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+BooleanExpressionComplexity">
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+BooleanExpressionComplexity">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -187,7 +187,7 @@ public class Test
       <subsection name="Violation Messages" id="BooleanExpressionComplexity_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fmetrics+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22booleanExpressionComplexity%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fmetrics%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22booleanExpressionComplexity%22">
             booleanExpressionComplexity</a>
           </li>
         </ul>
@@ -596,7 +596,7 @@ class Foo {
       <subsection name="Example of Usage" id="ClassDataAbstractionCoupling_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+ClassDataAbstractionCoupling">
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+ClassDataAbstractionCoupling">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -605,7 +605,7 @@ class Foo {
       <subsection name="Violation Messages" id="ClassDataAbstractionCoupling_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fmetrics+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22classDataAbstractionCoupling%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fmetrics%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22classDataAbstractionCoupling%22">
             classDataAbstractionCoupling</a>
           </li>
         </ul>
@@ -987,7 +987,7 @@ class Foo {
       <subsection name="Example of Usage" id="ClassFanOutComplexity_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+ClassFanOutComplexity">
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+ClassFanOutComplexity">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -996,7 +996,7 @@ class Foo {
       <subsection name="Violation Messages" id="ClassFanOutComplexity_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fmetrics+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22classFanOutComplexity%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fmetrics%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22classFanOutComplexity%22">
             classFanOutComplexity</a>
           </li>
         </ul>
@@ -1272,7 +1272,7 @@ class CyclomaticComplexity {
       <subsection name="Example of Usage" id="CyclomaticComplexity_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+CyclomaticComplexity">
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+CyclomaticComplexity">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -1281,7 +1281,7 @@ class CyclomaticComplexity {
       <subsection name="Violation Messages" id="CyclomaticComplexity_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fmetrics+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22cyclomaticComplexity%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fmetrics%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22cyclomaticComplexity%22">
             cyclomaticComplexity</a>
           </li>
         </ul>
@@ -1493,7 +1493,7 @@ class Test2 {
       <subsection name="Example of Usage" id="JavaNCSS_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavaNCSS">
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavaNCSS">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -1502,19 +1502,19 @@ class Test2 {
       <subsection name="Violation Messages" id="JavaNCSS_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fmetrics+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ncss.class%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fmetrics%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ncss.class%22">
             ncss.class</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fmetrics+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ncss.file%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fmetrics%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ncss.file%22">
             ncss.file</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fmetrics+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ncss.method%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fmetrics%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ncss.method%22">
             ncss.method</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fmetrics+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ncss.record%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fmetrics%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ncss.record%22">
             ncss.record</a>
           </li>
         </ul>
@@ -1764,7 +1764,7 @@ public abstract void print(String str);
       <subsection name="Example of Usage" id="NPathComplexity_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+NPathComplexity">
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+NPathComplexity">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -1773,7 +1773,7 @@ public abstract void print(String str);
       <subsection name="Violation Messages" id="NPathComplexity_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fmetrics+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22npathComplexity%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fmetrics%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22npathComplexity%22">
             npathComplexity</a>
           </li>
         </ul>

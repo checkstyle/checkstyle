@@ -200,7 +200,7 @@ int[] a2 = new int[]{
       <subsection name="Example of Usage" id="ArrayTrailingComma_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+ArrayTrailingComma">
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+ArrayTrailingComma">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -209,7 +209,7 @@ int[] a2 = new int[]{
       <subsection name="Violation Messages" id="ArrayTrailingComma_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22array.trailing.comma%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22array.trailing.comma%22">
             array.trailing.comma</a>
           </li>
         </ul>
@@ -303,7 +303,7 @@ class MyClass {
       <subsection name="Example of Usage" id="AvoidDoubleBraceInitialization_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+AvoidDoubleBraceInitialization">
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+AvoidDoubleBraceInitialization">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -312,7 +312,7 @@ class MyClass {
       <subsection name="Violation Messages" id="AvoidDoubleBraceInitialization_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22avoid.double.brace.init%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22avoid.double.brace.init%22">
               avoid.double.brace.init</a>
           </li>
         </ul>
@@ -381,7 +381,7 @@ b = (a != null &amp;&amp; a.length() &gt;= 1) ? a.substring(1) : null; // violat
       <subsection name="Example of Usage" id="AvoidInlineConditionals_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+AvoidInlineConditionals">
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+AvoidInlineConditionals">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -390,7 +390,7 @@ b = (a != null &amp;&amp; a.length() &gt;= 1) ? a.substring(1) : null; // violat
       <subsection name="Violation Messages" id="AvoidInlineConditionals_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22inline.conditional.avoid%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22inline.conditional.avoid%22">
             inline.conditional.avoid</a>
           </li>
         </ul>
@@ -455,7 +455,7 @@ class MyClass extends SomeOtherClass {
       <subsection name="Example of Usage" id="AvoidNoArgumentSuperConstructorCall_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+AvoidNoArgumentSuperConstructorCall">
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+AvoidNoArgumentSuperConstructorCall">
               Checkstyle Style</a>
           </li>
         </ul>
@@ -465,7 +465,7 @@ class MyClass extends SomeOtherClass {
                   id="AvoidNoArgumentSuperConstructorCall_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22super.constructor.call%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22super.constructor.call%22">
               super.constructor.call</a>
           </li>
         </ul>
@@ -604,7 +604,7 @@ record Test(String str) {
       <subsection name="Example of Usage" id="CovariantEquals_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+CovariantEquals">
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+CovariantEquals">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -613,7 +613,7 @@ record Test(String str) {
       <subsection name="Violation Messages" id="CovariantEquals_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22covariant.equals%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22covariant.equals%22">
             covariant.equals</a>
           </li>
         </ul>
@@ -814,7 +814,7 @@ public class Test {
       <subsection name="Example of Usage" id="DeclarationOrder_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+DeclarationOrder">
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+DeclarationOrder">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -823,19 +823,19 @@ public class Test {
       <subsection name="Violation Messages" id="DeclarationOrder_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22declaration.order.access%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22declaration.order.access%22">
             declaration.order.access</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22declaration.order.constructor%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22declaration.order.constructor%22">
             declaration.order.constructor</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22declaration.order.instance%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22declaration.order.instance%22">
             declaration.order.instance</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22declaration.order.static%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22declaration.order.static%22">
             declaration.order.static</a>
           </li>
         </ul>
@@ -981,7 +981,7 @@ case 2 -&gt; x = 32;
       <subsection name="Example of Usage" id="DefaultComesLast_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+DefaultComesLast">
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+DefaultComesLast">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -990,11 +990,11 @@ case 2 -&gt; x = 32;
       <subsection name="Violation Messages" id="DefaultComesLast_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22default.comes.last%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22default.comes.last%22">
             default.comes.last</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22default.comes.last.in.casegroup%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22default.comes.last.in.casegroup%22">
             default.comes.last.in.casegroup</a>
           </li>
         </ul>
@@ -1052,11 +1052,11 @@ public void foo() {
       <subsection name="Example of Usage" id="EmptyStatement_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Asun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+EmptyStatement">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+EmptyStatement">
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+EmptyStatement">
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+EmptyStatement">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -1065,7 +1065,7 @@ public void foo() {
       <subsection name="Violation Messages" id="EmptyStatement_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22empty.statement%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22empty.statement%22">
             empty.statement</a>
           </li>
         </ul>
@@ -1172,7 +1172,7 @@ nullString.equalsIgnoreCase("My_Sweet_String");  // OK
       <subsection name="Example of Usage" id="EqualsAvoidNull_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+EqualsAvoidNull">
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+EqualsAvoidNull">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -1181,11 +1181,11 @@ nullString.equalsIgnoreCase("My_Sweet_String");  // OK
       <subsection name="Violation Messages" id="EqualsAvoidNull_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22equals.avoid.null%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22equals.avoid.null%22">
             equals.avoid.null</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22equalsIgnoreCase.avoid.null%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22equalsIgnoreCase.avoid.null%22">
             equalsIgnoreCase.avoid.null</a>
           </li>
         </ul>
@@ -1295,11 +1295,11 @@ public static class Example6 {
       <subsection name="Example of Usage" id="EqualsHashCode_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Asun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+EqualsHashCode">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+EqualsHashCode">
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+EqualsHashCode">
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+EqualsHashCode">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -1308,11 +1308,11 @@ public static class Example6 {
       <subsection name="Violation Messages" id="EqualsHashCode_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22equals.noEquals%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22equals.noEquals%22">
             equals.noEquals</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22equals.noHashCode%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22equals.noHashCode%22">
             equals.noHashCode</a>
           </li>
         </ul>
@@ -1444,7 +1444,7 @@ public class Test {
       <subsection name="Example of Usage" id="ExplicitInitialization_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+ExplicitInitialization">
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+ExplicitInitialization">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -1453,7 +1453,7 @@ public class Test {
       <subsection name="Violation Messages" id="ExplicitInitialization_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22explicit.init%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22explicit.init%22">
             explicit.init</a>
           </li>
         </ul>
@@ -1665,11 +1665,11 @@ switch (i) {
       <subsection name="Example of Usage" id="FallThrough_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+FallThrough">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+FallThrough">
             Google Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+FallThrough">
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+FallThrough">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -1678,11 +1678,11 @@ switch (i) {
       <subsection name="Violation Messages" id="FallThrough_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22fall.through%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22fall.through%22">
             fall.through</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22fall.through.last%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22fall.through.last%22">
             fall.through.last</a>
           </li>
         </ul>
@@ -1841,7 +1841,7 @@ public class MyClass {
       <subsection name="Example of Usage" id="FinalLocalVariable_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+FinalLocalVariable">
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+FinalLocalVariable">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -1850,7 +1850,7 @@ public class MyClass {
       <subsection name="Violation Messages" id="FinalLocalVariable_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22final.variable%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22final.variable%22">
             final.variable</a>
           </li>
         </ul>
@@ -2216,11 +2216,11 @@ public class Demo extends SomeClass {
       <subsection name="Example of Usage" id="HiddenField_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Asun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+HiddenField">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+HiddenField">
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+HiddenField">
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+HiddenField">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -2229,7 +2229,7 @@ public class Demo extends SomeClass {
       <subsection name="Violation Messages" id="HiddenField_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22hidden.field%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22hidden.field%22">
             hidden.field</a>
           </li>
         </ul>
@@ -2380,7 +2380,7 @@ try {
       <subsection name="Example of Usage" id="IllegalCatch_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+IllegalCatch">
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+IllegalCatch">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -2389,7 +2389,7 @@ try {
       <subsection name="Violation Messages" id="IllegalCatch_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22illegal.catch%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22illegal.catch%22">
             illegal.catch</a>
           </li>
         </ul>
@@ -2547,11 +2547,11 @@ public class MyTest {
       <subsection name="Example of Usage" id="IllegalInstantiation_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Asun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+IllegalInstantiation">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+IllegalInstantiation">
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+IllegalInstantiation">
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+IllegalInstantiation">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -2560,7 +2560,7 @@ public class MyTest {
       <subsection name="Violation Messages" id="IllegalInstantiation_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22instantiation.avoid%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22instantiation.avoid%22">
             instantiation.avoid</a>
           </li>
         </ul>
@@ -2717,7 +2717,7 @@ public class Test {
       <subsection name="Example of Usage" id="IllegalThrows_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+IllegalThrows">
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+IllegalThrows">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -2726,7 +2726,7 @@ public class Test {
       <subsection name="Violation Messages" id="IllegalThrows_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22illegal.throw%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22illegal.throw%22">
             illegal.throw</a>
           </li>
         </ul>
@@ -2830,7 +2830,7 @@ public native void myTest(); // violation
       <subsection name="Example of Usage" id="IllegalToken_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+IllegalToken">
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+IllegalToken">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -2839,7 +2839,7 @@ public native void myTest(); // violation
       <subsection name="Violation Messages" id="IllegalToken_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22illegal.token%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22illegal.token%22">
             illegal.token</a>
           </li>
         </ul>
@@ -3014,11 +3014,11 @@ public void myTest() {
       <subsection name="Example of Usage" id="IllegalTokenText_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+IllegalTokenText">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+IllegalTokenText">
             Google Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+IllegalTokenText">
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+IllegalTokenText">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -3027,7 +3027,7 @@ public void myTest() {
       <subsection name="Violation Messages" id="IllegalTokenText_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22illegal.token.text%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22illegal.token.text%22">
             illegal.token.text</a>
           </li>
         </ul>
@@ -3408,7 +3408,7 @@ public class Main {
       <subsection name="Example of Usage" id="IllegalType_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+IllegalType">
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+IllegalType">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -3417,7 +3417,7 @@ public class Main {
       <subsection name="Violation Messages" id="IllegalType_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22illegal.type%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22illegal.type%22">
             illegal.type</a>
           </li>
         </ul>
@@ -3535,11 +3535,11 @@ class MyClass {
       <subsection name="Example of Usage" id="InnerAssignment_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Asun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+InnerAssignment">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+InnerAssignment">
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+InnerAssignment">
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+InnerAssignment">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -3548,7 +3548,7 @@ class MyClass {
       <subsection name="Violation Messages" id="InnerAssignment_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22assignment.inner.avoid%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22assignment.inner.avoid%22">
             assignment.inner.avoid</a>
           </li>
         </ul>
@@ -3851,11 +3851,11 @@ class TestHashCode {
       <subsection name="Example of Usage" id="MagicNumber_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Asun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MagicNumber">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MagicNumber">
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+MagicNumber">
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+MagicNumber">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -3864,7 +3864,7 @@ class TestHashCode {
       <subsection name="Violation Messages" id="MagicNumber_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22magic.number%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22magic.number%22">
             magic.number</a>
           </li>
         </ul>
@@ -4064,7 +4064,7 @@ public class Test {
       <subsection name="Example of Usage" id="MatchXpath_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+MatchXpath">
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+MatchXpath">
               Checkstyle Style</a>
           </li>
         </ul>
@@ -4074,7 +4074,7 @@ public class Test {
                   id="MatchXpath_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22matchxpath.match%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22matchxpath.match%22">
               matchxpath.match</a>
           </li>
         </ul>
@@ -4139,7 +4139,7 @@ abstract class AbstractExample { // OK
       <subsection name="Example of Usage" id="MissingCtor_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingCtor">
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingCtor">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -4148,7 +4148,7 @@ abstract class AbstractExample { // OK
       <subsection name="Violation Messages" id="MissingCtor_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22missing.ctor%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22missing.ctor%22">
             missing.ctor</a>
           </li>
         </ul>
@@ -4317,15 +4317,15 @@ static int showSwitchExpressionExhaustiveness(Color color) {
       <subsection name="Example of Usage" id="MissingSwitchDefault_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingSwitchDefault">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingSwitchDefault">
             Google Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Asun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingSwitchDefault">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingSwitchDefault">
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingSwitchDefault">
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingSwitchDefault">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -4334,7 +4334,7 @@ static int showSwitchExpressionExhaustiveness(Color color) {
       <subsection name="Violation Messages" id="MissingSwitchDefault_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22missing.switch.default%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22missing.switch.default%22">
             missing.switch.default</a>
           </li>
         </ul>
@@ -4475,7 +4475,7 @@ for (String arg: args1) {
       <subsection name="Example of Usage" id="ModifiedControlVariable_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+ModifiedControlVariable">
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+ModifiedControlVariable">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -4484,7 +4484,7 @@ for (String arg: args1) {
       <subsection name="Violation Messages" id="ModifiedControlVariable_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22modified.control.variable%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22modified.control.variable%22">
             modified.control.variable</a>
           </li>
         </ul>
@@ -4666,7 +4666,7 @@ public class MyClass {
       <subsection name="Example of Usage" id="MultipleStringLiterals_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+MultipleStringLiterals">
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+MultipleStringLiterals">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -4675,7 +4675,7 @@ public class MyClass {
       <subsection name="Violation Messages" id="MultipleStringLiterals_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22multiple.string.literal%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22multiple.string.literal%22">
             multiple.string.literal</a>
           </li>
         </ul>
@@ -4747,15 +4747,15 @@ public class Test {
       <subsection name="Example of Usage" id="MultipleVariableDeclarations_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MultipleVariableDeclarations">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MultipleVariableDeclarations">
             Google Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Asun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MultipleVariableDeclarations">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MultipleVariableDeclarations">
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+MultipleVariableDeclarations">
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+MultipleVariableDeclarations">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -4764,11 +4764,11 @@ public class Test {
       <subsection name="Violation Messages" id="MultipleVariableDeclarations_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22multiple.variable.declarations%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22multiple.variable.declarations%22">
             multiple.variable.declarations</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22multiple.variable.declarations.comma%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22multiple.variable.declarations.comma%22">
             multiple.variable.declarations.comma</a>
           </li>
         </ul>
@@ -4870,7 +4870,7 @@ for(int i=0; i&lt;10; i++) {
       <subsection name="Example of Usage" id="NestedForDepth_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+NestedForDepth">
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+NestedForDepth">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -4879,7 +4879,7 @@ for(int i=0; i&lt;10; i++) {
       <subsection name="Violation Messages" id="NestedForDepth_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22nested.for.depth%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22nested.for.depth%22">
             nested.for.depth</a>
           </li>
         </ul>
@@ -4991,7 +4991,7 @@ if (true) {
       <subsection name="Example of Usage" id="NestedIfDepth_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+NestedIfDepth">
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+NestedIfDepth">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -5000,7 +5000,7 @@ if (true) {
       <subsection name="Violation Messages" id="NestedIfDepth_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22nested.if.depth%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22nested.if.depth%22">
             nested.if.depth</a>
           </li>
         </ul>
@@ -5150,7 +5150,7 @@ try {
       <subsection name="Example of Usage" id="NestedTryDepth_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+NestedTryDepth">
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+NestedTryDepth">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -5159,7 +5159,7 @@ try {
       <subsection name="Violation Messages" id="NestedTryDepth_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22nested.try.depth%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22nested.try.depth%22">
             nested.try.depth</a>
           </li>
         </ul>
@@ -5233,7 +5233,7 @@ String[] foo4 = { "FOO", "BAR" }; // OK
       <subsection name="Example of Usage" id="NoArrayTrailingComma_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+NoArrayTrailingComma">
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+NoArrayTrailingComma">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -5242,7 +5242,7 @@ String[] foo4 = { "FOO", "BAR" }; // OK
       <subsection name="Violation Messages" id="NoArrayTrailingComma_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22no.array.trailing.comma%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22no.array.trailing.comma%22">
             no.array.trailing.comma</a>
           </li>
         </ul>
@@ -5396,7 +5396,7 @@ public class Foo {
       <subsection name="Example of Usage" id="NoClone_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+NoClone">
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+NoClone">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -5405,7 +5405,7 @@ public class Foo {
       <subsection name="Violation Messages" id="NoClone_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22avoid.clone.method%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22avoid.clone.method%22">
             avoid.clone.method</a>
           </li>
         </ul>
@@ -5502,7 +5502,7 @@ enum Foo10 { FOO, BAR } // OK
       <subsection name="Example of Usage" id="NoEnumTrailingComma_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+NoEnumTrailingComma">
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+NoEnumTrailingComma">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -5511,7 +5511,7 @@ enum Foo10 { FOO, BAR } // OK
       <subsection name="Violation Messages" id="NoEnumTrailingComma_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22no.enum.trailing.comma%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22no.enum.trailing.comma%22">
             no.enum.trailing.comma</a>
           </li>
         </ul>
@@ -5577,11 +5577,11 @@ public class Test {
       <subsection name="Example of Usage" id="NoFinalizer_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NoFinalizer">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NoFinalizer">
             Google Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+NoFinalizer">
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+NoFinalizer">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -5590,7 +5590,7 @@ public class Test {
       <subsection name="Violation Messages" id="NoFinalizer_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22avoid.finalizer.method%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22avoid.finalizer.method%22">
             avoid.finalizer.method</a>
           </li>
         </ul>
@@ -5717,11 +5717,11 @@ try (Reader r = new PipedReader(); s2; Reader s3 = new PipedReader() // violatio
       <subsection name="Example of Usage" id="OneStatementPerLine_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+OneStatementPerLine">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+OneStatementPerLine">
             Google Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+OneStatementPerLine">
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+OneStatementPerLine">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -5730,7 +5730,7 @@ try (Reader r = new PipedReader(); s2; Reader s3 = new PipedReader() // violatio
       <subsection name="Violation Messages" id="OneStatementPerLine_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22multiple.statements.line%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22multiple.statements.line%22">
             multiple.statements.line</a>
           </li>
         </ul>
@@ -5789,11 +5789,11 @@ public void foo(String s, int i) {}
       <subsection name="Example of Usage" id="OverloadMethodsDeclarationOrder_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+OverloadMethodsDeclarationOrder">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+OverloadMethodsDeclarationOrder">
             Google Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+OverloadMethodsDeclarationOrder">
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+OverloadMethodsDeclarationOrder">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -5802,7 +5802,7 @@ public void foo(String s, int i) {}
       <subsection name="Violation Messages" id="OverloadMethodsDeclarationOrder_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22overload.methods.declaration%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22overload.methods.declaration%22">
             overload.methods.declaration</a>
           </li>
         </ul>
@@ -5904,7 +5904,7 @@ public class AnnotationLocationCheck extends AbstractCheck {
       <subsection name="Example of Usage" id="PackageDeclaration_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+PackageDeclaration">
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+PackageDeclaration">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -5913,11 +5913,11 @@ public class AnnotationLocationCheck extends AbstractCheck {
       <subsection name="Violation Messages" id="PackageDeclaration_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22mismatch.package.directory%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22mismatch.package.directory%22">
             mismatch.package.directory</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22missing.package.declaration%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22missing.package.declaration%22">
             missing.package.declaration</a>
           </li>
         </ul>
@@ -5998,7 +5998,7 @@ class MyClass {
       <subsection name="Example of Usage" id="ParameterAssignment_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+ParameterAssignment">
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+ParameterAssignment">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -6007,7 +6007,7 @@ class MyClass {
       <subsection name="Violation Messages" id="ParameterAssignment_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22parameter.assignment%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22parameter.assignment%22">
             parameter.assignment</a>
           </li>
         </ul>
@@ -6261,7 +6261,7 @@ public class D {
       <subsection name="Example of Usage" id="RequireThis_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+RequireThis">
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+RequireThis">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -6270,11 +6270,11 @@ public class D {
       <subsection name="Violation Messages" id="RequireThis_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22require.this.method%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22require.this.method%22">
             require.this.method</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22require.this.variable%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22require.this.variable%22">
             require.this.variable</a>
           </li>
         </ul>
@@ -6589,7 +6589,7 @@ public class Test {
       <subsection name="Example of Usage" id="ReturnCount_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+ReturnCount">
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+ReturnCount">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -6598,11 +6598,11 @@ public class Test {
       <subsection name="Violation Messages" id="ReturnCount_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22return.count%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22return.count%22">
             return.count</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22return.countVoid%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22return.countVoid%22">
             return.countVoid</a>
           </li>
         </ul>
@@ -6680,11 +6680,11 @@ public class Test {
       <subsection name="Example of Usage" id="SimplifyBooleanExpression_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Asun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SimplifyBooleanExpression">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SimplifyBooleanExpression">
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+SimplifyBooleanExpression">
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+SimplifyBooleanExpression">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -6693,7 +6693,7 @@ public class Test {
       <subsection name="Violation Messages" id="SimplifyBooleanExpression_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22simplify.expression%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22simplify.expression%22">
             simplify.expression</a>
           </li>
         </ul>
@@ -6804,11 +6804,11 @@ public class Test {
       <subsection name="Example of Usage" id="SimplifyBooleanReturn_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Asun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SimplifyBooleanReturn">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SimplifyBooleanReturn">
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+SimplifyBooleanReturn">
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+SimplifyBooleanReturn">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -6817,7 +6817,7 @@ public class Test {
       <subsection name="Violation Messages" id="SimplifyBooleanReturn_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22simplify.boolReturn%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22simplify.boolReturn%22">
             simplify.boolReturn</a>
           </li>
         </ul>
@@ -6898,7 +6898,7 @@ if (name == getName()) {}
       <subsection name="Example of Usage" id="StringLiteralEquality_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+StringLiteralEquality">
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+StringLiteralEquality">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -6907,7 +6907,7 @@ if (name == getName()) {}
       <subsection name="Violation Messages" id="StringLiteralEquality_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22string.literal.equality%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22string.literal.equality%22">
             string.literal.equality</a>
           </li>
         </ul>
@@ -6984,7 +6984,7 @@ class C {
       <subsection name="Example of Usage" id="SuperClone_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuperClone">
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuperClone">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -6993,7 +6993,7 @@ class C {
       <subsection name="Violation Messages" id="SuperClone_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22missing.super.call%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22missing.super.call%22">
             missing.super.call</a>
           </li>
         </ul>
@@ -7061,7 +7061,7 @@ public class B {
       <subsection name="Example of Usage" id="SuperFinalize_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuperFinalize">
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuperFinalize">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -7070,7 +7070,7 @@ public class B {
       <subsection name="Violation Messages" id="SuperFinalize_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22missing.super.call%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22missing.super.call%22">
             missing.super.call</a>
           </li>
         </ul>
@@ -7442,7 +7442,7 @@ class Test {
       <subsection name="Example of Usage" id="UnnecessaryParentheses_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+UnnecessaryParentheses">
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+UnnecessaryParentheses">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -7451,31 +7451,31 @@ class Test {
       <subsection name="Violation Messages" id="UnnecessaryParentheses_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22unnecessary.paren.assign%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22unnecessary.paren.assign%22">
             unnecessary.paren.assign</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22unnecessary.paren.expr%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22unnecessary.paren.expr%22">
             unnecessary.paren.expr</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22unnecessary.paren.ident%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22unnecessary.paren.ident%22">
             unnecessary.paren.ident</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22unnecessary.paren.lambda%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22unnecessary.paren.lambda%22">
             unnecessary.paren.lambda</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22unnecessary.paren.literal%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22unnecessary.paren.literal%22">
             unnecessary.paren.literal</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22unnecessary.paren.return%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22unnecessary.paren.return%22">
             unnecessary.paren.return</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22unnecessary.paren.string%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22unnecessary.paren.string%22">
             unnecessary.paren.string</a>
           </li>
         </ul>
@@ -7626,7 +7626,7 @@ enum C {
                   id="UnnecessarySemicolonAfterOuterTypeDeclaration_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+UnnecessarySemicolonAfterOuterTypeDeclaration">
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+UnnecessarySemicolonAfterOuterTypeDeclaration">
               Checkstyle Style</a>
           </li>
         </ul>
@@ -7636,7 +7636,7 @@ enum C {
                   id="UnnecessarySemicolonAfterOuterTypeDeclaration_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22unnecessary.semicolon%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22unnecessary.semicolon%22">
                 unnecessary.semicolon</a>
           </li>
         </ul>
@@ -7793,7 +7793,7 @@ class A {
                   id="UnnecessarySemicolonAfterTypeMemberDeclaration_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+UnnecessarySemicolonAfterTypeMemberDeclaration">
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+UnnecessarySemicolonAfterTypeMemberDeclaration">
               Checkstyle Style</a>
           </li>
         </ul>
@@ -7803,7 +7803,7 @@ class A {
                   id="UnnecessarySemicolonAfterTypeMemberDeclaration_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22unnecessary.semicolon%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22unnecessary.semicolon%22">
                 unnecessary.semicolon</a>
           </li>
         </ul>
@@ -7885,7 +7885,7 @@ enum NoSemicolon {
                   id="UnnecessarySemicolonInEnumeration_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+UnnecessarySemicolonInEnumeration">
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+UnnecessarySemicolonInEnumeration">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -7895,7 +7895,7 @@ enum NoSemicolon {
                   id="UnnecessarySemicolonInEnumeration_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22unnecessary.semicolon%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22unnecessary.semicolon%22">
             unnecessary.semicolon</a>
           </li>
         </ul>
@@ -7999,7 +7999,7 @@ class A {
                   id="UnnecessarySemicolonInTryWithResources_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+UnnecessarySemicolonInTryWithResources">
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+UnnecessarySemicolonInTryWithResources">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -8009,7 +8009,7 @@ class A {
                   id="UnnecessarySemicolonInTryWithResources_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22unnecessary.semicolon%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22unnecessary.semicolon%22">
             unnecessary.semicolon</a>
           </li>
         </ul>
@@ -8114,7 +8114,7 @@ class Test {
       <subsection name="Example of Usage" id="UnusedLocalVariable_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+UnusedLocalVariable">
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+UnusedLocalVariable">
                 Checkstyle Style</a>
           </li>
         </ul>
@@ -8123,7 +8123,7 @@ class Test {
       <subsection name="Violation Messages" id="UnusedLocalVariable_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22unused.local.var%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22unused.local.var%22">
                 unused.local.var
             </a>
           </li>
@@ -8432,11 +8432,11 @@ public class Test {
       <subsection name="Example of Usage" id="VariableDeclarationUsageDistance_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+VariableDeclarationUsageDistance">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+VariableDeclarationUsageDistance">
             Google Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+VariableDeclarationUsageDistance">
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+VariableDeclarationUsageDistance">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -8446,11 +8446,11 @@ public class Test {
                   id="VariableDeclarationUsageDistance_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22variable.declaration.usage.distance%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22variable.declaration.usage.distance%22">
             variable.declaration.usage.distance</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22variable.declaration.usage.distance.extend%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22variable.declaration.usage.distance.extend%22">
             variable.declaration.usage.distance.extend</a>
           </li>
         </ul>

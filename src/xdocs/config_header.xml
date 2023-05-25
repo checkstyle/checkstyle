@@ -158,7 +158,7 @@ line 5: ////////////////////////////////////////////////////////////////////
       <subsection name="Example of Usage" id="Header_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+Header">
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+Header">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -167,11 +167,11 @@ line 5: ////////////////////////////////////////////////////////////////////
       <subsection name="Violation Messages" id="Header_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fheader+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22header.mismatch%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fheader%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22header.mismatch%22">
             header.mismatch</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fheader+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22header.missing%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fheader%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22header.missing%22">
             header.missing</a>
           </li>
         </ul>
@@ -406,7 +406,7 @@ public class ThisWillPass { }
       <subsection name="Example of Usage" id="RegexpHeader_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+RegexpHeader">
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+RegexpHeader">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -415,11 +415,11 @@ public class ThisWillPass { }
       <subsection name="Violation Messages" id="RegexpHeader_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fheader+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22header.mismatch%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fheader%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22header.mismatch%22">
             header.mismatch</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fheader+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22header.missing%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fheader%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22header.missing%22">
             header.missing</a>
           </li>
         </ul>
