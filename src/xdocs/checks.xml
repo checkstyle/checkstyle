@@ -263,8 +263,7 @@
           <tr>
             <td><a href="config_design.html#FinalClass">FinalClass</a></td>
             <td>
-              Checks that a class that has only private constructors and
-              has no descendant classes is declared as final.
+              Check that identifies classes that can be declared as final are explicitly made final.
             </td>
           </tr>
           <tr>

@@ -400,9 +400,34 @@ public abstract class Foo {
       <p>Since Checkstyle 3.1</p>
       <subsection name="Description" id="FinalClass_Description">
         <p>
-          Checks that a class that has only private constructors and
-          has no descendant classes is declared as final.
+          Check that identifies classes that can be declared as final are explicitly made final.
+          The following is the type of classes that can be identified:
         </p>
+        <ol>
+          <li>
+              Private classes with implicit constructor.
+          </li>
+          <li>
+              Classes with any modifier, and contains only private constructors.
+          </li>
+        </ol>
+        <p>
+          Classes are skipped if:
+        </p>
+        <ol>
+          <li>
+              Class is already <code>final</code>.
+          </li>
+          <li>
+              Class is declared as <code>abstract</code>.
+          </li>
+          <li>
+              Class is Super class of some Anonymous inner class.
+          </li>
+          <li>
+              Class is with nested sub class.
+          </li>
+        </ol>
       </subsection>
 
       <subsection name="Examples" id="FinalClass_Examples">
@@ -445,6 +470,17 @@ class TestAnonymousInnerClasses { // OK, class has an anonymous inner class.
     private TestAnonymousInnerClasses() {
     }
 }
+
+class Class1 {
+
+    private class Class2 { // violation, class should be declared final
+    }
+
+    public class Class3 { // ok
+    }
+
+}
+
         </source>
       </subsection>
 
