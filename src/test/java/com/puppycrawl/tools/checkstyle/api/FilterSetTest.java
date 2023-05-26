@@ -20,8 +20,10 @@
 package com.puppycrawl.tools.checkstyle.api;
 
 import static com.google.common.truth.Truth.assertWithMessage;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.Objects;
+import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
@@ -100,6 +102,33 @@ public class FilterSetTest {
         assertWithMessage("invalid accept response")
                 .that(filterSet.accept(null))
                 .isFalse();
+    }
+
+    /*
+      Due to low level configuration setup of FilterSet, conventional
+      input validation cannot be done here hence, pure JUnit testing has been
+      done for the time being
+    */
+    @Test
+    public void testUnmodifiableSet() {
+        final FilterSet filterSet = new FilterSet();
+        final Filter filter = new FilterSet();
+        filterSet.addFilter(filter);
+        final Set<Filter> subFilterSet = filterSet.getFilters();
+        assertThrows(UnsupportedOperationException.class,
+            () -> subFilterSet.add(filter));
+    }
+
+    /*
+      Input based test does not call toString, but this method might
+      be useful for third party integrations
+    */
+    @Test
+    public void testEmptyToString() {
+        final FilterSet filterSet = new FilterSet();
+        assertWithMessage("toString() result shouldn't be an empty string")
+                .that(filterSet.toString())
+                .isNotEmpty();
     }
 
     private static final class DummyFilter implements Filter {

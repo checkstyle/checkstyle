@@ -97,7 +97,6 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
             "ClassTypeParameterName",
             "DescendantToken",
             "DesignForExtension",
-            "EqualsAvoidNull",
             "EqualsHashCode",
             "ExecutableStatementCount",
             "FinalLocalVariable",
@@ -115,15 +114,12 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
             "MethodLength",
             "MethodTypeParameterName",
             "ModifiedControlVariable",
-            "ModifierOrder",
             "MultipleStringLiterals",
             "MutableException",
             "PackageName",
             "ParameterAssignment",
-            "ParameterName",
             "ParameterNumber",
             "RedundantModifier",
-            "ReturnCount",
             "SeparatorWrap",
             "SimplifyBooleanExpression",
             "StaticVariableName",
@@ -193,7 +189,7 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
         final Set<Class<?>> abstractJavadocCheckNames = CheckUtil.getCheckstyleChecks()
                 .stream()
                 .filter(AbstractJavadocCheck.class::isAssignableFrom)
-                .collect(Collectors.toSet());
+                .collect(Collectors.toCollection(HashSet::new));
         // add the extra checks
         abstractJavadocCheckNames.addAll(REGEXP_JAVADOC_CHECKS);
         final Set<String> abstractJavadocCheckSimpleNames =

@@ -6,20 +6,20 @@ public class InputJava19PatternsInNullSwitch1 {
     class Super {}
     class Sub extends Super {}
     record R(Super s) {}
-// until https://github.com/checkstyle/checkstyle/issues/12507
-//    private int matchingSwitch14(R r) {
-//        return switch(r) {
-//            case R(Super s) -> 1;
-//            default -> 2;
-//        };
-//    }
-//
-//    private int matchingSwitch15(R r) {
-//        return switch(r) {
-//            case R(Sub s) -> 1;
-//            default -> 2;
-//        };
-//    }
+
+    private int matchingSwitch14(R r) {
+        return switch(r) {
+            case R(Super s) -> 1;
+            default -> 2;
+        };
+    }
+
+    private int matchingSwitch15(R r) {
+        return switch(r) {
+            case R(Sub s) -> 1;
+            default -> 2;
+        };
+    }
 
     private int matchingSwitch1(Object obj) {
         return switch (obj) {

@@ -28,15 +28,6 @@
   </mutation>
 
   <mutation unstable="false">
-    <sourceFile>DefaultComesLastCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.DefaultComesLastCheck</mutatedClass>
-    <mutatedMethod>findNextSibling</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getNextSibling</description>
-    <lineContent>node = node.getNextSibling();</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
     <sourceFile>EqualsAvoidNullCheck.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.EqualsAvoidNullCheck</mutatedClass>
     <mutatedMethod>isStringFieldOrVariableFromClass</mutatedMethod>
@@ -151,15 +142,6 @@
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_6</mutator>
     <description>RemoveSwitch 6 (case value 91)</description>
     <lineContent>switch (examineNode.getType()) {</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>VariableDeclarationUsageDistanceCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck</mutatedClass>
-    <mutatedMethod>getFirstNodeInsideTryCatchFinallyBlocks</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
-    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getLastChild with receiver</description>
-    <lineContent>final DetailAST finalBlock = currentNode.getLastChild();</lineContent>
   </mutation>
 
   <mutation unstable="false">

@@ -124,16 +124,16 @@ public class MethodParamPadCheckTest
     @Test
     public void testMethodParamPadRecords() throws Exception {
         final String[] expected = {
-            "19:25: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "19:16: " + getCheckMessage(MSG_WS_PRECEDED, "("),
             "20:34: " + getCheckMessage(MSG_WS_PRECEDED, "("),
-            "31:26: " + getCheckMessage(MSG_WS_PRECEDED, "("),
-            "32:23: " + getCheckMessage(MSG_WS_PRECEDED, "("),
-            "37:26: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "31:17: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "32:14: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "37:17: " + getCheckMessage(MSG_WS_PRECEDED, "("),
             "38:33: " + getCheckMessage(MSG_WS_PRECEDED, "("),
-            "44:26: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "44:17: " + getCheckMessage(MSG_WS_PRECEDED, "("),
             "45:18: " + getCheckMessage(MSG_WS_PRECEDED, "("),
-            "51:34: " + getCheckMessage(MSG_WS_PRECEDED, "("),
-            "57:34: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "51:25: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "57:25: " + getCheckMessage(MSG_WS_PRECEDED, "("),
         };
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputMethodParamPadRecords.java"), expected);

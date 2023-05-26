@@ -1,6 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suppressedErrors>
   <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/AbstractAutomaticBean.java</fileName>
+    <specifier>initialization.field.uninitialized</specifier>
+    <message>the default constructor does not initialize field configuration</message>
+    <lineContent>private Configuration configuration;</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/AbstractAutomaticBean.java</fileName>
+    <specifier>return</specifier>
+    <message>incompatible types in return.</message>
+    <lineContent>return result;</lineContent>
+    <details>
+      type of expression: @Initialized @Nullable URI
+      method return type: @Initialized @NonNull Object
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/AbstractAutomaticBean.java</fileName>
+    <specifier>toarray.nullable.elements.not.newarray</specifier>
+    <message>call of toArray on collection of non-null elements yields an array of possibly-null elements; omit the argument to toArray or make it an explicit array constructor</message>
+    <lineContent>return result.toArray(CommonUtil.EMPTY_STRING_ARRAY);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/AbstractAutomaticBean.java</fileName>
+    <specifier>toarray.nullable.elements.not.newarray</specifier>
+    <message>call of toArray on collection of non-null elements yields an array of possibly-null elements; omit the argument to toArray or make it an explicit array constructor</message>
+    <lineContent>return result.toArray(EMPTY_MODIFIER_ARRAY);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/Checker.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter args of Violation.</message>
@@ -79,7 +111,7 @@
     <message>call to addListener(com.puppycrawl.tools.checkstyle.api.AuditListener) not allowed on the given receiver.</message>
     <lineContent>addListener(counter);</lineContent>
     <details>
-      found   : @UnderInitialization(com.puppycrawl.tools.checkstyle.api.AutomaticBean.class) @NonNull Checker
+      found   : @UnderInitialization(com.puppycrawl.tools.checkstyle.AbstractAutomaticBean.class) @NonNull Checker
       required: @Initialized @NonNull Checker
     </details>
   </checkerFrameworkError>
@@ -710,7 +742,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/PackageObjectFactory.java</fileName>
     <specifier>methodref.return</specifier>
     <message>Incompatible return type</message>
-    <lineContent>Collectors.mapping(Class::getCanonicalName, Collectors.toSet())));</lineContent>
+    <lineContent>Class::getCanonicalName,</lineContent>
     <details>
       found   : @Initialized @Nullable String
       required: @Initialized @NonNull String
@@ -1185,38 +1217,6 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/AutomaticBean.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field configuration</message>
-    <lineContent>private Configuration configuration;</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/AutomaticBean.java</fileName>
-    <specifier>return</specifier>
-    <message>incompatible types in return.</message>
-    <lineContent>return result;</lineContent>
-    <details>
-      type of expression: @Initialized @Nullable URI
-      method return type: @Initialized @NonNull Object
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/AutomaticBean.java</fileName>
-    <specifier>toarray.nullable.elements.not.newarray</specifier>
-    <message>call of toArray on collection of non-null elements yields an array of possibly-null elements; omit the argument to toArray or make it an explicit array constructor</message>
-    <lineContent>return result.toArray(CommonUtil.EMPTY_STRING_ARRAY);</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/AutomaticBean.java</fileName>
-    <specifier>toarray.nullable.elements.not.newarray</specifier>
-    <message>call of toArray on collection of non-null elements yields an array of possibly-null elements; omit the argument to toArray or make it an explicit array constructor</message>
-    <lineContent>return result.toArray(EMPTY_MODIFIER_ARRAY);</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/FileContents.java</fileName>
     <specifier>return</specifier>
     <message>incompatible types in return.</message>
@@ -1589,6 +1589,17 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/blocks/RightCurlyCheck.java</fileName>
     <specifier>argument</specifier>
+    <message>incompatible argument for parameter nextToken of Details.</message>
+    <lineContent>return new Details(lcurly, rcurly, nextToken, true);</lineContent>
+    <details>
+      found   : @Initialized @Nullable DetailAST
+      required: @Initialized @NonNull DetailAST
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/blocks/RightCurlyCheck.java</fileName>
+    <specifier>argument</specifier>
     <message>incompatible argument for parameter rcurly of Details.</message>
     <lineContent>return new Details(lcurly, rcurly, getNextToken(ast), true);</lineContent>
     <details>
@@ -1613,6 +1624,17 @@
     <specifier>argument</specifier>
     <message>incompatible argument for parameter rcurly of Details.</message>
     <lineContent>return new Details(lcurly, rcurly, nextToken, shouldCheckLastRcurly);</lineContent>
+    <details>
+      found   : @Initialized @Nullable DetailAST
+      required: @Initialized @NonNull DetailAST
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/blocks/RightCurlyCheck.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter rcurly of Details.</message>
+    <lineContent>return new Details(lcurly, rcurly, nextToken, true);</lineContent>
     <details>
       found   : @Initialized @Nullable DetailAST
       required: @Initialized @NonNull DetailAST
@@ -1667,17 +1689,6 @@
     <specifier>initialization.field.uninitialized</specifier>
     <message>the default constructor does not initialize field scopeStates</message>
     <lineContent>private Deque&lt;ScopeState&gt; scopeStates;</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/DefaultComesLastCheck.java</fileName>
-    <specifier>return</specifier>
-    <message>incompatible types in return.</message>
-    <lineContent>return token;</lineContent>
-    <details>
-      type of expression: @Initialized @Nullable DetailAST
-      method return type: @Initialized @NonNull DetailAST
-    </details>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -4889,6 +4900,60 @@
     <details>
       type of expression: @Initialized @Nullable FileContents
       method return type: @Initialized @NonNull FileContents
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressWithNearbyTextFilter.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter text of Suppression.</message>
+    <lineContent>suppression = new Suppression(text, lineNo + 1, this);</lineContent>
+    <details>
+      found   : @Initialized @Nullable String
+      required: @Initialized @NonNull String
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressWithNearbyTextFilter.java</fileName>
+    <specifier>initialization.field.uninitialized</specifier>
+    <message>the default constructor does not initialize field idPattern</message>
+    <lineContent>private String idPattern;</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressWithNearbyTextFilter.java</fileName>
+    <specifier>initialization.field.uninitialized</specifier>
+    <message>the default constructor does not initialize field messagePattern</message>
+    <lineContent>private String messagePattern;</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressWithNearbyTextFilter.java</fileName>
+    <specifier>initialization.fields.uninitialized</specifier>
+    <message>the constructor does not initialize fields: eventMessageRegexp, eventIdRegexp</message>
+    <lineContent>private Suppression(</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressWithNearbyTextFilter.java</fileName>
+    <specifier>return</specifier>
+    <message>incompatible types in return.</message>
+    <lineContent>return result;</lineContent>
+    <details>
+      type of expression: @Initialized @Nullable FileText
+      method return type: @Initialized @NonNull FileText
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressWithNearbyTextFilter.java</fileName>
+    <specifier>return</specifier>
+    <message>incompatible types in return.</message>
+    <lineContent>return suppression;</lineContent>
+    <details>
+      type of expression: @Initialized @Nullable Suppression
+      method return type: @Initialized @NonNull Suppression
     </details>
   </checkerFrameworkError>
 

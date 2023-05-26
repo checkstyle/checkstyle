@@ -10,6 +10,444 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 10.11.0">
+      <div class="releaseDate">10.05.2023</div>
+      <p>New:</p>
+        <ul>
+          <li>
+            False Negative: UnnecessaryParenthesesCheck.
+            Author: Kevin222004
+            <a href="https://github.com/checkstyle/checkstyle/issues/11109">#11109</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            VariableDeclarationUsageDistance not able to handle try with resources properly.
+            Author: jxr98
+            <a href="https://github.com/checkstyle/checkstyle/issues/11968">#11968</a>
+          </li>
+          <li>
+            Not last return javadoc tag cause parse error.
+            Author: Omar Bakry
+            <a href="https://github.com/checkstyle/checkstyle/issues/12864">#12864</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Kill survivng mutation in DefaultComesLastCheck.java.
+            Author: jxr98
+            <a href="https://github.com/checkstyle/checkstyle/issues/12889">#12889</a>
+          </li>
+          <li>
+            make_report has warning on deprecation .
+            Author: Omar Bakry
+            <a href="https://github.com/checkstyle/checkstyle/issues/13031">#13031</a>
+          </li>
+        </ul>
+    </section>
+    <section name="Release 10.10.0">
+      <div class="releaseDate">26.04.2023</div>
+      <p>New:</p>
+        <ul>
+          <li>
+            New filter: SuppressWithNearbyTextFilter to suppress checks with inline comments in any
+            file type.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/11939">#11939</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Enforce file size on Java inputs.
+            Author: Omar Bakry, sd9616
+            <a href="https://github.com/checkstyle/checkstyle/issues/11163">#11163</a>
+          </li>
+          <li>
+            Specify violation messages in input files.
+            Author: shivam, sd9616, Sloent
+            <a href="https://github.com/checkstyle/checkstyle/issues/11214">#11214</a>
+          </li>
+          <li>
+            Improvements to diff report generation.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/12991">#12991</a>
+          </li>
+          <li>
+            Resolve pitest for FinalLocalVariableCheck.
+            Author: coderdeadpool
+            <a href="https://github.com/checkstyle/checkstyle/issues/12671">#12671</a>
+          </li>
+          <li>
+            Resolve pitest suppression for FinalLocalVariableCheck.
+            Author: coderdeadpool
+            <a href="https://github.com/checkstyle/checkstyle/issues/12997">#12997</a>
+          </li>
+          <li>
+            Add more unit test cases for VariableDeclarationUsageDistanceCheck.
+            Author: Xinrui Jiang
+            <a href="https://github.com/checkstyle/checkstyle/issues/12976">#12976</a>
+          </li>
+          <li>
+            check_issues job have warning on deprecation.
+            Author: Omar Bakry
+            <a href="https://github.com/checkstyle/checkstyle/issues/12978">#12978</a>
+          </li>
+          <li>
+            Fix windows line endings in GitHub event text.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/12995">#12995</a>
+          </li>
+          <li>
+            doc: remove extra space.
+            Author: 7h3-3mp7y-m4n
+          </li>
+          <li>
+            Resolve pitest suppression for FallThroughCheck.
+            Author: shivam
+            <a href="https://github.com/checkstyle/checkstyle/issues/12943">#12943</a>
+          </li>
+          <li>
+            Resolve pitest suppression for AbstractViolationReporter.
+            Author: Shubh Srivastava
+            <a href="https://github.com/checkstyle/checkstyle/issues/12876">#12876</a>
+          </li>
+          <li>
+            Use Environment Files instead of `set-output` in GitHub Actions..
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/12696">#12696</a>
+          </li>
+          <li>
+            Expand XPath IT Regression Testing.
+            Author: Omar Bakry, sd9616
+            <a href="https://github.com/checkstyle/checkstyle/issues/6207">#6207</a>
+          </li>
+          <li>
+            Create script for appending text to $GITHUB_OUTPUT.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/12954">#12954</a>
+          </li>
+          <li>
+            Github CI does not run upon `Github, rebase` action.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/11134">#11134</a>
+          </li>
+          <li>
+            Grammar error in documentation of AbstractClassNameCheck.xml .
+            Author: bhganesh
+            <a href="https://github.com/checkstyle/checkstyle/issues/12932">#12932</a>
+          </li>
+          <li>
+            Diff-Report action does not post link to report in GitHub comment.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/12794">#12794</a>
+          </li>
+          <li>
+            Re-enable action lint.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/12678">#12678</a>
+          </li>
+          <li>
+            Update doc for VisibilityModifier.
+            Author: Omar Bakry
+            <a href="https://github.com/checkstyle/checkstyle/issues/7616">#7616</a>
+          </li>
+          <li>
+            Add 3 to earliest change variable to compensate for diff context.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/12940">#12940</a>
+          </li>
+          <li>
+            Fix concurrency group for site action.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/12942">#12942</a>
+          </li>
+          <li>
+            Generate site workflow should provide more specific links.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/12853">#12853</a>
+          </li>
+          <li>
+            Update doc for DesignForExtension.
+            Author: ziweiwang98
+            <a href="https://github.com/checkstyle/checkstyle/issues/7608">#7608</a>
+          </li>
+          <li>
+            Update doc for DescendantToken.
+            Author: shivam
+            <a href="https://github.com/checkstyle/checkstyle/issues/7587">#7587</a>
+          </li>
+          <li>
+            Update doc for Translation.
+            Author: shivam
+            <a href="https://github.com/checkstyle/checkstyle/issues/7593">#7593</a>
+          </li>
+        </ul>
+    </section>
+    <section name="Release 10.9.3">
+      <div class="releaseDate">25.03.2023</div>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            False positive about MagicNumber.
+            Author: Kevin222004
+            <a href="https://github.com/checkstyle/checkstyle/issues/12687">#12687</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Fail set-milestone if no milestone is found.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/12909">#12909</a>
+          </li>
+          <li>
+            Add repository owner environment variable in release process.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/12840">#12840</a>
+          </li>
+          <li>
+            doc: describe in cli doc that folder can be used.
+            Author: Roman Ivanov
+          </li>
+          <li>
+            Keep spacing between job steps consistent.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/12851">#12851</a>
+          </li>
+          <li>
+            Resolve pitest suppression for BeforeExecutionFileFilterSet.
+            Author: Shubh Srivastava
+            <a href="https://github.com/checkstyle/checkstyle/issues/12878">#12878</a>
+          </li>
+          <li>
+            Typo in Documentation of VariableDeclarationUsageDistance.
+            Author: jxr98
+            <a href="https://github.com/checkstyle/checkstyle/issues/12898">#12898</a>
+          </li>
+          <li>
+            Kill surviving mutation in FilterSet.java.
+            Author: Shubh Srivastava
+            <a href="https://github.com/checkstyle/checkstyle/issues/12887">#12887</a>
+          </li>
+          <li>
+            Deprecate com.puppycrawl.tools.checkstyle.api.AutomaticBean.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/5337">#5337</a>
+          </li>
+          <li>
+            Expand XPath IT Regression Testing.
+            Author: zyrate
+            <a href="https://github.com/checkstyle/checkstyle/issues/6207">#6207</a>
+          </li>
+          <li>
+            Resolve pitest suppression for FilterSet.
+            Author: Shubh Srivastava
+            <a href="https://github.com/checkstyle/checkstyle/issues/12879">#12879</a>
+          </li>
+          <li>
+            Update doc for SuppressionCommentFilter.
+            Author: Shubh Srivastava
+            <a href="https://github.com/checkstyle/checkstyle/issues/12827">#12827</a>
+          </li>
+          <li>
+            Use Shellcheck to resolve violations code in Shell Script.
+            Author: shubh220922
+            <a href="https://github.com/checkstyle/checkstyle/issues/11637">#11637</a>
+          </li>
+          <li>
+            Update doc for NonEmptyAtclauseDescription.
+            Author: shivam
+            <a href="https://github.com/checkstyle/checkstyle/issues/7604">#7604</a>
+          </li>
+          <li>
+            Ensure new-milestone-and-issues-in-other-repos always pulls latest commit.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/12866">#12866</a>
+          </li>
+        </ul>
+    </section>
+    <section name="Release 10.9.2">
+      <div class="releaseDate">18.03.2023</div>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            Improve performance of lambda processing.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/12809">#12809</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Make twitter-releasenotes job depend on update-github-page.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/12857">#12857</a>
+          </li>
+          <li>
+            Restore curl --fail-with-body.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/12451">#12451</a>
+          </li>
+          <li>
+            Specify violation messages in input files.
+            Author: jxr98
+            <a href="https://github.com/checkstyle/checkstyle/issues/11214">#11214</a>
+          </li>
+        </ul>
+    </section>
+    <section name="Release 10.9.1">
+      <div class="releaseDate">16.03.2023</div>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            A false negative about the rule ClassMemberImpliedModifier.
+            Author: Andrei Paikin
+            <a href="https://github.com/checkstyle/checkstyle/issues/11569">#11569</a>
+          </li>
+        </ul>
+    </section>
+    <section name="Release 10.9.0">
+      <div class="releaseDate">16.03.2023</div>
+      <p>New:</p>
+        <ul>
+          <li>
+            LITERAL_SWITCH token support in RightCurlyCheck.
+            Author: Kevin222004
+            <a href="https://github.com/checkstyle/checkstyle/issues/9994">#9994</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Give better names to release actions and files.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/12807">#12807</a>
+          </li>
+          <li>
+            Use Shellcheck to resolve violations code in Shell Script.
+            Author: shubh220922
+            <a href="https://github.com/checkstyle/checkstyle/issues/11637">#11637</a>
+          </li>
+          <li>
+            Expand XPath IT Regression Testing.
+            Author: zyrate
+            <a href="https://github.com/checkstyle/checkstyle/issues/6207">#6207</a>
+          </li>
+          <li>
+            emphasize mutability of collectors.
+            Author: Rick Ossendrijver
+            <a href="https://github.com/checkstyle/checkstyle/issues/12777">#12777</a>
+          </li>
+          <li>
+            Add conditional to run on:push workflows only in checkstyle repository.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/12824">#12824</a>
+          </li>
+          <li>
+            Make grep always return exit code 0 in set-milestone.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/12821">#12821</a>
+          </li>
+          <li>
+            Specify violation messages in input files.
+            Author: zyrate
+            <a href="https://github.com/checkstyle/checkstyle/issues/11214">#11214</a>
+          </li>
+          <li>
+            update doc for SuppressWarnings.
+            Author: zyrate
+            <a href="https://github.com/checkstyle/checkstyle/issues/7575">#7575</a>
+          </li>
+          <li>
+            Update doc for JavadocMethod.
+            Author: Aritra Sinha
+            <a href="https://github.com/checkstyle/checkstyle/issues/7598">#7598</a>
+          </li>
+        </ul>
+    </section>
+    <section name="Release 10.8.1">
+      <div class="releaseDate">09.03.2023</div>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            LocalizedMessage should use ModuleName in compareTo method.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/4930">#4930</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Fix &#39;set-milestone-on-referenced-issue&#39;.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/12801">#12801</a>
+          </li>
+          <li>
+            Specify violation messages in input files.
+            Author: Naoto Kuwayama
+            <a href="https://github.com/checkstyle/checkstyle/issues/11214">#11214</a>
+          </li>
+          <li>
+            Update documentation for AnnotationUseStyle.
+            Author: Naoto Kuwayama
+            <a href="https://github.com/checkstyle/checkstyle/issues/7571">#7571</a>
+          </li>
+          <li>
+            Execute upload of -all jar separately.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/12792">#12792</a>
+          </li>
+          <li>
+            Switch to PAT secret in set-milestone workflow.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/12799">#12799</a>
+          </li>
+          <li>
+            Remove execution of upload -all jar from new-milestone-and-issue-in-other-repo.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/12793">#12793</a>
+          </li>
+          <li>
+            Update Tests to use new &#39;verifyXxxxxx&#39; method or &#39;execute&#39; that use
+            inlined config in Input files.
+            Author: jxr98
+            <a href="https://github.com/checkstyle/checkstyle/issues/11446">#11446</a>
+          </li>
+          <li>
+            Add forgotten secret inherit in release.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/12797">#12797</a>
+          </li>
+          <li>
+            Create GitHub action to put current milestone on issue of closed PR.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/12497">#12497</a>
+          </li>
+          <li>
+            Use dynamic names for release workflow runs.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/12785">#12785</a>
+          </li>
+          <li>
+            Make action to trigger all release steps.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/12720">#12720</a>
+          </li>
+          <li>
+            CommitValidationTest fails on revert commits.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/12766">#12766</a>
+          </li>
+          <li>
+            Keep workflow input descriptions consistent.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/12776">#12776</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 10.8.0">
       <div class="releaseDate">26.02.2023</div>
       <p>Breaking backward compatibility:</p>

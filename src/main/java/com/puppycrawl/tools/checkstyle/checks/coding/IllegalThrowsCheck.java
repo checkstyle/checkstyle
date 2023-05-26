@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -160,13 +161,13 @@ public final class IllegalThrowsCheck extends AbstractCheck {
 
     /** Specify names of methods to ignore. */
     private final Set<String> ignoredMethodNames =
-        Arrays.stream(new String[] {"finalize", }).collect(Collectors.toSet());
+        Arrays.stream(new String[] {"finalize", }).collect(Collectors.toCollection(HashSet::new));
 
     /** Specify throw class names to reject. */
     private final Set<String> illegalClassNames = Arrays.stream(
         new String[] {"Error", "RuntimeException", "Throwable", "java.lang.Error",
                       "java.lang.RuntimeException", "java.lang.Throwable", })
-        .collect(Collectors.toSet());
+        .collect(Collectors.toCollection(HashSet::new));
 
     /**
      * Allow to ignore checking overridden methods (marked with {@code Override}

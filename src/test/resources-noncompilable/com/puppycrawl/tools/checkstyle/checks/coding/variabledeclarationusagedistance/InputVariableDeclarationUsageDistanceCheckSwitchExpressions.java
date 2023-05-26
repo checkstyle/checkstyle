@@ -32,7 +32,7 @@ public class InputVariableDeclarationUsageDistanceCheckSwitchExpressions {
             }
 
             case 2: {
-                int arg = 9; // violation
+                int arg = 9; // violation 'Distance .* is 2.'
                 int d = 0;
                 for (int i = 0; i < 10; i++) {
                     d++;
@@ -77,8 +77,8 @@ public class InputVariableDeclarationUsageDistanceCheckSwitchExpressions {
             default: {
                 int b = 0;
                 int c = 0;
-                int m = 0; // violation
-                int n = 0; // violation
+                int m = 0; // violation 'Distance between .* declaration and its first usage is 3.'
+                int n = 0; // violation 'Distance between .* declaration and its first usage is 2.'
                 {
                     c++;
                     b++;
@@ -110,7 +110,7 @@ public class InputVariableDeclarationUsageDistanceCheckSwitchExpressions {
                 yield 2;
             }
             case 2 -> {
-                int arg = 9; // violation
+                int arg = 9; // violation 'Distance .* is 2.'
                 int d = 0;
                 for (int i = 0; i < 10; i++) {
                     d++;
@@ -152,8 +152,8 @@ public class InputVariableDeclarationUsageDistanceCheckSwitchExpressions {
             default -> {
                 int b = 0;
                 int c = 0;
-                int m = 0; // violation
-                int n = 0; // violation
+                int m = 0; // violation 'Distance between .* declaration and its first usage is 3.'
+                int n = 0; // violation 'Distance between .* declaration and its first usage is 2.'
                 {
                     c++;
                     b++;
@@ -174,7 +174,7 @@ public class InputVariableDeclarationUsageDistanceCheckSwitchExpressions {
         int b = 6;
         switch (i) {
             case 1:
-                int count; // violation
+                int count; // violation 'Distance between .* declaration and its first usage is 3.'
                 a = a + b;
                 b = a + a;
                 count = b;
@@ -194,7 +194,7 @@ public class InputVariableDeclarationUsageDistanceCheckSwitchExpressions {
         int b = 6;
         switch (i) {
             case 1 -> {
-                int count; // violation
+                int count; // violation 'Distance between .* declaration and its first usage is 3.'
                 a = a + b;
                 b = a + a;
                 count = b;

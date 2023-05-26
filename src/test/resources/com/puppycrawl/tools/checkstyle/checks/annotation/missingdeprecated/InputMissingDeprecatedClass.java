@@ -12,11 +12,11 @@ import java.lang.annotation.Inherited;
  *
  * @author idubinin
  *@deprecated
- *@deprecated
- *stuff // violation above
+ *@deprecated // violation 'Duplicate @deprecated tag.'
  *stuff
- */
-public class InputMissingDeprecatedClass // violation
+ *stuff
+ */ // violation below 'Must include.*@java.lang.Deprecated annotation.*@deprecated.*description.'
+public class InputMissingDeprecatedClass
 {
 
 }

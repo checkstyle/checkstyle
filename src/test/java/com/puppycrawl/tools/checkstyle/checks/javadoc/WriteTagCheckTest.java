@@ -130,8 +130,7 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testRegularEx()
-            throws Exception {
+    public void testRegularEx() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(getPath("InputWriteTagRegularExpression.java"), expected);
     }
@@ -147,14 +146,14 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testEnumsAndAnnotations() throws Exception {
         final String[] expected = {
-            "15: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete",
-                    "This enum needs more code... // violation"),
-            "19: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete",
-                "This enum constant needs more code... // violation"),
-            "25: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete",
-                "This annotation needs more code... // violation"),
-            "29: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete",
-                "This annotation field needs more code... // violation"),
+            "16: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete",
+                    "This enum needs more code..."),
+            "21: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete",
+                    "This enum constant needs more code..."),
+            "28: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete",
+                    "This annotation needs more code..."),
+            "33: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete",
+                    "This annotation field needs more code..."),
         };
         verifyWithInlineConfigParser(getPath("InputWriteTagEnumsAndAnnotations.java"), expected);
     }
@@ -172,14 +171,18 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "15: " + getCheckMessage(MSG_MISSING_TAG, "@incomplete"),
             "19: " + getCheckMessage(MSG_TAG_FORMAT, "@incomplete", "\\S"),
-            "26: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete", "// violation"),
+            "26: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete",
+                    "Failed to recognize 'record' introduced in Java 14."),
             "33: " + getCheckMessage(MSG_MISSING_TAG, "@incomplete"),
-            "37: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete", "// violation"),
+            "37: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete",
+                    "Failed to recognize 'record' introduced in Java 14."),
             "44: " + getCheckMessage(MSG_MISSING_TAG, "@incomplete"),
-            "48: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete", "// violation"),
+            "48: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete",
+                    "Failed to recognize 'record' introduced in Java 14."),
             "56: " + getCheckMessage(MSG_MISSING_TAG, "@incomplete"),
             "58: " + getCheckMessage(MSG_MISSING_TAG, "@incomplete"),
-            "62: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete", "// violation"),
+            "62: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete",
+                    "Failed to recognize 'record' introduced in Java 14."),
         };
         verifyWithInlineConfigParser(
             getNonCompilablePath("InputWriteTagRecordsAndCompactCtors.java"), expected);

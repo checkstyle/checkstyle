@@ -204,15 +204,15 @@ import java.net.*;                // OK
       <subsection name="Example of Usage" id="AvoidStarImport_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+AvoidStarImport">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+AvoidStarImport">
             Google Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Asun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+AvoidStarImport">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+AvoidStarImport">
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+AvoidStarImport">
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+AvoidStarImport">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -220,7 +220,7 @@ import java.net.*;                // OK
       <subsection name="Violation Messages" id="AvoidStarImport_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22import.avoidStar%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22import.avoidStar%22">
             import.avoidStar</a>
           </li>
         </ul>
@@ -333,7 +333,7 @@ import java.util.*;                        // OK
       <subsection name="Example of Usage" id="AvoidStaticImport_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+AvoidStaticImport">
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+AvoidStaticImport">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -342,7 +342,7 @@ import java.util.*;                        // OK
       <subsection name="Violation Messages" id="AvoidStaticImport_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22import.avoidStatic%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22import.avoidStatic%22">
             import.avoidStatic</a>
           </li>
         </ul>
@@ -957,11 +957,11 @@ import android.*;
       <subsection name="Example of Usage" id="CustomImportOrder_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+CustomImportOrder">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+CustomImportOrder">
             Google Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+CustomImportOrder">
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+CustomImportOrder">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -970,27 +970,27 @@ import android.*;
       <subsection name="Violation Messages" id="CustomImportOrder_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22custom.import.order%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22custom.import.order%22">
             custom.import.order</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22custom.import.order.lex%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22custom.import.order.lex%22">
             custom.import.order.lex</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22custom.import.order.line.separator%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22custom.import.order.line.separator%22">
             custom.import.order.line.separator</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22custom.import.order.nonGroup.expected%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22custom.import.order.nonGroup.expected%22">
             custom.import.order.nonGroup.expected</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22custom.import.order.nonGroup.import%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22custom.import.order.nonGroup.import%22">
             custom.import.order.nonGroup.import</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22custom.import.order.separated.internally%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22custom.import.order.separated.internally%22">
             custom.import.order.separated.internally</a>
           </li>
         </ul>
@@ -1263,11 +1263,11 @@ public class InputIllegalImport { }
       <subsection name="Example of Usage" id="IllegalImport_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Asun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+IllegalImport">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+IllegalImport">
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+IllegalImport">
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+IllegalImport">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -1276,7 +1276,7 @@ public class InputIllegalImport { }
       <subsection name="Violation Messages" id="IllegalImport_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22import.illegal%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22import.illegal%22">
             import.illegal</a>
           </li>
         </ul>
@@ -1751,7 +1751,7 @@ import java.util.stream.IntStream;
       <subsection name="Example of Usage" id="ImportControl_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+ImportControl">
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+ImportControl">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -1760,15 +1760,15 @@ import java.util.stream.IntStream;
       <subsection name="Violation Messages" id="ImportControl_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22import.control.disallowed%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22import.control.disallowed%22">
             import.control.disallowed</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22import.control.missing.file%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22import.control.missing.file%22">
             import.control.missing.file</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22import.control.unknown.pkg%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22import.control.unknown.pkg%22">
             import.control.unknown.pkg</a>
           </li>
         </ul>
@@ -2317,7 +2317,7 @@ public class SomeClass { }
       <subsection name="Example of Usage" id="ImportOrder_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+ImportOrder">
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+ImportOrder">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -2326,15 +2326,15 @@ public class SomeClass { }
       <subsection name="Violation Messages" id="ImportOrder_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22import.groups.separated.internally%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22import.groups.separated.internally%22">
             import.groups.separated.internally</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22import.ordering%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22import.ordering%22">
             import.ordering</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22import.separation%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22import.separation%22">
             import.separation</a>
           </li>
         </ul>
@@ -2406,11 +2406,11 @@ public class MyClass{ };
       <subsection name="Example of Usage" id="RedundantImport_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Asun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+RedundantImport">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+RedundantImport">
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+RedundantImport">
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+RedundantImport">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -2419,15 +2419,15 @@ public class MyClass{ };
       <subsection name="Violation Messages" id="RedundantImport_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22import.duplicate%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22import.duplicate%22">
             import.duplicate</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22import.lang%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22import.lang%22">
             import.lang</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22import.same%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22import.same%22">
             import.same</a>
           </li>
         </ul>
@@ -2454,8 +2454,7 @@ public class MyClass{ };
       <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="UnusedImports_Description">
         <p>
-          Checks for unused import statements. Checkstyle uses a simple but
-          very reliable algorithm to report on unused import statements. An
+          Checks for unused import statements. An
           import statement is considered unused if:
         </p>
 
@@ -2465,11 +2464,6 @@ public class MyClass{ };
             wild-card imports like <code>import
             java.io.*;</code>. Most IDE's provide very sophisticated checks
             for imports that handle wild-card imports.
-          </li>
-
-          <li>
-            It is a duplicate of another import. This is when a class is
-            imported more than once.
           </li>
 
           <li>
@@ -2499,23 +2493,12 @@ public class MyClass{ };
             An imported type has the same name as a declaration, such as a member variable.
           </li>
           <li>
-            There are two or more imports with the same name.
+            There are two or more static imports with the same method name
+            (javac can distinguish imports with same name but different parameters, but checkstyle
+            can not due to <a href="https://checkstyle.org/writingchecks.html#Limitations">
+            limitation.</a>)
           </li>
         </ul>
-        <p>
-          For example, in the following case all imports will not be flagged as unused:
-        </p>
-        <source>
-import java.awt.Component;
-import static AstTreeStringPrinter.printFileAst;
-import static DetailNodeTreeStringPrinter.printFileAst;
-class FooBar {
-  private Object Component; // a bad practice in my opinion
-  void method() {
-      printFileAst(file); // two imports with the same name
-  }
-}
-        </source>
       </subsection>
 
       <subsection name="Properties" id="UnusedImports_Properties">
@@ -2546,16 +2529,76 @@ class FooBar {
         <source>
 &lt;module name=&quot;UnusedImports&quot;/&gt;
         </source>
+        <p>Example:</p>
+        <source>
+// limitation as it match field name in code
+import java.awt.Component; //OK
+
+// no ability to recognize what import is not used
+import static java.util.Map.copyOf; //OK
+import static java.util.Arrays.copyOf; //OK
+
+import java.lang.String; // violation
+
+import java.util.Stack;  // OK
+import java.util.Map;   // violation
+
+import java.util.List; // OK
+
+&#47;&#42;&#42;
+&#42; &#64;link List
+&#42;&#47;
+class MyClass{
+    Stack stack = new Stack();
+    private Object Component;
+    int[] arr = {0,0};
+    int[] array = copyOf(arr , 1);
+}
+        </source>
+        <p>
+          To configure the check so that it ignores the imports referenced in Javadoc comments:
+        </p>
+        <source>
+&lt;module name=&quot;UnusedImports&quot;&gt;
+  &lt;property name=&quot;processJavadoc&quot; value=&quot;false&quot;/&gt;
+&lt;/module&gt;
+        </source>
+        <p>Example:</p>
+        <source>
+// limitation as it match field name in code
+import java.awt.Component; //OK
+
+// no ability to recognize what import is not used
+import static java.util.Map.copyOf; //OK
+import static java.util.Arrays.copyOf; //OK
+
+import java.lang.String; // violation
+
+import java.util.Stack;  // OK
+import java.util.Map;   // violation
+
+import java.util.List; // violation
+
+&#47;&#42;&#42;
+&#42; &#64;link List
+&#42;&#47;
+class MyClass{
+    Stack stack = new Stack();
+    private Object Component;
+    int[] arr = {0,0};
+    int[] array = copyOf(arr , 1);
+}
+        </source>
       </subsection>
 
       <subsection name="Example of Usage" id="UnusedImports_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Asun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+UnusedImports">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+UnusedImports">
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+UnusedImports">
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+UnusedImports">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -2564,7 +2607,7 @@ class FooBar {
       <subsection name="Violation Messages" id="UnusedImports_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22import.unused%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22import.unused%22">
             import.unused</a>
           </li>
         </ul>

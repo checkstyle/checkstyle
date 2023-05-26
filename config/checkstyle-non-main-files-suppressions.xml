@@ -154,21 +154,10 @@
 
   <!-- not a curl command but a text replacement -->
   <suppress id="properCurlCommand" files=".ci[\\/]validation\.sh"/>
-  <!-- azure does not support this curl command -->
-  <suppress id="properCurlCommand" files=".ci[\\/]test-spelling-unknown-words\.sh"/>
-  <suppress id="properCurlCommand" files=".ci[\\/]run-link-check-plugin\.sh"/>
-  <!-- other images that do not support newer curl commands until #12451 -->
+  <!-- other images that do not support newer curl commands -->
   <suppress id="properCurlCommand" files=".ci[\\/]sonar-break-build\.sh"/>
-  <suppress id="properCurlCommand" files=".ci[\\/]no-old-refs\.sh"/>
-  <suppress id="properCurlCommand" files=".ci[\\/]pr-description\.sh"/>
-  <suppress id="properCurlCommand" files=".ci[\\/]close-create-milestone\.sh"/>
-  <suppress id="properCurlCommand" files=".ci[\\/]tweet-releasenotes\.sh"/>
-  <suppress id="properCurlCommand" files=".ci[\\/]upload-all-jar\.sh"/>
-  <suppress id="properCurlCommand" files=".ci[\\/]update-github-page\.sh"/>
-  <suppress id="properCurlCommand" files=".ci[\\/]update-github-milestone\.sh"/>
-  <suppress id="properCurlCommand" files=".ci[\\/]releasenotes-gen-xdoc-push\.sh"/>
-  <suppress id="properCurlCommand" files=".ci[\\/]creation-of-issue-in-other-repos\.sh"/>
-  <suppress id="properCurlCommand" files=".ci[\\/]set-milestone-on-referenced-issue\.sh"/>
-  <suppress id="properCurlCommand" files="release\.sh"/>
+
+  <!-- We use negative suppression to check workflow files only. -->
+  <suppress id="workflowJobStepSpacing" files="^.((?!github[\\/]workflows[\\/]).)*$" />
 
 </suppressions>

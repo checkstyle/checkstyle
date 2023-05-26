@@ -87,7 +87,7 @@ public final class CheckUtil {
             }
 
             return name;
-        }).collect(Collectors.toSet());
+        }).collect(Collectors.toCollection(HashSet::new));
     }
 
     /**

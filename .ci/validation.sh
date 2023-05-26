@@ -4,6 +4,7 @@ set -e
 source ./.ci/util.sh
 
 addCheckstyleBundleToAntResolvers() {
+  # shellcheck disable=2016 # we do not want to expand properties in this command
   xmlstarlet ed --inplace \
     -s '/ivysettings/resolvers' -t elem -n filesystem \
     -i '/ivysettings/resolvers/filesystem[last()]' -t attr -n name -v local-checkstyle \
@@ -481,9 +482,18 @@ check-since-version)
 
   if [ -f "$NEW_CHECK_FILE" ]; then
     echo "New Check detected: $NEW_CHECK_FILE"
-    CS_POM_VERSION="$(getCheckstylePomVersion)"
-    CS_RELEASE_VERSION=$(echo "$CS_POM_VERSION" | cut -d '-' -f 1)
+    CS_RELEASE_VERSION="$(getCheckstylePomVersionWithoutSnapshot)"
     echo "CS Release version: $CS_RELEASE_VERSION"
+
+    if [[ $CS_RELEASE_VERSION != *.0 ]]; then
+      echo "Next release version is bug fix '$CS_RELEASE_VERSION', we will bump second digit in it";
+      MAJOR=$(echo "$CS_RELEASE_VERSION" | cut -d. -f1)
+      MINOR=$(echo "$CS_RELEASE_VERSION" | cut -d. -f2)
+      PATCH=$(echo "$CS_RELEASE_VERSION" | cut -d. -f3)
+      CS_RELEASE_VERSION="$MAJOR""."$((MINOR+1))".0"
+      echo "Expected CS Release version after merge of target commit: $CS_RELEASE_VERSION"
+    fi
+
     echo "Grep for @since $CS_RELEASE_VERSION"
     grep "* @since $CS_RELEASE_VERSION" "$NEW_CHECK_FILE"
   else
@@ -637,7 +647,7 @@ no-error-orekit)
   checkout_from https://github.com/Hipparchus-Math/hipparchus.git
   cd .ci-temp/hipparchus
   # checkout to version that Orekit expects
-  SHA_HIPPARCHUS="fc""c4cd17097a92952a92ec00f755eb""fb99b02001"
+  SHA_HIPPARCHUS="815ad2bf9ce764e4498911d2145c49165f5f3333"
   git checkout $SHA_HIPPARCHUS
   mvn -e --no-transfer-progress install -DskipTests
   cd -
@@ -646,7 +656,7 @@ no-error-orekit)
   # no CI is enforced in project, so to make our build stable we should
   # checkout to latest release/development (annotated tag or hash) or sha that have fix we need
   # git checkout $(git describe --abbrev=0 --tags)
-  git checkout "dc""db3086ea33f7cb1582ed3f3618f0ba5e9a628f"
+  git checkout "a32b4629b2890fc198b19a95a714d67b87d7943d"
   mvn -e --no-transfer-progress compile checkstyle:check \
     -Dorekit.checkstyle.version="${CS_POM_VERSION}"
   cd ..
@@ -769,6 +779,7 @@ no-error-strata)
   echo "Checkout target sources ..."
   checkout_from https://github.com/OpenGamma/Strata.git
   cd .ci-temp/Strata
+  # shellcheck disable=2016 # we do not want to expand properties in this command
   STRATA_CS_POM_VERSION=$(mvn -e --no-transfer-progress -q -Dexec.executable='echo' \
                      -Dexec.args='${checkstyle.version}' \
                      --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)

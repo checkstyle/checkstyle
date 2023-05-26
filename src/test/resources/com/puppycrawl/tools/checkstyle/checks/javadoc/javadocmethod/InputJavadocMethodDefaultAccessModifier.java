@@ -18,12 +18,12 @@ public interface InputJavadocMethodDefaultAccessModifier {
 
     class MyClass {
         /** Missing parameter here. */
-        public MyClass(Integer a) { // violation
+        public MyClass(Integer a) { // violation 'Expected @param tag for 'a''
         }
     }
 
     /** Missing parameter here, public method by default */
-    int testViolationMissingParameter(int b); // violation
+    int testViolationMissingParameter(int b); // violation 'Expected @param tag for 'b''
 
     /**
      * Test method.

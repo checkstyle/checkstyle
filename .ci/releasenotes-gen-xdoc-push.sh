@@ -32,7 +32,7 @@ else
 fi
 
 cd .ci-temp/checkstyle
-LATEST_RELEASE_TAG=$(curl -s -H "Authorization: token $READ_ONLY_TOKEN" \
+LATEST_RELEASE_TAG=$(curl --fail-with-body -s -H "Authorization: token $READ_ONLY_TOKEN" \
                        https://api.github.com/repos/checkstyle/checkstyle/releases/latest \
                        | jq ".tag_name")
 echo LATEST_RELEASE_TAG="$LATEST_RELEASE_TAG"

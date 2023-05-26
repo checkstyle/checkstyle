@@ -15,7 +15,7 @@ import java.util.Set;
 
 public class InputVariableDeclarationUsageDistanceIfStatements {
     void method2() {
-        int a = 12; // violation
+        int a = 12; // violation 'Distance between .* declaration and its first usage is 4.'
         if (true) {
             method2();
             checkIfStatementWithoutParen();
@@ -25,17 +25,17 @@ public class InputVariableDeclarationUsageDistanceIfStatements {
     }
 
     void checkIfStatementWithoutParen() {
-        int a = 12; // violation
+        int a = 12; // violation 'Distance between .* declaration and its first usage is 2.'
         method2();
         if (true)
             a++;
-        int b = 12; // violation
+        int b = 12; // violation 'Distance between .* declaration and its first usage is 2.'
         method2();
         if (false)
             method2();
         else if(true)
             b++;
-        int c = 12; // violation
+        int c = 12; // violation 'Distance between .* declaration and its first usage is 3.'
         method2();
         checkIfStatementWithoutParen();
         if (true)
@@ -46,9 +46,9 @@ public class InputVariableDeclarationUsageDistanceIfStatements {
 
     void testConsecutiveIfStatements() {
         int a = 12; // ok
-        int b = 13; // violation
-        int c = 14; // violation
-        int d = 15; // violation
+        int b = 13; // violation 'Distance between .* declaration and its first usage is 2.'
+        int c = 14; // violation 'Distance between .* declaration and its first usage is 3.'
+        int d = 15; // violation 'Distance between .* declaration and its first usage is 4.'
         if (true)
             a++;
         if (true)
@@ -60,7 +60,7 @@ public class InputVariableDeclarationUsageDistanceIfStatements {
     }
 
     int testReturnStatement() {
-        int a = 1; // violation
+        int a = 1; // violation 'Distance between .* declaration and its first usage is 4.'
         testConsecutiveIfStatements();
         testConsecutiveIfStatements();
         testConsecutiveIfStatements();

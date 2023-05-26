@@ -137,7 +137,6 @@ public abstract class Plant {
 }
         </source>
       </subsection>
-
       <subsection name="Properties" id="DesignForExtension_Properties">
         <div class="wrapper">
           <table>
@@ -170,108 +169,190 @@ public abstract class Plant {
           </table>
         </div>
       </subsection>
-
       <subsection name="Examples" id="DesignForExtension_Examples">
         <p>
           To configure the check:
         </p>
-
         <source>
 &lt;module name=&quot;DesignForExtension&quot;/&gt;
         </source>
-
-        <p>
-          To configure the check to allow methods which have @Override and @Test annotations to be
-          designed for extension.
-        </p>
-
+        <p>Example:</p>
         <source>
-&lt;module name=&quot;DesignForExtension&quot;&gt;
-  &lt;property name=&quot;ignoredAnnotations&quot; value=&quot;Override, Test&quot;/&gt;
-&lt;/module&gt;
-        </source>
+public abstract class Foo {
+  private int bar;
 
-        <source>
-public class A {
-  @Override
-  public int foo() {
-    return 2;
-  }
+  public int m1() {return 2;}  // Violation. No javadoc.
 
-  public int foo2() {return 8;} // violation
-}
+  public int m2() {return 8;}  // Violation. No javadoc.
 
-public class B {
+  private void m3() {m4();}  // OK. Private method.
+
+  protected void m4() { }  // OK. No implementation.
+
+  public abstract void m5();  // OK. Abstract method.
+
   /**
    * This implementation ...
-     @return some int value.
+   @return some int value.
    */
-  public int foo() {
-    return 1;
+  public int m6() {return 1;}  // OK. Have javadoc on overridable method.
+
+  /**
+   * Some comments ...
+   */
+  public int m7() {return 1;}  // OK. Have javadoc on overridable method.
+
+  /**
+   * This
+   * implementation ...
+   */
+  public int m8() {return 2;}  // OK. Have javadoc on overridable method.
+
+  @Override
+  public String toString() {  // Violation. No javadoc for @Override method.
+    return "";
   }
-
-  public int foo3() {return 3;} // violation
-}
-
-public class FooTest {
-  @Test
-  public void testFoo() {
-    final B b = new A();
-    assertEquals(2, b.foo());
-  }
-
-  public int foo4() {return 4;} // violation
 }
         </source>
         <p>
-          To configure the check to allow methods which contain a specified comment text
-          pattern in their javadoc to be designed for extension.
+          To configure the check to allow methods which have @Override annotations to be
+          designed for extension.
         </p>
         <source>
-&lt;module name=&quot;DesignForExtension&quot;&gt;
-  &lt;property name=&quot;requiredJavadocPhrase&quot; value=&quot;This implementation&quot;/&gt;
+&lt;module name="DesignForExtension"&gt;
+  &lt;property name="ignoredAnnotations" value="Override"/&gt;
 &lt;/module&gt;
         </source>
+        <p>Example:</p>
         <source>
-public class A {
-      /&#42;&#42;
-       &#42; This implementation ...
-       &#42;/
-      public int foo() {return 2;} // ok, required javadoc phrase in comment
+public abstract class Foo {
+  private int bar;
 
-      /&#42;&#42;
-       &#42; Do not extend ...
-       &#42;/
-      public int foo2() {return 8;} // violation, required javadoc phrase not in comment
+  public int m1() {return 2;}  // Violation. No javadoc.
 
-  public int foo3() {return 3;} // violation, required javadoc phrase not in comment
+  public int m2() {return 8;}  // Violation. No javadoc.
+
+  private void m3() {m4();}  // OK. Private method.
+
+  protected void m4() { }  // OK. No implementation.
+
+  public abstract void m5();  // OK. Abstract method.
+
+  /**
+   * This implementation ...
+   @return some int value.
+   */
+  public int m6() {return 1;}  // OK. Have javadoc on overridable method.
+
+  /**
+   * Some comments ...
+   */
+  public int m7() {return 1;}  // OK. Have javadoc on overridable method.
+
+  /**
+   * This
+   * implementation ...
+   */
+  public int m8() {return 2;}  // OK. Have javadoc on overridable method.
+
+  @Override
+  public String toString() {  // OK. Have javadoc on overridable method.
+    return "";
+  }
+}
+        </source>
+        <p>To configure the check to allow methods which contain a specified comment text pattern in
+          their javadoc to be designed for extension.
+        </p>
+        <source>
+&lt;module name="DesignForExtension"&gt;
+  &lt;property name="requiredJavadocPhrase" value="This implementation"/&gt;
+&lt;/module&gt;
+        </source>
+        <p>Example:</p>
+        <source>
+public abstract class Foo {
+  private int bar;
+
+  public int m1() {return 2;}  // Violation. No javadoc.
+
+  public int m2() {return 8;}  // Violation. No javadoc.
+
+  private void m3() {m4();}  // OK. Private method.
+
+  protected void m4() { }  // OK. No implementation.
+
+  public abstract void m5();  // OK. Abstract method.
+
+  /**
+   * This implementation ...
+   @return some int value.
+   */
+  public int m6() {return 1;}  // OK. Have required javadoc.
+
+  /**
+   * Some comments ...
+   */
+  public int m7() {return 1;}  // Violation. No required javadoc.
+
+  /**
+   * This
+   * implementation ...
+   */
+  public int m8() {return 2;}  // Violation. No required javadoc.
+
+  @Override
+  public String toString() {  // Violation. No required javadoc.
+    return "";
+  }
 }
         </source>
         <p>
-          To configure the check to allow methods which contain a specified comment text
-          pattern in their javadoc which can span multiple lines
-          to be designed for extension.
+          To configure the check to allow methods which contain a specified comment text pattern in
+          their javadoc which can span multiple lines to be designed for extension.
         </p>
         <source>
-&lt;module name=&quot;DesignForExtension&quot;&gt;
-  &lt;property name=&quot;requiredJavadocPhrase&quot;
-          value=&quot;This[\s\S]*implementation&quot;/&gt;
+&lt;module name="DesignForExtension"&gt;
+  &lt;property name="requiredJavadocPhrase"
+    value="This[\s\S]*implementation"/&gt;
 &lt;/module&gt;
         </source>
+        <p>Example:</p>
         <source>
-public class A {
-    /&#42;&#42;
-     &#42; This
-     &#42; implementation ...
-     &#42;/
-    public int foo() {return 2;} // ok, required javadoc phrase in comment
+public abstract class Foo {
+  private int bar;
 
-    /&#42;&#42;
-     &#42; Do not extend ...
-     &#42;/
-    public int foo2() {return 8;} // violation, required javadoc phrase not in comment
+  public int m1() {return 2;}  // Violation. No javadoc.
 
-    public int foo3() {return 3;} // violation, required javadoc phrase not in comment
+  public int m2() {return 8;}  // Violation. No javadoc.
+
+  private void m3() {m4();}
+
+  protected void m4() { }  // OK. No implementation.
+
+  public abstract void m5();  // OK. Abstract method.
+
+  /**
+   * This implementation ...
+   @return some int value.
+   */
+  public int m6() {return 1;}  // OK. Have required javadoc.
+
+  /**
+   * Some comments ...
+   */
+  public int m7() {return 1;}  // Violation. No required javadoc.
+
+  /**
+   * This
+   * implementation ...
+   */
+  public int m8() {return 2;}  // OK. Have required javadoc.
+
+  @Override
+  public String toString() {  // Violation. No required javadoc.
+    return "";
+  }
 }
         </source>
       </subsection>
@@ -279,11 +360,11 @@ public class A {
       <subsection name="Example of Usage" id="DesignForExtension_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Asun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+DesignForExtension">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+DesignForExtension">
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+DesignForExtension">
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+DesignForExtension">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -292,7 +373,7 @@ public class A {
       <subsection name="Violation Messages" id="DesignForExtension_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fdesign+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22design.forExtension%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fdesign%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22design.forExtension%22">
             design.forExtension</a>
           </li>
         </ul>
@@ -370,11 +451,11 @@ class TestAnonymousInnerClasses { // OK, class has an anonymous inner class.
       <subsection name="Example of Usage" id="FinalClass_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Asun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+FinalClass">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+FinalClass">
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+FinalClass">
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+FinalClass">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -383,7 +464,7 @@ class TestAnonymousInnerClasses { // OK, class has an anonymous inner class.
       <subsection name="Violation Messages" id="FinalClass_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fdesign+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22final.class%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fdesign%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22final.class%22">
             final.class</a>
           </li>
         </ul>
@@ -488,11 +569,11 @@ class UtilityClass { // violation, class only has a static field
       <subsection name="Example of Usage" id="HideUtilityClassConstructor_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Asun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+HideUtilityClassConstructor">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+HideUtilityClassConstructor">
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+HideUtilityClassConstructor">
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+HideUtilityClassConstructor">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -501,7 +582,7 @@ class UtilityClass { // violation, class only has a static field
       <subsection name="Violation Messages" id="HideUtilityClassConstructor_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fdesign+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22hide.utility.class%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fdesign%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22hide.utility.class%22">
             hide.utility.class</a>
           </li>
         </ul>
@@ -566,7 +647,7 @@ class Test3 {
       <subsection name="Example of Usage" id="InnerTypeLast_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+InnerTypeLast">
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+InnerTypeLast">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -575,7 +656,7 @@ class Test3 {
       <subsection name="Violation Messages" id="InnerTypeLast_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fdesign+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22arrangement.members.before.inner%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fdesign%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22arrangement.members.before.inner%22">
             arrangement.members.before.inner</a>
           </li>
         </ul>
@@ -691,11 +772,11 @@ public interface Test2 { // violation
       <subsection name="Example of Usage" id="InterfaceIsType_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Asun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+InterfaceIsType">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+InterfaceIsType">
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+InterfaceIsType">
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+InterfaceIsType">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -704,7 +785,7 @@ public interface Test2 { // violation
       <subsection name="Violation Messages" id="InterfaceIsType_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fdesign+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22interface.type%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fdesign%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22interface.type%22">
             interface.type</a>
           </li>
         </ul>
@@ -928,7 +1009,7 @@ class BadException extends java.lang.Exception {
       <subsection name="Example of Usage" id="MutableException_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+MutableException">
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+MutableException">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -937,7 +1018,7 @@ class BadException extends java.lang.Exception {
       <subsection name="Violation Messages" id="MutableException_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fdesign+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22mutable.exception%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fdesign%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22mutable.exception%22">
             mutable.exception</a>
           </li>
         </ul>
@@ -1032,11 +1113,11 @@ public class Foo { // OK, only one top-level class
       <subsection name="Example of Usage" id="OneTopLevelClass_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+OneTopLevelClass">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+OneTopLevelClass">
             Google Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+OneTopLevelClass">
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+OneTopLevelClass">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -1045,7 +1126,7 @@ public class Foo { // OK, only one top-level class
       <subsection name="Violation Messages" id="OneTopLevelClass_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fdesign+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22one.top.level.class%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fdesign%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22one.top.level.class%22">
             one.top.level.class</a>
           </li>
         </ul>
@@ -1242,7 +1323,7 @@ class Test {
       <subsection name="Example of Usage" id="ThrowsCount_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+ThrowsCount">
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+ThrowsCount">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -1251,7 +1332,7 @@ class Test {
       <subsection name="Violation Messages" id="ThrowsCount_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fdesign+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22throws.count%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fdesign%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22throws.count%22">
             throws.count</a>
           </li>
         </ul>
@@ -1432,7 +1513,50 @@ class Test {
         class ThirdClass {} /*OK,Default VisibilityModifier is present */
         protected class FourthClass {} /*OK*/
         </source>
+        <p>Example</p>
+        <source>
+        public class FirstClass {} /*OK*/
+        private class SecondClass {} /*OK*/
+        class ThirdClass {} /*OK,Default VisibilityModifier is present */
+        protected class FourthClass {} /*OK*/
+        </source>
+        <p>Example with default values:</p>
+        <source>
+public class MyClass {
+ private int myPrivateField1;
 
+ int field1;              // violation, must have a visibility modifier
+
+ protected String field2; // violation, protected visibility is not allowed
+
+ public int field3 = 42;  // violation, not static final, immutable,
+                          // nor matching the pattern
+
+ public long serialVersionUID = 1L;
+
+ public static final int field4 = 42;
+
+ public final int field5 = 42;          // violation, public immutable fields are not allowed
+ public final java.lang.String notes;   // violation, public immutable fields are not allowed
+
+ public final Set&lt;String&gt; mySet1 = new HashSet&lt;&gt;();  // violation, HashSet is mutable
+
+ public final ImmutableSet&lt;String&gt; mySet2;           // violation,
+                                                     // immutable type not in config
+
+ public final ImmutableMap&lt;String, Object&gt; objects1; // violation,
+                                                     // immutable type not in config
+
+ @com.annotation.CustomAnnotation
+ String annotatedString;      // violation, annotation is not configured
+
+ @CustomAnnotation
+ String shortCustomAnnotated; // violation, annotation is not configured
+
+ @com.google.common.annotations.VisibleForTesting
+ public String testString = "";
+}
+        </source>
         <p>
           To configure the check so that it allows package visible members:
         </p>
@@ -1448,7 +1572,88 @@ class Test {
         class ThirdClass {} /*OK*/
         protected class FourthClass {} /*OK*/
         </source>
+        <p>Example of allowed package visible members:</p>
+        <source>
+public class MyClass {
+ private int myPrivateField1;
 
+ int field1;
+
+ protected String field2; // violation, protected visibility is not allowed
+
+ public int field3 = 42;  // violation, not static final, immutable,
+                          // nor matching the pattern
+
+ public long serialVersionUID = 1L;
+
+ public static final int field4 = 42;
+
+ public final int field5 = 42;          // violation, public immutable fields are not allowed
+ public final java.lang.String notes;   // violation, public immutable fields are not allowed
+
+ public final Set&lt;String&gt; mySet1 = new HashSet&lt;&gt;();  // violation, HashSet is mutable
+
+ public final ImmutableSet&lt;String&gt; mySet2;           // violation,
+                                                     // immutable type not in config
+
+ public final ImmutableMap&lt;String, Object&gt; objects1; // violation,
+                                                     // immutable type not in config
+
+ @com.annotation.CustomAnnotation
+ String annotatedString;
+
+ @CustomAnnotation
+ String shortCustomAnnotated;
+
+ @com.google.common.annotations.VisibleForTesting
+ public String testString = "";
+}
+        </source>
+        <p>
+          To configure the check so that it allows protected visible members:
+        </p>
+        <source>
+&lt;module name=&quot;VisibilityModifier&quot;&gt;
+  &lt;property name=&quot;protectedAllowed&quot; value=&quot;true&quot;/&gt;
+&lt;/module&gt;
+        </source>
+        <p>Example of allowed protected visible members:</p>
+        <source>
+public class MyClass {
+ private int myPrivateField1;
+
+ int field1;              // violation, must have a visibility modifier
+
+ protected String field2;
+
+ public int field3 = 42;  // violation, not static final, immutable,
+                          // nor matching the pattern
+
+ public long serialVersionUID = 1L;
+
+ public static final int field4 = 42;
+
+ public final int field5 = 42;          // violation, public immutable fields are not allowed
+ public final java.lang.String notes;   // violation, public immutable fields are not allowed
+
+ public final Set&lt;String&gt; mySet1 = new HashSet&lt;&gt;();  // violation, HashSet is mutable
+
+ public final ImmutableSet&lt;String&gt; mySet2;           // violation,
+                                                     // immutable type not in config
+
+ public final ImmutableMap&lt;String, Object&gt; objects1; // violation,
+                                                     // immutable type not in config
+
+ @com.annotation.CustomAnnotation
+ String annotatedString;      // violation, annotation is not configured
+
+ @CustomAnnotation
+ String shortCustomAnnotated; // violation, annotation is not configured
+
+ @com.google.common.annotations.VisibleForTesting
+ public String testString = "";
+}
+        </source>
         <p>
           To configure the check so that it allows no public members:
         </p>
@@ -1456,6 +1661,43 @@ class Test {
 &lt;module name=&quot;VisibilityModifier&quot;&gt;
   &lt;property name=&quot;publicMemberPattern&quot; value=&quot;^$&quot;/&gt;
 &lt;/module&gt;
+        </source>
+        <p>Example of not allowed public members:</p>
+        <source>
+public class MyClass {
+ private int myPrivateField1;
+
+ int field1;              // violation, must have a visibility modifier
+
+ protected String field2; // violation, protected visibility is not allowed
+
+ public int field3 = 42;  // violation, not static final, immutable,
+                          // nor matching the pattern
+
+ public long serialVersionUID = 1L;  // Violation, not matched the pattern '^$'
+
+ public static final int field4 = 42;
+
+ public final int field5 = 42;          // violation, public immutable fields are not allowed
+ public final java.lang.String notes;   // violation, public immutable fields are not allowed
+
+ public final Set&lt;String&gt; mySet1 = new HashSet&lt;&gt;();  // violation, HashSet is mutable
+
+ public final ImmutableSet&lt;String&gt; mySet2;           // violation,
+                                                     // immutable type not in config
+
+ public final ImmutableMap&lt;String, Object&gt; objects1; // violation,
+                                                     // immutable type not in config
+
+ @com.annotation.CustomAnnotation
+ String annotatedString;      // violation, annotation is not configured
+
+ @CustomAnnotation
+ String shortCustomAnnotated; // violation, annotation is not configured
+
+ @com.google.common.annotations.VisibleForTesting
+ public String testString = "";
+}
         </source>
         <p>Example</p>
         <source>
@@ -1477,21 +1719,39 @@ class Test {
           Example of allowed public immutable fields:
         </p>
         <source>
-public class ImmutableClass
-{
-  public final ImmutableSet&lt;String&gt; includes; // No warning
-  public final ImmutableSet&lt;String&gt; excludes; // No warning
-  public final java.lang.String notes; // No warning
-  public final BigDecimal value; // No warning
+public final class MyClass {
+ private int myPrivateField1;
 
-  public ImmutableClass(Collection&lt;String&gt; includes, Collection&lt;String&gt; excludes,
-               BigDecimal value, String notes)
-  {
-    this.includes = ImmutableSet.copyOf(includes);
-    this.excludes = ImmutableSet.copyOf(excludes);
-    this.value = value;
-    this.notes = notes;
-  }
+ int field1;              // violation, must have a visibility modifier
+
+ protected String field2; // violation, protected visibility is not allowed
+
+ public int field3 = 42;  // violation, not static final, immutable,
+                          // nor matching the pattern
+
+ public long serialVersionUID = 1L;
+
+ public static final int field4 = 42;
+
+ public final int field5 = 42;
+ public final java.lang.String notes;
+
+ public final Set&lt;String&gt; mySet1 = new HashSet&lt;&gt;();  // violation, HashSet is mutable
+
+ public final ImmutableSet&lt;String&gt; mySet2;           // violation,
+                                                     // immutable type not in config
+
+ public final ImmutableMap&lt;String, Object&gt; objects1; // violation,
+                                                     // immutable type not in config
+
+ @com.annotation.CustomAnnotation
+ String annotatedString;      // violation, annotation is not configured
+
+ @CustomAnnotation
+ String shortCustomAnnotated; // violation, annotation is not configured
+
+ @com.google.common.annotations.VisibleForTesting
+ public String testString = "";
 }
         </source>
         <p>
@@ -1500,34 +1760,48 @@ public class ImmutableClass
         <source>
 &lt;module name=&quot;VisibilityModifier&quot;&gt;
   &lt;property name=&quot;allowPublicImmutableFields&quot; value=&quot;true&quot;/&gt;
-  &lt;property name=&quot;immutableClassCanonicalNames&quot; value=&quot;
-  com.google.common.collect.ImmutableSet&quot;/&gt;
+  &lt;property name=&quot;immutableClassCanonicalNames&quot;
+    value=&quot;com.google.common.collect.ImmutableSet, java.lang.String&quot;/&gt;
 &lt;/module&gt;
         </source>
         <p>
           Example of allowed public immutable fields:
         </p>
         <source>
-public class ImmutableClass
-{
-  public final ImmutableSet&lt;String&gt; includes; // No warning
-  public final ImmutableSet&lt;String&gt; excludes; // No warning
-  public final java.lang.String notes; // Warning here because
-                                       //'java.lang.String' wasn't specified as allowed class
-  public final int someValue; // No warning
+public final class MyClass {
+ private int myPrivateField1;
 
-  public ImmutableClass(Collection&lt;String&gt; includes, Collection&lt;String&gt; excludes,
-               String notes, int someValue)
-  {
-    this.includes = ImmutableSet.copyOf(includes);
-    this.excludes = ImmutableSet.copyOf(excludes);
-    this.value = value;
-    this.notes = notes;
-    this.someValue = someValue;
-  }
+ int field1;              // violation, must have a visibility modifier
+
+ protected String field2; // violation, protected visibility is not allowed
+
+ public int field3 = 42;  // violation, not static final, immutable,
+                          // nor matching the pattern
+
+ public long serialVersionUID = 1L;
+
+ public static final int field4 = 42;
+
+ public final int field5 = 42;
+ public final java.lang.String notes;
+
+ public final Set&lt;String&gt; mySet1 = new HashSet&lt;&gt;();  // violation, HashSet is mutable
+
+ public final ImmutableSet&lt;String&gt; mySet2;
+
+ public final ImmutableMap&lt;String, Object&gt; objects1; // violation
+                                                     // immutable type not in config
+
+ @com.annotation.CustomAnnotation
+ String annotatedString;      // violation, annotation is not configured
+
+ @CustomAnnotation
+ String shortCustomAnnotated; // violation, annotation is not configured
+
+ @com.google.common.annotations.VisibleForTesting
+ public String testString = "";
 }
         </source>
-
         <p>
           Note, if allowPublicImmutableFields is set to true, the check will also check whether
           generic type parameters are immutable. If at least one generic type parameter is mutable,
@@ -1537,26 +1811,47 @@ public class ImmutableClass
 &lt;module name=&quot;VisibilityModifier&quot;&gt;
   &lt;property name=&quot;allowPublicImmutableFields&quot; value=&quot;true&quot;/&gt;
   &lt;property name=&quot;immutableClassCanonicalNames&quot;
-    value=&quot;com.google.common.collect.ImmutableSet, com.google.common.collect.ImmutableMap,
-      java.lang.String&quot;/&gt;
+    value=&quot;com.google.common.collect.ImmutableSet,
+           com.google.common.collect.ImmutableMap,
+           java.lang.String&quot;/&gt;
 &lt;/module&gt;
         </source>
         <p>
           Example of how the check works:
         </p>
         <source>
-public final class Test {
-  public final String s;
-  public final ImmutableSet&lt;String&gt; names;
-  public final ImmutableSet&lt;Object&gt; objects; // violation (Object class is mutable)
-  public final ImmutableMap&lt;String, Object&gt; links; // violation (Object class is mutable)
+public final class MyClass {
+ private int myPrivateField1;
 
-  public Test() {
-    s = "Hello!";
-    names = ImmutableSet.of();
-    objects = ImmutableSet.of();
-    links = ImmutableMap.of();
-  }
+ int field1;              // violation, must have a visibility modifier
+
+ protected String field2; // violation, protected visibility is not allowed
+
+ public int field3 = 42;  // violation, not static final, immutable,
+                          // nor matching the pattern
+
+ public long serialVersionUID = 1L;
+
+ public static final int field4 = 42;
+
+ public final int field5 = 42;
+ public final java.lang.String notes;
+
+ public final Set&lt;String&gt; mySet1 = new HashSet&lt;&gt;();  // violation, HashSet is mutable
+
+ public final ImmutableSet&lt;String&gt; mySet2;
+
+ public final ImmutableMap&lt;String, Object&gt; objects1; // violation
+                                                     // 'Object' still considered as mutable
+
+ @com.annotation.CustomAnnotation
+ String annotatedString;      // violation, annotation is not configured
+
+ @CustomAnnotation
+ String shortCustomAnnotated; // violation, annotation is not configured
+
+ @com.google.common.annotations.VisibleForTesting
+ public String testString = "";
 }
         </source>
         <p>
@@ -1564,20 +1859,47 @@ public final class Test {
         </p>
         <source>
 &lt;module name=&quot;VisibilityModifier&quot;&gt;
-  &lt;property name=&quot;ignoreAnnotationCanonicalNames&quot; value=
-  &quot;com.annotation.CustomAnnotation&quot;/&gt;
+  &lt;property name=&quot;ignoreAnnotationCanonicalNames&quot;
+    value=&quot;com.annotation.CustomAnnotation&quot;/&gt;
 &lt;/module&gt;
         </source>
         <p>
           Example of allowed field:
         </p>
         <source>
-class SomeClass
-{
-  @com.annotation.CustomAnnotation
-  String annotatedString; // no warning
-  @CustomAnnotation
-  String shortCustomAnnotated; // no warning
+public final class MyClass {
+ private int myPrivateField1;
+
+ int field1;              // violation, must have a visibility modifier
+
+ protected String field2; // violation, protected visibility is not allowed
+
+ public int field3 = 42;  // violation, not static final, immutable,
+                          // nor matching the pattern
+
+ public long serialVersionUID = 1L;
+
+ public static final int field4 = 42;
+
+ public final int field5 = 42;          // violation, public immutable fields are not allowed
+ public final java.lang.String notes;   // violation, public immutable fields are not allowed
+
+ public final Set&lt;String&gt; mySet1 = new HashSet&lt;&gt;();  // violation, HashSet is mutable
+
+ public final ImmutableSet&lt;String&gt; mySet2;           // violation,
+                                                     // immutable type not in config
+
+ public final ImmutableMap&lt;String, Object&gt; objects1; // violation,
+                                                     // immutable type not in config
+
+ @com.annotation.CustomAnnotation
+ String annotatedString;
+
+ @CustomAnnotation
+ String shortCustomAnnotated;
+
+ @com.google.common.annotations.VisibleForTesting
+ public String testString = ""; // violation, annotation is not configured
 }
         </source>
 
@@ -1592,42 +1914,89 @@ class SomeClass
           Example of allowed fields:
         </p>
         <source>
-class SomeClass
-{
-  @org.junit.Rule
-  public TemporaryFolder publicJUnitRule = new TemporaryFolder(); // no warning
-  @org.junit.ClassRule
-  public static TemporaryFolder publicJUnitClassRule = new TemporaryFolder(); // no warning
-  @com.google.common.annotations.VisibleForTesting
-  public String testString = ""; // no warning
+public final class MyClass {
+ private int myPrivateField1;
+
+ int field1;              // violation, must have a visibility modifier
+
+ protected String field2; // violation, protected visibility is not allowed
+
+ public int field3 = 42;  // violation, not static final, immutable,
+                          // nor matching the pattern
+
+ public long serialVersionUID = 1L;
+
+ public static final int field4 = 42;
+
+ public final int field5 = 42;          // violation, public immutable fields are not allowed
+ public final java.lang.String notes;   // violation, public immutable fields are not allowed
+
+ public final Set&lt;String&gt; mySet1 = new HashSet&lt;&gt;();  // violation, HashSet is mutable
+
+ public final ImmutableSet&lt;String&gt; mySet2;           // violation,
+                                                     // immutable type not in config
+
+ public final ImmutableMap&lt;String, Object&gt; objects1; // violation,
+                                                     // immutable type not in config
+
+ @com.annotation.CustomAnnotation
+ String annotatedString;      // violation, annotation is not configured
+
+ @CustomAnnotation
+ String shortCustomAnnotated; // violation, annotation is not configured
+
+ @com.google.common.annotations.VisibleForTesting
+ public String testString = "";
 }
         </source>
-
         <p>
           To configure the Check passing fields annotated with short annotation name:
         </p>
         <source>
 &lt;module name=&quot;VisibilityModifier&quot;&gt;
   &lt;property name=&quot;ignoreAnnotationCanonicalNames&quot;
-  value=&quot;CustomAnnotation&quot;/&gt;
+    value=&quot;CustomAnnotation&quot;/&gt;
 &lt;/module&gt;
         </source>
         <p>
           Example of allowed fields:
         </p>
         <source>
-class SomeClass
-{
-  @CustomAnnotation
-  String customAnnotated; // no warning
-  @com.annotation.CustomAnnotation
-  String customAnnotated1; // no warning
-  @mypackage.annotation.CustomAnnotation
-  String customAnnotatedAnotherPackage; // another package but short name matches
-                                        // so no violation
+public final class MyClass {
+ private int myPrivateField1;
+
+ int field1;              // violation, must have a visibility modifier
+
+ protected String field2; // violation, protected visibility is not allowed
+
+ public int field3 = 42;  // violation, not static final, immutable,
+                          // nor matching the pattern
+
+ public long serialVersionUID = 1L;
+
+ public static final int field4 = 42;
+
+ public final int field5 = 42;          // violation, public immutable fields are not allowed
+ public final java.lang.String notes;   // violation, public immutable fields are not allowed
+
+ public final Set&lt;String&gt; mySet1 = new HashSet&lt;&gt;();  // violation, HashSet is mutable
+
+ public final ImmutableSet&lt;String&gt; mySet2;           // violation,
+                                                     // immutable type not in config
+
+ public final ImmutableMap&lt;String, Object&gt; objects1; // violation,
+                                                     // immutable type not in config
+
+ @com.annotation.CustomAnnotation
+ String annotatedString;        // violation, annotation is not configured
+
+ @CustomAnnotation
+ String shortCustomAnnotated;
+
+ @com.google.common.annotations.VisibleForTesting
+ public String testString = ""; // violation, annotation is not configured
 }
         </source>
-
         <p>
           To understand the difference between allowPublicImmutableFields and
           allowPublicFinalFields options, please, study the following examples.
@@ -1674,11 +2043,11 @@ public class InputPublicImmutable {
         </p>
         <source>
 public class InputPublicImmutable {
-  public final int someIntValue;
-  public final ImmutableSet&lt;String&gt; includes;
-  public final java.lang.String notes;
-  public final BigDecimal value;
-  public final List list;
+  public final int someIntValue; // ok
+  public final ImmutableSet&lt;String&gt; includes; // ok
+  public final java.lang.String notes; // ok
+  public final BigDecimal value; // ok
+  public final List list; // ok
 
   public InputPublicImmutable(Collection&lt;String&gt; includes,
         BigDecimal value, String notes, int someValue, List l) {
@@ -1695,11 +2064,11 @@ public class InputPublicImmutable {
       <subsection name="Example of Usage" id="VisibilityModifier_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Asun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+VisibilityModifier">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+VisibilityModifier">
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+VisibilityModifier">
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+VisibilityModifier">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -1708,7 +2077,7 @@ public class InputPublicImmutable {
       <subsection name="Violation Messages" id="VisibilityModifier_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fdesign+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22variable.notPrivate%22">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fdesign%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22variable.notPrivate%22">
             variable.notPrivate</a>
           </li>
         </ul>

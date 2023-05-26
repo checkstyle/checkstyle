@@ -55,6 +55,11 @@
     <property name="offCommentFormat" value="CSOFF\: .*"/>
     <property name="onCommentFormat" value="CSON\: .*"/>
   </module>
+  <module name="SuppressWithNearbyTextFilter">
+    <property name="nearbyTextPattern" value='name=\"message\"'/>
+    <property name="lineRange" value="1"/>
+    <property name="idPattern" value="lineLengthXml"/>
+  </module>
 
   <!-- Headers -->
   <module name="Header">
@@ -319,6 +324,7 @@
       <property name="tokens" value="LITERAL_FINALLY"/>
       <property name="tokens" value="LITERAL_IF"/>
       <property name="tokens" value="LITERAL_TRY"/>
+      <property name="tokens" value="LITERAL_SWITCH"/>
       <property name="tokens" value="ANNOTATION_DEF"/>
       <property name="tokens" value="ENUM_DEF"/>
       <property name="tokens" value="RECORD_DEF"/>
@@ -522,7 +528,15 @@
     <module name="StringLiteralEquality"/>
     <module name="SuperClone"/>
     <module name="SuperFinalize"/>
-    <module name="UnnecessaryParentheses"/>
+    <module name="UnnecessaryParentheses">
+      <property name="tokens"
+                value="EXPR, IDENT, NUM_DOUBLE, NUM_FLOAT, NUM_INT, NUM_LONG, STRING_LITERAL,
+                       LITERAL_NULL, LITERAL_FALSE, LITERAL_TRUE, ASSIGN, BAND_ASSIGN, BOR_ASSIGN,
+                       BSR_ASSIGN, BXOR_ASSIGN, DIV_ASSIGN, MINUS_ASSIGN, MOD_ASSIGN, PLUS_ASSIGN,
+                       SL_ASSIGN, SR_ASSIGN, STAR_ASSIGN, LAMBDA, TEXT_BLOCK_LITERAL_BEGIN, LAND,
+                       LOR, LITERAL_INSTANCEOF, GT, LT, GE, LE, EQUAL, NOT_EQUAL, UNARY_MINUS,
+                       UNARY_PLUS, INC, DEC, LNOT, BNOT, POST_INC, POST_DEC, BOR, BXOR, BAND"/>
+    </module>
     <module name="UnnecessarySemicolonAfterOuterTypeDeclaration"/>
     <module name="UnnecessarySemicolonAfterTypeMemberDeclaration"/>
     <module name="UnnecessarySemicolonInEnumeration"/>

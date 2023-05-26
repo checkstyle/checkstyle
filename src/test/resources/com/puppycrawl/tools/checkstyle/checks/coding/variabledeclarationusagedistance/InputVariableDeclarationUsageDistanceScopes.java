@@ -39,7 +39,7 @@ public class InputVariableDeclarationUsageDistanceScopes {
     }
 
     static {
-        int a = -1; // violation
+        int a = -1; // violation 'Distance between .* declaration and its first usage is 2.'
         int b = 2;
         b++;
         int c = --b;
@@ -47,13 +47,13 @@ public class InputVariableDeclarationUsageDistanceScopes {
     }
 
     public InputVariableDeclarationUsageDistanceScopes(int test1) {
-        int temp = -1; // violation
+        int temp = -1; // violation 'Distance between .* declaration and its first usage is 2.'
         this.test1 = test1;
         temp = test1; // DECLARATION OF VARIABLE 'temp' SHOULD BE HERE (distance = 2)
     }
 
     public boolean testMethod() {
-        int temp = 7; // violation
+        int temp = 7; // violation 'Distance between .* declaration and its first usage is 2.'
         new InputVariableDeclarationUsageDistanceScopes(2);
         String.valueOf(temp); // DECLARATION OF VARIABLE 'temp' SHOULD BE HERE (distance = 2)
         boolean result = false;
@@ -80,7 +80,7 @@ public class InputVariableDeclarationUsageDistanceScopes {
     }
 
     public void testMethod3() {
-        int count; // violation
+        int count; // violation 'Distance between .* declaration and its first usage is 4.'
         int a = 3;
         int b = 3;
         a = a + b;
@@ -105,7 +105,7 @@ public class InputVariableDeclarationUsageDistanceScopes {
     }
 
     public void testMethod5() {
-        int arg = 7; // violation
+        int arg = 7; // violation 'Distance .* is 2.'
         boolean b = true;
         boolean bb = false;
         if (b)
@@ -228,11 +228,11 @@ public class InputVariableDeclarationUsageDistanceScopes {
 
     public void testMethod14() {
         Session s = openSession();
-        Transaction t = s.beginTransaction(); // violation
+        Transaction t = s.beginTransaction(); // violation 'Distance .* is 5.'
         A a = new A();
         E d1 = new E();
-        C1 c = new C1(); // violation
-        E d2 = new E(); // violation
+        C1 c = new C1(); // violation 'Distance between .* declaration and its first usage is 3.'
+        E d2 = new E(); // violation 'Distance between .* declaration and its first usage is 3.'
         a.setForward(d1);
         d1.setReverse(a);
         c.setForward(d2); // DECLARATION OF VARIABLE 'c' SHOULD BE HERE (distance = 3)
@@ -309,7 +309,7 @@ public class InputVariableDeclarationUsageDistanceScopes {
             b = true;
         }
 
-        int wh = 0; // violation
+        int wh = 0; // violation 'Distance between .* declaration and its first usage is 2.'
         b = true;
         do {
             k--;
@@ -352,8 +352,8 @@ public class InputVariableDeclarationUsageDistanceScopes {
 
     public static Color darker(Color color, double fraction) {
         int red = (int) Math.round(color.getRed() * (1.0 - fraction));
-        int green = (int) Math.round(color.getGreen() * (1.0 - fraction)); // violation
-        int blue = (int) Math.round(color.getBlue() * (1.0 - fraction)); // violation
+        int green = (int) Math.round(color.getGreen() * (1.0 - fraction)); // violation '.* 2.'
+        int blue = (int) Math.round(color.getBlue() * (1.0 - fraction)); // violation '.* 3.'
 
         if (red < 0) {
             red = 0;
@@ -376,7 +376,7 @@ public class InputVariableDeclarationUsageDistanceScopes {
 
     public void testFinal() {
         AuthUpdateTask task = null;
-        final long intervalMs = 30 * 60000L; // 30 min // violation
+        final long intervalMs = 30 * 60000L; // 30 min // violation 'Distance .* is 2.'
         Object authCheckUrl = null, authInfo = null;
         task = new AuthUpdateTask(authCheckUrl, authInfo, new IAuthListener() {
             @Override
@@ -463,8 +463,8 @@ public class InputVariableDeclarationUsageDistanceScopes {
     }
 
     public void testIssue32_6() {
-        Option aOpt = null; // violation
-        Option bOpt = null; // violation
+        Option aOpt = null; // violation 'Distance .* is 3.'
+        Option bOpt = null; // violation 'Distance .* is 2.'
         Option cOpt = null;
         isNull(cOpt); // distance = 1
         isNull(bOpt); // distance = 2
@@ -488,7 +488,7 @@ public class InputVariableDeclarationUsageDistanceScopes {
 
     public void testIssue32_9() {
         Options options = new Options();
-        Option myOption = null; // violation
+        Option myOption = null; // violation 'Distance .* is 7.'
         options.addBindFile(null);
         options.addBindFile(null);
         options.addBindFile(null);
@@ -500,7 +500,7 @@ public class InputVariableDeclarationUsageDistanceScopes {
 
     public void testIssue32_10() {
         Options options = new Options();
-        Option myOption = null; // violation
+        Option myOption = null; // violation 'Distance .* is 6.'
         options.addBindFile(null);
         options.addBindFile(null);
         options.addBindFile(null);
@@ -514,7 +514,7 @@ public class InputVariableDeclarationUsageDistanceScopes {
             throws Exception
     {
         int count = 0;
-        String[] files = {}; // violation
+        String[] files = {}; // violation 'Distance .* is 2.'
 
         System.identityHashCode("Data archival started");
         files.notify();
@@ -549,9 +549,9 @@ public class InputVariableDeclarationUsageDistanceScopes {
         tree.notify();
         TreeMapNode root = null;
         for (Object[] s : tree) {
-            Integer id = (Integer) s[0]; // violation
+            Integer id = (Integer) s[0]; // violation 'Distance .* is 2.'
             String label = (String) s[1];
-            Integer parentId = (Integer) s[2]; // violation
+            Integer parentId = (Integer) s[2]; // violation 'Distance .* is 4.'
             Number weight = (Number) s[3];
             Number value = (Number) s[4];
             Integer childCount = (Integer) s[5];
@@ -987,7 +987,7 @@ class New4 {
     }
 
     void m() {
-        final int a = 1; // violation
+        final int a = 1; // violation 'Distance between .* declaration and its first usage is 2.'
         int b = 0;
 
         if (b == 1) {
@@ -1033,7 +1033,7 @@ class New4 {
             System.identityHashCode(b);
         }
 
-        int c = 0; // violation
+        int c = 0; // violation 'Distance between .* declaration and its first usage is 4.'
         System.lineSeparator();
         System.lineSeparator();
         System.lineSeparator();
@@ -1063,7 +1063,7 @@ class New4 {
     static int field;
 
     private void n() {
-        long a = 0; // violation
+        long a = 0; // violation 'Distance between .* declaration and its first usage is 4.'
 
         New4.field = 1;
         New4.field = 2;

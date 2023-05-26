@@ -181,16 +181,6 @@
 
   <!-- Until https://github.com/checkstyle/checkstyle/issues/11163 -->
   <suppress checks="FileLength"
-    files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]javadoc[\\/]javadocstyle[\\/]InputJavadocStyle10\.java"/>
-  <suppress checks="FileLength"
-    files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]javadoc[\\/]javadocstyle[\\/]InputJavadocStyle6\.java"/>
-  <suppress checks="FileLength"
-    files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]javadoc[\\/]javadocstyle[\\/]InputJavadocStyle7\.java"/>
-  <suppress checks="FileLength"
-    files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]javadoc[\\/]javadocstyle[\\/]InputJavadocStyle9\.java"/>
-  <suppress checks="FileLength"
-    files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]javadoc[\\/]javadocstyle[\\/]InputJavadocStyle5\.java"/>
-  <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]javadoc[\\/]abstractjavadoc[\\/]InputAbstractJavadocPosition\.java"/>
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]javadoc[\\/]abstractjavadoc[\\/]InputAbstractJavadocPositionWithSinglelineComments\.java"/>
@@ -234,12 +224,6 @@
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]javadoc[\\/]javadocvariable[\\/]InputJavadocVariablePublicOnly2\.java"/>
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]javadoc[\\/]javadocvariable[\\/]InputJavadocVariableNoJavadoc3\.java"/>
-  <suppress checks="FileLength"
-    files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]javadoc[\\/]atclauseorder[\\/]InputAtclauseOrderIncorrectCustom\.java"/>
-  <suppress checks="FileLength"
-    files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]javadoc[\\/]atclauseorder[\\/]InputAtclauseOrderIncorrect\.java"/>
-  <suppress checks="FileLength"
-    files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]javadoc[\\/]atclauseorder[\\/]InputAtclauseOrderCorrect\.java"/>
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]javadoc[\\/]javadocmethod[\\/]InputJavadocMethodPublicOnly\.java"/>
   <suppress checks="FileLength"
@@ -585,22 +569,6 @@
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]coding[\\/]onestatementperline[\\/]InputOneStatementPerLineMultiline\.java"/>
   <suppress checks="FileLength"
-    files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]coding[\\/]magicnumber[\\/]InputMagicNumber_4\.java"/>
-  <suppress checks="FileLength"
-    files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]coding[\\/]magicnumber[\\/]InputMagicNumber_2\.java"/>
-  <suppress checks="FileLength"
-    files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]coding[\\/]magicnumber[\\/]InputMagicNumber\.java"/>
-  <suppress checks="FileLength"
-    files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]coding[\\/]magicnumber[\\/]InputMagicNumber_6\.java"/>
-  <suppress checks="FileLength"
-    files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]coding[\\/]magicnumber[\\/]InputMagicNumber_3\.java"/>
-  <suppress checks="FileLength"
-    files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]coding[\\/]magicnumber[\\/]InputMagicNumber_1\.java"/>
-  <suppress checks="FileLength"
-    files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]coding[\\/]magicnumber[\\/]InputMagicNumber_7\.java"/>
-  <suppress checks="FileLength"
-    files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]coding[\\/]magicnumber[\\/]InputMagicNumber_5\.java"/>
-  <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]coding[\\/]noenumtrailingcomma[\\/]InputNoEnumTrailingComma\.java"/>
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]whitespace[\\/]emptylineseparator[\\/]InputEmptyLineSeparatorWithComments2\.java"/>
@@ -835,8 +803,6 @@
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]main[\\/]InputMainComplexityOverflow\.java"/>
   <suppress checks="FileLength"
-    files="[\\/]test[\\/]resources-noncompilable[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]javadoc[\\/]atclauseorder[\\/]InputAtclauseOrderLotsOfRecords\.java"/>
-  <suppress checks="FileLength"
     files="[\\/]test[\\/]resources-noncompilable[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]sizes[\\/]recordcomponentnumber[\\/]InputRecordComponentNumberMax1\.java"/>
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources-noncompilable[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]sizes[\\/]recordcomponentnumber[\\/]InputRecordComponentNumberMax20\.java"/>
@@ -877,11 +843,7 @@
   <suppress checks="FileLength"
     files="[\\/]it[\\/]resources[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter7javadoc[\\/]rule72thesummaryfragment[\\/]InputCorrectSummaryJavaDocCheck\.java"/>
   <suppress checks="FileLength"
-    files="[\\/]it[\\/]resources[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter7javadoc[\\/]rule713atclauses[\\/]InputIncorrectAtClauseOrderCheck\.java"/>
-  <suppress checks="FileLength"
     files="[\\/]it[\\/]resources[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter7javadoc[\\/]rule713atclauses[\\/]InputJavaDocTagContinuationIndentation\.java"/>
-  <suppress checks="FileLength"
-    files="[\\/]it[\\/]resources[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter7javadoc[\\/]rule713atclauses[\\/]InputCorrectAtClauseOrderCheck\.java"/>
   <suppress checks="FileLength"
     files="[\\/]it[\\/]resources[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter4formatting[\\/]rule411bracesareused[\\/]InputNeedBraces\.java"/>
   <suppress checks="FileLength"

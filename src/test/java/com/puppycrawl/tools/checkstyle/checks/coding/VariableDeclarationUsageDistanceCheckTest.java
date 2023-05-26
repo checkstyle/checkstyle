@@ -85,7 +85,6 @@ public class VariableDeclarationUsageDistanceCheckTest extends
         final String[] expected = {
             "17:9: " + getCheckMessage(MSG_KEY, "first", 5, 1),
             "29:9: " + getCheckMessage(MSG_KEY, "allInvariants", 2, 1),
-            "59:9: " + getCheckMessage(MSG_KEY, "a", 2, 1),
         };
         verifyWithInlineConfigParser(
                 getPath("InputVariableDeclarationUsageDistanceGeneral2.java"), expected);
@@ -318,6 +317,37 @@ public class VariableDeclarationUsageDistanceCheckTest extends
 
         final String filename = "InputVariableDeclarationUsageDistanceCheckSwitchExpressions2.java";
         verifyWithInlineConfigParser(getNonCompilablePath(filename), expected);
+    }
+
+    @Test
+    public void testGeneralClass3() throws Exception {
+        final String[] expected = {
+            "46:9: " + getCheckMessage(MSG_KEY, "a", 2, 1),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputVariableDeclarationUsageDistanceGeneral3.java"), expected);
+    }
+
+    @Test
+    public void testGeneralClass4() throws Exception {
+        final String[] expected = {
+            "26:9: " + getCheckMessage(MSG_KEY, "z", 3, 1),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputVariableDeclarationUsageDistanceGeneral4.java"), expected);
+    }
+
+    @Test
+    public void testVariableDeclarationUsageDistanceTryResources() throws Exception {
+        final String[] expected = {
+            "19:9: " + getCheckMessage(MSG_KEY, "a", 2, 1),
+            "20:9: " + getCheckMessage(MSG_KEY, "b", 2, 1),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputVariableDeclarationUsageDistanceTryResources.java"), expected);
     }
 
 }

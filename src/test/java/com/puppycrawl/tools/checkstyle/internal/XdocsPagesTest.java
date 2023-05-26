@@ -98,6 +98,7 @@ public class XdocsPagesTest {
             "name=\"LineLength\"",
             "name=\"Translation\"",
             "name=\"SeverityMatchFilter\"",
+            "name=\"SuppressWithNearbyTextFilter\"",
             "name=\"SuppressWithPlainTextCommentFilter\"",
             "name=\"SuppressionFilter\"",
             "name=\"SuppressionSingleFilter\"",
@@ -1348,8 +1349,8 @@ public class XdocsPagesTest {
                     expectedUrl = "https://github.com/search?q="
                             + "path%3Asrc%2Fmain%2Fresources%2F"
                             + clss.getPackage().getName().replace(".", "%2F")
-                            + "+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22"
-                            + linkText + "%22";
+                            + "%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2F"
+                            + "checkstyle+%22" + linkText + "%22";
                 }
 
                 assertWithMessage(fileName + " section '" + sectionName
@@ -1381,13 +1382,13 @@ public class XdocsPagesTest {
             if ("Checkstyle Style".equals(linkText)) {
                 hasCheckstyle = true;
                 expectedUrl = "https://github.com/search?q="
-                        + "path%3Aconfig+filename%3Acheckstyle-checks.xml+"
+                        + "path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+"
                         + "repo%3Acheckstyle%2Fcheckstyle+" + sectionName;
             }
             else if ("Google Style".equals(linkText)) {
                 hasGoogle = true;
                 expectedUrl = "https://github.com/search?q="
-                        + "path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+"
+                        + "path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+"
                         + "repo%3Acheckstyle%2Fcheckstyle+"
                         + sectionName;
 
@@ -1399,7 +1400,7 @@ public class XdocsPagesTest {
             else if ("Sun Style".equals(linkText)) {
                 hasSun = true;
                 expectedUrl = "https://github.com/search?q="
-                        + "path%3Asrc%2Fmain%2Fresources+filename%3Asun_checks.xml+"
+                        + "path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+"
                         + "repo%3Acheckstyle%2Fcheckstyle+"
                         + sectionName;
 
@@ -1690,7 +1691,7 @@ public class XdocsPagesTest {
 
                 if ("config".equals(configName)) {
                     final String expectedUrl = "https://github.com/search?q="
-                            + "path%3Asrc%2Fmain%2Fresources+filename%3A" + styleName
+                            + "path%3Asrc%2Fmain%2Fresources%20path%3A**%2F" + styleName
                             + "_checks.xml+repo%3Acheckstyle%2Fcheckstyle+" + moduleName;
 
                     assertWithMessage(styleName + "_style.xml rule '" + ruleName + "' module '"

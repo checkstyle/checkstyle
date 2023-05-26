@@ -23,12 +23,10 @@ adoptopenjdk
 adr
 AFilter
 aggregators
-Agoogle
 allchecks
 allclasses
 alot
 amazonaws
-Amessages
 androidx
 annotationlocation
 annotationonsameline
@@ -65,7 +63,6 @@ Asrc
 assertj
 ASTNo
 asttreestringprinter
-Asun
 atclause
 atclauseorder
 ATest
@@ -259,8 +256,8 @@ cpp
 crlf
 cron
 crossplatform
-CSOFF
-CSON
+csoff
+cson
 css
 cstyle
 csv
@@ -288,6 +285,7 @@ dcm
 Dconnection
 Ddry
 declarationorder
+Deconstruction
 defau
 defaultcasepresent
 defaultcomeslast
@@ -361,6 +359,7 @@ edb
 edef
 edu
 Eghj
+Ei
 ej
 ejb
 elasticsearch
@@ -424,6 +423,7 @@ ffd
 fff
 FFFD
 FFFF
+Fgoogle
 Fheader
 fht
 fieldset
@@ -454,6 +454,7 @@ Fjavadoc
 Flas
 flattr
 Fmain
+Fmessages
 Fmetrics
 Fmodifier
 FModule
@@ -469,6 +470,7 @@ Fresources
 Frob
 fsc
 Fsizes
+Fsun
 Ftl
 Ftools
 ftp
@@ -858,7 +860,6 @@ mycustom
 myfile
 MYN
 myname
-mypackage
 myproject
 Mysql
 mytag
@@ -1116,7 +1117,6 @@ regexpsingleline
 regexpsinglelinejava
 relativized
 releasenotes
-releasenotesxml
 remkop
 requireemptylinebeforeblocktaggroup
 requirethis
@@ -1271,6 +1271,7 @@ suppresswarnings
 suppresswarningsfilter
 suppresswarningsholder
 suppresswithnearbycommentfilter
+suppresswithnearbytextfilter
 suppresswithplaintextcommentfilter
 suse
 svg
@@ -1280,6 +1281,7 @@ Sys
 sysextensions
 sysprop
 systemout
+tac
 Taglib
 taglist
 taskdef
@@ -1364,6 +1366,7 @@ unusedlocalvariable
 uppercased
 upperell
 upsss
+urandom
 uri
 url
 userguide

@@ -411,7 +411,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
     private static boolean isInSpecificCodeBlocks(DetailAST node, int... blockTypes) {
         boolean returnValue = false;
         for (int blockType : blockTypes) {
-            for (DetailAST token = node.getParent(); token != null; token = token.getParent()) {
+            for (DetailAST token = node; token != null; token = token.getParent()) {
                 final int type = token.getType();
                 if (type == blockType) {
                     returnValue = true;
@@ -659,8 +659,8 @@ public class FinalLocalVariableCheck extends AbstractCheck {
                 // if the variable is declared outside the loop and initialized inside
                 // the loop, then it cannot be declared final, as it can be initialized
                 // more than once in this case
-                final DetailAST currAstLoopAstParent = getLoopAstParent(ast);
-                final DetailAST currVarLoopAstParent = getLoopAstParent(variable);
+                final DetailAST currAstLoopAstParent = getParentLoop(ast);
+                final DetailAST currVarLoopAstParent = getParentLoop(variable);
                 if (currAstLoopAstParent == currVarLoopAstParent) {
                     final FinalVariableCandidate candidate = scopeData.scope.get(ast.getText());
                     shouldRemove = candidate.alreadyAssigned;
@@ -680,13 +680,13 @@ public class FinalLocalVariableCheck extends AbstractCheck {
      * @return ast node of type {@link FinalVariableCandidate#LOOP_TYPES} that is the ancestor
      *         of the current ast node, null if no such node exists
      */
-    private static DetailAST getLoopAstParent(DetailAST ast) {
-        DetailAST loopAstParent = ast.getParent();
-        while (loopAstParent != null
-            && !isLoopAst(loopAstParent.getType())) {
-            loopAstParent = loopAstParent.getParent();
+    private static DetailAST getParentLoop(DetailAST ast) {
+        DetailAST parentLoop = ast;
+        while (parentLoop != null
+            && !isLoopAst(parentLoop.getType())) {
+            parentLoop = parentLoop.getParent();
         }
-        return loopAstParent;
+        return parentLoop;
     }
 
     /**
@@ -724,15 +724,15 @@ public class FinalLocalVariableCheck extends AbstractCheck {
      */
     private static boolean isInAbstractOrNativeMethod(DetailAST ast) {
         boolean abstractOrNative = false;
-        DetailAST parent = ast.getParent();
-        while (parent != null && !abstractOrNative) {
-            if (parent.getType() == TokenTypes.METHOD_DEF) {
+        DetailAST currentAst = ast;
+        while (currentAst != null && !abstractOrNative) {
+            if (currentAst.getType() == TokenTypes.METHOD_DEF) {
                 final DetailAST modifiers =
-                    parent.findFirstToken(TokenTypes.MODIFIERS);
+                    currentAst.findFirstToken(TokenTypes.MODIFIERS);
                 abstractOrNative = modifiers.findFirstToken(TokenTypes.ABSTRACT) != null
                         || modifiers.findFirstToken(TokenTypes.LITERAL_NATIVE) != null;
             }
-            parent = parent.getParent();
+            currentAst = currentAst.getParent();
         }
         return abstractOrNative;
     }

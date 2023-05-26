@@ -222,6 +222,41 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * }
  * </pre>
  * <p>
+ * To configure the check to detect unnecessary parentheses around bitwise inclusive OR
+ * {@code '|'}, bitwise AND {@code '&amp;'}, bitwise exclusive OR {@code '^'}:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;UnnecessaryParentheses&quot;&gt;
+ *   &lt;property name=&quot;tokens&quot; value=&quot;BOR, BAND, BXOR&quot; /&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <pre>
+ * class Test {
+ *
+ *     void method() {
+ *         int x = 9, y = 8;
+ *         if(x&gt;= 0 ^ (x&lt;=8 &amp; y&lt;=11) // violation, unnecessary parenthesis
+ *             ^ y&gt;=8) {
+ *             return;
+ *         }
+ *         if(x&gt;= 0 ^ x&lt;=8 &amp; y&lt;=11 ^ y&gt;=8) { // ok
+ *             return;
+ *        }
+ *        if(x&gt;= 0 || (x&lt;=8 &amp; y&lt;=11) // violation, unnecessary parenthesis
+ *            &amp;&amp; y&gt;=8) {
+ *            return;
+ *        }
+ *        if(x&gt;= 0 || x&lt;=8 &amp; y&lt;=11 &amp;&amp; y&gt;=8) { // ok
+ *            return;
+ *        }
+ *        if(x&gt;= 0 &amp; (x&lt;=8 ^ y&lt;=11) &amp; y&gt;=8) { // ok
+ *            return;
+ *        }
+ *     }
+ *
+ * }
+ * </pre>
+ * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
  * <p>
@@ -340,10 +375,14 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
         TokenTypes.STAR_ASSIGN,
     };
 
-    /** Token types for conditional and relational operators. */
-    private static final int[] CONDITIONALS_AND_RELATIONAL = {
+    /** Token types for conditional operators. */
+    private static final int[] CONDITIONAL_OPERATOR = {
         TokenTypes.LOR,
         TokenTypes.LAND,
+    };
+
+    /** Token types for relation operator. */
+    private static final int[] RELATIONAL_OPERATOR = {
         TokenTypes.LITERAL_INSTANCEOF,
         TokenTypes.GT,
         TokenTypes.LT,
@@ -363,6 +402,13 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
         TokenTypes.BNOT,
         TokenTypes.POST_INC,
         TokenTypes.POST_DEC,
+    };
+
+    /** Token types for bitwise binary operator. */
+    private static final int[] BITWISE_BINARY_OPERATORS = {
+        TokenTypes.BXOR,
+        TokenTypes.BOR,
+        TokenTypes.BAND,
     };
 
     /**
@@ -464,6 +510,9 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
             TokenTypes.BNOT,
             TokenTypes.POST_INC,
             TokenTypes.POST_DEC,
+            TokenTypes.BXOR,
+            TokenTypes.BOR,
+            TokenTypes.BAND,
         };
     }
 
@@ -598,7 +647,7 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
     }
 
     /**
-     * Checks if conditional, relational, unary and postfix operators
+     * Checks if conditional, relational, bitwise binary operator, unary and postfix operators
      * in expressions are surrounded by unnecessary parentheses.
      *
      * @param ast the {@code DetailAST} to check if it is surrounded by
@@ -608,20 +657,84 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
      */
     private static boolean unnecessaryParenAroundOperators(DetailAST ast) {
         final int type = ast.getType();
-        final int parentType = ast.getParent().getType();
-        final boolean isConditional = TokenUtil.isOfType(type, CONDITIONALS_AND_RELATIONAL);
-        boolean result = TokenUtil.isOfType(parentType, CONDITIONALS_AND_RELATIONAL);
-        if (isConditional) {
-            if (type == TokenTypes.LOR) {
-                result = result && !TokenUtil.isOfType(parentType, TokenTypes.LAND);
-            }
-            result = result && !TokenUtil.isOfType(parentType, TokenTypes.EQUAL,
-                TokenTypes.NOT_EQUAL);
+        final boolean isConditionalOrRelational = TokenUtil.isOfType(type, CONDITIONAL_OPERATOR)
+                        || TokenUtil.isOfType(type, RELATIONAL_OPERATOR);
+        final boolean isBitwise = TokenUtil.isOfType(type, BITWISE_BINARY_OPERATORS);
+        final boolean hasUnnecessaryParentheses;
+        if (isConditionalOrRelational) {
+            hasUnnecessaryParentheses = checkConditionalOrRelationalOperator(ast);
+        }
+        else if (isBitwise) {
+            hasUnnecessaryParentheses = checkBitwiseBinaryOperator(ast);
         }
         else {
-            result = result && TokenUtil.isOfType(type, UNARY_AND_POSTFIX);
+            hasUnnecessaryParentheses = TokenUtil.isOfType(type, UNARY_AND_POSTFIX)
+                    && isBitWiseBinaryOrConditionalOrRelationalOperator(ast.getParent().getType());
         }
-        return result;
+        return hasUnnecessaryParentheses;
+    }
+
+    /**
+     * Check if conditional or relational operator has unnecessary parentheses.
+     *
+     * @param ast to check if surrounded by unnecessary parentheses
+     * @return true if unnecessary parenthesis
+     */
+    private static boolean checkConditionalOrRelationalOperator(DetailAST ast) {
+        final int type = ast.getType();
+        final int parentType = ast.getParent().getType();
+        final boolean isParentEqualityOperator =
+                TokenUtil.isOfType(parentType, TokenTypes.EQUAL, TokenTypes.NOT_EQUAL);
+        final boolean result;
+        if (type == TokenTypes.LOR) {
+            result = !TokenUtil.isOfType(parentType, TokenTypes.LAND)
+                    && !TokenUtil.isOfType(parentType, BITWISE_BINARY_OPERATORS);
+        }
+        else if (type == TokenTypes.LAND) {
+            result = !TokenUtil.isOfType(parentType, BITWISE_BINARY_OPERATORS);
+        }
+        else {
+            result = true;
+        }
+        return result && !isParentEqualityOperator
+                && isBitWiseBinaryOrConditionalOrRelationalOperator(parentType);
+    }
+
+    /**
+     * Check if bitwise binary operator has unnecessary parentheses.
+     *
+     * @param ast to check if surrounded by unnecessary parentheses
+     * @return true if unnecessary parenthesis
+     */
+    private static boolean checkBitwiseBinaryOperator(DetailAST ast) {
+        final int type = ast.getType();
+        final int parentType = ast.getParent().getType();
+        final boolean result;
+        if (type == TokenTypes.BOR) {
+            result = !TokenUtil.isOfType(parentType, TokenTypes.BAND, TokenTypes.BXOR)
+                    && !TokenUtil.isOfType(parentType, RELATIONAL_OPERATOR);
+        }
+        else if (type == TokenTypes.BXOR) {
+            result = !TokenUtil.isOfType(parentType, TokenTypes.BAND)
+                    && !TokenUtil.isOfType(parentType, RELATIONAL_OPERATOR);
+        }
+        // we deal with bitwise AND here.
+        else {
+            result = !TokenUtil.isOfType(parentType, RELATIONAL_OPERATOR);
+        }
+        return result && isBitWiseBinaryOrConditionalOrRelationalOperator(parentType);
+    }
+
+    /**
+     * Check if token type is bitwise binary or conditional or relational operator.
+     *
+     * @param type Token type to check
+     * @return true if it is bitwise binary or conditional operator
+     */
+    private static boolean isBitWiseBinaryOrConditionalOrRelationalOperator(int type) {
+        return TokenUtil.isOfType(type, CONDITIONAL_OPERATOR)
+                || TokenUtil.isOfType(type, RELATIONAL_OPERATOR)
+                || TokenUtil.isOfType(type, BITWISE_BINARY_OPERATORS);
     }
 
     /**
