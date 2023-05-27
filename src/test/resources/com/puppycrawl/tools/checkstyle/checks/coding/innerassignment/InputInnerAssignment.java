@@ -33,6 +33,20 @@ public class InputInnerAssignment
         }
     }
 
+    public void expressionCanHaveParentSwitchCaseIssue13086()
+    {
+        // inner assignment should not flag an assignment expressions in a switch case
+        boolean flag = false;
+        String operation = "Y";
+        switch (operation)
+        {
+            case "Y" :
+                flag = true;  // Allowed
+                break;
+            default : break;
+        }
+    }
+
     public void demoBug1195047Comment3()
     {
         // inner assignment should flag all assignments to b or bb but none of those to i or j
