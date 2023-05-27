@@ -10,6 +10,59 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 10.12.0">
+      <div class="releaseDate">27.05.2023</div>
+      <p>New:</p>
+        <ul>
+          <li>
+            Support record patterns (preview-feature in Java 19) as described by JEP 405.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/12507">#12507</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Improve code coverage for GUI classes.
+            Author: Dami Lee, alimhtsai, “MrPatchz”
+            <a href="https://github.com/checkstyle/checkstyle/issues/11514">#11514</a>
+          </li>
+          <li>
+            Broken Link: Github search links are broken in documentation.
+            Author: shamith2
+            <a href="https://github.com/checkstyle/checkstyle/issues/13059">#13059</a>
+          </li>
+          <li>
+            LineLength check documentation incorrectly shows how to work with tabWidth property .
+            Author: shamith2
+            <a href="https://github.com/checkstyle/checkstyle/issues/13005">#13005</a>
+          </li>
+          <li>
+            Update doc for UnusedImports.
+            Author: Tanay
+            <a href="https://github.com/checkstyle/checkstyle/issues/13007">#13007</a>
+          </li>
+          <li>
+            Specify violation messages in input files.
+            Author: “MrPatchz”
+            <a href="https://github.com/checkstyle/checkstyle/issues/11214">#11214</a>
+          </li>
+          <li>
+            .ci/pitest.sh --list doesn&#39;t show all pitest profiles on Mac.
+            Author: Ruslan Diachenko
+            <a href="https://github.com/checkstyle/checkstyle/issues/13063">#13063</a>
+          </li>
+          <li>
+            doc: new release cycle.
+            Author: Roman Ivanov
+          </li>
+          <li>
+            Site Action generate bad link to index page.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/13054">#13054</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 10.11.0">
       <div class="releaseDate">10.05.2023</div>
       <p>New:</p>
