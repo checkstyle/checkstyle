@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: 'Target Version without (-SNAPSHOT)'
+        description: 'POM version without (-SNAPSHOT)'
         required: true
   workflow_call:
     inputs:
