@@ -150,6 +150,7 @@ public class InnerAssignmentCheck
             TokenTypes.RESOURCE_SPECIFICATION,
         },
         {TokenTypes.EXPR, TokenTypes.LAMBDA},
+        {TokenTypes.EXPR, TokenTypes.SWITCH_RULE},
     };
 
     /**
