@@ -33,6 +33,7 @@ import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Violation;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class DeclarationOrderCheckTest
     extends AbstractModuleTestSupport {
@@ -233,6 +234,14 @@ public class DeclarationOrderCheckTest
         };
         verifyWithInlineConfigParser(
                 getPath("InputDeclarationOrderAvoidDuplicatesInStaticFinalFields.java"),
+                expected);
+    }
+
+    @Test
+    public void test() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputDeclarationOrder2.java"),
                 expected);
     }
 
