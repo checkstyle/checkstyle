@@ -79,7 +79,16 @@
       </item>
 
       <item name="Checks" href="checks.html">
-        <item name="Annotations"        href="config_annotation.html"/>
+        <item name="Annotations" href="checks/annotation/index.html" collapse="true">
+          <item name="AnnotationLocation" href="checks/annotation/annotationlocation.html"/>
+          <item name="AnnotationOnSameLine" href="checks/annotation/annotationonsameline.html"/>
+          <item name="AnnotationUseStyle" href="checks/annotation/annotationusestyle.html"/>
+          <item name="MissingDeprecated" href="checks/annotation/missingdeprecated.html"/>
+          <item name="MissingOverride" href="checks/annotation/missingoverride.html"/>
+          <item name="PackageAnnotation" href="checks/annotation/packageannotation.html"/>
+          <item name="SuppressWarnings" href="checks/annotation/suppresswarnings.html"/>
+          <item name="SuppressWarningsHolder" href="checks/annotation/suppresswarningsholder.html"/>
+        </item>
         <item name="Block Checks"       href="config_blocks.html"/>
         <item name="Class Design"       href="config_design.html"/>
         <item name="Coding"             href="config_coding.html"/>
