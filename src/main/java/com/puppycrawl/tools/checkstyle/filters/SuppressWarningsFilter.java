@@ -37,7 +37,7 @@ import com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder;
  * </p>
  * <p>
  * Usage: This filter only works in conjunction with a
- * <a href="https://checkstyle.org/config_annotation.html#SuppressWarningsHolder">
+ * <a href="https://checkstyle.org/checks/annotation/suppresswarningsholder.html#SuppressWarningsHolder">
  * SuppressWarningsHolder</a>,
  * since that check finds the annotations in the Java files and makes them available for the filter.
  * Because of that, a configuration that includes this filter must also include
