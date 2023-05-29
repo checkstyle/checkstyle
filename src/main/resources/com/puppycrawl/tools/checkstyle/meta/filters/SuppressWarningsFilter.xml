@@ -16,7 +16,7 @@
  &lt;/p&gt;
  &lt;p&gt;
  Usage: This filter only works in conjunction with a
- &lt;a href="https://checkstyle.org/config_annotation.html#SuppressWarningsHolder"&gt;
+ &lt;a href="https://checkstyle.org/checks/annotation/suppresswarningsholder.html#SuppressWarningsHolder"&gt;
  SuppressWarningsHolder&lt;/a&gt;,
  since that check finds the annotations in the Java files and makes them available for the filter.
  Because of that, a configuration that includes this filter must also include
