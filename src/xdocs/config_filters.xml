@@ -2007,7 +2007,7 @@ public class TestClass {
         </p>
         <p>
           Usage: This filter only works in conjunction with a
-          <a href="config_annotation.html#SuppressWarningsHolder">SuppressWarningsHolder</a>,
+          <a href="checks/annotation/suppress_warnings_holder.html#SuppressWarningsHolder">SuppressWarningsHolder</a>,
           since that check finds
           the annotations in the Java files and makes them available for
           the filter. Because of that, a configuration that includes
