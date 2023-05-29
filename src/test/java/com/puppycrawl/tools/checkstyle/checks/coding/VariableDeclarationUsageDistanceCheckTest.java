@@ -350,4 +350,11 @@ public class VariableDeclarationUsageDistanceCheckTest extends
                 getPath("InputVariableDeclarationUsageDistanceTryResources.java"), expected);
     }
 
+    @Test
+    public void testVariableDeclarationUsageDistance4() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("InputVariableDeclarationUsageDistance3.java"), expected);
+    }
 }
