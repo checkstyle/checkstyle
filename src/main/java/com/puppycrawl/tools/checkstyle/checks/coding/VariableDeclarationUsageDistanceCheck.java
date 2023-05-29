@@ -566,9 +566,6 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
 
         int resultDist = currentDistToVarUsage;
         switch (examineNode.getType()) {
-            case TokenTypes.VARIABLE_DEF:
-                resultDist++;
-                break;
             case TokenTypes.SLIST:
                 resultDist = 0;
                 break;
