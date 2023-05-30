@@ -20,12 +20,13 @@
 package com.puppycrawl.tools.checkstyle.internal.utils;
 
 import java.io.IOException;
-import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -58,12 +59,9 @@ public final class XdocUtil {
      */
     public static Set<Path> getXdocsFilePaths() throws IOException {
         final Path directory = Paths.get(DIRECTORY_PATH);
-        try (DirectoryStream<Path> stream = Files.newDirectoryStream(directory, "*.xml")) {
-            final Set<Path> xdocs = new HashSet<>();
-            for (Path entry : stream) {
-                xdocs.add(entry);
-            }
-            return xdocs;
+        try (Stream<Path> stream = Files.find(directory, Integer.MAX_VALUE,
+                (path, attr) -> attr.isRegularFile() && path.toString().endsWith(".xml"))) {
+            return stream.collect(Collectors.toSet());
         }
     }
 
@@ -77,7 +75,10 @@ public final class XdocUtil {
         final Set<Path> xdocs = new HashSet<>();
         for (Path entry : files) {
             final String fileName = entry.getFileName().toString();
-            if (fileName.startsWith("config_")) {
+            // until https://github.com/checkstyle/checkstyle/issues/13132
+            if (fileName.startsWith("config_")
+                    || !entry.getParent().toString().matches("src[\\\\/]xdocs")
+                    && fileName.endsWith(".xml")) {
                 xdocs.add(entry);
             }
         }
