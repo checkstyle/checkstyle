@@ -1,15 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suppressedMutations>
   <mutation unstable="false">
-    <sourceFile>AbstractSuperCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.AbstractSuperCheck$MethodNode</mutatedClass>
-    <mutatedMethod>&lt;init&gt;</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
-    <description>Removed assignment to member variable callingSuper</description>
-    <lineContent>callingSuper = false;</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
     <sourceFile>DeclarationOrderCheck.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck</mutatedClass>
     <mutatedMethod>processModifiersState</mutatedMethod>
