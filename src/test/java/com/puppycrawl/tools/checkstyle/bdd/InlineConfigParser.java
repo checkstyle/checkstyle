@@ -145,7 +145,7 @@ public final class InlineConfigParser {
                     + inputFilePath, ex);
         }
         try {
-            setViolations(testInputConfigBuilder, lines, setFilteredViolations);
+            setViolations(testInputConfigBuilder, lines, setFilteredViolations, inputFilePath);
         }
         catch (CheckstyleException ex) {
             throw new CheckstyleException(ex.getMessage() + " in " + inputFilePath, ex);
@@ -297,13 +297,15 @@ public final class InlineConfigParser {
     }
 
     private static void setViolations(TestInputConfiguration.Builder inputConfigBuilder,
-                                      List<String> lines, boolean useFilteredViolations)
+                                      List<String> lines, boolean useFilteredViolations,
+                                      String inputFilePath)
             throws ClassNotFoundException, CheckstyleException {
         final List<ModuleInputConfiguration> moduleLists = inputConfigBuilder.getChildrenModules();
         final boolean specifyViolationMessage = moduleLists.size() == 1
                 && !SUPPRESSED_CHECKS.contains(moduleLists.get(0).getModuleName())
                 && !PERMANENT_SUPPRESSED_CHECKS.contains(moduleLists.get(0).getModuleName())
-                && getNumberOfMessages(moduleLists.get(0).getModuleName()) > 1;
+                && getNumberOfMessages(moduleLists.get(0).getModuleName()) > 1
+                && !inputFilePath.contains("xdocs-test");
         for (int lineNo = 0; lineNo < lines.size(); lineNo++) {
             setViolations(inputConfigBuilder, lines,
                     useFilteredViolations, lineNo, specifyViolationMessage);
