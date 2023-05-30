@@ -214,7 +214,6 @@ public abstract class AbstractSuperCheck
          */
         private MethodNode(DetailAST ast) {
             method = ast;
-            callingSuper = false;
         }
 
         /**
