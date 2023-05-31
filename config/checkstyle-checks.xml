@@ -39,11 +39,11 @@
   <!-- Tone down the checking for test code -->
   <module name="SuppressionSingleFilter">
     <property name="checks" value="JavadocPackage"/>
-    <property name="files" value=".*[\\/]src[\\/](test|it)[\\/]"/>
+    <property name="files" value=".*[\\/]src[\\/](test|it|xdocs-test)[\\/]"/>
   </module>
   <module name="SuppressionSingleFilter">
     <property name="checks" value="JavadocMethod"/>
-    <property name="files" value=".*[\\/]src[\\/](test|it)[\\/].*(?&lt;!Support)\.java"/>
+    <property name="files" value=".*[\\/]src[\\/](test|it|xdocs-test)[\\/].*(?&lt;!Support)\.java"/>
   </module>
   <module name="SuppressWarningsFilter"/>
   <module name="SuppressWithPlainTextCommentFilter">
@@ -567,32 +567,32 @@
       <property name="checks" value="EmptyBlock"/>
     </module>
     <module name="SuppressionXpathSingleFilter">
-      <property name="files" value=".*[\\/]src[\\/](test|it)[\\/]"/>
+      <property name="files" value=".*[\\/]src[\\/](test|it|xdocs-test)[\\/]"/>
       <property name="checks" value="JavadocVariable"/>
     </module>
     <module name="SuppressionXpathSingleFilter">
-      <property name="files" value=".*[\\/]src[\\/](test|it)[\\/]"/>
+      <property name="files" value=".*[\\/]src[\\/](test|it|xdocs-test)[\\/]"/>
       <property name="checks" value="JavadocType"/>
     </module>
     <module name="SuppressionXpathSingleFilter">
-      <property name="files" value=".*[\\/]src[\\/](test|it)[\\/]"/>
+      <property name="files" value=".*[\\/]src[\\/](test|it|xdocs-test)[\\/]"/>
       <property name="checks" value="MagicNumber"/>
     </module>
     <module name="SuppressionXpathSingleFilter">
-      <property name="files" value=".*[\\/]src[\\/](test|it)[\\/]"/>
+      <property name="files" value=".*[\\/]src[\\/](test|it|xdocs-test)[\\/]"/>
       <property name="checks" value="AvoidStaticImport"/>
     </module>
     <module name="SuppressionXpathSingleFilter">
-      <property name="files" value=".*[\\/]src[\\/](test|it)[\\/]"/>
+      <property name="files" value=".*[\\/]src[\\/](test|it|xdocs-test)[\\/]"/>
       <property name="checks" value="WriteTag"/>
     </module>
     <module name="SuppressionXpathSingleFilter">
-      <property name="files" value=".*[\\/]src[\\/](test|it)[\\/]"/>
+      <property name="files" value=".*[\\/]src[\\/](test|it|xdocs-test)[\\/]"/>
       <property name="checks" value="MethodCount"/>
     </module>
     <!-- Fixing these cases will decrease code readability -->
     <module name="SuppressionXpathSingleFilter">
-      <property name="files" value=".*[\\/]src[\\/](test|it)[\\/]"/>
+      <property name="files" value=".*[\\/]src[\\/](test|it|xdocs-test)[\\/]"/>
       <property name="checks" value="MultipleStringLiterals"/>
     </module>
     <module name="SuppressWithNearbyCommentFilter">
