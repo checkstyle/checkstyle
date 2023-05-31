@@ -515,6 +515,7 @@
             <excludeRoots>
               <excludeRoot>src/it/resources</excludeRoot>
               <excludeRoot>src/test/resources</excludeRoot>
+              <excludeRoot>src/xdocs-test/resources</excludeRoot>
               <excludeRoot>target/generated-sources/antlr</excludeRoot>
               <excludeRoot>
                 target/generated-sources/antlr/com/puppycrawl/tools/checkstyle/grammar/javadoc
