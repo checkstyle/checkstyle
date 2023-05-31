@@ -37,7 +37,8 @@
       <fileset dir="src"
                includes="**/*"
                excludes="it/resources/**/*,it/resources-noncompilable/**/*,
-               test/resources/**/*,test/resources-noncompilable/**/*,**/gen/**"/>
+               test/resources/**/*,test/resources-noncompilable/**/*,**/gen/**,
+               xdocs-test/resources/**/*,xdocs-test/resources-noncompilable/**/*"/>
       <formatter type="plain"/>
       <formatter type="xml" toFile="${mvn.project.build.directory}/cs_errors.xml"/>
       <formatter type="sarif" toFile="${mvn.project.build.directory}/cs_errors.sarif"/>
@@ -76,6 +77,7 @@
           <exclude name=".teamcity/**/*"/>
           <exclude name="src/main/**/*"/>
           <exclude name="src/test/java/**/*"/>
+          <exclude name="src/xdocs-test/java/**/*"/>
           <exclude name="src/site/resources/images/**/*"/>
           <!-- styleguides are copied/cached from origin place we should not change them  -->
           <exclude name="src/site/resources/styleguides/**/*"/>
@@ -153,7 +155,8 @@
                 >
       <path>
         <fileset dir="src"
-            includes="it/resources/**/*,test/resources/**/*,test/resources-noncompilable/**/*">
+            includes="it/resources/**/*,test/resources/**/*,test/resources-noncompilable/**/*,
+                      xdocs-test/resources-noncompilable/**/*">
           <!-- bad syntax, permanent exclude -->
           <exclude name="**/InputAstTreeStringPrinter.java" />
           <exclude name="**/InputSuppressionsStringPrinter.java"/>
@@ -190,7 +193,8 @@
     >
       <path>
         <fileset dir="src"
-                 includes="test/resources/**/*.java,test/resources-noncompilable/**/*.java">
+                 includes="test/resources/**/*.java,test/resources-noncompilable/**/*.java,
+                           xdocs-test/resources/**/*,xdocs-test/resources-noncompilable/**/*">
           <!-- bad syntax, permanent exclude -->
           <exclude name="**/InputAstTreeStringPrinter.java" />
           <exclude name="**/InputSuppressionsStringPrinter.java"/>
