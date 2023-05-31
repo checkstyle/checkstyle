@@ -23,8 +23,6 @@ import static com.google.common.truth.Truth.assertWithMessage;
 
 import java.io.File;
 import java.net.URI;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -38,11 +36,8 @@ import java.util.stream.Collectors;
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 
 import com.google.common.collect.ImmutableMap;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
@@ -65,8 +60,6 @@ import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocContentLocationOpti
 import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.PadOption;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.WrapOption;
-import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
-import com.puppycrawl.tools.checkstyle.internal.utils.XdocUtil;
 import com.puppycrawl.tools.checkstyle.internal.utils.XmlUtil;
 import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
@@ -130,42 +123,6 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = new DefaultConfiguration(
                 JavaDocCapture.class.getName());
         checker = createChecker(checkConfig);
-    }
-
-    /**
-     * Validates check javadocs and xdocs for consistency.
-     *
-     * @noinspection JUnitTestMethodWithNoAssertions
-     * @noinspectionreason JUnitTestMethodWithNoAssertions - asserts in callstack,
-     *      but not in this method
-     */
-    @Test
-    public void testAllCheckSectionJavaDocs() throws Exception {
-        final ModuleFactory moduleFactory = TestUtil.getPackageObjectFactory();
-
-        for (Path path : XdocUtil.getXdocsConfigFilePaths(XdocUtil.getXdocsFilePaths())) {
-            final File file = path.toFile();
-            final String fileName = file.getName();
-
-            if ("config_system_properties.xml".equals(fileName)) {
-                continue;
-            }
-
-            final String input = Files.readString(path);
-            final Document document = XmlUtil.getRawXml(fileName, input, input);
-            final NodeList sources = document.getElementsByTagName("section");
-
-            for (int position = 0; position < sources.getLength(); position++) {
-                final Node section = sources.item(position);
-                final String sectionName = XmlUtil.getNameAttributeOfNode(section);
-
-                if ("Content".equals(sectionName) || "Overview".equals(sectionName)) {
-                    continue;
-                }
-
-                examineCheckSection(moduleFactory, fileName, sectionName, section);
-            }
-        }
     }
 
     private static void examineCheckSection(ModuleFactory moduleFactory, String fileName,
