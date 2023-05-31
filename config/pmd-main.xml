@@ -9,6 +9,7 @@
   </description>
   <exclude-pattern>.*/src/it/.*</exclude-pattern>
   <exclude-pattern>.*/src/test/.*</exclude-pattern>
+  <exclude-pattern>.*/src/xdocs-examples/.*</exclude-pattern>
   <rule ref="config/pmd.xml"/>
 
   <rule ref="category/java/design.xml/ImmutableField">
