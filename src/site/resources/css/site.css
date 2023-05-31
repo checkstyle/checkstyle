@@ -152,4 +152,15 @@ a[title="toTop"] {
   p, h1, h2, h3, h4, h5, h6, li {
     word-break: break-word;
   }
+
+  table.bodyTable tr {
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  table.bodyTable th,
+  table.bodyTable td {
+    display: block;
+    text-align: left;
+  }
 }
