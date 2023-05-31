@@ -1381,6 +1381,30 @@
               </sources>
             </configuration>
           </execution>
+          <execution>
+            <id>add-xdocs-examples-source</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>add-test-source</goal>
+            </goals>
+            <configuration>
+              <sources>
+                <source>src/xdocs-examples/java</source>
+              </sources>
+            </configuration>
+          </execution>
+          <execution>
+            <id>add-xdocs-examples-resource</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>add-test-source</goal>
+            </goals>
+            <configuration>
+              <sources>
+                <source>src/xdocs-examples/resources</source>
+              </sources>
+            </configuration>
+          </execution>
         </executions>
       </plugin>
 

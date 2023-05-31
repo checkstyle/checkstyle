@@ -43,7 +43,8 @@
   </module>
   <module name="SuppressionSingleFilter">
     <property name="checks" value="JavadocMethod"/>
-    <property name="files" value=".*[\\/]src[\\/](test|it|xdocs-examples)[\\/].*(?&lt;!Support)\.java"/>
+    <property name="files"
+              value=".*[\\/]src[\\/](test|it|xdocs-examples)[\\/].*(?&lt;!Support)\.java"/>
   </module>
   <module name="SuppressWarningsFilter"/>
   <module name="SuppressWithPlainTextCommentFilter">
