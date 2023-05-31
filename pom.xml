@@ -1381,6 +1381,30 @@
               </sources>
             </configuration>
           </execution>
+          <execution>
+            <id>add-xdocs-test-source</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>add-test-source</goal>
+            </goals>
+            <configuration>
+              <sources>
+                <source>src/xdocs-test/java</source>
+              </sources>
+            </configuration>
+          </execution>
+          <execution>
+            <id>add-xdocs-test-resource</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>add-test-source</goal>
+            </goals>
+            <configuration>
+              <sources>
+                <source>src/xdocs-test/resources</source>
+              </sources>
+            </configuration>
+          </execution>
         </executions>
       </plugin>
 
