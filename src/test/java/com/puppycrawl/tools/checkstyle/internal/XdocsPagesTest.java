@@ -84,7 +84,7 @@ public class XdocsPagesTest {
 
     private static final Path AVAILABLE_CHECKS_PATH = Paths.get("src/xdocs/checks.xml");
     private static final String LINK_TEMPLATE =
-            "(?s).*<a href=\"config_\\w+\\.html#%1$s\">(\\s)*%1$s</a>.*";
+            "(?s).*<a href=\"[^\"]+#%1$s\">([\\n\\s])*%1$s([\\n\\s])*</a>.*";
 
     private static final Pattern VERSION = Pattern.compile("\\d+\\.\\d+(\\.\\d+)?");
 
@@ -1653,9 +1653,11 @@ public class XdocsPagesTest {
         while (itrChecks.hasNext()) {
             final Node module = itrChecks.next();
             final String moduleName = module.getTextContent().trim();
+            final String href = module.getAttributes().getNamedItem("href").getTextContent();
+            final boolean moduleIsConfig = href.startsWith("config_");
+            final boolean moduleIsCheck = href.startsWith("checks/");
 
-            if (!module.getAttributes().getNamedItem("href").getTextContent()
-                    .startsWith("config_")) {
+            if (!moduleIsConfig && !moduleIsCheck) {
                 continue;
             }
 
