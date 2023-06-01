@@ -930,7 +930,7 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
                 operator.findFirstToken(TokenTypes.LPAREN);
 
         // Get EXPR between brackets
-        DetailAST exprBetweenBrackets = openingBracket.getNextSibling();
+        DetailAST exprBetweenBrackets = openingBracket;
 
         // Look if variable is in operator expression
         while (exprBetweenBrackets.getType() != TokenTypes.RPAREN) {
