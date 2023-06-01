@@ -653,8 +653,7 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
                         exprWithVariableUsage = blockWithVariableUsage.getFirstChild();
                 }
                 currentScopeAst = exprWithVariableUsage;
-                variableUsageAst =
-                        Objects.requireNonNullElse(exprWithVariableUsage, blockWithVariableUsage);
+                variableUsageAst = blockWithVariableUsage;
             }
 
             // If there's no any variable usage, then distance = 0.
