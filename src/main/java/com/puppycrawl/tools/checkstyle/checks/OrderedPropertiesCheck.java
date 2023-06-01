@@ -32,6 +32,7 @@ import java.util.Properties;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.puppycrawl.tools.checkstyle.MessageKey;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.FileText;
@@ -102,10 +103,12 @@ public class OrderedPropertiesCheck extends AbstractFileSetCheck {
     /**
      * Localization key for check violation.
      */
+    @MessageKey
     public static final String MSG_KEY = "properties.notSorted.property";
     /**
      * Localization key for IO exception occurred on file open.
      */
+    @MessageKey
     public static final String MSG_IO_EXCEPTION_KEY = "unable.open.cause";
     /**
      * Pattern matching single space.
