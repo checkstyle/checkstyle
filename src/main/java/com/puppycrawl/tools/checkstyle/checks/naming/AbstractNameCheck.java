@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.naming;
 
 import java.util.regex.Pattern;
 
+import com.puppycrawl.tools.checkstyle.MessageKey;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -38,6 +39,7 @@ public abstract class AbstractNameCheck
     /**
      * Message key for invalid pattern violation.
      */
+    @MessageKey
     public static final String MSG_INVALID_PATTERN = "name.invalidPattern";
 
     /** The regexp to match against. */

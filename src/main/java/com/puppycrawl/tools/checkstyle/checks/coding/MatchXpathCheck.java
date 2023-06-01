@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.puppycrawl.tools.checkstyle.MessageKey;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -220,6 +221,7 @@ public class MatchXpathCheck extends AbstractCheck {
     /**
      * A key is pointing to the warning message text provided by user.
      */
+    @MessageKey
     public static final String MSG_KEY = "matchxpath.match";
 
     /** Specify Xpath query. */
