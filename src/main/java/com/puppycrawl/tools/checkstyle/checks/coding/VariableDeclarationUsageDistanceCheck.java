@@ -463,8 +463,7 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
         DetailAST currentSiblingAst = variableUsageAst;
         String initInstanceName = "";
 
-        while (result
-                && !isUsedVariableDeclarationFound
+        while (!isUsedVariableDeclarationFound
                 && currentSiblingAst != null) {
             switch (currentSiblingAst.getType()) {
                 case TokenTypes.EXPR:
