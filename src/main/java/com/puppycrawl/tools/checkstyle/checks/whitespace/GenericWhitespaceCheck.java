@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace;
 import java.util.stream.IntStream;
 
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
+import com.puppycrawl.tools.checkstyle.MessageKey;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -121,24 +122,28 @@ public class GenericWhitespaceCheck extends AbstractCheck {
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
+    @MessageKey
     public static final String MSG_WS_PRECEDED = "ws.preceded";
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
+    @MessageKey
     public static final String MSG_WS_FOLLOWED = "ws.followed";
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
+    @MessageKey
     public static final String MSG_WS_NOT_PRECEDED = "ws.notPreceded";
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
+    @MessageKey
     public static final String MSG_WS_ILLEGAL_FOLLOW = "ws.illegalFollow";
 
     /** Open angle bracket literal. */

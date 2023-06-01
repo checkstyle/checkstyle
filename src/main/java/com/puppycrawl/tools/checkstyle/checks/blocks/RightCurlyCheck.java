@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.blocks;
 import java.util.Arrays;
 import java.util.Locale;
 
+import com.puppycrawl.tools.checkstyle.MessageKey;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -309,18 +310,21 @@ public class RightCurlyCheck extends AbstractCheck {
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
+    @MessageKey
     public static final String MSG_KEY_LINE_BREAK_BEFORE = "line.break.before";
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
+    @MessageKey
     public static final String MSG_KEY_LINE_ALONE = "line.alone";
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
+    @MessageKey
     public static final String MSG_KEY_LINE_SAME = "line.same";
 
     /**

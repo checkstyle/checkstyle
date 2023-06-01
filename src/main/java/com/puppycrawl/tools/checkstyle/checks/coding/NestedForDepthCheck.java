@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
+import com.puppycrawl.tools.checkstyle.MessageKey;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -102,6 +103,7 @@ public final class NestedForDepthCheck extends AbstractCheck {
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
+    @MessageKey
     public static final String MSG_KEY = "nested.for.depth";
 
     /** Specify maximum allowed nesting depth. */

@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.metrics;
 
+import com.puppycrawl.tools.checkstyle.MessageKey;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
@@ -377,6 +378,7 @@ public final class ClassDataAbstractionCouplingCheck
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
+    @MessageKey
     public static final String MSG_KEY = "classDataAbstractionCoupling";
 
     /** Default allowed complexity. */

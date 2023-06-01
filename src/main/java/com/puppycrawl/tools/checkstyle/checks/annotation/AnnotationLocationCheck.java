@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.annotation;
 
+import com.puppycrawl.tools.checkstyle.MessageKey;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -229,12 +230,14 @@ public class AnnotationLocationCheck extends AbstractCheck {
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
+    @MessageKey
     public static final String MSG_KEY_ANNOTATION_LOCATION_ALONE = "annotation.location.alone";
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
+    @MessageKey
     public static final String MSG_KEY_ANNOTATION_LOCATION = "annotation.location";
 
     /**

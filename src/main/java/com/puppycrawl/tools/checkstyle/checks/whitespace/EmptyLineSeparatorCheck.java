@@ -24,6 +24,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
+import com.puppycrawl.tools.checkstyle.MessageKey;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -341,6 +342,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
      * A key is pointing to the warning message empty.line.separator in "messages.properties"
      * file.
      */
+    @MessageKey
     public static final String MSG_SHOULD_BE_SEPARATED = "empty.line.separator";
 
     /**
@@ -348,12 +350,14 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
      *  in "messages.properties"
      * file.
      */
+    @MessageKey
     public static final String MSG_MULTIPLE_LINES = "empty.line.separator.multiple.lines";
 
     /**
      * A key is pointing to the warning message empty.line.separator.lines.after
      * in "messages.properties" file.
      */
+    @MessageKey
     public static final String MSG_MULTIPLE_LINES_AFTER =
             "empty.line.separator.multiple.lines.after";
 
@@ -361,6 +365,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
      * A key is pointing to the warning message empty.line.separator.multiple.lines.inside
      * in "messages.properties" file.
      */
+    @MessageKey
     public static final String MSG_MULTIPLE_LINES_INSIDE =
             "empty.line.separator.multiple.lines.inside";
 
