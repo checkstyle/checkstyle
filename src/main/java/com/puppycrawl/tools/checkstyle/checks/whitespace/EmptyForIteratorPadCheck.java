@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
 import java.util.Locale;
 
+import com.puppycrawl.tools.checkstyle.MessageKey;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -109,12 +110,14 @@ public class EmptyForIteratorPadCheck
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
+    @MessageKey
     public static final String MSG_WS_FOLLOWED = "ws.followed";
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
+    @MessageKey
     public static final String MSG_WS_NOT_FOLLOWED = "ws.notFollowed";
 
     /** Semicolon literal. */
