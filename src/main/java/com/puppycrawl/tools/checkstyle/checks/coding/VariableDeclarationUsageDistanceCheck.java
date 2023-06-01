@@ -23,7 +23,6 @@ import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map.Entry;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -652,9 +651,13 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
                     default:
                         exprWithVariableUsage = blockWithVariableUsage.getFirstChild();
                 }
-                currentScopeAst = exprWithVariableUsage;
-                variableUsageAst =
-                        Objects.requireNonNullElse(exprWithVariableUsage, blockWithVariableUsage);
+                if (exprWithVariableUsage == null) {
+                    variableUsageAst = blockWithVariableUsage;
+                }
+                else {
+                    variableUsageAst = exprWithVariableUsage;
+                    currentScopeAst = variableUsageAst;
+                }
             }
 
             // If there's no any variable usage, then distance = 0.
