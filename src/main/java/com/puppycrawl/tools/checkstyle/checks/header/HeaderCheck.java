@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.header;
 import java.io.File;
 import java.util.BitSet;
 
+import com.puppycrawl.tools.checkstyle.MessageKey;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
@@ -141,12 +142,14 @@ public class HeaderCheck extends AbstractHeaderCheck {
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
+    @MessageKey
     public static final String MSG_MISSING = "header.missing";
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
+    @MessageKey
     public static final String MSG_MISMATCH = "header.mismatch";
 
     /** Specify the line numbers to ignore. */

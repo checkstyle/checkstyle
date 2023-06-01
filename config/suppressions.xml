@@ -173,6 +173,9 @@
   <suppress checks="ClassFanOutComplexity"
             files="[\\/]src[\\/]main[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]JavaAstVisitor.java"/>
 
+  <!-- We use neagtive suppression to check check files only. -->
+  <suppress id="regexpCheckMessageKeyAnnotation"
+            files="^.((?!src[\\/]main[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/].+.java).)*$"/>
   <!-- DetailAST API requires large number of methods -->
   <suppress checks="MethodCount"
             files="[\\/]src[\\/]main[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]DetailAstImpl.java"/>

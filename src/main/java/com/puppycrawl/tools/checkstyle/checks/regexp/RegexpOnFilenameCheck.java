@@ -23,6 +23,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.regex.Pattern;
 
+import com.puppycrawl.tools.checkstyle.MessageKey;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
@@ -266,11 +267,13 @@ public class RegexpOnFilenameCheck extends AbstractFileSetCheck {
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
+    @MessageKey
     public static final String MSG_MATCH = "regexp.filename.match";
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
+    @MessageKey
     public static final String MSG_MISMATCH = "regexp.filename.mismatch";
 
     /** Specify the regular expression to match the folder path against. */

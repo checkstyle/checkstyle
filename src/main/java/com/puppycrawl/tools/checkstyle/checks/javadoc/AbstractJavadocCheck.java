@@ -30,6 +30,7 @@ import java.util.stream.Collectors;
 import com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser;
 import com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser.ParseErrorMessage;
 import com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser.ParseStatus;
+import com.puppycrawl.tools.checkstyle.MessageKey;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
@@ -56,18 +57,21 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
      * {@code "no viable alternative at input 'b \n *\n'"} and it is not
      * clear that error is about missed close HTML tag.
      */
+    @MessageKey
     public static final String MSG_JAVADOC_MISSED_HTML_CLOSE =
             JavadocDetailNodeParser.MSG_JAVADOC_MISSED_HTML_CLOSE;
 
     /**
      * Message key of error message.
      */
+    @MessageKey
     public static final String MSG_JAVADOC_WRONG_SINGLETON_TAG =
             JavadocDetailNodeParser.MSG_JAVADOC_WRONG_SINGLETON_TAG;
 
     /**
      * Parse error while rule recognition.
      */
+    @MessageKey
     public static final String MSG_JAVADOC_PARSE_RULE_ERROR =
             JavadocDetailNodeParser.MSG_JAVADOC_PARSE_RULE_ERROR;
 
