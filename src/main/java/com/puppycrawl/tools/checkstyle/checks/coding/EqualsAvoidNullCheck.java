@@ -679,7 +679,7 @@ public class EqualsAvoidNullCheck extends AbstractCheck {
          * @return method calls of this frame.
          */
         public Set<DetailAST> getMethodCalls() {
-            return Collections.unmodifiableSet(methodCalls);
+            return methodCalls;
         }
 
         /**
