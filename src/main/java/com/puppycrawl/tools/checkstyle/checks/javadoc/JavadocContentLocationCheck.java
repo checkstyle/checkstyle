@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import java.util.Locale;
 
+import com.puppycrawl.tools.checkstyle.MessageKey;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -156,11 +157,13 @@ public class JavadocContentLocationCheck extends AbstractCheck {
     /**
      * A key is pointing to the warning message text in "messages.properties" file.
      */
+    @MessageKey
     public static final String MSG_JAVADOC_CONTENT_FIRST_LINE = "javadoc.content.first.line";
 
     /**
      * A key is pointing to the warning message text in "messages.properties" file.
      */
+    @MessageKey
     public static final String MSG_JAVADOC_CONTENT_SECOND_LINE = "javadoc.content.second.line";
 
     /**

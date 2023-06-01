@@ -45,6 +45,7 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.Definitions;
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.GlobalStatefulCheck;
+import com.puppycrawl.tools.checkstyle.MessageKey;
 import com.puppycrawl.tools.checkstyle.ModuleFactory;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
@@ -529,7 +530,19 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                         name + " should have at least one 'MSG_*' field for error messages")
                                 .that(messages)
                                 .isNotEmpty();
+                if (!"JavadocMetadataScraper".equals(name)) {
+                    assertMessagesHaveMessageKeyAnnotation(name, messages);
+                }
             }
+        }
+    }
+
+    private static void assertMessagesHaveMessageKeyAnnotation(String name, Set<Field> messages) {
+        for (Field message : messages) {
+            assertWithMessage(message.getName() + " in "
+                    + name + " should have @MessageKey annotation")
+                    .that(message.getAnnotationsByType(MessageKey.class))
+                    .isNotEmpty();
         }
     }
 

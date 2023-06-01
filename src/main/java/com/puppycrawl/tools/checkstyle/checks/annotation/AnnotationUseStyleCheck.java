@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.annotation;
 
 import java.util.Locale;
 
+import com.puppycrawl.tools.checkstyle.MessageKey;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -356,6 +357,7 @@ public final class AnnotationUseStyleCheck extends AbstractCheck {
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
+    @MessageKey
     public static final String MSG_KEY_ANNOTATION_INCORRECT_STYLE =
         "annotation.incorrect.style";
 
@@ -363,6 +365,7 @@ public final class AnnotationUseStyleCheck extends AbstractCheck {
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
+    @MessageKey
     public static final String MSG_KEY_ANNOTATION_PARENS_MISSING =
         "annotation.parens.missing";
 
@@ -370,6 +373,7 @@ public final class AnnotationUseStyleCheck extends AbstractCheck {
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
+    @MessageKey
     public static final String MSG_KEY_ANNOTATION_PARENS_PRESENT =
         "annotation.parens.present";
 
@@ -377,6 +381,7 @@ public final class AnnotationUseStyleCheck extends AbstractCheck {
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
+    @MessageKey
     public static final String MSG_KEY_ANNOTATION_TRAILING_COMMA_MISSING =
         "annotation.trailing.comma.missing";
 
@@ -384,6 +389,7 @@ public final class AnnotationUseStyleCheck extends AbstractCheck {
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
+    @MessageKey
     public static final String MSG_KEY_ANNOTATION_TRAILING_COMMA_PRESENT =
         "annotation.trailing.comma.present";
 
