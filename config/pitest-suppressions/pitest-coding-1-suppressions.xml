@@ -108,12 +108,4 @@
     <lineContent>while (result</lineContent>
   </mutation>
 
-  <mutation unstable="false">
-    <sourceFile>VariableDeclarationUsageDistanceCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck</mutatedClass>
-    <mutatedMethod>isVariableInOperatorExpr</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
-    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getNextSibling with receiver</description>
-    <lineContent>DetailAST exprBetweenBrackets = openingBracket.getNextSibling();</lineContent>
-  </mutation>
 </suppressedMutations>
