@@ -374,9 +374,6 @@ public class DeclarationOrderCheck extends AbstractCheck {
                     log(modifierAst, MSG_STATIC);
                 }
             }
-            else {
-                state.currentScopeState = STATE_STATIC_VARIABLE_DEF;
-            }
         }
         return isStateValid;
     }
