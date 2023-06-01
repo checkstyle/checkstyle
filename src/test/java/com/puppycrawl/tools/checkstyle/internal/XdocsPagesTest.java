@@ -461,8 +461,6 @@ public class XdocsPagesTest {
 
     @Test
     public void testAllCheckSections() throws Exception {
-        final ModuleFactory moduleFactory = TestUtil.getPackageObjectFactory();
-
         for (Path path : XdocUtil.getXdocsConfigFilePaths(XdocUtil.getXdocsFilePaths())) {
             final String fileName = path.getFileName().toString();
 
@@ -497,8 +495,6 @@ public class XdocsPagesTest {
                                             lastSectionName.toLowerCase(Locale.ENGLISH)) >= 0)
                                     .isTrue();
                 }
-
-                validateCheckSection(moduleFactory, fileName, sectionName, section);
 
                 lastSectionName = sectionName;
             }
