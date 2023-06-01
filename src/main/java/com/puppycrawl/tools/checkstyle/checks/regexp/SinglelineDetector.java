@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.regexp;
 
 import java.util.regex.Matcher;
 
+import com.puppycrawl.tools.checkstyle.MessageKey;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 
 /**
@@ -32,12 +33,14 @@ class SinglelineDetector {
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
+    @MessageKey
     public static final String MSG_REGEXP_EXCEEDED = "regexp.exceeded";
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
+    @MessageKey
     public static final String MSG_REGEXP_MINIMUM = "regexp.minimum";
 
     /** The detection options to use. */

@@ -115,6 +115,13 @@
     <property name="matchAcrossLines" value="true" />
     <property name="message" value="Empty file is not allowed" />
   </module>
+  <module name="RegexpMultiline">
+    <property name="id" value="regexpCheckMessageKeyAnnotation"/>
+    <property name="format"
+              value="(?&lt;!@MessageKey)\n\s*public\sstatic\sfinal\sString\s.*MSG.*\s=\s&quot;.+&quot;;\n"/>
+    <property name="message"
+              value="Message keys should have @MessageKey annotation"/>
+  </module>
   <module name="RegexpSingleline">
     <property name="id" value="noTrailingWhitespace"/>
     <property name="format" value="\s+$"/>

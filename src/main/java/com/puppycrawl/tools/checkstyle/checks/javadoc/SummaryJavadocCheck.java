@@ -24,6 +24,7 @@ import java.util.BitSet;
 import java.util.Optional;
 import java.util.regex.Pattern;
 
+import com.puppycrawl.tools.checkstyle.MessageKey;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
@@ -221,23 +222,27 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
+    @MessageKey
     public static final String MSG_SUMMARY_FIRST_SENTENCE = "summary.first.sentence";
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
+    @MessageKey
     public static final String MSG_SUMMARY_JAVADOC = "summary.javaDoc";
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
+    @MessageKey
     public static final String MSG_SUMMARY_JAVADOC_MISSING = "summary.javaDoc.missing";
 
     /**
      * A key is pointing to the warning message text in "messages.properties" file.
      */
+    @MessageKey
     public static final String MSG_SUMMARY_MISSING_PERIOD = "summary.javaDoc.missing.period";
 
     /**
