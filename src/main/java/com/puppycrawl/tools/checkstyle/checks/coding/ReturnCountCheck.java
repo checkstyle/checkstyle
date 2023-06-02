@@ -387,7 +387,7 @@ public final class ReturnCountCheck extends AbstractCheck {
                 visitReturn(ast);
                 break;
             default:
-                throw new IllegalStateException(ast.toString());
+                throw new IllegalStateException();
         }
     }
 
