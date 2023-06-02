@@ -39,4 +39,8 @@
   <suppress checks="CommentsIndentation"
     files="singlespaceseparator[\\/]Example2.java"/>
 
+  <!-- Examples need spacing to be more readable -->
+  <suppress checks="FileLength"
+    files="visibilitymodifier[\\/]Example\d+.java"/>
+
 </suppressions>
