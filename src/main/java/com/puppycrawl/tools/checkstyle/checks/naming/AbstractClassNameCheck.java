@@ -62,10 +62,14 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </pre>
  * <p>Example:</p>
  * <pre>
- * abstract class AbstractFirstClass {} // OK
- * abstract class SecondClass {} // violation, it should match pattern "^Abstract.+$"
- * class AbstractThirdClass {} // violation, must be declared 'abstract'
- * class FourthClass {} // OK
+ * class Example1 {
+ *   abstract class AbstractFirst {}
+ *   abstract class Second {} // violation 'must match pattern '\^Abstract\.\+\$''
+ *   class AbstractThird {} // violation 'must be declared as 'abstract''
+ *   class Fourth {}
+ *   abstract class GeneratorFifth {} // violation 'must match pattern '\^Abstract\.\+\$''
+ *   class GeneratorSixth {}
+ * }
  * </pre>
  * <p>
  * To configure the check so that it check name
@@ -78,10 +82,14 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </pre>
  * <p>Example:</p>
  * <pre>
- * abstract class AbstractFirstClass {} // OK
- * abstract class SecondClass {} // violation, it should match pattern "^Abstract.+$"
- * class AbstractThirdClass {} // OK, no "abstract" modifier
- * class FourthClass {} // OK
+ * class Example2 {
+ *   abstract class AbstractFirst {}
+ *   abstract class Second {} // violation 'must match pattern '\^Abstract\.\+\$''
+ *   class AbstractThird {}
+ *   class Fourth {}
+ *   abstract class GeneratorFifth {} // violation 'must match pattern '\^Abstract\.\+\$''
+ *   class GeneratorSixth {}
+ * }
  * </pre>
  * <p>
  * To configure the check to ignore name
@@ -94,10 +102,14 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </pre>
  * <p>Example:</p>
  * <pre>
- * abstract class AbstractFirstClass {} // OK
- * abstract class SecondClass {} // OK, name validation is ignored
- * class AbstractThirdClass {} // violation, must be declared as 'abstract'
- * class FourthClass {} // OK, no "abstract" modifier
+ * class Example3 {
+ *   abstract class AbstractFirst {}
+ *   abstract class Second {}
+ *   class AbstractThird {} // violation 'must be declared as 'abstract''
+ *   class Fourth {}
+ *   abstract class GeneratorFifth {}
+ *   class GeneratorSixth {}
+ * }
  * </pre>
  * <p>
  * To configure the check
@@ -110,10 +122,14 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </pre>
  * <p>Example:</p>
  * <pre>
- * abstract class GeneratorFirstClass {} // OK
- * abstract class SecondClass {} // violation, must match pattern '^Generator.+$'
- * class GeneratorThirdClass {} // violation, must be declared 'abstract'
- * class FourthClass {} // OK, no "abstract" modifier
+ * class Example4 {
+ *   abstract class AbstractFirst {} // violation 'must match pattern '\^Generator\.\+\$''
+ *   abstract class Second {} // violation 'must match pattern '\^Generator\.\+\$''
+ *   class AbstractThird {}
+ *   class Fourth {}
+ *   abstract class GeneratorFifth {}
+ *   class GeneratorSixth {} // violation 'must be declared as 'abstract''
+ * }
  * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
