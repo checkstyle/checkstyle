@@ -367,15 +367,10 @@ public class DeclarationOrderCheck extends AbstractCheck {
             }
         }
         else {
-            if (state.currentScopeState > STATE_STATIC_VARIABLE_DEF) {
-                if (!ignoreModifiers
-                        || state.currentScopeState > STATE_INSTANCE_VARIABLE_DEF) {
-                    isStateValid = false;
-                    log(modifierAst, MSG_STATIC);
-                }
-            }
-            else {
-                state.currentScopeState = STATE_STATIC_VARIABLE_DEF;
+            if (state.currentScopeState > STATE_STATIC_VARIABLE_DEF && (!ignoreModifiers
+                    || state.currentScopeState > STATE_INSTANCE_VARIABLE_DEF)) {
+                isStateValid = false;
+                log(modifierAst, MSG_STATIC);
             }
         }
         return isStateValid;
