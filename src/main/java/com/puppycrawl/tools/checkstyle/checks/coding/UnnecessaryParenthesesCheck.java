@@ -643,7 +643,6 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
             }
         }
 
-        parentToSkip = null;
     }
 
     /**
