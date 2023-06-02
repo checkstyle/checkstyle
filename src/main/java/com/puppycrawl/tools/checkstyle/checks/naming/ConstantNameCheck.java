@@ -66,13 +66,16 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * </pre>
  * <p>Example:</p>
  * <pre>
- * class MyClass {
- *   public final static int FIRST_CONSTANT1 = 10; // OK
- *   protected final static int SECOND_CONSTANT2 = 100; // OK
- *   final static int third_Constant3 = 1000; // violation, name 'third_Constant3' must
- *                                           // match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'
- *   private final static int fourth_Const4 = 50; // violation, name 'fourth_Const4' must match
- *                                                 // pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'
+ * class Example1 {
+ *   public final static int FIRST_CONSTANT1 = 10;
+ *   protected final static int SECOND_CONSTANT2 = 100;
+ *   final static int third_Constant3 = 1000; // violation 'must match pattern'
+ *   private final static int fourth_Const4 = 50; // violation 'must match pattern'
+ *   public final static int log = 10; // violation 'must match pattern'
+ *   protected final static int logger = 50; // violation 'must match pattern'
+ *   final static int loggerMYSELF = 5; // violation 'must match pattern'
+ *   final static int MYSELF = 100;
+ *   protected final static int myselfConstant = 1; // violation 'must match pattern'
  * }
  * </pre>
  * <p>
@@ -87,16 +90,16 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * </pre>
  * <p>Code Example:</p>
  * <pre>
- * class MyClass {
- *   final static int log = 10; // OK
- *   final static int logger = 50; // OK
- *   final static int logMYSELF = 10; // violation, name 'logMYSELF' must match
- *                                    // pattern '^log(ger)?$|^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'
- *   final static int loggerMYSELF = 5; // violation, name 'loggerMYSELF' must match
- *                                      // pattern '^log(ger)?$|^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'
- *   final static int MYSELF = 100; // OK
- *   final static int myselfConstant = 1; // violation, name 'myselfConstant' must match pattern
- *                                        // '^log(ger)?$|^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'
+ * class Example2 {
+ *   public final static int FIRST_CONSTANT1 = 10;
+ *   protected final static int SECOND_CONSTANT2 = 100;
+ *   final static int third_Constant3 = 1000; // violation 'must match pattern'
+ *   private final static int fourth_Const4 = 50; // violation 'must match pattern'
+ *   public final static int log = 10;
+ *   protected final static int logger = 50;
+ *   final static int loggerMYSELF = 5; // violation 'must match pattern'
+ *   final static int MYSELF = 100;
+ *   protected final static int myselfConstant = 1; // violation 'must match pattern'
  * }
  * </pre>
  * <p>
@@ -111,13 +114,16 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * </pre>
  * <p>Code Example:</p>
  * <pre>
- * class MyClass {
- *   public final static int firstConstant = 10; // OK
- *   protected final static int secondConstant = 100; // OK
- *   final static int thirdConstant = 1000; // violation, name 'thirdConstant' must
- *                                          // match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'
- *   private final static int fourthConstant = 50; // violation, name 'fourthConstant' must match
- *                                                 // pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'
+ * class Example3 {
+ *   public final static int FIRST_CONSTANT1 = 10;
+ *   protected final static int SECOND_CONSTANT2 = 100;
+ *   final static int third_Constant3 = 1000; // violation 'must match pattern'
+ *   private final static int fourth_Const4 = 50; // violation 'must match pattern'
+ *   public final static int log = 10;
+ *   protected final static int logger = 50;
+ *   final static int loggerMYSELF = 5; // violation 'must match pattern'
+ *   final static int MYSELF = 100;
+ *   protected final static int myselfConstant = 1;
  * }
  * </pre>
  * <p>
