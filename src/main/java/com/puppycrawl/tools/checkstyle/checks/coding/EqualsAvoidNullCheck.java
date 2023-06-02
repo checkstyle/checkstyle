@@ -494,7 +494,7 @@ public class EqualsAvoidNullCheck extends AbstractCheck {
             final String className) {
         boolean result = false;
         final String name = objCalledOn.getText();
-        FieldFrame frame = getObjectFrame(currentFrame);
+        FieldFrame frame = currentFrame;
         while (frame != null) {
             if (className.equals(frame.getFrameName())) {
                 final DetailAST field = frame.findField(name);
