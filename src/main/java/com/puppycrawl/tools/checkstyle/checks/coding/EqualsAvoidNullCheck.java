@@ -613,7 +613,7 @@ public class EqualsAvoidNullCheck extends AbstractCheck {
          * @return children of this frame.
          */
         public Set<FieldFrame> getChildren() {
-            return Collections.unmodifiableSet(children);
+            return children;
         }
 
         /**
