@@ -37,15 +37,6 @@
   </mutation>
 
   <mutation unstable="false">
-    <sourceFile>EqualsAvoidNullCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.EqualsAvoidNullCheck$FieldFrame</mutatedClass>
-    <mutatedMethod>getMethodCalls</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
-    <description>replaced call to java/util/Collections::unmodifiableSet with argument</description>
-    <lineContent>return Collections.unmodifiableSet(methodCalls);</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
     <sourceFile>PackageDeclarationCheck.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.PackageDeclarationCheck</mutatedClass>
     <mutatedMethod>beginTree</mutatedMethod>
