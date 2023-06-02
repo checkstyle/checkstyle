@@ -403,7 +403,7 @@ public final class ReturnCountCheck extends AbstractCheck {
                 // Do nothing
                 break;
             default:
-                throw new IllegalStateException(ast.toString());
+                throw new IllegalStateException();
         }
     }
 
