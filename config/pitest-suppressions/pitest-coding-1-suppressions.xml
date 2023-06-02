@@ -20,15 +20,6 @@
 
   <mutation unstable="false">
     <sourceFile>EqualsAvoidNullCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.EqualsAvoidNullCheck</mutatedClass>
-    <mutatedMethod>isStringFieldOrVariableFromClass</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
-    <description>replaced call to com/puppycrawl/tools/checkstyle/checks/coding/EqualsAvoidNullCheck::getObjectFrame with argument</description>
-    <lineContent>frame = getObjectFrame(frame.getParent());</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>EqualsAvoidNullCheck.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.EqualsAvoidNullCheck$FieldFrame</mutatedClass>
     <mutatedMethod>getChildren</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
