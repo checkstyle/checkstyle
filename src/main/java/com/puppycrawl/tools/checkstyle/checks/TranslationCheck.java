@@ -46,6 +46,7 @@ import org.apache.commons.logging.LogFactory;
 import com.puppycrawl.tools.checkstyle.Definitions;
 import com.puppycrawl.tools.checkstyle.GlobalStatefulCheck;
 import com.puppycrawl.tools.checkstyle.LocalizedMessage;
+import com.puppycrawl.tools.checkstyle.MessageKey;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
@@ -239,12 +240,14 @@ public class TranslationCheck extends AbstractFileSetCheck {
      * A key is pointing to the warning message text for missing key
      * in "messages.properties" file.
      */
+    @MessageKey
     public static final String MSG_KEY = "translation.missingKey";
 
     /**
      * A key is pointing to the warning message text for missing translation file
      * in "messages.properties" file.
      */
+    @MessageKey
     public static final String MSG_KEY_MISSING_TRANSLATION_FILE =
         "translation.missingTranslationFile";
 

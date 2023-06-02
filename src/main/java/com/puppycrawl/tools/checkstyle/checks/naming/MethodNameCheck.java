@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.naming;
 
+import com.puppycrawl.tools.checkstyle.MessageKey;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
@@ -192,6 +193,7 @@ public class MethodNameCheck
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
+    @MessageKey
     public static final String MSG_KEY = "method.name.equals.class.name";
 
     /**

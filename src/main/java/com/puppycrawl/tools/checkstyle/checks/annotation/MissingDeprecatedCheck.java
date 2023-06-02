@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.annotation;
 
 import java.util.BitSet;
 
+import com.puppycrawl.tools.checkstyle.MessageKey;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
@@ -175,6 +176,7 @@ public final class MissingDeprecatedCheck extends AbstractJavadocCheck {
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
+    @MessageKey
     public static final String MSG_KEY_ANNOTATION_MISSING_DEPRECATED =
             "annotation.missing.deprecated";
 
@@ -182,6 +184,7 @@ public final class MissingDeprecatedCheck extends AbstractJavadocCheck {
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
+    @MessageKey
     public static final String MSG_KEY_JAVADOC_DUPLICATE_TAG =
             "javadoc.duplicateTag";
 

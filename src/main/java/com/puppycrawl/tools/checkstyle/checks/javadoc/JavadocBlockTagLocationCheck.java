@@ -25,6 +25,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
+import com.puppycrawl.tools.checkstyle.MessageKey;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
@@ -149,6 +150,7 @@ public class JavadocBlockTagLocationCheck extends AbstractJavadocCheck {
     /**
      * A key is pointing to the warning message text in "messages.properties" file.
      */
+    @MessageKey
     public static final String MSG_BLOCK_TAG_LOCATION = "javadoc.blockTagLocation";
 
     /**
