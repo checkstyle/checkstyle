@@ -109,5 +109,6 @@ public class InputSimplifyBooleanExpression
         temp = true ? a() : b(); // violation
         int d = false ? 1 : 2; // violation
         temp = a() ? true : true; // violation
+        temp = value != null ? value : (false); // ok
     }
 }
