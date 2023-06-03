@@ -318,15 +318,6 @@
   <mutation unstable="false">
     <sourceFile>UnusedLocalVariableCheck.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheck</mutatedClass>
-    <mutatedMethod>addInstanceOrClassVar</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
-    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::findFirstToken with receiver</description>
-    <lineContent>varDefAst.findFirstToken(TokenTypes.TYPE), findScopeOfVariable(varDefAst));</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>UnusedLocalVariableCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheck</mutatedClass>
     <mutatedMethod>getBlockContainingLocalAnonInnerClass</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
     <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getParent with receiver</description>
