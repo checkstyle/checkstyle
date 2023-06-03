@@ -31,7 +31,7 @@ public class AbstractClassNameCheckExamplesTest extends AbstractModuleTestSuppor
 
     @Override
     protected String getResourceLocation() {
-        return "xdocs-test";
+        return "xdocs-examples";
     }
 
     @Override
