@@ -1508,40 +1508,29 @@ class Test {
         </source>
         <p>Example with default values:</p>
         <source>
-public class MyClass {
- private int myPrivateField1;
-
- int field1;              // violation, must have a visibility modifier
-
- protected String field2; // violation, protected visibility is not allowed
-
- public int field3 = 42;  // violation, not static final, immutable,
-                          // nor matching the pattern
-
- public long serialVersionUID = 1L;
-
- public static final int field4 = 42;
-
- public final int field5 = 42;          // violation, public immutable fields are not allowed
- public final java.lang.String notes;   // violation, public immutable fields are not allowed
-
- public final Set&lt;String&gt; mySet1 = new HashSet&lt;&gt;();  // violation, HashSet is mutable
-
- public final ImmutableSet&lt;String&gt; mySet2;           // violation,
-                                                     // immutable type not in config
-
- public final ImmutableMap&lt;String, Object&gt; objects1; // violation,
-                                                     // immutable type not in config
-
- @com.annotation.CustomAnnotation
- String annotatedString;      // violation, annotation is not configured
-
- @CustomAnnotation
- String shortCustomAnnotated; // violation, annotation is not configured
-
- @com.google.common.annotations.VisibleForTesting
- public String testString = "";
-}
+private int myPrivateField1;
+int field1; // violation, must have a visibility modifier 'must be private'
+protected String field2; // violation, protected not allowed 'must be private'
+public int field3 = 42; // violation, not final 'must be private'
+public long serialVersionUID = 1L;
+public static final int field4 = 42;
+// violation below, public immutable fields are not allowed 'must be private'
+public final int field5 = 42;
+// violation below, public immutable fields are not allowed 'must be private'
+public final java.lang.String notes = null;
+// violation below, HashSet is mutable 'must be private'
+public final Set&lt;String&gt; mySet1 = new HashSet&lt;&gt;();
+// violation below, immutable type not in config 'must be private'
+public final ImmutableSet&lt;String&gt; mySet2 = null;
+// violation below, immutable type not in config 'must be private'
+public final ImmutableMap&lt;String, Object&gt; objects1 = null;
+@java.lang.Deprecated
+String annotatedString; // violation, annotation not configured 'must be private'
+@Deprecated
+// violation below, annotation not configured 'must be private'
+String shortCustomAnnotated;
+@com.google.common.annotations.VisibleForTesting
+public String testString = "";
         </source>
         <p>
           To configure the check so that it allows package visible members:
@@ -1553,40 +1542,29 @@ public class MyClass {
         </source>
         <p>Example of allowed package visible members:</p>
         <source>
-public class MyClass {
- private int myPrivateField1;
-
- int field1;
-
- protected String field2; // violation, protected visibility is not allowed
-
- public int field3 = 42;  // violation, not static final, immutable,
-                          // nor matching the pattern
-
- public long serialVersionUID = 1L;
-
- public static final int field4 = 42;
-
- public final int field5 = 42;          // violation, public immutable fields are not allowed
- public final java.lang.String notes;   // violation, public immutable fields are not allowed
-
- public final Set&lt;String&gt; mySet1 = new HashSet&lt;&gt;();  // violation, HashSet is mutable
-
- public final ImmutableSet&lt;String&gt; mySet2;           // violation,
-                                                     // immutable type not in config
-
- public final ImmutableMap&lt;String, Object&gt; objects1; // violation,
-                                                     // immutable type not in config
-
- @com.annotation.CustomAnnotation
- String annotatedString;
-
- @CustomAnnotation
- String shortCustomAnnotated;
-
- @com.google.common.annotations.VisibleForTesting
- public String testString = "";
-}
+private int myPrivateField1;
+int field1;
+protected String field2; // violation, protected not allowed 'must be private'
+// violation below, not final nor matching pattern 'must be private'
+public int field3 = 42;
+public long serialVersionUID = 1L;
+public static final int field4 = 42;
+// violation below, public immutable fields are not allowed 'must be private'
+public final int field5 = 42;
+// violation below, public immutable fields are not allowed 'must be private'
+public final java.lang.String notes = null;
+// violation below, HashSet is mutable 'must be private'
+public final Set&lt;String&gt; mySet1 = new HashSet&lt;&gt;();
+// violation below, immutable type not in config 'must be private'
+public final ImmutableSet&lt;String&gt; mySet2 = null;
+// violation below, immutable type not in config 'must be private'
+public final ImmutableMap&lt;String, Object&gt; objects1 = null;
+@java.lang.Deprecated
+String annotatedString;
+@Deprecated
+String shortCustomAnnotated;
+@com.google.common.annotations.VisibleForTesting
+public String testString = "";
         </source>
         <p>
           To configure the check so that it allows protected visible members:
@@ -1598,40 +1576,30 @@ public class MyClass {
         </source>
         <p>Example of allowed protected visible members:</p>
         <source>
-public class MyClass {
- private int myPrivateField1;
-
- int field1;              // violation, must have a visibility modifier
-
- protected String field2;
-
- public int field3 = 42;  // violation, not static final, immutable,
-                          // nor matching the pattern
-
- public long serialVersionUID = 1L;
-
- public static final int field4 = 42;
-
- public final int field5 = 42;          // violation, public immutable fields are not allowed
- public final java.lang.String notes;   // violation, public immutable fields are not allowed
-
- public final Set&lt;String&gt; mySet1 = new HashSet&lt;&gt;();  // violation, HashSet is mutable
-
- public final ImmutableSet&lt;String&gt; mySet2;           // violation,
-                                                     // immutable type not in config
-
- public final ImmutableMap&lt;String, Object&gt; objects1; // violation,
-                                                     // immutable type not in config
-
- @com.annotation.CustomAnnotation
- String annotatedString;      // violation, annotation is not configured
-
- @CustomAnnotation
- String shortCustomAnnotated; // violation, annotation is not configured
-
- @com.google.common.annotations.VisibleForTesting
- public String testString = "";
-}
+private int myPrivateField1;
+int field1; // violation, must have visibility modifier 'must be private'
+protected String field2;
+// violation below, not final nor matching pattern 'must be private'
+public int field3 = 42;
+public long serialVersionUID = 1L;
+public static final int field4 = 42;
+// violation below, public immutable fields are not allowed 'must be private'
+public final int field5 = 42;
+// violation below, public immutable fields are not allowed 'must be private'
+public final java.lang.String notes = null;
+// violation below, HashSet is mutable 'must be private'
+public final Set&lt;String&gt; mySet1 = new HashSet&lt;&gt;();
+// violation below, immutable type not in config 'must be private'
+public final ImmutableSet&lt;String&gt; mySet2 = null;
+// violation below, immutable type not in config 'must be private'
+public final ImmutableMap&lt;String, Object&gt; objects1 = null;
+@java.lang.Deprecated
+String annotatedString; // violation, annotation not configured 'must be private'
+@Deprecated
+// violation below, annotation not configured 'must be private'
+String shortCustomAnnotated;
+@com.google.common.annotations.VisibleForTesting
+public String testString = "";
         </source>
         <p>
           To configure the check so that it allows no public members:
@@ -1643,40 +1611,31 @@ public class MyClass {
         </source>
         <p>Example of not allowed public members:</p>
         <source>
-public class MyClass {
- private int myPrivateField1;
-
- int field1;              // violation, must have a visibility modifier
-
- protected String field2; // violation, protected visibility is not allowed
-
- public int field3 = 42;  // violation, not static final, immutable,
-                          // nor matching the pattern
-
- public long serialVersionUID = 1L;  // Violation, not matched the pattern '^$'
-
- public static final int field4 = 42;
-
- public final int field5 = 42;          // violation, public immutable fields are not allowed
- public final java.lang.String notes;   // violation, public immutable fields are not allowed
-
- public final Set&lt;String&gt; mySet1 = new HashSet&lt;&gt;();  // violation, HashSet is mutable
-
- public final ImmutableSet&lt;String&gt; mySet2;           // violation,
-                                                     // immutable type not in config
-
- public final ImmutableMap&lt;String, Object&gt; objects1; // violation,
-                                                     // immutable type not in config
-
- @com.annotation.CustomAnnotation
- String annotatedString;      // violation, annotation is not configured
-
- @CustomAnnotation
- String shortCustomAnnotated; // violation, annotation is not configured
-
- @com.google.common.annotations.VisibleForTesting
- public String testString = "";
-}
+private int myPrivateField1;
+int field1; // violation, must have visibility modifier 'must be private'
+protected String field2; // violation, protected not allowed 'must be private'
+// violation below, not final nor matching pattern 'must be private'
+public int field3 = 42;
+// violation below, doesn't match the pattern 'must be private'
+public long serialVersionUID = 1L;
+public static final int field4 = 42;
+// violation below, public immutable fields are not allowed 'must be private'
+public final int field5 = 42;
+// violation below, public immutable fields are not allowed 'must be private'
+public final java.lang.String notes = null;
+// violation below, HashSet is mutable 'must be private'
+public final Set&lt;String&gt; mySet1 = new HashSet&lt;&gt;();
+// violation below, immutable type not in config 'must be private'
+public final ImmutableSet&lt;String&gt; mySet2 = null;
+// violation below, immutable type not in config 'must be private'
+public final ImmutableMap&lt;String, Object&gt; objects1 = null;
+@java.lang.Deprecated
+String annotatedString; // violation, annotation not configured 'must be private'
+@Deprecated
+// violation below, annotation not configured 'must be private'
+String shortCustomAnnotated;
+@com.google.common.annotations.VisibleForTesting
+public String testString = "";
         </source>
         <p>
           To configure the Check so that it allows public immutable fields
@@ -1691,40 +1650,28 @@ public class MyClass {
           Example of allowed public immutable fields:
         </p>
         <source>
-public final class MyClass {
- private int myPrivateField1;
-
- int field1;              // violation, must have a visibility modifier
-
- protected String field2; // violation, protected visibility is not allowed
-
- public int field3 = 42;  // violation, not static final, immutable,
-                          // nor matching the pattern
-
- public long serialVersionUID = 1L;
-
- public static final int field4 = 42;
-
- public final int field5 = 42;
- public final java.lang.String notes;
-
- public final Set&lt;String&gt; mySet1 = new HashSet&lt;&gt;();  // violation, HashSet is mutable
-
- public final ImmutableSet&lt;String&gt; mySet2;           // violation,
-                                                     // immutable type not in config
-
- public final ImmutableMap&lt;String, Object&gt; objects1; // violation,
-                                                     // immutable type not in config
-
- @com.annotation.CustomAnnotation
- String annotatedString;      // violation, annotation is not configured
-
- @CustomAnnotation
- String shortCustomAnnotated; // violation, annotation is not configured
-
- @com.google.common.annotations.VisibleForTesting
- public String testString = "";
-}
+private int myPrivateField1;
+int field1; // violation, must have visibility modifier 'must be private'
+protected String field2; // violation, protected not allowed 'must be private'
+// violation below, not final nor matching pattern 'must be private'
+public int field3 = 42;
+public long serialVersionUID = 1L;
+public static final int field4 = 42;
+public final int field5 = 42; // violation 'must be private'
+public final java.lang.String notes = null; // violation 'must be private'
+// violation below, HashSet is mutable 'must be private'
+public final Set&lt;String&gt; mySet1 = new HashSet&lt;&gt;();
+// violation below, immutable type not in config 'must be private'
+public final ImmutableSet&lt;String&gt; mySet2 = null;
+// violation below, immutable type not in config 'must be private'
+public final ImmutableMap&lt;String, Object&gt; objects1 = null;
+@java.lang.Deprecated
+String annotatedString; // violation, annotation not configured 'must be private'
+@Deprecated
+// violation below, annotation not configured 'must be private'
+String shortCustomAnnotated;
+@com.google.common.annotations.VisibleForTesting
+public String testString = "";
         </source>
         <p>
           To configure the Check in order to allow user specified immutable class names:
@@ -1740,39 +1687,28 @@ public final class MyClass {
           Example of allowed public immutable fields:
         </p>
         <source>
-public final class MyClass {
- private int myPrivateField1;
-
- int field1;              // violation, must have a visibility modifier
-
- protected String field2; // violation, protected visibility is not allowed
-
- public int field3 = 42;  // violation, not static final, immutable,
-                          // nor matching the pattern
-
- public long serialVersionUID = 1L;
-
- public static final int field4 = 42;
-
- public final int field5 = 42;
- public final java.lang.String notes;
-
- public final Set&lt;String&gt; mySet1 = new HashSet&lt;&gt;();  // violation, HashSet is mutable
-
- public final ImmutableSet&lt;String&gt; mySet2;
-
- public final ImmutableMap&lt;String, Object&gt; objects1; // violation
-                                                     // immutable type not in config
-
- @com.annotation.CustomAnnotation
- String annotatedString;      // violation, annotation is not configured
-
- @CustomAnnotation
- String shortCustomAnnotated; // violation, annotation is not configured
-
- @com.google.common.annotations.VisibleForTesting
- public String testString = "";
-}
+private int myPrivateField1;
+int field1; // violation, must have visibility modifier 'must be private'
+protected String field2; // violation, protected not allowed 'must be private'
+// violation below, not final nor matching pattern 'must be private'
+public int field3 = 42;
+public long serialVersionUID = 1L;
+public static final int field4 = 42;
+public final int field5 = 42; // violation 'must be private'
+public final java.lang.String notes = null; // violation 'must be private'
+// violation below, HashSet is mutable 'must be private'
+public final Set&lt;String&gt; mySet1 = new HashSet&lt;&gt;();
+// violation below, immutable type not in config 'must be private'
+public final ImmutableSet&lt;String&gt; mySet2 = null;
+// violation below, immutable type not in config 'must be private'
+public final ImmutableMap&lt;String, Object&gt; objects1 = null;
+@java.lang.Deprecated
+String annotatedString; // violation, annotation not configured 'must be private'
+@Deprecated
+// violation below, annotation not configured 'must be private'
+String shortCustomAnnotated;
+@com.google.common.annotations.VisibleForTesting
+public String testString = "";
         </source>
         <p>
           Note, if allowPublicImmutableFields is set to true, the check will also check whether
@@ -1792,87 +1728,64 @@ public final class MyClass {
           Example of how the check works:
         </p>
         <source>
-public final class MyClass {
- private int myPrivateField1;
-
- int field1;              // violation, must have a visibility modifier
-
- protected String field2; // violation, protected visibility is not allowed
-
- public int field3 = 42;  // violation, not static final, immutable,
-                          // nor matching the pattern
-
- public long serialVersionUID = 1L;
-
- public static final int field4 = 42;
-
- public final int field5 = 42;
- public final java.lang.String notes;
-
- public final Set&lt;String&gt; mySet1 = new HashSet&lt;&gt;();  // violation, HashSet is mutable
-
- public final ImmutableSet&lt;String&gt; mySet2;
-
- public final ImmutableMap&lt;String, Object&gt; objects1; // violation
-                                                     // 'Object' still considered as mutable
-
- @com.annotation.CustomAnnotation
- String annotatedString;      // violation, annotation is not configured
-
- @CustomAnnotation
- String shortCustomAnnotated; // violation, annotation is not configured
-
- @com.google.common.annotations.VisibleForTesting
- public String testString = "";
-}
+private int myPrivateField1;
+int field1; // violation, must have visibility modifier 'must be private'
+protected String field2; // violation, protected not allowed 'must be private'
+// violation below, not final nor matching pattern 'must be private'
+public int field3 = 42;
+public long serialVersionUID = 1L;
+public static final int field4 = 42;
+public final int field5 = 42; // violation 'must be private'
+public final java.lang.String notes = null; // violation 'must be private'
+// violation below, HashSet is mutable 'must be private'
+public final Set&lt;String&gt; mySet1 = new HashSet&lt;&gt;();
+// violation below, immutable type not in config 'must be private'
+public final ImmutableSet&lt;String&gt; mySet2 = null;
+// violation below, immutable type not in config 'must be private'
+public final ImmutableMap&lt;String, Object&gt; objects1 = null;
+@java.lang.Deprecated
+String annotatedString; // violation, annotation not configured 'must be private'
+@Deprecated
+// violation below, annotation not configured 'must be private'
+String shortCustomAnnotated;
+@com.google.common.annotations.VisibleForTesting
+public String testString = "";
         </source>
         <p>
-          To configure the Check passing fields annotated with @com.annotation.CustomAnnotation:
+          To configure the Check passing fields annotated with @java.lang.Deprecated:
         </p>
         <source>
 &lt;module name=&quot;VisibilityModifier&quot;&gt;
   &lt;property name=&quot;ignoreAnnotationCanonicalNames&quot;
-    value=&quot;com.annotation.CustomAnnotation&quot;/&gt;
+    value=&quot;java.lang.Deprecated&quot;/&gt;
 &lt;/module&gt;
         </source>
         <p>
           Example of allowed field:
         </p>
         <source>
-public final class MyClass {
- private int myPrivateField1;
-
- int field1;              // violation, must have a visibility modifier
-
- protected String field2; // violation, protected visibility is not allowed
-
- public int field3 = 42;  // violation, not static final, immutable,
-                          // nor matching the pattern
-
- public long serialVersionUID = 1L;
-
- public static final int field4 = 42;
-
- public final int field5 = 42;          // violation, public immutable fields are not allowed
- public final java.lang.String notes;   // violation, public immutable fields are not allowed
-
- public final Set&lt;String&gt; mySet1 = new HashSet&lt;&gt;();  // violation, HashSet is mutable
-
- public final ImmutableSet&lt;String&gt; mySet2;           // violation,
-                                                     // immutable type not in config
-
- public final ImmutableMap&lt;String, Object&gt; objects1; // violation,
-                                                     // immutable type not in config
-
- @com.annotation.CustomAnnotation
- String annotatedString;
-
- @CustomAnnotation
- String shortCustomAnnotated;
-
- @com.google.common.annotations.VisibleForTesting
- public String testString = ""; // violation, annotation is not configured
-}
+private int myPrivateField1;
+int field1; // violation, must have visibility modifier 'must be private'
+protected String field2; // violation, protected not allowed 'must be private'
+// violation below, not final nor matching pattern 'must be private'
+public int field3 = 42;
+public long serialVersionUID = 1L;
+public static final int field4 = 42;
+public final int field5 = 42; // violation 'must be private'
+public final java.lang.String notes = null; // violation 'must be private'
+// violation below, HashSet is mutable 'must be private'
+public final Set&lt;String&gt; mySet1 = new HashSet&lt;&gt;();
+// violation below, immutable type not in config 'must be private'
+public final ImmutableSet&lt;String&gt; mySet2 = null;
+// violation below, immutable type not in config 'must be private'
+public final ImmutableMap&lt;String, Object&gt; objects1 = null;
+@java.lang.Deprecated
+String annotatedString;
+@Deprecated
+String shortCustomAnnotated;
+@com.google.common.annotations.VisibleForTesting
+// violation below, annotation not configured 'must be private'
+public String testString = "";
         </source>
 
         <p>
@@ -1886,40 +1799,28 @@ public final class MyClass {
           Example of allowed fields:
         </p>
         <source>
-public final class MyClass {
- private int myPrivateField1;
-
- int field1;              // violation, must have a visibility modifier
-
- protected String field2; // violation, protected visibility is not allowed
-
- public int field3 = 42;  // violation, not static final, immutable,
-                          // nor matching the pattern
-
- public long serialVersionUID = 1L;
-
- public static final int field4 = 42;
-
- public final int field5 = 42;          // violation, public immutable fields are not allowed
- public final java.lang.String notes;   // violation, public immutable fields are not allowed
-
- public final Set&lt;String&gt; mySet1 = new HashSet&lt;&gt;();  // violation, HashSet is mutable
-
- public final ImmutableSet&lt;String&gt; mySet2;           // violation,
-                                                     // immutable type not in config
-
- public final ImmutableMap&lt;String, Object&gt; objects1; // violation,
-                                                     // immutable type not in config
-
- @com.annotation.CustomAnnotation
- String annotatedString;      // violation, annotation is not configured
-
- @CustomAnnotation
- String shortCustomAnnotated; // violation, annotation is not configured
-
- @com.google.common.annotations.VisibleForTesting
- public String testString = "";
-}
+private int myPrivateField1;
+int field1; // violation, must have visibility modifier 'must be private'
+protected String field2; // violation, protected not allowed 'must be private'
+// violation below, not final nor matching pattern 'must be private'
+public int field3 = 42;
+public long serialVersionUID = 1L;
+public static final int field4 = 42;
+public final int field5 = 42; // violation 'must be private'
+public final java.lang.String notes = null; // violation 'must be private'
+// violation below, HashSet is mutable 'must be private'
+public final Set&lt;String&gt; mySet1 = new HashSet&lt;&gt;();
+// violation below, immutable type not in config 'must be private'
+public final ImmutableSet&lt;String&gt; mySet2 = null;
+// violation below, immutable type not in config 'must be private'
+public final ImmutableMap&lt;String, Object&gt; objects1 = null;
+@java.lang.Deprecated
+String annotatedString; // violation, annotation not configured 'must be private'
+@Deprecated
+// violation below, annotation not configured 'must be private'
+String shortCustomAnnotated;
+@com.google.common.annotations.VisibleForTesting
+public String testString = "";
         </source>
         <p>
           To configure the Check passing fields annotated with short annotation name:
@@ -1927,47 +1828,35 @@ public final class MyClass {
         <source>
 &lt;module name=&quot;VisibilityModifier&quot;&gt;
   &lt;property name=&quot;ignoreAnnotationCanonicalNames&quot;
-    value=&quot;CustomAnnotation&quot;/&gt;
+    value=&quot;Deprecated&quot;/&gt;
 &lt;/module&gt;
         </source>
         <p>
           Example of allowed fields:
         </p>
         <source>
-public final class MyClass {
- private int myPrivateField1;
-
- int field1;              // violation, must have a visibility modifier
-
- protected String field2; // violation, protected visibility is not allowed
-
- public int field3 = 42;  // violation, not static final, immutable,
-                          // nor matching the pattern
-
- public long serialVersionUID = 1L;
-
- public static final int field4 = 42;
-
- public final int field5 = 42;          // violation, public immutable fields are not allowed
- public final java.lang.String notes;   // violation, public immutable fields are not allowed
-
- public final Set&lt;String&gt; mySet1 = new HashSet&lt;&gt;();  // violation, HashSet is mutable
-
- public final ImmutableSet&lt;String&gt; mySet2;           // violation,
-                                                     // immutable type not in config
-
- public final ImmutableMap&lt;String, Object&gt; objects1; // violation,
-                                                     // immutable type not in config
-
- @com.annotation.CustomAnnotation
- String annotatedString;        // violation, annotation is not configured
-
- @CustomAnnotation
- String shortCustomAnnotated;
-
- @com.google.common.annotations.VisibleForTesting
- public String testString = ""; // violation, annotation is not configured
-}
+private int myPrivateField1;
+int field1; // violation, must have visibility modifier 'must be private'
+protected String field2; // violation, protected not allowed 'must be private'
+// violation below, not final nor matching pattern 'must be private'
+public int field3 = 42;
+public long serialVersionUID = 1L;
+public static final int field4 = 42;
+public final int field5 = 42; // violation 'must be private'
+public final java.lang.String notes = null; // violation 'must be private'
+// violation below, HashSet is mutable 'must be private'
+public final Set&lt;String&gt; mySet1 = new HashSet&lt;&gt;();
+// violation below, immutable type not in config 'must be private'
+public final ImmutableSet&lt;String&gt; mySet2 = null;
+// violation below, immutable type not in config 'must be private'
+public final ImmutableMap&lt;String, Object&gt; objects1 = null;
+@java.lang.Deprecated
+String annotatedString; // violation, annotation not configured 'must be private'
+@Deprecated
+String shortCustomAnnotated;
+@com.google.common.annotations.VisibleForTesting
+// violation below, annotation not configured 'must be private'
+public String testString = "";
         </source>
         <p>
           To understand the difference between allowPublicImmutableFields and
@@ -1985,22 +1874,11 @@ public final class MyClass {
           Code example:
         </p>
         <source>
-public class InputPublicImmutable {
-  public final int someIntValue; // violation
-  public final ImmutableSet&lt;String&gt; includes; // violation
-  public final java.lang.String notes; // violation
-  public final BigDecimal value; // violation
-  public final List list; // violation
-
-  public InputPublicImmutable(Collection&lt;String&gt; includes,
-        BigDecimal value, String notes, int someValue, List l) {
-    this.includes = ImmutableSet.copyOf(includes);
-    this.value = value;
-    this.notes = notes;
-    this.someIntValue = someValue;
-    this.list = l;
-  }
-}
+public final int someIntValue = 0; // violation 'must be private'
+public final ImmutableSet&lt;String&gt; includes = null; // violation 'must be private'
+public final java.lang.String notes = ""; // violation 'must be private'
+public final BigDecimal value = null; // violation 'must be private'
+public final List list = null; // violation 'must be private'
         </source>
         <p>
           2) To configure the check to use only 'allowPublicFinalFields' option:
@@ -2014,22 +1892,11 @@ public class InputPublicImmutable {
           Code example:
         </p>
         <source>
-public class InputPublicImmutable {
-  public final int someIntValue; // ok
-  public final ImmutableSet&lt;String&gt; includes; // ok
-  public final java.lang.String notes; // ok
-  public final BigDecimal value; // ok
-  public final List list; // ok
-
-  public InputPublicImmutable(Collection&lt;String&gt; includes,
-        BigDecimal value, String notes, int someValue, List l) {
-    this.includes = ImmutableSet.copyOf(includes);
-    this.value = value;
-    this.notes = notes;
-    this.someIntValue = someValue;
-    this.list = l;
-  }
-}
+public final int someIntValue = 0;
+public final ImmutableSet&lt;String&gt; includes = null;
+public final java.lang.String notes = "";
+public final BigDecimal value = null;
+public final List list = null;
         </source>
       </subsection>
 
