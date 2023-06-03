@@ -525,7 +525,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
                 && !isPrivateInstanceVariable(varDefAst)) {
             final DetailAST ident = varDefAst.findFirstToken(TokenTypes.IDENT);
             final VariableDesc desc = new VariableDesc(ident.getText(),
-                    varDefAst.findFirstToken(TokenTypes.TYPE), findScopeOfVariable(varDefAst));
+                    varDefAst.findFirstToken(TokenTypes.TYPE), varDefAst);
             typeDeclAstToTypeDeclDesc.get(parentAst.getParent()).addInstOrClassVar(desc);
         }
     }
