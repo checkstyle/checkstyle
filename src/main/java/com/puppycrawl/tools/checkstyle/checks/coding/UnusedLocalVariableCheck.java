@@ -244,8 +244,6 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
         typeDeclAstToTypeDeclDesc = new LinkedHashMap<>();
         anonInnerAstToTypeDeclDesc = new HashMap<>();
         anonInnerClassHolders = new HashSet<>();
-        packageName = null;
-        depth = 0;
     }
 
     @Override
