@@ -501,7 +501,7 @@ public class EqualsAvoidNullCheck extends AbstractCheck {
                 result = STRING.equals(getFieldType(field));
                 break;
             }
-            frame = getObjectFrame(frame.getParent());
+            frame = frame.getParent();
         }
         return result;
     }
@@ -514,7 +514,7 @@ public class EqualsAvoidNullCheck extends AbstractCheck {
      */
     private static FieldFrame getObjectFrame(FieldFrame frame) {
         FieldFrame objectFrame = frame;
-        while (objectFrame != null && !objectFrame.isClassOrEnumOrRecordDef()) {
+        while (!objectFrame.isClassOrEnumOrRecordDef()) {
             objectFrame = objectFrame.getParent();
         }
         return objectFrame;
