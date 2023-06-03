@@ -566,9 +566,6 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
 
         int resultDist = currentDistToVarUsage;
         switch (examineNode.getType()) {
-            case TokenTypes.VARIABLE_DEF:
-                resultDist++;
-                break;
             case TokenTypes.SLIST:
                 resultDist = 0;
                 break;
@@ -929,19 +926,16 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
     private static boolean isVariableInOperatorExpr(
             DetailAST operator, DetailAST variable) {
         boolean isVarInOperatorDeclaration = false;
-        final DetailAST openingBracket =
-                operator.findFirstToken(TokenTypes.LPAREN);
 
-        // Get EXPR between brackets
-        DetailAST exprBetweenBrackets = openingBracket.getNextSibling();
+        DetailAST ast = operator.findFirstToken(TokenTypes.LPAREN);
 
         // Look if variable is in operator expression
-        while (exprBetweenBrackets.getType() != TokenTypes.RPAREN) {
-            if (isChild(exprBetweenBrackets, variable)) {
+        while (ast.getType() != TokenTypes.RPAREN) {
+            if (isChild(ast, variable)) {
                 isVarInOperatorDeclaration = true;
                 break;
             }
-            exprBetweenBrackets = exprBetweenBrackets.getNextSibling();
+            ast = ast.getNextSibling();
         }
 
         // Variable may be met in ELSE declaration

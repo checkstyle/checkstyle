@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: 'Target version without (-SNAPSHOT)'
+        description: 'POM version without (-SNAPSHOT)'
         required: true
 
 concurrency:
@@ -68,12 +68,13 @@ jobs:
       contents: write
       issues: write
 
-  publish-releasenotes-twitter:
-    uses: ./.github/workflows/release-publish-releasenotes-twitter.yml
-    needs: update-github-page
-    with:
-      version: ${{ inputs.version }}
-    secrets: inherit
+  # until https://github.com/checkstyle/checkstyle/issues/13094
+  # publish-releasenotes-twitter:
+  #   uses: ./.github/workflows/release-publish-releasenotes-twitter.yml
+  #   needs: update-github-page
+  #   with:
+  #     version: ${{ inputs.version }}
+  #   secrets: inherit
 
   update-github-io:
     uses: ./.github/workflows/release-update-github-io.yml
