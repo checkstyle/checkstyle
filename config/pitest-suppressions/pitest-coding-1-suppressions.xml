@@ -1,15 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suppressedMutations>
   <mutation unstable="false">
-    <sourceFile>DeclarationOrderCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck</mutatedClass>
-    <mutatedMethod>processModifiersState</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
-    <description>Removed assignment to member variable currentScopeState</description>
-    <lineContent>state.currentScopeState = STATE_STATIC_VARIABLE_DEF;</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
     <sourceFile>EqualsAvoidNullCheck.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.EqualsAvoidNullCheck</mutatedClass>
     <mutatedMethod>isStringFieldOrVariableFromClass</mutatedMethod>
