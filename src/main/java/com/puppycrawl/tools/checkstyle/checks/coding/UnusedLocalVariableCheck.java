@@ -199,31 +199,31 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
     /**
      * Keeps tracks of the variables declared in file.
      */
-    private final Deque<VariableDesc> variables;
+    private final Deque<VariableDesc> variables = new ArrayDeque<>();
 
     /**
      * Keeps track of all the type declarations present in the file.
      * Pops the type out of the stack while leaving the type
      * in visitor pattern.
      */
-    private final Deque<TypeDeclDesc> typeDeclarations;
+    private final Deque<TypeDeclDesc> typeDeclarations = new ArrayDeque<>();
 
     /**
      * Maps type declaration ast to their respective TypeDeclDesc objects.
      */
-    private final Map<DetailAST, TypeDeclDesc> typeDeclAstToTypeDeclDesc;
+    private final Map<DetailAST, TypeDeclDesc> typeDeclAstToTypeDeclDesc = new LinkedHashMap<>();
 
     /**
      * Maps local anonymous inner class to the TypeDeclDesc object
      * containing it.
      */
-    private final Map<DetailAST, TypeDeclDesc> anonInnerAstToTypeDeclDesc;
+    private final Map<DetailAST, TypeDeclDesc> anonInnerAstToTypeDeclDesc = new HashMap<>();
 
     /**
      * Set of tokens of type {@link UnusedLocalVariableCheck#CONTAINERS_FOR_ANON_INNERS}
      * and {@link TokenTypes#LAMBDA} in some cases.
      */
-    private final Set<DetailAST> anonInnerClassHolders;
+    private final Set<DetailAST> anonInnerClassHolders = new HashSet<>();
 
     /**
      * Name of the package.
@@ -234,19 +234,6 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      * Depth at which a type declaration is nested, 0 for top level type declarations.
      */
     private int depth;
-
-    /**
-     * Creates a new {@code UnusedLocalVariableCheck} instance.
-     */
-    public UnusedLocalVariableCheck() {
-        variables = new ArrayDeque<>();
-        typeDeclarations = new ArrayDeque<>();
-        typeDeclAstToTypeDeclDesc = new LinkedHashMap<>();
-        anonInnerAstToTypeDeclDesc = new HashMap<>();
-        anonInnerClassHolders = new HashSet<>();
-        packageName = null;
-        depth = 0;
-    }
 
     @Override
     public int[] getDefaultTokens() {
