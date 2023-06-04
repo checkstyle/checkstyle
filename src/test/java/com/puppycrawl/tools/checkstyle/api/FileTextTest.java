@@ -190,4 +190,13 @@ public class FileTextTest extends AbstractPathTestSupport {
                 .isEqualTo(lineBreaks);
     }
 
+    @Test
+    public void testCharsetAfterCopyConstructor() throws IOException {
+        final Charset charset = StandardCharsets.ISO_8859_1;
+        final String filepath = getPath("InputFileTextImportControl.xml");
+        final FileText fileText = new FileText(new File(filepath), charset.name());
+        final FileText copy = new FileText(fileText);
+        assertWithMessage("Should not be null")
+                .that(copy.getCharset()).isNotNull();
+    }
 }
