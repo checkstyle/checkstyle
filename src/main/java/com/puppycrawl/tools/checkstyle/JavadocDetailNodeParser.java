@@ -60,22 +60,26 @@ public class JavadocDetailNodeParser {
      * {@code "no viable alternative at input 'b \n *\n'"} and it is not
      * clear that error is about missed close HTML tag.
      */
+    @MessageKey
     public static final String MSG_JAVADOC_MISSED_HTML_CLOSE = "javadoc.missed.html.close";
 
     /**
      * Message key of error message.
      */
+    @MessageKey
     public static final String MSG_JAVADOC_WRONG_SINGLETON_TAG =
         "javadoc.wrong.singleton.html.tag";
 
     /**
      * Parse error while rule recognition.
      */
+    @MessageKey
     public static final String MSG_JAVADOC_PARSE_RULE_ERROR = "javadoc.parse.rule.error";
 
     /**
      * Message property key for the Unclosed HTML message.
      */
+    @MessageKey
     public static final String MSG_UNCLOSED_HTML_TAG = "javadoc.unclosedHtml";
 
     /** Symbols with which javadoc starts. */

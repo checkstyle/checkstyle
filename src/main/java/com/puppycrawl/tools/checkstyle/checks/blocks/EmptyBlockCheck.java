@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.blocks;
 import java.util.Arrays;
 import java.util.Locale;
 
+import com.puppycrawl.tools.checkstyle.MessageKey;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -180,12 +181,14 @@ public class EmptyBlockCheck
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
+    @MessageKey
     public static final String MSG_KEY_BLOCK_NO_STATEMENT = "block.noStatement";
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
+    @MessageKey
     public static final String MSG_KEY_BLOCK_EMPTY = "block.empty";
 
     /** Specify the policy on block contents. */

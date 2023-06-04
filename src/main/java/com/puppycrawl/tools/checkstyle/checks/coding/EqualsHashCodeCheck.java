@@ -23,6 +23,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
+import com.puppycrawl.tools.checkstyle.MessageKey;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
@@ -131,12 +132,14 @@ public class EqualsHashCodeCheck
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
+    @MessageKey
     public static final String MSG_KEY_HASHCODE = "equals.noHashCode";
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
+    @MessageKey
     public static final String MSG_KEY_EQUALS = "equals.noEquals";
 
     /** Maps OBJ_BLOCK to the method definition of equals(). */

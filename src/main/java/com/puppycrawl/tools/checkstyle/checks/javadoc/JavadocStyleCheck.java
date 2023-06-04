@@ -27,6 +27,7 @@ import java.util.Set;
 import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser;
+import com.puppycrawl.tools.checkstyle.MessageKey;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -301,18 +302,23 @@ public class JavadocStyleCheck
     extends AbstractCheck {
 
     /** Message property key for the Empty Javadoc message. */
+    @MessageKey
     public static final String MSG_EMPTY = "javadoc.empty";
 
     /** Message property key for the No Javadoc end of Sentence Period message. */
+    @MessageKey
     public static final String MSG_NO_PERIOD = "javadoc.noPeriod";
 
     /** Message property key for the Incomplete Tag message. */
+    @MessageKey
     public static final String MSG_INCOMPLETE_TAG = "javadoc.incompleteTag";
 
     /** Message property key for the Unclosed HTML message. */
+    @MessageKey
     public static final String MSG_UNCLOSED_HTML = JavadocDetailNodeParser.MSG_UNCLOSED_HTML_TAG;
 
     /** Message property key for the Extra HTML message. */
+    @MessageKey
     public static final String MSG_EXTRA_HTML = "javadoc.extraHtml";
 
     /** HTML tags that do not require a close tag. */

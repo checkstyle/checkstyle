@@ -26,6 +26,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import com.puppycrawl.tools.checkstyle.MessageKey;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -338,6 +339,7 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
     /**
      * Warning message key.
      */
+    @MessageKey
     public static final String MSG_KEY = "abbreviation.as.word";
 
     /**
