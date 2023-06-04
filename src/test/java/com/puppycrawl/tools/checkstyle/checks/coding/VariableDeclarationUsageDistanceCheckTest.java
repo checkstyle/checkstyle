@@ -58,8 +58,6 @@ public class VariableDeclarationUsageDistanceCheckTest extends
             "355:9: " + getCheckMessage(MSG_KEY, "green", 2, 1),
             "356:9: " + getCheckMessage(MSG_KEY, "blue", 3, 1),
             "379:9: " + getCheckMessage(MSG_KEY, "intervalMs", 2, 1),
-            "466:9: " + getCheckMessage(MSG_KEY, "aOpt", 3, 1),
-            "467:9: " + getCheckMessage(MSG_KEY, "bOpt", 2, 1),
             "483:9: " + getCheckMessage(MSG_KEY, "l1", 3, 1),
             "483:9: " + getCheckMessage(MSG_KEY, "l2", 2, 1),
             "491:9: " + getCheckMessage(MSG_KEY, "myOption", 7, 1),
@@ -142,8 +140,6 @@ public class VariableDeclarationUsageDistanceCheckTest extends
             "355:9: " + getCheckMessage(MSG_KEY, "green", 2, 1),
             "356:9: " + getCheckMessage(MSG_KEY, "blue", 3, 1),
             "379:9: " + getCheckMessage(MSG_KEY, "intervalMs", 2, 1),
-            "466:9: " + getCheckMessage(MSG_KEY, "aOpt", 3, 1),
-            "467:9: " + getCheckMessage(MSG_KEY, "bOpt", 2, 1),
             "483:9: " + getCheckMessage(MSG_KEY, "l1", 3, 1),
             "483:9: " + getCheckMessage(MSG_KEY, "l2", 2, 1),
             "491:9: " + getCheckMessage(MSG_KEY, "myOption", 7, 1),
@@ -172,8 +168,6 @@ public class VariableDeclarationUsageDistanceCheckTest extends
             "355:9: " + getCheckMessage(MSG_KEY, "green", 2, 1),
             "356:9: " + getCheckMessage(MSG_KEY, "blue", 3, 1),
             "379:9: " + getCheckMessage(MSG_KEY, "intervalMs", 2, 1),
-            "466:9: " + getCheckMessage(MSG_KEY, "aOpt", 3, 1),
-            "467:9: " + getCheckMessage(MSG_KEY, "bOpt", 2, 1),
             "483:9: " + getCheckMessage(MSG_KEY, "l1", 3, 1),
             "483:9: " + getCheckMessage(MSG_KEY, "l2", 2, 1),
             "491:9: " + getCheckMessage(MSG_KEY, "myOption", 7, 1),
@@ -210,8 +204,6 @@ public class VariableDeclarationUsageDistanceCheckTest extends
             "312:9: " + getCheckMessage(MSG_KEY_EXT, "wh", 2, 1),
             "355:9: " + getCheckMessage(MSG_KEY_EXT, "green", 2, 1),
             "356:9: " + getCheckMessage(MSG_KEY_EXT, "blue", 3, 1),
-            "466:9: " + getCheckMessage(MSG_KEY_EXT, "aOpt", 3, 1),
-            "467:9: " + getCheckMessage(MSG_KEY_EXT, "bOpt", 2, 1),
             "483:9: " + getCheckMessage(MSG_KEY_EXT, "l1", 3, 1),
             "483:9: " + getCheckMessage(MSG_KEY_EXT, "l2", 2, 1),
             "491:9: " + getCheckMessage(MSG_KEY_EXT, "myOption", 7, 1),
@@ -344,6 +336,7 @@ public class VariableDeclarationUsageDistanceCheckTest extends
         final String[] expected = {
             "19:9: " + getCheckMessage(MSG_KEY, "a", 2, 1),
             "20:9: " + getCheckMessage(MSG_KEY, "b", 2, 1),
+            "107:9: " + getCheckMessage(MSG_KEY, "values", 2, 1),
         };
 
         verifyWithInlineConfigParser(
@@ -377,4 +370,37 @@ public class VariableDeclarationUsageDistanceCheckTest extends
         verifyWithInlineConfigParser(
                 getPath("InputVariableDeclarationUsageDistance1.java"), expected);
     }
+
+    @Test
+    public void testVariableDeclarationUsageDistanceInitializationStatements() throws Exception {
+
+        final int maxDistance = 3;
+        final String[] expected = {
+            "17:13: " + getCheckMessage(MSG_KEY_EXT, "var", 4, maxDistance),
+            "28:13: " + getCheckMessage(MSG_KEY_EXT, "ar2", 5, maxDistance),
+            "48:13: " + getCheckMessage(MSG_KEY_EXT, "abc", 6, maxDistance),
+            "89:13: " + getCheckMessage(MSG_KEY_EXT, "c", 4, maxDistance),
+            "98:13: " + getCheckMessage(MSG_KEY_EXT, "a", 5, maxDistance),
+        };
+
+        final String filename =
+            "InputVariableDeclarationUsageDistanceInitializationStatements.java";
+        verifyWithInlineConfigParser(getPath(filename), expected);
+    }
+
+    @Test
+    public void testVariableDeclarationUsageDistanceInitializationStatements2() throws Exception {
+
+        final int maxDistance = 1;
+        final String[] expected = {
+            "19:9: " + getCheckMessage(MSG_KEY_EXT, "d", 6, maxDistance),
+            "31:9: " + getCheckMessage(MSG_KEY_EXT, "s", 6, maxDistance),
+            "41:9: " + getCheckMessage(MSG_KEY_EXT, "a", 4, maxDistance),
+        };
+
+        final String filename =
+            "InputVariableDeclarationUsageDistanceInitializationStatements2.java";
+        verifyWithInlineConfigParser(getPath(filename), expected);
+    }
+
 }

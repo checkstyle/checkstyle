@@ -463,12 +463,12 @@ public class InputVariableDeclarationUsageDistanceScopes {
     }
 
     public void testIssue32_6() {
-        Option aOpt = null; // violation 'Distance .* is 3.'
-        Option bOpt = null; // violation 'Distance .* is 2.'
+        Option aOpt = null; // ok
+        Option bOpt = null; // ok
         Option cOpt = null;
-        isNull(cOpt); // distance = 1
-        isNull(bOpt); // distance = 2
-        isNull(aOpt); // distance = 3
+        isNull(cOpt);
+        isNull(bOpt);
+        isNull(aOpt);
     }
 
     public void testIssue32_7() {

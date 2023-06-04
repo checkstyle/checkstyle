@@ -99,12 +99,13 @@ public class InputVariableDeclarationUsageDistanceTryResources {
             b.substring(0, a.toString().length());
         }
     }
-    private void method5(OutputStream out, HashMap<String, myClass> fieldStatistics)
-            throws IOException {
-        out.write(fieldStatistics.size());
-        final boolean[] states = {fieldStatistics.isEmpty(), fieldStatistics.isEmpty()};
-        Object[] keys = fieldStatistics.keySet().toArray(new String[0]);
-        Object[] values = fieldStatistics.values().toArray(new myClass[0]);
+    private void method5(OutputStream out, HashMap<String, myClass> foo) throws IOException {
+        final boolean[] states = {foo.isEmpty(), foo.isEmpty()};
+        Object[] keys = foo.keySet().toArray(new String[0]);
+
+        // Until https://github.com/checkstyle/checkstyle/issues/13154
+        Object[] values = foo.values().toArray(new myClass[0]);
+                                                              // violation above 'Distance .* is 2.'
         for (int i = 0; i < states.length; i++) {
             if (states[i]) {
                 out.write(((String) keys[i]).getBytes());

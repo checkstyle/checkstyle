@@ -201,37 +201,58 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
                 else {
                     entry = calculateDistanceInSingleScope(semicolonAst, variable);
                 }
-                final DetailAST variableUsageAst = entry.getKey();
-                final int dist = entry.getValue();
-                if (dist > allowedDistance
-                        && !isInitializationSequence(variableUsageAst, variable.getText())) {
-                    if (ignoreFinal) {
-                        log(ast, MSG_KEY_EXT, variable.getText(), dist, allowedDistance);
-                    }
-                    else {
-                        log(ast, MSG_KEY, variable.getText(), dist, allowedDistance);
-                    }
+                if (isViolation(variable, entry)) {
+                    logViolation(ast, variable, entry.getValue());
                 }
             }
         }
     }
 
     /**
-     * Get name of instance whose method is called.
+     * Whether the variable ast node under inspection would produce a violation.
      *
-     * @param methodCallAst
-     *        DetailAST of METHOD_CALL.
-     * @return name of instance.
+     * @param variable ast node of the type {@link TokenTypes#IDENT}
+     * @param entry    entry which contains expression with variable usage and distance
+     * @return {@code true} if the ast node under inspection would produce a violation
      */
-    private static String getInstanceName(DetailAST methodCallAst) {
-        final String methodCallName =
-                FullIdent.createFullIdentBelow(methodCallAst).getText();
-        final int lastDotIndex = methodCallName.lastIndexOf('.');
-        String instanceName = "";
-        if (lastDotIndex != -1) {
-            instanceName = methodCallName.substring(0, lastDotIndex);
+    private boolean isViolation(DetailAST variable, Entry<DetailAST, Integer> entry) {
+        final DetailAST variableUsageAst = entry.getKey();
+        final int dist = entry.getValue();
+        return dist > allowedDistance
+                && !isInitializationSequence(variableUsageAst, variable.getText());
+    }
+
+    /**
+     * Helper method to log a violation.
+     *
+     * @param ast      ast node under inspection
+     * @param variable ast node of the type {@link TokenTypes#IDENT}
+     * @param distance distance between declaration of variable and its first usage
+     */
+    private void logViolation(DetailAST ast, DetailAST variable, int distance) {
+        if (ignoreFinal) {
+            log(ast, MSG_KEY_EXT, variable.getText(), distance, allowedDistance);
         }
-        return instanceName;
+        else {
+            log(ast, MSG_KEY, variable.getText(), distance, allowedDistance);
+        }
+    }
+
+    /**
+     * Get name of instance whose method is called or the name of the method if it isn't called with
+     * explicit instance.
+     *
+     * @param methodCallFullIdent {@link FullIdent} of the method call ast
+     * @return name of instance or the method
+     */
+    private static String getMethodOrInstanceName(FullIdent methodCallFullIdent) {
+        final String methodCallName = methodCallFullIdent.getText();
+        final int lastDotIndex = methodCallName.indexOf('.');
+        String methodOrInstanceName = methodCallName;
+        if (lastDotIndex != -1) {
+            methodOrInstanceName = methodCallName.substring(0, lastDotIndex);
+        }
+        return methodOrInstanceName;
     }
 
     /**
@@ -249,36 +270,82 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
             DetailAST variableUsageAst, String variableName) {
         boolean result = true;
         boolean isUsedVariableDeclarationFound = false;
+        boolean isFirstMethodCallToBeExamined = true;
+        boolean isInitialMethodCalledWithInstance = false;
+        boolean anotherVariableDeclarationFound = false;
         DetailAST currentSiblingAst = variableUsageAst;
-        String initInstanceName = "";
+        String initialMethodOrInstanceName = "";
 
-        while (result && !isUsedVariableDeclarationFound && currentSiblingAst != null) {
-            if (currentSiblingAst.getType() == TokenTypes.EXPR
-                    && currentSiblingAst.getFirstChild().getType() == TokenTypes.METHOD_CALL) {
+        while (result
+                && !isUsedVariableDeclarationFound
+                && currentSiblingAst != null) {
+            final int type = currentSiblingAst.getType();
+            if (type == TokenTypes.EXPR) {
                 final DetailAST methodCallAst = currentSiblingAst.getFirstChild();
-                final String instanceName = getInstanceName(methodCallAst);
-                if (instanceName.isEmpty()) {
+
+                if (!anotherVariableDeclarationFound
+                        && methodCallAst.getType() == TokenTypes.METHOD_CALL) {
+                    final FullIdent methodCallFullIdent =
+                            FullIdent.createFullIdentBelow(methodCallAst);
+                    final DetailAST methodCallIdent = methodCallFullIdent.getDetailAst();
+                    final String methodOrInstanceName =
+                            getMethodOrInstanceName(methodCallFullIdent);
+                    isInitialMethodCalledWithInstance = isInitialMethodCalledWithInstance(
+                            isFirstMethodCallToBeExamined, isInitialMethodCalledWithInstance,
+                            methodCallIdent);
+                    isFirstMethodCallToBeExamined = false;
+                    final boolean isMethodCalledWithInstance = !TokenUtil.isOfType(
+                            methodCallIdent.getParent(), TokenTypes.METHOD_CALL);
+                    result = isMethodCalledWithInstance == isInitialMethodCalledWithInstance;
+                    // differs from previous instance
+                    if (!methodOrInstanceName.equals(initialMethodOrInstanceName)) {
+                        if (initialMethodOrInstanceName.isEmpty()) {
+                            initialMethodOrInstanceName = methodOrInstanceName;
+                        }
+                        else {
+                            result = false;
+                        }
+                    }
+                }
+                else {
                     result = false;
                 }
-                else if (!instanceName.equals(initInstanceName)) {
-                    if (initInstanceName.isEmpty()) {
-                        initInstanceName = instanceName;
-                    }
-                    else {
-                        result = false;
-                    }
-                }
-
             }
-            else if (currentSiblingAst.getType() == TokenTypes.VARIABLE_DEF) {
-                final String currentVariableName =
-                        currentSiblingAst.findFirstToken(TokenTypes.IDENT).getText();
+            else if (type == TokenTypes.VARIABLE_DEF) {
+                final String currentVariableName = currentSiblingAst
+                        .findFirstToken(TokenTypes.IDENT).getText();
                 isUsedVariableDeclarationFound = variableName.equals(currentVariableName);
+
+                // We set it to true regardless of isUsedVariableDeclarationFound to be true
+                // or false, because if isUsedVariableDeclarationFound is true, then we break
+                // from the loop and if it is false, then anotherVariableDeclarationFound must
+                // be true
+                anotherVariableDeclarationFound = true;
             }
             else {
-                result = currentSiblingAst.getType() == TokenTypes.SEMI;
+                result = type == TokenTypes.SEMI;
             }
             currentSiblingAst = currentSiblingAst.getPreviousSibling();
+        }
+        return result;
+    }
+
+    /**
+     * Is initial method called with an instance.
+     *
+     * @param isFirstMethodCallToBeExamined whether current method call the first one to be examined
+     * @param initialMethodCalledWithInstance whether the initial method is called with an
+     *                                        instance or not
+     * @param methodCallIdent {@link DetailAST} of type {@link TokenTypes#IDENT} or
+     *                        {@link TokenTypes#LITERAL_THIS} or {@link TokenTypes#LITERAL_SUPER}
+     *                        which is used to identify the method call
+     * @return {@code true} if the initial method is called with an instance
+     */
+    private static boolean isInitialMethodCalledWithInstance(boolean isFirstMethodCallToBeExamined,
+        boolean initialMethodCalledWithInstance, DetailAST methodCallIdent) {
+        boolean result = initialMethodCalledWithInstance;
+        if (isFirstMethodCallToBeExamined) {
+            result = !TokenUtil.isOfType(methodCallIdent.getParent(), TokenTypes.METHOD_CALL);
         }
         return result;
     }
