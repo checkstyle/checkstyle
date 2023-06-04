@@ -2438,17 +2438,6 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UnusedLocalVariableCheck.java</fileName>
-    <specifier>assignment</specifier>
-    <message>incompatible types in assignment.</message>
-    <lineContent>packageName = null;</lineContent>
-    <details>
-      found   : null (NullType)
-      required: @Initialized @NonNull String
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UnusedLocalVariableCheck.java</fileName>
     <specifier>dereference.of.nullable</specifier>
     <message>dereference of possibly-null reference anonInnerAstToTypeDeclDesc.get(literalNewAst)</message>
     <lineContent>anonInnerAstToTypeDeclDesc.get(literalNewAst).getQualifiedName(),</lineContent>
@@ -2480,6 +2469,13 @@
     <specifier>dereference.of.nullable</specifier>
     <message>dereference of possibly-null reference variablesStack.peek()</message>
     <lineContent>while (!variablesStack.isEmpty() &amp;&amp; variablesStack.peek().getScope() == scopeAst) {</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UnusedLocalVariableCheck.java</fileName>
+    <specifier>initialization.field.uninitialized</specifier>
+    <message>the default constructor does not initialize field packageName</message>
+    <lineContent>private String packageName;</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
