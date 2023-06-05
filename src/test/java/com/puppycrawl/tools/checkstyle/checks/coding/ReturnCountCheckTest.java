@@ -174,4 +174,38 @@ public class ReturnCountCheckTest extends AbstractModuleTestSupport {
                 .isTrue();
     }
 
+    @Test
+    public void testImproperToken2() {
+        final ReturnCountCheck check = new ReturnCountCheck();
+
+        final DetailAstImpl classDefAst = new DetailAstImpl();
+        classDefAst.setType(TokenTypes.CLASS_DEF);
+
+        try {
+            check.leaveToken(classDefAst);
+            assertWithMessage("IllegalStateException is expected").fail();
+        }
+        catch (IllegalStateException e) {
+            assertWithMessage("Message dont contain ast")
+                    .that(e.getMessage())
+                    .isEqualTo(classDefAst.toString());
+        }
+    }
+
+    @Test
+    public void testImproperToken3() {
+        final ReturnCountCheck check = new ReturnCountCheck();
+        final DetailAstImpl classDefAst = new DetailAstImpl();
+        classDefAst.setType(TokenTypes.CLASS_DEF);
+        try {
+            check.visitToken(classDefAst);
+            assertWithMessage("IllegalStateException is expected").fail();
+        }
+        catch (IllegalStateException e) {
+            assertWithMessage("Message dont contain ast")
+                    .that(e.getMessage())
+                    .isEqualTo(classDefAst.toString());
+        }
+    }
+
 }
