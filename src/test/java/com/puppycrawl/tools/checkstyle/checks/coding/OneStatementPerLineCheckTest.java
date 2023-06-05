@@ -22,9 +22,16 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck.MSG_KEY;
 
+import java.io.File;
+import java.util.Optional;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.JavaParser;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class OneStatementPerLineCheckTest extends AbstractModuleTestSupport {
@@ -120,4 +127,60 @@ public class OneStatementPerLineCheckTest extends AbstractModuleTestSupport {
                 expected);
     }
 
+    @Test
+    public void testClearStateInLambda() throws Exception {
+        final OneStatementPerLineCheck check = new OneStatementPerLineCheck();
+        final Optional<DetailAST> lambda = TestUtil.findTokenInAstByPredicate(
+                JavaParser.parseFile(
+                        new File(getPath("InputOneStatementPerLineBeginTreeTest.java")),
+                        JavaParser.Options.WITHOUT_COMMENTS),
+                ast -> ast.getType() == TokenTypes.LAMBDA);
+        assertWithMessage("ast should contain lambda")
+                .that(lambda.isPresent())
+                .isTrue();
+        assertWithMessage("State is not cleared on beginTree")
+                .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check, lambda.get(),
+                        "isInLambda", isInLambda -> {
+                            return !((boolean) isInLambda);
+                        }))
+                .isTrue();
+    }
+
+    @Test
+    public void testClearStateForHeader() throws Exception {
+        final OneStatementPerLineCheck check = new OneStatementPerLineCheck();
+        final Optional<DetailAST> forInit = TestUtil.findTokenInAstByPredicate(
+                JavaParser.parseFile(
+                        new File(getPath("InputOneStatementPerLineBeginTreeTest.java")),
+                        JavaParser.Options.WITHOUT_COMMENTS),
+                ast -> ast.getType() == TokenTypes.FOR_INIT);
+        assertWithMessage("ast should contain for init")
+                .that(forInit.isPresent())
+                .isTrue();
+        assertWithMessage("State is not cleared on beginTree")
+                .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check, forInit.get(),
+                        "inForHeader", inForHeader -> {
+                            return !(boolean) inForHeader;
+                        }))
+                .isTrue();
+    }
+
+    @Test
+    public void testClearStateForStatementEnd() throws Exception {
+        final OneStatementPerLineCheck check = new OneStatementPerLineCheck();
+        final Optional<DetailAST> forIterator = TestUtil.findTokenInAstByPredicate(
+                JavaParser.parseFile(
+                        new File(getPath("InputOneStatementPerLineBeginTreeTest.java")),
+                        JavaParser.Options.WITHOUT_COMMENTS),
+                ast -> ast.getType() == TokenTypes.FOR_ITERATOR);
+        assertWithMessage("ast should contain forIterator")
+                .that(forIterator.isPresent())
+                .isTrue();
+        assertWithMessage("State is not cleared on beginTree")
+                .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check, forIterator.get(),
+                        "forStatementEnd", forStatementEnd -> {
+                            return (int) forStatementEnd == -1;
+                        }))
+                .isTrue();
+    }
 }
