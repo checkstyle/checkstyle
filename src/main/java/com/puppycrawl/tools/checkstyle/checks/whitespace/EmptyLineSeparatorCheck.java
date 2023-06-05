@@ -367,6 +367,9 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
     /** Allow no empty line between fields. */
     private boolean allowNoEmptyLineBetweenFields;
 
+    /** Allow empty line before return. */
+    private boolean allowEmptyLineBeforeReturn;
+
     /** Allow multiple empty lines between class members. */
     private boolean allowMultipleEmptyLines = true;
 
@@ -381,6 +384,15 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
      */
     public final void setAllowNoEmptyLineBetweenFields(boolean allow) {
         allowNoEmptyLineBetweenFields = allow;
+    }
+
+    /**
+     * Setter to allow empty lines before return.
+     *
+     * @param allow User's value.
+     */
+    public final void setAllowEmptyLineBeforeReturn(boolean allow) {
+        allowEmptyLineBeforeReturn = allow;
     }
 
     /**
@@ -427,6 +439,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
             TokenTypes.VARIABLE_DEF,
             TokenTypes.RECORD_DEF,
             TokenTypes.COMPACT_CTOR_DEF,
+            TokenTypes.LITERAL_RETURN,
         };
     }
 
@@ -446,6 +459,9 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
         }
         if (ast.getType() == TokenTypes.PACKAGE_DEF) {
             checkCommentInModifiers(ast);
+        }
+        if (allowEmptyLineBeforeReturn && ast.getType() == TokenTypes.LITERAL_RETURN) {
+            processReturn(ast);
         }
         DetailAST nextToken = ast.getNextSibling();
         while (nextToken != null && TokenUtil.isCommentType(nextToken.getType())) {
@@ -485,7 +501,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
                 }
                 else if (!hasEmptyLineAfter(ast)) {
                     log(nextToken, MSG_SHOULD_BE_SEPARATED,
-                        nextToken.getText());
+                            nextToken.getText());
                 }
         }
     }
@@ -643,6 +659,16 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
     }
 
     /**
+     * Checks if a token has an empty line before return is allowed.
+     *
+     * @param token DetailAST token
+     * @return true, if token allows empty line before return, and false if it does not
+     */
+    private boolean hasEmptyLineBeforeReturn(DetailAST token) {
+        return hasEmptyLineBefore(token);
+    }
+
+    /**
      * Process Package.
      *
      * @param ast token
@@ -709,6 +735,17 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
         if (!TokenUtil.isOfType(nextToken, TokenTypes.IMPORT, TokenTypes.STATIC_IMPORT)
             && !hasEmptyLineAfter(ast)) {
             log(nextToken, MSG_SHOULD_BE_SEPARATED, nextToken.getText());
+        }
+    }
+
+    /**
+     * Process Return Token.
+     *
+     * @param ast token
+     */
+    private void processReturn(DetailAST ast) {
+        if (!hasEmptyLineBeforeReturn(ast)) {
+            log(ast, MSG_SHOULD_BE_SEPARATED, ast.getText());
         }
     }
 
@@ -942,5 +979,4 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
     private static boolean isTypeField(DetailAST variableDef) {
         return TokenUtil.isTypeDeclaration(variableDef.getParent().getParent().getType());
     }
-
 }
