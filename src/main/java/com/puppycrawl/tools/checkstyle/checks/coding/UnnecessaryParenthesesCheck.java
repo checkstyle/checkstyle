@@ -528,7 +528,7 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
         final DetailAST parent = ast.getParent();
 
         if (isLambdaSingleParameterSurrounded(ast)) {
-            log(ast, MSG_LAMBDA, ast.getText());
+            log(ast, MSG_LAMBDA);
         }
         else if (parent.getType() != TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR) {
             final int type = ast.getType();
