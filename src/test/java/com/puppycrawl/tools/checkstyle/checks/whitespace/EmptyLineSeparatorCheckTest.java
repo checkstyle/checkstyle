@@ -305,6 +305,7 @@ public class EmptyLineSeparatorCheckTest
             TokenTypes.VARIABLE_DEF,
             TokenTypes.RECORD_DEF,
             TokenTypes.COMPACT_CTOR_DEF,
+            TokenTypes.LITERAL_RETURN,
         };
         assertWithMessage("Default acceptable tokens are invalid")
             .that(actual)
@@ -631,4 +632,13 @@ public class EmptyLineSeparatorCheckTest
                 expected);
     }
 
+    @Test
+    public void shouldBeEmptyLineBeforeReturn() throws Exception {
+        final String[] expected = {
+            "24:9: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "return"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputEmptyLineSeparatorBeforeReturn.java"),
+                expected);
+    }
 }
