@@ -1810,7 +1810,7 @@
     <plugins>
       <plugin>
         <artifactId>maven-project-info-reports-plugin</artifactId>
-        <version>3.4.4</version>
+        <version>3.4.5</version>
       </plugin>
 
       <plugin>
