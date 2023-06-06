@@ -45,7 +45,7 @@
       </p>
 
       <p>
-        For a detailed list of available checks, please refer to the <a
+        For a detailed list of available checks please refer to the <a
         href="checks.html">Checks</a> page.
       </p>
     </section>
@@ -61,7 +61,7 @@
 
       <p>
         If you want to live on the bleeding edge, you can <a
-        href="https://github.com/checkstyle/checkstyle">check out</a>
+        href="https://github.com/checkstyle/checkstyle">checkout</a>
         the current development code from GitHub and compile
         yourself. Or use <a href="https://jitpack.io/">jitpack.io</a> to build
         and get artifacts you need (you can even build your forked repo).
@@ -71,11 +71,11 @@
 
     <section name="Previous Version Documentation">
       <p>
-        Current site contains documentation only for the latest released version.
-        We only support this latest version. We highly recommend reading the latest documentation first.
+        Current site contains documentation only for latest, released version.
+        We only support this latest version. We highly recommend read latest documentation first.
         <br/>
-        However, you might need documentation for previous releases if you are still using
-        an older version and the latest version describes some features that do not work for you.
+        However, you might need documentation for previous releases because you are still using
+        an older version and latest version describe some features that does not work for you.
         <br/>
         You can find documentation for most old versions using a URL format like
         https://checkstyle.sourceforge.io/version/X.X where "X.X" is the version number.<br/>
