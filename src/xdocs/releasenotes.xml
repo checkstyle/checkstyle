@@ -3320,7 +3320,7 @@ Azure.
           <li>
             Refactor input files in check tests. 102 Check tests were updated.
             Author: Shashwat Jaiswal
-            <a href="Refactor input files in check tests">#10080</a>
+            <a href="https://github.com/checkstyle/checkstyle/issues/10080">#10080</a>
           </li>
           <li>
             Add Configuration.getPropertyNames and Configuration.getProperty and
