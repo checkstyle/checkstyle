@@ -105,10 +105,7 @@ public final class FileText {
         charset = fileText.charset;
         fullText = fileText.fullText;
         lines = fileText.lines.clone();
-        if (fileText.lineBreaks == null) {
-            lineBreaks = null;
-        }
-        else {
+        if (fileText.lineBreaks != null) {
             lineBreaks = fileText.lineBreaks.clone();
         }
     }
