@@ -174,4 +174,50 @@ public class ReturnCountCheckTest extends AbstractModuleTestSupport {
                 .isTrue();
     }
 
+    /**
+     * Tries to reproduce system failure to call Check on not acceptable token.
+     * It can not be reproduced by Input files. Maintainers thinks that keeping
+     * exception on unknown token is beneficial.
+     *
+     */
+    @Test
+    public void testImproperTokenOnLeaveToken() {
+        final ReturnCountCheck check = new ReturnCountCheck();
+
+        final DetailAstImpl classDefAst = new DetailAstImpl();
+        classDefAst.setType(TokenTypes.CLASS_DEF);
+
+        try {
+            check.leaveToken(classDefAst);
+            assertWithMessage("IllegalStateException is expected").fail();
+        }
+        catch (IllegalStateException exception) {
+            assertWithMessage("Message doesn't contain ast")
+                    .that(exception.getMessage())
+                    .isEqualTo(classDefAst.toString());
+        }
+    }
+
+    /**
+     * Tries to reproduce system failure to call Check on not acceptable token.
+     * It can not be reproduced by Input files. Maintainers thinks that keeping
+     * exception on unknown token is beneficial.
+     *
+     */
+    @Test
+    public void testImproperTokenOnVisitToken() {
+        final ReturnCountCheck check = new ReturnCountCheck();
+        final DetailAstImpl classDefAst = new DetailAstImpl();
+        classDefAst.setType(TokenTypes.CLASS_DEF);
+        try {
+            check.visitToken(classDefAst);
+            assertWithMessage("IllegalStateException is expected").fail();
+        }
+        catch (IllegalStateException exception) {
+            assertWithMessage("Message doesn't contain ast")
+                    .that(exception.getMessage())
+                    .isEqualTo(classDefAst.toString());
+        }
+    }
+
 }
