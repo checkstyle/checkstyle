@@ -46,6 +46,7 @@
 
       <p>
         For a detailed list of available checks, please refer to the <a
+        For a detailed list of available checks, please refer to the <a
         href="checks.html">Checks</a> page.
       </p>
     </section>
@@ -72,8 +73,7 @@
     <section name="Previous Version Documentation">
       <p>
         Current site contains documentation only for the latest, released version.
-        We only support this latest version.
-         We highly recommend reading the latest documentation first.
+        We only support this latest version. We highly recommend reading the latest documentation first.
         <br/>
         However, you might need documentation for previous releases because you are still using
         an older version and the latest version describes some features that do not work for you.
