@@ -174,4 +174,54 @@ public class ReturnCountCheckTest extends AbstractModuleTestSupport {
                 .isTrue();
     }
 
+    /**
+     * We cannot create a situation when any other token then {@link TokenTypes#CTOR_DEF},
+     * {@link TokenTypes#METHOD_DEF}, {@link TokenTypes#LAMBDA}, {@link TokenTypes#LITERAL_RETURN}
+     * will be called because these are the only accepted token by check. In leave token
+     * for all the token there different cases has been declared so there is no chance when default
+     * case execute.
+     *
+     */
+    @Test
+    public void testImproperToken2() {
+        final ReturnCountCheck check = new ReturnCountCheck();
+
+        final DetailAstImpl classDefAst = new DetailAstImpl();
+        classDefAst.setType(TokenTypes.CLASS_DEF);
+
+        try {
+            check.leaveToken(classDefAst);
+            assertWithMessage("IllegalStateException is expected").fail();
+        }
+        catch (IllegalStateException exception) {
+            assertWithMessage("Message dont contain ast")
+                    .that(exception.getMessage())
+                    .isEqualTo(classDefAst.toString());
+        }
+    }
+
+    /**
+     * We cannot create a situation when any other token then {@link TokenTypes#CTOR_DEF},
+     * {@link TokenTypes#METHOD_DEF}, {@link TokenTypes#LAMBDA}, {@link TokenTypes#LITERAL_RETURN}
+     * will be called because these are the only accepted token by check. In visit token
+     * for all the token there different cases has been declared so there is no chance when default
+     * case execute.
+     *
+     */
+    @Test
+    public void testImproperToken3() {
+        final ReturnCountCheck check = new ReturnCountCheck();
+        final DetailAstImpl classDefAst = new DetailAstImpl();
+        classDefAst.setType(TokenTypes.CLASS_DEF);
+        try {
+            check.visitToken(classDefAst);
+            assertWithMessage("IllegalStateException is expected").fail();
+        }
+        catch (IllegalStateException exception) {
+            assertWithMessage("Message dont contain ast")
+                    .that(exception.getMessage())
+                    .isEqualTo(classDefAst.toString());
+        }
+    }
+
 }
