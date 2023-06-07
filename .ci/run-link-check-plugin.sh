@@ -12,9 +12,10 @@ mvn -e --no-transfer-progress clean site -Dcheckstyle.ant.skip=true -DskipTests 
 echo "------------ grep of linkcheck.html--BEGIN"
 # "grep ... | cat" is required command is running in "set -e" mode and
 # grep could return exit code 1 if nothing is matching
-grep externalLink target/site/linkcheck.html | cat
+grep -E "doesn't exist|externalLink" target/site/linkcheck.html | cat
 echo "------------ grep of linkcheck.html--END"
-RESULT=$(grep externalLink target/site/linkcheck.html | grep -v 'Read timed out' | wc -l)
+RESULT=$(grep -E "doesn't exist|externalLink" target/site/linkcheck.html \
+  | grep -v 'Read timed out' | wc -l)
 echo 'Exit code:'"$RESULT"
 if [[ $RESULT != 0 ]]; then false; fi
 
