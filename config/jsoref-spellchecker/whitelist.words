@@ -199,6 +199,7 @@ chmod
 chr
 ci
 cimg
+Cinit
 circleci
 cirrusci
 classdataabstractioncoupling
@@ -1311,6 +1312,7 @@ tngtech
 toc
 todo
 todocomment
+Tokencom
 tokenizer
 tokennizer
 tokentype
@@ -1319,6 +1321,7 @@ Toolbar
 TOSTRING
 Touchscreen
 trailingcomment
+Treecom
 treelayout
 treemap
 treeset
