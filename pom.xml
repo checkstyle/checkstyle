@@ -1613,6 +1613,8 @@
                 <exclude>signatures.txt</exclude>
                 <exclude>signatures-test.txt</exclude>
                 <exclude>codenarc-rules.groovy.txt</exclude>
+                <!-- until https://github.com/checkstyle/checkstyle/issues/11572 -->
+                <exclude>linkcheck-suppressions.txt</exclude>
                 <exclude>archunit-store/**</exclude>
                 <exclude>jsoref-spellchecker/**</exclude>
                 <exclude>projects-to-test/**</exclude>
