@@ -117,7 +117,7 @@ public final class FullIdent {
      * @return true if ast is an array type declaration
      */
     private static boolean isArrayTypeDeclaration(DetailAST arrayDeclarator) {
-        DetailAST expression = arrayDeclarator.getFirstChild();
+        DetailAST expression = arrayDeclarator;
         while (expression != null) {
             if (expression.getType() == TokenTypes.EXPR) {
                 break;
