@@ -37,24 +37,6 @@
   </mutation>
 
   <mutation unstable="false">
-    <sourceFile>ReturnCountCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck</mutatedClass>
-    <mutatedMethod>leaveToken</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to java/lang/Object::toString</description>
-    <lineContent>throw new IllegalStateException(ast.toString());</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>ReturnCountCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck</mutatedClass>
-    <mutatedMethod>visitToken</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to java/lang/Object::toString</description>
-    <lineContent>throw new IllegalStateException(ast.toString());</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
     <sourceFile>UnnecessaryParenthesesCheck.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck</mutatedClass>
     <mutatedMethod>checkExpression</mutatedMethod>
