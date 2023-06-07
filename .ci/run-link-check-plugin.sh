@@ -9,12 +9,20 @@ mvn --version
 curl --fail-with-body -I https://sourceforge.net/projects/checkstyle/
 mvn -e --no-transfer-progress clean site -Dcheckstyle.ant.skip=true -DskipTests -DskipITs \
    -Dpmd.skip=true -Dspotbugs.skip=true -Djacoco.skip=true -Dcheckstyle.skip=true
+mkdir -p .ci-temp
+
 echo "------------ grep of linkcheck.html--BEGIN"
 # "grep ... | cat" is required command is running in "set -e" mode and
 # grep could return exit code 1 if nothing is matching
-grep externalLink target/site/linkcheck.html | cat
+grep -E "doesn't exist|externalLink" target/site/linkcheck.html | grep -v 'Read timed out' \
+  |  cat > .ci-temp/linkcheck-errors.txt
+# Suppressions exist until https://github.com/checkstyle/checkstyle/issues/11572
+diff config/linkcheck-suppressions.txt .ci-temp/linkcheck-errors.txt || true
 echo "------------ grep of linkcheck.html--END"
-RESULT=$(grep externalLink target/site/linkcheck.html | grep -v 'Read timed out' | wc -l)
+
+RESULT=$(diff -y --suppress-common-lines config/linkcheck-suppressions.txt \
+  .ci-temp/linkcheck-errors.txt | wc -l)
+rm .ci-temp/linkcheck-errors.txt
+
 echo 'Exit code:'"$RESULT"
 if [[ $RESULT != 0 ]]; then false; fi
-
