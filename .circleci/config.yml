@@ -218,6 +218,10 @@ workflows:
           name: "no-error-test-sbe"
           image-name: *custom_img
           command: "./.ci/validation.sh no-error-test-sbe"
+      - validate-with-maven-script:
+          name: "linkcheck-plugin"
+          image-name: "cimg/openjdk:11.0.19"
+          command: "./.ci/run-link-check-plugin.sh"
 
   idea:
     jobs:
