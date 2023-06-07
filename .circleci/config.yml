@@ -106,7 +106,38 @@ jobs:
           name: Run yamllint
           command: yamllint -f parsable -c config/yamllint.yaml .
 
+
+  test-linkcheck-java-11:
+    docker:
+      - image: cimg/openjdk:11.0.19
+
+    steps:
+      - checkout
+      - run: ./.ci/run-link-check-plugin.sh
+
+  test-linkcheck-java-17:
+    docker:
+      - image: cimg/openjdk:17.0.7
+
+    steps:
+      - checkout
+      - run: ./.ci/run-link-check-plugin.sh
+
+  test-linkcheck-java-20:
+    docker:
+      - image: cimg/openjdk:20.0.1
+
+    steps:
+      - checkout
+      - run: ./.ci/run-link-check-plugin.sh
+
 workflows:
+  test-link-check:
+    jobs:
+      - test-linkcheck-java-11
+      - test-linkcheck-java-17
+      - test-linkcheck-java-20
+
   sonarqube:
     jobs:
       - sonarqube:
