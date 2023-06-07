@@ -241,4 +241,17 @@ public class FullIdentTest extends AbstractModuleTestSupport {
                 .isEqualTo(String[].class.getCanonicalName());
     }
 
+    @Test
+    public void test() throws Exception {
+        final FileText testFileText = new FileText(
+                new File(getPath("InputFullIdent.java")).getAbsoluteFile(),
+                System.getProperty("file.encoding", StandardCharsets.UTF_8.name()));
+        final DetailAST dot =
+                JavaParser.parse(new FileContents(testFileText))
+                        .getFirstChild().getNextSibling().getFirstChild().getFirstChild();
+        final FullIdent ident = FullIdent.createFullIdentBelow(dot);
+        assertWithMessage("Invalid full indent")
+                .that(ident.getText())
+                .isEqualTo("java");
+    }
 }
