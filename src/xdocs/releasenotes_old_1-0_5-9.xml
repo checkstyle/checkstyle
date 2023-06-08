@@ -688,11 +688,11 @@
       </p>
       <p>The following checks were added since release 4.4:</p>
       <ul>
-        <li><a href="config_annotation.html#AnnotationUseStyle">AnnotationUseStyle</a></li>
-        <li><a href="config_annotation.html#MissingDeprecated">MissingDeprecated</a></li>
-        <li><a href="config_annotation.html#MissingOverride">MissingOverride</a></li>
-        <li><a href="config_annotation.html#PackageAnnotation">PackageAnnotation</a></li>
-        <li><a href="config_annotation.html#SuppressWarnings">SuppressWarnings</a></li>
+        <li><a href="checks/annotation/annotationusestyle.html#AnnotationUseStyle">AnnotationUseStyle</a></li>
+        <li><a href="checks/annotation/missingdeprecated.html#MissingDeprecated">MissingDeprecated</a></li>
+        <li><a href="checks/annotation/missingoverride.html#MissingOverride">MissingOverride</a></li>
+        <li><a href="checks/annotation/packageannotation.html#PackageAnnotation">PackageAnnotation</a></li>
+        <li><a href="checks/annotation/suppresswarnings.html#SuppressWarnings">SuppressWarnings</a></li>
         <li><a href="config_coding.html#EqualsAvoidNull">EqualsAvoidNull</a></li>
         <li><a href="config_coding.html#NoClone">NoClone</a></li>
         <li><a href="config_coding.html#NoFinalizer">NoFinalizer</a></li>
@@ -772,11 +772,11 @@
       <ul>
         <li>
           New Annotation checks
-          <a href="config_annotation.html#AnnotationUseStyle">AnnotationUseStyle</a>
-          <a href="config_annotation.html#MissingDeprecated">MissingDeprecated</a>
-          <a href="config_annotation.html#MissingOverride">MissingOverride</a>
-          <a href="config_annotation.html#PackageAnnotation">PackageAnnotation</a>
-          <a href="config_annotation.html#SuppressWarnings">SuppressWarnings</a>
+          <a href="checks/annotation/annotationusestyle.html#AnnotationUseStyle">AnnotationUseStyle</a>
+          <a href="checks/annotation/missingdeprecated.html#MissingDeprecated">MissingDeprecated</a>
+          <a href="checks/annotation/missingoverride.html#MissingOverride">MissingOverride</a>
+          <a href="checks/annotation/packageannotation.html#PackageAnnotation">PackageAnnotation</a>
+          <a href="checks/annotation/suppresswarnings.html#SuppressWarnings">SuppressWarnings</a>
           . Big thanks to Travis Schneeberger who is now a committer on the
           project.
         </li>
