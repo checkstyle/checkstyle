@@ -346,7 +346,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
                     || findLastCaseGroupWhichContainsSlist(parentAst.getParent()) == parentAst) {
                     containsBreak = scopeStack.peek().containsBreak;
                     scope = scopeStack.pop().scope;
-                    prevScopeUninitializedVariables.pop();
+
                 }
                 if (containsBreak || shouldUpdateUninitializedVariables(parentAst)) {
                     updateAllUninitializedVariables(prevScopeUninitializedVariableData);
