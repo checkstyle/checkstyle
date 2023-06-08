@@ -484,6 +484,18 @@
                value="'@noinspection' Javadoc tags should be accompanied by a
                      '@noinspectionreason' tag, explaining why we suppressed inspection."/>
     </module>
+    <module name="MatchXpath">
+      <property name="id" value="missingMessageKeyAnnotation"/>
+      <property name="query" value="/COMPILATION_UNIT/CLASS_DEF[./IDENT[ends-with(@text,'Check')]]
+        /OBJBLOCK/VARIABLE_DEF[
+        ./IDENT[contains(@text,'MSG_')]
+        and ./MODIFIERS/LITERAL_PUBLIC
+        and ./MODIFIERS/LITERAL_STATIC
+        and ./MODIFIERS/FINAL
+        and not (./MODIFIERS/ANNOTATION/IDENT[@text='MessageKey'])]"/>
+      <message key="matchxpath.match"
+              value="Message keys should have @MessageKey annotation"/>
+    </module>
     <module name="MissingCtor">
       <!--
         we will not use that fanatic validation, extra code is not good

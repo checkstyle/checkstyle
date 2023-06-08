@@ -25,6 +25,7 @@ import java.util.Deque;
 import java.util.Objects;
 import java.util.stream.Stream;
 
+import com.puppycrawl.tools.checkstyle.MessageKey;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -200,6 +201,7 @@ public class MethodLengthCheck extends AbstractCheck {
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
+    @MessageKey
     public static final String MSG_KEY = "maxLen.method";
 
     /** Default maximum number of lines. */
