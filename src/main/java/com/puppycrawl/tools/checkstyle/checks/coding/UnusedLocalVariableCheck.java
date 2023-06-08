@@ -461,17 +461,17 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      * @return the block containing local anon inner class
      */
     private static DetailAST getBlockContainingLocalAnonInnerClass(DetailAST literalNewAst) {
-        DetailAST parentAst = literalNewAst.getParent();
+        DetailAST currentAst = literalNewAst;
         DetailAST result = null;
-        while (!TokenUtil.isOfType(parentAst, CONTAINERS_FOR_ANON_INNERS)) {
-            if (parentAst.getType() == TokenTypes.LAMBDA
-                    && parentAst.getParent()
+        while (!TokenUtil.isOfType(currentAst, CONTAINERS_FOR_ANON_INNERS)) {
+            if (currentAst.getType() == TokenTypes.LAMBDA
+                    && currentAst.getParent()
                     .getParent().getParent().getType() == TokenTypes.OBJBLOCK) {
-                result = parentAst;
+                result = currentAst;
                 break;
             }
-            parentAst = parentAst.getParent();
-            result = parentAst;
+            currentAst = currentAst.getParent();
+            result = currentAst;
         }
         return result;
     }
