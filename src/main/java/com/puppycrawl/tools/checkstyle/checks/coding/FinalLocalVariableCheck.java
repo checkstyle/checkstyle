@@ -816,7 +816,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
             if (candidate.isPresent()) {
                 storedVariable = candidate.get().variableIdent;
             }
-            if (storedVariable != null && isSameVariables(storedVariable, ast)) {
+            if (storedVariable != null) {
                 result = candidate;
             }
             return result;
