@@ -10,7 +10,7 @@
   <suppress checks="MultipleStringLiteralsExtended"
              files="JavadocStyleCheck\.java|XMLLogger\.java"/>
   <suppress checks="MultipleStringLiteralsExtended"
-             files=".*[\\/]src[\\/](test|it)[\\/]"/>
+             files=".*[\\/]src[\\/](test|it|xdocs-examples)[\\/]"/>
 
   <!-- If we change declaration order, Illegal forward reference will appear.
   See https://github.com/sevntu-checkstyle/sevntu.checkstyle/issues/415 -->
