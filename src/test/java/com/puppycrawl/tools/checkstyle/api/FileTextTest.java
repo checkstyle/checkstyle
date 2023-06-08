@@ -199,4 +199,18 @@ public class FileTextTest extends AbstractPathTestSupport {
         assertWithMessage("Should not be null")
                 .that(copy.getCharset()).isNotNull();
     }
+
+    @Test
+    public void testMalformedInputIgnored() throws IOException {
+        final Charset charset = StandardCharsets.US_ASCII;
+        final String filepath = getPath("InputFileTextMalformedInput.txt");
+        final FileText fileText = new FileText(new File(filepath), charset.name());
+        final CharSequence fullText = fileText.getFullText();
+        assertWithMessage("Should not be null")
+                .that(fullText)
+                .isNotNull();
+        assertWithMessage("Should not contain malformed text")
+                .that(fullText)
+                .isNotEqualTo("some.class.passed");
+    }
 }
