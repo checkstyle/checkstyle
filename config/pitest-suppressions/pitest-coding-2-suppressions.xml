@@ -321,15 +321,6 @@
     <mutatedMethod>isInsideLocalAnonInnerClass</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
     <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getParent with receiver</description>
-    <lineContent>DetailAST parentAst = literalNewAst.getParent();</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>UnusedLocalVariableCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheck</mutatedClass>
-    <mutatedMethod>isInsideLocalAnonInnerClass</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
-    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getParent with receiver</description>
     <lineContent>if (TokenUtil.isTypeDeclaration(parentAst.getParent().getType())) {</lineContent>
   </mutation>
 
