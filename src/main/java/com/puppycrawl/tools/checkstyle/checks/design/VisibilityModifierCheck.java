@@ -157,39 +157,37 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * Example with default values:
  * </p>
  * <pre>
- * public class MyClass {
- * private int myPrivateField1;
+ * class Example1 {
+ *   private int myPrivateField1;
  *
- * int field1;               // violation, must have a visibility modifier
+ *   int field1; // violation 'must be private'
  *
- * protected String field2;  // violation, protected visibility is not allowed
+ *   protected String field2; // violation 'must be private'
  *
- * public int field3 = 42;  // violation, not static final, immutable,
- *                          // nor matching the pattern
+ *   public int field3 = 42; // violation 'must be private'
  *
- * public long serialVersionUID = 1L;
+ *   public long serialVersionUID = 1L;
  *
- * public static final int field4 = 42;
+ *   public static final int field4 = 42;
  *
- * public final int field5 = 42;          // violation, public immutable fields are not allowed
- * public final java.lang.String notes;   // violation, public immutable fields are not allowed
+ *   public final int field5 = 42; // violation 'must be private'
  *
- * public final Set&lt;String&gt; mySet1 = new HashSet&lt;&gt;();  // violation, HashSet is mutable
+ *   public final java.lang.String notes = null; // violation 'must be private'
  *
- * public final ImmutableSet&lt;String&gt; mySet2;           // violation,
- *                                                      // immutable type not in config
+ *   public final Set&lt;String&gt; mySet1 = new HashSet&lt;&gt;(); // violation 'must be private'
  *
- * public final ImmutableMap&lt;String, Object&gt; objects1; // violation,
- *                                                      // immutable type not in config
+ *   public final ImmutableSet&lt;String&gt; mySet2 = null; // violation 'must be private'
  *
- * &#64;com.annotation.CustomAnnotation
- * String annotatedString;      // violation, annotation is not configured
+ *   public final ImmutableMap&lt;String, Object&gt; objects1 = null; // violation 'must be private'
  *
- * &#64;CustomAnnotation
- * String shortCustomAnnotated; // violation, annotation is not configured
+ *   &#64;java.lang.Deprecated
+ *   String annotatedString; // violation 'must be private'
  *
- * &#64;com.google.common.annotations.VisibleForTesting
- * public String testString = "";
+ *   &#64;Deprecated
+ *   String shortCustomAnnotated; // violation 'must be private'
+ *
+ *   &#64;com.google.common.annotations.VisibleForTesting
+ *   public String testString = "";
  * }
  * </pre>
  * <p>
@@ -204,39 +202,37 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * Example of allowed package visible members:
  * </p>
  * <pre>
- * public class MyClass {
- * private int myPrivateField1;
+ * class Example2 {
+ *   private int myPrivateField1;
  *
- * int field1;
+ *   int field1;
  *
- * protected String field2; // violation, protected visibility is not allowed
+ *   protected String field2; // violation 'must be private'
  *
- * public int field3 = 42;  // violation, not static final, immutable,
- *                          // nor matching the pattern
+ *   public int field3 = 42; // violation 'must be private'
  *
- * public long serialVersionUID = 1L;
+ *   public long serialVersionUID = 1L;
  *
- * public static final int field4 = 42;
+ *   public static final int field4 = 42;
  *
- * public final int field5 = 42;          // violation, public immutable fields are not allowed
- * public final java.lang.String notes;   // violation, public immutable fields are not allowed
+ *   public final int field5 = 42; // violation 'must be private'
  *
- * public final Set&lt;String&gt; mySet1 = new HashSet&lt;&gt;();  // violation, HashSet is mutable
+ *   public final java.lang.String notes = null; // violation 'must be private'
  *
- * public final ImmutableSet&lt;String&gt; mySet2;           // violation,
- *                                                      // immutable type not in config
+ *   public final Set&lt;String&gt; mySet1 = new HashSet&lt;&gt;(); // violation 'must be private'
  *
- * public final ImmutableMap&lt;String, Object&gt; objects1; // violation,
- *                                                      // immutable type not in config
+ *   public final ImmutableSet&lt;String&gt; mySet2 = null; // violation 'must be private'
  *
- * &#64;com.annotation.CustomAnnotation
- * String annotatedString;
+ *   public final ImmutableMap&lt;String, Object&gt; objects1 = null; // violation 'must be private'
  *
- * &#64;CustomAnnotation
- * String shortCustomAnnotated;
+ *   &#64;java.lang.Deprecated
+ *   String annotatedString;
  *
- * &#64;com.google.common.annotations.VisibleForTesting
- * public String testString = "";
+ *   &#64;Deprecated
+ *   String shortCustomAnnotated;
+ *
+ *   &#64;com.google.common.annotations.VisibleForTesting
+ *   public String testString = "";
  * }
  * </pre>
   * <p>
@@ -251,39 +247,37 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * Example of allowed protected visible members:
  * </p>
  * <pre>
- * public class MyClass {
- * private int myPrivateField1;
+ * class Example3 {
+ *   private int myPrivateField1;
  *
- * int field1;              // violation, must have a visibility modifier
+ *   int field1; // violation 'must be private'
  *
- * protected String field2;
+ *   protected String field2;
  *
- * public int field3 = 42;  // violation, not static final, immutable,
- *                          // nor matching the pattern
+ *   public int field3 = 42; // violation 'must be private'
  *
- * public long serialVersionUID = 1L;
+ *   public long serialVersionUID = 1L;
  *
- * public static final int field4 = 42;
+ *   public static final int field4 = 42;
  *
- * public final int field5 = 42;          // violation, public immutable fields are not allowed
- * public final java.lang.String notes;   // violation, public immutable fields are not allowed
+ *   public final int field5 = 42; // violation 'must be private'
  *
- * public final Set&lt;String&gt; mySet1 = new HashSet&lt;&gt;();  // violation, HashSet is mutable
+ *   public final java.lang.String notes = null; // violation 'must be private'
  *
- * public final ImmutableSet&lt;String&gt; mySet2;           // violation,
- *                                                      // immutable type not in config
+ *   public final Set&lt;String&gt; mySet1 = new HashSet&lt;&gt;(); // violation 'must be private'
  *
- * public final ImmutableMap&lt;String, Object&gt; objects1; // violation,
- *                                                      // immutable type not in config
+ *   public final ImmutableSet&lt;String&gt; mySet2 = null; // violation 'must be private'
  *
- * &#64;com.annotation.CustomAnnotation
- * String annotatedString;      // violation, annotation is not configured
+ *   public final ImmutableMap&lt;String, Object&gt; objects1 = null; // violation 'must be private'
  *
- * &#64;CustomAnnotation
- * String shortCustomAnnotated; // violation, annotation is not configured
+ *   &#64;java.lang.Deprecated
+ *   String annotatedString; // violation 'must be private'
  *
- * &#64;com.google.common.annotations.VisibleForTesting
- * public String testString = "";
+ *   &#64;Deprecated
+ *   String shortCustomAnnotated; // violation 'must be private'
+ *
+ *   &#64;com.google.common.annotations.VisibleForTesting
+ *   public String testString = "";
  * }
  * </pre>
  * <p>
@@ -298,39 +292,37 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * Example of not allowed public members:
  * </p>
  * <pre>
- * public class MyClass {
- * private int myPrivateField1;
+ * class Example4 {
+ *   private int myPrivateField1;
  *
- * int field1;               // violation, must have a visibility modifier
+ *   int field1; // violation 'must be private'
  *
- * protected String field2;  // violation, protected visibility is not allowed
+ *   protected String field2; // violation 'must be private'
  *
- * public int field3 = 42;  // violation, not static final, immutable,
- *                          // nor matching the pattern
+ *   public int field3 = 42; // violation 'must be private'
  *
- * public long serialVersionUID = 1L;  // Violation, not matched the pattern '^$'
+ *   public long serialVersionUID = 1L; // violation 'must be private'
  *
- * public static final int field4 = 42;
+ *   public static final int field4 = 42;
  *
- * public final int field5 = 42;          // violation, public immutable fields are not allowed
- * public final java.lang.String notes;   // violation, public immutable fields are not allowed
+ *   public final int field5 = 42; // violation 'must be private'
  *
- * public final Set&lt;String&gt; mySet1 = new HashSet&lt;&gt;();  // violation, HashSet is mutable
+ *   public final java.lang.String notes = null; // violation 'must be private'
  *
- * public final ImmutableSet&lt;String&gt; mySet2;           // violation,
- *                                                      // immutable type not in config
+ *   public final Set&lt;String&gt; mySet1 = new HashSet&lt;&gt;(); // violation 'must be private'
  *
- * public final ImmutableMap&lt;String, Object&gt; objects1; // violation,
- *                                                      // immutable type not in config
+ *   public final ImmutableSet&lt;String&gt; mySet2 = null; // violation 'must be private'
  *
- * &#64;com.annotation.CustomAnnotation
- * String annotatedString;      // violation, annotation is not configured
+ *   public final ImmutableMap&lt;String, Object&gt; objects1 = null; // violation 'must be private'
  *
- * &#64;CustomAnnotation
- * String shortCustomAnnotated; // violation, annotation is not configured
+ *   &#64;java.lang.Deprecated
+ *   String annotatedString; // violation 'must be private'
  *
- * &#64;com.google.common.annotations.VisibleForTesting
- * public String testString = "";
+ *   &#64;Deprecated
+ *   String shortCustomAnnotated; // violation 'must be private'
+ *
+ *   &#64;com.google.common.annotations.VisibleForTesting
+ *   public String testString = "";
  * }
  * </pre>
  * <p>
@@ -345,39 +337,37 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * Example of allowed public immutable fields:
  * </p>
  * <pre>
- * public final class MyClass {
- * private int myPrivateField1;
+ * class Example5 {
+ *   private int myPrivateField1;
  *
- * int field1;               // violation, must have a visibility modifier
+ *   int field1; // violation 'must be private'
  *
- * protected String field2;  // violation, protected visibility is not allowed
+ *   protected String field2; // violation 'must be private'
  *
- * public int field3 = 42;  // violation, not static final, immutable,
- *                          // nor matching the pattern
+ *   public int field3 = 42; // violation 'must be private'
  *
- * public long serialVersionUID = 1L;
+ *   public long serialVersionUID = 1L;
  *
- * public static final int field4 = 42;
+ *   public static final int field4 = 42;
  *
- * public final int field5 = 42;
- * public final java.lang.String notes;
+ *   public final int field5 = 42; // violation 'must be private'
  *
- * public final Set&lt;String&gt; mySet1 = new HashSet&lt;&gt;();  // violation, HashSet is mutable
+ *   public final java.lang.String notes = null; // violation 'must be private'
  *
- * public final ImmutableSet&lt;String&gt; mySet2;           // violation,
- *                                                      // immutable type not in config
+ *   public final Set&lt;String&gt; mySet1 = new HashSet&lt;&gt;(); // violation 'must be private'
  *
- * public final ImmutableMap&lt;String, Object&gt; objects1; // violation,
- *                                                      // immutable type not in config
+ *   public final ImmutableSet&lt;String&gt; mySet2 = null; // violation 'must be private'
  *
- * &#64;com.annotation.CustomAnnotation
- * String annotatedString;      // violation, annotation is not configured
+ *   public final ImmutableMap&lt;String, Object&gt; objects1 = null; // violation 'must be private'
  *
- * &#64;CustomAnnotation
- * String shortCustomAnnotated; // violation, annotation is not configured
+ *   &#64;java.lang.Deprecated
+ *   String annotatedString; // violation 'must be private'
  *
- * &#64;com.google.common.annotations.VisibleForTesting
- * public String testString = "";
+ *   &#64;Deprecated
+ *   String shortCustomAnnotated; // violation 'must be private'
+ *
+ *   &#64;com.google.common.annotations.VisibleForTesting
+ *   public String testString = "";
  * }
  * </pre>
  * <p>
@@ -394,38 +384,37 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * Example of allowed public immutable fields:
  * </p>
  * <pre>
- * public final class MyClass {
- * private int myPrivateField1;
+ * class Example6 {
+ *   private int myPrivateField1;
  *
- * int field1;               // violation, must have a visibility modifier
+ *   int field1; // violation 'must be private'
  *
- * protected String field2;  // violation, protected visibility is not allowed
+ *   protected String field2; // violation 'must be private'
  *
- * public int field3 = 42;  // violation, not static final, immutable,
- *                          // nor matching the pattern
+ *   public int field3 = 42; // violation 'must be private'
  *
- * public long serialVersionUID = 1L;
+ *   public long serialVersionUID = 1L;
  *
- * public static final int field4 = 42;
+ *   public static final int field4 = 42;
  *
- * public final int field5 = 42;
- * public final java.lang.String notes;
+ *   public final int field5 = 42; // violation 'must be private'
  *
- * public final Set&lt;String&gt; mySet1 = new HashSet&lt;&gt;();  // violation, HashSet is mutable
+ *   public final java.lang.String notes = null; // violation 'must be private'
  *
- * public final ImmutableSet&lt;String&gt; mySet2;
+ *   public final Set&lt;String&gt; mySet1 = new HashSet&lt;&gt;(); // violation 'must be private'
  *
- * public final ImmutableMap&lt;String, Object&gt; objects1; // violation
- *                                                     // immutable type not in config
+ *   public final ImmutableSet&lt;String&gt; mySet2 = null; // violation 'must be private'
  *
- * &#64;com.annotation.CustomAnnotation
- * String annotatedString;      // violation, annotation is not configured
+ *   public final ImmutableMap&lt;String, Object&gt; objects1 = null; // violation 'must be private'
  *
- * &#64;CustomAnnotation
- * String shortCustomAnnotated; // violation, annotation is not configured
+ *   &#64;java.lang.Deprecated
+ *   String annotatedString; // violation 'must be private'
  *
- * &#64;com.google.common.annotations.VisibleForTesting
- * public String testString = "";
+ *   &#64;Deprecated
+ *   String shortCustomAnnotated; // violation 'must be private'
+ *
+ *   &#64;com.google.common.annotations.VisibleForTesting
+ *   public String testString = "";
  * }
  * </pre>
  * <p>
@@ -446,86 +435,83 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * Example of how the check works:
  * </p>
  * <pre>
- * public final class MyClass {
- * private int myPrivateField1;
+ * class Example7 {
+ *   private int myPrivateField1;
  *
- * int field1;               // violation, must have a visibility modifier
+ *   int field1; // violation 'must be private'
  *
- * protected String field2;  // violation, protected visibility is not allowed
+ *   protected String field2; // violation 'must be private'
  *
- * public int field3 = 42;  // violation, not static final, immutable,
- *                          // nor matching the pattern
+ *   public int field3 = 42; // violation 'must be private'
  *
- * public long serialVersionUID = 1L;
+ *   public long serialVersionUID = 1L;
  *
- * public static final int field4 = 42;
+ *   public static final int field4 = 42;
  *
- * public final int field5 = 42;
- * public final java.lang.String notes;
+ *   public final int field5 = 42; // violation 'must be private'
  *
- * public final Set&lt;String&gt; mySet1 = new HashSet&lt;&gt;();  // violation, HashSet is mutable
+ *   public final java.lang.String notes = null; // violation 'must be private'
  *
- * public final ImmutableSet&lt;String&gt; mySet2;
+ *   public final Set&lt;String&gt; mySet1 = new HashSet&lt;&gt;(); // violation 'must be private'
  *
- * public final ImmutableMap&lt;String, Object&gt; objects1; // violation
- *                                                     // 'Object' still considered as mutable
+ *   public final ImmutableSet&lt;String&gt; mySet2 = null; // violation 'must be private'
  *
- * &#64;com.annotation.CustomAnnotation
- * String annotatedString;      // violation, annotation is not configured
+ *   public final ImmutableMap&lt;String, Object&gt; objects1 = null; // violation 'must be private'
  *
- * &#64;CustomAnnotation
- * String shortCustomAnnotated; // violation, annotation is not configured
+ *   &#64;java.lang.Deprecated
+ *   String annotatedString; // violation 'must be private'
  *
- * &#64;com.google.common.annotations.VisibleForTesting
- * public String testString = "";
+ *   &#64;Deprecated
+ *   String shortCustomAnnotated; // violation 'must be private'
+ *
+ *   &#64;com.google.common.annotations.VisibleForTesting
+ *   public String testString = "";
  * }
  * </pre>
  * <p>
- * To configure the Check passing fields annotated with @com.annotation.CustomAnnotation:
+ * To configure the Check passing fields annotated with @java.lang.Deprecated:
  * </p>
  * <pre>
  * &lt;module name=&quot;VisibilityModifier&quot;&gt;
  *   &lt;property name=&quot;ignoreAnnotationCanonicalNames&quot;
- *      value=&quot;com.annotation.CustomAnnotation&quot;/&gt;
+ *      value=&quot;java.lang.Deprecated&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
  * <p>
  * Example of allowed field:
  * </p>
  * <pre>
- * public final class MyClass {
- * private int myPrivateField1;
+ * class Example8 {
+ *   private int myPrivateField1;
  *
- * int field1;               // violation, must have a visibility modifier
+ *   int field1; // violation 'must be private'
  *
- * protected String field2;  // violation, protected visibility is not allowed
+ *   protected String field2; // violation 'must be private'
  *
- * public int field3 = 42;  // violation, not static final, immutable,
- *                          // nor matching the pattern
+ *   public int field3 = 42; // violation 'must be private'
  *
- * public long serialVersionUID = 1L;
+ *   public long serialVersionUID = 1L;
  *
- * public static final int field4 = 42;
+ *   public static final int field4 = 42;
  *
- * public final int field5 = 42;          // violation, public immutable fields are not allowed
- * public final java.lang.String notes;   // violation, public immutable fields are not allowed
+ *   public final int field5 = 42; // violation 'must be private'
  *
- * public final Set&lt;String&gt; mySet1 = new HashSet&lt;&gt;();  // violation, HashSet is mutable
+ *   public final java.lang.String notes = null; // violation 'must be private'
  *
- * public final ImmutableSet&lt;String&gt; mySet2;           // violation,
- *                                                      // immutable type not in config
+ *   public final Set&lt;String&gt; mySet1 = new HashSet&lt;&gt;(); // violation 'must be private'
  *
- * public final ImmutableMap&lt;String, Object&gt; objects1; // violation,
- *                                                      // immutable type not in config
+ *   public final ImmutableSet&lt;String&gt; mySet2 = null; // violation 'must be private'
  *
- * &#64;com.annotation.CustomAnnotation
- * String annotatedString;
+ *   public final ImmutableMap&lt;String, Object&gt; objects1 = null; // violation 'must be private'
  *
- * &#64;CustomAnnotation
- * String shortCustomAnnotated;
+ *   &#64;java.lang.Deprecated
+ *   String annotatedString;
  *
- * &#64;com.google.common.annotations.VisibleForTesting
- * public String testString = ""; // violation, annotation is not configured
+ *   &#64;Deprecated
+ *   String shortCustomAnnotated;
+ *
+ *   &#64;com.google.common.annotations.VisibleForTesting
+ *   public String testString = "";  // violation 'must be private'
  * }
  * </pre>
  * <p>
@@ -539,39 +525,37 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * Example of allowed fields:
  * </p>
  * <pre>
- * public final class MyClass {
- * private int myPrivateField1;
+ * class Example9 {
+ *   private int myPrivateField1;
  *
- * int field1;               // violation, must have a visibility modifier
+ *   int field1; // violation 'must be private'
  *
- * protected String field2;  // violation, protected visibility is not allowed
+ *   protected String field2; // violation 'must be private'
  *
- * public int field3 = 42;  // violation, not static final, immutable,
- *                          // nor matching the pattern
+ *   public int field3 = 42; // violation 'must be private'
  *
- * public long serialVersionUID = 1L;
+ *   public long serialVersionUID = 1L;
  *
- * public static final int field4 = 42;
+ *   public static final int field4 = 42;
  *
- * public final int field5 = 42;          // violation, public immutable fields are not allowed
- * public final java.lang.String notes;   // violation, public immutable fields are not allowed
+ *   public final int field5 = 42; // violation 'must be private'
  *
- * public final Set&lt;String&gt; mySet1 = new HashSet&lt;&gt;();  // violation, HashSet is mutable
+ *   public final java.lang.String notes = null; // violation 'must be private'
  *
- * public final ImmutableSet&lt;String&gt; mySet2;           // violation,
- *                                                      // immutable type not in config
+ *   public final Set&lt;String&gt; mySet1 = new HashSet&lt;&gt;(); // violation 'must be private'
  *
- * public final ImmutableMap&lt;String, Object&gt; objects1; // violation,
- *                                                      // immutable type not in config
+ *   public final ImmutableSet&lt;String&gt; mySet2 = null; // violation 'must be private'
  *
- * &#64;com.annotation.CustomAnnotation
- * String annotatedString;      // violation, annotation is not configured
+ *   public final ImmutableMap&lt;String, Object&gt; objects1 = null; // violation 'must be private'
  *
- * &#64;CustomAnnotation
- * String shortCustomAnnotated; // violation, annotation is not configured
+ *   &#64;java.lang.Deprecated
+ *   String annotatedString; // violation 'must be private'
  *
- * &#64;com.google.common.annotations.VisibleForTesting
- * public String testString = "";
+ *   &#64;Deprecated
+ *   String shortCustomAnnotated; // violation 'must be private'
+ *
+ *   &#64;com.google.common.annotations.VisibleForTesting
+ *   public String testString = "";
  * }
  * </pre>
  * <p>
@@ -580,46 +564,44 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * <pre>
  * &lt;module name=&quot;VisibilityModifier&quot;&gt;
  *   &lt;property name=&quot;ignoreAnnotationCanonicalNames&quot;
- *   value=&quot;CustomAnnotation&quot;/&gt;
+ *   value=&quot;Deprecated&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
  * <p>
  * Example of allowed fields:
  * </p>
  * <pre>
- * public final class MyClass {
- * private int myPrivateField1;
+ * class Example10 {
+ *   private int myPrivateField1;
  *
- * int field1;               // violation, must have a visibility modifier
+ *   int field1; // violation 'must be private'
  *
- * protected String field2;  // violation, protected visibility is not allowed
+ *   protected String field2; // violation 'must be private'
  *
- * public int field3 = 42;  // violation, not static final, immutable,
- *                          // nor matching the pattern
+ *   public int field3 = 42; // violation 'must be private'
  *
- * public long serialVersionUID = 1L;
+ *   public long serialVersionUID = 1L;
  *
- * public static final int field4 = 42;
+ *   public static final int field4 = 42;
  *
- * public final int field5 = 42;          // violation, public immutable fields are not allowed
- * public final java.lang.String notes;   // violation, public immutable fields are not allowed
+ *   public final int field5 = 42; // violation 'must be private'
  *
- * public final Set&lt;String&gt; mySet1 = new HashSet&lt;&gt;();  // violation, HashSet is mutable
+ *   public final java.lang.String notes = null; // violation 'must be private'
  *
- * public final ImmutableSet&lt;String&gt; mySet2;           // violation,
- *                                                      // immutable type not in config
+ *   public final Set&lt;String&gt; mySet1 = new HashSet&lt;&gt;(); // violation 'must be private'
  *
- * public final ImmutableMap&lt;String, Object&gt; objects1; // violation,
- *                                                      // immutable type not in config
+ *   public final ImmutableSet&lt;String&gt; mySet2 = null; // violation 'must be private'
  *
- * &#64;com.annotation.CustomAnnotation
- * String annotatedString;        // violation, annotation is not configured
+ *   public final ImmutableMap&lt;String, Object&gt; objects1 = null; // violation 'must be private'
  *
- * &#64;CustomAnnotation
- * String shortCustomAnnotated;
+ *   &#64;java.lang.Deprecated
+ *   String annotatedString; // violation 'must be private'
  *
- * &#64;com.google.common.annotations.VisibleForTesting
- * public String testString = ""; // violation, annotation is not configured
+ *   &#64;Deprecated
+ *   String shortCustomAnnotated;
+ *
+ *   &#64;com.google.common.annotations.VisibleForTesting
+ *   public String testString = ""; // violation 'must be private'
  * }
  * </pre>
  * <p>
@@ -638,21 +620,12 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * Code example:
  * </p>
  * <pre>
- * public class InputPublicImmutable {
- *   public final int someIntValue; // violation
- *   public final ImmutableSet&lt;String&gt; includes; // violation
- *   public final java.lang.String notes; // violation
- *   public final BigDecimal value; // violation
- *   public final List list; // violation
- *
- *   public InputPublicImmutable(Collection&lt;String&gt; includes,
- *         BigDecimal value, String notes, int someValue, List l) {
- *     this.includes = ImmutableSet.copyOf(includes);
- *     this.value = value;
- *     this.notes = notes;
- *     this.someIntValue = someValue;
- *     this.list = l;
- *   }
+ * class Example11 {
+ *   public final int someIntValue = 0; // violation 'must be private'
+ *   public final ImmutableSet&lt;String&gt; includes = null; // violation 'must be private'
+ *   public final java.lang.String notes = ""; // violation 'must be private'
+ *   public final BigDecimal value = null; // violation 'must be private'
+ *   public final List list = null; // violation 'must be private'
  * }
  * </pre>
  * <p>
@@ -667,21 +640,12 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * Code example:
  * </p>
  * <pre>
- * public class InputPublicImmutable {
- *   public final int someIntValue; // ok
- *   public final ImmutableSet&lt;String&gt; includes; // ok
- *   public final java.lang.String notes; // ok
- *   public final BigDecimal value; // ok
- *   public final List list; // ok
- *
- *   public InputPublicImmutable(Collection&lt;String&gt; includes,
- *         BigDecimal value, String notes, int someValue, List l) {
- *     this.includes = ImmutableSet.copyOf(includes);
- *     this.value = value;
- *     this.notes = notes;
- *     this.someIntValue = someValue;
- *     this.list = l;
- *   }
+ * class Example12 {
+ *   public final int someIntValue = 0;
+ *   public final ImmutableSet&lt;String&gt; includes = null;
+ *   public final java.lang.String notes = "";
+ *   public final BigDecimal value = null;
+ *   public final List list = null;
  * }
  * </pre>
  * <p>
