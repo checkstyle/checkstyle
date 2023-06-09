@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import com.puppycrawl.tools.checkstyle.MessageKey;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
@@ -106,6 +107,7 @@ public class RequireEmptyLineBeforeBlockTagGroupCheck extends AbstractJavadocChe
      * The key in "messages.properties" for the message that describes a tag in javadoc
      * requiring an empty line before it.
      */
+    @MessageKey
     public static final String MSG_JAVADOC_TAG_LINE_BEFORE = "javadoc.tag.line.before";
 
     /**

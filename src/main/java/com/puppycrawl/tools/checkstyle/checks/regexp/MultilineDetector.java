@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.regexp;
 
 import java.util.regex.Matcher;
 
+import com.puppycrawl.tools.checkstyle.MessageKey;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.LineColumn;
 
@@ -33,23 +34,27 @@ class MultilineDetector {
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
+    @MessageKey
     public static final String MSG_REGEXP_EXCEEDED = "regexp.exceeded";
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
+    @MessageKey
     public static final String MSG_REGEXP_MINIMUM = "regexp.minimum";
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
+    @MessageKey
     public static final String MSG_EMPTY = "regexp.empty";
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
+    @MessageKey
     public static final String MSG_STACKOVERFLOW = "regexp.StackOverflowError";
 
     /** The detection options to use. */

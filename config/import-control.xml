@@ -16,6 +16,7 @@
 
   <allow pkg="com.puppycrawl.tools.checkstyle.api"/>
   <allow pkg="com.puppycrawl.tools.checkstyle.checks"/>
+  <allow class="com.puppycrawl.tools.checkstyle.MessageKey"/>
   <allow pkg="java.io"/>
   <allow pkg="java.net"/>
   <allow pkg="java.util"/>

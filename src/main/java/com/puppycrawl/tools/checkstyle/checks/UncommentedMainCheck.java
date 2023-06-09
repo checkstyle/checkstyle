@@ -24,6 +24,7 @@ import java.util.Set;
 import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
+import com.puppycrawl.tools.checkstyle.MessageKey;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
@@ -134,6 +135,7 @@ public class UncommentedMainCheck
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
+    @MessageKey
     public static final String MSG_KEY = "uncommented.main";
 
     /** Set of possible String array types. */

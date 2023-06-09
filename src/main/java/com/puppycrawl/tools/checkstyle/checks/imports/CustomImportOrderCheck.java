@@ -26,6 +26,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
+import com.puppycrawl.tools.checkstyle.MessageKey;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
@@ -663,36 +664,42 @@ public class CustomImportOrderCheck extends AbstractCheck {
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
+    @MessageKey
     public static final String MSG_LINE_SEPARATOR = "custom.import.order.line.separator";
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
+    @MessageKey
     public static final String MSG_SEPARATED_IN_GROUP = "custom.import.order.separated.internally";
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
+    @MessageKey
     public static final String MSG_LEX = "custom.import.order.lex";
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
+    @MessageKey
     public static final String MSG_NONGROUP_IMPORT = "custom.import.order.nonGroup.import";
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
+    @MessageKey
     public static final String MSG_NONGROUP_EXPECTED = "custom.import.order.nonGroup.expected";
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
+    @MessageKey
     public static final String MSG_ORDER = "custom.import.order";
 
     /** STATIC group name. */
