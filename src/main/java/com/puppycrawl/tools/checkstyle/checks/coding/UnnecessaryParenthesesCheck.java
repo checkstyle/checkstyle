@@ -642,8 +642,6 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
                 log(ast, MSG_EXPR);
             }
         }
-
-        parentToSkip = null;
     }
 
     /**
