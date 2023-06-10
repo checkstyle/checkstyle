@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck.MSG_KEY;
 import static com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck.MSG_KEY_VOID;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.io.File;
 import java.util.Collection;
@@ -172,6 +173,27 @@ public class ReturnCountCheckTest extends AbstractModuleTestSupport {
                         "contextStack",
                         contextStack -> ((Collection<Set<String>>) contextStack).isEmpty()))
                 .isTrue();
+    }
+
+    /**
+     * Tries to reproduce system failure to call Check on not acceptable token.
+     * It can not be reproduced by Input files. Maintainers thinks that keeping
+     * exception on unknown token is beneficial.
+     *
+     */
+    @Test
+    public void testImproperToken2() {
+        final ReturnCountCheck check = new ReturnCountCheck();
+        final DetailAstImpl classDefAst = new DetailAstImpl();
+        classDefAst.setType(TokenTypes.CLASS_DEF);
+        try {
+            check.visitToken(classDefAst);
+            assertWithMessage("IllegalStateException is expected").fail();
+        }
+        catch (IllegalStateException ex) {
+            assertThrows(IllegalStateException.class,
+                    () -> check.leaveToken(classDefAst), "IllegalStateException was expected");
+        }
     }
 
 }
