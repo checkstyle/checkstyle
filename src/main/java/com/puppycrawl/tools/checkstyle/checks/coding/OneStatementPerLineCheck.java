@@ -138,12 +138,12 @@ public final class OneStatementPerLineCheck extends AbstractCheck {
     /**
      * Hold the line-number where the last statement ended.
      */
-    private int lastStatementEnd = -1;
+    private int lastStatementEnd;
 
     /**
      * Hold the line-number where the last 'for-loop' statement ended.
      */
-    private int forStatementEnd = -1;
+    private int forStatementEnd;
 
     /**
      * The for-header usually has 3 statements on one line, but THIS IS OK.
@@ -158,12 +158,12 @@ public final class OneStatementPerLineCheck extends AbstractCheck {
     /**
      * Hold the line-number where the last lambda statement ended.
      */
-    private int lambdaStatementEnd = -1;
+    private int lambdaStatementEnd;
 
     /**
      * Hold the line-number where the last resource variable statement ended.
      */
-    private int lastVariableResourceStatementEnd = -1;
+    private int lastVariableResourceStatementEnd;
 
     /**
      * Enable resources processing.
@@ -202,10 +202,10 @@ public final class OneStatementPerLineCheck extends AbstractCheck {
     @Override
     public void beginTree(DetailAST rootAST) {
         inForHeader = false;
-        lastStatementEnd = -1;
-        forStatementEnd = -1;
+        lastStatementEnd = 0;
+        forStatementEnd = 0;
         isInLambda = false;
-        lastVariableResourceStatementEnd = -1;
+        lastVariableResourceStatementEnd = 0;
     }
 
     @Override
