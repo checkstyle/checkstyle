@@ -183,46 +183,10 @@
   <mutation unstable="false">
     <sourceFile>OneStatementPerLineCheck.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck</mutatedClass>
-    <mutatedMethod>&lt;init&gt;</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
-    <description>Removed assignment to member variable forStatementEnd</description>
-    <lineContent>private int forStatementEnd = -1;</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>OneStatementPerLineCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck</mutatedClass>
-    <mutatedMethod>&lt;init&gt;</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
-    <description>Removed assignment to member variable lambdaStatementEnd</description>
-    <lineContent>private int lambdaStatementEnd = -1;</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>OneStatementPerLineCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck</mutatedClass>
-    <mutatedMethod>&lt;init&gt;</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
-    <description>Removed assignment to member variable lastStatementEnd</description>
-    <lineContent>private int lastStatementEnd = -1;</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>OneStatementPerLineCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck</mutatedClass>
-    <mutatedMethod>&lt;init&gt;</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
-    <description>Removed assignment to member variable lastVariableResourceStatementEnd</description>
-    <lineContent>private int lastVariableResourceStatementEnd = -1;</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>OneStatementPerLineCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck</mutatedClass>
     <mutatedMethod>beginTree</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
     <description>Removed assignment to member variable forStatementEnd</description>
-    <lineContent>forStatementEnd = -1;</lineContent>
+    <lineContent>forStatementEnd = 0;</lineContent>
   </mutation>
 
   <mutation unstable="false">
@@ -249,7 +213,7 @@
     <mutatedMethod>beginTree</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
     <description>Removed assignment to member variable lastStatementEnd</description>
-    <lineContent>lastStatementEnd = -1;</lineContent>
+    <lineContent>lastStatementEnd = 0;</lineContent>
   </mutation>
 
   <mutation unstable="false">
@@ -258,7 +222,7 @@
     <mutatedMethod>beginTree</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
     <description>Removed assignment to member variable lastVariableResourceStatementEnd</description>
-    <lineContent>lastVariableResourceStatementEnd = -1;</lineContent>
+    <lineContent>lastVariableResourceStatementEnd = 0;</lineContent>
   </mutation>
 
   <mutation unstable="false">
