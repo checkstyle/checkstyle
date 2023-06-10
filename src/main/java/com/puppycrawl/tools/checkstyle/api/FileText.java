@@ -75,7 +75,7 @@ public final class FileText {
      * The charset used to read the file.
      * {@code null} if the file was reconstructed from a list of lines.
      */
-    private final Charset charset;
+    private Charset charset;
 
     /**
      * The lines of the file, without terminators.
@@ -128,7 +128,6 @@ public final class FileText {
         }
 
         this.file = file;
-        charset = null;
         fullText = buf.toString();
         this.lines = lines.toArray(CommonUtil.EMPTY_STRING_ARRAY);
     }
