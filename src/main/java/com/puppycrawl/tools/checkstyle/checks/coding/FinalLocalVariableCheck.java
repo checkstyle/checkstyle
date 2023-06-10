@@ -488,7 +488,6 @@ public class FinalLocalVariableCheck extends AbstractCheck {
                         storedVariable = candidate.variableIdent;
                     }
                     if (storedVariable != null
-                            && isSameVariables(storedVariable, variable)
                             && isSameVariables(assignedVariable, variable)) {
                         scopeData.uninitializedVariables.push(variable);
                         shouldRemove = true;
