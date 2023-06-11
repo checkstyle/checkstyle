@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenTextCheck.MSG_KEY;
 
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
@@ -189,4 +190,11 @@ public class IllegalTokenTextCheckTest
         }
     }
 
+    @Test
+    public void testDefaultFormat() throws Exception {
+
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputIllegalTokenTextDefaultFormat.java"), expected);
+    }
 }
