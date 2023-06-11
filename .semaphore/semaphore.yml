@@ -64,6 +64,19 @@ blocks:
             - echo "eval of CMD is completed";
             - ./.ci/validation.sh git-diff
 
+        - name: Validation (openjdk17, fast pool)
+          matrix:
+            - env_var: CMD
+              values:
+                - .ci/validation.sh eclipse-static-analysis
+          commands:
+            - sem-version java 17
+            - echo "eval of CMD is starting";
+            - echo "CMD=$CMD";
+            - eval $CMD;
+            - echo "eval of CMD is completed";
+            - ./.ci/validation.sh git-diff
+
         - name: No Error Test (openjdk11, fast pool)
           matrix:
             - env_var: CMD
