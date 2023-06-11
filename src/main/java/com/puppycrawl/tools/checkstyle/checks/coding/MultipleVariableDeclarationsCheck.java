@@ -139,7 +139,7 @@ public class MultipleVariableDeclarationsCheck extends AbstractCheck {
                 }
                 else {
                     final DetailAST lastNode = getLastNode(ast);
-                    final DetailAST firstNextNode = CheckUtil.getFirstNode(nextNode);
+                    final DetailAST firstNextNode = (nextNode);
 
                     if (TokenUtil.areOnSameLine(firstNextNode, lastNode)) {
                         log(firstNode, MSG_MULTIPLE);
