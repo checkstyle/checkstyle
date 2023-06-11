@@ -47,7 +47,6 @@ blocks:
               values:
                 - .ci/validation.sh all-sevntu-checks
                 - .ci/validation.sh check-missing-pitests
-                - .ci/validation.sh eclipse-static-analysis
                 - .ci/validation.sh verify-regexp-id
                 - .ci/no-exception-test.sh guava-with-google-checks
                 - .ci/no-exception-test.sh guava-with-sun-checks
@@ -58,6 +57,19 @@ blocks:
                 #    && .ci/validation.sh no-violation-test-josm
           commands:
             - sem-version java 11
+            - echo "eval of CMD is starting";
+            - echo "CMD=$CMD";
+            - eval $CMD;
+            - echo "eval of CMD is completed";
+            - ./.ci/validation.sh git-diff
+
+        - name: Validation (openjdk17, fast pool)
+          matrix:
+            - env_var: CMD
+              values:
+                - .ci/validation.sh eclipse-static-analysis
+          commands:
+            - sem-version java 17
             - echo "eval of CMD is starting";
             - echo "CMD=$CMD";
             - eval $CMD;
