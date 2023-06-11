@@ -159,7 +159,7 @@ public class MultipleVariableDeclarationsCheck extends AbstractCheck {
         DetailAST currentNode = node;
         final DetailAST child = node.getLastChild();
         if (child != null) {
-            currentNode = getLastNode(child);
+            currentNode =  (child);
         }
 
         return currentNode;
