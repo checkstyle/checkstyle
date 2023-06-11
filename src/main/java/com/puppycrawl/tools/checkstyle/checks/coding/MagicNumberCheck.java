@@ -477,12 +477,12 @@ public class MagicNumberCheck extends AbstractCheck {
      */
     private static boolean isInHashCodeMethod(DetailAST ast) {
         // find the method definition AST
-        DetailAST methodDefAST = ast.getParent();
-        while (methodDefAST != null
-                && methodDefAST.getType() != TokenTypes.METHOD_DEF) {
-            methodDefAST = methodDefAST.getParent();
+        DetailAST currentAST = ast;
+        while (currentAST != null
+                && currentAST.getType() != TokenTypes.METHOD_DEF) {
+            currentAST = currentAST.getParent();
         }
-
+        final DetailAST methodDefAST = currentAST;
         boolean inHashCodeMethod = false;
 
         if (methodDefAST != null) {

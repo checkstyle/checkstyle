@@ -64,15 +64,6 @@
   </mutation>
 
   <mutation unstable="false">
-    <sourceFile>MagicNumberCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck</mutatedClass>
-    <mutatedMethod>isInHashCodeMethod</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
-    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getParent with receiver</description>
-    <lineContent>DetailAST methodDefAST = ast.getParent();</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
     <sourceFile>MatchXpathCheck.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.MatchXpathCheck</mutatedClass>
     <mutatedMethod>&lt;init&gt;</mutatedMethod>
