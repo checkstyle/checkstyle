@@ -163,7 +163,7 @@ public class IllegalTokenTextCheck
     private String formatString = "^$";
 
     /** Define the RegExp for illegal pattern. */
-    private Pattern format = Pattern.compile(formatString);
+    private Pattern format;
 
     /** Control whether to ignore case when matching. */
     private boolean ignoreCase;
