@@ -55,24 +55,6 @@
   </mutation>
 
   <mutation unstable="false">
-    <sourceFile>IllegalTokenTextCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenTextCheck</mutatedClass>
-    <mutatedMethod>&lt;init&gt;</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to java/util/regex/Pattern::compile</description>
-    <lineContent>private Pattern format = Pattern.compile(formatString);</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>IllegalTokenTextCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenTextCheck</mutatedClass>
-    <mutatedMethod>&lt;init&gt;</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
-    <description>Removed assignment to member variable format</description>
-    <lineContent>private Pattern format = Pattern.compile(formatString);</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
     <sourceFile>IllegalTypeCheck.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalTypeCheck</mutatedClass>
     <mutatedMethod>setIllegalAbstractClassNameFormat</mutatedMethod>

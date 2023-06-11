@@ -31,6 +31,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 public class IllegalTokenTextCheckTest
@@ -189,4 +190,11 @@ public class IllegalTokenTextCheckTest
         }
     }
 
+    @Test
+    public void testDefaultFormat() throws Exception {
+
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputIllegalTokenTextDefaultFormat.java"), expected);
+    }
 }
