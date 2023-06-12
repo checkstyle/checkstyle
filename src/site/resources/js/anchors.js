@@ -10,6 +10,10 @@
             url = url.substring(0, position);
         }
 
+        const scriptElement = document.querySelector('script[src*="anchors.js"]');
+        const scriptElementSrc = scriptElement.attributes.src.textContent;
+        const relativePath = scriptElementSrc.replace(/\/js\/anchors.js/, '');
+
         var anchors = document.getElementsByTagName("h2");
         [].forEach.call(anchors, function (anchorItem) {
             var name = anchorItem.childNodes[0].name;
@@ -19,7 +23,7 @@
             a.setAttribute("href", link);
 
             var image = document.createElement("img");
-            image.setAttribute("src", "images/anchor.png");
+            image.setAttribute("src", `${relativePath}/images/anchor.png`);
 
             var anchor = document.createElement("div");
             anchor.className = "anchor";
@@ -43,7 +47,7 @@
             a.setAttribute("href", link);
 
             var image = document.createElement("img");
-            image.setAttribute("src", "images/anchor.png");
+            image.setAttribute("src", `${relativePath}/images/anchor.png`);
 
             var anchor = document.createElement("div");
             anchor.className = "anchor";
