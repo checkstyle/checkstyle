@@ -3137,19 +3137,19 @@
           Solution to "Incorrect config file cause CLI finish with error but no output with details". Author: Bhavik Patel <a href="https://github.com/checkstyle/checkstyle/issues/1180">#1180</a>
         </li>
         <li>
-          Fix exception in <a href="config_annotation.html#SuppressWarnings">SuppressWarnings</a> check on complex annotations. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1201">#1201</a>
+          Fix exception in <a href="checks/annotation/suppresswarnings.html#SuppressWarnings">SuppressWarnings</a> check on complex annotations. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1201">#1201</a>
         </li>
         <li>
-          Fix value pair representation in <a href="config_annotation.html#SuppressWarnings">SuppressWarnings</a> check. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1246">#1246</a>
+          Fix value pair representation in <a href="checks/annotation/suppresswarnings.html#SuppressWarnings">SuppressWarnings</a> check. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1246">#1246</a>
         </li>
         <li>
-          Do not generate violation for empty <a href="config_annotation.html#SuppressWarnings">SuppressWarnings</a>. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1187">#1187</a>
+          Do not generate violation for empty <a href="checks/annotation/suppresswarnings.html#SuppressWarnings">SuppressWarnings</a>. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1187">#1187</a>
         </li>
         <li>
           Fix <a href="config_coding.html#PackageDeclaration">PackageDeclaration</a> check for files with comments only. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1149">#1149</a>
         </li>
         <li>
-          Fix exception in <a href="config_annotation.html#SuppressWarningsHolder">SuppressWarningsHolder</a> on complex annotations or annotation with dot. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1148">#1148</a>
+          Fix exception in <a href="checks/annotation/suppresswarningsholder.html#SuppressWarningsHolder">SuppressWarningsHolder</a> on complex annotations or annotation with dot. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1148">#1148</a>
         </li>
       </ul>
 
@@ -3216,7 +3216,7 @@
           Integrate google-style-config-test as Integration Test. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/863">#863</a>
         </li>
         <li>
-          Add known limitations to <a href="config_annotation.html#SuppressWarnings">SuppressWarnings</a> check documentation. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1252">#1252</a>
+          Add known limitations to <a href="checks/annotation/suppresswarnings.html#SuppressWarnings">SuppressWarnings</a> check documentation. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1252">#1252</a>
         </li>
         <li>
           Fix PMD violations of ExceptionAsFlowControl, AvoidCatchingGenericException rule. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/959">#959</a>, <a href="https://github.com/checkstyle/checkstyle/issues/962">#962</a>
