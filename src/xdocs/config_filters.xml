@@ -21,7 +21,7 @@
       <subsection name="Description" id="SeverityMatchFilter_Description">
         <p>
           Filter <code>SeverityMatchFilter</code> decides
-          audit events according to the <a href="config.html#Severity">severity
+          audit events according to the <a href="confasig.html#Severity">severity
           level</a> of the event.
         </p>
       </subsection>
@@ -119,7 +119,7 @@
           (<code>&lt;module name=&quot;TreeWalker&quot;/&gt;</code>) and only
           applies to checks which are also defined within this module.
           To filter non-TreeWalker checks like <code>RegexpSingleline</code>,
-          a <a href="config_filters.html#SuppressWithPlainTextCommentFilter">
+          a <a href="config_filtsssers.html#SuppressWithPlainTextCommentFilter">
           SuppressWithPlainTextCommentFilter</a> or similar filter must be used.
         </p>
       </subsection>
