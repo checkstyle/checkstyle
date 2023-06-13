@@ -39,9 +39,9 @@ public class NoWhitespaceAfterExamplesTest extends AbstractModuleTestSupport {
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "21:12: " + getCheckMessage(MSG_KEY, "."),
-            "26:9: " + getCheckMessage(MSG_KEY, "int"),
-            "30:9: " + getCheckMessage(MSG_KEY, "~"),
+            "18:12: " + getCheckMessage(MSG_KEY, "."),
+            "23:9: " + getCheckMessage(MSG_KEY, "int"),
+            "27:9: " + getCheckMessage(MSG_KEY, "~"),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);

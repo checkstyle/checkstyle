@@ -22,9 +22,9 @@ class Example2 {
 
   void method1() {}
   void method2() { // violation ''METHOD_DEF' should be separated from previous line'
-      int var4 = 4;
+    int var4 = 4;
 
 
-      int var5 = 5;
+    int var5 = 5;
   }
 }
