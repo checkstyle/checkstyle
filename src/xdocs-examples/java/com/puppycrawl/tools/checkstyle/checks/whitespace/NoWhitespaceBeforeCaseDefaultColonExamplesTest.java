@@ -42,7 +42,7 @@ public class NoWhitespaceBeforeCaseDefaultColonExamplesTest extends AbstractModu
         final String[] expected = {
             "15:14: " + getCheckMessage(MSG_KEY, ":"),
             "19:15: " + getCheckMessage(MSG_KEY, ":"),
-            "27:17: " + getCheckMessage(MSG_KEY, ":"),
+            "27:9: " + getCheckMessage(MSG_KEY, ":"),
             "31:13: " + getCheckMessage(MSG_KEY, ":"),
             "38:34: " + getCheckMessage(MSG_KEY, ":"),
         };

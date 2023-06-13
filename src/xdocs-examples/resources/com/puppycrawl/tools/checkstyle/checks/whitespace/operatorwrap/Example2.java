@@ -22,8 +22,6 @@ class Example2 {
             10;
     c
             *= 10; // violation ''*=' should be on the previous line'
-    c *=
-            10;
     c
             -= 5; // violation ''-=' should be on the previous line'
     c -=
@@ -36,10 +34,6 @@ class Example2 {
             >>= 1; // violation ''>>=' should be on the previous line'
     c
         >>>= 1; // violation ''>>>=' should be on the previous line'
-    c
-            ^= 1; // violation ''\^=' should be on the previous line'
-    c
-            |= 1; // violation ''\|=' should be on the previous line'
     c
             &=1 ; // violation ''&=' should be on the previous line'
     c
