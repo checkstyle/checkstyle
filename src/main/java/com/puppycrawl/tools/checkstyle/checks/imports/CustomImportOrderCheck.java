@@ -747,7 +747,7 @@ public class CustomImportOrderCheck extends AbstractCheck {
     private boolean sortImportsInGroupAlphabetically;
 
     /** Number of first domains for SAME_PACKAGE group. */
-    private int samePackageMatchingDepth = 2;
+    private int samePackageMatchingDepth = 0;
 
     /**
      * Setter to specify RegExp for STANDARD_JAVA_PACKAGE group imports.
