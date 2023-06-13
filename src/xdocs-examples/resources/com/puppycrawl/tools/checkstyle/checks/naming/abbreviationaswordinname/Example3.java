@@ -2,10 +2,7 @@
 AbbreviationAsWordInName
 allowedAbbreviationLength = 0
 allowedAbbreviations = XML,URL,O
-ignoreFinal = (default)true
 ignoreStatic = false
-ignoreStaticFinal = (default)true
-ignoreOverriddenMethods = (default)true
 tokens = VARIABLE_DEF,CLASS_DEF
 
 
@@ -14,6 +11,7 @@ tokens = VARIABLE_DEF,CLASS_DEF
 package com.puppycrawl.tools.checkstyle.checks.naming.abbreviationaswordinname;
 
 class Example3 {
+  // xdoc section -- start
   int firstNum;
   int secondNUM; // violation 'no more than '1' consecutive capital letters'
   static int thirdNum;
@@ -25,4 +23,5 @@ class Example3 {
   void newOAuth2Client() {}
   void OAuth2() {}
   void OAUth2() {}
+  // xdoc section -- end
 }

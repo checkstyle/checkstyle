@@ -13,23 +13,23 @@ class Example1 {
     // xdoc section -- start
     switch(1) {
       case 1 : // violation '':' is preceded with whitespace'
-          break;
+        break;
       case 2:
-          break;
+        break;
       default : // violation '':' is preceded with whitespace'
-          break;
+        break;
     }
 
     switch(2) {
       case 2:
-          break;
+        break;
       case 3, 4
-                : break; // violation '':' is preceded with whitespace'
+        : break; // violation '':' is preceded with whitespace'
       case 5,
-            6: break;
+        6: break;
       default
             : // violation '':' is preceded with whitespace'
-          break;
+        break;
     }
 
     switch(DayOfWeek.MONDAY) {
