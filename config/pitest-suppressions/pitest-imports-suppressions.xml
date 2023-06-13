@@ -12,24 +12,6 @@
   <mutation unstable="false">
     <sourceFile>CustomImportOrderCheck.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck</mutatedClass>
-    <mutatedMethod>getFirstDomainsFromIdent</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to java/lang/StringBuilder::append</description>
-    <lineContent>builder.append(tokens.nextToken()).append(&apos;.&apos;);</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>CustomImportOrderCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck</mutatedClass>
-    <mutatedMethod>getFirstDomainsFromIdent</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
-    <description>replaced call to java/lang/StringBuilder::append with receiver</description>
-    <lineContent>builder.append(tokens.nextToken()).append(&apos;.&apos;);</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>CustomImportOrderCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck</mutatedClass>
     <mutatedMethod>setCustomImportOrderRules</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
     <description>Removed assignment to member variable customImportOrderRules</description>

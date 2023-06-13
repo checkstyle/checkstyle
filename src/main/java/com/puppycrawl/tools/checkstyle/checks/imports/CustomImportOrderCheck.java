@@ -1269,7 +1269,7 @@ public class CustomImportOrderCheck extends AbstractCheck {
         int count = firstPackageDomainsCount;
 
         while (count > 0 && tokens.hasMoreTokens()) {
-            builder.append(tokens.nextToken()).append('.');
+            builder.append(tokens.nextToken());
             count--;
         }
         return builder.toString();
