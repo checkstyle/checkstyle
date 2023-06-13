@@ -748,4 +748,12 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
                 getNonCompilablePath("InputCustomImportOrderEclipseDefaultPositive.java"),
                 expected);
     }
+
+    @Test
+    public void testInputCustomImportOrderSpecialImportsRegExp() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputCustomImportOrderSpecialImportsRegExp.java"),
+                expected);
+    }
 }
