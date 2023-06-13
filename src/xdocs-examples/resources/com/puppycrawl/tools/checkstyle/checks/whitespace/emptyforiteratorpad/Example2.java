@@ -13,7 +13,7 @@ import java.util.Map;
 
 class Example2 {
   Map<String, String> map = new HashMap<>();
-  void example() {
+  void example() { // xdoc section -- start
     for (Iterator it = map.entrySet().iterator();  it.hasNext(););
     // violation above '';' is not followed by whitespace.'
     for (Iterator it = map.entrySet().iterator();  it.hasNext(); );
@@ -21,5 +21,5 @@ class Example2 {
     for (Iterator foo = map.entrySet().iterator();
          foo.hasNext();
          );
-    }
+  } // xdoc section -- end
 }
