@@ -1593,6 +1593,7 @@
                 <exclude>.ci-temp/**</exclude>
                 <!-- Specially crafted test files -->
                 <exclude>src/test/resources/**</exclude>
+                <exclude>src/xdocs-examples/resources/**</exclude>
                 <!-- Generated files -->
                 <exclude>src/xdocs/releasenotes.xml</exclude>
                 <exclude>src/xdocs/releasenotes_old*.xml</exclude>
