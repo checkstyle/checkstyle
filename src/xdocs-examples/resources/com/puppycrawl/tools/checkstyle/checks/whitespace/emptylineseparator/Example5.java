@@ -4,7 +4,7 @@ allowMultipleEmptyLinesInsideClassMembers = false
 
 
 */
-
+// xdoc section -- start
 ///////////////////////////////////////////////////
 //HEADER
 ///////////////////////////////////////////////////
@@ -24,9 +24,10 @@ class Example5 {
 
   void method1() {}
   void method2() { // violation ''METHOD_DEF' should be separated from previous line'
-      int var4 = 4; // violation 'There is more than 1 empty line after this line'
+    int var4 = 4; // violation 'There is more than 1 empty line after this line'
 
 
-      int var5 = 5;
+    int var5 = 5;
   }
 }
+// xdoc section -- end
