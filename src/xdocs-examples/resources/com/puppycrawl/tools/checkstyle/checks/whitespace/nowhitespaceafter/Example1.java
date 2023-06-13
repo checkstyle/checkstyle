@@ -1,8 +1,5 @@
 /*
 NoWhitespaceAfter
-allowLineBreaks = (default)true
-tokens = (default)ARRAY_INIT, AT, INC, DEC, UNARY_MINUS, UNARY_PLUS, BNOT, LNOT, \
-         DOT, ARRAY_DECLARATOR, INDEX_OP
 
 
 */
@@ -10,6 +7,7 @@ tokens = (default)ARRAY_INIT, AT, INC, DEC, UNARY_MINUS, UNARY_PLUS, BNOT, LNOT,
 package com.puppycrawl.tools.checkstyle.checks.whitespace.nowhitespaceafter;
 
 class Example1 {
+  // xdoc section -- start
   public void lineBreak(String x) {
     Integer.
         parseInt(x);
@@ -30,4 +28,5 @@ class Example1 {
     a = ~ a; // violation ''~' is followed by whitespace'
     a = ~a;
   }
+  // xdoc section -- end
 }

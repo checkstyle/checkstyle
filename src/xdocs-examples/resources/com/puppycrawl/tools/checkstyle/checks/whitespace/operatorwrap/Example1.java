@@ -10,7 +10,7 @@ class Example1 {
   void example() {
     // xdoc section -- start
     String s = "Hello" + // violation ''\+' should be on a new line'
-    "World";
+      "World";
 
     if (10 == // violation ''==' should be on a new line'
             20) {
