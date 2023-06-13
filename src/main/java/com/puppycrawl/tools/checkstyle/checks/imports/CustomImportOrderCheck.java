@@ -813,7 +813,6 @@ public class CustomImportOrderCheck extends AbstractCheck {
             }
             customOrderRules.add(NON_GROUP_RULE_GROUP);
         }
-        customImportOrderRules = inputCustomImportOrder;
     }
 
     @Override
