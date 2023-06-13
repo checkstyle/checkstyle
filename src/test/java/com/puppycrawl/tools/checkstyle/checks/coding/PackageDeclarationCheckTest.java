@@ -23,6 +23,14 @@ import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.coding.PackageDeclarationCheck.MSG_KEY_MISMATCH;
 import static com.puppycrawl.tools.checkstyle.checks.coding.PackageDeclarationCheck.MSG_KEY_MISSING;
 
+import com.puppycrawl.tools.checkstyle.TreeWalker;
+import com.puppycrawl.tools.checkstyle.api.Configuration;
+import com.puppycrawl.tools.checkstyle.checks.whitespace.AbstractParenPadCheck;
+import com.puppycrawl.tools.checkstyle.checks.whitespace.TypecastParenPadCheck;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
@@ -162,6 +170,24 @@ public class PackageDeclarationCheckTest extends AbstractModuleTestSupport {
         assertWithMessage("Required tokens should not be null")
             .that(check.getRequiredTokens())
             .isNotNull();
+    }
+
+    @Test
+    public void test() throws Exception{
+        final Configuration checkConfig = createModuleConfig(PackageDeclarationCheck.class);
+        final DefaultConfiguration treeWalker = createModuleConfig(TreeWalker.class);
+        final DefaultConfiguration violationCheck = createModuleConfig(PackageDeclarationCheck.class);
+
+        treeWalker.addChild(checkConfig);
+
+
+        final DefaultConfiguration root = createRootConfig(treeWalker);
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        final String[] expected2 = {
+            "8:1: " + getCheckMessage(MSG_KEY_MISSING),
+        };
+        verify2(root, getPath("InputPackageDeclarationPlain.java"), expected,
+                getPath("InputPackageDeclarationNoPackage.java"), expected2);
     }
 
 }
