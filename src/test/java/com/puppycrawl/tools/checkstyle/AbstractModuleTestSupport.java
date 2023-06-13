@@ -49,6 +49,7 @@ import com.puppycrawl.tools.checkstyle.internal.utils.BriefUtLogger;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.ModuleReflectionUtil;
+import javax.annotation.RegEx;
 
 public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport {
 
@@ -280,6 +281,18 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
         verify(createChecker(config), fileName, fileName, expected);
     }
 
+    protected final void verify2(Configuration config, String fileName, String[] expected,
+                                 String fileName2, String[] expected2) throws Exception {
+
+        try {
+
+            verify(createChecker(config), fileName, fileName, expected);
+        }
+        finally {
+            verify( createChecker(config),fileName2, fileName2, expected2);
+        }
+    }
+
     /**
      * Performs verification of the file with the given file name.
      * Uses provided {@link Checker} instance.
@@ -373,7 +386,6 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
                 .containsExactlyElementsIn(violationList);
         });
 
-        checker.destroy();
     }
 
     /**
