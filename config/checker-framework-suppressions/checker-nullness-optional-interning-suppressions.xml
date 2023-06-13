@@ -2369,17 +2369,6 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UnnecessaryParenthesesCheck.java</fileName>
-    <specifier>assignment</specifier>
-    <message>incompatible types in assignment.</message>
-    <lineContent>parentToSkip = null;</lineContent>
-    <details>
-      found   : null (NullType)
-      required: @Initialized @NonNull DetailAST
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UnnecessaryParenthesesCheck.java</fileName>
     <specifier>initialization.field.uninitialized</specifier>
     <message>the default constructor does not initialize field parentToSkip</message>
     <lineContent>private DetailAST parentToSkip;</lineContent>
