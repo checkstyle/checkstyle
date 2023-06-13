@@ -54,15 +54,13 @@ public class OperatorWrapExamplesTest extends AbstractModuleTestSupport {
             "16:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "="),
             "20:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "+="),
             "24:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "*="),
-            "28:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "-="),
-            "32:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "/="),
-            "34:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "%="),
-            "36:13: " + getCheckMessage(MSG_LINE_PREVIOUS, ">>="),
-            "38:9: " + getCheckMessage(MSG_LINE_PREVIOUS, ">>>="),
-            "40:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "^="),
-            "42:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "|="),
-            "44:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "&="),
-            "46:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "<<="),
+            "26:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "-="),
+            "30:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "/="),
+            "32:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "%="),
+            "34:13: " + getCheckMessage(MSG_LINE_PREVIOUS, ">>="),
+            "36:9: " + getCheckMessage(MSG_LINE_PREVIOUS, ">>>="),
+            "38:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "&="),
+            "40:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "<<="),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
