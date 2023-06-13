@@ -1725,6 +1725,7 @@
                 <signaturesFile>${basedir}/config/signatures-test.txt</signaturesFile>
               </signaturesFiles>
               <excludes>
+                <exclude>**/Example*</exclude>
                 <exclude>**/Input*</exclude>
                 <!-- usage of system output by design -->
                 <exclude>**/MainTest.class</exclude>
