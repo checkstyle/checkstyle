@@ -1,7 +1,5 @@
 /*
 AbstractClassName
-format = (default)^Abstract.+$
-ignoreModifier = (default)false
 ignoreName = true
 
 

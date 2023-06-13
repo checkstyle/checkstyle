@@ -1,9 +1,5 @@
 /*
 MethodParamPad
-allowLineBreaks = (default)false
-option = (default)nospace
-tokens = (default)CTOR_DEF, LITERAL_NEW, METHOD_CALL, METHOD_DEF, SUPER_CTOR_CALL, \
-         ENUM_CONSTANT_DEF, RECORD_DEF
 
 
 */
@@ -22,5 +18,5 @@ class Example1 {
   public void method() {}
 
   public void methodWithVeryLongName
-    () {} // violation ''(' should be on the previous line.'
+  () {} // violation ''(' should be on the previous line.'
 }

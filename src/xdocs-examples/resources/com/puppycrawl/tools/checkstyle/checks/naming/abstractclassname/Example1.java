@@ -1,8 +1,5 @@
 /*
 AbstractClassName
-format = (default)^Abstract.+$
-ignoreModifier = (default)false
-ignoreName = (default)false
 
 
 */
@@ -14,6 +11,7 @@ class Example1 {
   abstract class Second {} // violation 'must match pattern '\^Abstract\.\+\$''
   class AbstractThird {} // violation 'must be declared as 'abstract''
   class Fourth {}
-  abstract class GeneratorFifth {} // violation 'must match pattern '\^Abstract\.\+\$''
+  abstract class GeneratorFifth {}
+  // violation above 'must match pattern '\^Abstract\.\+\$''
   class GeneratorSixth {}
 }
