@@ -498,11 +498,8 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
                     isUsedVariableDeclarationFound = variableName.equals(currentVariableName);
                     break;
 
-                case TokenTypes.SEMI:
-                    break;
-
                 default:
-                    result = false;
+                    result = currentSiblingAst.getType() == TokenTypes.SEMI;
             }
 
             currentSiblingAst = currentSiblingAst.getPreviousSibling();
