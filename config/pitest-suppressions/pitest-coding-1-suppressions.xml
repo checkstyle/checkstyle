@@ -28,15 +28,6 @@
   </mutation>
 
   <mutation unstable="false">
-    <sourceFile>UnnecessaryParenthesesCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck</mutatedClass>
-    <mutatedMethod>checkExpression</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
-    <description>Removed assignment to member variable parentToSkip</description>
-    <lineContent>parentToSkip = null;</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
     <sourceFile>VariableDeclarationUsageDistanceCheck.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck</mutatedClass>
     <mutatedMethod>isInitializationSequence</mutatedMethod>
