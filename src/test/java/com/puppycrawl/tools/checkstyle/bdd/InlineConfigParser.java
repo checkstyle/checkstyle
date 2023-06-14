@@ -161,7 +161,7 @@ public final class InlineConfigParser {
     private static void setModules(TestInputConfiguration.Builder testInputConfigBuilder,
                                    String inputFilePath, List<String> lines)
             throws Exception {
-        if (!lines.get(0).startsWith("/*")) {
+        if (!startsWithOpeningComment(lines.get(0))) {
             throw new CheckstyleException("Config not specified on top."
                 + "Please see other inputs for examples of what is required.");
         }
@@ -175,7 +175,15 @@ public final class InlineConfigParser {
             do {
                 lineNo++;
             } while (lines.get(lineNo).isEmpty() || !lines.get(lineNo - 1).isEmpty());
-        } while (!lines.get(lineNo).startsWith("*/"));
+        } while (!startsWithClosingComment(lines.get(lineNo)));
+    }
+
+    private static boolean startsWithOpeningComment(String line) {
+        return line.startsWith("/*") || line.startsWith("<!--");
+    }
+
+    private static boolean startsWithClosingComment(String line) {
+        return line.startsWith("*/") || line.startsWith("-->");
     }
 
     private static String getFullyQualifiedClassName(String filePath, String moduleName)
