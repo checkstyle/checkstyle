@@ -1,4 +1,4 @@
-/*
+<!--
 SuppressWithNearbyTextFilter
 nearbyTextPattern = (default)SUPPRESS CHECKSTYLE (\\w+)
 checkPattern = (default).*
@@ -20,7 +20,7 @@ maximum = (default)0
 ignoreComments = (default)false
 
 
-*/
+-->
 // violation 9 lines above 'Line matches the illegal pattern .*'
 
 <?xml version="1.0"?>

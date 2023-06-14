@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.bdd;
 
+import static com.puppycrawl.tools.checkstyle.utils.CommonUtil.getFileExtension;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.StringReader;
@@ -116,6 +118,12 @@ public final class InlineConfigParser {
             "com.puppycrawl.tools.checkstyle.checks.TranslationCheck"
     );
 
+    /** File extensions and the allowed comment delimiters.  */
+    private static final Map<String, String[]> FILE_EXTENSIONS_COMMENT_DELIMITERS =
+            Map.of("java", new String[] {"/*", "*/"},
+                   "html", new String[] {"<!--", "-->"},
+                   "xml", new String[] {"<!--", "-->"});
+
     /** Stop instances being created. **/
     private InlineConfigParser() {
     }
@@ -161,11 +169,17 @@ public final class InlineConfigParser {
     private static void setModules(TestInputConfiguration.Builder testInputConfigBuilder,
                                    String inputFilePath, List<String> lines)
             throws Exception {
-        if (!lines.get(0).startsWith("/*")) {
+        final String fileExtension = getFileExtension(inputFilePath);
+        final String[] commentDelimiters = FILE_EXTENSIONS_COMMENT_DELIMITERS
+                .getOrDefault(fileExtension, FILE_EXTENSIONS_COMMENT_DELIMITERS.get("java"));
+        final String openingComment = commentDelimiters[0];
+
+        if (!lines.get(0).startsWith(openingComment)) {
             throw new CheckstyleException("Config not specified on top."
                 + "Please see other inputs for examples of what is required.");
         }
         int lineNo = 1;
+        final String closingComment = commentDelimiters[1];
         do {
             final ModuleInputConfiguration.Builder moduleInputConfigBuilder =
                     new ModuleInputConfiguration.Builder();
@@ -175,7 +189,7 @@ public final class InlineConfigParser {
             do {
                 lineNo++;
             } while (lines.get(lineNo).isEmpty() || !lines.get(lineNo - 1).isEmpty());
-        } while (!lines.get(lineNo).startsWith("*/"));
+        } while (!lines.get(lineNo).startsWith(closingComment));
     }
 
     private static String getFullyQualifiedClassName(String filePath, String moduleName)
