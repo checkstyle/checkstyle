@@ -511,8 +511,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
         if (isNonLocalTypeDeclaration(parentAst.getParent())
                 && !isPrivateInstanceVariable(varDefAst)) {
             final DetailAST ident = varDefAst.findFirstToken(TokenTypes.IDENT);
-            final VariableDesc desc = new VariableDesc(ident.getText(),
-                    varDefAst.findFirstToken(TokenTypes.TYPE), findScopeOfVariable(varDefAst));
+            final VariableDesc desc = new VariableDesc(ident.getText());
             typeDeclAstToTypeDeclDesc.get(parentAst.getParent()).addInstOrClassVar(desc);
         }
     }
@@ -865,6 +864,15 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
             this.name = name;
             this.typeAst = typeAst;
             this.scope = scope;
+        }
+
+        /**
+         * Create a new VariableDesc instance.
+         *
+         * @param name name of the variable
+         */
+        private VariableDesc(String name) {
+            this(name, null, null);
         }
 
         /**
