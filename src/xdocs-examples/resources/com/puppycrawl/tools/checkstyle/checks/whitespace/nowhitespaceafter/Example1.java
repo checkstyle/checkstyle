@@ -12,11 +12,11 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace.nowhitespaceafter;
 class Example1 {
   public void lineBreak(String x) {
     Integer.
-        parseInt(x);
+     	   parseInt(x);
     Integer.parseInt(x);
   }
 
-  public void dotOperator(String s) {
+    public void dotOperator(String s, String bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb) {
     Integer.parseInt(s);
     Integer. parseInt(s); // violation ''.' is followed by whitespace'
   }

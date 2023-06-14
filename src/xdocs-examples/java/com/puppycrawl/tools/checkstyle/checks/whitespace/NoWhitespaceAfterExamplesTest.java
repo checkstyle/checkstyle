@@ -54,6 +54,6 @@ public class NoWhitespaceAfterExamplesTest extends AbstractModuleTestSupport {
             "20:12: " + getCheckMessage(MSG_KEY, "."),
         };
 
-        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
+        verifyWithInlineConfigParser(getPath("Exampleasd.java"), expected);
     }
 }

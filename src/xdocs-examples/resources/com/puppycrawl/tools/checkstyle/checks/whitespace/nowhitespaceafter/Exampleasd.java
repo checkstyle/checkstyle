@@ -8,7 +8,7 @@ tokens = DOT
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace.nowhitespaceafter;
 
-class Example2 {
+class Exampleasd {
   public void lineBreak(String x) {
     Integer.
         parseInt(x); // violation above ''.' is followed by whitespace'
