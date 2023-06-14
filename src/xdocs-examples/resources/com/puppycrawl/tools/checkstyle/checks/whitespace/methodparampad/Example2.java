@@ -10,8 +10,8 @@ tokens = METHOD_DEF
 package com.puppycrawl.tools.checkstyle.checks.whitespace.methodparampad;
 
 class Example2 {
-  public Example2() { 
-    super(); 
+  public Example2() {
+    super();
   }
 
   public Example2 (int aParam) {
