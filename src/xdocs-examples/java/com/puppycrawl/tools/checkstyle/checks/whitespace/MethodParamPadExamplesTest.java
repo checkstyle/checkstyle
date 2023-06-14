@@ -43,7 +43,7 @@ public class MethodParamPadExamplesTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "18:19: " + getCheckMessage(MSG_WS_PRECEDED, "("),
             "19:11: " + getCheckMessage(MSG_WS_PRECEDED, "("),
-            "25:5: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
+            "25:3: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
