@@ -23,9 +23,12 @@ import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.coding.PackageDeclarationCheck.MSG_KEY_MISMATCH;
 import static com.puppycrawl.tools.checkstyle.checks.coding.PackageDeclarationCheck.MSG_KEY_MISSING;
 
+import java.io.File;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import de.thetaphi.forbiddenapis.SuppressForbidden;
@@ -164,4 +167,20 @@ public class PackageDeclarationCheckTest extends AbstractModuleTestSupport {
             .isNotNull();
     }
 
+    @Test
+    public void testBeginTreeClear() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(PackageDeclarationCheck.class);
+        final String[] expected = {
+            "8:1: " + getCheckMessage(MSG_KEY_MISSING),
+        };
+        final Checker checker = createChecker(checkConfig);
+        final String fileName1 = getPath("InputPackageDeclarationPlain.java");
+        final String fileName2 = getPath("InputPackageDeclarationNoPackage.java");
+        final File[] files = {
+            new File(fileName1),
+            new File(fileName2),
+        };
+        verify(checker, files, fileName2, expected);
+    }
 }
