@@ -320,4 +320,18 @@ public class FinalLocalVariableCheckTest
             getPath("InputFinalLocalVariableConstructor.java"),
             expected);
     }
+
+    @Test
+    public void test() throws Exception {
+        final String[] expected = {
+            "20:17: " + getCheckMessage(MSG_KEY, "start"),
+            "22:17: " + getCheckMessage(MSG_KEY, "end"),
+            "40:38: " + getCheckMessage(MSG_KEY, "list"),
+            "43:38: " + getCheckMessage(MSG_KEY, "forEach"),
+            "45:38: " + getCheckMessage(MSG_KEY, "body"),
+        };
+        verifyWithInlineConfigParser(
+            getPath("InputFinalLocalVariable3.java"),
+            expected);
+    }
 }
