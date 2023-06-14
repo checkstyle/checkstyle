@@ -22,5 +22,5 @@ class Example1 {
   public void method() {}
 
   public void methodWithVeryLongName
-    () {} // violation ''(' should be on the previous line.'
+  () {} // violation ''(' should be on the previous line.'
 }
