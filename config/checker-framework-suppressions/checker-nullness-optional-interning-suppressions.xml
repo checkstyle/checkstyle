@@ -2412,6 +2412,28 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UnusedLocalVariableCheck.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter scope of VariableDesc.</message>
+    <lineContent>this(name, null, null);</lineContent>
+    <details>
+      found   : null (NullType)
+      required: @Initialized @NonNull DetailAST
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UnusedLocalVariableCheck.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter typeAst of VariableDesc.</message>
+    <lineContent>this(name, null, null);</lineContent>
+    <details>
+      found   : null (NullType)
+      required: @Initialized @NonNull DetailAST
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UnusedLocalVariableCheck.java</fileName>
     <specifier>assignment</specifier>
     <message>incompatible types in assignment.</message>
     <lineContent>packageName = null;</lineContent>
