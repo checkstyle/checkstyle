@@ -246,42 +246,6 @@
   <mutation unstable="false">
     <sourceFile>UnusedLocalVariableCheck.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheck</mutatedClass>
-    <mutatedMethod>addInstanceOrClassVar</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::findFirstToken</description>
-    <lineContent>varDefAst.findFirstToken(TokenTypes.TYPE), findScopeOfVariable(varDefAst));</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>UnusedLocalVariableCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheck</mutatedClass>
-    <mutatedMethod>addInstanceOrClassVar</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to com/puppycrawl/tools/checkstyle/checks/coding/UnusedLocalVariableCheck::findScopeOfVariable</description>
-    <lineContent>varDefAst.findFirstToken(TokenTypes.TYPE), findScopeOfVariable(varDefAst));</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>UnusedLocalVariableCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheck</mutatedClass>
-    <mutatedMethod>addInstanceOrClassVar</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
-    <description>replaced call to com/puppycrawl/tools/checkstyle/checks/coding/UnusedLocalVariableCheck::findScopeOfVariable with argument</description>
-    <lineContent>varDefAst.findFirstToken(TokenTypes.TYPE), findScopeOfVariable(varDefAst));</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>UnusedLocalVariableCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheck</mutatedClass>
-    <mutatedMethod>addInstanceOrClassVar</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
-    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::findFirstToken with receiver</description>
-    <lineContent>varDefAst.findFirstToken(TokenTypes.TYPE), findScopeOfVariable(varDefAst));</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>UnusedLocalVariableCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheck</mutatedClass>
     <mutatedMethod>isInsideLocalAnonInnerClass</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
     <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getParent with receiver</description>
@@ -304,5 +268,23 @@
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
     <description>removed call to com/puppycrawl/tools/checkstyle/checks/coding/UnusedLocalVariableCheck$VariableDesc::getTypeAst</description>
     <lineContent>instVar.getTypeAst(), updatedScope);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>UnusedLocalVariableCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheck$VariableDesc</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable scope</description>
+    <lineContent>scope = null;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>UnusedLocalVariableCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheck$VariableDesc</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable typeAst</description>
+    <lineContent>typeAst = null;</lineContent>
   </mutation>
 </suppressedMutations>
