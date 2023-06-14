@@ -21,5 +21,5 @@ class Example2 {
     for (Iterator foo = map.entrySet().iterator();
          foo.hasNext();
          );
-    }
+  }
 }

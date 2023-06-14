@@ -21,5 +21,5 @@ class Example2 {
   public void method() {} // violation ''(' is not preceded with whitespace'
 
   public void methodWithVeryLongName
-    () {} // OK, because allowLineBreaks is true
+  () {} // OK, because allowLineBreaks is true
 }

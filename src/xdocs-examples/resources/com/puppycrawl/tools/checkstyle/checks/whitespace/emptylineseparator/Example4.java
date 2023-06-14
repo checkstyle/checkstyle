@@ -24,9 +24,9 @@ class Example4 {
 
   void method1() {} // violation ''METHOD_DEF' has more than 1 empty lines before'
   void method2() { // violation ''METHOD_DEF' should be separated from previous line'
-      int var4 = 4;
+    int var4 = 4;
 
 
-      int var5 = 5;
+    int var5 = 5;
   }
 }
