@@ -37,24 +37,6 @@
   </mutation>
 
   <mutation unstable="false">
-    <sourceFile>IllegalTypeCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalTypeCheck</mutatedClass>
-    <mutatedMethod>setIllegalAbstractClassNameFormat</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
-    <description>Removed assignment to member variable illegalAbstractClassNameFormat</description>
-    <lineContent>illegalAbstractClassNameFormat = pattern;</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>IllegalTypeCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalTypeCheck</mutatedClass>
-    <mutatedMethod>visitToken</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to java/lang/Object::toString</description>
-    <lineContent>throw new IllegalStateException(ast.toString());</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
     <sourceFile>MatchXpathCheck.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.MatchXpathCheck</mutatedClass>
     <mutatedMethod>&lt;init&gt;</mutatedMethod>
