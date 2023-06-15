@@ -396,7 +396,6 @@ public class UnusedImportsCheck extends AbstractCheck {
         final Set<String> references = new HashSet<>();
 
         tags.stream()
-            .filter(JavadocTag::canReferenceImports)
             .forEach(tag -> references.addAll(processJavadocTag(tag)));
         return references;
     }
