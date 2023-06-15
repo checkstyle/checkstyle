@@ -1,10 +1,7 @@
 /*
 ConstantName
-format = (default)^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$
 applyToPublic = false
 applyToProtected = false
-applyToPackage = (default)true
-applyToPrivate = (default)true
 
 
 */
