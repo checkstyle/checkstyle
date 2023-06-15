@@ -747,7 +747,7 @@ public class CustomImportOrderCheck extends AbstractCheck {
     private boolean sortImportsInGroupAlphabetically;
 
     /** Number of first domains for SAME_PACKAGE group. */
-    private int samePackageMatchingDepth = 2;
+    private int samePackageMatchingDepth;
 
     /**
      * Setter to specify RegExp for STANDARD_JAVA_PACKAGE group imports.
@@ -1269,7 +1269,7 @@ public class CustomImportOrderCheck extends AbstractCheck {
         int count = firstPackageDomainsCount;
 
         while (count > 0 && tokens.hasMoreTokens()) {
-            builder.append(tokens.nextToken()).append('.');
+            builder.append(tokens.nextToken());
             count--;
         }
         return builder.toString();
