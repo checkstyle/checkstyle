@@ -163,4 +163,8 @@ a[title="toTop"] {
     display: block;
     text-align: left;
   }
+
+  section[id$="Properties"] .wrapper .bodyTable tr td:first-child {
+    font-style: italic;
+  }
 }
