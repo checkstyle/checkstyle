@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.coding.IllegalTypeCheck.MSG_KEY;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.io.File;
 
@@ -427,4 +428,32 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
         }
     }
 
+    /**
+     * Tries to reproduce system failure to call Check on not acceptable token.
+     * It can not be reproduced by Input files. Maintainers thinks that keeping
+     * exception on unknown token is beneficial.
+     *
+     */
+    @Test
+    public void testImproperLeaveToken() {
+        final IllegalTypeCheck check = new IllegalTypeCheck();
+        final DetailAstImpl enumAst = new DetailAstImpl();
+        enumAst.setType(TokenTypes.ENUM_DEF);
+        final IllegalStateException exception = assertThrows(IllegalStateException.class,
+                () -> check.visitToken(enumAst), "IllegalStateException was expected");
+
+        assertWithMessage("Message doesn't contain ast")
+                .that(exception.getMessage())
+                .isEqualTo(enumAst.toString());
+    }
+
+    @Test
+    public void testIllegalTypeAbstractClassNameFormat() throws Exception {
+        final String[] expected = {
+            "15:20: " + getCheckMessage(MSG_KEY, "Gitter"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputIllegalTypeAbstractClassNameFormat.java"),
+                expected);
+    }
 }
