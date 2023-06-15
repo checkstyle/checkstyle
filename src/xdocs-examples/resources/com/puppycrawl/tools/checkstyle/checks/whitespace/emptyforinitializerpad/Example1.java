@@ -15,5 +15,5 @@ class Example1 {
     for ( ;i<2;i++);       // violation '';' is preceded with whitespace'
     for (
           ; i < 2; i++ );
-    }
+  }
 }
