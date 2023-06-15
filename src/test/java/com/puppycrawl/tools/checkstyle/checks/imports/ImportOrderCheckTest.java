@@ -772,4 +772,14 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
                 expected);
     }
 
+    @Test
+    public void testTrimOption() throws Exception {
+        final String[] expected = {
+            "25:1: " + getCheckMessage(MSG_ORDERING, "java.util.Set"),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputImportOrderTestTrimInOption.java"),
+                expected);
+    }
 }
