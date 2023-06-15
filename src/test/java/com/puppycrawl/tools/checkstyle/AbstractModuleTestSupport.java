@@ -172,7 +172,8 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      * @throws IOException if I/O exception occurs while forming the path.
      */
     protected final String getNonCompilablePath(String filename) throws IOException {
-        return new File("src/test/resources-noncompilable/" + getPackageLocation() + "/"
+        return new File("src/" + getResourceLocation()
+                + "/resources-noncompilable/" + getPackageLocation() + "/"
                 + filename).getCanonicalPath();
     }
 
