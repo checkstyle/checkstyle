@@ -16,5 +16,5 @@ class Example2 {
     for ( ;i<2;i++) { };
     for (
           ; i < 2; i++ );
-    }
+  }
 }

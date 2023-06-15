@@ -92,7 +92,7 @@ public class EmptyLineSeparatorExamplesTest extends AbstractModuleTestSupport {
             "12:1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "import"),
             "19:3: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "VARIABLE_DEF"),
             "26:3: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "METHOD_DEF"),
-            "27:19: " + getCheckMessage(MSG_MULTIPLE_LINES_INSIDE),
+            "27:17: " + getCheckMessage(MSG_MULTIPLE_LINES_INSIDE),
         };
 
         verifyWithInlineConfigParser(getPath("Example5.java"), expected);

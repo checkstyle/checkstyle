@@ -1,8 +1,6 @@
 /*
 AbstractClassName
 format = ^Generator.+$
-ignoreModifier = (default)false
-ignoreName = (default)false
 
 
 */
@@ -10,7 +8,8 @@ ignoreName = (default)false
 package com.puppycrawl.tools.checkstyle.checks.naming.abstractclassname;
 
 class Example4 {
-  abstract class AbstractFirst {} // violation 'must match pattern '\^Generator\.\+\$''
+  // violation below 'must match pattern '\^Generator\.\+\$''
+  abstract class AbstractFirst {}
   abstract class Second {} // violation 'must match pattern '\^Generator\.\+\$''
   class AbstractThird {}
   class Fourth {}
