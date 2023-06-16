@@ -40,8 +40,8 @@ public class EmptyForInitializerPadExamplesTest extends AbstractModuleTestSuppor
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "12:11: " + getCheckMessage(MSG_PRECEDED, ";"),
-            "15:11: " + getCheckMessage(MSG_PRECEDED, ";"),
+            "13:11: " + getCheckMessage(MSG_PRECEDED, ";"),
+            "16:11: " + getCheckMessage(MSG_PRECEDED, ";"),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
@@ -50,8 +50,8 @@ public class EmptyForInitializerPadExamplesTest extends AbstractModuleTestSuppor
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-            "14:10: " + getCheckMessage(MSG_NOT_PRECEDED, ";"),
             "15:10: " + getCheckMessage(MSG_NOT_PRECEDED, ";"),
+            "16:10: " + getCheckMessage(MSG_NOT_PRECEDED, ";"),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
