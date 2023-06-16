@@ -1794,6 +1794,9 @@
 
                 <!-- tests should be updated -->
                 <exclude>**/AbstractJavadocCheckTest.class</exclude>
+
+                <!-- due to https://github.com/checkstyle/checkstyle/pull/13179 -->
+                <exclude>**/FullIdentTest.class</exclude>
               </excludes>
             </configuration>
           </execution>
