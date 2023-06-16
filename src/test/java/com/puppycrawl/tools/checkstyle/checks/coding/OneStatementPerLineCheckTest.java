@@ -25,6 +25,7 @@ import static com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineC
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class OneStatementPerLineCheckTest extends AbstractModuleTestSupport {
@@ -120,4 +121,22 @@ public class OneStatementPerLineCheckTest extends AbstractModuleTestSupport {
                 expected);
     }
 
+    @Test
+    public void testAllTheCodeInSingleLine() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(OneStatementPerLineCheck.class);
+
+        final String[] expected = {
+            "1:102: " + getCheckMessage(MSG_KEY),
+            "1:131: " + getCheckMessage(MSG_KEY),
+            "1:165: " + getCheckMessage(MSG_KEY),
+            "1:231: " + getCheckMessage(MSG_KEY),
+            "1:406: " + getCheckMessage(MSG_KEY),
+            "1:443: " + getCheckMessage(MSG_KEY),
+            "1:455: " + getCheckMessage(MSG_KEY),
+        };
+
+        verify(checkConfig, getPath("InputOneStatementPerLine.java"),
+                expected);
+    }
 }
