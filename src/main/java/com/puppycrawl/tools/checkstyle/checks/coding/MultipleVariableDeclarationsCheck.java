@@ -138,31 +138,13 @@ public class MultipleVariableDeclarationsCheck extends AbstractCheck {
                     }
                 }
                 else {
-                    final DetailAST lastNode = getLastNode(ast);
-                    final DetailAST firstNextNode = CheckUtil.getFirstNode(nextNode);
+                    final DetailAST lastNode = ast.getLastChild();
 
-                    if (TokenUtil.areOnSameLine(firstNextNode, lastNode)) {
+                    if (TokenUtil.areOnSameLine(nextNode, lastNode)) {
                         log(firstNode, MSG_MULTIPLE);
                     }
                 }
             }
         }
     }
-
-    /**
-     * Finds sub-node for given node maximum (line, column) pair.
-     *
-     * @param node the root of tree for search.
-     * @return sub-node with maximum (line, column) pair.
-     */
-    private static DetailAST getLastNode(final DetailAST node) {
-        DetailAST currentNode = node;
-        final DetailAST child = node.getLastChild();
-        if (child != null) {
-            currentNode = getLastNode(child);
-        }
-
-        return currentNode;
-    }
-
 }
