@@ -1794,6 +1794,9 @@
 
                 <!-- tests should be updated -->
                 <exclude>**/AbstractJavadocCheckTest.class</exclude>
+
+                <!-- due to https://github.com/checkstyle/checkstyle/pull/13193 All the test needs to be in single line -->
+                <exclude>**/OneStatementPerLineCheckTest.class</exclude>
               </excludes>
             </configuration>
           </execution>
