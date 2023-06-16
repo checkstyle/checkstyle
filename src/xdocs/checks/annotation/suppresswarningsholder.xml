@@ -41,7 +41,7 @@
                 <code>SuppressWarnings</code>.
               </td>
               <td>
-                <a href="property_types.html#String.5B.5D">String[]</a>
+                <a href="../../property_types.html#String.5B.5D">String[]</a>
                 in a format of comma separated attribute=value entries.
                 The attribute is the fully qualified name of the Check and value is its alias.
               </td>
