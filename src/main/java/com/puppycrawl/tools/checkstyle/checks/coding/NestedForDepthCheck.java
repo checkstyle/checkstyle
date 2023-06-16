@@ -134,11 +134,6 @@ public final class NestedForDepthCheck extends AbstractCheck {
     }
 
     @Override
-    public void beginTree(DetailAST rootAST) {
-        depth = 0;
-    }
-
-    @Override
     public void visitToken(DetailAST ast) {
         if (depth > max) {
             log(ast, MSG_KEY, depth, max);
