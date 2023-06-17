@@ -421,7 +421,7 @@ public class UnusedImportsCheck extends AbstractCheck {
      */
     private static Set<String> processJavadocTag(JavadocTag tag) {
         final Set<String> references = new HashSet<>();
-        final String identifier = tag.getFirstArg().trim();
+        final String identifier = tag.getFirstArg();
         for (Pattern pattern : new Pattern[]
         {FIRST_CLASS_NAME, ARGUMENT_NAME}) {
             references.addAll(matchPattern(identifier, pattern));

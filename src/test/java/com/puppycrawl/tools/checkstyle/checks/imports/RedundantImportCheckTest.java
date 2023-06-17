@@ -121,4 +121,22 @@ public class RedundantImportCheckTest
             .isEqualTo(expected);
     }
 
+    @Test
+    public void testBeginTreePackage() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(RedundantImportCheck.class);
+        final String file1 = getPath("InputRedundantImportCheckClearState.java");
+        final String file2 = getPath("InputRedundantImportWithoutPackage.java");
+        final List<String> expectedFirstInput = Arrays.asList(
+            "10:1: " + getCheckMessage(MSG_DUPLICATE, 9, "java.util.Arrays.asList"),
+            "13:1: " + getCheckMessage(MSG_DUPLICATE, 12, "java.util.List")
+        );
+        final List<String> expectedSecondInput = Arrays.asList(
+            "9:1: " + getCheckMessage(MSG_LANG, "java.lang.*"),
+            "10:1: " + getCheckMessage(MSG_LANG, "java.lang.String")
+        );
+        final File[] inputs = {new File(file1), new File(file2)};
+        verify(createChecker(checkConfig), inputs, ImmutableMap.of(
+            file1, expectedFirstInput,
+            file2, expectedSecondInput));
+    }
 }
