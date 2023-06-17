@@ -1,0 +1,13 @@
+/*
+FileTabCharacter
+fileExtensions = java, xml
+
+
+*/
+// xdoc section -- start
+<?xml version="1.0" encoding="UTF-8" ?>
+<UserAccount>
+	<FirstName>John</FirstName> // violation 'File contains tab characters'
+	<LastName>Doe</LastName>    <!-- OK, only first occurrence in file reported -->
+</UserAccount>
+// xdoc section -- end
