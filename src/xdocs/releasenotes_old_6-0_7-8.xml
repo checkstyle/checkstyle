@@ -3084,7 +3084,7 @@
           Detect only label as illegal token in <a href="config_coding.html#IllegalToken">IllegalToken</a> check, default token set is changed to TokenTypes.LABELED_STAT. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1162">#1162</a>
         </li>
         <li>
-          Add possibility to configure targets for <a href="config_whitespace.html#ParenPad">ParenPad</a> check, LPAREN and RPAREN were removed from acceptable tokens. Author: Vladislav Lisetskii <a href="https://github.com/checkstyle/checkstyle/issues/1189">#1189</a>
+          Add possibility to configure targets for <a href="checks/whitespace/parenpad.html#ParenPad">ParenPad</a> check, LPAREN and RPAREN were removed from acceptable tokens. Author: Vladislav Lisetskii <a href="https://github.com/checkstyle/checkstyle/issues/1189">#1189</a>
         </li>
         <li>
           Set default value of max property to 4 (from 1) for <a href="config_design.html#ThrowsCount">ThrowsCountCheck</a> and update javadoc/xdoc. Author: Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/1143">#1143</a>
@@ -3119,7 +3119,7 @@
           fix for <a href="config_javadoc.html#JavadocMethod">JavadocMethodCheck</a>: catch NoClassDefFoundError in ClassResolver. Author: Vladislav Lisetskii <a href="https://github.com/checkstyle/checkstyle/issues/1192">#1192</a>
         </li>
         <li>
-          Replace hardcoded message in <a href="config_whitespace.html#NoWhitespaceAfter">WhitespaceAfterCheck</a> with new message (i18n). Author: Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/967">#967</a>
+          Replace hardcoded message in <a href="checks/whitespace/nowhitespaceafter.html#NoWhitespaceAfter">WhitespaceAfterCheck</a> with new message (i18n). Author: Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/967">#967</a>
         </li>
         <li>
           Solution to wrong variable reported because of name shadowing in <a href="config_coding.html#FinalLocalVariable">FinalLocalVariableCheck</a>. Author: Bhavik Patel <a href="https://github.com/checkstyle/checkstyle/issues/1142">#1142</a>

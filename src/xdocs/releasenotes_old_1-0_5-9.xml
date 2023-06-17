@@ -382,7 +382,7 @@
         </li>
         <li>
           ignoreEnhancedForColon property added to
-          <a href="config_whitespace.html#WhitespaceAround">WhitespaceAround</a>.
+          <a href="checks/whitespace/whitespacearound.html#WhitespaceAround">WhitespaceAround</a>.
           Thanks to Travis Schneeberger for patch #1921815 (bug #1649038).
         </li>
       </ul>
@@ -704,8 +704,8 @@
         <li><a href="config_regexp.html#RegexpSingleline">RegexpSingleline</a></li>
         <li><a href="config_regexp.html#RegexpSinglelineJava">RegexpSinglelineJava</a></li>
         <li><a href="config_sizes.html#OuterTypeNumber">OuterTypeNumber</a></li>
-        <li><a href="config_whitespace.html#FileTabCharacter">FileTabCharacter</a></li>
-        <li><a href="config_whitespace.html#GenericWhitespace">GenericWhitespace</a></li>
+        <li><a href="checks/whitespace/filetabcharacter#FileTabCharacter">FileTabCharacter</a></li>
+        <li><a href="checks/whitespace/genericwhitespace.html#GenericWhitespace">GenericWhitespace</a></li>
       </ul>
       <p>
         Since release 4.4 the following checks were changed from a Check
@@ -845,7 +845,7 @@
         </li>
         <li>
           New check <a
-          href="config_whitespace.html#FileTabCharacter">FileTabCharacter</a>
+          href="checks/whitespace/filetabcharacter#FileTabCharacter">FileTabCharacter</a>
           for ensuring that any files does not contain a tab
           character. It replaces <i>TabCharacterCheck</i> which was
           restricted to Java files.
@@ -929,7 +929,7 @@
         </li>
         <li>
           New check <a
-          href="config_whitespace.html#GenericWhitespace">GenericWhitespace</a>
+          href="checks/whitespace/genericwhitespace.html#GenericWhitespace">GenericWhitespace</a>
           for ensuring the whitespace around the Generic tokens &lt; and
           &gt; are correct to the <i>typical</i> convention.
         </li>

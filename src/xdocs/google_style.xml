@@ -212,7 +212,7 @@
                   <span class="wrapper inline">
                     <img src="images/ok_green.png" alt="" />
                   </span>
-                  <a href="config_whitespace.html#FileTabCharacter">
+                  <a href="checks/whitespace/filetabcharacter#FileTabCharacter">
                     FileTabCharacter</a>
                 </td>
                 <td>
@@ -292,7 +292,7 @@
                   <span class="wrapper inline">
                     <img src="images/ok_green.png" alt="" />
                   </span>
-                  <a href="config_whitespace.html#EmptyLineSeparator">
+                  <a href="checks/whitespace/emptylineseparator.html#EmptyLineSeparator">
                     EmptyLineSeparator</a>
                 </td>
                 <td>
@@ -340,7 +340,7 @@
                   <span class="wrapper inline">
                     <img src="images/ok_green.png" alt="" />
                   </span>
-                  <a href="config_whitespace.html#NoLineWrap">NoLineWrap</a>
+                  <a href="checks/whitespace/nolinewrap.html#NoLineWrap">NoLineWrap</a>
                 </td>
                 <td>
                   <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LineLength">
@@ -420,7 +420,7 @@
                   <span class="wrapper inline">
                     <img src="images/ok_green.png" alt="" />
                   </span>
-                  <a href="config_whitespace.html#NoLineWrap">NoLineWrap</a>
+                  <a href="checks/whitespace/nolinewrap.html#NoLineWrap">NoLineWrap</a>
                   <br />
                 </td>
                 <td>
@@ -831,19 +831,19 @@
                   <span class="wrapper inline">
                     <img src="images/ok_green.png" alt="" />
                   </span>
-                  <a href="config_whitespace.html#OperatorWrap">OperatorWrap</a>
+                  <a href="checks/whitespace/operatorwrap.html#OperatorWrap">OperatorWrap</a>
                   <br />
                   <br />
                   <span class="wrapper inline">
                     <img src="images/ok_green.png" alt="" />
                   </span>
-                  <a href="config_whitespace.html#SeparatorWrap">SeparatorWrap</a>
+                  <a href="checks/whitespace/separatorwrap.html#SeparatorWrap">SeparatorWrap</a>
                   <br />
                   <br />
                   <span class="wrapper inline">
                     <img src="images/ok_green.png" alt="" />
                   </span>
-                  <a href="config_whitespace.html#MethodParamPad">MethodParamPad</a>
+                  <a href="checks/whitespace/methodparampad.html#MethodParamPad">MethodParamPad</a>
                 </td>
                 <td>
                   <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+OperatorWrap">
@@ -924,7 +924,7 @@
                         src="images/ok_blue.png"
                         alt="" />
                   </span>
-                  <a href="config_whitespace.html#EmptyLineSeparator">
+                  <a href="checks/whitespace/emptylineseparator.html#EmptyLineSeparator">
                     EmptyLineSeparator</a>
                   <br />Blank lines between two consecutive fields are optional.
                   This exception is not satisfied
@@ -953,47 +953,47 @@
                   <span class="wrapper inline">
                     <img src="images/ok_green.png" alt="" />
                   </span>
-                  <a href="config_whitespace.html#WhitespaceAround">
+                  <a href="checks/whitespace/whitespacearound.html#WhitespaceAround">
                     WhitespaceAround</a>
                   <br />
                   <br />
                   <span class="wrapper inline">
                     <img src="images/ok_green.png" alt="" />
                   </span>
-                  <a href="config_whitespace.html#GenericWhitespace">
+                  <a href="checks/whitespace/genericwhitespace.html#GenericWhitespace">
                     GenericWhitespace</a>
                   <br />
                   <br />
                   <span class="wrapper inline">
                     <img src="images/ok_green.png" alt="" />
                   </span>
-                  <a href="config_whitespace.html#MethodParamPad">MethodParamPad</a>
+                  <a href="checks/whitespace/methodparampad.html#MethodParamPad">MethodParamPad</a>
                   <br />
                   <br />
                   <span class="wrapper inline">
                     <img src="images/ok_green.png" alt="" />
                   </span>
-                  <a href="config_whitespace.html#ParenPad">ParenPad</a>
+                  <a href="checks/whitespace/parenpad.html#ParenPad">ParenPad</a>
                   <br />
                   <br />
                   <span class="wrapper inline">
                     <img src="images/ok_blue.png" alt="" />
                   </span>
-                  <a href="config_whitespace.html#WhitespaceAfter">
+                  <a href="checks/whitespace/whitespaceafter.html#WhitespaceAfter">
                     WhitespaceAfter</a>
                   <br />
                   <br />
                   <span class="wrapper inline">
                     <img src="images/ok_blue.png" alt="" />
                   </span>
-                  <a href="config_whitespace.html#NoWhitespaceBefore">
+                  <a href="checks/whitespace/nowhitespacebefore.html#NoWhitespaceBefore">
                     NoWhitespaceBefore</a>
                   <br />
                   <br />
                   <span class="wrapper inline">
                     <img src="images/ok_green.png" alt="" />
                   </span>
-                  <a href="config_whitespace.html#NoWhitespaceBeforeCaseDefaultColon">
+                  <a href="checks/whitespace/nowhitespacebeforecasedefaultcolon.html#NoWhitespaceBeforeCaseDefaultColon">
                     NoWhitespaceBeforeCaseDefaultColon</a>
                   <br />
                   <br />
