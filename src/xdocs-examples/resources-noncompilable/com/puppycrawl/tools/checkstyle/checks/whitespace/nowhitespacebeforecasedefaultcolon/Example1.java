@@ -3,7 +3,7 @@ NoWhitespaceBeforeCaseDefaultColon
 
 
 */
-
+//non-compiled with javac: Compilable with Java14
 package com.puppycrawl.tools.checkstyle.checks.whitespace.nowhitespacebeforecasedefaultcolon;
 
 import java.time.DayOfWeek;
