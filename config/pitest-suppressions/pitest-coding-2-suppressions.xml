@@ -55,15 +55,6 @@
   </mutation>
 
   <mutation unstable="false">
-    <sourceFile>MultipleStringLiteralsCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck</mutatedClass>
-    <mutatedMethod>isInIgnoreOccurrenceContext</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
-    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getParent with receiver</description>
-    <lineContent>token.getParent() != null;</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
     <sourceFile>MultipleVariableDeclarationsCheck.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.MultipleVariableDeclarationsCheck</mutatedClass>
     <mutatedMethod>getLastNode</mutatedMethod>
