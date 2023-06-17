@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE suppressions PUBLIC
+        "-//Checkstyle//DTD SuppressionFilter Configuration 1.1//EN"
+        "https://checkstyle.org/dtds/suppressions_1_1.dtd">
+
+<suppressions>
+
+  <!-- The file is used so examples can show how overriden methods are treated. -->
+  <suppress id="exampleClassName"
+    files="abbreviationaswordinname[\\/]SuperClass.java"/>
+  <suppress id="exampleFileName"
+    files="abbreviationaswordinname[\\/]SuperClass.java"/>
+  <suppress id="xdocStartComment"
+    files="abbreviationaswordinname[\\/]SuperClass.java"/>
+  <suppress id="xdocEndComment"
+    files="abbreviationaswordinname[\\/]SuperClass.java"/>
+
+</suppressions>

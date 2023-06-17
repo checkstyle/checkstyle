@@ -49,7 +49,7 @@ public class EmptyForIteratorPadExamplesTest extends AbstractModuleTestSupport {
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-            "17:65: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ";"),
+            "18:65: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ";"),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);

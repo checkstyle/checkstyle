@@ -9,6 +9,7 @@ tokens = DOT
 package com.puppycrawl.tools.checkstyle.checks.whitespace.nowhitespaceafter;
 
 class Example2 {
+  // xdoc section -- start
   public void lineBreak(String x) {
     Integer.
         parseInt(x); // violation above ''.' is followed by whitespace'
@@ -29,4 +30,5 @@ class Example2 {
     a = ~ a;
     a = ~a;
   }
+  // xdoc section -- end
 }
