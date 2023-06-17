@@ -3,7 +3,7 @@ NoWhitespaceBeforeCaseDefaultColon
 
 
 */
-
+//non-compiled with javac: Compilable with Java14
 package com.puppycrawl.tools.checkstyle.checks.whitespace.nowhitespacebeforecasedefaultcolon;
 
 import java.time.DayOfWeek;
@@ -25,14 +25,14 @@ class Example1 {
           break;
       case 3, 4
                 : break; // violation '':' is preceded with whitespace'
-      case 4,
-            5: break;
+      case 5,
+            6: break;
       default
             : // violation '':' is preceded with whitespace'
           break;
     }
 
-    switch(day) {
+    switch(DayOfWeek.MONDAY) {
       case MONDAY, FRIDAY, SUNDAY: System.out.println("  6"); break;
       // violation below '':' is preceded with whitespace'
       case TUESDAY               : System.out.println("  7"); break;
