@@ -223,7 +223,7 @@ public class MatchXpathCheck extends AbstractCheck {
     public static final String MSG_KEY = "matchxpath.match";
 
     /** Specify Xpath query. */
-    private String query = "";
+    private String query;
 
     /** Xpath expression. */
     private XPathExpression xpathExpression;
