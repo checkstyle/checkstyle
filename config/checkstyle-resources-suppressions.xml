@@ -49,6 +49,10 @@
 
   <!-- intentional problem for testing -->
   <suppress checks="PackageDeclarationCheck"
+    files="redundantimport[\\/]InputRedundantImportWithoutPackage\.java"/>
+
+  <!-- intentional problem for testing -->
+  <suppress checks="PackageDeclarationCheck"
     files="unusedimports[\\/]InputUnusedImportsFileInUnnamedPackage\.java"/>
 
   <!-- intentional problem for testing -->
