@@ -84,15 +84,6 @@
   <mutation unstable="false">
     <sourceFile>NestedForDepthCheck.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.NestedForDepthCheck</mutatedClass>
-    <mutatedMethod>&lt;init&gt;</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
-    <description>Removed assignment to member variable max</description>
-    <lineContent>private int max = 1;</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>NestedForDepthCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.NestedForDepthCheck</mutatedClass>
     <mutatedMethod>beginTree</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
     <description>Removed assignment to member variable depth</description>

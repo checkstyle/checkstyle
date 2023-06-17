@@ -91,4 +91,14 @@ public class NestedForDepthCheckTest extends AbstractModuleTestSupport {
             .isNotNull();
     }
 
+    @Test
+    public void testNestedDefault() throws Exception {
+        final String[] expected = {
+            "27:9: " + getCheckMessage(MSG_KEY, 2, 1),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputNestedForDepthDefault.java"),
+               expected);
+    }
 }
