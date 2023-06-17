@@ -510,7 +510,8 @@ javac11)
         --exclude='InputIllegalTypePackageClassName.java' \
         --exclude='InputVisibilityModifierPackageClassName.java' \
         '//non-compiled (syntax|with javac)?\:' \
-        src/test/resources-noncompilable))
+        src/test/resources-noncompilable \
+        src/xdocs-examples/resources-noncompilable))
   mkdir -p target
   for file in "${files[@]}"
   do
@@ -520,7 +521,8 @@ javac11)
 
 javac14)
   files=($(grep -Rl --include='*.java' ': Compilable with Java14' \
-        src/test/resources-noncompilable || true))
+        src/test/resources-noncompilable \
+        src/xdocs-examples/resources-noncompilable || true))
   if [[  ${#files[@]} -eq 0 ]]; then
     echo "No Java14 files to process"
   else
@@ -534,7 +536,8 @@ javac14)
 
 javac15)
   files=($(grep -Rl --include='*.java' ': Compilable with Java15' \
-        src/test/resources-noncompilable || true))
+        src/test/resources-noncompilable \
+        src/xdocs-examples/resources-noncompilable || true))
   if [[  ${#files[@]} -eq 0 ]]; then
     echo "No Java15 files to process"
   else
@@ -548,7 +551,8 @@ javac15)
 
 javac16)
   files=($(grep -Rl --include='*.java' ': Compilable with Java16' \
-        src/test/resources-noncompilable || true))
+        src/test/resources-noncompilable \
+        src/xdocs-examples/resources-noncompilable || true))
   if [[  ${#files[@]} -eq 0 ]]; then
     echo "No Java16 files to process"
   else
@@ -562,7 +566,8 @@ javac16)
 
 javac17)
   files=($(grep -Rl --include='*.java' ': Compilable with Java17' \
-        src/test/resources-noncompilable || true))
+        src/test/resources-noncompilable \
+        src/xdocs-examples/resources-noncompilable || true))
   if [[  ${#files[@]} -eq 0 ]]; then
     echo "No Java17 files to process"
   else
@@ -576,7 +581,8 @@ javac17)
 
 javac19)
   files=($(grep -Rl --include='*.java' ': Compilable with Java19' \
-        src/test/resources-noncompilable || true))
+        src/test/resources-noncompilable \
+        src/xdocs-examples/resources-noncompilable || true))
   if [[  ${#files[@]} -eq 0 ]]; then
     echo "No Java19 files to process"
   else
