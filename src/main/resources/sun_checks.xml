@@ -76,7 +76,7 @@
   </module>
 
   <!-- Checks for whitespace                               -->
-  <!-- See https://checkstyle.org/config_whitespace.html -->
+  <!-- See https://checkstyle.org/checks/whitespace/index.html -->
   <module name="FileTabCharacter"/>
 
   <!-- Miscellaneous other checks.                   -->
@@ -133,7 +133,7 @@
     <module name="ParameterNumber"/>
 
     <!-- Checks for whitespace                               -->
-    <!-- See https://checkstyle.org/config_whitespace.html -->
+    <!-- See https://checkstyle.org/checks/whitespace/index.html -->
     <module name="EmptyForIteratorPad"/>
     <module name="GenericWhitespace"/>
     <module name="MethodParamPad"/>
