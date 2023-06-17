@@ -41,9 +41,9 @@ public class MethodParamPadExamplesTest extends AbstractModuleTestSupport {
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "18:19: " + getCheckMessage(MSG_WS_PRECEDED, "("),
-            "19:11: " + getCheckMessage(MSG_WS_PRECEDED, "("),
-            "25:5: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
+            "15:19: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "16:11: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "22:3: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
@@ -52,7 +52,7 @@ public class MethodParamPadExamplesTest extends AbstractModuleTestSupport {
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-            "21:21: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "("),
+            "22:21: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "("),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
