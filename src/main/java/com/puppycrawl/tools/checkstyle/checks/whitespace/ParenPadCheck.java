@@ -34,12 +34,13 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * iterator, at the left parenthesis before an empty for initialization, or at
  * the right parenthesis of a try-with-resources resource specification where
  * the last resource variable has a trailing semicolon.
- * Use Check <a href="https://checkstyle.org/config_whitespace.html#EmptyForIteratorPad">
+ * Use Check
+ * <a href="https://checkstyle.org/checks/whitespace/emptyforiteratorpad.html#EmptyForIteratorPad">
  * EmptyForIteratorPad</a> to validate empty for iterators and
- * <a href="https://checkstyle.org/config_whitespace.html#EmptyForInitializerPad">
+ * <a href="https://checkstyle.org/checks/whitespace/emptyforinitializerpad.html#EmptyForInitializerPad">
  * EmptyForInitializerPad</a> to validate empty for initializers.
  * Typecasts are also not checked, as there is
- * <a href="https://checkstyle.org/config_whitespace.html#TypecastParenPad">
+ * <a href="https://checkstyle.org/checks/whitespace/typecastparenpad.html#TypecastParenPad">
  * TypecastParenPad</a> to validate them.
  * </p>
  * <ul>

@@ -205,7 +205,7 @@
             <td>Checks for empty catch blocks.</td>
           </tr>
           <tr>
-            <td><a href="config_whitespace.html#EmptyForInitializerPad">
+            <td><a href="checks/whitespace/emptyforinitializerpad.html#EmptyForInitializerPad">
               EmptyForInitializerPad</a></td>
             <td>
               Checks the padding of an empty for initializer; that is whether
@@ -214,7 +214,11 @@
             </td>
           </tr>
           <tr>
-            <td><a href="config_whitespace.html#EmptyForIteratorPad">EmptyForIteratorPad</a></td>
+            <td>
+              <a href="checks/whitespace/emptyforiteratorpad.html#EmptyForIteratorPad">
+              EmptyForIteratorPad
+              </a>
+            </td>
             <td>
               Checks the padding of an empty for iterator; that is whether a white
               space is required at an empty for iterator, or such white space is
@@ -222,7 +226,11 @@
             </td>
           </tr>
           <tr>
-            <td><a href="config_whitespace.html#EmptyLineSeparator">EmptyLineSeparator</a></td>
+            <td>
+              <a href="checks/whitespace/emptylineseparator.html#EmptyLineSeparator">
+                EmptyLineSeparator
+              </a>
+            </td>
             <td>
               Checks for empty line separators before package,
               all import declarations, fields, constructors, methods, nested classes,
@@ -269,7 +277,11 @@
             Checks for long source files.</td>
           </tr>
           <tr>
-            <td><a href="config_whitespace.html#FileTabCharacter">FileTabCharacter</a></td>
+            <td>
+              <a href="checks/whitespace/filetabcharacter.html#FileTabCharacter">
+                FileTabCharacter
+              </a>
+            </td>
             <td>Checks that there are no tab characters ('\t') in the source code.</td>
           </tr>
           <tr>
@@ -292,7 +304,11 @@
             </td>
           </tr>
           <tr>
-            <td><a href="config_whitespace.html#GenericWhitespace">GenericWhitespace</a></td>
+            <td>
+              <a href="checks/whitespace/genericwhitespace.html#GenericWhitespace">
+                GenericWhitespace
+              </a>
+            </td>
             <td>
               Checks that the whitespace around the Generic tokens (angle brackets)
               "&lt;" and "&gt;" are correct to the typical convention.
@@ -533,7 +549,11 @@
               Checks that method names conform to a specified pattern.</td>
           </tr>
           <tr>
-            <td><a href="config_whitespace.html#MethodParamPad">MethodParamPad</a></td>
+            <td>
+              <a href="checks/whitespace/methodparampad.html#MethodParamPad">
+                MethodParamPad
+              </a>
+            </td>
             <td>
               Checks the padding between the identifier of a method definition,
               constructor definition, method call, or constructor invocation;
@@ -670,7 +690,7 @@
             <td>Checks that there is no method <code>finalize</code> with zero parameters.</td>
           </tr>
           <tr>
-            <td><a href="config_whitespace.html#NoLineWrap">NoLineWrap</a></td>
+            <td><a href="checks/whitespace/nolinewrap.html#NoLineWrap">NoLineWrap</a></td>
             <td>
             Checks that chosen statements are not line-wrapped.</td>
           </tr>
@@ -685,19 +705,28 @@
             <td>Checks that enum definition does not contain a trailing comma.</td>
           </tr>
           <tr>
-            <td><a href="config_whitespace.html#NoWhitespaceAfter">NoWhitespaceAfter</a></td>
+            <td>
+              <a href="checks/whitespace/nowhitespaceafter.html#NoWhitespaceAfter">
+                NoWhitespaceAfter
+              </a>
+            </td>
             <td>
             Checks that there is no whitespace after a token.</td>
           </tr>
           <tr>
-            <td><a href="config_whitespace.html#NoWhitespaceBefore">NoWhitespaceBefore</a></td>
+            <td>
+              <a href="checks/whitespace/nowhitespacebefore.html#NoWhitespaceBefore">
+                NoWhitespaceBefore
+              </a>
+            </td>
             <td>
             Checks that there is no whitespace before a token.</td>
           </tr>
           <tr>
             <td>
-              <a href="config_whitespace.html#NoWhitespaceBeforeCaseDefaultColon">
-              NoWhitespaceBeforeCaseDefaultColon</a>
+              <a href="checks/whitespace/nowhitespacebeforecasedefaultcolon.html#NoWhitespaceBeforeCaseDefaultColon">
+                NoWhitespaceBeforeCaseDefaultColon
+              </a>
             </td>
             <td>
               Checks that there is no whitespace before the colon in a switch block.
@@ -717,7 +746,7 @@
               a source file of its own.</td>
           </tr>
           <tr>
-            <td><a href="config_whitespace.html#OperatorWrap">OperatorWrap</a></td>
+            <td><a href="checks/whitespace/operatorwrap.html#OperatorWrap">OperatorWrap</a></td>
             <td>Checks the policy on how to wrap lines on operators.</td>
           </tr>
           <tr>
@@ -775,7 +804,7 @@
             <td>Checks the number of parameters of a method or constructor.</td>
           </tr>
           <tr>
-            <td><a href="config_whitespace.html#ParenPad">ParenPad</a></td>
+            <td><a href="checks/whitespace/parenpad.html#ParenPad">ParenPad</a></td>
             <td>
               Checks the policy on the padding of parentheses; that is whether a
               space is required after a left parenthesis and before a right
@@ -868,7 +897,7 @@
             <td>Checks the placement of right curly braces (<code>'}'</code>) for code blocks.</td>
           </tr>
           <tr>
-            <td><a href="config_whitespace.html#SeparatorWrap">SeparatorWrap</a></td>
+            <td><a href="checks/whitespace/separatorwrap.html#SeparatorWrap">SeparatorWrap</a></td>
             <td>
             Checks line wrapping with separators.</td>
           </tr>
@@ -895,7 +924,11 @@
             </td>
           </tr>
           <tr>
-            <td><a href="config_whitespace.html#SingleSpaceSeparator">SingleSpaceSeparator</a></td>
+            <td>
+              <a href="checks/whitespace/singlespaceseparator.html#SingleSpaceSeparator">
+                SingleSpaceSeparator
+              </a>
+            </td>
             <td>
              Checks that non-whitespace characters are separated by no more than one
               whitespace.</td>
@@ -962,7 +995,11 @@
               for consistency regarding their keys.</td>
           </tr>
           <tr>
-            <td><a href="config_whitespace.html#TypecastParenPad">TypecastParenPad</a></td>
+            <td>
+              <a href="checks/whitespace/typecastparenpad.html#TypecastParenPad">
+                TypecastParenPad
+              </a>
+            </td>
             <td>Checks the policy on the padding of parentheses for typecasts.</td>
           </tr>
           <tr>
@@ -1030,13 +1067,21 @@
             <td>Checks visibility of class members.</td>
           </tr>
           <tr>
-            <td><a href="config_whitespace.html#WhitespaceAfter">WhitespaceAfter</a></td>
+            <td>
+              <a href="checks/whitespace/whitespaceafter.html#WhitespaceAfter">
+                WhitespaceAfter
+              </a>
+            </td>
             <td>
               Checks that a token is followed by whitespace, with the exception that it
             does not check for whitespace after the semicolon of an empty for iterator.</td>
           </tr>
           <tr>
-            <td><a href="config_whitespace.html#WhitespaceAround">WhitespaceAround</a></td>
+            <td>
+              <a href="checks/whitespace/whitespacearound.html#WhitespaceAround">
+                WhitespaceAround
+              </a>
+            </td>
             <td>
             Checks that a token is surrounded by whitespace.</td>
           </tr>

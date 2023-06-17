@@ -11,12 +11,13 @@
  iterator, at the left parenthesis before an empty for initialization, or at
  the right parenthesis of a try-with-resources resource specification where
  the last resource variable has a trailing semicolon.
- Use Check &lt;a href="https://checkstyle.org/config_whitespace.html#EmptyForIteratorPad"&gt;
+ Use Check
+ &lt;a href="https://checkstyle.org/checks/whitespace/emptyforiteratorpad.html#EmptyForIteratorPad"&gt;
  EmptyForIteratorPad&lt;/a&gt; to validate empty for iterators and
- &lt;a href="https://checkstyle.org/config_whitespace.html#EmptyForInitializerPad"&gt;
+ &lt;a href="https://checkstyle.org/checks/whitespace/emptyforinitializerpad.html#EmptyForInitializerPad"&gt;
  EmptyForInitializerPad&lt;/a&gt; to validate empty for initializers.
  Typecasts are also not checked, as there is
- &lt;a href="https://checkstyle.org/config_whitespace.html#TypecastParenPad"&gt;
+ &lt;a href="https://checkstyle.org/checks/whitespace/typecastparenpad.html#TypecastParenPad"&gt;
  TypecastParenPad&lt;/a&gt; to validate them.
  &lt;/p&gt;</description>
          <properties>
