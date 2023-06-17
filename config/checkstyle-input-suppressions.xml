@@ -59,6 +59,8 @@
 
   <!-- until https://github.com/checkstyle/checkstyle/issues/4845 -->
   <suppress id="noCheckstyleInInputs"
+          files="[\\/]checks[\\/]imports[\\/]redundantimport[\\/]InputRedundantImportWithoutPackage.java"/>
+  <suppress id="noCheckstyleInInputs"
           files="[\\/]checks[\\/]imports[\\/]customimportorder[\\/]InputCustomImportOrderThirdPartyAndSpecial.java"/>
   <suppress id="noCheckstyleInInputs"
           files="[\\/]checks[\\/]imports[\\/]customimportorder[\\/]InputCustomImportOrderThirdPartyAndSpecial2.java"/>
