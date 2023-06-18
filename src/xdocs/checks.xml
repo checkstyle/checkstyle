@@ -96,7 +96,11 @@
             <td>Detects inline conditionals.</td>
           </tr>
           <tr>
-            <td><a href="config_blocks.html#AvoidNestedBlocks">AvoidNestedBlocks</a></td>
+            <td>
+              <a href="checks/blocks/avoidnestedblocks.html#AvoidNestedBlocks">
+                AvoidNestedBlocks
+              </a>
+            </td>
             <td>Finds nested blocks (blocks that are used freely in the code).</td>
           </tr>
           <tr>
@@ -197,11 +201,15 @@
             <td>Checks that classes are designed for extension (subclass creation).</td>
           </tr>
           <tr>
-            <td><a href="config_blocks.html#EmptyBlock">EmptyBlock</a></td>
+            <td><a href="checks/blocks/emptyblock.html#EmptyBlock">EmptyBlock</a></td>
             <td>Checks for empty blocks.</td>
           </tr>
           <tr>
-            <td><a href="config_blocks.html#EmptyCatchBlock">EmptyCatchBlock</a></td>
+            <td>
+              <a href="checks/blocks/emptycatchblock.html#EmptyCatchBlock">
+                EmptyCatchBlock
+              </a>
+            </td>
             <td>Checks for empty catch blocks.</td>
           </tr>
           <tr>
@@ -483,7 +491,7 @@
             <td>Checks lambda parameter names.</td>
           </tr>
           <tr>
-            <td><a href="config_blocks.html#LeftCurly">LeftCurly</a></td>
+            <td><a href="checks/blocks/leftcurly.html#LeftCurly">LeftCurly</a></td>
             <td>
               Checks for the placement of left curly braces (<code>'{'</code>) for code blocks.
             </td>
@@ -627,7 +635,7 @@
             </td>
           </tr>
           <tr>
-            <td><a href="config_blocks.html#NeedBraces">NeedBraces</a></td>
+            <td><a href="checks/blocks/needbraces.html#NeedBraces">NeedBraces</a></td>
             <td>
             Checks for braces around code blocks.</td>
           </tr>
@@ -864,7 +872,7 @@
             </td>
           </tr>
           <tr>
-            <td><a href="config_blocks.html#RightCurly">RightCurly</a></td>
+            <td><a href="checks/blocks/rightcurly.html#RightCurly">RightCurly</a></td>
             <td>Checks the placement of right curly braces (<code>'}'</code>) for code blocks.</td>
           </tr>
           <tr>

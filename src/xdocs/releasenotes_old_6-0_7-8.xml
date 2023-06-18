@@ -3305,7 +3305,7 @@
           Add support for canonical class names in <a href="config_design.html#MutableException">MutableException</a>. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1124">#1124</a>
         </li>
         <li>
-          Fix <a href="config_blocks.html#NeedBraces">NeedBraces</a> check not requiring braces in multiline statements when using allowSingleLineStatement option. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/895">#895</a>
+          Fix <a href="checks/blocks/needbraces.html#NeedBraces">NeedBraces</a> check not requiring braces in multiline statements when using allowSingleLineStatement option. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/895">#895</a>
         </li>
         <li>
           Fix equals and hashCode in SuppressionFilter, SuppressElement, IntRangeFilter, LocalizedMessage and remove obsolete toString. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1088">#1088</a>
