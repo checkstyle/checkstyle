@@ -712,8 +712,8 @@
         to a FileSetCheck:
       </p>
       <ul>
-        <li><a href="config_header.html#Header">Header</a></li>
-        <li><a href="config_header.html#RegexpHeader">RegexpHeader</a></li>
+        <li><a href="checks/headers/header.html#Header">Header</a></li>
+        <li><a href="checks/headers/regexpheader.html#RegexpHeader">RegexpHeader</a></li>
         <li><a href="config_sizes.html#FileLength">FileLength</a></li>
       </ul>
       <p>
@@ -760,7 +760,7 @@
         </li>
         <li>
           CrossLanguageRegexpHeaderCheck - replaced with
-          <a href="config_header.html#RegexpHeader">RegexpHeader</a>.
+          <a href="checks/headers/regexpheader.html#RegexpHeader">RegexpHeader</a>.
         </li>
         <li>
           PackageHtmlCheck - replaced with
@@ -822,7 +822,7 @@
       <ul>
         <li>
           Added the option <i>charset</i> to the
-          <a href="config_header.html">header checks</a> to allow
+          <a href="checks/headers/index.html">header checks</a> to allow
           controlling the encoding of the header file (rfe 1952641).
         </li>
         <li>
@@ -856,8 +856,8 @@
         </li>
         <li>
           Changed <a
-          href="config_header.html#RegexpHeader">RegexpHeader</a> and <a
-          href="config_header.html#Header">Header</a> to be a
+          href="checks/headers/regexpheader.html#RegexpHeader">RegexpHeader</a> and <a
+          href="checks/headers/header.html#Header">Header</a> to be a
           FileSetCheck. Removed CrossLanguageRegexpHeader as a result.
         </li>
         <li>
@@ -1286,7 +1286,7 @@
           <a href="config_regexp.html#Regexp">Regexp</a> check that can
           provide the functionality of the following
           checks: <a
-          href="config_header.html#RegexpHeader">RegexpHeader</a>
+          href="checks/headers/regexpheader.html#RegexpHeader">RegexpHeader</a>
         </li>
         <li>
           Added support for property <i>ignoreStringsRegexp</i> to
