@@ -136,8 +136,11 @@
               relies on.</td>
           </tr>
           <tr>
-            <td><a href="config_modifier.html#ClassMemberImpliedModifier">
-              ClassMemberImpliedModifier</a></td>
+            <td>
+              <a href="checks/modifier/classmemberimpliedmodifier.html#ClassMemberImpliedModifier">
+                ClassMemberImpliedModifier
+              </a>
+            </td>
             <td>Checks for implicit modifiers on nested types in classes and records.</td>
           </tr>
           <tr>
@@ -389,8 +392,11 @@
               define types.</td>
           </tr>
           <tr>
-            <td><a href="config_modifier.html#InterfaceMemberImpliedModifier">
-              InterfaceMemberImpliedModifier</a></td>
+            <td>
+              <a href="checks/modifier/interfacememberimpliedmodifier.html#InterfaceMemberImpliedModifier">
+                InterfaceMemberImpliedModifier
+              </a>
+            </td>
             <td>
               Checks for implicit modifiers on interface members and nested types.</td>
           </tr>
@@ -599,7 +605,7 @@
             <td>Checks that for loop control variables are not modified inside the for block.</td>
           </tr>
           <tr>
-            <td><a href="config_modifier.html#ModifierOrder">ModifierOrder</a></td>
+            <td><a href="checks/modifier/modifierorder.html#ModifierOrder">ModifierOrder</a></td>
             <td>
               Checks that the order of modifiers conforms to the suggestions in the
               Java Language specification, &#167; 8.1.1, 8.3.1, 8.4.3 and 9.4.
@@ -813,7 +819,11 @@
             <td>Checks for redundant import statements.</td>
           </tr>
           <tr>
-            <td><a href="config_modifier.html#RedundantModifier">RedundantModifier</a></td>
+            <td>
+              <a href="checks/modifier/redundantmodifier.html#RedundantModifier">
+                RedundantModifier
+              </a>
+            </td>
             <td>Checks for redundant modifiers.</td>
           </tr>
           <tr>

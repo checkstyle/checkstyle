@@ -97,7 +97,14 @@
         <item name="Javadoc Comments"   href="config_javadoc.html"/>
         <item name="Metrics"            href="config_metrics.html"/>
         <item name="Miscellaneous"      href="config_misc.html"/>
-        <item name="Modifiers"          href="config_modifier.html"/>
+        <item name="Modifiers" href="checks/modifier/index.html" collapse="true">
+          <item name="ClassMemberImpliedModifier"
+                href="checks/modifier/classmemberimpliedmodifier.html"/>
+          <item name="InterfaceMemberImpliedModifier"
+                href="checks/modifier/interfacememberimpliedmodifier.html"/>
+          <item name="ModifierOrder" href="checks/modifier/modifierorder.html"/>
+          <item name="RedundantModifier" href="checks/modifier/redundantmodifier.html"/>
+        </item>
         <item name="Naming Conventions" href="config_naming.html"/>
         <item name="Regexp"             href="config_regexp.html"/>
         <item name="Size Violations"    href="config_sizes.html"/>
