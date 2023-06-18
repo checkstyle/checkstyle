@@ -363,7 +363,7 @@
           Thanks to Evgeny Mandrikov for patch #3367782.
         </li>
         <li>
-          Fixed <a href="config_imports.html#UnusedImports">UnusedImports</a>
+          Fixed <a href="checks/imports/unusedimports.html#UnusedImports">UnusedImports</a>
           to consider @linkplain, @throws and @exception tags when the option
           <code>processJavadoc</code> is turned on.
         </li>
@@ -392,7 +392,7 @@
       <p>New features:</p>
       <ul>
         <li>
-          Enhanced <a href="config_imports.html#UnusedImports">UnusedImports</a>
+          Enhanced <a href="checks/imports/unusedimports.html#UnusedImports">UnusedImports</a>
           to have the option <code>processJavadoc</code> to detect whether
           imports are used. Thanks to Lyle Hanson for patch #3267984.
         </li>
@@ -498,7 +498,7 @@
         </li>
         <li>
           Enhanced
-          <a href="config_imports.html#AvoidStarImport">AvoidStarImport</a>
+          <a href="checks/imports/avoidstarimport.html#AvoidStarImport">AvoidStarImport</a>
           to support the properties <code>allowClassImports</code> and
           <code>allowStaticMemberImports</code> for finer control over
           what is allowed. Thanks to Travis Schneeberger for patch
@@ -551,7 +551,7 @@
           Thanks to Ruslan Dyachenko for patch #3027391.
         </li>
         <li>
-          Enhanced <a href="config_imports.html#ImportOrder">ImportOrder</a>
+          Enhanced <a href="checks/imports/importorder.html#ImportOrder">ImportOrder</a>
           to support using regular expressions for defining groups.
           Thanks to Martin von Gagern for patch #2782118.
         </li>
@@ -559,7 +559,7 @@
       <p>Bug fixes:</p>
       <ul>
         <li>
-          Fixed <a href="config_imports.html#ImportOrder">ImportOrder</a>
+          Fixed <a href="checks/imports/importorder.html#ImportOrder">ImportOrder</a>
           to have the sort behaviour as in release 5.0. (bug #2952881).
           Thanks to Steve McKay for patch #2953936.
         </li>
@@ -609,7 +609,7 @@
       <p>New features:</p>
       <ul>
         <li>
-          Enhanced <a href="config_imports.html#ImportOrder">ImportOrder</a>
+          Enhanced <a href="checks/imports/importorder.html#ImportOrder">ImportOrder</a>
           check to support wildcard ('*') groups.
           Thanks to Steve McKay for patch #2891032.
         </li>
@@ -629,7 +629,7 @@
         </li>
         <li>
           Enhanced the
-          <a href="config_imports.html#ImportControl">ImportControl</a> check
+          <a href="checks/imports/importcontrol.html#ImportControl">ImportControl</a> check
           to support regular expressions. Thanks to lbaeumer for patch
           #2937442.
         </li>
@@ -696,7 +696,7 @@
         <li><a href="config_coding.html#EqualsAvoidNull">EqualsAvoidNull</a></li>
         <li><a href="config_coding.html#NoClone">NoClone</a></li>
         <li><a href="config_coding.html#NoFinalizer">NoFinalizer</a></li>
-        <li><a href="config_imports.html#AvoidStaticImport">AvoidStaticImport</a></li>
+        <li><a href="checks/imports/avoidstaticimport.html#AvoidStaticImport">AvoidStaticImport</a></li>
         <li><a href="config_javadoc.html#JavadocPackage">JavadocPackage</a></li>
         <li><a href="config_naming.html#ClassTypeParameterName">ClassTypeParameterName</a></li>
         <li><a href="config_naming.html#MethodTypeParameterName">MethodTypeParameterName</a></li>
@@ -839,7 +839,7 @@
         </li>
         <li>
           Add new options to the <a
-          href="config_imports.html#ImportOrder">ImportOrderCheck</a>
+          href="checks/imports/importorder.html#ImportOrder">ImportOrderCheck</a>
           to make it more flexible. Thanks to David Didier for providing
           patch #1854213.
         </li>
@@ -963,7 +963,7 @@
         </li>
         <li>
           New check <a
-          href="config_imports.html#AvoidStaticImport">AvoidStaticImport</a>
+          href="checks/imports/avoidstaticimport.html#AvoidStaticImport">AvoidStaticImport</a>
           for ensuring there are no static import statements. Thanks to
           Travis Schneeberger for providing patch #1940611.
         </li>

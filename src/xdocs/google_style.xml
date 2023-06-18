@@ -388,7 +388,7 @@
                   <span class="wrapper inline">
                     <img src="images/ok_green.png" alt="" />
                   </span>
-                  <a href="config_imports.html#AvoidStarImport">AvoidStarImport</a>
+                  <a href="checks/imports/avoidstarimport.html#AvoidStarImport">AvoidStarImport</a>
                 </td>
                 <td>
                   <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+AvoidStarImport">
@@ -453,7 +453,7 @@
                   <span class="wrapper inline">
                     <img src="images/ok_green.png" alt="" />
                   </span>
-                  <a href="config_imports.html#CustomImportOrder">
+                  <a href="checks/imports/customimportorder.html#CustomImportOrder">
                     CustomImportOrder</a>
                 </td>
                 <td>
