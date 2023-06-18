@@ -415,7 +415,7 @@
         </li>
         <li>
           Enhanced
-          <a href="config_modifier.html#RedundantModifier">RedundantModifier</a>
+          <a href="checks/modifier/redundantmodifier.html#RedundantModifier">RedundantModifier</a>
           to support detecting inner <code>interface</code> declarations that
           are declared as <code>static</code>. Raised in bug #3222810.
         </li>
