@@ -101,7 +101,27 @@
         <item name="Naming Conventions" href="config_naming.html"/>
         <item name="Regexp"             href="config_regexp.html"/>
         <item name="Size Violations"    href="config_sizes.html"/>
-        <item name="Whitespace"         href="config_whitespace.html"/>
+        <item name="Whitespace" href="checks/whitespace/index.html" collapse="true">
+          <item name="EmptyForInitializerPad"
+                href="checks/whitespace/emptyforinitializerpad.html"/>
+          <item name="EmptyForIteratorPad" href="checks/whitespace/emptyforiteratorpad.html"/>
+          <item name="EmptyLineSeparator" href="checks/whitespace/emptylineseparator.html"/>
+          <item name="FileTabCharacter" href="checks/whitespace/filetabcharacter.html"/>
+          <item name="GenericWhitespace" href="checks/whitespace/genericwhitespace.html"/>
+          <item name="MethodParamPad" href="checks/whitespace/methodparampad.html"/>
+          <item name="NoLineWrap" href="checks/whitespace/nolinewrap.html"/>
+          <item name="NoWhitespaceAfter" href="checks/whitespace/nowhitespaceafter.html"/>
+          <item name="NoWhitespaceBefore" href="checks/whitespace/nowhitespacebefore.html"/>
+          <item name="NoWhitespaceBeforeCaseDefaultColon"
+                href="checks/whitespace/nowhitespacebeforecasedefaultcolon.html"/>
+          <item name="OperatorWrap" href="checks/whitespace/operatorwrap.html"/>
+          <item name="ParenPad" href="checks/whitespace/parenpad.html"/>
+          <item name="SeparatorWrap" href="checks/whitespace/separatorwrap.html"/>
+          <item name="SingleSpaceSeparator" href="checks/whitespace/singlespaceseparator.html"/>
+          <item name="TypecastParenPad" href="checks/whitespace/typecastparenpad.html"/>
+          <item name="WhitespaceAfter" href="checks/whitespace/whitespaceafter.html"/>
+          <item name="WhitespaceAround" href="checks/whitespace/whitespacearound.html"/>
+        </item>
       </item>
 
       <item name="Style Configurations" href="style_configs.html">
