@@ -103,7 +103,16 @@
           <item name="Header" href="checks/header/header.html"/>
           <item name="RegexpHeader" href="checks/header/regexpheader.html"/>
         </item>
-        <item name="Imports"            href="config_imports.html"/>
+        <item name="Imports" href="checks/imports/index.html" collapse="true">
+          <item name="AvoidStarImport" href="checks/imports/avoidstarimport.html"/>
+          <item name="AvoidStaticImport" href="checks/imports/avoidstaticimport.html"/>
+          <item name="CustomImportOrder" href="checks/imports/customimportorder.html"/>
+          <item name="IllegalImport" href="checks/imports/illegalimport.html"/>
+          <item name="ImportControl" href="checks/imports/importcontrol.html"/>
+          <item name="ImportOrder" href="checks/imports/importorder.html"/>
+          <item name="RedundantImport" href="checks/imports/redundantimport.html"/>
+          <item name="UnusedImports" href="checks/imports/unusedimports.html"/>
+        </item>
         <item name="Javadoc Comments"   href="config_javadoc.html"/>
         <item name="Metrics" href="checks/metrics/index.html" collapse="true">
           <item name="BooleanExpressionComplexity"
