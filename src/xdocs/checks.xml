@@ -299,7 +299,7 @@
             </td>
           </tr>
           <tr>
-            <td><a href="config_header.html#Header">Header</a></td>
+            <td><a href="checks/header/header.html#Header">Header</a></td>
             <td>Checks that a source file begins with a specified header.</td>
           </tr>
           <tr>
@@ -824,7 +824,7 @@
             </td>
           </tr>
           <tr>
-            <td><a href="config_header.html#RegexpHeader">RegexpHeader</a></td>
+            <td><a href="checks/header/regexpheader.html#RegexpHeader">RegexpHeader</a></td>
             <td>
               Checks the header of a source file against a header that contains
               a pattern for each line of the source header.
