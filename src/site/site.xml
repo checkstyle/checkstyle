@@ -145,7 +145,13 @@
           <item name="RedundantModifier" href="checks/modifier/redundantmodifier.html"/>
         </item>
         <item name="Naming Conventions" href="config_naming.html"/>
-        <item name="Regexp"             href="config_regexp.html"/>
+        <item name="Regexp" href="checks/regexp/index.html" collapse="true">
+          <item name="Regexp" href="checks/regexp/regexp.html"/>
+          <item name="RegexpMultiline" href="checks/regexp/regexpmultiline.html"/>
+          <item name="RegexpOnFilename" href="checks/regexp/regexponfilename.html"/>
+          <item name="RegexpSingleline" href="checks/regexp/regexpsingleline.html"/>
+          <item name="RegexpSinglelineJava" href="checks/regexp/regexpsinglelinejava.html"/>
+        </item>
         <item name="Size Violations"    href="config_sizes.html"/>
         <item name="Whitespace" href="checks/whitespace/index.html" collapse="true">
           <item name="EmptyForInitializerPad"

@@ -917,7 +917,7 @@
             <td>Checks for redundant modifiers.</td>
           </tr>
           <tr>
-            <td><a href="config_regexp.html#Regexp">Regexp</a></td>
+            <td><a href="checks/regexp/regexp.html#Regexp">Regexp</a></td>
             <td>
               Checks that a specified pattern exists, exists less than a set
               number of times, or does not exist in the file.
@@ -931,20 +931,36 @@
             </td>
           </tr>
           <tr>
-            <td><a href="config_regexp.html#RegexpMultiline">RegexpMultiline</a></td>
+            <td>
+              <a href="checks/regexp/regexpmultiline.html#RegexpMultiline">
+                RegexpMultiline
+              </a>
+            </td>
             <td>Checks that a specified pattern matches across multiple lines in
             any file type.</td>
           </tr>
           <tr>
-            <td><a href="config_regexp.html#RegexpOnFilename">RegexpOnFilename</a></td>
+            <td>
+              <a href="checks/regexp/regexponfilename.html#RegexpOnFilename">
+                RegexpOnFilename
+              </a>
+            </td>
             <td>Checks that a specified pattern matches based on file and/or folder path.</td>
           </tr>
           <tr>
-            <td><a href="config_regexp.html#RegexpSingleline">RegexpSingleline</a></td>
+            <td>
+              <a href="checks/regexp/regexpsingleline.html#RegexpSingleline">
+                RegexpSingleline
+              </a>
+            </td>
             <td>Checks that a specified pattern matches a single-line in any file type.</td>
           </tr>
           <tr>
-            <td><a href="config_regexp.html#RegexpSinglelineJava">RegexpSinglelineJava</a></td>
+            <td>
+              <a href="checks/regexp/regexpsinglelinejava.html#RegexpSinglelineJava">
+                RegexpSinglelineJava
+              </a>
+            </td>
             <td>Checks that a specified pattern matches a single-line in Java files.</td>
           </tr>
           <tr>

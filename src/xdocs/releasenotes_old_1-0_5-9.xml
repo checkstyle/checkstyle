@@ -700,9 +700,9 @@
         <li><a href="config_javadoc.html#JavadocPackage">JavadocPackage</a></li>
         <li><a href="config_naming.html#ClassTypeParameterName">ClassTypeParameterName</a></li>
         <li><a href="config_naming.html#MethodTypeParameterName">MethodTypeParameterName</a></li>
-        <li><a href="config_regexp.html#RegexpMultiline">RegexpMultiline</a></li>
-        <li><a href="config_regexp.html#RegexpSingleline">RegexpSingleline</a></li>
-        <li><a href="config_regexp.html#RegexpSinglelineJava">RegexpSinglelineJava</a></li>
+        <li><a href="checks/regexp/regexpmultiline.html#RegexpMultiline">RegexpMultiline</a></li>
+        <li><a href="checks/regexp/regexpsingleline.html#RegexpSingleline">RegexpSingleline</a></li>
+        <li><a href="checks/regexp/regexpsinglelinejava.html#RegexpSinglelineJava">RegexpSinglelineJava</a></li>
         <li><a href="config_sizes.html#OuterTypeNumber">OuterTypeNumber</a></li>
         <li><a href="checks/whitespace/filetabcharacter.html#FileTabCharacter">FileTabCharacter</a></li>
         <li><a href="checks/whitespace/genericwhitespace.html#GenericWhitespace">GenericWhitespace</a></li>
@@ -744,19 +744,19 @@
       <ul>
         <li>
           GenericIllegalRegexpCheck - replaced with <a
-          href="config_regexp.html#RegexpMultiline">RegexpMultiline</a>
+          href="checks/regexp/regexpmultiline.html#RegexpMultiline">RegexpMultiline</a>
           and <a
-          href="config_regexp.html#RegexpSingleline">RegexpSingleline</a>
+          href="checks/regexp/regexpsingleline.html#RegexpSingleline">RegexpSingleline</a>
           and <a
-          href="config_regexp.html#RegexpSinglelineJava">RegexpSinglelineJava</a>.
+          href="checks/regexp/regexpsinglelinejava.html#RegexpSinglelineJava">RegexpSinglelineJava</a>.
         </li>
         <li>
           RequiredRegexpCheck - replaced with <a
-          href="config_regexp.html#RegexpMultiline">RegexpMultiline</a>
+          href="checks/regexp/regexpmultiline.html#RegexpMultiline">RegexpMultiline</a>
           and <a
-          href="config_regexp.html#RegexpSingleline">RegexpSingleline</a>
+          href="checks/regexp/regexpsingleline.html#RegexpSingleline">RegexpSingleline</a>
           and <a
-          href="config_regexp.html#RegexpSinglelineJava">RegexpSinglelineJava</a>.
+          href="checks/regexp/regexpsinglelinejava.html#RegexpSinglelineJava">RegexpSinglelineJava</a>.
         </li>
         <li>
           CrossLanguageRegexpHeaderCheck - replaced with
@@ -883,11 +883,11 @@
         </li>
         <li>
           Added the new checks <a
-          href="config_regexp.html#RegexpMultiline">RegexpMultiline</a>
+          href="checks/regexp/regexpmultiline.html#RegexpMultiline">RegexpMultiline</a>
           <a
-          href="config_regexp.html#RegexpSingleline">RegexpSingleline</a>
+          href="checks/regexp/regexpsingleline.html#RegexpSingleline">RegexpSingleline</a>
           <a
-          href="config_regexp.html#RegexpSinglelineJava">RegexpSinglelineJava</a>.
+          href="checks/regexp/regexpsinglelinejava.html#RegexpSinglelineJava">RegexpSinglelineJava</a>.
         </li>
       </ul>
 
@@ -1283,7 +1283,7 @@
       <ul>
         <li>
           Applied patch 1344344 by sjq to provide the new
-          <a href="config_regexp.html#Regexp">Regexp</a> check that can
+          <a href="checks/regexp/regexp.html#Regexp">Regexp</a> check that can
           provide the functionality of the following
           checks: <a
           href="checks/header/regexpheader.html#RegexpHeader">RegexpHeader</a>

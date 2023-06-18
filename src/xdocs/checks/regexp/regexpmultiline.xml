@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>RegexpMultiline</title>
+  </head>
+  <body>
+    <section name="RegexpMultiline">
+      <p>Since Checkstyle 5.0</p>
+      <subsection name="Description" id="RegexpMultiline_Description">
+        <p>
+          Checks that a specified pattern matches across multiple lines in
+          any file type.
+        </p>
+
+        <p>
+          Rationale: This check can be used to when the regular
+          expression can be span multiple lines.
+        </p>
+      </subsection>
+
+      <subsection name="Properties" id="RegexpMultiline_Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>format</td>
+              <td>Specify the format of the regular expression to match.</td>
+              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
+              <td><code>"$."</code></td>
+              <td>5.0</td>
+            </tr>
+            <tr>
+              <td>message</td>
+              <td>Specify the message which is used to notify about violations,
+              if empty then default (hard-coded) message is used.</td>
+              <td><a href="../../property_types.html#String">String</a></td>
+              <td><code>null</code></td>
+              <td>5.0</td>
+            </tr>
+            <tr>
+              <td>ignoreCase</td>
+              <td>Control whether to ignore case when searching.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>5.0</td>
+            </tr>
+            <tr>
+              <td>minimum</td>
+              <td>Specify the minimum number of matches required in each file.</td>
+              <td><a href="../../property_types.html#int">int</a></td>
+              <td><code>0</code></td>
+              <td>5.0</td>
+            </tr>
+            <tr>
+              <td>maximum</td>
+              <td>Specify the maximum number of matches required in each file.</td>
+              <td><a href="../../property_types.html#int">int</a></td>
+              <td><code>0</code></td>
+              <td>5.0</td>
+            </tr>
+            <tr>
+              <td>matchAcrossLines</td>
+              <td>Control whether to match expressions across multiple lines.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>8.25</td>
+            </tr>
+            <tr>
+              <td>fileExtensions</td>
+              <td>Specify the file type extension of files to process.</td>
+              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
+              <td><code>all files</code></td>
+              <td>5.0</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="RegexpMultiline_Examples">
+        <p>
+        To run the check with its default configuration (no matches will be):
+        </p>
+        <source>
+&lt;module name="RegexpMultiline"/&gt;
+        </source>
+        <p>
+        Example:
+        </p>
+        <source>
+void method() {
+  int i = 5; // OK
+  System.out.println(i); // OK
+}
+        </source>
+        <p>
+          To configure the check to find calls to print to the console:
+        </p>
+        <source>
+&lt;module name="RegexpMultiline"&gt;
+  &lt;property name="format" value="System\.(out)|(err)\.print(ln)?\("/&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          Example:
+        </p>
+        <source>
+void method() {
+  System.out.print("Example");   // violation
+  System.err.println("Example"); // violation
+  System.out.print
+    ("Example");                 // violation
+  System.err.println
+    ("Example");          // OK
+  System
+  .out.print("Example");  // OK
+  System
+  .err.println("Example");       // violation
+  System.
+  out.print("Example");   // OK
+  System.
+  err.println("Example");        // violation
+}
+        </source>
+        <p>
+          To configure the check to match text that spans multiple lines,
+          like normal code in a Java file:
+        </p>
+        <source>
+&lt;module name="RegexpMultiline"&gt;
+  &lt;property name="matchAcrossLines" value="true"/&gt;
+  &lt;property name="format" value="System\.out.*?print\("/&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          Example:
+        </p>
+        <source>
+void method() {
+  System.out.print("Example");  // violation
+  System.err.println("Example");
+  System.out.print              // violation
+    ("Example");
+  System.err.println
+    ("Example");
+  System
+  .out.print("Example");
+  System
+  .err.println("Example");
+  System.
+  out.print("Example");
+  System.
+  err.println("Example");
+}
+        </source>
+        <p>
+          Note: Beware of the greedy regular expression used in the above example.
+          <code>.*</code> will match as much as possible and not produce multiple violations in
+          the file if multiple groups of lines could match the expression. To prevent an
+          expression being too greedy, avoid overusing matching all text or allow it to be
+          optional, like <code>.*?</code>. Changing the example expression to not be greedy
+          will allow multiple violations in the example to be found in the same file.
+        </p>
+        <p>
+        To configure the check to match a maximum of three test strings:
+        </p>
+        <source>
+&lt;module name="RegexpMultiline"&gt;
+  &lt;property name="format" value="Test #[0-9]+:[A-Za-z ]+"/&gt;
+  &lt;property name="ignoreCase" value="true"/&gt;
+  &lt;property name="maximum" value="3"/&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          Example:
+        </p>
+        <source>
+void method() {
+  System.out.println("Test #1: this is a test string"); // OK
+  System.out.println("TeSt #2: This is a test string"); // OK
+  System.out.println("TEST #3: This is a test string"); // OK
+  int i = 5;
+  System.out.println("Value of i: " + i);
+  System.out.println("Test #4: This is a test string"); // violation
+  System.out.println("TEst #5: This is a test string"); // violation
+}
+        </source>
+        <p>
+        To configure the check to match a minimum of two test strings:
+        </p>
+        <source>
+&lt;module name="RegexpMultiline"&gt;
+  &lt;property name="format" value="Test #[0-9]+:[A-Za-z ]+"/&gt;
+  &lt;property name="minimum" value="2"/&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          Example:
+        </p>
+        <source>
+void method() {
+  System.out.println("Test #1: this is a test string"); // violation
+  System.out.println("TEST #2: This is a test string"); // OK, "ignoreCase" is false by default
+  int i = 5;
+  System.out.println("Value of i: " + i);
+  System.out.println("Test #3: This is a test string"); // violation
+  System.out.println("Test #4: This is a test string"); // violation
+}
+        </source>
+        <p>
+          To configure the check to restrict an empty file:
+        </p>
+        <source>
+&lt;module name="RegexpMultiline"&gt;
+    &lt;property name="format" value="^\s*$" /&gt;
+    &lt;property name="matchAcrossLines" value="true" /&gt;
+    &lt;property name="message" value="Empty file is not allowed" /&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          Example of violation from the above config:
+        </p>
+
+        <source>
+/var/tmp$ cat -n Test.java
+1
+2
+3
+4
+        </source>
+        <p>Result:</p>
+        <source>
+/var/tmp/Test.java // violation, a file must not be empty.
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage" id="RegexpMultiline_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+RegexpMultiline">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="RegexpMultiline_Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fregexp%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22regexp.StackOverflowError%22">
+            regexp.StackOverflowError</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fregexp%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22regexp.empty%22">
+            regexp.empty</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fregexp%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22regexp.exceeded%22">
+            regexp.exceeded</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fregexp%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22regexp.minimum%22">
+            regexp.minimum</a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="RegexpMultiline_Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.regexp
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="RegexpMultiline_Parent_Module">
+        <p>
+          <a href="../../config.html#Checker">Checker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>
