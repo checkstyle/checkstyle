@@ -226,7 +226,11 @@
             <td>Checks for restricted tokens beneath other tokens.</td>
           </tr>
           <tr>
-            <td><a href="config_design.html#DesignForExtension">DesignForExtension</a></td>
+            <td>
+              <a href="checks/design/designforextension.html#DesignForExtension">
+                DesignForExtension
+              </a>
+            </td>
             <td>Checks that classes are designed for extension (subclass creation).</td>
           </tr>
           <tr>
@@ -322,7 +326,7 @@
             <td>Checks that there are no tab characters ('\t') in the source code.</td>
           </tr>
           <tr>
-            <td><a href="config_design.html#FinalClass">FinalClass</a></td>
+            <td><a href="checks/design/finalclass.html#FinalClass">FinalClass</a></td>
             <td>
               Checks that a class that has only private constructors and
               has no descendant classes is declared as final.
@@ -361,8 +365,11 @@
             a field that is defined in the same class.</td>
           </tr>
           <tr>
-            <td><a href="config_design.html#HideUtilityClassConstructor">
-              HideUtilityClassConstructor</a></td>
+            <td>
+              <a href="checks/design/hideutilityclassconstructor.html#HideUtilityClassConstructor">
+                HideUtilityClassConstructor
+              </a>
+            </td>
             <td>Makes sure that utility classes (classes that contain only static
               methods or fields in their API) do not have a public constructor.</td>
           </tr>
@@ -429,7 +436,7 @@
             </td>
           </tr>
           <tr>
-            <td><a href="config_design.html#InnerTypeLast">InnerTypeLast</a></td>
+            <td><a href="checks/design/innertypelast.html#InnerTypeLast">InnerTypeLast</a></td>
             <td>
               Checks nested (internal) classes/interfaces are declared at the bottom of the
               primary (top-level) class after all init and static init blocks,
@@ -437,7 +444,11 @@
             </td>
           </tr>
           <tr>
-            <td><a href="config_design.html#InterfaceIsType">InterfaceIsType</a></td>
+            <td>
+              <a href="checks/design/interfaceistype.html#InterfaceIsType">
+                InterfaceIsType
+              </a>
+            </td>
             <td>Implements Joshua Bloch, Effective Java, Item 17 - Use Interfaces only to
               define types.</td>
           </tr>
@@ -678,7 +689,11 @@
             and on its own line.</td>
           </tr>
           <tr>
-            <td><a href="config_design.html#MutableException">MutableException</a></td>
+            <td>
+              <a href="checks/design/mutableexception.html#MutableException">
+                MutableException
+              </a>
+            </td>
             <td>
               Ensures that exception classes (classes with names conforming to
               some pattern and explicitly extending classes with names
@@ -785,7 +800,11 @@
             <td>Checks that there is only one statement per line.</td>
           </tr>
           <tr>
-            <td><a href="config_design.html#OneTopLevelClass">OneTopLevelClass</a></td>
+            <td>
+              <a href="checks/design/onetoplevelclass.html#OneTopLevelClass">
+                OneTopLevelClass
+              </a>
+            </td>
             <td>Checks that each top-level class, interface, enum or annotation resides in
               a source file of its own.</td>
           </tr>
@@ -1027,7 +1046,7 @@
             </td>
           </tr>
           <tr>
-            <td><a href="config_design.html#ThrowsCount">ThrowsCount</a></td>
+            <td><a href="checks/design/throwscount.html#ThrowsCount">ThrowsCount</a></td>
             <td>
             Restricts throws statements to a specified count.</td>
           </tr>
@@ -1115,7 +1134,11 @@
             <td>Checks the distance between declaration of variable and its first usage.</td>
           </tr>
           <tr>
-            <td><a href="config_design.html#VisibilityModifier">VisibilityModifier</a></td>
+            <td>
+              <a href="checks/design/visibilitymodifier.html#VisibilityModifier">
+                VisibilityModifier
+              </a>
+            </td>
             <td>Checks visibility of class members.</td>
           </tr>
           <tr>
