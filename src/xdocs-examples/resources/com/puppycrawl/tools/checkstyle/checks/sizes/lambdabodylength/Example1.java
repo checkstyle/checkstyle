@@ -5,8 +5,8 @@ LambdaBodyLength
 */
 
 package com.puppycrawl.tools.checkstyle.checks.sizes.lambdabodylength;
-
 class Example1 {
+  // xdoc section -- start
   Runnable r = () -> { // OK, length is 10
     System.out.println(2); // line 2 of lambda
     System.out.println(3);
@@ -40,4 +40,5 @@ class Example1 {
                 .concat("9")
                 .concat("10")
                 .concat("11"); // line 11
+  // xdoc section -- end
 }
