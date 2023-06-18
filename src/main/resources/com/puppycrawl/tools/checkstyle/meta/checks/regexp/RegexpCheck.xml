@@ -10,7 +10,7 @@
  &lt;/p&gt;
  &lt;p&gt;
  This check combines all the functionality provided by
- &lt;a href="https://checkstyle.org/config_header.html#RegexpHeader"&gt;RegexpHeader&lt;/a&gt;
+ &lt;a href="https://checkstyle.org/checks/header/regexpheader.html#RegexpHeader"&gt;RegexpHeader&lt;/a&gt;
  except supplying the regular expression from a file.
  &lt;/p&gt;
  &lt;p&gt;
