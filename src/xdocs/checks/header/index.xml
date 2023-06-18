@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>Headers</title>
+  </head>
+  <body>
+    <section name="Headers Checks">
+      <div class="wrapper">
+        <table>
+          <tr>
+            <td>
+              <a href="header.html#Header">
+                Header
+              </a>
+            </td>
+            <td>
+              Checks that a source file begins with a specified header.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="regexpheader.html#RegexpHeader">
+                RegexpHeader
+              </a>
+            </td>
+            <td>
+              Checks the header of a source file against a header that contains
+            a pattern for each line of the source header.
+            </td>
+          </tr>
+        </table>
+      </div>
+    </section>
+  </body>
+</document>
