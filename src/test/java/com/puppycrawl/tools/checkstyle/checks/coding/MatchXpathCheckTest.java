@@ -230,4 +230,26 @@ public class MatchXpathCheckTest
                 .that(matchXpathCheck.getRequiredTokens())
                 .isEmpty();
     }
+
+    @Test
+    public void testExceptionMessage() {
+        final MatchXpathCheck matchXpathCheck = new MatchXpathCheck();
+        matchXpathCheck.setQuery("count(*) div 0");
+
+        final DetailAstImpl detailAST = new DetailAstImpl();
+        detailAST.setType(TokenTypes.CLASS_DEF);
+        detailAST.setText("Class Def");
+        detailAST.setLineNo(0);
+        detailAST.setColumnNo(0);
+
+        try {
+            matchXpathCheck.beginTree(detailAST);
+            assertWithMessage("Exception was expected").fail();
+        }
+        catch (IllegalStateException ex) {
+            assertWithMessage("Exception message")
+                .that(ex.getMessage())
+                .isEqualTo("Evaluation of Xpath query failed: count(*) div 0");
+        }
+    }
 }
