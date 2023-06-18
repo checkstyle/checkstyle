@@ -302,4 +302,13 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
                 getPath("InputUnusedImportsShadowed.java"), expected);
     }
 
+    @Test
+    public void testUnusedImports3() throws Exception {
+        final String[] expected = {
+            "11:8: " + getCheckMessage(MSG_KEY, "java.awt.Rectangle"),
+            "13:8: " + getCheckMessage(MSG_KEY, "java.awt.event.KeyEvent"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputUnusedImports3.java"), expected);
+    }
 }
