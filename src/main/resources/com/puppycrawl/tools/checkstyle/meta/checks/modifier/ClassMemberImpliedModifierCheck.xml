@@ -9,7 +9,8 @@
  &lt;/p&gt;
  &lt;p&gt;
  This check is effectively the opposite of
- &lt;a href="https://checkstyle.org/config_modifier.html#RedundantModifier"&gt;RedundantModifier&lt;/a&gt;.
+ &lt;a href="https://checkstyle.org/checks/modifier/redundantmodifier.html#RedundantModifier"&gt;
+ RedundantModifier&lt;/a&gt;.
  It checks the modifiers on nested types in classes and records, ensuring that certain modifiers
  are explicitly specified even though they are actually redundant.
  &lt;/p&gt;
