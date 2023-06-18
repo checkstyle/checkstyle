@@ -620,7 +620,7 @@
                   <span class="wrapper inline">
                     <img src="images/ok_green.png" alt="" />
                   </span>
-                  <a href="config_blocks.html#NeedBraces">NeedBraces</a>
+                  <a href="checks/blocks/needbraces.html#NeedBraces">NeedBraces</a>
                 </td>
                 <td>
                   <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NeedBraces">
@@ -646,12 +646,12 @@
                   <span class="wrapper inline">
                     <img src="images/ok_green.png" alt="" />
                   </span>
-                  <a href="config_blocks.html#LeftCurly">LeftCurly</a>
+                  <a href="checks/blocks/leftcurly.html#LeftCurly">LeftCurly</a>
                   <br/>
                   <span class="wrapper inline">
                     <img src="images/ok_blue.png" alt="" />
                   </span>
-                  <a href="config_blocks.html#RightCurly">RightCurly</a>
+                  <a href="checks/blocks/rightcurly.html#RightCurly">RightCurly</a>
                 </td>
                 <td>
                   <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LeftCurly">
@@ -683,13 +683,13 @@
                   <span class="wrapper inline">
                     <img src="images/ok_green.png" alt="" />
                   </span>
-                  <a href="config_blocks.html#EmptyBlock">EmptyBlock</a>
+                  <a href="checks/blocks/emptyblock.html#EmptyBlock">EmptyBlock</a>
                   <br />
                   <br />
                   <span class="wrapper inline">
                     <img src="images/ok_green.png" alt="" />
                   </span>
-                  <a href="config_blocks.html#EmptyCatchBlock">EmptyCatchBlock</a>
+                  <a href="checks/blocks/emptycatchblock.html#EmptyCatchBlock">EmptyCatchBlock</a>
                 </td>
                 <td>
                   <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+EmptyBlock">
@@ -1898,7 +1898,7 @@
                         src="images/ok_blue.png"
                         alt="" />
                   </span>
-                  <a href="config_blocks.html#EmptyBlock">EmptyBlock</a>
+                  <a href="checks/blocks/emptyblock.html#EmptyBlock">EmptyBlock</a>
                   with option=text.
                 </td>
                 <td>

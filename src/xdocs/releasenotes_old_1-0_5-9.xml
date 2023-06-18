@@ -904,7 +904,7 @@
           not contain any files. Thanks to Florian for patch #2151706.
         </li>
         <li>
-          Fixed the <a href="config_blocks.html#LeftCurly">LeftCurly</a> check
+          Fixed the <a href="checks/blocks/leftcurly.html#LeftCurly">LeftCurly</a> check
           to ignore leading annotations. Thanks to Tim Carpenter for patch
           #2506439.
         </li>
