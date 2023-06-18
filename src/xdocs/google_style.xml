@@ -1419,7 +1419,7 @@
                   <span class="wrapper inline">
                     <img src="images/ok_green.png" alt="" />
                   </span>
-                  <a href="config_modifier.html#ModifierOrder">ModifierOrder</a>
+                  <a href="checks/modifier/modifierorder.html#ModifierOrder">ModifierOrder</a>
                 </td>
                 <td>
                   <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ModifierOrder">
