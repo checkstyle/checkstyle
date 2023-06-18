@@ -25,7 +25,7 @@
         </p>
         <p>
           This check combines all the functionality provided by
-          <a href="config_header.html#RegexpHeader">RegexpHeader</a>
+          <a href="checks/header/regexpheader.html#RegexpHeader">RegexpHeader</a>
           except supplying the regular expression from a file.
         </p>
         <p>
@@ -250,7 +250,7 @@
         </source>
         <p>
           <b>To use like <a
-                  href="config_header.html#RegexpHeader">RegexpHeader
+                  href="checks/header/regexpheader.html#RegexpHeader">RegexpHeader
           </a>:</b>
         </p>
         <p>
