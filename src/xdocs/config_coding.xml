@@ -3063,7 +3063,7 @@ public void myTest() {
         <p>
           For additional restriction of type usage see also:
           <a href="config_coding.html#IllegalInstantiation">IllegalInstantiation</a>,
-          <a href="config_imports.html#IllegalImport">IllegalImport</a>
+          <a href="checks/imports/illegalimport.html#IllegalImport">IllegalImport</a>
         </p>
       </subsection>
 
