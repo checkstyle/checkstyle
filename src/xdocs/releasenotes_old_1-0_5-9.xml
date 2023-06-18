@@ -514,7 +514,7 @@
         </li>
         <li>
           Fix
-          <a href="config_design.html#HideUtilityClassConstructor">HideUtilityClassConstructor</a>
+          <a href="checks/design/hideutilityclassconstructor.html#HideUtilityClassConstructor">HideUtilityClassConstructor</a>
           to handle empty and inner classes. Thanks to Roman Ivanov for
           patch #3045720.
         </li>
@@ -545,7 +545,7 @@
         </li>
         <li>
           Added <a
-          href="config_design.html#InnerTypeLast">InnerTypeLast</a> to
+          href="checks/design/innertypelast.html#InnerTypeLast">InnerTypeLast</a> to
           check nested (internal) classes/interfaces are declared at the
           bottom of the class after all method and field declarations.
           Thanks to Ruslan Dyachenko for patch #3027391.
