@@ -2778,7 +2778,7 @@
           Change default value of property "format" to "^Abstract.*$" in <a href="config_naming.html#AbstractClassName">AbstractClassNameCheck</a>. Author: Bhavik Patel <a href="https://github.com/checkstyle/checkstyle/issues/1279">#1279</a>
         </li>
         <li>
-          Removed property "url" in <a href="config_imports.html#ImportControl">ImportControlCheck</a>. Note: will be restored in release 6.11. Author: Aleksandr Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/1128">#1128</a>
+          Removed property "url" in <a href="checks/imports/importcontrol.html#ImportControl">ImportControlCheck</a>. Note: will be restored in release 6.11. Author: Aleksandr Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/1128">#1128</a>
         </li>
       </ul>
 
@@ -3131,7 +3131,7 @@
           solution to CLI fails when it could not find output file. Author: Bhavik Patel <a href="https://github.com/checkstyle/checkstyle/issues/1181">#1181</a>
         </li>
         <li>
-          Fixed exception in <a href="config_imports.html#AvoidStaticImport">AvoidStaticImport</a> check trying to exclude members of inner class. Author: Aleksandr Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/1209">#1209</a>
+          Fixed exception in <a href="checks/imports/avoidstaticimport.html#AvoidStaticImport">AvoidStaticImport</a> check trying to exclude members of inner class. Author: Aleksandr Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/1209">#1209</a>
         </li>
         <li>
           Solution to "Incorrect config file cause CLI finish with error but no output with details". Author: Bhavik Patel <a href="https://github.com/checkstyle/checkstyle/issues/1180">#1180</a>
@@ -3326,7 +3326,7 @@
           MagicNumber annotation detection enhanced for arbitrary parent nodes in <a href="config_coding.html#MagicNumber">MagicNumber</a> check. Author: Mehmet Can Cömert <a href="https://github.com/checkstyle/checkstyle/issues/926">#926</a>
         </li>
         <li>
-          Improve standard package regexp for <a href="config_imports.html#CustomImportOrder">CustomImportOrder</a> check. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1020">#1020</a>
+          Improve standard package regexp for <a href="checks/imports/customimportorder.html#CustomImportOrder">CustomImportOrder</a> check. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1020">#1020</a>
         </li>
         <li>
           Fix NPE in <a href="config_coding.html#ModifiedControlVariable">ModifiedControlVariable</a> check. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1012">#1012</a>
@@ -3397,7 +3397,7 @@
           Remove obsolete space from general error message. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/pull/1029">#1029</a>
         </li>
         <li>
-          Add missing space in error message for <a href="config_imports.html#CustomImportOrder">CustomImportOrder</a> check. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/pull/1027">#1027</a>
+          Add missing space in error message for <a href="checks/imports/customimportorder.html#CustomImportOrder">CustomImportOrder</a> check. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/pull/1027">#1027</a>
         </li>
         <li>
           resolving Findbugs violation: <a href="https://github.com/checkstyle/checkstyle/issues/911">#911</a> , <a href="https://github.com/checkstyle/checkstyle/issues/909">#909</a>,

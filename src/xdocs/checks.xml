@@ -105,11 +105,19 @@
             <td>Checks if call to superclass constructor without arguments is present.</td>
           </tr>
           <tr>
-            <td><a href="config_imports.html#AvoidStarImport">AvoidStarImport</a></td>
+            <td>
+              <a href="checks/imports/avoidstarimport.html#AvoidStarImport">
+                AvoidStarImport
+              </a>
+            </td>
             <td>Checks that there are no import statements that use the * notation.</td>
           </tr>
           <tr>
-            <td><a href="config_imports.html#AvoidStaticImport">AvoidStaticImport</a></td>
+            <td>
+              <a href="checks/imports/avoidstaticimport.html#AvoidStaticImport">
+                AvoidStaticImport
+              </a>
+            </td>
             <td>Checks that there are no static import statements.</td>
           </tr>
           <tr>
@@ -162,7 +170,11 @@
             </td>
           </tr>
           <tr>
-            <td><a href="config_imports.html#CustomImportOrder">CustomImportOrder</a></td>
+            <td>
+              <a href="checks/imports/customimportorder.html#CustomImportOrder">
+                CustomImportOrder
+              </a>
+            </td>
             <td>
               Checks that the groups of import declarations appear in the order specified
               by the user.
@@ -327,7 +339,7 @@
             </td>
           </tr>
           <tr>
-            <td><a href="config_imports.html#IllegalImport">IllegalImport</a></td>
+            <td><a href="checks/imports/illegalimport.html#IllegalImport">IllegalImport</a></td>
             <td>
             Checks for imports from a set of illegal packages.</td>
           </tr>
@@ -357,11 +369,11 @@
               Checks that particular classes or interfaces are never used.</td>
           </tr>
           <tr>
-            <td><a href="config_imports.html#ImportControl">ImportControl</a></td>
+            <td><a href="checks/imports/importcontrol.html#ImportControl">ImportControl</a></td>
             <td>Controls what can be imported in each package and file.</td>
           </tr>
           <tr>
-            <td><a href="config_imports.html#ImportOrder">ImportOrder</a></td>
+            <td><a href="checks/imports/importorder.html#ImportOrder">ImportOrder</a></td>
             <td>Checks the ordering/grouping of imports.</td>
           </tr>
           <tr>
@@ -809,7 +821,11 @@
             </td>
           </tr>
           <tr>
-            <td><a href="config_imports.html#RedundantImport">RedundantImport</a></td>
+            <td>
+              <a href="checks/imports/redundantimport.html#RedundantImport">
+                RedundantImport
+              </a>
+            </td>
             <td>Checks for redundant import statements.</td>
           </tr>
           <tr>
@@ -1008,7 +1024,7 @@
             <td>Checks if unnecessary semicolon is used after type member declaration.</td>
           </tr>
           <tr>
-            <td><a href="config_imports.html#UnusedImports">UnusedImports</a></td>
+            <td><a href="checks/imports/unusedimports.html#UnusedImports">UnusedImports</a></td>
             <td>
             Checks for unused import statements.</td>
           </tr>
