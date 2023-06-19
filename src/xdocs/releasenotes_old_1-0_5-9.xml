@@ -236,7 +236,7 @@
       <ul>
         <li>
           Support
-          <a href="config_filters.html#SuppressWarningsFilter">SuppressWarningsFilter</a>
+          <a href="filters/suppresswarningsfilter.html#SuppressWarningsFilter">SuppressWarningsFilter</a>
           to use <code>@SuppressWarnings</code> annotations to suppress
           violations. Thanks to Trevor Robinson for patch #156.
         </li>
@@ -306,7 +306,7 @@
       <p>New features:</p>
       <ul>
         <li>
-          <a href="config_filters.html#SuppressionFilter">SuppressionFilter</a>
+          <a href="filters/suppressionfilter.html#SuppressionFilter">SuppressionFilter</a>
           now supports loading a configuration from a URL
           reference. Thanks to Stephen for patch #3485185.
         </li>
@@ -422,7 +422,7 @@
         <li>
           Enhanced the <a href="anttask.html#Parameters">ANT task</a>,
           <a href="cmdline.html#Command_line_usage">Command Line</a> and
-          <a href="config_filters.html#SuppressionFilter">Suppression Filter</a> to be
+          <a href="filters/suppressionfilter.html#SuppressionFilter">Suppression Filter</a> to be
           able to load their configuration file from either the filesystem or
           the classpath as a resource. Thanks to Tracy Snell for patch #3307526.
         </li>
