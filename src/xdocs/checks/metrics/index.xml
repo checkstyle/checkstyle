@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>Metrics</title>
+  </head>
+  <body>
+    <section name="Metrics Checks">
+      <div class="wrapper">
+        <table>
+          <tr>
+            <td>
+              <a href="booleanexpressioncomplexity.html#BooleanExpressionComplexity">
+                BooleanExpressionComplexity
+              </a>
+            </td>
+            <td>
+              Restricts the number of boolean operators (&amp;&amp;, ||, &amp;, | and ^)
+            in an expression.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="classdataabstractioncoupling.html#ClassDataAbstractionCoupling">
+                ClassDataAbstractionCoupling
+              </a>
+            </td>
+            <td>
+              Measures the number of instantiations of other classes within the given class
+            or record.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="classfanoutcomplexity.html#ClassFanOutComplexity">
+                ClassFanOutComplexity
+              </a>
+            </td>
+            <td>
+              Checks the number of other types a given class/record/interface/enum/annotation
+            relies on.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="cyclomaticcomplexity.html#CyclomaticComplexity">
+                CyclomaticComplexity
+              </a>
+            </td>
+            <td>
+              Checks cyclomatic complexity against a specified limit.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="javancss.html#JavaNCSS">
+                JavaNCSS
+              </a>
+            </td>
+            <td>
+              Determines complexity of methods, classes and files by counting
+            the Non Commenting Source Statements (NCSS).
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="npathcomplexity.html#NPathComplexity">
+                NPathComplexity
+              </a>
+            </td>
+            <td>
+              Checks the NPATH complexity against a specified limit.
+            </td>
+          </tr>
+        </table>
+      </div>
+    </section>
+  </body>
+</document>

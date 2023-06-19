@@ -95,7 +95,16 @@
         <item name="Headers"            href="config_header.html"/>
         <item name="Imports"            href="config_imports.html"/>
         <item name="Javadoc Comments"   href="config_javadoc.html"/>
-        <item name="Metrics"            href="config_metrics.html"/>
+        <item name="Metrics" href="checks/metrics/index.html" collapse="true">
+          <item name="BooleanExpressionComplexity"
+                href="checks/metrics/booleanexpressioncomplexity.html"/>
+          <item name="ClassDataAbstractionCoupling"
+                href="checks/metrics/classdataabstractioncoupling.html"/>
+          <item name="ClassFanOutComplexity" href="checks/metrics/classfanoutcomplexity.html"/>
+          <item name="CyclomaticComplexity" href="checks/metrics/cyclomaticcomplexity.html"/>
+          <item name="JavaNCSS" href="checks/metrics/javancss.html"/>
+          <item name="NPathComplexity" href="checks/metrics/npathcomplexity.html"/>
+        </item>
         <item name="Miscellaneous"      href="config_misc.html"/>
         <item name="Modifiers"          href="config_modifier.html"/>
         <item name="Naming Conventions" href="config_naming.html"/>

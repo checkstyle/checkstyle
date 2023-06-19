@@ -113,8 +113,11 @@
             <td>Checks that there are no static import statements.</td>
           </tr>
           <tr>
-            <td><a href="config_metrics.html#BooleanExpressionComplexity">
-              BooleanExpressionComplexity</a></td>
+            <td>
+              <a href="checks/metrics/booleanexpressioncomplexity.html#BooleanExpressionComplexity">
+                BooleanExpressionComplexity
+              </a>
+            </td>
             <td>
               Restricts the number of boolean operators (&amp;&amp;, ||, &amp;, | and ^)
               in an expression.
@@ -125,13 +128,20 @@
             <td>Checks that <code>catch</code> parameter names conform to a specified pattern.</td>
           </tr>
           <tr>
-            <td><a href="config_metrics.html#ClassDataAbstractionCoupling">
-              ClassDataAbstractionCoupling</a></td>
+            <td>
+              <a href="checks/metrics/classdataabstractioncoupling.html#ClassDataAbstractionCoupling">
+                ClassDataAbstractionCoupling
+              </a>
+            </td>
             <td>Measures the number of instantiations of other classes within the given class
               or record.</td>
           </tr>
           <tr>
-            <td><a href="config_metrics.html#ClassFanOutComplexity">ClassFanOutComplexity</a></td>
+            <td>
+              <a href="checks/metrics/classfanoutcomplexity.html#ClassFanOutComplexity">
+                ClassFanOutComplexity
+              </a>
+            </td>
             <td>Checks the number of other types a given class/record/interface/enum/annotation
               relies on.</td>
           </tr>
@@ -169,7 +179,11 @@
             </td>
           </tr>
           <tr>
-            <td><a href="config_metrics.html#CyclomaticComplexity">CyclomaticComplexity</a></td>
+            <td>
+              <a href="checks/metrics/cyclomaticcomplexity.html#CyclomaticComplexity">
+                CyclomaticComplexity
+              </a>
+            </td>
             <td>Checks cyclomatic complexity against a specified limit.</td>
           </tr>
           <tr>
@@ -468,7 +482,7 @@
             <td>Checks that a variable has a Javadoc comment.</td>
           </tr>
           <tr>
-            <td><a href="config_metrics.html#JavaNCSS">JavaNCSS</a></td>
+            <td><a href="checks/metrics/javancss.html#JavaNCSS">JavaNCSS</a></td>
             <td>
               Determines complexity of methods, classes and files by counting
               the Non Commenting Source Statements (NCSS).
@@ -704,7 +718,11 @@
             </td>
           </tr>
           <tr>
-            <td><a href="config_metrics.html#NPathComplexity">NPathComplexity</a></td>
+            <td>
+              <a href="checks/metrics/npathcomplexity.html#NPathComplexity">
+                NPathComplexity
+              </a>
+            </td>
             <td>Checks the NPATH complexity against a specified limit.</td>
           </tr>
           <tr>
