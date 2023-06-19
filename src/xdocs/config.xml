@@ -90,7 +90,7 @@
         <li>
           Root module <code>Checker</code> has child
           FileSetChecks <code>JavadocPackage</code> and <code>TreeWalker</code>. (Module <a
-          href="config_javadoc.html"> <code>JavadocPackage</code></a> checks that all packages
+          href="checks/javadoc/index.html"> <code>JavadocPackage</code></a> checks that all packages
           have package documentation.)
         </li>
         <li>

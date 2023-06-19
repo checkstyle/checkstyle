@@ -18,6 +18,7 @@ Aconfig
 actionlint
 addons
 adf
+admins
 adoptium
 adoptopenjdk
 adr
@@ -113,6 +114,7 @@ beanutils
 beforeexecutionexclusionfilefilter
 bestpractices
 bew
+binded
 bitbucket
 bjrke
 bleh
@@ -1056,6 +1058,7 @@ Popup
 Postgresql
 ppc
 prebuilts
+prefs
 PRESIZE
 printf
 println
