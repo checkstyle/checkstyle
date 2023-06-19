@@ -90,7 +90,18 @@
           <item name="SuppressWarningsHolder" href="checks/annotation/suppresswarningsholder.html"/>
         </item>
         <item name="Block Checks"       href="config_blocks.html"/>
-        <item name="Class Design"       href="config_design.html"/>
+        <item name="Class Design" href="checks/design/index.html" collapse="true">
+          <item name="DesignForExtension" href="checks/design/designforextension.html"/>
+          <item name="FinalClass" href="checks/design/finalclass.html"/>
+          <item name="HideUtilityClassConstructor"
+                href="checks/design/hideutilityclassconstructor.html"/>
+          <item name="InnerTypeLast" href="checks/design/innertypelast.html"/>
+          <item name="InterfaceIsType" href="checks/design/interfaceistype.html"/>
+          <item name="MutableException" href="checks/design/mutableexception.html"/>
+          <item name="OneTopLevelClass" href="checks/design/onetoplevelclass.html"/>
+          <item name="ThrowsCount" href="checks/design/throwscount.html"/>
+          <item name="VisibilityModifier" href="checks/design/visibilitymodifier.html"/>
+        </item>
         <item name="Coding"             href="config_coding.html"/>
         <item name="Headers"            href="config_header.html"/>
         <item name="Imports"            href="config_imports.html"/>
