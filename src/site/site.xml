@@ -96,7 +96,25 @@
         <item name="Imports"            href="config_imports.html"/>
         <item name="Javadoc Comments"   href="config_javadoc.html"/>
         <item name="Metrics"            href="config_metrics.html"/>
-        <item name="Miscellaneous"      href="config_misc.html"/>
+        <item name="Miscellaneous" href="checks/misc/index.html" collapse="true">
+          <item name="ArrayTypeStyle" href="checks/misc/arraytypestyle.html"/>
+          <item name="AvoidEscapedUnicodeCharacters"
+                href="checks/misc/avoidescapedunicodecharacters.html"/>
+          <item name="CommentsIndentation" href="checks/misc/commentsindentation.html"/>
+          <item name="DescendantToken" href="checks/misc/descendanttoken.html"/>
+          <item name="FinalParameters" href="checks/misc/finalparameters.html"/>
+          <item name="Indentation" href="checks/misc/indentation.html"/>
+          <item name="NewlineAtEndOfFile" href="checks/misc/newlineatendoffile.html"/>
+          <item name="NoCodeInFile" href="checks/misc/nocodeinfile.html"/>
+          <item name="OrderedProperties" href="checks/misc/orderedproperties.html"/>
+          <item name="OuterTypeFilename" href="checks/misc/outertypefilename.html"/>
+          <item name="TodoComment" href="checks/misc/todocomment.html"/>
+          <item name="TrailingComment" href="checks/misc/trailingcomment.html"/>
+          <item name="Translation" href="checks/misc/translation.html"/>
+          <item name="UncommentedMain" href="checks/misc/uncommentedmain.html"/>
+          <item name="UniqueProperties" href="checks/misc/uniqueproperties.html"/>
+          <item name="UpperEll" href="checks/misc/upperell.html"/>
+        </item>
         <item name="Modifiers"          href="config_modifier.html"/>
         <item name="Naming Conventions" href="config_naming.html"/>
         <item name="Regexp"             href="config_regexp.html"/>
