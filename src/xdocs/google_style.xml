@@ -239,7 +239,9 @@
                   <span class="wrapper inline">
                     <img src="images/ok_green.png" alt="" />
                   </span>
-                  <a href="config_coding.html#IllegalTokenText">IllegalTokenText</a>
+                  <a href="checks/coding/illegaltokentext.html#IllegalTokenText">
+                    IllegalTokenText
+                  </a>
                 </td>
                 <td>
                   <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+IllegalTokenText">
@@ -561,7 +563,7 @@
                   <span class="wrapper inline">
                     <img src="images/ok_green.png" alt="" />
                   </span>
-                  <a href="config_coding.html#OverloadMethodsDeclarationOrder">
+                  <a href="checks/coding/overloadmethodsdeclarationorder.html#OverloadMethodsDeclarationOrder">
                     OverloadMethodsDeclarationOrder</a>
                 </td>
                 <td>
@@ -752,7 +754,7 @@
                   <span class="wrapper inline">
                     <img src="images/ok_green.png" alt="" />
                   </span>
-                  <a href="config_coding.html#OneStatementPerLine">
+                  <a href="checks/coding/onestatementperline.html#OneStatementPerLine">
                     OneStatementPerLine</a>
                 </td>
                 <td>
@@ -1139,7 +1141,7 @@
                   <span class="wrapper inline">
                     <img src="images/ok_green.png" alt="" />
                   </span>
-                  <a href="config_coding.html#MultipleVariableDeclarations">
+                  <a href="checks/coding/multiplevariabledeclarations.html#MultipleVariableDeclarations">
                     MultipleVariableDeclarations</a>
                 </td>
                 <td>
@@ -1167,7 +1169,7 @@
                   <span class="wrapper inline">
                     <img src="images/ok_green.png" alt="" />
                   </span>
-                  <a href="config_coding.html#VariableDeclarationUsageDistance">
+                  <a href="checks/coding/variabledeclarationusagedistance.html#VariableDeclarationUsageDistance">
                     VariableDeclarationUsageDistance</a>
                   <br />
                 </td>
@@ -1290,7 +1292,7 @@
                   <span class="wrapper inline">
                     <img src="images/ok_green.png" alt="" />
                   </span>
-                  <a href="config_coding.html#FallThrough">FallThrough</a>
+                  <a href="checks/coding/fallthrough.html#FallThrough">FallThrough</a>
                 </td>
                 <td>
                   <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+FallThrough">
@@ -1318,7 +1320,7 @@
                         src="images/ok_blue.png"
                         alt="" />
                   </span>
-                  <a href="config_coding.html#MissingSwitchDefault">
+                  <a href="checks/coding/missingswitchdefault.html#MissingSwitchDefault">
                     MissingSwitchDefault</a>
                   <br />
                   "Exception: enum type may omit the default statement group"
@@ -1947,7 +1949,7 @@
                   <span class="wrapper inline">
                     <img src="images/ok_green.png" alt="" />
                   </span>
-                  <a href="config_coding.html#NoFinalizer">NoFinalizer</a>
+                  <a href="checks/coding/nofinalizer.html#NoFinalizer">NoFinalizer</a>
                 </td>
                 <td>
                   <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NoFinalizer">
