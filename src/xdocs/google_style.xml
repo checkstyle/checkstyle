@@ -162,7 +162,7 @@
                   <span class="wrapper inline">
                     <img src="images/ok_green.png" alt="" />
                   </span>
-                  <a href="config_misc.html#OuterTypeFilename">OuterTypeFilename</a>
+                  <a href="checks/misc/outertypefilename.html#OuterTypeFilename">OuterTypeFilename</a>
                 </td>
                 <td>
                   <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+OuterTypeFilename">
@@ -264,7 +264,7 @@
                   <span class="wrapper inline">
                     <img src="images/ok_green.png" alt="" />
                   </span>
-                  <a href="config_misc.html#AvoidEscapedUnicodeCharacters">
+                  <a href="checks/misc/avoidescapedunicodecharacters.html#AvoidEscapedUnicodeCharacters">
                     AvoidEscapedUnicodeCharacters</a>
                 </td>
                 <td>
@@ -720,7 +720,7 @@
                         src="images/ok_blue.png"
                         alt="" />
                   </span>
-                  <a href="config_misc.html#Indentation">Indentation</a>
+                  <a href="checks/misc/indentation.html#Indentation">Indentation</a>
                   <br />
                   The rule "A line is never broken adjacent to the arrow in a
                   lambda, except that a break may come immediately after the arrow
@@ -881,7 +881,7 @@
                   <span class="wrapper inline">
                     <img src="images/ok_green.png" alt="" />
                   </span>
-                  <a href="config_misc.html#Indentation">Indentation</a>
+                  <a href="checks/misc/indentation.html#Indentation">Indentation</a>
                 </td>
                 <td>
                   <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+Indentation">
@@ -1224,7 +1224,7 @@
                   <span class="wrapper inline">
                     <img src="images/ok_green.png" alt="" />
                   </span>
-                  <a href="config_misc.html#ArrayTypeStyle">ArrayTypeStyle</a>
+                  <a href="checks/misc/arraytypestyle.html#ArrayTypeStyle">ArrayTypeStyle</a>
                 </td>
                 <td>
                   <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ArrayTypeStyle">
@@ -1265,7 +1265,7 @@
                   <span class="wrapper inline">
                     <img src="images/ok_green.png" alt="" />
                   </span>
-                  <a href="config_misc.html#Indentation">Indentation</a>
+                  <a href="checks/misc/indentation.html#Indentation">Indentation</a>
                 </td>
                 <td>
                   <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+Indentation">
@@ -1391,7 +1391,7 @@
                   <span class="wrapper inline">
                     <img src="images/ok_green.png" alt="" />
                   </span>
-                  <a href="config_misc.html#CommentsIndentation">
+                  <a href="checks/misc/commentsindentation.html#CommentsIndentation">
                     CommentsIndentation</a>
                 </td>
                 <td>
@@ -1445,7 +1445,7 @@
                   <span class="wrapper inline">
                     <img src="images/ok_green.png" alt="" />
                   </span>
-                  <a href="config_misc.html#UpperEll">UpperEll</a>
+                  <a href="checks/misc/upperell.html#UpperEll">UpperEll</a>
                 </td>
                 <td>
                   <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+UpperEll">
