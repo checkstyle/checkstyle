@@ -28,13 +28,17 @@
       <div class="wrapper">
         <table>
           <tr>
-            <td><a href="config_naming.html#AbbreviationAsWordInName">
+            <td><a href="checks/naming/abbreviationaswordinname.html#AbbreviationAsWordInName">
               AbbreviationAsWordInName</a></td>
             <td>Validates abbreviations (consecutive capital letters)
              length in identifier name, it also allows to enforce camel case naming.</td>
           </tr>
           <tr>
-            <td><a href="config_naming.html#AbstractClassName">AbstractClassName</a></td>
+            <td>
+              <a href="checks/naming/abstractclassname.html#AbstractClassName">
+                AbstractClassName
+              </a>
+            </td>
             <td>
               Ensures that the names of abstract classes conforming to some pattern and
               check that <code>abstract</code> modifier exists.
@@ -121,7 +125,11 @@
             </td>
           </tr>
           <tr>
-            <td><a href="config_naming.html#CatchParameterName">CatchParameterName</a></td>
+            <td>
+              <a href="checks/naming/catchparametername.html#CatchParameterName">
+                CatchParameterName
+              </a>
+            </td>
             <td>Checks that <code>catch</code> parameter names conform to a specified pattern.</td>
           </tr>
           <tr>
@@ -141,7 +149,11 @@
             <td>Checks for implicit modifiers on nested types in classes and records.</td>
           </tr>
           <tr>
-            <td><a href="config_naming.html#ClassTypeParameterName">ClassTypeParameterName</a></td>
+            <td>
+              <a href="checks/naming/classtypeparametername.html#ClassTypeParameterName">
+                ClassTypeParameterName
+              </a>
+            </td>
             <td>
               Checks that class type parameter names conform to a specified pattern.
             </td>
@@ -151,7 +163,7 @@
             <td>Controls the indentation between comments and surrounding code.</td>
           </tr>
           <tr>
-            <td><a href="config_naming.html#ConstantName">ConstantName</a></td>
+            <td><a href="checks/naming/constantname.html#ConstantName">ConstantName</a></td>
             <td>Checks that constant names conform to a specified pattern.</td>
           </tr>
           <tr>
@@ -319,7 +331,9 @@
           </tr>
           <tr>
             <td>
-              <a href="config_naming.html#IllegalIdentifierName">IllegalIdentifierName</a>
+              <a href="checks/naming/illegalidentifiername.html#IllegalIdentifierName">
+                IllegalIdentifierName
+              </a>
             </td>
             <td>
               Checks identifiers with a pattern for a set of illegal names, such as those
@@ -395,7 +409,7 @@
               Checks for implicit modifiers on interface members and nested types.</td>
           </tr>
           <tr>
-            <td><a href="config_naming.html#InterfaceTypeParameterName">
+            <td><a href="checks/naming/interfacetypeparametername.html#InterfaceTypeParameterName">
               InterfaceTypeParameterName</a></td>
             <td>
               Checks that interface type parameter names conform to a specified pattern.</td>
@@ -479,7 +493,11 @@
             <td>Checks lambda body length.</td>
           </tr>
           <tr>
-            <td><a href="config_naming.html#LambdaParameterName">LambdaParameterName</a></td>
+            <td>
+              <a href="checks/naming/lambdaparametername.html#LambdaParameterName">
+                LambdaParameterName
+              </a>
+            </td>
             <td>Checks lambda parameter names.</td>
           </tr>
           <tr>
@@ -493,12 +511,20 @@
             <td>Checks for long lines.</td>
           </tr>
           <tr>
-            <td><a href="config_naming.html#LocalFinalVariableName">LocalFinalVariableName</a></td>
+            <td>
+              <a href="checks/naming/localfinalvariablename.html#LocalFinalVariableName">
+                LocalFinalVariableName
+              </a>
+            </td>
             <td>
               Checks that local final variable names conform to a specified pattern.</td>
           </tr>
           <tr>
-            <td><a href="config_naming.html#LocalVariableName">LocalVariableName</a></td>
+            <td>
+              <a href="checks/naming/localvariablename.html#LocalVariableName">
+                LocalVariableName
+              </a>
+            </td>
             <td>
               Checks that local, non-final variable names conform to a specified pattern.</td>
           </tr>
@@ -514,7 +540,7 @@
             <td>Evaluates Xpath query and report violation on all matching AST nodes.</td>
           </tr>
           <tr>
-            <td><a href="config_naming.html#MemberName">MemberName</a></td>
+            <td><a href="checks/naming/membername.html#MemberName">MemberName</a></td>
             <td>
               Checks that instance variable names conform to a specified pattern.</td>
           </tr>
@@ -528,7 +554,7 @@
             <td>Checks for long methods and constructors.</td>
           </tr>
           <tr>
-            <td><a href="config_naming.html#MethodName">MethodName</a></td>
+            <td><a href="checks/naming/methodname.html#MethodName">MethodName</a></td>
             <td>
               Checks that method names conform to a specified pattern.</td>
           </tr>
@@ -540,7 +566,7 @@
             and the left parenthesis of the parameter list.</td>
           </tr>
           <tr>
-            <td><a href="config_naming.html#MethodTypeParameterName">
+            <td><a href="checks/naming/methodtypeparametername.html#MethodTypeParameterName">
               MethodTypeParameterName</a></td>
             <td>
               Checks that method type parameter names conform to a specified pattern.</td>
@@ -756,7 +782,7 @@
             </td>
           </tr>
           <tr>
-            <td><a href="config_naming.html#PackageName">PackageName</a></td>
+            <td><a href="checks/naming/packagename.html#PackageName">PackageName</a></td>
             <td>
               Checks that package names conform to a specified pattern.</td>
           </tr>
@@ -766,7 +792,7 @@
             Disallows assignment of parameters.</td>
           </tr>
           <tr>
-            <td><a href="config_naming.html#ParameterName">ParameterName</a></td>
+            <td><a href="checks/naming/parametername.html#ParameterName">ParameterName</a></td>
             <td>
               Checks that method parameter names conform to a specified pattern.</td>
           </tr>
@@ -783,7 +809,11 @@
             </td>
           </tr>
           <tr>
-            <td><a href="config_naming.html#PatternVariableName">PatternVariableName</a></td>
+            <td>
+              <a href="checks/naming/patternvariablename.html#PatternVariableName">
+                PatternVariableName
+              </a>
+            </td>
             <td>
               Checks that pattern variable names conform to a specified pattern.
             </td>
@@ -794,7 +824,9 @@
           </tr>
           <tr>
             <td>
-              <a href="config_naming.html#RecordComponentName">RecordComponentName</a>
+              <a href="checks/naming/recordcomponentname.html#RecordComponentName">
+                RecordComponentName
+              </a>
             </td>
             <td>
               Checks that record component names conform to a specified pattern.
@@ -802,7 +834,9 @@
           </tr>
           <tr>
             <td>
-              <a href="config_naming.html#RecordTypeParameterName">RecordTypeParameterName</a>
+              <a href="checks/naming/recordtypeparametername.html#RecordTypeParameterName">
+                RecordTypeParameterName
+              </a>
             </td>
             <td>
               Checks that record type parameter names conform to a specified pattern.
@@ -901,7 +935,11 @@
               whitespace.</td>
           </tr>
           <tr>
-            <td><a href="config_naming.html#StaticVariableName">StaticVariableName</a></td>
+            <td>
+              <a href="checks/naming/staticvariablename.html#StaticVariableName">
+                StaticVariableName
+              </a>
+            </td>
             <td>
               Checks that <code>static</code>, non-<code>final</code> variable names
               conform to a specified pattern.</td>
@@ -966,7 +1004,7 @@
             <td>Checks the policy on the padding of parentheses for typecasts.</td>
           </tr>
           <tr>
-            <td><a href="config_naming.html#TypeName">TypeName</a></td>
+            <td><a href="checks/naming/typename.html#TypeName">TypeName</a></td>
             <td>
               Checks that type names conform to a specified pattern.</td>
           </tr>

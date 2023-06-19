@@ -98,7 +98,7 @@
           <code>AvoidStarImport</code>, <code>ConstantName</code>,
           and <code>EmptyBlock</code>.  (Modules <a
           href="config_imports.html"><code>AvoidStarImport</code></a>, <a
-          href="config_naming.html"><code>ConstantName</code></a>, and <a
+          href="checks/naming/index.html"><code>ConstantName</code></a>, and <a
           href="config_blocks.html"><code>EmptyBlock</code></a> check that a Java source
           file has no star imports, has valid constant names, and has no
           empty blocks, respectively.)

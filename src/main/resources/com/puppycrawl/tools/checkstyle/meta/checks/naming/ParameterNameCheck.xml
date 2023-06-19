@@ -11,11 +11,13 @@
  &lt;/p&gt;
  &lt;p&gt;
  To validate {@code catch} parameters please use
- &lt;a href="https://checkstyle.org/config_naming.html#CatchParameterName"&gt;CatchParameterName&lt;/a&gt;.
+ &lt;a href="https://checkstyle.org/checks/naming/catchparametername.html#CatchParameterName"&gt;
+ CatchParameterName&lt;/a&gt;.
  &lt;/p&gt;
  &lt;p&gt;
  To validate lambda parameters please use
- &lt;a href="https://checkstyle.org/config_naming.html#LambdaParameterName"&gt;LambdaParameterName&lt;/a&gt;.
+ &lt;a href="https://checkstyle.org/checks/naming/lambdaparametername.html#LambdaParameterName"&gt;
+ LambdaParameterName&lt;/a&gt;.
  &lt;/p&gt;</description>
          <properties>
             <property default-value="^[a-z][a-zA-Z0-9]*$"
