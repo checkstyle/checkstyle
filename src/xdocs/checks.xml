@@ -73,7 +73,11 @@
             <td>Checks for long anonymous inner classes.</td>
           </tr>
           <tr>
-            <td><a href="config_coding.html#ArrayTrailingComma">ArrayTrailingComma</a></td>
+            <td>
+              <a href="checks/coding/arraytrailingcomma.html#ArrayTrailingComma">
+                ArrayTrailingComma
+              </a>
+            </td>
             <td>Checks that array initialization contains a trailing comma.</td>
           </tr>
           <tr>
@@ -85,8 +89,11 @@
             <td>Checks the order of javadoc block-tags or javadoc tags.</td>
           </tr>
           <tr>
-            <td><a href="config_coding.html#AvoidDoubleBraceInitialization">
-              AvoidDoubleBraceInitialization</a></td>
+            <td>
+              <a href="checks/coding/avoiddoublebraceinitialization.html#AvoidDoubleBraceInitialization">
+                AvoidDoubleBraceInitialization
+              </a>
+            </td>
             <td>Detects double brace initialization.</td>
           </tr>
           <tr>
@@ -98,7 +105,7 @@
             <td>Restricts using Unicode escapes (such as \u221e).</td>
           </tr>
           <tr>
-            <td><a href="config_coding.html#AvoidInlineConditionals">
+            <td><a href="checks/coding/avoidinlineconditionals.html#AvoidInlineConditionals">
               AvoidInlineConditionals</a></td>
             <td>Detects inline conditionals.</td>
           </tr>
@@ -111,8 +118,11 @@
             <td>Finds nested blocks (blocks that are used freely in the code).</td>
           </tr>
           <tr>
-            <td><a href="config_coding.html#AvoidNoArgumentSuperConstructorCall">
-              AvoidNoArgumentSuperConstructorCall</a></td>
+            <td>
+              <a href="checks/coding/avoidnoargumentsuperconstructorcall.html#AvoidNoArgumentSuperConstructorCall">
+                AvoidNoArgumentSuperConstructorCall
+              </a>
+            </td>
             <td>Checks if call to superclass constructor without arguments is present.</td>
           </tr>
           <tr>
@@ -199,7 +209,11 @@
             <td>Checks that constant names conform to a specified pattern.</td>
           </tr>
           <tr>
-            <td><a href="config_coding.html#CovariantEquals">CovariantEquals</a></td>
+            <td>
+              <a href="checks/coding/covariantequals.html#CovariantEquals">
+                CovariantEquals
+              </a>
+            </td>
             <td>
               Checks that classes and records which define a covariant <code>equals()</code>
               method also override method <code>equals(Object)</code>.
@@ -225,7 +239,11 @@
             <td>Checks cyclomatic complexity against a specified limit.</td>
           </tr>
           <tr>
-            <td><a href="config_coding.html#DeclarationOrder">DeclarationOrder</a></td>
+            <td>
+              <a href="checks/coding/declarationorder.html#DeclarationOrder">
+                DeclarationOrder
+              </a>
+            </td>
             <td>
               Checks that the parts of a class, record, or interface declaration
               appear in the order suggested by the <a
@@ -234,7 +252,11 @@
             </td>
           </tr>
           <tr>
-            <td><a href="config_coding.html#DefaultComesLast">DefaultComesLast</a></td>
+            <td>
+              <a href="checks/coding/defaultcomeslast.html#DefaultComesLast">
+                DefaultComesLast
+              </a>
+            </td>
             <td>
               Check that the <code>default</code> is after all the
               <code>case</code>s in a <code>switch</code> statement.
@@ -298,17 +320,25 @@
             </td>
           </tr>
           <tr>
-            <td><a href="config_coding.html#EmptyStatement">EmptyStatement</a></td>
+            <td>
+              <a href="checks/coding/emptystatement.html#EmptyStatement">
+                EmptyStatement
+              </a>
+            </td>
             <td>Detects empty statements (standalone <code>";"</code> semicolon).</td>
           </tr>
           <tr>
-            <td><a href="config_coding.html#EqualsAvoidNull">EqualsAvoidNull</a></td>
+            <td>
+              <a href="checks/coding/equalsavoidnull.html#EqualsAvoidNull">
+                EqualsAvoidNull
+              </a>
+            </td>
             <td>
               Checks that any combination of String literals
               is on the left side of an equals() comparison.</td>
           </tr>
           <tr>
-            <td><a href="config_coding.html#EqualsHashCode">EqualsHashCode</a></td>
+            <td><a href="checks/coding/equalshashcode.html#EqualsHashCode">EqualsHashCode</a></td>
             <td>
               Checks that classes that either override <code>equals()</code>
               or <code>hashCode()</code> also overrides the other.
@@ -320,7 +350,11 @@
             <td>Restricts the number of executable statements to a specified limit.</td>
           </tr>
           <tr>
-            <td><a href="config_coding.html#ExplicitInitialization">ExplicitInitialization</a></td>
+            <td>
+              <a href="checks/coding/explicitinitialization.html#ExplicitInitialization">
+                ExplicitInitialization
+              </a>
+            </td>
             <td>
               Checks if any class or object member is explicitly initialized to default
               for its type value (<code>null</code> for object references, zero for numeric
@@ -328,7 +362,7 @@
             </td>
           </tr>
           <tr>
-            <td><a href="config_coding.html#FallThrough">FallThrough</a></td>
+            <td><a href="checks/coding/fallthrough.html#FallThrough">FallThrough</a></td>
             <td>Checks for fall-through in switch statements.</td>
           </tr>
           <tr>
@@ -352,7 +386,11 @@
             </td>
           </tr>
           <tr>
-            <td><a href="config_coding.html#FinalLocalVariable">FinalLocalVariable</a></td>
+            <td>
+              <a href="checks/coding/finallocalvariable.html#FinalLocalVariable">
+                FinalLocalVariable
+              </a>
+            </td>
             <td>
               Checks that local variables that never have their values changed are declared final.
             </td>
@@ -379,7 +417,7 @@
             <td>Checks that a source file begins with a specified header.</td>
           </tr>
           <tr>
-            <td><a href="config_coding.html#HiddenField">HiddenField</a></td>
+            <td><a href="checks/coding/hiddenfield.html#HiddenField">HiddenField</a></td>
             <td>Checks that a local variable or a parameter does not shadow
             a field that is defined in the same class.</td>
           </tr>
@@ -393,7 +431,7 @@
               methods or fields in their API) do not have a public constructor.</td>
           </tr>
           <tr>
-            <td><a href="config_coding.html#IllegalCatch">IllegalCatch</a></td>
+            <td><a href="checks/coding/illegalcatch.html#IllegalCatch">IllegalCatch</a></td>
             <td>Checks that certain exception types do not appear in a catch statement.</td>
           </tr>
           <tr>
@@ -413,27 +451,35 @@
             Checks for imports from a set of illegal packages.</td>
           </tr>
           <tr>
-            <td><a href="config_coding.html#IllegalInstantiation">IllegalInstantiation</a></td>
+            <td>
+              <a href="checks/coding/illegalinstantiation.html#IllegalInstantiation">
+                IllegalInstantiation
+              </a>
+            </td>
             <td>
             Checks for illegal instantiations where a factory method is preferred.</td>
           </tr>
           <tr>
-            <td><a href="config_coding.html#IllegalThrows">IllegalThrows</a></td>
+            <td><a href="checks/coding/illegalthrows.html#IllegalThrows">IllegalThrows</a></td>
             <td>Checks that specified types are not declared to be thrown.</td>
           </tr>
           <tr>
-            <td><a href="config_coding.html#IllegalToken">IllegalToken</a></td>
+            <td><a href="checks/coding/illegaltoken.html#IllegalToken">IllegalToken</a></td>
             <td>
             Checks for illegal tokens.</td>
           </tr>
           <tr>
-            <td><a href="config_coding.html#IllegalTokenText">IllegalTokenText</a></td>
+            <td>
+              <a href="checks/coding/illegaltokentext.html#IllegalTokenText">
+                IllegalTokenText
+              </a>
+            </td>
             <td>
               Checks specified tokens text for matching an illegal pattern.
             </td>
           </tr>
           <tr>
-            <td><a href="config_coding.html#IllegalType">IllegalType</a></td>
+            <td><a href="checks/coding/illegaltype.html#IllegalType">IllegalType</a></td>
             <td>
               Checks that particular classes or interfaces are never used.</td>
           </tr>
@@ -450,7 +496,11 @@
             <td>Checks correct indentation of Java code.</td>
           </tr>
           <tr>
-            <td><a href="config_coding.html#InnerAssignment">InnerAssignment</a></td>
+            <td>
+              <a href="checks/coding/innerassignment.html#InnerAssignment">
+                InnerAssignment
+              </a>
+            </td>
             <td>
               Checks for assignments in subexpressions, such as in
               <code>String s = Integer.toString(i = 2);</code>.
@@ -603,14 +653,14 @@
               Checks that local, non-final variable names conform to a specified pattern.</td>
           </tr>
           <tr>
-            <td><a href="config_coding.html#MagicNumber">MagicNumber</a></td>
+            <td><a href="checks/coding/magicnumber.html#MagicNumber">MagicNumber</a></td>
             <td>
               Checks that there are no "magic numbers" where a magic number
               is a numeric literal that is not defined as a constant.
             </td>
           </tr>
           <tr>
-            <td><a href="config_coding.html#MatchXpath">MatchXpath</a></td>
+            <td><a href="checks/coding/matchxpath.html#MatchXpath">MatchXpath</a></td>
             <td>Evaluates Xpath query and report violation on all matching AST nodes.</td>
           </tr>
           <tr>
@@ -650,7 +700,7 @@
               Checks that method type parameter names conform to a specified pattern.</td>
           </tr>
           <tr>
-            <td><a href="config_coding.html#MissingCtor">MissingCtor</a></td>
+            <td><a href="checks/coding/missingctor.html#MissingCtor">MissingCtor</a></td>
             <td>
               Checks that classes (except abstract ones) define a constructor
               and don't rely on the default one.
@@ -693,12 +743,16 @@
             </td>
           </tr>
           <tr>
-            <td><a href="config_coding.html#MissingSwitchDefault">MissingSwitchDefault</a></td>
+            <td>
+              <a href="checks/coding/missingswitchdefault.html#MissingSwitchDefault">
+                MissingSwitchDefault
+              </a>
+            </td>
             <td>
             Checks that switch statement has a <code>default</code> clause.</td>
           </tr>
           <tr>
-            <td><a href="config_coding.html#ModifiedControlVariable">
+            <td><a href="checks/coding/modifiedcontrolvariable.html#ModifiedControlVariable">
               ModifiedControlVariable</a></td>
             <td>Checks that for loop control variables are not modified inside the for block.</td>
           </tr>
@@ -710,13 +764,20 @@
             </td>
           </tr>
           <tr>
-            <td><a href="config_coding.html#MultipleStringLiterals">MultipleStringLiterals</a></td>
+            <td>
+              <a href="checks/coding/multiplestringliterals.html#MultipleStringLiterals">
+                MultipleStringLiterals
+              </a>
+            </td>
             <td>Checks for multiple occurrences of the same string literal within a
             single file.</td>
           </tr>
           <tr>
-            <td><a href="config_coding.html#MultipleVariableDeclarations">
-              MultipleVariableDeclarations</a></td>
+            <td>
+              <a href="checks/coding/multiplevariabledeclarations.html#MultipleVariableDeclarations">
+                MultipleVariableDeclarations
+              </a>
+            </td>
             <td>
               Checks that each variable declaration is in its own statement
             and on its own line.</td>
@@ -740,15 +801,15 @@
             Checks for braces around code blocks.</td>
           </tr>
           <tr>
-            <td><a href="config_coding.html#NestedForDepth">NestedForDepth</a></td>
+            <td><a href="checks/coding/nestedfordepth.html#NestedForDepth">NestedForDepth</a></td>
             <td>Restricts nested <code>for</code> blocks to a specified depth.</td>
           </tr>
           <tr>
-            <td><a href="config_coding.html#NestedIfDepth">NestedIfDepth</a></td>
+            <td><a href="checks/coding/nestedifdepth.html#NestedIfDepth">NestedIfDepth</a></td>
             <td>Restricts nested if-else blocks to a specified depth.</td>
           </tr>
           <tr>
-            <td><a href="config_coding.html#NestedTryDepth">NestedTryDepth</a></td>
+            <td><a href="checks/coding/nestedtrydepth.html#NestedTryDepth">NestedTryDepth</a></td>
             <td>Restricts nested try-catch-finally blocks to a specified depth.</td>
           </tr>
           <tr>
@@ -762,11 +823,15 @@
             </td>
           </tr>
           <tr>
-            <td><a href="config_coding.html#NoArrayTrailingComma">NoArrayTrailingComma</a></td>
+            <td>
+              <a href="checks/coding/noarraytrailingcomma.html#NoArrayTrailingComma">
+                NoArrayTrailingComma
+              </a>
+            </td>
             <td>Checks that array initialization do not contain a trailing comma.</td>
           </tr>
           <tr>
-            <td><a href="config_coding.html#NoClone">NoClone</a></td>
+            <td><a href="checks/coding/noclone.html#NoClone">NoClone</a></td>
             <td>
               Checks that the clone method is not overridden from the
             Object class.</td>
@@ -778,7 +843,7 @@
             </td>
           </tr>
           <tr>
-            <td><a href="config_coding.html#NoFinalizer">NoFinalizer</a></td>
+            <td><a href="checks/coding/nofinalizer.html#NoFinalizer">NoFinalizer</a></td>
             <td>Checks that there is no method <code>finalize</code> with zero parameters.</td>
           </tr>
           <tr>
@@ -793,7 +858,11 @@
             Checks that the block tag is followed by description.</td>
           </tr>
           <tr>
-            <td><a href="config_coding.html#NoEnumTrailingComma">NoEnumTrailingComma</a></td>
+            <td>
+              <a href="checks/coding/noenumtrailingcomma.html#NoEnumTrailingComma">
+                NoEnumTrailingComma
+              </a>
+            </td>
             <td>Checks that enum definition does not contain a trailing comma.</td>
           </tr>
           <tr>
@@ -833,7 +902,11 @@
             <td>Checks the NPATH complexity against a specified limit.</td>
           </tr>
           <tr>
-            <td><a href="config_coding.html#OneStatementPerLine">OneStatementPerLine</a></td>
+            <td>
+              <a href="checks/coding/onestatementperline.html#OneStatementPerLine">
+                OneStatementPerLine
+              </a>
+            </td>
             <td>Checks that there is only one statement per line.</td>
           </tr>
           <tr>
@@ -873,8 +946,11 @@
             </td>
           </tr>
           <tr>
-            <td><a href="config_coding.html#OverloadMethodsDeclarationOrder">
-              OverloadMethodsDeclarationOrder</a></td>
+            <td>
+              <a href="checks/coding/overloadmethodsdeclarationorder.html#OverloadMethodsDeclarationOrder">
+                OverloadMethodsDeclarationOrder
+              </a>
+            </td>
             <td>Checks that overloaded methods are grouped together.</td>
           </tr>
           <tr>
@@ -886,7 +962,11 @@
             <td>Checks that all package annotations are in the package-info.java file.</td>
           </tr>
           <tr>
-            <td><a href="config_coding.html#PackageDeclaration">PackageDeclaration</a></td>
+            <td>
+              <a href="checks/coding/packagedeclaration.html#PackageDeclaration">
+                PackageDeclaration
+              </a>
+            </td>
             <td>
               Ensures that a class has a package declaration, and (optionally) whether
               the package name matches the directory name for the source file.
@@ -898,7 +978,11 @@
               Checks that package names conform to a specified pattern.</td>
           </tr>
           <tr>
-            <td><a href="config_coding.html#ParameterAssignment">ParameterAssignment</a></td>
+            <td>
+              <a href="checks/coding/parameterassignment.html#ParameterAssignment">
+                ParameterAssignment
+              </a>
+            </td>
             <td>
             Disallows assignment of parameters.</td>
           </tr>
@@ -1017,7 +1101,7 @@
             <td>Checks that a specified pattern matches a single-line in Java files.</td>
           </tr>
           <tr>
-            <td><a href="config_coding.html#RequireThis">RequireThis</a></td>
+            <td><a href="checks/coding/requirethis.html#RequireThis">RequireThis</a></td>
             <td>
               Checks that references to instance variables and methods of the present
               object are explicitly of the form &quot;this.varName&quot; or
@@ -1026,7 +1110,7 @@
             </td>
           </tr>
           <tr>
-            <td><a href="config_coding.html#ReturnCount">ReturnCount</a></td>
+            <td><a href="checks/coding/returncount.html#ReturnCount">ReturnCount</a></td>
             <td>
               Restricts the number of return statements in methods, constructors
               and lambda expressions.
@@ -1042,12 +1126,16 @@
             Checks line wrapping with separators.</td>
           </tr>
           <tr>
-            <td><a href="config_coding.html#SimplifyBooleanExpression">
+            <td><a href="checks/coding/simplifybooleanexpression.html#SimplifyBooleanExpression">
               SimplifyBooleanExpression</a></td>
             <td>Checks for over-complicated boolean expressions.</td>
           </tr>
           <tr>
-            <td><a href="config_coding.html#SimplifyBooleanReturn">SimplifyBooleanReturn</a></td>
+            <td>
+              <a href="checks/coding/simplifybooleanreturn.html#SimplifyBooleanReturn">
+                SimplifyBooleanReturn
+              </a>
+            </td>
             <td>Checks for over-complicated boolean return statements.</td>
           </tr>
           <tr>
@@ -1085,7 +1173,9 @@
           </tr>
           <tr>
             <td>
-              <a href="config_coding.html#StringLiteralEquality">StringLiteralEquality</a>
+              <a href="checks/coding/stringliteralequality.html#StringLiteralEquality">
+                StringLiteralEquality
+              </a>
             </td>
             <td>Checks that string literals are not used with
               <code>==</code> or <code>&#33;=</code>.
@@ -1098,12 +1188,12 @@
             to use.</td>
           </tr>
           <tr>
-            <td><a href="config_coding.html#SuperClone">SuperClone</a></td>
+            <td><a href="checks/coding/superclone.html#SuperClone">SuperClone</a></td>
             <td>
             Checks that an overriding clone() method invokes super.clone().</td>
           </tr>
           <tr>
-            <td><a href="config_coding.html#SuperFinalize">SuperFinalize</a></td>
+            <td><a href="checks/coding/superfinalize.html#SuperFinalize">SuperFinalize</a></td>
             <td>
             Checks that an overriding finalize() method invokes super.finalize().</td>
           </tr>
@@ -1164,32 +1254,44 @@
             <td>Detects duplicated keys in properties files.</td>
           </tr>
           <tr>
-            <td><a href="config_coding.html#UnnecessaryParentheses">UnnecessaryParentheses</a></td>
+            <td>
+              <a href="checks/coding/unnecessaryparentheses.html#UnnecessaryParentheses">
+                UnnecessaryParentheses
+              </a>
+            </td>
             <td>
             Checks if unnecessary parentheses are used in a statement or expression.</td>
           </tr>
           <tr>
             <td>
-              <a href="config_coding.html#UnnecessarySemicolonInEnumeration">
-              UnnecessarySemicolonInEnumeration</a>
+              <a href="checks/coding/unnecessarysemicoloninenumeration.html#UnnecessarySemicolonInEnumeration">
+                UnnecessarySemicolonInEnumeration
+              </a>
             </td>
             <td>Checks if unnecessary semicolon is in enum definitions.</td>
           </tr>
           <tr>
             <td>
-              <a href="config_coding.html#UnnecessarySemicolonInTryWithResources">
-              UnnecessarySemicolonInTryWithResources</a>
+              <a href="checks/coding/unnecessarysemicolonintrywithresources.html#UnnecessarySemicolonInTryWithResources">
+                UnnecessarySemicolonInTryWithResources
+              </a>
             </td>
             <td>Checks if unnecessary semicolon is used in last resource declaration.</td>
           </tr>
           <tr>
-            <td><a href="config_coding.html#UnnecessarySemicolonAfterOuterTypeDeclaration">
-              UnnecessarySemicolonAfterOuterTypeDeclaration</a></td>
+            <td>
+              <a href="checks/coding/unnecessarysemicolonafteroutertypedeclaration.html#UnnecessarySemicolonAfterOuterTypeDeclaration">
+                UnnecessarySemicolonAfterOuterTypeDeclaration
+              </a>
+            </td>
             <td>Checks if unnecessary semicolon is used after type declaration.</td>
           </tr>
           <tr>
-            <td><a href="config_coding.html#UnnecessarySemicolonAfterTypeMemberDeclaration">
-              UnnecessarySemicolonAfterTypeMemberDeclaration</a></td>
+            <td>
+              <a href="checks/coding/unnecessarysemicolonaftertypememberdeclaration.html#UnnecessarySemicolonAfterTypeMemberDeclaration">
+                UnnecessarySemicolonAfterTypeMemberDeclaration
+              </a>
+            </td>
             <td>Checks if unnecessary semicolon is used after type member declaration.</td>
           </tr>
           <tr>
@@ -1202,12 +1304,19 @@
             <td>Checks that long constants are defined with an upper ell.</td>
           </tr>
           <tr>
-            <td><a href="config_coding.html#UnusedLocalVariable">UnusedLocalVariable</a></td>
+            <td>
+              <a href="checks/coding/unusedlocalvariable.html#UnusedLocalVariable">
+                UnusedLocalVariable
+              </a>
+            </td>
             <td>Checks that a local variable is declared and/or assigned, but not used.</td>
           </tr>
           <tr>
-            <td><a href="config_coding.html#VariableDeclarationUsageDistance">
-              VariableDeclarationUsageDistance</a></td>
+            <td>
+              <a href="checks/coding/variabledeclarationusagedistance.html#VariableDeclarationUsageDistance">
+                VariableDeclarationUsageDistance
+              </a>
+            </td>
             <td>Checks the distance between declaration of variable and its first usage.</td>
           </tr>
           <tr>
