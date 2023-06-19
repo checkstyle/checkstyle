@@ -446,7 +446,7 @@
       <p>New features:</p>
       <ul>
         <li>
-          Added <a href="config_misc.html#OuterTypeFilename">OuterTypeFilename</a>
+          Added <a href="checks/misc/outertypefilename.html#OuterTypeFilename">OuterTypeFilename</a>
           that checks that the outer type name and the file name match.
           For example, the class <code>Foo</code> must be in a file named
           <code>Foo.java</code>.
@@ -833,7 +833,7 @@
         </li>
         <li>
           Added the option <i>sumTokenCounts</i> to the <a
-          href="config_misc.html#DescendantToken">DescendantToken</a> to
+          href="checks/misc/descendanttoken.html#DescendantToken">DescendantToken</a> to
           allow for even more powerful checks. For example, detect
           statements like <code>this == null</code>.
         </li>
