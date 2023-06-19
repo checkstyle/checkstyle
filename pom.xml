@@ -1985,6 +1985,7 @@
             <!-- temporal suppress till plugin update link in his source -->
             <excludedLink>http://www.mojohaus.org/exec-maven-plugin</excludedLink>
             <excludedLink>http://www.mojohaus.org/versions-maven-plugin</excludedLink>
+            <excludedLink>http://www.mojohaus.org/xml-maven-plugin</excludedLink>
             <!-- SSL -->
             <excludedLink>https://travis-ci.org/</excludedLink>
             <excludedLink>https://travis-ci.org/checkstyle/checkstyle</excludedLink>
