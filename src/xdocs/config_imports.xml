@@ -2058,7 +2058,7 @@ public class SomeClass { }
           <li>groups are separated by, at least, one blank line and aren't separated internally</li>
         </ul>
         <p>
-          Note: a <a href="config_filters.html#SuppressionXpathSingleFilter">
+          Note: a <a href="filters/suppressionxpathsinglefilter.html#SuppressionXpathSingleFilter">
           suppression xpath single filter</a>
           is needed because IDEA has no blank line between "javax" and "java".
           ImportOrder has a limitation by design to enforce an empty line between groups
