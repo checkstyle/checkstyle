@@ -69,7 +69,7 @@
   <module name="Translation"/>
 
   <!-- Checks for Size Violations.                    -->
-  <!-- See https://checkstyle.org/config_sizes.html -->
+  <!-- See https://checkstyle.org/checks/sizes/index.html -->
   <module name="FileLength"/>
   <module name="LineLength">
     <property name="fileExtensions" value="java"/>
@@ -128,7 +128,7 @@
     </module>
 
     <!-- Checks for Size Violations.                    -->
-    <!-- See https://checkstyle.org/config_sizes.html -->
+    <!-- See https://checkstyle.org/checks/sizes/index.html -->
     <module name="MethodLength"/>
     <module name="ParameterNumber"/>
 
