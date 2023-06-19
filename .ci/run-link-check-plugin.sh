@@ -13,9 +13,10 @@ mkdir -p .ci-temp
 
 echo "------------ grep of linkcheck.html--BEGIN"
 grep -E "doesn't exist|externalLink" target/site/linkcheck.html | grep -v 'Read timed out' \
-  | sort > .ci-temp/linkcheck-errors-sorted.txt
+  | sed 's/<\/table><\/td><\/tr>//g' | sort > .ci-temp/linkcheck-errors-sorted.txt
 
-sort config/linkcheck-suppressions.txt > .ci-temp/linkcheck-suppressions-sorted.txt
+sort config/linkcheck-suppressions.txt | sed 's/<\/table><\/td><\/tr>//g' \
+  > .ci-temp/linkcheck-suppressions-sorted.txt
 
 # Suppressions exist until https://github.com/checkstyle/checkstyle/issues/11572
 diff .ci-temp/linkcheck-suppressions-sorted.txt .ci-temp/linkcheck-errors-sorted.txt || true
