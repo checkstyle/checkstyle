@@ -334,7 +334,7 @@
                   <span class="wrapper inline">
                     <img src="images/ok_green.png" alt="" />
                   </span>
-                  <a href="config_sizes.html#LineLength">LineLength</a>
+                  <a href="checks/sizes/linelength.html#LineLength">LineLength</a>
                   <br />
                   <br />
                   <span class="wrapper inline">
@@ -414,7 +414,7 @@
                   <span class="wrapper inline">
                     <img src="images/ok_green.png" alt="" />
                   </span>
-                  <a href="config_sizes.html#LineLength">LineLength</a>
+                  <a href="checks/sizes/linelength.html#LineLength">LineLength</a>
                   <br />
                   <br />
                   <span class="wrapper inline">
@@ -781,7 +781,7 @@
                         src="images/ok_blue.png"
                         alt="" />
                   </span>
-                  <a href="config_sizes.html#LineLength">LineLength</a>
+                  <a href="checks/sizes/linelength.html#LineLength">LineLength</a>
                   <br />
                   We can detect URL with protocol type as http://, https:// etc.
                   <br />
