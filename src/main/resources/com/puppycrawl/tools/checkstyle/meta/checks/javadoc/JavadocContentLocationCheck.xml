@@ -37,7 +37,8 @@
  This check does not validate the Javadoc summary itself nor its presence.
  The check will not report any violations for missing or malformed javadoc summary.
  To validate the Javadoc summary use
- &lt;a href="https://checkstyle.org/config_javadoc.html#SummaryJavadoc"&gt;SummaryJavadoc&lt;/a&gt; check.
+ &lt;a href="https://checkstyle.org/checks/javadoc/summaryjavadoc.html#SummaryJavadoc"&gt;
+ SummaryJavadoc&lt;/a&gt; check.
  &lt;/p&gt;
  &lt;p&gt;
  The &lt;a href="https://docs.oracle.com/en/java/javase/11/docs/specs/doc-comment-spec.html"&gt;
