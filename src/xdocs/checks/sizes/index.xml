@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>Size Violations</title>
+  </head>
+  <body>
+    <section name="Size Violations Checks">
+      <div class="wrapper">
+        <table>
+          <tr>
+            <td>
+              <a href="anoninnerlength.html#AnonInnerLength">
+                AnonInnerLength
+              </a>
+            </td>
+            <td>
+              Checks for long anonymous inner classes.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="executablestatementcount.html#ExecutableStatementCount">
+                ExecutableStatementCount
+              </a>
+            </td>
+            <td>
+              Restricts the number of executable statements to a specified limit.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="filelength.html#FileLength">
+                FileLength
+              </a>
+            </td>
+            <td>
+              Checks for long source files.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="lambdabodylength.html#LambdaBodyLength">
+                LambdaBodyLength
+              </a>
+            </td>
+            <td>
+              Checks lambda body length.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="linelength.html#LineLength">
+                LineLength
+              </a>
+            </td>
+            <td>
+              Checks for long lines.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="methodcount.html#MethodCount">
+                MethodCount
+              </a>
+            </td>
+            <td>
+              Checks the number of methods declared in each type declaration by access modifier
+            or total count.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="methodlength.html#MethodLength">
+                MethodLength
+              </a>
+            </td>
+            <td>
+              Checks for long methods and constructors.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="outertypenumber.html#OuterTypeNumber">
+                OuterTypeNumber
+              </a>
+            </td>
+            <td>
+              Checks for the number of types declared at the <i>outer</i>
+              (or <i>root</i>) level in a file.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="parameternumber.html#ParameterNumber">
+                ParameterNumber
+              </a>
+            </td>
+            <td>
+              Checks the number of parameters of a method or constructor.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="recordcomponentnumber.html#RecordComponentNumber">
+                RecordComponentNumber
+              </a>
+            </td>
+            <td>
+              Checks the number of record components in the header of a record definition.
+            </td>
+          </tr>
+        </table>
+      </div>
+    </section>
+  </body>
+</document>

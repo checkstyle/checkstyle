@@ -69,7 +69,7 @@
             <td>Checks the style of elements in annotations.</td>
           </tr>
           <tr>
-            <td><a href="config_sizes.html#AnonInnerLength">AnonInnerLength</a></td>
+            <td><a href="checks/sizes/anoninnerlength.html#AnonInnerLength">AnonInnerLength</a></td>
             <td>Checks for long anonymous inner classes.</td>
           </tr>
           <tr>
@@ -345,7 +345,7 @@
             </td>
           </tr>
           <tr>
-            <td><a href="config_sizes.html#ExecutableStatementCount">
+            <td><a href="checks/sizes/executablestatementcount.html#ExecutableStatementCount">
               ExecutableStatementCount</a></td>
             <td>Restricts the number of executable statements to a specified limit.</td>
           </tr>
@@ -366,7 +366,7 @@
             <td>Checks for fall-through in switch statements.</td>
           </tr>
           <tr>
-            <td><a href="config_sizes.html#FileLength">FileLength</a></td>
+            <td><a href="checks/sizes/filelength.html#FileLength">FileLength</a></td>
             <td>
             Checks for long source files.</td>
           </tr>
@@ -628,7 +628,11 @@
             </td>
           </tr>
           <tr>
-            <td><a href="config_sizes.html#LambdaBodyLength">LambdaBodyLength</a></td>
+            <td>
+              <a href="checks/sizes/lambdabodylength.html#LambdaBodyLength">
+                LambdaBodyLength
+              </a>
+            </td>
             <td>Checks lambda body length.</td>
           </tr>
           <tr>
@@ -646,7 +650,7 @@
             </td>
           </tr>
           <tr>
-            <td><a href="config_sizes.html#LineLength">LineLength</a></td>
+            <td><a href="checks/sizes/linelength.html#LineLength">LineLength</a></td>
             <td>Checks for long lines.</td>
           </tr>
           <tr>
@@ -684,12 +688,12 @@
               Checks that instance variable names conform to a specified pattern.</td>
           </tr>
           <tr>
-            <td><a href="config_sizes.html#MethodCount">MethodCount</a></td>
+            <td><a href="checks/sizes/methodcount.html#MethodCount">MethodCount</a></td>
             <td>Checks the number of methods declared in each type declaration by access modifier
             or total count.</td>
           </tr>
           <tr>
-            <td><a href="config_sizes.html#MethodLength">MethodLength</a></td>
+            <td><a href="checks/sizes/methodlength.html#MethodLength">MethodLength</a></td>
             <td>Checks for long methods and constructors.</td>
           </tr>
           <tr>
@@ -969,7 +973,7 @@
             <td>Checks that the outer type name and the file name match.</td>
           </tr>
           <tr>
-            <td><a href="config_sizes.html#OuterTypeNumber">OuterTypeNumber</a></td>
+            <td><a href="checks/sizes/outertypenumber.html#OuterTypeNumber">OuterTypeNumber</a></td>
             <td>
               Checks for the number of types declared at the <i>outer</i>
               (or <i>root</i>) level in a file.
@@ -1022,7 +1026,7 @@
               Checks that method parameter names conform to a specified pattern.</td>
           </tr>
           <tr>
-            <td><a href="config_sizes.html#ParameterNumber">ParameterNumber</a></td>
+            <td><a href="checks/sizes/parameternumber.html#ParameterNumber">ParameterNumber</a></td>
             <td>Checks the number of parameters of a method or constructor.</td>
           </tr>
           <tr>
@@ -1044,7 +1048,11 @@
             </td>
           </tr>
           <tr>
-            <td><a href="config_sizes.html#RecordComponentNumber">RecordComponentNumber</a></td>
+            <td>
+              <a href="checks/sizes/recordcomponentnumber.html#RecordComponentNumber">
+                RecordComponentNumber
+              </a>
+            </td>
             <td>Checks the number of record components in the header of a record definition.</td>
           </tr>
           <tr>
