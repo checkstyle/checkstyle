@@ -2785,7 +2785,7 @@
       <p>New:</p>
       <ul>
         <li>
-          New option for <a href="config_coding.html#MagicNumber">MagicNumber</a>: constantWaiverParentToken. Solution to not detected properly numbers. Author: Bhavik Patel <a href="https://github.com/checkstyle/checkstyle/issues/1266">#1266</a>
+          New option for <a href="checks/coding/magicnumber.html#MagicNumber">MagicNumber</a>: constantWaiverParentToken. Solution to not detected properly numbers. Author: Bhavik Patel <a href="https://github.com/checkstyle/checkstyle/issues/1266">#1266</a>
         </li>
       </ul>
 
@@ -3081,7 +3081,7 @@
       <p>Breaking backward compatibility:</p>
       <ul>
         <li>
-          Detect only label as illegal token in <a href="config_coding.html#IllegalToken">IllegalToken</a> check, default token set is changed to TokenTypes.LABELED_STAT. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1162">#1162</a>
+          Detect only label as illegal token in <a href="checks/coding/illegaltoken.html#IllegalToken">IllegalToken</a> check, default token set is changed to TokenTypes.LABELED_STAT. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1162">#1162</a>
         </li>
         <li>
           Add possibility to configure targets for <a href="checks/whitespace/parenpad.html#ParenPad">ParenPad</a> check, LPAREN and RPAREN were removed from acceptable tokens. Author: Vladislav Lisetskii <a href="https://github.com/checkstyle/checkstyle/issues/1189">#1189</a>
@@ -3103,7 +3103,7 @@
       <p>New:</p>
       <ul>
         <li>
-          New option for <a href="config_coding.html#ModifiedControlVariable">ModifiedControlVariableCheck</a>: skipEnhancedForLoopVariable. Author: Bhavik Patel <a href="https://github.com/checkstyle/checkstyle/issues/1015">#1015</a>
+          New option for <a href="checks/coding/modifiedcontrolvariable.html#ModifiedControlVariable">ModifiedControlVariableCheck</a>: skipEnhancedForLoopVariable. Author: Bhavik Patel <a href="https://github.com/checkstyle/checkstyle/issues/1015">#1015</a>
         </li>
         <li>
           New options for <a href="checks/javadoc/singlelinejavadoc.html#SingleLineJavadoc">SingleLineJavadoc</a>: ignoredTags, ignoreInlineTags. Author: Vladislav Lisetskii <a href="https://github.com/checkstyle/checkstyle/issues/1063">#1063</a>
@@ -3122,7 +3122,7 @@
           Replace hardcoded message in <a href="checks/whitespace/nowhitespaceafter.html#NoWhitespaceAfter">WhitespaceAfterCheck</a> with new message (i18n). Author: Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/967">#967</a>
         </li>
         <li>
-          Solution to wrong variable reported because of name shadowing in <a href="config_coding.html#FinalLocalVariable">FinalLocalVariableCheck</a>. Author: Bhavik Patel <a href="https://github.com/checkstyle/checkstyle/issues/1142">#1142</a>
+          Solution to wrong variable reported because of name shadowing in <a href="checks/coding/finallocalvariable.html#FinalLocalVariable">FinalLocalVariableCheck</a>. Author: Bhavik Patel <a href="https://github.com/checkstyle/checkstyle/issues/1142">#1142</a>
         </li>
         <li>
           Clarify misleading command line tool (CLI) output. Author: Bhavik Patel <a href="https://github.com/checkstyle/checkstyle/issues/1062">#1062</a>
@@ -3146,7 +3146,7 @@
           Do not generate violation for empty <a href="checks/annotation/suppresswarnings.html#SuppressWarnings">SuppressWarnings</a>. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1187">#1187</a>
         </li>
         <li>
-          Fix <a href="config_coding.html#PackageDeclaration">PackageDeclaration</a> check for files with comments only. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1149">#1149</a>
+          Fix <a href="checks/coding/packagedeclaration.html#PackageDeclaration">PackageDeclaration</a> check for files with comments only. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1149">#1149</a>
         </li>
         <li>
           Fix exception in <a href="checks/annotation/suppresswarningsholder.html#SuppressWarningsHolder">SuppressWarningsHolder</a> on complex annotations or annotation with dot. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1148">#1148</a>
@@ -3169,7 +3169,7 @@
           move non-compilable input to resources-noncompilable. Author: Vladislav Lisetskii
         </li>
         <li>
-          Minor update in <a href="config_coding.html#FallThrough">FallThroughCheck</a> xdoc and javadoc. Author: Vladislav Lisetskii
+          Minor update in <a href="checks/coding/fallthrough.html#FallThrough">FallThroughCheck</a> xdoc and javadoc. Author: Vladislav Lisetskii
         </li>
         <li>
           PMD violations: UncommentedEmptyMethod, EmptyMethodInAbstractClassShouldBeAbstract, AbstractNaming. Author: Bhavik Patel <a href="https://github.com/checkstyle/checkstyle/issues/995">#995</a>, <a href="https://github.com/checkstyle/checkstyle/issues/997">#997</a>, <a href="https://github.com/checkstyle/checkstyle/issues/983">#983</a>
@@ -3311,28 +3311,28 @@
           Fix equals and hashCode in SuppressionFilter, SuppressElement, IntRangeFilter, LocalizedMessage and remove obsolete toString. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1088">#1088</a>
         </li>
         <li>
-          Add "/", "+" and "-" to list of allowed tokens in <a href="config_coding.html#MagicNumber">MagicNumber</a> check. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1113">#1113</a>
+          Add "/", "+" and "-" to list of allowed tokens in <a href="checks/coding/magicnumber.html#MagicNumber">MagicNumber</a> check. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1113">#1113</a>
         </li>
         <li>
-          Extend <a href="config_coding.html#ReturnCount">ReturnCount</a> check to use separate return counter for lambdas. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1068">#1068</a>
+          Extend <a href="checks/coding/returncount.html#ReturnCount">ReturnCount</a> check to use separate return counter for lambdas. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1068">#1068</a>
         </li>
         <li>
           Fix exception in <a href="checks/design/onetoplevelclass.html#OneTopLevelClass">OneTopLevelClass</a> check for package-info files. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1065">#1065</a>
         </li>
         <li>
-          Fix exception in <a href="config_coding.html#FallThrough">FallThrough</a> check for nested switch statements. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/837">#837</a>
+          Fix exception in <a href="checks/coding/fallthrough.html#FallThrough">FallThrough</a> check for nested switch statements. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/837">#837</a>
         </li>
         <li>
-          MagicNumber annotation detection enhanced for arbitrary parent nodes in <a href="config_coding.html#MagicNumber">MagicNumber</a> check. Author: Mehmet Can Cömert <a href="https://github.com/checkstyle/checkstyle/issues/926">#926</a>
+          MagicNumber annotation detection enhanced for arbitrary parent nodes in <a href="checks/coding/magicnumber.html#MagicNumber">MagicNumber</a> check. Author: Mehmet Can Cömert <a href="https://github.com/checkstyle/checkstyle/issues/926">#926</a>
         </li>
         <li>
           Improve standard package regexp for <a href="checks/imports/customimportorder.html#CustomImportOrder">CustomImportOrder</a> check. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1020">#1020</a>
         </li>
         <li>
-          Fix NPE in <a href="config_coding.html#ModifiedControlVariable">ModifiedControlVariable</a> check. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1012">#1012</a>
+          Fix NPE in <a href="checks/coding/modifiedcontrolvariable.html#ModifiedControlVariable">ModifiedControlVariable</a> check. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1012">#1012</a>
         </li>
         <li>
-          Include enums in <a href="config_coding.html#CovariantEquals">CovariantEquals</a> check analysis. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1011">#1011</a>
+          Include enums in <a href="checks/coding/covariantequals.html#CovariantEquals">CovariantEquals</a> check analysis. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1011">#1011</a>
         </li>
         <li>
           Fix parsing of allowedAnnotations property in <a href="checks/javadoc/javadocmethod.html#JavadocMethod">JavadocMethod</a> check. Author: Gustav Carlson <a href="https://github.com/checkstyle/checkstyle/issues/1145">#1145</a>

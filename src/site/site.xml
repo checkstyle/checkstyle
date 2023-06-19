@@ -112,7 +112,71 @@
           <item name="ThrowsCount" href="checks/design/throwscount.html"/>
           <item name="VisibilityModifier" href="checks/design/visibilitymodifier.html"/>
         </item>
-        <item name="Coding"             href="config_coding.html"/>
+        <item name="Coding" href="checks/coding/index.html" collapse="true">
+          <item name="ArrayTrailingComma" href="checks/coding/arraytrailingcomma.html"/>
+          <item name="AvoidDoubleBraceInitialization"
+                href="checks/coding/avoiddoublebraceinitialization.html"/>
+          <item name="AvoidInlineConditionals" href="checks/coding/avoidinlineconditionals.html"/>
+          <item name="AvoidNoArgumentSuperConstructorCall"
+                href="checks/coding/avoidnoargumentsuperconstructorcall.html"/>
+          <item name="CovariantEquals" href="checks/coding/covariantequals.html"/>
+          <item name="DeclarationOrder" href="checks/coding/declarationorder.html"/>
+          <item name="DefaultComesLast" href="checks/coding/defaultcomeslast.html"/>
+          <item name="EmptyStatement" href="checks/coding/emptystatement.html"/>
+          <item name="EqualsAvoidNull" href="checks/coding/equalsavoidnull.html"/>
+          <item name="EqualsHashCode" href="checks/coding/equalshashcode.html"/>
+          <item name="ExplicitInitialization" href="checks/coding/explicitinitialization.html"/>
+          <item name="FallThrough" href="checks/coding/fallthrough.html"/>
+          <item name="FinalLocalVariable" href="checks/coding/finallocalvariable.html"/>
+          <item name="HiddenField" href="checks/coding/hiddenfield.html"/>
+          <item name="IllegalCatch" href="checks/coding/illegalcatch.html"/>
+          <item name="IllegalInstantiation" href="checks/coding/illegalinstantiation.html"/>
+          <item name="IllegalThrows" href="checks/coding/illegalthrows.html"/>
+          <item name="IllegalToken" href="checks/coding/illegaltoken.html"/>
+          <item name="IllegalTokenText" href="checks/coding/illegaltokentext.html"/>
+          <item name="IllegalType" href="checks/coding/illegaltype.html"/>
+          <item name="InnerAssignment" href="checks/coding/innerassignment.html"/>
+          <item name="MagicNumber" href="checks/coding/magicnumber.html"/>
+          <item name="MatchXpath" href="checks/coding/matchxpath.html"/>
+          <item name="MissingCtor" href="checks/coding/missingctor.html"/>
+          <item name="MissingSwitchDefault" href="checks/coding/missingswitchdefault.html"/>
+          <item name="ModifiedControlVariable" href="checks/coding/modifiedcontrolvariable.html"/>
+          <item name="MultipleStringLiterals" href="checks/coding/multiplestringliterals.html"/>
+          <item name="MultipleVariableDeclarations"
+                href="checks/coding/multiplevariabledeclarations.html"/>
+          <item name="NestedForDepth" href="checks/coding/nestedfordepth.html"/>
+          <item name="NestedIfDepth" href="checks/coding/nestedifdepth.html"/>
+          <item name="NestedTryDepth" href="checks/coding/nestedtrydepth.html"/>
+          <item name="NoArrayTrailingComma" href="checks/coding/noarraytrailingcomma.html"/>
+          <item name="NoClone" href="checks/coding/noclone.html"/>
+          <item name="NoEnumTrailingComma" href="checks/coding/noenumtrailingcomma.html"/>
+          <item name="NoFinalizer" href="checks/coding/nofinalizer.html"/>
+          <item name="OneStatementPerLine" href="checks/coding/onestatementperline.html"/>
+          <item name="OverloadMethodsDeclarationOrder"
+                href="checks/coding/overloadmethodsdeclarationorder.html"/>
+          <item name="PackageDeclaration" href="checks/coding/packagedeclaration.html"/>
+          <item name="ParameterAssignment" href="checks/coding/parameterassignment.html"/>
+          <item name="RequireThis" href="checks/coding/requirethis.html"/>
+          <item name="ReturnCount" href="checks/coding/returncount.html"/>
+          <item name="SimplifyBooleanExpression"
+                href="checks/coding/simplifybooleanexpression.html"/>
+          <item name="SimplifyBooleanReturn" href="checks/coding/simplifybooleanreturn.html"/>
+          <item name="StringLiteralEquality" href="checks/coding/stringliteralequality.html"/>
+          <item name="SuperClone" href="checks/coding/superclone.html"/>
+          <item name="SuperFinalize" href="checks/coding/superfinalize.html"/>
+          <item name="UnnecessaryParentheses" href="checks/coding/unnecessaryparentheses.html"/>
+          <item name="UnnecessarySemicolonAfterOuterTypeDeclaration"
+                href="checks/coding/unnecessarysemicolonafteroutertypedeclaration.html"/>
+          <item name="UnnecessarySemicolonAfterTypeMemberDeclaration"
+                href="checks/coding/unnecessarysemicolonaftertypememberdeclaration.html"/>
+          <item name="UnnecessarySemicolonInEnumeration"
+                href="checks/coding/unnecessarysemicoloninenumeration.html"/>
+          <item name="UnnecessarySemicolonInTryWithResources"
+                href="checks/coding/unnecessarysemicolonintrywithresources.html"/>
+          <item name="UnusedLocalVariable" href="checks/coding/unusedlocalvariable.html"/>
+          <item name="VariableDeclarationUsageDistance"
+                href="checks/coding/variabledeclarationusagedistance.html"/>
+        </item>
         <item name="Headers" href="checks/header/index.html" collapse="true">
           <item name="Header" href="checks/header/header.html"/>
           <item name="RegexpHeader" href="checks/header/regexpheader.html"/>
