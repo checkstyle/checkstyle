@@ -77,7 +77,7 @@
             <td>Checks the style of array type definitions.</td>
           </tr>
           <tr>
-            <td><a href="config_javadoc.html#AtclauseOrder">AtclauseOrder</a></td>
+            <td><a href="checks/javadoc/atclauseorder.html#AtclauseOrder">AtclauseOrder</a></td>
             <td>Checks the order of javadoc block-tags or javadoc tags.</td>
           </tr>
           <tr>
@@ -401,19 +401,19 @@
               Checks that interface type parameter names conform to a specified pattern.</td>
           </tr>
           <tr>
-            <td><a href="config_javadoc.html#InvalidJavadocPosition">
+            <td><a href="checks/javadoc/invalidjavadocposition.html#InvalidJavadocPosition">
               InvalidJavadocPosition</a></td>
             <td>
               Checks that Javadocs are located at the correct position.</td>
           </tr>
           <tr>
-            <td><a href="config_javadoc.html#JavadocBlockTagLocation">
+            <td><a href="checks/javadoc/javadocblocktaglocation.html#JavadocBlockTagLocation">
               JavadocBlockTagLocation</a></td>
             <td>Checks that a javadoc block tag appears only at the beginning of a line,
               ignoring leading asterisks and white space.</td>
           </tr>
           <tr>
-            <td><a href="config_javadoc.html#JavadocContentLocation">
+            <td><a href="checks/javadoc/javadoccontentlocation.html#JavadocContentLocation">
               JavadocContentLocation</a></td>
             <td>
               Checks that the Javadoc content begins from the same position
@@ -421,12 +421,14 @@
             </td>
           </tr>
           <tr>
-            <td><a href="config_javadoc.html#JavadocMethod">JavadocMethod</a></td>
+            <td><a href="checks/javadoc/javadocmethod.html#JavadocMethod">JavadocMethod</a></td>
             <td>Checks the Javadoc of a method or constructor.</td>
           </tr>
           <tr>
             <td>
-              <a href="config_javadoc.html#JavadocMissingLeadingAsterisk">JavadocMissingLeadingAsterisk</a>
+              <a href="checks/javadoc/javadocmissingleadingasterisk.html#JavadocMissingLeadingAsterisk">
+                JavadocMissingLeadingAsterisk
+              </a>
             </td>
             <td>
               Checks if the javadoc has
@@ -438,33 +440,46 @@
           </tr>
           <tr>
             <td>
-              <a href="config_javadoc.html#JavadocMissingWhitespaceAfterAsterisk">JavadocMissingWhitespaceAfterAsterisk</a>
+              <a href="checks/javadoc/javadocmissingwhitespaceafterasterisk.html#JavadocMissingWhitespaceAfterAsterisk">
+                JavadocMissingWhitespaceAfterAsterisk
+              </a>
             </td>
             <td>Checks that there is at least one whitespace after the leading asterisk.</td>
           </tr>
           <tr>
-            <td><a href="config_javadoc.html#JavadocPackage">JavadocPackage</a></td>
+            <td><a href="checks/javadoc/javadocpackage.html#JavadocPackage">JavadocPackage</a></td>
             <td>Checks that each Java package has a Javadoc file used for commenting.</td>
           </tr>
           <tr>
-            <td><a href="config_javadoc.html#JavadocParagraph">JavadocParagraph</a></td>
+            <td>
+              <a href="checks/javadoc/javadocparagraph.html#JavadocParagraph">
+                JavadocParagraph
+              </a>
+            </td>
             <td>Checks the Javadoc paragraph.</td>
           </tr>
           <tr>
-            <td><a href="config_javadoc.html#JavadocStyle">JavadocStyle</a></td>
+            <td><a href="checks/javadoc/javadocstyle.html#JavadocStyle">JavadocStyle</a></td>
             <td>Validates Javadoc comments to help ensure they are well formed.</td>
           </tr>
           <tr>
-            <td><a href="config_javadoc.html#JavadocTagContinuationIndentation">
-              JavadocTagContinuationIndentation</a></td>
+            <td>
+              <a href="checks/javadoc/javadoctagcontinuationindentation.html#JavadocTagContinuationIndentation">
+                JavadocTagContinuationIndentation
+              </a>
+            </td>
             <td>Checks the indentation of the continuation lines in block tags.</td>
           </tr>
           <tr>
-            <td><a href="config_javadoc.html#JavadocType">JavadocType</a></td>
+            <td><a href="checks/javadoc/javadoctype.html#JavadocType">JavadocType</a></td>
             <td>Checks the Javadoc comments for type definitions.</td>
           </tr>
           <tr>
-            <td><a href="config_javadoc.html#JavadocVariable">JavadocVariable</a></td>
+            <td>
+              <a href="checks/javadoc/javadocvariable.html#JavadocVariable">
+                JavadocVariable
+              </a>
+            </td>
             <td>Checks that a variable has a Javadoc comment.</td>
           </tr>
           <tr>
@@ -565,17 +580,29 @@
             </td>
           </tr>
           <tr>
-            <td><a href="config_javadoc.html#MissingJavadocMethod">MissingJavadocMethod</a></td>
+            <td>
+              <a href="checks/javadoc/missingjavadocmethod.html#MissingJavadocMethod">
+                MissingJavadocMethod
+              </a>
+            </td>
             <td>Checks for missing Javadoc comments for a method or constructor.</td>
           </tr>
           <tr>
-            <td><a href="config_javadoc.html#MissingJavadocPackage">MissingJavadocPackage</a></td>
+            <td>
+              <a href="checks/javadoc/missingjavadocpackage.html#MissingJavadocPackage">
+                MissingJavadocPackage
+              </a>
+            </td>
             <td>
               Checks for missing package definition Javadoc comments in package-info.java files.
             </td>
           </tr>
           <tr>
-            <td><a href="config_javadoc.html#MissingJavadocType">MissingJavadocType</a></td>
+            <td>
+              <a href="checks/javadoc/missingjavadoctype.html#MissingJavadocType">
+                MissingJavadocType
+              </a>
+            </td>
             <td>Checks for missing Javadoc comments for class, enum, interface, and annotation
             interface definitions.</td>
           </tr>
@@ -675,8 +702,11 @@
             Checks that chosen statements are not line-wrapped.</td>
           </tr>
           <tr>
-            <td><a href="config_javadoc.html#NonEmptyAtclauseDescription">
-              NonEmptyAtclauseDescription</a></td>
+            <td>
+              <a href="checks/javadoc/nonemptyatclausedescription.html#NonEmptyAtclauseDescription">
+                NonEmptyAtclauseDescription
+              </a>
+            </td>
             <td>
             Checks that the block tag is followed by description.</td>
           </tr>
@@ -882,14 +912,21 @@
             <td>Checks for over-complicated boolean return statements.</td>
           </tr>
           <tr>
-            <td><a href="config_javadoc.html#SingleLineJavadoc">SingleLineJavadoc</a></td>
+            <td>
+              <a href="checks/javadoc/singlelinejavadoc.html#SingleLineJavadoc">
+                SingleLineJavadoc
+              </a>
+            </td>
             <td>
               Checks that a Javadoc block can fit in a single-line and doesn't contain
               block tags.</td>
           </tr>
           <tr>
-            <td><a href="config_javadoc.html#RequireEmptyLineBeforeBlockTagGroup">
-              RequireEmptyLineBeforeBlockTagGroup</a></td>
+            <td>
+              <a href="checks/javadoc/requireemptylinebeforeblocktaggroup.html#RequireEmptyLineBeforeBlockTagGroup">
+                RequireEmptyLineBeforeBlockTagGroup
+              </a>
+            </td>
             <td>
               Checks that one blank line before the block tag if it is present in Javadoc.
             </td>
@@ -915,7 +952,7 @@
             </td>
           </tr>
           <tr>
-            <td><a href="config_javadoc.html#SummaryJavadoc">SummaryJavadoc</a></td>
+            <td><a href="checks/javadoc/summaryjavadoc.html#SummaryJavadoc">SummaryJavadoc</a></td>
             <td>
             Checks that Javadoc summary sentence does not contain phrases that are not recommended
             to use.</td>
@@ -1041,7 +1078,7 @@
             Checks that a token is surrounded by whitespace.</td>
           </tr>
           <tr>
-            <td><a href="config_javadoc.html#WriteTag">WriteTag</a></td>
+            <td><a href="checks/javadoc/writetag.html#WriteTag">WriteTag</a></td>
             <td>
               Requires user defined Javadoc tag to be present in Javadoc comment
               with defined format.
