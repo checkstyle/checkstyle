@@ -1519,7 +1519,7 @@
                   <span class="wrapper inline">
                     <img src="images/ok_green.png" alt="" />
                   </span>
-                  <a href="config_naming.html#PackageName">PackageName</a>
+                  <a href="checks/naming/packagename.html#PackageName">PackageName</a>
                 </td>
                 <td>
                   <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+PackageName">
@@ -1547,7 +1547,7 @@
                         src="images/ok_blue.png"
                         alt="" />
                   </span>
-                  <a href="config_naming.html#TypeName">TypeName</a>
+                  <a href="checks/naming/typename.html#TypeName">TypeName</a>
                 </td>
                 <td>
                   <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+TypeName">
@@ -1575,7 +1575,7 @@
                         src="images/ok_blue.png"
                         alt="" />
                   </span>
-                  <a href="config_naming.html#MethodName">MethodName</a>
+                  <a href="checks/naming/methodname.html#MethodName">MethodName</a>
                   <br/> No ability to distinguish verb at the beginning of name,
                   no way distinguish Test method from others so "_" is allowed in
                   names
@@ -1627,7 +1627,7 @@
                   <span class="wrapper inline">
                     <img src="images/ok_green.png" alt="" />
                   </span>
-                  <a href="config_naming.html#MemberName">MemberName</a>
+                  <a href="checks/naming/membername.html#MemberName">MemberName</a>
                 </td>
                 <td>
                   <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MemberName">
@@ -1653,27 +1653,27 @@
                   <span class="wrapper inline">
                     <img src="images/ok_green.png" alt="" />
                   </span>
-                  <a href="config_naming.html#ParameterName">ParameterName</a>
+                  <a href="checks/naming/parametername.html#ParameterName">ParameterName</a>
                   <br/>
                   <br/>
                   <span class="wrapper inline">
                     <img src="images/ok_green.png" alt=""/>
                   </span>
-                  <a href="config_naming.html#CatchParameterName">
+                  <a href="checks/naming/catchparametername.html#CatchParameterName">
                     CatchParameterName</a>
                   <br/>
                   <br/>
                   <span class="wrapper inline">
                     <img src="images/ok_green.png" alt=""/>
                   </span>
-                  <a href="config_naming.html#LambdaParameterName">
+                  <a href="checks/naming/lambdaparametername.html#LambdaParameterName">
                     LambdaParameterName</a>
                   <br/>
                   <br/>
                   <span class="wrapper inline">
                     <img src="images/ok_green.png" alt=""/>
                   </span>
-                  <a href="config_naming.html#RecordComponentName">
+                  <a href="checks/naming/recordcomponentname.html#RecordComponentName">
                     RecordComponentName</a>
                 </td>
                 <td>
@@ -1720,12 +1720,12 @@
                   <span class="wrapper inline">
                     <img src="images/ok_green.png" alt="" />
                   </span>
-                  <a href="config_naming.html#LocalVariableName">LocalVariableName</a>
+                  <a href="checks/naming/localvariablename.html#LocalVariableName">LocalVariableName</a>
                   <br/>
                   <span class="wrapper inline">
                     <img src="images/ok_green.png" alt="" />
                   </span>
-                  <a href="config_naming.html#PatternVariableName">PatternVariableName</a>
+                  <a href="checks/naming/patternvariablename.html#PatternVariableName">PatternVariableName</a>
                 </td>
                 <td>
                   <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LocalVariableName">
@@ -1756,13 +1756,13 @@
                   <span class="wrapper inline">
                     <img src="images/ok_green.png" alt="" />
                   </span>
-                  <a href="config_naming.html#MethodTypeParameterName">
+                  <a href="checks/naming/methodtypeparametername.html#MethodTypeParameterName">
                     MethodTypeParameterName</a>
                   <br/>
                   <span class="wrapper inline">
                     <img src="images/ok_green.png" alt="" />
                   </span>
-                  <a href="config_naming.html#ClassTypeParameterName">
+                  <a href="checks/naming/classtypeparametername.html#ClassTypeParameterName">
                     ClassTypeParameterName</a>
                   <br/>
                   <span class="wrapper inline">
@@ -1770,12 +1770,12 @@
                         src="images/ok_green.png"
                         alt="" />
                   </span>
-                  <a href="config_naming.html#InterfaceTypeParameterName">
+                  <a href="checks/naming/interfacetypeparametername.html#InterfaceTypeParameterName">
                     InterfaceTypeParameterName</a>
                   <span class="wrapper inline">
                     <img src="images/ok_green.png" alt="" />
                   </span>
-                  <a href="config_naming.html#RecordTypeParameterName">
+                  <a href="checks/naming/recordtypeparametername.html#RecordTypeParameterName">
                     RecordTypeParameterName</a>
                   <br/>
                 </td>
@@ -1823,7 +1823,7 @@
                         src="images/ok_blue.png"
                         alt="" />
                   </span>
-                  <a href="config_naming.html#AbbreviationAsWordInName">
+                  <a href="checks/naming/abbreviationaswordinname.html#AbbreviationAsWordInName">
                     AbbreviationAsWordInName</a>
                   <br />
                   Non covered: Some words are ambiguously hyphenated in the

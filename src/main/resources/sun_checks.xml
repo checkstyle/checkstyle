@@ -107,7 +107,7 @@
     <module name="MissingJavadocMethod"/>
 
     <!-- Checks for Naming Conventions.                  -->
-    <!-- See https://checkstyle.org/config_naming.html -->
+    <!-- See https://checkstyle.org/checks/naming/index.html -->
     <module name="ConstantName"/>
     <module name="LocalFinalVariableName"/>
     <module name="LocalVariableName"/>
