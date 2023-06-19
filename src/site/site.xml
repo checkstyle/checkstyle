@@ -127,7 +127,34 @@
           <item name="RedundantImport" href="checks/imports/redundantimport.html"/>
           <item name="UnusedImports" href="checks/imports/unusedimports.html"/>
         </item>
-        <item name="Javadoc Comments"   href="config_javadoc.html"/>
+        <item name="Javadoc Comments" href="checks/javadoc/index.html" collapse="true">
+          <item name="AtclauseOrder" href="checks/javadoc/atclauseorder.html"/>
+          <item name="InvalidJavadocPosition" href="checks/javadoc/invalidjavadocposition.html"/>
+          <item name="JavadocBlockTagLocation" href="checks/javadoc/javadocblocktaglocation.html"/>
+          <item name="JavadocContentLocation" href="checks/javadoc/javadoccontentlocation.html"/>
+          <item name="JavadocMethod" href="checks/javadoc/javadocmethod.html"/>
+          <item name="JavadocMissingLeadingAsterisk"
+                href="checks/javadoc/javadocmissingleadingasterisk.html"/>
+          <item name="JavadocMissingWhitespaceAfterAsterisk"
+                href="checks/javadoc/javadocmissingwhitespaceafterasterisk.html"/>
+          <item name="JavadocPackage" href="checks/javadoc/javadocpackage.html"/>
+          <item name="JavadocParagraph" href="checks/javadoc/javadocparagraph.html"/>
+          <item name="JavadocStyle" href="checks/javadoc/javadocstyle.html"/>
+          <item name="JavadocTagContinuationIndentation"
+                href="checks/javadoc/javadoctagcontinuationindentation.html"/>
+          <item name="JavadocType" href="checks/javadoc/javadoctype.html"/>
+          <item name="JavadocVariable" href="checks/javadoc/javadocvariable.html"/>
+          <item name="MissingJavadocMethod" href="checks/javadoc/missingjavadocmethod.html"/>
+          <item name="MissingJavadocPackage" href="checks/javadoc/missingjavadocpackage.html"/>
+          <item name="MissingJavadocType" href="checks/javadoc/missingjavadoctype.html"/>
+          <item name="NonEmptyAtclauseDescription"
+                href="checks/javadoc/nonemptyatclausedescription.html"/>
+          <item name="RequireEmptyLineBeforeBlockTagGroup"
+                href="checks/javadoc/requireemptylinebeforeblocktaggroup.html"/>
+          <item name="SingleLineJavadoc" href="checks/javadoc/singlelinejavadoc.html"/>
+          <item name="SummaryJavadoc" href="checks/javadoc/summaryjavadoc.html"/>
+          <item name="WriteTag" href="checks/javadoc/writetag.html"/>
+        </item>
         <item name="Metrics" href="checks/metrics/index.html" collapse="true">
           <item name="BooleanExpressionComplexity"
                 href="checks/metrics/booleanexpressioncomplexity.html"/>
@@ -165,13 +192,6 @@
           <item name="ModifierOrder" href="checks/modifier/modifierorder.html"/>
           <item name="RedundantModifier" href="checks/modifier/redundantmodifier.html"/>
         </item>
-        <item name="Regexp" href="checks/regexp/index.html" collapse="true">
-          <item name="Regexp" href="checks/regexp/regexp.html"/>
-          <item name="RegexpMultiline" href="checks/regexp/regexpmultiline.html"/>
-          <item name="RegexpOnFilename" href="checks/regexp/regexponfilename.html"/>
-          <item name="RegexpSingleline" href="checks/regexp/regexpsingleline.html"/>
-          <item name="RegexpSinglelineJava" href="checks/regexp/regexpsinglelinejava.html"/>
-        </item>
         <item name="Naming Conventions" href="checks/naming/index.html" collapse="true">
           <item name="AbbreviationAsWordInName"
                 href="checks/naming/abbreviationaswordinname.html"/>
@@ -195,6 +215,13 @@
           <item name="RecordTypeParameterName" href="checks/naming/recordtypeparametername.html"/>
           <item name="StaticVariableName" href="checks/naming/staticvariablename.html"/>
           <item name="TypeName" href="checks/naming/typename.html"/>
+        </item>
+        <item name="Regexp" href="checks/regexp/index.html" collapse="true">
+          <item name="Regexp" href="checks/regexp/regexp.html"/>
+          <item name="RegexpMultiline" href="checks/regexp/regexpmultiline.html"/>
+          <item name="RegexpOnFilename" href="checks/regexp/regexponfilename.html"/>
+          <item name="RegexpSingleline" href="checks/regexp/regexpsingleline.html"/>
+          <item name="RegexpSinglelineJava" href="checks/regexp/regexpsinglelinejava.html"/>
         </item>
         <item name="Size Violations"    href="config_sizes.html"/>
         <item name="Whitespace" href="checks/whitespace/index.html" collapse="true">
