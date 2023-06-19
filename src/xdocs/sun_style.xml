@@ -1001,10 +1001,10 @@
       <subsection name="Suppressions" id="Sun_Suppressions">
         <p>
           It is possible to suppress some violations by embeded filters
-          <a href="config_filters.html#SuppressionFilter">
+          <a href="filters/suppressionfilter.html#SuppressionFilter">
             SuppressionFilter</a>
           and
-          <a href="config_filters.html#SuppressionXpathFilter">
+          <a href="filters/suppressionxpathfilter.html#SuppressionXpathFilter">
             SuppressionXpathFilter</a>.
           Location of config file for <i>SuppressionFilter</i> can be defined by system property
           <i>org.checkstyle.sun.suppressionfilter.config</i> (default value is
