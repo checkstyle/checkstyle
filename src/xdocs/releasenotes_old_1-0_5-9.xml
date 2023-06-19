@@ -318,12 +318,12 @@
           #1667137). Thanks to Lukas Platinsky for patch #3393810.
         </li>
         <li>
-          <a href="config_coding.html#DeclarationOrder">DeclarationOrder</a>
+          <a href="checks/coding/declarationorder.html#DeclarationOrder">DeclarationOrder</a>
           handles ignoreModifiers correctly (all fields should be before
           ctors and methods)(bug #3429775)
         </li>
         <li>
-          <a href="config_coding.html#InnerAssignment">Inner assignment</a>
+          <a href="checks/coding/innerassignment.html#InnerAssignment">Inner assignment</a>
           is now allowed in try-with-resources (bug #3441097)
         </li>
         <li>
@@ -368,11 +368,11 @@
           <code>processJavadoc</code> is turned on.
         </li>
         <li>
-          <a href="config_coding.html#RequireThis">RequireThis</a> now
+          <a href="checks/coding/requirethis.html#RequireThis">RequireThis</a> now
           ignores static members (bug #1155921).
         </li>
         <li>
-          <a href="config_coding.html#HiddenField">HiddenField</a> now
+          <a href="checks/coding/hiddenfield.html#HiddenField">HiddenField</a> now
           treats setxYz() as a setter for xYz, and setXYz() as a setter for
           XYz property to comply JavaBeans specification (bug #3370946).
         </li>
@@ -397,19 +397,19 @@
           imports are used. Thanks to Lyle Hanson for patch #3267984.
         </li>
         <li>
-          Enhanced <a href="config_coding.html#MagicNumber">MagicNumber</a>
+          Enhanced <a href="checks/coding/magicnumber.html#MagicNumber">MagicNumber</a>
           to support ignoring numbers in annotation declarations. Thanks to
           Julio Cesar Cabral for patch #3132984.
         </li>
         <li>
           Enhanced
-          <a href="config_coding.html#EqualsAvoidNull">EqualsAvoidNull</a>
+          <a href="checks/coding/equalsavoidnull.html#EqualsAvoidNull">EqualsAvoidNull</a>
           to process <code>String.equalsIgnoreCase()</code>
           invocations (which can be suppressed).
         </li>
         <li>
           Enhanced
-          <a href="config_coding.html#IllegalThrows">IllegalThrows</a>
+          <a href="checks/coding/illegalthrows.html#IllegalThrows">IllegalThrows</a>
           to support ignoring methods with specified names. Thanks to
           Amit Shah for patch #3115439.
         </li>
@@ -431,7 +431,7 @@
       <ul>
         <li>
           Fix
-          <a href="config_coding.html#MultipleVariableDeclarations">MultipleVariableDeclarations</a>
+          <a href="checks/coding/multiplevariabledeclarations.html#MultipleVariableDeclarations">MultipleVariableDeclarations</a>
           to properly handle when multiple variable declarations are inside a
           for loop initializer. Thanks to Amit Shah for patch #3121071.
         </li>
@@ -453,12 +453,12 @@
         </li>
         <li>
           Enhanced
-          <a href="config_coding.html#PackageDeclaration">PackageDeclaration</a>
+          <a href="checks/coding/packagedeclaration.html#PackageDeclaration">PackageDeclaration</a>
           to optionally check that the package name matches the name of the
           directory containing the file.
         </li>
         <li>
-          Added <a href="config_coding.html#NestedForDepth">NestedForDepth</a>
+          Added <a href="checks/coding/nestedfordepth.html#NestedForDepth">NestedForDepth</a>
           that restricts nested <code>for</code> blocks to a specified
           depth (default = 1). Thanks to Alexander Jesse for patch
           #1151673.
@@ -472,12 +472,12 @@
           Alexander Jesse for patch #1151669, which was the inspiration.
         </li>
         <li>
-          Added <a href="config_coding.html#OneStatementPerLine">OneStatementPerLine</a>
+          Added <a href="checks/coding/onestatementperline.html#OneStatementPerLine">OneStatementPerLine</a>
           that checks there is only one statement per line. Thanks to
           Alexander Jesse for patch #1144994, which was the inspiration.
         </li>
         <li>
-          Enhanced <a href="config_coding.html#MagicNumber">MagicNumber</a>
+          Enhanced <a href="checks/coding/magicnumber.html#MagicNumber">MagicNumber</a>
           to support the parameter <code>ignoreHashCodeMethod</code> to ignore
           magic numbers in <code>hashCode()</code> methods. Thanks to
           Daniel Solano Gómez for patch #3050788.
@@ -534,7 +534,7 @@
       <p>New features:</p>
       <ul>
         <li>
-          Enhanced <a href="config_coding.html#DeclarationOrder">DeclarationOrder</a>
+          Enhanced <a href="checks/coding/declarationorder.html#DeclarationOrder">DeclarationOrder</a>
           to support properties to ignore constructors, methods and modifiers.
           Thanks to Steve McKay for patch #2953941.
         </li>
@@ -693,9 +693,9 @@
         <li><a href="checks/annotation/missingoverride.html#MissingOverride">MissingOverride</a></li>
         <li><a href="checks/annotation/packageannotation.html#PackageAnnotation">PackageAnnotation</a></li>
         <li><a href="checks/annotation/suppresswarnings.html#SuppressWarnings">SuppressWarnings</a></li>
-        <li><a href="config_coding.html#EqualsAvoidNull">EqualsAvoidNull</a></li>
-        <li><a href="config_coding.html#NoClone">NoClone</a></li>
-        <li><a href="config_coding.html#NoFinalizer">NoFinalizer</a></li>
+        <li><a href="checks/coding/equalsavoidnull.html#EqualsAvoidNull">EqualsAvoidNull</a></li>
+        <li><a href="checks/coding/noclone.html#NoClone">NoClone</a></li>
+        <li><a href="checks/coding/nofinalizer.html#NoFinalizer">NoFinalizer</a></li>
         <li><a href="checks/imports/avoidstaticimport.html#AvoidStaticImport">AvoidStaticImport</a></li>
         <li><a href="checks/javadoc/javadocpackage.html#JavadocPackage">JavadocPackage</a></li>
         <li><a href="checks/naming/classtypeparametername.html#ClassTypeParameterName">ClassTypeParameterName</a></li>
@@ -784,7 +784,7 @@
       <p>Fixed Bugs since release 5.0 Beta 2:</p>
       <ul>
         <li>
-          <a href="config_coding.html#RequireThis">RequireThis</a>
+          <a href="checks/coding/requirethis.html#RequireThis">RequireThis</a>
           reported a violation when using an annotation
           with a member name that is the same as a member name in the enclosing
           class the annotation was used in (bug #2123003).
@@ -923,7 +923,7 @@
       <ul>
         <li>
           New check <a
-          href="config_coding.html#NoFinalizer">NoFinalizer</a>
+          href="checks/coding/nofinalizer.html#NoFinalizer">NoFinalizer</a>
           for ensuring that a class does not define a finalize() method.
           Thanks to Feng Qian and Steve McKay for providing patch #1892273.
         </li>
@@ -948,7 +948,7 @@
         </li>
         <li>
           New check <a
-          href="config_coding.html#EqualsAvoidNull">EqualsAvoidNull</a>
+          href="checks/coding/equalsavoidnull.html#EqualsAvoidNull">EqualsAvoidNull</a>
           for ensuring that String literals is on the left side of an
           <code>equals()</code> comparison.  Thanks to
           Travis Schneeberger for providing patch #1895152.
@@ -974,7 +974,7 @@
           #1892364.
         </li>
         <li>
-          New check <a href="config_coding.html#NoClone">NoClone</a> for
+          New check <a href="checks/coding/noclone.html#NoClone">NoClone</a> for
           ensuring a class does not override the <code>clone</code> method from
           the <code>Object</code> class. Thanks to Travis
           Schneeberger for providing patch #1947417.
