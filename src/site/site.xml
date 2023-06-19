@@ -135,7 +135,25 @@
           <item name="JavaNCSS" href="checks/metrics/javancss.html"/>
           <item name="NPathComplexity" href="checks/metrics/npathcomplexity.html"/>
         </item>
-        <item name="Miscellaneous"      href="config_misc.html"/>
+        <item name="Miscellaneous" href="checks/misc/index.html" collapse="true">
+          <item name="ArrayTypeStyle" href="checks/misc/arraytypestyle.html"/>
+          <item name="AvoidEscapedUnicodeCharacters"
+                href="checks/misc/avoidescapedunicodecharacters.html"/>
+          <item name="CommentsIndentation" href="checks/misc/commentsindentation.html"/>
+          <item name="DescendantToken" href="checks/misc/descendanttoken.html"/>
+          <item name="FinalParameters" href="checks/misc/finalparameters.html"/>
+          <item name="Indentation" href="checks/misc/indentation.html"/>
+          <item name="NewlineAtEndOfFile" href="checks/misc/newlineatendoffile.html"/>
+          <item name="NoCodeInFile" href="checks/misc/nocodeinfile.html"/>
+          <item name="OrderedProperties" href="checks/misc/orderedproperties.html"/>
+          <item name="OuterTypeFilename" href="checks/misc/outertypefilename.html"/>
+          <item name="TodoComment" href="checks/misc/todocomment.html"/>
+          <item name="TrailingComment" href="checks/misc/trailingcomment.html"/>
+          <item name="Translation" href="checks/misc/translation.html"/>
+          <item name="UncommentedMain" href="checks/misc/uncommentedmain.html"/>
+          <item name="UniqueProperties" href="checks/misc/uniqueproperties.html"/>
+          <item name="UpperEll" href="checks/misc/upperell.html"/>
+        </item>
         <item name="Modifiers" href="checks/modifier/index.html" collapse="true">
           <item name="ClassMemberImpliedModifier"
                 href="checks/modifier/classmemberimpliedmodifier.html"/>

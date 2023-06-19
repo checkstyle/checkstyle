@@ -73,7 +73,7 @@
             <td>Checks that array initialization contains a trailing comma.</td>
           </tr>
           <tr>
-            <td><a href="config_misc.html#ArrayTypeStyle">ArrayTypeStyle</a></td>
+            <td><a href="checks/misc/arraytypestyle.html#ArrayTypeStyle">ArrayTypeStyle</a></td>
             <td>Checks the style of array type definitions.</td>
           </tr>
           <tr>
@@ -86,8 +86,11 @@
             <td>Detects double brace initialization.</td>
           </tr>
           <tr>
-            <td><a href="config_misc.html#AvoidEscapedUnicodeCharacters">
-              AvoidEscapedUnicodeCharacters</a></td>
+            <td>
+              <a href="checks/misc/avoidescapedunicodecharacters.html#AvoidEscapedUnicodeCharacters">
+                AvoidEscapedUnicodeCharacters
+              </a>
+            </td>
             <td>Restricts using Unicode escapes (such as \u221e).</td>
           </tr>
           <tr>
@@ -172,7 +175,11 @@
             </td>
           </tr>
           <tr>
-            <td><a href="config_misc.html#CommentsIndentation">CommentsIndentation</a></td>
+            <td>
+              <a href="checks/misc/commentsindentation.html#CommentsIndentation">
+                CommentsIndentation
+              </a>
+            </td>
             <td>Controls the indentation between comments and surrounding code.</td>
           </tr>
           <tr>
@@ -222,7 +229,7 @@
             </td>
           </tr>
           <tr>
-            <td><a href="config_misc.html#DescendantToken">DescendantToken</a></td>
+            <td><a href="checks/misc/descendanttoken.html#DescendantToken">DescendantToken</a></td>
             <td>Checks for restricted tokens beneath other tokens.</td>
           </tr>
           <tr>
@@ -339,7 +346,7 @@
             </td>
           </tr>
           <tr>
-            <td><a href="config_misc.html#FinalParameters">FinalParameters</a></td>
+            <td><a href="checks/misc/finalparameters.html#FinalParameters">FinalParameters</a></td>
             <td>
               Checks that parameters for methods, constructors, catch and for-each blocks are final.
             </td>
@@ -425,7 +432,7 @@
             <td>Checks the ordering/grouping of imports.</td>
           </tr>
           <tr>
-            <td><a href="config_misc.html#Indentation">Indentation</a></td>
+            <td><a href="checks/misc/indentation.html#Indentation">Indentation</a></td>
             <td>Checks correct indentation of Java code.</td>
           </tr>
           <tr>
@@ -719,7 +726,11 @@
             <td>Restricts nested try-catch-finally blocks to a specified depth.</td>
           </tr>
           <tr>
-            <td><a href="config_misc.html#NewlineAtEndOfFile">NewlineAtEndOfFile</a></td>
+            <td>
+              <a href="checks/misc/newlineatendoffile.html#NewlineAtEndOfFile">
+                NewlineAtEndOfFile
+              </a>
+            </td>
             <td>
               Checks whether files end with a line separator.
             </td>
@@ -735,7 +746,7 @@
             Object class.</td>
           </tr>
           <tr>
-            <td><a href="config_misc.html#NoCodeInFile">NoCodeInFile</a></td>
+            <td><a href="checks/misc/nocodeinfile.html#NoCodeInFile">NoCodeInFile</a></td>
             <td>
               Checks whether file contains code.
             </td>
@@ -813,11 +824,19 @@
             <td>Checks the policy on how to wrap lines on operators.</td>
           </tr>
           <tr>
-            <td><a href="config_misc.html#OrderedProperties">OrderedProperties</a></td>
+            <td>
+              <a href="checks/misc/orderedproperties.html#OrderedProperties">
+                OrderedProperties
+              </a>
+            </td>
             <td>Detects if keys in properties files are in correct order.</td>
           </tr>
           <tr>
-            <td><a href="config_misc.html#OuterTypeFilename">OuterTypeFilename</a></td>
+            <td>
+              <a href="checks/misc/outertypefilename.html#OuterTypeFilename">
+                OuterTypeFilename
+              </a>
+            </td>
             <td>Checks that the outer type name and the file name match.</td>
           </tr>
           <tr>
@@ -1067,16 +1086,16 @@
             Restricts throws statements to a specified count.</td>
           </tr>
           <tr>
-            <td><a href="config_misc.html#TodoComment">TodoComment</a></td>
+            <td><a href="checks/misc/todocomment.html#TodoComment">TodoComment</a></td>
             <td>
             Checks for TODO: comments.</td>
           </tr>
           <tr>
-            <td><a href="config_misc.html#TrailingComment">TrailingComment</a></td>
+            <td><a href="checks/misc/trailingcomment.html#TrailingComment">TrailingComment</a></td>
             <td>The check to ensure that lines with code do not end with comment.</td>
           </tr>
           <tr>
-            <td><a href="config_misc.html#Translation">Translation</a></td>
+            <td><a href="checks/misc/translation.html#Translation">Translation</a></td>
             <td>
               Ensures the correct translation of code by checking property files
               for consistency regarding their keys.</td>
@@ -1095,11 +1114,15 @@
               Checks that type names conform to a specified pattern.</td>
           </tr>
           <tr>
-            <td><a href="config_misc.html#UncommentedMain">UncommentedMain</a></td>
+            <td><a href="checks/misc/uncommentedmain.html#UncommentedMain">UncommentedMain</a></td>
             <td>Detects uncommented <code>main</code> methods.</td>
           </tr>
           <tr>
-            <td><a href="config_misc.html#UniqueProperties">UniqueProperties</a></td>
+            <td>
+              <a href="checks/misc/uniqueproperties.html#UniqueProperties">
+                UniqueProperties
+              </a>
+            </td>
             <td>Detects duplicated keys in properties files.</td>
           </tr>
           <tr>
@@ -1137,7 +1160,7 @@
             Checks for unused import statements.</td>
           </tr>
           <tr>
-            <td><a href="config_misc.html#UpperEll">UpperEll</a></td>
+            <td><a href="checks/misc/upperell.html#UpperEll">UpperEll</a></td>
             <td>Checks that long constants are defined with an upper ell.</td>
           </tr>
           <tr>
