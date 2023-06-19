@@ -484,7 +484,7 @@
         </li>
         <li>
           Enhanced
-          <a href="config_naming.html#AbstractClassName">AbstractClassName</a>
+          <a href="checks/naming/abstractclassname.html#AbstractClassName">AbstractClassName</a>
           to support checking that matching classes have the
           <code>abstract</code> modifier. Thanks to Danil Lopatin for
           patch #3043752.
@@ -615,10 +615,10 @@
         </li>
         <li>
           Enhanced the naming checks
-          <a href="config_naming.html">ConstantName</a>,
-          <a href="config_naming.html">MemberName</a>,
-          <a href="config_naming.html">MethodName</a>
-          and <a href="config_naming.html">StaticVariableName</a>
+          <a href="checks/naming/index.html">ConstantName</a>,
+          <a href="checks/naming/index.html">MemberName</a>,
+          <a href="checks/naming/index.html">MethodName</a>
+          and <a href="checks/naming/index.html">StaticVariableName</a>
           to utilise the access control tuning features
           of AbstractAccessControlNameCheck. Thanks to Steve McKay for patch
           #2893581.
@@ -698,8 +698,8 @@
         <li><a href="config_coding.html#NoFinalizer">NoFinalizer</a></li>
         <li><a href="checks/imports/avoidstaticimport.html#AvoidStaticImport">AvoidStaticImport</a></li>
         <li><a href="config_javadoc.html#JavadocPackage">JavadocPackage</a></li>
-        <li><a href="config_naming.html#ClassTypeParameterName">ClassTypeParameterName</a></li>
-        <li><a href="config_naming.html#MethodTypeParameterName">MethodTypeParameterName</a></li>
+        <li><a href="checks/naming/classtypeparametername.html#ClassTypeParameterName">ClassTypeParameterName</a></li>
+        <li><a href="checks/naming/methodtypeparametername.html#MethodTypeParameterName">MethodTypeParameterName</a></li>
         <li><a href="checks/regexp/regexpmultiline.html#RegexpMultiline">RegexpMultiline</a></li>
         <li><a href="checks/regexp/regexpsingleline.html#RegexpSingleline">RegexpSingleline</a></li>
         <li><a href="checks/regexp/regexpsinglelinejava.html#RegexpSinglelineJava">RegexpSinglelineJava</a></li>
@@ -968,7 +968,7 @@
           Travis Schneeberger for providing patch #1940611.
         </li>
         <li>
-          Enhanced the <a href="config_naming.html">MethodName</a> check
+          Enhanced the <a href="checks/naming/index.html">MethodName</a> check
           to detect when a method name is the same as the residing class
           name. Thanks to Travis Schneeberger for providing patch
           #1892364.
@@ -980,9 +980,9 @@
           Schneeberger for providing patch #1947417.
         </li>
         <li>
-          New checks <a href="config_naming.html#ClassTypeParameterName">
+          New checks <a href="checks/naming/classtypeparametername.html#ClassTypeParameterName">
           ClassTypeParameterName</a> and
-          <a href="config_naming.html#MethodTypeParameterName">
+          <a href="checks/naming/methodtypeparametername.html#MethodTypeParameterName">
           MethodTypeParameterName</a>
           for type name formats. Thanks to Travis Schneeberger for providing
           patch #1956561.
