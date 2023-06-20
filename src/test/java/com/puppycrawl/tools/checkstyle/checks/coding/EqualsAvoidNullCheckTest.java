@@ -258,4 +258,16 @@ public class EqualsAvoidNullCheckTest extends AbstractModuleTestSupport {
                 .isNotNull();
     }
 
+    @Test
+    public void testEqualAvoidNull() throws Exception {
+        final String[] expected = {
+            "6:17: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+            "7:17: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+            "8:17: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+            "11:22: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+        };
+
+        verifyWithInlineConfigParser(getPath("InputEqualsAvoidNull2.java"),
+                expected);
+    }
 }
