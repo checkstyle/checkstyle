@@ -201,10 +201,7 @@ public final class OneStatementPerLineCheck extends AbstractCheck {
 
     @Override
     public void beginTree(DetailAST rootAST) {
-        inForHeader = false;
         lastStatementEnd = -1;
-        forStatementEnd = -1;
-        isInLambda = false;
         lastVariableResourceStatementEnd = -1;
     }
 
