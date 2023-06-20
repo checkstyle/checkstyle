@@ -27,4 +27,8 @@
   <suppress checks="Indent"
     files="nolinewrap[\\/]Example5.java"/>
 
+  <!-- Example contains important violations that need to be shown -->
+  <suppress checks="FileLength"
+    files="whitespaceafter[\\/]Example1.java"/>
+
 </suppressions>
