@@ -380,4 +380,20 @@ public class RegexpHeaderCheckTest extends AbstractModuleTestSupport {
         verify(checkConfig, getPath("InputRegexpHeaderMulti52.java"), expected);
     }
 
+    @Test
+    public void testHeaderWithInvalidRegexp2() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(RegexpHeaderCheck.class);
+        checkConfig.addProperty("headerFile", getPath("InputRegexpHeader.invalid.header2"));
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        final String path = getPath("InputRegexpHeaderMulti52.java");
+        try {
+            verify(checkConfig, path, expected);
+            assertWithMessage("IllegalArgumentException is expected").fail();
+        }
+        catch (IllegalArgumentException ex) {
+            assertWithMessage("Invalid exception message")
+                .that(ex.getMessage())
+                .isEqualTo("line 3 in header specification is not a regular expression");
+        }
+    }
 }
