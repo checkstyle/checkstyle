@@ -251,7 +251,7 @@ public class XdocsPagesTest {
         for (Path path : XdocUtil.getXdocsConfigFilePaths(XdocUtil.getXdocsFilePaths())) {
             final String fileName = path.getFileName().toString();
             if ("config_system_properties.xml".equals(fileName)
-                    || "config_filefilters.xml".equals(fileName)
+                    || path.toString().contains("filefilters")
                     || "config_filters.xml".equals(fileName)) {
                 continue;
             }
