@@ -130,7 +130,7 @@ public class StringLiteralEqualityCheck extends AbstractCheck {
      * @return {@code true} if string literal or text block literals are concatenated
      */
     private static boolean areStringsConcatenated(DetailAST ast) {
-        DetailAST plusAst = ast.findFirstToken(TokenTypes.PLUS);
+        DetailAST plusAst = ast;
         boolean result = false;
         while (plusAst != null) {
             if (plusAst.findFirstToken(TokenTypes.STRING_LITERAL) == null
