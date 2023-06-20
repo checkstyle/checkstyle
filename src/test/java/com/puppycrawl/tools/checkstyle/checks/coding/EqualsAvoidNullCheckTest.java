@@ -23,6 +23,7 @@ import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.coding.EqualsAvoidNullCheck.MSG_EQUALS_AVOID_NULL;
 import static com.puppycrawl.tools.checkstyle.checks.coding.EqualsAvoidNullCheck.MSG_EQUALS_IGNORE_CASE_AVOID_NULL;
 
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
@@ -258,4 +259,16 @@ public class EqualsAvoidNullCheckTest extends AbstractModuleTestSupport {
                 .isNotNull();
     }
 
+    @Test
+    public void testEqualAvoidNull() throws Exception {
+        final String[] expected = {
+            "6:17: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+            "7:17: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+            "8:17: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+            "11:22: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+        };
+
+        verifyWithInlineConfigParser(getPath("InputEqualsAvoidNull2.java"),
+                expected);
+    }
 }
