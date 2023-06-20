@@ -1,0 +1,27 @@
+/*
+WhitespaceAround
+
+
+*/
+
+package com.puppycrawl.tools.checkstyle.checks.whitespace.whitespacearound;
+
+// xdoc section -- start
+class Example1 {
+  public Example1(){} // 3 violations
+  public static void main(String[] args) {
+    if (true) { }
+    else{ // 2 violations
+    }
+
+    for (int i = 1; i > 1; i++) {} // 2 violations
+
+    Runnable noop = () ->{}; // 4 violations
+    try { }
+    catch (Exception e){} // 3 violations
+
+    char[] vowels = {'a', 'e', 'i', 'o', 'u'};
+    for (char item: vowels) { }
+  }
+}
+// xdoc section -- end
