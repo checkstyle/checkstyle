@@ -30,6 +30,7 @@ import java.util.regex.Pattern;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
@@ -380,4 +381,17 @@ public class RegexpHeaderCheckTest extends AbstractModuleTestSupport {
         verify(checkConfig, getPath("InputRegexpHeaderMulti52.java"), expected);
     }
 
+    @Test
+    public void testCharsetProperty() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(RegexpHeaderCheck.class);
+        checkConfig.addProperty("headerFile", getPath("InputRegexpHeader6.header"));
+        final Checker checker = createChecker(checkConfig);
+        checker.setCharset("US-ASCII");
+        final String[] expected = {
+            "1: " + getCheckMessage(MSG_HEADER_MISMATCH, "// some.class.тест.passed"),
+        };
+        final String path = getPath("InputRegexpHeader.java");
+        verify(checker, path, expected);
+
+    }
 }

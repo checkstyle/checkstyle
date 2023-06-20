@@ -60,8 +60,7 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck
 
     /** Specify the character encoding to use when reading the headerFile. */
     @XdocsPropertyType(PropertyType.STRING)
-    private Charset charset = createCharset(System.getProperty("file.encoding",
-        StandardCharsets.UTF_8.name()));
+    private final Charset charset = createCharset(StandardCharsets.UTF_8.name());
 
     /**
      * Hook method for post-processing header lines.
@@ -76,15 +75,6 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck
      */
     protected List<String> getHeaderLines() {
         return List.copyOf(readerLines);
-    }
-
-    /**
-     * Setter to specify the charset to use when reading the headerFile.
-     *
-     * @param charset the charset name to use for loading the header from a file
-     */
-    public void setCharset(String charset) {
-        this.charset = createCharset(charset);
     }
 
     /**
@@ -141,10 +131,6 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck
      * @throws UnsupportedCharsetException if charset is unsupported
      */
     private static Charset createCharset(String name) {
-        if (!Charset.isSupported(name)) {
-            final String message = "unsupported charset: '" + name + "'";
-            throw new UnsupportedCharsetException(message);
-        }
         return Charset.forName(name);
     }
 
