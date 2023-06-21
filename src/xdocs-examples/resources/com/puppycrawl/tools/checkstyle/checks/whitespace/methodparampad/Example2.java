@@ -10,8 +10,9 @@ tokens = METHOD_DEF
 package com.puppycrawl.tools.checkstyle.checks.whitespace.methodparampad;
 
 class Example2 {
-  public Example2() { 
-    super(); 
+  // xdoc section -- start
+  public Example2() {
+    super();
   }
 
   public Example2 (int aParam) {
@@ -21,5 +22,6 @@ class Example2 {
   public void method() {} // violation ''(' is not preceded with whitespace'
 
   public void methodWithVeryLongName
-    () {} // OK, because allowLineBreaks is true
+  () {} // OK, because allowLineBreaks is true
+  // xdoc section -- end
 }
