@@ -2008,14 +2008,14 @@
                         alt="" />
                   </span>
                   <br />
-                  <a href="config_javadoc.html#SingleLineJavadoc">
+                  <a href="checks/javadoc/singlelinejavadoc.html#SingleLineJavadoc">
                     SingleLineJavadoc</a>
                   Recent update for guide that clarify requirements will be
                   addressed at
                   <a href="https://github.com/checkstyle/checkstyle/issues/4052">
                     #4052</a>
                   <br />
-                  <a href="config_javadoc.html#InvalidJavadocPosition">
+                  <a href="checks/javadoc/invalidjavadocposition.html#InvalidJavadocPosition">
                     InvalidJavadocPosition</a>
                 </td>
                 <td>
@@ -2047,13 +2047,13 @@
                         src="images/ok_green.png"
                         alt="" />
                   </span>
-                  <a href="config_javadoc.html#JavadocParagraph">JavadocParagraph</a>
+                  <a href="checks/javadoc/javadocparagraph.html#JavadocParagraph">JavadocParagraph</a>
                   <span class="wrapper inline">
                     <img
                         src="images/ok_green.png"
                         alt="" />
                   </span>
-                  <a href="config_javadoc.html#RequireEmptyLineBeforeBlockTagGroup">RequireEmptyLineBeforeBlockTagGroup</a>
+                  <a href="checks/javadoc/requireemptylinebeforeblocktaggroup.html#RequireEmptyLineBeforeBlockTagGroup">RequireEmptyLineBeforeBlockTagGroup</a>
                 </td>
                 <td>
                   <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocParagraph">
@@ -2084,20 +2084,20 @@
                         src="images/ok_green.png"
                         alt="" />
                   </span>
-                  <a href="config_javadoc.html#AtclauseOrder">AtclauseOrder</a>
+                  <a href="checks/javadoc/atclauseorder.html#AtclauseOrder">AtclauseOrder</a>
                   <br/>
                   <br/>
                   <span class="wrapper inline">
                     <img src="images/ok_green.png" alt="" />
                   </span>
-                  <a href="config_javadoc.html#JavadocTagContinuationIndentation">
+                  <a href="checks/javadoc/javadoctagcontinuationindentation.html#JavadocTagContinuationIndentation">
                     JavadocTagContinuationIndentation</a>
                   <br/>
                   <br/>
                   <span class="wrapper inline">
                     <img src="images/ok_green.png" alt="" />
                   </span>
-                  <a href="config_javadoc.html#NonEmptyAtclauseDescription">
+                  <a href="checks/javadoc/nonemptyatclausedescription.html#NonEmptyAtclauseDescription">
                     NonEmptyAtclauseDescription</a>
                 </td>
                 <td>
@@ -2133,7 +2133,7 @@
                         src="images/ok_green.png"
                         alt="" />
                   </span>
-                  <a href="config_javadoc.html#SummaryJavadoc">SummaryJavadoc</a>
+                  <a href="checks/javadoc/summaryjavadoc.html#SummaryJavadoc">SummaryJavadoc</a>
                 </td>
                 <td>
                   <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SummaryJavadoc">
@@ -2161,19 +2161,19 @@
                         src="images/ok_green.png"
                         alt="" />
                   </span>
-                  <a href="config_javadoc.html#MissingJavadocType">MissingJavadocType</a>
+                  <a href="checks/javadoc/missingjavadoctype.html#MissingJavadocType">MissingJavadocType</a>
                   <span class="wrapper inline">
                     <img
                         src="images/ok_green.png"
                         alt="" />
                   </span>
-                  <a href="config_javadoc.html#MissingJavadocMethod">MissingJavadocMethod</a>
+                  <a href="checks/javadoc/missingjavadocmethod.html#MissingJavadocMethod">MissingJavadocMethod</a>
                   <span class="wrapper inline">
                     <img
                         src="images/ok_green.png"
                         alt="" />
                   </span>
-                  <a href="config_javadoc.html#JavadocMethod">JavadocMethod</a>
+                  <a href="checks/javadoc/javadocmethod.html#JavadocMethod">JavadocMethod</a>
                 </td>
                 <td>
                   <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingJavadocType">
@@ -2208,13 +2208,13 @@
                         src="images/ok_green.png"
                         alt="" />
                   </span>
-                  <a href="config_javadoc.html#MissingJavadocMethod">MissingJavadocMethod</a>
+                  <a href="checks/javadoc/missingjavadocmethod.html#MissingJavadocMethod">MissingJavadocMethod</a>
                   <span class="wrapper inline">
                     <img
                         src="images/ok_green.png"
                         alt="" />
                   </span>
-                  <a href="config_javadoc.html#JavadocMethod">JavadocMethod</a>
+                  <a href="checks/javadoc/javadocmethod.html#JavadocMethod">JavadocMethod</a>
                 </td>
                 <td>
                   <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingJavadocMethod">
@@ -2245,13 +2245,13 @@
                         src="images/ok_green.png"
                         alt="" />
                   </span>
-                  <a href="config_javadoc.html#MissingJavadocMethod">MissingJavadocMethod</a>
+                  <a href="checks/javadoc/missingjavadocmethod.html#MissingJavadocMethod">MissingJavadocMethod</a>
                   <span class="wrapper inline">
                     <img
                         src="images/ok_blue.png"
                         alt="" />
                   </span>
-                  <a href="config_javadoc.html#JavadocMethod">JavadocMethod</a><br/>
+                  <a href="checks/javadoc/javadocmethod.html#JavadocMethod">JavadocMethod</a><br/>
                   Overrides are checked by presence of "@Override" annotation on
                   method.
                 </td>
@@ -2284,7 +2284,7 @@
                         src="images/ok_blue.png"
                         alt="" />
                   </span>
-                  <a href="config_javadoc.html#InvalidJavadocPosition">
+                  <a href="checks/javadoc/invalidjavadocposition.html#InvalidJavadocPosition">
                     InvalidJavadocPosition</a>
                 </td>
                 <td>
