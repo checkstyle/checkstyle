@@ -3234,7 +3234,7 @@
           Add tests for equals and toString in SuppressionCommentFilter. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1088">#1088</a>
         </li>
         <li>
-          Move <a href="config_regexp.html#Regexp">Regexp</a> check from miscellaneous to regexp category. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1170">#1170</a>
+          Move <a href="checks/regexp/regexp.html#Regexp">Regexp</a> check from miscellaneous to regexp category. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1170">#1170</a>
         </li>
         <li>
           Remove unused MethodCallLineWrapHandler class. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1178">#1178</a>
@@ -3296,10 +3296,10 @@
           Do not verify overriding methods in <a href="config_design.html#ThrowsCount">ThrowsCount</a> check. Author: Vladislav Lisetskii <a href="https://github.com/checkstyle/checkstyle/issues/1085">#1085</a>
         </li>
         <li>
-          Fix <a href="config_regexp.html#Regexp">Regexp</a> check causing exception on file with newline on top. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1129">#1129</a>
+          Fix <a href="checks/regexp/regexp.html#Regexp">Regexp</a> check causing exception on file with newline on top. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1129">#1129</a>
         </li>
         <li>
-          Fix <a href="config_regexp.html#RegexpMultiline">RegexpMultiline</a> check causing exception with default config. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1129">#1129</a>
+          Fix <a href="checks/regexp/regexpmultiline.html#RegexpMultiline">RegexpMultiline</a> check causing exception with default config. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1129">#1129</a>
         </li>
         <li>
           Add support for canonical class names in <a href="config_design.html#MutableException">MutableException</a>. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1124">#1124</a>
