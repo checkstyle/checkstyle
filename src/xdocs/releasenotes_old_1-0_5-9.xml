@@ -464,7 +464,7 @@
           #1151673.
         </li>
         <li>
-          Added <a href="config_sizes.html#MethodCount">MethodCount</a>
+          Added <a href="checks/sizes/methodcount.html#MethodCount">MethodCount</a>
           that checks the number of methods declared in each type. This
           includes the number of each scope (<code>private</code>,
           <code>package</code>, <code>protected</code> and
@@ -703,7 +703,7 @@
         <li><a href="config_regexp.html#RegexpMultiline">RegexpMultiline</a></li>
         <li><a href="config_regexp.html#RegexpSingleline">RegexpSingleline</a></li>
         <li><a href="config_regexp.html#RegexpSinglelineJava">RegexpSinglelineJava</a></li>
-        <li><a href="config_sizes.html#OuterTypeNumber">OuterTypeNumber</a></li>
+        <li><a href="checks/sizes/outertypenumber.html#OuterTypeNumber">OuterTypeNumber</a></li>
         <li><a href="checks/whitespace/filetabcharacter.html#FileTabCharacter">FileTabCharacter</a></li>
         <li><a href="checks/whitespace/genericwhitespace.html#GenericWhitespace">GenericWhitespace</a></li>
       </ul>
@@ -714,7 +714,7 @@
       <ul>
         <li><a href="checks/header/header.html#Header">Header</a></li>
         <li><a href="checks/header/regexpheader.html#RegexpHeader">RegexpHeader</a></li>
-        <li><a href="config_sizes.html#FileLength">FileLength</a></li>
+        <li><a href="checks/sizes/filelength.html#FileLength">FileLength</a></li>
       </ul>
       <p>
         This means that the checks above must not be declared under the
@@ -827,7 +827,7 @@
         </li>
         <li>
           New check
-          <a href="config_sizes.html#OuterTypeNumber">OuterTypeNumber</a>
+          <a href="checks/sizes/outertypenumber.html#OuterTypeNumber">OuterTypeNumber</a>
           for enforcing the maximum number of outer types per file. Inspired
           by patch #1145023 from Alexander Jesse.
         </li>
@@ -851,7 +851,7 @@
           restricted to Java files.
         </li>
         <li>
-          Changed <a href="config_sizes.html#FileLength">FileLength</a>
+          Changed <a href="checks/sizes/filelength.html#FileLength">FileLength</a>
           check to be a FileSetCheck.
         </li>
         <li>

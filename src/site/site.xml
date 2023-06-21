@@ -119,7 +119,6 @@
         <item name="Modifiers"          href="config_modifier.html"/>
         <item name="Naming Conventions" href="config_naming.html"/>
         <item name="Regexp"             href="config_regexp.html"/>
-        <item name="Size Violations"    href="config_sizes.html"/>
         <item name="Whitespace" href="checks/whitespace/index.html" collapse="true">
           <item name="EmptyForInitializerPad"
                 href="checks/whitespace/emptyforinitializerpad.html"/>
@@ -140,6 +139,18 @@
           <item name="TypecastParenPad" href="checks/whitespace/typecastparenpad.html"/>
           <item name="WhitespaceAfter" href="checks/whitespace/whitespaceafter.html"/>
           <item name="WhitespaceAround" href="checks/whitespace/whitespacearound.html"/>
+        </item>
+        <item name="Size Violations" href="checks/sizes/index.html" collapse="true">
+          <item name="AnonInnerLength" href="checks/sizes/anoninnerlength.html"/>
+          <item name="ExecutableStatementCount" href="checks/sizes/executablestatementcount.html"/>
+          <item name="FileLength" href="checks/sizes/filelength.html"/>
+          <item name="LambdaBodyLength" href="checks/sizes/lambdabodylength.html"/>
+          <item name="LineLength" href="checks/sizes/linelength.html"/>
+          <item name="MethodCount" href="checks/sizes/methodcount.html"/>
+          <item name="MethodLength" href="checks/sizes/methodlength.html"/>
+          <item name="OuterTypeNumber" href="checks/sizes/outertypenumber.html"/>
+          <item name="ParameterNumber" href="checks/sizes/parameternumber.html"/>
+          <item name="RecordComponentNumber" href="checks/sizes/recordcomponentnumber.html"/>
         </item>
       </item>
 
