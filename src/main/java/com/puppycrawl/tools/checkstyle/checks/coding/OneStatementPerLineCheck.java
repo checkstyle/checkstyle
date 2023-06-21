@@ -205,7 +205,6 @@ public final class OneStatementPerLineCheck extends AbstractCheck {
         lastStatementEnd = -1;
         forStatementEnd = -1;
         isInLambda = false;
-        lastVariableResourceStatementEnd = -1;
     }
 
     @Override
