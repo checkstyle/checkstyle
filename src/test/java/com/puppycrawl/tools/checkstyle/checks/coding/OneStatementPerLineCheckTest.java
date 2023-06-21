@@ -22,9 +22,15 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck.MSG_KEY;
 
+import java.io.File;
+import java.util.Arrays;
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
+import com.google.common.collect.ImmutableMap;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class OneStatementPerLineCheckTest extends AbstractModuleTestSupport {
@@ -118,6 +124,23 @@ public class OneStatementPerLineCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
                 getPath("InputOneStatementPerLineTryWithResourcesIgnore.java"),
                 expected);
+    }
+
+    @Test
+    public void testStateIsClearedOnBeginTree1()
+            throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(OneStatementPerLineCheck.class);
+        final String inputWithWarnings = getPath("InputOneStatementPerLineBeginTree1.java");
+        final String inputWithoutWarnings = getPath("InputOneStatementPerLineBeginTree2.java");
+        final List<String> expectedFirstInput = Arrays.asList(
+            "1:96: " + getCheckMessage(MSG_KEY)
+        );
+        final List<String> expectedSecondInput = Arrays.asList(CommonUtil.EMPTY_STRING_ARRAY);
+        final File[] inputs = {new File(inputWithWarnings), new File(inputWithoutWarnings)};
+
+        verify(createChecker(checkConfig), inputs, ImmutableMap.of(
+            inputWithWarnings, expectedFirstInput,
+            inputWithoutWarnings, expectedSecondInput));
     }
 
 }
