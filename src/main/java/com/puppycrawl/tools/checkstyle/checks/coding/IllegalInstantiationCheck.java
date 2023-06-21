@@ -197,7 +197,6 @@ public class IllegalInstantiationCheck
 
     @Override
     public void beginTree(DetailAST rootAST) {
-        pkgName = null;
         imports.clear();
         instantiations.clear();
         classNames.clear();
