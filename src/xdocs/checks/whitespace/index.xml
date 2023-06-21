@@ -178,7 +178,8 @@
               </a>
             </td>
             <td>
-              Checks that there is at least one whitespace after the leading asterisk.
+              Checks that a token is followed by whitespace, with the exception that it does not
+              check for whitespace after the semicolon of an empty for iterator.
             </td>
           </tr>
           <tr>

@@ -285,6 +285,36 @@ public class XdocsPagesTest {
         }
     }
 
+    @Test
+    public void testCategoryIndexPageTableInSyncWithAllChecksPageTable() throws Exception {
+        final Map<String, String> summaries = readSummaries();
+        for (Path path : XdocUtil.getXdocsConfigFilePaths(XdocUtil.getXdocsFilePaths())) {
+            final String fileName = path.getFileName().toString();
+            if (!"index.xml".equals(fileName)
+                    && !path.getParent().toString().contains("filters")) {
+                continue;
+            }
+
+            final String input = Files.readString(path);
+            final Document document = XmlUtil.getRawXml(fileName, input, input);
+            final NodeList sources = document.getElementsByTagName("tr");
+
+            for (int position = 0; position < sources.getLength(); position++) {
+                final Node tableRow = sources.item(position);
+                final Iterator<Node> cells = XmlUtil
+                        .findChildElementsByTag(tableRow, "td").iterator();
+                final String checkName = XmlUtil.sanitizeXml(cells.next().getTextContent());
+                final String description = XmlUtil.sanitizeXml(cells.next().getTextContent());
+                assertWithMessage("The summary for check " + checkName
+                        + " in the file \"" + path + "\""
+                        + " should match the summary"
+                        + " for this check in the file \"" + AVAILABLE_CHECKS_PATH + "\"")
+                    .that(description)
+                    .isEqualTo(summaries.get(checkName));
+            }
+        }
+    }
+
     private static Map<String, String> readSummaries() throws Exception {
         final String fileName = AVAILABLE_CHECKS_PATH.getFileName().toString();
         final String input = Files.readString(AVAILABLE_CHECKS_PATH);
