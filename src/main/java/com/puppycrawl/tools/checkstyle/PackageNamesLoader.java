@@ -187,7 +187,7 @@ public final class PackageNamesLoader
      *
      * @return map between local resources and dtd ids.
      */
-    private static Map<String, String> createIdToResourceNameMap() {
+    public static Map<String, String> createIdToResourceNameMap() {
         final Map<String, String> map = new HashMap<>();
         map.put(DTD_PUBLIC_ID, DTD_RESOURCE_NAME);
         map.put(DTD_PUBLIC_CS_ID, DTD_RESOURCE_NAME);
