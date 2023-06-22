@@ -69,7 +69,10 @@
       <item name="Configuration" href="config.html">
         <item name="Property Types" href="property_types.html"/>
         <item name="Filters" href="config_filters.html"/>
-        <item name="File Filters" href="config_filefilters.html"/>
+        <item name="File Filters" href="filefilters/index.html" collapse="true">
+          <item name="BeforeExecutionExclusionFileFilter"
+                href="filefilters/beforeexecutionexclusionfilefilter.html"/>
+        </item>
         <item name="System Properties" href="config_system_properties.html"/>
       </item>
 
