@@ -1,21 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <document xmlns="http://maven.apache.org/XDOC/2.0"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
-
   <head>
-    <title>Before Execution File Filters</title>
+    <title>BeforeExecutionExclusionFileFilter</title>
   </head>
-
   <body>
-    <section name="Content">
-      <macro name="toc">
-        <param name="fromDepth" value="1"/>
-        <param name="toDepth" value="1"/>
-      </macro>
-    </section>
-
     <section name="BeforeExecutionExclusionFileFilter">
       <p>Since Checkstyle 7.2</p>
       <subsection name="Description" id="BeforeExecutionExclusionFileFilter_Description">
@@ -52,7 +42,7 @@
             <tr>
               <td>fileNamePattern</td>
               <td>Define regular expression to match the file name against.</td>
-              <td><a href="property_types.html#Pattern">Pattern</a></td>
+              <td><a href="../property_types.html#Pattern">Pattern</a></td>
               <td><code>null</code></td>
               <td>7.2</td>
             </tr>
@@ -64,8 +54,8 @@
           To configure the filter to exclude all 'module-info.java' files:
         </p>
         <source>
-&lt;module name=&quot;BeforeExecutionExclusionFileFilter&quot;&gt;
-  &lt;property name=&quot;fileNamePattern&quot; value=&quot;module\-info\.java$&quot;/&gt;
+&lt;module name="BeforeExecutionExclusionFileFilter"&gt;
+  &lt;property name="fileNamePattern" value="module\-info\.java$"/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -74,18 +64,18 @@
           use <a href="https://www.regular-expressions.info/lookaround.html">negative lookahead</a>:
         </p>
         <source>
-&lt;module name=&quot;BeforeExecutionExclusionFileFilter&quot;&gt;
-  &lt;property name=&quot;fileNamePattern&quot;
-    value=&quot;^(?!.*(Remote\.java|Client\.java|[\\/]Remote\.java|[\\/]Client\.java)).*$&quot;/&gt;
+&lt;module name="BeforeExecutionExclusionFileFilter"&gt;
+  &lt;property name="fileNamePattern"
+    value="^(?!.*(Remote\.java|Client\.java|[\\/]Remote\.java|[\\/]Client\.java)).*$"/&gt;
 &lt;/module&gt;
         </source>
         <p>
           To configure the filter to exclude all Test folder files:
         </p>
         <source>
-&lt;module name=&quot;BeforeExecutionExclusionFileFilter&quot;&gt;
-  &lt;property name=&quot;fileNamePattern&quot;
-    value=&quot;.*[\\/]src[\\/]test[\\/].*$&quot;/&gt;
+&lt;module name="BeforeExecutionExclusionFileFilter"&gt;
+  &lt;property name="fileNamePattern"
+    value=".*[\\/]src[\\/]test[\\/].*$"/&gt;
 &lt;/module&gt;
         </source>
       </subsection>
@@ -110,7 +100,7 @@
       </subsection>
 
       <subsection name="Parent Module" id="BeforeExecutionExclusionFileFilter_Parent_Module">
-        <p> <a href="config.html#Checker">Checker</a> </p>
+        <p> <a href="../config.html#Checker">Checker</a> </p>
       </subsection>
     </section>
   </body>
