@@ -44,22 +44,4 @@
     <description>Removed assignment to member variable charset</description>
     <lineContent>this.charset = createCharset(charset);</lineContent>
   </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>RegexpHeaderCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck</mutatedClass>
-    <mutatedMethod>postProcessHeaderLines</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to java/util/List::size</description>
-    <lineContent>+ (headerRegexps.size() + 1)</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>RegexpHeaderCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck</mutatedClass>
-    <mutatedMethod>postProcessHeaderLines</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to java/util/List::add</description>
-    <lineContent>headerRegexps.add(BLANK_LINE);</lineContent>
-  </mutation>
 </suppressedMutations>
