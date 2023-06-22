@@ -1761,6 +1761,9 @@
                 <!-- content of file does not matter at all -->
                 <exclude>**/RegexpOnFilenameCheckTest.class</exclude>
 
+                <!-- due to https://github.com/checkstyle/checkstyle/pull/13179 Inline config is not supported, verify method require to test outside of package -->
+                <exclude>**/FullIdentTest.class</exclude>
+
                 <!-- all bellow until https://github.com/checkstyle/checkstyle/issues/11446 -->
 
                 <!-- usage of custom internal module, 'execute' method should be used -->
