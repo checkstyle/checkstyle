@@ -3106,17 +3106,17 @@
           New option for <a href="config_coding.html#ModifiedControlVariable">ModifiedControlVariableCheck</a>: skipEnhancedForLoopVariable. Author: Bhavik Patel <a href="https://github.com/checkstyle/checkstyle/issues/1015">#1015</a>
         </li>
         <li>
-          New options for <a href="config_javadoc.html#SingleLineJavadoc">SingleLineJavadoc</a>: ignoredTags, ignoreInlineTags. Author: Vladislav Lisetskii <a href="https://github.com/checkstyle/checkstyle/issues/1063">#1063</a>
+          New options for <a href="checks/javadoc/singlelinejavadoc.html#SingleLineJavadoc">SingleLineJavadoc</a>: ignoredTags, ignoreInlineTags. Author: Vladislav Lisetskii <a href="https://github.com/checkstyle/checkstyle/issues/1063">#1063</a>
         </li>
       </ul>
 
       <p>Bug fixes:</p>
       <ul>
         <li>
-          correction of parsing of attributes in <a href="config_javadoc.html#AtclauseOrder">AtclauseOrderCheck</a>. Author: Vladislav Lisetskii  <a href="https://github.com/checkstyle/checkstyle/issues/1152">#1152</a>
+          correction of parsing of attributes in <a href="checks/javadoc/atclauseorder.html#AtclauseOrder">AtclauseOrderCheck</a>. Author: Vladislav Lisetskii  <a href="https://github.com/checkstyle/checkstyle/issues/1152">#1152</a>
         </li>
         <li>
-          fix for <a href="config_javadoc.html#JavadocMethod">JavadocMethodCheck</a>: catch NoClassDefFoundError in ClassResolver. Author: Vladislav Lisetskii <a href="https://github.com/checkstyle/checkstyle/issues/1192">#1192</a>
+          fix for <a href="checks/javadoc/javadocmethod.html#JavadocMethod">JavadocMethodCheck</a>: catch NoClassDefFoundError in ClassResolver. Author: Vladislav Lisetskii <a href="https://github.com/checkstyle/checkstyle/issues/1192">#1192</a>
         </li>
         <li>
           Replace hardcoded message in <a href="checks/whitespace/nowhitespaceafter.html#NoWhitespaceAfter">WhitespaceAfterCheck</a> with new message (i18n). Author: Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/967">#967</a>
@@ -3335,7 +3335,7 @@
           Include enums in <a href="config_coding.html#CovariantEquals">CovariantEquals</a> check analysis. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1011">#1011</a>
         </li>
         <li>
-          Fix parsing of allowedAnnotations property in <a href="config_javadoc.html#JavadocMethod">JavadocMethod</a> check. Author: Gustav Carlson <a href="https://github.com/checkstyle/checkstyle/issues/1145">#1145</a>
+          Fix parsing of allowedAnnotations property in <a href="checks/javadoc/javadocmethod.html#JavadocMethod">JavadocMethod</a> check. Author: Gustav Carlson <a href="https://github.com/checkstyle/checkstyle/issues/1145">#1145</a>
         </li>
 
       </ul>
