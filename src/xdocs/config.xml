@@ -840,7 +840,7 @@
         audit event, then the Checker reports the event.  If any Filter
         rejects an event, then the Checker does not report the
         event. For more information please visit
-        <a href="config_filters.html">filters page</a>.
+        <a href="filters/index.html">filters page</a>.
       </p>
 
     </section>

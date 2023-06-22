@@ -113,6 +113,7 @@ beanutils
 beforeexecutionexclusionfilefilter
 bestpractices
 bew
+binded
 bitbucket
 bjrke
 bleh
@@ -1177,6 +1178,7 @@ separatorwrap
 SERIALVERSIONUID
 servlet
 SETPOINT
+severitymatchfilter
 sevntu
 shellcheck
 shengchen
