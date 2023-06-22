@@ -62,7 +62,8 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * This check does not validate the Javadoc summary itself nor its presence.
  * The check will not report any violations for missing or malformed javadoc summary.
  * To validate the Javadoc summary use
- * <a href="https://checkstyle.org/config_javadoc.html#SummaryJavadoc">SummaryJavadoc</a> check.
+ * <a href="https://checkstyle.org/checks/javadoc/summaryjavadoc.html#SummaryJavadoc">
+ * SummaryJavadoc</a> check.
  * </p>
  * <p>
  * The <a href="https://docs.oracle.com/en/java/javase/11/docs/specs/doc-comment-spec.html">
