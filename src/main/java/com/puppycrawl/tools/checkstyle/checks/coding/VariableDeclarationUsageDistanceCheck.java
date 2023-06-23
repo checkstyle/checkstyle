@@ -462,52 +462,34 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
         DetailAST currentSiblingAst = variableUsageAst;
         String initInstanceName = "";
 
-        while (result
-                && !isUsedVariableDeclarationFound
-                && currentSiblingAst != null) {
-            switch (currentSiblingAst.getType()) {
-                case TokenTypes.EXPR:
-                    final DetailAST methodCallAst = currentSiblingAst.getFirstChild();
-
-                    if (methodCallAst.getType() == TokenTypes.METHOD_CALL) {
-                        final String instanceName =
-                            getInstanceName(methodCallAst);
-                        // method is called without instance
-                        if (instanceName.isEmpty()) {
-                            result = false;
-                        }
-                        // differs from previous instance
-                        else if (!instanceName.equals(initInstanceName)) {
-                            if (initInstanceName.isEmpty()) {
-                                initInstanceName = instanceName;
-                            }
-                            else {
-                                result = false;
-                            }
-                        }
+        while (result && !isUsedVariableDeclarationFound && currentSiblingAst != null) {
+            if (currentSiblingAst.getType() == TokenTypes.EXPR
+                    && currentSiblingAst.getFirstChild().getType() == TokenTypes.METHOD_CALL) {
+                final DetailAST methodCallAst = currentSiblingAst.getFirstChild();
+                final String instanceName = getInstanceName(methodCallAst);
+                if (instanceName.isEmpty()) {
+                    result = false;
+                }
+                else if (!instanceName.equals(initInstanceName)) {
+                    if (initInstanceName.isEmpty()) {
+                        initInstanceName = instanceName;
                     }
                     else {
-                        // is not method call
                         result = false;
                     }
-                    break;
+                }
 
-                case TokenTypes.VARIABLE_DEF:
-                    final String currentVariableName = currentSiblingAst
-                        .findFirstToken(TokenTypes.IDENT).getText();
-                    isUsedVariableDeclarationFound = variableName.equals(currentVariableName);
-                    break;
-
-                case TokenTypes.SEMI:
-                    break;
-
-                default:
-                    result = false;
             }
-
+            else if (currentSiblingAst.getType() == TokenTypes.VARIABLE_DEF) {
+                final String currentVariableName =
+                        currentSiblingAst.findFirstToken(TokenTypes.IDENT).getText();
+                isUsedVariableDeclarationFound = variableName.equals(currentVariableName);
+            }
+            else {
+                result = currentSiblingAst.getType() == TokenTypes.SEMI;
+            }
             currentSiblingAst = currentSiblingAst.getPreviousSibling();
         }
-
         return result;
     }
 
