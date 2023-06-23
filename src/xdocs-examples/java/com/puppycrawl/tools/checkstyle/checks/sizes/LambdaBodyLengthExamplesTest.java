@@ -41,8 +41,8 @@ public class LambdaBodyLengthExamplesTest extends AbstractModuleTestSupport {
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "20:20: " + getCheckMessage(MSG_KEY, 11, DEFAULT_MAX),
-            "31:20: " + getCheckMessage(MSG_KEY, 11, DEFAULT_MAX),
+            "21:20: " + getCheckMessage(MSG_KEY, 11, DEFAULT_MAX),
+            "32:20: " + getCheckMessage(MSG_KEY, 11, DEFAULT_MAX),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
