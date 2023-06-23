@@ -27,4 +27,16 @@
   <suppress checks="Indent"
     files="nolinewrap[\\/]Example5.java"/>
 
+  <!-- Check applies to resources-noncompilable files.  -->
+  <suppress id="presenceOfCompilationComment" files="resources[\\/].*"/>
+
+  <!-- Without showing symbol, user can get confused which one we are referring to -->
+  <suppress id="discouragedRegexpInViolationMessage"
+    files="operatorwrap[\\/]Example1.java"/>
+  <suppress id="discouragedRegexpInViolationMessage"
+    files="operatorwrap[\\/]Example2.java"/>
+
+  <suppress checks="CommentsIndentation"
+    files="singlespaceseparator[\\/]Example2.java"/>
+
 </suppressions>

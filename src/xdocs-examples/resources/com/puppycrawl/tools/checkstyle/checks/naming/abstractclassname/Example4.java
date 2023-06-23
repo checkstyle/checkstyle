@@ -9,9 +9,9 @@ package com.puppycrawl.tools.checkstyle.checks.naming.abstractclassname;
 
 class Example4 {
   // xdoc section -- start
-  // violation below 'must match pattern '\^Generator\.\+\$''
+  // violation below 'must match pattern'
   abstract class AbstractFirst {}
-  abstract class Second {} // violation 'must match pattern '\^Generator\.\+\$''
+  abstract class Second {} // violation 'must match pattern'
   class AbstractThird {}
   class Fourth {}
   abstract class GeneratorFifth {}
