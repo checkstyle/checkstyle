@@ -8,11 +8,11 @@
   <body>
     <section name="RecordTypeParameterName">
       <p>Since Checkstyle 8.36</p>
-      <subsection name="Description" id="RecordTypeParameterName_Description">
+      <subsection name="Description" id="Description">
         <p>Checks that record type parameter names conform to a specified pattern.</p>
       </subsection>
 
-      <subsection name="Properties" id="RecordTypeParameterName_Properties">
+      <subsection name="Properties" id="Properties">
         <div class="wrapper">
           <table>
             <tr>
@@ -37,7 +37,7 @@
         </div>
       </subsection>
 
-      <subsection name="Examples" id="RecordTypeParameterName_Examples">
+      <subsection name="Examples" id="Examples">
         <p>
           To configure the check:
         </p>
@@ -62,7 +62,7 @@ record MyRecord3&lt;abc&gt; {} // violation, the record type parameter
         </source>
       </subsection>
 
-      <subsection name="Example of Usage" id="RecordTypeParameterName_Example_of_Usage">
+      <subsection name="Example of Usage" id="Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+RecordTypeParameterName">
@@ -77,7 +77,7 @@ record MyRecord3&lt;abc&gt; {} // violation, the record type parameter
         </ul>
       </subsection>
 
-      <subsection name="Violation Messages" id="RecordTypeParameterName_Violation_Messages">
+      <subsection name="Violation Messages" id="Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fnaming%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22name.invalidPattern%22">
@@ -92,11 +92,11 @@ record MyRecord3&lt;abc&gt; {} // violation, the record type parameter
         </p>
       </subsection>
 
-      <subsection name="Package" id="RecordTypeParameterName_Package">
+      <subsection name="Package" id="Package">
         <p>com.puppycrawl.tools.checkstyle.checks.naming</p>
       </subsection>
 
-      <subsection name="Parent Module" id="RecordTypeParameterName_Parent_Module">
+      <subsection name="Parent Module" id="Parent_Module">
         <p>
           <a href="../../config.html#TreeWalker">TreeWalker</a>
         </p>

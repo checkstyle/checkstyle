@@ -8,7 +8,7 @@
   <body>
     <section name="MagicNumber">
       <p>Since Checkstyle 3.1</p>
-      <subsection name="Description" id="MagicNumber_Description">
+      <subsection name="Description" id="Description">
         <p>
           Checks that there are no
           <a href="https://en.wikipedia.org/wiki/Magic_number_%28programming%29">
@@ -30,7 +30,7 @@ static final Integer ANSWER_TO_THE_ULTIMATE_QUESTION_OF_LIFE = new Integer(42);
         </source>
       </subsection>
 
-      <subsection name="Properties" id="MagicNumber_Properties">
+      <subsection name="Properties" id="Properties">
         <div class="wrapper">
           <table>
             <tr>
@@ -143,7 +143,7 @@ static final Integer ANSWER_TO_THE_ULTIMATE_QUESTION_OF_LIFE = new Integer(42);
         </div>
       </subsection>
 
-      <subsection name="Examples" id="MagicNumber_Examples">
+      <subsection name="Examples" id="Examples">
         <p>
           To configure the check with default configuration:
         </p>
@@ -283,7 +283,7 @@ class TestHashCode {
 
       </subsection>
 
-      <subsection name="Example of Usage" id="MagicNumber_Example_of_Usage">
+      <subsection name="Example of Usage" id="Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MagicNumber">
@@ -296,7 +296,7 @@ class TestHashCode {
         </ul>
       </subsection>
 
-      <subsection name="Violation Messages" id="MagicNumber_Violation_Messages">
+      <subsection name="Violation Messages" id="Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22magic.number%22">
@@ -310,13 +310,13 @@ class TestHashCode {
         </p>
       </subsection>
 
-      <subsection name="Package" id="MagicNumber_Package">
+      <subsection name="Package" id="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.coding
         </p>
       </subsection>
 
-      <subsection name="Parent Module" id="MagicNumber_Parent_Module">
+      <subsection name="Parent Module" id="Parent_Module">
         <p>
           <a href="../../config.html#TreeWalker">TreeWalker</a>
         </p>

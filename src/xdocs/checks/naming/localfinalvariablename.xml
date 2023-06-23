@@ -8,7 +8,7 @@
   <body>
     <section name="LocalFinalVariableName">
       <p>Since Checkstyle 3.0</p>
-      <subsection name="Description" id="LocalFinalVariableName_Description">
+      <subsection name="Description" id="Description">
         <p>
           Checks that local final variable names conform to a specified pattern.
           A catch parameter and resources in try statements
@@ -16,7 +16,7 @@
         </p>
       </subsection>
 
-      <subsection name="Properties" id="LocalFinalVariableName_Properties">
+      <subsection name="Properties" id="Properties">
         <div class="wrapper">
           <table>
             <tr>
@@ -61,7 +61,7 @@
         </div>
       </subsection>
 
-      <subsection name="Examples" id="LocalFinalVariableName_Examples">
+      <subsection name="Examples" id="Examples">
         <p>
           To configure the check:
         </p>
@@ -119,7 +119,7 @@ class MyClass {
         </source>
       </subsection>
 
-      <subsection name="Example of Usage" id="LocalFinalVariableName_Example_of_Usage">
+      <subsection name="Example of Usage" id="Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LocalFinalVariableName">
@@ -132,7 +132,7 @@ class MyClass {
         </ul>
       </subsection>
 
-      <subsection name="Violation Messages" id="LocalFinalVariableName_Violation_Messages">
+      <subsection name="Violation Messages" id="Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fnaming%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22name.invalidPattern%22">
@@ -146,11 +146,11 @@ class MyClass {
         </p>
       </subsection>
 
-      <subsection name="Package" id="LocalFinalVariableName_Package">
+      <subsection name="Package" id="Package">
         <p> com.puppycrawl.tools.checkstyle.checks.naming </p>
       </subsection>
 
-      <subsection name="Parent Module" id="LocalFinalVariableName_Parent_Module">
+      <subsection name="Parent Module" id="Parent_Module">
         <p> <a href="../../config.html#TreeWalker">TreeWalker</a> </p>
       </subsection>
     </section>

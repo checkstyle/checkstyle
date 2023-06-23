@@ -358,24 +358,34 @@ public class XdocsPagesTest {
                     .isNotNull();
 
                 final String sectionName;
+                final String nameString = name.getNodeValue();
+                final String idString = id.getNodeValue();
+                final String expectedId;
 
                 if ("google_style.xml".equals(fileName)) {
                     sectionName = "Google";
+                    expectedId = (sectionName + " " + nameString).replace(' ', '_');
                 }
                 else if ("sun_style.xml".equals(fileName)) {
                     sectionName = "Sun";
+                    expectedId = (sectionName + " " + nameString).replace(' ', '_');
+                }
+                else if (path.toString().contains("filters")
+                        || path.toString().contains("checks")) {
+                    // Checks and filters have their own xdocs files, so the section name
+                    // is the same as the section id.
+                    sectionName = XmlUtil.getNameAttributeOfNode(subSection.getParentNode());
+                    expectedId = nameString.replace(' ', '_');
                 }
                 else {
                     sectionName = XmlUtil.getNameAttributeOfNode(subSection.getParentNode());
+                    expectedId = (sectionName + " " + nameString).replace(' ', '_');
                 }
-
-                final String nameString = name.getNodeValue();
-                final String idString = id.getNodeValue();
 
                 assertWithMessage(fileName + " sub-section " + nameString + " for section "
                         + sectionName + " must match")
                     .that(idString)
-                    .isEqualTo((sectionName + " " + nameString).replace(' ', '_'));
+                    .isEqualTo(expectedId);
             }
         }
     }
