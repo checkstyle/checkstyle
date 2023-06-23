@@ -8,7 +8,7 @@
   <body>
     <section name="ImportControl">
       <p>Since Checkstyle 4.0</p>
-      <subsection name="Description" id="ImportControl_Description">
+      <subsection name="Description" id="Description">
         <p>
           Controls what can be imported in each package and file. Useful for
           ensuring that application layering rules are not violated,
@@ -90,7 +90,7 @@
         </div>
       </subsection>
 
-      <subsection name="Properties" id="ImportControl_Properties">
+      <subsection name="Properties" id="Properties">
         <div class="wrapper">
           <table>
             <tr>
@@ -126,7 +126,7 @@
         </div>
       </subsection>
 
-      <subsection name="Examples" id="ImportControl_Examples">
+      <subsection name="Examples" id="Examples">
         <p>
           To configure the check using an import control file called
           "config/import-control.xml", then have the following:
@@ -453,7 +453,7 @@ import java.util.stream.IntStream;
         </source>
       </subsection>
 
-      <subsection name="Example of Usage" id="ImportControl_Example_of_Usage">
+      <subsection name="Example of Usage" id="Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+ImportControl">
@@ -462,7 +462,7 @@ import java.util.stream.IntStream;
         </ul>
       </subsection>
 
-      <subsection name="Violation Messages" id="ImportControl_Violation_Messages">
+      <subsection name="Violation Messages" id="Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22import.control.disallowed%22">
@@ -484,13 +484,13 @@ import java.util.stream.IntStream;
         </p>
       </subsection>
 
-      <subsection name="Package" id="ImportControl_Package">
+      <subsection name="Package" id="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.imports
         </p>
       </subsection>
 
-      <subsection name="Parent Module" id="ImportControl_Parent_Module">
+      <subsection name="Parent Module" id="Parent_Module">
         <p>
           <a href="../../config.html#TreeWalker">TreeWalker</a>
         </p>

@@ -9,7 +9,7 @@
     <section xmlns="http://maven.apache.org/XDOC/2.0"
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="AnnotationLocation">
       <p>Since Checkstyle 6.0</p>
-      <subsection name="Description" id="AnnotationLocation_Description">
+      <subsection name="Description" id="Description">
         <p>
           Checks location of annotation on language elements.
           By default, Check enforce to locate annotations immediately after documentation block
@@ -41,7 +41,7 @@ public String getNameIfPresent() { ... }
         </source>
       </subsection>
 
-      <subsection name="Properties" id="AnnotationLocation_Properties">
+      <subsection name="Properties" id="Properties">
         <div class="wrapper">
           <table>
             <tr>
@@ -133,7 +133,7 @@ public String getNameIfPresent() { ... }
         </div>
       </subsection>
 
-      <subsection name="Examples" id="AnnotationLocation_Examples">
+      <subsection name="Examples" id="Examples">
         <p>
           To configure the default check to allow one single parameterless annotation on the same
             line:
@@ -239,7 +239,7 @@ public boolean equals(Object obj) { return true; }
         </source>
       </subsection>
 
-      <subsection name="Example of Usage" id="AnnotationLocation_Example_of_Usage">
+      <subsection name="Example of Usage" id="Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+AnnotationLocation">
@@ -252,7 +252,7 @@ public boolean equals(Object obj) { return true; }
         </ul>
       </subsection>
 
-      <subsection name="Violation Messages" id="AnnotationLocation_Violation_Messages">
+      <subsection name="Violation Messages" id="Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fannotation%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22annotation.location%22">
@@ -270,11 +270,11 @@ public boolean equals(Object obj) { return true; }
         </p>
       </subsection>
 
-      <subsection name="Package" id="AnnotationLocation_Package">
+      <subsection name="Package" id="Package">
         <p> com.puppycrawl.tools.checkstyle.checks.annotation </p>
       </subsection>
 
-      <subsection name="Parent Module" id="AnnotationLocation_Parent_Module">
+      <subsection name="Parent Module" id="Parent_Module">
         <p> <a href="../../config.html#TreeWalker">TreeWalker</a> </p>
       </subsection>
     </section>

@@ -8,7 +8,7 @@
   <body>
     <section name="JavadocMissingWhitespaceAfterAsterisk">
       <p>Since Checkstyle 8.32</p>
-      <subsection name="Description" id="JavadocMissingWhitespaceAfterAsterisk_Description">
+      <subsection name="Description" id="Description">
         <p>
           Checks that there is at least one whitespace after the leading asterisk.
           Although spaces after asterisks are optional in the Javadoc comments, their absence
@@ -17,7 +17,7 @@
         </p>
       </subsection>
 
-      <subsection name="Properties" id="JavadocMissingWhitespaceAfterAsterisk_Properties">
+      <subsection name="Properties" id="Properties">
         <div class="wrapper">
           <table>
             <tr>
@@ -42,7 +42,7 @@
         </div>
       </subsection>
 
-      <subsection name="Examples" id="JavadocMissingWhitespaceAfterAsterisk_Examples">
+      <subsection name="Examples" id="Examples">
         <p>
           To configure the default check:
         </p>
@@ -75,7 +75,7 @@ class TestClass {
       </subsection>
 
       <subsection name="Example of Usage"
-        id="JavadocMissingWhitespaceAfterAsterisk_Example_of_Usage">
+        id="Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocMissingWhitespaceAfterAsterisk">
@@ -85,7 +85,7 @@ class TestClass {
       </subsection>
 
       <subsection name="Violation Messages"
-        id="JavadocMissingWhitespaceAfterAsterisk_Violation_Messages">
+        id="Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.missed.html.close%22">
@@ -111,13 +111,13 @@ class TestClass {
         </p>
       </subsection>
 
-      <subsection name="Package" id="JavadocMissingWhitespaceAfterAsterisk_Package">
+      <subsection name="Package" id="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.javadoc
         </p>
       </subsection>
 
-      <subsection name="Parent Module" id="JavadocMissingWhitespaceAfterAsterisk_Parent_Module">
+      <subsection name="Parent Module" id="Parent_Module">
         <p>
           <a href="../../config.html#TreeWalker">TreeWalker</a>
         </p>

@@ -8,7 +8,7 @@
   <body>
     <section name="SuppressionFilter">
       <p>Since Checkstyle 3.2</p>
-      <subsection name="Description" id="SuppressionFilter_Description">
+      <subsection name="Description" id="Description">
         <p>
           Filter <code>SuppressionFilter</code> rejects
           audit events for Check violations according to
@@ -18,7 +18,7 @@
           suppressions file was not found the Filter accepts all audit events.
         </p>
       </subsection>
-      <subsection name="Properties" id="SuppressionFilter_Properties">
+      <subsection name="Properties" id="Properties">
         <div class="wrapper">
           <table>
             <tr>
@@ -53,7 +53,7 @@
           </table>
         </div>
       </subsection>
-      <subsection name="Notes" id="SuppressionFilter_Notes">
+      <subsection name="Notes" id="Notes">
         <p>
           A <a href="/dtds/suppressions_1_2.dtd">suppressions XML
           document</a> contains a set of <code>suppress</code> elements, where
@@ -130,7 +130,7 @@
           SuppressionFilter can suppress Checks that have Treewalker or Checker as parent module.
         </p>
       </subsection>
-      <subsection name="Examples" id="SuppressionFilter_Examples">
+      <subsection name="Examples" id="Examples">
         <p>
             For example, the following configuration fragment directs the
             Checker to use a <code>SuppressionFilter</code>
@@ -229,7 +229,7 @@ files="com[\\/]mycompany[\\/]app[\\/].*IT.java"/&gt;
 &lt;suppress message="Name 'log' must match pattern"/&gt;
         </source>
       </subsection>
-      <subsection name="Example of Usage" id="SuppressionFilter_Example_of_Usage">
+      <subsection name="Example of Usage" id="Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressionFilter">
@@ -245,11 +245,11 @@ files="com[\\/]mycompany[\\/]app[\\/].*IT.java"/&gt;
           </li>
         </ul>
       </subsection>
-      <subsection name="Package" id="SuppressionFilter_Package">
+      <subsection name="Package" id="Package">
         <p> com.puppycrawl.tools.checkstyle.filters </p>
       </subsection>
 
-      <subsection name="Parent Module" id="SuppressionFilter_Parent_Module">
+      <subsection name="Parent Module" id="Parent_Module">
         <p> <a href="../config.html#Checker">Checker</a> </p>
       </subsection>
     </section>

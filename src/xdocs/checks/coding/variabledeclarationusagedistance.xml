@@ -8,7 +8,7 @@
   <body>
     <section name="VariableDeclarationUsageDistance">
       <p>Since Checkstyle 5.8</p>
-      <subsection name="Description" id="VariableDeclarationUsageDistance_Description">
+      <subsection name="Description" id="Description">
         <p>
           Checks the distance between declaration of variable and its first usage.
           Note : Variable declaration/initialization statements are not counted
@@ -16,7 +16,7 @@
         </p>
       </subsection>
 
-      <subsection name="Properties" id="VariableDeclarationUsageDistance_Properties">
+      <subsection name="Properties" id="Properties">
         <div class="wrapper">
           <table>
             <tr>
@@ -66,7 +66,7 @@
         </div>
       </subsection>
 
-      <subsection name="Examples" id="VariableDeclarationUsageDistance_Examples">
+      <subsection name="Examples" id="Examples">
         <p>
             To configure the check with default config:
         </p>
@@ -288,7 +288,7 @@ public class Test {
         </source>
       </subsection>
 
-      <subsection name="Example of Usage" id="VariableDeclarationUsageDistance_Example_of_Usage">
+      <subsection name="Example of Usage" id="Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+VariableDeclarationUsageDistance">
@@ -302,7 +302,7 @@ public class Test {
       </subsection>
 
       <subsection name="Violation Messages"
-        id="VariableDeclarationUsageDistance_Violation_Messages">
+        id="Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22variable.declaration.usage.distance%22">
@@ -320,13 +320,13 @@ public class Test {
         </p>
       </subsection>
 
-      <subsection name="Package" id="VariableDeclarationUsageDistance_Package">
+      <subsection name="Package" id="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.coding
         </p>
       </subsection>
 
-      <subsection name="Parent Module" id="VariableDeclarationUsageDistance_Parent_Module">
+      <subsection name="Parent Module" id="Parent_Module">
         <p>
           <a href="../../config.html#TreeWalker">TreeWalker</a>
         </p>
