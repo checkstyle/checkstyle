@@ -8,7 +8,7 @@
   <body>
     <section name="SuppressWarningsFilter">
       <p>Since Checkstyle 5.7</p>
-      <subsection name="Description" id="SuppressWarningsFilter_Description">
+      <subsection name="Description" id="Description">
         <p>
           Filter <code>SuppressWarningsFilter</code> uses annotation
           <code>@SuppressWarnings</code> to suppress audit events.
@@ -34,13 +34,13 @@
           and should be written with any dotted prefix or "Check" suffix removed.
         </p>
       </subsection>
-      <subsection name="Notes" id="SuppressWarningsFilter_Notes">
+      <subsection name="Notes" id="Notes">
         <p>
           SuppressWarningsFilter can suppress Checks that have Treewalker or
           Checker as parent module.
         </p>
       </subsection>
-      <subsection name="Examples" id="SuppressWarningsFilter_Examples">
+      <subsection name="Examples" id="Examples">
         <p>
           To configure the check that makes tha annotations available to
           the filter.
@@ -105,7 +105,7 @@ public static void foo() {
 }
         </source>
       </subsection>
-      <subsection name="Example of Usage" id="SuppressWarningsFilter_Example_of_Usage">
+      <subsection name="Example of Usage" id="Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressWarningsFilter">
@@ -117,11 +117,11 @@ public static void foo() {
           </li>
         </ul>
       </subsection>
-      <subsection name="Package" id="SuppressWarningsFilter_Package">
+      <subsection name="Package" id="Package">
         <p> com.puppycrawl.tools.checkstyle.filters </p>
       </subsection>
 
-      <subsection name="Parent Module" id="SuppressWarningsFilter_Parent_Module">
+      <subsection name="Parent Module" id="Parent_Module">
         <p> <a href="../config.html#Checker">Checker</a> </p>
       </subsection>
     </section>

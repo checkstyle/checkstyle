@@ -8,7 +8,7 @@
   <body>
     <section name="JavadocBlockTagLocation">
       <p>Since Checkstyle 8.24</p>
-      <subsection name="Description" id="JavadocBlockTagLocation_Description">
+      <subsection name="Description" id="Description">
         <p>
           Checks that a
           <a href="https://docs.oracle.com/en/java/javase/11/docs/specs/doc-comment-spec.html#block-tags">
@@ -29,7 +29,7 @@
           for details on how to escape.
         </p>
       </subsection>
-      <subsection name="Notes" id="JavadocBlockTagLocation_Notes">
+      <subsection name="Notes" id="Notes">
         <p>
           To place a tag explicitly as text, escape the <code>@</code> symbol
           with HTML entity &amp;#64; or place it inside <code>{@code }</code>,
@@ -41,7 +41,7 @@
  */
         </source>
       </subsection>
-      <subsection name="Properties" id="JavadocBlockTagLocation_Properties">
+      <subsection name="Properties" id="Properties">
         <div class="wrapper">
           <table>
             <tr>
@@ -74,7 +74,7 @@
         </div>
       </subsection>
 
-      <subsection name="Examples" id="JavadocBlockTagLocation_Examples">
+      <subsection name="Examples" id="Examples">
         <p>
           To configure the default check:
         </p>
@@ -124,7 +124,7 @@ public int field;
         </source>
       </subsection>
 
-      <subsection name="Example of Usage" id="JavadocBlockTagLocation_Example_of_Usage">
+      <subsection name="Example of Usage" id="Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocBlockTagLocation">
@@ -133,7 +133,7 @@ public int field;
         </ul>
       </subsection>
 
-      <subsection name="Violation Messages" id="JavadocBlockTagLocation_Violation_Messages">
+      <subsection name="Violation Messages" id="Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.blockTagLocation%22">
@@ -159,13 +159,13 @@ public int field;
         </p>
       </subsection>
 
-      <subsection name="Package" id="JavadocBlockTagLocation_Package">
+      <subsection name="Package" id="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.javadoc
         </p>
       </subsection>
 
-      <subsection name="Parent Module" id="JavadocBlockTagLocation_Parent_Module">
+      <subsection name="Parent Module" id="Parent_Module">
         <p>
           <a href="../../config.html#TreeWalker">TreeWalker</a>
         </p>

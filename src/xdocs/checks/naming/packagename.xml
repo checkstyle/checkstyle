@@ -8,7 +8,7 @@
   <body>
     <section name="PackageName">
       <p>Since Checkstyle 3.0</p>
-      <subsection name="Description" id="PackageName_Description">
+      <subsection name="Description" id="Description">
         <p>
           Checks that package names conform to a specified pattern.
         </p>
@@ -24,7 +24,7 @@
         </p>
       </subsection>
 
-      <subsection name="Properties" id="PackageName_Properties">
+      <subsection name="Properties" id="Properties">
         <div class="wrapper">
           <table>
             <tr>
@@ -45,7 +45,7 @@
         </div>
       </subsection>
 
-      <subsection name="Examples" id="PackageName_Examples">
+      <subsection name="Examples" id="Examples">
         <p>
           To configure the check:
         </p>
@@ -87,7 +87,7 @@ package com._checkstyle.checks_; // violation, name 'com._checkstyle.checks_' mu
         </source>
       </subsection>
 
-      <subsection name="Example of Usage" id="PackageName_Example_of_Usage">
+      <subsection name="Example of Usage" id="Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+PackageName">
@@ -104,7 +104,7 @@ package com._checkstyle.checks_; // violation, name 'com._checkstyle.checks_' mu
         </ul>
       </subsection>
 
-      <subsection name="Violation Messages" id="PackageName_Violation_Messages">
+      <subsection name="Violation Messages" id="Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fnaming%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22name.invalidPattern%22">
@@ -118,11 +118,11 @@ package com._checkstyle.checks_; // violation, name 'com._checkstyle.checks_' mu
         </p>
       </subsection>
 
-      <subsection name="Package" id="PackageName_Package">
+      <subsection name="Package" id="Package">
         <p> com.puppycrawl.tools.checkstyle.checks.naming </p>
       </subsection>
 
-      <subsection name="Parent Module" id="PackageName_Parent_Module">
+      <subsection name="Parent Module" id="Parent_Module">
         <p> <a href="../../config.html#TreeWalker">TreeWalker</a> </p>
       </subsection>
     </section>

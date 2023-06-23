@@ -8,14 +8,14 @@
   <body>
     <section name="EmptyStatement">
       <p>Since Checkstyle 3.1</p>
-      <subsection name="Description" id="EmptyStatement_Description">
+      <subsection name="Description" id="Description">
         <p>
           Detects empty statements (standalone <code>";"</code> semicolon).
           Empty statements often introduce bugs that are hard to spot
         </p>
       </subsection>
 
-      <subsection name="Examples" id="EmptyStatement_Examples">
+      <subsection name="Examples" id="Examples">
         <p>
           To configure the check:
         </p>
@@ -38,7 +38,7 @@ public void foo() {
         </source>
       </subsection>
 
-      <subsection name="Example of Usage" id="EmptyStatement_Example_of_Usage">
+      <subsection name="Example of Usage" id="Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+EmptyStatement">
@@ -51,7 +51,7 @@ public void foo() {
         </ul>
       </subsection>
 
-      <subsection name="Violation Messages" id="EmptyStatement_Violation_Messages">
+      <subsection name="Violation Messages" id="Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22empty.statement%22">
@@ -65,13 +65,13 @@ public void foo() {
         </p>
       </subsection>
 
-      <subsection name="Package" id="EmptyStatement_Package">
+      <subsection name="Package" id="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.coding
         </p>
       </subsection>
 
-      <subsection name="Parent Module" id="EmptyStatement_Parent_Module">
+      <subsection name="Parent Module" id="Parent_Module">
         <p>
           <a href="../../config.html#TreeWalker">TreeWalker</a>
         </p>

@@ -8,7 +8,7 @@
   <body>
     <section name="RedundantModifier">
       <p>Since Checkstyle 3.0</p>
-      <subsection name="Description" id="RedundantModifier_Description">
+      <subsection name="Description" id="Description">
         <p>
           Checks for redundant modifiers.
         </p>
@@ -143,7 +143,7 @@ public class ClassExtending extends ClassExample {
         </source>
       </subsection>
 
-      <subsection name="Properties" id="RedundantModifier_Properties">
+      <subsection name="Properties" id="Properties">
         <div class="wrapper">
           <table>
             <tr>
@@ -209,7 +209,7 @@ public class ClassExtending extends ClassExample {
         </div>
       </subsection>
 
-      <subsection name="Examples" id="RedundantModifier_Examples">
+      <subsection name="Examples" id="Examples">
         <p> To configure the check: </p>
         <source>
 &lt;module name="RedundantModifier"/&gt;
@@ -225,7 +225,7 @@ public class ClassExtending extends ClassExample {
         </source>
       </subsection>
 
-      <subsection name="Example of Usage" id="RedundantModifier_Example_of_Usage">
+      <subsection name="Example of Usage" id="Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+RedundantModifier">
@@ -238,7 +238,7 @@ public class ClassExtending extends ClassExample {
         </ul>
       </subsection>
 
-      <subsection name="Violation Messages" id="RedundantModifier_Violation_Messages">
+      <subsection name="Violation Messages" id="Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fmodifier%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22redundantModifier%22">
@@ -252,11 +252,11 @@ public class ClassExtending extends ClassExample {
         </p>
       </subsection>
 
-      <subsection name="Package" id="RedundantModifier_Package">
+      <subsection name="Package" id="Package">
         <p> com.puppycrawl.tools.checkstyle.checks.modifier </p>
       </subsection>
 
-      <subsection name="Parent Module" id="RedundantModifier_Parent_Module">
+      <subsection name="Parent Module" id="Parent_Module">
         <p>
           <a href="../../config.html#TreeWalker">TreeWalker</a>
         </p>

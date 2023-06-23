@@ -8,7 +8,7 @@
   <body>
     <section name="NewlineAtEndOfFile">
       <p>Since Checkstyle 3.1</p>
-      <subsection name="Description" id="NewlineAtEndOfFile_Description">
+      <subsection name="Description" id="Description">
         <p>
           Checks whether files end with a line separator.
         </p>
@@ -50,7 +50,7 @@ StaticMethodCandidateCheck.name = Static Method Candidate
         </p>
       </subsection>
 
-      <subsection name="Notes" id="NewlineAtEndOfFile_Notes">
+      <subsection name="Notes" id="Notes">
         <p>
           This will check against the platform-specific default line separator.
         </p>
@@ -60,7 +60,7 @@ StaticMethodCandidateCheck.name = Static Method Candidate
         </p>
       </subsection>
 
-      <subsection name="Properties" id="NewlineAtEndOfFile_Properties">
+      <subsection name="Properties" id="Properties">
         <div class="wrapper">
           <table>
             <tr>
@@ -93,7 +93,7 @@ StaticMethodCandidateCheck.name = Static Method Candidate
         </div>
       </subsection>
 
-      <subsection name="Examples" id="NewlineAtEndOfFile_Examples">
+      <subsection name="Examples" id="Examples">
         <p>
           To configure the check:
         </p>
@@ -158,7 +158,7 @@ This is a sample text file. // ok, this file is not specified in the config.
         </source>
       </subsection>
 
-      <subsection name="Example of Usage" id="NewlineAtEndOfFile_Example_of_Usage">
+      <subsection name="Example of Usage" id="Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NewlineAtEndOfFile">
@@ -171,7 +171,7 @@ This is a sample text file. // ok, this file is not specified in the config.
         </ul>
       </subsection>
 
-      <subsection name="Violation Messages" id="NewlineAtEndOfFile_Violation_Messages">
+      <subsection name="Violation Messages" id="Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22noNewlineAtEOF%22">
@@ -193,13 +193,13 @@ This is a sample text file. // ok, this file is not specified in the config.
         </p>
       </subsection>
 
-      <subsection name="Package" id="NewlineAtEndOfFile_Package">
+      <subsection name="Package" id="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks
         </p>
       </subsection>
 
-      <subsection name="Parent Module" id="NewlineAtEndOfFile_Parent_Module">
+      <subsection name="Parent Module" id="Parent_Module">
         <p>
           <a href="../../config.html#Checker">Checker</a>
         </p>

@@ -8,7 +8,7 @@
   <body>
     <section name="CovariantEquals">
       <p>Since Checkstyle 3.2</p>
-      <subsection name="Description" id="CovariantEquals_Description">
+      <subsection name="Description" id="Description">
         <p>
           Checks that classes and records which define a covariant <code>equals()</code> method
           also override method <code>equals(Object)</code>.
@@ -61,7 +61,7 @@ public boolean equals(Foo obj) {...}
         </p>
       </subsection>
 
-      <subsection name="Examples" id="CovariantEquals_Examples">
+      <subsection name="Examples" id="Examples">
         <p>
           To configure the check:
         </p>
@@ -119,7 +119,7 @@ record Test(String str) {
         </source>
       </subsection>
 
-      <subsection name="Example of Usage" id="CovariantEquals_Example_of_Usage">
+      <subsection name="Example of Usage" id="Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+CovariantEquals">
@@ -128,7 +128,7 @@ record Test(String str) {
         </ul>
       </subsection>
 
-      <subsection name="Violation Messages" id="CovariantEquals_Violation_Messages">
+      <subsection name="Violation Messages" id="Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22covariant.equals%22">
@@ -142,13 +142,13 @@ record Test(String str) {
         </p>
       </subsection>
 
-      <subsection name="Package" id="CovariantEquals_Package">
+      <subsection name="Package" id="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.coding
         </p>
       </subsection>
 
-      <subsection name="Parent Module" id="CovariantEquals_Parent_Module">
+      <subsection name="Parent Module" id="Parent_Module">
         <p>
           <a href="../../config.html#TreeWalker">TreeWalker</a>
         </p>
