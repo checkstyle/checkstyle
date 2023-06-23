@@ -19,7 +19,6 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -30,6 +29,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
+import com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil;
 
 /**
  * <p>
@@ -613,7 +613,7 @@ public class EqualsAvoidNullCheck extends AbstractCheck {
          * @return children of this frame.
          */
         public Set<FieldFrame> getChildren() {
-            return Collections.unmodifiableSet(children);
+            return UnmodifiableCollectionUtil.unmodifiableSet(children);
         }
 
         /**
@@ -679,7 +679,7 @@ public class EqualsAvoidNullCheck extends AbstractCheck {
          * @return method calls of this frame.
          */
         public Set<DetailAST> getMethodCalls() {
-            return Collections.unmodifiableSet(methodCalls);
+            return UnmodifiableCollectionUtil.unmodifiableSet(methodCalls);
         }
 
         /**
