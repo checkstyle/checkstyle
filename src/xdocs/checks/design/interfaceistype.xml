@@ -8,7 +8,7 @@
   <body>
     <section name="InterfaceIsType">
       <p>Since Checkstyle 3.1</p>
-      <subsection name="Description" id="InterfaceIsType_Description">
+      <subsection name="Description" id="Description">
         <p>
           Implements Joshua Bloch, Effective Java, Item 17 - Use Interfaces only to
           define types.
@@ -29,7 +29,7 @@
         </p>
       </subsection>
 
-      <subsection name="Properties" id="InterfaceIsType_Properties">
+      <subsection name="Properties" id="Properties">
         <div class="wrapper">
           <table>
             <tr>
@@ -53,7 +53,7 @@
         </div>
       </subsection>
 
-      <subsection name="Examples" id="InterfaceIsType_Examples">
+      <subsection name="Examples" id="Examples">
         <p>
           To configure the check:
         </p>
@@ -95,7 +95,7 @@ public interface Test2 { // violation
         </source>
       </subsection>
 
-      <subsection name="Example of Usage" id="InterfaceIsType_Example_of_Usage">
+      <subsection name="Example of Usage" id="Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+InterfaceIsType">
@@ -108,7 +108,7 @@ public interface Test2 { // violation
         </ul>
       </subsection>
 
-      <subsection name="Violation Messages" id="InterfaceIsType_Violation_Messages">
+      <subsection name="Violation Messages" id="Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fdesign%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22interface.type%22">
@@ -122,13 +122,13 @@ public interface Test2 { // violation
         </p>
       </subsection>
 
-      <subsection name="Package" id="InterfaceIsType_Package">
+      <subsection name="Package" id="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.design
         </p>
       </subsection>
 
-      <subsection name="Parent Module" id="InterfaceIsType_Parent_Module">
+      <subsection name="Parent Module" id="Parent_Module">
         <p>
           <a href="../../config.html#TreeWalker">TreeWalker</a>
         </p>

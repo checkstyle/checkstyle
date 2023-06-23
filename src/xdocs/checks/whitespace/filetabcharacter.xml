@@ -8,7 +8,7 @@
   <body>
     <section name="FileTabCharacter">
       <p>Since Checkstyle 5.0</p>
-      <subsection name="Description" id="FileTabCharacter_Description">
+      <subsection name="Description" id="Description">
         <p>
           Checks that there are no tab characters (<code>'\t'</code>) in the source code.
         </p>
@@ -31,7 +31,7 @@
         </ul>
       </subsection>
 
-      <subsection name="Properties" id="FileTabCharacter_Properties">
+      <subsection name="Properties" id="Properties">
         <div class="wrapper">
           <table>
             <tr>
@@ -61,7 +61,7 @@
         </div>
       </subsection>
 
-      <subsection name="Examples" id="FileTabCharacter_Examples">
+      <subsection name="Examples" id="Examples">
         <p>To configure the check to report only the first instance in each file:</p>
         <source>
 &lt;module name="FileTabCharacter"/&gt;
@@ -127,7 +127,7 @@ public class Test {
         </source>
       </subsection>
 
-      <subsection name="Example of Usage" id="FileTabCharacter_Example_of_Usage">
+      <subsection name="Example of Usage" id="Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+FileTabCharacter">
@@ -144,7 +144,7 @@ public class Test {
         </ul>
       </subsection>
 
-      <subsection name="Violation Messages" id="FileTabCharacter_Violation_Messages">
+      <subsection name="Violation Messages" id="Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22containsTab%22">
@@ -162,13 +162,13 @@ public class Test {
         </p>
       </subsection>
 
-      <subsection name="Package" id="FileTabCharacter_Package">
+      <subsection name="Package" id="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.whitespace
         </p>
       </subsection>
 
-      <subsection name="Parent Module" id="FileTabCharacter_Parent_Module">
+      <subsection name="Parent Module" id="Parent_Module">
         <p>
           <a href="../../config.html#Checker">Checker</a>
         </p>

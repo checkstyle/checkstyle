@@ -8,7 +8,7 @@
   <body>
     <section name="MethodParamPad">
       <p>Since Checkstyle 3.4</p>
-      <subsection name="Description" id="MethodParamPad_Description">
+      <subsection name="Description" id="Description">
         <p>
           Checks the padding between the identifier of a method definition,
           constructor definition, method call, or constructor invocation; and
@@ -22,7 +22,7 @@
         </p>
       </subsection>
 
-      <subsection name="Properties" id="MethodParamPad_Properties">
+      <subsection name="Properties" id="Properties">
         <div class="wrapper">
           <table>
             <tr>
@@ -96,7 +96,7 @@
         </div>
       </subsection>
 
-      <subsection name="Examples" id="MethodParamPad_Examples">
+      <subsection name="Examples" id="Examples">
         <p>
           To configure the check:
         </p>
@@ -152,7 +152,7 @@ public class Test {
         </source>
       </subsection>
 
-      <subsection name="Example of Usage" id="MethodParamPad_Example_of_Usage">
+      <subsection name="Example of Usage" id="Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MethodParamPad">
@@ -169,7 +169,7 @@ public class Test {
         </ul>
       </subsection>
 
-      <subsection name="Violation Messages" id="MethodParamPad_Violation_Messages">
+      <subsection name="Violation Messages" id="Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22line.previous%22">
@@ -191,13 +191,13 @@ public class Test {
         </p>
       </subsection>
 
-      <subsection name="Package" id="MethodParamPad_Package">
+      <subsection name="Package" id="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.whitespace
         </p>
       </subsection>
 
-      <subsection name="Parent Module" id="MethodParamPad_Parent_Module">
+      <subsection name="Parent Module" id="Parent_Module">
         <p>
           <a href="../../config.html#TreeWalker">TreeWalker</a>
         </p>
