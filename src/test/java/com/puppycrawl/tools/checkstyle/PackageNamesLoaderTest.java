@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle;
 
 import static com.google.common.truth.Truth.assertWithMessage;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.io.File;
 import java.io.IOException;
@@ -226,6 +227,16 @@ public class PackageNamesLoaderTest extends AbstractPathTestSupport {
                 .that(ex.getMessage())
                 .isEqualTo("unable to get package file resources");
         }
+    }
+
+    @Test
+    public void testUnmodifiableCollection() throws Exception {
+        final Set<String> actualPackageNames = PackageNamesLoader
+                .getPackageNames(new TestUrlsClassLoader(Collections.emptyEnumeration()));
+
+        assertThrows(UnsupportedOperationException.class,
+                () -> actualPackageNames.add("com.puppycrawl.tools.checkstyle.checks.modifier"));
+
     }
 
     /**
