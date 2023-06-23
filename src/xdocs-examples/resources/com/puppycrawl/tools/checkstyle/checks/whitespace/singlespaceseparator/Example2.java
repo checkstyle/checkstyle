@@ -22,7 +22,7 @@ class Example2 {
    * This is a Javadoc comment
    */  int b; // 2 whitespaces after the javadoc comment ends
   // violation above 'Use a single space'
-  float f1; 
+  float f1;
 
   /**
    * OK, 1 white space after the doc comment ends
