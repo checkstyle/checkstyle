@@ -26,8 +26,8 @@
               </a>
             </td>
             <td>
-              Checks that a class that has only private constructors and
-            has no descendant classes is declared as final.
+              Ensures that identifies classes that can be effectively declared as final are
+              explicitly marked as final.
             </td>
           </tr>
           <tr>
