@@ -1761,6 +1761,9 @@
                 <!-- content of file does not matter at all -->
                 <exclude>**/RegexpOnFilenameCheckTest.class</exclude>
 
+                <!-- due to https://github.com/checkstyle/checkstyle/pull/13127 -->
+                <exclude>**/UnmodifiableCollectionUtilTest.class</exclude>
+
                 <!-- all bellow until https://github.com/checkstyle/checkstyle/issues/11446 -->
 
                 <!-- usage of custom internal module, 'execute' method should be used -->
@@ -3216,6 +3219,9 @@
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.SimplifyBooleanExpressionCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.SimplifyBooleanReturnCheckTest</param>
               </targetTests>
+              <avoidCallsTo>
+                <avoidCallsTo>com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil</avoidCallsTo>
+              </avoidCallsTo>
               <excludedTestClasses>
                 <param>*.Input*</param>
               </excludedTestClasses>
@@ -4739,7 +4745,19 @@
                 <mutator>PRIMITIVE_RETURNS</mutator>
               </mutators>
               <targetClasses>
-                <param>com.puppycrawl.tools.checkstyle.utils.*</param>
+                <param>com.puppycrawl.tools.checkstyle.utils.AnnotationUtil*</param>
+                <param>com.puppycrawl.tools.checkstyle.utils.BlockCommentPosition*</param>
+                <param>com.puppycrawl.tools.checkstyle.utils.ChainedPropertyUtil*</param>
+                <param>com.puppycrawl.tools.checkstyle.utils.CheckUtil*</param>
+                <param>com.puppycrawl.tools.checkstyle.utils.CodePointUtil*</param>
+                <param>com.puppycrawl.tools.checkstyle.utils.CommonUtil*</param>
+                <param>com.puppycrawl.tools.checkstyle.utils.FilterUtil*</param>
+                <param>com.puppycrawl.tools.checkstyle.utils.JavadocUtil*</param>
+                <param>com.puppycrawl.tools.checkstyle.utils.ModuleReflectionUtil*</param>
+                <param>com.puppycrawl.tools.checkstyle.utils.ParserUtil*</param>
+                <param>com.puppycrawl.tools.checkstyle.utils.ScopeUtil*</param>
+                <param>com.puppycrawl.tools.checkstyle.utils.TokenUtil*</param>
+                <param>com.puppycrawl.tools.checkstyle.utils.XpathUtil*</param>
               </targetClasses>
               <excludedMethods>
                 <!-- unkilled in generated code https://github.com/hcoles/pitest/issues/255 -->
