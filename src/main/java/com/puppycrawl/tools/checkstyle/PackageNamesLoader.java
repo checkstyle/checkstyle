@@ -27,7 +27,6 @@ import java.util.ArrayDeque;
 import java.util.Collections;
 import java.util.Deque;
 import java.util.Enumeration;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.Map;
@@ -84,7 +83,11 @@ public final class PackageNamesLoader
      */
     private PackageNamesLoader()
             throws ParserConfigurationException, SAXException {
-        super(createIdToResourceNameMap());
+        // map between local resources and dtd ids
+        super(Map.of(
+            DTD_PUBLIC_ID, DTD_RESOURCE_NAME,
+            DTD_PUBLIC_CS_ID, DTD_RESOURCE_NAME
+        ));
     }
 
     @Override
@@ -181,17 +184,4 @@ public final class PackageNamesLoader
             throw new CheckstyleException("unable to open " + packageFile, ex);
         }
     }
-
-    /**
-     * Creates mapping between local resources and dtd ids.
-     *
-     * @return map between local resources and dtd ids.
-     */
-    private static Map<String, String> createIdToResourceNameMap() {
-        final Map<String, String> map = new HashMap<>();
-        map.put(DTD_PUBLIC_ID, DTD_RESOURCE_NAME);
-        map.put(DTD_PUBLIC_CS_ID, DTD_RESOURCE_NAME);
-        return map;
-    }
-
 }
