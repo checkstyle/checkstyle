@@ -26,7 +26,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Deque;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
@@ -158,26 +157,6 @@ public final class ConfigurationLoader {
         overridePropsResolver = overrideProps;
         this.omitIgnoredModules = omitIgnoredModules;
         this.threadModeSettings = threadModeSettings;
-    }
-
-    /**
-     * Creates mapping between local resources and dtd ids. This method can't be
-     * moved to inner class because it must stay static because it is called
-     * from constructor and inner class isn't static.
-     *
-     * @return map between local resources and dtd ids.
-     */
-    private static Map<String, String> createIdToResourceNameMap() {
-        final Map<String, String> map = new HashMap<>();
-        map.put(DTD_PUBLIC_ID_1_0, DTD_CONFIGURATION_NAME_1_0);
-        map.put(DTD_PUBLIC_ID_1_1, DTD_CONFIGURATION_NAME_1_1);
-        map.put(DTD_PUBLIC_ID_1_2, DTD_CONFIGURATION_NAME_1_2);
-        map.put(DTD_PUBLIC_ID_1_3, DTD_CONFIGURATION_NAME_1_3);
-        map.put(DTD_PUBLIC_CS_ID_1_0, DTD_CONFIGURATION_NAME_1_0);
-        map.put(DTD_PUBLIC_CS_ID_1_1, DTD_CONFIGURATION_NAME_1_1);
-        map.put(DTD_PUBLIC_CS_ID_1_2, DTD_CONFIGURATION_NAME_1_2);
-        map.put(DTD_PUBLIC_CS_ID_1_3, DTD_CONFIGURATION_NAME_1_3);
-        return map;
     }
 
     /**
@@ -492,7 +471,17 @@ public final class ConfigurationLoader {
          */
         private InternalLoader()
                 throws SAXException, ParserConfigurationException {
-            super(createIdToResourceNameMap());
+            // map from local resources to dtd ids
+            super(Map.of(
+                DTD_PUBLIC_ID_1_0, DTD_CONFIGURATION_NAME_1_0,
+                DTD_PUBLIC_ID_1_1, DTD_CONFIGURATION_NAME_1_1,
+                DTD_PUBLIC_ID_1_2, DTD_CONFIGURATION_NAME_1_2,
+                DTD_PUBLIC_ID_1_3, DTD_CONFIGURATION_NAME_1_3,
+                DTD_PUBLIC_CS_ID_1_0, DTD_CONFIGURATION_NAME_1_0,
+                DTD_PUBLIC_CS_ID_1_1, DTD_CONFIGURATION_NAME_1_1,
+                DTD_PUBLIC_CS_ID_1_2, DTD_CONFIGURATION_NAME_1_2,
+                DTD_PUBLIC_CS_ID_1_3, DTD_CONFIGURATION_NAME_1_3
+            ));
         }
 
         @Override
