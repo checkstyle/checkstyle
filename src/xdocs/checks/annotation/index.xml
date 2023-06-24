@@ -50,6 +50,17 @@
           </tr>
           <tr>
             <td>
+              <a href="missingoverride.html#MissingOverride">
+                MissingOverride
+              </a>
+            </td>
+            <td>
+              Verifies that the <code>@Override</code> annotation is present
+              when the <code>@inheritDoc</code> javadoc tag is present.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="packageannotation.html#PackageAnnotation">
                 PackageAnnotation
               </a>
