@@ -8,7 +8,7 @@
   <body>
     <section name="ParameterAssignment">
       <p>Since Checkstyle 3.2</p>
-      <subsection name="Description" id="ParameterAssignment_Description">
+      <subsection name="Description" id="Description">
         <p> Disallows assignment of parameters.</p>
         <p>
           Rationale: Parameter assignment is often considered poor programming
@@ -18,7 +18,7 @@
         </p>
       </subsection>
 
-      <subsection name="Examples" id="ParameterAssignment_Examples">
+      <subsection name="Examples" id="Examples">
         <p>
           To configure the check:
         </p>
@@ -61,7 +61,7 @@ class MyClass {
         </source>
       </subsection>
 
-      <subsection name="Example of Usage" id="ParameterAssignment_Example_of_Usage">
+      <subsection name="Example of Usage" id="Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+ParameterAssignment">
@@ -70,7 +70,7 @@ class MyClass {
         </ul>
       </subsection>
 
-      <subsection name="Violation Messages" id="ParameterAssignment_Violation_Messages">
+      <subsection name="Violation Messages" id="Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22parameter.assignment%22">
@@ -84,13 +84,13 @@ class MyClass {
         </p>
       </subsection>
 
-      <subsection name="Package" id="ParameterAssignment_Package">
+      <subsection name="Package" id="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.coding
         </p>
       </subsection>
 
-      <subsection name="Parent Module" id="ParameterAssignment_Parent_Module">
+      <subsection name="Parent Module" id="Parent_Module">
         <p>
           <a href="../../config.html#TreeWalker">TreeWalker</a>
         </p>

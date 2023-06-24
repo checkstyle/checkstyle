@@ -8,7 +8,7 @@
   <body>
     <section name="AvoidNoArgumentSuperConstructorCall">
       <p>Since Checkstyle 8.29</p>
-      <subsection name="Description" id="AvoidNoArgumentSuperConstructorCall_Description">
+      <subsection name="Description" id="Description">
         <p>
           Checks if call to superclass constructor without arguments is present.
           Such invocation is redundant because constructor body implicitly
@@ -18,7 +18,7 @@
         </p>
       </subsection>
 
-      <subsection name="Examples" id="AvoidNoArgumentSuperConstructorCall_Examples">
+      <subsection name="Examples" id="Examples">
         <p>
           To configure the check:
         </p>
@@ -45,7 +45,7 @@ class MyClass extends SomeOtherClass {
         </source>
       </subsection>
 
-      <subsection name="Example of Usage" id="AvoidNoArgumentSuperConstructorCall_Example_of_Usage">
+      <subsection name="Example of Usage" id="Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+AvoidNoArgumentSuperConstructorCall">
@@ -55,7 +55,7 @@ class MyClass extends SomeOtherClass {
       </subsection>
 
       <subsection name="Violation Messages"
-        id="AvoidNoArgumentSuperConstructorCall_Violation_Messages">
+        id="Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22super.constructor.call%22">
@@ -69,13 +69,13 @@ class MyClass extends SomeOtherClass {
         </p>
       </subsection>
 
-      <subsection name="Package" id="AvoidNoArgumentSuperConstructorCall_Package">
+      <subsection name="Package" id="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.coding
         </p>
       </subsection>
 
-      <subsection name="Parent Module" id="AvoidNoArgumentSuperConstructorCall_Parent_Module">
+      <subsection name="Parent Module" id="Parent_Module">
         <p>
           <a href="../../config.html#TreeWalker">TreeWalker</a>
         </p>

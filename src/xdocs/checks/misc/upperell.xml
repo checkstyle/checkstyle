@@ -8,7 +8,7 @@
   <body>
     <section name="UpperEll">
       <p>Since Checkstyle 3.0</p>
-      <subsection name="Description" id="UpperEll_Description">
+      <subsection name="Description" id="Description">
         <p>
           Checks that long constants are defined with an upper ell. That
           is <code>'L'</code> and not <code>'l'</code>. This is in accordance with the Java
@@ -22,7 +22,7 @@
         </p>
       </subsection>
 
-      <subsection name="Examples" id="UpperEll_Examples">
+      <subsection name="Examples" id="Examples">
         <p>
           To configure the check:
         </p>
@@ -38,7 +38,7 @@ class Test {
         </source>
       </subsection>
 
-      <subsection name="Example of Usage" id="UpperEll_Example_of_Usage">
+      <subsection name="Example of Usage" id="Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+UpperEll">
@@ -55,7 +55,7 @@ class Test {
         </ul>
       </subsection>
 
-      <subsection name="Violation Messages" id="UpperEll_Violation_Messages">
+      <subsection name="Violation Messages" id="Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22upperEll%22">
@@ -69,13 +69,13 @@ class Test {
         </p>
       </subsection>
 
-      <subsection name="Package" id="UpperEll_Package">
+      <subsection name="Package" id="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks
         </p>
       </subsection>
 
-      <subsection name="Parent Module" id="UpperEll_Parent_Module">
+      <subsection name="Parent Module" id="Parent_Module">
         <p>
           <a href="../../config.html#TreeWalker">TreeWalker</a>
         </p>
