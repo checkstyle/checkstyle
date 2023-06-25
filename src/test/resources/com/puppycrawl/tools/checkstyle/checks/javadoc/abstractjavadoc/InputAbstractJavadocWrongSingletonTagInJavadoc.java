@@ -6,27 +6,32 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.abstractjavadoc;
 
 public class InputAbstractJavadocWrongSingletonTagInJavadoc {
     /**
-     * </embed> // violation
+     * </embed> // violation 'Javadoc comment at column 9 has parse error.
+     * It is forbidden to close singleton HTML tags. Tag: embed.'
      */
     private int field1;
 
     /**
-     * </keygen> // violation
+     * </keygen> // violation 'Javadoc comment at column 9 has parse error.
+     * It is forbidden to close singleton HTML tags. Tag: keygen.'
      */
     private int field2;
 
     /**
-     * </SOURCE> // violation
+     * </SOURCE> // violation 'Javadoc comment at column 9 has parse error.
+     * It is forbidden to close singleton HTML tags. Tag: SOURCE.'
      */
     private int field3;
 
     /**
-     * </TRACK> // violation
+     * </TRACK> // violation 'Javadoc comment at column 9 has parse error.
+     * It is forbidden to close singleton HTML tags. Tag: TRACK.'
      */
     private int field4;
 
     /**
-     * </WBR> // violation
+     * </WBR> // violation 'Javadoc comment at column 9 has parse error.
+     * It is forbidden to close singleton HTML tags. Tag: WBR.'
      */
     private int field5;
 }
