@@ -11,7 +11,7 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace.whitespacearound;
 class Example9 {
   void example() {
     int a=4; // 2 violations
-             // no space before and after '='
+    // no space before and after '='
     try {
     } catch (Exception e){}
   }
