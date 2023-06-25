@@ -11,6 +11,6 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace.whitespacearound;
 class Example4 {
   public void muFunction() {}
   int a=4; // 2 violations
-           // no space before and after '='
+  // no space before and after '='
 }
 // xdoc section -- end

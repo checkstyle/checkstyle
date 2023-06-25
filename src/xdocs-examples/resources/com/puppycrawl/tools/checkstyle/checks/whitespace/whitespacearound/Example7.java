@@ -14,7 +14,7 @@ class Example7 {
     for (int i = 100;i > 10; i--){}
     do {} while (y == 1);
     int a=4; // 2 violations
-             // no space before and after '='
+    // no space before and after '='
   }
 }
 // xdoc section -- end

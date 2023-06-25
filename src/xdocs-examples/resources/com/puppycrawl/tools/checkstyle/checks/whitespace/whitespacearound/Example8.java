@@ -12,7 +12,7 @@ class Example8 {
   void example() {
     Runnable noop = () -> {};
     int a=4; // 2 violations
-             // no space before and after '='
+    // no space before and after '='
   }
 }
 // xdoc section -- end
