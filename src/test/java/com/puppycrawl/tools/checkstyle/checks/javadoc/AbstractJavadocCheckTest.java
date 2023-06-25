@@ -105,8 +105,8 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testParsingErrors(@SysErr Capturable systemErr) throws Exception {
         final String[] expected = {
-            "9: " + getCheckMessage(MSG_JAVADOC_MISSED_HTML_CLOSE, 4, "unclosedTag"),
-            "16: " + getCheckMessage(MSG_JAVADOC_WRONG_SINGLETON_TAG, 35, "img"),
+            "8: " + getCheckMessage(MSG_JAVADOC_MISSED_HTML_CLOSE, 4, "unclosedTag"),
+            "13: " + getCheckMessage(MSG_JAVADOC_WRONG_SINGLETON_TAG, 35, "img"),
         };
         verifyWithInlineConfigParser(getPath("InputAbstractJavadocParsingErrors.java"), expected);
         assertWithMessage("Error is unexpected")
@@ -144,6 +144,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testCheckReuseAfterParseErrorWithFollowingAntlrErrorInTwoFiles(
             @SysErr Capturable systemErr) throws Exception {
+<<<<<<< HEAD
         final String[] expectedMessagesForFile1 = {
             "9: " + getCheckMessage(MSG_JAVADOC_MISSED_HTML_CLOSE, 4, "unclosedTag"),
             "16: " + getCheckMessage(MSG_JAVADOC_WRONG_SINGLETON_TAG, 35, "img"),
@@ -158,6 +159,22 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(getPath(
                 "InputAbstractJavadocInvalidAtSeeReference2.java"), expectedMessagesForFile2);
 
+=======
+        final DefaultConfiguration checkConfig = createModuleConfig(TempCheck.class);
+        final Map<String, List<String>> expectedMessages = new LinkedHashMap<>(2);
+        expectedMessages.put(getPath("InputAbstractJavadocParsingErrors2.java"), asList(
+            "8: " + getCheckMessage(MSG_JAVADOC_MISSED_HTML_CLOSE, 4, "unclosedTag"),
+            "13: " + getCheckMessage(MSG_JAVADOC_WRONG_SINGLETON_TAG, 35, "img")
+        ));
+        expectedMessages.put(getPath("InputAbstractJavadocInvalidAtSeeReference2.java"),
+            singletonList("8: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 78,
+                    "mismatched input '(' expecting <EOF>", "JAVADOC")
+        ));
+        verify(createChecker(checkConfig), new File[] {
+            new File(getPath("InputAbstractJavadocParsingErrors2.java")),
+            new File(getPath("InputAbstractJavadocInvalidAtSeeReference2.java")), },
+                expectedMessages);
+>>>>>>> e6a1f2d2f (Issue #11214: Specified Violation messages in SummaryJavadocCheck)
         assertWithMessage("Error is unexpected")
                 .that(systemErr.getCapturedData())
                 .isEqualTo("");
@@ -167,8 +184,13 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     public void testCheckReuseAfterParseErrorWithFollowingAntlrErrorInSingleFile()
             throws Exception {
         final String[] expected = {
+<<<<<<< HEAD
             "9: " + getCheckMessage(MSG_JAVADOC_MISSED_HTML_CLOSE, 4, "unclosedTag"),
             "16: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 82,
+=======
+            "8: " + getCheckMessage(MSG_JAVADOC_MISSED_HTML_CLOSE, 4, "unclosedTag"),
+            "13: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 82,
+>>>>>>> e6a1f2d2f (Issue #11214: Specified Violation messages in SummaryJavadocCheck)
                     "mismatched input '(' expecting <EOF>", "JAVADOC"),
         };
         verifyWithInlineConfigParser(
@@ -419,6 +441,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "18: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR,
                     23, "mismatched input 'd' expecting <EOF>", "JAVADOC"),
+<<<<<<< HEAD
             "29: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR,
                     30, "mismatched input '-' expecting <EOF>", "JAVADOC"),
             "37: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR,
@@ -438,6 +461,27 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
             "106: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR,
                     39, "no viable alternative at input '-'", "JAVADOC_INLINE_TAG"),
             "114: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR,
+=======
+            "28: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR,
+                    30, "mismatched input '-' expecting <EOF>", "JAVADOC"),
+            "36: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR,
+                    39, "mismatched input '-' expecting <EOF>", "JAVADOC"),
+            "50: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR,
+                    34, "mismatched input '-' expecting <EOF>", "JAVADOC"),
+            "60: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR,
+                    31, "mismatched input '-' expecting <EOF>", "JAVADOC"),
+            "71: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR,
+                    15, "mismatched input '-' expecting <EOF>", "JAVADOC"),
+            "80: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR,
+                    32, "mismatched input '-' expecting <EOF>", "JAVADOC"),
+            "91: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR,
+                    17, "mismatched input '<' expecting <EOF>", "JAVADOC"),
+            "98: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR,
+                    34, "no viable alternative at input '-'", "JAVADOC_INLINE_TAG"),
+            "105: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR,
+                    39, "no viable alternative at input '-'", "JAVADOC_INLINE_TAG"),
+            "113: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR,
+>>>>>>> e6a1f2d2f (Issue #11214: Specified Violation messages in SummaryJavadocCheck)
                     19, "no viable alternative at input '<'", "JAVADOC_INLINE_TAG"),
         };
         verifyWithInlineConfigParser(
@@ -448,11 +492,19 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testWrongSingletonTagInJavadoc() throws Exception {
         final String[] expected = {
+<<<<<<< HEAD
             "10: " + getCheckMessage(MSG_JAVADOC_WRONG_SINGLETON_TAG, 9, "embed"),
             "17: " + getCheckMessage(MSG_JAVADOC_WRONG_SINGLETON_TAG, 9, "keygen"),
             "24: " + getCheckMessage(MSG_JAVADOC_WRONG_SINGLETON_TAG, 9, "SOURCE"),
             "31: " + getCheckMessage(MSG_JAVADOC_WRONG_SINGLETON_TAG, 9, "TRACK"),
             "38: " + getCheckMessage(MSG_JAVADOC_WRONG_SINGLETON_TAG, 9, "WBR"),
+=======
+            "9: " + getCheckMessage(MSG_JAVADOC_WRONG_SINGLETON_TAG, 9, "embed"),
+            "16: " + getCheckMessage(MSG_JAVADOC_WRONG_SINGLETON_TAG, 9, "keygen"),
+            "23: " + getCheckMessage(MSG_JAVADOC_WRONG_SINGLETON_TAG, 9, "SOURCE"),
+            "30: " + getCheckMessage(MSG_JAVADOC_WRONG_SINGLETON_TAG, 9, "TRACK"),
+            "37: " + getCheckMessage(MSG_JAVADOC_WRONG_SINGLETON_TAG, 9, "WBR"),
+>>>>>>> e6a1f2d2f (Issue #11214: Specified Violation messages in SummaryJavadocCheck)
         };
         verifyWithInlineConfigParser(getPath("InputAbstractJavadocWrongSingletonTagInJavadoc.java"),
                 expected);
@@ -461,6 +513,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testNonTightHtmlTagIntolerantCheckOne() throws Exception {
         final String[] expected = {
+<<<<<<< HEAD
             "12: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
             "19: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
             "22: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "li"),
@@ -468,6 +521,18 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
             "35: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "tr"),
             "54: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
             "64: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "tr"),
+=======
+            "11: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
+            "18: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
+            "21: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "li"),
+            "27: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
+            "34: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "tr"),
+            "42: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "li"),
+            "63: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "li"),
+            "81: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
+            "91: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "tr"),
+            "136: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
+>>>>>>> e6a1f2d2f (Issue #11214: Specified Violation messages in SummaryJavadocCheck)
         };
         verifyWithInlineConfigParser(
                 getPath("InputAbstractJavadocNonTightHtmlTagsOne.java"), expected);
@@ -494,15 +559,44 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+<<<<<<< HEAD
     public void testNonTightHtmlTagIntolerantCheckReportingNoViolationTwo() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputAbstractJavadocNonTightHtmlTagsNoViolationTwo.java"), expected);
+=======
+    public void testNonTightHtmlTagIntolerantCheckVisitCount()
+            throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(NonTightHtmlTagIntolerantCheck.class);
+        checkConfig.addProperty("violateExecutionOnNonTightHtml", "true");
+        checkConfig.addProperty("reportVisitJavadocToken", "true");
+        final String[] expected = {
+            "12: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
+            "19: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
+            "22: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "li"),
+            "28: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
+            "35: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "tr"),
+            "43: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "li"),
+            "51:8: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "65: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "li"),
+            "74:13: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "84: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
+            "94: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "tr"),
+            "114:8: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "121:8: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "125:8: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "142: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
+        };
+        verify(checkConfig, getPath("InputAbstractJavadocNonTightHtmlTagsVisitCount.java"),
+                expected);
+>>>>>>> e6a1f2d2f (Issue #11214: Specified Violation messages in SummaryJavadocCheck)
     }
 
     @Test
     public void testNonTightHtmlTagIntolerantCheckVisitCountOne() throws Exception {
         final String[] expected = {
+<<<<<<< HEAD
             "13: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
             "20: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
             "23: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "li"),
@@ -511,6 +605,48 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
             "46:13: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "LI_TAG_START"),
             "56: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
             "66: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "tr"),
+=======
+            "10:4: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "11:4: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "13: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
+            "13:4: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "14:4: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "14:39: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "24: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
+            "24:9: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "24:13: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "28: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "li"),
+            "28:8: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "33:8: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "34: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
+            "34:8: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "34:25: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "41:8: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "41:22: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "42: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "tr"),
+            "49:8: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "50:8: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "51: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "li"),
+            "51:8: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "51:23: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "59:8: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "59:20: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "59:34: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "61: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "li"),
+            "61:16: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "61:21: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "71:8: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "73: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
+            "73:22: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "80:8: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "81:8: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "84: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "tr"),
+            "106:8: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "113: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
+            "113:9: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "113:13: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "113:33: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+>>>>>>> e6a1f2d2f (Issue #11214: Specified Violation messages in SummaryJavadocCheck)
         };
         verifyWithInlineConfigParser(
                 getPath("InputAbstractJavadocNonTightHtmlTagsVisitCountOne.java"),

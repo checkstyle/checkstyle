@@ -165,10 +165,17 @@ public final class InlineConfigParser {
     /** The String "(null)". */
     private static final String NULL_STRING = "(null)";
 
-    private static final String LATEST_DTD = String.format(Locale.ROOT,
-            "<!DOCTYPE module PUBLIC \"%s\" \"%s\">%n",
-            ConfigurationLoader.DTD_PUBLIC_CS_ID_1_3,
-            ConfigurationLoader.DTD_PUBLIC_CS_ID_1_3);
+    /**
+     * Checks in which violation message is not specified in input file and have more than
+     * one violation message key.
+     * Until <a href="https://github.com/checkstyle/checkstyle/issues/11214">#11214</a>
+     */
+    private static final Set<String> SUPPRESSED_CHECKS = new HashSet<>(Arrays.asList(
+            "com.puppycrawl.tools.checkstyle.checks.regexp.RegexpCheck",
+            "com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyForInitializerPadCheck",
+            "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck",
+            "com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck",
+            "com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck"));
 
     /**
      *  Inlined configs can not be used in non-java checks, as Inlined config is java style
