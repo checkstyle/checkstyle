@@ -5,11 +5,13 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.abstractjavadoc;
  */
 
 /**
- * <unclosedTag> // violation
+ * <unclosedTag> // violation 'Unclosed HTML tag found: unclosedTag'
  */
 class InputAbstractJavadocUnclosedTagAndInvalidAtSeeReference {
     /**
      * @see javax.swing.tree.DefaultTreeCellRenderer.getTreeCellRendererComponent() // violation
+     * 'Javadoc comment at column 82 has parse error. Details: mismatched input
+     * '(' expecting <EOF> while parsing JAVADOC'
      */
     void invalidAtSeeReference() {
     }
