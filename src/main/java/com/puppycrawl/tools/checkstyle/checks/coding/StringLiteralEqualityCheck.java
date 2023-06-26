@@ -113,10 +113,7 @@ public class StringLiteralEqualityCheck extends AbstractCheck {
 
     @Override
     public void visitToken(DetailAST ast) {
-        final boolean hasStringLiteralChild =
-                ast.findFirstToken(TokenTypes.STRING_LITERAL) != null
-                    || ast.findFirstToken(TokenTypes.TEXT_BLOCK_LITERAL_BEGIN) != null
-                    || areStringsConcatenated(ast);
+        final boolean hasStringLiteralChild = hasStringLiteralChild(ast);
 
         if (hasStringLiteralChild) {
             log(ast, MSG_KEY, ast.getText());
@@ -129,13 +126,13 @@ public class StringLiteralEqualityCheck extends AbstractCheck {
      * @param ast ast
      * @return {@code true} if string literal or text block literals are concatenated
      */
-    private static boolean areStringsConcatenated(DetailAST ast) {
-        DetailAST plusAst = ast.findFirstToken(TokenTypes.PLUS);
+    private static boolean hasStringLiteralChild(DetailAST ast) {
+        DetailAST currentAst = ast;
         boolean result = false;
-        while (plusAst != null) {
-            if (plusAst.findFirstToken(TokenTypes.STRING_LITERAL) == null
-                    && plusAst.findFirstToken(TokenTypes.TEXT_BLOCK_LITERAL_BEGIN) == null) {
-                plusAst = plusAst.findFirstToken(TokenTypes.PLUS);
+        while (currentAst != null) {
+            if (currentAst.findFirstToken(TokenTypes.STRING_LITERAL) == null
+                    && currentAst.findFirstToken(TokenTypes.TEXT_BLOCK_LITERAL_BEGIN) == null) {
+                currentAst = currentAst.findFirstToken(TokenTypes.PLUS);
             }
             else {
                 result = true;
