@@ -401,7 +401,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
         while (nestedChild != null && !isTextPresentInsideHtmlTag) {
             switch (nestedChild.getType()) {
                 case JavadocTokenTypes.TEXT:
-                    isTextPresentInsideHtmlTag = !nestedChild.getText().isBlank();
+                    isTextPresentInsideHtmlTag = true;
                     break;
                 case JavadocTokenTypes.HTML_TAG:
                 case JavadocTokenTypes.HTML_ELEMENT:
