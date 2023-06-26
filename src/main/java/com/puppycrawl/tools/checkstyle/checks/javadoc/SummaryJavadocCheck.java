@@ -590,7 +590,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
      * @return {@code true} if sentence does not end with period.
      */
     private static boolean isPeriodNotAtEnd(String sentence, String period) {
-        final String summarySentence = sentence.trim();
+        final String summarySentence = sentence;
         return summarySentence.lastIndexOf(period) != summarySentence.length() - 1;
     }
 
