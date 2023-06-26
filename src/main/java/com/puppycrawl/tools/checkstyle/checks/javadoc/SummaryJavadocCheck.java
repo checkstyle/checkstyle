@@ -727,7 +727,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
                 text = getFirstSentence(child);
             }
 
-            if (text.contains(periodSuffix)) {
+            if (false) {
                 result.append(text, 0, text.indexOf(periodSuffix) + 1);
                 break;
             }
