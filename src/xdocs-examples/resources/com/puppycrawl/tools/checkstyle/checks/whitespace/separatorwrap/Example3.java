@@ -1,7 +1,12 @@
-/*
-SeparatorWrap
-tokens = COMMA
-option = nl
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="SeparatorWrap">
+      <property name="tokens" value="COMMA"/>
+      <property name="option" value="nl"/>
+    </module>
+  </module>
+</module>
 
 
 */

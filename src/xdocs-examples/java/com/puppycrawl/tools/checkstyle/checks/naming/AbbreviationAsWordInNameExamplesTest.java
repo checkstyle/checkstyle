@@ -42,9 +42,9 @@ public class AbbreviationAsWordInNameExamplesTest extends AbstractModuleTestSupp
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "14:7: " + getCheckMessage(MSG_KEY, "CURRENT_COUNTER", DEFAULT_EXPECTED_CAPITAL_COUNT),
-            "23:8: " + getCheckMessage(MSG_KEY, "incrementCOUNTER", DEFAULT_EXPECTED_CAPITAL_COUNT),
-            "27:15: " + getCheckMessage(MSG_KEY, "incrementGLOBAL", DEFAULT_EXPECTED_CAPITAL_COUNT),
+            "18:7: " + getCheckMessage(MSG_KEY, "CURRENT_COUNTER", DEFAULT_EXPECTED_CAPITAL_COUNT),
+            "27:8: " + getCheckMessage(MSG_KEY, "incrementCOUNTER", DEFAULT_EXPECTED_CAPITAL_COUNT),
+            "31:15: " + getCheckMessage(MSG_KEY, "incrementGLOBAL", DEFAULT_EXPECTED_CAPITAL_COUNT),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
@@ -53,11 +53,11 @@ public class AbbreviationAsWordInNameExamplesTest extends AbstractModuleTestSupp
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-            "16:7: " + getCheckMessage(MSG_KEY, "CURRENT_COUNTER", DEFAULT_EXPECTED_CAPITAL_COUNT),
-            "18:14: " + getCheckMessage(MSG_KEY, "GLOBAL_COUNTER", DEFAULT_EXPECTED_CAPITAL_COUNT),
-            "22:15: " + getCheckMessage(MSG_KEY, "printCOUNTER", DEFAULT_EXPECTED_CAPITAL_COUNT),
-            "26:8: " + getCheckMessage(MSG_KEY, "incrementCOUNTER", DEFAULT_EXPECTED_CAPITAL_COUNT),
-            "30:15: " + getCheckMessage(MSG_KEY, "incrementGLOBAL", DEFAULT_EXPECTED_CAPITAL_COUNT),
+            "21:7: " + getCheckMessage(MSG_KEY, "CURRENT_COUNTER", DEFAULT_EXPECTED_CAPITAL_COUNT),
+            "23:14: " + getCheckMessage(MSG_KEY, "GLOBAL_COUNTER", DEFAULT_EXPECTED_CAPITAL_COUNT),
+            "27:15: " + getCheckMessage(MSG_KEY, "printCOUNTER", DEFAULT_EXPECTED_CAPITAL_COUNT),
+            "31:8: " + getCheckMessage(MSG_KEY, "incrementCOUNTER", DEFAULT_EXPECTED_CAPITAL_COUNT),
+            "35:15: " + getCheckMessage(MSG_KEY, "incrementGLOBAL", DEFAULT_EXPECTED_CAPITAL_COUNT),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
@@ -68,8 +68,8 @@ public class AbbreviationAsWordInNameExamplesTest extends AbstractModuleTestSupp
         final int expectedCapitalCount = 1;
 
         final String[] expected = {
-            "16:7: " + getCheckMessage(MSG_KEY, "secondNUM", expectedCapitalCount),
-            "18:14: " + getCheckMessage(MSG_KEY, "fourthNUm", expectedCapitalCount),
+            "21:7: " + getCheckMessage(MSG_KEY, "secondNUM", expectedCapitalCount),
+            "23:14: " + getCheckMessage(MSG_KEY, "fourthNUm", expectedCapitalCount),
         };
 
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
@@ -80,9 +80,9 @@ public class AbbreviationAsWordInNameExamplesTest extends AbstractModuleTestSupp
         final int expectedCapitalCount = 2;
 
         final String[] expected = {
-            "17:7: " + getCheckMessage(MSG_KEY, "secondMYNum", expectedCapitalCount),
-            "18:7: " + getCheckMessage(MSG_KEY, "thirdNUM", expectedCapitalCount),
-            "21:10: " + getCheckMessage(MSG_KEY, "firstXML", expectedCapitalCount),
+            "22:7: " + getCheckMessage(MSG_KEY, "secondMYNum", expectedCapitalCount),
+            "23:7: " + getCheckMessage(MSG_KEY, "thirdNUM", expectedCapitalCount),
+            "26:10: " + getCheckMessage(MSG_KEY, "firstXML", expectedCapitalCount),
         };
 
         verifyWithInlineConfigParser(getPath("Example4.java"), expected);
@@ -93,9 +93,9 @@ public class AbbreviationAsWordInNameExamplesTest extends AbstractModuleTestSupp
         final int expectedCapitalCount = 1;
 
         final String[] expected = {
-            "16:7: " + getCheckMessage(MSG_KEY, "counterXYZ", expectedCapitalCount),
-            "18:13: " + getCheckMessage(MSG_KEY, "customerID", expectedCapitalCount),
-            "19:14: " + getCheckMessage(MSG_KEY, "nextID", expectedCapitalCount),
+            "21:7: " + getCheckMessage(MSG_KEY, "counterXYZ", expectedCapitalCount),
+            "23:13: " + getCheckMessage(MSG_KEY, "customerID", expectedCapitalCount),
+            "24:14: " + getCheckMessage(MSG_KEY, "nextID", expectedCapitalCount),
         };
 
         verifyWithInlineConfigParser(getPath("Example5.java"), expected);
@@ -106,9 +106,9 @@ public class AbbreviationAsWordInNameExamplesTest extends AbstractModuleTestSupp
         final int expectedCapitalCount = 1;
 
         final String[] expected = {
-            "16:7: " + getCheckMessage(MSG_KEY, "counterXYZ", expectedCapitalCount),
-            "18:13: " + getCheckMessage(MSG_KEY, "customerID", expectedCapitalCount),
-            "21:20: " + getCheckMessage(MSG_KEY, "MAX_ALLOWED", expectedCapitalCount),
+            "21:7: " + getCheckMessage(MSG_KEY, "counterXYZ", expectedCapitalCount),
+            "23:13: " + getCheckMessage(MSG_KEY, "customerID", expectedCapitalCount),
+            "26:20: " + getCheckMessage(MSG_KEY, "MAX_ALLOWED", expectedCapitalCount),
         };
 
         verifyWithInlineConfigParser(getPath("Example6.java"), expected);

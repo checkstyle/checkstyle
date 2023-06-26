@@ -1,6 +1,11 @@
-/*
-EmptyForInitializerPad
-option = space
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="EmptyForInitializerPad">
+      <property name="option" value="space"/>
+    </module>
+  </module>
+</module>
 
 
 */

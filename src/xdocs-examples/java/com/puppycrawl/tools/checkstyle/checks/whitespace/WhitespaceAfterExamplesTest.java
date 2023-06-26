@@ -39,17 +39,17 @@ public class WhitespaceAfterExamplesTest extends AbstractModuleTestSupport {
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "15:12: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "if"),
-            "18:16: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ","),
-            "20:5: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "for"),
-            "22:5: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "try"),
-            "24:5: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "try"),
-            "26:12: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "finally"),
-            "28:30: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "finally"),
-            "30:12: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "catch"),
-            "32:5: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "synchronized"),
-            "38:5: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "return"),
-            "45:9: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "yield"),
+            "19:12: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "if"),
+            "22:16: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ","),
+            "24:5: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "for"),
+            "26:5: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "try"),
+            "28:5: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "try"),
+            "30:12: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "finally"),
+            "32:30: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "finally"),
+            "34:12: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "catch"),
+            "36:5: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "synchronized"),
+            "42:5: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "return"),
+            "49:9: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "yield"),
         };
 
         verifyWithInlineConfigParser(getNonCompilablePath("Example1.java"), expected);
@@ -58,8 +58,8 @@ public class WhitespaceAfterExamplesTest extends AbstractModuleTestSupport {
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-            "14:14: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ";"),
-            "17:17: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ","),
+            "19:14: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ";"),
+            "22:17: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ","),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
