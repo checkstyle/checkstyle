@@ -39,9 +39,9 @@ public class SingleSpaceSeparatorExamplesTest extends AbstractModuleTestSupport 
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "11:15: " + getCheckMessage(MSG_KEY),
-            "12:13: " + getCheckMessage(MSG_KEY),
-            "17:9: " + getCheckMessage(MSG_KEY),
+            "15:15: " + getCheckMessage(MSG_KEY),
+            "16:13: " + getCheckMessage(MSG_KEY),
+            "21:9: " + getCheckMessage(MSG_KEY),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
@@ -50,10 +50,10 @@ public class SingleSpaceSeparatorExamplesTest extends AbstractModuleTestSupport 
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-            "13:19: " + getCheckMessage(MSG_KEY),
-            "15:28: " + getCheckMessage(MSG_KEY),
-            "17:47: " + getCheckMessage(MSG_KEY),
-            "23:8: " + getCheckMessage(MSG_KEY),
+            "18:19: " + getCheckMessage(MSG_KEY),
+            "20:28: " + getCheckMessage(MSG_KEY),
+            "22:47: " + getCheckMessage(MSG_KEY),
+            "28:8: " + getCheckMessage(MSG_KEY),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);

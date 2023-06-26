@@ -1,6 +1,9 @@
-/*
-FileTabCharacter
-fileExtensions = java, xml
+/*xml
+<module name="Checker">
+  <module name="FileTabCharacter">
+    <property name="fileExtensions" value="java, xml"/>
+  </module>
+</module>
 
 
 */

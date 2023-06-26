@@ -1,5 +1,9 @@
-/*
-NoLineWrap
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="NoLineWrap"/>
+  </module>
+</module>
 
 
 */

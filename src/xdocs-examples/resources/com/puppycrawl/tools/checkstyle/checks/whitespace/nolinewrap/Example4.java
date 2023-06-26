@@ -1,6 +1,11 @@
-/*
-NoLineWrap
-tokens = IMPORT
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="NoLineWrap">
+      <property name="tokens" value="IMPORT"/>
+    </module>
+  </module>
+</module>
 
 
 */

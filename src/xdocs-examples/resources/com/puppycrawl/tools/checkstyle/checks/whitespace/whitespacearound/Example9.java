@@ -1,6 +1,11 @@
-/*
-WhitespaceAround
-allowEmptyCatches = true
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="WhitespaceAround">
+      <property name="allowEmptyCatches" value="true"/>
+    </module>
+  </module>
+</module>
 
 
 */

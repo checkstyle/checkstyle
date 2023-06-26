@@ -1,7 +1,12 @@
-/*
-AbbreviationAsWordInName
-allowedAbbreviations = ALLOWED
-ignoreStaticFinal = false
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="AbbreviationAsWordInName">
+      <property name="allowedAbbreviations" value="ALLOWED"/>
+      <property name="ignoreStaticFinal" value="false"/>
+    </module>
+  </module>
+</module>
 
 
 */
