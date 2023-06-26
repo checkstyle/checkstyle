@@ -19,12 +19,15 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import static com.google.common.truth.Truth.assertThat;
 import static com.google.common.truth.Truth.assertWithMessage;
 
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -229,5 +232,19 @@ public class MatchXpathCheckTest
         assertWithMessage("Expected empty array")
                 .that(matchXpathCheck.getRequiredTokens())
                 .isEmpty();
+    }
+
+    @Test
+    public void testCheckWithMatchingMethodName2() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(MatchXpathCheck.class);
+        checkConfig.addProperty("query", "count(*) div 0");
+        try {
+            verify(checkConfig, getPath("InputMatchXpath5.java"));
+        }
+        catch (CheckstyleException ex) {
+            final Throwable cause = ex.getCause();
+            assertThat(cause.getMessage())
+                    .isEqualTo("Evaluation of Xpath query failed: count(*) div 0");
+        }
     }
 }
