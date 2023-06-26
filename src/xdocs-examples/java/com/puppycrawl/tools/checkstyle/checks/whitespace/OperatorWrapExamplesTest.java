@@ -40,9 +40,9 @@ public class OperatorWrapExamplesTest extends AbstractModuleTestSupport {
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "12:24: " + getCheckMessage(MSG_LINE_NEW, "+"),
-            "15:12: " + getCheckMessage(MSG_LINE_NEW, "=="),
-            "23:16: " + getCheckMessage(MSG_LINE_NEW, "/"),
+            "16:24: " + getCheckMessage(MSG_LINE_NEW, "+"),
+            "19:12: " + getCheckMessage(MSG_LINE_NEW, "=="),
+            "27:16: " + getCheckMessage(MSG_LINE_NEW, "/"),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
@@ -51,16 +51,16 @@ public class OperatorWrapExamplesTest extends AbstractModuleTestSupport {
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-            "16:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "="),
-            "20:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "+="),
-            "24:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "*="),
-            "26:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "-="),
-            "30:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "/="),
-            "32:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "%="),
-            "34:13: " + getCheckMessage(MSG_LINE_PREVIOUS, ">>="),
-            "36:9: " + getCheckMessage(MSG_LINE_PREVIOUS, ">>>="),
-            "38:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "&="),
-            "40:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "<<="),
+            "23:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "="),
+            "27:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "+="),
+            "31:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "*="),
+            "33:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "-="),
+            "37:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "/="),
+            "39:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "%="),
+            "41:13: " + getCheckMessage(MSG_LINE_PREVIOUS, ">>="),
+            "43:9: " + getCheckMessage(MSG_LINE_PREVIOUS, ">>>="),
+            "45:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "&="),
+            "47:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "<<="),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);

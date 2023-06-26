@@ -39,9 +39,9 @@ public class NoWhitespaceAfterExamplesTest extends AbstractModuleTestSupport {
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "19:12: " + getCheckMessage(MSG_KEY, "."),
-            "24:9: " + getCheckMessage(MSG_KEY, "int"),
-            "28:9: " + getCheckMessage(MSG_KEY, "~"),
+            "23:12: " + getCheckMessage(MSG_KEY, "."),
+            "28:9: " + getCheckMessage(MSG_KEY, "int"),
+            "32:9: " + getCheckMessage(MSG_KEY, "~"),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
@@ -50,8 +50,8 @@ public class NoWhitespaceAfterExamplesTest extends AbstractModuleTestSupport {
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-            "14:12: " + getCheckMessage(MSG_KEY, "."),
-            "21:12: " + getCheckMessage(MSG_KEY, "."),
+            "19:12: " + getCheckMessage(MSG_KEY, "."),
+            "26:12: " + getCheckMessage(MSG_KEY, "."),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);

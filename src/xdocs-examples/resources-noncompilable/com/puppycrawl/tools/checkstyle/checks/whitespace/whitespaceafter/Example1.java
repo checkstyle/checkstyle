@@ -1,5 +1,9 @@
-/*
-WhitespaceAfter
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="WhitespaceAfter"/>
+  </module>
+</module>
 
 
 */

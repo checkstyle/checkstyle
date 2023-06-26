@@ -1,5 +1,9 @@
-/*
-AbstractClassName
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="AbstractClassName"/>
+  </module>
+</module>
 
 
 */

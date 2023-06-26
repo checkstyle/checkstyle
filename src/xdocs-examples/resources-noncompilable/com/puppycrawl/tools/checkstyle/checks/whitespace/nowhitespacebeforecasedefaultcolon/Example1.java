@@ -1,5 +1,9 @@
-/*
-NoWhitespaceBeforeCaseDefaultColon
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="NoWhitespaceBeforeCaseDefaultColon"/>
+  </module>
+</module>
 
 
 */

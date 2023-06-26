@@ -1,6 +1,11 @@
-/*
-AbstractClassName
-format = ^Generator.+$
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="AbstractClassName">
+      <property name="format" value="^Generator.+$"/>
+    </module>
+  </module>
+</module>
 
 
 */

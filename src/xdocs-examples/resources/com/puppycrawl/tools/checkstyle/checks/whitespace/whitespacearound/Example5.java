@@ -1,6 +1,11 @@
-/*
-WhitespaceAround
-allowEmptyConstructors = true
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="WhitespaceAround">
+      <property name="allowEmptyConstructors" value="true"/>
+    </module>
+  </module>
+</module>
 
 
 */
