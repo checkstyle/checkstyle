@@ -1,8 +1,13 @@
-/*
-MethodParamPad
-allowLineBreaks = true
-option = space
-tokens = METHOD_DEF
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="MethodParamPad">
+      <property name="allowLineBreaks" value="true"/>
+      <property name="option" value="space"/>
+      <property name="tokens" value="METHOD_DEF"/>
+    </module>
+  </module>
+</module>
 
 
 */

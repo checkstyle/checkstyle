@@ -1,6 +1,11 @@
-/*
-WhitespaceAround
-tokens = LCURLY, RCURLY
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="WhitespaceAround">
+      <property name="tokens" value="LCURLY, RCURLY"/>
+    </module>
+  </module>
+</module>
 
 
 */

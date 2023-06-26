@@ -36,8 +36,14 @@ import java.util.Properties;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
+import org.xml.sax.InputSource;
+
+import com.puppycrawl.tools.checkstyle.ConfigurationLoader;
+import com.puppycrawl.tools.checkstyle.PropertiesExpander;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import com.puppycrawl.tools.checkstyle.api.Configuration;
 
 public final class InlineConfigParser {
 
@@ -90,6 +96,11 @@ public final class InlineConfigParser {
 
     /** The String "(null)". */
     private static final String NULL_STRING = "(null)";
+
+    private static final String LATEST_DTD = String.format(Locale.ROOT,
+            "<!DOCTYPE module PUBLIC \"%s\" \"%s\">%n",
+            ConfigurationLoader.DTD_PUBLIC_CS_ID_1_3,
+            ConfigurationLoader.DTD_PUBLIC_CS_ID_1_3);
 
     /**
      * Checks in which violation message is not specified in input file and have more than
@@ -164,8 +175,61 @@ public final class InlineConfigParser {
             throw new CheckstyleException("Config not specified on top."
                 + "Please see other inputs for examples of what is required.");
         }
-        int lineNo = 1;
-        do {
+
+        final List<String> inlineConfig = getInlineConfig(lines);
+        final boolean isXmlConfig = "/*xml".equals(lines.get(0));
+
+        if (isXmlConfig) {
+            final String stringXmlConfig = LATEST_DTD + String.join("", inlineConfig);
+            final InputSource inputSource = new InputSource(new StringReader(stringXmlConfig));
+            final Configuration xmlConfig = ConfigurationLoader.loadConfiguration(
+                inputSource, new PropertiesExpander(System.getProperties()),
+                    ConfigurationLoader.IgnoredModulesOptions.EXECUTE
+            );
+            final String configName = xmlConfig.getName();
+            if (!"Checker".equals(configName)) {
+                throw new CheckstyleException(
+                        "First module should be Checker, but was " + configName);
+            }
+            handleXmlConfig(testInputConfigBuilder, inputFilePath, xmlConfig.getChildren());
+        }
+        else {
+            handleKeyValueConfig(testInputConfigBuilder, inputFilePath, inlineConfig);
+        }
+    }
+
+    private static List<String> getInlineConfig(List<String> lines) {
+        return lines.stream()
+                .skip(1)
+                .takeWhile(line -> !line.startsWith("*/"))
+                .collect(Collectors.toList());
+    }
+
+    private static void handleXmlConfig(TestInputConfiguration.Builder testInputConfigBuilder,
+                                        String inputFilePath,
+                                        Configuration... modules)
+            throws CheckstyleException {
+
+        for (Configuration module: modules) {
+            final String moduleName = module.getName();
+            if ("TreeWalker".equals(moduleName)) {
+                handleXmlConfig(testInputConfigBuilder, inputFilePath, module.getChildren());
+            }
+            else {
+                final ModuleInputConfiguration.Builder moduleInputConfigBuilder =
+                    new ModuleInputConfiguration.Builder();
+                setModuleName(moduleInputConfigBuilder, inputFilePath, moduleName);
+                setProperties(inputFilePath, module, moduleInputConfigBuilder);
+                testInputConfigBuilder.addChildModule(moduleInputConfigBuilder.build());
+            }
+        }
+    }
+
+    private static void handleKeyValueConfig(TestInputConfiguration.Builder testInputConfigBuilder,
+                                             String inputFilePath, List<String> lines)
+            throws CheckstyleException, IOException {
+        int lineNo = 0;
+        while (lineNo < lines.size()) {
             final ModuleInputConfiguration.Builder moduleInputConfigBuilder =
                     new ModuleInputConfiguration.Builder();
             setModuleName(moduleInputConfigBuilder, inputFilePath, lines.get(lineNo));
@@ -173,8 +237,10 @@ public final class InlineConfigParser {
             testInputConfigBuilder.addChildModule(moduleInputConfigBuilder.build());
             do {
                 lineNo++;
-            } while (lines.get(lineNo).isEmpty() || !lines.get(lineNo - 1).isEmpty());
-        } while (!lines.get(lineNo).startsWith("*/"));
+            } while (lineNo < lines.size()
+                    && lines.get(lineNo).isEmpty()
+                    || !lines.get(lineNo - 1).isEmpty());
+        }
     }
 
     private static String getFullyQualifiedClassName(String filePath, String moduleName)
@@ -292,6 +358,35 @@ public final class InlineConfigParser {
                     inputConfigBuilder.addNonDefaultProperty(key, value);
                 }
             }
+        }
+    }
+
+    private static void setProperties(String inputFilePath, Configuration module,
+                                      ModuleInputConfiguration.Builder moduleInputConfigBuilder)
+            throws CheckstyleException {
+        final String[] getPropertyNames = module.getPropertyNames();
+        for (final String propertyName : getPropertyNames) {
+            final String propertyValue = module.getProperty(propertyName);
+
+            if ("file".equals(propertyName)) {
+                final String filePath = getResolvedPath(propertyValue, inputFilePath);
+                moduleInputConfigBuilder.addNonDefaultProperty(propertyName, filePath);
+            }
+            else {
+                if (NULL_STRING.equals(propertyValue)) {
+                    moduleInputConfigBuilder.addNonDefaultProperty(propertyName, null);
+                }
+                else {
+                    moduleInputConfigBuilder.addNonDefaultProperty(propertyName, propertyValue);
+                }
+            }
+        }
+
+        final Map<String, String> messages = module.getMessages();
+        for (final Map.Entry<String, String> entry : messages.entrySet()) {
+            final String key = entry.getKey();
+            final String value = entry.getValue();
+            moduleInputConfigBuilder.addModuleMessage(key, value);
         }
     }
 
