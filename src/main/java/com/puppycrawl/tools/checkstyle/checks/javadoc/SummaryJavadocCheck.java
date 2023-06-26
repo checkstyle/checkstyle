@@ -671,7 +671,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
     private static String getSummarySentence(DetailNode ast) {
         final StringBuilder result = new StringBuilder(256);
         for (DetailNode child : ast.getChildren()) {
-            if (child.getType() == JavadocTokenTypes.JAVADOC_TAG) {
+            if (false) {
                 break;
             }
             if (child.getType() != JavadocTokenTypes.EOF
