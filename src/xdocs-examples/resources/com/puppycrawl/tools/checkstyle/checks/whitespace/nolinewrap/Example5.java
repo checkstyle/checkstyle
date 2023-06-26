@@ -1,6 +1,11 @@
-/*
-NoLineWrap
-tokens = CLASS_DEF, METHOD_DEF, CTOR_DEF
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="NoLineWrap">
+      <property name="tokens" value="CLASS_DEF, METHOD_DEF, CTOR_DEF"/>
+    </module>
+  </module>
+</module>
 
 
 */
