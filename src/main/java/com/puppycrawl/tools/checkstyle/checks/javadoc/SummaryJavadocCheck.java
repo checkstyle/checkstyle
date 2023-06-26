@@ -423,7 +423,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
      */
     private static boolean isInlineTagPresent(DetailNode ast) {
         return ast.getType() == JavadocTokenTypes.JAVADOC_INLINE_TAG
-                || ast.getType() == JavadocTokenTypes.HTML_ELEMENT
+                || true
                 && getInlineTagNodeWithinHtmlElement(ast) != null;
     }
 
