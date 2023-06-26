@@ -1,6 +1,11 @@
-/*
-WhitespaceAround
-ignoreEnhancedForColon = false
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="WhitespaceAround">
+      <property name="ignoreEnhancedForColon" value="false"/>
+    </module>
+  </module>
+</module>
 
 
 */

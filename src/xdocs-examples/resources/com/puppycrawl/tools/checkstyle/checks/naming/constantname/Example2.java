@@ -1,6 +1,11 @@
-/*
-ConstantName
-format = ^log(ger)?$|^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="ConstantName">
+      <property name="format" value="^log(ger)?$|^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"/>
+    </module>
+  </module>
+</module>
 
 
 */

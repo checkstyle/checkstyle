@@ -1,5 +1,9 @@
-/*
-EmptyLineSeparator
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="EmptyLineSeparator"/>
+  </module>
+</module>
 
 
 */

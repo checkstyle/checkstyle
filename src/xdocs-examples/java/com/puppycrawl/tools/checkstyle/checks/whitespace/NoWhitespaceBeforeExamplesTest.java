@@ -39,11 +39,11 @@ public class NoWhitespaceBeforeExamplesTest extends AbstractModuleTestSupport {
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "15:9: " + getCheckMessage(MSG_KEY, "++"),
-            "17:20: " + getCheckMessage(MSG_KEY, ";"),
-            "20:21: " + getCheckMessage(MSG_KEY, ","),
-            "25:12: " + getCheckMessage(MSG_KEY, ";"),
-            "27:14: " + getCheckMessage(MSG_KEY, ":"),
+            "19:9: " + getCheckMessage(MSG_KEY, "++"),
+            "21:20: " + getCheckMessage(MSG_KEY, ";"),
+            "24:21: " + getCheckMessage(MSG_KEY, ","),
+            "29:12: " + getCheckMessage(MSG_KEY, ";"),
+            "31:14: " + getCheckMessage(MSG_KEY, ":"),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
@@ -52,7 +52,7 @@ public class NoWhitespaceBeforeExamplesTest extends AbstractModuleTestSupport {
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-            "18:31: " + getCheckMessage(MSG_KEY, "..."),
+            "23:31: " + getCheckMessage(MSG_KEY, "..."),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
@@ -61,8 +61,8 @@ public class NoWhitespaceBeforeExamplesTest extends AbstractModuleTestSupport {
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
-            "16:10: " + getCheckMessage(MSG_KEY, "."),
-            "18:74: " + getCheckMessage(MSG_KEY, "::"),
+            "21:10: " + getCheckMessage(MSG_KEY, "."),
+            "23:74: " + getCheckMessage(MSG_KEY, "::"),
         };
 
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
@@ -71,8 +71,8 @@ public class NoWhitespaceBeforeExamplesTest extends AbstractModuleTestSupport {
     @Test
     public void testExample4() throws Exception {
         final String[] expected = {
-            "16:11: " + getCheckMessage(MSG_KEY, "."),
-            "18:40: " + getCheckMessage(MSG_KEY, "::"),
+            "21:11: " + getCheckMessage(MSG_KEY, "."),
+            "23:40: " + getCheckMessage(MSG_KEY, "::"),
         };
 
         verifyWithInlineConfigParser(getPath("Example4.java"), expected);
