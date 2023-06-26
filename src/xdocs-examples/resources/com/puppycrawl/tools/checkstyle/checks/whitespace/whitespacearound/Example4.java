@@ -1,6 +1,11 @@
-/*
-WhitespaceAround
-allowEmptyMethods = true
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="WhitespaceAround">
+      <property name="allowEmptyMethods" value="true"/>
+    </module>
+  </module>
+</module>
 
 
 */
