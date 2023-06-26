@@ -43,8 +43,12 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import org.xml.sax.InputSource;
 
+import com.puppycrawl.tools.checkstyle.ConfigurationLoader;
+import com.puppycrawl.tools.checkstyle.PropertiesExpander;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.internal.utils.XmlUtil;
 
 public final class InlineConfigParser {
@@ -177,6 +181,11 @@ public final class InlineConfigParser {
         final boolean isXmlConfig = "/*xml".equals(lines.get(0));
         if (isXmlConfig) {
             final String xmlConfig = getXmlConfig(lines);
+            InputSource inputSource = new InputSource(new StringReader(xmlConfig));
+            final Configuration config = ConfigurationLoader.loadConfiguration(
+                inputSource, new PropertiesExpander(System.getProperties()),
+                    ConfigurationLoader.IgnoredModulesOptions.EXECUTE
+            );
             handleXmlConfig(testInputConfigBuilder, inputFilePath, xmlConfig);
         }
         else {
@@ -185,8 +194,10 @@ public final class InlineConfigParser {
     }
 
     private static String getXmlConfig(List<String> lines) {
-        final int initialCapacity = 128;
-        final StringBuilder xmlConfig = new StringBuilder(initialCapacity);
+        final StringBuilder xmlConfig = new StringBuilder("<?xml version=\"1.0\"?>\n" +
+                "<!DOCTYPE module PUBLIC\n" +
+                "        \"-//Checkstyle//DTD Checkstyle Configuration 1.3//EN\"\n" +
+                "        \"https://checkstyle.org/dtds/configuration_1_3.dtd\">");
         for (String line : lines) {
             if (line.startsWith("/*")) {
                 continue;
