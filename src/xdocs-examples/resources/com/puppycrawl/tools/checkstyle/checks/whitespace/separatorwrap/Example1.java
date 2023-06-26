@@ -1,5 +1,9 @@
-/*
-SeparatorWrap
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="SeparatorWrap"/>
+  </module>
+</module>
 
 
 */

@@ -1,9 +1,14 @@
-/*
-AbbreviationAsWordInName
-allowedAbbreviationLength = 1
-allowedAbbreviations = CSV
-ignoreStatic = true
-tokens = VARIABLE_DEF
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="AbbreviationAsWordInName">
+      <property name="allowedAbbreviationLength" value="1"/>
+      <property name="allowedAbbreviations" value="CSV"/>
+      <property name="ignoreStatic" value="true"/>
+      <property name="tokens" value="VARIABLE_DEF"/>
+    </module>
+  </module>
+</module>
 
 
 */

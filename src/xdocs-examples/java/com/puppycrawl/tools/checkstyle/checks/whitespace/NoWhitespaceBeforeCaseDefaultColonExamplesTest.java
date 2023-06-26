@@ -40,11 +40,11 @@ public class NoWhitespaceBeforeCaseDefaultColonExamplesTest extends AbstractModu
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "15:14: " + getCheckMessage(MSG_KEY, ":"),
-            "19:15: " + getCheckMessage(MSG_KEY, ":"),
-            "27:9: " + getCheckMessage(MSG_KEY, ":"),
-            "31:13: " + getCheckMessage(MSG_KEY, ":"),
-            "38:34: " + getCheckMessage(MSG_KEY, ":"),
+            "19:14: " + getCheckMessage(MSG_KEY, ":"),
+            "23:15: " + getCheckMessage(MSG_KEY, ":"),
+            "31:9: " + getCheckMessage(MSG_KEY, ":"),
+            "35:13: " + getCheckMessage(MSG_KEY, ":"),
+            "42:34: " + getCheckMessage(MSG_KEY, ":"),
         };
 
         verifyWithInlineConfigParser(getNonCompilablePath("Example1.java"), expected);
