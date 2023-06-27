@@ -33,7 +33,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * <p>
  * This check is not applicable to nested type declarations,
  * <a
- * href="https://checkstyle.org/config_coding.html#UnnecessarySemicolonAfterTypeMemberDeclaration">
+ * href="https://checkstyle.org/checks/coding/unnecessarysemicolonaftertypememberdeclaration.html">
  * UnnecessarySemicolonAfterTypeMemberDeclaration</a> is responsible for it.
  * </p>
  * <ul>
