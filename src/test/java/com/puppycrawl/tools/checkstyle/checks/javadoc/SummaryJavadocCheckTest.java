@@ -257,4 +257,11 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
                 getPath("inputs/package-info.java"), expected);
     }
 
+    @Test
+    public void testEmptyPeriod() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("InputSummaryJavadocEmptyPeriod.java"), expected);
+    }
 }
