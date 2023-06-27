@@ -38,7 +38,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * pattern</a> for each line of the source header.
  * </p>
  * <p>
- * Rationale: In some projects <a href="https://checkstyle.org/config_header.html#Header">
+ * Rationale: In some projects <a href="https://checkstyle.org/checks/header/header.html">
  * checking against a fixed header</a> is not sufficient, e.g. the header might
  * require a copyright line where the year information is not static.
  * </p>

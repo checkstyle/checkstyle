@@ -55,7 +55,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * The deprecated javadoc tag is currently the only way to say why the package
  * is deprecated and what to use instead.  Until this is resolved, if you don't
  * want to print violations on package-info, you can use a
- * <a href="https://checkstyle.org/config_filters.html">filter</a> to ignore
+ * <a href="https://checkstyle.org/filters/index.html">filter</a> to ignore
  * these files until the javadoc tool faithfully supports it. An example config
  * using SuppressionSingleFilter is:
  * </p>
