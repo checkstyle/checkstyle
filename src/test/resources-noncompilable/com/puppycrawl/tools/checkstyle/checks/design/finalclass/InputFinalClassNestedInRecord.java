@@ -46,4 +46,6 @@ public record InputFinalClassNestedInRecord(int a) {
             }
         }
     }
+    private class Nothing { // violation 'Class Nothing should be declared as final'
+    }
 }

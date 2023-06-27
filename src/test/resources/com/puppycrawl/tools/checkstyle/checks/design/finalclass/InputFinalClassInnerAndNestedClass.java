@@ -14,7 +14,7 @@ public class InputFinalClassInnerAndNestedClass {
     }
 
     private class SubClass extends SuperClass {
-    }
+    } // violation above 'Class SubClass should be declared as final'
 
     class SameName { // violation
         private SameName() {
