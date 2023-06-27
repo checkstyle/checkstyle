@@ -334,14 +334,14 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
         if (summaryDoc.isEmpty()) {
             log(ast.getLineNumber(), MSG_SUMMARY_JAVADOC_MISSING);
         }
-        else if (!period.isEmpty()) {
+        else {
             final String firstSentence = getFirstSentence(ast);
             final int endOfSentence = firstSentence.lastIndexOf(period);
             if (!summaryDoc.contains(period)) {
                 log(ast.getLineNumber(), MSG_SUMMARY_FIRST_SENTENCE);
             }
             if (endOfSentence != -1
-                    && containsForbiddenFragment(firstSentence.substring(0, endOfSentence))) {
+                    && containsForbiddenFragment(firstSentence)) {
                 log(ast.getLineNumber(), MSG_SUMMARY_JAVADOC);
             }
         }
