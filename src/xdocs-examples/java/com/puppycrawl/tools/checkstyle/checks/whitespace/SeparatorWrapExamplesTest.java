@@ -40,8 +40,8 @@ public class SeparatorWrapExamplesTest extends AbstractModuleTestSupport {
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "20:21: " + getCheckMessage(MSG_LINE_PREVIOUS, ","),
-            "22:11: " + getCheckMessage(MSG_LINE_PREVIOUS, "."),
+            "24:21: " + getCheckMessage(MSG_LINE_PREVIOUS, ","),
+            "26:11: " + getCheckMessage(MSG_LINE_PREVIOUS, "."),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
@@ -50,7 +50,7 @@ public class SeparatorWrapExamplesTest extends AbstractModuleTestSupport {
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-            "18:36: " + getCheckMessage(MSG_LINE_NEW, "::"),
+            "23:36: " + getCheckMessage(MSG_LINE_NEW, "::"),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
@@ -59,8 +59,8 @@ public class SeparatorWrapExamplesTest extends AbstractModuleTestSupport {
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
-            "14:8: " + getCheckMessage(MSG_LINE_NEW, ","),
-            "17:17: " + getCheckMessage(MSG_LINE_NEW, ","),
+            "19:8: " + getCheckMessage(MSG_LINE_NEW, ","),
+            "22:17: " + getCheckMessage(MSG_LINE_NEW, ","),
         };
 
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);

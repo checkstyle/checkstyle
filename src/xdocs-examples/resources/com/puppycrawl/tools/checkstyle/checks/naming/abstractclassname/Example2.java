@@ -1,6 +1,11 @@
-/*
-AbstractClassName
-ignoreModifier = true
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="AbstractClassName">
+      <property name="ignoreModifier" value="true"/>
+    </module>
+  </module>
+</module>
 
 
 */

@@ -37,7 +37,12 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.xml.sax.InputSource;
+
+import com.puppycrawl.tools.checkstyle.ConfigurationLoader;
+import com.puppycrawl.tools.checkstyle.PropertiesExpander;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import com.puppycrawl.tools.checkstyle.api.Configuration;
 
 public final class InlineConfigParser {
 
@@ -165,6 +170,68 @@ public final class InlineConfigParser {
             throw new CheckstyleException("Config not specified on top."
                 + "Please see other inputs for examples of what is required.");
         }
+
+        final boolean isXmlConfig = "/*xml".equals(lines.get(0));
+        if (isXmlConfig) {
+            final String stringXmlConfig = getXmlConfig(lines);
+            final InputSource inputSource = new InputSource(new StringReader(stringXmlConfig));
+            final Configuration xmlConfig = ConfigurationLoader.loadConfiguration(
+                inputSource, new PropertiesExpander(System.getProperties()),
+                    ConfigurationLoader.IgnoredModulesOptions.EXECUTE
+            );
+            final String configName = xmlConfig.getName();
+            if (!"Checker".equals(configName)) {
+                throw new CheckstyleException(
+                        "First module should be Checker, but was " + configName);
+            }
+            handleXmlConfig(testInputConfigBuilder, inputFilePath, xmlConfig.getChildren());
+        }
+        else {
+            handleKeyValueConfig(testInputConfigBuilder, inputFilePath, lines);
+        }
+    }
+
+    private static String getXmlConfig(List<String> lines) {
+        final String dtdConfiguration = "<?xml version=\"1.0\"?>\n"
+            + "<!DOCTYPE module PUBLIC\n"
+            + "        \"-//Checkstyle//DTD Checkstyle Configuration 1.3//EN\"\n"
+            + "        \"https://checkstyle.org/dtds/configuration_1_3.dtd\">";
+        final StringBuilder xmlConfig = new StringBuilder(dtdConfiguration);
+        for (String line : lines) {
+            if (line.startsWith("/*")) {
+                continue;
+            }
+            if (line.startsWith("*/")) {
+                break;
+            }
+            xmlConfig.append(line);
+        }
+        return xmlConfig.toString();
+    }
+
+    private static void handleXmlConfig(TestInputConfiguration.Builder testInputConfigBuilder,
+                                        String inputFilePath,
+                                        Configuration... modules)
+            throws CheckstyleException {
+
+        for (Configuration module: modules) {
+            if ("TreeWalker".equals(module.getName())) {
+                handleXmlConfig(testInputConfigBuilder, inputFilePath, module.getChildren());
+            }
+            else {
+                final ModuleInputConfiguration.Builder moduleInputConfigBuilder =
+                    new ModuleInputConfiguration.Builder();
+                final String moduleName = module.getName();
+                setModuleName(moduleInputConfigBuilder, inputFilePath, moduleName);
+                setProperties(inputFilePath, module, moduleInputConfigBuilder);
+                testInputConfigBuilder.addChildModule(moduleInputConfigBuilder.build());
+            }
+        }
+    }
+
+    private static void handleKeyValueConfig(TestInputConfiguration.Builder testInputConfigBuilder,
+                                             String inputFilePath, List<String> lines)
+            throws CheckstyleException, IOException {
         int lineNo = 1;
         do {
             final ModuleInputConfiguration.Builder moduleInputConfigBuilder =
@@ -293,6 +360,35 @@ public final class InlineConfigParser {
                     inputConfigBuilder.addNonDefaultProperty(key, value);
                 }
             }
+        }
+    }
+
+    private static void setProperties(String inputFilePath, Configuration module,
+                                      ModuleInputConfiguration.Builder moduleInputConfigBuilder)
+            throws CheckstyleException {
+        final String[] getPropertyNames = module.getPropertyNames();
+        for (final String propertyName : getPropertyNames) {
+            final String propertyValue = module.getProperty(propertyName);
+
+            if ("file".equals(propertyName)) {
+                final String filePath = getResolvedPath(propertyValue, inputFilePath);
+                moduleInputConfigBuilder.addNonDefaultProperty(propertyName, filePath);
+            }
+            else {
+                if (NULL_STRING.equals(propertyValue)) {
+                    moduleInputConfigBuilder.addNonDefaultProperty(propertyName, null);
+                }
+                else {
+                    moduleInputConfigBuilder.addNonDefaultProperty(propertyName, propertyValue);
+                }
+            }
+        }
+
+        final Map<String, String> messages = module.getMessages();
+        for (final Map.Entry<String, String> entry : messages.entrySet()) {
+            final String key = entry.getKey();
+            final String value = entry.getValue();
+            moduleInputConfigBuilder.addModuleMessage(key, value);
         }
     }
 

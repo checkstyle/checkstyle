@@ -1,7 +1,12 @@
-/*
-ConstantName
-applyToPublic = false
-applyToProtected = false
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="ConstantName">
+      <property name="applyToPublic" value="false"/>
+      <property name="applyToProtected" value="false"/>
+    </module>
+  </module>
+</module>
 
 
 */

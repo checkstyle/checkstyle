@@ -42,10 +42,10 @@ public class TypecastParenPadExamplesTest extends AbstractModuleTestSupport {
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "13:11: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
-            "13:17: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
-            "17:21: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
-            "21:14: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
+            "17:11: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
+            "17:17: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
+            "21:21: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
+            "25:14: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
@@ -54,10 +54,10 @@ public class TypecastParenPadExamplesTest extends AbstractModuleTestSupport {
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-            "16:11: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "("),
-            "20:11: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "("),
-            "20:15: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ")"),
-            "22:16: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ")"),
+            "21:11: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "("),
+            "25:11: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "("),
+            "25:15: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ")"),
+            "27:16: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ")"),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);

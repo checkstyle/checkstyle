@@ -1,5 +1,9 @@
-/*
-AbbreviationAsWordInName
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="AbbreviationAsWordInName"/>
+  </module>
+</module>
 
 
 */
