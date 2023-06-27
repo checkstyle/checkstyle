@@ -55,24 +55,6 @@
   </mutation>
 
   <mutation unstable="false">
-    <sourceFile>MultipleVariableDeclarationsCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.MultipleVariableDeclarationsCheck</mutatedClass>
-    <mutatedMethod>getLastNode</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
-    <description>replaced call to com/puppycrawl/tools/checkstyle/checks/coding/MultipleVariableDeclarationsCheck::getLastNode with argument</description>
-    <lineContent>currentNode = getLastNode(child);</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>MultipleVariableDeclarationsCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.MultipleVariableDeclarationsCheck</mutatedClass>
-    <mutatedMethod>visitToken</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
-    <description>replaced call to com/puppycrawl/tools/checkstyle/utils/CheckUtil::getFirstNode with argument</description>
-    <lineContent>final DetailAST firstNextNode = CheckUtil.getFirstNode(nextNode);</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
     <sourceFile>OneStatementPerLineCheck.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck</mutatedClass>
     <mutatedMethod>beginTree</mutatedMethod>
