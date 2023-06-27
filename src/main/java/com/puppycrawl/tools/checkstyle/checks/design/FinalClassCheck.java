@@ -40,9 +40,28 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <p>
- * Checks that a class that has only private constructors and has no descendant
- * classes is declared as final.
+ * Ensures that identifies classes that can be effectively declared as final are explicitly
+ * marked as final. The following are different types of classes that can be identified:
  * </p>
+ * <ol>
+ *   <li>
+ *       Private classes with no declared constructors.
+ *   </li>
+ *   <li>
+ *       Classes with any modifier, and contains only private constructors.
+ *   </li>
+ * </ol>
+ * <p>
+ * Classes are skipped if:
+ * </p>
+ * <ol>
+ *   <li>
+ *       Class is Super class of some Anonymous inner class.
+ *   </li>
+ *   <li>
+ *       Class is extended by another class in the same file.
+ *   </li>
+ * </ol>
  * <p>
  * To configure the check:
  * </p>
@@ -81,6 +100,15 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *
  *     private TestAnonymousInnerClasses() {
  *     }
+ * }
+ * class Class1 {
+ *
+ *     private class Class2 { // violation, class should be declared final
+ *     }
+ *
+ *     public class Class3 { // ok
+ *     }
+ *
  * }
  * </pre>
  * <p>
@@ -216,13 +244,10 @@ public class FinalClassCheck
     private void visitCtor(DetailAST ast) {
         if (!ScopeUtil.isInEnumBlock(ast) && !ScopeUtil.isInRecordBlock(ast)) {
             final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
-            // Can be only of type ClassDesc, preceding if statements guarantee it.
-            final ClassDesc desc = (ClassDesc) typeDeclarations.getFirst();
             if (modifiers.findFirstToken(TokenTypes.LITERAL_PRIVATE) == null) {
+                // Can be only of type ClassDesc, preceding if statements guarantee it.
+                final ClassDesc desc = (ClassDesc) typeDeclarations.getFirst();
                 desc.registerNonPrivateCtor();
-            }
-            else {
-                desc.registerPrivateCtor();
             }
         }
     }
@@ -235,7 +260,7 @@ public class FinalClassCheck
         if (TokenUtil.isRootNode(ast.getParent())) {
             anonInnerClassToOuterTypeDecl.forEach(this::registerAnonymousInnerClassToSuperClass);
             // First pass: mark all classes that have derived inner classes
-            innerClasses.forEach(this::registerNestedSubclassToOuterSuperClasses);
+            innerClasses.forEach(this::registerExtendedClass);
             // Second pass: report violation for all classes that should be declared as final
             innerClasses.forEach((qualifiedClassName, classDesc) -> {
                 if (shouldBeDeclaredAsFinal(classDesc)) {
@@ -249,16 +274,27 @@ public class FinalClassCheck
     /**
      * Checks whether a class should be declared as final or not.
      *
-     * @param desc description of the class
+     * @param classDesc description of the class
      * @return true if given class should be declared as final otherwise false
      */
-    private static boolean shouldBeDeclaredAsFinal(ClassDesc desc) {
-        return desc.isWithPrivateCtor()
-                && !(desc.isDeclaredAsAbstract()
-                    || desc.isSuperClassOfAnonymousInnerClass())
-                && !desc.isDeclaredAsFinal()
-                && !desc.isWithNonPrivateCtor()
-                && !desc.isWithNestedSubclass();
+    private static boolean shouldBeDeclaredAsFinal(ClassDesc classDesc) {
+        final boolean shouldBeFinal;
+
+        final boolean skipClass = classDesc.isDeclaredAsFinal()
+                    || classDesc.isDeclaredAsAbstract()
+                    || classDesc.isSuperClassOfAnonymousInnerClass()
+                    || classDesc.isWithNestedSubclass();
+
+        if (skipClass) {
+            shouldBeFinal = false;
+        }
+        else if (classDesc.isHasDeclaredConstructor()) {
+            shouldBeFinal = classDesc.isDeclaredAsPrivate();
+        }
+        else {
+            shouldBeFinal = !classDesc.isWithNonPrivateCtor();
+        }
+        return shouldBeFinal;
     }
 
     /**
@@ -268,8 +304,8 @@ public class FinalClassCheck
      * @param qualifiedClassName qualifies class name(with package) of the current class
      * @param currentClass class which outer super class will be informed about nesting subclass
      */
-    private void registerNestedSubclassToOuterSuperClasses(String qualifiedClassName,
-                                                           ClassDesc currentClass) {
+    private void registerExtendedClass(String qualifiedClassName,
+                                       ClassDesc currentClass) {
         final String superClassName = getSuperClassName(currentClass.getTypeDeclarationAst());
         if (superClassName != null) {
             final ToIntFunction<ClassDesc> nestedClassCountProvider = classDesc -> {
@@ -507,11 +543,14 @@ public class FinalClassCheck
         /** Is class declared as abstract. */
         private final boolean declaredAsAbstract;
 
+        /** Is class contains private modifier. */
+        private final boolean declaredAsPrivate;
+
+        /** Does class have implicit constructor. */
+        private final boolean hasDeclaredConstructor;
+
         /** Does class have non-private ctors. */
         private boolean withNonPrivateCtor;
-
-        /** Does class have private ctors. */
-        private boolean withPrivateCtor;
 
         /** Does class have nested subclass. */
         private boolean withNestedSubclass;
@@ -531,11 +570,9 @@ public class FinalClassCheck
             final DetailAST modifiers = classAst.findFirstToken(TokenTypes.MODIFIERS);
             declaredAsFinal = modifiers.findFirstToken(TokenTypes.FINAL) != null;
             declaredAsAbstract = modifiers.findFirstToken(TokenTypes.ABSTRACT) != null;
-        }
-
-        /** Adds private ctor. */
-        private void registerPrivateCtor() {
-            withPrivateCtor = true;
+            declaredAsPrivate = modifiers.findFirstToken(TokenTypes.LITERAL_PRIVATE) != null;
+            hasDeclaredConstructor =
+                    classAst.getLastChild().findFirstToken(TokenTypes.CTOR_DEF) == null;
         }
 
         /** Adds non-private ctor. */
@@ -551,15 +588,6 @@ public class FinalClassCheck
         /** Adds anonymous inner class. */
         private void registerSuperClassOfAnonymousInnerClass() {
             superClassOfAnonymousInnerClass = true;
-        }
-
-        /**
-         *  Does class have private ctors.
-         *
-         *  @return true if class has private ctors
-         */
-        private boolean isWithPrivateCtor() {
-            return withPrivateCtor;
         }
 
         /**
@@ -607,5 +635,22 @@ public class FinalClassCheck
             return superClassOfAnonymousInnerClass;
         }
 
+        /**
+         * Does class have implicit constructor.
+         *
+         * @return true if class have implicit constructor
+         */
+        private boolean isHasDeclaredConstructor() {
+            return hasDeclaredConstructor;
+        }
+
+        /**
+         * Does class is private.
+         *
+         * @return true if class is private
+         */
+        private boolean isDeclaredAsPrivate() {
+            return declaredAsPrivate;
+        }
     }
 }
