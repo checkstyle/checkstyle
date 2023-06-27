@@ -96,6 +96,16 @@ public class StringLiteralEqualityCheckTest
     }
 
     @Test
+    public void test() throws Exception {
+        final String[] expected = {
+            "33:24: " + getCheckMessage(MSG_KEY, "=="),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputStringLiteralEqualityCheck.java"),
+                expected);
+    }
+
+    @Test
     public void testTokensNotNull() {
         final StringLiteralEqualityCheck check = new StringLiteralEqualityCheck();
         assertWithMessage("Acceptable tokens should not be null")
