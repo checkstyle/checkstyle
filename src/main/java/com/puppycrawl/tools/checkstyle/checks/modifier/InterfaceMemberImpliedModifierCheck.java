@@ -31,7 +31,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * </p>
  * <p>
  * This check is effectively the opposite of
- * <a href="https://checkstyle.org/checks/modifier/redundantmodifier.html#RedundantModifier">
+ * <a href="https://checkstyle.org/checks/modifier/redundantmodifier.html">
  * RedundantModifier</a>.
  * It checks the modifiers on interface members, ensuring that certain modifiers are explicitly
  * specified even though they are actually redundant.

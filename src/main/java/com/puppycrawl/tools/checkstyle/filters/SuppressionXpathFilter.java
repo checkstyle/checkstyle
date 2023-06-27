@@ -34,7 +34,7 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
 /**
  * <p>
  * Filter {@code SuppressionXpathFilter} works as
- * <a href="https://checkstyle.org/config_filters.html#SuppressionFilter">SuppressionFilter</a>.
+ * <a href="https://checkstyle.org/filters/suppressionfilter.html">SuppressionFilter</a>.
  * Additionally, filter processes {@code suppress-xpath} elements,
  * which contains xpath-expressions. Xpath-expressions are queries for
  * suppressed nodes inside the AST tree.
