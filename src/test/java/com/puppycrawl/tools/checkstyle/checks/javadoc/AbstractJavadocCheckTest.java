@@ -88,7 +88,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
             "66: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 13,
                     "mismatched input '}' expecting {LEADING_ASTERISK, WS, NEWLINE}",
                     "JAVADOC_INLINE_TAG"),
-            "74: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 19,
+            "75: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 19,
                     "no viable alternative at input '}'", "REFERENCE"),
         };
         verify(checkconfig, getPath("InputAbstractJavadocJavadocTagsWithoutArgs.java"), expected);
@@ -135,7 +135,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     public void testAntlrError(@SysErr Capturable systemErr) throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(TempCheck.class);
         final String[] expected = {
-            "8: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 78,
+            "10: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 78,
                     "mismatched input '(' expecting <EOF>", "JAVADOC"),
         };
         verify(checkConfig, getPath("InputAbstractJavadocInvalidAtSeeReference.java"), expected);
@@ -154,7 +154,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
             "12: " + getCheckMessage(MSG_JAVADOC_WRONG_SINGLETON_TAG, 35, "img")
         ));
         expectedMessages.put(getPath("InputAbstractJavadocInvalidAtSeeReference2.java"),
-            singletonList("8: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 78,
+            singletonList("9: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 78,
                     "mismatched input '(' expecting <EOF>", "JAVADOC")
         ));
         verify(createChecker(checkConfig), new File[] {
@@ -349,27 +349,27 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     public void testNoWsBeforeDescriptionInJavadocTags() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(TempCheck.class);
         final String[] expected = {
-            "17: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR,
+            "14: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR,
                     23, "mismatched input 'd' expecting <EOF>", "JAVADOC"),
-            "27: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR,
+            "25: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR,
                     30, "mismatched input '-' expecting <EOF>", "JAVADOC"),
             "34: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR,
                     39, "mismatched input '-' expecting <EOF>", "JAVADOC"),
-            "47: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR,
+            "48: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR,
                     34, "mismatched input '-' expecting <EOF>", "JAVADOC"),
-            "56: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR,
+            "58: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR,
                     31, "mismatched input '-' expecting <EOF>", "JAVADOC"),
-            "66: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR,
+            "69: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR,
                     15, "mismatched input '-' expecting <EOF>", "JAVADOC"),
-            "74: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR,
+            "78: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR,
                     32, "mismatched input '-' expecting <EOF>", "JAVADOC"),
-            "82: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR,
+            "87: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR,
                     17, "mismatched input '<' expecting <EOF>", "JAVADOC"),
-            "90: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR,
+            "96: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR,
                     34, "no viable alternative at input '-'", "JAVADOC_INLINE_TAG"),
-            "98: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR,
+            "105: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR,
                     39, "no viable alternative at input '-'", "JAVADOC_INLINE_TAG"),
-            "106: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR,
+            "113: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR,
                     19, "no viable alternative at input '<'", "JAVADOC_INLINE_TAG"),
         };
         verify(checkConfig, getPath("InputAbstractJavadocNoWsBeforeDescriptionInJavadocTags.java"),
@@ -381,10 +381,10 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(TempCheck.class);
         final String[] expected = {
             "9: " + getCheckMessage(MSG_JAVADOC_WRONG_SINGLETON_TAG, 9, "embed"),
-            "15: " + getCheckMessage(MSG_JAVADOC_WRONG_SINGLETON_TAG, 9, "keygen"),
-            "21: " + getCheckMessage(MSG_JAVADOC_WRONG_SINGLETON_TAG, 9, "SOURCE"),
-            "27: " + getCheckMessage(MSG_JAVADOC_WRONG_SINGLETON_TAG, 9, "TRACK"),
-            "33: " + getCheckMessage(MSG_JAVADOC_WRONG_SINGLETON_TAG, 9, "WBR"),
+            "16: " + getCheckMessage(MSG_JAVADOC_WRONG_SINGLETON_TAG, 9, "keygen"),
+            "23: " + getCheckMessage(MSG_JAVADOC_WRONG_SINGLETON_TAG, 9, "SOURCE"),
+            "30: " + getCheckMessage(MSG_JAVADOC_WRONG_SINGLETON_TAG, 9, "TRACK"),
+            "37: " + getCheckMessage(MSG_JAVADOC_WRONG_SINGLETON_TAG, 9, "WBR"),
         };
         verify(checkConfig, getPath("InputAbstractJavadocWrongSingletonTagInJavadoc.java"),
                 expected);
@@ -397,15 +397,15 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("violateExecutionOnNonTightHtml", "true");
         final String[] expected = {
             "11: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
-            "18: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
-            "21: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "li"),
-            "27: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
-            "34: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "tr"),
-            "42: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "li"),
-            "63: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "li"),
-            "81: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
-            "90: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "tr"),
-            "134: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
+            "19: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
+            "22: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "li"),
+            "28: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
+            "35: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "tr"),
+            "43: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "li"),
+            "64: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "li"),
+            "82: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
+            "92: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "tr"),
+            "137: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
         };
         verify(checkConfig, getPath("InputAbstractJavadocNonTightHtmlTags.java"), expected);
     }
@@ -437,11 +437,11 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
             "65: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "li"),
             "74:13: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
             "84: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
-            "93: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "tr"),
-            "112:8: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
-            "118:8: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
-            "122:8: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
-            "137: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
+            "94: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "tr"),
+            "114:8: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "121:8: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "125:8: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "143: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
         };
         verify(checkConfig, getPath("InputAbstractJavadocNonTightHtmlTagsVisitCount.java"),
                 expected);
@@ -455,46 +455,46 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("violateExecutionOnNonTightHtml", "true");
         checkConfig.addProperty("reportVisitJavadocToken", "true");
         final String[] expected = {
-            "10:4: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "12:4: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
             "11:4: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
             "13: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
             "13:4: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
             "14:4: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
             "14:39: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
-            "21: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
-            "21:9: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
-            "21:13: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
-            "25: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "li"),
-            "25:8: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
-            "30:8: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "22: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
+            "22:9: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "22:13: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "26: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "li"),
+            "26:8: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "31:8: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
             "32: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
             "32:8: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
             "32:25: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
-            "38:8: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
-            "38:22: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "39:8: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "39:22: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
             "40: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "tr"),
-            "46:8: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "47:8: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "49:8: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "49: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "li"),
             "48:8: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
-            "50: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "li"),
-            "50:8: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
-            "50:23: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
-            "56:8: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
-            "56:20: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
-            "56:34: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "49:23: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "57:8: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "57:20: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "57:34: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
             "59: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "li"),
             "59:16: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
             "59:21: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
-            "68:8: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "69:8: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
             "71: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
             "71:22: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
-            "76:8: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
             "78:8: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "79:8: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
             "82: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "tr"),
-            "101:8: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
-            "107: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
-            "107:9: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
-            "107:13: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
-            "107:33: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "104:8: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "111: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
+            "111:9: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "111:13: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "111:33: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
         };
         verify(checkConfig, getPath("InputAbstractJavadocNonTightHtmlTags2.java"), expected);
     }

@@ -5,11 +5,11 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.abstractjavadoc;
  * violateExecutionOnNonTightHtml = true
  * reportVisitJavadocToken = true
  */
-
+// violation below 'Unclosed HTML tag found: p'
 /**
  * <body>
  * <p> This class is only meant for testing. </p>
- * <p> In html, closing all tags is not necessary. // violation 'Unclosed HTML tag found: p'
+ * <p> In html, closing all tags is not necessary.
  * <li> neither is opening every tag <p> </li>
  * </body>
  *
@@ -19,37 +19,36 @@ public class InputAbstractJavadocNonTightHtmlTagsVisitCount {
     /** <p> <p> paraception </p> </p> */ // violation 'Unclosed HTML tag found: p'
     private int field1;
 
-    /**<li> paraTags should be opened</p> list isn't nested in parse tree </li>*/ // violation
-    // 'Unclosed HTML tag found: li'
+    /**<li> paraTags should be opened</p> list isn't nested in parse tree </li>*/
+    // violation above 'Unclosed HTML tag found: li'
     private int field2;
 
     /**
      * <p> this paragraph is closed and would be nested in javadoc tree </p>
-     * <li> list has an <p> unclosed para, but still the list would get nested </li> // violation
-     * 'Unclosed HTML tag found: p'
+     * <li> list has an <p> unclosed para, but still the list would get nested </li>
      */
+    // violation above 'Unclosed HTML tag found: p'
     private int field3;
 
     /**
      * <li> Complete <p> nesting </p> </li>
-     * <tr> Zero </p> nesting despite `tr` is closed </tr> // violation 'Unclosed HTML tag
-     * found: tr'
+     * <tr> Zero </p> nesting despite `tr` is closed </tr>
      */
+    // violation above 'Unclosed HTML tag found: tr'
     private int field4;
 
     /**
      * <p> <a href="www.something.com">something</a> paragraph with `htmlTag` </p>
      * <p> <a href="www.something.com"/> Nested paragraph with `singletonTag` </p>
-     * <li> Outer tag <li> Inner tag nested </li> not nested </li> // violation 'Unclosed
-     * HTML tag found: li'
+     * <li> Outer tag <li> Inner tag nested </li> not nested </li>
      */
+    // violation above 'Unclosed HTML tag found: li'
     private int field5;
 
     /**
      * <th> !isNonTight </th>
      * <th> th with <base/> singletonElement </th>
-     * <body> body with <br/> singletonElement </body> // violation 'First sentence of Javadoc
-     * is missing an ending period.'
+     * <body> body with <br/> singletonElement </body>
      * <colgroup><col><col><col></colgroup>
      * <dd> dd with <hr> singletonElement </dd>
      * <dt> dt with <img src="~/singletonElement.jpg" alt="" width="100" height="150"/>
@@ -57,6 +56,7 @@ public class InputAbstractJavadocNonTightHtmlTagsVisitCount {
      * <head> head with <img src="~/singletonElement.jpg" alt="" width="100" height="150">
      * singletonElement </head>
      */
+    // violation above 'First sentence of Javadoc is missing an ending period.'
     private int field6;
 
     /**
@@ -71,18 +71,19 @@ public class InputAbstractJavadocNonTightHtmlTagsVisitCount {
     int getField2() {return field2;} //method with empty javadoc
 
     /**
-     * <tr> <li> list is going to be nested in the parse tree </li> </tr> // violation 'First
-     * sentence of Javadoc is missing an ending period.'
+     * <tr> <li> list is going to be nested in the parse tree </li> </tr>
      *
      * @param field1 {@code <p> paraTag will not be recognized} in javadoc tree </p>
      */
+    // violation above 'First sentence of Javadoc is missing an ending period.'
     void setField1(int field1) {this.field1 = field1;}
 
     /**
      * <p>This is a setter method.
      * And paraTag shall be nested in parse tree </p>
-     * @param field2 <p> setter // violation 'Unclosed HTML tag found: p'
+     * @param field2 <p> setter
      */
+    // violation above 'Unclosed HTML tag found: p'
     void setField2(int field2) {this.field2 = field2;}
 
     /**
@@ -90,8 +91,9 @@ public class InputAbstractJavadocNonTightHtmlTagsVisitCount {
      * <li> List with singletonElement
      * <param name=mov value="~/imitation game.mp4"> <param name=allowfullscreen value=true> </li>
      * @return <tr> tr with <base href="www.something.com"> singletonElement </tr>
-     *     <tr> nonTight </th> // violation 'Unclosed HTML tag found: tr'
+     *     <tr> nonTight </th>
      */
+    // violation above 'Unclosed HTML tag found: tr'
     private int getField3() {return field3;}
 
     /**
@@ -109,17 +111,18 @@ public class InputAbstractJavadocNonTightHtmlTagsVisitCount {
     /**
      * <thead> <br> </thead>
      * <tfoot> <AREA ALT="alt" COORDS="100,0,200,50" HREF="/href/"> </tfoot>
-     * <p> </p> // violation 'First sentence of Javadoc is missing an ending period.'
+     * <p> </p>
      * @param field4 value to which {@link #field4} is to be set to
      */
+    // violation above 'First sentence of Javadoc is missing an ending period.'
     private void setField4(int field4) {this.field4 = field4;}
 
     /**
-     * <li> </li> // violation 'First sentence of Javadoc is missing an ending period.'
+     * <li> </li>
      * <TR> </tr>
      * <Td> </td>
      * <tH> </th>
-     * <body> </body> // violation 'First sentence of Javadoc is missing an ending period.'
+     * <body> </body>
      * <colGROUP> </COLgroup>
      * <DD> </dd>
      * <dt> </dt>
@@ -131,6 +134,9 @@ public class InputAbstractJavadocNonTightHtmlTagsVisitCount {
      * <tFoot> </TfOOT>
      * @param field5 value to which {@link #field5} is to be set to
      */
+    // violation above 'First sentence of Javadoc is missing an ending period.'
+    // violation above 'First sentence of Javadoc is missing an ending period.'
+
     private void setField5(int field5) {this.field5 = field5;}
 
     /**

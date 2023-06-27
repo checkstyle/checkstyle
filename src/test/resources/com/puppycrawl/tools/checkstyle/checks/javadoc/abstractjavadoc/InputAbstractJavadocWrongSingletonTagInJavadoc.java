@@ -6,32 +6,37 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.abstractjavadoc;
 
 public class InputAbstractJavadocWrongSingletonTagInJavadoc {
     /**
-     * </embed> // violation 'Javadoc comment at column 9 has parse error.
-     * It is forbidden to close singleton HTML tags. Tag: embed.'
+     * </embed>
      */
+    // violation abobve 'Javadoc comment at column 9 has parse error.
+    // It is forbidden to close singleton HTML tags. Tag: embed.'
     private int field1;
 
     /**
-     * </keygen> // violation 'Javadoc comment at column 9 has parse error.
-     * It is forbidden to close singleton HTML tags. Tag: keygen.'
+     * </keygen>
      */
+    // violation above 'Javadoc comment at column 9 has parse error.
+    // It is forbidden to close singleton HTML tags. Tag: keygen.'
     private int field2;
 
     /**
-     * </SOURCE> // violation 'Javadoc comment at column 9 has parse error.
-     * It is forbidden to close singleton HTML tags. Tag: SOURCE.'
+     * </SOURCE>
      */
+    // violation above 'Javadoc comment at column 9 has parse error.
+    // It is forbidden to close singleton HTML tags. Tag: SOURCE.'
     private int field3;
 
     /**
-     * </TRACK> // violation 'Javadoc comment at column 9 has parse error.
-     * It is forbidden to close singleton HTML tags. Tag: TRACK.'
+     * </TRACK>
      */
+    // violation above 'Javadoc comment at column 9 has parse error.
+    // It is forbidden to close singleton HTML tags. Tag: TRACK.'
     private int field4;
 
     /**
-     * </WBR> // violation 'Javadoc comment at column 9 has parse error.
-     * It is forbidden to close singleton HTML tags. Tag: WBR.'
+     * </WBR>
      */
+    // violation above 'Javadoc comment at column 9 has parse error.
+    // It is forbidden to close singleton HTML tags. Tag: WBR.'
     private int field5;
 }
