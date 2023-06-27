@@ -1,5 +1,9 @@
-/*
-EmptyForIteratorPad
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="EmptyForIteratorPad"/>
+  </module>
+</module>
 
 
 */

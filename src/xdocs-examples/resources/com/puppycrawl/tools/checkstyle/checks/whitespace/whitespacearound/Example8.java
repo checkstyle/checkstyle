@@ -1,6 +1,11 @@
-/*
-WhitespaceAround
-allowEmptyLambdas = true
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="WhitespaceAround">
+      <property name="allowEmptyLambdas" value="true"/>
+    </module>
+  </module>
+</module>
 
 
 */

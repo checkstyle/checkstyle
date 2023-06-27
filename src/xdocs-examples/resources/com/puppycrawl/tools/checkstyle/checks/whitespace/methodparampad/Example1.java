@@ -1,5 +1,9 @@
-/*
-MethodParamPad
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="MethodParamPad"/>
+  </module>
+</module>
 
 
 */

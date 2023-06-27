@@ -1,7 +1,12 @@
-/*
-NoWhitespaceAfter
-allowLineBreaks = false
-tokens = DOT
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="NoWhitespaceAfter">
+      <property name="allowLineBreaks" value="false"/>
+      <property name="tokens" value="DOT"/>
+    </module>
+  </module>
+</module>
 
 
 */
