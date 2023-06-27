@@ -33,7 +33,8 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * <p>
  * This check is not applicable to empty statements (unnecessary semicolons inside methods or
  * init blocks),
- * <a href="https://checkstyle.org/config_coding.html#EmptyStatement">EmptyStatement</a>
+ * <a href="https://checkstyle.org/checks/coding/emptystatement.html#EmptyStatement">
+ * EmptyStatement</a>
  * is responsible for it.
  * </p>
  * <ul>
