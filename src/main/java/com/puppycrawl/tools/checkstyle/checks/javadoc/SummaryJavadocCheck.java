@@ -368,19 +368,19 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
      */
     private static boolean isDefinedFirst(DetailNode inlineSummaryTag) {
         boolean isDefinedFirst = true;
-        DetailNode previousSibling = JavadocUtil.getPreviousSibling(inlineSummaryTag);
-        while (previousSibling != null && isDefinedFirst) {
-            switch (previousSibling.getType()) {
+        DetailNode currentAst = inlineSummaryTag;
+        while (currentAst != null && isDefinedFirst) {
+            switch (currentAst.getType()) {
                 case JavadocTokenTypes.TEXT:
-                    isDefinedFirst = previousSibling.getText().isBlank();
+                    isDefinedFirst = currentAst.getText().isBlank();
                     break;
                 case JavadocTokenTypes.HTML_ELEMENT:
-                    isDefinedFirst = !isTextPresentInsideHtmlTag(previousSibling);
+                    isDefinedFirst = !isTextPresentInsideHtmlTag(currentAst);
                     break;
                 default:
                     break;
             }
-            previousSibling = JavadocUtil.getPreviousSibling(previousSibling);
+            currentAst = JavadocUtil.getPreviousSibling(currentAst);
         }
         return isDefinedFirst;
     }
