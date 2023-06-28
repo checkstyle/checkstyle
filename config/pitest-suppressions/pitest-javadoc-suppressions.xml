@@ -906,14 +906,14 @@
 
 
 
-  <mutation unstable="false">
-    <sourceFile>SummaryJavadocCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck</mutatedClass>
-    <mutatedMethod>isDefinedFirst</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
-    <description>replaced call to com/puppycrawl/tools/checkstyle/utils/JavadocUtil::getPreviousSibling with argument</description>
-    <lineContent>DetailNode previousSibling = JavadocUtil.getPreviousSibling(inlineSummaryTag);</lineContent>
-  </mutation>
+
+
+
+
+
+
+
+
 
   <mutation unstable="false">
     <sourceFile>SummaryJavadocCheck.java</sourceFile>
