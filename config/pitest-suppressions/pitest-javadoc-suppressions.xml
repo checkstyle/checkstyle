@@ -976,23 +976,14 @@
     <lineContent>final String returnVisible = getVisibleContent(inlineReturn);</lineContent>
   </mutation>
 
-  <mutation unstable="false">
-    <sourceFile>SummaryJavadocCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck</mutatedClass>
-    <mutatedMethod>validateUntaggedSummary</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to java/lang/String::isEmpty</description>
-    <lineContent>else if (!period.isEmpty()) {</lineContent>
-  </mutation>
 
-  <mutation unstable="false">
-    <sourceFile>SummaryJavadocCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck</mutatedClass>
-    <mutatedMethod>validateUntaggedSummary</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
-    <description>removed conditional - replaced equality check with true</description>
-    <lineContent>else if (!period.isEmpty()) {</lineContent>
-  </mutation>
+
+
+
+
+
+
+
 
   <mutation unstable="false">
     <sourceFile>TagParser.java</sourceFile>

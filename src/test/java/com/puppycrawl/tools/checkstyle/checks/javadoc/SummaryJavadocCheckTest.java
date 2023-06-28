@@ -266,4 +266,31 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
                 getPath("InputSummaryJavadocTestForbiddenFragments.java"), expected);
     }
+
+    @Test
+    public void testEmptyPeriod() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("InputSummaryJavadocEmptyPeriod.java"), expected);
+    }
+
+    @Test
+    public void testForbidden3() throws Exception {
+        final String[] expected = {
+            "14: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputSummaryJavadocTestForbiddenFragments3.java"), expected);
+    }
+
+    @Test
+    public void testForbidden2() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("InputSummaryJavadocTestForbiddenFragments2.java"), expected);
+    }
+
 }
