@@ -864,23 +864,27 @@
     <lineContent>.matcher(firstSentence).replaceAll(&quot; &quot;).trim();</lineContent>
   </mutation>
 
-  <mutation unstable="false">
-    <sourceFile>SummaryJavadocCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck</mutatedClass>
-    <mutatedMethod>getFirstSentence</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to java/lang/String::contains</description>
-    <lineContent>if (text.contains(periodSuffix)) {</lineContent>
-  </mutation>
 
-  <mutation unstable="false">
-    <sourceFile>SummaryJavadocCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck</mutatedClass>
-    <mutatedMethod>getFirstSentence</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
-    <description>removed conditional - replaced equality check with false</description>
-    <lineContent>if (text.contains(periodSuffix)) {</lineContent>
-  </mutation>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   <mutation unstable="false">
     <sourceFile>SummaryJavadocCheck.java</sourceFile>
@@ -970,15 +974,6 @@
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
     <description>replaced call to com/puppycrawl/tools/checkstyle/checks/javadoc/SummaryJavadocCheck::getVisibleContent with argument</description>
     <lineContent>final String returnVisible = getVisibleContent(inlineReturn);</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>SummaryJavadocCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck</mutatedClass>
-    <mutatedMethod>validateUntaggedSummary</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
-    <description>replaced call to java/lang/String::substring with receiver</description>
-    <lineContent>&amp;&amp; containsForbiddenFragment(firstSentence.substring(0, endOfSentence))) {</lineContent>
   </mutation>
 
   <mutation unstable="false">
