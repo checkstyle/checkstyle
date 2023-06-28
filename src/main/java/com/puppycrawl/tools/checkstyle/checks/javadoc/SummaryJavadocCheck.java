@@ -334,7 +334,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
         if (summaryDoc.isEmpty()) {
             log(ast.getLineNumber(), MSG_SUMMARY_JAVADOC_MISSING);
         }
-        else if (!period.isEmpty()) {
+        else {
             final String firstSentence = getFirstSentence(ast);
             final int endOfSentence = firstSentence.lastIndexOf(period);
             if (!summaryDoc.contains(period)) {
