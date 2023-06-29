@@ -922,14 +922,14 @@
     <lineContent>|| ast.getType() == JavadocTokenTypes.HTML_ELEMENT</lineContent>
   </mutation>
 
-  <mutation unstable="false">
-    <sourceFile>SummaryJavadocCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck</mutatedClass>
-    <mutatedMethod>isInlineTagWithName</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
-    <description>removed conditional - replaced equality check with true</description>
-    <lineContent>return child[1].getType() == JavadocTokenTypes.CUSTOM_NAME</lineContent>
-  </mutation>
+
+
+
+
+
+
+
+
 
   <mutation unstable="false">
     <sourceFile>SummaryJavadocCheck.java</sourceFile>
