@@ -1,5 +1,9 @@
-/*
-ConstantName
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="ConstantName"/>
+  </module>
+</module>
 
 
 */

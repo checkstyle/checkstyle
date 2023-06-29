@@ -1,6 +1,11 @@
-/*
-EmptyLineSeparator
-allowNoEmptyLineBetweenFields = true
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="EmptyLineSeparator">
+      <property name="allowNoEmptyLineBetweenFields" value="true"/>
+    </module>
+  </module>
+</module>
 
 
 */

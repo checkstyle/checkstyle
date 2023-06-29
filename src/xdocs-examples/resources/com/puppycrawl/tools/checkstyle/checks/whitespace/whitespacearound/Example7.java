@@ -1,6 +1,11 @@
-/*
-WhitespaceAround
-allowEmptyLoops = true
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="WhitespaceAround">
+      <property name="allowEmptyLoops" value="true"/>
+    </module>
+  </module>
+</module>
 
 
 */

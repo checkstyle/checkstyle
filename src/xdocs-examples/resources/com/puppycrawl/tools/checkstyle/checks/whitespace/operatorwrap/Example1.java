@@ -1,5 +1,9 @@
-/*
-OperatorWrap
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="OperatorWrap"/>
+  </module>
+</module>
 
 
 */

@@ -41,7 +41,7 @@ public class FileTabCharacterExamplesTest extends AbstractModuleTestSupport {
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "11:1: " + getCheckMessage(MSG_FILE_CONTAINS_TAB),
+            "13:1: " + getCheckMessage(MSG_FILE_CONTAINS_TAB),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
@@ -50,8 +50,8 @@ public class FileTabCharacterExamplesTest extends AbstractModuleTestSupport {
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-            "12:1: " + getCheckMessage(MSG_CONTAINS_TAB),
-            "14:1: " + getCheckMessage(MSG_CONTAINS_TAB),
+            "15:1: " + getCheckMessage(MSG_CONTAINS_TAB),
+            "17:1: " + getCheckMessage(MSG_CONTAINS_TAB),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
@@ -60,7 +60,7 @@ public class FileTabCharacterExamplesTest extends AbstractModuleTestSupport {
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
-            "12:1: " + getCheckMessage(MSG_FILE_CONTAINS_TAB),
+            "15:1: " + getCheckMessage(MSG_FILE_CONTAINS_TAB),
         };
 
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
@@ -69,7 +69,7 @@ public class FileTabCharacterExamplesTest extends AbstractModuleTestSupport {
     @Test
     public void testExample4() throws Exception {
         final String[] expected = {
-            "10:1: " + getCheckMessage(MSG_FILE_CONTAINS_TAB),
+            "13:1: " + getCheckMessage(MSG_FILE_CONTAINS_TAB),
         };
 
         verifyWithInlineConfigParser(getPath("Example4.xml"), expected);

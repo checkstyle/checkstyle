@@ -1,5 +1,9 @@
-/*
-ParenPad
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="ParenPad"/>
+  </module>
+</module>
 
 
 */
