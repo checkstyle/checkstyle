@@ -160,6 +160,7 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
             "74: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
             // Until https://github.com/checkstyle/checkstyle/issues/11425
             "82: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+            "93: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
         };
 
         verifyWithInlineConfigParser(
