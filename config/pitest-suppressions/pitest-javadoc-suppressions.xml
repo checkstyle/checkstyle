@@ -967,14 +967,14 @@
     <lineContent>for (int i = 0; !found; i++) {</lineContent>
   </mutation>
 
-  <mutation unstable="false">
-    <sourceFile>SummaryJavadocCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck</mutatedClass>
-    <mutatedMethod>validateInlineReturnTag</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
-    <description>replaced call to com/puppycrawl/tools/checkstyle/checks/javadoc/SummaryJavadocCheck::getVisibleContent with argument</description>
-    <lineContent>final String returnVisible = getVisibleContent(inlineReturn);</lineContent>
-  </mutation>
+
+
+
+
+
+
+
+
 
 
 
