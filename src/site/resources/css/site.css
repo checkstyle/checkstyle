@@ -98,9 +98,9 @@ p, td, table.bodyTable td, th, table.bodyTable th, li, pre, #breadcrumbs span, #
 }
 
 #leftColumn {
-  width: 270px;
+  min-width: 250px;
+  width: fit-content;
 }
-
 
 .releaseDate {
   position: absolute;
@@ -132,6 +132,10 @@ a[title="toTop"] {
   text-decoration: none;
   font-weight: 900;
   z-index: 10;
+}
+
+.poweredBy {
+  display: block;
 }
 
 @media screen and (max-width: 823px) {
