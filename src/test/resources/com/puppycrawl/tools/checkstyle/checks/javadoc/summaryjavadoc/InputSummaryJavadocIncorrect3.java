@@ -87,4 +87,12 @@ public class InputSummaryJavadocIncorrect3 {
      */
     public void testMultipleElements() {
     }
+
+    /**
+     * <p> </p>
+     * {@summary This is not the summary}
+     */
+    // violation 2 lines above 'Summary of Javadoc is missing an ending period'
+    public void testHtmlTags3() {
+    }
 }
