@@ -42,10 +42,10 @@ public class AbstractClassNameCheckExamplesTest extends AbstractModuleTestSuppor
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "12:3: " + getCheckMessage(MSG_ILLEGAL_ABSTRACT_CLASS_NAME, "Second", DEFAULT_PATTERN),
-            "13:3: " + getCheckMessage(MSG_NO_ABSTRACT_CLASS_MODIFIER, "AbstractThird",
+            "16:3: " + getCheckMessage(MSG_ILLEGAL_ABSTRACT_CLASS_NAME, "Second", DEFAULT_PATTERN),
+            "17:3: " + getCheckMessage(MSG_NO_ABSTRACT_CLASS_MODIFIER, "AbstractThird",
                 DEFAULT_PATTERN),
-            "15:3: " + getCheckMessage(MSG_ILLEGAL_ABSTRACT_CLASS_NAME, "GeneratorFifth",
+            "19:3: " + getCheckMessage(MSG_ILLEGAL_ABSTRACT_CLASS_NAME, "GeneratorFifth",
                     DEFAULT_PATTERN),
         };
 
@@ -55,8 +55,8 @@ public class AbstractClassNameCheckExamplesTest extends AbstractModuleTestSuppor
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-            "13:3: " + getCheckMessage(MSG_ILLEGAL_ABSTRACT_CLASS_NAME, "Second", DEFAULT_PATTERN),
-            "16:3: " + getCheckMessage(MSG_ILLEGAL_ABSTRACT_CLASS_NAME, "GeneratorFifth",
+            "18:3: " + getCheckMessage(MSG_ILLEGAL_ABSTRACT_CLASS_NAME, "Second", DEFAULT_PATTERN),
+            "21:3: " + getCheckMessage(MSG_ILLEGAL_ABSTRACT_CLASS_NAME, "GeneratorFifth",
                     DEFAULT_PATTERN),
         };
 
@@ -66,7 +66,7 @@ public class AbstractClassNameCheckExamplesTest extends AbstractModuleTestSuppor
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
-            "14:3: " + getCheckMessage(MSG_NO_ABSTRACT_CLASS_MODIFIER, "AbstractThird",
+            "19:3: " + getCheckMessage(MSG_NO_ABSTRACT_CLASS_MODIFIER, "AbstractThird",
                 DEFAULT_PATTERN),
         };
 
@@ -78,9 +78,9 @@ public class AbstractClassNameCheckExamplesTest extends AbstractModuleTestSuppor
         final String pattern = "^Generator.+$";
 
         final String[] expected = {
-            "13:3: " + getCheckMessage(MSG_ILLEGAL_ABSTRACT_CLASS_NAME, "AbstractFirst", pattern),
-            "14:3: " + getCheckMessage(MSG_ILLEGAL_ABSTRACT_CLASS_NAME, "Second", pattern),
-            "18:3: " + getCheckMessage(MSG_NO_ABSTRACT_CLASS_MODIFIER, "GeneratorSixth",
+            "18:3: " + getCheckMessage(MSG_ILLEGAL_ABSTRACT_CLASS_NAME, "AbstractFirst", pattern),
+            "19:3: " + getCheckMessage(MSG_ILLEGAL_ABSTRACT_CLASS_NAME, "Second", pattern),
+            "23:3: " + getCheckMessage(MSG_NO_ABSTRACT_CLASS_MODIFIER, "GeneratorSixth",
                 pattern),
         };
 

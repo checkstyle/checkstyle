@@ -1,6 +1,11 @@
-/*
-EmptyForIteratorPad
-option = space
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="EmptyForIteratorPad">
+      <property name="option" value="space"/>
+    </module>
+  </module>
+</module>
 
 
 */

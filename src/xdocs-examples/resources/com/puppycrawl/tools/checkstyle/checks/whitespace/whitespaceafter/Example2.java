@@ -1,6 +1,11 @@
-/*
-WhitespaceAfter
-tokens = COMMA, SEMI
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="WhitespaceAfter">
+      <property name="tokens" value="COMMA, SEMI"/>
+    </module>
+  </module>
+</module>
 
 
 */

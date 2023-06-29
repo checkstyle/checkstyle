@@ -1,6 +1,11 @@
-/*
-EmptyLineSeparator
-allowMultipleEmptyLines = false
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="EmptyLineSeparator">
+      <property name="allowMultipleEmptyLines" value="false"/>
+    </module>
+  </module>
+</module>
 
 
 */

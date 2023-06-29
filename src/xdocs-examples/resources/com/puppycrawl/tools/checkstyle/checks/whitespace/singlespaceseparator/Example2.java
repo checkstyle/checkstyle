@@ -1,6 +1,11 @@
-/*
-SingleSpaceSeparator
-validateComments = true
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="SingleSpaceSeparator">
+      <property name="validateComments" value="true"/>
+    </module>
+  </module>
+</module>
 
 
 */

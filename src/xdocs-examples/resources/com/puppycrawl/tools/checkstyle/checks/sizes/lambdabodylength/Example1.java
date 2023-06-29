@@ -1,5 +1,9 @@
-/*
-LambdaBodyLength
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="LambdaBodyLength"/>
+  </module>
+</module>
 
 
 */

@@ -1,6 +1,9 @@
-/*
-FileTabCharacter
-eachLine = true
+/*xml
+<module name="Checker">
+  <module name="FileTabCharacter">
+    <property name="eachLine" value="true"/>
+  </module>
+</module>
 
 
 */
