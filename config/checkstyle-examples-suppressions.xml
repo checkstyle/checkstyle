@@ -45,5 +45,8 @@
   <suppress checks="FileLength"
     files="whitespaceafter[\\/]Example1.java"/>
 
+  <suppress checks="RegexpSinglelineJava"
+    files="header[\\/]RegexpHeaderCheckTest.java"/>
+
 
 </suppressions>

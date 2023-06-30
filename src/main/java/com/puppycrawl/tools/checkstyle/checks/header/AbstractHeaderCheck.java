@@ -28,7 +28,6 @@ import java.io.StringReader;
 import java.net.URI;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
-import java.nio.charset.UnsupportedCharsetException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -60,8 +59,7 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck
 
     /** Specify the character encoding to use when reading the headerFile. */
     @XdocsPropertyType(PropertyType.STRING)
-    private Charset charset = createCharset(System.getProperty("file.encoding",
-        StandardCharsets.UTF_8.name()));
+    private final Charset charset = StandardCharsets.UTF_8;
 
     /**
      * Hook method for post-processing header lines.
@@ -76,15 +74,6 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck
      */
     protected List<String> getHeaderLines() {
         return List.copyOf(readerLines);
-    }
-
-    /**
-     * Setter to specify the charset to use when reading the headerFile.
-     *
-     * @param charset the charset name to use for loading the header from a file
-     */
-    public void setCharset(String charset) {
-        this.charset = createCharset(charset);
     }
 
     /**
@@ -131,21 +120,6 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck
                     "header has already been set - "
                     + "set either header or headerFile, not both");
         }
-    }
-
-    /**
-     * Creates charset by name.
-     *
-     * @param name charset name
-     * @return created charset
-     * @throws UnsupportedCharsetException if charset is unsupported
-     */
-    private static Charset createCharset(String name) {
-        if (!Charset.isSupported(name)) {
-            final String message = "unsupported charset: '" + name + "'";
-            throw new UnsupportedCharsetException(message);
-        }
-        return Charset.forName(name);
     }
 
     /**
