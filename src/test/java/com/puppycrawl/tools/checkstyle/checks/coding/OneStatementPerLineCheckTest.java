@@ -159,4 +159,23 @@ public class OneStatementPerLineCheckTest extends AbstractModuleTestSupport {
             inputWithWarnings, expectedFirstInput,
             inputWithoutWarnings, expectedSecondInput));
     }
+
+    @Test
+    public void testStateIsClearedOnBeginTreeForLastVariableStatement() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(OneStatementPerLineCheck.class);
+        checkConfig.addProperty("treatTryResourcesAsStatement", "true");
+        final String file1 = getPath(
+                "InputOneStatementPerLineBeginTreeLastVariableResourcesStatementEnd1.java");
+        final String file2 = getPath(
+                "InputOneStatementPerLineBeginTreeLastVariableResourcesStatementEnd2.java");
+        final List<String> expectedFirstInput = List.of(
+                "8:59: " + getCheckMessage(MSG_KEY)
+        );
+        final List<String> expectedSecondInput = List.of(CommonUtil.EMPTY_STRING_ARRAY);
+        final File[] inputs = {new File(file1), new File(file2)};
+
+        verify(createChecker(checkConfig), inputs, ImmutableMap.of(
+            file1, expectedFirstInput,
+            file2, expectedSecondInput));
+    }
 }

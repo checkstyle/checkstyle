@@ -54,21 +54,6 @@
     <lineContent>this.query = query;</lineContent>
   </mutation>
 
-
-
-
-
-
-
-  <mutation unstable="false">
-    <sourceFile>OneStatementPerLineCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck</mutatedClass>
-    <mutatedMethod>beginTree</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
-    <description>Removed assignment to member variable lastVariableResourceStatementEnd</description>
-    <lineContent>lastVariableResourceStatementEnd = 0;</lineContent>
-  </mutation>
-
   <mutation unstable="false">
     <sourceFile>StringLiteralEqualityCheck.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.StringLiteralEqualityCheck</mutatedClass>
