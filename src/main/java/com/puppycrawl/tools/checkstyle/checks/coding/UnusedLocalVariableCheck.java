@@ -876,6 +876,18 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
         }
 
         /**
+         * Create a new VariableDesc instance.
+         *
+         * @param name name of the variable
+         * @param scope ast of type {@link TokenTypes#SLIST} or
+         *              {@link TokenTypes#LITERAL_FOR} or {@link TokenTypes#OBJBLOCK}
+         *              which is enclosing the variable
+         */
+        private VariableDesc(String name, DetailAST scope) {
+            this(name, null, scope);
+        }
+
+        /**
          * Get the name of variable.
          *
          * @return name of variable
@@ -1020,7 +1032,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
             final Deque<VariableDesc> instAndClassVarDeque = new ArrayDeque<>();
             instanceAndClassVarStack.forEach(instVar -> {
                 final VariableDesc variableDesc = new VariableDesc(instVar.getName(),
-                        instVar.getTypeAst(), updatedScope);
+                        updatedScope);
                 variableDesc.registerAsInstOrClassVar();
                 instAndClassVarDeque.push(variableDesc);
             });
