@@ -27,14 +27,14 @@
     <lineContent>return instanceFields.contains(field)</lineContent>
   </mutation>
 
-  <mutation unstable="false">
-    <sourceFile>IllegalInstantiationCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck</mutatedClass>
-    <mutatedMethod>beginTree</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
-    <description>Removed assignment to member variable pkgName</description>
-    <lineContent>pkgName = null;</lineContent>
-  </mutation>
+
+
+
+
+
+
+
+
 
   <mutation unstable="false">
     <sourceFile>MatchXpathCheck.java</sourceFile>
