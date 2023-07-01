@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle;
 
 import static com.google.common.truth.Truth.assertWithMessage;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.io.File;
 import java.io.IOException;
@@ -228,6 +229,16 @@ public class PackageNamesLoaderTest extends AbstractPathTestSupport {
         }
     }
 
+    @Test
+    public void testUnmodifiableCollection() throws Exception {
+        final Set<String> actualPackageNames = PackageNamesLoader
+                .getPackageNames(new TestUrlsClassLoader(Collections.emptyEnumeration()));
+
+        assertThrows(UnsupportedOperationException.class,
+                () -> actualPackageNames.add("com.puppycrawl.tools.checkstyle.checks.modifier"));
+
+    }
+
     /**
      * Mocked ClassLoader for testing URL loading.
      *
@@ -263,4 +274,39 @@ public class PackageNamesLoaderTest extends AbstractPathTestSupport {
         }
     }
 
+    @Test
+    public void testMapping() throws Exception {
+        final Enumeration<URL> enumeration = Collections.enumeration(Collections.singleton(
+                new File(getPath("InputPackageNamesLoader1.xml")).toURI().toURL()));
+
+        final Set<String> actualPackageNames = PackageNamesLoader
+                .getPackageNames(new TestUrlsClassLoader(enumeration));
+        final String[] expectedPackageNames = {
+            "com.puppycrawl.tools.checkstyle",
+            "com.puppycrawl.tools.checkstyle.checks",
+            "com.puppycrawl.tools.checkstyle.checks.annotation",
+        };
+
+        assertWithMessage("Invalid package names length.")
+            .that(actualPackageNames)
+            .hasSize(expectedPackageNames.length);
+    }
+
+    @Test
+    public void testMapping2() throws Exception {
+        final Enumeration<URL> enumeration = Collections.enumeration(Collections.singleton(
+                new File(getPath("InputPackageNamesLoader2.xml")).toURI().toURL()));
+
+        final Set<String> actualPackageNames = PackageNamesLoader
+                .getPackageNames(new TestUrlsClassLoader(enumeration));
+        final String[] expectedPackageNames = {
+            "com.puppycrawl.tools.checkstyle",
+            "com.puppycrawl.tools.checkstyle.checks",
+            "com.puppycrawl.tools.checkstyle.checks.annotation",
+        };
+
+        assertWithMessage("Invalid package names length.")
+            .that(actualPackageNames)
+            .hasSize(expectedPackageNames.length);
+    }
 }
