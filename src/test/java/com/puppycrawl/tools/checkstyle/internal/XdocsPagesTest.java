@@ -81,6 +81,7 @@ import com.puppycrawl.tools.checkstyle.internal.utils.XmlUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 public class XdocsPagesTest {
+    private static final Path SITE_PATH = Paths.get("src/site/site.xml");
 
     private static final Path AVAILABLE_CHECKS_PATH = Paths.get("src/xdocs/checks.xml");
     private static final String LINK_TEMPLATE =
@@ -241,6 +242,22 @@ public class XdocsPagesTest {
     private static boolean isPresent(String availableChecks, String checkName) {
         final String linkPattern = String.format(Locale.ROOT, LINK_TEMPLATE, checkName);
         return availableChecks.matches(linkPattern);
+    }
+
+    @Test
+    public void testAllConfigsHaveLinkInSite() throws Exception {
+        final String siteContent = Files.readString(SITE_PATH);
+
+        for (Path path : XdocUtil.getXdocsConfigFilePaths(XdocUtil.getXdocsFilePaths())) {
+            final String expectedFile = path.toString()
+                    .replace(".xml", ".html")
+                    .replaceAll("\\\\", "/")
+                    .replaceAll("src[\\\\/]xdocs[\\\\/]", "");
+            final String expectedLink = String.format(Locale.ROOT, "href=\"%s\"", expectedFile);
+            assertWithMessage("Expected to find link to '" + expectedLink + "' in " + SITE_PATH)
+                    .that(siteContent)
+                    .contains(expectedLink);
+        }
     }
 
     @Test
