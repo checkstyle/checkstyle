@@ -36,23 +36,23 @@
     <lineContent>pkgName = null;</lineContent>
   </mutation>
 
-  <mutation unstable="false">
-    <sourceFile>MatchXpathCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.MatchXpathCheck</mutatedClass>
-    <mutatedMethod>&lt;init&gt;</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
-    <description>Removed assignment to member variable query</description>
-    <lineContent>private String query = &quot;&quot;;</lineContent>
-  </mutation>
 
-  <mutation unstable="false">
-    <sourceFile>MatchXpathCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.MatchXpathCheck</mutatedClass>
-    <mutatedMethod>setQuery</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
-    <description>Removed assignment to member variable query</description>
-    <lineContent>this.query = query;</lineContent>
-  </mutation>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   <mutation unstable="false">
     <sourceFile>StringLiteralEqualityCheck.java</sourceFile>
