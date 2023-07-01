@@ -42,6 +42,8 @@
     files="illegalinstantiation[\\/]InputIllegalInstantiationNoPackage\.java"/>
   <suppress checks="PackageDeclarationCheck"
     files="illegalinstantiation[\\/]InputIllegalInstantiationLang\d*\.java"/>
+  <suppress checks="PackageDeclarationCheck"
+    files="illegalinstantiation[\\/]InputIllegalInstantiationBeginTree2\.java"/>
 
   <!-- intentional problem for testing -->
   <suppress checks="PackageDeclarationCheck"
