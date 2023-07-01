@@ -81,12 +81,4 @@
     <lineContent>final DetailAST updatedScope = literalNewAst.getLastChild();</lineContent>
   </mutation>
 
-  <mutation unstable="false">
-    <sourceFile>UnusedLocalVariableCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheck$TypeDeclDesc</mutatedClass>
-    <mutatedMethod>lambda$getUpdatedCopyOfVarStack$0</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to com/puppycrawl/tools/checkstyle/checks/coding/UnusedLocalVariableCheck$VariableDesc::getTypeAst</description>
-    <lineContent>instVar.getTypeAst(), updatedScope);</lineContent>
-  </mutation>
 </suppressedMutations>
