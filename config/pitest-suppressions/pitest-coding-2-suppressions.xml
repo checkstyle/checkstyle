@@ -54,14 +54,14 @@
     <lineContent>this.query = query;</lineContent>
   </mutation>
 
-  <mutation unstable="false">
-    <sourceFile>StringLiteralEqualityCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.StringLiteralEqualityCheck</mutatedClass>
-    <mutatedMethod>areStringsConcatenated</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
-    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::findFirstToken with receiver</description>
-    <lineContent>DetailAST plusAst = ast.findFirstToken(TokenTypes.PLUS);</lineContent>
-  </mutation>
+
+
+
+
+
+
+
+
 
   <mutation unstable="false">
     <sourceFile>UnusedLocalVariableCheck.java</sourceFile>
