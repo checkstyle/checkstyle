@@ -294,8 +294,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
         else if (type == TokenTypes.IDENT) {
             visitIdentToken(ast, variables);
         }
-        else if (type == TokenTypes.LITERAL_NEW
-                && isInsideLocalAnonInnerClass(ast)) {
+        else if (isInsideLocalAnonInnerClass(ast)) {
             visitLocalAnonInnerClass(ast);
         }
         else if (TokenUtil.isTypeDeclaration(type)) {
@@ -404,7 +403,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
         if (lastChild != null && lastChild.getType() == TokenTypes.OBJBLOCK) {
             DetailAST currentAst = literalNewAst;
             while (currentAst.getType() != TokenTypes.SLIST) {
-                if (TokenUtil.isTypeDeclaration(currentAst.getParent().getType())) {
+                if (TokenUtil.isTypeDeclaration(currentAst.getType())) {
                     break;
                 }
                 currentAst = currentAst.getParent();
