@@ -357,7 +357,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
         return Arrays.stream(javadoc.getChildren())
             .filter(SummaryJavadocCheck::isInlineTagPresent)
             .findFirst()
-            .map(SummaryJavadocCheck::getInlineTagNodeWithinHtmlElement);
+            .map(SummaryJavadocCheck::getInlineTagNodeForAst);
     }
 
     /**
@@ -422,9 +422,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
      * @return true, if the inline tag node is present.
      */
     private static boolean isInlineTagPresent(DetailNode ast) {
-        return ast.getType() == JavadocTokenTypes.JAVADOC_INLINE_TAG
-                || ast.getType() == JavadocTokenTypes.HTML_ELEMENT
-                && getInlineTagNodeWithinHtmlElement(ast) != null;
+        return getInlineTagNodeForAst(ast) != null;
     }
 
     /**
@@ -433,7 +431,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
      * @param ast html tag node.
      * @return inline summary javadoc tag node or null if no node is found.
      */
-    private static DetailNode getInlineTagNodeWithinHtmlElement(DetailNode ast) {
+    private static DetailNode getInlineTagNodeForAst(DetailNode ast) {
         DetailNode node = ast;
         DetailNode result = null;
         // node can never be null as this method is called when there is a HTML_ELEMENT
@@ -443,14 +441,14 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
         else if (node.getType() == JavadocTokenTypes.HTML_TAG) {
             // HTML_TAG always has more than 2 children.
             node = node.getChildren()[1];
-            result = getInlineTagNodeWithinHtmlElement(node);
+            result = getInlineTagNodeForAst(node);
         }
         else if (node.getType() == JavadocTokenTypes.HTML_ELEMENT
                 // Condition for SINGLETON html element which cannot contain summary node
                 && node.getChildren()[0].getChildren().length > 1) {
             // Html elements have one tested tag before actual content inside it
             node = node.getChildren()[0].getChildren()[1];
-            result = getInlineTagNodeWithinHtmlElement(node);
+            result = getInlineTagNodeForAst(node);
         }
         return result;
     }
