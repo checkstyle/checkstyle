@@ -787,7 +787,7 @@ public class ImportOrderCheck
         lastGroup = Integer.MIN_VALUE;
         lastImportLine = Integer.MIN_VALUE;
         lastImport = "";
-        lastImportStatic = false;
+
         beforeFirstImport = true;
         staticImportsApart =
             option == ImportOrderOption.TOP || option == ImportOrderOption.BOTTOM;
