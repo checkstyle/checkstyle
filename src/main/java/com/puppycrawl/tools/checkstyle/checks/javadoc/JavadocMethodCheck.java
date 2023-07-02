@@ -691,7 +691,7 @@ public class JavadocMethodCheck extends AbstractCheck {
 
     @Override
     public void beginTree(DetailAST rootAST) {
-        currentClassName = "";
+//        currentClassName = "";
     }
 
     @Override
