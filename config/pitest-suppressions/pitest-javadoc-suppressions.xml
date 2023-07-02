@@ -90,14 +90,14 @@
     <lineContent>private JavadocContentLocationOption location = JavadocContentLocationOption.SECOND_LINE;</lineContent>
   </mutation>
 
-  <mutation unstable="false">
-    <sourceFile>JavadocMethodCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck</mutatedClass>
-    <mutatedMethod>beginTree</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
-    <description>Removed assignment to member variable currentClassName</description>
-    <lineContent>currentClassName = &quot;&quot;;</lineContent>
-  </mutation>
+
+
+
+
+
+
+
+
 
   <mutation unstable="false">
     <sourceFile>JavadocMethodCheck.java</sourceFile>
