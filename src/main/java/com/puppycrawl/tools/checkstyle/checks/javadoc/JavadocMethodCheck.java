@@ -766,7 +766,7 @@ public class JavadocMethodCheck extends AbstractCheck {
 
         if (!hasShortCircuitTag(ast, tags)) {
             if (ast.getType() == TokenTypes.ANNOTATION_FIELD_DEF) {
-                checkReturnTag(tags, ast.getLineNo(), true);
+                checkReturnTag(tags, 0, true);
             }
             else {
                 final Iterator<JavadocTag> it = tags.iterator();

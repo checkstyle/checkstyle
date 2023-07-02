@@ -99,14 +99,14 @@
     <lineContent>currentClassName = &quot;&quot;;</lineContent>
   </mutation>
 
-  <mutation unstable="false">
-    <sourceFile>JavadocMethodCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck</mutatedClass>
-    <mutatedMethod>checkComment</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getLineNo</description>
-    <lineContent>checkReturnTag(tags, ast.getLineNo(), true);</lineContent>
-  </mutation>
+
+
+
+
+
+
+
+
 
   <mutation unstable="false">
     <sourceFile>JavadocMethodCheck.java</sourceFile>
