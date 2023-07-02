@@ -1266,7 +1266,7 @@ public class JavadocMethodCheck extends AbstractCheck {
             tagIt.remove();
 
             // Loop looking for matching throw
-            final Token token = new Token(tag.getFirstArg(), tag.getLineNo(), tag
+            final Token token = new Token(tag.getFirstArg(), 0, tag
                     .getColumnNo());
             final ClassInfo documentedClassInfo = new ClassInfo(token);
             processThrows(throwsList, documentedClassInfo, foundThrows);
