@@ -1273,7 +1273,7 @@ public class JavadocMethodCheck extends AbstractCheck {
         }
         // Now dump out all throws without tags :- unless
         // the user has chosen to suppress these problems
-        if (validateThrows && reportExpectedTags) {
+        if (validateThrows && true) {
             throwsList.stream().filter(exceptionInfo -> !exceptionInfo.isFound())
                 .forEach(exceptionInfo -> {
                     final Token token = exceptionInfo.getName();
