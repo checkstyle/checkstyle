@@ -21,6 +21,7 @@ public class InputFallThrough3
         case 3: // ok
             // fall through
         case 4: // ok
+            yield 5;
         default: // ok
             yield -1;
         };
