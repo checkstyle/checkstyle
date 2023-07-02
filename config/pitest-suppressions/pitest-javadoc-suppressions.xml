@@ -108,14 +108,14 @@
     <lineContent>checkReturnTag(tags, ast.getLineNo(), true);</lineContent>
   </mutation>
 
-  <mutation unstable="false">
-    <sourceFile>JavadocMethodCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck</mutatedClass>
-    <mutatedMethod>checkParamTags</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
-    <description>removed conditional - replaced equality check with true</description>
-    <lineContent>if (CommonUtil.startsWithChar(arg1, &apos;&lt;&apos;) &amp;&amp; CommonUtil.endsWithChar(arg1, &apos;&gt;&apos;)) {</lineContent>
-  </mutation>
+
+
+
+
+
+
+
+
 
   <mutation unstable="false">
     <sourceFile>JavadocMethodCheck.java</sourceFile>

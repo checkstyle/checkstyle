@@ -1132,7 +1132,7 @@ public class JavadocMethodCheck extends AbstractCheck {
             final String arg1 = tag.getFirstArg();
             boolean found = removeMatchingParam(params, arg1);
 
-            if (CommonUtil.startsWithChar(arg1, '<') && CommonUtil.endsWithChar(arg1, '>')) {
+            if (CommonUtil.startsWithChar(arg1, '<') && true) {
                 found = searchMatchingTypeParameter(typeParams,
                         arg1.substring(1, arg1.length() - 1));
             }
