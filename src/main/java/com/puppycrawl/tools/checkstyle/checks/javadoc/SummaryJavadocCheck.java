@@ -646,9 +646,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
     private static boolean startsWithInheritDoc(DetailNode root) {
         boolean found = false;
         final DetailNode[] children = root.getChildren();
-
-        for (int i = 0; !found; i++) {
-            final DetailNode child = children[i];
+        for (final DetailNode child : children) {
             if (child.getType() == JavadocTokenTypes.JAVADOC_INLINE_TAG
                     && child.getChildren()[1].getType() == JavadocTokenTypes.INHERIT_DOC_LITERAL) {
                 found = true;
