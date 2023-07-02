@@ -117,14 +117,14 @@
     <lineContent>if (CommonUtil.startsWithChar(arg1, &apos;&lt;&apos;) &amp;&amp; CommonUtil.endsWithChar(arg1, &apos;&gt;&apos;)) {</lineContent>
   </mutation>
 
-  <mutation unstable="false">
-    <sourceFile>JavadocMethodCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck</mutatedClass>
-    <mutatedMethod>checkThrowsTags</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocTag::getColumnNo</description>
-    <lineContent>.getColumnNo());</lineContent>
-  </mutation>
+
+
+
+
+
+
+
+
 
   <mutation unstable="false">
     <sourceFile>JavadocMethodCheck.java</sourceFile>
