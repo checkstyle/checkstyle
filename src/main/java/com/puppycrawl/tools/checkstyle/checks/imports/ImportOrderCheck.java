@@ -786,7 +786,6 @@ public class ImportOrderCheck
     public void beginTree(DetailAST rootAST) {
         lastGroup = Integer.MIN_VALUE;
         lastImportLine = Integer.MIN_VALUE;
-        lastImport = "";
         lastImportStatic = false;
         beforeFirstImport = true;
         staticImportsApart =
