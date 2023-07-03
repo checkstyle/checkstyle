@@ -594,7 +594,7 @@ javac19)
   fi
   ;;
 
-jdk14-assembly-site)
+package-site)
   mvn -e --no-transfer-progress package -Passembly,no-validations
   mvn -e --no-transfer-progress site -Pno-validations
   ;;
