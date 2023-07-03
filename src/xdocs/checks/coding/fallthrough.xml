@@ -78,47 +78,57 @@
           Example:
         </p>
         <source>
-public void foo() throws Exception {
-  int i = 0;
-  while (i &gt;= 0) {
-    switch (i) {
-      case 1:
-        i++;
-      case 2: // violation, previous case contains code but lacks
-              // break, return, yield, throw or continue statement
-        i++;
-        break;
-      case 3: // OK
-        i++;
-        return;
-      case 4: // OK
-        i++;
-        throw new Exception();
-      case 5: // OK
-        i++;
-        continue;
-      case 6: // OK
-      case 7: // Previous case: OK, case does not contain code
-              // This case: OK, by default the last case might not have statement
-              // that transfer control
-        i++;
+class FallThroughTestClass {
 
-    }
-  }
-}
-public int bar() {
-  int i = 0;
-  return switch (i) {
-    case 1:
-      i++;
-    case 2: // violation, previous case contains code but lacks
-            // break, return, yield, throw or continue statement
-    case 3: // OK, case does not contain code
-      i++;
-      yield 11;
-    default: // OK
-      yield -1;
-  };
+	public static void main(String args[]) {
+		
+		int i = 0;
+		while(i &gt;= 0) {
+			switch(i) {
+				case 1:
+				  i++;  
+				case 2: // violation, previous case contains code but lacks
+					// break, return, yield, throw or continue statement
+				  i++;
+				  break;
+				case 3: // OK
+				  i++;
+				  return;
+				case 4: // OK
+				  i++;
+				  throw new Exception();
+				case 5: // OK
+				  i++;
+				  continue;
+				case 6: // OK
+				case 7: // Previous case: OK, case does not contain code
+					// This case: OK, by default the last case might not have statement
+					// that transfer control
+				  i++;	
+			}
+		}
+	}
+
+	public int supressFallThroughWithComments() {
+
+		/* No FallThrough Error/Warning will be generated if,
+		 * reliefPattern is defined as "falls?[ -]?thr(u|ough)"
+		 */
+
+		int i = 0;
+		return switch(i) {
+			case 1:
+			  i++;  // falls thru
+			case 2: // violation, previous case contains code but lacks
+				// break, return, yield, throw or continue statement
+			case 3: // OK, case does not contain code
+			  i++;
+			  yield 11;
+			case 4: // falls-through 
+			default: // OK
+			  yield -1;
+		};
+	}
 }
         </source>
         <p>
