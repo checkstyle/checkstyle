@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle;
 
+import static com.google.common.truth.Truth.assertThat;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.mockConstruction;
@@ -695,4 +696,27 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
         }
     }
 
+    @Test
+    public void testLoadConfiguration3() throws Exception {
+        final String[] configFiles = {
+            "InputConfigurationLoaderOldConfig0.xml",
+            "InputConfigurationLoaderOldConfig1.xml",
+            "InputConfigurationLoaderOldConfig2.xml",
+            "InputConfigurationLoaderOldConfig3.xml",
+            "InputConfigurationLoaderOldConfig4.xml",
+            "InputConfigurationLoaderOldConfig5.xml",
+            "InputConfigurationLoaderOldConfig6.xml",
+            "InputConfigurationLoaderOldConfig7.xml",
+        };
+
+        for (String configFile : configFiles) {
+            final DefaultConfiguration config =
+                    (DefaultConfiguration) ConfigurationLoader.loadConfiguration(
+                            new InputSource(Files.newInputStream(Paths.get(
+                                    getPath(configFile)))),
+                            new PropertiesExpander(new Properties()),
+                            IgnoredModulesOptions.OMIT);
+            assertThat(config.getPropertyNames()).asList().isEmpty();
+        }
+    }
 }
