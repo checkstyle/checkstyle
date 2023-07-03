@@ -304,4 +304,13 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
                 getPath("InputSummaryJavadocTestForbiddenFragments2.java"), expected);
     }
 
+    @Test
+    public void testSummaryJavaDoc() throws Exception {
+        final String[] expected = {
+            "15: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputSummaryJavadoc1.java"), expected);
+    }
 }
