@@ -284,8 +284,8 @@ workflows:
       - validate-with-maven-script:
           name: "jdk17-assembly-site"
           image-name: "cimg/openjdk:17.0"
-          command: "./.ci/validation.sh package-site"
+          command: "./.ci/validation.sh packageAssembly-siteNolinkcheck"
       - validate-with-maven-script:
-          name: "assembly-site"
+          name: "jdk11-assembly-site"
           image-name: *custom_img
-          command: "./.ci/validation.sh assembly-site"
+          command: "./.ci/validation.sh packageAssembly-siteNolinkcheck"
