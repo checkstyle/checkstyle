@@ -381,6 +381,7 @@ emptystatement
 emptytag
 Emtpy
 endline
+ENMI
 ent
 enum
 eol
@@ -1015,6 +1016,7 @@ parameternumber
 paramnum
 Parcelable
 parenpad
+PARM
 parrt
 parsetreetablepresentation
 Passembly
