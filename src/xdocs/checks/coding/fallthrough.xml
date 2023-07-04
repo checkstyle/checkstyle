@@ -79,36 +79,34 @@
         </p>
         <source>
 class FallThroughTestClass {
-
-	public static void main(String args[]) {
-		
-		int i = 0;
-		while(i &gt;= 0) {
-			switch(i) {
-				case 1:
-				  i++;  
-				case 2: // violation, previous case contains code but lacks
-					// break, return, yield, throw or continue statement
-				  i++;
-				  break;
-				case 3: // OK
-				  i++;
-				  return;
-				case 4: // OK
-				  i++;
-				  throw new Exception();
-				case 5: // OK
-				  i++;
-				  continue;
-				case 6: // OK
+  public static void main(String args[]) {
+    int i = 0;
+    while(i &gt;= 0) {
+      switch(i) {
+        case 1:
+          i++;  
+        case 2: // violation, previous case contains code but lacks
+          // break, return, yield, throw or continue statement
+          i++;
+          break;
+        case 3: // OK
+          i++;
+          return;
+        case 4: // OK
+          i++;
+          throw new Exception();
+        case 5: // OK
+          i++;
+          continue;
+        case 6: // OK
         case 7: // fall through
-				case 8: // Previous case: OK, case does not contain code
-					// This case: OK, by default the last case might not have statement
-					// that transfer control
-				  i++;	
-			}
-		}
-	}
+        case 8: // Previous case: OK, case does not contain code
+          // This case: OK, by default the last case might not have statement
+          // that transfer control
+          i++;	
+      }
+    }
+  }
 }
         </source>
         <p>
@@ -116,36 +114,34 @@ class FallThroughTestClass {
         </p>
         <source>
 class FallThroughTestClass {
-
-	public static void main(String args[]) {
-		
-		int i = 0;
-		while(i &gt;= 0) {
-			switch(i) {
-				case 1:
-				  i++;  // falls-thru
-				case 2: // violation, previous case contains code but lacks
-					// break, return, yield, throw or continue statement
-				  i++;
-				  break;
-				case 3: // OK
-				  i++;
-				  return;
-				case 4: // OK
-				  i++;
-				  throw new Exception();
-				case 5: // OK
-				  i++;
-				  continue;
-				case 6: // OK
+  public static void main(String args[]) {	
+    int i = 0;
+    while(i &gt;= 0) {
+      switch(i) {
+        case 1:
+          i++;  // falls-thru
+        case 2: // violation, previous case contains code but lacks
+          // break, return, yield, throw or continue statement
+          i++;
+          break;
+        case 3: // OK
+          i++;
+          return;
+        case 4: // OK
+          i++;
+          throw new Exception();
+        case 5: // OK
+          i++;
+          continue;
+        case 6: // OK
         case 7: // fall through
-				case 8: // Previous case: OK, case does not contain code
-					// This case: OK, by default the last case might not have statement
-					// that transfer control
-				  i++;
-			}
-		}
-	}
+        case 8: // Previous case: OK, case does not contain code
+          // This case: OK, by default the last case might not have statement
+          // that transfer control
+          i++;
+      }
+    }
+  }
 }
         </source>
         <p>
@@ -161,35 +157,33 @@ class FallThroughTestClass {
         </p>
         <source>
 class FallThroughTestClass {
-
-	public static void main(String args[]) {
-		
-		int i = 0;
-		while(i &gt;= 0) {
-			switch(i) {
-				case 1:
-				  i++;  // falls-thru
-				case 2: // violation, previous case contains code but lacks
-					// break, return, yield, throw or continue statement
-				  i++;
-				  break;
-				case 3: // OK
-				  i++;
-				  return;
-				case 4: // OK
-				  i++;
-				  throw new Exception();
-				case 5: // OK
-				  i++;
-				  continue;
-				case 6: // OK
+  public static void main(String args[]) {	
+    int i = 0;
+    while(i &gt;= 0) {
+      switch(i) {
+        case 1:
+          i++;  // falls-thru
+        case 2: // violation, previous case contains code but lacks
+          // break, return, yield, throw or continue statement
+          i++;
+          break;
+        case 3: // OK
+          i++;
+          return;
+        case 4: // OK
+          i++;
+          throw new Exception();
+        case 5: // OK
+          i++;
+          continue;
+        case 6: // OK
         case 7: // fall through
-				case 8: // Previous case: OK, case does not contain code
-					// This case: violation, as the last case must have statement that transfer control.
-				  i++;
-			}
-		}
-	}
+        case 8: // Previous case: OK, case does not contain code
+          // This case: violation, as the last case must have statement that transfer control.
+          i++;
+      }
+    }
+  }
 }
         </source>
         <p>
@@ -203,37 +197,36 @@ class FallThroughTestClass {
         <p>Example:</p>
         <source>
 class FallThroughTestClass {
-
-	public static void main(String args[]) {
+  public static void main(String args[]) {
 		
-		int i = 0;
-		while(i &gt;= 0) {
-			switch(i) {
-				case 1:
-				  i++;  // FALL THROUGH
-                // OK, as FALL THROUGH matches with "FALL?[ -]?THROUGH".
-				case 2: // violation, previous case contains code but lacks
-					// break, return, yield, throw or continue statement
-				  i++;
-				  break;
-				case 3: // OK
-				  i++;
-				  return;
-				case 4: // OK
-				  i++;
-				  throw new Exception();
-				case 5: // OK
-				  i++;
-				  continue;
-				case 6: // OK
+    int i = 0;
+    while(i &gt;= 0) {
+      switch(i) {
+        case 1:
+            i++;  // FALL THROUGH
+                  // OK, as FALL THROUGH matches with "FALL?[ -]?THROUGH".
+        case 2: // violation, previous case contains code but lacks
+          // break, return, yield, throw or continue statement
+          i++;
+          break;
+        case 3: // OK
+          i++;
+          return;
+        case 4: // OK
+          i++;
+          throw new Exception();
+        case 5: // OK
+          i++;
+          continue;
+        case 6: // OK
         case 7: // fall through
                 // This case: violation, as "fall through" doesn't match "FALL?[ -]?THROUGH"
-				case 8: // Previous case: OK, case does not contain code
-					// This case: Violation, as the last case is configured
+        case 8: // Previous case: OK, case does not contain code
+          // This case: Violation, as the last case is configured
 				  i++;
-			}
-		}
-	}
+      }
+    }
+  }
 }
         </source>
       </subsection>
