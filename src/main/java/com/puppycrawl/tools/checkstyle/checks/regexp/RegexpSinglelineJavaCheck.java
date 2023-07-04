@@ -32,7 +32,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </p>
  * <p>
  * This class is variation on
- * <a href="https://checkstyle.org/config_regexp.html#RegexpSingleline">RegexpSingleline</a>
+ * <a href="https://checkstyle.org/checks/regexp/regexpsingleline.html">RegexpSingleline</a>
  * for detecting single-lines that match a supplied regular expression in Java files.
  * It supports suppressing matches in Java comments.
  * </p>

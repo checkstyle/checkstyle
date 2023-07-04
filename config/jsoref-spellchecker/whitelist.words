@@ -381,6 +381,7 @@ emptystatement
 emptytag
 Emtpy
 endline
+ENMI
 ent
 enum
 eol
@@ -867,6 +868,7 @@ myproject
 Mysql
 mytag
 NAMEFILE
+nameofaffectedcheck
 namespace
 Nanos
 navcolumn
@@ -1014,6 +1016,7 @@ parameternumber
 paramnum
 Parcelable
 parenpad
+PARM
 parrt
 parsetreetablepresentation
 Passembly

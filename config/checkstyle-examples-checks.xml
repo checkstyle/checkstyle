@@ -23,6 +23,13 @@
              value="All example files should only match ''{1}'' exactly"/>
   </module>
   <module name="RegexpSingleline">
+    <property name="id" value="exampleFileXmlConfigPresence"/>
+    <property name="format" value="\/\*xml"/>
+    <property name="minimum" value="1"/>
+    <property name="maximum" value="1"/>
+    <property name="message" value="Example files must start with /*xml and have an XML config"/>
+  </module>
+  <module name="RegexpSingleline">
     <property name="id" value="noTrailingWhitespace"/>
     <property name="format" value="\s+$"/>
     <property name="minimum" value="0"/>
@@ -79,7 +86,7 @@
 
   <!-- Size -->
   <module name="FileLength">
-    <property name="max" value="45"/>
+    <property name="max" value="60"/>
   </module>
   <module name="LineLength">
     <property name="max" value="85"/>

@@ -246,4 +246,31 @@
     </Or>
     <Bug pattern="ITC_INHERITANCE_TYPE_CHECKING"/>
   </Match>
+  <Match>
+    <!-- Till https://github.com/mebigfatguy/fb-contrib/issues/405 -->
+    <Bug pattern="CNC_COLLECTION_NAMING_CONFUSION"/>
+  </Match>
+  <Match>
+    <!-- Till https://github.com/checkstyle/checkstyle/issues/13351 -->
+    <Or>
+      <Class name="com.puppycrawl.tools.checkstyle.ConfigurationLoader$InternalLoader"/>
+      <Class name="com.puppycrawl.tools.checkstyle.utils.CheckUtil"/>
+      <Class name="com.puppycrawl.tools.checkstyle.utils.ScopeUtil"/>
+    </Or>
+    <Bug pattern="ENMI_NULL_ENUM_VALUE"/>
+  </Match>
+  <Match>
+    <!-- Till https://github.com/checkstyle/checkstyle/issues/13351 -->
+    <Or>
+      <Class name="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagInfo"/>
+    </Or>
+    <Bug pattern="ENMI_ONE_ENUM_VALUE"/>
+  </Match>
+  <Match>
+    <!-- Till https://github.com/checkstyle/checkstyle/issues/13351 -->
+    <Or>
+      <Class name="com.puppycrawl.tools.checkstyle.gui.ParseTreeTableModel"/>
+    </Or>
+    <Bug pattern="SPP_PASSING_THIS_AS_PARM"/>
+  </Match>
 </FindBugsFilter>

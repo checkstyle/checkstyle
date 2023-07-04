@@ -1,7 +1,12 @@
-/*
-AbbreviationAsWordInName
-ignoreStatic = false
-ignoreOverriddenMethods = false
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="AbbreviationAsWordInName">
+      <property name="ignoreStatic" value="false"/>
+      <property name="ignoreOverriddenMethods" value="false"/>
+    </module>
+  </module>
+</module>
 
 
 */

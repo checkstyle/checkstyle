@@ -104,7 +104,7 @@ Expected: violation on first line.
         Example of report that we expect:
 
         <source><![CDATA[
-Check documentation: https://checkstyle.org/config_misc.html#Indentation
+Check documentation: https://checkstyle.org/checks/misc/indentation.html
 
 D:\>type config.xml
 <?xml version="1.0"?>

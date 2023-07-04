@@ -34,12 +34,12 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
  * </p>
  * <p>
  * To validate {@code catch} parameters please use
- * <a href="https://checkstyle.org/checks/naming/catchparametername.html#CatchParameterName">
+ * <a href="https://checkstyle.org/checks/naming/catchparametername.html">
  * CatchParameterName</a>.
  * </p>
  * <p>
  * To validate lambda parameters please use
- * <a href="https://checkstyle.org/checks/naming/lambdaparametername.html#LambdaParameterName">
+ * <a href="https://checkstyle.org/checks/naming/lambdaparametername.html">
  * LambdaParameterName</a>.
  * </p>
  * <ul>

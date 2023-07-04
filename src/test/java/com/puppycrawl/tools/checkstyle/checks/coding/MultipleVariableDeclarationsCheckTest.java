@@ -68,4 +68,17 @@ public class MultipleVariableDeclarationsCheckTest extends AbstractModuleTestSup
             .isNotNull();
     }
 
+    @Test
+    public void test() throws Exception {
+
+        final String[] expected = {
+            "11:5: " + getCheckMessage(MSG_MULTIPLE),
+            "14:5: " + getCheckMessage(MSG_MULTIPLE),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputMultipleVariableDeclarations2.java"),
+               expected);
+    }
+
 }

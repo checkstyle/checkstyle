@@ -25,3 +25,21 @@ window.addEventListener("scroll", function () {
         scrollButton.style.display = "none";
     }
 });
+
+function setBodyColumnMargin() {
+    const leftColumn = document.querySelector('#leftColumn');
+    const bodyColumn = document.querySelector('#bodyColumn');
+
+    // If in mobile view use margin as defined in site.css
+    if (window.innerWidth < 823) {
+        bodyColumn.style.marginLeft = '1.5em';
+        return;
+    }
+
+    // Else calculate margin based on left column width
+    const leftColumnWidth = leftColumn.offsetWidth;
+    bodyColumn.style.marginLeft = `${leftColumnWidth + 27}px`;
+}
+
+window.addEventListener('load', setBodyColumnMargin);
+window.addEventListener('resize', setBodyColumnMargin);

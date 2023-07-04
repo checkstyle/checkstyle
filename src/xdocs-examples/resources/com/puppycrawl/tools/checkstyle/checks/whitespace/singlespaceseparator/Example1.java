@@ -1,5 +1,9 @@
-/*
-SingleSpaceSeparator
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="SingleSpaceSeparator"/>
+  </module>
+</module>
 
 
 */

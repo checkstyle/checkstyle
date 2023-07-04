@@ -368,19 +368,19 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
      */
     private static boolean isDefinedFirst(DetailNode inlineSummaryTag) {
         boolean isDefinedFirst = true;
-        DetailNode previousSibling = JavadocUtil.getPreviousSibling(inlineSummaryTag);
-        while (previousSibling != null && isDefinedFirst) {
-            switch (previousSibling.getType()) {
+        DetailNode currentAst = inlineSummaryTag;
+        while (currentAst != null && isDefinedFirst) {
+            switch (currentAst.getType()) {
                 case JavadocTokenTypes.TEXT:
-                    isDefinedFirst = previousSibling.getText().isBlank();
+                    isDefinedFirst = currentAst.getText().isBlank();
                     break;
                 case JavadocTokenTypes.HTML_ELEMENT:
-                    isDefinedFirst = !isTextPresentInsideHtmlTag(previousSibling);
+                    isDefinedFirst = !isTextPresentInsideHtmlTag(currentAst);
                     break;
                 default:
                     break;
             }
-            previousSibling = JavadocUtil.getPreviousSibling(previousSibling);
+            currentAst = JavadocUtil.getPreviousSibling(currentAst);
         }
         return isDefinedFirst;
     }
@@ -505,7 +505,9 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
             log(inlineSummaryTag.getLineNumber(), MSG_SUMMARY_JAVADOC_MISSING);
         }
         else if (!period.isEmpty()) {
-            if (isPeriodNotAtEnd(summaryVisible, period)) {
+            final boolean isPeriodNotAtEnd =
+                    summaryVisible.lastIndexOf(period) != summaryVisible.length() - 1;
+            if (isPeriodNotAtEnd) {
                 log(inlineSummaryTag.getLineNumber(), MSG_SUMMARY_MISSING_PERIOD);
             }
             else if (containsForbiddenFragment(inlineSummary)) {
@@ -580,18 +582,6 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
     private static String getVisibleContent(String summary) {
         final String visibleSummary = HTML_ELEMENTS.matcher(summary).replaceAll("");
         return visibleSummary.trim();
-    }
-
-    /**
-     * Checks if the string does not end with period.
-     *
-     * @param sentence string to check for period at end.
-     * @param period string to check within sentence.
-     * @return {@code true} if sentence does not end with period.
-     */
-    private static boolean isPeriodNotAtEnd(String sentence, String period) {
-        final String summarySentence = sentence.trim();
-        return summarySentence.lastIndexOf(period) != summarySentence.length() - 1;
     }
 
     /**
@@ -671,9 +661,6 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
     private static String getSummarySentence(DetailNode ast) {
         final StringBuilder result = new StringBuilder(256);
         for (DetailNode child : ast.getChildren()) {
-            if (child.getType() == JavadocTokenTypes.JAVADOC_TAG) {
-                break;
-            }
             if (child.getType() != JavadocTokenTypes.EOF
                     && ALLOWED_TYPES.get(child.getType())) {
                 result.append(child.getText());

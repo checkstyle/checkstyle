@@ -1,6 +1,11 @@
-/*
-LambdaBodyLength
-max = 5
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="LambdaBodyLength">
+      <property name="max" value="5"/>
+    </module>
+  </module>
+</module>
 
 
 */

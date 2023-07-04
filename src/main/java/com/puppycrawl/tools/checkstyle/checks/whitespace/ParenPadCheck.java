@@ -35,12 +35,12 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * the right parenthesis of a try-with-resources resource specification where
  * the last resource variable has a trailing semicolon.
  * Use Check
- * <a href="https://checkstyle.org/checks/whitespace/emptyforiteratorpad.html#EmptyForIteratorPad">
+ * <a href="https://checkstyle.org/checks/whitespace/emptyforiteratorpad.html">
  * EmptyForIteratorPad</a> to validate empty for iterators and
- * <a href="https://checkstyle.org/checks/whitespace/emptyforinitializerpad.html#EmptyForInitializerPad">
+ * <a href="https://checkstyle.org/checks/whitespace/emptyforinitializerpad.html">
  * EmptyForInitializerPad</a> to validate empty for initializers.
  * Typecasts are also not checked, as there is
- * <a href="https://checkstyle.org/checks/whitespace/typecastparenpad.html#TypecastParenPad">
+ * <a href="https://checkstyle.org/checks/whitespace/typecastparenpad.html">
  * TypecastParenPad</a> to validate them.
  * </p>
  * <ul>
