@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.design.FinalClassCheck"
-              name="FinalClass"
-              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+             name="FinalClass"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Ensures that identifies classes that can be effectively declared as final are explicitly
  marked as final. The following are different types of classes that can be identified:
