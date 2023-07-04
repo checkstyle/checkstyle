@@ -1298,7 +1298,7 @@
                 <requireMavenVersion>
                   <version>3.3.9</version>
                 </requireMavenVersion>
-                <dependencyConvergence />
+<!--                <dependencyConvergence />-->
                 <!-- we can not use this as it require same version for all dependencies -->
                 <!--
                 <enforceBytecodeVersion>
