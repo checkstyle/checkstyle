@@ -516,12 +516,6 @@ public class JavadocMethodCheck extends AbstractCheck {
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
-    public static final String MSG_CLASS_INFO = "javadoc.classInfo";
-
-    /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
-     */
     public static final String MSG_UNUSED_TAG_GENERAL = "javadoc.unusedTagGeneral";
 
     /**
@@ -690,32 +684,12 @@ public class JavadocMethodCheck extends AbstractCheck {
     }
 
     @Override
-    public void beginTree(DetailAST rootAST) {
-        currentClassName = "";
-    }
-
-    @Override
     public final void visitToken(DetailAST ast) {
-        if (ast.getType() == TokenTypes.CLASS_DEF
-                 || ast.getType() == TokenTypes.INTERFACE_DEF
-                 || ast.getType() == TokenTypes.ENUM_DEF
-                 || ast.getType() == TokenTypes.RECORD_DEF) {
-            processClass(ast);
-        }
-        else {
+        if (ast.getType() == TokenTypes.METHOD_DEF
+                 || ast.getType() == TokenTypes.CTOR_DEF
+                 || ast.getType() == TokenTypes.ANNOTATION_FIELD_DEF
+                 || ast.getType() == TokenTypes.COMPACT_CTOR_DEF) {
             processAST(ast);
-        }
-    }
-
-    @Override
-    public final void leaveToken(DetailAST ast) {
-        if (ast.getType() == TokenTypes.CLASS_DEF
-            || ast.getType() == TokenTypes.INTERFACE_DEF
-            || ast.getType() == TokenTypes.ENUM_DEF
-            || ast.getType() == TokenTypes.RECORD_DEF) {
-            // perhaps it was inner class
-            final int dotIdx = currentClassName.lastIndexOf('$');
-            currentClassName = currentClassName.substring(0, dotIdx);
         }
     }
 
@@ -1346,19 +1320,6 @@ public class JavadocMethodCheck extends AbstractCheck {
             }
         }
         return result;
-    }
-
-    /**
-     * Processes class definition.
-     *
-     * @param ast class definition to process.
-     */
-    private void processClass(DetailAST ast) {
-        final DetailAST ident = ast.findFirstToken(TokenTypes.IDENT);
-        String innerClass = ident.getText();
-
-        innerClass = "$" + innerClass;
-        currentClassName += innerClass;
     }
 
     /**
