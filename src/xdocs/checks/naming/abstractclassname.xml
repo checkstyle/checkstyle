@@ -64,6 +64,9 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
+        <macro name="myMacro"> <!-- my is the required macro name defined by role-hint -->
+          <param name="myParam" value="myValue"/>
+        </macro>
         <p>
           To configure the check:
         </p>
