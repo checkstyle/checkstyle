@@ -124,6 +124,7 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
             "432:9: " + getCheckMessage(MSG_FALL_THROUGH),
             "444:9: " + getCheckMessage(MSG_FALL_THROUGH),
             "454:9: " + getCheckMessage(MSG_FALL_THROUGH),
+            // line 490 violation expected till https://github.com/checkstyle/checkstyle/pull/12966
             "490:9: " + getCheckMessage(MSG_FALL_THROUGH),
             "491:9: " + getCheckMessage(MSG_FALL_THROUGH),
             "492:9: " + getCheckMessage(MSG_FALL_THROUGH),
@@ -248,4 +249,110 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
                 expected);
     }
 
+    @Test
+    public void testLastCase() throws Exception {
+        final String[] expected = {
+            "48:11: " + getCheckMessage(MSG_FALL_THROUGH_LAST),
+            "83:11: " + getCheckMessage(MSG_FALL_THROUGH_LAST),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputFallThrough4.java"),
+                expected);
+    }
+
+    @Test
+    public void testIfElse() throws Exception {
+        final String[] expected = {
+            "94:13: " + getCheckMessage(MSG_FALL_THROUGH),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputFallThrough5.java"),
+                expected);
+    }
+
+    @Test
+    public void testFallThrough() throws Exception {
+        final String[] expected = {
+            "16:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "18:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "23:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "25:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "27:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            // line 37 needs consideration https://github.com/checkstyle/checkstyle/pull/12966
+            "37:10: " + getCheckMessage(MSG_FALL_THROUGH),
+            "52:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "65:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "80:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "94:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "109:13: " + getCheckMessage(MSG_FALL_THROUGH),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputFallThrough6.java"),
+                expected);
+    }
+
+    @Test
+    public void testFallThroughNonCompilable4() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputFallThrough4.java"),
+                expected);
+    }
+
+    @Test
+    public void testFallThroughComment() throws Exception {
+        final String[] expected = {
+            "20:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "43:13: " + getCheckMessage(MSG_FALL_THROUGH),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputFallThroughFallThroughLotsOfComment.java"),
+                expected);
+    }
+
+    @Test
+    public void testFallThroughComment2() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputFallThroughFallThroughLotsOfComment2.java"),
+                expected);
+    }
+
+    @Test
+    public void testFallThrough7() throws Exception {
+        final String[] expected = {
+            "21:13: " + getCheckMessage(MSG_FALL_THROUGH_LAST),
+            "36:13: " + getCheckMessage(MSG_FALL_THROUGH_LAST),
+            "50:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "50:13: " + getCheckMessage(MSG_FALL_THROUGH_LAST),
+            "64:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "111:13: " + getCheckMessage(MSG_FALL_THROUGH_LAST),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputFallThrough7.java"),
+                expected);
+    }
+
+    @Test
+    public void testLastLine() throws Exception {
+        final String[] expected = {
+            "21:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "99:39: " + getCheckMessage(MSG_FALL_THROUGH_LAST),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputFallThroughLastLineCommentCheck.java"),
+                expected);
+    }
+
+    @Test
+    public void testLastLine2() throws Exception {
+        final String[] expected = {
+            "19:13: " + getCheckMessage(MSG_FALL_THROUGH_LAST),
+            "22:13: " + getCheckMessage(MSG_FALL_THROUGH_LAST),
+            "25:13: " + getCheckMessage(MSG_FALL_THROUGH_LAST),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputFallThrough5.java"),
+                expected);
+    }
 }

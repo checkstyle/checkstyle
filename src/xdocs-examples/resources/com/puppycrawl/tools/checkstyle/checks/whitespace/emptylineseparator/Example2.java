@@ -1,6 +1,11 @@
-/*
-EmptyLineSeparator
-tokens = VARIABLE_DEF, METHOD_DEF
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="EmptyLineSeparator">
+      <property name="tokens" value="VARIABLE_DEF, METHOD_DEF"/>
+    </module>
+  </module>
+</module>
 
 
 */

@@ -9,7 +9,7 @@
  &lt;/p&gt;
  &lt;p&gt;
  This class is variation on
- &lt;a href="https://checkstyle.org/config_regexp.html#RegexpSingleline"&gt;RegexpSingleline&lt;/a&gt;
+ &lt;a href="https://checkstyle.org/checks/regexp/regexpsingleline.html"&gt;RegexpSingleline&lt;/a&gt;
  for detecting single-lines that match a supplied regular expression in Java files.
  It supports suppressing matches in Java comments.
  &lt;/p&gt;</description>

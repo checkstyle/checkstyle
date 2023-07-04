@@ -1,30 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suppressedMutations>
-  <mutation unstable="false">
-    <sourceFile>EqualsAvoidNullCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.EqualsAvoidNullCheck$FieldFrame</mutatedClass>
-    <mutatedMethod>getChildren</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
-    <description>replaced call to java/util/Collections::unmodifiableSet with argument</description>
-    <lineContent>return Collections.unmodifiableSet(children);</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>EqualsAvoidNullCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.EqualsAvoidNullCheck$FieldFrame</mutatedClass>
-    <mutatedMethod>getMethodCalls</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
-    <description>replaced call to java/util/Collections::unmodifiableSet with argument</description>
-    <lineContent>return Collections.unmodifiableSet(methodCalls);</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>VariableDeclarationUsageDistanceCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck</mutatedClass>
-    <mutatedMethod>isInitializationSequence</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
-    <description>removed conditional - replaced equality check with true</description>
-    <lineContent>while (result</lineContent>
-  </mutation>
 
 </suppressedMutations>

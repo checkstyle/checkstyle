@@ -1,5 +1,9 @@
-/*
-NoWhitespaceBefore
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="NoWhitespaceBefore"/>
+  </module>
+</module>
 
 
 */

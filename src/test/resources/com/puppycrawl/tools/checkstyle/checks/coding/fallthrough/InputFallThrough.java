@@ -381,7 +381,7 @@ public class InputFallThrough
               i++;
           /* Continue with next case */case 3: // violation 'Fall through from prev.*'
                 break;
-          case 4: // violation 'Fall through from the last branch of the switch statement.'
+          case 4: // violation 'Fall .* from the last branch of the switch statement.'
               i++;
           /* Continue with next case */
           }

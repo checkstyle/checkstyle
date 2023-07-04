@@ -108,13 +108,4 @@
     <lineContent>this.regex = false;</lineContent>
   </mutation>
 
-  <mutation unstable="false">
-    <sourceFile>UnusedImportsCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck</mutatedClass>
-    <mutatedMethod>beginTree</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
-    <description>Removed assignment to member variable collect</description>
-    <lineContent>collect = false;</lineContent>
-  </mutation>
-
 </suppressedMutations>

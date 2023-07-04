@@ -1,5 +1,7 @@
-/*
-FileTabCharacter
+/*xml
+<module name="Checker">
+  <module name="FileTabCharacter"/>
+</module>
 
 
 */

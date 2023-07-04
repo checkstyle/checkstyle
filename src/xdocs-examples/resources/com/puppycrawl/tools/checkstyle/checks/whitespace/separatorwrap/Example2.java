@@ -1,7 +1,12 @@
-/*
-SeparatorWrap
-tokens = METHOD_REF
-option = nl
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="SeparatorWrap">
+      <property name="tokens" value="METHOD_REF"/>
+      <property name="option" value="nl"/>
+    </module>
+  </module>
+</module>
 
 
 */

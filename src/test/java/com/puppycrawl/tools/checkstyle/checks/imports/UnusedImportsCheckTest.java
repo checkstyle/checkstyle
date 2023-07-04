@@ -311,4 +311,25 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
                 getPath("InputUnusedImports3.java"), expected);
     }
+
+    @Test
+    public void testStateIsClearedOnBeginTreeCollect() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(UnusedImportsCheck.class);
+        final String file1 = getNonCompilablePath(
+                "InputUnusedImportsRecordsAndCompactCtors.java");
+        final String file2 = getNonCompilablePath(
+                "InputUnusedImportsSingleWordPackage.java");
+        final List<String> expectedFirstInput = List.of(
+            "19:8: " + getCheckMessage(MSG_KEY, "javax.swing.JToolBar"),
+            "20:8: " + getCheckMessage(MSG_KEY, "javax.swing.JToggleButton")
+        );
+        final List<String> expectedSecondInput = List.of(
+            "10:8: " + getCheckMessage(MSG_KEY, "module")
+        );
+        final File[] inputs = {new File(file1), new File(file2)};
+
+        verify(createChecker(checkConfig), inputs, ImmutableMap.of(
+            file1, expectedFirstInput,
+            file2, expectedSecondInput));
+    }
 }
