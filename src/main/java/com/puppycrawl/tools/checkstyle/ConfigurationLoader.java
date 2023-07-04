@@ -68,6 +68,14 @@ public final class ConfigurationLoader {
 
     }
 
+    /** The new public ID for version 1_3 of the configuration dtd. */
+    public static final String DTD_PUBLIC_CS_ID_1_3 =
+        "-//Checkstyle//DTD Checkstyle Configuration 1.3//EN";
+
+    /** The resource for version 1_3 of the configuration dtd. */
+    public static final String DTD_CONFIGURATION_NAME_1_3 =
+        "com/puppycrawl/tools/checkstyle/configuration_1_3.dtd";
+
     /** Format of message for sax parse exception. */
     private static final String SAX_PARSE_EXCEPTION_FORMAT = "%s - %s:%s:%s";
 
@@ -110,14 +118,6 @@ public final class ConfigurationLoader {
     /** The public ID for version 1_3 of the configuration dtd. */
     private static final String DTD_PUBLIC_ID_1_3 =
         "-//Puppy Crawl//DTD Check Configuration 1.3//EN";
-
-    /** The new public ID for version 1_3 of the configuration dtd. */
-    private static final String DTD_PUBLIC_CS_ID_1_3 =
-        "-//Checkstyle//DTD Checkstyle Configuration 1.3//EN";
-
-    /** The resource for version 1_3 of the configuration dtd. */
-    private static final String DTD_CONFIGURATION_NAME_1_3 =
-        "com/puppycrawl/tools/checkstyle/configuration_1_3.dtd";
 
     /** Prefix for the exception when unable to parse resource. */
     private static final String UNABLE_TO_PARSE_EXCEPTION_PREFIX = "unable to parse"

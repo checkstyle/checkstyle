@@ -357,7 +357,7 @@ public class RegexpHeaderCheckTest extends AbstractModuleTestSupport {
         catch (IllegalArgumentException ex) {
             assertWithMessage("Invalid exception message")
                 .that(ex.getMessage())
-                .isEqualTo("line 1 in header specification is not a regular expression");
+                .isEqualTo("line 3 in header specification is not a regular expression");
         }
     }
 
@@ -379,5 +379,4 @@ public class RegexpHeaderCheckTest extends AbstractModuleTestSupport {
         };
         verify(checkConfig, getPath("InputRegexpHeaderMulti52.java"), expected);
     }
-
 }

@@ -160,6 +160,7 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
             "74: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
             // Until https://github.com/checkstyle/checkstyle/issues/11425
             "82: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+            "93: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
         };
 
         verifyWithInlineConfigParser(
@@ -197,6 +198,16 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
 
         verifyWithInlineConfigParser(
                 getPath("InputSummaryJavadocInlineReturn.java"), expected);
+    }
+
+    @Test
+    public void testInlineReturn2() throws Exception {
+        final String[] expected = {
+            "15: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputSummaryJavadocInlineReturn2.java"), expected);
     }
 
     @Test
@@ -257,4 +268,49 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
                 getPath("inputs/package-info.java"), expected);
     }
 
+    @Test
+    public void testForbidden() throws Exception {
+        final String[] expected = {
+            "14: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputSummaryJavadocTestForbiddenFragments.java"), expected);
+    }
+
+    @Test
+    public void testEmptyPeriod() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("InputSummaryJavadocEmptyPeriod.java"), expected);
+    }
+
+    @Test
+    public void testForbidden3() throws Exception {
+        final String[] expected = {
+            "14: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputSummaryJavadocTestForbiddenFragments3.java"), expected);
+    }
+
+    @Test
+    public void testForbidden2() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("InputSummaryJavadocTestForbiddenFragments2.java"), expected);
+    }
+
+    @Test
+    public void testSummaryJavaDoc() throws Exception {
+        final String[] expected = {
+            "15: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputSummaryJavadoc1.java"), expected);
+    }
 }

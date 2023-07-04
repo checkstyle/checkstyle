@@ -27,14 +27,14 @@
     <lineContent>return instanceFields.contains(field)</lineContent>
   </mutation>
 
-  <mutation unstable="false">
-    <sourceFile>IllegalInstantiationCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck</mutatedClass>
-    <mutatedMethod>beginTree</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
-    <description>Removed assignment to member variable pkgName</description>
-    <lineContent>pkgName = null;</lineContent>
-  </mutation>
+
+
+
+
+
+
+
+
 
   <mutation unstable="false">
     <sourceFile>MatchXpathCheck.java</sourceFile>
@@ -52,51 +52,6 @@
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
     <description>Removed assignment to member variable query</description>
     <lineContent>this.query = query;</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>MultipleStringLiteralsCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck</mutatedClass>
-    <mutatedMethod>isInIgnoreOccurrenceContext</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
-    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getParent with receiver</description>
-    <lineContent>token.getParent() != null;</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>MultipleVariableDeclarationsCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.MultipleVariableDeclarationsCheck</mutatedClass>
-    <mutatedMethod>getLastNode</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
-    <description>replaced call to com/puppycrawl/tools/checkstyle/checks/coding/MultipleVariableDeclarationsCheck::getLastNode with argument</description>
-    <lineContent>currentNode = getLastNode(child);</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>MultipleVariableDeclarationsCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.MultipleVariableDeclarationsCheck</mutatedClass>
-    <mutatedMethod>visitToken</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
-    <description>replaced call to com/puppycrawl/tools/checkstyle/utils/CheckUtil::getFirstNode with argument</description>
-    <lineContent>final DetailAST firstNextNode = CheckUtil.getFirstNode(nextNode);</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>OneStatementPerLineCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck</mutatedClass>
-    <mutatedMethod>beginTree</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
-    <description>Removed assignment to member variable lastStatementEnd</description>
-    <lineContent>lastStatementEnd = 0;</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>OneStatementPerLineCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck</mutatedClass>
-    <mutatedMethod>beginTree</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
-    <description>Removed assignment to member variable lastVariableResourceStatementEnd</description>
-    <lineContent>lastVariableResourceStatementEnd = 0;</lineContent>
   </mutation>
 
   <mutation unstable="false">
@@ -126,12 +81,4 @@
     <lineContent>final DetailAST updatedScope = literalNewAst.getLastChild();</lineContent>
   </mutation>
 
-  <mutation unstable="false">
-    <sourceFile>UnusedLocalVariableCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheck$TypeDeclDesc</mutatedClass>
-    <mutatedMethod>lambda$getUpdatedCopyOfVarStack$0</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to com/puppycrawl/tools/checkstyle/checks/coding/UnusedLocalVariableCheck$VariableDesc::getTypeAst</description>
-    <lineContent>instVar.getTypeAst(), updatedScope);</lineContent>
-  </mutation>
 </suppressedMutations>

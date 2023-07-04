@@ -12,7 +12,7 @@
 
   <groupId>com.puppycrawl.tools</groupId>
   <artifactId>checkstyle</artifactId>
-  <version>10.12.1-SNAPSHOT</version>
+  <version>10.12.2-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>checkstyle</name>
@@ -220,7 +220,7 @@
       10.4
     </maven.sevntu-checkstyle-check.checkstyle.version>
     <maven.versions.plugin.version>2.14.2</maven.versions.plugin.version>
-    <maven.compiler.plugin.version>3.10.1</maven.compiler.plugin.version>
+    <maven.compiler.plugin.version>3.11.0</maven.compiler.plugin.version>
     <java.version>11</java.version>
     <pitest.plugin.version>1.14.1</pitest.plugin.version>
     <pitest.plugin.timeout.factor>10</pitest.plugin.timeout.factor>
@@ -228,7 +228,7 @@
     <pitest.plugin.timeout.constant>50000</pitest.plugin.timeout.constant>
     <pitest.plugin.threads>4</pitest.plugin.threads>
     <pitest.junit5.plugin.version>1.1.2</pitest.junit5.plugin.version>
-    <pitest.accelerator.junit5.plugin.version>1.0.5</pitest.accelerator.junit5.plugin.version>
+    <pitest.accelerator.junit5.plugin.version>1.0.6</pitest.accelerator.junit5.plugin.version>
     <sonar.test.exclusions>**/test/resources/**/*,**/it/resources/**/*</sonar.test.exclusions>
     <junit.version>5.9.2</junit.version>
     <forbiddenapis.version>3.4</forbiddenapis.version>
@@ -558,7 +558,7 @@
               <plugin>
                 <groupId>com.mebigfatguy.sb-contrib</groupId>
                 <artifactId>sb-contrib</artifactId>
-                <version>7.4.7</version>
+                <version>7.6.0</version>
               </plugin>
             </plugins>
           </configuration>
@@ -632,6 +632,23 @@
             </lifecycleMappingMetadata>
           </configuration>
         </plugin>
+
+        <!-- config should be common as it is reused by build-helper-maven-plugin -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-source-plugin</artifactId>
+          <version>3.3.0</version>
+          <executions>
+            <execution>
+              <id>attach-sources</id>
+              <goals>
+                <goal>test-jar</goal>
+                <goal>jar</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+
       </plugins>
     </pluginManagement>
     <plugins>
@@ -1439,7 +1456,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
-        <version>3.1.0</version>
+        <version>3.1.2</version>
         <configuration>
           <argLine>-Dfile.encoding=UTF-8 @{surefire.options}</argLine>
           <systemPropertyVariables>
@@ -1513,16 +1530,6 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-source-plugin</artifactId>
-        <version>3.2.1</version>
-        <executions>
-          <execution>
-            <id>attach-sources</id>
-            <goals>
-              <goal>test-jar</goal>
-              <goal>jar</goal>
-            </goals>
-          </execution>
-        </executions>
       </plugin>
 
       <plugin>
@@ -1870,6 +1877,13 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-report-plugin</artifactId>
         <version>3.1.2</version>
+        <reportSets>
+          <reportSet>
+            <reports>
+              <report>report-only</report>
+            </reports>
+          </reportSet>
+        </reportSets>
       </plugin>
 
       <plugin>
@@ -3219,6 +3233,9 @@
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.SimplifyBooleanExpressionCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.SimplifyBooleanReturnCheckTest</param>
               </targetTests>
+              <avoidCallsTo>
+                <avoidCallsTo>com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil</avoidCallsTo>
+              </avoidCallsTo>
               <excludedTestClasses>
                 <param>*.Input*</param>
               </excludedTestClasses>
@@ -4748,6 +4765,9 @@
                 <!-- unkilled in generated code https://github.com/hcoles/pitest/issues/255 -->
                 <param>isFileExists</param>
               </excludedMethods>
+              <excludedClasses>
+                <class>com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil</class>
+              </excludedClasses>
               <targetTests>
                 <param>com.puppycrawl.tools.checkstyle.utils.*</param>
                 <!-- 12% mutation in CommonUtil,

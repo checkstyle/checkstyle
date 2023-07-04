@@ -10,6 +10,109 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 10.12.1">
+      <div class="releaseDate">25.06.2023</div>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            SimplifyBooleanExpressionCheck throw NullPointerException while checking ternary
+            operator.
+            Author: Sebastien
+            <a href="https://github.com/checkstyle/checkstyle/issues/13140">#13140</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Move Filters and File Filters to be a sibling of Checks in site menu.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/13283">#13283</a>
+          </li>
+          <li>
+            Create tests from xdoc examples.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/13100">#13100</a>
+          </li>
+          <li>
+            Remove redundant check name in anchor.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/13288">#13288</a>
+          </li>
+          <li>
+            Resolve pitest survivals in modules.
+            Author: Kevin222004
+            <a href="https://github.com/checkstyle/checkstyle/issues/13109">#13109</a>
+          </li>
+          <li>
+            Extend checkstyle-examples-checks.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/13244">#13244</a>
+          </li>
+          <li>
+            Split modules&#39; xdoc into separate pages.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/13097">#13097</a>
+          </li>
+          <li>
+            Create separate ant-phase-verify execution for xdocs-examples.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/13116">#13116</a>
+          </li>
+          <li>
+            Mobile page rendering requires extra font difference for properties .
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/13195">#13195</a>
+          </li>
+          <li>
+            Ensure category index page tables are in sync with checks.xml page table.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/13285">#13285</a>
+          </li>
+          <li>
+            Fail linkcheck on internal broken site link.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/13176">#13176</a>
+          </li>
+          <li>
+            Fix broken anchors in subdirectories/subpages.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/13190">#13190</a>
+          </li>
+          <li>
+            doc: update AbstractClassName examples to match tests.
+            Author: stoyanK7
+          </li>
+          <li>
+            Resolve pitest for FinalLocalVariableCheck.
+            Author: Kevin222004
+            <a href="https://github.com/checkstyle/checkstyle/issues/12671">#12671</a>
+          </li>
+          <li>
+            Resolves Pitest for VariableDeclarationUsageDistanceCheck.
+            Author: Kevin222004
+            <a href="https://github.com/checkstyle/checkstyle/issues/13095">#13095</a>
+          </li>
+          <li>
+            doc: update ConstantName examples to match tests.
+            Author: stoyanK7
+          </li>
+          <li>
+            Resolves Pitest for DeclarationOrderCheck.
+            Author: Kevin222004
+            <a href="https://github.com/checkstyle/checkstyle/issues/13102">#13102</a>
+          </li>
+          <li>
+            Resolves Pitest for AbstractSuperCheck.
+            Author: Kevin222004
+            <a href="https://github.com/checkstyle/checkstyle/issues/13108">#13108</a>
+          </li>
+          <li>
+            Create initial xdocs-test folder structure.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/13105">#13105</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 10.12.0">
       <div class="releaseDate">27.05.2023</div>
       <p>New:</p>

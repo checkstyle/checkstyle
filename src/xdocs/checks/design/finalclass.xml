@@ -10,9 +10,28 @@
       <p>Since Checkstyle 3.1</p>
       <subsection name="Description" id="Description">
         <p>
-          Checks that a class that has only private constructors and
-          has no descendant classes is declared as final.
+          Ensures that identifies classes that can be effectively declared as final are explicitly
+          marked as final. The following are different types of classes that can be identified:
         </p>
+        <ol>
+          <li>
+              Private classes with implicit constructor.
+          </li>
+          <li>
+              Classes with any modifier, and contains only private constructors.
+          </li>
+        </ol>
+        <p>
+          Classes are skipped if:
+        </p>
+        <ol>
+          <li>
+              Class is Super class of some Anonymous inner class.
+          </li>
+          <li>
+              Class is extended by another class in the same file.
+          </li>
+        </ol>
       </subsection>
 
       <subsection name="Examples" id="Examples">
@@ -55,6 +74,17 @@ class TestAnonymousInnerClasses { // OK, class has an anonymous inner class.
     private TestAnonymousInnerClasses() {
     }
 }
+
+class Class1 {
+
+    private class Class2 { // violation, class should be declared final
+    }
+
+    public class Class3 { // ok
+    }
+
+}
+
         </source>
       </subsection>
 
