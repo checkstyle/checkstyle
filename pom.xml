@@ -1788,9 +1788,6 @@
                 <!-- test needs to be updated -->
                 <exclude>**/SuppressionCommentFilterTest.class</exclude>
 
-                <!-- due to https://github.com/checkstyle/checkstyle/issues/11846 -->
-                <exclude>**/EmptyLineSeparatorCheckTest.class</exclude>
-
                 <!-- content header is conflicting with Input inline header -->
                 <exclude>**/HeaderCheckTest.class</exclude>
                 <!-- content header is conflicting with Input inline header -->
