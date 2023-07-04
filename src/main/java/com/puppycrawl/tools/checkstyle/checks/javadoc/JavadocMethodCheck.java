@@ -690,11 +690,6 @@ public class JavadocMethodCheck extends AbstractCheck {
     }
 
     @Override
-    public void beginTree(DetailAST rootAST) {
-        currentClassName = "";
-    }
-
-    @Override
     public final void visitToken(DetailAST ast) {
         if (ast.getType() == TokenTypes.CLASS_DEF
                  || ast.getType() == TokenTypes.INTERFACE_DEF
