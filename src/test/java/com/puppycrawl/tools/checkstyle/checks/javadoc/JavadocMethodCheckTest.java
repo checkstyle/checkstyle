@@ -496,4 +496,30 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
             getPath("InputJavadocMethodCustomMessage.java"), expected);
     }
+
+    @Test
+    public void test1() throws Exception {
+        final String[] expected = {
+            "23: " + getCheckMessage(MSG_RETURN_EXPECTED),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocMethod1.java"), expected);
+    }
+
+    @Test
+    public void test2() throws Exception {
+        final String[] expected = {
+            "15:8: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<"),
+            "19:13: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "<X>"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocMethod2.java"), expected);
+    }
+
+    @Test
+    public void test3() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocMethod3.java"), expected);
+    }
 }
