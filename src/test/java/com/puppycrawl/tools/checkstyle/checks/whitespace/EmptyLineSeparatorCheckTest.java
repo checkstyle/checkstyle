@@ -28,7 +28,7 @@ import static com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparat
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+//import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -192,11 +192,11 @@ public class EmptyLineSeparatorCheckTest
 
     @Test
     public void testJavadocCommentAfterPackageWithImports() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(EmptyLineSeparatorCheck.class);
+       // final DefaultConfiguration checkConfig = createModuleConfig(EmptyLineSeparatorCheck.class);
         final String[] expected = {
             "2:1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "/*"),
         };
-        verify(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputEmptyLineSeparatorJavadocCommentAfterPackage.java"),
                 expected);
     }
@@ -313,21 +313,21 @@ public class EmptyLineSeparatorCheckTest
 
     @Test
     public void testPrePreviousLineEmptiness() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(EmptyLineSeparatorCheck.class);
-        checkConfig.addProperty("allowMultipleEmptyLines", "false");
+       // final DefaultConfiguration checkConfig = createModuleConfig(EmptyLineSeparatorCheck.class);
+        //checkConfig.addProperty("allowMultipleEmptyLines", "false");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig,
+        verifyWithInlineConfigParser(
             getPath("InputEmptyLineSeparatorPrePreviousLineEmptiness.java"), expected);
     }
 
     @Test
     public void testPrePreviousLineIsEmpty() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(EmptyLineSeparatorCheck.class);
-        checkConfig.addProperty("allowMultipleEmptyLines", "false");
+        //final DefaultConfiguration checkConfig = createModuleConfig(EmptyLineSeparatorCheck.class);
+      //  checkConfig.addProperty("allowMultipleEmptyLines", "false");
         final String[] expected = {
             "3:1: " + getCheckMessage(MSG_MULTIPLE_LINES, "package"),
         };
-        verify(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputEmptyLineSeparatorPrePreviousLineIsEmpty.java"), expected);
     }
 
