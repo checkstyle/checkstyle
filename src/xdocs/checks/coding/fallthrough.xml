@@ -84,7 +84,7 @@ class FallThroughTestClass {
     while(i &gt;= 0) {
       switch(i) {
         case 1:
-          i++;  
+          i++;
         case 2: // violation, previous case contains code but lacks
           // break, return, yield, throw or continue statement
           i++;
@@ -103,7 +103,7 @@ class FallThroughTestClass {
         case 8: // Previous case: OK, case does not contain code
           // This case: OK, by default the last case might not have statement
           // that transfer control
-          i++;	
+          i++;
       }
     }
   }
@@ -157,7 +157,7 @@ class FallThroughTestClass {
         </p>
         <source>
 class FallThroughTestClass {
-  public static void main(String args[]) {	
+  public static void main(String args[]) {
     int i = 0;
     while(i &gt;= 0) {
       switch(i) {
@@ -198,7 +198,6 @@ class FallThroughTestClass {
         <source>
 class FallThroughTestClass {
   public static void main(String args[]) {
-		
     int i = 0;
     while(i &gt;= 0) {
       switch(i) {
