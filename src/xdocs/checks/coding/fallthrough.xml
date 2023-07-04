@@ -114,7 +114,7 @@ class FallThroughTestClass {
         </p>
         <source>
 class FallThroughTestClass {
-  public static void main(String args[]) {	
+  public static void main(String args[]) {
     int i = 0;
     while(i &gt;= 0) {
       switch(i) {
