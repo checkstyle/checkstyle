@@ -594,9 +594,9 @@ javac19)
   fi
   ;;
 
-jdk14-assembly-site)
+package-site)
   mvn -e --no-transfer-progress package -Passembly,no-validations
-  mvn -e --no-transfer-progress site -Pno-validations
+  mvn -e --no-transfer-progress site -Dlinkcheck.skip=true
   ;;
 
 sonarqube)
@@ -1088,11 +1088,6 @@ git-check-pull-number)
       fi
     fi
   done
-  ;;
-
-assembly-site)
-  mvn -e --no-transfer-progress package -Passembly,no-validations
-  mvn -e --no-transfer-progress site -Dlinkcheck.skip=true
   ;;
 
 jacoco)
