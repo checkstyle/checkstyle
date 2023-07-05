@@ -32,7 +32,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * </p>
  * <p>
  * This check is effectively the opposite of
- * <a href="https://checkstyle.org/checks/modifier/redundantmodifier.html">
+ * <a href="https://checkstyle.org/checks/modifier/redundantmodifier.html#RedundantModifier">
  * RedundantModifier</a>.
  * It checks the modifiers on nested types in classes and records, ensuring that certain modifiers
  * are explicitly specified even though they are actually redundant.
