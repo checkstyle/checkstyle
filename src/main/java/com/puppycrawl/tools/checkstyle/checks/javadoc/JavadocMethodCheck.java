@@ -864,8 +864,7 @@ public class JavadocMethodCheck extends AbstractCheck {
                 tags.add(new JavadocTag(currentLine, col, javadocNoargMatcher.group(1)));
             }
             else if (noargCurlyMatcher.find()) {
-                final int col = calculateTagColumn(noargCurlyMatcher, i, startColumnNumber);
-                tags.add(new JavadocTag(currentLine, col, noargCurlyMatcher.group(1)));
+                tags.add(new JavadocTag(currentLine, 0, noargCurlyMatcher.group(1)));
             }
             else if (noargMultilineStart.find()) {
                 tags.addAll(getMultilineNoArgTags(noargMultilineStart, lines, i, currentLine));
