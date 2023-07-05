@@ -637,7 +637,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
         boolean found = false;
         final DetailNode[] children = root.getChildren();
 
-        for (int i = 0; !found; i++) {
+        for (int i = 0; i < children.length - 1; i++) {
             final DetailNode child = children[i];
             if (child.getType() == JavadocTokenTypes.JAVADOC_INLINE_TAG
                     && child.getChildren()[1].getType() == JavadocTokenTypes.INHERIT_DOC_LITERAL) {
