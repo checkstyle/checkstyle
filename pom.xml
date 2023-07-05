@@ -239,6 +239,11 @@
 
   <dependencies>
     <dependency>
+      <groupId>org.apache.maven.doxia</groupId>
+      <artifactId>doxia-core</artifactId>
+      <version>1.12.0</version>
+    </dependency>
+    <dependency>
       <groupId>info.picocli</groupId>
       <artifactId>picocli</artifactId>
       <version>4.7.4</version>
@@ -652,6 +657,17 @@
       </plugins>
     </pluginManagement>
     <plugins>
+      <plugin>
+        <groupId>org.codehaus.plexus</groupId>
+        <artifactId>plexus-component-metadata</artifactId>
+        <executions>
+          <execution>
+            <goals>
+              <goal>generate-metadata</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
       <plugin>
         <groupId>org.gaul</groupId>
         <artifactId>modernizer-maven-plugin</artifactId>
@@ -1298,7 +1314,16 @@
                 <requireMavenVersion>
                   <version>3.3.9</version>
                 </requireMavenVersion>
-                <dependencyConvergence />
+                <dependencyConvergence>
+                  <excludes>
+                    <exclude>org.apache.maven.doxia:doxia-core</exclude>
+                    <exclude>org.apache.commons*</exclude>
+                    <exclude>commons-codec:commons-codec*</exclude>
+                    <exclude>org.apache.httpcomponents*</exclude>
+                    <exclude>org.codehaus.plexus*</exclude>
+                  </excludes>
+                </dependencyConvergence>
+
                 <!-- we can not use this as it require same version for all dependencies -->
                 <!--
                 <enforceBytecodeVersion>
