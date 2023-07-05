@@ -15,7 +15,7 @@
         </p>
         <ol>
           <li>
-              Private classes with implicit constructor.
+              Private classes with no declared constructors.
           </li>
           <li>
               Classes with any modifier, and contains only private constructors.
