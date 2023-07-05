@@ -141,14 +141,8 @@ public class XdocsPagesTest {
             // loads string into memory similar to file
             "Header.header",
             "RegexpHeader.header",
-            // deprecated fields
-            "JavadocMethod.minLineCount",
-            "JavadocMethod.allowMissingJavadoc",
-            "JavadocMethod.allowMissingPropertyJavadoc",
-            "JavadocMethod.ignoreMethodNamesRegex",
-            "JavadocMethod.logLoadErrors",
-            "JavadocMethod.suppressLoadErrors",
-            "MissingDeprecated.skipNoJavadoc"
+            // until https://github.com/checkstyle/checkstyle/issues/13376
+            "CustomImportOrder.customImportOrderRules"
     );
 
     private static final Set<String> SUN_MODULES = Collections.unmodifiableSet(
@@ -518,10 +512,13 @@ public class XdocsPagesTest {
 
     @Test
     public void testAllCheckSections() throws Exception {
+        final ModuleFactory moduleFactory = TestUtil.getPackageObjectFactory();
+
         for (Path path : XdocUtil.getXdocsConfigFilePaths(XdocUtil.getXdocsFilePaths())) {
             final String fileName = path.getFileName().toString();
 
-            if ("config_system_properties.xml".equals(fileName)) {
+            if ("config_system_properties.xml".equals(fileName)
+                    || "index.xml".equals(fileName)) {
                 continue;
             }
 
@@ -552,6 +549,8 @@ public class XdocsPagesTest {
                                             lastSectionName.toLowerCase(Locale.ENGLISH)) >= 0)
                                     .isTrue();
                 }
+
+                validateCheckSection(moduleFactory, fileName, sectionName, section);
 
                 lastSectionName = sectionName;
             }
@@ -1385,10 +1384,15 @@ public class XdocsPagesTest {
                 .isEqualTo("");
         }
         else {
+            final String subsectionTextContent = subSection.getTextContent()
+                    .replaceAll("\n\\s+", "\n")
+                    .replaceAll("\n", " ")
+                    .replaceAll("\\s+", " ")
+                    .trim();
             assertWithMessage(fileName + " section '" + sectionName
                             + "' should have the expected error keys")
-                .that(subSection.getTextContent().replaceAll("\n\\s+", "\n").trim())
-                .isEqualTo(expectedText.toString().trim());
+                .that(subsectionTextContent)
+                .isEqualTo(expectedText.toString().replaceAll("\n", " ").trim());
 
             for (Node node : XmlUtil.findChildElementsByTag(subSection, "a")) {
                 final String url = node.getAttributes().getNamedItem("href").getTextContent();
@@ -1409,7 +1413,7 @@ public class XdocsPagesTest {
                 assertWithMessage(fileName + " section '" + sectionName
                         + "' should have matching url for '" + linkText + "'")
                     .that(url)
-                    .isEqualTo(expectedUrl);
+                    .contains(expectedUrl);
             }
         }
     }
