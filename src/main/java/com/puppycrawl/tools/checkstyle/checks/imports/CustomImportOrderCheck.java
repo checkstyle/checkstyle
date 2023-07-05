@@ -725,6 +725,9 @@ public class CustomImportOrderCheck extends AbstractCheck {
     /** Contains objects with import attributes. */
     private final List<ImportDetails> importToGroupList = new ArrayList<>();
 
+    /** Specify format of order declaration customizing by user. */
+    private String customImportOrderRules = "";
+
     /** Specify RegExp for SAME_PACKAGE group imports. */
     private String samePackageDomainsRegExp = "";
 
