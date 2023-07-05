@@ -64,6 +64,9 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
+        <macro name="ex">
+          <param name="myParam" value="myValue"/>
+        </macro>
         <p>
           To configure the check:
         </p>
