@@ -875,11 +875,9 @@ Cycle detected: Slice api -> \
     - Method <com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.searchMatchingTypeParameter(java.lang.Iterable, java.lang.String)> calls method <com.puppycrawl.tools.checkstyle.api.DetailAST.findFirstToken(int)> in (JavadocMethodCheck.java:1180)\
     - Method <com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.searchMatchingTypeParameter(java.lang.Iterable, java.lang.String)> calls method <com.puppycrawl.tools.checkstyle.api.DetailAST.getText()> in (JavadocMethodCheck.java:1180)\
     - Method <com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.removeMatchingParam(java.lang.Iterable, java.lang.String)> calls method <com.puppycrawl.tools.checkstyle.api.DetailAST.getText()> in (JavadocMethodCheck.java:1202)\
-    - Method <com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.processClass(com.puppycrawl.tools.checkstyle.api.DetailAST)> calls method <com.puppycrawl.tools.checkstyle.api.DetailAST.findFirstToken(int)> in (JavadocMethodCheck.java:1357)\
-    - Method <com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.processClass(com.puppycrawl.tools.checkstyle.api.DetailAST)> calls method <com.puppycrawl.tools.checkstyle.api.DetailAST.getText()> in (JavadocMethodCheck.java:1358)\
-    - Constructor <com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck$Token.<init>(com.puppycrawl.tools.checkstyle.api.FullIdent)> calls method <com.puppycrawl.tools.checkstyle.api.FullIdent.getText()> in (JavadocMethodCheck.java:1424)\
-    - Constructor <com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck$Token.<init>(com.puppycrawl.tools.checkstyle.api.FullIdent)> calls method <com.puppycrawl.tools.checkstyle.api.FullIdent.getLineNo()> in (JavadocMethodCheck.java:1425)\
-    - Constructor <com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck$Token.<init>(com.puppycrawl.tools.checkstyle.api.FullIdent)> calls method <com.puppycrawl.tools.checkstyle.api.FullIdent.getColumnNo()> in (JavadocMethodCheck.java:1426)
+    - Method <com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.processClass(com.puppycrawl.tools.checkstyle.api.DetailAST)> calls method <com.puppycrawl.tools.checkstyle.api.DetailAST.findFirstToken(int)> in (JavadocMethodCheck.java:1356)\
+    - Method <com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.processClass(com.puppycrawl.tools.checkstyle.api.DetailAST)> calls method <com.puppycrawl.tools.checkstyle.api.DetailAST.getText()> in (JavadocMethodCheck.java:1357)\
+    - Constructor <com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck$Token.<init>(com.puppycrawl.tools.checkstyle.api.FullIdent)> calls method <com.puppycrawl.tools.checkstyle.api.FullIdent.getText()> in (JavadocMethodCheck.java:1415)
 Cycle detected: Slice api -> \
                 Slice utils -> \
                 Slice checks.javadoc -> \
