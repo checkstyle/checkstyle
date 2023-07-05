@@ -3,9 +3,9 @@ Cycle detected: Slice api -> \
                 Slice api\
   1. Dependencies of Slice api\
     - Method <com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck.process(java.io.File, com.puppycrawl.tools.checkstyle.api.FileText)> calls method <com.puppycrawl.tools.checkstyle.utils.CommonUtil.matchesFileExtension(java.io.File, [Ljava.lang.String;)> in (AbstractFileSetCheck.java:97)\
-    - Constructor <com.puppycrawl.tools.checkstyle.api.FileText.<init>(java.io.File, java.util.List)> gets field <com.puppycrawl.tools.checkstyle.utils.CommonUtil.EMPTY_STRING_ARRAY> in (FileText.java:133)\
+    - Constructor <com.puppycrawl.tools.checkstyle.api.FileText.<init>(java.io.File, java.util.List)> gets field <com.puppycrawl.tools.checkstyle.utils.CommonUtil.EMPTY_STRING_ARRAY> in (FileText.java:132)\
+    - Constructor <com.puppycrawl.tools.checkstyle.api.FileText.<init>(java.io.File, java.lang.String)> gets field <com.puppycrawl.tools.checkstyle.utils.CommonUtil.EMPTY_STRING_ARRAY> in (FileText.java:177)\
     - Method <com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck.setFileExtensions([Ljava.lang.String;)> calls method <com.puppycrawl.tools.checkstyle.utils.CommonUtil.startsWithChar(java.lang.String, char)> in (AbstractFileSetCheck.java:177)\
-    - Constructor <com.puppycrawl.tools.checkstyle.api.FileText.<init>(java.io.File, java.lang.String)> gets field <com.puppycrawl.tools.checkstyle.utils.CommonUtil.EMPTY_STRING_ARRAY> in (FileText.java:180)\
     - Method <com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck.log(int, int, java.lang.String, [Ljava.lang.Object;)> calls method <com.puppycrawl.tools.checkstyle.utils.CommonUtil.lengthExpandedTabs(java.lang.String, int, int)> in (AbstractFileSetCheck.java:230)\
     - Method <com.puppycrawl.tools.checkstyle.api.FileContents.lineIsBlank(int)> calls method <com.puppycrawl.tools.checkstyle.utils.CommonUtil.isBlank(java.lang.String)> in (FileContents.java:234)\
     - Method <com.puppycrawl.tools.checkstyle.api.AbstractCheck.log(int, int, java.lang.String, [Ljava.lang.Object;)> calls method <com.puppycrawl.tools.checkstyle.utils.CommonUtil.lengthExpandedTabs(java.lang.String, int, int)> in (AbstractCheck.java:245)\
@@ -362,9 +362,9 @@ Cycle detected: Slice api -> \
                 Slice api\
   1. Dependencies of Slice api\
     - Method <com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck.process(java.io.File, com.puppycrawl.tools.checkstyle.api.FileText)> calls method <com.puppycrawl.tools.checkstyle.utils.CommonUtil.matchesFileExtension(java.io.File, [Ljava.lang.String;)> in (AbstractFileSetCheck.java:97)\
-    - Constructor <com.puppycrawl.tools.checkstyle.api.FileText.<init>(java.io.File, java.util.List)> gets field <com.puppycrawl.tools.checkstyle.utils.CommonUtil.EMPTY_STRING_ARRAY> in (FileText.java:133)\
+    - Constructor <com.puppycrawl.tools.checkstyle.api.FileText.<init>(java.io.File, java.util.List)> gets field <com.puppycrawl.tools.checkstyle.utils.CommonUtil.EMPTY_STRING_ARRAY> in (FileText.java:132)\
+    - Constructor <com.puppycrawl.tools.checkstyle.api.FileText.<init>(java.io.File, java.lang.String)> gets field <com.puppycrawl.tools.checkstyle.utils.CommonUtil.EMPTY_STRING_ARRAY> in (FileText.java:177)\
     - Method <com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck.setFileExtensions([Ljava.lang.String;)> calls method <com.puppycrawl.tools.checkstyle.utils.CommonUtil.startsWithChar(java.lang.String, char)> in (AbstractFileSetCheck.java:177)\
-    - Constructor <com.puppycrawl.tools.checkstyle.api.FileText.<init>(java.io.File, java.lang.String)> gets field <com.puppycrawl.tools.checkstyle.utils.CommonUtil.EMPTY_STRING_ARRAY> in (FileText.java:180)\
     - Method <com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck.log(int, int, java.lang.String, [Ljava.lang.Object;)> calls method <com.puppycrawl.tools.checkstyle.utils.CommonUtil.lengthExpandedTabs(java.lang.String, int, int)> in (AbstractFileSetCheck.java:230)\
     - Method <com.puppycrawl.tools.checkstyle.api.FileContents.lineIsBlank(int)> calls method <com.puppycrawl.tools.checkstyle.utils.CommonUtil.isBlank(java.lang.String)> in (FileContents.java:234)\
     - Method <com.puppycrawl.tools.checkstyle.api.AbstractCheck.log(int, int, java.lang.String, [Ljava.lang.Object;)> calls method <com.puppycrawl.tools.checkstyle.utils.CommonUtil.lengthExpandedTabs(java.lang.String, int, int)> in (AbstractCheck.java:245)\
@@ -887,9 +887,9 @@ Cycle detected: Slice api -> \
                 Slice api\
   1. Dependencies of Slice api\
     - Method <com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck.process(java.io.File, com.puppycrawl.tools.checkstyle.api.FileText)> calls method <com.puppycrawl.tools.checkstyle.utils.CommonUtil.matchesFileExtension(java.io.File, [Ljava.lang.String;)> in (AbstractFileSetCheck.java:97)\
-    - Constructor <com.puppycrawl.tools.checkstyle.api.FileText.<init>(java.io.File, java.util.List)> gets field <com.puppycrawl.tools.checkstyle.utils.CommonUtil.EMPTY_STRING_ARRAY> in (FileText.java:133)\
+    - Constructor <com.puppycrawl.tools.checkstyle.api.FileText.<init>(java.io.File, java.util.List)> gets field <com.puppycrawl.tools.checkstyle.utils.CommonUtil.EMPTY_STRING_ARRAY> in (FileText.java:132)\
+    - Constructor <com.puppycrawl.tools.checkstyle.api.FileText.<init>(java.io.File, java.lang.String)> gets field <com.puppycrawl.tools.checkstyle.utils.CommonUtil.EMPTY_STRING_ARRAY> in (FileText.java:177)\
     - Method <com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck.setFileExtensions([Ljava.lang.String;)> calls method <com.puppycrawl.tools.checkstyle.utils.CommonUtil.startsWithChar(java.lang.String, char)> in (AbstractFileSetCheck.java:177)\
-    - Constructor <com.puppycrawl.tools.checkstyle.api.FileText.<init>(java.io.File, java.lang.String)> gets field <com.puppycrawl.tools.checkstyle.utils.CommonUtil.EMPTY_STRING_ARRAY> in (FileText.java:180)\
     - Method <com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck.log(int, int, java.lang.String, [Ljava.lang.Object;)> calls method <com.puppycrawl.tools.checkstyle.utils.CommonUtil.lengthExpandedTabs(java.lang.String, int, int)> in (AbstractFileSetCheck.java:230)\
     - Method <com.puppycrawl.tools.checkstyle.api.FileContents.lineIsBlank(int)> calls method <com.puppycrawl.tools.checkstyle.utils.CommonUtil.isBlank(java.lang.String)> in (FileContents.java:234)\
     - Method <com.puppycrawl.tools.checkstyle.api.AbstractCheck.log(int, int, java.lang.String, [Ljava.lang.Object;)> calls method <com.puppycrawl.tools.checkstyle.utils.CommonUtil.lengthExpandedTabs(java.lang.String, int, int)> in (AbstractCheck.java:245)\
@@ -1039,9 +1039,9 @@ Cycle detected: Slice api -> \
                 Slice api\
   1. Dependencies of Slice api\
     - Method <com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck.process(java.io.File, com.puppycrawl.tools.checkstyle.api.FileText)> calls method <com.puppycrawl.tools.checkstyle.utils.CommonUtil.matchesFileExtension(java.io.File, [Ljava.lang.String;)> in (AbstractFileSetCheck.java:97)\
-    - Constructor <com.puppycrawl.tools.checkstyle.api.FileText.<init>(java.io.File, java.util.List)> gets field <com.puppycrawl.tools.checkstyle.utils.CommonUtil.EMPTY_STRING_ARRAY> in (FileText.java:133)\
+    - Constructor <com.puppycrawl.tools.checkstyle.api.FileText.<init>(java.io.File, java.util.List)> gets field <com.puppycrawl.tools.checkstyle.utils.CommonUtil.EMPTY_STRING_ARRAY> in (FileText.java:132)\
+    - Constructor <com.puppycrawl.tools.checkstyle.api.FileText.<init>(java.io.File, java.lang.String)> gets field <com.puppycrawl.tools.checkstyle.utils.CommonUtil.EMPTY_STRING_ARRAY> in (FileText.java:177)\
     - Method <com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck.setFileExtensions([Ljava.lang.String;)> calls method <com.puppycrawl.tools.checkstyle.utils.CommonUtil.startsWithChar(java.lang.String, char)> in (AbstractFileSetCheck.java:177)\
-    - Constructor <com.puppycrawl.tools.checkstyle.api.FileText.<init>(java.io.File, java.lang.String)> gets field <com.puppycrawl.tools.checkstyle.utils.CommonUtil.EMPTY_STRING_ARRAY> in (FileText.java:180)\
     - Method <com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck.log(int, int, java.lang.String, [Ljava.lang.Object;)> calls method <com.puppycrawl.tools.checkstyle.utils.CommonUtil.lengthExpandedTabs(java.lang.String, int, int)> in (AbstractFileSetCheck.java:230)\
     - Method <com.puppycrawl.tools.checkstyle.api.FileContents.lineIsBlank(int)> calls method <com.puppycrawl.tools.checkstyle.utils.CommonUtil.isBlank(java.lang.String)> in (FileContents.java:234)\
     - Method <com.puppycrawl.tools.checkstyle.api.AbstractCheck.log(int, int, java.lang.String, [Ljava.lang.Object;)> calls method <com.puppycrawl.tools.checkstyle.utils.CommonUtil.lengthExpandedTabs(java.lang.String, int, int)> in (AbstractCheck.java:245)\
@@ -1068,9 +1068,9 @@ Cycle detected: Slice api -> \
                 Slice api\
   1. Dependencies of Slice api\
     - Method <com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck.process(java.io.File, com.puppycrawl.tools.checkstyle.api.FileText)> calls method <com.puppycrawl.tools.checkstyle.utils.CommonUtil.matchesFileExtension(java.io.File, [Ljava.lang.String;)> in (AbstractFileSetCheck.java:97)\
-    - Constructor <com.puppycrawl.tools.checkstyle.api.FileText.<init>(java.io.File, java.util.List)> gets field <com.puppycrawl.tools.checkstyle.utils.CommonUtil.EMPTY_STRING_ARRAY> in (FileText.java:133)\
+    - Constructor <com.puppycrawl.tools.checkstyle.api.FileText.<init>(java.io.File, java.util.List)> gets field <com.puppycrawl.tools.checkstyle.utils.CommonUtil.EMPTY_STRING_ARRAY> in (FileText.java:132)\
+    - Constructor <com.puppycrawl.tools.checkstyle.api.FileText.<init>(java.io.File, java.lang.String)> gets field <com.puppycrawl.tools.checkstyle.utils.CommonUtil.EMPTY_STRING_ARRAY> in (FileText.java:177)\
     - Method <com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck.setFileExtensions([Ljava.lang.String;)> calls method <com.puppycrawl.tools.checkstyle.utils.CommonUtil.startsWithChar(java.lang.String, char)> in (AbstractFileSetCheck.java:177)\
-    - Constructor <com.puppycrawl.tools.checkstyle.api.FileText.<init>(java.io.File, java.lang.String)> gets field <com.puppycrawl.tools.checkstyle.utils.CommonUtil.EMPTY_STRING_ARRAY> in (FileText.java:180)\
     - Method <com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck.log(int, int, java.lang.String, [Ljava.lang.Object;)> calls method <com.puppycrawl.tools.checkstyle.utils.CommonUtil.lengthExpandedTabs(java.lang.String, int, int)> in (AbstractFileSetCheck.java:230)\
     - Method <com.puppycrawl.tools.checkstyle.api.FileContents.lineIsBlank(int)> calls method <com.puppycrawl.tools.checkstyle.utils.CommonUtil.isBlank(java.lang.String)> in (FileContents.java:234)\
     - Method <com.puppycrawl.tools.checkstyle.api.AbstractCheck.log(int, int, java.lang.String, [Ljava.lang.Object;)> calls method <com.puppycrawl.tools.checkstyle.utils.CommonUtil.lengthExpandedTabs(java.lang.String, int, int)> in (AbstractCheck.java:245)\
@@ -1218,9 +1218,9 @@ Cycle detected: Slice api -> \
                 Slice api\
   1. Dependencies of Slice api\
     - Method <com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck.process(java.io.File, com.puppycrawl.tools.checkstyle.api.FileText)> calls method <com.puppycrawl.tools.checkstyle.utils.CommonUtil.matchesFileExtension(java.io.File, [Ljava.lang.String;)> in (AbstractFileSetCheck.java:97)\
-    - Constructor <com.puppycrawl.tools.checkstyle.api.FileText.<init>(java.io.File, java.util.List)> gets field <com.puppycrawl.tools.checkstyle.utils.CommonUtil.EMPTY_STRING_ARRAY> in (FileText.java:133)\
+    - Constructor <com.puppycrawl.tools.checkstyle.api.FileText.<init>(java.io.File, java.util.List)> gets field <com.puppycrawl.tools.checkstyle.utils.CommonUtil.EMPTY_STRING_ARRAY> in (FileText.java:132)\
+    - Constructor <com.puppycrawl.tools.checkstyle.api.FileText.<init>(java.io.File, java.lang.String)> gets field <com.puppycrawl.tools.checkstyle.utils.CommonUtil.EMPTY_STRING_ARRAY> in (FileText.java:177)\
     - Method <com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck.setFileExtensions([Ljava.lang.String;)> calls method <com.puppycrawl.tools.checkstyle.utils.CommonUtil.startsWithChar(java.lang.String, char)> in (AbstractFileSetCheck.java:177)\
-    - Constructor <com.puppycrawl.tools.checkstyle.api.FileText.<init>(java.io.File, java.lang.String)> gets field <com.puppycrawl.tools.checkstyle.utils.CommonUtil.EMPTY_STRING_ARRAY> in (FileText.java:180)\
     - Method <com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck.log(int, int, java.lang.String, [Ljava.lang.Object;)> calls method <com.puppycrawl.tools.checkstyle.utils.CommonUtil.lengthExpandedTabs(java.lang.String, int, int)> in (AbstractFileSetCheck.java:230)\
     - Method <com.puppycrawl.tools.checkstyle.api.FileContents.lineIsBlank(int)> calls method <com.puppycrawl.tools.checkstyle.utils.CommonUtil.isBlank(java.lang.String)> in (FileContents.java:234)\
     - Method <com.puppycrawl.tools.checkstyle.api.AbstractCheck.log(int, int, java.lang.String, [Ljava.lang.Object;)> calls method <com.puppycrawl.tools.checkstyle.utils.CommonUtil.lengthExpandedTabs(java.lang.String, int, int)> in (AbstractCheck.java:245)\

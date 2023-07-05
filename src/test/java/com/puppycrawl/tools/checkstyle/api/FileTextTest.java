@@ -199,4 +199,25 @@ public class FileTextTest extends AbstractPathTestSupport {
         assertWithMessage("Should not be null")
                 .that(copy.getCharset()).isNotNull();
     }
+
+    @Test
+    public void testDecoder() throws Exception {
+        final Charset charset = StandardCharsets.US_ASCII;
+        final String filepath = getPath("InputFileText.java");
+        final FileText fileText = new FileText(new File(filepath), charset.name());
+        assertWithMessage("")
+                .that(fileText)
+                .isNotNull();
+    }
+
+    @Test
+    public void testDecoder2() throws Exception {
+        final Charset charset = StandardCharsets.UTF_8;
+        final String filepath = "src/test/resources-noncompilable/com/puppycrawl/tools/" +
+                "checkstyle/api/filetext/InputFileTextTestForDecoder.png";
+        final FileText fileText = new FileText(new File(filepath), charset.name());
+        assertWithMessage("")
+                .that(fileText)
+                .isNotNull();
+    }
 }
