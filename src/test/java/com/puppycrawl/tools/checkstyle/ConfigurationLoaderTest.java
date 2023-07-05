@@ -695,4 +695,44 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
         }
     }
 
+    @Test
+    public void testLoadConfiguration3() throws Exception {
+        final String[] configFiles = {
+            "InputConfigurationLoaderOldConfig0.xml",
+            "InputConfigurationLoaderOldConfig1.xml",
+            "InputConfigurationLoaderOldConfig2.xml",
+            "InputConfigurationLoaderOldConfig3.xml",
+            "InputConfigurationLoaderOldConfig4.xml",
+            "InputConfigurationLoaderOldConfig5.xml",
+            "InputConfigurationLoaderOldConfig6.xml",
+            "InputConfigurationLoaderOldConfig7.xml",
+        };
+
+        for (String configFile : configFiles) {
+            final DefaultConfiguration config =
+                    (DefaultConfiguration) ConfigurationLoader.loadConfiguration(
+                            new InputSource(Files.newInputStream(Paths.get(
+                                    getPath(configFile)))),
+                            new PropertiesExpander(new Properties()),
+                            IgnoredModulesOptions.OMIT);
+            final List<Object> propertyOfChecker = new ArrayList<>();
+            propertyOfChecker.add("severity");
+            propertyOfChecker.add("fileExtensions");
+            assertWithMessage("should have properties")
+                    .that(config.getPropertyNames()).asList()
+                    .isEqualTo(propertyOfChecker);
+
+            assertWithMessage("")
+                    .that(config.getAttribute("severity"))
+                    .isEqualTo("error");
+
+            assertWithMessage("")
+                    .that(config.getAttribute("fileExtensions"))
+                    .isEqualTo("java, properties, xml");
+
+            assertWithMessage("")
+                    .that(config.getChildren().length)
+                    .isEqualTo(1);
+        }
+    }
 }
