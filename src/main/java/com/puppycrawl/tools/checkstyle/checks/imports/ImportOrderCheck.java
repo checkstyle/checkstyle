@@ -282,7 +282,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </li>
  * </ul>
  * <p>
- * Note: a <a href="https://checkstyle.org/filters/suppressionxpathsinglefilter.html">
+ * Note: a
+ * <a href="https://checkstyle.org/filters/suppressionxpathsinglefilter.html#SuppressionXpathSingleFilter">
  * suppression xpath single filter</a> is needed because
  * IDEA has no blank line between "javax" and "java".
  * ImportOrder has a limitation by design to enforce an empty line between groups ("java", "javax").

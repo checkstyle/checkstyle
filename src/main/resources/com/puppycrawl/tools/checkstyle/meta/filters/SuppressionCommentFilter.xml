@@ -24,7 +24,7 @@
  Attention: This filter may only be specified within the TreeWalker module
  ({@code &amp;lt;module name="TreeWalker"/&amp;gt;}) and only applies to checks which are also
  defined within this module. To filter non-TreeWalker checks like {@code RegexpSingleline}, a
- &lt;a href="https://checkstyle.org/filters/suppresswithplaintextcommentfilter.html"&gt;
+ &lt;a href="https://checkstyle.org/filters/suppresswithplaintextcommentfilter.html#SuppressWithPlainTextCommentFilter"&gt;
  SuppressWithPlainTextCommentFilter&lt;/a&gt; or similar filter must be used.
  &lt;/p&gt;
  &lt;p&gt;
