@@ -44,9 +44,10 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </p>
  * <p>
  * For additional restriction of type usage see also:
- * <a href="https://checkstyle.org/checks/coding/illegalinstantiation.html">
+ * <a href="https://checkstyle.org/checks/coding/illegalinstantiation.html#IllegalInstantiation">
  * IllegalInstantiation</a>,
- * <a href="https://checkstyle.org/checks/imports/illegalimport.html">IllegalImport</a>
+ * <a href="https://checkstyle.org/checks/imports/illegalimport.html#IllegalImport">
+ * IllegalImport</a>
  * </p>
  * <p>
  * It is possible to set illegal class names via short or
