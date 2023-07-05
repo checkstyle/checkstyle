@@ -51,7 +51,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Attention: This filter may only be specified within the TreeWalker module
  * ({@code &lt;module name="TreeWalker"/&gt;}) and only applies to checks which are also
  * defined within this module. To filter non-TreeWalker checks like {@code RegexpSingleline},
- * a <a href="https://checkstyle.org/filters/suppresswithplaintextcommentfilter.html">
+ * a
+ * <a href="https://checkstyle.org/filters/suppresswithplaintextcommentfilter.html#SuppressWithPlainTextCommentFilter">
  * SuppressWithPlainTextCommentFilter</a> or similar filter must be used.
  * </p>
  * <p>
