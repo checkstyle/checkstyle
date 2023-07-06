@@ -132,7 +132,7 @@ public class OuterTypeFilenameCheck extends AbstractCheck {
     public void beginTree(DetailAST rootAST) {
         fileName = getSourceFileName();
         seenFirstToken = false;
-        hasPublic = false;
+
         wrongType = null;
     }
 
