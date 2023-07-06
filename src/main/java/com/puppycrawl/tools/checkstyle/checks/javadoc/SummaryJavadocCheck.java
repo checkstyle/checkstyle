@@ -487,8 +487,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
         // Checking size of ast is not required, since ast contains
         // children of Inline Tag, as at least 2 children will be present which are
         // RCURLY and LCURLY.
-        return child[1].getType() == JavadocTokenTypes.CUSTOM_NAME
-            && name.equals(child[1].getText());
+        return name.equals(child[1].getText());
     }
 
     /**
