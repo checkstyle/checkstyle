@@ -2999,6 +2999,9 @@
                 <!-- needed for SuppressWarningsFilter -->
                 <param>com.puppycrawl.tools.checkstyle.filters.SuppressWarningsFilterTest</param>
               </targetTests>
+              <avoidCallsTo>
+                <avoidCallsTo>com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil</avoidCallsTo>
+              </avoidCallsTo>
               <excludedMethods>
                 <!-- destroy method was added in case module had to free up resources
                 before ending, but currently it does ThreadLocal cleanup,
