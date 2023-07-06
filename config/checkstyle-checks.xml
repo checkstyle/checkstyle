@@ -333,6 +333,10 @@
       <property name="option" value="alone"/>
     </module>
     <module name="RightCurly">
+      <property name="tokens" value="OBJBLOCK"/>
+      <property name="option" value="alone_or_singleline"/>
+    </module>
+    <module name="RightCurly">
       <property name="tokens" value="LITERAL_DO"/>
       <property name="option" value="same"/>
     </module>
