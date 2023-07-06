@@ -207,21 +207,4 @@
     <lineContent>currentClass = null;</lineContent>
   </mutation>
 
-  <mutation unstable="false">
-    <sourceFile>UncommentedMainCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck</mutatedClass>
-    <mutatedMethod>beginTree</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to com/puppycrawl/tools/checkstyle/api/FullIdent::createFullIdent</description>
-    <lineContent>packageName = FullIdent.createFullIdent(null);</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>UncommentedMainCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck</mutatedClass>
-    <mutatedMethod>beginTree</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
-    <description>Removed assignment to member variable packageName</description>
-    <lineContent>packageName = FullIdent.createFullIdent(null);</lineContent>
-  </mutation>
 </suppressedMutations>
