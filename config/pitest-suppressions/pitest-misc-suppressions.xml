@@ -90,14 +90,14 @@
     <lineContent>hasPublic = false;</lineContent>
   </mutation>
 
-  <mutation unstable="false">
-    <sourceFile>OuterTypeFilenameCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.OuterTypeFilenameCheck</mutatedClass>
-    <mutatedMethod>beginTree</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
-    <description>Removed assignment to member variable seenFirstToken</description>
-    <lineContent>seenFirstToken = false;</lineContent>
-  </mutation>
+
+
+
+
+
+
+
+
 
   <mutation unstable="false">
     <sourceFile>OuterTypeFilenameCheck.java</sourceFile>
