@@ -133,7 +133,7 @@ public class OuterTypeFilenameCheck extends AbstractCheck {
         fileName = getSourceFileName();
         seenFirstToken = false;
         hasPublic = false;
-        wrongType = null;
+
     }
 
     @Override
