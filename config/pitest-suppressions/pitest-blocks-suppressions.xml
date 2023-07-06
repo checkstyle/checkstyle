@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suppressedMutations>
+  <mutation unstable="false">
+    <sourceFile>RightCurlyCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck$Details</mutatedClass>
+    <mutatedMethod>getDetailsForAnonymousInnerClass</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getFirstChild with receiver</description>
+    <lineContent>final DetailAST lcurly = ast.getFirstChild();</lineContent>
+  </mutation>
+</suppressedMutations>
