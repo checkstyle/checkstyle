@@ -1835,17 +1835,6 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/SummaryJavadocCheck.java</fileName>
     <specifier>array.access.unsafe.high.constant</specifier>
     <message>Potentially unsafe array access: the constant index 1 could be larger than the array&apos;s bound</message>
-    <lineContent>&amp;&amp; name.equals(child[1].getText());</lineContent>
-    <details>
-      found   : DetailNode []
-      required: @MinLen(2) -- an array guaranteed to have at least 2 elements
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/SummaryJavadocCheck.java</fileName>
-    <specifier>array.access.unsafe.high.constant</specifier>
-    <message>Potentially unsafe array access: the constant index 1 could be larger than the array&apos;s bound</message>
     <lineContent>node = node.getChildren()[0].getChildren()[1];</lineContent>
     <details>
       found   : DetailNode []
@@ -1868,7 +1857,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/SummaryJavadocCheck.java</fileName>
     <specifier>array.access.unsafe.high.constant</specifier>
     <message>Potentially unsafe array access: the constant index 1 could be larger than the array&apos;s bound</message>
-    <lineContent>return child[1].getType() == JavadocTokenTypes.CUSTOM_NAME</lineContent>
+    <lineContent>return name.equals(child[1].getText());</lineContent>
     <details>
       found   : DetailNode []
       required: @MinLen(2) -- an array guaranteed to have at least 2 elements
