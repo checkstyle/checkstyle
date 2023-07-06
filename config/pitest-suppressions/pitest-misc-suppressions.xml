@@ -18,23 +18,23 @@
     <lineContent>private int[] counts = CommonUtil.EMPTY_INT_ARRAY;</lineContent>
   </mutation>
 
-  <mutation unstable="false">
-    <sourceFile>NewlineAtEndOfFileCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck</mutatedClass>
-    <mutatedMethod>readAndCheckFile</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to java/io/File::getPath</description>
-    <lineContent>log(1, MSG_KEY_NO_NEWLINE_EOF, file.getPath());</lineContent>
-  </mutation>
 
-  <mutation unstable="false">
-    <sourceFile>NewlineAtEndOfFileCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck</mutatedClass>
-    <mutatedMethod>readAndCheckFile</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to java/io/File::getPath</description>
-    <lineContent>log(1, MSG_KEY_WRONG_ENDING, file.getPath());</lineContent>
-  </mutation>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   <mutation unstable="false">
     <sourceFile>OrderedPropertiesCheck.java</sourceFile>
