@@ -224,10 +224,10 @@ public class NewlineAtEndOfFileCheck
         try (RandomAccessFile randomAccessFile = new RandomAccessFile(file, "r")) {
             if (lineSeparator == LineSeparatorOption.LF
                     && endsWithNewline(randomAccessFile, LineSeparatorOption.CRLF)) {
-                log(1, MSG_KEY_WRONG_ENDING, file.getPath());
+                log(1, MSG_KEY_WRONG_ENDING);
             }
             else if (!endsWithNewline(randomAccessFile, lineSeparator)) {
-                log(1, MSG_KEY_NO_NEWLINE_EOF, file.getPath());
+                log(1, MSG_KEY_NO_NEWLINE_EOF);
             }
         }
     }
