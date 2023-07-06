@@ -163,13 +163,13 @@
 
 
 
-  <mutation unstable="false">
-    <sourceFile>UncommentedMainCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck</mutatedClass>
-    <mutatedMethod>beginTree</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
-    <description>Removed assignment to member variable currentClass</description>
-    <lineContent>currentClass = null;</lineContent>
-  </mutation>
+
+
+
+
+
+
+
+
 
 </suppressedMutations>
