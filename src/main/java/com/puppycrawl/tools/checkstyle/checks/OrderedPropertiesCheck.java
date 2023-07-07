@@ -206,7 +206,7 @@ public class OrderedPropertiesCheck extends AbstractFileSetCheck {
      */
     private static Pattern getKeyPattern(String keyName) {
         final String keyPatternString = "^" + SPACE_PATTERN.matcher(keyName)
-                .replaceAll(Matcher.quoteReplacement("\\\\ ")) + "[\\s:=].*";
+                .replaceAll("") + "[\\s:=].*";
         return Pattern.compile(keyPatternString);
     }
 
