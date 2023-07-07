@@ -71,7 +71,7 @@ line 5: ////////////////////////////////////////////////////////////////////
               <td>
                 <code>
                   the charset property of the parent<a href="../../config.html#Checker">
-                  Checker</a>module
+                  Checker</a> module
                 </code>
               </td>
               <td>5.0</td>
