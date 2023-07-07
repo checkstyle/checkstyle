@@ -90,41 +90,34 @@
     <lineContent>final int firstColumn = targetAST.getColumnNo();</lineContent>
   </mutation>
 
-  <mutation unstable="false">
-    <sourceFile>SuppressWarningsHolder.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder</mutatedClass>
-    <mutatedMethod>findAllExpressionsInChildren</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getNextSibling</description>
-    <lineContent>childAST = childAST.getNextSibling();</lineContent>
-  </mutation>
 
-  <mutation unstable="false">
-    <sourceFile>SuppressWarningsHolder.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder</mutatedClass>
-    <mutatedMethod>getStringExpr</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
-    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getLastChild with receiver</description>
-    <lineContent>expr = firstChild.getLastChild().getText();</lineContent>
-  </mutation>
 
-  <mutation unstable="false">
-    <sourceFile>SuppressWarningsHolder.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder</mutatedClass>
-    <mutatedMethod>getStringExpr</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_0</mutator>
-    <description>RemoveSwitch 0 (case value 58)</description>
-    <lineContent>switch (firstChild.getType()) {</lineContent>
-  </mutation>
 
-  <mutation unstable="false">
-    <sourceFile>SuppressWarningsHolder.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder</mutatedClass>
-    <mutatedMethod>getStringExpr</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_1</mutator>
-    <description>RemoveSwitch 1 (case value 59)</description>
-    <lineContent>switch (firstChild.getType()) {</lineContent>
-  </mutation>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   <mutation unstable="false">
     <sourceFile>TodoCommentCheck.java</sourceFile>
