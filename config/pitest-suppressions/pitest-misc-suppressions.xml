@@ -54,32 +54,32 @@
     <lineContent>.replaceAll(Matcher.quoteReplacement(&quot;\\\\ &quot;)) + &quot;[\\s:=].*&quot;;</lineContent>
   </mutation>
 
-  <mutation unstable="false">
-    <sourceFile>OrderedPropertiesCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.OrderedPropertiesCheck$SequencedProperties</mutatedClass>
-    <mutatedMethod>put</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to java/util/Properties::put</description>
-    <lineContent>return super.put(key, value);</lineContent>
-  </mutation>
 
-  <mutation unstable="false">
-    <sourceFile>OrderedPropertiesCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.OrderedPropertiesCheck$SequencedProperties</mutatedClass>
-    <mutatedMethod>put</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
-    <description>replaced call to java/util/Properties::put with argument</description>
-    <lineContent>return super.put(key, value);</lineContent>
-  </mutation>
 
-  <mutation unstable="false">
-    <sourceFile>OrderedPropertiesCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.OrderedPropertiesCheck$SequencedProperties</mutatedClass>
-    <mutatedMethod>put</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.returns.NullReturnValsMutator</mutator>
-    <description>replaced return value with null for com/puppycrawl/tools/checkstyle/checks/OrderedPropertiesCheck$SequencedProperties::put</description>
-    <lineContent>return super.put(key, value);</lineContent>
-  </mutation>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   <mutation unstable="false">
     <sourceFile>OuterTypeFilenameCheck.java</sourceFile>
