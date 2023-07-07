@@ -52,6 +52,24 @@ public final class XdocUtil {
     }
 
     /**
+     * Gets all xdocs file paths. This includes Velocity .xml.vm files.
+     *
+     * @return a set of all xdocs file paths.
+     * @throws IOException if an I/O error occurs.
+     */
+    public static Set<Path> getAllXdocFilePaths() throws IOException {
+        final Path directory = Paths.get(DIRECTORY_PATH);
+        try (Stream<Path> stream = Files.find(directory, Integer.MAX_VALUE,
+                (path, attr) -> {
+                    return attr.isRegularFile()
+                            && path.toString().endsWith(".xml")
+                            || path.toString().endsWith(".xml.vm");
+                })) {
+            return stream.collect(Collectors.toSet());
+        }
+    }
+
+    /**
      * Gets xdocs file paths.
      *
      * @return a set of xdocs file paths.
