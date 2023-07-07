@@ -248,7 +248,7 @@ public class OrderedPropertiesCheck extends AbstractFileSetCheck {
         public synchronized Object put(Object key, Object value) {
             keyList.add(key);
 
-            return super.put(key, value);
+            return null;
         }
     }
 }
