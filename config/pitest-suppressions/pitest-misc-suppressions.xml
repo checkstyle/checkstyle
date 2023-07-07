@@ -108,23 +108,23 @@
     <lineContent>expr = firstChild.getLastChild().getText();</lineContent>
   </mutation>
 
-  <mutation unstable="false">
-    <sourceFile>SuppressWarningsHolder.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder</mutatedClass>
-    <mutatedMethod>getStringExpr</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_0</mutator>
-    <description>RemoveSwitch 0 (case value 58)</description>
-    <lineContent>switch (firstChild.getType()) {</lineContent>
-  </mutation>
 
-  <mutation unstable="false">
-    <sourceFile>SuppressWarningsHolder.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder</mutatedClass>
-    <mutatedMethod>getStringExpr</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_1</mutator>
-    <description>RemoveSwitch 1 (case value 59)</description>
-    <lineContent>switch (firstChild.getType()) {</lineContent>
-  </mutation>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   <mutation unstable="false">
     <sourceFile>TodoCommentCheck.java</sourceFile>
