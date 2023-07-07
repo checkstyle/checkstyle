@@ -507,4 +507,12 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
                 getPath("InputSuppressWarningsHolderAlias2.java"),
                 expected);
     }
+
+    @Test
+    public void testIdent() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputSuppressWarningsHolder1.java"),
+                expected);
+    }
 }
