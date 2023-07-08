@@ -201,4 +201,10 @@ public class RegexpSinglelineJavaCheckTest extends AbstractModuleTestSupport {
                 getPath("InputRegexpSinglelineJavaSemantic7.java"), expected);
     }
 
+    @Test
+    public void testDefault() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputRegexpSinglelineJavaSemantic8.java"), expected);
+    }
 }

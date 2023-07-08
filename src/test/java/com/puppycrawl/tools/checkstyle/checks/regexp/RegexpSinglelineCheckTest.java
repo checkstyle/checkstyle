@@ -130,4 +130,9 @@ public class RegexpSinglelineCheckTest extends AbstractModuleTestSupport {
                 .isEqualTo(0);
     }
 
+    @Test
+    public void testDefault() throws Exception {
+        verifyWithInlineConfigParser(
+                getPath("InputRegexpSinglelineSemantic9.java"), EMPTY);
+    }
 }
