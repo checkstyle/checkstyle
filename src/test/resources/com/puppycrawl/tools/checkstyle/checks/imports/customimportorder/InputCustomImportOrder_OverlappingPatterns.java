@@ -24,7 +24,7 @@ import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl; // violat
 
 // STANDARD - keyword Check
 
-import com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck; // violation ''com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck'' should be separated from previous import group by one line'
+import com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck; // violation ''com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck' should be separated from previous import group by one line'
 import com.puppycrawl.tools.checkstyle.checks.javadoc.AtclauseOrderCheck; // (_C_)
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagContinuationIndentationCheck; // (JCT)
 
