@@ -53,22 +53,4 @@
     <description>Removed assignment to member variable duplicateLimit</description>
     <lineContent>this.duplicateLimit = duplicateLimit;</lineContent>
   </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>RegexpSinglelineCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck</mutatedClass>
-    <mutatedMethod>beginProcessing</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
-    <description>replaced call to com/puppycrawl/tools/checkstyle/checks/regexp/DetectorOptions$Builder::compileFlags with receiver</description>
-    <lineContent>.compileFlags(0)</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>RegexpSinglelineJavaCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck</mutatedClass>
-    <mutatedMethod>beginTree</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
-    <description>replaced call to com/puppycrawl/tools/checkstyle/checks/regexp/DetectorOptions$Builder::compileFlags with receiver</description>
-    <lineContent>.compileFlags(0)</lineContent>
-  </mutation>
 </suppressedMutations>

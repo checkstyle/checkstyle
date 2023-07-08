@@ -254,7 +254,6 @@ public class RegexpSinglelineJavaCheck extends AbstractCheck {
 
         final DetectorOptions options = DetectorOptions.newBuilder()
             .reporter(this)
-            .compileFlags(0)
             .suppressor(suppressor)
             .format(format)
             .message(message)
