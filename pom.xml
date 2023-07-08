@@ -4769,6 +4769,7 @@
                 <class>com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil</class>
               </excludedClasses>
               <targetTests>
+                <param>com.puppycrawl.tools.checkstyle.checks.*</param>
                 <param>com.puppycrawl.tools.checkstyle.utils.*</param>
                 <!-- 12% mutation in CommonUtil,
                      3% coverage in CommonUtil, 2% coverage in JavadocUtil -->
@@ -4783,52 +4784,6 @@
                      11% mutation in JavadocUtil, 10% coverage in JavadocUtil, ScopeUtil -->
                 <param>
                   com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheckTest
-                </param>
-                <param>
-                  com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheckTest
-                </param>
-                <param>
-                  com.puppycrawl.tools.checkstyle.checks.whitespace.SingleSpaceSeparatorCheckTest
-                </param>
-                <!-- 35% coverage, 29% mutation in CodePointUtil -->
-                <param>
-                  com.puppycrawl.tools.checkstyle.checks.whitespace.SeparatorWrapCheckTest
-                </param>
-                <!-- 2% mutation in ScopeUtil -->
-                <param>
-                  com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheckTest
-                </param>
-                <param>
-                  com.puppycrawl.tools.checkstyle.checks.javadoc.SingleLineJavadocCheckTest
-                </param>
-                <param>
-                  com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheckTest
-                </param>
-                <!-- 1% mutation in ScopeUtil -->
-                <param>
-                  com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheckTest
-                </param>
-                <!-- TokenUtil#asBitSet -->
-                <param>
-                  com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheckTest
-                </param>
-                <param>
-                  com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheckTest
-                </param>
-                <param>
-                  com.puppycrawl.tools.checkstyle.checks.coding.IllegalThrowsCheckTest
-                </param>
-                <param>
-                  com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheckTest
-                </param>
-                <param>
-                  com.puppycrawl.tools.checkstyle.checks.OuterTypeFilenameCheckTest
-                </param>
-                <param>
-                  com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheckTest
-                </param>
-                <param>
-                  com.puppycrawl.tools.checkstyle.checks.design.FinalClassCheckTest
                 </param>
               </targetTests>
               <excludedTestClasses>
