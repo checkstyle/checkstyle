@@ -1,0 +1,43 @@
+/*
+com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder
+aliasList = (default)
+
+com.puppycrawl.tools.checkstyle.filters.SuppressWarningsFilter
+
+com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheck
+
+com.puppycrawl.tools.checkstyle.checks.naming.LocalVariableNameCheck
+format = ^[a-z][_a-zA-Z0-9]{2,}$
+
+
+*/
+
+package com.puppycrawl.tools.checkstyle.checks.suppresswarningsholder;
+
+public class InputSuppressWarningsHolder9 {
+    static final String unusedLocalVariableCheck
+            = "UnusedLocalVariableCheck";
+    static final String localVariableNameCheck
+            = "LocalVariableNameCheck";
+
+    void test2() {
+        @SuppressWarnings({InputSuppressWarningsHolder9.unusedLocalVariableCheck,
+                InputSuppressWarningsHolder9.localVariableNameCheck})
+        int a;
+    }
+
+    void test3() {
+        @SuppressWarnings({unusedLocalVariableCheck, localVariableNameCheck})
+        int a;
+    }
+
+    void test1() {
+        @SuppressWarnings(InputSuppressWarningsHolder9.localVariableNameCheck)
+        int a; // violation 'Unused local variable 'a''
+    }
+
+    void test4() {
+        @SuppressWarnings(localVariableNameCheck)
+        int a; // violation 'Unused local variable 'a''
+    }
+}
