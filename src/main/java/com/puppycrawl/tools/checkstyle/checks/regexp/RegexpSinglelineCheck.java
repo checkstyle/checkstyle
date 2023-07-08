@@ -218,7 +218,6 @@ public class RegexpSinglelineCheck extends AbstractFileSetCheck {
     public void beginProcessing(String charset) {
         final DetectorOptions options = DetectorOptions.newBuilder()
             .reporter(this)
-            .compileFlags(0)
             .format(format)
             .message(message)
             .minimum(minimum)
