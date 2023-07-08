@@ -10,42 +10,6 @@
   </mutation>
 
   <mutation unstable="false">
-    <sourceFile>AnnotationUtil.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.utils.AnnotationUtil</mutatedClass>
-    <mutatedMethod>findFirstAnnotation</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getNextSibling</description>
-    <lineContent>child != null; child = child.getNextSibling()) {</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>AnnotationUtil.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.utils.AnnotationUtil</mutatedClass>
-    <mutatedMethod>findFirstAnnotation</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
-    <description>removed conditional - replaced equality check with true</description>
-    <lineContent>if (child.getType() == TokenTypes.ANNOTATION &amp;&amp; predicate.test(child)) {</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>AnnotationUtil.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.utils.AnnotationUtil</mutatedClass>
-    <mutatedMethod>getAnnotationHolder</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getType</description>
-    <lineContent>if (ast.getType() == TokenTypes.ENUM_CONSTANT_DEF</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>AnnotationUtil.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.utils.AnnotationUtil</mutatedClass>
-    <mutatedMethod>getAnnotationHolder</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
-    <description>removed conditional - replaced equality check with true</description>
-    <lineContent>if (ast.getType() == TokenTypes.ENUM_CONSTANT_DEF</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
     <sourceFile>BlockCommentPosition.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.utils.BlockCommentPosition</mutatedClass>
     <mutatedMethod>getNextSiblingSkipComments</mutatedMethod>
@@ -57,91 +21,10 @@
   <mutation unstable="false">
     <sourceFile>BlockCommentPosition.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.utils.BlockCommentPosition</mutatedClass>
-    <mutatedMethod>isOnField</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
-    <description>removed conditional - replaced equality check with true</description>
-    <lineContent>.getParent().getType() == TokenTypes.OBJBLOCK;</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>BlockCommentPosition.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.utils.BlockCommentPosition</mutatedClass>
-    <mutatedMethod>isOnField</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
-    <description>removed conditional - replaced equality check with false</description>
-    <lineContent>.getType() == TokenTypes.OBJBLOCK</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>BlockCommentPosition.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.utils.BlockCommentPosition</mutatedClass>
-    <mutatedMethod>isOnPackage</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getType</description>
-    <lineContent>&amp;&amp; nextSibling.getType() == TokenTypes.SINGLE_LINE_COMMENT) {</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>BlockCommentPosition.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.utils.BlockCommentPosition</mutatedClass>
-    <mutatedMethod>isOnPackage</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
-    <description>removed conditional - replaced equality check with false</description>
-    <lineContent>&amp;&amp; nextSibling.getType() == TokenTypes.SINGLE_LINE_COMMENT) {</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>BlockCommentPosition.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.utils.BlockCommentPosition</mutatedClass>
-    <mutatedMethod>isOnPackage</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getNextSibling</description>
-    <lineContent>nextSibling = nextSibling.getNextSibling();</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>BlockCommentPosition.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.utils.BlockCommentPosition</mutatedClass>
-    <mutatedMethod>isOnPackage</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
-    <description>removed conditional - replaced equality check with false</description>
-    <lineContent>while (nextSibling != null</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>BlockCommentPosition.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.utils.BlockCommentPosition</mutatedClass>
-    <mutatedMethod>isOnPlainClassMember</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
-    <description>removed conditional - replaced equality check with true</description>
-    <lineContent>&amp;&amp; parent.getParent().getParent().getType() == TokenTypes.OBJBLOCK;</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>BlockCommentPosition.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.utils.BlockCommentPosition</mutatedClass>
     <mutatedMethod>isOnPlainClassMember</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
     <description>removed conditional - replaced equality check with true</description>
     <lineContent>&amp;&amp; parent.getParent().getType() == memberType</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>BlockCommentPosition.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.utils.BlockCommentPosition</mutatedClass>
-    <mutatedMethod>isOnTokenWithAnnotation</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
-    <description>removed conditional - replaced equality check with true</description>
-    <lineContent>&amp;&amp; blockComment.getParent().getParent().getParent().getType() == tokenType</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>BlockCommentPosition.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.utils.BlockCommentPosition</mutatedClass>
-    <mutatedMethod>isOnTokenWithModifiers</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
-    <description>removed conditional - replaced equality check with true</description>
-    <lineContent>&amp;&amp; blockComment.getParent().getParent().getType() == tokenType</lineContent>
   </mutation>
 
   <mutation unstable="false">
@@ -174,15 +57,6 @@
   <mutation unstable="false">
     <sourceFile>CheckUtil.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.utils.CheckUtil</mutatedClass>
-    <mutatedMethod>getFirstNode</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getNextSibling</description>
-    <lineContent>child = child.getNextSibling();</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>CheckUtil.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.utils.CheckUtil</mutatedClass>
     <mutatedMethod>getShortNameOfAnonInnerClass</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
     <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getParent with receiver</description>
@@ -201,51 +75,6 @@
   <mutation unstable="false">
     <sourceFile>CheckUtil.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.utils.CheckUtil</mutatedClass>
-    <mutatedMethod>isBeforeInSource</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getColumnNo</description>
-    <lineContent>&amp;&amp; ast1.getColumnNo() &lt; ast2.getColumnNo();</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>CheckUtil.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.utils.CheckUtil</mutatedClass>
-    <mutatedMethod>isBeforeInSource</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_ORDER_ELSE</mutator>
-    <description>removed conditional - replaced comparison check with false</description>
-    <lineContent>&amp;&amp; ast1.getColumnNo() &lt; ast2.getColumnNo();</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>CheckUtil.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.utils.CheckUtil</mutatedClass>
-    <mutatedMethod>isBeforeInSource</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to com/puppycrawl/tools/checkstyle/utils/TokenUtil::areOnSameLine</description>
-    <lineContent>|| TokenUtil.areOnSameLine(ast1, ast2)</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>CheckUtil.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.utils.CheckUtil</mutatedClass>
-    <mutatedMethod>isBeforeInSource</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
-    <description>removed conditional - replaced equality check with false</description>
-    <lineContent>|| TokenUtil.areOnSameLine(ast1, ast2)</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>CheckUtil.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.utils.CheckUtil</mutatedClass>
-    <mutatedMethod>isElseWithCurlyBraces</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
-    <description>removed conditional - replaced equality check with true</description>
-    <lineContent>&amp;&amp; isElse(ast.getParent());</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>CheckUtil.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.utils.CheckUtil</mutatedClass>
     <mutatedMethod>isElseWithCurlyBraces</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
     <description>removed conditional - replaced equality check with true</description>
@@ -255,69 +84,6 @@
   <mutation unstable="false">
     <sourceFile>CheckUtil.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.utils.CheckUtil</mutatedClass>
-    <mutatedMethod>isEqualsMethod</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
-    <description>removed conditional - replaced equality check with true</description>
-    <lineContent>if (ast.getType() == TokenTypes.METHOD_DEF) {</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>CheckUtil.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.utils.CheckUtil</mutatedClass>
-    <mutatedMethod>isEqualsMethod</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::findFirstToken</description>
-    <lineContent>|| modifiers.findFirstToken(TokenTypes.ABSTRACT) != null;</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>CheckUtil.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.utils.CheckUtil</mutatedClass>
-    <mutatedMethod>isEqualsMethod</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
-    <description>removed conditional - replaced equality check with false</description>
-    <lineContent>|| modifiers.findFirstToken(TokenTypes.ABSTRACT) != null;</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>CheckUtil.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.utils.CheckUtil</mutatedClass>
-    <mutatedMethod>isGetterMethod</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
-    <description>removed conditional - replaced equality check with true</description>
-    <lineContent>&amp;&amp; ast.getChildCount() == SETTER_GETTER_MAX_CHILDREN) {</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>CheckUtil.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.utils.CheckUtil</mutatedClass>
-    <mutatedMethod>isGetterMethod</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
-    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::findFirstToken with receiver</description>
-    <lineContent>final DetailAST params = ast.findFirstToken(TokenTypes.PARAMETERS);</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>CheckUtil.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.utils.CheckUtil</mutatedClass>
-    <mutatedMethod>isGetterMethod</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getChildCount</description>
-    <lineContent>final boolean noParams = params.getChildCount(TokenTypes.PARAMETER_DEF) == 0;</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>CheckUtil.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.utils.CheckUtil</mutatedClass>
-    <mutatedMethod>isGetterMethod</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
-    <description>removed conditional - replaced equality check with true</description>
-    <lineContent>final boolean noParams = params.getChildCount(TokenTypes.PARAMETER_DEF) == 0;</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>CheckUtil.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.utils.CheckUtil</mutatedClass>
     <mutatedMethod>isGetterMethod</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
     <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::findFirstToken</description>
@@ -331,24 +97,6 @@
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
     <description>removed conditional - replaced equality check with true</description>
     <lineContent>final boolean noVoidReturnType = type.findFirstToken(TokenTypes.LITERAL_VOID) == null;</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>CheckUtil.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.utils.CheckUtil</mutatedClass>
-    <mutatedMethod>isGetterMethod</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
-    <description>removed conditional - replaced equality check with true</description>
-    <lineContent>getterMethod = expr.getType() == TokenTypes.LITERAL_RETURN;</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>CheckUtil.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.utils.CheckUtil</mutatedClass>
-    <mutatedMethod>isGetterMethod</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
-    <description>removed conditional - replaced equality check with true</description>
-    <lineContent>if (ast.getType() == TokenTypes.METHOD_DEF</lineContent>
   </mutation>
 
   <mutation unstable="false">
@@ -393,15 +141,6 @@
     <mutatedMethod>isSetterMethod</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
     <description>removed conditional - replaced equality check with true</description>
-    <lineContent>final boolean singleParam = params.getChildCount(TokenTypes.PARAMETER_DEF) == 1;</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>CheckUtil.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.utils.CheckUtil</mutatedClass>
-    <mutatedMethod>isSetterMethod</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
-    <description>removed conditional - replaced equality check with true</description>
     <lineContent>final boolean voidReturnType = type.findFirstToken(TokenTypes.LITERAL_VOID) != null;</lineContent>
   </mutation>
 
@@ -420,34 +159,7 @@
     <mutatedMethod>isSetterMethod</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
     <description>removed conditional - replaced equality check with true</description>
-    <lineContent>if (ast.getType() == TokenTypes.METHOD_DEF</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>CheckUtil.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.utils.CheckUtil</mutatedClass>
-    <mutatedMethod>isSetterMethod</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
-    <description>removed conditional - replaced equality check with true</description>
     <lineContent>if (matchesSetterFormat &amp;&amp; voidReturnType &amp;&amp; singleParam) {</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>CheckUtil.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.utils.CheckUtil</mutatedClass>
-    <mutatedMethod>isSetterMethod</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
-    <description>removed conditional - replaced equality check with true</description>
-    <lineContent>if (slist != null &amp;&amp; slist.getChildCount() == SETTER_BODY_SIZE) {</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>CheckUtil.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.utils.CheckUtil</mutatedClass>
-    <mutatedMethod>isSetterMethod</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
-    <description>removed conditional - replaced equality check with true</description>
-    <lineContent>setterMethod = expr.getFirstChild().getType() == TokenTypes.ASSIGN;</lineContent>
   </mutation>
 
   <mutation unstable="false">
@@ -586,33 +298,6 @@
   </mutation>
 
   <mutation unstable="false">
-    <sourceFile>JavadocUtil.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.utils.JavadocUtil</mutatedClass>
-    <mutatedMethod>isCorrectJavadocPosition</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getType</description>
-    <lineContent>else if (sibling.getType() == TokenTypes.SINGLE_LINE_COMMENT) {</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>JavadocUtil.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.utils.JavadocUtil</mutatedClass>
-    <mutatedMethod>isCorrectJavadocPosition</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
-    <description>removed conditional - replaced equality check with false</description>
-    <lineContent>else if (sibling.getType() == TokenTypes.SINGLE_LINE_COMMENT) {</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>JavadocUtil.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.utils.JavadocUtil</mutatedClass>
-    <mutatedMethod>isCorrectJavadocPosition</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getNextSibling</description>
-    <lineContent>sibling = sibling.getNextSibling();</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
     <sourceFile>ModuleReflectionUtil.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.utils.ModuleReflectionUtil</mutatedClass>
     <mutatedMethod>getCheckstyleModules</mutatedMethod>
@@ -628,15 +313,6 @@
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
     <description>removed conditional - replaced equality check with true</description>
     <lineContent>for (DetailAST token = aMods.getFirstChild(); token != null &amp;&amp; result == null;</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>ScopeUtil.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.utils.ScopeUtil</mutatedClass>
-    <mutatedMethod>getDeclaredScopeFromMods</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getNextSibling</description>
-    <lineContent>token = token.getNextSibling()) {</lineContent>
   </mutation>
 
   <mutation unstable="false">
@@ -678,46 +354,10 @@
   <mutation unstable="false">
     <sourceFile>ScopeUtil.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.utils.ScopeUtil</mutatedClass>
-    <mutatedMethod>isOuterMostType</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
-    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getParent with receiver</description>
-    <lineContent>for (DetailAST parent = node.getParent();</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>ScopeUtil.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.utils.ScopeUtil</mutatedClass>
-    <mutatedMethod>isOuterMostType</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getParent</description>
-    <lineContent>parent = parent.getParent()) {</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>ScopeUtil.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.utils.ScopeUtil</mutatedClass>
     <mutatedMethod>lambda$getScopeFromMods$1</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
     <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getParent with receiver</description>
     <lineContent>.orElseGet(() -&gt; getDefaultScope(aMods.getParent()));</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>TokenUtil.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.utils.TokenUtil</mutatedClass>
-    <mutatedMethod>asBitSet</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
-    <description>replaced call to java/util/stream/Stream::filter with receiver</description>
-    <lineContent>.filter(Predicate.not(String::isEmpty))</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>TokenUtil.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.utils.TokenUtil</mutatedClass>
-    <mutatedMethod>asBitSet</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
-    <description>replaced call to java/util/stream/Stream::map with receiver</description>
-    <lineContent>.map(String::trim)</lineContent>
   </mutation>
 
   <mutation unstable="false">
