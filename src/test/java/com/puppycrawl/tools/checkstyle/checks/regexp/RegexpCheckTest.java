@@ -24,8 +24,12 @@ import static com.puppycrawl.tools.checkstyle.checks.regexp.RegexpCheck.MSG_DUPL
 import static com.puppycrawl.tools.checkstyle.checks.regexp.RegexpCheck.MSG_ILLEGAL_REGEXP;
 import static com.puppycrawl.tools.checkstyle.checks.regexp.RegexpCheck.MSG_REQUIRED_REGEXP;
 
+import java.io.File;
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
+import com.google.common.collect.ImmutableMap;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
@@ -290,4 +294,59 @@ public class RegexpCheckTest extends AbstractModuleTestSupport {
         verify(checkConfig, getPath("InputRegexpTrailingComment11.java"), expected);
     }
 
+    @Test
+    public void testStateIsClearedOnBeginTreeErrorCount() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(RegexpCheck.class);
+        checkConfig.addProperty("format", "^import");
+        checkConfig.addProperty("errorLimit", "2");
+        checkConfig.addProperty("duplicateLimit", "1");
+        checkConfig.addProperty("illegalPattern", "true");
+        final String file1 = getPath(
+                "InputRegexpCheckB2.java");
+        final String file2 = getPath(
+                "InputRegexpCheckB1.java");
+        final List<String> expectedFirstInput = List.of(
+            "3: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "^import")
+        );
+        final List<String> expectedSecondInput = List.of(
+            "3: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "^import")
+        );
+        final File[] inputs = {new File(file1), new File(file2)};
+
+        verify(createChecker(checkConfig), inputs, ImmutableMap.of(
+            file1, expectedFirstInput,
+            file2, expectedSecondInput));
+    }
+
+    @Test
+    public void testStateIsClearedOnBeginTreeMatchCount() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(RegexpCheck.class);
+        checkConfig.addProperty("format", ".*");
+        checkConfig.addProperty("errorLimit", "2");
+        checkConfig.addProperty("duplicateLimit", "3");
+        checkConfig.addProperty("illegalPattern", "false");
+        final String file1 = getPath(
+                "InputRegexpCheckB3.java");
+        final String file2 = getPath(
+                "InputRegexpCheckB4.java");
+        final List<String> expectedFirstInput = List.of(
+        );
+        final List<String> expectedSecondInput = List.of(
+            "4: " + getCheckMessage(MSG_DUPLICATE_REGEXP, ".*")
+        );
+        final File[] inputs = {new File(file1), new File(file2)};
+
+        verify(createChecker(checkConfig), inputs, ImmutableMap.of(
+            file1, expectedFirstInput,
+            file2, expectedSecondInput));
+    }
+
+    @Test
+    public void testOnFileStartingWithEmptyLine2() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(RegexpCheck.class);
+        checkConfig.addProperty("format", "");
+        checkConfig.addProperty("ignoreComments", "true");
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verify(checkConfig, getPath("InputRegexpStartingWithEmptyLine.java"), expected);
+    }
 }
