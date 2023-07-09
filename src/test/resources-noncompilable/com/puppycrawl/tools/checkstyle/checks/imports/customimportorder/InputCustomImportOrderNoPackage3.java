@@ -14,7 +14,7 @@ sortImportsInGroupAlphabetically = (default)false
 
 import static java.awt.Button.ABORT;
 import static java.io.File.createTempFile;
-import java.util.Map; // violation
+import java.util.Map; // violation '.* should be separated from previous import group by one line'
 import java.util.Map.Entry;
 import java.util.NoSuchElementException;
 
@@ -22,11 +22,11 @@ import com.google.common.annotations.Beta;
 import com.google.common.collect.HashMultimap;
 
 
-import org.apache.*; // violation
+import org.apache.*; // violation '.* should be separated from previous import group by one line'
 
 
 
-import antlr.*; // violation
+import antlr.*; // violation '.* should be separated from previous import group by one line'
 
 
 class InputCustomImportOrderNoPackage3 {
