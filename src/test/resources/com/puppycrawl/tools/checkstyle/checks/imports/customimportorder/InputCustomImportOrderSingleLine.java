@@ -11,18 +11,18 @@ sortImportsInGroupAlphabetically = (default)false
 
 */
 
-package com.puppycrawl.tools.checkstyle.checks.imports.customimportorder; import static java.awt.Button.ABORT; import java.util.Map; import java.util.Map.Entry; // violation
-import com.google.common.annotations.Beta; import com.google.common.collect.HashMultimap; // violation
+package com.puppycrawl.tools.checkstyle.checks.imports.customimportorder; import static java.awt.Button.ABORT; import java.util.Map; import java.util.Map.Entry; // violation ''java.util.Map' should be separated from previous import group by one line'
+import com.google.common.annotations.Beta; import com.google.common.collect.HashMultimap; // violation ''com.google.common.annotations.Beta' should be separated from previous import group by one line'
 
 import org.junit.rules.*;
 import org.junit.runner.*;
 import org.junit.validator.*;
 
 
-import com.puppycrawl.tools.checkstyle.*; // violation
+import com.puppycrawl.tools.checkstyle.*; // violation ''com.puppycrawl.tools.checkstyle.*' should be separated from previous import group by one line'
 
 
 
-import picocli.*; // violation
+import picocli.*; // violation ''picocli.*' should be separated from previous import group by one line'
 
 class InputCustomImportOrderSingleLine {}

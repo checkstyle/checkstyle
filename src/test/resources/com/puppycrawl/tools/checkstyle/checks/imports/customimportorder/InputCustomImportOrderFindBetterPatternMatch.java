@@ -17,7 +17,7 @@ import java.awt.event.ActionEvent;
 import java.lang.*;
 import java.awt.color.ColorSpace;
 
-import com.google.common.annotations.Beta; // violation
+import com.google.common.annotations.Beta; // violation 'Import statement for 'com.google.common.annotations.Beta' is in the wrong order. Should be in the 'THIRD_PARTY_PACKAGE' group, expecting group 'SPECIAL_IMPORTS' on this line'
 
 import com.google.common.collect.HashMultimap;
 
