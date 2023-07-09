@@ -62,6 +62,18 @@ public final class InlineConfigParser {
     private static final Pattern VIOLATION_BELOW_PATTERN = Pattern
             .compile(".*//\\s*violation below\\s*(?:'(.*)')?$");
 
+    /** A pattern to find the string: "// violation above, explanation". */
+    private static final Pattern VIOLATION_ABOVE_WITH_EXPLANATION_PATTERN = Pattern
+            .compile(".*//\\s*violation above,\\s.+\\s(?:'(.*)')?$");
+
+    /** A pattern to find the string: "// violation below, explanation". */
+    private static final Pattern VIOLATION_BELOW_WITH_EXPLANATION_PATTERN = Pattern
+            .compile(".*//\\s*violation below,\\s.+\\s(?:'(.*)')?$");
+
+    /** A pattern to find the string: "// violation, explanation". */
+    private static final Pattern VIOLATION_WITH_EXPLANATION_PATTERN = Pattern
+            .compile(".*//\\s*violation,\\s.+\\s(?:'(.*)')?$");
+
     /** A pattern to find the string: "// X violations". */
     private static final Pattern MULTIPLE_VIOLATIONS_PATTERN = Pattern
             .compile(".*//\\s*(\\d+) violations$");
@@ -417,6 +429,7 @@ public final class InlineConfigParser {
      */
     // -@cs[ExecutableStatementCount] splitting this method is not reasonable.
     // -@cs[JavaNCSS] splitting this method is not reasonable.
+    // -@cs[CyclomaticComplexity] splitting this method is not reasonable.
     private static void setViolations(TestInputConfiguration.Builder inputConfigBuilder,
                                       List<String> lines, boolean useFilteredViolations,
                                       int lineNo, boolean specifyViolationMessage)
@@ -427,6 +440,12 @@ public final class InlineConfigParser {
                 VIOLATION_ABOVE_PATTERN.matcher(lines.get(lineNo));
         final Matcher violationBelowMatcher =
                 VIOLATION_BELOW_PATTERN.matcher(lines.get(lineNo));
+        final Matcher violationAboveWithExplanationMatcher =
+                VIOLATION_ABOVE_WITH_EXPLANATION_PATTERN.matcher(lines.get(lineNo));
+        final Matcher violationBelowWithExplanationMatcher =
+                VIOLATION_BELOW_WITH_EXPLANATION_PATTERN.matcher(lines.get(lineNo));
+        final Matcher violationWithExplanationMatcher =
+                VIOLATION_WITH_EXPLANATION_PATTERN.matcher(lines.get(lineNo));
         final Matcher multipleViolationsMatcher =
                 MULTIPLE_VIOLATIONS_PATTERN.matcher(lines.get(lineNo));
         final Matcher multipleViolationsAboveMatcher =
@@ -452,6 +471,25 @@ public final class InlineConfigParser {
         else if (violationBelowMatcher.matches()) {
             final String violationMessage = violationBelowMatcher.group(1);
             final int violationLineNum = lineNo + 2;
+            checkWhetherViolationSpecified(specifyViolationMessage, violationMessage,
+                    violationLineNum);
+            inputConfigBuilder.addViolation(violationLineNum, violationMessage);
+        }
+        else if (violationAboveWithExplanationMatcher.matches()) {
+            final String violationMessage = violationAboveWithExplanationMatcher.group(1);
+            checkWhetherViolationSpecified(specifyViolationMessage, violationMessage, lineNo);
+            inputConfigBuilder.addViolation(lineNo, violationMessage);
+        }
+        else if (violationBelowWithExplanationMatcher.matches()) {
+            final String violationMessage = violationBelowWithExplanationMatcher.group(1);
+            final int violationLineNum = lineNo + 2;
+            checkWhetherViolationSpecified(specifyViolationMessage, violationMessage,
+                    violationLineNum);
+            inputConfigBuilder.addViolation(violationLineNum, violationMessage);
+        }
+        else if (violationWithExplanationMatcher.matches()) {
+            final String violationMessage = violationWithExplanationMatcher.group(1);
+            final int violationLineNum = lineNo + 1;
             checkWhetherViolationSpecified(specifyViolationMessage, violationMessage,
                     violationLineNum);
             inputConfigBuilder.addViolation(violationLineNum, violationMessage);

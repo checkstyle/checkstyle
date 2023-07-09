@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.api;
 
 import static com.google.common.truth.Truth.assertWithMessage;
+import static com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck.MSG_ORDERING;
 
 import java.io.File;
 import java.nio.charset.StandardCharsets;
@@ -29,6 +30,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.JavaParser;
+import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck;
 
 public class FullIdentTest extends AbstractModuleTestSupport {
 
@@ -241,4 +243,14 @@ public class FullIdentTest extends AbstractModuleTestSupport {
                 .isEqualTo(String[].class.getCanonicalName());
     }
 
+    @Test
+    public void testCreateFullIdentBelow2() throws Exception {
+        final String[] expected = {
+            "9:1: " + getCheckMessage(ImportOrderCheck.class,
+                    MSG_ORDERING, "java.util.HashMap"),
+        };
+
+        verifyWithInlineConfigParser(getPath("InputFullIdent.java"),
+                expected);
+    }
 }

@@ -45,5 +45,8 @@
   <suppress checks="FileLength"
     files="whitespaceafter[\\/]Example1.java"/>
 
+  <!-- Examples need spacing to be more readable -->
+  <suppress checks="FileLength"
+    files="visibilitymodifier[\\/]Example\d+.java"/>
 
 </suppressions>

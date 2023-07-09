@@ -26,6 +26,8 @@
   <!-- Uses other checks as a basis for it's tests. -->
   <suppress checks="ForbidCertainImports"
              files="ViolationTest\.java"/>
+  <suppress checks="ForbidCertainImports"
+             files="FullIdentTest\.java"/>
 
   <!-- Tone down the checking for test code -->
   <suppress checks="SingleBreakOrContinue" files="[\\/]XdocsPagesTest\.java"/>

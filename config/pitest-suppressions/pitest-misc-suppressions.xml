@@ -18,23 +18,23 @@
     <lineContent>private int[] counts = CommonUtil.EMPTY_INT_ARRAY;</lineContent>
   </mutation>
 
-  <mutation unstable="false">
-    <sourceFile>NewlineAtEndOfFileCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck</mutatedClass>
-    <mutatedMethod>readAndCheckFile</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to java/io/File::getPath</description>
-    <lineContent>log(1, MSG_KEY_NO_NEWLINE_EOF, file.getPath());</lineContent>
-  </mutation>
 
-  <mutation unstable="false">
-    <sourceFile>NewlineAtEndOfFileCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck</mutatedClass>
-    <mutatedMethod>readAndCheckFile</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to java/io/File::getPath</description>
-    <lineContent>log(1, MSG_KEY_WRONG_ENDING, file.getPath());</lineContent>
-  </mutation>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   <mutation unstable="false">
     <sourceFile>OrderedPropertiesCheck.java</sourceFile>
@@ -79,33 +79,6 @@
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.returns.NullReturnValsMutator</mutator>
     <description>replaced return value with null for com/puppycrawl/tools/checkstyle/checks/OrderedPropertiesCheck$SequencedProperties::put</description>
     <lineContent>return super.put(key, value);</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>OuterTypeFilenameCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.OuterTypeFilenameCheck</mutatedClass>
-    <mutatedMethod>beginTree</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
-    <description>Removed assignment to member variable hasPublic</description>
-    <lineContent>hasPublic = false;</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>OuterTypeFilenameCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.OuterTypeFilenameCheck</mutatedClass>
-    <mutatedMethod>beginTree</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
-    <description>Removed assignment to member variable seenFirstToken</description>
-    <lineContent>seenFirstToken = false;</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>OuterTypeFilenameCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.OuterTypeFilenameCheck</mutatedClass>
-    <mutatedMethod>beginTree</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
-    <description>Removed assignment to member variable wrongType</description>
-    <lineContent>wrongType = null;</lineContent>
   </mutation>
 
   <mutation unstable="false">
@@ -189,14 +162,14 @@
     <lineContent>return Collections.unmodifiableSet(files);</lineContent>
   </mutation>
 
-  <mutation unstable="false">
-    <sourceFile>UncommentedMainCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck</mutatedClass>
-    <mutatedMethod>beginTree</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
-    <description>Removed assignment to member variable classDepth</description>
-    <lineContent>classDepth = 0;</lineContent>
-  </mutation>
+
+
+
+
+
+
+
+
 
   <mutation unstable="false">
     <sourceFile>UncommentedMainCheck.java</sourceFile>
