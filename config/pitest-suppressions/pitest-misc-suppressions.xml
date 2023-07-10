@@ -126,23 +126,23 @@
     <lineContent>switch (firstChild.getType()) {</lineContent>
   </mutation>
 
-  <mutation unstable="false">
-    <sourceFile>TodoCommentCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.TodoCommentCheck</mutatedClass>
-    <mutatedMethod>&lt;init&gt;</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to java/util/regex/Pattern::compile</description>
-    <lineContent>private Pattern format = Pattern.compile(&quot;TODO:&quot;);</lineContent>
-  </mutation>
 
-  <mutation unstable="false">
-    <sourceFile>TodoCommentCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.TodoCommentCheck</mutatedClass>
-    <mutatedMethod>&lt;init&gt;</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
-    <description>Removed assignment to member variable format</description>
-    <lineContent>private Pattern format = Pattern.compile(&quot;TODO:&quot;);</lineContent>
-  </mutation>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   <mutation unstable="false">
     <sourceFile>TranslationCheck.java</sourceFile>
