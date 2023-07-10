@@ -196,7 +196,8 @@ public class VisibilityModifierCheckTest
     public void testImmutableSpecifiedSameTypeName() throws Exception {
         final String[] expected = {
             "23:46: " + getCheckMessage(MSG_KEY, "calendar"),
-            "28:45: " + getCheckMessage(MSG_KEY, "adr"),
+            "26:36: " + getCheckMessage(MSG_KEY, "address"),
+            "27:36: " + getCheckMessage(MSG_KEY, "adr"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputVisibilityModifierImmutableSameTypeName.java"),
@@ -209,7 +210,6 @@ public class VisibilityModifierCheckTest
             "28:46: " + getCheckMessage(MSG_KEY, "calendar"),
             "29:59: " + getCheckMessage(MSG_KEY, "calendar2"),
             "30:59: " + getCheckMessage(MSG_KEY, "calendar3"),
-            "31:36: " + getCheckMessage(MSG_KEY, "address"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputVisibilityModifierImmutableSameTypeName2.java"),
@@ -293,8 +293,8 @@ public class VisibilityModifierCheckTest
     @Test
     public void testIgnoreAnnotationSameName() throws Exception {
         final String[] expected = {
-            "32:28: " + getCheckMessage(MSG_KEY, "publicJUnitRule"),
-            "35:28: " + getCheckMessage(MSG_KEY, "publicJUnitClassRule"),
+            "33:28: " + getCheckMessage(MSG_KEY, "publicJUnitRule"),
+            "36:28: " + getCheckMessage(MSG_KEY, "publicJUnitClassRule"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputVisibilityModifierAnnotatedSameTypeName.java"),
