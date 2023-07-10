@@ -1486,6 +1486,17 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/TranslationCheck.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter moduleId of Violation.</message>
+    <lineContent>null,</lineContent>
+    <details>
+      found   : null (NullType)
+      required: @Initialized @NonNull String
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/TranslationCheck.java</fileName>
     <specifier>assignment</specifier>
     <message>incompatible types in assignment.</message>
     <lineContent>args = new String[] {exception.getMessage()};</lineContent>
