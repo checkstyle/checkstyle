@@ -249,6 +249,7 @@ public class TranslationCheckTest extends AbstractXmlTestSupport {
         final TestMessageDispatcher dispatcher = new TestMessageDispatcher();
         check.configure(checkConfig);
         check.setMessageDispatcher(dispatcher);
+        check.setId("ID1");
 
         final Exception exception = new IOException("test exception");
         TestUtil.invokeMethod(check, "logException", exception, new File(""));
@@ -258,7 +259,7 @@ public class TranslationCheckTest extends AbstractXmlTestSupport {
             .isEqualTo(1);
         final Violation violation = new Violation(0,
                 Definitions.CHECKSTYLE_BUNDLE, "general.exception",
-                new String[] {exception.getMessage()}, null, TranslationCheck.class, null);
+                new String[] {exception.getMessage()}, "ID1", TranslationCheck.class, null);
         assertWithMessage("Invalid violation")
             .that(dispatcher.savedErrors.iterator().next())
             .isEqualTo(violation);
