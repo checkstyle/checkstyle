@@ -14,8 +14,7 @@ ignoreAnnotationCanonicalNames = (default)com.google.common.annotations.VisibleF
 
 package com.puppycrawl.tools.checkstyle.checks.design.visibilitymodifier;
 
-import com.puppycrawl.tools.checkstyle.checks.design.visibilitymodifier.InputVisibilityModifierImmutable;
-import com.puppycrawl.tools.checkstyle.checks.design.visibilitymodifier.inputs.InetSocketAddress.*;
+import java.util.Arrays;
 
 public final class InputVisibilityModifierImmutableStarImport // ok
 {
