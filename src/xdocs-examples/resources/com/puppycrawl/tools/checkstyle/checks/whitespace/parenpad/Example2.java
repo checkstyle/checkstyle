@@ -2,7 +2,8 @@
 <module name="Checker">
   <module name="TreeWalker">
     <module name="ParenPad">
-      <property name="tokens" value="LITERAL_FOR, LITERAL_CATCH, SUPER_CTOR_CALL"/>
+      <property name="tokens"
+                value="LITERAL_FOR, LITERAL_CATCH, SUPER_CTOR_CALL"/>
       <property name="option" value="space"/>
     </module>
   </module>

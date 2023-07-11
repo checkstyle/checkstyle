@@ -14,10 +14,10 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+// xdoc section -- start
 class Example1 {
   Map<String, String> map = new HashMap<>();
   void example() {
-    // xdoc section -- start
     for (Iterator it = map.entrySet().iterator();  it.hasNext(););
     for (Iterator it = map.entrySet().iterator();  it.hasNext(); );
     // violation above '';' is followed by whitespace'
@@ -25,6 +25,6 @@ class Example1 {
     for (Iterator foo = map.entrySet().iterator();
          foo.hasNext();
          );
-    // xdoc section -- end
   }
 }
+// xdoc section -- end

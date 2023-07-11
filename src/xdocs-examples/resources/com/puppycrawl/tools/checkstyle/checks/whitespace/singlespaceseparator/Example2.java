@@ -12,8 +12,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace.singlespaceseparator;
 
+// xdoc section -- start
 class Example2 {
-  // xdoc section -- start
   // violation below 'Use a single space'
   void fun1() {}  // 2 whitespaces before the comment starts
   // violation below 'Use a single space'
@@ -32,5 +32,5 @@ class Example2 {
   /**
    * OK, 1 white space after the doc comment ends
    */ float f2;
-  // xdoc section -- end
 }
+// xdoc section -- end

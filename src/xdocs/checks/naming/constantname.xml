@@ -31,7 +31,7 @@
               <td>format</td>
               <td>Specifies valid identifiers.</td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
-              <td><code>"^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"</code></td>
+              <td><code>&quot;^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$&quot;</code></td>
               <td>3.0</td>
             </tr>
             <tr>
@@ -69,13 +69,17 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
         <source>
-&lt;module name="ConstantName"/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;ConstantName&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
         </source>
-        <p>Example:</p>
+        <p id="Example1-code">Example:</p>
         <source>
 class Example1 {
   public final static int FIRST_CONSTANT1 = 10;
@@ -89,18 +93,22 @@ class Example1 {
   protected final static int myselfConstant = 1; // violation 'must match pattern'
 }
         </source>
-        <p>
+        <p id="Example2-config">
           The following configuration apart from names allowed by default allows <code>log</code>
           or <code>logger</code>:
         </p>
 
         <source>
-&lt;module name="ConstantName"&gt;
-  &lt;property name="format"
-    value="^log(ger)?$|^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;ConstantName&quot;&gt;
+      &lt;property name=&quot;format&quot;
+                value=&quot;^log(ger)?$|^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p>Code Example:</p>
+        <p id="Example2-code">Code Example:</p>
         <source>
 class Example2 {
   public final static int FIRST_CONSTANT1 = 10;
@@ -114,17 +122,21 @@ class Example2 {
   protected final static int myselfConstant = 1; // violation 'must match pattern'
 }
         </source>
-        <p>
+        <p id="Example3-config">
           The following configuration skip validation on
           public constant field and protected constant field.
         </p>
         <source>
-&lt;module name="ConstantName"&gt;
-  &lt;property name="applyToPublic" value="false"/&gt;
-  &lt;property name="applyToProtected" value="false"/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;ConstantName&quot;&gt;
+      &lt;property name=&quot;applyToPublic&quot; value=&quot;false&quot;/&gt;
+      &lt;property name=&quot;applyToProtected&quot; value=&quot;false&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p>Code Example:</p>
+        <p id="Example3-code">Code Example:</p>
         <source>
 class Example3 {
   public final static int FIRST_CONSTANT1 = 10;

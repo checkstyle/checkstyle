@@ -179,4 +179,8 @@
   <!-- DetailAST API requires large number of methods -->
   <suppress checks="MethodCount"
             files="[\\/]src[\\/]main[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]DetailAstImpl.java"/>
+
+  <!-- Check deals with tab characters -->
+  <suppress checks="FileTabCharacter"
+            files="[\\/]src[\\/]xdocs[\\/]checks[\\/]whitespace[\\/]filetabcharacter.xml"/>
 </suppressions>

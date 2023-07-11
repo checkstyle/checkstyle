@@ -13,11 +13,11 @@
 
 package com.puppycrawl.tools.checkstyle.checks.naming.abbreviationaswordinname;
 
+// xdoc section -- start
 class Example7 {
-  // xdoc section -- start
   int counterXYZ = 1;
   final int customerID = 2;
   static int nextID = 3;
   static final int MAX_ALLOWED = 4;
-  // xdoc section -- end
 }
+// xdoc section -- end
