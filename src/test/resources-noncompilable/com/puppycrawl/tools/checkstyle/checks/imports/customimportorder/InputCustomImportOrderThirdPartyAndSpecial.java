@@ -20,7 +20,7 @@ import org.apache.commons.io.ByteOrderMark;
 
 import static sun.tools.util.ModifierFilter.ALL_ACCESS;
 
-import com.google.common.collect.HashMultimap;  // violation
+import com.google.common.collect.HashMultimap;  // violation 'Import statement for 'com.google.common.collect.HashMultimap' is in the wrong order. Should be in the 'THIRD_PARTY_PACKAGE' group, expecting group 'SPECIAL_IMPORTS' on this line.'
 
 import antlr.*;
 import antlr.CommonASTWithHiddenTokens;

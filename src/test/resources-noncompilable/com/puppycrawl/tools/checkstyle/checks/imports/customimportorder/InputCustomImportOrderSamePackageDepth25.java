@@ -17,14 +17,14 @@ package java.util.concurrent.locks;
 // SAME_PACKAGE(4) should include only #6
 // SAME_PACKAGE(5) should include no imports because actual package has only 4 domains
 import java.io.File;
-import java.util.*; // violation
-import java.util.List; // violation
-import java.util.StringTokenizer; // violation
-import java.util.concurrent.*; // violation
-import java.util.concurrent.AbstractExecutorService; // violation
-import java.util.concurrent.locks.LockSupport; // violation
-import java.util.regex.Pattern; // violation
-import java.util.regex.Matcher; // violation
+import java.util.*; // violation 'Import statement for 'java.util.*' is in the wrong order. Should be in the 'SAME_PACKAGE' group, expecting not assigned imports on this line.'
+import java.util.List; // violation 'Import statement for 'java.util.List' is in the wrong order. Should be in the 'SAME_PACKAGE' group, expecting not assigned imports on this line.'
+import java.util.StringTokenizer; // violation 'Import statement for 'java.util.StringTokenizer' is in the wrong order. Should be in the 'SAME_PACKAGE' group, expecting not assigned imports on this line.'
+import java.util.concurrent.*; // violation 'Import statement for 'java.util.concurrent.*' is in the wrong order. Should be in the 'SAME_PACKAGE' group, expecting not assigned imports on this line.'
+import java.util.concurrent.AbstractExecutorService; // violation 'Import statement for 'java.util.concurrent.AbstractExecutorService' is in the wrong order. Should be in the 'SAME_PACKAGE' group, expecting not assigned imports on this line.'
+import java.util.concurrent.locks.LockSupport; // violation 'Import statement for 'java.util.concurrent.locks.LockSupport' is in the wrong order. Should be in the 'SAME_PACKAGE' group, expecting not assigned imports on this line.'
+import java.util.regex.Pattern; // violation 'Import statement for 'java.util.regex.Pattern' is in the wrong order. Should be in the 'SAME_PACKAGE' group, expecting not assigned imports on this line.'
+import java.util.regex.Matcher; // violation 'Import statement for 'java.util.regex.Matcher' is in the wrong order. Should be in the 'SAME_PACKAGE' group, expecting not assigned imports on this line.'
 
 public class InputCustomImportOrderSamePackageDepth25 {
 }
