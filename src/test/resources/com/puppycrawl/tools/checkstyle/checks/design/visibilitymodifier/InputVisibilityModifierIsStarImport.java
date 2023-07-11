@@ -4,7 +4,7 @@ No Config
 
 package com.puppycrawl.tools.checkstyle.checks.design.visibilitymodifier;
 
-import com.puppycrawl.tools.checkstyle.*;
+import java.util.*;
 
 public class InputVisibilityModifierIsStarImport { // ok
 }
