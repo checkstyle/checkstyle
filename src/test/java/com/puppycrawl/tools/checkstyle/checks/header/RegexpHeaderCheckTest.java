@@ -23,6 +23,8 @@ import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck.MSG_HEADER_MISMATCH;
 import static com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck.MSG_HEADER_MISSING;
 
+import com.puppycrawl.tools.checkstyle.Checker;
+
 import java.util.List;
 import java.util.Locale;
 import java.util.regex.Pattern;
@@ -378,5 +380,109 @@ public class RegexpHeaderCheckTest extends AbstractModuleTestSupport {
             "5: " + getCheckMessage(MSG_HEADER_MISMATCH, "^$"),
         };
         verify(checkConfig, getPath("InputRegexpHeaderMulti52.java"), expected);
+    }
+    @Test
+    public void testCharsetProperty() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(RegexpHeaderCheck.class);
+        checkConfig.addProperty("headerFile", getPath("InputRegexpHeaderHead.header"));
+        Checker checker = createChecker(checkConfig);
+        checker.setCharset("US-ASCII");
+        final String[] expected = {
+            "1: " + getCheckMessage(MSG_HEADER_MISMATCH, "// some.class.тест.passed"),
+        };
+        final String path = getPath("InputRegexpHeader.java");
+            verify(checker, path, expected);
+
+    }
+
+    @Test
+    public void testCharsetProperty2() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(RegexpHeaderCheck.class);
+        checkConfig.addProperty("headerFile", getPath("InputRegexpHeaderHead.header"));
+        checkConfig.addProperty("charset", "US-ASCII");
+        final String[] expected = {
+            "1: " + getCheckMessage(MSG_HEADER_MISMATCH, "// some.class.��������.passed"),
+        };
+        final String path = getPath("InputRegexpHeader.java");
+            verify(checkConfig, path, expected);
+
+    }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    @Test
+    public void testCharsetProperty3() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(RegexpHeaderCheck.class);
+        checkConfig.addProperty("headerFile", getPath("InputRegexpHeader6.header"));
+        checkConfig.addProperty("charset", "US-ASCII");
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        final String path = getPath("InputRegexpHeader2.java");
+            verify(checkConfig, path, expected);
+
+    }
+
+    @Test
+    public void testCharsetProperty5() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(RegexpHeaderCheck.class);
+        checkConfig.addProperty("headerFile", getPath("InputRegexpHeader6.header"));
+        Checker checker = createChecker(checkConfig);
+        checker.setCharset("US-ASCII");
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        final String path = getPath("InputRegexpHeader2.java");
+            verify(checker, path, expected);
+
+    }
+
+
+    @Test
+    public void testCharsetProperty6() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(RegexpHeaderCheck.class);
+        checkConfig.addProperty("headerFile", getPath("InputRegexpHeader6.header"));
+        checkConfig.addProperty("charset", "US-ASCII");
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        final String path = getPath("InputRegexpHeader2.java");
+            verify(checkConfig, path, expected);
+
+    }
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+    @Test
+    public void testCharsetProperty7() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(RegexpHeaderCheck.class);
+        checkConfig.addProperty("headerFile", getPath("InputRegexpHeader7.header"));
+        checkConfig.addProperty("charset", "US-ASCII");
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        final String path = getPath("InputRegexpHeader3.java");
+            verify(checkConfig, path, expected);
+
+    }
+
+//    @Test
+//    public void testCharsetProperty8() throws Exception {
+//        final DefaultConfiguration checkConfig = createModuleConfig(RegexpHeaderCheck.class);
+//        checkConfig.addProperty("headerFile", getPath("InputRegexpHeader7.header"));
+//        Checker checker = createChecker(checkConfig);
+//        checker.setCharset("US-ASCII");
+//        final String[] expected = {
+//            "1: " + getCheckMessage(MSG_HEADER_MISMATCH, "// some.class.тест.passed"),
+//        };
+//        final String path = getPath("InputRegexpHeader4.java");
+//            verify(checker, path, expected);
+//
+//    }
+
+    @Test
+    public void testCharsetProperty9() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(RegexpHeaderCheck.class);
+        checkConfig.addProperty("charset", "US-ASCII");
+        checkConfig.addProperty("headerFile", getPath("InputRegexpHeader7.header"));
+        Checker checker = createChecker(checkConfig);
+        checker.setCharset("US-ASCII");
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        final String path = getPath("InputRegexpHeader4.java");
+            verify(checker, path, expected);
+
     }
 }
