@@ -73,16 +73,6 @@
   <suppress id="noCheckstyleInInputs"
           files="[\\/]checks[\\/]coding[\\/]illegaltype[\\/]InputIllegalTypeTestStarImports.java"/>
   <suppress id="noCheckstyleInInputs"
-          files="[\\/]checks[\\/]design[\\/]visibilitymodifier[\\/]InputVisibilityModifierAnnotatedSameTypeName.java"/>
-  <suppress id="noCheckstyleInInputs"
-          files="[\\/]checks[\\/]design[\\/]visibilitymodifier[\\/]InputVisibilityModifierImmutableSameTypeName.java"/>
-  <suppress id="noCheckstyleInInputs"
-          files="[\\/]checks[\\/]design[\\/]visibilitymodifier[\\/]InputVisibilityModifierImmutableSameTypeName2.java"/>
-  <suppress id="noCheckstyleInInputs"
-          files="[\\/]checks[\\/]design[\\/]visibilitymodifier[\\/]InputVisibilityModifierImmutableStarImport.java"/>
-  <suppress id="noCheckstyleInInputs"
-          files="[\\/]checks[\\/]design[\\/]visibilitymodifier[\\/]InputVisibilityModifierIsStarImport.java"/>
-  <suppress id="noCheckstyleInInputs"
           files="[\\/]checks[\\/]imports[\\/]avoidstarimport[\\/]InputAvoidStarImportAllowClass.java"/>
   <suppress id="noCheckstyleInInputs"
           files="[\\/]checks[\\/]imports[\\/]avoidstarimport[\\/]InputAvoidStarImportAllowStaticMember.java"/>
