@@ -78,67 +78,30 @@
           Example:
         </p>
         <source>
-class FallThroughTestClass {
-  public static void main(String args[]) {
+class Example1 {
+  public int foo() {
     int i = 0;
     while(i &gt;= 0) {
       switch(i) {
         case 1:
           i++;
-        case 2: // violation, previous case contains code but lacks
-          // break, return, yield, throw or continue statement
+        case 2: // violation
           i++;
           break;
-        case 3: // OK
+        case 3:
           i++;
           return;
-        case 4: // OK
+        case 4:
           i++;
           throw new Exception();
-        case 5: // OK
+        case 5:
           i++;
           continue;
-        case 6: // OK
-        case 7: // fall through
-        case 8: // Previous case: OK, case does not contain code
-          // This case: OK, by default the last case might not have statement
-          // that transfer control
+        case 6:
+        case 7:
+        case 8:
           i++;
-      }
-    }
-  }
-}
-        </source>
-        <p>
-          Example how to suppress violations by comment:
-        </p>
-        <source>
-class FallThroughTestClass {
-  public static void main(String args[]) {
-    int i = 0;
-    while(i &gt;= 0) {
-      switch(i) {
-        case 1:
-          i++;  // falls-thru
-        case 2: // violation, previous case contains code but lacks
-          // break, return, yield, throw or continue statement
-          i++;
-          break;
-        case 3: // OK
-          i++;
-          return;
-        case 4: // OK
-          i++;
-          throw new Exception();
-        case 5: // OK
-          i++;
-          continue;
-        case 6: // OK
-        case 7: // fall through
-        case 8: // Previous case: OK, case does not contain code
-          // This case: OK, by default the last case might not have statement
-          // that transfer control
-          i++;
+        case 11: // fall through
       }
     }
   }
@@ -156,31 +119,30 @@ class FallThroughTestClass {
             Example:
         </p>
         <source>
-class FallThroughTestClass {
-  public static void main(String args[]) {
+class Example2 {
+  public int foo() {
     int i = 0;
     while(i &gt;= 0) {
       switch(i) {
         case 1:
           i++;  // falls-thru
-        case 2: // violation, previous case contains code but lacks
-          // break, return, yield, throw or continue statement
+        case 2: // violation
           i++;
           break;
-        case 3: // OK
+        case 3:
           i++;
           return;
-        case 4: // OK
+        case 4:
           i++;
           throw new Exception();
-        case 5: // OK
+        case 5:
           i++;
           continue;
-        case 6: // OK
-        case 7: // fall through
-        case 8: // Previous case: OK, case does not contain code
-          // This case: violation, as the last case must have statement that transfer control.
+        case 6:
+        case 7:
+        case 8:
           i++;
+        case 11: // fall through
       }
     }
   }
@@ -191,38 +153,35 @@ class FallThroughTestClass {
         </p>
         <source>
 &lt;module name="FallThrough"&gt;
-   &lt;property name="reliefPattern" value="FALL?[ -]?THROUGH"/&gt;
+   &lt;property name="reliefPattern" value="no break by design"/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>
         <source>
-class FallThroughTestClass {
-  public static void main(String args[]) {
+class Example3 {
+  public int foo() {
     int i = 0;
     while(i &gt;= 0) {
       switch(i) {
         case 1:
             i++;  // FALL THROUGH
-                  // OK, as FALL THROUGH matches with "FALL?[ -]?THROUGH".
-        case 2: // violation, previous case contains code but lacks
-          // break, return, yield, throw or continue statement
+        case 2: // violation
           i++;
           break;
-        case 3: // OK
+        case 3:
           i++;
           return;
-        case 4: // OK
+        case 4:
           i++;
           throw new Exception();
-        case 5: // OK
+        case 5:
           i++;
           continue;
-        case 6: // OK
-        case 7: // fall through
-                // This case: violation, as "fall through" doesn't match "FALL?[ -]?THROUGH"
-        case 8: // Previous case: OK, case does not contain code
-          // This case: Violation, as the last case is configured
+        case 6:
+        case 7:
+        case 8:
           i++;
+        case 11: // fall through
       }
     }
   }

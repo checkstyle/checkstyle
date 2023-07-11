@@ -90,9 +90,10 @@ import com.puppycrawl.tools.checkstyle.utils.CodePointUtil;
  *           i++;
  *           continue;
  *         case 6:
- *         case 7: // fall through
+ *         case 7:
  *         case 8:
  *           i++;
+ *         case 11: // fall through
  *       }
  *     }
  *   }
@@ -130,9 +131,10 @@ import com.puppycrawl.tools.checkstyle.utils.CodePointUtil;
  *           i++;
  *           continue;
  *         case 6:
- *         case 7: // fall through
+ *         case 7:
  *         case 8:
  *           i++;
+ *         case 11: // fall through
  *       }
  *     }
  *   }
@@ -170,9 +172,10 @@ import com.puppycrawl.tools.checkstyle.utils.CodePointUtil;
  *           i++;
  *           continue;
  *         case 6:
- *         case 7: // fall through
+ *         case 7:
  *         case 8:
  *           i++;
+ *         case 11: // fall through
  *       }
  *     }
  *   }
