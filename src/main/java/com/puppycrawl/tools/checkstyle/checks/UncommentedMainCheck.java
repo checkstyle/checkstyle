@@ -189,7 +189,6 @@ public class UncommentedMainCheck
     @Override
     public void beginTree(DetailAST rootAST) {
         packageName = FullIdent.createFullIdent(null);
-        currentClass = null;
         classDepth = 0;
     }
 
