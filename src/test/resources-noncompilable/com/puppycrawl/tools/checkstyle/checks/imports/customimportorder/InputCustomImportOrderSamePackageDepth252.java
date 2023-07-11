@@ -20,9 +20,9 @@ import java.io.File;
 import java.util.*; //#1
 import java.util.List; //#2
 import java.util.StringTokenizer; //#3
-import java.util.concurrent.*;  // violation
-import java.util.concurrent.AbstractExecutorService;  // violation
-import java.util.concurrent.locks.LockSupport;  // violation
+import java.util.concurrent.*;  // violation 'Import statement for 'java.util.concurrent.*' is in the wrong order. Should be in the 'SAME_PACKAGE' group, expecting not assigned imports on this line'
+import java.util.concurrent.AbstractExecutorService;  // violation 'Import statement for 'java.util.concurrent.AbstractExecutorService' is in the wrong order. Should be in the 'SAME_PACKAGE' group, expecting not assigned imports on this line'
+import java.util.concurrent.locks.LockSupport;  // violation 'Import statement for 'java.util.concurrent.locks.LockSupport' is in the wrong order. Should be in the 'SAME_PACKAGE' group, expecting not assigned imports on this line'
 import java.util.regex.Pattern; //#7
 import java.util.regex.Matcher; //#8
 
