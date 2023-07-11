@@ -166,4 +166,25 @@ public class UncommentedMainCheckTest
             file1, expectedFirstInput,
             file2, expectedSecondInput));
     }
+
+    @Test
+    public void testStateIsClearedOnBeginTree2() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(UncommentedMainCheck.class);
+        checkConfig.addProperty("excludedClasses",
+                "uncommentedmain\\.InputUncommentedMainBeginTreePackage2");
+        final String file1 = getPath(
+                "InputUncommentedMainBeginTreePackage1.java");
+        final String file2 = getPath(
+                "InputUncommentedMainBeginTreePackage2.java");
+        final List<String> expectedFirstInput = List.of(CommonUtil.EMPTY_STRING_ARRAY);
+        final List<String> expectedSecondInput = List.of(
+                "3:5: " + getCheckMessage(MSG_KEY),
+                "12:5: " + getCheckMessage(MSG_KEY)
+        );
+        final File[] inputs = {new File(file1), new File(file2)};
+
+        verify(createChecker(checkConfig), inputs, ImmutableMap.of(
+            file1, expectedFirstInput,
+            file2, expectedSecondInput));
+    }
 }
