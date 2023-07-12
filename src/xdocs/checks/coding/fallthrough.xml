@@ -84,8 +84,8 @@ class Example1 {
     while(i &gt;= 0) {
       switch(i) {
         case 1:
-          i++;
-        case 2: // violation
+          i++; // violation
+        case 2:
           i++;
           break;
         case 3:
@@ -100,13 +100,14 @@ class Example1 {
         case 6:
         case 7:
         case 8:
-          i++;
+          i++; // violation
         case 11:
-          i++; // fall through
+          i++;
       }
     }
   }
 }
+        </source>
         <p>
             To configure the check to enable check for last case group:
         </p>
@@ -125,8 +126,8 @@ class Example2 {
     while(i &gt;= 0) {
       switch(i) {
         case 1:
-          i++;  // falls-thru
-        case 2: // violation
+          i++; // violation
+        case 2:
           i++;
           break;
         case 3:
@@ -141,9 +142,9 @@ class Example2 {
         case 6:
         case 7:
         case 8:
-          i++;
+          i++; // violation
         case 11:
-          i++; // fall through
+          i++; // violation
       }
     }
   }
@@ -154,7 +155,7 @@ class Example2 {
         </p>
         <source>
 &lt;module name="FallThrough"&gt;
-   &lt;property name="reliefPattern" value="FALL?[ -]?THROUGH"/&gt;
+   &lt;property name="reliefPattern" value="no break by design"/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>
@@ -165,8 +166,8 @@ class Example3 {
     while(i &gt;= 0) {
       switch(i) {
         case 1:
-            i++; // FALL THROUGH
-        case 2: // violation
+            i++; // no break by design
+        case 2:
           i++;
           break;
         case 3:
@@ -181,9 +182,9 @@ class Example3 {
         case 6:
         case 7:
         case 8:
-          i++;
+          i++; // no break by design
         case 11:
-          i++; // fall through
+          i++;
       }
     }
   }

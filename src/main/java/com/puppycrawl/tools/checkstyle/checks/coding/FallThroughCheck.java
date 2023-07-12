@@ -76,8 +76,8 @@ import com.puppycrawl.tools.checkstyle.utils.CodePointUtil;
  *     while(i &gt;= 0) {
  *       switch(i) {
  *         case 1:
- *           i++;
- *         case 2: // violation
+ *           i++; // violation
+ *         case 2:
  *           i++;
  *           break;
  *         case 3:
@@ -92,9 +92,9 @@ import com.puppycrawl.tools.checkstyle.utils.CodePointUtil;
  *         case 6:
  *         case 7:
  *         case 8:
- *           i++;
+ *           i++; // violation
  *         case 11:
- *           i++; // fall through
+ *           i++;
  *       }
  *     }
  *   }
@@ -118,8 +118,8 @@ import com.puppycrawl.tools.checkstyle.utils.CodePointUtil;
  *     while(i &gt;= 0) {
  *       switch(i) {
  *         case 1:
- *           i++;  // falls-thru
- *         case 2: // violation
+ *           i++; // violation
+ *         case 2:
  *           i++;
  *           break;
  *         case 3:
@@ -134,9 +134,9 @@ import com.puppycrawl.tools.checkstyle.utils.CodePointUtil;
  *         case 6:
  *         case 7:
  *         case 8:
- *           i++;
+ *           i++; // violation
  *         case 11:
- *           i++; // fall through
+ *           i++; // violation
  *       }
  *     }
  *   }
@@ -160,8 +160,8 @@ import com.puppycrawl.tools.checkstyle.utils.CodePointUtil;
  *     while(i &gt;= 0) {
  *       switch(i) {
  *         case 1:
- *             i++; // FALL THROUGH
- *         case 2: // violation
+ *             i++; // no break by design
+ *         case 2:
  *           i++;
  *           break;
  *         case 3:
@@ -176,9 +176,9 @@ import com.puppycrawl.tools.checkstyle.utils.CodePointUtil;
  *         case 6:
  *         case 7:
  *         case 8:
- *           i++;
+ *           i++; // no break by design
  *         case 11:
- *           i++; // fall through
+ *           i++;
  *       }
  *     }
  *   }
