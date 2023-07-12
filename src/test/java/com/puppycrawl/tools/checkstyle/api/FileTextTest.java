@@ -26,17 +26,23 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 
 import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
 import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
 public class FileTextTest extends AbstractPathTestSupport {
+
+    @TempDir
+    public File temporaryFolder;
 
     @Override
     protected String getPackageLocation() {
@@ -198,5 +204,30 @@ public class FileTextTest extends AbstractPathTestSupport {
         final FileText copy = new FileText(fileText);
         assertWithMessage("Should not be null")
                 .that(copy.getCharset()).isNotNull();
+    }
+
+    @Test
+    void testDecoder1() throws IOException {
+        final Charset charset = StandardCharsets.US_ASCII;
+        final String filepath = getPath("InputFileText.java");
+        final FileText fileText = new FileText(new File(filepath), charset.name());
+        assertWithMessage("")
+                .that(fileText)
+                .isNotNull();
+    }
+
+    @Test
+    public void testDecoder2() throws IOException {
+        final Charset charset = Charset.forName("IBM1098");
+        final Path tempFile = Files.createTempFile("InputFileText", null);
+
+        Files.newOutputStream(tempFile).write(0x80);
+
+        final FileText fileText = new FileText(tempFile.toFile(), charset.name());
+        assertWithMessage("Expected and actual text differ")
+                .that(fileText.get(0))
+                .isEqualTo("�");
+
+        Files.delete(tempFile);
     }
 }
