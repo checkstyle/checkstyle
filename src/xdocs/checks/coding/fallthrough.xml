@@ -107,6 +107,7 @@ class Example1 {
     }
   }
 }
+        </source>
         <p>
             To configure the check to enable check for last case group:
         </p>
@@ -154,7 +155,7 @@ class Example2 {
         </p>
         <source>
 &lt;module name="FallThrough"&gt;
-   &lt;property name="reliefPattern" value="FALL?[ -]?THROUGH"/&gt;
+   &lt;property name="reliefPattern" value="no break by design"/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>
