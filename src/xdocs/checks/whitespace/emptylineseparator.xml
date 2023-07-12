@@ -130,41 +130,47 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
             To configure the default check:
         </p>
         <source>
-&lt;module name="EmptyLineSeparator"/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;EmptyLineSeparator&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
         </source>
-        <p>
+        <p id="Example1-code">
           Example of declarations without empty line separator:
         </p>
         <source>
 ///////////////////////////////////////////////////
 //HEADER
 ///////////////////////////////////////////////////
-package com.whitespace; // violation , 'package' should be separated from previous line
-import java.io.Serializable; // violation , 'import' should be separated from previous line
+package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator;
+import java.io.Serializable;
+// violation 2 lines above ''package' should be separated from previous line'
+// violation 2 lines above ''import' should be separated from previous line'
 
-class FirstClass {
+class Example1 {
 
   int var1 = 1;
-  int var2 = 2; // violation , 'VARIABLE_DEF' should be separated from previous line
+  int var2 = 2; // violation ''VARIABLE_DEF' should be separated from previous line'
 
 
   int var3 = 3;
 
 
   void method1() {}
-  void method2() { // violation , 'METHOD_DEF' should be separated from previous line
-     int var4 = 4;
+  void method2() { // violation ''METHOD_DEF' should be separated from previous line'
+    int var4 = 4;
 
 
-     int var5 = 5;
+    int var5 = 5;
   }
 }
         </source>
-        <p>
+        <p id="Example2-config">
           To check empty line before
           <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
                   VARIABLE_DEF</a> and
@@ -172,55 +178,65 @@ class FirstClass {
                   METHOD_DEF</a>:
         </p>
         <source>
-&lt;module name="EmptyLineSeparator"&gt;
-  &lt;property name="tokens" value="VARIABLE_DEF, METHOD_DEF"/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;EmptyLineSeparator&quot;&gt;
+      &lt;property name=&quot;tokens&quot; value=&quot;VARIABLE_DEF, METHOD_DEF&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
         <source>
 ///////////////////////////////////////////////////
 //HEADER
 ///////////////////////////////////////////////////
-package com.whitespace;
+package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator;
 import java.io.Serializable;
 
-class FirstClass {
+class Example2 {
 
   int var1 = 1;
-  int var2 = 2; // violation , 'VARIABLE_DEF' should be separated from previous line
+  int var2 = 2; // violation ''VARIABLE_DEF' should be separated from previous line'
 
 
   int var3 = 3;
 
 
   void method1() {}
-  void method2() { // violation , 'METHOD_DEF' should be separated from previous line
-     int var4 = 4;
+  void method2() { // violation ''METHOD_DEF' should be separated from previous line'
+    int var4 = 4;
 
 
-     int var5 = 5;
+    int var5 = 5;
   }
 }
         </source>
 
-        <p>
+        <p id="Example3-config">
           To allow no empty line between fields:
         </p>
         <source>
-&lt;module name="EmptyLineSeparator"&gt;
-  &lt;property name="allowNoEmptyLineBetweenFields" value="true"/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;EmptyLineSeparator&quot;&gt;
+      &lt;property name=&quot;allowNoEmptyLineBetweenFields&quot; value=&quot;true&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p>
+        <p id="Example3-code">
           Example:
         </p>
         <source>
 ///////////////////////////////////////////////////
 //HEADER
 ///////////////////////////////////////////////////
-package com.whitespace; // violation , 'package' should be separated from previous line
-import java.io.Serializable; // violation , 'import' should be separated from previous line
+package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator;
+import java.io.Serializable;
+// violation 2 lines above ''package' should be separated from previous line'
+// violation 2 lines above ''import' should be separated from previous line'
 
-class FirstClass {
+class Example3 {
 
   int var1 = 1;
   int var2 = 2;
@@ -230,54 +246,65 @@ class FirstClass {
 
 
   void method1() {}
-  void method2() { // violation , 'METHOD_DEF' should be separated from previous line
-     int var4 = 4;
+  void method2() { // violation ''METHOD_DEF' should be separated from previous line'
+    int var4 = 4;
 
 
-     int var5 = 5;
+    int var5 = 5;
   }
 }
         </source>
-        <p>
+        <p id="Example4-config">
           To disallow multiple empty lines between class members:
         </p>
         <source>
-&lt;module name="EmptyLineSeparator"&gt;
-  &lt;property name="allowMultipleEmptyLines" value="false"/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;EmptyLineSeparator&quot;&gt;
+      &lt;property name=&quot;allowMultipleEmptyLines&quot; value=&quot;false&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
         <source>
 ///////////////////////////////////////////////////
 //HEADER
 ///////////////////////////////////////////////////
-package com.whitespace; // violation , 'package' should be separated from previous line
-import java.io.Serializable; // violation , 'import' should be separated from previous line
+package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator;
+import java.io.Serializable;
+// violation 2 lines above ''package' should be separated from previous line'
+// violation 2 lines above ''import' should be separated from previous line'
 
-class FirstClass {
+class Example4 {
 
   int var1 = 1;
-  int var2 = 2; // violation , 'VARIABLE_DEF' should be separated from previous line
+  int var2 = 2; // violation ''VARIABLE_DEF' should be separated from previous line'
 
 
-  int var3 = 3; // violation , 'VARIABLE_DEF' has more than 1 empty lines before
+  int var3 = 3; // violation ''VARIABLE_DEF' has more than 1 empty lines before'
 
 
-  void method1() {} // violation , 'METHOD_DEF' has more than 1 empty lines before
-  void method2() { // violation , 'METHOD_DEF' should be separated from previous line
-     int var4 = 4;
+  void method1() {} // violation ''METHOD_DEF' has more than 1 empty lines before'
+  void method2() { // violation ''METHOD_DEF' should be separated from previous line'
+    int var4 = 4;
 
 
-     int var5 = 5;
+    int var5 = 5;
   }
 }
         </source>
-        <p>
+        <p id="Example5-config">
           To disallow multiple empty lines inside constructor,
             initialization block and method:
         </p>
         <source>
-&lt;module name="EmptyLineSeparator"&gt;
-  &lt;property name="allowMultipleEmptyLinesInsideClassMembers" value="false"/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;EmptyLineSeparator&quot;&gt;
+      &lt;property name=&quot;allowMultipleEmptyLinesInsideClassMembers&quot;
+                value=&quot;false&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
 
@@ -299,31 +326,33 @@ class FirstClass {
                 CTOR_DEF</a>
           .
         </p>
-        <p>
+        <p id="Example5-code">
           Example of declarations with multiple empty lines inside method:
         </p>
         <source>
 ///////////////////////////////////////////////////
 //HEADER
 ///////////////////////////////////////////////////
-package com.whitespace; // violation , 'package' should be separated from previous line
-import java.io.Serializable; // violation , 'import' should be separated from previous line
+package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator;
+import java.io.Serializable;
+// violation 2 lines above ''package' should be separated from previous line'
+// violation 2 lines above ''import' should be separated from previous line'
 
-class FirstClass {
+class Example5 {
 
   int var1 = 1;
-  int var2 = 2; // violation , 'VARIABLE_DEF' should be separated from previous line
+  int var2 = 2; // violation ''VARIABLE_DEF' should be separated from previous line'
 
 
   int var3 = 3;
 
 
   void method1() {}
-  void method2() { // violation , 'METHOD_DEF' should be separated from previous line
-     int var4 = 4; // violation , There is more than 1 empty line after this line
+  void method2() { // violation ''METHOD_DEF' should be separated from previous line'
+    int var4 = 4; // violation 'There is more than 1 empty line after this line'
 
 
-     int var5 = 5;
+    int var5 = 5;
   }
 }
         </source>

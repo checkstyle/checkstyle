@@ -15,41 +15,47 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
         <source>
-&lt;module name="NoWhitespaceBeforeCaseDefaultColon"/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;NoWhitespaceBeforeCaseDefaultColon&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
         </source>
-        <p>Example:</p>
+        <p id="Example1-code">Example:</p>
         <source>
-class Test {
-  {
+class Example1 {
+  void example() {
     switch(1) {
-        case 1 : // violation, whitespace before ':' is not allowed here
-            break;
-        case 2: // ok
-            break;
-        default : // violation, whitespace before ':' is not allowed here
-            break;
+      case 1 : // violation '':' is preceded with whitespace'
+        break;
+      case 2:
+        break;
+      default : // violation '':' is preceded with whitespace'
+        break;
     }
 
     switch(2) {
-        case 2: // ok
-            break;
-        case 3, 4
-                 : break; // violation, whitespace before ':' is not allowed here
-        case 4,
-              5: break; // ok
-        default
-              : // violation, whitespace before ':' is not allowed here
-            break;
+      case 2:
+        break;
+      case 3, 4
+        : break; // violation '':' is preceded with whitespace'
+      case 5,
+        6: break;
+      default
+            : // violation '':' is preceded with whitespace'
+        break;
     }
 
-    switch(day) {
-        case MONDAY, FRIDAY, SUNDAY: System.out.println("  6"); break;
-        case TUESDAY               : System.out.println("  7"); break; // violation
+    switch(DayOfWeek.MONDAY) {
+      case MONDAY, FRIDAY, SUNDAY: System.out.println(&quot;  6&quot;); break;
+      // violation below '':' is preceded with whitespace'
+      case TUESDAY               : System.out.println(&quot;  7&quot;); break;
     }
+  }
 }
         </source>
       </subsection>

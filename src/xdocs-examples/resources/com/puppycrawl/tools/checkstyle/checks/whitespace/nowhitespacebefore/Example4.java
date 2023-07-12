@@ -15,9 +15,9 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace.nowhitespacebefore;
 
 import com.google.common.collect.Lists;
 
+// xdoc section -- start
 class Example4 {
   void example() {
-    // xdoc section -- start
     Lists .charactersOf("foo") // violation ''.' is preceded with whitespace'
           .listIterator()
           .forEachRemaining(System.out ::print);
@@ -25,6 +25,6 @@ class Example4 {
     Lists.charactersOf("foo")
          .listIterator()
          .forEachRemaining(System.out::print);
-    // xdoc section -- end
   }
 }
+// xdoc section -- end

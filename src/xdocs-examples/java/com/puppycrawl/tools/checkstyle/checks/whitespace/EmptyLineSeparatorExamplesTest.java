@@ -88,11 +88,11 @@ public class EmptyLineSeparatorExamplesTest extends AbstractModuleTestSupport {
     @Test
     public void testExample5() throws Exception {
         final String[] expected = {
-            "16:1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "package"),
-            "17:1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "import"),
-            "24:3: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "VARIABLE_DEF"),
-            "31:3: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "METHOD_DEF"),
-            "32:17: " + getCheckMessage(MSG_MULTIPLE_LINES_INSIDE),
+            "17:1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "package"),
+            "18:1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "import"),
+            "25:3: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "VARIABLE_DEF"),
+            "32:3: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "METHOD_DEF"),
+            "33:17: " + getCheckMessage(MSG_MULTIPLE_LINES_INSIDE),
         };
 
         verifyWithInlineConfigParser(getPath("Example5.java"), expected);
