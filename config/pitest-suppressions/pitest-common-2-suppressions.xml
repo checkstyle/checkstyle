@@ -66,46 +66,10 @@
   <mutation unstable="false">
     <sourceFile>DetailAstImpl.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.DetailAstImpl</mutatedClass>
-    <mutatedMethod>getHiddenAfter</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
-    <description>replaced call to java/util/Collections::unmodifiableList with argument</description>
-    <lineContent>returnList = Collections.unmodifiableList(hiddenAfter);</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>DetailAstImpl.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.DetailAstImpl</mutatedClass>
-    <mutatedMethod>getHiddenBefore</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
-    <description>replaced call to java/util/Collections::unmodifiableList with argument</description>
-    <lineContent>returnList = Collections.unmodifiableList(hiddenBefore);</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>DetailAstImpl.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.DetailAstImpl</mutatedClass>
     <mutatedMethod>removeChildren</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
     <description>Removed assignment to member variable firstChild</description>
     <lineContent>firstChild = null;</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>DetailAstImpl.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.DetailAstImpl</mutatedClass>
-    <mutatedMethod>setHiddenAfter</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
-    <description>replaced call to java/util/Collections::unmodifiableList with argument</description>
-    <lineContent>this.hiddenAfter = Collections.unmodifiableList(hiddenAfter);</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>DetailAstImpl.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.DetailAstImpl</mutatedClass>
-    <mutatedMethod>setHiddenBefore</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
-    <description>replaced call to java/util/Collections::unmodifiableList with argument</description>
-    <lineContent>this.hiddenBefore = Collections.unmodifiableList(hiddenBefore);</lineContent>
   </mutation>
 
   <mutation unstable="false">
