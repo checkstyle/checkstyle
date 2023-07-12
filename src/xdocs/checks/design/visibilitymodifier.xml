@@ -508,12 +508,12 @@ class Example7 {
 }
         </source>
         <p>
-          To configure the Check passing fields annotated with @com.annotation.CustomAnnotation:
+          To configure the Check passing fields annotated with @java.lang.Deprecated:
         </p>
         <source>
 &lt;module name="VisibilityModifier"&gt;
   &lt;property name="ignoreAnnotationCanonicalNames"
-    value="com.annotation.CustomAnnotation"/&gt;
+    value="java.lang.Deprecated"/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -614,7 +614,7 @@ class Example9 {
         <source>
 &lt;module name="VisibilityModifier"&gt;
   &lt;property name="ignoreAnnotationCanonicalNames"
-    value="CustomAnnotation"/&gt;
+    value="Deprecated"/&gt;
 &lt;/module&gt;
         </source>
         <p>
