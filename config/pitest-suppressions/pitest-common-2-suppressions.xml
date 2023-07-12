@@ -27,23 +27,23 @@
     <lineContent>astImpl.previousSibling = (DetailAstImpl) getLastChild();</lineContent>
   </mutation>
 
-  <mutation unstable="false">
-    <sourceFile>DetailAstImpl.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.DetailAstImpl</mutatedClass>
-    <mutatedMethod>addNextSibling</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
-    <description>Removed assignment to member variable previousSibling</description>
-    <lineContent>astImpl.previousSibling = this;</lineContent>
-  </mutation>
 
-  <mutation unstable="false">
-    <sourceFile>DetailAstImpl.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.DetailAstImpl</mutatedClass>
-    <mutatedMethod>addNextSibling</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
-    <description>Removed assignment to member variable previousSibling</description>
-    <lineContent>sibling.previousSibling = astImpl;</lineContent>
-  </mutation>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   <mutation unstable="false">
     <sourceFile>DetailAstImpl.java</sourceFile>
