@@ -122,7 +122,6 @@ public final class DetailAstImpl implements DetailAST {
             final DetailAstImpl astImpl = (DetailAstImpl) ast;
 
             if (previousSiblingNode != null) {
-                astImpl.previousSibling = previousSiblingNode;
                 previousSiblingNode.setNextSibling(astImpl);
             }
             else if (parent != null) {
@@ -130,7 +129,6 @@ public final class DetailAstImpl implements DetailAST {
             }
 
             astImpl.setNextSibling(this);
-            previousSibling = astImpl;
         }
     }
 
