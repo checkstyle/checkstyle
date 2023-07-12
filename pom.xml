@@ -4440,6 +4440,9 @@
                 <avoidCallsTo>
                   com.puppycrawl.tools.checkstyle.XmlLoader$LoadExternalDtdFeatureProvider
                 </avoidCallsTo>
+                <avoidCallsTo>
+                  com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil
+                </avoidCallsTo>
               </avoidCallsTo>
               <coverageThreshold>100</coverageThreshold>
               <mutationThreshold>96</mutationThreshold>
