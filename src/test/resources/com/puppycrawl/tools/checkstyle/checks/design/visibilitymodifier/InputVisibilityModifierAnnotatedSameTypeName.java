@@ -13,18 +13,19 @@ immutableClassCanonicalNames = (default)java.io.File, java.lang.Boolean, java.la
                                java.net.Inet4Address, java.net.Inet6Address, \
                                java.net.InetSocketAddress, java.net.URI, java.net.URL, \
                                java.util.Locale, java.util.UUID
-ignoreAnnotationCanonicalNames = (default)com.google.common.annotations.VisibleForTesting, \
-                                 org.junit.ClassRule, org.junit.Rule
+ignoreAnnotationCanonicalNames = com.google.common.annotations.VisibleForTesting, \
+                                 com.puppycrawl.tools.checkstyle.checks.design.visibilitymodifier \
+                                 .InputVisibilityModifierLocalAnnotations.ClassRule
 
 
 */
 
 package com.puppycrawl.tools.checkstyle.checks.design.visibilitymodifier;
 
+import org.junit.ClassRule;
+import org.junit.Rule;
 import org.junit.rules.TemporaryFolder;
 
-import com.puppycrawl.tools.checkstyle.checks.design.visibilitymodifier.InputVisibilityModifierLocalAnnotations.Rule;
-import com.puppycrawl.tools.checkstyle.checks.design.visibilitymodifier.InputVisibilityModifierLocalAnnotations.ClassRule;
 
 public class InputVisibilityModifierAnnotatedSameTypeName
 {
