@@ -473,6 +473,9 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
         assertWithMessage("Invalid child")
             .that(child.getNextSibling())
             .isEqualTo(newSibling);
+        assertWithMessage("Invalid previous sibling")
+                .that(sibling.getPreviousSibling())
+                .isEqualTo(newSibling);
     }
 
     @Test
