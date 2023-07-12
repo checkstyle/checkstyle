@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.utils;
 
 import java.util.Collections;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -47,5 +48,16 @@ public final class UnmodifiableCollectionUtil {
      */
     public static <T> Set<T> unmodifiableSet(Set<T> collection) {
         return Collections.unmodifiableSet(collection);
+    }
+
+    /**
+     * Creates an unmodifiable list based on the provided collection.
+     *
+     * @param collection the collection to create an unmodifiable list from
+     * @param <T> the type of elements in the set
+     * @return an unmodifiable list containing the elements from the provided collection
+     */
+    public static <T> List<T> unmodifiableList(List<T> collection) {
+        return Collections.unmodifiableList(collection);
     }
 }
