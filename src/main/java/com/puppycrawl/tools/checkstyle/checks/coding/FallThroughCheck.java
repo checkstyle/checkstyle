@@ -70,74 +70,34 @@ import com.puppycrawl.tools.checkstyle.utils.CodePointUtil;
  * Example:
  * </p>
  * <pre>
- * public void foo() throws Exception {
- *   int i = 0;
- *   while (i &gt;= 0) {
- *     switch (i) {
- *       case 1:
- *         i++;
- *       case 2: // violation, previous case contains code but lacks
- *               // break, return, yield, throw or continue statement
- *         i++;
- *         break;
- *       case 3: // OK
- *         i++;
- *         return;
- *       case 4: // OK
- *         i++;
- *         throw new Exception();
- *       case 5: // OK
- *         i++;
- *         continue;
- *       case 6: // OK
- *       case 7: // Previous case: OK, case does not contain code
- *               // This case: OK, by default the last case might not have statement
- *               // that transfer control
- *         i++;
+ * class Example1 {
+ *   public int foo() {
+ *     int i = 0;
+ *     while(i &gt;= 0) {
+ *       switch(i) {
+ *         case 1:
+ *           i++;
+ *         case 2: // violation
+ *           i++;
+ *           break;
+ *         case 3:
+ *           i++;
+ *           return;
+ *         case 4:
+ *           i++;
+ *           throw new Exception();
+ *         case 5:
+ *           i++;
+ *           continue;
+ *         case 6:
+ *         case 7:
+ *         case 8:
+ *           i++;
+ *         case 11:
+ *           i++; // fall through
+ *       }
  *     }
  *   }
- * }
- * public int bar() {
- *   int i = 0;
- *   return switch (i) {
- *     case 1:
- *       i++;
- *     case 2: // violation, previous case contains code but lacks
- *             // break, return, yield, throw or continue statement
- *     case 3: // OK, case does not contain code
- *       i++;
- *       yield 11;
- *     default: // OK
- *       yield -1;
- *   };
- * }
- * </pre>
- * <p>
- * Example how to suppress violations by comment:
- * </p>
- * <pre>
- * switch (i) {
- *   case 1:
- *     i++; // fall through
- *
- *   case 2: // OK
- *     i++;
- *     // fallthru
- *   case 3: { // OK
- *     i++;
- *   }
- *   &#47;* fall-thru *&#47;
- *   case 4: // OK
- *     i++;
- *     // Fallthru
- *   case 5: // violation, "Fallthru" in case 4 should be "fallthru"
- *     i++;
- *     // fall through
- *     i++;
- *   case 6: // violation, the comment must be on the last non-empty line before 'case'
- *     i++;
- *   &#47;* fall through *&#47;case 7: // OK, comment can appear on the same line but before 'case'
- *     i++;
  * }
  * </pre>
  * <p>
@@ -152,12 +112,34 @@ import com.puppycrawl.tools.checkstyle.utils.CodePointUtil;
  * Example:
  * </p>
  * <pre>
- * switch (i) {
- *   case 1:
- *     break;
- *   case 2: // Previous case: OK
- *           // This case: violation, last case must have statement that transfer control
- *     i++;
+ * class Example2 {
+ *   public int foo() {
+ *     int i = 0;
+ *     while(i &gt;= 0) {
+ *       switch(i) {
+ *         case 1:
+ *           i++;  // falls-thru
+ *         case 2: // violation
+ *           i++;
+ *           break;
+ *         case 3:
+ *           i++;
+ *           return;
+ *         case 4:
+ *           i++;
+ *           throw new Exception();
+ *         case 5:
+ *           i++;
+ *           continue;
+ *         case 6:
+ *         case 7:
+ *         case 8:
+ *           i++;
+ *         case 11:
+ *           i++; // fall through
+ *       }
+ *     }
+ *   }
  * }
  * </pre>
  * <p>
@@ -165,22 +147,41 @@ import com.puppycrawl.tools.checkstyle.utils.CodePointUtil;
  * </p>
  * <pre>
  * &lt;module name=&quot;FallThrough&quot;&gt;
- *    &lt;property name=&quot;reliefPattern&quot; value=&quot;FALL?[ -]?THROUGH&quot;/&gt;
+ *    &lt;property name=&quot;reliefPattern&quot; value=&quot;no break by design&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
  * <p>
  * Example:
  * </p>
  * <pre>
- * switch (i) {
- *   case 1:
- *     i++;
- *     // FALL-THROUGH
- *   case 2: // OK, "FALL-THROUGH" matches the regular expression "FALL?[ -]?THROUGH"
- *     i++;
- *     // fall-through
- *   case 3: // violation, "fall-through" doesn't match
- *     break;
+ * class Example3 {
+ *   public int foo() {
+ *     int i = 0;
+ *     while(i &gt;= 0) {
+ *       switch(i) {
+ *         case 1:
+ *             i++; // FALL THROUGH
+ *         case 2: // violation
+ *           i++;
+ *           break;
+ *         case 3:
+ *           i++;
+ *           return;
+ *         case 4:
+ *           i++;
+ *           throw new Exception();
+ *         case 5:
+ *           i++;
+ *           continue;
+ *         case 6:
+ *         case 7:
+ *         case 8:
+ *           i++;
+ *         case 11:
+ *           i++; // fall through
+ *       }
+ *     }
+ *   }
  * }
  * </pre>
  * <p>
