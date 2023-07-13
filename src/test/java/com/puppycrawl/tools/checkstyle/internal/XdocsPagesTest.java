@@ -56,6 +56,7 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import org.apache.commons.beanutils.PropertyUtils;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
@@ -76,6 +77,7 @@ import com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption;
 import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
+import com.puppycrawl.tools.checkstyle.internal.utils.XdocGenerator;
 import com.puppycrawl.tools.checkstyle.internal.utils.XdocUtil;
 import com.puppycrawl.tools.checkstyle.internal.utils.XmlUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
@@ -214,8 +216,19 @@ public class XdocsPagesTest {
             "WhitespaceAfter",
             "WhitespaceAround"
     );
+
     private static final Set<String> GOOGLE_MODULES = Collections.unmodifiableSet(
         CheckUtil.getConfigGoogleStyleModules());
+
+    /**
+     * Generate xdoc content from templates before validation.
+     *
+     * @throws Exception if something goes wrong
+     */
+    @BeforeAll
+    public static void generateXdocContent() throws Exception {
+        XdocGenerator.generateXdocContent();
+    }
 
     @Test
     public void testAllChecksPresentOnAvailableChecksPage() throws Exception {
