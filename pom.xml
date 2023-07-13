@@ -400,6 +400,16 @@
       <artifactId>checker-qual</artifactId>
       <version>${checkerframework.version}</version>
     </dependency>
+    <dependency>
+      <groupId>org.apache.maven.doxia</groupId>
+      <artifactId>doxia-core</artifactId>
+      <version>1.12.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven.doxia</groupId>
+      <artifactId>doxia-module-xdoc</artifactId>
+      <version>1.12.0</version>
+    </dependency>
   </dependencies>
 
   <!-- that repositories are required for testing plugin's snapshot version -->
@@ -653,6 +663,18 @@
     </pluginManagement>
     <plugins>
       <plugin>
+        <groupId>org.codehaus.plexus</groupId>
+        <artifactId>plexus-component-metadata</artifactId>
+        <version>2.1.1</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>generate-metadata</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
         <groupId>org.gaul</groupId>
         <artifactId>modernizer-maven-plugin</artifactId>
         <version>2.5.0</version>
@@ -829,6 +851,9 @@
                     <exclude>
                       com.puppycrawl.tools.checkstyle.api.AutomaticBean*
                     </exclude>
+                    <!-- until https://github.com/checkstyle/checkstyle/issues/13393 -->
+                    <exclude>com.puppycrawl.tools.checkstyle.site.XdocsTemplateParser</exclude>
+                    <exclude>com.puppycrawl.tools.checkstyle.site.ExampleMacro</exclude>
                     <!-- Parser related classes -->
                     <exclude>
                       com.puppycrawl.tools.checkstyle.grammar.java.JavaLanguageParser*
@@ -1298,7 +1323,15 @@
                 <requireMavenVersion>
                   <version>3.3.9</version>
                 </requireMavenVersion>
-                <dependencyConvergence />
+                <dependencyConvergence>
+                  <excludes>
+                    <exclude>org.apache.maven.doxia:doxia-core</exclude>
+                    <exclude>org.apache.commons*</exclude>
+                    <exclude>commons-codec:commons-codec*</exclude>
+                    <exclude>org.apache.httpcomponents*</exclude>
+                    <exclude>org.codehaus.plexus*</exclude>
+                  </excludes>
+                </dependencyConvergence>
                 <!-- we can not use this as it require same version for all dependencies -->
                 <!--
                 <enforceBytecodeVersion>
