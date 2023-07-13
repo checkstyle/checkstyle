@@ -18,29 +18,39 @@ class Example1 {
     if (true) {
     } else if(false) { // violation 'not followed by whitespace'
     }
+
     testOne("x", "y");
     testOne("z","o"); // violation 'not followed by whitespace'
-    for (int i = 0; i < 10; i++){}
-    for(int i = 0; i < 10; i++){} // violation 'not followed by whitespace'
+
+    for (;;){}
+    for(;;){} // violation 'not followed by whitespace'
+
     try (InputStream ignored = System.in) {}
     try(InputStream ignored = System.in) {} // violation 'not followed by whitespace'
+
     try {} catch (Exception e){}
-    try{} catch (Exception e){} // violation 'not followed by whitespace'
+    try{} catch (Exception e) {} // violation ''try' is not followed by whitespace'
+
     try {} finally {}
     try {} finally{} // violation 'not followed by whitespace'
+
     try {} catch (Error e){} finally {}
     try {} catch (Error e){} finally{} // violation 'not followed by whitespace'
+
     try {} catch (Exception e){}
     try {} catch(Exception e){} // violation 'not followed by whitespace'
+
     synchronized (this) { }
     synchronized(this) { } // violation 'not followed by whitespace'
   }
-  public String testOne(String a, String b) {
-    return (a + b);
+
+  public String testOne() {
+    return ("a" + "b");
   }
   public String testTwo() {
     return("a" + "b"); // violation 'not followed by whitespace'
   }
+
   void switchExample() {
     int a = switch ("hello") {
       case "got":
