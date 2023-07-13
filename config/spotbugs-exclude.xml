@@ -273,4 +273,11 @@
     </Or>
     <Bug pattern="SPP_PASSING_THIS_AS_PARM"/>
   </Match>
+  <Match>
+    <!-- false positive, we are storing file contents in a field
+         see https://github.com/checkstyle/checkstyle/pull/13357#discussion_r1261617703 -->
+    <Class
+    name="com.puppycrawl.tools.checkstyle.site.XdocsTemplateParser"/>
+    <Bug pattern="STT_TOSTRING_STORED_IN_FIELD"/>
+  </Match>
 </FindBugsFilter>
