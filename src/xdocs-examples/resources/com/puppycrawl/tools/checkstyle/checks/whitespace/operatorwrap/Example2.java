@@ -16,9 +16,9 @@
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace.operatorwrap;
 
+// xdoc section -- start
 class Example2 {
   void example() {
-    // xdoc section -- start
     int b
             = 10; // violation ''=' should be on the previous line'
     int c =
@@ -45,6 +45,6 @@ class Example2 {
             &=1 ; // violation ''&=' should be on the previous line'
     c
             <<= 1; // violation ''<<=' should be on the previous line'
-    // xdoc section -- end
   }
 }
+// xdoc section -- end

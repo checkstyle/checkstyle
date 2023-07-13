@@ -57,10 +57,10 @@ public class ConstantNameCheckExamplesTest extends AbstractModuleTestSupport {
         final String pattern = "^log(ger)?$|^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$";
 
         final String[] expected = {
-            "19:20: " + getCheckMessage(MSG_INVALID_PATTERN, "third_Constant3", pattern),
-            "20:28: " + getCheckMessage(MSG_INVALID_PATTERN, "fourth_Const4", pattern),
-            "23:20: " + getCheckMessage(MSG_INVALID_PATTERN, "loggerMYSELF", pattern),
-            "25:30: " + getCheckMessage(MSG_INVALID_PATTERN, "myselfConstant", pattern),
+            "20:20: " + getCheckMessage(MSG_INVALID_PATTERN, "third_Constant3", pattern),
+            "21:28: " + getCheckMessage(MSG_INVALID_PATTERN, "fourth_Const4", pattern),
+            "24:20: " + getCheckMessage(MSG_INVALID_PATTERN, "loggerMYSELF", pattern),
+            "26:30: " + getCheckMessage(MSG_INVALID_PATTERN, "myselfConstant", pattern),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
