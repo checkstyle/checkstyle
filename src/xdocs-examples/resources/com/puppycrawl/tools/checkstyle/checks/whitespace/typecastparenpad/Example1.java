@@ -10,8 +10,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace.typecastparenpad;
 
+// xdoc section -- start
 class Example1 {
-  // xdoc section -- start
   float f1 = 3.14f;
 
   int n = ( int ) f1; // 2 violations
@@ -23,5 +23,5 @@ class Example1 {
   float f3 = (float) d;
 
   float f4 = ( float) d; // violation 'followed by whitespace'
-  // xdoc section -- end
 }
+// xdoc section -- end

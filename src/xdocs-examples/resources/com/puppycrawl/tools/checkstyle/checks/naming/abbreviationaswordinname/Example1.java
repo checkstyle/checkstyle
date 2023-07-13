@@ -13,8 +13,8 @@ package com.puppycrawl.tools.checkstyle.checks.naming.abbreviationaswordinname;
 import java.util.HashSet;
 import java.util.Set;
 
+// xdoc section -- start
 class Example1 extends SuperClass {
-  // xdoc section -- start
   int CURRENT_COUNTER; // violation 'no more than '4' consecutive capital letters'
   static int GLOBAL_COUNTER;
   final Set<String> stringsFOUND = new HashSet<>();
@@ -31,5 +31,5 @@ class Example1 extends SuperClass {
   static void incrementGLOBAL() {
     GLOBAL_COUNTER++;
   }
-  // xdoc section -- end
 }
+// xdoc section -- end

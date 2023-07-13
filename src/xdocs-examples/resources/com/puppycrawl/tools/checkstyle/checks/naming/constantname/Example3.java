@@ -13,8 +13,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.naming.constantname;
 
+// xdoc section -- start
 class Example3 {
-  // xdoc section -- start
   public final static int FIRST_CONSTANT1 = 10;
   protected final static int SECOND_CONSTANT2 = 100;
   final static int third_Constant3 = 1000; // violation 'must match pattern'
@@ -24,5 +24,5 @@ class Example3 {
   final static int loggerMYSELF = 5; // violation 'must match pattern'
   final static int MYSELF = 100;
   protected final static int myselfConstant = 1;
-  // xdoc section -- end
 }
+// xdoc section -- end

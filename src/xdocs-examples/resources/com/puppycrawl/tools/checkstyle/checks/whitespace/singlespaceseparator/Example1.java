@@ -10,8 +10,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace.singlespaceseparator;
 
+// xdoc section -- start
 class Example1 {
-  // xdoc section -- start
   int foo()   { // violation 'Use a single space'
     return  1; // violation 'Use a single space'
   }
@@ -19,5 +19,5 @@ class Example1 {
     return 3;
   }
   void  fun2() {} // violation 'Use a single space'
-  // xdoc section -- end
 }
+// xdoc section -- end

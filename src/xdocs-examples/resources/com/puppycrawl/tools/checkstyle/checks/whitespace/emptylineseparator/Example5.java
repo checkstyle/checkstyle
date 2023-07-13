@@ -2,7 +2,8 @@
 <module name="Checker">
   <module name="TreeWalker">
     <module name="EmptyLineSeparator">
-      <property name="allowMultipleEmptyLinesInsideClassMembers" value="false"/>
+      <property name="allowMultipleEmptyLinesInsideClassMembers"
+                value="false"/>
     </module>
   </module>
 </module>

@@ -12,9 +12,9 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace.nowhitespacebeforecase
 
 import java.time.DayOfWeek;
 
+// xdoc section -- start
 class Example1 {
   void example() {
-    // xdoc section -- start
     switch(1) {
       case 1 : // violation '':' is preceded with whitespace'
         break;
@@ -41,6 +41,6 @@ class Example1 {
       // violation below '':' is preceded with whitespace'
       case TUESDAY               : System.out.println("  7"); break;
     }
-    // xdoc section -- end
   }
 }
+// xdoc section -- end

@@ -10,9 +10,9 @@
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace.operatorwrap;
 
+// xdoc section -- start
 class Example1 {
   void example() {
-    // xdoc section -- start
     String s = "Hello" + // violation ''\+' should be on a new line'
       "World";
 
@@ -29,6 +29,6 @@ class Example1 {
 
     int d = c
             + 10;
-    // xdoc section -- end
   }
 }
+// xdoc section -- end
