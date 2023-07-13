@@ -66,6 +66,23 @@ public final class XdocUtil {
     }
 
     /**
+     * Gets xdocs template file paths. These are files ending with .xml.template.
+     *
+     * @return a set of xdocs template file paths.
+     * @throws IOException if an I/O error occurs.
+     */
+    public static Set<Path> getXdocsTemplatesFilePaths() throws IOException {
+        final Path directory = Paths.get(DIRECTORY_PATH);
+        try (Stream<Path> stream = Files.find(directory, Integer.MAX_VALUE,
+                (path, attr) -> {
+                    return attr.isRegularFile()
+                            && path.toString().endsWith(".xml.template");
+                })) {
+            return stream.collect(Collectors.toSet());
+        }
+    }
+
+    /**
      * Gets xdocs documentation file paths.
      *
      * @param files set of all xdoc files
