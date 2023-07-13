@@ -185,7 +185,7 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
         catch (CheckstyleException ex) {
             assertWithMessage(ex.getMessage())
                 .that(ex.getMessage())
-                .startsWith("Number format exception " + fn + " - ");
+                .startsWith("Number format exception " + fn + " - For input string: \"a\"");
         }
     }
 
@@ -387,4 +387,63 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
             .hasSize(1);
     }
 
+    @Test
+    public void testLoadXpathConfiguration() throws Exception {
+        final String[] configFiles = {
+            "InputSuppressionsLoaderConfig4.xml",
+            "InputSuppressionsLoaderConfig5.xml",
+            "InputSuppressionsLoaderConfig9.xml",
+            "InputSuppressionsLoaderConfig10.xml",
+        };
+
+        for (String configFile : configFiles) {
+            final String config = getPath(configFile);
+            SuppressionsLoader.loadXpathSuppressions(config);
+            final Set<TreeWalkerFilter> filterSet =
+                    SuppressionsLoader.loadXpathSuppressions(config);
+
+            final Set<TreeWalkerFilter> expectedFilterSet = new HashSet<>();
+            final XpathFilterElement xPath =
+                new XpathFilterElement("file1", "test", null, "id1", "//CLASS_DEF");
+            expectedFilterSet.add(xPath);
+            assertWithMessage("")
+                    .that(expectedFilterSet)
+                    .isEqualTo(filterSet);
+
+        }
+    }
+
+    @Test
+    public void testLoadSuppressionFilterConfiguration() throws Exception {
+        final String[] configFiles = {
+            "InputSuppressionsLoaderConfig1.xml",
+            "InputSuppressionsLoaderConfig2.xml",
+            "InputSuppressionsLoaderConfig3.xml",
+            "InputSuppressionsLoaderConfig6.xml",
+            "InputSuppressionsLoaderConfig7.xml",
+            "InputSuppressionsLoaderConfig8.xml",
+        };
+
+        for (String configFile : configFiles) {
+            final FilterSet fc =
+                SuppressionsLoader.loadSuppressions(getPath(configFile));
+            final SuppressFilterElement suppressElement = (SuppressFilterElement) fc.getFilters()
+                    .toArray()[0];
+
+            final String filePattern = TestUtil.getInternalState(suppressElement, "filePattern");
+            assertWithMessage("Unexpected file Pattern")
+                .that(filePattern)
+                .isEqualTo("file1");
+
+            final String checkPattern = TestUtil.getInternalState(suppressElement, "checkPattern");
+            assertWithMessage("Unexpected check")
+                .that(checkPattern)
+                .isEqualTo("CheckTest");
+
+            final String linesCsv = TestUtil.getInternalState(suppressElement, "linesCsv");
+            assertWithMessage("Unexpected line no")
+                .that(linesCsv)
+                .isEqualTo("1");
+        }
+    }
 }
