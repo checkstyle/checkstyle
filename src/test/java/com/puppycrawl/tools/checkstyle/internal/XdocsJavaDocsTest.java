@@ -113,6 +113,12 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
             "MultipleStringLiterals - ignoreOccurrenceContext",
         }).collect(Collectors.toSet()));
 
+    // We skip validation of examples section on modules that have this section generated
+    // until https://github.com/checkstyle/checkstyle/issues/13100
+    private static final Set<String> MODULES_EXAMPLES_TO_SKIP = Set.of(
+        "WhitespaceAfter"
+    );
+
     private static final List<List<Node>> CHECK_PROPERTIES = new ArrayList<>();
     private static final Map<String, String> CHECK_PROPERTY_DOC = new HashMap<>();
     private static final Map<String, String> CHECK_TEXT = new HashMap<>();
@@ -393,33 +399,61 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
     private static String getNodeText(Node node) {
         final StringBuilder result = new StringBuilder(20);
 
+        boolean skipExampleSection = false;
+        boolean alreadySkippedExamplesSection = false;
+
         for (Node child = node.getFirstChild(); child != null; child = child.getNextSibling()) {
-            if (child.getNodeType() == Node.TEXT_NODE) {
-                for (String temp : child.getTextContent().split("\n")) {
-                    final String text = temp.trim();
-
-                    if (!text.isEmpty()) {
-                        if (shouldAppendSpace(result, text.charAt(0))) {
-                            result.append(' ');
-                        }
-
-                        result.append(text);
-                    }
+            if (MODULES_EXAMPLES_TO_SKIP.contains(checkName)) {
+                // Stop skipping examples section when we encounter parent section
+                if ("p".equals(child.getNodeName())
+                        && child.getTextContent().startsWith("\nParent is")) {
+                    skipExampleSection = false;
+                    alreadySkippedExamplesSection = true;
+                }
+                if (skipExampleSection && !alreadySkippedExamplesSection) {
+                    continue;
+                }
+                // Examples section is located after property section
+                if ("ul".equals(child.getNodeName())
+                        && child.getTextContent().startsWith("\n\nProperty")) {
+                    skipExampleSection = true;
                 }
             }
+
+            if (child.getNodeType() == Node.TEXT_NODE) {
+                handleTextNode(result, child);
+            }
             else {
-                if (child.hasAttributes() && child.getAttributes().getNamedItem("class") != null
-                        && "wrapper".equals(child.getAttributes().getNamedItem("class")
-                        .getNodeValue())) {
-                    appendNodeText(result, XmlUtil.getFirstChildElement(child));
-                }
-                else {
-                    appendNodeText(result, child);
-                }
+                handleNonTextNode(result, child);
             }
         }
 
         return result.toString();
+    }
+
+    private static void handleTextNode(StringBuilder result, Node child) {
+        for (String temp : child.getTextContent().split("\n")) {
+            final String text = temp.trim();
+
+            if (!text.isEmpty()) {
+                if (shouldAppendSpace(result, text.charAt(0))) {
+                    result.append(' ');
+                }
+
+                result.append(text);
+            }
+        }
+    }
+
+    private static void handleNonTextNode(StringBuilder result, Node child) {
+        if (child.hasAttributes() && child.getAttributes().getNamedItem("class") != null
+                && "wrapper".equals(child.getAttributes().getNamedItem("class")
+                .getNodeValue())) {
+            appendNodeText(result, XmlUtil.getFirstChildElement(child));
+        }
+        else {
+            appendNodeText(result, child);
+        }
     }
 
     // -@cs[CyclomaticComplexity] No simple way to split this apart.
@@ -645,16 +679,22 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
             }
 
             if (ScopeUtil.isInScope(node, Scope.PUBLIC)) {
-                assertWithMessage(checkName + "'s class-level JavaDoc")
-                    .that(getJavaDocText(node))
-                    .isEqualTo(CHECK_TEXT.get("Description")
+                String expected = CHECK_TEXT.get("Description")
                         + CHECK_TEXT.computeIfAbsent("Rule Description", unused -> "")
                         + CHECK_TEXT.computeIfAbsent("Notes", unused -> "")
-                        + CHECK_TEXT.computeIfAbsent("Properties", unused -> "")
-                        + CHECK_TEXT.get("Examples")
-                        + CHECK_TEXT.get("Parent Module")
+                        + CHECK_TEXT.computeIfAbsent("Properties", unused -> "");
+
+                if (!MODULES_EXAMPLES_TO_SKIP.contains(checkName)) {
+                    expected += CHECK_TEXT.get("Examples");
+                }
+
+                expected += CHECK_TEXT.get("Parent Module")
                         + violationMessagesText + " @since "
-                        + CHECK_TEXT.get("since"));
+                        + CHECK_TEXT.get("since");
+
+                assertWithMessage(checkName + "'s class-level JavaDoc")
+                    .that(getJavaDocText(node))
+                    .isEqualTo(expected);
             }
         }
 
