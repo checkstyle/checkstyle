@@ -60,7 +60,11 @@ public final class XdocUtil {
     public static Set<Path> getXdocsFilePaths() throws IOException {
         final Path directory = Paths.get(DIRECTORY_PATH);
         try (Stream<Path> stream = Files.find(directory, Integer.MAX_VALUE,
-                (path, attr) -> attr.isRegularFile() && path.toString().endsWith(".xml"))) {
+                (path, attr) -> {
+                    return attr.isRegularFile()
+                            && path.toString().endsWith(".xml")
+                            || path.toString().endsWith(".xml.vm");
+                })) {
             return stream.collect(Collectors.toSet());
         }
     }
