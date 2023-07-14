@@ -335,6 +335,7 @@ Dorekit
 Dorg
 DOTALL
 doubletag
+doxia
 Dpi
 Dpmd
 Dpom
@@ -556,6 +557,7 @@ html
 HTMLJS
 htmlunit
 http
+httpcomponents
 hurz
 hyperlinks
 iae
