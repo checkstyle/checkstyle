@@ -12,8 +12,18 @@ mvn -e --no-transfer-progress clean site -Dcheckstyle.ant.skip=true -DskipTests 
 mkdir -p .ci-temp
 
 echo "------------ grep of linkcheck.html--BEGIN"
-grep -E "doesn't exist|externalLink" target/site/linkcheck.html | grep -v 'Read timed out' \
-  | sed 's/<\/table><\/td><\/tr>//g' | sort > .ci-temp/linkcheck-errors-sorted.txt
+LINKCHECK_ERRORS=$(grep -E "doesn't exist|externalLink" target/site/linkcheck.html \
+  | grep -v 'Read timed out' | sed 's/<\/table><\/td><\/tr>//g' || true)
+
+BRANCH=$(git symbolic-ref --short HEAD)
+if [[ $BRANCH == "master" ]]; then
+  echo "Branch is master, so we will check for external links."
+  echo "$LINKCHECK_ERRORS" | sort > .ci-temp/linkcheck-errors-sorted.txt
+  exit 0
+else
+  echo "Branch is not master, so we will not check for external links."
+  echo "$LINKCHECK_ERRORS" | grep -v 'externalLink' | sort > .ci-temp/linkcheck-errors-sorted.txt
+fi
 
 sort config/linkcheck-suppressions.txt | sed 's/<\/table><\/td><\/tr>//g' \
   > .ci-temp/linkcheck-suppressions-sorted.txt
