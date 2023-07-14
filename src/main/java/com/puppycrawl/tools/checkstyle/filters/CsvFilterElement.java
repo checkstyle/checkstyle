@@ -19,11 +19,12 @@
 
 package com.puppycrawl.tools.checkstyle.filters;
 
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 import java.util.StringTokenizer;
+
+import com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil;
 
 /**
  * <p>
@@ -80,7 +81,7 @@ class CsvFilterElement implements IntFilterElement {
      * @return the IntFilters of the filter set.
      */
     protected Set<IntFilterElement> getFilters() {
-        return Collections.unmodifiableSet(filters);
+        return UnmodifiableCollectionUtil.unmodifiableSet(filters);
     }
 
     /**

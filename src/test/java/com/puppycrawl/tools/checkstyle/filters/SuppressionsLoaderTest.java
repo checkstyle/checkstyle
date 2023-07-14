@@ -185,7 +185,7 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
         catch (CheckstyleException ex) {
             assertWithMessage(ex.getMessage())
                 .that(ex.getMessage())
-                .startsWith("Number format exception " + fn + " - ");
+                .startsWith("Number format exception " + fn + " - For input string: \"a\"");
         }
     }
 
