@@ -433,7 +433,9 @@ public class XdocsPagesTest {
 
                 // can't test ant structure, or old and outdated checks
                 assertWithMessage("Xml is invalid, old or has outdated structure")
-                        .that(fileName.startsWith("anttask") || fileName.startsWith("releasenotes")
+                        .that(fileName.startsWith("anttask")
+                                || fileName.startsWith("releasenotes")
+                                || fileName.startsWith("writingjavadocchecks")
                                 || isValidCheckstyleXml(fileName, code, unserializedSource))
                         .isTrue();
             }

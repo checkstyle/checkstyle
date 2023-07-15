@@ -12,10 +12,10 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace.nowhitespacebefore;
 
 import com.google.common.collect.Lists;
 
+// xdoc section -- start
 class Example1 {
   int foo = 5;
   void example() {
-    // xdoc section -- start
     foo ++; // violation 'is preceded with whitespace'
     foo++;
     for (int i = 0 ; i < 5; i++) {}  // violation '';' is preceded with whitespace'
@@ -36,6 +36,6 @@ class Example1 {
       label2:
       while (foo < 5) {}
     }
-    // xdoc section -- end
   }
 }
+// xdoc section -- end

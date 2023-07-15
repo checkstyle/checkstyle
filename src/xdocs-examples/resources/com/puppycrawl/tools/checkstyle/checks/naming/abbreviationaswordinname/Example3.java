@@ -15,8 +15,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.naming.abbreviationaswordinname;
 
+// xdoc section -- start
 class Example3 {
-  // xdoc section -- start
   int firstNum;
   int secondNUM; // violation 'no more than '1' consecutive capital letters'
   static int thirdNum;
@@ -28,5 +28,5 @@ class Example3 {
   void newOAuth2Client() {}
   void OAuth2() {}
   void OAUth2() {}
-  // xdoc section -- end
 }
+// xdoc section -- end

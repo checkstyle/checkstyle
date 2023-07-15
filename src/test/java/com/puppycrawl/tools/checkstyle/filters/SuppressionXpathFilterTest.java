@@ -218,4 +218,19 @@ public class SuppressionXpathFilterTest extends AbstractModuleTestSupport {
         verifyFilterWithInlineConfigParser(getPath("InputSuppressionXpathFilterEscapeChar.java"),
                                            expected, removeSuppressed(expected, suppressed));
     }
+
+    @Test
+    public void testXpathSuppression() throws Exception {
+        for (int test = 1; test <= 4; test++) {
+
+            final String[] expected = {
+                "20:29: " + getCheckMessage(ConstantNameCheck.class, MSG_INVALID_PATTERN,
+                        "different_name_than_suppression", PATTERN),
+            };
+            final String[] suppressed = CommonUtil.EMPTY_STRING_ARRAY;
+            final String path = "InputSuppressionXpathFilter" + test + ".java";
+            verifyFilterWithInlineConfigParser(getPath(path),
+                    expected, removeSuppressed(expected, suppressed));
+        }
+    }
 }

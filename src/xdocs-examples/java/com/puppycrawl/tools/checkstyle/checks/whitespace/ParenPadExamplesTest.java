@@ -53,9 +53,9 @@ public class ParenPadExamplesTest extends AbstractModuleTestSupport {
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-            "28:27: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ")"),
-            "38:12: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "("),
-            "44:34: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ")"),
+            "29:27: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ")"),
+            "39:12: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "("),
+            "45:34: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ")"),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
