@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.filters;
 
 import static com.google.common.truth.Truth.assertWithMessage;
+import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 import java.io.File;
@@ -37,6 +38,8 @@ import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import com.puppycrawl.tools.checkstyle.api.Violation;
+import com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class SuppressionFilterTest extends AbstractModuleTestSupport {
 
@@ -269,4 +272,18 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
         return suppressionFilter;
     }
 
+    @Test
+    public void testXpathSuppression() throws Exception {
+        for (int test = 1; test <= 6; test++) {
+            final String pattern = "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$";
+            final String[] expected = {
+                "19:29: " + getCheckMessage(ConstantNameCheck.class, MSG_INVALID_PATTERN,
+                        "different_name_than_suppression", pattern),
+            };
+            final String[] suppressed = CommonUtil.EMPTY_STRING_ARRAY;
+            final String path = "InputSuppressionFilter" + test + ".java";
+            verifyFilterWithInlineConfigParser(getPath(path),
+                    expected, suppressed);
+        }
+    }
 }
