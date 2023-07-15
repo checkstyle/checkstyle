@@ -60,7 +60,7 @@ import net.sf.saxon.trans.XPathException;
  * <li>
  * Property {@code query} - Specify Xpath query.
  * Type is {@code java.lang.String}.
- * Default value is {@code ""}.
+ * Default value is {@code null}.
  * </li>
  * </ul>
  * <p>
@@ -223,7 +223,7 @@ public class MatchXpathCheck extends AbstractCheck {
     public static final String MSG_KEY = "matchxpath.match";
 
     /** Specify Xpath query. */
-    private String query = "";
+    private String query;
 
     /** Xpath expression. */
     private XPathExpression xpathExpression;
@@ -235,8 +235,8 @@ public class MatchXpathCheck extends AbstractCheck {
      * @throws IllegalStateException if creation of xpath expression fails
      */
     public void setQuery(String query) {
-        this.query = query;
         if (!query.isEmpty()) {
+            this.query = query;
             try {
                 final XPathEvaluator xpathEvaluator =
                         new XPathEvaluator(Configuration.newConfiguration());
