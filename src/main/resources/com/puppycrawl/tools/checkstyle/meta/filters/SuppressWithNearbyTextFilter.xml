@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <filter fully-qualified-name="com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyTextFilter"
-               name="SuppressWithNearbyTextFilter"
-               parent="com.puppycrawl.tools.checkstyle.Checker">
+              name="SuppressWithNearbyTextFilter"
+              parent="com.puppycrawl.tools.checkstyle.Checker">
          <description>&lt;p&gt;
  Filter {@code SuppressWithNearbyTextFilter} uses plain text to suppress
  nearby audit events. The filter can suppress all checks which have Checker as a parent module.
@@ -16,14 +16,14 @@
  &lt;/p&gt;</description>
          <properties>
             <property default-value="SUPPRESS CHECKSTYLE (\w+)"
-                       name="nearbyTextPattern"
-                       type="java.util.regex.Pattern">
+                      name="nearbyTextPattern"
+                      type="java.util.regex.Pattern">
                <description>Specify nearby text
  pattern to trigger filter to begin suppression.</description>
             </property>
             <property default-value=".*"
-                       name="checkPattern"
-                       type="java.util.regex.Pattern">
+                      name="checkPattern"
+                      type="java.util.regex.Pattern">
                <description>Specify check name pattern to suppress.
  Property can also be a RegExp group index at {@code nearbyTextPattern} in
  format of {@code $x} and be picked from line that matches {@code nearbyTextPattern}.</description>
