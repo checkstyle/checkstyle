@@ -46,6 +46,13 @@
     <property name="files"
               value=".*[\\/]src[\\/](test|it|xdocs-examples)[\\/].*(?&lt;!Support)\.java"/>
   </module>
+  <!-- require for charset testing -->
+  <module name="SuppressionSingleFilter">
+    <property name="checks" value="RegexpSinglelineJava"/>
+    <property name="files"
+              value=".*[\\/]src[\\/]test[\\/]java[\\/].*[\\/]api[\\/]FileTextTest.java"/>
+    <property name="lines" value="225"/>
+  </module>
   <module name="SuppressWarningsFilter"/>
   <module name="SuppressWithPlainTextCommentFilter">
     <!--
