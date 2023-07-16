@@ -48,7 +48,6 @@ public class PrecedingIterator implements AxisIterator {
     public PrecedingIterator(NodeInfo start) {
         ancestorEnum = start.iterateAxis(AxisInfo.ANCESTOR);
         previousSiblingEnum = start.iterateAxis(AxisInfo.PRECEDING_SIBLING);
-        descendantEnum = null;
     }
 
     /**
