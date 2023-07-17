@@ -244,8 +244,8 @@ public class XdocsPagesTest {
      *
      * @throws Exception if something goes wrong
      */
-    @BeforeAll
-    public static void generateXdocContent() throws Exception {
+    @Test
+    public void generateXdocContent() throws Exception {
         final PlexusContainer plexus = new DefaultPlexusContainer();
         final File userDir = new File(XdocUtil.USER_DIR);
         final Set<Path> templatesFilePaths = XdocUtil.getXdocsTemplatesFilePaths();

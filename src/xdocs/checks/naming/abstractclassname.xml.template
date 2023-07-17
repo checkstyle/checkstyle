@@ -21,7 +21,9 @@
       </subsection>
 
       <subsection name="Properties" id="Properties">
-        
+        <macro name="properties">
+          <param name="moduleName" value="AbstractClassName"/>
+        </macro>
         <div class="wrapper">
           <table>
             <tr>
@@ -35,7 +37,7 @@
               <td>format</td>
               <td>Specify valid identifiers.</td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
-              <td><code>&quot;^Abstract.+$&quot;</code></td>
+              <td><code>"^Abstract.+$"</code></td>
               <td>3.2</td>
             </tr>
             <tr>
@@ -69,7 +71,7 @@
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;AbstractClassName&quot;/&gt;
+&lt;module name="AbstractClassName"/&gt;
         </source>
         <p>Example:</p>
         <source>
@@ -87,8 +89,8 @@ class Example1 {
           but ignore <code>abstract</code> modifier:
         </p>
         <source>
-&lt;module name=&quot;AbstractClassName&quot;&gt;
-  &lt;property name=&quot;ignoreModifier&quot; value=&quot;true&quot;/&gt;
+&lt;module name="AbstractClassName"&gt;
+  &lt;property name="ignoreModifier" value="true"/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>
@@ -107,8 +109,8 @@ class Example2 {
             validation when class declared as 'abstract'
         </p>
         <source>
-&lt;module name=&quot;AbstractClassName&quot;&gt;
-  &lt;property name=&quot;ignoreName&quot; value=&quot;true&quot;/&gt;
+&lt;module name="AbstractClassName"&gt;
+  &lt;property name="ignoreName" value="true"/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>
@@ -127,8 +129,8 @@ class Example3 {
           with <code>format</code>:
         </p>
         <source>
-&lt;module name=&quot;AbstractClassName&quot;&gt;
-  &lt;property name=&quot;format&quot; value=&quot;^Generator.+$&quot;/&gt;
+&lt;module name="AbstractClassName"&gt;
+  &lt;property name="format" value="^Generator.+$"/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>
