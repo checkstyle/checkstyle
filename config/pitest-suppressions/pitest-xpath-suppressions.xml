@@ -9,15 +9,6 @@
     <lineContent>return Collections.unmodifiableList(siblings.subList(0, indexAmongSiblings));</lineContent>
   </mutation>
 
-  <mutation unstable="false">
-    <sourceFile>AbstractElementNode.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.xpath.AbstractElementNode</mutatedClass>
-    <mutatedMethod>iterateAxis</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_8</mutator>
-    <description>RemoveSwitch 8 (case value 8)</description>
-    <lineContent>switch (axisNumber) {</lineContent>
-  </mutation>
-
   <mutation unstable="true">
     <sourceFile>AbstractRootNode.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.xpath.AbstractRootNode</mutatedClass>
