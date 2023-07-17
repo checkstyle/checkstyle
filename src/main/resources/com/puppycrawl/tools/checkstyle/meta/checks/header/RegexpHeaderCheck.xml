@@ -10,7 +10,7 @@
  pattern&lt;/a&gt; for each line of the source header.
  &lt;/p&gt;
  &lt;p&gt;
- Rationale: In some projects &lt;a href="https://checkstyle.org/checks/header/header.html"&gt;
+ Rationale: In some projects &lt;a href="https://checkstyle.org/checks/header/header.html#Header"&gt;
  checking against a fixed header&lt;/a&gt; is not sufficient, e.g. the header might
  require a copyright line where the year information is not static.
  &lt;/p&gt;
