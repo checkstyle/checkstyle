@@ -10,15 +10,6 @@
   </mutation>
 
   <mutation unstable="false">
-    <sourceFile>AbstractElementNode.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.xpath.AbstractElementNode</mutatedClass>
-    <mutatedMethod>iterateAxis</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_8</mutator>
-    <description>RemoveSwitch 8 (case value 8)</description>
-    <lineContent>switch (axisNumber) {</lineContent>
-  </mutation>
-
-  <mutation unstable="true">
     <sourceFile>AbstractRootNode.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.xpath.AbstractRootNode</mutatedClass>
     <mutatedMethod>iterateAxis</mutatedMethod>
@@ -27,7 +18,7 @@
     <lineContent>switch (axisNumber) {</lineContent>
   </mutation>
 
-  <mutation unstable="true">
+  <mutation unstable="false">
     <sourceFile>AbstractRootNode.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.xpath.AbstractRootNode</mutatedClass>
     <mutatedMethod>iterateAxis</mutatedMethod>
@@ -36,21 +27,12 @@
     <lineContent>switch (axisNumber) {</lineContent>
   </mutation>
 
-  <mutation unstable="true">
+  <mutation unstable="false">
     <sourceFile>AbstractRootNode.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.xpath.AbstractRootNode</mutatedClass>
     <mutatedMethod>iterateAxis</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_5</mutator>
     <description>RemoveSwitch 5 (case value 5)</description>
-    <lineContent>switch (axisNumber) {</lineContent>
-  </mutation>
-
-  <mutation unstable="true">
-    <sourceFile>AbstractRootNode.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.xpath.AbstractRootNode</mutatedClass>
-    <mutatedMethod>iterateAxis</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_8</mutator>
-    <description>RemoveSwitch 8 (case value 8)</description>
     <lineContent>switch (axisNumber) {</lineContent>
   </mutation>
 
