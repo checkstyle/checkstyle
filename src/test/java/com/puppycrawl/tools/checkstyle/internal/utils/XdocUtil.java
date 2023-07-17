@@ -48,6 +48,8 @@ public final class XdocUtil {
 
     public static final String DIRECTORY_PATH = "src/xdocs";
 
+    public static final String USER_DIR = System.getProperty("user.dir");
+
     private XdocUtil() {
     }
 
@@ -64,6 +66,23 @@ public final class XdocUtil {
                     return attr.isRegularFile()
                             && (path.toString().endsWith(".xml")
                             || path.toString().endsWith(".xml.vm"));
+                })) {
+            return stream.collect(Collectors.toSet());
+        }
+    }
+
+    /**
+     * Gets xdocs template file paths. These are files ending with .xml.template.
+     *
+     * @return a set of xdocs template file paths.
+     * @throws IOException if an I/O error occurs.
+     */
+    public static Set<Path> getXdocsTemplatesFilePaths() throws IOException {
+        final Path directory = Paths.get(DIRECTORY_PATH);
+        try (Stream<Path> stream = Files.find(directory, Integer.MAX_VALUE,
+                (path, attr) -> {
+                    return attr.isRegularFile()
+                            && path.toString().endsWith(".xml.template");
                 })) {
             return stream.collect(Collectors.toSet());
         }

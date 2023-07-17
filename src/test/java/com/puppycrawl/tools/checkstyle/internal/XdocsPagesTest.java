@@ -25,11 +25,13 @@ import static java.lang.Integer.parseInt;
 import java.beans.PropertyDescriptor;
 import java.io.File;
 import java.io.IOException;
+import java.io.Reader;
 import java.io.StringReader;
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
 import java.net.URI;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -56,6 +58,13 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import org.apache.commons.beanutils.PropertyUtils;
+import org.apache.maven.doxia.parser.Parser;
+import org.apache.maven.doxia.sink.Sink;
+import org.apache.maven.doxia.sink.SinkFactory;
+import org.codehaus.plexus.DefaultPlexusContainer;
+import org.codehaus.plexus.PlexusContainer;
+import org.codehaus.plexus.util.ReaderFactory;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
@@ -78,8 +87,12 @@ import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.internal.utils.XdocUtil;
 import com.puppycrawl.tools.checkstyle.internal.utils.XmlUtil;
+import com.puppycrawl.tools.checkstyle.site.XdocsTemplateParser;
+import com.puppycrawl.tools.checkstyle.site.XdocsTemplateSinkFactory;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
+// -@cs[ClassDataAbstractionCoupling] No way to split up class usage.
+// Generation should be before validation.
 public class XdocsPagesTest {
     private static final Path SITE_PATH = Paths.get("src/site/site.xml");
 
@@ -220,8 +233,43 @@ public class XdocsPagesTest {
             "WhitespaceAfter",
             "WhitespaceAround"
     );
+
     private static final Set<String> GOOGLE_MODULES = Collections.unmodifiableSet(
         CheckUtil.getConfigGoogleStyleModules());
+
+    private static final String XDOCS_TEMPLATE_HINT = "xdocs-template";
+
+    /**
+     * We want all xdocs to be generated from templates before validation.
+     *
+     * @throws Exception if something goes wrong
+     */
+    @BeforeAll
+    public static void generateXdocContent() throws Exception {
+        final PlexusContainer plexus = new DefaultPlexusContainer();
+        final File userDir = new File(XdocUtil.USER_DIR);
+        final Set<Path> templatesFilePaths = XdocUtil.getXdocsTemplatesFilePaths();
+
+        for (Path path : templatesFilePaths) {
+            final String pathToFile = path.toString();
+            final File inputFile = new File(userDir, pathToFile);
+            final File outputFile = new File(userDir, pathToFile.replace(".template", ""));
+
+            final XdocsTemplateSinkFactory sinkFactory = (XdocsTemplateSinkFactory)
+                    plexus.lookup(SinkFactory.ROLE, XDOCS_TEMPLATE_HINT);
+            final Sink sink = sinkFactory.createSink(outputFile.getParentFile(),
+                    outputFile.getName(), String.valueOf(StandardCharsets.UTF_8));
+            final XdocsTemplateParser parser = (XdocsTemplateParser)
+                    plexus.lookup(Parser.ROLE, XDOCS_TEMPLATE_HINT);
+            final Reader reader = ReaderFactory.newReader(inputFile,
+                    String.valueOf(StandardCharsets.UTF_8));
+
+            parser.parse(reader, sink);
+
+            reader.close();
+            sink.close();
+        }
+    }
 
     @Test
     public void testAllChecksPresentOnAvailableChecksPage() throws Exception {
