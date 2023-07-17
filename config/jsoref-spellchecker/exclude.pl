@@ -18,6 +18,7 @@ my @excludes=qw(
   ^.teamcity/
   ^config/projects-to-test/openjdk17-excluded\.files$
   ^config/projects-to-test/openjdk19-excluded\.files$
+  ^config/projects-to-test/openjdk20-excluded\.files$
   ^config/jsoref-spellchecker/whitelist.words$
   ^config/checker-framework-suppressions/
   ^config/archunit-store/
