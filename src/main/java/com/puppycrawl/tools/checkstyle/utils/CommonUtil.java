@@ -67,6 +67,9 @@ public final class CommonUtil {
     /** Prefix for the exception when unable to find resource. */
     private static final String UNABLE_TO_FIND_EXCEPTION_PREFIX = "Unable to find: ";
 
+    /** User working directory. */
+    public static final String USER_DIR = System.getProperty("user.dir");
+
     /** Stop instances being created. **/
     private CommonUtil() {
     }

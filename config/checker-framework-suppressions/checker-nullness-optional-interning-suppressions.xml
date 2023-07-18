@@ -6135,6 +6135,69 @@
     </details>
   </checkerFrameworkError>
 
+  <!-- First parameter is namespace of the attribute and documentation states that null should
+       be passed whenever namespaces are not enabled
+       https://github.com/sonatype/plexus-utils/blob/master/src/main/java/org/codehaus/plexus/util/xml/pull/XmlPullParser.java#L895 -->
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/XdocsTemplateParser.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter arg0 of getAttributeValue.</message>
+    <lineContent>.getAttributeValue(null, Attribute.NAME.toString());</lineContent>
+    <details>
+      found   : null (NullType)
+      required: @Initialized @NonNull String
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/XdocsTemplateParser.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter arg0 of getAttributeValue.</message>
+    <lineContent>.getAttributeValue(null, Attribute.VALUE.toString());</lineContent>
+    <details>
+      found   : null (NullType)
+      required: @Initialized @NonNull String
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/XdocsTemplateParser.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter arg0 of getAttributeValue.</message>
+    <lineContent>macroName = parser.getAttributeValue(null, Attribute.NAME.toString());</lineContent>
+    <details>
+      found   : null (NullType)
+      required: @Initialized @NonNull String
+    </details>
+  </checkerFrameworkError>
+
+  <!-- Value is reset after parsing is done. -->
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/XdocsTemplateParser.java</fileName>
+    <specifier>assignment</specifier>
+    <message>incompatible types in assignment.</message>
+    <lineContent>sourceContent = null;</lineContent>
+    <details>
+      found   : null (NullType)
+      required: @Initialized @NonNull String
+    </details>
+  </checkerFrameworkError>
+
+  <!-- The following 2 fields are initialized during parsing step -->
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/XdocsTemplateParser.java</fileName>
+    <specifier>initialization.field.uninitialized</specifier>
+    <message>the default constructor does not initialize field macroName</message>
+    <lineContent>private String macroName;</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/XdocsTemplateParser.java</fileName>
+    <specifier>initialization.field.uninitialized</specifier>
+    <message>the default constructor does not initialize field sourceContent</message>
+    <lineContent>private String sourceContent;</lineContent>
+  </checkerFrameworkError>
+
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/AnnotationUtil.java</fileName>
     <specifier>return</specifier>
