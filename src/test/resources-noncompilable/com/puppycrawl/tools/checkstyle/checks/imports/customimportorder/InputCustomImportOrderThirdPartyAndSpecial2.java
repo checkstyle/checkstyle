@@ -18,39 +18,39 @@ import static java.awt.Button.ABORT; // STATIC
 import static java.io.File.createTempFile;
 
 
-import static javax.swing.WindowConstants.*; // violation
+import static javax.swing.WindowConstants.*; // violation 'Extra separation in import group before .*'
 
 
-import java.awt.Button; // violation
+import java.awt.Button; // violation '.* should be separated from previous import group .*'
 import java.awt.Frame;
 
 
-import java.awt.Dialog; // violation
+import java.awt.Dialog; // violation 'Extra separation in import group before .*'
 import java.io.File;
 
 import com.puppycrawl.tools.*; // THIRD_PARTY_PACKAGE
 
 
-import com.google.common.*; // violation
+import com.google.common.*; // violation 'Extra separation in import group before .*'
 
 import org.apache.tools.*; // SPECIAL_IMPORTS
 import org.apache.commons.beanutils.*;
 
 
-import org.apache.commons.collections.*; // violation
+import org.apache.commons.collections.*; // violation 'Extra separation in import group before .*'
 
 import com.puppycrawl.tools.checkstyle.checks.imports.AbstractImportControl; // SAME_PACKAGE(6)
 
 
-import com.puppycrawl.tools.checkstyle.checks.imports.AbstractImportRule; // violation
+import com.puppycrawl.tools.checkstyle.checks.imports.AbstractImportRule; // violation 'Extra separation in import group before .*'
 
 import antlr.*; // NONGROUP
 import antlr.CommonASTWithHiddenTokens;
 
 
-import antlr.Token; // violation
+import antlr.Token; // violation 'Extra separation in import group before .*'
 
-import antlr.collections.AST; // violation
+import antlr.collections.AST; // violation 'Extra separation in import group before .*'
 
 public class InputCustomImportOrderThirdPartyAndSpecial2 {
 }

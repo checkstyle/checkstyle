@@ -13,17 +13,17 @@ sortImportsInGroupAlphabetically = true
 package com.puppycrawl.tools.checkstyle.checks.imports.customimportorder;
 
 import static java.io.File.createTempFile;
-import static java.awt.Button.ABORT; // violation
+import static java.awt.Button.ABORT; // violation 'Wrong lexicographical order for.*. Should be before .*'
 import static javax.swing.WindowConstants.*;
 
 import java.util.List; // 2 violations
-import java.util.StringTokenizer; // violation
-import java.util.*; // violation
-import java.util.concurrent.AbstractExecutorService; // violation
-import java.util.concurrent.*; // violation
+import java.util.StringTokenizer; // violation 'Wrong lexicographical order for.*. Should be before .*'
+import java.util.*; // violation 'Wrong lexicographical order for.*. Should be before .*'
+import java.util.concurrent.AbstractExecutorService; // violation 'Wrong lexicographical order for.*. Should be before .*'
+import java.util.concurrent.*; // violation 'Wrong lexicographical order for.*. Should be before .*'
 
 import com.puppycrawl.tools.checkstyle.checks.*;
-import com.puppycrawl.tools.checkstyle.*; // violation
+import com.puppycrawl.tools.checkstyle.*; // violation 'Wrong lexicographical order for.*. Should be before .*'
 
 import com.google.common.base.*; // 2 violations
 import org.junit.*;

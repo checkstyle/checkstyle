@@ -13,21 +13,21 @@ sortImportsInGroupAlphabetically = true
 package com.puppycrawl.tools.checkstyle.checks.imports.customimportorder;
 
 import static java.io.File.createTempFile;
-import static java.awt.Button.ABORT; // violation
-import static java.awt.print.Paper.*; // violation
+import static java.awt.Button.ABORT; // violation 'Wrong lexicographical order for.*. Should be before .*'
+import static java.awt.print.Paper.*; // violation 'Wrong lexicographical order for.*. Should be before .*'
 import static javax.swing.WindowConstants.*;
 
-import java.awt.Button; // violation
-import java.awt.Frame; // violation
-import java.awt.Dialog; // violation
-import java.awt.color.ColorSpace; // violation
-import java.awt.event.ActionEvent; // violation
-import javax.swing.JComponent; // violation
-import javax.swing.JTable; // violation
-import java.io.File; // violation
-import java.io.IOException; // violation
-import java.io.InputStream; // violation
-import java.io.Reader; // violation
+import java.awt.Button; // violation 'wrong order..* expecting group .* on this line'
+import java.awt.Frame; // violation 'wrong order..* expecting group .* on this line'
+import java.awt.Dialog; // violation 'wrong order..* expecting group .* on this line'
+import java.awt.color.ColorSpace; // violation 'wrong order..* expecting group .* on this line'
+import java.awt.event.ActionEvent; // violation 'wrong order..* expecting group .* on this line'
+import javax.swing.JComponent; // violation 'wrong order..* expecting group .* on this line'
+import javax.swing.JTable; // violation 'wrong order..* expecting group .* on this line'
+import java.io.File; // violation 'wrong order..* expecting group .* on this line'
+import java.io.IOException; // violation 'wrong order..* expecting group .* on this line'
+import java.io.InputStream; // violation 'wrong order..* expecting group .* on this line'
+import java.io.Reader; // violation 'wrong order..* expecting group .* on this line'
 
 import com.puppycrawl.tools.checkstyle.*;
 
