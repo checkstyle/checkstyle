@@ -1023,23 +1023,23 @@
     <lineContent>text = text.substring(column).trim();</lineContent>
   </mutation>
 
-  <mutation unstable="false">
-    <sourceFile>TagParser.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser</mutatedClass>
-    <mutatedMethod>getTagId</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to java/lang/Character::isJavaIdentifierPart</description>
-    <lineContent>|| Character.isJavaIdentifierPart(text.charAt(position)))) {</lineContent>
-  </mutation>
 
-  <mutation unstable="false">
-    <sourceFile>TagParser.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser</mutatedClass>
-    <mutatedMethod>getTagId</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
-    <description>removed conditional - replaced equality check with false</description>
-    <lineContent>|| Character.isJavaIdentifierPart(text.charAt(position)))) {</lineContent>
-  </mutation>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   <mutation unstable="false">
     <sourceFile>TagParser.java</sourceFile>

@@ -738,4 +738,15 @@ public class JavadocStyleCheckTest
         verifyWithInlineConfigParser(
                 getPath("InputJavadocStyleCheckOptionLowercaseProperty.java"), expected);
     }
+
+    @Test
+    public void testJavadocTag() throws Exception {
+        final String[] expected = {
+            "11: " + getCheckMessage(MSG_NO_PERIOD),
+            "15: " + getCheckMessage(MSG_NO_PERIOD),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocStyleDefault4.java"),
+                expected);
+    }
 }
