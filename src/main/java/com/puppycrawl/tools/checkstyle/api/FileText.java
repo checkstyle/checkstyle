@@ -29,7 +29,6 @@ import java.io.Reader;
 import java.io.StringReader;
 import java.nio.charset.Charset;
 import java.nio.charset.CharsetDecoder;
-import java.nio.charset.CodingErrorAction;
 import java.nio.charset.UnsupportedCharsetException;
 import java.nio.file.Files;
 import java.util.ArrayList;
@@ -155,8 +154,6 @@ public final class FileText {
         try {
             charset = Charset.forName(charsetName);
             decoder = charset.newDecoder();
-            decoder.onMalformedInput(CodingErrorAction.REPLACE);
-            decoder.onUnmappableCharacter(CodingErrorAction.REPLACE);
         }
         catch (final UnsupportedCharsetException ex) {
             final String message = "Unsupported charset: " + charsetName;
