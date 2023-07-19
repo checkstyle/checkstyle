@@ -14,14 +14,14 @@ sortImportsInGroupAlphabetically = true
 package java.util.concurrent;
 import com.google.common.*;
 import java.util.StringTokenizer;
-import java.util.*; // violation
-import java.util.concurrent.*; // violation
-import static java.awt.Button.ABORT; // violation
-import static javax.swing.WindowConstants.*; // violation
-import com.puppycrawl.tools.*; // violation
-import java.util.concurrent.AbstractExecutorService; // violation
-import static java.io.File.createTempFile; // violation
-import com.*; // violation
+import java.util.*; // violation 'Wrong lexicographical order for\s.*. Should be before .*StringTokenizer''
+import java.util.concurrent.*; // violation 'Import statement for .*concurrent.*' is in the wrong order. Should be in .*group, expecting not assigned imports.*'
+import static java.awt.Button.ABORT; // violation 'Import statement for .*ABORT' is in the wrong order. Should be in the .*group, expecting not assigned imports.*'
+import static javax.swing.WindowConstants.*; // violation 'Import statement for .*WindowConstants.*' is in the wrong order. Should be in the .* group, expecting not assigned imports.*'
+import com.puppycrawl.tools.*; // violation 'Wrong lexicographical order for\s.*. Should be before .*StringTokenizer''
+import java.util.concurrent.AbstractExecutorService; // violation 'Import statement for .*AbstractExecutorService' is in the wrong order. Should be in the .* group, expecting not assigned imports.*'
+import static java.io.File.createTempFile; // violation 'Import statement for .*createTempFile' is in the wrong order. Should be in the .* group, expecting not assigned imports.*'
+import com.*; // violation 'Wrong lexicographical order for\s.*. Should be before .*StringTokenizer''
 import org.apache.*;
 
 public class InputCustomImportOrderSamePackage {
