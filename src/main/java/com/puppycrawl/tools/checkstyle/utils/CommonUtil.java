@@ -64,6 +64,9 @@ public final class CommonUtil {
     /** Pseudo URL protocol for loading from the class path. */
     public static final String CLASSPATH_URL_PROTOCOL = "classpath:";
 
+    /** User working directory. */
+    public static final String USER_DIR = System.getProperty("user.dir");
+
     /** Prefix for the exception when unable to find resource. */
     private static final String UNABLE_TO_FIND_EXCEPTION_PREFIX = "Unable to find: ";
 
