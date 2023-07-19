@@ -155,8 +155,6 @@ public final class FileText {
         try {
             charset = Charset.forName(charsetName);
             decoder = charset.newDecoder();
-            decoder.onMalformedInput(CodingErrorAction.REPLACE);
-            decoder.onUnmappableCharacter(CodingErrorAction.REPLACE);
         }
         catch (final UnsupportedCharsetException ex) {
             final String message = "Unsupported charset: " + charsetName;
