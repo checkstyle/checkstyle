@@ -530,4 +530,17 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
                 getNonCompilablePath("InputSuppressWarningsHolder2.java"),
                 expected);
     }
+
+    @Test
+    public void test3() throws Exception {
+        final String pattern = "^[a-z][a-zA-Z0-9]*$";
+
+        final String[] expected = {
+            "18:16: " + getCheckMessage(MemberNameCheck.class,
+                    AbstractNameCheck.MSG_INVALID_PATTERN, "K", pattern),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputSuppressWarningsHolder8.java"),
+                expected);
+    }
 }
