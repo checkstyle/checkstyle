@@ -41,7 +41,7 @@ public final class DetectorOptions {
      */
     private String format;
     /** The message to report on detection. If blank, then use the format. */
-    private String message = "";
+    private String message;
     /** Minimum number of times regular expression should occur in a file. */
     private int minimum;
     /** Maximum number of times regular expression should occur in a file. */
