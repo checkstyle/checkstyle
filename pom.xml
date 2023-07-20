@@ -4837,6 +4837,30 @@
                 <param>
                   com.puppycrawl.tools.checkstyle.checks.design.FinalClassCheckTest
                 </param>
+                <param>
+                  com.puppycrawl.tools.checkstyle.checks.javadoc.InvalidJavadocPositionCheckTest
+                </param>
+                <param>
+                  com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocMethodCheckTest
+                </param>
+                <param>
+                  com.puppycrawl.tools.checkstyle.checks.coding.CovariantEqualsCheckTest
+                </param>
+                <param>
+                  com.puppycrawl.tools.checkstyle.checks.coding.UnnecessarySemicolonAfterOuterTypeDeclarationCheckTest
+                </param>
+                <param>
+                  com.puppycrawl.tools.checkstyle.checks.annotation.MissingOverrideCheckTest
+                </param>
+                <param>
+                  com.puppycrawl.tools.checkstyle.checks.coding.IllegalTypeCheckTest
+                </param>
+                <param>
+                  com.puppycrawl.tools.checkstyle.xpath.XpathMapperTest
+                </param>
+                <param>
+                  com.puppycrawl.tools.checkstyle.xpath.ElementNodeTest
+                </param>
               </targetTests>
               <excludedTestClasses>
                 <param>*.Input*</param>
