@@ -649,7 +649,9 @@ caseConstant
     ;
 
 forControl
-    : LPAREN enhancedForControl RPAREN                                     #enhancedFor
+    : LPAREN
+        ( enhancedForControl | enhancedForControlWithRecordPattern )
+      RPAREN                                                               #enhancedFor
     | LPAREN forInit? SEMI forCond=expression?
       SEMI forUpdate=expressionList? RPAREN                                #forFor
     ;
@@ -662,6 +664,10 @@ forInit
 enhancedForControl
     : mods+=variableModifier* type=typeType[true]
       variableDeclaratorId[$ctx.mods, $ctx.type] COLON expression
+    ;
+
+enhancedForControlWithRecordPattern
+    : pattern COLON expression
     ;
 
 // EXPRESSIONS
