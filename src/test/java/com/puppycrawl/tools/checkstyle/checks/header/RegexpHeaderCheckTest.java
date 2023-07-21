@@ -23,6 +23,8 @@ import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck.MSG_HEADER_MISMATCH;
 import static com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck.MSG_HEADER_MISSING;
 
+import com.puppycrawl.tools.checkstyle.Checker;
+
 import java.util.List;
 import java.util.Locale;
 import java.util.regex.Pattern;
@@ -379,4 +381,42 @@ public class RegexpHeaderCheckTest extends AbstractModuleTestSupport {
         };
         verify(checkConfig, getPath("InputRegexpHeaderMulti52.java"), expected);
     }
+
+    @Test
+    public void testCharsetProperty1() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(RegexpHeaderCheck.class);
+        checkConfig.addProperty("headerFile", getPath("InputRegexpHeader7.header"));
+
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        final String path = getPath("InputRegexpHeader4.java");
+            verify(checkConfig, path, expected);
+
+    }
+
+
+    @Test
+    public void testCharsetProperty2() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(RegexpHeaderCheck.class);
+        checkConfig.addProperty("charset", "US-ASCII");
+        checkConfig.addProperty("headerFile", getPath("InputRegexpHeader7.header"));
+
+        final String[] expected = {
+            "3: " + getCheckMessage(MSG_HEADER_MISMATCH, "// some.class.��������.passed"),
+        };
+        final String path = getPath("InputRegexpHeader4.java");
+            verify(checkConfig, path, expected);
+
+    }
+
+    @Test
+    public void testCharsetProperty3() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(RegexpHeaderCheck.class);
+        checkConfig.addProperty("headerFile", getPath("InputRegexpHeader7.header"));
+        checkConfig.addProperty("charset", "US-ASCII");
+
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        final String path = getPath("InputRegexpHeader3.java");
+            verify(checkConfig, path, expected);
+    }
+
 }

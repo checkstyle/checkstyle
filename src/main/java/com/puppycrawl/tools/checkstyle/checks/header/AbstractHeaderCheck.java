@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.header;
 
+import com.google.common.base.Utf8;
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -60,8 +61,7 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck
 
     /** Specify the character encoding to use when reading the headerFile. */
     @XdocsPropertyType(PropertyType.STRING)
-    private Charset charset = createCharset(System.getProperty("file.encoding",
-        StandardCharsets.UTF_8.name()));
+    private Charset charset;
 
     /**
      * Hook method for post-processing header lines.
