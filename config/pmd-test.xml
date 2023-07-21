@@ -178,6 +178,7 @@
   <rule ref="category/java/errorprone.xml/CloseResource">
     <properties>
       <!-- we do close streams in special methods -->
+      <!-- generateXdocContent is a false positive -->
       <property name="violationSuppressXPath"
                value="//ClassOrInterfaceDeclaration[@SimpleName='XdocsPagesTest']
                         //MethodDeclaration[@Name='getModulePropertyExpectedValue']
