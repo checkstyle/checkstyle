@@ -20,6 +20,9 @@
 package com.puppycrawl.tools.checkstyle.utils;
 
 import static com.google.common.truth.Truth.assertWithMessage;
+import static com.puppycrawl.tools.checkstyle.checks.coding.EqualsAvoidNullCheck.MSG_EQUALS_AVOID_NULL;
+import static com.puppycrawl.tools.checkstyle.checks.coding.MultipleVariableDeclarationsCheck.MSG_MULTIPLE;
+import static com.puppycrawl.tools.checkstyle.checks.coding.NestedIfDepthCheck.MSG_KEY;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.findTokenInAstByPredicate;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
 
@@ -32,14 +35,17 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.JavaParser;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.checks.coding.EqualsAvoidNullCheck;
+import com.puppycrawl.tools.checkstyle.checks.coding.MultipleVariableDeclarationsCheck;
+import com.puppycrawl.tools.checkstyle.checks.coding.NestedIfDepthCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption;
 
-public class CheckUtilTest extends AbstractPathTestSupport {
+public class CheckUtilTest extends AbstractModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {
@@ -441,6 +447,38 @@ public class CheckUtilTest extends AbstractPathTestSupport {
         assertWithMessage("Result is not expected")
             .that(actual)
             .isEqualTo(expected);
+    }
+
+    @Test
+    public void testEqualsAvoidNullCheck() throws Exception {
+
+        final String[] expected = {
+            "14:28: " + getCheckMessage(EqualsAvoidNullCheck.class, MSG_EQUALS_AVOID_NULL),
+            "21:17: " + getCheckMessage(EqualsAvoidNullCheck.class, MSG_EQUALS_AVOID_NULL),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputCheckUtil1.java"), expected);
+    }
+
+    @Test
+    public void testMultipleVariableDeclarationsCheck() throws Exception {
+        final String[] expected = {
+            "11:5: " + getCheckMessage(MultipleVariableDeclarationsCheck.class, MSG_MULTIPLE),
+            "14:5: " + getCheckMessage(MultipleVariableDeclarationsCheck.class, MSG_MULTIPLE),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputCheckUtil2.java"),
+               expected);
+    }
+
+    @Test
+    public void testNestedIfDepth() throws Exception {
+        final String[] expected = {
+            "26:17: " + getCheckMessage(NestedIfDepthCheck.class, MSG_KEY, 2, 1),
+            "52:17: " + getCheckMessage(NestedIfDepthCheck.class, MSG_KEY, 2, 1),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputCheckUtil3.java"), expected);
     }
 
     private DetailAST getNodeFromFile(int type) throws Exception {
