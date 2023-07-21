@@ -88,9 +88,6 @@ public final class AnnotationUtil {
      * @throws IllegalArgumentException when ast is null
      */
     public static boolean containsAnnotation(final DetailAST ast) {
-        if (ast == null) {
-            throw new IllegalArgumentException(THE_AST_IS_NULL);
-        }
         final DetailAST holder = getAnnotationHolder(ast);
         return holder != null && holder.findFirstToken(TokenTypes.ANNOTATION) != null;
     }
@@ -111,9 +108,6 @@ public final class AnnotationUtil {
      * @throws IllegalArgumentException when ast or annotations are null
      */
     public static boolean containsAnnotation(DetailAST ast, Set<String> annotations) {
-        if (ast == null) {
-            throw new IllegalArgumentException(THE_AST_IS_NULL);
-        }
 
         if (annotations == null) {
             throw new IllegalArgumentException("annotations cannot be null");
