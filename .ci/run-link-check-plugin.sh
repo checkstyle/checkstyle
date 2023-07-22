@@ -11,9 +11,19 @@ mvn -e --no-transfer-progress clean site -Dcheckstyle.ant.skip=true -DskipTests 
    -Dpmd.skip=true -Dspotbugs.skip=true -Djacoco.skip=true -Dcheckstyle.skip=true
 mkdir -p .ci-temp
 
+OPTION=$1
+
 echo "------------ grep of linkcheck.html--BEGIN"
-grep -E "doesn't exist|externalLink" target/site/linkcheck.html | grep -v 'Read timed out' \
-  | sed 's/<\/table><\/td><\/tr>//g' | sort > .ci-temp/linkcheck-errors-sorted.txt
+LINKCHECK_ERRORS=$(grep -E "doesn't exist|externalLink" target/site/linkcheck.html \
+  | grep -v 'Read timed out' | sed 's/<\/table><\/td><\/tr>//g' || true)
+
+if [[ $OPTION == "--skip-external" ]]; then
+  echo "Checking internal (checkstyle website) links only."
+  echo "$LINKCHECK_ERRORS" | grep -v 'externalLink' | sort > .ci-temp/linkcheck-errors-sorted.txt
+else
+  echo "Checking internal (checkstyle website) and external links."
+  echo "$LINKCHECK_ERRORS" | sort > .ci-temp/linkcheck-errors-sorted.txt
+fi
 
 sort config/linkcheck-suppressions.txt | sed 's/<\/table><\/td><\/tr>//g' \
   > .ci-temp/linkcheck-suppressions-sorted.txt

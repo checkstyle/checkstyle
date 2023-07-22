@@ -1384,6 +1384,17 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/OrderedPropertiesCheck.java</fileName>
+    <specifier>contracts.postcondition</specifier>
+    <message>postcondition of put is not satisfied.</message>
+    <lineContent>public synchronized Object put(Object key, Object value) {</lineContent>
+    <details>
+      found   : key is @UnknownKeyFor
+      required: key is @KeyFor(&quot;this&quot;)
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/OrderedPropertiesCheck.java</fileName>
     <specifier>method.invocation</specifier>
     <message>call to setFileExtensions(java.lang.String...) not allowed on the given receiver.</message>
     <lineContent>setFileExtensions(&quot;properties&quot;);</lineContent>
@@ -1405,6 +1416,17 @@
       Enumeration&lt;Object&gt; keys(SequencedProperties this)
       cannot override method in Hashtable&lt;Object, Object&gt;
       Enumeration&lt;@KeyFor(&quot;this&quot;) Object&gt; keys(Hashtable&lt;Object, Object&gt; this)
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/OrderedPropertiesCheck.java</fileName>
+    <specifier>return</specifier>
+    <message>incompatible types in return.</message>
+    <lineContent>return null;</lineContent>
+    <details>
+      type of expression: null (NullType)
+      method return type: @Initialized @NonNull Object
     </details>
   </checkerFrameworkError>
 
