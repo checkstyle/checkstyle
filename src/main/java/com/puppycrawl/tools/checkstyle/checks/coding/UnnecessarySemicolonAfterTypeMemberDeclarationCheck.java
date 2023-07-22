@@ -233,6 +233,17 @@ public final class UnnecessarySemicolonAfterTypeMemberDeclarationCheck extends A
      * @return true if ast is semicolon, false otherwise
      */
     private static boolean isSemicolon(DetailAST ast) {
-        return ast.getType() == TokenTypes.SEMI;
+        return ast != null && ast.getType() == TokenTypes.SEMI;
     }
+
+    /**
+     * Wrapper method for isSemicolon, allowing testing from outside the package.
+     *
+     * @param ast the DetailAST node which needs to be checked
+     * @return true if the given AST node represents a semicolon, false otherwise
+     */
+    public boolean checkProcess(DetailAST ast) {
+        return isSemicolon(ast);
+    }
+
 }
