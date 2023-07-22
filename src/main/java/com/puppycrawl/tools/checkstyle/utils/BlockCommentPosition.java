@@ -305,7 +305,7 @@ public final class BlockCommentPosition {
      * @return next sibling
      */
     private static DetailAST getNextSiblingSkipComments(DetailAST node) {
-        DetailAST result = node.getNextSibling();
+        DetailAST result = node;
         while (result.getType() == TokenTypes.SINGLE_LINE_COMMENT
                 || result.getType() == TokenTypes.BLOCK_COMMENT_BEGIN) {
             result = result.getNextSibling();
