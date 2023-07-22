@@ -9,14 +9,14 @@
     <lineContent>if (ast == null) {</lineContent>
   </mutation>
 
-  <mutation unstable="false">
-    <sourceFile>BlockCommentPosition.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.utils.BlockCommentPosition</mutatedClass>
-    <mutatedMethod>getNextSiblingSkipComments</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
-    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getNextSibling with receiver</description>
-    <lineContent>DetailAST result = node.getNextSibling();</lineContent>
-  </mutation>
+
+
+
+
+
+
+
+
 
   <mutation unstable="false">
     <sourceFile>BlockCommentPosition.java</sourceFile>
