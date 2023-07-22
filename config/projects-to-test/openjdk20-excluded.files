@@ -37,11 +37,6 @@
   <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]patterns[\\/]GenericRecordDeconstructionPattern.java$"/>
 </module>
 
-<!-- until https://github.com/checkstyle/checkstyle/issues/13411 -->
-<module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]SwitchScope.java$"/>
-</module>
-
 <!-- non-compilable -->
 <module name="BeforeExecutionExclusionFileFilter">
   <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]diags[\\/]examples[\\/]ModuleDeclSbInModuleInfoJava.java$"/>
