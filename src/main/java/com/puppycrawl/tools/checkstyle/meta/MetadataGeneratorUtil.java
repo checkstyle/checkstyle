@@ -37,7 +37,6 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.MetadataGeneratorLogger;
 import com.puppycrawl.tools.checkstyle.TreeWalker;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
-import com.puppycrawl.tools.checkstyle.api.RootModule;
 
 /** Class which handles all the metadata generation and writing calls. */
 public final class MetadataGeneratorUtil {
@@ -74,25 +73,24 @@ public final class MetadataGeneratorUtil {
 
         checker.addListener(new MetadataGeneratorLogger(out, OutputStreamOptions.NONE));
 
-        dumpMetadata(checker, path, moduleFolders);
+        final List<File> moduleFiles = getTargetFiles(path, moduleFolders);
+
+        checker.process(moduleFiles);
     }
 
     /**
-     * Process files using the checker passed and write to corresponding XML files.
+     * Get files that represent modules.
      *
      * @param moduleFolders folders to check
-     * @param root root module
-     * @param path rootPath
-     * @throws CheckstyleException checkstyleException
+     * @param path          rootPath
+     * @return files for scrapping javadoc and generation of metadata files
      * @throws IOException ioException
      */
-    private static void dumpMetadata(RootModule root, String path, String... moduleFolders)
-            throws CheckstyleException,
-            IOException {
+    private static List<File> getTargetFiles(String path, String... moduleFolders)
+            throws IOException {
         final List<File> validFiles = new ArrayList<>();
         for (String folder : moduleFolders) {
-            try (Stream<Path> files = Files.walk(Paths.get(path
-                    + "/" + folder))) {
+            try (Stream<Path> files = Files.walk(Paths.get(path + "/" + folder))) {
                 validFiles.addAll(
                         files.map(Path::toFile)
                         .filter(file -> {
@@ -104,6 +102,7 @@ public final class MetadataGeneratorUtil {
                         .collect(Collectors.toList()));
             }
         }
-        root.process(validFiles);
+
+        return validFiles;
     }
 }
