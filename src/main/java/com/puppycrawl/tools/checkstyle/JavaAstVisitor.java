@@ -1235,7 +1235,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
     public DetailAstImpl visitEnhancedFor(JavaLanguageParser.EnhancedForContext ctx) {
         final DetailAstImpl leftParen = create(ctx.LPAREN());
         final DetailAstImpl enhancedForControl =
-                 visit(ctx.enhancedForControl());
+                 visit(ctx.getChild(1));
         final DetailAstImpl forEachClause = createImaginary(TokenTypes.FOR_EACH_CLAUSE);
         forEachClause.addChild(enhancedForControl);
         addLastSibling(leftParen, forEachClause);
@@ -1291,6 +1291,16 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
         addLastSibling(variableDef, create(ctx.COLON()));
         addLastSibling(variableDef, visit(ctx.expression()));
         return variableDef;
+    }
+
+    @Override
+    public DetailAstImpl visitEnhancedForControlWithRecordPattern(
+            JavaLanguageParser.EnhancedForControlWithRecordPatternContext ctx) {
+        final DetailAstImpl recordPattern =
+                 visit(ctx.pattern());
+        addLastSibling(recordPattern, create(ctx.COLON()));
+        addLastSibling(recordPattern, visit(ctx.expression()));
+        return recordPattern;
     }
 
     @Override
