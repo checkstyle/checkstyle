@@ -278,6 +278,10 @@ workflows:
           name: "javac19"
           image-name: "cimg/openjdk:19.0.1"
           command: "./.ci/validation.sh javac19"
+      - validate-with-script:
+          name: "javac20"
+          image-name: "cimg/openjdk:20.0.1"
+          command: "./.ci/validation.sh javac20"
 
   site-validation:
     jobs:
