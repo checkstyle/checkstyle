@@ -837,8 +837,7 @@ public class HiddenFieldCheck
          */
         public boolean containsInstanceField(String field) {
             return instanceFields.contains(field)
-                    || parent != null
-                    && !staticType
+                    || !staticType
                     && parent.containsInstanceField(field);
         }
 
