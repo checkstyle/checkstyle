@@ -597,6 +597,21 @@ javac19)
   fi
   ;;
 
+javac20)
+  files=($(grep -Rl --include='*.java' ': Compilable with Java20' \
+        src/test/resources-noncompilable \
+        src/xdocs-examples/resources-noncompilable || true))
+  if [[  ${#files[@]} -eq 0 ]]; then
+    echo "No Java20 files to process"
+  else
+      mkdir -p target
+      for file in "${files[@]}"
+      do
+        javac --release 20 --enable-preview -d target "${file}"
+      done
+  fi
+  ;;
+
 package-site)
   mvn -e --no-transfer-progress package -Passembly,no-validations
   mvn -e --no-transfer-progress site -Dlinkcheck.skip=true
