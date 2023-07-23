@@ -162,6 +162,16 @@ public class ModifiedControlVariableCheckTest
                 expected);
     }
 
+    @Test
+    public void testRecordDecompositionInEnhancedForLoop() throws Exception {
+        final String[] expected = {
+            "32:15: " + getCheckMessage(MSG_KEY, "p"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputModifiedControlVariableRecordDecomposition.java"),
+                expected);
+    }
+
     /**
      * We cannot reproduce situation when visitToken is called and leaveToken is not.
      * So, we have to use reflection to be sure that even in such situation
