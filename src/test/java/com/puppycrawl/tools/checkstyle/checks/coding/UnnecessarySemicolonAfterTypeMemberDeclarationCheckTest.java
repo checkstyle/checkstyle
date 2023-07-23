@@ -110,4 +110,13 @@ public class UnnecessarySemicolonAfterTypeMemberDeclarationCheckTest
             .that(check.getRequiredTokens())
             .isEqualTo(CommonUtil.EMPTY_INT_ARRAY);
     }
+
+    @Test
+    public void testIsSemicolonWithNullAst() {
+        final UnnecessarySemicolonAfterTypeMemberDeclarationCheck check =
+                new UnnecessarySemicolonAfterTypeMemberDeclarationCheck();
+        assertWithMessage("Check with null AST should return false")
+                .that(check.checkProcess(null))
+                .isFalse();
+    }
 }
