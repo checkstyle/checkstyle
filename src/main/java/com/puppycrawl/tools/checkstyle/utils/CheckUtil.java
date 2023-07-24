@@ -490,7 +490,7 @@ public final class CheckUtil {
      */
     public static AccessModifierOption getSurroundingAccessModifier(DetailAST node) {
         AccessModifierOption returnValue = null;
-        for (DetailAST token = node.getParent();
+        for (DetailAST token = node;
              returnValue == null && !TokenUtil.isRootNode(token);
              token = token.getParent()) {
             final int type = token.getType();
@@ -669,7 +669,7 @@ public final class CheckUtil {
      * @return short name of base class of anonymous inner class
      */
     public static String getShortNameOfAnonInnerClass(DetailAST literalNewAst) {
-        DetailAST parentAst = literalNewAst.getParent();
+        DetailAST parentAst = literalNewAst;
         while (TokenUtil.isOfType(parentAst, TokenTypes.LITERAL_NEW, TokenTypes.DOT)) {
             parentAst = parentAst.getParent();
         }
