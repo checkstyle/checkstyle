@@ -40,16 +40,16 @@ public class WhitespaceAfterExamplesTest extends AbstractModuleTestSupport {
     public void testExample1() throws Exception {
         final String[] expected = {
             "19:12: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "if"),
-            "22:16: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ","),
-            "24:5: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "for"),
-            "26:5: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "try"),
-            "28:5: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "try"),
-            "30:12: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "finally"),
-            "32:30: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "finally"),
-            "34:12: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "catch"),
-            "36:5: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "synchronized"),
-            "42:5: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "return"),
-            "49:9: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "yield"),
+            "23:16: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ","),
+            "26:5: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "for"),
+            "29:5: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "try"),
+            "32:5: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "try"),
+            "35:12: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "finally"),
+            "38:30: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "finally"),
+            "41:12: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "catch"),
+            "44:5: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "synchronized"),
+            "51:5: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "return"),
+            "59:9: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "yield"),
         };
 
         verifyWithInlineConfigParser(getNonCompilablePath("Example1.java"), expected);
