@@ -6150,6 +6150,31 @@
     </details>
   </checkerFrameworkError>
 
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/SiteUtil.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter classLoader of getPackageNames.</message>
+    <lineContent>final Set&lt;String&gt; packageNames = PackageNamesLoader.getPackageNames(cl);</lineContent>
+    <details>
+      found   : @Initialized @Nullable ClassLoader
+      required: @Initialized @NonNull ClassLoader
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/SiteUtil.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference field.get(instance)</message>
+    <lineContent>return field.get(instance).toString();</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/ViolationMessagesMacro.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference clss.getPackage()</message>
+    <lineContent>+ clss.getPackage().getName().replace(&quot;.&quot;, &quot;%2F&quot;)</lineContent>
+  </checkerFrameworkError>
+
   <!-- First parameter is namespace of the attribute and documentation states that null should
        be passed whenever namespaces are not enabled
        https://github.com/sonatype/plexus-utils/blob/master/src/main/java/org/codehaus/plexus/util/xml/pull/XmlPullParser.java#L895 -->
