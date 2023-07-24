@@ -143,8 +143,7 @@ public final class CheckUtil {
      * @return whether the toke does represent an SLIST as part of an ELSE
      */
     private static boolean isElseWithCurlyBraces(DetailAST ast) {
-        return ast.getType() == TokenTypes.SLIST
-            && ast.getChildCount() == 2
+        return ast.getChildCount() == 2
             && isElse(ast.getParent());
     }
 
