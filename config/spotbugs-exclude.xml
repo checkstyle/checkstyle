@@ -280,4 +280,11 @@
     name="com.puppycrawl.tools.checkstyle.site.XdocsTemplateParser"/>
     <Bug pattern="STT_TOSTRING_STORED_IN_FIELD"/>
   </Match>
+  <Match>
+    <!-- We cast to XdocSink to avoid unwanted newlines.
+         Until https://github.com/checkstyle/checkstyle/issues/13426 -->
+    <Class name="com.puppycrawl.tools.checkstyle.site.ViolationMessagesMacro"/>
+    <Method name="createListItem"/>
+    <Bug pattern="PDP_POORLY_DEFINED_PARAMETER"/>
+  </Match>
 </FindBugsFilter>
