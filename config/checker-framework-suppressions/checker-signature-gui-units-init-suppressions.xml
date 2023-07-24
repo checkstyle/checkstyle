@@ -1160,4 +1160,12 @@
     <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
     <lineContent>tree.addTreeExpansionListener(new UpdatingTreeExpansionListener());</lineContent>
   </checkerFrameworkError>
+
+  <!-- Until https://github.com/checkstyle/checkstyle/issues/13426 -->
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/XdocsTemplateSink.java</fileName>
+    <specifier>call.ui</specifier>
+    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
+    <lineContent>attributes.addAttribute(SinkEventAttributes.HREF, href);</lineContent>
+  </checkerFrameworkError>
 </suppressedErrors>
