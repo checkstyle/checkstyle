@@ -273,4 +273,11 @@
     </Or>
     <Bug pattern="SPP_PASSING_THIS_AS_PARM"/>
   </Match>
+  <Match>
+    <!-- Won't fix, design requires operating over a string field of the class
+         see https://github.com/checkstyle/checkstyle/pull/13357#discussion_r1264552536 -->
+    <Class
+    name="com.puppycrawl.tools.checkstyle.site.XdocsTemplateParser"/>
+    <Bug pattern="STT_TOSTRING_STORED_IN_FIELD"/>
+  </Match>
 </FindBugsFilter>
