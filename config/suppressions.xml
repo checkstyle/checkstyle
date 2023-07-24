@@ -179,4 +179,9 @@
   <!-- DetailAST API requires large number of methods -->
   <suppress checks="MethodCount"
             files="[\\/]src[\\/]main[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]DetailAstImpl.java"/>
+
+  <!-- The numbers are explained by the method they are calling.
+       Until https://github.com/checkstyle/checkstyle/issues/13426 -->
+  <suppress checks="MagicNumber"
+            files="[\\/]src[\\/]main[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]site[\\/]ViolationMessagesMacro.java"/>
 </suppressions>
