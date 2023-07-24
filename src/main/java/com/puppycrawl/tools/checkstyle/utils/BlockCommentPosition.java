@@ -292,7 +292,7 @@ public final class BlockCommentPosition {
         }
         return (parent.getType() == TokenTypes.TYPE
                     || parent.getType() == TokenTypes.TYPE_PARAMETERS)
-                && parent.getParent().getType() == memberType
+                && true
                 // previous parent sibling is always TokenTypes.MODIFIERS
                 && !parent.getPreviousSibling().hasChildren()
                 && parent.getParent().getParent().getType() == TokenTypes.OBJBLOCK;
