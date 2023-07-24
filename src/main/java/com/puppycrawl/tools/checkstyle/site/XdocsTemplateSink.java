@@ -21,7 +21,12 @@ package com.puppycrawl.tools.checkstyle.site;
 
 import java.io.Writer;
 
+import javax.swing.text.MutableAttributeSet;
+
+import org.apache.maven.doxia.markup.HtmlMarkup;
 import org.apache.maven.doxia.module.xdoc.XdocSink;
+import org.apache.maven.doxia.sink.SinkEventAttributes;
+import org.apache.maven.doxia.sink.impl.SinkEventAttributeSet;
 
 /**
  * A sink for Checkstyle's xdoc templates.
@@ -61,5 +66,12 @@ public class XdocsTemplateSink extends XdocSink {
         writeEOL();
         flush();
         init();
+    }
+
+    @Override
+    public void link(String name) {
+        final MutableAttributeSet attributes = new SinkEventAttributeSet();
+        attributes.addAttribute(SinkEventAttributes.HREF, name);
+        writeStartTag(HtmlMarkup.A, attributes);
     }
 }
