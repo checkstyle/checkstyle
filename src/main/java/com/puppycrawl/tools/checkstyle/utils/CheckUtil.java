@@ -178,7 +178,6 @@ public final class CheckUtil {
                 }
                 else if (CommonUtil.startsWithChar(txt, '0')) {
                     radix = BASE_8;
-                    txt = txt.substring(1);
                 }
                 result = parseNumber(txt, radix, type);
                 break;
