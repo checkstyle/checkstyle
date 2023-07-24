@@ -139,7 +139,7 @@ public String getNameIfPresent() { ... }
             line:
         </p>
         <source>
-&lt;module name=&quot;AnnotationLocation&quot;/&gt;
+&lt;module name="AnnotationLocation"/&gt;
         </source>
         <p>
           Example for above configuration:
@@ -152,19 +152,19 @@ private boolean field2;
 @Override //ok
 public boolean equals(Object obj) { return true; }
 @Mock DataLoader loader; //ok
-@SuppressWarnings(&quot;deprecation&quot;) DataLoader loader; //violation
-@SuppressWarnings(&quot;deprecation&quot;) public int foo() { return 1; } //violation
+@SuppressWarnings("deprecation") DataLoader loader; //violation
+@SuppressWarnings("deprecation") public int foo() { return 1; } //violation
 @NotNull @Mock DataLoader loader; //violation
         </source>
         <p>
           Use the following configuration to allow multiple annotations on the same line:
         </p>
         <source>
-&lt;module name=&quot;AnnotationLocation&quot;&gt;
-  &lt;property name=&quot;allowSamelineMultipleAnnotations&quot; value=&quot;true&quot;/&gt;
-  &lt;property name=&quot;allowSamelineSingleParameterlessAnnotation&quot;
-    value=&quot;false&quot;/&gt;
-  &lt;property name=&quot;allowSamelineParameterizedAnnotation&quot; value=&quot;false&quot;/&gt;
+&lt;module name="AnnotationLocation"&gt;
+  &lt;property name="allowSamelineMultipleAnnotations" value="true"/&gt;
+  &lt;property name="allowSamelineSingleParameterlessAnnotation"
+    value="false"/&gt;
+  &lt;property name="allowSamelineParameterizedAnnotation" value="false"/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -178,8 +178,8 @@ private boolean field2;
 @Override //ok
 public boolean equals(Object obj) { return true; }
 @Mock DataLoader loader; //ok
-@SuppressWarnings(&quot;deprecation&quot;) DataLoader loader; //ok
-@SuppressWarnings(&quot;deprecation&quot;) public int foo() { return 1; } //ok
+@SuppressWarnings("deprecation") DataLoader loader; //ok
+@SuppressWarnings("deprecation") public int foo() { return 1; } //ok
 @NotNull @Mock DataLoader loader; //ok
         </source>
         <p>
@@ -187,11 +187,11 @@ public boolean equals(Object obj) { return true; }
           on the same line:
         </p>
         <source>
-&lt;module name=&quot;AnnotationLocation&quot;&gt;
-  &lt;property name=&quot;allowSamelineMultipleAnnotations&quot; value=&quot;false&quot;/&gt;
-  &lt;property name=&quot;allowSamelineSingleParameterlessAnnotation&quot;
-    value=&quot;false&quot;/&gt;
-  &lt;property name=&quot;allowSamelineParameterizedAnnotation&quot; value=&quot;true&quot;/&gt;
+&lt;module name="AnnotationLocation"&gt;
+  &lt;property name="allowSamelineMultipleAnnotations" value="false"/&gt;
+  &lt;property name="allowSamelineSingleParameterlessAnnotation"
+    value="false"/&gt;
+  &lt;property name="allowSamelineParameterizedAnnotation" value="true"/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -205,8 +205,8 @@ private boolean field2;
 @Override //ok
 public boolean equals(Object obj) { return true; }
 @Mock DataLoader loader; //violation
-@SuppressWarnings(&quot;deprecation&quot;) DataLoader loader; //ok
-@SuppressWarnings(&quot;deprecation&quot;) public int foo() { return 1; } //ok
+@SuppressWarnings("deprecation") DataLoader loader; //ok
+@SuppressWarnings("deprecation") public int foo() { return 1; } //ok
 @NotNull @Mock DataLoader loader; //violation
         </source>
         <p>
@@ -214,12 +214,12 @@ public boolean equals(Object obj) { return true; }
           single parameterless annotation on the same line:
         </p>
         <source>
-&lt;module name=&quot;AnnotationLocation&quot;&gt;
-  &lt;property name=&quot;tokens&quot; value=&quot;METHOD_DEF&quot;/&gt;
-  &lt;property name=&quot;allowSamelineMultipleAnnotations&quot; value=&quot;false&quot;/&gt;
-  &lt;property name=&quot;allowSamelineSingleParameterlessAnnotation&quot;
-    value=&quot;true&quot;/&gt;
-  &lt;property name=&quot;allowSamelineParameterizedAnnotation&quot; value=&quot;false&quot;/&gt;
+&lt;module name="AnnotationLocation"&gt;
+  &lt;property name="tokens" value="METHOD_DEF"/&gt;
+  &lt;property name="allowSamelineMultipleAnnotations" value="false"/&gt;
+  &lt;property name="allowSamelineSingleParameterlessAnnotation"
+    value="true"/&gt;
+  &lt;property name="allowSamelineParameterizedAnnotation" value="false"/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -233,8 +233,8 @@ private boolean field2;
 @Override //ok
 public boolean equals(Object obj) { return true; }
 @Mock DataLoader loader; //ok
-@SuppressWarnings(&quot;deprecation&quot;) DataLoader loader; //ok
-@SuppressWarnings(&quot;deprecation&quot;) public int foo() { return 1; } //violation
+@SuppressWarnings("deprecation") DataLoader loader; //ok
+@SuppressWarnings("deprecation") public int foo() { return 1; } //violation
 @NotNull @Mock DataLoader loader; //ok
         </source>
       </subsection>
@@ -253,18 +253,9 @@ public boolean equals(Object obj) { return true; }
       </subsection>
 
       <subsection name="Violation Messages" id="Violation_Messages">
-        <ul>
-          <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fannotation%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22annotation.location.alone%22">
-              annotation.location.alone
-            </a>
-          </li>
-          <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fannotation%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22annotation.location%22">
-              annotation.location
-            </a>
-          </li>
-        </ul>
+        <macro name="violation-messages">
+            <param name="path" value="AnnotationLocation"/>
+        </macro>
       </subsection>
 
       <subsection name="Package" id="Package">
