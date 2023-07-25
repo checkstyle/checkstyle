@@ -332,6 +332,7 @@ public class RightCurlyCheck extends AbstractCheck {
      * Setter to specify the policy on placement of a right curly brace (<code>'}'</code>).
      *
      * @param optionStr string to decode option from
+     * @Since 3.0
      * @throws IllegalArgumentException if unable to decode
      */
     public void setOption(String optionStr) {

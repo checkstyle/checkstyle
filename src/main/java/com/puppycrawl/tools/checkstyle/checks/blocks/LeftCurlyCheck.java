@@ -259,6 +259,7 @@ public class LeftCurlyCheck
      * Setter to specify the policy on placement of a left curly brace (<code>'{'</code>).
      *
      * @param optionStr string to decode option from
+     * @Since 3.0
      * @throws IllegalArgumentException if unable to decode
      */
     public void setOption(String optionStr) {
@@ -269,6 +270,7 @@ public class LeftCurlyCheck
      * Setter to allow to ignore enums when left curly brace policy is EOL.
      *
      * @param ignoreEnums check's option for ignoring enums.
+     * @Since 6.9
      */
     public void setIgnoreEnums(boolean ignoreEnums) {
         this.ignoreEnums = ignoreEnums;

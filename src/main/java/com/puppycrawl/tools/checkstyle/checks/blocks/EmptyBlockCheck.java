@@ -195,6 +195,7 @@ public class EmptyBlockCheck
      * Setter to specify the policy on block contents.
      *
      * @param optionStr string to decode option from
+     * @Since 3.0
      * @throws IllegalArgumentException if unable to decode
      */
     public void setOption(String optionStr) {
