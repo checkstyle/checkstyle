@@ -27,14 +27,14 @@
     <lineContent>&amp;&amp; parent.getParent().getType() == memberType</lineContent>
   </mutation>
 
-  <mutation unstable="false">
-    <sourceFile>CheckUtil.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.utils.CheckUtil</mutatedClass>
-    <mutatedMethod>getAccessModifierFromModifiersToken</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
-    <description>removed conditional - replaced equality check with true</description>
-    <lineContent>if (ScopeUtil.isInEnumBlock(ast) &amp;&amp; ast.getType() == TokenTypes.CTOR_DEF) {</lineContent>
-  </mutation>
+
+
+
+
+
+
+
+
 
   <mutation unstable="false">
     <sourceFile>CheckUtil.java</sourceFile>
