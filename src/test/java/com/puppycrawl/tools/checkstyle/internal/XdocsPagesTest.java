@@ -56,6 +56,7 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import org.apache.commons.beanutils.PropertyUtils;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
@@ -76,10 +77,17 @@ import com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption;
 import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
+import com.puppycrawl.tools.checkstyle.internal.utils.XdocGenerator;
 import com.puppycrawl.tools.checkstyle.internal.utils.XdocUtil;
 import com.puppycrawl.tools.checkstyle.internal.utils.XmlUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
+/**
+ * Generates xdocs pages from templates and performs validations.
+ * Before running this test, the following commands have to be executed:
+ * - mvn clean compile - Required for next command
+ * - mvn plexus-component-metadata:generate-metadata - Required to find custom macros and parser
+ */
 public class XdocsPagesTest {
     private static final Path SITE_PATH = Paths.get("src/site/site.xml");
 
@@ -214,8 +222,21 @@ public class XdocsPagesTest {
             "WhitespaceAfter",
             "WhitespaceAround"
     );
+
     private static final Set<String> GOOGLE_MODULES = Collections.unmodifiableSet(
         CheckUtil.getConfigGoogleStyleModules());
+
+    /**
+     * Generate xdoc content from templates before validation.
+     * This method will be removed once
+     * <a href="https://github.com/checkstyle/checkstyle/issues/13426">#13426</a> is resolved.
+     *
+     * @throws Exception if something goes wrong
+     */
+    @Test
+    public void generateXdocContent() throws Exception {
+        XdocGenerator.generateXdocContent();
+    }
 
     @Test
     public void testAllChecksPresentOnAvailableChecksPage() throws Exception {

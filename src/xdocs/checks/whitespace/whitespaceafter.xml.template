@@ -125,93 +125,32 @@
         <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;WhitespaceAfter&quot;/&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
-        </source>
-        <source>
-class Example1 {
-  void example() throws Exception {
-    if (true) {
-    } else if(false) { // violation 'not followed by whitespace'
-    }
-
-    testOne(&quot;x&quot;, &quot;y&quot;);
-    testOne(&quot;z&quot;,&quot;o&quot;); // violation 'not followed by whitespace'
-
-    for (int i = 0; i &lt; 10; i++){}
-    for(int i = 0; i &lt; 10; i++){} // violation 'not followed by whitespace'
-
-    try (InputStream ignored = System.in) {}
-    try(InputStream ignored = System.in) {} // violation 'not followed by whitespace'
-
-    try {} catch (Exception e){}
-    try{} catch (Exception e) {} // violation ''try' is not followed by whitespace'
-
-    try {} finally {}
-    try {} finally{} // violation 'not followed by whitespace'
-
-    try {} catch (Error e){} finally {}
-    try {} catch (Error e){} finally{} // violation 'not followed by whitespace'
-
-    try {} catch (Exception e){}
-    try {} catch(Exception e){} // violation 'not followed by whitespace'
-
-    synchronized (this) { }
-    synchronized(this) { } // violation 'not followed by whitespace'
-  }
-
-  public String testOne(String a, String b) {
-    return (a + b);
-  }
-  public String testTwo(String a, String b) {
-    return(a + b); // violation 'not followed by whitespace'
-  }
-
-  void switchExample() {
-    int a = switch (&quot;hello&quot;) {
-      case &quot;got&quot;:
-        yield (1); // OK, followed by whitespace
-      case &quot;my&quot;:
-        yield(3); // violation ''yield' is not followed by whitespace'
-      default:
-        yield 2;
-    };
-  }
-}
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/whitespace/whitespaceafter/Example1.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <macro name="example">
+          <param name="path"
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/whitespace/whitespaceafter/Example1.java"/>
+          <param name="type" value="code"/>
+        </macro>
 
         <p id="Example2-config">
           To configure the check for whitespace only after COMMA and SEMI
           tokens:
         </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;WhitespaceAfter&quot;&gt;
-      &lt;property name=&quot;tokens&quot; value=&quot;COMMA, SEMI&quot;/&gt;
-    &lt;/module&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/whitespaceafter/Example2.java"/>
+          <param name="type" value="config"/>
+        </macro>
         <p id="Example2-code">Example:</p>
-        <source>
-class Example2 {
-  void example() {
-    int a = 0; int b = 1;
-    int c = 2;int d = 3; // violation 'not followed by whitespace'
-
-    testMethod(a, b);
-    testMethod(c,d); // violation 'not followed by whitespace'
-
-    for(;;) {}
-  }
-  void testMethod(int a, int b) { }
-}
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/whitespaceafter/Example2.java"/>
+          <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">
@@ -256,8 +195,9 @@ class Example2 {
       </subsection>
 
       <subsection name="Parent Module" id="Parent_Module">
-        
-<p><a href="">TreeWalker</a></p>
+        <macro name="parent-module">
+          <param name="moduleName" value="AnnotationLocation"/>
+        </macro>
       </subsection>
     </section>
   </body>
