@@ -23,6 +23,7 @@ import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.coding.EqualsAvoidNullCheck.MSG_EQUALS_AVOID_NULL;
 import static com.puppycrawl.tools.checkstyle.checks.coding.MultipleVariableDeclarationsCheck.MSG_MULTIPLE;
 import static com.puppycrawl.tools.checkstyle.checks.coding.NestedIfDepthCheck.MSG_KEY;
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.MSG_EXPECTED_TAG;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.findTokenInAstByPredicate;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
 
@@ -43,6 +44,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.coding.EqualsAvoidNullCheck;
 import com.puppycrawl.tools.checkstyle.checks.coding.MultipleVariableDeclarationsCheck;
 import com.puppycrawl.tools.checkstyle.checks.coding.NestedIfDepthCheck;
+import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption;
 
 public class CheckUtilTest extends AbstractModuleTestSupport {
@@ -479,6 +481,23 @@ public class CheckUtilTest extends AbstractModuleTestSupport {
         };
         verifyWithInlineConfigParser(
                 getPath("InputCheckUtil3.java"), expected);
+    }
+
+    @Test
+    public void testJavaDocMethod() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputCheckUtil4.java"), expected);
+    }
+
+    @Test
+    public void testJavaDocMethod2() throws Exception {
+        final String[] expected = {
+            "14:25: " + getCheckMessage(JavadocMethodCheck.class,
+                  MSG_EXPECTED_TAG, "@param", "i"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputCheckUtil5.java"), expected);
     }
 
     private DetailAST getNodeFromFile(int type) throws Exception {
