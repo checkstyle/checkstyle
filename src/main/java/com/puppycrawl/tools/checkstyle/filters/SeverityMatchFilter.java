@@ -84,6 +84,7 @@ public class SeverityMatchFilter
      * Setter to specify the severity level of this filter.
      *
      * @param severity  The new severity level
+     * @Since 3.2
      * @see SeverityLevel
      */
     public final void setSeverity(SeverityLevel severity) {
@@ -98,6 +99,7 @@ public class SeverityMatchFilter
      *
      * @param acceptOnMatch if true, accept on matches; if
      *     false, reject on matches.
+     * @Since 3.2
      */
     public final void setAcceptOnMatch(boolean acceptOnMatch) {
         this.acceptOnMatch = acceptOnMatch;

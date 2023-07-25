@@ -232,6 +232,7 @@ public class SuppressWarningsHolder
      * within {@code SuppressWarnings}.
      *
      * @param aliasList comma-separated alias assignments
+     * @Since 5.7
      * @throws IllegalArgumentException when alias item does not have '='
      */
     public void setAliasList(String... aliasList) {
