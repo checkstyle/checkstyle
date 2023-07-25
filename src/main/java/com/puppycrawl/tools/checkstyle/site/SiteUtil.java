@@ -19,11 +19,17 @@
 
 package com.puppycrawl.tools.checkstyle.site;
 
+import java.io.IOException;
 import java.lang.reflect.Field;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.apache.maven.doxia.macro.MacroExecutionException;
 
@@ -171,5 +177,24 @@ public final class SiteUtil {
      */
     public static String getNewlineAndIndentSpaces(int amountOfSpaces) {
         return System.lineSeparator() + " ".repeat(amountOfSpaces);
+    }
+
+    /**
+     * Gets xdocs template file paths. These are files ending with .xml.template.
+     * This module will be removed once
+     * <a href="https://github.com/checkstyle/checkstyle/issues/13426">#13426</a> is resolved.
+     *
+     * @return a set of xdocs template file paths.
+     * @throws IOException if an I/O error occurs.
+     */
+    public static Set<Path> getXdocsTemplatesFilePaths() throws IOException {
+        final Path directory = Paths.get("src/xdocs");
+        try (Stream<Path> stream = Files.find(directory, Integer.MAX_VALUE,
+                (path, attr) -> {
+                    return attr.isRegularFile()
+                            && path.toString().endsWith(".xml.template");
+                })) {
+            return stream.collect(Collectors.toSet());
+        }
     }
 }
