@@ -116,18 +116,16 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
             "131:13: " + getCheckMessage(MSG_FALL_THROUGH),
             "131:13: " + getCheckMessage(MSG_FALL_THROUGH_LAST),
             "187:11: " + getCheckMessage(MSG_FALL_THROUGH),
-            "377:11: " + getCheckMessage(MSG_FALL_THROUGH),
-            "380:11: " + getCheckMessage(MSG_FALL_THROUGH),
-            "382:40: " + getCheckMessage(MSG_FALL_THROUGH),
-            "384:11: " + getCheckMessage(MSG_FALL_THROUGH_LAST),
-            "424:13: " + getCheckMessage(MSG_FALL_THROUGH),
-            "432:9: " + getCheckMessage(MSG_FALL_THROUGH),
-            "444:9: " + getCheckMessage(MSG_FALL_THROUGH),
-            "454:9: " + getCheckMessage(MSG_FALL_THROUGH),
-            // line 490 violation expected till https://github.com/checkstyle/checkstyle/pull/12966
+            "376:11: " + getCheckMessage(MSG_FALL_THROUGH),
+            "379:11: " + getCheckMessage(MSG_FALL_THROUGH),
+            "381:40: " + getCheckMessage(MSG_FALL_THROUGH),
+            "383:11: " + getCheckMessage(MSG_FALL_THROUGH_LAST),
+            "423:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "431:9: " + getCheckMessage(MSG_FALL_THROUGH),
+            "443:9: " + getCheckMessage(MSG_FALL_THROUGH),
+            "453:9: " + getCheckMessage(MSG_FALL_THROUGH),
             "490:9: " + getCheckMessage(MSG_FALL_THROUGH),
             "491:9: " + getCheckMessage(MSG_FALL_THROUGH),
-            "492:9: " + getCheckMessage(MSG_FALL_THROUGH),
         };
         verifyWithInlineConfigParser(
                 getPath("InputFallThrough.java"),
@@ -273,13 +271,8 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testFallThrough() throws Exception {
         final String[] expected = {
-            "16:13: " + getCheckMessage(MSG_FALL_THROUGH),
-            "18:13: " + getCheckMessage(MSG_FALL_THROUGH),
             "23:13: " + getCheckMessage(MSG_FALL_THROUGH),
-            "25:13: " + getCheckMessage(MSG_FALL_THROUGH),
             "27:13: " + getCheckMessage(MSG_FALL_THROUGH),
-            // line 37 needs consideration https://github.com/checkstyle/checkstyle/pull/12966
-            "37:10: " + getCheckMessage(MSG_FALL_THROUGH),
             "52:13: " + getCheckMessage(MSG_FALL_THROUGH),
             "65:13: " + getCheckMessage(MSG_FALL_THROUGH),
             "80:13: " + getCheckMessage(MSG_FALL_THROUGH),
@@ -349,7 +342,6 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "19:13: " + getCheckMessage(MSG_FALL_THROUGH_LAST),
             "22:13: " + getCheckMessage(MSG_FALL_THROUGH_LAST),
-            "25:13: " + getCheckMessage(MSG_FALL_THROUGH_LAST),
         };
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputFallThrough5.java"),
