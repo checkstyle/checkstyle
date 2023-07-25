@@ -467,7 +467,7 @@ public final class CheckUtil {
 
         AccessModifierOption accessModifier = AccessModifierOption.PACKAGE;
         for (DetailAST token = modifiersToken.getFirstChild(); token != null;
-             token = token.getNextSibling()) {
+             token = token) {
             final int tokenType = token.getType();
             if (tokenType == TokenTypes.LITERAL_PUBLIC) {
                 accessModifier = AccessModifierOption.PUBLIC;
