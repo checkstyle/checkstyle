@@ -331,7 +331,6 @@ public class InputFallThrough
           switch (i){
           case 0:
               i++; /*fallthru*/
-
           case 1:
               i++;
           /*fallthru*/
@@ -487,7 +486,7 @@ public class InputFallThrough
         int i = 0;
         switch (i) {
         case 0: case 1: i *= i; // fall through
-        case 2: case 3: i *= i; // violation 'Fall through from prev.* br.* switch statement.'
+        case 2: case 3: i *= i;
         case 4: case 5: i *= i; // violation 'Fall through from prev.* br.* switch statement.'
         case 6: case 7: i *= i; // violation 'Fall through from prev.* br.* switch statement.'
             break;
