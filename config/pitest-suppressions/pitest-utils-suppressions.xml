@@ -27,32 +27,32 @@
     <lineContent>&amp;&amp; parent.getParent().getType() == memberType</lineContent>
   </mutation>
 
-  <mutation unstable="false">
-    <sourceFile>CheckUtil.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.utils.CheckUtil</mutatedClass>
-    <mutatedMethod>getAccessModifierFromModifiersToken</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
-    <description>removed conditional - replaced equality check with true</description>
-    <lineContent>if (ScopeUtil.isInEnumBlock(ast) &amp;&amp; ast.getType() == TokenTypes.CTOR_DEF) {</lineContent>
-  </mutation>
 
-  <mutation unstable="false">
-    <sourceFile>CheckUtil.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.utils.CheckUtil</mutatedClass>
-    <mutatedMethod>getAccessModifierFromModifiersToken</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
-    <description>removed conditional - replaced equality check with true</description>
-    <lineContent>if (accessModifier == AccessModifierOption.PACKAGE) {</lineContent>
-  </mutation>
 
-  <mutation unstable="false">
-    <sourceFile>CheckUtil.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.utils.CheckUtil</mutatedClass>
-    <mutatedMethod>getAccessModifierFromModifiersTokenDirectly</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getNextSibling</description>
-    <lineContent>token = token.getNextSibling()) {</lineContent>
-  </mutation>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   <mutation unstable="false">
     <sourceFile>CheckUtil.java</sourceFile>
