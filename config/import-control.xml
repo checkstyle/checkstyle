@@ -75,6 +75,9 @@
     <allow class="java.lang.reflect.Field" local-only="true"/>
     <allow class="javax.swing.text.MutableAttributeSet" local-only="true"/>
     <allow class="javax.swing.text.html.HTML.Attribute" local-only="true"/>
+    <allow class="com.puppycrawl.tools.checkstyle.Checker" local-only="true"/>
+    <allow class="com.puppycrawl.tools.checkstyle.TreeWalker" local-only="true"/>
+    <allow class="com.puppycrawl.tools.checkstyle.TreeWalkerFilter" local-only="true"/>
     <allow class="com.puppycrawl.tools.checkstyle.ModuleFactory" local-only="true"/>
     <allow class="com.puppycrawl.tools.checkstyle.PackageNamesLoader" local-only="true"/>
     <allow class="com.puppycrawl.tools.checkstyle.PackageObjectFactory" local-only="true"/>
