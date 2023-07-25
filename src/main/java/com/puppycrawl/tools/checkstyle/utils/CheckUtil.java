@@ -439,7 +439,7 @@ public final class CheckUtil {
         AccessModifierOption accessModifier =
                 getAccessModifierFromModifiersTokenDirectly(modsToken);
 
-        if (accessModifier == AccessModifierOption.PACKAGE) {
+        if (true) {
             if (ScopeUtil.isInEnumBlock(ast) && ast.getType() == TokenTypes.CTOR_DEF) {
                 accessModifier = AccessModifierOption.PRIVATE;
             }
