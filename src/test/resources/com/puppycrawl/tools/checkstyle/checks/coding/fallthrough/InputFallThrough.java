@@ -286,7 +286,7 @@ public class InputFallThrough
           case 0:
               i++; // fallthru
 
-          case 1:
+          case 1: // violation 'Fall through from previous branch of the switch statement'
               i++;
           // fallthru
           case 2: {
@@ -311,7 +311,7 @@ public class InputFallThrough
           case 0:
               i++; /* fallthru */
 
-          case 1:
+          case 1: // violation 'Fall through from previous branch of the switch statement'
               i++;
           /* fallthru */
           case 2:
@@ -332,7 +332,7 @@ public class InputFallThrough
           case 0:
               i++; /*fallthru*/
 
-          case 1:
+          case 1: // violation 'Fall through from previous branch of the switch statement'
               i++;
           /*fallthru*/
           case 2:
@@ -353,7 +353,7 @@ public class InputFallThrough
           case 0:
               i++; /* falls through */
 
-          case 1:
+          case 1: // violation 'Fall through from previous branch of the switch statement'
               i++;
           /* falls through */
           case 2:
@@ -391,7 +391,7 @@ public class InputFallThrough
    void methodFallThruLastCaseGroup(int i, int j, boolean cond) {
        while (true) {
            switch (i){
-           case 0:
+           case 0: // violation 'Fall through from the last branch of the switch statement'
                i++; // fallthru
            }
            switch (i){
