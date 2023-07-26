@@ -144,6 +144,7 @@ public class JavadocPackageCheck extends AbstractFileSetCheck {
      * Setter to allow legacy {@code package.html} file to be used.
      *
      * @param allowLegacy whether to allow support.
+     * @since 5.0
      */
     public void setAllowLegacy(boolean allowLegacy) {
         this.allowLegacy = allowLegacy;
