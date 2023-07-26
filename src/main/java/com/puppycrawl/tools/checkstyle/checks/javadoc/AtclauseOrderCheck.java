@@ -194,6 +194,7 @@ public class AtclauseOrderCheck extends AbstractJavadocCheck {
      * Setter to specify block tags targeted.
      *
      * @param targets user's targets.
+     * @since 6.0
      */
     public void setTarget(String... targets) {
         target = TokenUtil.asBitSet(targets);
@@ -203,6 +204,7 @@ public class AtclauseOrderCheck extends AbstractJavadocCheck {
      * Setter to specify the order by tags.
      *
      * @param orders user's orders.
+     * @since 6.0
      */
     public void setTagOrder(String... orders) {
         final List<String> customOrder = new ArrayList<>(orders.length);

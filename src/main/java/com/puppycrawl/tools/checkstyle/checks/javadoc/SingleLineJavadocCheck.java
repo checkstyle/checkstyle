@@ -270,6 +270,7 @@ public class SingleLineJavadocCheck extends AbstractJavadocCheck {
      * block tags</a> which are ignored by the check.
      *
      * @param tags to be ignored by check.
+     * @since 6.8
      */
     public void setIgnoredTags(String... tags) {
         ignoredTags = Set.of(tags);
@@ -281,6 +282,7 @@ public class SingleLineJavadocCheck extends AbstractJavadocCheck {
      * inline tags</a> must be ignored.
      *
      * @param ignoreInlineTags whether inline tags must be ignored.
+     * @since 6.8
      */
     public void setIgnoreInlineTags(boolean ignoreInlineTags) {
         this.ignoreInlineTags = ignoreInlineTags;
