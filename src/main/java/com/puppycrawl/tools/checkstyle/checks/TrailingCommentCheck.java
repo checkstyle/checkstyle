@@ -224,6 +224,7 @@ public class TrailingCommentCheck extends AbstractCheck {
      * This pattern will not be applied to multiline comments.
      *
      * @param legalComment pattern to set.
+     * @since 4.2
      */
     public void setLegalComment(final Pattern legalComment) {
         this.legalComment = legalComment;
