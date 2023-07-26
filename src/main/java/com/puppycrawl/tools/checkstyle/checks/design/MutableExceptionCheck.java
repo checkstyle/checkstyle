@@ -230,6 +230,7 @@ public final class MutableExceptionCheck extends AbstractCheck {
      * Setter to specify pattern for extended class names.
      *
      * @param extendedClassNameFormat a {@code String} value
+     * @since 6.2
      */
     public void setExtendedClassNameFormat(Pattern extendedClassNameFormat) {
         this.extendedClassNameFormat = extendedClassNameFormat;
@@ -239,6 +240,7 @@ public final class MutableExceptionCheck extends AbstractCheck {
      * Setter to specify pattern for exception class names.
      *
      * @param pattern the new pattern
+     * @since 3.2
      */
     public void setFormat(Pattern pattern) {
         format = pattern;
