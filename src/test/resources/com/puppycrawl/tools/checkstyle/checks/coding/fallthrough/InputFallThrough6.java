@@ -33,7 +33,9 @@ public class InputFallThrough6 {
          switch (i) {
          case 0: case 1: i *= i; // fall through
          case 2: case 3: i *= i; // fall through
+         // violation above 'Fall through from previous branch of the switch statement'
          case 4: case 5: i *= i; // fall through
+         // violation above 'Fall through from previous branch of the switch statement'
          case 6: case 7: i *= i;
              break; // violation above 'Fall through from previous branch of the switch statement'
          default:
