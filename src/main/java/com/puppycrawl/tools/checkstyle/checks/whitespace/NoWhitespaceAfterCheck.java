@@ -235,6 +235,7 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
      *
      * @param allowLineBreaks whether whitespace should be
      *     flagged at linebreaks.
+     * @since 3.0
      */
     public void setAllowLineBreaks(boolean allowLineBreaks) {
         this.allowLineBreaks = allowLineBreaks;
