@@ -257,6 +257,7 @@ public class EmptyCatchBlockCheck extends AbstractCheck {
      *
      * @param exceptionVariablePattern
      *        pattern of exception's variable name.
+     * @since 6.4
      */
     public void setExceptionVariableName(Pattern exceptionVariablePattern) {
         exceptionVariableName = exceptionVariablePattern;
@@ -269,6 +270,7 @@ public class EmptyCatchBlockCheck extends AbstractCheck {
      *
      * @param commentPattern
      *        pattern of comment.
+     * @since 6.4
      */
     public void setCommentFormat(Pattern commentPattern) {
         commentFormat = commentPattern;
