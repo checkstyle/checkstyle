@@ -372,6 +372,7 @@ public class JavaNCSSCheck extends AbstractCheck {
      *
      * @param fileMaximum
      *            the maximum ncss
+     * @since 3.5
      */
     public void setFileMaximum(int fileMaximum) {
         this.fileMaximum = fileMaximum;
@@ -382,6 +383,7 @@ public class JavaNCSSCheck extends AbstractCheck {
      *
      * @param classMaximum
      *            the maximum ncss
+     * @since 3.5
      */
     public void setClassMaximum(int classMaximum) {
         this.classMaximum = classMaximum;
@@ -392,6 +394,7 @@ public class JavaNCSSCheck extends AbstractCheck {
      *
      * @param recordMaximum
      *            the maximum ncss
+     * @since 8.36
      */
     public void setRecordMaximum(int recordMaximum) {
         this.recordMaximum = recordMaximum;
@@ -402,6 +405,7 @@ public class JavaNCSSCheck extends AbstractCheck {
      *
      * @param methodMaximum
      *            the maximum ncss
+     * @since 3.5
      */
     public void setMethodMaximum(int methodMaximum) {
         this.methodMaximum = methodMaximum;
