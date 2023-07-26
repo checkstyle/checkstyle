@@ -333,6 +333,7 @@ public class RightCurlyCheck extends AbstractCheck {
      *
      * @param optionStr string to decode option from
      * @throws IllegalArgumentException if unable to decode
+     * @since 3.0
      */
     public void setOption(String optionStr) {
         option = RightCurlyOption.valueOf(optionStr.trim().toUpperCase(Locale.ENGLISH));
