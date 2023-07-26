@@ -128,6 +128,7 @@ public class ParameterNumberCheck
      * Setter to specify the maximum number of parameters allowed.
      *
      * @param max the max allowed parameters
+     * @since 3.0
      */
     public void setMax(int max) {
         this.max = max;
@@ -137,6 +138,7 @@ public class ParameterNumberCheck
      * Setter to ignore number of parameters for methods with {@code @Override} annotation.
      *
      * @param ignoreOverriddenMethods set ignore overridden methods
+     * @since 6.2
      */
     public void setIgnoreOverriddenMethods(boolean ignoreOverriddenMethods) {
         this.ignoreOverriddenMethods = ignoreOverriddenMethods;

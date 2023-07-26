@@ -133,6 +133,7 @@ public class OuterTypeNumberCheck extends AbstractCheck {
      * Setter to specify the maximum number of outer types allowed.
      *
      * @param max the new number.
+     * @since 5.0
      */
     public void setMax(int max) {
         this.max = max;

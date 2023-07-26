@@ -163,6 +163,7 @@ public class RecordComponentNumberCheck extends AbstractCheck {
      * of a record definition.
      *
      * @param value the maximum allowed.
+     * @since 8.36
      */
     public void setMax(int value) {
         max = value;
@@ -173,6 +174,7 @@ public class RecordComponentNumberCheck extends AbstractCheck {
      * components should be checked.
      *
      * @param accessModifiers access modifiers of record definitions which should be checked.
+     * @since 8.36
      */
     public void setAccessModifiers(AccessModifierOption... accessModifiers) {
         this.accessModifiers =
