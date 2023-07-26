@@ -378,6 +378,7 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
      *
      * @param ignoreFinal
      *        Defines if ignore variables with 'final' modifier or not.
+     * @since 5.8
      */
     public void setIgnoreFinal(boolean ignoreFinal) {
         this.ignoreFinal = ignoreFinal;
@@ -388,6 +389,7 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
      *
      * @param ignoreStatic
      *        Defines if ignore variables with 'static' modifier or not.
+     * @since 5.8
      */
     public void setIgnoreStatic(boolean ignoreStatic) {
         this.ignoreStatic = ignoreStatic;
@@ -398,6 +400,7 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
      *
      * @param ignoreStaticFinal
      *        Defines if ignore variables with both 'static' and 'final' modifiers or not.
+     * @since 8.32
      */
     public void setIgnoreStaticFinal(boolean ignoreStaticFinal) {
         this.ignoreStaticFinal = ignoreStaticFinal;
@@ -409,6 +412,7 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
      *
      * @param ignoreOverriddenMethods
      *        Defines if ignore methods with "@Override" annotation or not.
+     * @since 5.8
      */
     public void setIgnoreOverriddenMethods(boolean ignoreOverriddenMethods) {
         this.ignoreOverriddenMethods = ignoreOverriddenMethods;
@@ -421,6 +425,7 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
      *
      * @param allowedAbbreviationLength amount of allowed capital letters in
      *        abbreviation.
+     * @since 5.8
      */
     public void setAllowedAbbreviationLength(int allowedAbbreviationLength) {
         this.allowedAbbreviationLength = allowedAbbreviationLength;
@@ -431,6 +436,7 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
      *
      * @param allowedAbbreviations abbreviations that must be
      *        skipped from checking.
+     * @since 5.8
      */
     public void setAllowedAbbreviations(String... allowedAbbreviations) {
         if (allowedAbbreviations != null) {
