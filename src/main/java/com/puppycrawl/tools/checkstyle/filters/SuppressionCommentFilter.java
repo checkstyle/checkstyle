@@ -558,6 +558,7 @@ public class SuppressionCommentFilter
      * Setter to specify comment pattern to trigger filter to begin suppression.
      *
      * @param pattern a pattern.
+     * @since 3.5
      */
     public final void setOffCommentFormat(Pattern pattern) {
         offCommentFormat = pattern;
@@ -567,6 +568,7 @@ public class SuppressionCommentFilter
      * Setter to specify comment pattern to trigger filter to end suppression.
      *
      * @param pattern a pattern.
+     * @since 3.5
      */
     public final void setOnCommentFormat(Pattern pattern) {
         onCommentFormat = pattern;
@@ -596,6 +598,7 @@ public class SuppressionCommentFilter
      * Setter to specify check pattern to suppress.
      *
      * @param format a {@code String} value
+     * @since 3.5
      */
     public final void setCheckFormat(String format) {
         checkFormat = format;
@@ -605,6 +608,7 @@ public class SuppressionCommentFilter
      * Setter to specify message pattern to suppress.
      *
      * @param format a {@code String} value
+     * @since 3.5
      */
     public void setMessageFormat(String format) {
         messageFormat = format;
@@ -614,6 +618,7 @@ public class SuppressionCommentFilter
      * Setter to specify check ID pattern to suppress.
      *
      * @param format a {@code String} value
+     * @since 8.24
      */
     public void setIdFormat(String format) {
         idFormat = format;
@@ -623,6 +628,7 @@ public class SuppressionCommentFilter
      * Setter to control whether to check C++ style comments ({@code //}).
      *
      * @param checkCpp {@code true} if C++ comments are checked.
+     * @since 3.5
      */
     // -@cs[AbbreviationAsWordInName] We can not change it as,
     // check's property is a part of API (used in configurations).
@@ -634,6 +640,7 @@ public class SuppressionCommentFilter
      * Setter to control whether to check C style comments ({@code &#47;* ... *&#47;}).
      *
      * @param checkC {@code true} if C comments are checked.
+     * @since 3.5
      */
     public void setCheckC(boolean checkC) {
         this.checkC = checkC;
