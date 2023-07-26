@@ -184,6 +184,7 @@ public final class AbstractClassNameCheck extends AbstractCheck {
      * classes that match the name.
      *
      * @param value new value
+     * @since 5.3
      */
     public void setIgnoreModifier(boolean value) {
         ignoreModifier = value;
@@ -194,6 +195,7 @@ public final class AbstractClassNameCheck extends AbstractCheck {
      * using the check to identify that match name and do not have the {@code abstract} modifier.
      *
      * @param value new value.
+     * @since 5.3
      */
     public void setIgnoreName(boolean value) {
         ignoreName = value;
@@ -203,6 +205,7 @@ public final class AbstractClassNameCheck extends AbstractCheck {
      * Setter to specify valid identifiers.
      *
      * @param pattern the new pattern
+     * @since 3.2
      */
     public void setFormat(Pattern pattern) {
         format = pattern;
