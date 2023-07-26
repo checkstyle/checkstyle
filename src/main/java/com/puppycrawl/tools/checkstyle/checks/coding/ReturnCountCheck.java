@@ -342,6 +342,7 @@ public final class ReturnCountCheck extends AbstractCheck {
      * Setter to specify method names to ignore.
      *
      * @param pattern a pattern.
+     * @since 3.4
      */
     public void setFormat(Pattern pattern) {
         format = pattern;
@@ -352,6 +353,7 @@ public final class ReturnCountCheck extends AbstractCheck {
      * in non-void methods/lambdas.
      *
      * @param max maximum allowed number of return statements.
+     * @since 3.2
      */
     public void setMax(int max) {
         this.max = max;
@@ -362,6 +364,7 @@ public final class ReturnCountCheck extends AbstractCheck {
      * in void methods/constructors/lambdas.
      *
      * @param maxForVoid maximum allowed number of return statements for void methods.
+     * @since 6.19
      */
     public void setMaxForVoid(int maxForVoid) {
         this.maxForVoid = maxForVoid;

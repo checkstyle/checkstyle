@@ -404,6 +404,7 @@ public final class IllegalTypeCheck extends AbstractCheck {
      * Setter to specify RegExp for illegal abstract class names.
      *
      * @param pattern a pattern.
+     * @since 3.2
      */
     public void setIllegalAbstractClassNameFormat(Pattern pattern) {
         illegalAbstractClassNameFormat = pattern;
@@ -413,6 +414,7 @@ public final class IllegalTypeCheck extends AbstractCheck {
      * Setter to control whether to validate abstract class names.
      *
      * @param validateAbstractClassNames whether abstract class names must be ignored.
+     * @since 6.10
      */
     public void setValidateAbstractClassNames(boolean validateAbstractClassNames) {
         this.validateAbstractClassNames = validateAbstractClassNames;
@@ -818,6 +820,7 @@ public final class IllegalTypeCheck extends AbstractCheck {
      * @param classNames array of illegal variable types
      * @noinspection WeakerAccess
      * @noinspectionreason WeakerAccess - we avoid 'protected' when possible
+     * @since 3.2
      */
     public void setIllegalClassNames(String... classNames) {
         illegalClassNames.clear();
@@ -830,6 +833,7 @@ public final class IllegalTypeCheck extends AbstractCheck {
      * @param methodNames array of ignored method names
      * @noinspection WeakerAccess
      * @noinspectionreason WeakerAccess - we avoid 'protected' when possible
+     * @since 3.2
      */
     public void setIgnoredMethodNames(String... methodNames) {
         ignoredMethodNames.clear();
@@ -842,6 +846,7 @@ public final class IllegalTypeCheck extends AbstractCheck {
      * @param classNames array of legal abstract class names
      * @noinspection WeakerAccess
      * @noinspectionreason WeakerAccess - we avoid 'protected' when possible
+     * @since 4.2
      */
     public void setLegalAbstractClassNames(String... classNames) {
         Collections.addAll(legalAbstractClassNames, classNames);
@@ -853,6 +858,7 @@ public final class IllegalTypeCheck extends AbstractCheck {
      * This property does not affect method calls nor method references nor record components.
      *
      * @param modifiers String contains modifiers.
+     * @since 6.3
      */
     public void setMemberModifiers(String modifiers) {
         memberModifiers = TokenUtil.asBitSet(modifiers.split(","));

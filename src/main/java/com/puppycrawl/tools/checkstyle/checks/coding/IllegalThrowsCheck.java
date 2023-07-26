@@ -180,6 +180,7 @@ public final class IllegalThrowsCheck extends AbstractCheck {
      *
      * @param classNames
      *            array of illegal exception classes
+     * @since 4.0
      */
     public void setIllegalClassNames(final String... classNames) {
         illegalClassNames.clear();
@@ -245,6 +246,7 @@ public final class IllegalThrowsCheck extends AbstractCheck {
      * Setter to specify names of methods to ignore.
      *
      * @param methodNames array of ignored method names
+     * @since 5.4
      */
     public void setIgnoredMethodNames(String... methodNames) {
         ignoredMethodNames.clear();
@@ -256,6 +258,7 @@ public final class IllegalThrowsCheck extends AbstractCheck {
      * (marked with {@code Override} or {@code java.lang.Override} annotation).
      *
      * @param ignoreOverriddenMethods Check's property.
+     * @since 6.4
      */
     public void setIgnoreOverriddenMethods(boolean ignoreOverriddenMethods) {
         this.ignoreOverriddenMethods = ignoreOverriddenMethods;

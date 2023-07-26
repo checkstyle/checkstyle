@@ -173,6 +173,7 @@ public class DefaultComesLastCheck extends AbstractCheck {
      * {@code case} if they are not last.
      *
      * @param newValue whether to ignore checking.
+     * @since 7.7
      */
     public void setSkipIfLastAndSharedWithCase(boolean newValue) {
         skipIfLastAndSharedWithCase = newValue;

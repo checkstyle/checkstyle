@@ -243,6 +243,7 @@ public class FallThroughCheck extends AbstractCheck {
      *
      * @param pattern
      *            The regular expression pattern.
+     * @since 4.0
      */
     public void setReliefPattern(Pattern pattern) {
         reliefPattern = pattern;
@@ -252,6 +253,7 @@ public class FallThroughCheck extends AbstractCheck {
      * Setter to control whether the last case group must be checked.
      *
      * @param value new value of the property.
+     * @since 4.0
      */
     public void setCheckLastCaseGroup(boolean value) {
         checkLastCaseGroup = value;

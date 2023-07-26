@@ -321,6 +321,7 @@ public class RequireThisCheck extends AbstractCheck {
      * Setter to control whether to check references to fields.
      *
      * @param checkFields should we check fields usage or not
+     * @since 3.4
      */
     public void setCheckFields(boolean checkFields) {
         this.checkFields = checkFields;
@@ -330,6 +331,7 @@ public class RequireThisCheck extends AbstractCheck {
      * Setter to control whether to check references to methods.
      *
      * @param checkMethods should we check methods usage or not
+     * @since 3.4
      */
     public void setCheckMethods(boolean checkMethods) {
         this.checkMethods = checkMethods;
@@ -339,6 +341,7 @@ public class RequireThisCheck extends AbstractCheck {
      * Setter to control whether to check only overlapping by variables or arguments.
      *
      * @param validateOnlyOverlapping should we check only overlapping by variables or arguments
+     * @since 6.17
      */
     public void setValidateOnlyOverlapping(boolean validateOnlyOverlapping) {
         this.validateOnlyOverlapping = validateOnlyOverlapping;
