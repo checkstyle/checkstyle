@@ -249,6 +249,7 @@ public class NoWhitespaceBeforeCheck
      *
      * @param allowLineBreaks whether whitespace should be
      *     flagged at line breaks.
+     * @since 3.0
      */
     public void setAllowLineBreaks(boolean allowLineBreaks) {
         this.allowLineBreaks = allowLineBreaks;

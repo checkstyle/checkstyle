@@ -183,6 +183,7 @@ public class SeparatorWrapCheck
      *
      * @param optionStr string to decode option from
      * @throws IllegalArgumentException if unable to decode
+     * @since 5.8
      */
     public void setOption(String optionStr) {
         option = WrapOption.valueOf(optionStr.trim().toUpperCase(Locale.ENGLISH));
