@@ -329,6 +329,7 @@ public class TranslationCheck extends AbstractFileSetCheck {
      * It helps the check to distinguish config and localization resources.
      *
      * @param baseName base name regexp.
+     * @since 6.17
      */
     public void setBaseName(Pattern baseName) {
         this.baseName = baseName;
@@ -338,6 +339,7 @@ public class TranslationCheck extends AbstractFileSetCheck {
      * Setter to specify language codes of required translations which must exist in project.
      *
      * @param translationCodes language codes.
+     * @since 6.11
      */
     public void setRequiredTranslations(String... translationCodes) {
         requiredTranslations = Arrays.stream(translationCodes).collect(Collectors.toSet());
