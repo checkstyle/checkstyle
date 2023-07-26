@@ -295,6 +295,7 @@ public class MethodLengthCheck extends AbstractCheck {
      * Setter to specify the maximum number of lines allowed.
      *
      * @param length the maximum length of a method.
+     * @since 3.0
      */
     public void setMax(int length) {
         max = length;
@@ -304,6 +305,7 @@ public class MethodLengthCheck extends AbstractCheck {
      * Setter to control whether to count empty lines and comments.
      *
      * @param countEmpty whether to count empty and comments.
+     * @since 3.2
      */
     public void setCountEmpty(boolean countEmpty) {
         this.countEmpty = countEmpty;
