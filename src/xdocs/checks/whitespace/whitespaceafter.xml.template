@@ -130,6 +130,7 @@
                  value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/whitespace/whitespaceafter/Example1.java"/>
           <param name="type" value="config"/>
         </macro>
+        <p id="Example1-code">Example:</p>
         <macro name="example">
           <param name="path"
                  value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/whitespace/whitespaceafter/Example1.java"/>
