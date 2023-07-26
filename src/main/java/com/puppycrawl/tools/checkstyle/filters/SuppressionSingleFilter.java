@@ -235,6 +235,7 @@ public class SuppressionSingleFilter extends AbstractAutomaticBean implements Fi
      * event.
      *
      * @param files regular expression for filtered file names
+     * @since 8.23
      */
     public void setFiles(Pattern files) {
         this.files = files;
@@ -245,6 +246,7 @@ public class SuppressionSingleFilter extends AbstractAutomaticBean implements Fi
      * audit event.
      *
      * @param checks the name of the check
+     * @since 8.23
      */
     public void setChecks(String checks) {
         this.checks = Pattern.compile(checks);
@@ -255,6 +257,7 @@ public class SuppressionSingleFilter extends AbstractAutomaticBean implements Fi
      * an audit event.
      *
      * @param message the message of the check
+     * @since 8.23
      */
     public void setMessage(Pattern message) {
         this.message = message;
@@ -265,6 +268,7 @@ public class SuppressionSingleFilter extends AbstractAutomaticBean implements Fi
      * event.
      *
      * @param id the ID of the check
+     * @since 8.23
      */
     public void setId(String id) {
         this.id = id;
@@ -275,6 +279,7 @@ public class SuppressionSingleFilter extends AbstractAutomaticBean implements Fi
      * range of integers denoted by integer-integer.
      *
      * @param lines the lines of the check
+     * @since 8.23
      */
     public void setLines(String lines) {
         this.lines = lines;
@@ -285,6 +290,7 @@ public class SuppressionSingleFilter extends AbstractAutomaticBean implements Fi
      * range of integers denoted by integer-integer.
      *
      * @param columns the columns of the check
+     * @since 8.23
      */
     public void setColumns(String columns) {
         this.columns = columns;
