@@ -726,6 +726,7 @@ public class HiddenFieldCheck
      * Setter to define the RegExp for names of variables and parameters to ignore.
      *
      * @param pattern a pattern.
+     * @since 3.2
      */
     public void setIgnoreFormat(Pattern pattern) {
         ignoreFormat = pattern;
@@ -736,6 +737,7 @@ public class HiddenFieldCheck
      *
      * @param ignoreSetter decide whether to ignore the parameter of
      *     a property setter method.
+     * @since 3.2
      */
     public void setIgnoreSetter(boolean ignoreSetter) {
         this.ignoreSetter = ignoreSetter;
@@ -750,6 +752,7 @@ public class HiddenFieldCheck
      *        in order to be recognized as setter method (otherwise
      *        already recognized as a setter) must return void.  Later is
      *        the default behavior.
+     * @since 6.3
      */
     public void setSetterCanReturnItsClass(
         boolean aSetterCanReturnItsClass) {
@@ -761,6 +764,7 @@ public class HiddenFieldCheck
      *
      * @param ignoreConstructorParameter decide whether to ignore
      *     constructor parameters.
+     * @since 3.2
      */
     public void setIgnoreConstructorParameter(
         boolean ignoreConstructorParameter) {
@@ -772,6 +776,7 @@ public class HiddenFieldCheck
      *
      * @param ignoreAbstractMethods decide whether to ignore
      *     parameters of abstract methods.
+     * @since 4.0
      */
     public void setIgnoreAbstractMethods(
         boolean ignoreAbstractMethods) {

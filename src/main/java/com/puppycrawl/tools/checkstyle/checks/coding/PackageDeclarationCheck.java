@@ -125,6 +125,7 @@ public final class PackageDeclarationCheck extends AbstractCheck {
      * Setter to control whether to check for directory and package name match.
      *
      * @param matchDirectoryStructure the new value.
+     * @since 7.6.1
      */
     public void setMatchDirectoryStructure(boolean matchDirectoryStructure) {
         this.matchDirectoryStructure = matchDirectoryStructure;

@@ -219,6 +219,7 @@ public class IllegalTokenTextCheck
      *
      * @param message custom message which should be used
      *                 to report about violations.
+     * @since 3.2
      */
     public void setMessage(String message) {
         this.message = Objects.requireNonNullElse(message, "");
@@ -228,6 +229,7 @@ public class IllegalTokenTextCheck
      * Setter to define the RegExp for illegal pattern.
      *
      * @param format a {@code String} value
+     * @since 3.2
      */
     public void setFormat(String format) {
         formatString = format;
@@ -238,6 +240,7 @@ public class IllegalTokenTextCheck
      * Setter to control whether to ignore case when matching.
      *
      * @param caseInsensitive true if the match is case-insensitive.
+     * @since 3.2
      */
     public void setIgnoreCase(boolean caseInsensitive) {
         ignoreCase = caseInsensitive;

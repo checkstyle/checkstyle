@@ -415,6 +415,7 @@ public class IllegalInstantiationCheck
      * Setter to specify fully qualified class names that should not be instantiated.
      *
      * @param names class names
+     * @since 3.0
      */
     public void setClasses(String... names) {
         classes = Arrays.stream(names).collect(Collectors.toSet());

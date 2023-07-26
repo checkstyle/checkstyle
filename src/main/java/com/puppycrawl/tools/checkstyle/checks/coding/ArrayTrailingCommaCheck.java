@@ -212,6 +212,7 @@ public class ArrayTrailingCommaCheck extends AbstractCheck {
      * Setter to control whether to always check for a trailing comma, even when an array is inline.
      *
      * @param alwaysDemandTrailingComma whether to always check for a trailing comma.
+     * @since 8.33
      */
     public void setAlwaysDemandTrailingComma(boolean alwaysDemandTrailingComma) {
         this.alwaysDemandTrailingComma = alwaysDemandTrailingComma;

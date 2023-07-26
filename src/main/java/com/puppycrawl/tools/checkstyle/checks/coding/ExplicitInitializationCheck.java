@@ -164,6 +164,7 @@ public class ExplicitInitializationCheck extends AbstractCheck {
      *
      * @param onlyObjectReferences whether only explicit initialization made to null
      *                             should be checked
+     * @since 7.8
      */
     public void setOnlyObjectReferences(boolean onlyObjectReferences) {
         this.onlyObjectReferences = onlyObjectReferences;
