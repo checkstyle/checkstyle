@@ -485,6 +485,16 @@
                value="'@noinspection' Javadoc tags should be accompanied by a
                      '@noinspectionreason' tag, explaining why we suppressed inspection."/>
     </module>
+    <module name="MatchXpath">
+      <property name="query"
+                value="//METHOD_DEF[./IDENT[starts-with(@text, 'set')]
+                and ./MODIFIERS/LITERAL_PUBLIC
+                and ./TYPE/LITERAL_VOID
+                and ./MODIFIERS/BLOCK_COMMENT_BEGIN
+                /COMMENT_CONTENT[not(contains(@text, '@since'))]]"/>
+      <message key="matchxpath.match"
+               value="All property setters of a module should contain a '@since' tag."/>
+    </module>
     <module name="MissingCtor">
       <!--
         we will not use that fanatic validation, extra code is not good
