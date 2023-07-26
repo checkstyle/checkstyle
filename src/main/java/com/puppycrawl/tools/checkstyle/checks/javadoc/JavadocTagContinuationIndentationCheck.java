@@ -154,6 +154,7 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
      * Setter to specify how many spaces to use for new indentation level.
      *
      * @param offset custom value.
+     * @since 6.0
      */
     public void setOffset(int offset) {
         this.offset = offset;

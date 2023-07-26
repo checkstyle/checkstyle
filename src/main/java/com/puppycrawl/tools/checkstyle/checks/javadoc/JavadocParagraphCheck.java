@@ -176,6 +176,7 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
      * immediately before the first word.
      *
      * @param value value to set.
+     * @since 6.9
      */
     public void setAllowNewlineParagraph(boolean value) {
         allowNewlineParagraph = value;
