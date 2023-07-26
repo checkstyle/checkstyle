@@ -525,6 +525,7 @@ public class SuppressionXpathFilter extends AbstractAutomaticBean implements
      * Setter to specify the location of the <em>suppressions XML document</em> file.
      *
      * @param fileName name of the suppressions file.
+     * @since 8.6
      */
     public void setFile(String fileName) {
         file = fileName;
@@ -537,6 +538,7 @@ public class SuppressionXpathFilter extends AbstractAutomaticBean implements
      * the filter accepts all audit events.
      *
      * @param optional tells if config file existence is optional.
+     * @since 8.6
      */
     public void setOptional(boolean optional) {
         this.optional = optional;
