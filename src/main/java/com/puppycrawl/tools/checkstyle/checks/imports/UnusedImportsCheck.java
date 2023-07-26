@@ -210,6 +210,7 @@ public class UnusedImportsCheck extends AbstractCheck {
      * Setter to control whether to process Javadoc comments.
      *
      * @param value Flag for processing Javadoc comments.
+     * @since 5.4
      */
     public void setProcessJavadoc(boolean value) {
         processJavadoc = value;

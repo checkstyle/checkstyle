@@ -329,6 +329,7 @@ public class IllegalImportCheck
      * @param from illegal packages
      * @noinspection WeakerAccess
      * @noinspectionreason WeakerAccess - we avoid 'protected' when possible
+     * @since 3.0
      */
     public final void setIllegalPkgs(String... from) {
         illegalPkgs = from.clone();
@@ -345,6 +346,7 @@ public class IllegalImportCheck
      * Note, all properties for match will be used.
      *
      * @param from illegal classes
+     * @since 7.8
      */
     public void setIllegalClasses(String... from) {
         illegalClasses = from.clone();
@@ -358,6 +360,7 @@ public class IllegalImportCheck
      * should be interpreted as regular expressions.
      *
      * @param regexp a {@code Boolean} value
+     * @since 7.8
      */
     public void setRegexp(boolean regexp) {
         this.regexp = regexp;

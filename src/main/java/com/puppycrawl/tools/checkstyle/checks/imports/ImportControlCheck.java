@@ -599,6 +599,7 @@ public class ImportControlCheck extends AbstractCheck implements ExternalResourc
      *
      * @param uri the uri of the file to load.
      * @throws IllegalArgumentException on error loading the file.
+     * @since 4.0
      */
     public void setFile(URI uri) {
         // Handle empty param
@@ -619,6 +620,7 @@ public class ImportControlCheck extends AbstractCheck implements ExternalResourc
      * against the full absolute file path.
      *
      * @param pattern the file path regex this check should apply to.
+     * @since 7.5
      */
     public void setPath(Pattern pattern) {
         path = pattern;
