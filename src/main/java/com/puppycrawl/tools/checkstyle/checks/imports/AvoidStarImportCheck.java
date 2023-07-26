@@ -238,6 +238,7 @@ public class AvoidStarImportCheck
      *
      * @param excludesParam package names/fully-qualifies class names
      *     where star imports are ok
+     * @since 3.2
      */
     public void setExcludes(String... excludesParam) {
         for (final String exclude : excludesParam) {
@@ -255,6 +256,7 @@ public class AvoidStarImportCheck
      * {@code import java.util.*;}.
      *
      * @param allow true to allow false to disallow
+     * @since 5.3
      */
     public void setAllowClassImports(boolean allow) {
         allowClassImports = allow;
@@ -265,6 +267,7 @@ public class AvoidStarImportCheck
      * {@code import static org.junit.Assert.*;}.
      *
      * @param allow true to allow false to disallow
+     * @since 5.3
      */
     public void setAllowStaticMemberImports(boolean allow) {
         allowStaticMemberImports = allow;
