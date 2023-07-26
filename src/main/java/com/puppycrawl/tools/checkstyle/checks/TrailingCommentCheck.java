@@ -234,6 +234,7 @@ public class TrailingCommentCheck extends AbstractCheck {
      * Setter to specify pattern for strings allowed before the comment.
      *
      * @param pattern a pattern
+     * @since 3.4
      */
     public final void setFormat(Pattern pattern) {
         format = pattern;
