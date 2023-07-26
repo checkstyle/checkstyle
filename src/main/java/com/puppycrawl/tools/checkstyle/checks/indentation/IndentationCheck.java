@@ -364,6 +364,7 @@ public class IndentationCheck extends AbstractCheck {
      * could be bigger on any value user would like.
      *
      * @param value user's value of forceStrictCondition.
+     * @since 6.3
      */
     public void setForceStrictCondition(boolean value) {
         forceStrictCondition = value;
@@ -373,6 +374,7 @@ public class IndentationCheck extends AbstractCheck {
      * Setter to specify how far new indentation level should be indented when on the next line.
      *
      * @param basicOffset   the number of tabs or spaces to indent
+     * @since 3.1
      */
     public void setBasicOffset(int basicOffset) {
         this.basicOffset = basicOffset;
@@ -391,6 +393,7 @@ public class IndentationCheck extends AbstractCheck {
      * Setter to specify how far a braces should be indented when on the next line.
      *
      * @param adjustmentAmount   the brace offset
+     * @since 3.1
      */
     public void setBraceAdjustment(int adjustmentAmount) {
         braceAdjustment = adjustmentAmount;
@@ -409,6 +412,7 @@ public class IndentationCheck extends AbstractCheck {
      * Setter to specify how far a case label should be indented when on next line.
      *
      * @param amount   the case indentation level
+     * @since 3.1
      */
     public void setCaseIndent(int amount) {
         caseIndent = amount;
@@ -427,6 +431,7 @@ public class IndentationCheck extends AbstractCheck {
      * Setter to specify how far a throws clause should be indented when on next line.
      *
      * @param throwsIndent the throws indentation level
+     * @since 5.7
      */
     public void setThrowsIndent(int throwsIndent) {
         this.throwsIndent = throwsIndent;
@@ -445,6 +450,7 @@ public class IndentationCheck extends AbstractCheck {
      * Setter to specify how far an array initialisation should be indented when on next line.
      *
      * @param arrayInitIndent the array initialisation indentation level
+     * @since 5.8
      */
     public void setArrayInitIndent(int arrayInitIndent) {
         this.arrayInitIndent = arrayInitIndent;
@@ -472,6 +478,7 @@ public class IndentationCheck extends AbstractCheck {
      * Setter to specify how far continuation line should be indented when line-wrapping is present.
      *
      * @param lineWrappingIndentation the line-wrapping indentation level
+     * @since 5.9
      */
     public void setLineWrappingIndentation(int lineWrappingIndentation) {
         this.lineWrappingIndentation = lineWrappingIndentation;
