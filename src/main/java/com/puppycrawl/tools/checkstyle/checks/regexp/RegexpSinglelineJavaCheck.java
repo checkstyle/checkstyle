@@ -270,6 +270,7 @@ public class RegexpSinglelineJavaCheck extends AbstractCheck {
      * Setter to specify the format of the regular expression to match.
      *
      * @param format the format of the regular expression to match.
+     * @since 5.0
      */
     public void setFormat(String format) {
         this.format = format;
@@ -280,6 +281,7 @@ public class RegexpSinglelineJavaCheck extends AbstractCheck {
      * if empty then default (hard-coded) message is used.
      *
      * @param message the message to report for a match.
+     * @since 6.0
      */
     public void setMessage(String message) {
         this.message = message;
@@ -289,6 +291,7 @@ public class RegexpSinglelineJavaCheck extends AbstractCheck {
      * Setter to specify the minimum number of matches required in each file.
      *
      * @param minimum the minimum number of matches required in each file.
+     * @since 5.0
      */
     public void setMinimum(int minimum) {
         this.minimum = minimum;
@@ -298,6 +301,7 @@ public class RegexpSinglelineJavaCheck extends AbstractCheck {
      * Setter to specify the maximum number of matches required in each file.
      *
      * @param maximum the maximum number of matches required in each file.
+     * @since 5.0
      */
     public void setMaximum(int maximum) {
         this.maximum = maximum;
@@ -307,6 +311,7 @@ public class RegexpSinglelineJavaCheck extends AbstractCheck {
      * Setter to control whether to ignore case when searching.
      *
      * @param ignoreCase whether to ignore case when searching.
+     * @since 5.0
      */
     public void setIgnoreCase(boolean ignoreCase) {
         this.ignoreCase = ignoreCase;
@@ -316,6 +321,7 @@ public class RegexpSinglelineJavaCheck extends AbstractCheck {
      * Setter to control whether to ignore text in comments when searching.
      *
      * @param ignore whether to ignore text in comments when searching.
+     * @since 5.0
      */
     public void setIgnoreComments(boolean ignore) {
         ignoreComments = ignore;
