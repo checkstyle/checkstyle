@@ -284,6 +284,7 @@ public class NeedBracesCheck extends AbstractCheck {
      * Setter to allow single-line statements without braces.
      *
      * @param allowSingleLineStatement Check's option for skipping single-line statements
+     * @since 6.5
      */
     public void setAllowSingleLineStatement(boolean allowSingleLineStatement) {
         this.allowSingleLineStatement = allowSingleLineStatement;
@@ -293,6 +294,7 @@ public class NeedBracesCheck extends AbstractCheck {
      * Setter to allow loops with empty bodies.
      *
      * @param allowEmptyLoopBody Check's option for allowing loops with empty body.
+     * @since 6.12.1
      */
     public void setAllowEmptyLoopBody(boolean allowEmptyLoopBody) {
         this.allowEmptyLoopBody = allowEmptyLoopBody;

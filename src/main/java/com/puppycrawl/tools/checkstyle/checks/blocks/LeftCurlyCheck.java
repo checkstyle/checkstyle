@@ -260,6 +260,7 @@ public class LeftCurlyCheck
      *
      * @param optionStr string to decode option from
      * @throws IllegalArgumentException if unable to decode
+     * @since 3.0
      */
     public void setOption(String optionStr) {
         option = LeftCurlyOption.valueOf(optionStr.trim().toUpperCase(Locale.ENGLISH));
@@ -269,6 +270,7 @@ public class LeftCurlyCheck
      * Setter to allow to ignore enums when left curly brace policy is EOL.
      *
      * @param ignoreEnums check's option for ignoring enums.
+     * @since 6.9
      */
     public void setIgnoreEnums(boolean ignoreEnums) {
         this.ignoreEnums = ignoreEnums;
