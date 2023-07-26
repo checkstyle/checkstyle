@@ -132,6 +132,7 @@
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
+        <p id="Example1-code">Example:</p>
         <source>
 class Example1 {
   void example() throws Exception {
