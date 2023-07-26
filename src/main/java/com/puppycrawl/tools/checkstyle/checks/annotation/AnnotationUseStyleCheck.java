@@ -414,6 +414,7 @@ public final class AnnotationUseStyleCheck extends AbstractCheck {
      * Setter to define the annotation element styles.
      *
      * @param style string representation
+     * @since 5.0
      */
     public void setElementStyle(final String style) {
         elementStyle = getOption(ElementStyleOption.class, style);
@@ -423,6 +424,7 @@ public final class AnnotationUseStyleCheck extends AbstractCheck {
      * Setter to define the policy for trailing comma in arrays.
      *
      * @param comma string representation
+     * @since 5.0
      */
     public void setTrailingArrayComma(final String comma) {
         trailingArrayComma = getOption(TrailingArrayCommaOption.class, comma);
@@ -432,6 +434,7 @@ public final class AnnotationUseStyleCheck extends AbstractCheck {
      * Setter to define the policy for ending parenthesis.
      *
      * @param parens string representation
+     * @since 5.0
      */
     public void setClosingParens(final String parens) {
         closingParens = getOption(ClosingParensOption.class, parens);

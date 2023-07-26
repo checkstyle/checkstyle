@@ -260,6 +260,7 @@ public class AnnotationLocationCheck extends AbstractCheck {
      * target element.
      *
      * @param allow User's value of allowSamelineSingleParameterlessAnnotation.
+     * @since 6.1
      */
     public final void setAllowSamelineSingleParameterlessAnnotation(boolean allow) {
         allowSamelineSingleParameterlessAnnotation = allow;
@@ -270,6 +271,7 @@ public class AnnotationLocationCheck extends AbstractCheck {
      * target element.
      *
      * @param allow User's value of allowSamelineParameterizedAnnotation.
+     * @since 6.4
      */
     public final void setAllowSamelineParameterizedAnnotation(boolean allow) {
         allowSamelineParameterizedAnnotation = allow;
@@ -280,6 +282,7 @@ public class AnnotationLocationCheck extends AbstractCheck {
      * target element.
      *
      * @param allow User's value of allowSamelineMultipleAnnotations.
+     * @since 6.0
      */
     public final void setAllowSamelineMultipleAnnotations(boolean allow) {
         allowSamelineMultipleAnnotations = allow;
