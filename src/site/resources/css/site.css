@@ -42,7 +42,7 @@ h4 {
   float: right;
 }
 
-h2:hover .anchor, h3:hover .anchor {
+h2:hover .anchor, h3:hover .anchor, p[id^="Example"]:hover .anchor {
   visibility: visible;
 }
 
