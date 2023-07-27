@@ -481,27 +481,6 @@ public class CommonUtilTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testIsIntValidString() {
-        assertWithMessage("Should return true when string is null")
-                .that(CommonUtil.isInt("42"))
-                .isTrue();
-    }
-
-    @Test
-    public void testIsIntInvalidString() {
-        assertWithMessage("Should return false when object passed is not integer")
-                .that(CommonUtil.isInt("foo"))
-                .isFalse();
-    }
-
-    @Test
-    public void testIsIntNull() {
-        assertWithMessage("Should return false when null is passed")
-                .that(CommonUtil.isInt(null))
-                .isFalse();
-    }
-
-    @Test
     public void testGetUriByFilenameFindsAbsoluteResourceOnClasspath() throws Exception {
         final String filename =
             "/" + getPackageLocation() + "/InputCommonUtilTest_empty_checks.xml";
