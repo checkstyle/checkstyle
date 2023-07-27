@@ -24,12 +24,16 @@ import static com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck.MS
 import static com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck.MSG_SEPARATED_IN_GROUP;
 import static com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck.MSG_SEPARATION;
 
+import java.io.File;
+import java.util.Optional;
+
 import org.antlr.v4.runtime.CommonToken;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
+import com.puppycrawl.tools.checkstyle.JavaParser;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -781,5 +785,32 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
                 getPath("InputImportOrderTestTrimInOption.java"),
                 expected);
+    }
+
+    /**
+     * Finding the appropriate input for testing the "lastImportStatic"
+     * field is challenging. Removing it from the reset process might
+     * create an opportunity for the module to enter an incorrect state,
+     * leading to hard-to-detect and unstable violations that will affect our users.
+     *
+     * @throws Exception when code tested throws exception
+     */
+    @Test
+    public void testClearState() throws Exception {
+        final ImportOrderCheck check = new ImportOrderCheck();
+        final DetailAST root = JavaParser.parseFile(
+                new File(getPath("InputImportOrderBeginTree.java")),
+                JavaParser.Options.WITHOUT_COMMENTS);
+        final Optional<DetailAST> staticImport = TestUtil.findTokenInAstByPredicate(root,
+            ast -> ast.getType() == TokenTypes.STATIC_IMPORT);
+
+        assertWithMessage("Ast should contain STATIC_IMPORT")
+                .that(staticImport.isPresent())
+                .isTrue();
+        assertWithMessage("State is not cleared on beginTree")
+                .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check, staticImport.get(),
+                        "lastImportStatic", lastImportStatic -> !((boolean) lastImportStatic)))
+                .isTrue();
+
     }
 }
