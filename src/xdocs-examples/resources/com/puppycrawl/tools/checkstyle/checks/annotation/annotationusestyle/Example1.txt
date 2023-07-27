@@ -1,0 +1,24 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="AnnotationUseStyle"/>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+@SuppressWarnings("unchecked") // OK
+@Deprecated // OK
+@SomeArrays({"unchecked","unused"}) // OK
+public class TestOne
+{
+
+}
+
+@SuppressWarnings(value={"unchecked"}) // Violation - parameter 'value' shouldn't be used
+@Deprecated() // Violation - cannot have a closing parenthesis
+@SomeArrays(value={"unchecked","unused",}) // Violation - cannot have a trailing array comma
+class TestTwo {
+
+}
+// xdoc section -- end
