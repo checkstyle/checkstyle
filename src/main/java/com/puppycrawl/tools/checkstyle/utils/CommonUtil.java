@@ -579,7 +579,7 @@ public final class CommonUtil {
      * @return true when the given string contains valid name.
      */
     public static boolean isName(String str) {
-        boolean isName = !str.isEmpty();
+        boolean isName = true;
 
         final String[] identifiers = str.split("\\.", -1);
         for (int i = 0; isName && i < identifiers.length; i++) {
