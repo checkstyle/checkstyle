@@ -1,0 +1,33 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="MissingOverride"/>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+class Test extends SuperClass {
+
+    /** {@inheritDoc} */
+    @Override
+    public void test1() { // OK
+
+    }
+
+    /** {@inheritDoc} */
+    public void test2() { // violation, should be annotated with @Override
+
+    }
+
+    /** {@inheritDoc} */
+    private void test3() { // violation, using the @inheritDoc tag on private method
+
+    }
+
+    /** {@inheritDoc} */
+    public static void test4() { // violation, using the @inheritDoc tag on static method
+
+    }
+}
+// xdoc section -- end
