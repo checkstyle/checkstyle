@@ -237,15 +237,6 @@
   <mutation unstable="false">
     <sourceFile>CommonUtil.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.utils.CommonUtil</mutatedClass>
-    <mutatedMethod>isInt</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
-    <description>removed conditional - replaced equality check with false</description>
-    <lineContent>if (str == null) {</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>CommonUtil.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.utils.CommonUtil</mutatedClass>
     <mutatedMethod>isName</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
     <description>removed call to java/lang/String::isEmpty</description>
