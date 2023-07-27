@@ -621,29 +621,6 @@ public final class CommonUtil {
     }
 
     /**
-     * Checks whether the string contains an integer value.
-     *
-     * @param str a string to check
-     * @return true if the given string is an integer, false otherwise.
-     */
-    public static boolean isInt(String str) {
-        boolean isInt;
-        if (str == null) {
-            isInt = false;
-        }
-        else {
-            try {
-                Integer.parseInt(str);
-                isInt = true;
-            }
-            catch (NumberFormatException ignored) {
-                isInt = false;
-            }
-        }
-        return isInt;
-    }
-
-    /**
      * Converts the Unicode code point at index {@code index} to it's UTF-16
      * representation, then checks if the character is whitespace. Note that the given
      * index {@code index} should correspond to the location of the character
