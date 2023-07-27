@@ -1,0 +1,29 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="LeftCurly">
+      <property name="option" value="nl"/>
+      <property name="tokens" value="CLASS_DEF,INTERFACE_DEF"/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+class Test
+{ // OK
+  private interface TestInterface
+  { // OK
+  }
+
+  private
+  class
+  MyClass { // Violation - '{' should be on a new line
+  }
+
+  enum Colors {RED, // OK
+    BLUE,
+    GREEN;
+  }
+}
+// xdoc section -- end
