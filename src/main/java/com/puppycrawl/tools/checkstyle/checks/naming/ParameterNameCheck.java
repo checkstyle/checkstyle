@@ -198,6 +198,7 @@ public class ParameterNameCheck extends AbstractNameCheck {
      * Setter to allows to skip methods with Override annotation from validation.
      *
      * @param ignoreOverridden Flag for skipping methods with Override annotation.
+     * @since 6.12.1
      */
     public void setIgnoreOverridden(boolean ignoreOverridden) {
         this.ignoreOverridden = ignoreOverridden;
@@ -207,6 +208,7 @@ public class ParameterNameCheck extends AbstractNameCheck {
      * Setter to access modifiers of methods where parameters are checked.
      *
      * @param accessModifiers access modifiers of methods which should be checked.
+     * @since 7.5
      */
     public void setAccessModifiers(AccessModifierOption... accessModifiers) {
         this.accessModifiers =
