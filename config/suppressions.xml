@@ -179,4 +179,10 @@
   <!-- DetailAST API requires large number of methods -->
   <suppress checks="MethodCount"
             files="[\\/]src[\\/]main[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]DetailAstImpl.java"/>
+  <!-- setFileContents is used within the class, it's not a parameter -->
+  <suppress id="settersHaveSinceTag"
+            files="SuppressionCommentFilter|SuppressWithNearbyCommentFilter"/>
+  <!-- the filter is not part of the documentation -->
+  <suppress id="settersHaveSinceTag"
+            files="[\\/]src[\\/]main[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]XpathFileGeneratorAstFilter.java"/>
 </suppressions>
