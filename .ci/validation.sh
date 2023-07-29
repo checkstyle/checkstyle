@@ -88,9 +88,14 @@ eclipse-static-analysis)
   ;;
 
 nondex)
-  # Below we exclude test that fails due to picocli library usage
-  mvn -e --no-transfer-progress --fail-never clean nondex:nondex -DargLine='-Xms1024m -Xmx2048m' \
-    -Dtest=!JavadocPropertiesGeneratorTest#testNonExistentArgument
+  # Exclude test that fails due to picocli library usage
+  SKIPPED_TESTS='!JavadocPropertiesGeneratorTest#testNonExistentArgument,'
+  # Exclude test that fail due to stackoverflow error
+  SKIPPED_TESTS+='!SingleSpaceSeparatorCheckTest#testNoStackoverflowError'
+  mvn -e --no-transfer-progress \
+    --fail-never clean nondex:nondex -DargLine='-Xms1024m -Xmx2048m' \
+    -Dtest="$SKIPPED_TESTS"
+
   mkdir -p .ci-temp
   grep -RlE 'td class=.x' .nondex/ | cat > .ci-temp/output.txt
   RESULT=$(cat .ci-temp/output.txt | wc -c)
