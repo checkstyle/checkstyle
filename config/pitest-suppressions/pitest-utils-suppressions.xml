@@ -315,14 +315,14 @@
     <lineContent>for (DetailAST token = aMods.getFirstChild(); token != null &amp;&amp; result == null;</lineContent>
   </mutation>
 
-  <mutation unstable="false">
-    <sourceFile>ScopeUtil.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.utils.ScopeUtil</mutatedClass>
-    <mutatedMethod>getSurroundingScope</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
-    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getParent with receiver</description>
-    <lineContent>for (DetailAST token = node.getParent();</lineContent>
-  </mutation>
+
+
+
+
+
+
+
+
 
   <mutation unstable="false">
     <sourceFile>ScopeUtil.java</sourceFile>
