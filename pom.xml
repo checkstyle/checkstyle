@@ -863,6 +863,8 @@
                     <!-- until https://github.com/checkstyle/checkstyle/issues/13393 -->
                     <exclude>com.puppycrawl.tools.checkstyle.site.XdocsTemplateParser</exclude>
                     <exclude>com.puppycrawl.tools.checkstyle.site.ExampleMacro</exclude>
+                    <exclude>com.puppycrawl.tools.checkstyle.site.ViolationMessagesMacro</exclude>
+                    <exclude>com.puppycrawl.tools.checkstyle.site.SiteUtil</exclude>
                     <!-- Parser related classes -->
                     <exclude>
                       com.puppycrawl.tools.checkstyle.grammar.java.JavaLanguageParser*
