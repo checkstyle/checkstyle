@@ -443,6 +443,7 @@ public class SuppressionXpathSingleFilter extends AbstractAutomaticBean implemen
      * associated with an audit event.
      *
      * @param files the name of the file
+     * @since 8.18
      */
     public void setFiles(String files) {
         if (files == null) {
@@ -458,6 +459,7 @@ public class SuppressionXpathSingleFilter extends AbstractAutomaticBean implemen
      * associated with an audit event.
      *
      * @param checks the name of the check
+     * @since 8.18
      */
     public void setChecks(String checks) {
         if (checks == null) {
@@ -473,6 +475,7 @@ public class SuppressionXpathSingleFilter extends AbstractAutomaticBean implemen
      * the check associated with an audit event.
      *
      * @param message the message of the check
+     * @since 8.18
      */
     public void setMessage(String message) {
         if (message == null) {
@@ -488,6 +491,7 @@ public class SuppressionXpathSingleFilter extends AbstractAutomaticBean implemen
      * with an audit event.
      *
      * @param id the ID of the check
+     * @since 8.18
      */
     public void setId(String id) {
         this.id = id;
@@ -497,6 +501,7 @@ public class SuppressionXpathSingleFilter extends AbstractAutomaticBean implemen
      * Setter to define a string xpath query.
      *
      * @param query the xpath query
+     * @since 8.18
      */
     public void setQuery(String query) {
         this.query = query;
