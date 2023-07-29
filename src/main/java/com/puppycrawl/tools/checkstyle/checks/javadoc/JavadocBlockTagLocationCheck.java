@@ -195,6 +195,7 @@ public class JavadocBlockTagLocationCheck extends AbstractJavadocCheck {
      * Setter to specify the javadoc tags to process.
      *
      * @param values user's values.
+     * @since 8.24
      */
     public final void setTags(String... values) {
         tags = Arrays.stream(values).collect(Collectors.toSet());
