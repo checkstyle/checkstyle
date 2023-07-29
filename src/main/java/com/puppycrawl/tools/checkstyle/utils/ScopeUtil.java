@@ -315,22 +315,28 @@ public final class ScopeUtil {
      * @return whether aAST is a local variable definition.
      */
     public static boolean isLocalVariableDef(DetailAST node) {
-        boolean localVariableDef = false;
+        final boolean localVariableDef;
         // variable declaration?
         if (node.getType() == TokenTypes.VARIABLE_DEF) {
             final DetailAST parent = node.getParent();
             localVariableDef = TokenUtil.isOfType(parent, TokenTypes.SLIST,
                                 TokenTypes.FOR_INIT, TokenTypes.FOR_EACH_CLAUSE);
         }
+
+        else if (node.getType() == TokenTypes.RESOURCE) {
+            localVariableDef = node.getChildCount() > 1;
+        }
+
         // catch parameter?
-        if (node.getType() == TokenTypes.PARAMETER_DEF) {
+        else if (node.getType() == TokenTypes.PARAMETER_DEF) {
             final DetailAST parent = node.getParent();
             localVariableDef = parent.getType() == TokenTypes.LITERAL_CATCH;
         }
 
-        if (node.getType() == TokenTypes.RESOURCE) {
-            localVariableDef = node.getChildCount() > 1;
+        else {
+            localVariableDef = false;
         }
+
         return localVariableDef;
     }
 
