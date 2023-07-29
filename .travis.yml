@@ -37,6 +37,9 @@ jobs:
 
 before_script:
   - |
+    echo "TRAVIS_CPU_ARCH=$TRAVIS_CPU_ARCH"
+    echo"TRAVIS_JDK_VERSION=$TRAVIS_JDK_VERSION"
+    echo "JAVA_HOME=$JAVA_HOME"
     if [[ $TRAVIS_CPU_ARCH == 'ppc64le' ]]; then
         export JAVA_HOME=/usr/lib/jvm/adoptopenjdk-11-hotspot-ppc64el
         export PATH=$JAVA_HOME/bin:$PATH
