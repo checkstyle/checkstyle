@@ -116,7 +116,8 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
     // We skip validation of examples section on modules that have this section generated
     // until https://github.com/checkstyle/checkstyle/issues/13429
     private static final Set<String> MODULES_EXAMPLES_TO_SKIP = Set.of(
-        "WhitespaceAfter"
+        "WhitespaceAfter",
+        "InnerTypeLast"
     );
 
     private static final List<List<Node>> CHECK_PROPERTIES = new ArrayList<>();
