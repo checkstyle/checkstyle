@@ -163,7 +163,6 @@ Cycle detected: Slice api -> \
     - Method <com.puppycrawl.tools.checkstyle.utils.CheckUtil.isElseIf(com.puppycrawl.tools.checkstyle.api.DetailAST)> calls method <com.puppycrawl.tools.checkstyle.api.DetailAST.getParent()> in (CheckUtil.java:122)\
     - Method <com.puppycrawl.tools.checkstyle.utils.CheckUtil.isElseIf(com.puppycrawl.tools.checkstyle.api.DetailAST)> calls method <com.puppycrawl.tools.checkstyle.api.DetailAST.getType()> in (CheckUtil.java:124)\
     - Method <com.puppycrawl.tools.checkstyle.utils.ModuleReflectionUtil.isFilterModule(java.lang.Class)> references class object <com.puppycrawl.tools.checkstyle.api.Filter> in (ModuleReflectionUtil.java:130)\
-    - Method <com.puppycrawl.tools.checkstyle.utils.ScopeUtil.getSurroundingScope(com.puppycrawl.tools.checkstyle.api.DetailAST)> calls method <com.puppycrawl.tools.checkstyle.api.DetailAST.getParent()> in (ScopeUtil.java:134)\
     - Method <com.puppycrawl.tools.checkstyle.utils.CheckUtil.isElse(com.puppycrawl.tools.checkstyle.api.DetailAST)> calls method <com.puppycrawl.tools.checkstyle.api.DetailAST.getType()> in (CheckUtil.java:135)\
     - Method <com.puppycrawl.tools.checkstyle.utils.ScopeUtil.getSurroundingScope(com.puppycrawl.tools.checkstyle.api.DetailAST)> calls method <com.puppycrawl.tools.checkstyle.api.DetailAST.getParent()> in (ScopeUtil.java:136)\
     - Method <com.puppycrawl.tools.checkstyle.utils.ScopeUtil.getSurroundingScope(com.puppycrawl.tools.checkstyle.api.DetailAST)> calls method <com.puppycrawl.tools.checkstyle.api.DetailAST.getType()> in (ScopeUtil.java:137)\
