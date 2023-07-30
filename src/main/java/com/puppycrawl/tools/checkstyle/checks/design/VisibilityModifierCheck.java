@@ -830,7 +830,6 @@ public class VisibilityModifierCheck
      * in consideration.
      *
      * @param annotationNames array of ignore annotations canonical names.
-     * @since 6.5
      */
     public void setIgnoreAnnotationCanonicalNames(String... annotationNames) {
         ignoreAnnotationCanonicalNames = Set.of(annotationNames);
@@ -840,7 +839,6 @@ public class VisibilityModifierCheck
      * Setter to control whether protected members are allowed.
      *
      * @param protectedAllowed whether protected members are allowed
-     * @since 3.0
      */
     public void setProtectedAllowed(boolean protectedAllowed) {
         this.protectedAllowed = protectedAllowed;
@@ -850,7 +848,6 @@ public class VisibilityModifierCheck
      * Setter to control whether package visible members are allowed.
      *
      * @param packageAllowed whether package visible members are allowed
-     * @since 3.0
      */
     public void setPackageAllowed(boolean packageAllowed) {
         this.packageAllowed = packageAllowed;
@@ -861,7 +858,6 @@ public class VisibilityModifierCheck
      *
      * @param pattern
      *        pattern for public members to ignore.
-     * @since 3.0
      */
     public void setPublicMemberPattern(Pattern pattern) {
         publicMemberPattern = pattern;
@@ -871,7 +867,6 @@ public class VisibilityModifierCheck
      * Setter to allow immutable fields to be declared as public if defined in final class.
      *
      * @param allow user's value.
-     * @since 6.4
      */
     public void setAllowPublicImmutableFields(boolean allow) {
         allowPublicImmutableFields = allow;
@@ -881,7 +876,6 @@ public class VisibilityModifierCheck
      * Setter to allow final fields to be declared as public.
      *
      * @param allow user's value.
-     * @since 7.0
      */
     public void setAllowPublicFinalFields(boolean allow) {
         allowPublicFinalFields = allow;
@@ -891,7 +885,6 @@ public class VisibilityModifierCheck
      * Setter to specify immutable classes canonical names.
      *
      * @param classNames array of immutable types canonical names.
-     * @since 6.4.1
      */
     public void setImmutableClassCanonicalNames(String... classNames) {
         immutableClassCanonicalNames = Set.of(classNames);

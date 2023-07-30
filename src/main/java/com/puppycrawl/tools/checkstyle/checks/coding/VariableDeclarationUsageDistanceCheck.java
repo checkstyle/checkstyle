@@ -342,7 +342,6 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
      * @param allowedDistance
      *        Allowed distance between declaration of variable and its first
      *        usage.
-     * @since 5.8
      */
     public void setAllowedDistance(int allowedDistance) {
         this.allowedDistance = allowedDistance;
@@ -352,7 +351,6 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
      * Setter to define RegExp to ignore distance calculation for variables listed in this pattern.
      *
      * @param pattern a pattern.
-     * @since 5.8
      */
     public void setIgnoreVariablePattern(Pattern pattern) {
         ignoreVariablePattern = pattern;
@@ -365,7 +363,6 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
      * @param validateBetweenScopes
      *        Defines if allow to calculate distance between declaration of
      *        variable and its first usage in different scopes or not.
-     * @since 5.8
      */
     public void setValidateBetweenScopes(boolean validateBetweenScopes) {
         this.validateBetweenScopes = validateBetweenScopes;
@@ -376,7 +373,6 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
      *
      * @param ignoreFinal
      *        Defines if ignore variables with 'final' modifier or not.
-     * @since 5.8
      */
     public void setIgnoreFinal(boolean ignoreFinal) {
         this.ignoreFinal = ignoreFinal;

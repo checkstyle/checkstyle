@@ -174,7 +174,6 @@ public final class ModifiedControlVariableCheck extends AbstractCheck {
      * enhanced for-loop</a> variable.
      *
      * @param skipEnhancedForLoopVariable whether to skip enhanced for-loop variable
-     * @since 6.8
      */
     public void setSkipEnhancedForLoopVariable(boolean skipEnhancedForLoopVariable) {
         this.skipEnhancedForLoopVariable = skipEnhancedForLoopVariable;

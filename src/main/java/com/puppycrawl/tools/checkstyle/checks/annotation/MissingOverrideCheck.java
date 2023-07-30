@@ -197,7 +197,6 @@ public final class MissingOverrideCheck extends AbstractCheck {
      * Setter to enable java 5 compatibility mode.
      *
      * @param compatibility compatibility or not
-     * @since 5.0
      */
     public void setJavaFiveCompatibility(final boolean compatibility) {
         javaFiveCompatibility = compatibility;

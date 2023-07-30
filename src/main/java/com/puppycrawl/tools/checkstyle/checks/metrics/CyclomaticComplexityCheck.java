@@ -271,7 +271,6 @@ public class CyclomaticComplexityCheck
      *
      * @param switchBlockAsSingleDecisionPoint whether to treat the whole switch
      *                                          block as a single decision point.
-     * @since 6.11
      */
     public void setSwitchBlockAsSingleDecisionPoint(boolean switchBlockAsSingleDecisionPoint) {
         this.switchBlockAsSingleDecisionPoint = switchBlockAsSingleDecisionPoint;
@@ -281,7 +280,6 @@ public class CyclomaticComplexityCheck
      * Setter to specify the maximum threshold allowed.
      *
      * @param max the maximum threshold
-     * @since 3.2
      */
     public final void setMax(int max) {
         this.max = max;

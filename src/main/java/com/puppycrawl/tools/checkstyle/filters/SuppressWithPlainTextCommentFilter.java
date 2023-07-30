@@ -349,7 +349,6 @@ public class SuppressWithPlainTextCommentFilter extends AbstractAutomaticBean im
      * Setter to specify comment pattern to trigger filter to begin suppression.
      *
      * @param pattern off comment format pattern.
-     * @since 8.6
      */
     public final void setOffCommentFormat(Pattern pattern) {
         offCommentFormat = pattern;
@@ -359,7 +358,6 @@ public class SuppressWithPlainTextCommentFilter extends AbstractAutomaticBean im
      * Setter to specify comment pattern to trigger filter to end suppression.
      *
      * @param pattern  on comment format pattern.
-     * @since 8.6
      */
     public final void setOnCommentFormat(Pattern pattern) {
         onCommentFormat = pattern;
@@ -369,7 +367,6 @@ public class SuppressWithPlainTextCommentFilter extends AbstractAutomaticBean im
      * Setter to specify check pattern to suppress.
      *
      * @param format pattern for check format.
-     * @since 8.6
      */
     public final void setCheckFormat(String format) {
         checkFormat = format;
@@ -379,7 +376,6 @@ public class SuppressWithPlainTextCommentFilter extends AbstractAutomaticBean im
      * Setter to specify message pattern to suppress.
      *
      * @param format pattern for message format.
-     * @since 8.6
      */
     public final void setMessageFormat(String format) {
         messageFormat = format;
@@ -389,7 +385,6 @@ public class SuppressWithPlainTextCommentFilter extends AbstractAutomaticBean im
      * Setter to specify check ID pattern to suppress.
      *
      * @param format pattern for check ID format
-     * @since 8.24
      */
     public final void setIdFormat(String format) {
         idFormat = format;

@@ -48,6 +48,7 @@ public class FollowingIterator implements AxisIterator {
     public FollowingIterator(NodeInfo start) {
         ancestorEnum = start.iterateAxis(AxisInfo.ANCESTOR);
         siblingEnum = start.iterateAxis(AxisInfo.FOLLOWING_SIBLING);
+        descendantEnum = null;
     }
 
     /**

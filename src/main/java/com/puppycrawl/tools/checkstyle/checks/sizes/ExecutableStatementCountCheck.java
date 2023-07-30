@@ -148,7 +148,6 @@ public final class ExecutableStatementCountCheck
      * Setter to specify the maximum threshold allowed.
      *
      * @param max the maximum threshold.
-     * @since 3.2
      */
     public void setMax(int max) {
         this.max = max;

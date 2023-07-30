@@ -297,7 +297,6 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
      * Setter to configure annotations that allow missed documentation.
      *
      * @param userAnnotations user's value.
-     * @since 8.21
      */
     public void setAllowedAnnotations(String... userAnnotations) {
         allowedAnnotations = Set.of(userAnnotations);
@@ -307,7 +306,6 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
      * Setter to ignore method whose names are matching specified regex.
      *
      * @param pattern a pattern.
-     * @since 8.21
      */
     public void setIgnoreMethodNamesRegex(Pattern pattern) {
         ignoreMethodNamesRegex = pattern;
@@ -317,7 +315,6 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
      * Setter to control the minimal amount of lines in method to allow no documentation.
      *
      * @param value user's value.
-     * @since 8.21
      */
     public void setMinLineCount(int value) {
         minLineCount = value;
@@ -328,7 +325,6 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
      * (setters and getters).
      *
      * @param flag a {@code Boolean} value
-     * @since 8.21
      */
     public void setAllowMissingPropertyJavadoc(final boolean flag) {
         allowMissingPropertyJavadoc = flag;
@@ -338,7 +334,6 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
      * Setter to specify the visibility scope where Javadoc comments are checked.
      *
      * @param scope a scope.
-     * @since 8.21
      */
     public void setScope(Scope scope) {
         this.scope = scope;
@@ -348,7 +343,6 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
      * Setter to specify the visibility scope where Javadoc comments are not checked.
      *
      * @param excludeScope a scope.
-     * @since 8.21
      */
     public void setExcludeScope(Scope excludeScope) {
         this.excludeScope = excludeScope;

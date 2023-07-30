@@ -161,7 +161,6 @@ public class UncommentedMainCheck
      * to have a {@code main} method.
      *
      * @param excludedClasses a pattern
-     * @since 3.2
      */
     public void setExcludedClasses(Pattern excludedClasses) {
         this.excludedClasses = excludedClasses;

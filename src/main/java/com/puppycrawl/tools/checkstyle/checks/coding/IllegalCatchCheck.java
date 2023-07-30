@@ -163,7 +163,6 @@ public final class IllegalCatchCheck extends AbstractCheck {
      *
      * @param classNames
      *            array of illegal exception classes
-     * @since 3.2
      */
     public void setIllegalClassNames(final String... classNames) {
         illegalClassNames.clear();

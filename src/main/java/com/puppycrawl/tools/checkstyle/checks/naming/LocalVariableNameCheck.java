@@ -185,7 +185,6 @@ public class LocalVariableNameCheck
      * in FOR loop if one char variable name is prohibited by {@code format} regexp.
      *
      * @param allow Flag for allowing or not one character name in FOR loop.
-     * @since 5.8
      */
     public final void setAllowOneCharVarInForLoop(boolean allow) {
         allowOneCharVarInForLoop = allow;

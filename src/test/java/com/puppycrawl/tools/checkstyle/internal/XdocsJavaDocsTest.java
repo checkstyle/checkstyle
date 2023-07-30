@@ -113,13 +113,6 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
             "MultipleStringLiterals - ignoreOccurrenceContext",
         }).collect(Collectors.toSet()));
 
-    // We skip validation of examples section on modules that have this section generated
-    // until https://github.com/checkstyle/checkstyle/issues/13429
-    private static final Set<String> MODULES_EXAMPLES_TO_SKIP = Set.of(
-        "WhitespaceAfter",
-        "InnerTypeLast"
-    );
-
     private static final List<List<Node>> CHECK_PROPERTIES = new ArrayList<>();
     private static final Map<String, String> CHECK_PROPERTY_DOC = new HashMap<>();
     private static final Map<String, String> CHECK_TEXT = new HashMap<>();
@@ -652,22 +645,16 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
             }
 
             if (ScopeUtil.isInScope(node, Scope.PUBLIC)) {
-                String expected = CHECK_TEXT.get("Description")
-                        + CHECK_TEXT.computeIfAbsent("Rule Description", unused -> "")
-                        + CHECK_TEXT.computeIfAbsent("Notes", unused -> "")
-                        + CHECK_TEXT.computeIfAbsent("Properties", unused -> "");
-
-                if (!MODULES_EXAMPLES_TO_SKIP.contains(checkName)) {
-                    expected += CHECK_TEXT.get("Examples");
-                }
-
-                expected += CHECK_TEXT.get("Parent Module")
-                        + violationMessagesText + " @since "
-                        + CHECK_TEXT.get("since");
-
                 assertWithMessage(checkName + "'s class-level JavaDoc")
                     .that(getJavaDocText(node))
-                    .isEqualTo(expected);
+                    .isEqualTo(CHECK_TEXT.get("Description")
+                        + CHECK_TEXT.computeIfAbsent("Rule Description", unused -> "")
+                        + CHECK_TEXT.computeIfAbsent("Notes", unused -> "")
+                        + CHECK_TEXT.computeIfAbsent("Properties", unused -> "")
+                        + CHECK_TEXT.get("Examples")
+                        + CHECK_TEXT.get("Parent Module")
+                        + violationMessagesText + " @since "
+                        + CHECK_TEXT.get("since"));
             }
         }
 

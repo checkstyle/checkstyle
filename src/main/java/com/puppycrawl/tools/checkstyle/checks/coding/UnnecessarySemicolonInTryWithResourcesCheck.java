@@ -128,7 +128,6 @@ public final class UnnecessarySemicolonInTryWithResourcesCheck extends AbstractC
      * Setter to allow unnecessary semicolon if closing paren is not on the same line.
      *
      * @param allowWhenNoBraceAfterSemicolon a value to set.
-     * @since 8.22
      */
     public void setAllowWhenNoBraceAfterSemicolon(boolean allowWhenNoBraceAfterSemicolon) {
         this.allowWhenNoBraceAfterSemicolon = allowWhenNoBraceAfterSemicolon;

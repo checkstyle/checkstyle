@@ -194,7 +194,6 @@ public class FileTabCharacterCheck extends AbstractFileSetCheck {
      * instance.
      *
      * @param eachLine Whether report on each line containing a tab.
-     * @since 5.0
      */
     public void setEachLine(boolean eachLine) {
         this.eachLine = eachLine;

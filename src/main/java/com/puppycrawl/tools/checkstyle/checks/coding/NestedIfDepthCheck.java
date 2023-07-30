@@ -124,7 +124,6 @@ public final class NestedIfDepthCheck extends AbstractCheck {
      * Setter to specify maximum allowed nesting depth.
      *
      * @param max maximum allowed nesting depth.
-     * @since 3.2
      */
     public void setMax(int max) {
         this.max = max;

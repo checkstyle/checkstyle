@@ -622,7 +622,6 @@ public class WhitespaceAroundCheck extends AbstractCheck {
      * Setter to allow empty method bodies.
      *
      * @param allow {@code true} to allow empty method bodies.
-     * @since 4.0
      */
     public void setAllowEmptyMethods(boolean allow) {
         allowEmptyMethods = allow;
@@ -632,7 +631,6 @@ public class WhitespaceAroundCheck extends AbstractCheck {
      * Setter to allow empty constructor bodies.
      *
      * @param allow {@code true} to allow empty constructor bodies.
-     * @since 4.0
      */
     public void setAllowEmptyConstructors(boolean allow) {
         allowEmptyConstructors = allow;
@@ -644,7 +642,6 @@ public class WhitespaceAroundCheck extends AbstractCheck {
      * enhanced for</a> loop.
      *
      * @param ignore {@code true} to ignore enhanced for colon.
-     * @since 5.5
      */
     public void setIgnoreEnhancedForColon(boolean ignore) {
         ignoreEnhancedForColon = ignore;
@@ -654,7 +651,6 @@ public class WhitespaceAroundCheck extends AbstractCheck {
      * Setter to allow empty class, interface and enum bodies.
      *
      * @param allow {@code true} to allow empty type bodies.
-     * @since 5.8
      */
     public void setAllowEmptyTypes(boolean allow) {
         allowEmptyTypes = allow;
@@ -664,7 +660,6 @@ public class WhitespaceAroundCheck extends AbstractCheck {
      * Setter to allow empty loop bodies.
      *
      * @param allow {@code true} to allow empty loops bodies.
-     * @since 5.8
      */
     public void setAllowEmptyLoops(boolean allow) {
         allowEmptyLoops = allow;
@@ -674,7 +669,6 @@ public class WhitespaceAroundCheck extends AbstractCheck {
      * Setter to allow empty lambda bodies.
      *
      * @param allow {@code true} to allow empty lambda expressions.
-     * @since 6.14
      */
     public void setAllowEmptyLambdas(boolean allow) {
         allowEmptyLambdas = allow;
@@ -684,7 +678,6 @@ public class WhitespaceAroundCheck extends AbstractCheck {
      * Setter to allow empty catch bodies.
      *
      * @param allow {@code true} to allow empty catch blocks.
-     * @since 7.6
      */
     public void setAllowEmptyCatches(boolean allow) {
         allowEmptyCatches = allow;

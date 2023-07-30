@@ -378,7 +378,6 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
      *
      * @param allow
      *        User's value.
-     * @since 5.8
      */
     public final void setAllowNoEmptyLineBetweenFields(boolean allow) {
         allowNoEmptyLineBetweenFields = allow;
@@ -388,7 +387,6 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
      * Setter to allow multiple empty lines between class members.
      *
      * @param allow User's value.
-     * @since 6.3
      */
     public void setAllowMultipleEmptyLines(boolean allow) {
         allowMultipleEmptyLines = allow;
@@ -398,7 +396,6 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
      * Setter to allow multiple empty lines inside class members.
      *
      * @param allow User's value.
-     * @since 6.18
      */
     public void setAllowMultipleEmptyLinesInsideClassMembers(boolean allow) {
         allowMultipleEmptyLinesInsideClassMembers = allow;

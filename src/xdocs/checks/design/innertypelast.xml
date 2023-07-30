@@ -17,17 +17,13 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p id="Example1-config">
+        <p>
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;InnerTypeLast&quot;/&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
+&lt;module name="InnerTypeLast"/&gt;
         </source>
-        <p id="Example1-code">Example:</p>
+        <p>Example:</p>
         <source>
 class Test {
     private String s; // OK

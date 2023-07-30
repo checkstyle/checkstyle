@@ -113,7 +113,6 @@ public class TodoCommentCheck
      *
      * @param pattern
      *        pattern of 'todo' comment.
-     * @since 3.0
      */
     public void setFormat(Pattern pattern) {
         format = pattern;
