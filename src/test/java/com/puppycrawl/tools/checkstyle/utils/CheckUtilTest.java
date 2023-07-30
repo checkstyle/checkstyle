@@ -438,6 +438,13 @@ public class CheckUtilTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testParseDoubleIntegerValues2() {
+        assertWithMessage("Invalid parse result")
+            .that(CheckUtil.parseDouble("", TokenTypes.NUM_LONG))
+            .isEqualTo(0.0);
+    }
+
+    @Test
     public void testParseClassNames() {
         final Set<String> actual = CheckUtil.parseClassNames(
                 "I.am.class.name.with.dot.in.the.end.", "ClassOnly", "my.Class");
