@@ -24,6 +24,7 @@ import static com.puppycrawl.tools.checkstyle.checks.coding.EqualsAvoidNullCheck
 import static com.puppycrawl.tools.checkstyle.checks.coding.MultipleVariableDeclarationsCheck.MSG_MULTIPLE;
 import static com.puppycrawl.tools.checkstyle.checks.coding.NestedIfDepthCheck.MSG_KEY;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.MSG_EXPECTED_TAG;
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocMethodCheck.MSG_JAVADOC_MISSING;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.findTokenInAstByPredicate;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
 
@@ -45,6 +46,7 @@ import com.puppycrawl.tools.checkstyle.checks.coding.EqualsAvoidNullCheck;
 import com.puppycrawl.tools.checkstyle.checks.coding.MultipleVariableDeclarationsCheck;
 import com.puppycrawl.tools.checkstyle.checks.coding.NestedIfDepthCheck;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck;
+import com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocMethodCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption;
 
 public class CheckUtilTest extends AbstractModuleTestSupport {
@@ -436,6 +438,25 @@ public class CheckUtilTest extends AbstractModuleTestSupport {
         };
         verifyWithInlineConfigParser(
                 getPath("InputCheckUtil5.java"), expected);
+    }
+
+    @Test
+    public void testSetterGetterOn() throws Exception {
+        final String[] expected = {
+            "20:5: " + getCheckMessage(MissingJavadocMethodCheck.class,
+                    MSG_JAVADOC_MISSING),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputCheckUtil9.java"), expected);
+    }
+
+    @Test
+    public void missingJavadoc() throws Exception {
+        final String[] expected = {
+            "13:5: " + getCheckMessage(MissingJavadocMethodCheck.class, MSG_JAVADOC_MISSING),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputCheckUtil1.java"), expected);
     }
 
     private DetailAST getNodeFromFile(int type) throws Exception {
