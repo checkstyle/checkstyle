@@ -10,6 +10,125 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 10.12.2">
+      <div class="releaseDate">30.07.2023</div>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            FinalClassCheck should report private classes without constructor.
+            Author: Kevin222004
+            <a href="https://github.com/checkstyle/checkstyle/issues/11338">#11338</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Resolve pitest survivals in modules - 2.
+            Author: Kevin222004
+            <a href="https://github.com/checkstyle/checkstyle/issues/13321">#13321</a>
+          </li>
+          <li>
+            Create tests from xdoc examples.
+            Author: Stoyan Kostadinov, stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/13100">#13100</a>
+          </li>
+          <li>
+            Add `@since` in javadoc of each property setter.
+            Author: Stoyan Kostadinov
+            <a href="https://github.com/checkstyle/checkstyle/issues/13421">#13421</a>
+          </li>
+          <li>
+            Implement examples macro and xdoc template parser.
+            Author: Stoyan Kostadinov
+            <a href="https://github.com/checkstyle/checkstyle/issues/13134">#13134</a>
+          </li>
+          <li>
+            Update doc of FallThroughCheck to use same java snippet example .
+            Author: Kumar Kalpadiptya Roy
+            <a href="https://github.com/checkstyle/checkstyle/issues/12974">#12974</a>
+          </li>
+          <li>
+            update link check to only check internal links in PRs.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/13397">#13397</a>
+          </li>
+          <li>
+            Run regression testing in CI over openjdk20.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/13402">#13402</a>
+          </li>
+          <li>
+            Specify violation messages in input files.
+            Author: Kumar Kalpadiptya Roy, sd9616
+            <a href="https://github.com/checkstyle/checkstyle/issues/11214">#11214</a>
+          </li>
+          <li>
+            Restore xdoc-javadoc validation.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/13362">#13362</a>
+          </li>
+          <li>
+            Extend `getXdocsFilePaths` to gather `.xml.vm` files and get rid of
+            `getAllXdocFilePaths`.
+            Author: Stoyan Kostadinov
+            <a href="https://github.com/checkstyle/checkstyle/issues/13389">#13389</a>
+          </li>
+          <li>
+            Move section comments to include whole examples and shorten xml configs length.
+            Author: Stoyan Kostadinov
+            <a href="https://github.com/checkstyle/checkstyle/issues/13394">#13394</a>
+          </li>
+          <li>
+            Test inputs should be completely standalone..
+            Author: sd9616
+            <a href="https://github.com/checkstyle/checkstyle/issues/4845">#4845</a>
+          </li>
+          <li>
+            Targeted Pitest Mutation in July 2023.
+            Author: Kevin222004
+            <a href="https://github.com/checkstyle/checkstyle/issues/13328">#13328</a>
+          </li>
+          <li>
+            doc: update VisibilityModifier examples to match tests.
+            Author: stoyanK7
+          </li>
+          <li>
+            Resolve pitest survivals in modules.
+            Author: Kevin222004
+            <a href="https://github.com/checkstyle/checkstyle/issues/13109">#13109</a>
+          </li>
+          <li>
+            maven site plugin is failing to execute site goal with compiler plugin 3.11.0.
+            Author: dependabot[bot]
+            <a href="https://github.com/checkstyle/checkstyle/issues/12784">#12784</a>
+          </li>
+          <li>
+            Write a test to ensure checks are present in menu.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/13301">#13301</a>
+          </li>
+          <li>
+            Resolves Pitest for VariableDeclarationUsageDistanceCheck.
+            Author: Kevin222004
+            <a href="https://github.com/checkstyle/checkstyle/issues/13095">#13095</a>
+          </li>
+          <li>
+            Rendering issues with website.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/13304">#13304</a>
+          </li>
+          <li>
+            BDD configuration comments should be in XML.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/12155">#12155</a>
+          </li>
+          <li>
+            Update issue template after split of website to use individual page for module.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/13310">#13310</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 10.12.1">
       <div class="releaseDate">25.06.2023</div>
       <p>Bug fixes:</p>
