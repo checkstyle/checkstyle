@@ -1448,17 +1448,6 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocMethodCheck.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter endIndex of substring.</message>
-    <lineContent>currentClassName = currentClassName.substring(0, dotIdx);</lineContent>
-    <details>
-      found   : @GTENegativeOne int
-      required: @NonNegative int
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocMethodCheck.java</fileName>
     <specifier>array.access.unsafe.high</specifier>
     <message>Potentially unsafe array access: the index could be larger than the array&apos;s bound</message>
     <lineContent>multilineCont = MATCH_JAVADOC_MULTILINE_CONT.matcher(lines[remIndex]);</lineContent>
