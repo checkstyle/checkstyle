@@ -2723,17 +2723,6 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/CheckUtil.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter beginIndex of substring.</message>
-    <lineContent>txt = txt.substring(1);</lineContent>
-    <details>
-      found   : @UpperBoundLiteral(1) int
-      required: @LTEqLengthOf(&quot;txt&quot;) int
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/CheckUtil.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter beginIndex of substring.</message>
     <lineContent>returnString = line.substring(indent, lastNonWhitespace);</lineContent>
     <details>
       found   : int
