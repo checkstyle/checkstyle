@@ -163,6 +163,7 @@ public class ClassMemberImpliedModifierCheck
      *
      * @param violateImplied
      *        True to perform the check, false to turn the check off.
+     * @since 8.16
      */
     public void setViolateImpliedStaticOnNestedEnum(boolean violateImplied) {
         violateImpliedStaticOnNestedEnum = violateImplied;
@@ -174,6 +175,7 @@ public class ClassMemberImpliedModifierCheck
      *
      * @param violateImplied
      *        True to perform the check, false to turn the check off.
+     * @since 8.16
      */
     public void setViolateImpliedStaticOnNestedInterface(boolean violateImplied) {
         violateImpliedStaticOnNestedInterface = violateImplied;
@@ -185,6 +187,7 @@ public class ClassMemberImpliedModifierCheck
      *
      * @param violateImplied
      *        True to perform the check, false to turn the check off.
+     * @since 8.36
      */
     public void setViolateImpliedStaticOnNestedRecord(boolean violateImplied) {
         violateImpliedStaticOnNestedRecord = violateImplied;

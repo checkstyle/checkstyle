@@ -395,6 +395,7 @@ public class DesignForExtensionCheck extends AbstractCheck {
      * Setter to specify annotations which allow the check to skip the method from validation.
      *
      * @param ignoredAnnotations method annotations.
+     * @since 7.2
      */
     public void setIgnoredAnnotations(String... ignoredAnnotations) {
         this.ignoredAnnotations = Arrays.stream(ignoredAnnotations).collect(Collectors.toSet());
@@ -405,6 +406,7 @@ public class DesignForExtensionCheck extends AbstractCheck {
      * method as designed for extension. Supports multi-line regex.
      *
      * @param requiredJavadocPhrase method annotations.
+     * @since 8.40
      */
     public void setRequiredJavadocPhrase(Pattern requiredJavadocPhrase) {
         this.requiredJavadocPhrase = requiredJavadocPhrase;

@@ -100,6 +100,7 @@ public class FileLengthCheck extends AbstractFileSetCheck {
      * Setter to specify the maximum number of lines allowed.
      *
      * @param length the maximum length of a Java source file
+     * @since 3.2
      */
     public void setMax(int length) {
         max = length;

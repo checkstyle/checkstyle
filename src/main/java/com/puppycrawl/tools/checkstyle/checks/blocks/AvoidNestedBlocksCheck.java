@@ -197,6 +197,7 @@ public class AvoidNestedBlocksCheck extends AbstractCheck {
      *
      * @param allowInSwitchCase whether nested blocks are allowed
      *                 if they are the only child of a switch case.
+     * @since 3.2
      */
     public void setAllowInSwitchCase(boolean allowInSwitchCase) {
         this.allowInSwitchCase = allowInSwitchCase;

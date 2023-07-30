@@ -196,6 +196,7 @@ public class EmptyBlockCheck
      *
      * @param optionStr string to decode option from
      * @throws IllegalArgumentException if unable to decode
+     * @since 3.0
      */
     public void setOption(String optionStr) {
         option = BlockOption.valueOf(optionStr.trim().toUpperCase(Locale.ENGLISH));

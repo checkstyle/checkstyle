@@ -225,6 +225,7 @@ public final class BooleanExpressionComplexityCheck extends AbstractCheck {
      * Setter to specify the maximum number of boolean operations allowed in one expression.
      *
      * @param max new maximum allowed complexity.
+     * @since 3.4
      */
     public void setMax(int max) {
         this.max = max;

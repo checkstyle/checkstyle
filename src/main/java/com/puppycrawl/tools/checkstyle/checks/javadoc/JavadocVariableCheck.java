@@ -196,6 +196,7 @@ public class JavadocVariableCheck
      * Setter to specify the visibility scope where Javadoc comments are checked.
      *
      * @param scope a scope.
+     * @since 3.0
      */
     public void setScope(Scope scope) {
         this.scope = scope;
@@ -205,6 +206,7 @@ public class JavadocVariableCheck
      * Setter to specify the visibility scope where Javadoc comments are not checked.
      *
      * @param excludeScope a scope.
+     * @since 3.4
      */
     public void setExcludeScope(Scope excludeScope) {
         this.excludeScope = excludeScope;
@@ -214,6 +216,7 @@ public class JavadocVariableCheck
      * Setter to specify the regexp to define variable names to ignore.
      *
      * @param pattern a pattern.
+     * @since 5.8
      */
     public void setIgnoreNamePattern(Pattern pattern) {
         ignoreNamePattern = pattern;

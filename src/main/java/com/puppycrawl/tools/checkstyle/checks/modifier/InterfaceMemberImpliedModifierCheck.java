@@ -279,6 +279,7 @@ public class InterfaceMemberImpliedModifierCheck
      *
      * @param violateImpliedPublicField
      *        True to perform the check, false to turn the check off.
+     * @since 8.12
      */
     public void setViolateImpliedPublicField(boolean violateImpliedPublicField) {
         this.violateImpliedPublicField = violateImpliedPublicField;
@@ -290,6 +291,7 @@ public class InterfaceMemberImpliedModifierCheck
      *
      * @param violateImpliedStaticField
      *        True to perform the check, false to turn the check off.
+     * @since 8.12
      */
     public void setViolateImpliedStaticField(boolean violateImpliedStaticField) {
         this.violateImpliedStaticField = violateImpliedStaticField;
@@ -301,6 +303,7 @@ public class InterfaceMemberImpliedModifierCheck
      *
      * @param violateImpliedFinalField
      *        True to perform the check, false to turn the check off.
+     * @since 8.12
      */
     public void setViolateImpliedFinalField(boolean violateImpliedFinalField) {
         this.violateImpliedFinalField = violateImpliedFinalField;
@@ -312,6 +315,7 @@ public class InterfaceMemberImpliedModifierCheck
      *
      * @param violateImpliedPublicMethod
      *        True to perform the check, false to turn the check off.
+     * @since 8.12
      */
     public void setViolateImpliedPublicMethod(boolean violateImpliedPublicMethod) {
         this.violateImpliedPublicMethod = violateImpliedPublicMethod;
@@ -323,6 +327,7 @@ public class InterfaceMemberImpliedModifierCheck
      *
      * @param violateImpliedAbstractMethod
      *        True to perform the check, false to turn the check off.
+     * @since 8.12
      */
     public void setViolateImpliedAbstractMethod(boolean violateImpliedAbstractMethod) {
         this.violateImpliedAbstractMethod = violateImpliedAbstractMethod;
@@ -334,6 +339,7 @@ public class InterfaceMemberImpliedModifierCheck
      *
      * @param violateImpliedPublicNested
      *        True to perform the check, false to turn the check off.
+     * @since 8.12
      */
     public void setViolateImpliedPublicNested(boolean violateImpliedPublicNested) {
         this.violateImpliedPublicNested = violateImpliedPublicNested;
@@ -345,6 +351,7 @@ public class InterfaceMemberImpliedModifierCheck
      *
      * @param violateImpliedStaticNested
      *        True to perform the check, false to turn the check off.
+     * @since 8.12
      */
     public void setViolateImpliedStaticNested(boolean violateImpliedStaticNested) {
         this.violateImpliedStaticNested = violateImpliedStaticNested;

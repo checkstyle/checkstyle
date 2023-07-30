@@ -122,88 +122,96 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
         <source>
-&lt;module name="WhitespaceAfter"/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;WhitespaceAfter&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
         </source>
-        <p>Example:</p>
-        <div class="wrapper">
-          <pre>
-public void myTest() {
-    if (foo) {              // OK
-        //...
-    } else if(bar) {        // violation
-        //...
+        <source>
+class Example1 {
+  void example() throws Exception {
+    if (true) {
+    } else if(false) { // violation 'not followed by whitespace'
     }
 
-    testMethod(foo, bar);   // OK
-    testMethod(foo,bar);    // violation
+    testOne(&quot;x&quot;, &quot;y&quot;);
+    testOne(&quot;z&quot;,&quot;o&quot;); // violation 'not followed by whitespace'
 
-    for (;;){}               // OK
-    for(;;){}                // violation, space after 'for' is required
+    for (int i = 0; i &lt; 10; i++){}
+    for(int i = 0; i &lt; 10; i++){} // violation 'not followed by whitespace'
 
-    try (InputStream ignored = System.in) {} // OK
-    try(InputStream ignored = System.in) {} // violation ''try' is not followed by whitespace'
+    try (InputStream ignored = System.in) {}
+    try(InputStream ignored = System.in) {} // violation 'not followed by whitespace'
 
-    try {} catch (Exception e){} // OK
-    try{} catch (Exception e){} // violation ''try' is not followed by whitespace'
+    try {} catch (Exception e){}
+    try{} catch (Exception e) {} // violation ''try' is not followed by whitespace'
 
-    try {} finally {} // OK
-    try {} finally{} // violation ''finally' is not followed by whitespace'
+    try {} finally {}
+    try {} finally{} // violation 'not followed by whitespace'
 
-    try {} catch (Error e){} finally {} // OK
-    try {} catch (Error e){} finally{} // violation ''finally' is not followed by whitespace'
+    try {} catch (Error e){} finally {}
+    try {} catch (Error e){} finally{} // violation 'not followed by whitespace'
 
-    try {} catch (Exception e){} // OK
-    try {} catch(Exception e){} // violation ''catch' is not followed by whitespace'
+    try {} catch (Exception e){}
+    try {} catch(Exception e){} // violation 'not followed by whitespace'
 
-    synchronized (this) { } // OK
-    synchronized(this) { } // violation ''synchronized' is not followed by whitespace'
+    synchronized (this) { }
+    synchronized(this) { } // violation 'not followed by whitespace'
+  }
+
+  public String testOne(String a, String b) {
+    return (a + b);
+  }
+  public String testTwo(String a, String b) {
+    return(a + b); // violation 'not followed by whitespace'
+  }
+
+  void switchExample() {
+    int a = switch (&quot;hello&quot;) {
+      case &quot;got&quot;:
+        yield (1); // OK, followed by whitespace
+      case &quot;my&quot;:
+        yield(3); // violation ''yield' is not followed by whitespace'
+      default:
+        yield 2;
+    };
+  }
 }
-public String testOne() {
-    return ("a" + "b"); // OK
-}
-public String testTwo() {
-    return("a" + "b"); // violation 'return' is not followed by whitespace'
-}
-public static void main(String[] args) {
-  int a = switch (args[0]) {
-    case "got":
-      yield (1); // OK
-    case "my":
-      yield(3); // violation ''yield' is not followed by whitespace'
-    default:
-      yield 2;
-  };
-}
-          </pre>
-        </div>
+        </source>
 
-        <p>
+        <p id="Example2-config">
           To configure the check for whitespace only after COMMA and SEMI
           tokens:
         </p>
         <source>
-&lt;module name="WhitespaceAfter"&gt;
-  &lt;property name="tokens" value="COMMA, SEMI"/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;WhitespaceAfter&quot;&gt;
+      &lt;property name=&quot;tokens&quot; value=&quot;COMMA, SEMI&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p>Example:</p>
-        <div class="wrapper">
-          <pre>
-public void myTest() {
-    int a; int b;           // OK
-    int a;int b;            // violation
+        <p id="Example2-code">Example:</p>
+        <source>
+class Example2 {
+  void example() {
+    int a = 0; int b = 1;
+    int c = 2;int d = 3; // violation 'not followed by whitespace'
 
-    testMethod(foo, bar);   // OK
-    testMethod(foo,bar);    // violation
+    testMethod(a, b);
+    testMethod(c,d); // violation 'not followed by whitespace'
 
-    for(;;) {} // OK
+    for(;;) {}
+  }
+  void testMethod(int a, int b) { }
 }
-          </pre>
-        </div>
+        </source>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

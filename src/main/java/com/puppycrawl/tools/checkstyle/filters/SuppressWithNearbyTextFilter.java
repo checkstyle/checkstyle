@@ -339,6 +339,7 @@ public class SuppressWithNearbyTextFilter extends AbstractAutomaticBean implemen
      * Setter to specify nearby text pattern to trigger filter to begin suppression.
      *
      * @param pattern a {@code Pattern} value.
+     * @since 10.10.0
      */
     public final void setNearbyTextPattern(Pattern pattern) {
         nearbyTextPattern = pattern;
@@ -350,6 +351,7 @@ public class SuppressWithNearbyTextFilter extends AbstractAutomaticBean implemen
      * format of {@code $x} and be picked from line that matches {@code nearbyTextPattern}.
      *
      * @param pattern a {@code String} value.
+     * @since 10.10.0
      */
     public final void setCheckPattern(String pattern) {
         checkPattern = pattern;
@@ -359,6 +361,7 @@ public class SuppressWithNearbyTextFilter extends AbstractAutomaticBean implemen
      * Setter to specify check violation message pattern to suppress.
      *
      * @param pattern a {@code String} value.
+     * @since 10.10.0
      */
     public void setMessagePattern(String pattern) {
         messagePattern = pattern;
@@ -368,6 +371,7 @@ public class SuppressWithNearbyTextFilter extends AbstractAutomaticBean implemen
      * Setter to specify check ID pattern to suppress.
      *
      * @param pattern a {@code String} value.
+     * @since 10.10.0
      */
     public void setIdPattern(String pattern) {
         idPattern = pattern;
@@ -380,6 +384,7 @@ public class SuppressWithNearbyTextFilter extends AbstractAutomaticBean implemen
      * format of {@code $x} and be picked from line that matches {@code nearbyTextPattern}.
      *
      * @param format a {@code String} value.
+     * @since 10.10.0
      */
     public final void setLineRange(String format) {
         lineRange = format;

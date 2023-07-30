@@ -157,6 +157,7 @@ public class LambdaBodyLengthCheck extends AbstractCheck {
      * Setter to specify the maximum number of lines allowed.
      *
      * @param length the maximum length of lambda body.
+     * @since 8.37
      */
     public void setMax(int length) {
         max = length;
