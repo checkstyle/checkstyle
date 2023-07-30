@@ -272,33 +272,6 @@ public class JavadocUtilTest {
     }
 
     @Test
-    public void testBranchContains() {
-        final JavadocNodeImpl node = new JavadocNodeImpl();
-        final JavadocNodeImpl firstChild = new JavadocNodeImpl();
-        final JavadocNodeImpl secondChild = new JavadocNodeImpl();
-
-        node.setType(JavadocTokenTypes.JAVADOC);
-        firstChild.setType(JavadocTokenTypes.BODY_TAG_START);
-        secondChild.setType(JavadocTokenTypes.CODE_LITERAL);
-
-        node.setChildren(firstChild, secondChild);
-        assertWithMessage("Should return true when branch contains node passed")
-                .that(JavadocUtil.containsInBranch(node, JavadocTokenTypes.AUTHOR_LITERAL))
-                .isFalse();
-
-        firstChild.setParent(node);
-        secondChild.setParent(node);
-        assertWithMessage("Should return false when branch does not contain node passed")
-                .that(JavadocUtil.containsInBranch(node, JavadocTokenTypes.AUTHOR_LITERAL))
-                .isFalse();
-
-        secondChild.setType(JavadocTokenTypes.AUTHOR_LITERAL);
-        assertWithMessage("Should return true when branch contains node passed")
-                .that(JavadocUtil.containsInBranch(node, JavadocTokenTypes.AUTHOR_LITERAL))
-                .isTrue();
-    }
-
-    @Test
     public void testGetTokenNameForId() {
         assertWithMessage("Invalid token name")
             .that(JavadocUtil.getTokenName(JavadocTokenTypes.EOF))
