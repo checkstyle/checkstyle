@@ -64,6 +64,9 @@ public class DescendantIterator implements AxisIterator {
         else if (startWith == StartWith.CHILDREN) {
             descendantEnum = start.iterateAxis(AxisInfo.CHILD);
         }
+        else {
+            descendantEnum = null;
+        }
     }
 
     /**

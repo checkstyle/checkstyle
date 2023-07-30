@@ -735,7 +735,6 @@ public class JavadocStyleCheck
      * Setter to specify the visibility scope where Javadoc comments are checked.
      *
      * @param scope a scope.
-     * @since 3.2
      */
     public void setScope(Scope scope) {
         this.scope = scope;
@@ -745,7 +744,6 @@ public class JavadocStyleCheck
      * Setter to specify the visibility scope where Javadoc comments are not checked.
      *
      * @param excludeScope a scope.
-     * @since 3.4
      */
     public void setExcludeScope(Scope excludeScope) {
         this.excludeScope = excludeScope;
@@ -755,7 +753,6 @@ public class JavadocStyleCheck
      * Setter to specify the format for matching the end of a sentence.
      *
      * @param pattern a pattern.
-     * @since 5.0
      */
     public void setEndOfSentenceFormat(Pattern pattern) {
         endOfSentenceFormat = pattern;
@@ -765,7 +762,6 @@ public class JavadocStyleCheck
      * Setter to control whether to check the first sentence for proper end of sentence.
      *
      * @param flag {@code true} if the first sentence is to be checked
-     * @since 3.2
      */
     public void setCheckFirstSentence(boolean flag) {
         checkFirstSentence = flag;
@@ -775,7 +771,6 @@ public class JavadocStyleCheck
      * Setter to control whether to check for incomplete HTML tags.
      *
      * @param flag {@code true} if HTML checking is to be performed.
-     * @since 3.2
      */
     public void setCheckHtml(boolean flag) {
         checkHtml = flag;
@@ -785,7 +780,6 @@ public class JavadocStyleCheck
      * Setter to control whether to check if the Javadoc is missing a describing text.
      *
      * @param flag {@code true} if empty Javadoc checking should be done.
-     * @since 3.4
      */
     public void setCheckEmptyJavadoc(boolean flag) {
         checkEmptyJavadoc = flag;

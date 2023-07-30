@@ -545,7 +545,6 @@ public class RegexpCheck extends AbstractCheck {
      * if empty then the default (hard-coded) message is used.
      *
      * @param message custom message which should be used in report.
-     * @since 4.0
      */
     public void setMessage(String message) {
         this.message = message;
@@ -555,7 +554,6 @@ public class RegexpCheck extends AbstractCheck {
      * Setter to control whether to ignore matches found within comments.
      *
      * @param ignoreComments True if comments should be ignored.
-     * @since 4.0
      */
     public void setIgnoreComments(boolean ignoreComments) {
         this.ignoreComments = ignoreComments;
@@ -565,7 +563,6 @@ public class RegexpCheck extends AbstractCheck {
      * Setter to control whether the pattern is required or illegal.
      *
      * @param illegalPattern True if pattern is not allowed.
-     * @since 4.0
      */
     public void setIllegalPattern(boolean illegalPattern) {
         this.illegalPattern = illegalPattern;
@@ -575,7 +572,6 @@ public class RegexpCheck extends AbstractCheck {
      * Setter to specify the maximum number of violations before the check will abort.
      *
      * @param errorLimit the number of errors to report.
-     * @since 4.0
      */
     public void setErrorLimit(int errorLimit) {
         this.errorLimit = errorLimit;
@@ -589,7 +585,6 @@ public class RegexpCheck extends AbstractCheck {
      *
      * @param duplicateLimit negative values mean no duplicate checking,
      *     any positive value is used as the limit.
-     * @since 4.0
      */
     public void setDuplicateLimit(int duplicateLimit) {
         this.duplicateLimit = duplicateLimit;
@@ -600,7 +595,6 @@ public class RegexpCheck extends AbstractCheck {
      * Setter to specify the pattern to match against.
      *
      * @param pattern the new pattern
-     * @since 4.0
      */
     public final void setFormat(Pattern pattern) {
         format = CommonUtil.createPattern(pattern.pattern(), Pattern.MULTILINE);

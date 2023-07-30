@@ -173,7 +173,6 @@ public class EqualsAvoidNullCheck extends AbstractCheck {
      *
      * @param newValue whether to ignore checking
      *     {@code String.equalsIgnoreCase(String)}.
-     * @since 5.4
      */
     public void setIgnoreEqualsIgnoreCase(boolean newValue) {
         ignoreEqualsIgnoreCase = newValue;

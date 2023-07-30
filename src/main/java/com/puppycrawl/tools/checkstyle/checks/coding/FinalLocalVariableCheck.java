@@ -203,7 +203,6 @@ public class FinalLocalVariableCheck extends AbstractCheck {
      * enhanced for-loop</a> variable.
      *
      * @param validateEnhancedForLoopVariable whether to check for-loop variable
-     * @since 6.5
      */
     public final void setValidateEnhancedForLoopVariable(boolean validateEnhancedForLoopVariable) {
         this.validateEnhancedForLoopVariable = validateEnhancedForLoopVariable;

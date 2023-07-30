@@ -289,7 +289,6 @@ public class RegexpOnFilenameCheck extends AbstractFileSetCheck {
      * Setter to specify the regular expression to match the folder path against.
      *
      * @param folderPattern format of folder.
-     * @since 6.15
      */
     public void setFolderPattern(Pattern folderPattern) {
         this.folderPattern = folderPattern;
@@ -299,7 +298,6 @@ public class RegexpOnFilenameCheck extends AbstractFileSetCheck {
      * Setter to specify the regular expression to match the file name against.
      *
      * @param fileNamePattern format of file.
-     * @since 6.15
      */
     public void setFileNamePattern(Pattern fileNamePattern) {
         this.fileNamePattern = fileNamePattern;
@@ -310,7 +308,6 @@ public class RegexpOnFilenameCheck extends AbstractFileSetCheck {
      * if the fileNamePattern is supplied, otherwise it is applied on the folderPattern.
      *
      * @param match check's option for matching file names.
-     * @since 6.15
      */
     public void setMatch(boolean match) {
         this.match = match;
@@ -320,7 +317,6 @@ public class RegexpOnFilenameCheck extends AbstractFileSetCheck {
      * Setter to control whether to ignore the file extension for the file name match.
      *
      * @param ignoreFileNameExtensions check's option for ignoring file extension.
-     * @since 6.15
      */
     public void setIgnoreFileNameExtensions(boolean ignoreFileNameExtensions) {
         this.ignoreFileNameExtensions = ignoreFileNameExtensions;

@@ -233,7 +233,6 @@ public class MatchXpathCheck extends AbstractCheck {
      *
      * @param query Xpath query.
      * @throws IllegalStateException if creation of xpath expression fails
-     * @since 8.39
      */
     public void setQuery(String query) {
         this.query = query;

@@ -456,7 +456,6 @@ public class DeclarationOrderCheck extends AbstractCheck {
      * Setter to control whether to ignore constructors.
      *
      * @param ignoreConstructors whether to ignore constructors.
-     * @since 5.2
      */
     public void setIgnoreConstructors(boolean ignoreConstructors) {
         this.ignoreConstructors = ignoreConstructors;
@@ -466,7 +465,6 @@ public class DeclarationOrderCheck extends AbstractCheck {
      * Setter to control whether to ignore modifiers (fields, ...).
      *
      * @param ignoreModifiers whether to ignore modifiers.
-     * @since 5.2
      */
     public void setIgnoreModifiers(boolean ignoreModifiers) {
         this.ignoreModifiers = ignoreModifiers;

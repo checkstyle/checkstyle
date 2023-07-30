@@ -267,7 +267,6 @@ public class MethodNameCheck
      * </pre>
      *
      * @param allowClassName true to allow false to disallow
-     * @since 5.0
      */
     public void setAllowClassName(boolean allowClassName) {
         this.allowClassName = allowClassName;

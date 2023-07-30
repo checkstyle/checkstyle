@@ -547,7 +547,6 @@ public class MagicNumberCheck extends AbstractCheck {
      * number literal to the enclosing constant definition.
      *
      * @param tokens The string representation of the tokens interested in
-     * @since 6.11
      */
     public void setConstantWaiverParentToken(String... tokens) {
         constantWaiverParentToken = TokenUtil.asBitSet(tokens);
@@ -557,7 +556,6 @@ public class MagicNumberCheck extends AbstractCheck {
      * Setter to specify non-magic numbers.
      *
      * @param list numbers to ignore.
-     * @since 3.1
      */
     public void setIgnoreNumbers(double... list) {
         ignoreNumbers = new double[list.length];
@@ -570,7 +568,6 @@ public class MagicNumberCheck extends AbstractCheck {
      *
      * @param ignoreHashCodeMethod decide whether to ignore
      *     hash code methods
-     * @since 5.3
      */
     public void setIgnoreHashCodeMethod(boolean ignoreHashCodeMethod) {
         this.ignoreHashCodeMethod = ignoreHashCodeMethod;
@@ -580,7 +577,6 @@ public class MagicNumberCheck extends AbstractCheck {
      * Setter to ignore magic numbers in annotation declarations.
      *
      * @param ignoreAnnotation decide whether to ignore annotations
-     * @since 5.4
      */
     public void setIgnoreAnnotation(boolean ignoreAnnotation) {
         this.ignoreAnnotation = ignoreAnnotation;
@@ -591,7 +587,6 @@ public class MagicNumberCheck extends AbstractCheck {
      *
      * @param ignoreFieldDeclaration decide whether to ignore magic numbers
      *     in field declaration
-     * @since 6.6
      */
     public void setIgnoreFieldDeclaration(boolean ignoreFieldDeclaration) {
         this.ignoreFieldDeclaration = ignoreFieldDeclaration;
@@ -601,7 +596,6 @@ public class MagicNumberCheck extends AbstractCheck {
      * Setter to ignore magic numbers in annotation elements defaults.
      *
      * @param ignoreAnnotationElementDefaults decide whether to ignore annotation elements defaults
-     * @since 8.23
      */
     public void setIgnoreAnnotationElementDefaults(boolean ignoreAnnotationElementDefaults) {
         this.ignoreAnnotationElementDefaults = ignoreAnnotationElementDefaults;

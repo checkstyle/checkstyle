@@ -801,7 +801,6 @@ public class DescendantTokenCheck extends AbstractCheck {
      * Setter to specify set of tokens with limited occurrences as descendants.
      *
      * @param limitedTokensParam tokens to ignore.
-     * @since 3.2
      */
     public void setLimitedTokens(String... limitedTokensParam) {
         limitedTokens = new int[limitedTokensParam.length];
@@ -820,7 +819,6 @@ public class DescendantTokenCheck extends AbstractCheck {
      * Setter to specify the minimum depth for descendant counts.
      *
      * @param minimumDepth the minimum depth for descendant counts.
-     * @since 3.2
      */
     public void setMinimumDepth(int minimumDepth) {
         this.minimumDepth = minimumDepth;
@@ -830,7 +828,6 @@ public class DescendantTokenCheck extends AbstractCheck {
      * Setter to specify the maximum depth for descendant counts.
      *
      * @param maximumDepth the maximum depth for descendant counts.
-     * @since 3.2
      */
     public void setMaximumDepth(int maximumDepth) {
         this.maximumDepth = maximumDepth;
@@ -840,7 +837,6 @@ public class DescendantTokenCheck extends AbstractCheck {
      * Setter to specify a minimum count for descendants.
      *
      * @param minimumNumber the minimum count for descendants.
-     * @since 3.2
      */
     public void setMinimumNumber(int minimumNumber) {
         this.minimumNumber = minimumNumber;
@@ -850,7 +846,6 @@ public class DescendantTokenCheck extends AbstractCheck {
       * Setter to specify a maximum count for descendants.
       *
       * @param maximumNumber the maximum count for descendants.
-      * @since 3.2
       */
     public void setMaximumNumber(int maximumNumber) {
         this.maximumNumber = maximumNumber;
@@ -867,7 +862,6 @@ public class DescendantTokenCheck extends AbstractCheck {
      *     <li>{2} - name of token</li>
      *     <li>{3} - name of limited token</li>
      *     </ul>
-     * @since 3.2
      */
     public void setMinimumMessage(String message) {
         minimumMessage = message;
@@ -884,7 +878,6 @@ public class DescendantTokenCheck extends AbstractCheck {
      *     <li>{2} - name of token</li>
      *     <li>{3} - name of limited token</li>
      *     </ul>
-     * @since 3.2
      */
 
     public void setMaximumMessage(String message) {
@@ -896,7 +889,6 @@ public class DescendantTokenCheck extends AbstractCheck {
      * from the sum of the individual token counts.
      *
      * @param sum whether to use the sum.
-     * @since 5.0
      */
     public void setSumTokenCounts(boolean sum) {
         sumTokenCounts = sum;

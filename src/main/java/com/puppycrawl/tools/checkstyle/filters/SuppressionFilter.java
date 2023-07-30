@@ -239,7 +239,6 @@ public class SuppressionFilter
      * Setter to specify the location of the <em>suppressions XML document</em> file.
      *
      * @param fileName name of the suppressions file.
-     * @since 3.2
      */
     public void setFile(String fileName) {
         file = fileName;
@@ -252,7 +251,6 @@ public class SuppressionFilter
      * and file is not found, the filter accept all audit events.
      *
      * @param optional tells if config file existence is optional.
-     * @since 6.15
      */
     public void setOptional(boolean optional) {
         this.optional = optional;

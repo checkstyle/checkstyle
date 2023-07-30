@@ -311,7 +311,6 @@ public class AvoidEscapedUnicodeCharactersCheck
      * Setter to allow use escapes for non-printable, control characters.
      *
      * @param allow user's value.
-     * @since 5.8
      */
     public final void setAllowEscapesForControlCharacters(boolean allow) {
         allowEscapesForControlCharacters = allow;
@@ -321,7 +320,6 @@ public class AvoidEscapedUnicodeCharactersCheck
      * Setter to allow use escapes if trail comment is present.
      *
      * @param allow user's value.
-     * @since 5.8
      */
     public final void setAllowByTailComment(boolean allow) {
         allowByTailComment = allow;
@@ -331,7 +329,6 @@ public class AvoidEscapedUnicodeCharactersCheck
      * Setter to allow if all characters in literal are escaped.
      *
      * @param allow user's value.
-     * @since 5.8
      */
     public final void setAllowIfAllCharactersEscaped(boolean allow) {
         allowIfAllCharactersEscaped = allow;
@@ -341,7 +338,6 @@ public class AvoidEscapedUnicodeCharactersCheck
      * Setter to allow use escapes for non-printable, whitespace characters.
      *
      * @param allow user's value.
-     * @since 5.8
      */
     public final void setAllowNonPrintableEscapes(boolean allow) {
         allowNonPrintableEscapes = allow;

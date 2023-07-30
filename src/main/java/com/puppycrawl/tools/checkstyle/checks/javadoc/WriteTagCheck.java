@@ -218,7 +218,6 @@ public class WriteTagCheck
      * Setter to specify the name of tag.
      *
      * @param tag tag to check
-     * @since 4.2
      */
     public void setTag(String tag) {
         this.tag = tag;
@@ -229,7 +228,6 @@ public class WriteTagCheck
      * Setter to specify the regexp to match tag content.
      *
      * @param pattern a {@code String} value
-     * @since 4.2
      */
     public void setTagFormat(Pattern pattern) {
         tagFormat = pattern;
@@ -240,7 +238,6 @@ public class WriteTagCheck
      *
      * @param severity  The new severity level
      * @see SeverityLevel
-     * @since 4.2
      */
     public final void setTagSeverity(SeverityLevel severity) {
         tagSeverity = severity;

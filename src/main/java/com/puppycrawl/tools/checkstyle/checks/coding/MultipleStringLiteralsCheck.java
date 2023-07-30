@@ -228,7 +228,6 @@ public class MultipleStringLiteralsCheck extends AbstractCheck {
      * Setter to specify the maximum number of occurrences to allow without generating a warning.
      *
      * @param allowedDuplicates The maximum number of duplicates.
-     * @since 3.5
      */
     public void setAllowedDuplicates(int allowedDuplicates) {
         this.allowedDuplicates = allowedDuplicates;
@@ -241,7 +240,6 @@ public class MultipleStringLiteralsCheck extends AbstractCheck {
      *        regular expression pattern for ignored strings
      * @noinspection WeakerAccess
      * @noinspectionreason WeakerAccess - we avoid 'protected' when possible
-     * @since 4.0
      */
     public final void setIgnoreStringsRegexp(Pattern ignoreStringsRegexp) {
         if (ignoreStringsRegexp == null || ignoreStringsRegexp.pattern().isEmpty()) {
@@ -258,7 +256,6 @@ public class MultipleStringLiteralsCheck extends AbstractCheck {
      * syntactical contexts like annotations or static initializers from the check.
      *
      * @param strRep the string representation of the tokens interested in
-     * @since 4.4
      */
     public final void setIgnoreOccurrenceContext(String... strRep) {
         ignoreOccurrenceContext.clear();

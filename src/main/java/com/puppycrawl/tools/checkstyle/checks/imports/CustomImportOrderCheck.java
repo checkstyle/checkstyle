@@ -754,7 +754,6 @@ public class CustomImportOrderCheck extends AbstractCheck {
      *
      * @param regexp
      *        user value.
-     * @since 5.8
      */
     public final void setStandardPackageRegExp(Pattern regexp) {
         standardPackageRegExp = regexp;
@@ -765,7 +764,6 @@ public class CustomImportOrderCheck extends AbstractCheck {
      *
      * @param regexp
      *        user value.
-     * @since 5.8
      */
     public final void setThirdPartyPackageRegExp(Pattern regexp) {
         thirdPartyPackageRegExp = regexp;
@@ -776,7 +774,6 @@ public class CustomImportOrderCheck extends AbstractCheck {
      *
      * @param regexp
      *        user value.
-     * @since 5.8
      */
     public final void setSpecialImportsRegExp(Pattern regexp) {
         specialImportsRegExp = regexp;
@@ -787,7 +784,6 @@ public class CustomImportOrderCheck extends AbstractCheck {
      *
      * @param value
      *        user value.
-     * @since 5.8
      */
     public final void setSeparateLineBetweenGroups(boolean value) {
         separateLineBetweenGroups = value;
@@ -799,7 +795,6 @@ public class CustomImportOrderCheck extends AbstractCheck {
      *
      * @param value
      *        user value.
-     * @since 5.8
      */
     public final void setSortImportsInGroupAlphabetically(boolean value) {
         sortImportsInGroupAlphabetically = value;
@@ -810,7 +805,6 @@ public class CustomImportOrderCheck extends AbstractCheck {
      *
      * @param inputCustomImportOrder
      *        user value.
-     * @since 5.8
      */
     public final void setCustomImportOrderRules(final String inputCustomImportOrder) {
         if (!DEFAULT_CUSTOM_IMPORT_ORDER_RULES.equals(inputCustomImportOrder)) {

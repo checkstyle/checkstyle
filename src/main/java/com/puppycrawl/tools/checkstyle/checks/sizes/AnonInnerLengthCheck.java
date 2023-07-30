@@ -118,7 +118,6 @@ public class AnonInnerLengthCheck extends AbstractCheck {
      * Setter to specify the maximum number of lines allowed.
      *
      * @param length the maximum length of an anonymous inner class.
-     * @since 3.2
      */
     public void setMax(int length) {
         max = length;

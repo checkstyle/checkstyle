@@ -232,7 +232,6 @@ public final class ThrowsCountCheck extends AbstractCheck {
      * Setter to allow private methods to be ignored.
      *
      * @param ignorePrivateMethods whether private methods must be ignored.
-     * @since 6.7
      */
     public void setIgnorePrivateMethods(boolean ignorePrivateMethods) {
         this.ignorePrivateMethods = ignorePrivateMethods;
@@ -242,7 +241,6 @@ public final class ThrowsCountCheck extends AbstractCheck {
      * Setter to specify maximum allowed number of throws statements.
      *
      * @param max maximum allowed throws statements.
-     * @since 3.2
      */
     public void setMax(int max) {
         this.max = max;

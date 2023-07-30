@@ -196,7 +196,6 @@ public class JavadocContentLocationCheck extends AbstractCheck {
      *
      * @param value string to decode location from
      * @throws IllegalArgumentException if unable to decode
-     * @since 8.27
      */
     public void setLocation(String value) {
         location = JavadocContentLocationOption.valueOf(value.trim().toUpperCase(Locale.ENGLISH));

@@ -179,7 +179,6 @@ public class HeaderCheck extends AbstractHeaderCheck {
      * Setter to specify the line numbers to ignore.
      *
      * @param lines line numbers to ignore in header.
-     * @since 3.2
      */
     public void setIgnoreLines(int... lines) {
         ignoreLines = TokenUtil.asBitSet(lines);

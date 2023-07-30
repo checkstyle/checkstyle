@@ -169,7 +169,6 @@ public class FinalParametersCheck extends AbstractCheck {
      * Setter to ignore primitive types as parameters.
      *
      * @param ignorePrimitiveTypes true or false.
-     * @since 6.2
      */
     public void setIgnorePrimitiveTypes(boolean ignorePrimitiveTypes) {
         this.ignorePrimitiveTypes = ignorePrimitiveTypes;

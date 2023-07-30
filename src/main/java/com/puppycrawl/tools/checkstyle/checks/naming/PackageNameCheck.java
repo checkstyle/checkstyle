@@ -120,7 +120,6 @@ public class PackageNameCheck
      * Setter to specifies valid identifiers.
      *
      * @param pattern the new pattern
-     * @since 3.0
      */
     public void setFormat(Pattern pattern) {
         format = pattern;

@@ -47,10 +47,7 @@ check-missing-pitests)
 
   #  Temporary skip for Metadata generator related files for
   #  https://github.com/checkstyle/checkstyle/issues/8761
-  #  Coverage for site package is skipped
-  #  until https://github.com/checkstyle/checkstyle/issues/13393
-  list=("com.puppycrawl.tools.checkstyle.meta.*"
-    "com.puppycrawl.tools.checkstyle.site.*" "${list[@]}")
+  list=("com.puppycrawl.tools.checkstyle.meta.*" "${list[@]}")
 
   CMD="find src/main/java -type f ! -name 'package-info.java'"
 

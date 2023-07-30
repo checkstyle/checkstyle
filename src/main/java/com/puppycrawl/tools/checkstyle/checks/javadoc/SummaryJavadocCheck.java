@@ -281,7 +281,6 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
      * Setter to specify the regexp for forbidden summary fragments.
      *
      * @param pattern a pattern.
-     * @since 6.0
      */
     public void setForbiddenSummaryFragments(Pattern pattern) {
         forbiddenSummaryFragments = pattern;
@@ -291,7 +290,6 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
      * Setter to specify the period symbol at the end of first javadoc sentence.
      *
      * @param period period's value.
-     * @since 6.2
      */
     public void setPeriod(String period) {
         this.period = period;

@@ -330,7 +330,6 @@ public final class MethodCountCheck extends AbstractCheck {
      * Setter to specify the maximum number of {@code private} methods allowed.
      *
      * @param value the maximum allowed.
-     * @since 5.3
      */
     public void setMaxPrivate(int value) {
         maxPrivate = value;
@@ -340,7 +339,6 @@ public final class MethodCountCheck extends AbstractCheck {
      * Setter to specify the maximum number of {@code package} methods allowed.
      *
      * @param value the maximum allowed.
-     * @since 5.3
      */
     public void setMaxPackage(int value) {
         maxPackage = value;
@@ -350,7 +348,6 @@ public final class MethodCountCheck extends AbstractCheck {
      * Setter to specify the maximum number of {@code protected} methods allowed.
      *
      * @param value the maximum allowed.
-     * @since 5.3
      */
     public void setMaxProtected(int value) {
         maxProtected = value;
@@ -360,7 +357,6 @@ public final class MethodCountCheck extends AbstractCheck {
      * Setter to specify the maximum number of {@code public} methods allowed.
      *
      * @param value the maximum allowed.
-     * @since 5.3
      */
     public void setMaxPublic(int value) {
         maxPublic = value;
@@ -370,7 +366,6 @@ public final class MethodCountCheck extends AbstractCheck {
      * Setter to specify the maximum number of methods allowed at all scope levels.
      *
      * @param value the maximum allowed.
-     * @since 5.3
      */
     public void setMaxTotal(int value) {
         maxTotal = value;

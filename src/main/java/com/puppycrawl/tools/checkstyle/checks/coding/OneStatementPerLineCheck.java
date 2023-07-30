@@ -174,7 +174,6 @@ public final class OneStatementPerLineCheck extends AbstractCheck {
      * Setter to enable resources processing.
      *
      * @param treatTryResourcesAsStatement user's value of treatTryResourcesAsStatement.
-     * @since 8.23
      */
     public void setTreatTryResourcesAsStatement(boolean treatTryResourcesAsStatement) {
         this.treatTryResourcesAsStatement = treatTryResourcesAsStatement;

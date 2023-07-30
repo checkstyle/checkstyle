@@ -140,7 +140,6 @@ public class AvoidStaticImportCheck
      *
      * @param excludes fully-qualified class names/specific
      *     static members where static imports are ok
-     * @since 5.0
      */
     public void setExcludes(String... excludes) {
         this.excludes = excludes.clone();

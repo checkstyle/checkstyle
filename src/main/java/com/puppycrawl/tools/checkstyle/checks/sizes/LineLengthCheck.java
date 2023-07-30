@@ -181,7 +181,6 @@ public class LineLengthCheck extends AbstractFileSetCheck {
      * Setter to specify the maximum line length allowed.
      *
      * @param length the maximum length of a line
-     * @since 3.0
      */
     public void setMax(int length) {
         max = length;
@@ -191,7 +190,6 @@ public class LineLengthCheck extends AbstractFileSetCheck {
      * Setter to specify pattern for lines to ignore.
      *
      * @param pattern a pattern.
-     * @since 3.0
      */
     public final void setIgnorePattern(Pattern pattern) {
         ignorePattern = pattern;

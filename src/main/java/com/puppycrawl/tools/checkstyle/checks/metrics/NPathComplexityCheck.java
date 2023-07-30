@@ -278,7 +278,6 @@ public final class NPathComplexityCheck extends AbstractCheck {
      * Setter to specify the maximum threshold allowed.
      *
      * @param max the maximum threshold
-     * @since 3.4
      */
     public void setMax(int max) {
         this.max = max;
