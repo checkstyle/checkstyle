@@ -18,14 +18,6 @@
     <lineContent>prevScopeUninitializedVariables.pop();</lineContent>
   </mutation>
 
-  <mutation unstable="false">
-    <sourceFile>HiddenFieldCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck$FieldFrame</mutatedClass>
-    <mutatedMethod>containsInstanceField</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
-    <description>removed conditional - replaced equality check with true</description>
-    <lineContent>return instanceFields.contains(field)</lineContent>
-  </mutation>
 
 
 
