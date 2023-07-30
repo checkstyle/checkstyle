@@ -110,4 +110,13 @@ public class UnnecessarySemicolonAfterTypeMemberDeclarationCheckTest
             .that(check.getRequiredTokens())
             .isEqualTo(CommonUtil.EMPTY_INT_ARRAY);
     }
+
+    @Test
+    public void testIsSemicolonWithNullAst() throws Exception {
+        final String[] expected = {"24:32: " + getCheckMessage(MSG_SEMI)};
+
+        verifyWithInlineConfigParser(
+                getPath("InputUnnecessarySemicolonAfterTypeMemberDeclarationNullAst.java"),
+                expected);
+    }
 }
