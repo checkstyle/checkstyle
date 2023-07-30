@@ -70,47 +70,6 @@ public class CheckUtilTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testElseWithCurly() {
-        final DetailAstImpl ast = new DetailAstImpl();
-        ast.setType(TokenTypes.ASSIGN);
-        ast.setText("ASSIGN");
-        assertWithMessage("Invalid elseIf check result 'ASSIGN' is not 'else if'")
-                .that(CheckUtil.isElseIf(ast))
-                .isFalse();
-
-        final DetailAstImpl parentAst = new DetailAstImpl();
-        parentAst.setType(TokenTypes.LCURLY);
-        parentAst.setText("LCURLY");
-
-        final DetailAstImpl ifAst = new DetailAstImpl();
-        ifAst.setType(TokenTypes.LITERAL_IF);
-        ifAst.setText("IF");
-        parentAst.addChild(ifAst);
-
-        assertWithMessage("Invalid elseIf check result: 'IF' is not 'else if'")
-                .that(CheckUtil.isElseIf(ifAst))
-                .isFalse();
-
-        final DetailAstImpl parentAst2 = new DetailAstImpl();
-        parentAst2.setType(TokenTypes.SLIST);
-        parentAst2.setText("SLIST");
-
-        parentAst2.addChild(ifAst);
-
-        assertWithMessage("Invalid elseIf check result: 'SLIST' is not 'else if'")
-                .that(CheckUtil.isElseIf(ifAst))
-                .isFalse();
-
-        final DetailAstImpl elseAst = new DetailAstImpl();
-        elseAst.setType(TokenTypes.LITERAL_ELSE);
-
-        elseAst.setFirstChild(ifAst);
-        assertWithMessage("Invalid elseIf check result")
-                .that(CheckUtil.isElseIf(ifAst))
-                .isTrue();
-    }
-
-    @Test
     public void testEquals() {
         final DetailAstImpl litStatic = new DetailAstImpl();
         litStatic.setType(TokenTypes.LITERAL_STATIC);
@@ -208,27 +167,6 @@ public class CheckUtilTest extends AbstractModuleTestSupport {
                 .isTrue();
         assertWithMessage("Invalid result: AST provided is equals method")
                 .that(CheckUtil.isEqualsMethod(someOtherMethod))
-                .isFalse();
-    }
-
-    @Test
-    public void testIsElseIf() throws Exception {
-        final DetailAST targetMethodNode = getNodeFromFile(TokenTypes.METHOD_DEF).getNextSibling();
-        final DetailAST firstElseNode = getNode(targetMethodNode, TokenTypes.LITERAL_ELSE);
-        final DetailAST ifElseWithCurlyBraces = firstElseNode.getFirstChild().getFirstChild();
-        final DetailAST ifElse = getNode(firstElseNode.getParent().getNextSibling(),
-                TokenTypes.LITERAL_ELSE).getFirstChild();
-        final DetailAST ifWithoutElse =
-                firstElseNode.getParent().getNextSibling().getNextSibling();
-
-        assertWithMessage("Invalid result: AST provided is not else if with curly")
-                .that(CheckUtil.isElseIf(ifElseWithCurlyBraces))
-                .isTrue();
-        assertWithMessage("Invalid result: AST provided is not else if with curly")
-                .that(CheckUtil.isElseIf(ifElse))
-                .isTrue();
-        assertWithMessage("Invalid result: AST provided is else if with curly")
-                .that(CheckUtil.isElseIf(ifWithoutElse))
                 .isFalse();
     }
 

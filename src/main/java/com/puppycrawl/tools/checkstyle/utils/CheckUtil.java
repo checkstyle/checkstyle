@@ -113,42 +113,6 @@ public final class CheckUtil {
     }
 
     /**
-     * Returns whether a token represents an ELSE as part of an ELSE / IF set.
-     *
-     * @param ast the token to check
-     * @return whether it is
-     */
-    public static boolean isElseIf(DetailAST ast) {
-        final DetailAST parentAST = ast.getParent();
-
-        return ast.getType() == TokenTypes.LITERAL_IF
-            && (isElse(parentAST) || isElseWithCurlyBraces(parentAST));
-    }
-
-    /**
-     * Returns whether a token represents an ELSE.
-     *
-     * @param ast the token to check
-     * @return whether the token represents an ELSE
-     */
-    private static boolean isElse(DetailAST ast) {
-        return ast.getType() == TokenTypes.LITERAL_ELSE;
-    }
-
-    /**
-     * Returns whether a token represents an SLIST as part of an ELSE
-     * statement.
-     *
-     * @param ast the token to check
-     * @return whether the toke does represent an SLIST as part of an ELSE
-     */
-    private static boolean isElseWithCurlyBraces(DetailAST ast) {
-        return ast.getType() == TokenTypes.SLIST
-            && ast.getChildCount() == 2
-            && isElse(ast.getParent());
-    }
-
-    /**
      * Returns the value represented by the specified string of the specified
      * type. Returns 0 for types other than float, double, int, and long.
      *
