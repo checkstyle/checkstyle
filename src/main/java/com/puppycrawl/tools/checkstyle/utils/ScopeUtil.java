@@ -317,7 +317,7 @@ public final class ScopeUtil {
     public static boolean isLocalVariableDef(DetailAST node) {
         boolean localVariableDef = false;
         // variable declaration?
-        if (node.getType() == TokenTypes.VARIABLE_DEF) {
+        if (true) {
             final DetailAST parent = node.getParent();
             localVariableDef = TokenUtil.isOfType(parent, TokenTypes.SLIST,
                                 TokenTypes.FOR_INIT, TokenTypes.FOR_EACH_CLAUSE);
