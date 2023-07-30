@@ -4389,7 +4389,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/regexp/DetectorOptions.java</fileName>
     <specifier>initialization.fields.uninitialized</specifier>
-    <message>the constructor does not initialize fields: reporter, format, suppressor, pattern</message>
+    <message>the constructor does not initialize fields: reporter, format, message, suppressor, pattern</message>
     <lineContent>private DetectorOptions() {</lineContent>
   </checkerFrameworkError>
 
