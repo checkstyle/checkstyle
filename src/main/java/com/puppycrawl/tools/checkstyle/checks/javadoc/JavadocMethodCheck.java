@@ -31,7 +31,7 @@ import java.util.regex.MatchResult;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
+import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
@@ -509,7 +509,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *
  * @since 3.0
  */
-@FileStatefulCheck
+@StatelessCheck
 public class JavadocMethodCheck extends AbstractCheck {
 
     /**
@@ -580,9 +580,6 @@ public class JavadocMethodCheck extends AbstractCheck {
     /** Compiled regexp to match Javadoc tags with no argument and {}. */
     private static final Pattern MATCH_JAVADOC_NOARG_CURLY =
             CommonUtil.createPattern("\\{\\s*@(inheritDoc)\\s*\\}");
-
-    /** Name of current class. */
-    private String currentClassName;
 
     /** Specify the access modifiers where Javadoc comments are checked. */
     private AccessModifierOption[] accessModifiers = {
@@ -695,32 +692,12 @@ public class JavadocMethodCheck extends AbstractCheck {
     }
 
     @Override
-    public void beginTree(DetailAST rootAST) {
-        currentClassName = "";
-    }
-
-    @Override
     public final void visitToken(DetailAST ast) {
-        if (ast.getType() == TokenTypes.CLASS_DEF
-                 || ast.getType() == TokenTypes.INTERFACE_DEF
-                 || ast.getType() == TokenTypes.ENUM_DEF
-                 || ast.getType() == TokenTypes.RECORD_DEF) {
-            processClass(ast);
-        }
-        else {
+        if (ast.getType() == TokenTypes.METHOD_DEF
+                 || ast.getType() == TokenTypes.CTOR_DEF
+                 || ast.getType() == TokenTypes.ANNOTATION_FIELD_DEF
+                 || ast.getType() == TokenTypes.COMPACT_CTOR_DEF) {
             processAST(ast);
-        }
-    }
-
-    @Override
-    public final void leaveToken(DetailAST ast) {
-        if (ast.getType() == TokenTypes.CLASS_DEF
-            || ast.getType() == TokenTypes.INTERFACE_DEF
-            || ast.getType() == TokenTypes.ENUM_DEF
-            || ast.getType() == TokenTypes.RECORD_DEF) {
-            // perhaps it was inner class
-            final int dotIdx = currentClassName.lastIndexOf('$');
-            currentClassName = currentClassName.substring(0, dotIdx);
         }
     }
 
@@ -1351,19 +1328,6 @@ public class JavadocMethodCheck extends AbstractCheck {
             }
         }
         return result;
-    }
-
-    /**
-     * Processes class definition.
-     *
-     * @param ast class definition to process.
-     */
-    private void processClass(DetailAST ast) {
-        final DetailAST ident = ast.findFirstToken(TokenTypes.IDENT);
-        String innerClass = ident.getText();
-
-        innerClass = "$" + innerClass;
-        currentClassName += innerClass;
     }
 
     /**
