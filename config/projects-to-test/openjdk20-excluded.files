@@ -29,9 +29,12 @@
   <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]unicode[\\/]FirstChar2.java$"/>
 </module>
 
-<!-- until https://github.com/checkstyle/checkstyle/issues/13411 -->
+<!-- until https://github.com/checkstyle/checkstyle/issues/13279 -->
 <module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]SwitchScope.java$"/>
+  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]patterns[\\/]ForEachPatterns.java$"/>
+</module>
+<module name="BeforeExecutionExclusionFileFilter">
+  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]patterns[\\/]GenericRecordDeconstructionPattern.java$"/>
 </module>
 
 <!-- non-compilable -->
