@@ -304,12 +304,11 @@ public final class CheckUtil {
             final DetailAST type = ast.findFirstToken(TokenTypes.TYPE);
             final String name = type.getNextSibling().getText();
             final boolean matchesSetterFormat = SETTER_PATTERN.matcher(name).matches();
-            final boolean voidReturnType = type.findFirstToken(TokenTypes.LITERAL_VOID) != null;
 
             final DetailAST params = ast.findFirstToken(TokenTypes.PARAMETERS);
             final boolean singleParam = params.getChildCount(TokenTypes.PARAMETER_DEF) == 1;
 
-            if (matchesSetterFormat && voidReturnType && singleParam) {
+            if (matchesSetterFormat && singleParam) {
                 // Now verify that the body consists of:
                 // SLIST -> EXPR -> ASSIGN
                 // SEMI
@@ -342,12 +341,11 @@ public final class CheckUtil {
             final DetailAST type = ast.findFirstToken(TokenTypes.TYPE);
             final String name = type.getNextSibling().getText();
             final boolean matchesGetterFormat = GETTER_PATTERN.matcher(name).matches();
-            final boolean noVoidReturnType = type.findFirstToken(TokenTypes.LITERAL_VOID) == null;
 
             final DetailAST params = ast.findFirstToken(TokenTypes.PARAMETERS);
             final boolean noParams = params.getChildCount(TokenTypes.PARAMETER_DEF) == 0;
 
-            if (matchesGetterFormat && noVoidReturnType && noParams) {
+            if (matchesGetterFormat && noParams) {
                 // Now verify that the body consists of:
                 // SLIST -> RETURN
                 // RCURLY
