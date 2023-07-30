@@ -247,8 +247,8 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
     public void testStaticImports() throws Exception {
 
         final String[] expected = {
-            "28:6: " + getCheckMessage(MSG_KEY, "SomeStaticClass"),
-            "30:31: " + getCheckMessage(MSG_KEY, "SomeStaticClass"),
+            "26:6: " + getCheckMessage(MSG_KEY, "SomeStaticClass"),
+            "28:31: " + getCheckMessage(MSG_KEY, "SomeStaticClass"),
         };
 
         verifyWithInlineConfigParser(

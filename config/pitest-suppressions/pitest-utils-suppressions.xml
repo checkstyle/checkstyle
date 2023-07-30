@@ -72,14 +72,14 @@
     <lineContent>for (DetailAST token = node.getParent();</lineContent>
   </mutation>
 
-  <mutation unstable="false">
-    <sourceFile>CheckUtil.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.utils.CheckUtil</mutatedClass>
-    <mutatedMethod>isElseWithCurlyBraces</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
-    <description>removed conditional - replaced equality check with true</description>
-    <lineContent>return ast.getType() == TokenTypes.SLIST</lineContent>
-  </mutation>
+
+
+
+
+
+
+
+
 
   <mutation unstable="false">
     <sourceFile>CheckUtil.java</sourceFile>

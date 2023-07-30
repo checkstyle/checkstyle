@@ -23,7 +23,6 @@ import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 
 /**
  * <p>
@@ -147,7 +146,7 @@ public final class NestedIfDepthCheck extends AbstractCheck {
 
     @Override
     public void visitToken(DetailAST literalIf) {
-        if (!CheckUtil.isElseIf(literalIf)) {
+        if (!isElseIf(literalIf)) {
             if (depth > max) {
                 log(literalIf, MSG_KEY, depth, max);
             }
@@ -157,9 +156,41 @@ public final class NestedIfDepthCheck extends AbstractCheck {
 
     @Override
     public void leaveToken(DetailAST literalIf) {
-        if (!CheckUtil.isElseIf(literalIf)) {
+        if (!isElseIf(literalIf)) {
             --depth;
         }
     }
 
+    /**
+     * Returns whether a token represents an ELSE as part of an ELSE / IF set.
+     *
+     * @param ast the token to check
+     * @return whether it is
+     */
+    private static boolean isElseIf(DetailAST ast) {
+        final DetailAST parentAST = ast.getParent();
+
+        return isElse(parentAST) || isElseWithCurlyBraces(parentAST);
+    }
+
+    /**
+     * Returns whether a token represents an ELSE.
+     *
+     * @param ast the token to check
+     * @return whether the token represents an ELSE
+     */
+    private static boolean isElse(DetailAST ast) {
+        return ast.getType() == TokenTypes.LITERAL_ELSE;
+    }
+
+    /**
+     * Returns whether a token represents an SLIST as part of an ELSE
+     * statement.
+     *
+     * @param ast the token to check
+     * @return whether the toke does represent an SLIST as part of an ELSE
+     */
+    private static boolean isElseWithCurlyBraces(DetailAST ast) {
+        return ast.getChildCount() == 2 && isElse(ast.getParent());
+    }
 }
