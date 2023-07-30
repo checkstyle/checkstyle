@@ -40,6 +40,9 @@ public class NestedIfDepthCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "26:17: " + getCheckMessage(MSG_KEY, 2, 1),
             "52:17: " + getCheckMessage(MSG_KEY, 2, 1),
+            "77:17: " + getCheckMessage(MSG_KEY, 2, 1),
+            "102:18: " + getCheckMessage(MSG_KEY, 2, 1),
+            "107:18: " + getCheckMessage(MSG_KEY, 2, 1),
         };
 
         verifyWithInlineConfigParser(
