@@ -3971,13 +3971,6 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocMethodCheck.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field currentClassName</message>
-    <lineContent>private String currentClassName;</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocMethodCheck.java</fileName>
     <specifier>not.interned</specifier>
     <message>attempting to use a non-@Interned comparison operand</message>
     <lineContent>if (curNode != root) {</lineContent>
