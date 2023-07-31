@@ -56,6 +56,25 @@
             anchor.appendChild(a);
             anchorItem.appendChild(anchor);
         });
+
+        var exampleDivs = document.querySelectorAll('p[id^="Example"]');
+        [].forEach.call(exampleDivs, function (exampleDiv) {
+            var name = exampleDiv.id;
+            var link = "" + url + "#" + name + "";
+
+            var a = document.createElement("a");
+            a.setAttribute("href", link);
+
+            var image = document.createElement("img");
+            image.setAttribute("src", `${relativePath}/images/anchor.png`);
+
+            var anchor = document.createElement("div");
+            anchor.className = "anchor";
+
+            a.appendChild(image);
+            anchor.appendChild(a);
+            exampleDiv.appendChild(anchor);
+        });
     });
 }());
 
