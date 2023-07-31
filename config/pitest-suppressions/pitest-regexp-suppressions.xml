@@ -18,39 +18,4 @@
     <lineContent>options.getReporter().log(1, MSG_STACKOVERFLOW, matcher.pattern().toString());</lineContent>
   </mutation>
 
-  <mutation unstable="false">
-    <sourceFile>RegexpCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.regexp.RegexpCheck</mutatedClass>
-    <mutatedMethod>beginTree</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
-    <description>Removed assignment to member variable errorCount</description>
-    <lineContent>errorCount = 0;</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>RegexpCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.regexp.RegexpCheck</mutatedClass>
-    <mutatedMethod>beginTree</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
-    <description>Removed assignment to member variable matchCount</description>
-    <lineContent>matchCount = 0;</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>RegexpCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.regexp.RegexpCheck</mutatedClass>
-    <mutatedMethod>isIgnore</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to com/puppycrawl/tools/checkstyle/api/FileText::lineColumn</description>
-    <lineContent>end = text.lineColumn(0);</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>RegexpCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.regexp.RegexpCheck</mutatedClass>
-    <mutatedMethod>setDuplicateLimit</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
-    <description>Removed assignment to member variable duplicateLimit</description>
-    <lineContent>this.duplicateLimit = duplicateLimit;</lineContent>
-  </mutation>
 </suppressedMutations>
