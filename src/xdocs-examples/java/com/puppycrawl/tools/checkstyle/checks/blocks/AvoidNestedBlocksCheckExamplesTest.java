@@ -22,17 +22,12 @@ package com.puppycrawl.tools.checkstyle.checks.blocks;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 @Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
-public class AvoidNestedBlocksCheckExamplesTest extends AbstractModuleTestSupport {
+public class AvoidNestedBlocksCheckExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
     protected String getPackageLocation() {
-        return "xdocs-examples";
-    }
-
-    @Override
-    protected String getResourceLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/blocks/avoidnestedblocks";
     }
 

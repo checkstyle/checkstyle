@@ -17,26 +17,13 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.puppycrawl.tools.checkstyle.checks.design;
+package com.puppycrawl.tools.checkstyle;
 
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
+public abstract class AbstractExamplesModuleTestSupport extends AbstractModuleTestSupport {
 
-import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
-
-@Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
-public class FinalClassCheckExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
-    protected String getPackageLocation() {
-        return "com/puppycrawl/tools/checkstyle/checks/design/finalclass";
+    protected String getResourceLocation() {
+        return "xdocs-examples";
     }
 
-    @Test
-    public void testExample1() throws Exception {
-        final String[] expected = {
-
-        };
-
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
-    }
 }
