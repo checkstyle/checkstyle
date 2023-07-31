@@ -1807,4 +1807,70 @@ public class XdocsPagesTest {
                 .isFalse();
     }
 
+    @Test
+    public void testAllExampleMacrosHaveParagraphWithIdBeforeThem() throws Exception {
+        for (Path path : XdocUtil.getXdocsTemplatesFilePaths()) {
+            final String fileName = path.getFileName().toString();
+            final String input = Files.readString(path);
+            final Document document = XmlUtil.getRawXml(fileName, input, input);
+            final NodeList sources = document.getElementsByTagName("macro");
+
+            for (int position = 0; position < sources.getLength(); position++) {
+                final Node macro = sources.item(position);
+                final String macroName = macro.getAttributes()
+                        .getNamedItem("name").getTextContent();
+
+                if (!"example".equals(macroName)) {
+                    continue;
+                }
+
+                Node precedingParagraph = macro.getPreviousSibling();
+                while (!"p".equals(precedingParagraph.getNodeName())) {
+                    precedingParagraph = precedingParagraph.getPreviousSibling();
+                }
+
+                assertWithMessage(fileName
+                        + ": paragraph before example macro should have an id attribute")
+                        .that(precedingParagraph.hasAttributes())
+                        .isTrue();
+
+                final Node idAttribute = precedingParagraph.getAttributes().getNamedItem("id");
+                assertWithMessage(fileName
+                        + ": paragraph before example macro should have an id attribute")
+                        .that(idAttribute)
+                        .isNotNull();
+
+                String exampleName = "";
+                String exampleType = "";
+                final NodeList params = macro.getChildNodes();
+                for (int paramPosition = 0; paramPosition < params.getLength(); paramPosition++) {
+                    final Node item = params.item(paramPosition);
+
+                    if (!"param".equals(item.getNodeName())) {
+                        continue;
+                    }
+
+                    final String paramName = item.getAttributes()
+                            .getNamedItem("name").getTextContent();
+                    final String paramValue = item.getAttributes()
+                            .getNamedItem("value").getTextContent();
+                    if ("path".equals(paramName)) {
+                        exampleName = paramValue.substring(paramValue.lastIndexOf('/') + 1,
+                                paramValue.lastIndexOf('.'));
+                    }
+                    else if ("type".equals(paramName)) {
+                        exampleType = paramValue;
+                    }
+                }
+
+                final String id = idAttribute.getTextContent();
+                final String expectedId = String.format(Locale.ROOT, "%s-%s", exampleName,
+                        exampleType);
+                assertWithMessage(fileName
+                        + ": paragraph before example macro should have the expected id value")
+                        .that(id)
+                        .isEqualTo(expectedId);
+            }
+        }
+    }
 }
