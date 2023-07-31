@@ -2793,6 +2793,16 @@
     </details>
   </checkerFrameworkError>
 
+  <!-- This is not possible to fix because if we initialize this in constructor or in
+       field itself pitest will be failed. This is conflict with pitest but value of
+       pitest is above checker -->
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/header/AbstractHeaderCheck.java</fileName>
+    <specifier>initialization.field.uninitialized</specifier>
+    <message>the default constructor does not initialize field charset</message>
+    <lineContent>private Charset charset;</lineContent>
+  </checkerFrameworkError>
+
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/header/AbstractHeaderCheck.java</fileName>
     <specifier>initialization.field.uninitialized</specifier>
