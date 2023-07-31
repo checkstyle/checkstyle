@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 
+import com.google.common.collect.ImmutableMap;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -49,6 +50,7 @@ import com.puppycrawl.tools.checkstyle.internal.utils.BriefUtLogger;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.ModuleReflectionUtil;
+import org.junit.jupiter.api.Test;
 
 public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport {
 
@@ -263,6 +265,36 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
                 new File[] {new File(filePath1), new File(filePath2)},
                 filePath1,
                 expected);
+    }
+
+    /**
+     * Performs verification of two files with their given file paths.
+     * using specified configuration of one file only. Also performs
+     * verification of the config specified in the input file. This method
+     * needs to be implemented when two given files need to be
+     * checked through a single check only.
+     *
+     * @param filePath1 file path of first file to verify
+     * @param filePath2 file path of first file to verify
+     * @param expected list of expected message
+     * @param expected2 list of expected message
+     * @throws Exception if exception occurs during verification process
+     */
+    protected final void verifyWithInlineConfigParser(String filePath1,
+                                                      String filePath2,
+                                                      List<String> expected,
+                                                      List<String> expected2 )
+            throws Exception {
+        final TestInputConfiguration config =
+                InlineConfigParser.parse(filePath1);
+        // this is non used but require so if config is not specified it give error
+        // Although we use only the config of filePath1
+        final TestInputConfiguration config2 =
+                InlineConfigParser.parse(filePath2);
+        final File[] inputs = {new File(filePath1), new File(filePath2)};
+        verify(createChecker(config.createConfiguration()), inputs, ImmutableMap.of(
+            filePath1, expected,
+            filePath2, expected2));
     }
 
     /**
