@@ -286,7 +286,7 @@ public class InputFallThroughDefault
           case 0:
               i++; // fallthru
 
-          case 1:
+          case 1: // violation 'Fall through from previous branch of the switch statement'
               i++;
           // fallthru
           case 2: {
@@ -311,7 +311,7 @@ public class InputFallThroughDefault
           case 0:
               i++; /* fallthru */
 
-          case 1:
+          case 1: // violation 'Fall through from previous branch of the switch statement'
               i++;
           /* fallthru */
           case 2:
@@ -332,7 +332,7 @@ public class InputFallThroughDefault
           case 0:
               i++; /*fallthru*/
 
-          case 1:
+          case 1: // violation 'Fall through from previous branch of the switch statement'
               i++;
           /*fallthru*/
           case 2:
@@ -353,7 +353,7 @@ public class InputFallThroughDefault
           case 0:
               i++; /* falls through */
 
-          case 1:
+          case 1: // violation 'Fall through from previous branch of the switch statement'
               i++;
           /* falls through */
           case 2:
@@ -502,29 +502,29 @@ public class InputFallThroughDefault
           switch (i){
               case 0:
                   i++; // fallthru
-              case 1:
+              case 1: // violation 'Fall through from previous branch of the switch statement'
                   i++; // fall thru
-              case 2:
+              case 2: // violation 'Fall through from previous branch of the switch statement'
                   i++; // fall-thru
-              case 3:
+              case 3:// violation 'Fall through from previous branch of the switch statement'
                   i++; // fallthrough
-              case 4:
+              case 4: // violation 'Fall through from previous branch of the switch statement'
                   i++; // fall through
-              case 5:
+              case 5: // violation 'Fall through from previous branch of the switch statement'
                   i++; // fall-through
-              case 6:
+              case 6: // violation 'Fall through from previous branch of the switch statement'
                   i++; // fallsthru
-              case 7:
+              case 7: // violation 'Fall through from previous branch of the switch statement'
                   i++; // falls thru
-              case 8:
+              case 8: // violation 'Fall through from previous branch of the switch statement'
                   i++; // falls-thru
-              case 9:
+              case 9: // violation 'Fall through from previous branch of the switch statement'
                   i++; // fallsthrough
-              case 10:
+              case 10: // violation 'Fall through from previous branch of the switch statement'
                   i++; // falls through
-              case 11:
+              case 11: // violation 'Fall through from previous branch of the switch statement'
                   i++; // falls-through
-              case 12:
+              case 12: // violation 'Fall through from previous branch of the switch statement'
                   i++; // fall--through
               case 13: // violation 'Fall through from previous branch of the switch statement.'
                   i++; // fall+through
