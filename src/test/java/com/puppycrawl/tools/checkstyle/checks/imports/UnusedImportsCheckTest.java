@@ -314,7 +314,6 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testStateIsClearedOnBeginTreeCollect() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(UnusedImportsCheck.class);
         final String file1 = getNonCompilablePath(
                 "InputUnusedImportsRecordsAndCompactCtors.java");
         final String file2 = getNonCompilablePath(
@@ -326,10 +325,6 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
         final List<String> expectedSecondInput = List.of(
             "10:8: " + getCheckMessage(MSG_KEY, "module")
         );
-        final File[] inputs = {new File(file1), new File(file2)};
-
-        verify(createChecker(checkConfig), inputs, ImmutableMap.of(
-            file1, expectedFirstInput,
-            file2, expectedSecondInput));
+        verifyWithInlineConfigParser(file1, file2, expectedFirstInput, expectedSecondInput);
     }
 }
