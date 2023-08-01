@@ -111,6 +111,12 @@
   <!-- We will preserve formatting of archived release notes -->
   <suppress id="lineLength" files="[\\/]releasenotes_old_8\-0_8\-34\.xml"/>
 
+  <!-- All xdoc checks/filters files are generated from templates and have escaped characters that
+       make the lines long. We still validate index.xml and template files.
+       until https://github.com/checkstyle/checkstyle/issues/13426 -->
+  <suppress id="lineLength"
+            files="[\\/]src[\\/]xdocs[\\/](checks|(file)?filters)[\\/](?!.*index\.xml)(?!.*\.xml\.template).+\.xml"/>
+
   <!-- apply check numberOfTestCasesInXpath only for files in suppressionxpathfilter directory -->
   <suppress id="numberOfTestCasesInXpath"
          files="src[\\/]it[\\/]java[\\/]com[\\/].*" />
