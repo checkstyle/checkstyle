@@ -46,7 +46,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Property {@code limitedTokens} - Specify set of tokens with limited occurrences as descendants.
  * Type is {@code java.lang.String[]}.
  * Validation type is {@code tokenTypesSet}.
- * Default value is {@code ""}.
+ * Default value is {@code null}.
  * </li>
  * <li>
  * Property {@code minimumDepth} - Specify the minimum depth for descendant counts.
@@ -659,7 +659,7 @@ public class DescendantTokenCheck extends AbstractCheck {
     private boolean sumTokenCounts;
     /** Specify set of tokens with limited occurrences as descendants. */
     @XdocsPropertyType(PropertyType.TOKEN_ARRAY)
-    private int[] limitedTokens = CommonUtil.EMPTY_INT_ARRAY;
+    private int[] limitedTokens;
     /** Define the violation message when the minimum count is not reached. */
     private String minimumMessage;
     /** Define the violation message when the maximum count is exceeded. */
@@ -669,7 +669,7 @@ public class DescendantTokenCheck extends AbstractCheck {
      * Counts of descendant tokens.
      * Indexed by (token ID - 1) for performance.
      */
-    private int[] counts = CommonUtil.EMPTY_INT_ARRAY;
+    private int[] counts;
 
     @Override
     public int[] getAcceptableTokens() {
@@ -804,6 +804,7 @@ public class DescendantTokenCheck extends AbstractCheck {
      * @since 3.2
      */
     public void setLimitedTokens(String... limitedTokensParam) {
+        System.out.println(limitedTokensParam.length);
         limitedTokens = new int[limitedTokensParam.length];
 
         int maxToken = 0;
