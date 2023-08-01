@@ -23,14 +23,9 @@ import static com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceBefo
 
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
-public class NoWhitespaceBeforeExamplesTest extends AbstractModuleTestSupport {
-    @Override
-    protected String getResourceLocation() {
-        return "xdocs-examples";
-    }
-
+public class NoWhitespaceBeforeExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/whitespace/nowhitespacebefore";
