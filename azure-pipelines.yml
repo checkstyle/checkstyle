@@ -83,7 +83,7 @@ strategy:
     # OpenJDK11 verify
     'OpenJDK11 verify':
       image: 'ubuntu-20.04'
-      cmd: "mvn -e --no-transfer-progress verify"
+      cmd: "mvn clean compile antrun:run@ant-phase-verify -e --no-transfer-progress"
 
     # MacOS JDK11 verify
     'MacOS JDK11 verify':
