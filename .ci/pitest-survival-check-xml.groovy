@@ -267,7 +267,7 @@ private static int printComparisonToConsole(Set<Mutation> survivingMutations,
         println 'No new surviving mutation(s) found.'
     }
     else if (survivingUnsuppressedMutations.isEmpty()
-            && !hasOnlyStableMutations(extraSuppressions)) {
+            && hasOnlyUnstableMutations(extraSuppressions)) {
         exitCode = 0
         println 'No new surviving mutation(s) found.'
     }
@@ -293,13 +293,13 @@ private static int printComparisonToConsole(Set<Mutation> survivingMutations,
 }
 
 /**
- * Whether a set has only stable mutations.
+ * Whether a set has only unstable mutations.
  *
  * @param mutations A set of mutations
- * @return {@code true} if a set has only stable mutations
+ * @return {@code true} if a set has only unstable mutations
  */
-private static boolean hasOnlyStableMutations(Set<Mutation> mutations) {
-    return mutations.every { !it.isUnstable() }
+private static boolean hasOnlyUnstableMutations(Set<Mutation> mutations) {
+    return mutations.every { it.isUnstable() }
 }
 
 /**
