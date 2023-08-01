@@ -23,15 +23,10 @@ import static com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck.MS
 
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
-public class ConstantNameCheckExamplesTest extends AbstractModuleTestSupport {
+public class ConstantNameCheckExamplesTest extends AbstractExamplesModuleTestSupport {
     private static final String DEFAULT_PATTERN = "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$";
-
-    @Override
-    protected String getResourceLocation() {
-        return "xdocs-examples";
-    }
 
     @Override
     protected String getPackageLocation() {

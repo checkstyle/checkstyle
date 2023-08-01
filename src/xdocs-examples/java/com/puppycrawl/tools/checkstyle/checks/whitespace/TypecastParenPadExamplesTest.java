@@ -26,14 +26,9 @@ import static com.puppycrawl.tools.checkstyle.checks.whitespace.AbstractParenPad
 
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
-public class TypecastParenPadExamplesTest extends AbstractModuleTestSupport {
-    @Override
-    protected String getResourceLocation() {
-        return "xdocs-examples";
-    }
-
+public class TypecastParenPadExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/whitespace/typecastparenpad";
