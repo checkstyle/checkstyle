@@ -861,8 +861,7 @@
                       com.puppycrawl.tools.checkstyle.api.AutomaticBean*
                     </exclude>
                     <!-- until https://github.com/checkstyle/checkstyle/issues/13393 -->
-                    <exclude>com.puppycrawl.tools.checkstyle.site.XdocsTemplateParser</exclude>
-                    <exclude>com.puppycrawl.tools.checkstyle.site.ExampleMacro</exclude>
+                    <exclude>com.puppycrawl.tools.checkstyle.site.*</exclude>
                     <!-- Parser related classes -->
                     <exclude>
                       com.puppycrawl.tools.checkstyle.grammar.java.JavaLanguageParser*

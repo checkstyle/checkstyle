@@ -21,7 +21,12 @@ package com.puppycrawl.tools.checkstyle.site;
 
 import java.io.Writer;
 
+import javax.swing.text.MutableAttributeSet;
+
+import org.apache.maven.doxia.markup.HtmlMarkup;
 import org.apache.maven.doxia.module.xdoc.XdocSink;
+import org.apache.maven.doxia.sink.SinkEventAttributes;
+import org.apache.maven.doxia.sink.impl.SinkEventAttributeSet;
 
 /**
  * A sink for Checkstyle's xdoc templates.
@@ -63,5 +68,18 @@ public class XdocsTemplateSink extends XdocSink {
         writeEOL();
         flush();
         init();
+    }
+
+    /**
+     * Write an external link. We override this method because the default implementation
+     * adds a {@code class="external-link"} attribute to the link which we don't want.
+     *
+     * @param href the link.
+     */
+    @Override
+    public void link(String href) {
+        final MutableAttributeSet attributes = new SinkEventAttributeSet();
+        attributes.addAttribute(SinkEventAttributes.HREF, href);
+        writeStartTag(HtmlMarkup.A, attributes);
     }
 }

@@ -72,7 +72,13 @@
     <allow pkg="org.apache.maven" local-only="true"/>
     <allow pkg="java.nio" local-only="true"/>
     <allow pkg="org.codehaus.plexus" local-only="true"/>
+    <allow class="java.lang.reflect.Field" local-only="true"/>
+    <allow class="javax.swing.text.MutableAttributeSet" local-only="true"/>
     <allow class="javax.swing.text.html.HTML.Attribute" local-only="true"/>
+    <allow class="com.puppycrawl.tools.checkstyle.TreeWalkerFilter" local-only="true"/>
+    <allow class="com.puppycrawl.tools.checkstyle.ModuleFactory" local-only="true"/>
+    <allow class="com.puppycrawl.tools.checkstyle.PackageNamesLoader" local-only="true"/>
+    <allow class="com.puppycrawl.tools.checkstyle.PackageObjectFactory" local-only="true"/>
     <allow class="com.puppycrawl.tools.checkstyle.utils.CommonUtil" local-only="true"/>
   </subpackage>
 
