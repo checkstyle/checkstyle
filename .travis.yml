@@ -41,7 +41,7 @@ before_script:
         export JAVA_HOME=/usr/lib/jvm/adoptopenjdk-11-hotspot-ppc64el
         export PATH=$JAVA_HOME/bin:$PATH
     fi
-  - groovy --version
+  # - groovy --version
 
 script:
   # manually set JAVA_HOME to overcome issue with travis ci noted at
