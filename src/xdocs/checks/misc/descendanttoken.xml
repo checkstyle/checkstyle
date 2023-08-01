@@ -40,7 +40,7 @@
                 subset of tokens
                 <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">TokenTypes</a>
               </td>
-              <td><code>{}</code></td>
+              <td><code>null</code></td>
               <td>3.2</td>
             </tr>
             <tr>
