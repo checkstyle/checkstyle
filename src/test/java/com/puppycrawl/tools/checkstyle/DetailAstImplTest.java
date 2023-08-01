@@ -285,6 +285,24 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
         assertWithMessage("unexpected result")
             .that(parent.getFirstChild())
             .isEqualTo(previousSibling);
+
+        final DetailAstImpl secondNewPreviousSibling = new DetailAstImpl();
+        instance.addPreviousSibling(secondNewPreviousSibling);
+        assertWithMessage("unexpected result")
+                .that(secondNewPreviousSibling.getPreviousSibling())
+                .isEqualTo(newPreviousSibling);
+        assertWithMessage("unexpected result")
+                .that(secondNewPreviousSibling.getNextSibling())
+                .isEqualTo(instance);
+        assertWithMessage("unexpected result")
+                .that(newPreviousSibling.getNextSibling())
+                .isEqualTo(secondNewPreviousSibling);
+        assertWithMessage("unexpected result")
+                .that(secondNewPreviousSibling.getPreviousSibling().getPreviousSibling())
+                .isEqualTo(previousSibling);
+        assertWithMessage("unexpected result")
+                .that(instance.getPreviousSibling().getPreviousSibling().getPreviousSibling())
+                .isEqualTo(previousSibling);
     }
 
     @Test
