@@ -24,14 +24,9 @@ import static com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyForIterator
 
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
-public class EmptyForIteratorPadExamplesTest extends AbstractModuleTestSupport {
-    @Override
-    protected String getResourceLocation() {
-        return "xdocs-examples";
-    }
-
+public class EmptyForIteratorPadExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/whitespace/emptyforiteratorpad";

@@ -23,16 +23,11 @@ import static com.puppycrawl.tools.checkstyle.checks.naming.AbbreviationAsWordIn
 
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-public class AbbreviationAsWordInNameExamplesTest extends AbstractModuleTestSupport {
+public class AbbreviationAsWordInNameExamplesTest extends AbstractExamplesModuleTestSupport {
     private static final int DEFAULT_EXPECTED_CAPITAL_COUNT = 4;
-
-    @Override
-    protected String getResourceLocation() {
-        return "xdocs-examples";
-    }
 
     @Override
     protected String getPackageLocation() {

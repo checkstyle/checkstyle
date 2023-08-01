@@ -23,15 +23,10 @@ import static com.puppycrawl.tools.checkstyle.checks.sizes.LambdaBodyLengthCheck
 
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
-public class LambdaBodyLengthExamplesTest extends AbstractModuleTestSupport {
+public class LambdaBodyLengthExamplesTest extends AbstractExamplesModuleTestSupport {
     private static final int DEFAULT_MAX = 10;
-
-    @Override
-    protected String getResourceLocation() {
-        return "xdocs-examples";
-    }
 
     @Override
     protected String getPackageLocation() {

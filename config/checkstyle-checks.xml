@@ -498,6 +498,15 @@
       <message key="matchxpath.match"
                value="All property setters of a module should contain a '@since' tag."/>
     </module>
+    <module name="MatchXpath">
+      <property name="id" value="exampleTestsExtendAbstractExamplesModuleTestSupport"/>
+      <property name="query"
+                value="//CLASS_DEF[./IDENT[ends-with(@text, 'ExamplesTest')]
+                and ./MODIFIERS/LITERAL_PUBLIC
+                and ./EXTENDS_CLAUSE/IDENT[not(@text='AbstractExamplesModuleTestSupport')]]"/>
+      <message key="matchxpath.match"
+               value="All example test classes should extend AbstractExamplesModuleTestSupport."/>
+    </module>
     <module name="MissingCtor">
       <!--
         we will not use that fanatic validation, extra code is not good
