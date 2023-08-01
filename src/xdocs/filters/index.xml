@@ -17,7 +17,7 @@
             </td>
             <td>
               Filter <code>SeverityMatchFilter</code> decides
-              audit events according to the <a href="../config.html#Severity">severity
+              audit events according to the <a href="../config.html#Severity">severitaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaay
               level</a> of the event.
             </td>
           </tr>
