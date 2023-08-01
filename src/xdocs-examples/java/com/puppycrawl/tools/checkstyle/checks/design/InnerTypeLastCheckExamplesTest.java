@@ -22,15 +22,10 @@ package com.puppycrawl.tools.checkstyle.checks.design;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 @Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
-public class InnerTypeLastCheckExamplesTest extends AbstractModuleTestSupport {
-    @Override
-    protected String getResourceLocation() {
-        return "xdocs-examples";
-    }
-
+public class InnerTypeLastCheckExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/design/innertypelast";
