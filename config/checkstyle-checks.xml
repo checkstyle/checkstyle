@@ -155,7 +155,7 @@
     <property name="id" value="lineLengthXml"/>
     <property name="format"
               value="^(?!(\s*,?\s*&lt;a href=&quot;[^&quot;]+&quot;&gt;|.*http)).{101,}$"/>
-    <property name="fileExtensions" value="xml, vm"/>
+    <property name="fileExtensions" value="xml, vm, template"/>
     <property name="message" value="Line should not be longer than 100 symbols"/>
   </module>
   <!--
