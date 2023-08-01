@@ -23,14 +23,9 @@ import static com.puppycrawl.tools.checkstyle.checks.whitespace.NoLineWrapCheck.
 
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
-public class NoLineWrapExamplesTest extends AbstractModuleTestSupport {
-    @Override
-    protected String getResourceLocation() {
-        return "xdocs-examples";
-    }
-
+public class NoLineWrapExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/whitespace/nolinewrap";

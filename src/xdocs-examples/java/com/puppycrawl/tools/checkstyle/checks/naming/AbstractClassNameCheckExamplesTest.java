@@ -24,15 +24,10 @@ import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractClassNameChe
 
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
-public class AbstractClassNameCheckExamplesTest extends AbstractModuleTestSupport {
+public class AbstractClassNameCheckExamplesTest extends AbstractExamplesModuleTestSupport {
     private static final String DEFAULT_PATTERN = "^Abstract.+$";
-
-    @Override
-    protected String getResourceLocation() {
-        return "xdocs-examples";
-    }
 
     @Override
     protected String getPackageLocation() {
