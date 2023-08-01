@@ -22,10 +22,10 @@ package com.puppycrawl.tools.checkstyle.checks.annotation;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 
 @Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
-public class AnnotationOnSameLineCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+public class AnnotationOnSameLineCheckExamplesTest extends AbstractModuleTestSupport {
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/annotation/annotationonsameline";
