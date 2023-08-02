@@ -7,28 +7,28 @@
 */
 
 // xdoc section -- start
-final class MyClass { // OK
-  private MyClass() { }
+final class MyClassA { // OK
+  private MyClassA() { }
 }
 
-class MyClass { // violation, class should be declared final
-  private MyClass() { }
+class MyClassB { // violation 'Class MyClassB should be declared as final.'
+  private MyClassB() { }
 }
 
-class MyClass { // OK, since it has a public constructor
+class MyClassC { // OK, since it has a public constructor
   int field1;
   String field2;
-  private MyClass(int value) {
+  private MyClassC(int value) {
     this.field1 = value;
     this.field2 = " ";
   }
-  public MyClass(String value) {
+  public MyClassC(String value) {
     this.field2 = value;
     this.field1 = 0;
   }
 }
 
-class TestAnonymousInnerClasses { // OK, class has an anonymous inner class.
+class TestAnonymousInnerClasses { // OK, 'class has an anonymous inner class.'
     public static final TestAnonymousInnerClasses ONE = new TestAnonymousInnerClasses() {
 
     };
@@ -39,7 +39,7 @@ class TestAnonymousInnerClasses { // OK, class has an anonymous inner class.
 
 class Class1 {
 
-    private class Class2 { // violation, class should be declared final
+    private class Class2 { // violation 'Class Class2 should be declared as final'
     }
 
     public class Class3 { // ok
