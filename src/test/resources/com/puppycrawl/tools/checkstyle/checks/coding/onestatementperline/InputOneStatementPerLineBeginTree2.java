@@ -1,3 +1,8 @@
+/*
+OneStatementPerLine
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.coding.onestatementperline;
 
 // ok

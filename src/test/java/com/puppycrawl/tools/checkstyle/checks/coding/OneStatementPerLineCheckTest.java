@@ -22,12 +22,10 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck.MSG_KEY;
 
-import java.io.File;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import com.google.common.collect.ImmutableMap;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
@@ -146,36 +144,26 @@ public class OneStatementPerLineCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testStateIsClearedOnBeginTreeForLastStatementEnd() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(OneStatementPerLineCheck.class);
         final String inputWithWarnings = getPath("InputOneStatementPerLineBeginTree1.java");
         final String inputWithoutWarnings = getPath("InputOneStatementPerLineBeginTree2.java");
         final List<String> expectedFirstInput = List.of(
-                "1:96: " + getCheckMessage(MSG_KEY)
+                "6:96: " + getCheckMessage(MSG_KEY)
         );
         final List<String> expectedSecondInput = List.of(CommonUtil.EMPTY_STRING_ARRAY);
-        final File[] inputs = {new File(inputWithWarnings), new File(inputWithoutWarnings)};
-
-        verify(createChecker(checkConfig), inputs, ImmutableMap.of(
-            inputWithWarnings, expectedFirstInput,
-            inputWithoutWarnings, expectedSecondInput));
+        verifyWithInlineConfigParser(inputWithWarnings,
+            inputWithoutWarnings, expectedFirstInput, expectedSecondInput);
     }
 
     @Test
     public void testStateIsClearedOnBeginTreeForLastVariableStatement() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(OneStatementPerLineCheck.class);
-        checkConfig.addProperty("treatTryResourcesAsStatement", "true");
         final String file1 = getPath(
                 "InputOneStatementPerLineBeginTreeLastVariableResourcesStatementEnd1.java");
         final String file2 = getPath(
                 "InputOneStatementPerLineBeginTreeLastVariableResourcesStatementEnd2.java");
         final List<String> expectedFirstInput = List.of(
-                "8:59: " + getCheckMessage(MSG_KEY)
+                "15:59: " + getCheckMessage(MSG_KEY)
         );
         final List<String> expectedSecondInput = List.of(CommonUtil.EMPTY_STRING_ARRAY);
-        final File[] inputs = {new File(file1), new File(file2)};
-
-        verify(createChecker(checkConfig), inputs, ImmutableMap.of(
-            file1, expectedFirstInput,
-            file2, expectedSecondInput));
+        verifyWithInlineConfigParser(file1, file2, expectedFirstInput, expectedSecondInput);
     }
 }

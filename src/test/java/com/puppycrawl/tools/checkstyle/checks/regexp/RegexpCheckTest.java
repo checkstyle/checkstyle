@@ -24,6 +24,8 @@ import static com.puppycrawl.tools.checkstyle.checks.regexp.RegexpCheck.MSG_DUPL
 import static com.puppycrawl.tools.checkstyle.checks.regexp.RegexpCheck.MSG_ILLEGAL_REGEXP;
 import static com.puppycrawl.tools.checkstyle.checks.regexp.RegexpCheck.MSG_REQUIRED_REGEXP;
 
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
@@ -290,4 +292,33 @@ public class RegexpCheckTest extends AbstractModuleTestSupport {
         verify(checkConfig, getPath("InputRegexpTrailingComment11.java"), expected);
     }
 
+    @Test
+    public void testStateIsClearedOnBeginTreeErrorCount() throws Exception {
+        final String file1 = getPath("InputRegexpCheckB2.java");
+        final String file2 = getPath("InputRegexpCheckB1.java");
+        final List<String> expectedFromFile1 = List.of(
+            "12: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "^import")
+        );
+        final List<String> expectedFromFile2 = List.of(
+            "12: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "^import")
+        );
+        verifyWithInlineConfigParser(file1, file2, expectedFromFile1, expectedFromFile2);
+    }
+
+    @Test
+    public void testStateIsClearedOnBeginTreeMatchCount() throws Exception {
+        final String file1 = getPath("InputRegexpCheckB3.java");
+        final String file2 = getPath("InputRegexpCheckB4.java");
+        final List<String> expectedFirstInput = List.of(CommonUtil.EMPTY_STRING_ARRAY);
+        final List<String> expectedSecondInput = List.of(CommonUtil.EMPTY_STRING_ARRAY);
+        verifyWithInlineConfigParser(file1, file2,
+                expectedFirstInput, expectedSecondInput);
+    }
+
+    @Test
+    public void testOnFileStartingWithEmptyLine2() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(getPath("InputRegexpCheckEmptyLine2.java"),
+                expected);
+    }
 }
