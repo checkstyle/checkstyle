@@ -26,6 +26,8 @@ import static com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheck.
 
 import java.io.File;
 import java.nio.file.Files;
+import java.util.Arrays;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
@@ -423,6 +425,18 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
 
         verifyWithInlineConfigParser(
                 getPath("InputImportControlFileNameNoExtension"), expected);
+    }
+
+    @Test
+    public void testBeginTreeCurrentImportControl() throws Exception {
+        final String file1 = getPath("InputImportControlBeginTree1.java");
+        final String file2 = getPath("InputImportControlBeginTree2.java");
+        final List<String> expectedFirstInput = Arrays.asList(
+            "11:1: " + getCheckMessage(MSG_DISALLOWED, "java.util.stream.Stream"),
+            "12:1: " + getCheckMessage(MSG_DISALLOWED, "java.util.stream.Collectors")
+        );
+        final List<String> expectedSecondInput = Arrays.asList(CommonUtil.EMPTY_STRING_ARRAY);
+        verifyWithInlineConfigParser(file1, file2, expectedFirstInput, expectedSecondInput);
     }
 
     /**
