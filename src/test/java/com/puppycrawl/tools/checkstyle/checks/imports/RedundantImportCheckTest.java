@@ -123,7 +123,6 @@ public class RedundantImportCheckTest
 
     @Test
     public void testBeginTreePackage() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(RedundantImportCheck.class);
         final String file1 = getPath("InputRedundantImportCheckClearState.java");
         final String file2 = getPath("InputRedundantImportWithoutPackage.java");
         final List<String> expectedFirstInput = Arrays.asList(
@@ -134,9 +133,6 @@ public class RedundantImportCheckTest
             "9:1: " + getCheckMessage(MSG_LANG, "java.lang.*"),
             "10:1: " + getCheckMessage(MSG_LANG, "java.lang.String")
         );
-        final File[] inputs = {new File(file1), new File(file2)};
-        verify(createChecker(checkConfig), inputs, ImmutableMap.of(
-            file1, expectedFirstInput,
-            file2, expectedSecondInput));
+        verifyWithInlineConfigParser(file1, file2, expectedFirstInput, expectedSecondInput);
     }
 }

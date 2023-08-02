@@ -39,6 +39,7 @@ import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
+import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 import com.puppycrawl.tools.checkstyle.LocalizedMessage.Utf8Control;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
@@ -263,6 +264,36 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
                 new File[] {new File(filePath1), new File(filePath2)},
                 filePath1,
                 expected);
+    }
+
+    /**
+     * Performs verification of two files with their given file paths.
+     * using specified configuration of one file only. Also performs
+     * verification of the config specified in the input file. This method
+     * needs to be implemented when two given files need to be
+     * checked through a single check only.
+     *
+     * @param filePath1 file path of first file to verify
+     * @param filePath2 file path of first file to verify
+     * @param expectedFromFile1 list of expected message
+     * @param expectedFromFile2 list of expected message
+     * @throws Exception if exception occurs during verification process
+     */
+    protected final void verifyWithInlineConfigParser(String filePath1,
+                                                      String filePath2,
+                                                      List<String> expectedFromFile1,
+                                                      List<String> expectedFromFile2)
+            throws Exception {
+        final TestInputConfiguration testInputConfiguration = InlineConfigParser.parse(filePath1);
+        final DefaultConfiguration parsedConfig = testInputConfiguration.createConfiguration();
+        final TestInputConfiguration testInputConfiguration2 = InlineConfigParser.parse(filePath2);
+        final DefaultConfiguration parsedConfig2 = testInputConfiguration.createConfiguration();
+        final File[] inputs = {new File(filePath1), new File(filePath2)};
+        verifyViolations(parsedConfig, filePath1, testInputConfiguration.getViolations());
+        verifyViolations(parsedConfig2, filePath2, testInputConfiguration2.getViolations());
+        verify(createChecker(parsedConfig), inputs, ImmutableMap.of(
+            filePath1, expectedFromFile1,
+            filePath2, expectedFromFile2));
     }
 
     /**
