@@ -115,6 +115,8 @@
       <property name="format" value="^class Example\d+"/>
       <property name="minimum" value="1"/>
       <property name="maximum" value="1"/>
+      <message key="regexp.minimum"
+               value="Example test input class name must match ''Example\d+''"/>
     </module>
 
   </module>
