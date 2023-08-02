@@ -59,6 +59,10 @@
 
   <!-- intentional problem for testing -->
   <suppress checks="PackageDeclarationCheck"
+    files="importcontrol[\\/]InputImportControlBeginTree2\.java"/>
+
+  <!-- intentional problem for testing -->
+  <suppress checks="PackageDeclarationCheck"
             files="unusedimports[\\/]InputUnusedImportsSingleWordPackage\.java"/>
 
   <!-- intentional problem for testing -->
