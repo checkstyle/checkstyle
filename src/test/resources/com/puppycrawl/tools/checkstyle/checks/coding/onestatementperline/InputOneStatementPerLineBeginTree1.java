@@ -1,3 +1,8 @@
+/*
+OneStatementPerLine
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.coding.onestatementperline; import java.util.Set;
 // violation above 'Only one statement per line allowed'
 
