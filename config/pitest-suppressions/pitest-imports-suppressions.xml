@@ -45,42 +45,6 @@
     <lineContent>final boolean regex = containsRegexAttribute(attributes);</lineContent>
   </mutation>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  <mutation unstable="false">
-    <sourceFile>ImportOrderCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck</mutatedClass>
-    <mutatedMethod>getGroupNumber</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to java/util/regex/Matcher::end</description>
-    <lineContent>bestEnd = matcher.end();</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>ImportOrderCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck</mutatedClass>
-    <mutatedMethod>getGroupNumber</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to java/util/regex/Matcher::start</description>
-    <lineContent>if (matcher.start() &lt; bestPos) {</lineContent>
-  </mutation>
-
   <mutation unstable="false">
     <sourceFile>PkgImportControl.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.imports.PkgImportControl</mutatedClass>
