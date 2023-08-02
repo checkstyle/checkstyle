@@ -48,6 +48,14 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testVeryPreciseGrouping() throws Exception {
+        final String[] expected = {};
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputImportOrder6.java"), expected);
+    }
+
+    @Test
     public void testGetTokens() {
         final ImportOrderCheck checkObj = new ImportOrderCheck();
         final int[] expected = {TokenTypes.IMPORT, TokenTypes.STATIC_IMPORT};
