@@ -27,7 +27,7 @@
         </p>
         <p>
           Using the <code>ElementStyleOption.EXPANDED</code> style is more verbose.
-          The expanded version is sometimes referred to as &quot;named parameters&quot; in other languages.
+          The expanded version is sometimes referred to as "named parameters" in other languages.
         </p>
         <p>
           Using the <code>ElementStyleOption.COMPACT</code> style is less verbose.
@@ -72,7 +72,7 @@
         </p>
         <p>
           See <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-9.html#jls-9.7">
-          Java Language specification, &#xa7;9.7</a>.
+          Java Language specification, §9.7</a>.
         </p>
       </subsection>
       <subsection name="Properties" id="Properties">
@@ -132,23 +132,23 @@
       <subsection name="Examples" id="Examples">
         <p> To configure the check:</p>
         <source>
-&lt;module name=&quot;AnnotationUseStyle&quot;/&gt;
+&lt;module name="AnnotationUseStyle"/&gt;
         </source>
         <p>
           Example:
         </p>
         <source>
-@SuppressWarnings(&quot;unchecked&quot;) // OK
+@SuppressWarnings("unchecked") // OK
 @Deprecated // OK
-@SomeArrays({&quot;unchecked&quot;,&quot;unused&quot;}) // OK
+@SomeArrays({"unchecked","unused"}) // OK
 public class TestOne
 {
 
 }
 
-@SuppressWarnings(value={&quot;unchecked&quot;}) // Violation - parameter 'value' shouldn't be used
+@SuppressWarnings(value={"unchecked"}) // Violation - parameter 'value' shouldn't be used
 @Deprecated() // Violation - cannot have a closing parenthesis
-@SomeArrays(value={&quot;unchecked&quot;,&quot;unused&quot;,}) // Violation - cannot have a trailing array comma
+@SomeArrays(value={"unchecked","unused",}) // Violation - cannot have a trailing array comma
 class TestTwo {
 
 }
@@ -158,27 +158,27 @@ class TestTwo {
             with a closing parenthesis and a trailing array comma set to <code>never</code>.
         </p>
         <source>
-&lt;module name=&quot;AnnotationUseStyle&quot;&gt;
-  &lt;property name=&quot;elementStyle&quot; value=&quot;expanded&quot;/&gt;
-  &lt;property name=&quot;closingParens&quot; value=&quot;never&quot;/&gt;
-  &lt;property name=&quot;trailingArrayComma&quot; value=&quot;never&quot;/&gt;
+&lt;module name="AnnotationUseStyle"&gt;
+  &lt;property name="elementStyle" value="expanded"/&gt;
+  &lt;property name="closingParens" value="never"/&gt;
+  &lt;property name="trailingArrayComma" value="never"/&gt;
 &lt;/module&gt;
         </source>
         <p>
           Example:
         </p>
         <source>
-@SuppressWarnings(&quot;unchecked&quot;) // Violation - parameters should be referenced
+@SuppressWarnings("unchecked") // Violation - parameters should be referenced
 @Deprecated // OK
-@SomeArrays({&quot;unchecked&quot;,&quot;unused&quot;}) // Violation - parameters should be referenced
+@SomeArrays({"unchecked","unused"}) // Violation - parameters should be referenced
 public class TestOne
 {
 
 }
 
-@SuppressWarnings(value={&quot;unchecked&quot;}) // OK
+@SuppressWarnings(value={"unchecked"}) // OK
 @Deprecated() // Violation - cannot have a closing parenthesis
-@SomeArrays(value={&quot;unchecked&quot;,&quot;unused&quot;,}) // Violation - cannot have a trailing array comma
+@SomeArrays(value={"unchecked","unused",}) // Violation - cannot have a trailing array comma
 class TestTwo {
 
 }
@@ -188,27 +188,27 @@ class TestTwo {
             with always including a closing parenthesis and ignoring a trailing array comma.
         </p>
         <source>
-&lt;module name=&quot;AnnotationUseStyle&quot;&gt;
-  &lt;property name=&quot;elementStyle&quot; value=&quot;compact&quot;/&gt;
-  &lt;property name=&quot;closingParens&quot; value=&quot;always&quot;/&gt;
-  &lt;property name=&quot;trailingArrayComma&quot; value=&quot;ignore&quot;/&gt;
+&lt;module name="AnnotationUseStyle"&gt;
+  &lt;property name="elementStyle" value="compact"/&gt;
+  &lt;property name="closingParens" value="always"/&gt;
+  &lt;property name="trailingArrayComma" value="ignore"/&gt;
 &lt;/module&gt;
         </source>
         <p>
           Example:
         </p>
         <source>
-@SuppressWarnings(&quot;unchecked&quot;) // OK
+@SuppressWarnings("unchecked") // OK
 @Deprecated // Violation - must have a closing parenthesis
-@SomeArrays({&quot;unchecked&quot;,&quot;unused&quot;}) // OK
+@SomeArrays({"unchecked","unused"}) // OK
 public class TestOne
 {
 
 }
 
-@SuppressWarnings(value={&quot;unchecked&quot;}) // Violation - parameter 'value' shouldn't be used
+@SuppressWarnings(value={"unchecked"}) // Violation - parameter 'value' shouldn't be used
 @Deprecated() // OK
-@SomeArrays(value={&quot;unchecked&quot;,&quot;unused&quot;,}) // Violation - parameter 'value' shouldn't be used
+@SomeArrays(value={"unchecked","unused",}) // Violation - parameter 'value' shouldn't be used
 class TestTwo {
 
 }
@@ -218,27 +218,27 @@ class TestTwo {
             with ignoring the elementStyle and a closing parenthesis.
         </p>
         <source>
-&lt;module name=&quot;AnnotationUseStyle&quot;&gt;
-  &lt;property name=&quot;elementStyle&quot; value=&quot;ignore&quot;/&gt;
-  &lt;property name=&quot;closingParens&quot; value=&quot;ignore&quot;/&gt;
-  &lt;property name=&quot;trailingArrayComma&quot; value=&quot;always&quot;/&gt;
+&lt;module name="AnnotationUseStyle"&gt;
+  &lt;property name="elementStyle" value="ignore"/&gt;
+  &lt;property name="closingParens" value="ignore"/&gt;
+  &lt;property name="trailingArrayComma" value="always"/&gt;
 &lt;/module&gt;
         </source>
         <p>
           Example:
         </p>
         <source>
-@SuppressWarnings(&quot;unchecked&quot;) // OK
+@SuppressWarnings("unchecked") // OK
 @Deprecated // OK
-@SomeArrays({&quot;unchecked&quot;,&quot;unused&quot;}) // Violation - must have a trailing array comma
+@SomeArrays({"unchecked","unused"}) // Violation - must have a trailing array comma
 public class TestOne
 {
 
 }
 
-@SuppressWarnings(value={&quot;unchecked&quot;}) // Violation - must have a trailing array comma
+@SuppressWarnings(value={"unchecked"}) // Violation - must have a trailing array comma
 @Deprecated() // OK
-@SomeArrays(value={&quot;unchecked&quot;,&quot;unused&quot;,}) // OK
+@SomeArrays(value={"unchecked","unused",}) // OK
 class TestTwo {
 
 }
