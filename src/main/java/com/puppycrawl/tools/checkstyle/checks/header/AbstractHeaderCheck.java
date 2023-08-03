@@ -27,7 +27,6 @@ import java.io.Reader;
 import java.io.StringReader;
 import java.net.URI;
 import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
 import java.nio.charset.UnsupportedCharsetException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -60,8 +59,7 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck
 
     /** Specify the character encoding to use when reading the headerFile. */
     @XdocsPropertyType(PropertyType.STRING)
-    private Charset charset = createCharset(System.getProperty("file.encoding",
-        StandardCharsets.UTF_8.name()));
+    private Charset charset;
 
     /**
      * Hook method for post-processing header lines.
