@@ -19,8 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.site;
 
-import java.util.Collections;
-import java.util.List;
+import java.util.Set;
 
 import org.apache.maven.doxia.macro.AbstractMacro;
 import org.apache.maven.doxia.macro.Macro;
@@ -44,7 +43,7 @@ public class ViolationMessagesMacro extends AbstractMacro {
         final String checkName = (String) request.getParameter("checkName");
         final Object instance = SiteUtil.getModuleInstance(checkName);
         final Class<?> clss = instance.getClass();
-        final List<String> messageKeys = SiteUtil.getCheckMessageKeys(clss, instance);
+        final Set<String> messageKeys = SiteUtil.getMessageKeys(clss);
         createListOfMessages((XdocSink) sink, clss, messageKeys);
     }
 
@@ -56,7 +55,7 @@ public class ViolationMessagesMacro extends AbstractMacro {
      * @param messageKeys the List of message keys to iterate through.
      */
     private static void createListOfMessages(
-            XdocSink sink, Class<?> clss, List<String> messageKeys) {
+            XdocSink sink, Class<?> clss, Set<String> messageKeys) {
         final String indentLevel8 = SiteUtil.getNewlineAndIndentSpaces(8);
 
         // This is a hack to prevent a newline from being inserted by the default sink.
@@ -66,7 +65,6 @@ public class ViolationMessagesMacro extends AbstractMacro {
         sink.list();
         sink.setInsertNewline(true);
 
-        Collections.sort(messageKeys);
         for (String messageKey : messageKeys) {
             createListItem(sink, clss, messageKey);
         }
