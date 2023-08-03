@@ -20,10 +20,10 @@
 package com.puppycrawl.tools.checkstyle.site;
 
 import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Locale;
 import java.util.Set;
+import java.util.TreeSet;
 
 import org.apache.maven.doxia.macro.MacroExecutionException;
 
@@ -47,28 +47,45 @@ public final class SiteUtil {
     }
 
     /**
+     * Get string values of the message keys from the given check class.
+     *
+     * @param module class to examine.
+     * @return a set of checkstyle's module message keys.
+     * @throws MacroExecutionException if extraction of message keys fails.
+     */
+    public static Set<String> getMessageKeys(Class<?> module)
+            throws MacroExecutionException {
+        final Set<Field> messageKeyFields = getCheckMessageKeys(module);
+        // We use a TreeSet to sort the message keys alphabetically
+        final Set<String> messageKeys = new TreeSet<>();
+        for (Field field : messageKeyFields) {
+            messageKeys.add(getFieldValue(field, module));
+        }
+        return messageKeys;
+    }
+
+    /**
      * Gets the check's messages keys.
      *
      * @param module class to examine.
-     * @param checkInstance instance of the check.
-     * @return a list of checkstyle's module message fields.
+     * @return a set of checkstyle's module message fields.
      * @throws MacroExecutionException if the attempt to read a protected class fails.
      * @noinspection InstanceofChain
      * @noinspectionreason InstanceofChain - We will deal with this at
      *                     <a href="https://github.com/checkstyle/checkstyle/issues/13500">13500</a>
      *
      */
-    public static List<String> getCheckMessageKeys(Class<?> module, Object checkInstance)
+    private static Set<Field> getCheckMessageKeys(Class<?> module)
             throws MacroExecutionException {
         try {
-            final List<String> checkstyleMessageKeys = new ArrayList<>();
+            final Set<Field> checkstyleMessages = new HashSet<>();
 
             // get all fields from current class
             final Field[] fields = module.getDeclaredFields();
 
             for (Field field : fields) {
                 if (field.getName().startsWith("MSG_")) {
-                    checkstyleMessageKeys.add(getFieldValue(field, checkInstance));
+                    checkstyleMessages.add(field);
                 }
             }
 
@@ -76,27 +93,21 @@ public final class SiteUtil {
             final Class<?> superModule = module.getSuperclass();
 
             if (superModule != null) {
-                checkstyleMessageKeys.addAll(getCheckMessageKeys(superModule, checkInstance));
+                checkstyleMessages.addAll(getCheckMessageKeys(superModule));
             }
 
             // special cases that require additional classes
             if (module == RegexpMultilineCheck.class) {
-                checkstyleMessageKeys.addAll(getCheckMessageKeys(
-                        Class.forName(
-                                "com.puppycrawl.tools.checkstyle.checks.regexp.MultilineDetector"
-                        ), checkInstance)
-                );
+                checkstyleMessages.addAll(getCheckMessageKeys(Class
+                    .forName("com.puppycrawl.tools.checkstyle.checks.regexp.MultilineDetector")));
             }
             else if (module == RegexpSinglelineCheck.class
                     || module == RegexpSinglelineJavaCheck.class) {
-                checkstyleMessageKeys.addAll(getCheckMessageKeys(
-                        Class.forName(
-                                "com.puppycrawl.tools.checkstyle.checks.regexp.SinglelineDetector"
-                        ), checkInstance)
-                );
+                checkstyleMessages.addAll(getCheckMessageKeys(Class
+                    .forName("com.puppycrawl.tools.checkstyle.checks.regexp.SinglelineDetector")));
             }
 
-            return checkstyleMessageKeys;
+            return checkstyleMessages;
         }
         catch (ClassNotFoundException ex) {
             final String message = String.format(Locale.ROOT, "Couldn't find class: %s",
