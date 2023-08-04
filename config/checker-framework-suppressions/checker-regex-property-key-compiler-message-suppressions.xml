@@ -665,6 +665,17 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/ParentModuleMacro.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter regex of matches.</message>
+    <lineContent>.filter(path -&gt; path.toString().matches(fileNamePattern))</lineContent>
+    <details>
+      found   : String
+      required: @Regex String
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/ChainedPropertyUtil.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter key of getProperty.</message>
