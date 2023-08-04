@@ -31,44 +31,6 @@ init-m2-repo)
   fi
   ;;
 
-install-adoptium-jdk)
-  if [[ -n "${CUSTOM_ADOPTIUM_JDK}" ]]; then
-    echo "Installing ${CUSTOM_ADOPTIUM_JDK}...";
-    curl --fail-with-body -s https://packages.adoptium.net/artifactory/api/gpg/key/public |
-      sudo tee /usr/share/keyrings/adoptium.asc
-    echo "deb [signed-by=/usr/share/keyrings/adoptium.asc] \
-      https://packages.adoptium.net/artifactory/deb $(lsb_release --short --codename) main" |
-      sudo tee /etc/apt/sources.list.d/adoptium.list
-    sudo apt-get update
-    sudo apt-get install "${CUSTOM_ADOPTIUM_JDK}"
-  fi
-  ;;
-
-remove-adoptium-jdk)
-  if [[ -n "${CUSTOM_ADOPTIUM_JDK}" ]]; then
-    sudo apt-get remove "${CUSTOM_ADOPTIUM_JDK}"
-  fi
-  ;;
-
-install-custom-mvn)
-  if [[ -n "${CUSTOM_MVN_VERSION}" ]]; then
-    echo "Download Maven ${CUSTOM_MVN_VERSION}....";
-    URL="https://archive.apache.org/dist/maven/maven-3/"
-    URL=$URL"${CUSTOM_MVN_VERSION}/binaries/apache-maven-${CUSTOM_MVN_VERSION}-bin.zip"
-    wget --progress=dot:giga "$URL"
-    unzip -q apache-maven-"${CUSTOM_MVN_VERSION}"-bin.zip
-    export M2_HOME=$PWD/apache-maven-${CUSTOM_MVN_VERSION};
-    export PATH=$M2_HOME/bin:$PATH;
-  fi
-  ;;
-
-remove-custom-mvn)
-  if [[ -n "${CUSTOM_MVN_VERSION}" ]]; then
-    rm apache-maven-"${CUSTOM_MVN_VERSION}"-bin.zip
-    rm -rf apache-maven-"${CUSTOM_MVN_VERSION}"
-  fi
-  ;;
-
 run-command)
   if [[ $RUN_JOB == 1 ]]; then
     echo "eval of CMD is starting";
