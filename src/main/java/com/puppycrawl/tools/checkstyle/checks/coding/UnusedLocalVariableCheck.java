@@ -155,7 +155,6 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
     private static final int[] SCOPES = {
         TokenTypes.SLIST,
         TokenTypes.LITERAL_FOR,
-        TokenTypes.OBJBLOCK,
     };
 
     /**
