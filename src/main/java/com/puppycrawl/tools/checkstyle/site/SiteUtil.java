@@ -70,8 +70,8 @@ public final class SiteUtil {
      * @param module class to examine.
      * @return a set of checkstyle's module message fields.
      * @throws MacroExecutionException if the attempt to read a protected class fails.
-     * @noinspection InstanceofChain
-     * @noinspectionreason InstanceofChain - We will deal with this at
+     * @noinspection ChainOfInstanceofChecks
+     * @noinspectionreason ChainOfInstanceofChecks - We will deal with this at
      *                     <a href="https://github.com/checkstyle/checkstyle/issues/13500">13500</a>
      *
      */
