@@ -20,7 +20,6 @@ addons
 adf
 admins
 adoptium
-adoptopenjdk
 adr
 AFilter
 aggregators
@@ -549,7 +548,6 @@ hne
 homepage
 horizontalwhitespace
 Hostname
-hotspot
 href
 htaccess
 htag
