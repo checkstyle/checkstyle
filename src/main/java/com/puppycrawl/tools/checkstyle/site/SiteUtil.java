@@ -56,7 +56,6 @@ public final class SiteUtil {
      * @noinspection InstanceofChain
      * @noinspectionreason InstanceofChain - We will deal with this at
      *                     <a href="https://github.com/checkstyle/checkstyle/issues/13500">13500</a>
-     *
      */
     public static List<String> getCheckMessageKeys(Class<?> module, Object checkInstance)
             throws MacroExecutionException {
