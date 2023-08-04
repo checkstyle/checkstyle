@@ -9,14 +9,14 @@
     <lineContent>lineNo, matcher.start(), lineNo, matcher.end());</lineContent>
   </mutation>
 
-  <mutation unstable="false">
-    <sourceFile>FinalLocalVariableCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck</mutatedClass>
-    <mutatedMethod>leaveToken</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to java/util/Deque::pop</description>
-    <lineContent>prevScopeUninitializedVariables.pop();</lineContent>
-  </mutation>
+
+
+
+
+
+
+
+
 
 
 
