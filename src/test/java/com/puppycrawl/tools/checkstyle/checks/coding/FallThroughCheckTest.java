@@ -124,8 +124,6 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
             "432:9: " + getCheckMessage(MSG_FALL_THROUGH),
             "444:9: " + getCheckMessage(MSG_FALL_THROUGH),
             "454:9: " + getCheckMessage(MSG_FALL_THROUGH),
-            // line 490 violation expected till https://github.com/checkstyle/checkstyle/pull/12966
-            "490:9: " + getCheckMessage(MSG_FALL_THROUGH),
             "491:9: " + getCheckMessage(MSG_FALL_THROUGH),
             "492:9: " + getCheckMessage(MSG_FALL_THROUGH),
         };
@@ -273,13 +271,8 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testFallThrough() throws Exception {
         final String[] expected = {
-            "16:13: " + getCheckMessage(MSG_FALL_THROUGH),
-            "18:13: " + getCheckMessage(MSG_FALL_THROUGH),
             "23:13: " + getCheckMessage(MSG_FALL_THROUGH),
-            "25:13: " + getCheckMessage(MSG_FALL_THROUGH),
             "27:13: " + getCheckMessage(MSG_FALL_THROUGH),
-            // line 37 needs consideration https://github.com/checkstyle/checkstyle/pull/12966
-            "37:10: " + getCheckMessage(MSG_FALL_THROUGH),
             "52:13: " + getCheckMessage(MSG_FALL_THROUGH),
             "65:13: " + getCheckMessage(MSG_FALL_THROUGH),
             "80:13: " + getCheckMessage(MSG_FALL_THROUGH),
@@ -338,6 +331,7 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "21:13: " + getCheckMessage(MSG_FALL_THROUGH),
             "99:39: " + getCheckMessage(MSG_FALL_THROUGH_LAST),
+            "107:11: " + getCheckMessage(MSG_FALL_THROUGH_LAST),
         };
         verifyWithInlineConfigParser(
                 getPath("InputFallThroughLastLineCommentCheck.java"),
@@ -349,7 +343,6 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "19:13: " + getCheckMessage(MSG_FALL_THROUGH_LAST),
             "22:13: " + getCheckMessage(MSG_FALL_THROUGH_LAST),
-            "25:13: " + getCheckMessage(MSG_FALL_THROUGH_LAST),
         };
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputFallThrough5.java"),
