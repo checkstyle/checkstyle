@@ -2594,6 +2594,8 @@
     <scope name="Tests" level="ERROR" enabled="false">
       <option name="ignoreInstanceofOnLibraryClasses" value="false"/>
     </scope>
+    <!-- until https://github.com/checkstyle/checkstyle/issues/13500 -->
+    <scope class="SiteUtil" level="ERROR" enabled="false"/>
     <option name="ignoreInstanceofOnLibraryClasses" value="true"/>
   </inspection_tool>
   <inspection_tool class="InstanceofIncompatibleInterface" enabled="true" level="WARNING"
