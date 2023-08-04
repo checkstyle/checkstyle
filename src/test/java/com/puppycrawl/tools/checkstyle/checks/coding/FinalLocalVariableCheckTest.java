@@ -334,4 +334,14 @@ public class FinalLocalVariableCheckTest
             getPath("InputFinalLocalVariable3.java"),
             expected);
     }
+
+    @Test
+    public void test2() throws Exception {
+        final String[] expected = {
+            "20:51: " + getCheckMessage(MSG_KEY, "list"),
+        };
+        verifyWithInlineConfigParser(
+            getNonCompilablePath("InputFinalLocalVariableCheck3.java"),
+            expected);
+    }
 }
