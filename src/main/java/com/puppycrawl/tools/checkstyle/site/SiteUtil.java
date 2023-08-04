@@ -19,18 +19,31 @@
 
 package com.puppycrawl.tools.checkstyle.site;
 
+import java.io.IOException;
 import java.lang.reflect.Field;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.HashSet;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.apache.maven.doxia.macro.MacroExecutionException;
 
+import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.ModuleFactory;
 import com.puppycrawl.tools.checkstyle.PackageNamesLoader;
 import com.puppycrawl.tools.checkstyle.PackageObjectFactory;
+import com.puppycrawl.tools.checkstyle.TreeWalker;
+import com.puppycrawl.tools.checkstyle.TreeWalkerFilter;
+import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
+import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import com.puppycrawl.tools.checkstyle.api.Filter;
 import com.puppycrawl.tools.checkstyle.checks.regexp.RegexpMultilineCheck;
 import com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck;
 import com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck;
@@ -39,6 +52,14 @@ import com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck;
  * Utility class for site generation.
  */
 public final class SiteUtil {
+
+    /** Class name and their corresponding parent module name.. */
+    private static final Map<Class<?>, String> CLASS_TO_PARENT_MODULE = Map.ofEntries(
+        Map.entry(AbstractCheck.class, TreeWalker.class.getSimpleName()),
+        Map.entry(TreeWalkerFilter.class, TreeWalker.class.getSimpleName()),
+        Map.entry(AbstractFileSetCheck.class, Checker.class.getSimpleName()),
+        Map.entry(Filter.class, Checker.class.getSimpleName())
+    );
 
     /**
      * Private utility constructor.
@@ -182,5 +203,57 @@ public final class SiteUtil {
      */
     public static String getNewlineAndIndentSpaces(int amountOfSpaces) {
         return System.lineSeparator() + " ".repeat(amountOfSpaces);
+    }
+
+    /**
+     * Gets xdocs template file paths. These are files ending with .xml.template.
+     * This method will be changed to gather .xml once
+     * <a href="https://github.com/checkstyle/checkstyle/issues/13426">#13426</a> is resolved.
+     *
+     * @return a set of xdocs template file paths.
+     * @throws MacroExecutionException if an I/O error occurs.
+     */
+    public static Set<Path> getXdocsTemplatesFilePaths() throws MacroExecutionException {
+        final Path directory = Paths.get("src/xdocs");
+        try (Stream<Path> stream = Files.find(directory, Integer.MAX_VALUE,
+                (path, attr) -> {
+                    return attr.isRegularFile()
+                            && path.toString().endsWith(".xml.template");
+                })) {
+            return stream.collect(Collectors.toSet());
+        }
+        catch (IOException ioException) {
+            throw new MacroExecutionException("Failed to find xdocs templates", ioException);
+        }
+    }
+
+    /**
+     * Returns the parent module name for the given module class. Returns either
+     * "TreeWalker" or "Checker". Returns null if the module class is null.
+     *
+     * @param moduleClass the module class.
+     * @return the parent module name as a string.
+     * @throws MacroExecutionException if the parent module cannot be found.
+     */
+    public static String getParentModule(Class<?> moduleClass)
+                throws MacroExecutionException {
+        String parentModuleName = "";
+        Class<?> parentClass = moduleClass.getSuperclass();
+
+        while (parentClass != null) {
+            parentModuleName = CLASS_TO_PARENT_MODULE.get(parentClass);
+            if (parentModuleName != null) {
+                break;
+            }
+            parentClass = parentClass.getSuperclass();
+        }
+
+        if (parentModuleName == null || parentModuleName.isEmpty()) {
+            final String message = String.format(Locale.ROOT,
+                    "Failed to find parent module for %s", moduleClass.getSimpleName());
+            throw new MacroExecutionException(message);
+        }
+
+        return parentModuleName;
     }
 }
