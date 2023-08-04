@@ -104,7 +104,7 @@ public class InputFallThroughLastLineCommentCheck {
    void method7(int i, int j, boolean cond) {
       while (true) {
           switch (i){
-          case 5:
+          case 5: // violation 'Fall through from the last branch of the switch statement'
               i++;
               /* block */ i++; /* fallthru */ // comment
           }
