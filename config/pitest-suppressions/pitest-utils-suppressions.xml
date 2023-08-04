@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suppressedMutations>
-  <mutation unstable="false">
-    <sourceFile>AnnotationUtil.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.utils.AnnotationUtil</mutatedClass>
-    <mutatedMethod>containsAnnotation</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
-    <description>removed conditional - replaced equality check with false</description>
-    <lineContent>if (ast == null) {</lineContent>
-  </mutation>
+
+
+
+
+
+
+
+
 
 
 
