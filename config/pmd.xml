@@ -274,7 +274,8 @@
              AbstractElementNode.iterateAxis,
              NoWhitespaceAfterCheck.getArrayDeclaratorPreviousElement
              are also huge switches, they had to be monolithic.
-           SuppressFilterElement is a single constructor and can't be split easily -->
+           SuppressFilterElement is a single constructor and can't be split easily
+           Splitting PropertiesMacro.getDefaultValue will damage readability -->
       <property name="violationSuppressXPath"
                 value="//ClassOrInterfaceDeclaration[@SimpleName='Main'
         or @SimpleName='PackageObjectFactory' or @SimpleName='RequireThisCheck'
@@ -297,6 +298,8 @@
              //MethodDeclaration[@Name='iterateAxis']
       | //ClassOrInterfaceDeclaration[@SimpleName='SuppressFilterElement']
              //ConstructorDeclaration
+      | //ClassOrInterfaceDeclaration[@SimpleName='PropertiesMacro']
+             //MethodDeclaration[@Name='getDefaultValue']
       "/>
     </properties>
   </rule>
@@ -342,12 +345,14 @@
            Checker collects external resource locations and sets up the configuration.
            CheckstyleAntTask integrates Checkstyle with Ant.
            TranslationCheck uses a lot of imports for it's logic and custom violations.
+           PropertiesMacro uses a lot of imports for its logic
             -->
       <property name="violationSuppressXPath"
                 value="//ClassOrInterfaceDeclaration[@SimpleName='Main'
         or @SimpleName='Checker' or @SimpleName='CheckstyleAntTask'
         or @SimpleName='TranslationCheck'
-        or @SimpleName='AbstractAutomaticBean']"/>
+        or @SimpleName='AbstractAutomaticBean']
+        or @SimpleName='PropertiesMacro'"/>
     </properties>
   </rule>
   <rule ref="category/java/design.xml/CognitiveComplexity">
@@ -356,7 +361,9 @@
       <!-- Till https://github.com/checkstyle/checkstyle/issues/10064 -->
       <property name="violationSuppressXPath"
                 value="//ClassOrInterfaceDeclaration[@SimpleName='XdocsPagesTest']
-                    //MethodDeclaration[@Name='getModulePropertyExpectedValue']"/>
+                    //MethodDeclaration[@Name='getModulePropertyExpectedValue']
+                      | //ClassOrInterfaceDeclaration[@SimpleName='PropertiesMacro']
+                        //MethodDeclaration[@Name='getDefaultValue']"/>
     </properties>
   </rule>
 
