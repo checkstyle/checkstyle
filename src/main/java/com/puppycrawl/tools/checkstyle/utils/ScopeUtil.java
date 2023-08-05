@@ -240,14 +240,11 @@ public final class ScopeUtil {
 
         // Loop up looking for a containing interface block
         for (DetailAST token = node.getParent();
-             token != null && !returnValue;
-             token = token.getParent()) {
-            if (token.getType() == TokenTypes.ENUM_DEF) {
-                returnValue = true;
-            }
-            else if (TokenUtil.isOfType(token, TokenTypes.INTERFACE_DEF,
+             token != null; token = token.getParent()) {
+            if (TokenUtil.isOfType(token, TokenTypes.INTERFACE_DEF,
                 TokenTypes.ANNOTATION_DEF, TokenTypes.CLASS_DEF,
-                TokenTypes.LITERAL_NEW)) {
+                TokenTypes.LITERAL_NEW, TokenTypes.ENUM_DEF)) {
+                returnValue = token.getType() == TokenTypes.ENUM_DEF;
                 break;
             }
         }
