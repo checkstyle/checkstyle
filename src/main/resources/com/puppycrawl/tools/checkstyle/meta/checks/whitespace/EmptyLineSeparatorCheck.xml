@@ -19,10 +19,6 @@
  If token does not have a sibling of the same type, then empty line
  is required at its end (for example for CLASS_DEF it is after '}').
  Also, trailing comments are skipped.
- &lt;/p&gt;
- &lt;p&gt;
- ATTENTION: violations from multiple empty lines cannot be suppressed via XPath:
- &lt;a href="https://github.com/checkstyle/checkstyle/issues/8179"&gt;#8179&lt;/a&gt;.
  &lt;/p&gt;</description>
          <properties>
             <property default-value="false"
