@@ -51,10 +51,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * is required at its end (for example for CLASS_DEF it is after '}').
  * Also, trailing comments are skipped.
  * </p>
- * <p>
- * ATTENTION: violations from multiple empty lines cannot be suppressed via XPath:
- * <a href="https://github.com/checkstyle/checkstyle/issues/8179">#8179</a>.
- * </p>
  * <ul>
  * <li>
  * Property {@code allowNoEmptyLineBetweenFields} - Allow no empty line between fields.
