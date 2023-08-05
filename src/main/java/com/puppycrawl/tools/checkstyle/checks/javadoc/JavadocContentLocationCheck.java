@@ -213,8 +213,10 @@ public class JavadocContentLocationCheck extends AbstractCheck {
                         log(ast, MSG_JAVADOC_CONTENT_FIRST_LINE);
                     }
                 }
-                else if (indexOfFirstNonBlankLine != 1) {
-                    log(ast, MSG_JAVADOC_CONTENT_SECOND_LINE);
+                if (location == JavadocContentLocationOption.SECOND_LINE) {
+                    if (indexOfFirstNonBlankLine != 1) {
+                        log(ast, MSG_JAVADOC_CONTENT_SECOND_LINE);
+                    }
                 }
             }
         }
