@@ -208,9 +208,7 @@ public class AtclauseOrderCheck extends AbstractJavadocCheck {
      */
     public void setTagOrder(String... orders) {
         final List<String> customOrder = new ArrayList<>(orders.length);
-        for (String order : orders) {
-            customOrder.add(order.trim());
-        }
+        customOrder.addAll(Arrays.asList(orders));
         tagOrder = customOrder;
     }
 

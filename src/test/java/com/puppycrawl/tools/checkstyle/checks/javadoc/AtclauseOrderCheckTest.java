@@ -337,4 +337,12 @@ public class AtclauseOrderCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
                 getPath("InputAtclauseOrderNewArrayDeclaratorStructure.java"), expected);
     }
+
+    @Test
+    public void testTrim() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputAtclauseOrder1.java"),
+                expected);
+    }
 }
