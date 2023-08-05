@@ -315,7 +315,10 @@ public class XdocsPagesTest {
 
         CheckUtil.getSimpleNames(CheckUtil.getCheckstyleChecks())
             .stream()
-            .filter(checkName -> !"JavadocMetadataScraper".equals(checkName))
+            .filter(checkName -> {
+                return !"JavadocMetadataScraper".equals(checkName)
+                    && !"ClassAndPropertiesSettersJavadocScraper".equals(checkName);
+            })
             .forEach(checkName -> {
                 if (!isPresent(availableChecks, checkName)) {
                     assertWithMessage(

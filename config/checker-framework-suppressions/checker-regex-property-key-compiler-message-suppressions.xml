@@ -665,7 +665,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/ParentModuleMacro.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/SiteUtil.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter regex of matches.</message>
     <lineContent>.filter(path -&gt; path.toString().matches(fileNamePattern))</lineContent>
