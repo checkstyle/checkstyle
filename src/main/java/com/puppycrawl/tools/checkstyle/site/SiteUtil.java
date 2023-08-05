@@ -19,19 +19,36 @@
 
 package com.puppycrawl.tools.checkstyle.site;
 
+import java.beans.PropertyDescriptor;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.ParameterizedType;
+import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.BitSet;
+import java.util.Collection;
+import java.util.Deque;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
+import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.maven.doxia.macro.MacroExecutionException;
 
 import com.puppycrawl.tools.checkstyle.Checker;
@@ -40,27 +57,90 @@ import com.puppycrawl.tools.checkstyle.PackageNamesLoader;
 import com.puppycrawl.tools.checkstyle.PackageObjectFactory;
 import com.puppycrawl.tools.checkstyle.TreeWalker;
 import com.puppycrawl.tools.checkstyle.TreeWalkerFilter;
+import com.puppycrawl.tools.checkstyle.XdocsPropertyType;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.BeforeExecutionFileFilter;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.Filter;
+import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
+import com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck;
+import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption;
 import com.puppycrawl.tools.checkstyle.checks.regexp.RegexpMultilineCheck;
 import com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck;
 import com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck;
+import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * Utility class for site generation.
  */
 public final class SiteUtil {
 
-    /** Class name and their corresponding parent module name.. */
+    /** The string 'tokens'. */
+    public static final String TOKENS = "tokens";
+    /** The string 'javadocTokens'. */
+    public static final String JAVADOC_TOKENS = "javadocTokens";
+    /** The string '.'. */
+    public static final String DOT = ".";
+    /** The string ', '. */
+    public static final String COMMA_SPACE = ", ";
+    /** The url of the checkstyle website. */
+    private static final String CHECKSTYLE_ORG_URL = "https://checkstyle.org/";
+    /** The string 'charset'. */
+    private static final String CHARSET = "charset";
+    /** The string '{}'. */
+    private static final String CURLY_BRACKETS = "{}";
+    /** The string 'fileExtensions'. */
+    private static final String FILE_EXTENSIONS = "fileExtensions";
+
+    /** Class name and their corresponding parent module name. */
     private static final Map<Class<?>, String> CLASS_TO_PARENT_MODULE = Map.ofEntries(
         Map.entry(AbstractCheck.class, TreeWalker.class.getSimpleName()),
         Map.entry(TreeWalkerFilter.class, TreeWalker.class.getSimpleName()),
         Map.entry(AbstractFileSetCheck.class, Checker.class.getSimpleName()),
         Map.entry(Filter.class, Checker.class.getSimpleName()),
         Map.entry(BeforeExecutionFileFilter.class, Checker.class.getSimpleName())
+    );
+
+    /** Set of properties that every check has. */
+    private static final Set<String> CHECK_PROPERTIES =
+            getProperties(AbstractCheck.class);
+
+    /** Set of properties that every Javadoc check has. */
+    private static final Set<String> JAVADOC_CHECK_PROPERTIES =
+            getProperties(AbstractJavadocCheck.class);
+
+    /** Set of properties that every FileSet check has. */
+    private static final Set<String> FILESET_PROPERTIES =
+            getProperties(AbstractFileSetCheck.class);
+
+    /** Set of properties that are undocumented. Those are internal properties. */
+    private static final Set<String> UNDOCUMENTED_PROPERTIES = Set.of(
+        "SuppressWithNearbyCommentFilter.fileContents",
+        "SuppressionCommentFilter.fileContents"
+    );
+
+    /** Properties that can not be gathered from class instance. */
+    private static final Set<String> PROPERTIES_ALLOWED_GET_TYPES_FROM_METHOD = Set.of(
+        // static field (all upper case)
+        "SuppressWarningsHolderCheck.aliasList",
+        // loads string into memory similar to file
+        "HeaderCheck.header",
+        "RegexpHeaderCheck.header",
+        // until https://github.com/checkstyle/checkstyle/issues/13376
+        "CustomImportOrderCheck.customImportOrderRules"
+    );
+
+    /**
+     * Map of properties whose since version is different from module version but
+     * are not specified in code because they are inherited from their parent class(es).
+     */
+    private static final Map<String, String> SINCE_VERSION_EXCEPTIONS = Map.ofEntries(
+        Map.entry("MissingDeprecatedCheck.violateExecutionOnNonTightHtml", "8.24"),
+        Map.entry("NonEmptyAtclauseDescriptionCheck.violateExecutionOnNonTightHtml", "8.3"),
+        Map.entry("NonEmptyAtclauseDescriptionCheck.javadocTokens", "7.3")
     );
 
     /**
@@ -82,7 +162,7 @@ public final class SiteUtil {
         // We use a TreeSet to sort the message keys alphabetically
         final Set<String> messageKeys = new TreeSet<>();
         for (Field field : messageKeyFields) {
-            messageKeys.add(getFieldValue(field, module));
+            messageKeys.add(getFieldValue(field, module).toString());
         }
         return messageKeys;
     }
@@ -147,12 +227,12 @@ public final class SiteUtil {
      * @return the value of the field.
      * @throws MacroExecutionException if the value could not be retrieved.
      */
-    private static String getFieldValue(Field field, Object instance)
+    public static Object getFieldValue(Field field, Object instance)
             throws MacroExecutionException {
         try {
             // required for package/private classes
             field.trySetAccessible();
-            return field.get(instance).toString();
+            return field.get(instance);
         }
         catch (IllegalAccessException ex) {
             throw new MacroExecutionException("Couldn't get field value", ex);
@@ -205,6 +285,24 @@ public final class SiteUtil {
      */
     public static String getNewlineAndIndentSpaces(int amountOfSpaces) {
         return System.lineSeparator() + " ".repeat(amountOfSpaces);
+    }
+
+    /**
+     * Returns path to the template for the given module name or throws an exception if the
+     * template cannot be found.
+     *
+     * @param moduleName the module whose template we are looking for.
+     * @return path to the template.
+     * @throws MacroExecutionException if the template cannot be found.
+     */
+    public static Path getTemplatePath(String moduleName) throws MacroExecutionException {
+        final String fileNamePattern = ".*[\\\\/]"
+                + moduleName.toLowerCase(Locale.ROOT) + "\\..*";
+        return getXdocsTemplatesFilePaths()
+            .stream()
+            .filter(path -> path.toString().matches(fileNamePattern))
+            .findFirst()
+            .orElse(null);
     }
 
     /**
@@ -268,5 +366,769 @@ public final class SiteUtil {
         }
 
         return parentModuleName;
+    }
+
+    /**
+     * Get a set of properties for the given class.
+     *
+     * @param clss the class to get the properties for.
+     * @return a set of properties for the given class.
+     */
+    public static Set<String> getProperties(Class<?> clss) {
+        final Set<String> result = new TreeSet<>();
+        final PropertyDescriptor[] map = PropertyUtils.getPropertyDescriptors(clss);
+
+        for (PropertyDescriptor propertyDescriptor : map) {
+            if (propertyDescriptor.getWriteMethod() != null) {
+                result.add(propertyDescriptor.getName());
+            }
+        }
+
+        return result;
+    }
+
+    /**
+     * Fixes the captured properties. This method removes properties that are not documented and
+     * adds properties that have to be documented but are not captured.
+     *
+     * @param instance the instance of the module.
+     * @param clss the class of the module.
+     * @param properties the properties of the module.
+     * @return the fixed properties.
+     */
+    public static Set<String> fixCapturedProperties(
+            Object instance, Class<?> clss, Set<String> properties) {
+        final Set<String> result = new LinkedHashSet<>(properties);
+        // remove global properties that don't need documentation
+        removeGlobalProperties(clss, result);
+
+        removeUndocumentedProperties(clss, result);
+
+        addNonExplicitProperties(instance, clss, result);
+        return result;
+    }
+
+    /**
+     * Removes global properties that don't need documentation and adds properties that
+     * have to be documented.
+     *
+     * @param clss the class of the module.
+     * @param result the properties of the module.
+     */
+    private static void removeGlobalProperties(Class<?> clss, Set<String> result) {
+        if (AbstractJavadocCheck.class.isAssignableFrom(clss)) {
+            result.removeAll(JAVADOC_CHECK_PROPERTIES);
+
+            // override
+            result.add("violateExecutionOnNonTightHtml");
+        }
+        else if (AbstractCheck.class.isAssignableFrom(clss)) {
+            result.removeAll(CHECK_PROPERTIES);
+        }
+        if (AbstractFileSetCheck.class.isAssignableFrom(clss)) {
+            result.removeAll(FILESET_PROPERTIES);
+
+            // override
+            result.add(FILE_EXTENSIONS);
+        }
+    }
+
+    /**
+     * Removes undocumented properties. Those might be internal properties that are not
+     * supposed to be exposed/documented.
+     *
+     * @param clss the class of the module.
+     * @param result the properties of the module.
+     */
+    private static void removeUndocumentedProperties(Class<?> clss, Set<String> result) {
+        new HashSet<>(result).stream()
+            .filter(prop -> UNDOCUMENTED_PROPERTIES.contains(clss.getSimpleName() + DOT + prop))
+            .forEach(result::remove);
+    }
+
+    /**
+     * Adds properties that are not explicitly captured but should be documented if
+     * certain conditions are met.
+     *
+     * @param instance the instance of the module.
+     * @param clss the class of the module.
+     * @param result the properties of the module.
+     */
+    private static void addNonExplicitProperties(
+            Object instance, Class<?> clss, Set<String> result) {
+        if (AbstractCheck.class.isAssignableFrom(clss)) {
+            final AbstractCheck check = (AbstractCheck) instance;
+
+            final int[] acceptableTokens = check.getAcceptableTokens();
+            Arrays.sort(acceptableTokens);
+            final int[] defaultTokens = check.getDefaultTokens();
+            Arrays.sort(defaultTokens);
+            final int[] requiredTokens = check.getRequiredTokens();
+            Arrays.sort(requiredTokens);
+
+            if (!Arrays.equals(acceptableTokens, defaultTokens)
+                    || !Arrays.equals(acceptableTokens, requiredTokens)) {
+                result.add(TOKENS);
+            }
+        }
+
+        if (AbstractJavadocCheck.class.isAssignableFrom(clss)) {
+            final AbstractJavadocCheck check = (AbstractJavadocCheck) instance;
+
+            final int[] acceptableJavadocTokens = check.getAcceptableJavadocTokens();
+            Arrays.sort(acceptableJavadocTokens);
+            final int[] defaultJavadocTokens = check.getDefaultJavadocTokens();
+            Arrays.sort(defaultJavadocTokens);
+            final int[] requiredJavadocTokens = check.getRequiredJavadocTokens();
+            Arrays.sort(requiredJavadocTokens);
+
+            if (!Arrays.equals(acceptableJavadocTokens, defaultJavadocTokens)
+                    || !Arrays.equals(acceptableJavadocTokens, requiredJavadocTokens)) {
+                result.add(JAVADOC_TOKENS);
+            }
+        }
+    }
+
+    /**
+     * Get the description of the property.
+     *
+     * @param propertyName the name of the property.
+     * @param javadoc the Javadoc of the property setter method.
+     * @param moduleName the name of the module.
+     * @return the description of the property.
+     * @throws MacroExecutionException if the description could not be extracted.
+     */
+    public static String getPropertyDescription(
+            String propertyName, DetailNode javadoc, String moduleName)
+            throws MacroExecutionException {
+        final String description;
+        if (TOKENS.equals(propertyName)) {
+            description = "tokens to check";
+        }
+        else if (JAVADOC_TOKENS.equals(propertyName)) {
+            description = "javadoc tokens to check";
+        }
+        else {
+            final String descriptionString = DescriptionExtractor
+                    .getDescriptionFromJavadoc(javadoc, moduleName)
+                    .substring("Setter to ".length());
+            final String firstLetterCapitalized = descriptionString.substring(0, 1)
+                    .toUpperCase(Locale.ROOT);
+            description = firstLetterCapitalized + descriptionString.substring(1);
+        }
+        return description;
+    }
+
+    /**
+     * Get the since version of the property.
+     *
+     * @param moduleName the name of the module.
+     * @param moduleJavadoc the Javadoc of the module.
+     * @param propertyName the name of the property.
+     * @param propertyJavadoc the Javadoc of the property setter method.
+     * @param parentModulesPropertiesJavadocs the Javadocs of the parent module properties.
+     * @return the since version of the property.
+     * @throws MacroExecutionException if the since version could not be extracted.
+     */
+    public static String getSinceVersion(String moduleName, DetailNode moduleJavadoc,
+                                         String propertyName, DetailNode propertyJavadoc,
+                                         Map<String, DetailNode> parentModulesPropertiesJavadocs)
+            throws MacroExecutionException {
+        final String sinceVersion;
+        if (SINCE_VERSION_EXCEPTIONS.containsKey(moduleName + DOT + propertyName)) {
+            sinceVersion = SINCE_VERSION_EXCEPTIONS.get(moduleName + DOT + propertyName);
+        }
+        else if (parentModulesPropertiesJavadocs.containsKey(propertyName)
+                || TOKENS.equals(propertyName)
+                || JAVADOC_TOKENS.equals(propertyName)) {
+            // Use parent module's since version for inherited properties
+            sinceVersion = getSinceVersionFromJavadoc(moduleJavadoc);
+        }
+        else {
+            sinceVersion = getSinceVersionFromJavadoc(propertyJavadoc);
+        }
+
+        if (sinceVersion == null) {
+            final String message = String.format(Locale.ROOT,
+                    "Failed to find since version for %s", propertyName);
+            throw new MacroExecutionException(message);
+        }
+
+        return sinceVersion;
+    }
+
+    /**
+     * Extract the since version from the Javadoc.
+     *
+     * @param javadoc the Javadoc to extract the since version from.
+     * @return the since version of the setter.
+     */
+    private static String getSinceVersionFromJavadoc(DetailNode javadoc) {
+        final DetailNode sinceJavadocTag = getSinceJavadocTag(javadoc);
+        final DetailNode description = JavadocUtil.findFirstToken(sinceJavadocTag,
+                JavadocTokenTypes.DESCRIPTION);
+        final DetailNode text = JavadocUtil.findFirstToken(description, JavadocTokenTypes.TEXT);
+        return text.getText();
+    }
+
+    /**
+     * Find the since Javadoc tag node in the given Javadoc.
+     *
+     * @param javadoc the Javadoc to search.
+     * @return the since Javadoc tag node or null if not found.
+     */
+    private static DetailNode getSinceJavadocTag(DetailNode javadoc) {
+        final DetailNode[] children = javadoc.getChildren();
+        DetailNode javadocTagWithSince = null;
+        for (final DetailNode child : children) {
+            if (child.getType() == JavadocTokenTypes.JAVADOC_TAG) {
+                final DetailNode sinceNode = JavadocUtil.findFirstToken(
+                        child, JavadocTokenTypes.SINCE_LITERAL);
+                if (sinceNode != null) {
+                    javadocTagWithSince = child;
+                    break;
+                }
+            }
+        }
+        return javadocTagWithSince;
+    }
+
+    /**
+     * Get the type of the property.
+     *
+     * @param field the field to get the type of.
+     * @param propertyName the name of the property.
+     * @param moduleName the name of the module.
+     * @param instance the instance of the module.
+     * @return the type of the property.
+     * @throws MacroExecutionException if an error occurs during getting the type.
+     */
+    public static String getType(Field field, String propertyName,
+                                 String moduleName, Object instance)
+            throws MacroExecutionException {
+        final Class<?> fieldClass = getFieldClass(field, propertyName, moduleName, instance);
+        return Optional.ofNullable(field)
+                .map(nonNullField -> nonNullField.getAnnotation(XdocsPropertyType.class))
+                .map(propertyType -> propertyType.value().getDescription())
+                .orElseGet(fieldClass::getSimpleName);
+    }
+
+    /**
+     * Get the default value of the property.
+     *
+     * @param propertyName the name of the property.
+     * @param field the field to get the default value of.
+     * @param classInstance the instance of the class to get the default value of.
+     * @param moduleName the name of the module.
+     * @return the default value of the property.
+     * @throws MacroExecutionException if an error occurs during getting the default value.
+     * @noinspection IfStatementWithTooManyBranches
+     * @noinspectionreason IfStatementWithTooManyBranches - complex nature of getting properties
+     *      from XML files requires giant if/else statement
+     */
+    // -@cs[CyclomaticComplexity] Splitting would not make the code more readable
+    public static String getDefaultValue(String propertyName, Field field,
+                                         Object classInstance, String moduleName)
+            throws MacroExecutionException {
+        final Object value = getFieldValue(field, classInstance);
+        final Class<?> fieldClass = getFieldClass(field, propertyName, moduleName, classInstance);
+        String result = null;
+        if (CHARSET.equals(propertyName)) {
+            result = "the charset property of the parent Checker module";
+        }
+        else if ("PropertyCacheFile".equals(fieldClass.getSimpleName())) {
+            result = "null (no cache file)";
+        }
+        else if (fieldClass == boolean.class) {
+            result = value.toString();
+        }
+        else if (fieldClass == int.class) {
+            result = value.toString();
+        }
+        else if (fieldClass == int[].class) {
+            result = getIntArrayPropertyValue(value);
+        }
+        else if (fieldClass == double[].class) {
+            result = removeSquareBrackets(Arrays.toString((double[]) value).replace(".0", ""));
+            if (result.isEmpty()) {
+                result = CURLY_BRACKETS;
+            }
+        }
+        else if (fieldClass == String[].class) {
+            result = getStringArrayPropertyValue(propertyName, value);
+        }
+        else if (fieldClass == URI.class || fieldClass == String.class) {
+            if (value != null) {
+                result = '"' + value.toString() + '"';
+            }
+        }
+        else if (fieldClass == Pattern.class) {
+            if (value != null) {
+                result = '"' + value.toString().replace("\n", "\\n").replace("\t", "\\t")
+                        .replace("\r", "\\r").replace("\f", "\\f") + '"';
+            }
+        }
+        else if (fieldClass == Pattern[].class) {
+            result = getPatternArrayPropertyValue(value);
+        }
+        else if (fieldClass.isEnum()) {
+            if (value != null) {
+                result = value.toString().toLowerCase(Locale.ENGLISH);
+            }
+        }
+        else if (fieldClass == AccessModifierOption[].class) {
+            result = removeSquareBrackets(Arrays.toString((Object[]) value));
+        }
+        else {
+            final String message = String.format(Locale.ROOT,
+                    "Unknown property type: %s", fieldClass.getSimpleName());
+            throw new MacroExecutionException(message);
+        }
+
+        if (result == null) {
+            result = "null";
+        }
+
+        return result;
+    }
+
+    /**
+     * Gets the name of the bean property's default value for the Pattern array class.
+     *
+     * @param fieldValue The bean property's value
+     * @return String form of property's default value
+     */
+    private static String getPatternArrayPropertyValue(Object fieldValue) {
+        Object value = fieldValue;
+        if (value instanceof Collection) {
+            final Collection<?> collection = (Collection<?>) value;
+
+            value = collection.stream()
+                    .map(Pattern.class::cast)
+                    .toArray(Pattern[]::new);
+        }
+
+        String result = "";
+        if (value != null && Array.getLength(value) > 0) {
+            result = removeSquareBrackets(
+                    Arrays.stream((Pattern[]) value)
+                    .map(Pattern::pattern)
+                    .collect(Collectors.joining(COMMA_SPACE)));
+        }
+
+        if (result.isEmpty()) {
+            result = CURLY_BRACKETS;
+        }
+        return result;
+    }
+
+    /**
+     * Removes square brackets [ and ] from the given string.
+     *
+     * @param value the string to remove square brackets from.
+     * @return the string without square brackets.
+     */
+    private static String removeSquareBrackets(String value) {
+        return value
+                .replace("[", "")
+                .replace("]", "");
+    }
+
+    /**
+     * Gets the name of the bean property's default value for the string array class.
+     *
+     * @param propertyName The bean property's name
+     * @param value The bean property's value
+     * @return String form of property's default value
+     */
+    private static String getStringArrayPropertyValue(String propertyName, Object value) {
+        String result;
+        if (value == null) {
+            result = "";
+        }
+        else {
+            try (Stream<?> valuesStream = getValuesStream(value)) {
+                result = valuesStream
+                    .map(String.class::cast)
+                    .sorted()
+                    .collect(Collectors.joining(COMMA_SPACE));
+            }
+        }
+
+        if (result.isEmpty()) {
+            if (FILE_EXTENSIONS.equals(propertyName)) {
+                result = "all files";
+            }
+            else {
+                result = CURLY_BRACKETS;
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Generates a stream of values from the given value.
+     *
+     * @param value the value to generate the stream from.
+     * @return the stream of values.
+     */
+    private static Stream<?> getValuesStream(Object value) {
+        final Stream<?> valuesStream;
+        if (value instanceof Collection) {
+            final Collection<?> collection = (Collection<?>) value;
+            valuesStream = collection.stream();
+        }
+        else {
+            final Object[] array = (Object[]) value;
+            valuesStream = Arrays.stream(array);
+        }
+        return valuesStream;
+    }
+
+    /**
+     * Returns the name of the bean property's default value for the int array class.
+     *
+     * @param value The bean property's value.
+     * @return String form of property's default value.
+     */
+    private static String getIntArrayPropertyValue(Object value) {
+        try (IntStream stream = getIntStream(value)) {
+            String result = stream
+                    .mapToObj(TokenUtil::getTokenName)
+                    .sorted()
+                    .collect(Collectors.joining(COMMA_SPACE));
+            if (result.isEmpty()) {
+                result = CURLY_BRACKETS;
+            }
+            return result;
+        }
+    }
+
+    /**
+     * Get the int stream from the given value.
+     *
+     * @param value the value to get the int stream from.
+     * @return the int stream.
+     */
+    private static IntStream getIntStream(Object value) {
+        final IntStream stream;
+        if (value instanceof Collection) {
+            final Collection<?> collection = (Collection<?>) value;
+            stream = collection.stream()
+                    .mapToInt(int.class::cast);
+        }
+        else if (value instanceof BitSet) {
+            stream = ((BitSet) value).stream();
+        }
+        else {
+            stream = Arrays.stream((int[]) value);
+        }
+        return stream;
+    }
+
+    /**
+     * Gets the class of the given field.
+     *
+     * @param field the field to get the class of.
+     * @param propertyName the name of the property.
+     * @param moduleName the name of the module.
+     * @param instance the instance of the module.
+     * @return the class of the field.
+     * @throws MacroExecutionException if an error occurs during getting the class.
+     */
+    // -@cs[CyclomaticComplexity] Splitting would not make the code more readable
+    private static Class<?> getFieldClass(Field field, String propertyName,
+                                          String moduleName, Object instance)
+            throws MacroExecutionException {
+        Class<?> result = null;
+
+        if (field != null) {
+            result = field.getType();
+        }
+        if (result == null) {
+            if (!PROPERTIES_ALLOWED_GET_TYPES_FROM_METHOD
+                    .contains(moduleName + DOT + propertyName)) {
+                throw new MacroExecutionException(
+                        "Could not find field " + propertyName + " in class " + moduleName);
+            }
+
+            try {
+                final PropertyDescriptor descriptor = PropertyUtils.getPropertyDescriptor(instance,
+                    propertyName);
+                result = descriptor.getPropertyType();
+            }
+            catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException exc) {
+                throw new MacroExecutionException(exc.getMessage(), exc);
+            }
+        }
+        if (result == List.class || result == Set.class) {
+            final ParameterizedType type = (ParameterizedType) field.getGenericType();
+            final Class<?> parameterClass = (Class<?>) type.getActualTypeArguments()[0];
+
+            if (parameterClass == Integer.class) {
+                result = int[].class;
+            }
+            else if (parameterClass == String.class) {
+                result = String[].class;
+            }
+            else if (parameterClass == Pattern.class) {
+                result = Pattern[].class;
+            }
+            else {
+                final String message = "Unknown parameterized type: "
+                        + parameterClass.getSimpleName();
+                throw new MacroExecutionException(message);
+            }
+        }
+        else if (result == BitSet.class) {
+            result = int[].class;
+        }
+
+        return result;
+    }
+
+    /**
+     * Remove common tokens from the tokens list.
+     *
+     * @param tokens the list of tokens to remove from.
+     * @param subtractions the tokens to remove.
+     * @return the list of tokens without the subtractions.
+     */
+    public static List<Integer> subtractTokens(int[] tokens, int... subtractions) {
+        final List<Integer> result = new ArrayList<>(tokens.length);
+        for (int token : tokens) {
+            boolean found = false;
+
+            for (int subtraction : subtractions) {
+                if (subtraction == token) {
+                    found = true;
+                    break;
+                }
+            }
+
+            if (found) {
+                continue;
+            }
+
+            result.add(token);
+        }
+
+        return result;
+    }
+
+    /**
+     * Gets the field with the given name from the given class.
+     *
+     * @param fieldClass the class to get the field from.
+     * @param propertyName the name of the field.
+     * @return the field we are looking for.
+     */
+    public static Field getField(Class<?> fieldClass, String propertyName) {
+        Field result = null;
+        Class<?> currentClass = fieldClass;
+
+        while (!Object.class.equals(currentClass)) {
+            try {
+                result = currentClass.getDeclaredField(propertyName);
+                result.trySetAccessible();
+                break;
+            }
+            catch (NoSuchFieldException ignored) {
+                currentClass = currentClass.getSuperclass();
+            }
+        }
+
+        return result;
+    }
+
+    /**
+     * Constructs string with relative link to the provided document.
+     *
+     * @param moduleName the name of the module.
+     * @param document the path of the document.
+     * @return relative link to the document.
+     * @throws MacroExecutionException if link to the document cannot be constructed.
+     */
+    public static String getLinkToDocument(String moduleName, String document)
+            throws MacroExecutionException {
+        final Path templatePath = getTemplatePath(moduleName.replace("Check", ""));
+        if (templatePath == null) {
+            throw new MacroExecutionException(
+                    String.format(Locale.ROOT,
+                            "Could not find template for %s", moduleName));
+        }
+        final Path templatePathParent = templatePath.getParent();
+        if (templatePathParent == null) {
+            throw new MacroExecutionException("Failed to get parent path for " + templatePath);
+        }
+        return templatePathParent
+                .relativize(Paths.get("src", "xdocs", document))
+                .toString()
+                .replace(".xml", ".html")
+                .replace('\\', '/');
+    }
+
+    /** Utility class for extracting description from a method's Javadoc. */
+    private static final class DescriptionExtractor {
+
+        /** Variable that tells if we are in a CODE_LITERAL token. */
+        private static boolean isInCodeLiteral;
+        /** Variable that tells if we are in an HTML_ELEMENT token. */
+        private static boolean isInHtmlElement;
+        /** Variable that tells if we are in an HREF attribute. */
+        private static boolean isInHrefAttribute;
+
+        /** Utility class constructor. */
+        private DescriptionExtractor() {
+            // Utility class
+        }
+
+        /**
+         * Extracts the description from the javadoc detail node. Performs a DFS traversal on the
+         * detail node and extracts the text nodes.
+         *
+         * @param javadoc the Javadoc to extract the description from.
+         * @param moduleName the name of the module.
+         * @return the description of the setter.
+         * @throws MacroExecutionException if the description could not be extracted.
+         */
+        // -@cs[NPathComplexity] Splitting would not make the code more readable
+        // -@cs[CyclomaticComplexity] Splitting would not make the code more readable.
+        private static String getDescriptionFromJavadoc(DetailNode javadoc, String moduleName)
+                throws MacroExecutionException {
+            resetValues();
+            final StringBuilder description = new StringBuilder(128);
+            final Deque<DetailNode> queue = new ArrayDeque<>();
+            pushOntoQueue(queue, getDescriptionNodes(javadoc));
+
+            // Perform DFS traversal on description nodes
+            while (!queue.isEmpty()) {
+                final DetailNode node = queue.pop();
+                pushOntoQueue(queue, Arrays.asList(node.getChildren()));
+
+                if (node.getType() == JavadocTokenTypes.HTML_TAG_NAME
+                        && "href".equals(node.getText())) {
+                    isInHrefAttribute = true;
+                }
+                if (isInHrefAttribute && node.getType() == JavadocTokenTypes.ATTR_VALUE) {
+                    final String href = node.getText();
+                    if (href.contains(CHECKSTYLE_ORG_URL)) {
+                        handleInternalLink(description, moduleName, href);
+                    }
+                    else {
+                        description.append(href);
+                    }
+
+                    isInHrefAttribute = false;
+                    continue;
+                }
+                if (node.getType() == JavadocTokenTypes.HTML_ELEMENT) {
+                    isInHtmlElement = true;
+                }
+                if (node.getType() == JavadocTokenTypes.END
+                        && node.getParent().getType() == JavadocTokenTypes.HTML_ELEMENT_END) {
+                    description.append(node.getText());
+                    isInHtmlElement = false;
+                }
+                if (node.getType() == JavadocTokenTypes.TEXT
+                        // If a node has children, its text is not part of the description
+                        || isInHtmlElement && node.getChildren().length == 0
+                            // Some HTML elements span multiple lines, so we avoid the asterisk
+                            && node.getType() != JavadocTokenTypes.LEADING_ASTERISK) {
+                    description.append(node.getText());
+                }
+                if (node.getType() == JavadocTokenTypes.CODE_LITERAL) {
+                    isInCodeLiteral = true;
+                    description.append("<code>");
+                }
+                if (isInCodeLiteral
+                        && node.getType() == JavadocTokenTypes.JAVADOC_INLINE_TAG_END) {
+                    isInCodeLiteral = false;
+                    description.append("</code>");
+                }
+            }
+            return description.toString().trim();
+        }
+
+        /**
+         * Resets all the values to their default state.
+         */
+        private static void resetValues() {
+            isInCodeLiteral = false;
+            isInHtmlElement = false;
+            isInHrefAttribute = false;
+        }
+
+        /**
+         * Converts the href value to a relative link to the document and appends it to the
+         * description.
+         *
+         * @param description the description to append the relative link to.
+         * @param moduleName the name of the module.
+         * @param value the href value.
+         * @throws MacroExecutionException if the relative link could not be created.
+         */
+        private static void handleInternalLink(StringBuilder description,
+                                               String moduleName, String value)
+                throws MacroExecutionException {
+            String href = value;
+            href = href.replace(CHECKSTYLE_ORG_URL, "");
+            // Remove first and last characters, they are always double quotes
+            href = href.substring(1, href.length() - 1);
+
+            final String relativeHref = getLinkToDocument(moduleName, href);
+            final char doubleQuote = '\"';
+            description.append(doubleQuote).append(relativeHref).append(doubleQuote);
+        }
+
+        /**
+         * Pushes given items onto the deque in reverse order.
+         *
+         * @param queue the deque to push onto.
+         * @param items the items to push onto the stack.
+         */
+        private static void pushOntoQueue(Deque<DetailNode> queue, List<DetailNode> items) {
+            for (int index = items.size() - 1; index >= 0; index--) {
+                queue.push(items.get(index));
+            }
+        }
+
+        /**
+         * Extracts description nodes from javadoc.
+         *
+         * @param javadoc the Javadoc to extract the description from.
+         * @return the description nodes of the setter.
+         */
+        private static List<DetailNode> getDescriptionNodes(DetailNode javadoc) {
+            final DetailNode[] children = javadoc.getChildren();
+            final List<DetailNode> descriptionNodes = new ArrayList<>();
+            for (final DetailNode child : children) {
+                if (isEndOfDescription(child)) {
+                    break;
+                }
+                descriptionNodes.add(child);
+            }
+            return descriptionNodes;
+        }
+
+        /**
+         * Determines if the given child index is the end of the description. The end of the
+         * description is defined as 4 consecutive nodes of type NEWLINE, LEADING_ASTERISK, NEWLINE,
+         * LEADING_ASTERISK. This is an asterisk that is alone on a line. Just like the one below
+         * this line.
+         *
+         * @param child the child to check.
+         * @return true if the given child index is the end of the description.
+         */
+        private static boolean isEndOfDescription(DetailNode child) {
+            final DetailNode nextSibling = JavadocUtil.getNextSibling(child);
+            final DetailNode secondNextSibling = JavadocUtil.getNextSibling(nextSibling);
+            final DetailNode thirdNextSibling = JavadocUtil.getNextSibling(secondNextSibling);
+
+            return child.getType() == JavadocTokenTypes.NEWLINE
+                        && nextSibling.getType() == JavadocTokenTypes.LEADING_ASTERISK
+                        && secondNextSibling.getType() == JavadocTokenTypes.NEWLINE
+                        && thirdNextSibling.getType() == JavadocTokenTypes.LEADING_ASTERISK;
+        }
     }
 }
