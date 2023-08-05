@@ -77,6 +77,9 @@
     <allow class="javax.swing.text.html.HTML.Attribute" local-only="true"/>
     <allow class="com.puppycrawl.tools.checkstyle.Checker" local-only="true"/>
     <allow class="com.puppycrawl.tools.checkstyle.TreeWalker" local-only="true"/>
+    <allow class="com.puppycrawl.tools.checkstyle.FileStatefulCheck" local-only="true"/>
+    <allow class="com.puppycrawl.tools.checkstyle.DefaultConfiguration" local-only="true"/>
+    <allow class="com.puppycrawl.tools.checkstyle.meta.ModulePropertyDetails" local-only="true"/>
     <allow class="com.puppycrawl.tools.checkstyle.TreeWalkerFilter" local-only="true"/>
     <allow class="com.puppycrawl.tools.checkstyle.ModuleFactory" local-only="true"/>
     <allow class="com.puppycrawl.tools.checkstyle.PackageNamesLoader" local-only="true"/>
