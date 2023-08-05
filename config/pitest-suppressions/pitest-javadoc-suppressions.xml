@@ -72,14 +72,14 @@
     <lineContent>customOrder.add(order.trim());</lineContent>
   </mutation>
 
-  <mutation unstable="false">
-    <sourceFile>HtmlTag.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.HtmlTag</mutatedClass>
-    <mutatedMethod>getText</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
-    <description>replaced call to java/lang/Math::min with argument</description>
-    <lineContent>final int endOfText = Math.min(startOfText + MAX_TEXT_LEN, text.length());</lineContent>
-  </mutation>
+
+
+
+
+
+
+
+
 
   <mutation unstable="false">
     <sourceFile>JavadocContentLocationCheck.java</sourceFile>
