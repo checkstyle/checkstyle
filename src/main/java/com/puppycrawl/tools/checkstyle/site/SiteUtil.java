@@ -206,6 +206,24 @@ public final class SiteUtil {
     }
 
     /**
+     * Returns path to the template for the given module name or throws an exception if the
+     * template cannot be found.
+     *
+     * @param moduleName the module whose template we are looking for.
+     * @return path to the template.
+     * @throws MacroExecutionException if the template cannot be found.
+     */
+    public static Path getTemplatePath(String moduleName) throws MacroExecutionException {
+        final String fileNamePattern = ".*[\\\\/]"
+                + moduleName.toLowerCase(Locale.ROOT) + "\\..*";
+        return SiteUtil.getXdocsTemplatesFilePaths()
+            .stream()
+            .filter(path -> path.toString().matches(fileNamePattern))
+            .findFirst()
+            .orElse(null);
+    }
+
+    /**
      * Gets xdocs template file paths. These are files ending with .xml.template.
      * This method will be changed to gather .xml once
      * <a href="https://github.com/checkstyle/checkstyle/issues/13426">#13426</a> is resolved.
