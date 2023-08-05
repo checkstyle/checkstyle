@@ -195,7 +195,8 @@ public final class CheckUtil {
     private static boolean isFromAllowedPackages(Class<?> cls) {
         final String canonicalName = cls.getCanonicalName();
         return !canonicalName.startsWith("com.puppycrawl.tools.checkstyle.packageobjectfactory")
-            && !canonicalName.startsWith("com.puppycrawl.tools.checkstyle.internal.testmodules");
+            && !canonicalName.startsWith("com.puppycrawl.tools.checkstyle.internal.testmodules")
+            && !canonicalName.startsWith("com.puppycrawl.tools.checkstyle.site");
     }
 
     /**
