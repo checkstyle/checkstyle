@@ -22,15 +22,10 @@
 
       <subsection name="Properties" id="Properties">
         <div class="wrapper">
-          <table>
-            <tr>
-              <th>name</th>
-              <th>description</th>
-              <th>type</th>
-              <th>default value</th>
-              <th>since</th>
-            </tr>
-          </table>
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/naming/AbstractClassNameCheck.java"/>
+          </macro>
           <table>
             <tr>
               <th>name</th>
@@ -43,7 +38,7 @@
               <td>format</td>
               <td>Specify valid identifiers.</td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
-              <td><code>&quot;^Abstract.+$&quot;</code></td>
+              <td><code>"^Abstract.+$"</code></td>
               <td>3.2</td>
             </tr>
             <tr>
@@ -77,7 +72,7 @@
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;AbstractClassName&quot;/&gt;
+&lt;module name="AbstractClassName"/&gt;
         </source>
         <p>Example:</p>
         <source>
@@ -95,8 +90,8 @@ class Example1 {
           but ignore <code>abstract</code> modifier:
         </p>
         <source>
-&lt;module name=&quot;AbstractClassName&quot;&gt;
-  &lt;property name=&quot;ignoreModifier&quot; value=&quot;true&quot;/&gt;
+&lt;module name="AbstractClassName"&gt;
+  &lt;property name="ignoreModifier" value="true"/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>
@@ -115,8 +110,8 @@ class Example2 {
             validation when class declared as 'abstract'
         </p>
         <source>
-&lt;module name=&quot;AbstractClassName&quot;&gt;
-  &lt;property name=&quot;ignoreName&quot; value=&quot;true&quot;/&gt;
+&lt;module name="AbstractClassName"&gt;
+  &lt;property name="ignoreName" value="true"/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>
@@ -135,8 +130,8 @@ class Example3 {
           with <code>format</code>:
         </p>
         <source>
-&lt;module name=&quot;AbstractClassName&quot;&gt;
-  &lt;property name=&quot;format&quot; value=&quot;^Generator.+$&quot;/&gt;
+&lt;module name="AbstractClassName"&gt;
+  &lt;property name="format" value="^Generator.+$"/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>
