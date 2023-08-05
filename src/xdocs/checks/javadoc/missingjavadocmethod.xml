@@ -60,10 +60,10 @@ public boolean isSomething()
               <th>since</th>
             </tr>
             <tr>
-              <td>minLineCount</td>
-              <td>Control the minimal amount of lines in method to allow no documentation.</td>
-              <td><a href="../../property_types.html#int">int</a></td>
-              <td><code>-1</code></td>
+              <td>allowMissingPropertyJavadoc</td>
+              <td>Control whether to allow missing Javadoc on accessor methods for properties (setters and getters).</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
               <td>8.21</td>
             </tr>
             <tr>
@@ -74,13 +74,6 @@ public boolean isSomething()
               <td>8.21</td>
             </tr>
             <tr>
-              <td>scope</td>
-              <td>Specify the visibility scope where Javadoc comments are checked.</td>
-              <td><a href="../../property_types.html#Scope">Scope</a></td>
-              <td><code>public</code></td>
-              <td>8.21</td>
-            </tr>
-            <tr>
               <td>excludeScope</td>
               <td>Specify the visibility scope where Javadoc comments are not checked.</td>
               <td><a href="../../property_types.html#Scope">Scope</a></td>
@@ -88,47 +81,49 @@ public boolean isSomething()
               <td>8.21</td>
             </tr>
             <tr>
-              <td>allowMissingPropertyJavadoc</td>
-              <td>
-                Control whether to allow missing Javadoc on accessor methods for
-                properties (setters and getters).
-              </td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
-              <td><code>false</code></td>
-              <td>8.21</td>
-            </tr>
-            <tr>
               <td>ignoreMethodNamesRegex</td>
-              <td>ignore method whose names are matching specified regex.</td>
+              <td>Ignore method whose names are matching specified regex.</td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
               <td><code>null</code></td>
               <td>8.21</td>
             </tr>
             <tr>
+              <td>minLineCount</td>
+              <td>Control the minimal amount of lines in method to allow no documentation.</td>
+              <td><a href="../../property_types.html#int">int</a></td>
+              <td><code>-1</code></td>
+              <td>8.21</td>
+            </tr>
+            <tr>
+              <td>scope</td>
+              <td>Specify the visibility scope where Javadoc comments are checked.</td>
+              <td><a href="../../property_types.html#Scope">Scope</a></td>
+              <td><code>public</code></td>
+              <td>8.21</td>
+            </tr>
+            <tr>
               <td>tokens</td>
               <td>tokens to check</td>
-
-              <td>
-                subset of tokens
+              <td>subset of tokens
                 <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
-                  METHOD_DEF</a>
+                    METHOD_DEF</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
-                  CTOR_DEF</a>
+                    CTOR_DEF</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">
-                  ANNOTATION_FIELD_DEF</a>
+                    ANNOTATION_FIELD_DEF</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMPACT_CTOR_DEF">
-                  COMPACT_CTOR_DEF</a>
+                    COMPACT_CTOR_DEF</a>
                   .
               </td>
               <td>
                 <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
-                  METHOD_DEF</a>
+                    METHOD_DEF</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
-                  CTOR_DEF</a>
+                    CTOR_DEF</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">
-                  ANNOTATION_FIELD_DEF</a>
+                    ANNOTATION_FIELD_DEF</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMPACT_CTOR_DEF">
-                  COMPACT_CTOR_DEF</a>
+                    COMPACT_CTOR_DEF</a>
                   .
               </td>
               <td>8.21</td>

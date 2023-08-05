@@ -84,7 +84,7 @@ public class ParentModuleMacro extends AbstractMacro {
      */
     private static String getLinkToParentModule(String parentModule, String moduleName)
             throws MacroExecutionException {
-        final Path templatePath = getTemplatePath(moduleName);
+        final Path templatePath = SiteUtil.getTemplatePath(moduleName);
         if (templatePath == null) {
             throw new MacroExecutionException(
                     String.format(Locale.ROOT, "Could not find template for %s", moduleName));
@@ -99,23 +99,5 @@ public class ParentModuleMacro extends AbstractMacro {
                 .replace(".xml", ".html")
                 .replace('\\', '/')
                 + "#" + parentModule;
-    }
-
-    /**
-     * Returns path to the template for the given module name or throws an exception if the
-     * template cannot be found.
-     *
-     * @param moduleName the module whose template we are looking for.
-     * @return path to the template.
-     * @throws MacroExecutionException if the template cannot be found.
-     */
-    private static Path getTemplatePath(String moduleName) throws MacroExecutionException {
-        final String fileNamePattern = ".*[\\\\/]"
-                + moduleName.toLowerCase(Locale.ROOT) + "\\..*";
-        return SiteUtil.getXdocsTemplatesFilePaths()
-            .stream()
-            .filter(path -> path.toString().matches(fileNamePattern))
-            .findFirst()
-            .orElse(null);
     }
 }

@@ -41,7 +41,11 @@
                     | //ClassOrInterfaceDeclaration[@SimpleName='CheckstyleAntTask']
                         //MethodDeclaration[@Name='getListeners' or @Name='createDefaultLogger']
                     | //ClassOrInterfaceDeclaration[@SimpleName='AbstractNode']
-                        //MethodDeclaration[@Name='iterateAxis']"/>
+                        //MethodDeclaration[@Name='iterateAxis']
+                    | //ClassOrInterfaceDeclaration[@SimpleName='PropertiesMacro']
+                        //MethodDeclaration[@Name='getIntArrayPropertyValue']
+                    | //ClassOrInterfaceDeclaration[@SimpleName='PropertiesMacro']
+                        //MethodDeclaration[@Name='getStringArrayPropertyValue']"/>
     </properties>
   </rule>
   <rule ref="category/java/design.xml/AbstractClassWithoutAnyMethod">
