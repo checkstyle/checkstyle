@@ -47,7 +47,8 @@ public final class MetadataGeneratorUtilTest extends AbstractModuleTestSupport {
     private final Set<String> modulesContainingNoMetadataFile = Set.of(
             "Checker",
             "TreeWalker",
-            "JavadocMetadataScraper"
+            "JavadocMetadataScraper",
+            "ClassAndSettersJavadocScraper"
     );
 
     @Override
