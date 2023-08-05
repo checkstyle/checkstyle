@@ -82,4 +82,27 @@ public class XdocsTemplateSink extends XdocSink {
         attributes.addAttribute(SinkEventAttributes.HREF, href);
         writeStartTag(HtmlMarkup.A, attributes);
     }
+
+    /**
+     * Write a table row tag. We override this method because the default implementation
+     * adds a {@code align="top"} attribute to the row which we don't want.
+     */
+    @Override
+    public void tableRow() {
+        writeStartTag(TR);
+    }
+
+    /**
+     * Write a table tag. We override this method because the default implementation
+     * adds different attributes which we don't want. We ignore the parameters
+     * because we don't need them, but the default implementation will take them
+     * into account once this class is removed.
+     *
+     * @param justification ignored
+     * @param grid ignored
+     */
+    @Override
+    public void tableRows(int[] justification, boolean grid) {
+        writeStartTag(HtmlMarkup.TABLE);
+    }
 }
