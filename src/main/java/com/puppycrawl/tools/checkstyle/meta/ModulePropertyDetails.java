@@ -40,6 +40,9 @@ public final class ModulePropertyDetails {
     /** Description of property. */
     private String description;
 
+    /** Since version of property. */
+    private String since;
+
     /**
      * Get name of property.
      *
@@ -128,5 +131,23 @@ public final class ModulePropertyDetails {
      */
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    /**
+     * Get since version of property.
+     *
+     * @return since version of property
+     */
+    public String getSince() {
+        return since;
+    }
+
+    /**
+     * Set since version of property.
+     *
+     * @param since since version of property
+     */
+    public void setSince(String since) {
+        this.since = since;
     }
 }
