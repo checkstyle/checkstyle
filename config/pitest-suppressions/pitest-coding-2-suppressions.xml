@@ -57,15 +57,6 @@
 
   <mutation unstable="false">
     <sourceFile>UnusedLocalVariableCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheck</mutatedClass>
-    <mutatedMethod>isInsideLocalAnonInnerClass</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
-    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getParent with receiver</description>
-    <lineContent>if (TokenUtil.isTypeDeclaration(currentAst.getParent().getType())) {</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>UnusedLocalVariableCheck.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheck$TypeDeclDesc</mutatedClass>
     <mutatedMethod>getUpdatedCopyOfVarStack</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
