@@ -233,8 +233,8 @@ public class XdocsPagesTest {
      *
      * @throws Exception if something goes wrong
      */
-    @BeforeAll
-    public static void generateXdocContent() throws Exception {
+    @Test
+    public void generateXdocContent() throws Exception {
         XdocGenerator.generateXdocContent();
     }
 
@@ -244,7 +244,10 @@ public class XdocsPagesTest {
 
         CheckUtil.getSimpleNames(CheckUtil.getCheckstyleChecks())
             .stream()
-            .filter(checkName -> !"JavadocMetadataScraper".equals(checkName))
+            .filter(checkName -> {
+                return !"JavadocMetadataScraper".equals(checkName)
+                    && !"ClassAndSettersJavadocScraper".equals(checkName);
+            })
             .forEach(checkName -> {
                 if (!isPresent(availableChecks, checkName)) {
                     assertWithMessage(
