@@ -274,7 +274,8 @@
              AbstractElementNode.iterateAxis,
              NoWhitespaceAfterCheck.getArrayDeclaratorPreviousElement
              are also huge switches, they had to be monolithic.
-           SuppressFilterElement is a single constructor and can't be split easily -->
+           SuppressFilterElement is a single constructor and can't be split easily
+           Splitting PropertiesMacro.getDefaultValue will damage readability -->
       <property name="violationSuppressXPath"
                 value="//ClassOrInterfaceDeclaration[@SimpleName='Main'
         or @SimpleName='PackageObjectFactory' or @SimpleName='RequireThisCheck'
@@ -297,6 +298,8 @@
              //MethodDeclaration[@Name='iterateAxis']
       | //ClassOrInterfaceDeclaration[@SimpleName='SuppressFilterElement']
              //ConstructorDeclaration
+      | //ClassOrInterfaceDeclaration[@SimpleName='PropertiesMacro']
+             //MethodDeclaration[@Name='getDefaultValue']
       "/>
     </properties>
   </rule>
