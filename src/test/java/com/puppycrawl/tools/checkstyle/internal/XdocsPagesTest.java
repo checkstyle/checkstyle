@@ -233,8 +233,8 @@ public class XdocsPagesTest {
      *
      * @throws Exception if something goes wrong
      */
-    @BeforeAll
-    public static void generateXdocContent() throws Exception {
+    @Test
+    public void generateXdocContent() throws Exception {
         XdocGenerator.generateXdocContent();
     }
 
