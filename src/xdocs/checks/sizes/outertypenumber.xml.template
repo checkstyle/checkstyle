@@ -46,15 +46,15 @@
           To configure the check to accept 1 outer type per file:
         </p>
         <source>
-&lt;module name=&quot;OuterTypeNumber&quot;/&gt;
+&lt;module name="OuterTypeNumber"/&gt;
         </source>
 
         <p>
           To configure the check to accept 2 outer types per file:
         </p>
         <source>
-&lt;module name=&quot;OuterTypeNumber&quot;&gt;
-  &lt;property name=&quot;max&quot; value=&quot;2&quot;/&gt;
+&lt;module name="OuterTypeNumber"&gt;
+  &lt;property name="max" value="2"/&gt;
 &lt;/module&gt;
         </source>
 
