@@ -113,6 +113,42 @@ public final class CheckUtil {
     }
 
     /**
+     * Returns whether a token represents an ELSE as part of an ELSE / IF set.
+     *
+     * @param ast the token to check
+     * @return whether it is
+     */
+    public static boolean isElseIf(DetailAST ast) {
+        final DetailAST parentAST = ast.getParent();
+
+        return ast.getType() == TokenTypes.LITERAL_IF
+            && (isElse(parentAST) || isElseWithCurlyBraces(parentAST));
+    }
+
+    /**
+     * Returns whether a token represents an ELSE.
+     *
+     * @param ast the token to check
+     * @return whether the token represents an ELSE
+     */
+    private static boolean isElse(DetailAST ast) {
+        return ast.getType() == TokenTypes.LITERAL_ELSE;
+    }
+
+    /**
+     * Returns whether a token represents an SLIST as part of an ELSE
+     * statement.
+     *
+     * @param ast the token to check
+     * @return whether the toke does represent an SLIST as part of an ELSE
+     */
+    private static boolean isElseWithCurlyBraces(DetailAST ast) {
+        return ast.getType() == TokenTypes.SLIST
+            && ast.getChildCount() == 2
+            && isElse(ast.getParent());
+    }
+
+    /**
      * Returns the value represented by the specified string of the specified
      * type. Returns 0 for types other than float, double, int, and long.
      *
@@ -142,7 +178,6 @@ public final class CheckUtil {
                 }
                 else if (CommonUtil.startsWithChar(txt, '0')) {
                     radix = BASE_8;
-                    txt = txt.substring(1);
                 }
                 result = parseNumber(txt, radix, type);
                 break;
@@ -171,28 +206,25 @@ public final class CheckUtil {
             txt = txt.substring(0, txt.length() - 1);
         }
         final double result;
-        if (txt.isEmpty()) {
-            result = 0.0;
-        }
-        else {
-            final boolean negative = txt.charAt(0) == '-';
-            if (type == TokenTypes.NUM_INT) {
-                if (negative) {
-                    result = Integer.parseInt(txt, radix);
-                }
-                else {
-                    result = Integer.parseUnsignedInt(txt, radix);
-                }
+
+        final boolean negative = txt.charAt(0) == '-';
+        if (type == TokenTypes.NUM_INT) {
+            if (negative) {
+                result = Integer.parseInt(txt, radix);
             }
             else {
-                if (negative) {
-                    result = Long.parseLong(txt, radix);
-                }
-                else {
-                    result = Long.parseUnsignedLong(txt, radix);
-                }
+                result = Integer.parseUnsignedInt(txt, radix);
             }
         }
+        else {
+            if (negative) {
+                result = Long.parseLong(txt, radix);
+            }
+            else {
+                result = Long.parseUnsignedLong(txt, radix);
+            }
+        }
+
         return result;
     }
 
