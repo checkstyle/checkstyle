@@ -56,13 +56,13 @@ messages.properties: Key 'ok' missing.
         </p>
         <p>
           Attention: the check will perform the validation of ISO codes if the option
-          is used. So, if you specify, for example, &quot;mm&quot; for language code, TranslationCheck
+          is used. So, if you specify, for example, "mm" for language code, TranslationCheck
           will rise violation that the language code is incorrect.
         </p>
         <p>
           Attention: this Check could produce false-positives if it
           is used with <a href="../../config.html#Checker">Checker</a> that use cache (property
-          &quot;cacheFile&quot;) This is known design problem, will be addressed at
+          "cacheFile") This is known design problem, will be addressed at
           <a href="https://github.com/checkstyle/checkstyle/issues/3539">issue</a>.
         </p>
       </subsection>
@@ -97,7 +97,7 @@ messages.properties: Key 'ok' missing.
                 the check to distinguish config and localization resources.
               </td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
-              <td><code>&quot;^messages.*$&quot;</code></td>
+              <td><code>"^messages.*$"</code></td>
               <td>6.17</td>
             </tr>
             <tr>
@@ -123,9 +123,9 @@ messages.properties: Key 'ok' missing.
           extensions:
         </p>
         <source>
-&lt;module name=&quot;Translation&quot;&gt;
-  &lt;property name=&quot;fileExtensions&quot; value=&quot;properties, translations&quot;/&gt;
-  &lt;property name=&quot;requiredTranslations&quot; value=&quot;fr&quot;/&gt;
+&lt;module name="Translation"&gt;
+  &lt;property name="fileExtensions" value="properties, translations"/&gt;
+  &lt;property name="requiredTranslations" value="fr"/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -146,12 +146,12 @@ messages.translations: Properties file 'messages_fr.translations' is missing.
         </source>
         <p>
           An example of how to configure the check to validate only bundles which base names
-          start with &quot;ButtonLabels&quot;:
+          start with "ButtonLabels":
         </p>
         <source>
-&lt;module name=&quot;Translation&quot;&gt;
-  &lt;property name=&quot;baseName&quot; value=&quot;^ButtonLabels.*$&quot;/&gt;
-  &lt;property name=&quot;requiredTranslations&quot; value=&quot;fr&quot;/&gt;
+&lt;module name="Translation"&gt;
+  &lt;property name="baseName" value="^ButtonLabels.*$"/&gt;
+  &lt;property name="requiredTranslations" value="fr"/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -174,8 +174,8 @@ ButtonLabels_fr.properties: Key 'cancel' is missing.
           To configure the check to check existence of Japanese and French translations:
         </p>
         <source>
-&lt;module name=&quot;Translation&quot;&gt;
-  &lt;property name=&quot;requiredTranslations&quot; value=&quot;ja, fr&quot;/&gt;
+&lt;module name="Translation"&gt;
+  &lt;property name="requiredTranslations" value="ja, fr"/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -187,8 +187,8 @@ hello=Hello
 cancel=Cancel
 
 #messages_ja.properties
-greeting=&#x3053;&#x3093;&#x306b;&#x3061;&#x306f;
-age=&#x5e74;&#x9f62;
+greeting=こんにちは
+age=年齢
 
 #messages_fr.properties
 greeting=Bonjour

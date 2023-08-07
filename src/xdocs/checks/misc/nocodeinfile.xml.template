@@ -32,7 +32,7 @@
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;NoCodeInFile&quot;/&gt;
+&lt;module name="NoCodeInFile"/&gt;
         </source>
         <p>
           Example:

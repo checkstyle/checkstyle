@@ -32,7 +32,7 @@
               <td>format</td>
               <td>Specify pattern to match comments against.</td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
-              <td><code>&quot;TODO:&quot;</code></td>
+              <td><code>"TODO:"</code></td>
               <td>3.0</td>
             </tr>
           </table>
@@ -53,7 +53,7 @@
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;TodoComment&quot;/&gt;
+&lt;module name="TodoComment"/&gt;
         </source>
         <p>
           Example:
@@ -66,8 +66,8 @@ i++; // todo: do differently in future   // OK
           To configure the check for comments that contain <code>TODO</code> and <code>FIXME</code>:
         </p>
         <source>
-&lt;module name=&quot;TodoComment&quot;&gt;
-  &lt;property name=&quot;format&quot; value=&quot;(TODO)|(FIXME)&quot;/&gt;
+&lt;module name="TodoComment"&gt;
+  &lt;property name="format" value="(TODO)|(FIXME)"/&gt;
 &lt;/module&gt;
         </source>
         <p>
