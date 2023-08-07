@@ -68,7 +68,7 @@
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;IllegalInstantiation&quot;/&gt;
+&lt;module name="IllegalInstantiation"/&gt;
         </source>
         <p>Example:</p>
         <source>
@@ -93,9 +93,9 @@ public class MyTest {
           and <code>java.lang.Integer</code>:
         </p>
         <source>
-&lt;module name=&quot;IllegalInstantiation&quot;&gt;
-  &lt;property name=&quot;classes&quot; value=&quot;java.lang.Boolean,
-    java.lang.Integer&quot;/&gt;
+&lt;module name="IllegalInstantiation"&gt;
+  &lt;property name="classes" value="java.lang.Boolean,
+    java.lang.Integer"/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>
@@ -122,9 +122,9 @@ public class MyTest {
           Finally, there is a limitation that it is currently not possible to specify array classes:
         </p>
         <source>
-&lt;module name=&quot;IllegalInstantiation&quot;&gt;
-  &lt;property name=&quot;classes&quot; value=&quot;java.lang.Boolean[],
-     Boolean[], java.lang.Integer[], Integer[]&quot;/&gt;
+&lt;module name="IllegalInstantiation"&gt;
+  &lt;property name="classes" value="java.lang.Boolean[],
+     Boolean[], java.lang.Integer[], Integer[]"/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>

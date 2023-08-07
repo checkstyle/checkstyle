@@ -51,7 +51,7 @@
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;IllegalCatch&quot;/&gt;
+&lt;module name="IllegalCatch"/&gt;
         </source>
         <p>
           Example:
@@ -88,9 +88,9 @@ try {
           ArithmeticException and OutOfMemoryError:
         </p>
         <source>
-&lt;module name=&quot;IllegalCatch&quot;&gt;
-  &lt;property name=&quot;illegalClassNames&quot; value=&quot;ArithmeticException,
-              OutOfMemoryError&quot;/&gt;
+&lt;module name="IllegalCatch"&gt;
+  &lt;property name="illegalClassNames" value="ArithmeticException,
+              OutOfMemoryError"/&gt;
 &lt;/module&gt;
         </source>
         <p>
