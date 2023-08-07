@@ -78,7 +78,7 @@
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;AvoidStarImport&quot;/&gt;
+&lt;module name="AvoidStarImport"/&gt;
         </source>
         <p>
           Example:
@@ -96,8 +96,8 @@ import java.net.*;                // violation
           <code>java.lang.Math</code> are allowed:
         </p>
         <source>
-&lt;module name=&quot;AvoidStarImport&quot;&gt;
-  &lt;property name=&quot;excludes&quot; value=&quot;java.io,java.net,java.lang.Math&quot;/&gt;
+&lt;module name="AvoidStarImport"&gt;
+  &lt;property name="excludes" value="java.io,java.net,java.lang.Math"/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -115,8 +115,8 @@ import java.net.*;                // OK
           from all packages are allowed:
         </p>
         <source>
-&lt;module name=&quot;AvoidStarImport&quot;&gt;
-  &lt;property name=&quot;allowClassImports&quot; value=&quot;true&quot;/&gt;
+&lt;module name="AvoidStarImport"&gt;
+  &lt;property name="allowClassImports" value="true"/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -134,8 +134,8 @@ import java.net.*;                // OK
           from all packages are allowed:
         </p>
         <source>
-&lt;module name=&quot;AvoidStarImport&quot;&gt;
-  &lt;property name=&quot;allowStaticMemberImports&quot; value=&quot;true&quot;/&gt;
+&lt;module name="AvoidStarImport"&gt;
+  &lt;property name="allowStaticMemberImports" value="true"/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -153,9 +153,9 @@ import java.net.*;                // violation
           <code>java.io and java.net</code> are allowed:
         </p>
         <source>
-&lt;module name=&quot;AvoidStarImport&quot;&gt;
-  &lt;property name=&quot;allowClassImports&quot; value=&quot;true&quot;/&gt;
-  &lt;property name=&quot;excludes&quot; value=&quot;java.io,java.net&quot;/&gt;
+&lt;module name="AvoidStarImport"&gt;
+  &lt;property name="allowClassImports" value="true"/&gt;
+  &lt;property name="excludes" value="java.io,java.net"/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -174,9 +174,9 @@ import java.net.*;                // OK
           from all packages are allowed:
         </p>
         <source>
-&lt;module name=&quot;AvoidStarImport&quot;&gt;
-  &lt;property name=&quot;allowStaticMemberImports&quot; value=&quot;true&quot;/&gt;
-  &lt;property name=&quot;excludes&quot; value=&quot;java.io,java.net&quot;/&gt;
+&lt;module name="AvoidStarImport"&gt;
+  &lt;property name="allowStaticMemberImports" value="true"/&gt;
+  &lt;property name="excludes" value="java.io,java.net"/&gt;
 &lt;/module&gt;
         </source>
         <p>

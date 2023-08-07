@@ -64,7 +64,7 @@
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;AvoidStaticImport&quot;/&gt;
+&lt;module name="AvoidStaticImport"/&gt;
         </source>
         <p>
           Example:
@@ -80,8 +80,8 @@ import java.util.*;                        // OK
           member and all members from <code>java.lang.Math</code> are allowed:
         </p>
         <source>
-&lt;module name=&quot;AvoidStaticImport&quot;&gt;
-  &lt;property name=&quot;excludes&quot; value=&quot;java.lang.System.out,java.lang.Math.*&quot;/&gt;
+&lt;module name="AvoidStaticImport"&gt;
+  &lt;property name="excludes" value="java.lang.System.out,java.lang.Math.*"/&gt;
 &lt;/module&gt;
         </source>
         <p>

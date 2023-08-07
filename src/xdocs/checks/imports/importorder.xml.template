@@ -151,7 +151,7 @@
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;ImportOrder&quot;/&gt;
+&lt;module name="ImportOrder"/&gt;
         </source>
         <p>
           Example:
@@ -177,25 +177,25 @@ public class SomeClass { }
         </p>
         <ul>
           <li>group of static imports is on the top</li>
-          <li>groups of type imports: &quot;java&quot; and &quot;javax&quot; packages first,
-              then &quot;org&quot; and then all other imports</li>
+          <li>groups of type imports: "java" and "javax" packages first,
+              then "org" and then all other imports</li>
           <li>imports will be sorted in the groups</li>
           <li>groups are separated by, at least, one blank line and aren't separated internally</li>
         </ul>
         <p>Notes:</p>
         <ul>
-          <li>&quot;com&quot; package is not mentioned on configuration, because it is
+          <li>"com" package is not mentioned on configuration, because it is
               ignored by Eclipse Kepler and Luna (looks like Eclipse defect)</li>
           <li>configuration below doesn't work in all 100% cases due to inconsistent behavior
               prior to Mars release, but covers most scenarios</li>
         </ul>
         <source>
-&lt;module name=&quot;ImportOrder&quot;&gt;
-  &lt;property name=&quot;groups&quot; value=&quot;/^java\./,javax,org&quot;/&gt;
-  &lt;property name=&quot;ordered&quot; value=&quot;true&quot;/&gt;
-  &lt;property name=&quot;separated&quot; value=&quot;true&quot;/&gt;
-  &lt;property name=&quot;option&quot; value=&quot;above&quot;/&gt;
-  &lt;property name=&quot;sortStaticImportsAlphabetically&quot; value=&quot;true&quot;/&gt;
+&lt;module name="ImportOrder"&gt;
+  &lt;property name="groups" value="/^java\./,javax,org"/&gt;
+  &lt;property name="ordered" value="true"/&gt;
+  &lt;property name="separated" value="true"/&gt;
+  &lt;property name="option" value="above"/&gt;
+  &lt;property name="sortStaticImportsAlphabetically" value="true"/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -223,19 +223,19 @@ public class SomeClass { }
         </p>
         <ul>
           <li>group of static imports is on the top</li>
-          <li>groups of type imports: &quot;java&quot; and &quot;javax&quot; packages first,
-              then &quot;org&quot; and &quot;com&quot;, then all other imports as one group</li>
+          <li>groups of type imports: "java" and "javax" packages first,
+              then "org" and "com", then all other imports as one group</li>
           <li>imports will be sorted in the groups</li>
           <li>groups are separated by, at least, one blank line and aren't separated internally</li>
         </ul>
 
         <source>
-&lt;module name=&quot;ImportOrder&quot;&gt;
-  &lt;property name=&quot;groups&quot; value=&quot;/^java\./,javax,org,com&quot;/&gt;
-  &lt;property name=&quot;ordered&quot; value=&quot;true&quot;/&gt;
-  &lt;property name=&quot;separated&quot; value=&quot;true&quot;/&gt;
-  &lt;property name=&quot;option&quot; value=&quot;above&quot;/&gt;
-  &lt;property name=&quot;sortStaticImportsAlphabetically&quot; value=&quot;true&quot;/&gt;
+&lt;module name="ImportOrder"&gt;
+  &lt;property name="groups" value="/^java\./,javax,org,com"/&gt;
+  &lt;property name="ordered" value="true"/&gt;
+  &lt;property name="separated" value="true"/&gt;
+  &lt;property name="option" value="above"/&gt;
+  &lt;property name="sortStaticImportsAlphabetically" value="true"/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -267,8 +267,8 @@ public class SomeClass { }
         </p>
         <ul>
           <li>group of static imports is on the bottom</li>
-          <li>groups of type imports: all imports except of &quot;javax&quot;
-              and &quot;java&quot;, then &quot;javax&quot; and &quot;java&quot;</li>
+          <li>groups of type imports: all imports except of "javax"
+              and "java", then "javax" and "java"</li>
           <li>imports will be sorted in the groups</li>
           <li>groups are separated by, at least, one blank line and aren't separated internally</li>
         </ul>
@@ -276,26 +276,26 @@ public class SomeClass { }
           Note: a
           <a href="../../filters/suppressionxpathsinglefilter.html#SuppressionXpathSingleFilter">
           suppression xpath single filter</a>
-          is needed because IDEA has no blank line between &quot;javax&quot; and &quot;java&quot;.
+          is needed because IDEA has no blank line between "javax" and "java".
           ImportOrder has a limitation by design to enforce an empty line between groups
-          (&quot;java&quot;, &quot;javax&quot;). There is no flexibility to enforce empty lines between some
+          ("java", "javax"). There is no flexibility to enforce empty lines between some
           groups and no empty lines between other groups.
         </p>
         <p>
-          Note: &quot;separated&quot; option is disabled because IDEA default has blank line
-          between &quot;java&quot; and static imports, and no blank line between &quot;javax&quot; and &quot;java&quot;.
+          Note: "separated" option is disabled because IDEA default has blank line
+          between "java" and static imports, and no blank line between "javax" and "java".
         </p>
         <source>
-&lt;module name=&quot;ImportOrder&quot;&gt;
-  &lt;property name=&quot;groups&quot; value=&quot;*,javax,java&quot;/&gt;
-  &lt;property name=&quot;ordered&quot; value=&quot;true&quot;/&gt;
-  &lt;property name=&quot;separated&quot; value=&quot;false&quot;/&gt;
-  &lt;property name=&quot;option&quot; value=&quot;bottom&quot;/&gt;
-  &lt;property name=&quot;sortStaticImportsAlphabetically&quot; value=&quot;true&quot;/&gt;
+&lt;module name="ImportOrder"&gt;
+  &lt;property name="groups" value="*,javax,java"/&gt;
+  &lt;property name="ordered" value="true"/&gt;
+  &lt;property name="separated" value="false"/&gt;
+  &lt;property name="option" value="bottom"/&gt;
+  &lt;property name="sortStaticImportsAlphabetically" value="true"/&gt;
 &lt;/module&gt;
-&lt;module name=&quot;SuppressionXpathSingleFilter&quot;&gt;
-  &lt;property name=&quot;checks&quot; value=&quot;ImportOrder&quot;/&gt;
-  &lt;property name=&quot;message&quot; value=&quot;^'java\..*'.*&quot;/&gt;
+&lt;module name="SuppressionXpathSingleFilter"&gt;
+  &lt;property name="checks" value="ImportOrder"/&gt;
+  &lt;property name="message" value="^'java\..*'.*"/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -323,8 +323,8 @@ public class TestClass { }
           <li>static imports are not separated, they will be sorted along with other imports</li>
         </ul>
         <source>
-&lt;module name=&quot;ImportOrder&quot;&gt;
-  &lt;property name=&quot;option&quot; value=&quot;inflow&quot;/&gt;
+&lt;module name="ImportOrder"&gt;
+  &lt;property name="option" value="inflow"/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -365,9 +365,9 @@ public class SomeClass { }
           alphabetically:
         </p>
         <source>
-&lt;module name=&quot;ImportOrder&quot;&gt;
-  &lt;property name=&quot;sortStaticImportsAlphabetically&quot; value=&quot;true&quot;/&gt;
-  &lt;property name=&quot;option&quot; value=&quot;top&quot;/&gt;
+&lt;module name="ImportOrder"&gt;
+  &lt;property name="sortStaticImportsAlphabetically" value="true"/&gt;
+  &lt;property name="option" value="top"/&gt;
 &lt;/module&gt;
         </source>
 
@@ -388,10 +388,10 @@ public class SomeClass { }
         </p>
 
         <source>
-&lt;module name=&quot;ImportOrder&quot;&gt;
-  &lt;property name=&quot;staticGroups&quot; value=&quot;org,java&quot;/&gt;
-  &lt;property name=&quot;sortStaticImportsAlphabetically&quot; value=&quot;true&quot;/&gt;
-  &lt;property name=&quot;option&quot; value=&quot;top&quot;/&gt;
+&lt;module name="ImportOrder"&gt;
+  &lt;property name="staticGroups" value="org,java"/&gt;
+  &lt;property name="sortStaticImportsAlphabetically" value="true"/&gt;
+  &lt;property name="option" value="top"/&gt;
 &lt;/module&gt;
         </source>
 
@@ -399,7 +399,7 @@ public class SomeClass { }
 import static org.abego.treelayout.Configuration.AlignmentInLevel; // Group 1
 import static java.lang.Math.abs; // Group 2
 import static java.lang.String.format; // Group 2
-import static com.google.common.primitives.Doubles.BYTES; // Group &quot;everything else&quot;
+import static com.google.common.primitives.Doubles.BYTES; // Group "everything else"
 
 public class SomeClass { }
         </source>
@@ -428,12 +428,12 @@ import static HttpHeaders.Names.DATE  =&gt; HttpHeaders.Names
           Example for <code>useContainerOrderingForStatic=true</code>
         </p>
         <source>
-&lt;module name=&quot;ImportOrder&quot;&gt;
-  &lt;property name=&quot;useContainerOrderingForStatic&quot; value=&quot;true&quot;/&gt;
-  &lt;property name=&quot;ordered&quot; value=&quot;true&quot;/&gt;
-  &lt;property name=&quot;option&quot; value=&quot;top&quot;/&gt;
-  &lt;property name=&quot;caseSensitive&quot; value=&quot;false&quot;/&gt;
-  &lt;property name=&quot;sortStaticImportsAlphabetically&quot; value=&quot;true&quot;/&gt;
+&lt;module name="ImportOrder"&gt;
+  &lt;property name="useContainerOrderingForStatic" value="true"/&gt;
+  &lt;property name="ordered" value="true"/&gt;
+  &lt;property name="option" value="top"/&gt;
+  &lt;property name="caseSensitive" value="false"/&gt;
+  &lt;property name="sortStaticImportsAlphabetically" value="true"/&gt;
 &lt;/module&gt;
         </source>
         <source>
@@ -448,12 +448,12 @@ public class InputEclipseStaticImportsOrder { }
           Example for <code>useContainerOrderingForStatic=false</code>
         </p>
         <source>
-&lt;module name=&quot;ImportOrder&quot;&gt;
-  &lt;property name=&quot;useContainerOrderingForStatic&quot; value=&quot;false&quot;/&gt;
-  &lt;property name=&quot;ordered&quot; value=&quot;true&quot;/&gt;
-  &lt;property name=&quot;option&quot; value=&quot;top&quot;/&gt;
-  &lt;property name=&quot;caseSensitive&quot; value=&quot;false&quot;/&gt;
-  &lt;property name=&quot;sortStaticImportsAlphabetically&quot; value=&quot;true&quot;/&gt;
+&lt;module name="ImportOrder"&gt;
+  &lt;property name="useContainerOrderingForStatic" value="false"/&gt;
+  &lt;property name="ordered" value="true"/&gt;
+  &lt;property name="option" value="top"/&gt;
+  &lt;property name="caseSensitive" value="false"/&gt;
+  &lt;property name="sortStaticImportsAlphabetically" value="true"/&gt;
 &lt;/module&gt;
         </source>
         <source>
@@ -471,10 +471,10 @@ public class InputEclipseStaticImportsOrder { }
           Example for <code>separatedStaticGroups=true</code>
         </p>
         <source>
-&lt;module name=&quot;ImportOrder&quot;&gt;
-  &lt;property name=&quot;staticGroups&quot; value=&quot;*,java,javax,org&quot;/&gt;
-  &lt;property name=&quot;option&quot; value=&quot;top&quot;/&gt;
-  &lt;property name=&quot;separatedStaticGroups&quot; value=&quot;true&quot;/&gt;
+&lt;module name="ImportOrder"&gt;
+  &lt;property name="staticGroups" value="*,java,javax,org"/&gt;
+  &lt;property name="option" value="top"/&gt;
+  &lt;property name="separatedStaticGroups" value="true"/&gt;
 &lt;/module&gt;
         </source>
         <source>
@@ -488,13 +488,13 @@ import java.net.URL;
 public class SomeClass { }
         </source>
         <p>
-          To configure the Check with groups of static imports when staticGroups=&quot;&quot;
+          To configure the Check with groups of static imports when staticGroups=""
           represents all imports as {@code everything else} group:
         </p>
         <source>
-&lt;module name=&quot;ImportOrder&quot;&gt;
-  &lt;property name=&quot;staticGroups&quot; value=&quot;&quot;/&gt;
-  &lt;property name=&quot;option&quot; value=&quot;top&quot;/&gt;
+&lt;module name="ImportOrder"&gt;
+  &lt;property name="staticGroups" value=""/&gt;
+  &lt;property name="option" value="top"/&gt;
 &lt;/module&gt;
         </source>
 
@@ -508,15 +508,15 @@ public class SomeClass { }
         </source>
         <p>
           To configure the Check with groups of static imports when
-          staticGroups=&quot;java, javax&quot; represents three groups i.e java*, javax*
+          staticGroups="java, javax" represents three groups i.e java*, javax*
           and * (everything else). In below example the static imports <code> com...</code>
           should be in last group:
         </p>
 
         <source>
-&lt;module name=&quot;ImportOrder&quot;&gt;
-  &lt;property name=&quot;staticGroups&quot; value=&quot;java, javax&quot;/&gt;
-  &lt;property name=&quot;option&quot; value=&quot;top&quot;/&gt;
+&lt;module name="ImportOrder"&gt;
+  &lt;property name="staticGroups" value="java, javax"/&gt;
+  &lt;property name="option" value="top"/&gt;
 &lt;/module&gt;
         </source>
 
