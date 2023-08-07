@@ -19,7 +19,6 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.BitSet;
 import java.util.List;
@@ -207,11 +206,7 @@ public class AtclauseOrderCheck extends AbstractJavadocCheck {
      * @since 6.0
      */
     public void setTagOrder(String... orders) {
-        final List<String> customOrder = new ArrayList<>(orders.length);
-        for (String order : orders) {
-            customOrder.add(order.trim());
-        }
-        tagOrder = customOrder;
+        this.tagOrder = Arrays.asList(orders);
     }
 
     @Override
