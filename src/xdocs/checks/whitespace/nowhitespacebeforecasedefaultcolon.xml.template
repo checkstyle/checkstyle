@@ -19,7 +19,7 @@
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;NoWhitespaceBeforeCaseDefaultColon&quot;/&gt;
+&lt;module name="NoWhitespaceBeforeCaseDefaultColon"/&gt;
         </source>
         <p>Example:</p>
         <source>
@@ -47,8 +47,8 @@ class Test {
     }
 
     switch(day) {
-        case MONDAY, FRIDAY, SUNDAY: System.out.println(&quot;  6&quot;); break;
-        case TUESDAY               : System.out.println(&quot;  7&quot;); break; // violation
+        case MONDAY, FRIDAY, SUNDAY: System.out.println("  6"); break;
+        case TUESDAY               : System.out.println("  7"); break; // violation
     }
 }
         </source>
