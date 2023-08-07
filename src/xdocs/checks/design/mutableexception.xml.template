@@ -47,14 +47,14 @@
               <td>format</td>
               <td>Specify pattern for exception class names.</td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
-              <td><code>&quot;^.*Exception$|^.*Error$|^.*Throwable$&quot;</code></td>
+              <td><code>"^.*Exception$|^.*Error$|^.*Throwable$"</code></td>
               <td>3.2</td>
             </tr>
             <tr>
               <td>extendedClassNameFormat</td>
               <td>Specify pattern for extended class names.</td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
-              <td><code>&quot;^.*Exception$|^.*Error$|^.*Throwable$&quot;</code></td>
+              <td><code>"^.*Exception$|^.*Error$|^.*Throwable$"</code></td>
               <td>6.2</td>
             </tr>
           </table>
@@ -66,7 +66,7 @@
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;MutableException&quot;/&gt;
+&lt;module name="MutableException"/&gt;
         </source>
         <p>Example:</p>
         <div class="wrapper">
@@ -112,8 +112,8 @@ class BadException extends java.lang.Exception {
           with 'Exception':
         </p>
         <source>
-&lt;module name=&quot;MutableException&quot;&gt;
-  &lt;property name=&quot;format&quot; value=&quot;^.*Exception$&quot;/&gt;
+&lt;module name="MutableException"&gt;
+  &lt;property name="format" value="^.*Exception$"/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>
@@ -160,8 +160,8 @@ class BadException extends java.lang.Exception {
           'extends' and ends with 'Throwable':
         </p>
         <source>
-&lt;module name=&quot;MutableException&quot;&gt;
-  &lt;property name=&quot;extendedClassNameFormat&quot; value=&quot;^.*Throwable$&quot;/&gt;
+&lt;module name="MutableException"&gt;
+  &lt;property name="extendedClassNameFormat" value="^.*Throwable$"/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>

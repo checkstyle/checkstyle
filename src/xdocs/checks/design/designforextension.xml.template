@@ -37,8 +37,8 @@
          overridden in its subclass.
         </p>
         <p>
-          Problem is described at &quot;Effective Java, 2nd Edition by Joshua Bloch&quot; book, chapter
-          &quot;Item 17: Design and document for inheritance or else prohibit it&quot;.
+          Problem is described at "Effective Java, 2nd Edition by Joshua Bloch" book, chapter
+          "Item 17: Design and document for inheritance or else prohibit it".
         </p>
         <p>
           Some quotes from book:
@@ -46,7 +46,7 @@
         <blockquote>The class must document its self-use of overridable methods.
 By convention, a method that invokes overridable methods contains a description
 of these invocations at the end of its documentation comment. The description
-begins with the phrase &#x201c;This implementation.&#x201d;
+begins with the phrase “This implementation.”
         </blockquote>
         <blockquote>The best solution to this problem is to prohibit subclassing in classes that
 are not designed and documented to be safely subclassed.
@@ -55,8 +55,8 @@ are not designed and documented to be safely subclassed.
 inconvenience some programmers by prohibiting inheritance. If you feel that you
 must allow inheritance from such a class, one reasonable approach is to ensure
 that the class never invokes any of its overridable methods and to document this
-fact. In other words, eliminate the class&#x2019;s self-use of overridable methods entirely.
-In doing so, you&#x2019;ll create a class that is reasonably safe to subclass. Overriding a
+fact. In other words, eliminate the class’s self-use of overridable methods entirely.
+In doing so, you’ll create a class that is reasonably safe to subclass. Overriding a
 method will never affect the behavior of any other method.
         </blockquote>
         <p>
@@ -75,7 +75,7 @@ method will never affect the behavior of any other method.
         <p>
           More specifically,
           it enforces a programming style where superclasses provide empty
-          &quot;hooks&quot; that can be implemented by subclasses.
+          "hooks" that can be implemented by subclasses.
         </p>
         <p>
           Example of code that cause violation as it is designed for extension:
@@ -86,8 +86,8 @@ public abstract class Plant {
   private String trunk;
 
   protected void validate() {
-    if (roots == null) throw new IllegalArgumentException(&quot;No roots!&quot;);
-    if (trunk == null) throw new IllegalArgumentException(&quot;No trunk!&quot;);
+    if (roots == null) throw new IllegalArgumentException("No roots!");
+    if (trunk == null) throw new IllegalArgumentException("No trunk!");
   }
 
   public abstract void grow();
@@ -99,7 +99,7 @@ public class Tree extends Plant {
   @Overrides
   protected void validate() {
     super.validate();
-    if (leaves == null) throw new IllegalArgumentException(&quot;No leaves!&quot;);
+    if (leaves == null) throw new IllegalArgumentException("No leaves!");
   }
 
   public void grow() {
@@ -116,8 +116,8 @@ public abstract class Plant {
   private String trunk;
 
   private void validate() {
-    if (roots == null) throw new IllegalArgumentException(&quot;No roots!&quot;);
-    if (trunk == null) throw new IllegalArgumentException(&quot;No trunk!&quot;);
+    if (roots == null) throw new IllegalArgumentException("No roots!");
+    if (trunk == null) throw new IllegalArgumentException("No trunk!");
     validateEx();
   }
 
@@ -153,7 +153,7 @@ public abstract class Plant {
                 extension. Supports multi-line regex.
               </td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
-              <td><code>&quot;.*&quot;</code></td>
+              <td><code>".*"</code></td>
               <td>8.40</td>
             </tr>
           </table>
@@ -164,7 +164,7 @@ public abstract class Plant {
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;DesignForExtension&quot;/&gt;
+&lt;module name="DesignForExtension"/&gt;
         </source>
         <p>Example:</p>
         <source>
@@ -200,7 +200,7 @@ public abstract class Foo {
 
   @Override
   public String toString() {  // Violation. No javadoc for @Override method.
-    return &quot;&quot;;
+    return "";
   }
 }
         </source>
@@ -209,8 +209,8 @@ public abstract class Foo {
           designed for extension.
         </p>
         <source>
-&lt;module name=&quot;DesignForExtension&quot;&gt;
-  &lt;property name=&quot;ignoredAnnotations&quot; value=&quot;Override&quot;/&gt;
+&lt;module name="DesignForExtension"&gt;
+  &lt;property name="ignoredAnnotations" value="Override"/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>
@@ -247,7 +247,7 @@ public abstract class Foo {
 
   @Override
   public String toString() {  // OK. Have javadoc on overridable method.
-    return &quot;&quot;;
+    return "";
   }
 }
         </source>
@@ -255,8 +255,8 @@ public abstract class Foo {
           their javadoc to be designed for extension.
         </p>
         <source>
-&lt;module name=&quot;DesignForExtension&quot;&gt;
-  &lt;property name=&quot;requiredJavadocPhrase&quot; value=&quot;This implementation&quot;/&gt;
+&lt;module name="DesignForExtension"&gt;
+  &lt;property name="requiredJavadocPhrase" value="This implementation"/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>
@@ -293,7 +293,7 @@ public abstract class Foo {
 
   @Override
   public String toString() {  // Violation. No required javadoc.
-    return &quot;&quot;;
+    return "";
   }
 }
         </source>
@@ -302,9 +302,9 @@ public abstract class Foo {
           their javadoc which can span multiple lines to be designed for extension.
         </p>
         <source>
-&lt;module name=&quot;DesignForExtension&quot;&gt;
-  &lt;property name=&quot;requiredJavadocPhrase&quot;
-    value=&quot;This[\s\S]*implementation&quot;/&gt;
+&lt;module name="DesignForExtension"&gt;
+  &lt;property name="requiredJavadocPhrase"
+    value="This[\s\S]*implementation"/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>
@@ -341,7 +341,7 @@ public abstract class Foo {
 
   @Override
   public String toString() {  // Violation. No required javadoc.
-    return &quot;&quot;;
+    return "";
   }
 }
         </source>

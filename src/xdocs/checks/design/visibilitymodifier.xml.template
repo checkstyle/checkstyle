@@ -17,10 +17,10 @@
 
         <p>
           Public members are not flagged if the name matches the public
-          member regular expression (contains <code>&quot;^serialVersionUID$&quot;</code> by default).
+          member regular expression (contains <code>"^serialVersionUID$"</code> by default).
         </p>
         <p>Note that
-          Checkstyle 2 used to include <code>&quot;^f[A-Z][a-zA-Z0-9]*$&quot;</code> in the default
+          Checkstyle 2 used to include <code>"^f[A-Z][a-zA-Z0-9]*$"</code> in the default
           pattern to allow names used in container-managed persistence for Enterprise JavaBeans
           (EJB) 1.1 with the default settings. With EJB 2.0 it is no longer necessary to have
           public access for persistent fields, so the default has been changed.
@@ -106,7 +106,7 @@
               <td>publicMemberPattern</td>
               <td>Specify pattern for public members that should be ignored.</td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
-              <td><code>&quot;^serialVersionUID$&quot;</code></td>
+              <td><code>"^serialVersionUID$"</code></td>
               <td>3.0</td>
             </tr>
             <tr>
@@ -155,7 +155,7 @@
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;VisibilityModifier&quot;/&gt;
+&lt;module name="VisibilityModifier"/&gt;
         </source>
         <p>Example with default values:</p>
         <source>
@@ -195,15 +195,15 @@ class Example1 {
   String shortCustomAnnotated;
 
   @com.google.common.annotations.VisibleForTesting
-  public String testString = &quot;&quot;;
+  public String testString = "";
 }
         </source>
         <p>
           To configure the check so that it allows package visible members:
         </p>
         <source>
-&lt;module name=&quot;VisibilityModifier&quot;&gt;
-  &lt;property name=&quot;packageAllowed&quot; value=&quot;true&quot;/&gt;
+&lt;module name="VisibilityModifier"&gt;
+  &lt;property name="packageAllowed" value="true"/&gt;
 &lt;/module&gt;
         </source>
         <p>Example of allowed package visible members:</p>
@@ -244,15 +244,15 @@ class Example2 {
   String shortCustomAnnotated;
 
   @com.google.common.annotations.VisibleForTesting
-  public String testString = &quot;&quot;;
+  public String testString = "";
 }
         </source>
         <p>
           To configure the check so that it allows protected visible members:
         </p>
         <source>
-&lt;module name=&quot;VisibilityModifier&quot;&gt;
-  &lt;property name=&quot;protectedAllowed&quot; value=&quot;true&quot;/&gt;
+&lt;module name="VisibilityModifier"&gt;
+  &lt;property name="protectedAllowed" value="true"/&gt;
 &lt;/module&gt;
         </source>
         <p>Example of allowed protected visible members:</p>
@@ -294,15 +294,15 @@ class Example3 {
   String shortCustomAnnotated;
 
   @com.google.common.annotations.VisibleForTesting
-  public String testString = &quot;&quot;;
+  public String testString = "";
 }
         </source>
         <p>
           To configure the check so that it allows no public members:
         </p>
         <source>
-&lt;module name=&quot;VisibilityModifier&quot;&gt;
-  &lt;property name=&quot;publicMemberPattern&quot; value=&quot;^$&quot;/&gt;
+&lt;module name="VisibilityModifier"&gt;
+  &lt;property name="publicMemberPattern" value="^$"/&gt;
 &lt;/module&gt;
         </source>
         <p>Example of not allowed public members:</p>
@@ -345,7 +345,7 @@ class Example4 {
   String shortCustomAnnotated;
 
   @com.google.common.annotations.VisibleForTesting
-  public String testString = &quot;&quot;;
+  public String testString = "";
 }
         </source>
         <p>
@@ -353,8 +353,8 @@ class Example4 {
           (mostly for immutable classes):
         </p>
         <source>
-&lt;module name=&quot;VisibilityModifier&quot;&gt;
-  &lt;property name=&quot;allowPublicImmutableFields&quot; value=&quot;true&quot;/&gt;
+&lt;module name="VisibilityModifier"&gt;
+  &lt;property name="allowPublicImmutableFields" value="true"/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -396,17 +396,17 @@ class Example5 {
   String shortCustomAnnotated;
 
   @com.google.common.annotations.VisibleForTesting
-  public String testString = &quot;&quot;;
+  public String testString = "";
 }
         </source>
         <p>
           To configure the Check in order to allow user specified immutable class names:
         </p>
         <source>
-&lt;module name=&quot;VisibilityModifier&quot;&gt;
-  &lt;property name=&quot;allowPublicImmutableFields&quot; value=&quot;true&quot;/&gt;
-  &lt;property name=&quot;immutableClassCanonicalNames&quot;
-    value=&quot;com.google.common.collect.ImmutableSet, java.lang.String&quot;/&gt;
+&lt;module name="VisibilityModifier"&gt;
+  &lt;property name="allowPublicImmutableFields" value="true"/&gt;
+  &lt;property name="immutableClassCanonicalNames"
+    value="com.google.common.collect.ImmutableSet, java.lang.String"/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -448,7 +448,7 @@ class Example6 {
   String shortCustomAnnotated;
 
   @com.google.common.annotations.VisibleForTesting
-  public String testString = &quot;&quot;;
+  public String testString = "";
 }
         </source>
         <p>
@@ -457,12 +457,12 @@ class Example6 {
           there will be a violation.
         </p>
         <source>
-&lt;module name=&quot;VisibilityModifier&quot;&gt;
-  &lt;property name=&quot;allowPublicImmutableFields&quot; value=&quot;true&quot;/&gt;
-  &lt;property name=&quot;immutableClassCanonicalNames&quot;
-    value=&quot;com.google.common.collect.ImmutableSet,
+&lt;module name="VisibilityModifier"&gt;
+  &lt;property name="allowPublicImmutableFields" value="true"/&gt;
+  &lt;property name="immutableClassCanonicalNames"
+    value="com.google.common.collect.ImmutableSet,
            com.google.common.collect.ImmutableMap,
-           java.lang.String&quot;/&gt;
+           java.lang.String"/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -504,16 +504,16 @@ class Example7 {
   String shortCustomAnnotated;
 
   @com.google.common.annotations.VisibleForTesting
-  public String testString = &quot;&quot;;
+  public String testString = "";
 }
         </source>
         <p>
           To configure the Check passing fields annotated with @java.lang.Deprecated:
         </p>
         <source>
-&lt;module name=&quot;VisibilityModifier&quot;&gt;
-  &lt;property name=&quot;ignoreAnnotationCanonicalNames&quot;
-    value=&quot;java.lang.Deprecated&quot;/&gt;
+&lt;module name="VisibilityModifier"&gt;
+  &lt;property name="ignoreAnnotationCanonicalNames"
+    value="java.lang.Deprecated"/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -555,7 +555,7 @@ class Example8 {
 
   @com.google.common.annotations.VisibleForTesting
   // violation below, annotation not configured 'must be private'
-  public String testString = &quot;&quot;;
+  public String testString = "";
 }
         </source>
 
@@ -564,7 +564,7 @@ class Example8 {
           @org.junit.ClassRule and @com.google.common.annotations.VisibleForTesting annotations:
         </p>
         <source>
-&lt;module name=&quot;VisibilityModifier&quot;/&gt;
+&lt;module name="VisibilityModifier"/&gt;
         </source>
         <p>
           Example of allowed fields:
@@ -605,16 +605,16 @@ class Example9 {
   String shortCustomAnnotated;
 
   @com.google.common.annotations.VisibleForTesting
-  public String testString = &quot;&quot;;
+  public String testString = "";
 }
         </source>
         <p>
           To configure the Check passing fields annotated with short annotation name:
         </p>
         <source>
-&lt;module name=&quot;VisibilityModifier&quot;&gt;
-  &lt;property name=&quot;ignoreAnnotationCanonicalNames&quot;
-    value=&quot;Deprecated&quot;/&gt;
+&lt;module name="VisibilityModifier"&gt;
+  &lt;property name="ignoreAnnotationCanonicalNames"
+    value="Deprecated"/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -656,7 +656,7 @@ class Example10 {
 
   @com.google.common.annotations.VisibleForTesting
   // violation below, annotation not configured 'must be private'
-  public String testString = &quot;&quot;;
+  public String testString = "";
 }
         </source>
         <p>
@@ -667,8 +667,8 @@ class Example10 {
            1) To configure the check to use only 'allowPublicImmutableFields' option:
         </p>
         <source>
-&lt;module name=&quot;VisibilityModifier&quot;&gt;
-  &lt;property name=&quot;allowPublicImmutableFields&quot; value=&quot;true&quot;/&gt;
+&lt;module name="VisibilityModifier"&gt;
+  &lt;property name="allowPublicImmutableFields" value="true"/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -680,7 +680,7 @@ class Example11 {
 
   public final ImmutableSet&lt;String&gt; includes = null; // violation 'must be private'
 
-  public final java.lang.String notes = &quot;&quot;; // violation 'must be private'
+  public final java.lang.String notes = ""; // violation 'must be private'
 
   public final BigDecimal value = null; // violation 'must be private'
 
@@ -691,8 +691,8 @@ class Example11 {
           2) To configure the check to use only 'allowPublicFinalFields' option:
         </p>
         <source>
-&lt;module name=&quot;VisibilityModifier&quot;&gt;
-  &lt;property name=&quot;allowPublicFinalFields&quot; value=&quot;true&quot;/&gt;
+&lt;module name="VisibilityModifier"&gt;
+  &lt;property name="allowPublicFinalFields" value="true"/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -704,7 +704,7 @@ class Example12 {
 
   public final ImmutableSet&lt;String&gt; includes = null;
 
-  public final java.lang.String notes = &quot;&quot;;
+  public final java.lang.String notes = "";
 
   public final BigDecimal value = null;
 
