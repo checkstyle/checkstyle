@@ -13,7 +13,7 @@
           Detects inline conditionals. Here is one example of an inline conditional:
         </p>
         <source>
-String a = getParameter(&quot;a&quot;);
+String a = getParameter("a");
 String b = (a==null || a.length()&lt;1) ? null : a.substring(1);
         </source>
 
@@ -28,7 +28,7 @@ String b = (a==null || a.length()&lt;1) ? null : a.substring(1);
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;AvoidInlineConditionals&quot;/&gt;
+&lt;module name="AvoidInlineConditionals"/&gt;
         </source>
         <p>Example:</p>
         <source>
@@ -36,7 +36,7 @@ int x = 5;
 boolean foobar = (x == 5); // OK
 
 String text;
-text = (text == null) ? &quot;&quot; : text; // violation
+text = (text == null) ? "" : text; // violation
 
 String b;
 if (a != null &amp;&amp; a.length() &gt;= 1) { // OK

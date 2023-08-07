@@ -32,7 +32,7 @@
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;EqualsHashCode&quot;/&gt;
+&lt;module name="EqualsHashCode"/&gt;
         </source>
         <p>Example:</p>
         <source>

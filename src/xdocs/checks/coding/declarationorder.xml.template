@@ -92,7 +92,7 @@ public class A {
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;DeclarationOrder&quot;/&gt;
+&lt;module name="DeclarationOrder"/&gt;
         </source>
         <p>Example:</p>
         <source>
@@ -121,8 +121,8 @@ public class Test {
           To configure the check to ignore validation of constructors:
         </p>
         <source>
-&lt;module name=&quot;DeclarationOrder&quot;&gt;
-  &lt;property name=&quot;ignoreConstructors&quot; value=&quot;true&quot;/&gt;
+&lt;module name="DeclarationOrder"&gt;
+  &lt;property name="ignoreConstructors" value="true"/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>
@@ -152,8 +152,8 @@ public class Test {
           To configure the check to ignore modifiers:
         </p>
         <source>
-&lt;module name=&quot;DeclarationOrder&quot;&gt;
-  &lt;property name=&quot;ignoreModifiers&quot; value=&quot;true&quot;/&gt;
+&lt;module name="DeclarationOrder"&gt;
+  &lt;property name="ignoreModifiers" value="true"/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>

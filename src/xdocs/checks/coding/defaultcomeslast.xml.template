@@ -48,7 +48,7 @@
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;DefaultComesLast&quot;/&gt;
+&lt;module name="DefaultComesLast"/&gt;
         </source>
         <p>
           Example:
@@ -91,8 +91,8 @@ switch (i) {
           To configure the check to allow default label to be not last if it is shared with case:
         </p>
         <source>
-&lt;module name=&quot;DefaultComesLast&quot;&gt;
-  &lt;property name=&quot;skipIfLastAndSharedWithCase&quot; value=&quot;true&quot;/&gt;
+&lt;module name="DefaultComesLast"&gt;
+  &lt;property name="skipIfLastAndSharedWithCase" value="true"/&gt;
 &lt;/module&gt;
         </source>
         <p>

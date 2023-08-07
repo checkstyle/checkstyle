@@ -53,7 +53,7 @@
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;IllegalToken&quot;/&gt;
+&lt;module name="IllegalToken"/&gt;
         </source>
         <p>Example:</p>
         <div class="wrapper">
@@ -72,8 +72,8 @@ public void myTest() {
           To configure the check to report violation on token LITERAL_NATIVE:
         </p>
         <source>
-&lt;module name=&quot;IllegalToken&quot;&gt;
-  &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_NATIVE&quot;/&gt;
+&lt;module name="IllegalToken"&gt;
+  &lt;property name="tokens" value="LITERAL_NATIVE"/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>

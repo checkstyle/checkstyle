@@ -3,23 +3,15 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
   <head>
-    <title>AvoidInlineConditionals</title>
+    <title>EmptyStatement</title>
   </head>
   <body>
-    <section name="AvoidInlineConditionals">
+    <section name="EmptyStatement">
       <p>Since Checkstyle 3.1</p>
       <subsection name="Description" id="Description">
         <p>
-          Detects inline conditionals. Here is one example of an inline conditional:
-        </p>
-        <source>
-String a = getParameter(&quot;a&quot;);
-String b = (a==null || a.length()&lt;1) ? null : a.substring(1);
-        </source>
-
-        <p>
-          Rationale: Some developers find inline conditionals hard to read, so
-          their employer's coding standards forbid them.
+          Detects empty statements (standalone <code>";"</code> semicolon).
+          Empty statements often introduce bugs that are hard to spot
         </p>
       </subsection>
 
@@ -28,31 +20,32 @@ String b = (a==null || a.length()&lt;1) ? null : a.substring(1);
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;AvoidInlineConditionals&quot;/&gt;
+&lt;module name="EmptyStatement"/&gt;
         </source>
-        <p>Example:</p>
+        <p>
+            Example:
+        </p>
         <source>
-int x = 5;
-boolean foobar = (x == 5); // OK
-
-String text;
-text = (text == null) ? &quot;&quot; : text; // violation
-
-String b;
-if (a != null &amp;&amp; a.length() &gt;= 1) { // OK
-    b = a.substring(1);
-} else {
-    b = null;
+public void foo() {
+  int i = 5;
+  if (i &gt; 3); // violation, ";" right after if statement
+    i++;
+  for (i = 0; i &lt; 5; i++); // violation
+    i++;
+  while (i &gt; 10) // OK
+    i++;
 }
-
-b = (a != null &amp;&amp; a.length() &gt;= 1) ? a.substring(1) : null; // violation
         </source>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+AvoidInlineConditionals">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+EmptyStatement">
+            Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+EmptyStatement">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -61,8 +54,8 @@ b = (a != null &amp;&amp; a.length() &gt;= 1) ? a.substring(1) : null; // violat
       <subsection name="Violation Messages" id="Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22inline.conditional.avoid%22">
-            inline.conditional.avoid</a>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22empty.statement%22">
+            empty.statement</a>
           </li>
         </ul>
         <p>
