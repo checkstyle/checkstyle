@@ -66,14 +66,14 @@ line 1: ^#!
 line 2: ^&lt;\?xml.*&gt;$
 line 3: ^\W*$
 line 4: ^\W*Copyright 2006 The Apache Software Foundation or its licensors, as applicable\.$
-line 5: ^\W*Licensed under the Apache License, Version 2\.0 \(the &quot;License&quot;\);$
+line 5: ^\W*Licensed under the Apache License, Version 2\.0 \(the "License"\);$
 line 6: ^\W*$
         </source>
 
         <p>
           Lines 1 and 2 leave room for technical header lines, e.g. the
-          &quot;#!/bin/sh&quot; line in Unix shell scripts, or the XML file header
-          of XML files. Set the multiline property to &quot;1, 2&quot; so these
+          "#!/bin/sh" line in Unix shell scripts, or the XML file header
+          of XML files. Set the multiline property to "1, 2" so these
           lines can be ignored for file types where they do no apply.
           Lines 3 through 6 define the actual header content. Note how
           lines 2, 4 and 5 use escapes for characters that have special
@@ -119,9 +119,9 @@ line 6: ^\W*$
               <td>header</td>
               <td>
                 Define the required header specified inline. Individual header lines
-                must be separated by the string <code>&quot;\n&quot;</code> (even on platforms with
+                must be separated by the string <code>"\n"</code> (even on platforms with
                 a different line separator). For header lines containing
-                <code>&quot;\n\n&quot;</code> checkstyle will forcefully expect an empty line to
+                <code>"\n\n"</code> checkstyle will forcefully expect an empty line to
                 exist. See examples below. Regular expressions must not span multiple lines.
               </td>
               <td><a href="../../property_types.html#String">String</a></td>
@@ -152,17 +152,17 @@ line 6: ^\W*$
             Default values of properties are used.
         </p>
         <source>
-&lt;module name=&quot;RegexpHeader&quot;/&gt;
+&lt;module name="RegexpHeader"/&gt;
         </source>
 
         <p>
-          To configure the check to use header file <code>&quot;config/java.header&quot;</code> and
+          To configure the check to use header file <code>"config/java.header"</code> and
           <code>10</code> and <code>13</code> multi-lines:
         </p>
         <source>
-&lt;module name=&quot;RegexpHeader&quot;&gt;
-  &lt;property name=&quot;headerFile&quot; value=&quot;config/java.header&quot;/&gt;
-  &lt;property name=&quot;multiLines&quot; value=&quot;10, 13&quot;/&gt;
+&lt;module name="RegexpHeader"&gt;
+  &lt;property name="headerFile" value="config/java.header"/&gt;
+  &lt;property name="multiLines" value="10, 13"/&gt;
 &lt;/module&gt;
         </source>
 
@@ -179,26 +179,26 @@ line 6: ^\W*$
           without the need for an external header file:
         </p>
         <source>
-&lt;module name=&quot;RegexpHeader&quot;&gt;
+&lt;module name="RegexpHeader"&gt;
   &lt;property
-    name=&quot;header&quot;
-    value=&quot;^// Copyright \(C\) (\d\d\d\d -)? 2004 MyCompany$
-      \n^// All rights reserved$&quot;/&gt;
+    name="header"
+    value="^// Copyright \(C\) (\d\d\d\d -)? 2004 MyCompany$
+      \n^// All rights reserved$"/&gt;
 &lt;/module&gt;
         </source>
 
         <p>
-          For regex containing <code>&quot;\n\n&quot;</code>
+          For regex containing <code>"\n\n"</code>
         </p>
         <source>
-&lt;module name=&quot;RegexpHeader&quot;&gt;
+&lt;module name="RegexpHeader"&gt;
   &lt;property
-    name=&quot;header&quot;
-    value=&quot;^package .*\n\n.*&quot;/&gt;
+    name="header"
+    value="^package .*\n\n.*"/&gt;
 &lt;/module&gt;
         </source>
         <p>
-          <code>&quot;\n\n&quot;</code> will be treated as '^$' and will forcefully
+          <code>"\n\n"</code> will be treated as '^$' and will forcefully
           expect the line to be empty. For example -
         </p>
         <source>
@@ -217,7 +217,7 @@ public class ThisWillPass { }
         <p>
           <u>Note</u>: <code>ignoreLines</code> property has been
           removed from this check to simplify it. To make some line optional
-          use &quot;^.*$&quot; regexp for this line.
+          use "^.*$" regexp for this line.
         </p>
       </subsection>
 
