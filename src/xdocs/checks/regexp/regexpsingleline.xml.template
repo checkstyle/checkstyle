@@ -34,7 +34,7 @@
               <td>format</td>
               <td>Specify the format of the regular expression to match.</td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
-              <td><code>&quot;$.&quot;</code></td>
+              <td><code>"$."</code></td>
               <td>5.0</td>
             </tr>
             <tr>
@@ -82,7 +82,7 @@
         To configure the default check:
         </p>
         <source>
-&lt;module name=&quot;RegexpSingleline&quot; /&gt;
+&lt;module name="RegexpSingleline" /&gt;
         </source>
         <p>
         This configuration does not match to anything,
@@ -94,11 +94,11 @@
         with some <i>slack</i> of allowing only one occurrence per file:
         </p>
         <source>
-&lt;module name=&quot;RegexpSingleline&quot;&gt;
-  &lt;property name=&quot;format&quot; value=&quot;System.exit\(&quot;/&gt;
+&lt;module name="RegexpSingleline"&gt;
+  &lt;property name="format" value="System.exit\("/&gt;
   &lt;!-- next line not required as 0 is the default --&gt;
-  &lt;property name=&quot;minimum&quot; value=&quot;0&quot;/&gt;
-  &lt;property name=&quot;maximum&quot; value=&quot;1&quot;/&gt;
+  &lt;property name="minimum" value="0"/&gt;
+  &lt;property name="maximum" value="1"/&gt;
 &lt;/module&gt;
         </source>
 
@@ -133,11 +133,11 @@ class MyClass {
           statement is included in the file:
         </p>
         <source>
-&lt;module name=&quot;RegexpSingleline&quot;&gt;
-  &lt;property name=&quot;format&quot; value=&quot;This file is copyrighted&quot;/&gt;
-  &lt;property name=&quot;minimum&quot; value=&quot;1&quot;/&gt;
+&lt;module name="RegexpSingleline"&gt;
+  &lt;property name="format" value="This file is copyrighted"/&gt;
+  &lt;property name="minimum" value="1"/&gt;
   &lt;!--  Need to specify a maximum, so 10 times is more than enough. --&gt;
-  &lt;property name=&quot;maximum&quot; value=&quot;10&quot;/&gt;
+  &lt;property name="maximum" value="10"/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>
@@ -162,16 +162,16 @@ class MyClass {
           'license'.
         </p>
         <source>
-&lt;module name=&quot;RegexpSingleline&quot;&gt;
-    &lt;property name=&quot;format&quot; value=&quot;license&quot;/&gt;
-    &lt;property name=&quot;minimum&quot; value=&quot;1&quot;/&gt;
-    &lt;property name=&quot;maximum&quot; value=&quot;9999&quot;/&gt;
-    &lt;property name=&quot;ignoreCase&quot; value=&quot;true&quot;/&gt;
+&lt;module name="RegexpSingleline"&gt;
+    &lt;property name="format" value="license"/&gt;
+    &lt;property name="minimum" value="1"/&gt;
+    &lt;property name="maximum" value="9999"/&gt;
+    &lt;property name="ignoreCase" value="true"/&gt;
     &lt;!--  Configure a message to be shown on violation of the Check. --&gt;
-    &lt;property name=&quot;message&quot;
-          value=&quot;File must contain at least one occurrence of 'license' term&quot;/&gt;
+    &lt;property name="message"
+          value="File must contain at least one occurrence of 'license' term"/&gt;
     &lt;!--  Perform the Check only on files with java extension. --&gt;
-    &lt;property name=&quot;fileExtensions&quot; value=&quot;sql&quot;/&gt;
+    &lt;property name="fileExtensions" value="sql"/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>
