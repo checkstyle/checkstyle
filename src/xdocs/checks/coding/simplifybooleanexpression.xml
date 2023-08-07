@@ -27,7 +27,7 @@
           To configure the check:
         </p>
         <source>
-&lt;module name="SimplifyBooleanExpression"/&gt;
+&lt;module name=&quot;SimplifyBooleanExpression&quot;/&gt;
         </source>
         <p>Example:</p>
         <source>

@@ -41,7 +41,7 @@
           To configure the check:
         </p>
         <source>
-&lt;module name="UnnecessarySemicolonInTryWithResources"/&gt;
+&lt;module name=&quot;UnnecessarySemicolonInTryWithResources&quot;/&gt;
         </source>
         <p>
           Example of violations
@@ -64,8 +64,8 @@ class A {
           if closing paren is not on same line
         </p>
         <source>
-&lt;module name="UnnecessarySemicolonInTryWithResources"&gt;
-  &lt;property name="allowWhenNoBraceAfterSemicolon" value="false"/&gt;
+&lt;module name=&quot;UnnecessarySemicolonInTryWithResources&quot;&gt;
+  &lt;property name=&quot;allowWhenNoBraceAfterSemicolon&quot; value=&quot;false&quot;/&gt;
 &lt;/module&gt;
         </source>
         <p>

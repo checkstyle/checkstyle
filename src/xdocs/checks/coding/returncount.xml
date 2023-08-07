@@ -24,7 +24,7 @@
           that have no return type (IE 'return;').
           It will only count visible return statements. Return statements not normally written, but
           implied, at the end of the method/constructor definition will not be taken into account.
-          To disallow "return;" in void return type methods, use a value of 0.
+          To disallow &quot;return;&quot; in void return type methods, use a value of 0.
         </p>
 
         <p>
@@ -64,7 +64,7 @@
               <td>format</td>
               <td>Specify method names to ignore.</td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
-              <td><code>"^equals$"</code></td>
+              <td><code>&quot;^equals$&quot;</code></td>
               <td>3.4</td>
             </tr>
             <tr>
@@ -102,8 +102,8 @@
           method):
         </p>
         <source>
-&lt;module name="ReturnCount"&gt;
-  &lt;property name="max" value="3"/&gt;
+&lt;module name=&quot;ReturnCount&quot;&gt;
+  &lt;property name=&quot;max&quot; value=&quot;3&quot;/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -136,8 +136,8 @@ public class MyClass {
           return statements per void method:
         </p>
         <source>
-&lt;module name="ReturnCount"&gt;
-  &lt;property name="maxForVoid" value="0"/&gt;
+&lt;module name=&quot;ReturnCount&quot;&gt;
+  &lt;property name=&quot;maxForVoid&quot; value=&quot;0&quot;/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -160,9 +160,9 @@ public class MyClass {
           method) and more than 1 return statements per void method:
         </p>
         <source>
-&lt;module name="ReturnCount"&gt;
-  &lt;property name="max" value="2"/&gt;
-  &lt;property name="maxForVoid" value="1"/&gt;
+&lt;module name=&quot;ReturnCount&quot;&gt;
+  &lt;property name=&quot;max&quot; value=&quot;2&quot;/&gt;
+  &lt;property name=&quot;maxForVoid&quot; value=&quot;1&quot;/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -204,9 +204,9 @@ public class MyClass {
           return statements per method for all methods:
         </p>
         <source>
-&lt;module name="ReturnCount"&gt;
-  &lt;property name="max" value="3"/&gt;
-  &lt;property name="format" value="^$"/&gt;
+&lt;module name=&quot;ReturnCount&quot;&gt;
+  &lt;property name=&quot;max&quot; value=&quot;3&quot;/&gt;
+  &lt;property name=&quot;format&quot; value=&quot;^$&quot;/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -240,17 +240,17 @@ public class MyClass {
           expressions and more than two return statements in methods:
         </p>
         <source>
-&lt;module name="ReturnCount"&gt;
-  &lt;property name="maxForVoid" value="0"/&gt;
-  &lt;property name="tokens" value="CTOR_DEF"/&gt;
+&lt;module name=&quot;ReturnCount&quot;&gt;
+  &lt;property name=&quot;maxForVoid&quot; value=&quot;0&quot;/&gt;
+  &lt;property name=&quot;tokens&quot; value=&quot;CTOR_DEF&quot;/&gt;
 &lt;/module&gt;
-&lt;module name="ReturnCount"&gt;
-  &lt;property name="max" value="1"/&gt;
-  &lt;property name="tokens" value="LAMBDA"/&gt;
+&lt;module name=&quot;ReturnCount&quot;&gt;
+  &lt;property name=&quot;max&quot; value=&quot;1&quot;/&gt;
+  &lt;property name=&quot;tokens&quot; value=&quot;LAMBDA&quot;/&gt;
 &lt;/module&gt;
-&lt;module name="ReturnCount"&gt;
-  &lt;property name="max" value="2"/&gt;
-  &lt;property name="tokens" value="METHOD_DEF"/&gt;
+&lt;module name=&quot;ReturnCount&quot;&gt;
+  &lt;property name=&quot;max&quot; value=&quot;2&quot;/&gt;
+  &lt;property name=&quot;tokens&quot; value=&quot;METHOD_DEF&quot;/&gt;
 &lt;/module&gt;
         </source>
         <p>

@@ -22,7 +22,7 @@
           To configure the check:
         </p>
         <source>
-&lt;module name="UnusedLocalVariable"/&gt;
+&lt;module name=&quot;UnusedLocalVariable&quot;/&gt;
         </source>
         <p>
           Example:
@@ -60,7 +60,7 @@ class Test {
         }
         try (BufferedReader reader1 // ok as 'reader1' is a resource and resources are closed
                                     // at the end of the statement
-            = new BufferedReader(new FileReader("abc.txt"))) {
+            = new BufferedReader(new FileReader(&quot;abc.txt&quot;))) {
         }
         try {
         } catch (Exception e) {     // ok as e is an exception parameter
@@ -79,7 +79,7 @@ class Test {
         Predicate&lt;String&gt; obj = (String str) -&gt; { // ok as 'str' is a lambda parameter
             return true;
         };
-        obj.test("test");
+        obj.test(&quot;test&quot;);
     }
 }
         </source>

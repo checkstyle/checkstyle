@@ -20,7 +20,7 @@
           To configure the check:
         </p>
         <source>
-&lt;module name="UnnecessarySemicolonInEnumeration"/&gt;
+&lt;module name=&quot;UnnecessarySemicolonInEnumeration&quot;/&gt;
         </source>
         <p>
           Example of violations
@@ -51,7 +51,7 @@ enum Five {
 enum Normal {
     A,
     B,
-    ; // required ";", no violation
+    ; // required &quot;;&quot;, no violation
     Normal(){}
 }
 enum NoSemicolon {

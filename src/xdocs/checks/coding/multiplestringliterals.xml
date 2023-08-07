@@ -46,7 +46,7 @@
                 Specify RegExp for ignored strings (with quotation marks).
               </td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
-              <td><code>"^""$"</code></td>
+              <td><code>&quot;^&quot;&quot;$&quot;</code></td>
               <td>4.0</td>
             </tr>
             <tr>
@@ -74,19 +74,19 @@
           To configure the check:
         </p>
         <source>
-&lt;module name="MultipleStringLiterals"/&gt;
+&lt;module name=&quot;MultipleStringLiterals&quot;/&gt;
         </source>
         <p>Example:</p>
         <source>
 public class MyClass {
-  String a = "StringContents";
-  String a1 = "unchecked";
-  @SuppressWarnings("unchecked") // OK, duplicate strings are ignored in annotations
+  String a = &quot;StringContents&quot;;
+  String a1 = &quot;unchecked&quot;;
+  @SuppressWarnings(&quot;unchecked&quot;) // OK, duplicate strings are ignored in annotations
   public void myTest() {
-    String a2 = "StringContents"; // violation, "StringContents" occurs twice
-    String a3 = "DoubleString" + "DoubleString"; // violation, "DoubleString" occurs twice
-    String a4 = "SingleString"; // OK
-    String a5 = ", " + ", " + ", "; // violation, ", " occurs three times
+    String a2 = &quot;StringContents&quot;; // violation, &quot;StringContents&quot; occurs twice
+    String a3 = &quot;DoubleString&quot; + &quot;DoubleString&quot;; // violation, &quot;DoubleString&quot; occurs twice
+    String a4 = &quot;SingleString&quot;; // OK
+    String a5 = &quot;, &quot; + &quot;, &quot; + &quot;, &quot;; // violation, &quot;, &quot; occurs three times
   }
 }
         </source>
@@ -95,68 +95,68 @@ public class MyClass {
           string:
         </p>
         <source>
-&lt;module name="MultipleStringLiterals"&gt;
-  &lt;property name="allowedDuplicates" value="2"/&gt;
+&lt;module name=&quot;MultipleStringLiterals&quot;&gt;
+  &lt;property name=&quot;allowedDuplicates&quot; value=&quot;2&quot;/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>
         <source>
 public class MyClass {
-  String a = "StringContents";
-  String a1 = "unchecked";
-  @SuppressWarnings("unchecked") // OK, duplicate strings are ignored in annotations
+  String a = &quot;StringContents&quot;;
+  String a1 = &quot;unchecked&quot;;
+  @SuppressWarnings(&quot;unchecked&quot;) // OK, duplicate strings are ignored in annotations
   public void myTest() {
-    String a2 = "StringContents"; // OK, two occurrences are allowed
-    String a3 = "DoubleString" + "DoubleString"; // OK, two occurrences are allowed
-    String a4 = "SingleString"; // OK
-    String a5 = ", " + ", " + ", "; // violation, three occurrences are NOT allowed
+    String a2 = &quot;StringContents&quot;; // OK, two occurrences are allowed
+    String a3 = &quot;DoubleString&quot; + &quot;DoubleString&quot;; // OK, two occurrences are allowed
+    String a4 = &quot;SingleString&quot;; // OK
+    String a5 = &quot;, &quot; + &quot;, &quot; + &quot;, &quot;; // violation, three occurrences are NOT allowed
   }
 }
         </source>
         <p>
-          To configure the check so that it ignores ", " and empty strings:
+          To configure the check so that it ignores &quot;, &quot; and empty strings:
         </p>
         <source>
-&lt;module name="MultipleStringLiterals"&gt;
-  &lt;property name="ignoreStringsRegexp"
-    value='^(("")|(", "))$'/&gt;
+&lt;module name=&quot;MultipleStringLiterals&quot;&gt;
+  &lt;property name=&quot;ignoreStringsRegexp&quot;
+    value='^((&quot;&quot;)|(&quot;, &quot;))$'/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>
         <source>
 public class MyClass {
-  String a = "StringContents";
-  String a1 = "unchecked";
-  @SuppressWarnings("unchecked") // OK, duplicate strings are ignored in annotations
+  String a = &quot;StringContents&quot;;
+  String a1 = &quot;unchecked&quot;;
+  @SuppressWarnings(&quot;unchecked&quot;) // OK, duplicate strings are ignored in annotations
   public void myTest() {
-    String a2 = "StringContents"; // violation, "StringContents" occurs twice
-    String a3 = "DoubleString" + "DoubleString"; // violation, "DoubleString" occurs twice
-    String a4 = "SingleString"; // OK
-    String a5 = ", " + ", " + ", "; // OK, multiple occurrences of ", " are allowed
+    String a2 = &quot;StringContents&quot;; // violation, &quot;StringContents&quot; occurs twice
+    String a3 = &quot;DoubleString&quot; + &quot;DoubleString&quot;; // violation, &quot;DoubleString&quot; occurs twice
+    String a4 = &quot;SingleString&quot;; // OK
+    String a5 = &quot;, &quot; + &quot;, &quot; + &quot;, &quot;; // OK, multiple occurrences of &quot;, &quot; are allowed
   }
 }
         </source>
         <p>
           To configure the check so that it flags duplicate strings in all
           syntactical contexts, even in annotations like
-          <code>@SuppressWarnings("unchecked")</code>:
+          <code>@SuppressWarnings(&quot;unchecked&quot;)</code>:
         </p>
         <source>
-&lt;module name="MultipleStringLiterals"&gt;
-  &lt;property name="ignoreOccurrenceContext" value=""/&gt;
+&lt;module name=&quot;MultipleStringLiterals&quot;&gt;
+  &lt;property name=&quot;ignoreOccurrenceContext&quot; value=&quot;&quot;/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>
         <source>
 public class MyClass {
-  String a = "StringContents";
-  String a1 = "unchecked";
-  @SuppressWarnings("unchecked") // violation, "unchecked" occurs twice
+  String a = &quot;StringContents&quot;;
+  String a1 = &quot;unchecked&quot;;
+  @SuppressWarnings(&quot;unchecked&quot;) // violation, &quot;unchecked&quot; occurs twice
   public void myTest() {
-    String a2 = "StringContents"; // violation, "StringContents" occurs twice
-    String a3 = "DoubleString" + "DoubleString"; // violation, "DoubleString" occurs twice
-    String a4 = "SingleString"; // OK
-    String a5 = ", " + ", " + ", "; // violation, ", " occurs three times
+    String a2 = &quot;StringContents&quot;; // violation, &quot;StringContents&quot; occurs twice
+    String a3 = &quot;DoubleString&quot; + &quot;DoubleString&quot;; // violation, &quot;DoubleString&quot; occurs twice
+    String a4 = &quot;SingleString&quot;; // OK
+    String a5 = &quot;, &quot; + &quot;, &quot; + &quot;, &quot;; // violation, &quot;, &quot; occurs three times
   }
 }
         </source>

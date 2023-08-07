@@ -45,7 +45,7 @@
           To configure the check:
         </p>
         <source>
-&lt;module name="MissingSwitchDefault"/&gt;
+&lt;module name=&quot;MissingSwitchDefault&quot;/&gt;
         </source>
         <p>
           Example of violation:
@@ -75,7 +75,7 @@ switch (o) {
         System.out.println(s);
         break;
     case Integer i: // type pattern
-        System.out.println("Integer");
+        System.out.println(&quot;Integer&quot;);
         break;
     default:    // will not compile without default label, thanks to type pattern label usage
         break;
@@ -100,9 +100,9 @@ record C(int i) implements S {}  // Implicitly final
  */
 static void showSealedCompleteness(S s) {
     switch (s) {
-        case A a: System.out.println("A"); break;
-        case B b: System.out.println("B"); break;
-        case C c: System.out.println("C"); break;
+        case A a: System.out.println(&quot;A&quot;); break;
+        case B b: System.out.println(&quot;B&quot;); break;
+        case C c: System.out.println(&quot;C&quot;); break;
     }
 }
 
@@ -116,7 +116,7 @@ static void showSealedCompleteness(S s) {
 static void showTotality(String s) {
     switch (s) {
         case Object o: // total type pattern
-            System.out.println("o!");
+            System.out.println(&quot;o!&quot;);
     }
 }
 
@@ -124,13 +124,13 @@ enum Color { RED, GREEN, BLUE }
 
 static int showSwitchExpressionExhaustiveness(Color color) {
     switch (color) {
-        case RED: System.out.println("RED"); break;
-        case BLUE: System.out.println("BLUE"); break;
-        case GREEN: System.out.println("GREEN"); break;
+        case RED: System.out.println(&quot;RED&quot;); break;
+        case BLUE: System.out.println(&quot;BLUE&quot;); break;
+        case GREEN: System.out.println(&quot;GREEN&quot;); break;
         // Check will require default label below, compiler
         // does not enforce a switch statement with constants
         // to be complete.
-        default: System.out.println("Something else");
+        default: System.out.println(&quot;Something else&quot;);
     }
 
     // Check will not require default label in switch

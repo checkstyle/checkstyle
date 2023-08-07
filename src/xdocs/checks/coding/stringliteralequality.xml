@@ -24,12 +24,12 @@
           Rationale: Novice Java programmers often use code like:
         </p>
         <source>
-if (x == "something")
+if (x == &quot;something&quot;)
         </source>
 
         <p>when they mean</p>
         <source>
-if ("something".equals(x))
+if (&quot;something&quot;.equals(x))
         </source>
       </subsection>
 
@@ -38,23 +38,23 @@ if ("something".equals(x))
           To configure the check:
         </p>
         <source>
-&lt;module name="StringLiteralEquality"/&gt;
+&lt;module name=&quot;StringLiteralEquality&quot;/&gt;
         </source>
         <p>
           Examples of violations:
         </p>
         <source>
-String status = "pending";
+String status = &quot;pending&quot;;
 
-if (status == "done") {} // violation
+if (status == &quot;done&quot;) {} // violation
 
-while (status != "done") {} // violation
+while (status != &quot;done&quot;) {} // violation
 
-boolean flag = (status == "done"); // violation
+boolean flag = (status == &quot;done&quot;); // violation
 
-boolean flag = (status.equals("done")); // OK
+boolean flag = (status.equals(&quot;done&quot;)); // OK
 
-String name = "X";
+String name = &quot;X&quot;;
 
 if (name == getName()) {}
 // OK, limitation that check cannot tell runtime type returned from method call

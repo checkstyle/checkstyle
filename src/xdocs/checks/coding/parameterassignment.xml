@@ -23,7 +23,7 @@
           To configure the check:
         </p>
         <source>
-&lt;module name="ParameterAssignment"/&gt;
+&lt;module name=&quot;ParameterAssignment&quot;/&gt;
         </source>
         <p>
           Example:
@@ -32,7 +32,7 @@
 class MyClass {
   int methodOne(int parameter) {
     if (parameter &lt;= 0 ) {
-      throw new IllegalArgumentException("A positive value is expected");
+      throw new IllegalArgumentException(&quot;A positive value is expected&quot;);
     }
     parameter -= 2;  // violation
     return parameter;
@@ -40,7 +40,7 @@ class MyClass {
 
   int methodTwo(int parameter) {
     if (parameter &lt;= 0 ) {
-      throw new IllegalArgumentException("A positive value is expected");
+      throw new IllegalArgumentException(&quot;A positive value is expected&quot;);
     }
     int local = parameter;
     local -= 2;  // OK

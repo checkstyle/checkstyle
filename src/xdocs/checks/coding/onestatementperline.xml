@@ -55,7 +55,7 @@
           To configure the check:
         </p>
         <source>
-&lt;module name="OneStatementPerLine"/&gt;
+&lt;module name=&quot;OneStatementPerLine&quot;/&gt;
         </source>
         <p>
           The following examples will be flagged as a violation:
@@ -81,14 +81,14 @@ r = 5; int t; //violation here
           in a try statement as statements to require them on their own line:
         </p>
         <source>
-&lt;module name="OneStatementPerLine"&gt;
-  &lt;property name="treatTryResourcesAsStatement" value="true"/&gt;
+&lt;module name=&quot;OneStatementPerLine&quot;&gt;
+  &lt;property name=&quot;treatTryResourcesAsStatement&quot; value=&quot;true&quot;/&gt;
 &lt;/module&gt;
         </source>
         <p>
           Note: resource declarations can contain variable definitions
           and variable references (from java9).
-          When property "treatTryResourcesAsStatement" is enabled,
+          When property &quot;treatTryResourcesAsStatement&quot; is enabled,
           this check is only applied to variable definitions.
           If there are one or more variable references
           and one variable definition on the same line in resources declaration,

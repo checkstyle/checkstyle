@@ -28,7 +28,7 @@ boolean b = (~a) &gt; -27            // parens around ~a
 
       <subsection name="Notes" id="Notes">
         <p>
-          The check is not "type aware", that is to say, it can't tell if parentheses
+          The check is not &quot;type aware&quot;, that is to say, it can't tell if parentheses
           are unnecessary based on the types in an expression. The check is partially aware about
           operator precedence but unaware about operator associativity.
           It won't catch cases such as:
@@ -48,7 +48,7 @@ if (p == (q &lt;= r)) {}
           of type <code>int</code> and <em>p</em> is of type <code>boolean</code>
           and removing parentheses will give a compile-time error. Even if <em>q</em>
           and <em>r</em> were <code>boolean</code> still there will be no violation
-          raised as check is not "type aware".
+          raised as check is not &quot;type aware&quot;.
         </p>
         <p>
           The partial support for operator precedence includes cases of the following type:
@@ -62,7 +62,7 @@ if (a &amp;&amp; (b || c)) { // ok
 }
 if ((a == b) &amp;&amp; c) { // violation, unnecessary paren
 }
-String e = "e";
+String e = &quot;e&quot;;
 if ((e instanceof String) &amp;&amp; a || b) { // violation, unnecessary paren
 }
 int f = 0;
@@ -276,7 +276,7 @@ if ((++f) &gt; g &amp;&amp; a) { // violation, unnecessary paren
           To configure the check:
         </p>
         <source>
-&lt;module name="UnnecessaryParentheses"/&gt;
+&lt;module name=&quot;UnnecessaryParentheses&quot;/&gt;
         </source>
         <p>
           Which results in the following violations:
@@ -292,9 +292,9 @@ for(int i=(0); i&lt;10; i++){          // violation
   sumOfSquares += (square(x * x));  // violation
 }
 double num = (10.0); //violation
-List&lt;String&gt; list = Arrays.asList("a1", "b1", "c1");
+List&lt;String&gt; list = Arrays.asList(&quot;a1&quot;, &quot;b1&quot;, &quot;c1&quot;);
 myList.stream()
-  .filter((s) -&gt; s.startsWith("c")) // violation
+  .filter((s) -&gt; s.startsWith(&quot;c&quot;)) // violation
   .forEach(System.out::println);
 int a = 10, b = 12, c = 15;
 boolean x = true, y = false, z= true;
@@ -320,8 +320,8 @@ if (x==(y == z)) { // ok
           <code> '^' </code>:
         </p>
         <source>
-&lt;module name="UnnecessaryParentheses"&gt;
-  &lt;property name="tokens" value="BOR, BAND, BXOR" /&gt;
+&lt;module name=&quot;UnnecessaryParentheses&quot;&gt;
+  &lt;property name=&quot;tokens&quot; value=&quot;BOR, BAND, BXOR&quot; /&gt;
 &lt;/module&gt;
         </source>
         <source>

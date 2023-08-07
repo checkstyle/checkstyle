@@ -27,7 +27,7 @@
           To configure the check:
         </p>
         <source>
-&lt;module name="MultipleVariableDeclarations"/&gt;
+&lt;module name=&quot;MultipleVariableDeclarations&quot;/&gt;
         </source>
         <p>
           Example:

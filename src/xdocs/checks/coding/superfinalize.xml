@@ -29,19 +29,19 @@
           To configure the check:
         </p>
         <source>
-&lt;module name="SuperFinalize"/&gt;
+&lt;module name=&quot;SuperFinalize&quot;/&gt;
         </source>
         <p>Example:</p>
         <source>
 public class A {
       protected void finalize() throws Throwable {
-            System.out.println("In finalize block");
+            System.out.println(&quot;In finalize block&quot;);
             super.finalize(); // OK, calls super.finalize()
       }
 }
 public class B {
       protected void finalize() throws Throwable { // violation
-            System.out.println("In finalize block");
+            System.out.println(&quot;In finalize block&quot;);
       }
 }
         </source>

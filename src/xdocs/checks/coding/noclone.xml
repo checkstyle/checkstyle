@@ -116,7 +116,7 @@ System.out.println(s2 instanceof Square); //true
           To configure the check:
         </p>
         <source>
-&lt;module name="NoClone"/&gt;
+&lt;module name=&quot;NoClone&quot;/&gt;
         </source>
         <p>Example: </p>
         <source>

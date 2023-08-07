@@ -19,7 +19,7 @@
       <subsection name="Examples" id="Examples">
         <p>To configure the check:</p>
         <source>
-&lt;module name="OverloadMethodsDeclarationOrder"/&gt;
+&lt;module name=&quot;OverloadMethodsDeclarationOrder&quot;/&gt;
         </source>
         <p>Example of correct grouping of overloaded methods:</p>
         <source>

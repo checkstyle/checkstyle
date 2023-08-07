@@ -38,7 +38,7 @@ enum Foo1 {
           To configure the check:
         </p>
         <source>
-&lt;module name="NoEnumTrailingComma"/&gt;
+&lt;module name=&quot;NoEnumTrailingComma&quot;/&gt;
         </source>
         <p>
           Which results in the following violations:
