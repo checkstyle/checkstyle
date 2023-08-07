@@ -76,7 +76,7 @@
           <code>@deprecated</code>,<code>@throws</code>,<code>@return</code>:
         </p>
         <source>
-&lt;module name=&quot;NonEmptyAtclauseDescription&quot;/&gt;
+&lt;module name="NonEmptyAtclauseDescription"/&gt;
         </source>
         <p>
         Example:
@@ -84,7 +84,7 @@
         <source>
 class Test
 {
-  // Violation for param &quot;b&quot; and at tags &quot;deprecated&quot;, &quot;throws&quot; and &quot;return&quot;.
+  // Violation for param "b" and at tags "deprecated", "throws" and "return".
   /**
   * Some summary.
   * <code>@param</code> a Some description
@@ -103,8 +103,8 @@ class Test
           <code>@throws</code> tags:
         </p>
         <source>
-&lt;module name=&quot;NonEmptyAtclauseDescription&quot;&gt;
-  &lt;property name=&quot;javadocTokens&quot; value=&quot;PARAM_LITERAL,THROWS_LITERAL&quot;/&gt;
+&lt;module name="NonEmptyAtclauseDescription"&gt;
+  &lt;property name="javadocTokens" value="PARAM_LITERAL,THROWS_LITERAL"/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -113,7 +113,7 @@ class Test
         <source>
 class Test
 {
-  // Violation for param &quot;b&quot; and at tag &quot;throws&quot;.
+  // Violation for param "b" and at tag "throws".
   /**
   * Some summary.
   * <code>@param</code> a Some description

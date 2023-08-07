@@ -72,7 +72,7 @@
           To configure the default check:
         </p>
         <source>
-&lt;module name=&quot;JavadocVariable&quot;/&gt;
+&lt;module name="JavadocVariable"/&gt;
         </source>
         <p>
           By default, this setting will report a violation if
@@ -98,8 +98,8 @@ public int d; // violation, missing javadoc for public member
         </p>
 
         <source>
-&lt;module name=&quot;JavadocVariable&quot;&gt;
-  &lt;property name=&quot;scope&quot; value=&quot;public&quot;/&gt;
+&lt;module name="JavadocVariable"&gt;
+  &lt;property name="scope" value="public"/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -126,9 +126,9 @@ public int d; // violation, missing javadoc for public member
         </p>
 
         <source>
-&lt;module name=&quot;JavadocVariable&quot;&gt;
-  &lt;property name=&quot;scope&quot; value=&quot;private&quot;/&gt;
-  &lt;property name=&quot;excludeScope&quot; value=&quot;protected&quot;/&gt;
+&lt;module name="JavadocVariable"&gt;
+  &lt;property name="scope" value="private"/&gt;
+  &lt;property name="excludeScope" value="protected"/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -155,8 +155,8 @@ public int d; // OK
         </p>
 
         <source>
-&lt;module name=&quot;JavadocVariable&quot;&gt;
-  &lt;property name=&quot;ignoreNamePattern&quot; value=&quot;log|logger&quot;/&gt;
+&lt;module name="JavadocVariable"&gt;
+  &lt;property name="ignoreNamePattern" value="log|logger"/&gt;
 &lt;/module&gt;
         </source>
         <p>
