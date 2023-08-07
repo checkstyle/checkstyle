@@ -34,7 +34,7 @@
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;RedundantImport&quot;/&gt;
+&lt;module name="RedundantImport"/&gt;
         </source>
         <p>
             Example:
