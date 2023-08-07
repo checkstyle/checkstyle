@@ -53,7 +53,7 @@
           To configure the check:
         </p>
         <source>
-&lt;module name="JavadocMissingLeadingAsterisk"/&gt;
+&lt;module name=&quot;JavadocMissingLeadingAsterisk&quot;/&gt;
         </source>
         <p>Example:</p>
         <source>

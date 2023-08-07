@@ -68,7 +68,7 @@
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;SingleLineJavadoc&quot;/&gt;
+&lt;module name="SingleLineJavadoc"/&gt;
         </source>
         <p>
           Example:
@@ -109,8 +109,8 @@ public int foobar() {
           To configure the check with a list of ignored block tags:
         </p>
         <source>
-&lt;module name=&quot;SingleLineJavadoc&quot;&gt;
-  &lt;property name=&quot;ignoredTags&quot; value=&quot;@inheritDoc, @see&quot;/&gt;
+&lt;module name="SingleLineJavadoc"&gt;
+  &lt;property name="ignoredTags" value="@inheritDoc, @see"/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -152,8 +152,8 @@ public int foobar() {
           To configure the check to not ignore inline tags:
         </p>
         <source>
-&lt;module name=&quot;SingleLineJavadoc&quot;&gt;
-  &lt;property name=&quot;ignoreInlineTags&quot; value=&quot;false&quot;/&gt;
+&lt;module name="SingleLineJavadoc"&gt;
+  &lt;property name="ignoreInlineTags" value="false"/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -195,8 +195,8 @@ public int foobar() {
           To configure the check to report violations for Tight-HTML Rules:
         </p>
         <source>
-&lt;module name=&quot;SingleLineJavadoc&quot;&gt;
-  &lt;property name=&quot;violateExecutionOnNonTightHtml&quot; value=&quot;true&quot;/&gt;
+&lt;module name="SingleLineJavadoc"&gt;
+  &lt;property name="violateExecutionOnNonTightHtml" value="true"/&gt;
 &lt;/module&gt;
         </source>
         <p>

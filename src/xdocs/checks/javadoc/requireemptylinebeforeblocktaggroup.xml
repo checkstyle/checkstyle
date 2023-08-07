@@ -43,7 +43,7 @@
           To configure the check:
         </p>
         <source>
-&lt;module name="RequireEmptyLineBeforeBlockTagGroup"/&gt;
+&lt;module name=&quot;RequireEmptyLineBeforeBlockTagGroup&quot;/&gt;
         </source>
         <p>
           By default, the check will report a violation if there is no blank line before the
