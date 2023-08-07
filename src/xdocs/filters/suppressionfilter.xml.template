@@ -138,9 +138,9 @@
             file <code>config/suppressions.xml</code>:
         </p>
         <source>
-&lt;module name=&quot;SuppressionFilter&quot;&gt;
-  &lt;property name=&quot;file&quot; value=&quot;config/suppressions.xml&quot;/&gt;
-  &lt;property name=&quot;optional&quot; value=&quot;false&quot;/&gt;
+&lt;module name="SuppressionFilter"&gt;
+  &lt;property name="file" value="config/suppressions.xml"/&gt;
+  &lt;property name="optional" value="false"/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -155,20 +155,20 @@
           for all lines and files:
         </p>
         <source>
-&lt;?xml version=&quot;1.0&quot;?&gt;
+&lt;?xml version="1.0"?&gt;
 
 &lt;!DOCTYPE suppressions PUBLIC
-  &quot;-//Checkstyle//DTD SuppressionFilter Configuration 1.2//EN&quot;
-  &quot;https://checkstyle.org/dtds/suppressions_1_2.dtd&quot;&gt;
+  "-//Checkstyle//DTD SuppressionFilter Configuration 1.2//EN"
+  "https://checkstyle.org/dtds/suppressions_1_2.dtd"&gt;
 
 &lt;suppressions&gt;
-  &lt;suppress checks=&quot;JavadocStyleCheck&quot;
-    files=&quot;AbstractComplexityCheck.java&quot;
-    lines=&quot;82,108-122&quot;/&gt;
-  &lt;suppress checks=&quot;MagicNumberCheck&quot;
-    files=&quot;JavadocStyleCheck.java&quot;
-    lines=&quot;221&quot;/&gt;
-  &lt;suppress message=&quot;Missing a Javadoc comment&quot;/&gt;
+  &lt;suppress checks="JavadocStyleCheck"
+    files="AbstractComplexityCheck.java"
+    lines="82,108-122"/&gt;
+  &lt;suppress checks="MagicNumberCheck"
+    files="JavadocStyleCheck.java"
+    lines="221"/&gt;
+  &lt;suppress message="Missing a Javadoc comment"/&gt;
 &lt;/suppressions&gt;
         </source>
         <p>
@@ -176,57 +176,57 @@
           when config have two instances on the same check:
         </p>
         <source>
-&lt;suppress id=&quot;stringEqual&quot; files=&quot;SomeTestCode.java&quot;/&gt;
+&lt;suppress id="stringEqual" files="SomeTestCode.java"/&gt;
         </source>
         <p>
           Suppress all checks for hidden files and folders:
         </p>
         <source>
-&lt;suppress files=&quot;[/\\]\..+&quot; checks=&quot;.*&quot;/&gt;
+&lt;suppress files="[/\\]\..+" checks=".*"/&gt;
         </source>
         <p>
           Suppress all checks for Maven-generated code:
         </p>
         <source>
-&lt;suppress files=&quot;[/\\]target[/\\]&quot; checks=&quot;.*&quot;/&gt;
+&lt;suppress files="[/\\]target[/\\]" checks=".*"/&gt;
         </source>
         <p>
           Suppress all checks for archives, classes and other binary files:
         </p>
         <source>
-&lt;suppress files=&quot;.+\.(?:jar|zip|war|class|tar|bin)$&quot; checks=&quot;.*&quot;/&gt;
+&lt;suppress files=".+\.(?:jar|zip|war|class|tar|bin)$" checks=".*"/&gt;
         </source>
         <p>
           Suppress all checks for image files:
         </p>
         <source>
-&lt;suppress files=&quot;.+\.(?:png|gif|jpg|jpeg)$&quot; checks=&quot;.*&quot;/&gt;
+&lt;suppress files=".+\.(?:png|gif|jpg|jpeg)$" checks=".*"/&gt;
         </source>
         <p>
           Suppress all checks for non-java files:
         </p>
         <source>
-&lt;suppress files=&quot;.+\.(?:txt|xml|csv|sh|thrift|html|sql|eot|ttf|woff|css|png)$&quot;
-  checks=&quot;.*&quot;/&gt;
+&lt;suppress files=".+\.(?:txt|xml|csv|sh|thrift|html|sql|eot|ttf|woff|css|png)$"
+  checks=".*"/&gt;
         </source>
         <p>
           Suppress all checks in generated sources:
         </p>
         <source>
-&lt;suppress checks=&quot;.*&quot; files=&quot;com[\\/]mycompany[\\/]app[\\/]gen[\\/]&quot;/&gt;
+&lt;suppress checks=".*" files="com[\\/]mycompany[\\/]app[\\/]gen[\\/]"/&gt;
         </source>
         <p>
           Suppress FileLength check on integration tests in certain folder:
         </p>
         <source>
-&lt;suppress checks=&quot;FileLength&quot;
-files=&quot;com[\\/]mycompany[\\/]app[\\/].*IT.java&quot;/&gt;
+&lt;suppress checks="FileLength"
+files="com[\\/]mycompany[\\/]app[\\/].*IT.java"/&gt;
         </source>
         <p>
           Suppress naming violations on variable named 'log' in all files:
         </p>
         <source>
-&lt;suppress message=&quot;Name 'log' must match pattern&quot;/&gt;
+&lt;suppress message="Name 'log' must match pattern"/&gt;
         </source>
       </subsection>
       <subsection name="Example of Usage" id="Example_of_Usage">

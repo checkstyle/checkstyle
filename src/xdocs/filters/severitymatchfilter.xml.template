@@ -61,9 +61,9 @@
           level <code>info</code>:
         </p>
         <source>
-&lt;module name=&quot;SeverityMatchFilter&quot;&gt;
-  &lt;property name=&quot;severity&quot; value=&quot;info&quot;/&gt;
-  &lt;property name=&quot;acceptOnMatch&quot; value=&quot;false&quot;/&gt;
+&lt;module name="SeverityMatchFilter"&gt;
+  &lt;property name="severity" value="info"/&gt;
+  &lt;property name="acceptOnMatch" value="false"/&gt;
 &lt;/module&gt;
         </source>
       </subsection>
