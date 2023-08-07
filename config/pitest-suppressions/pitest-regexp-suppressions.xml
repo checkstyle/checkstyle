@@ -1,13 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suppressedMutations>
-  <mutation unstable="false">
-    <sourceFile>DetectorOptions.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions</mutatedClass>
-    <mutatedMethod>&lt;init&gt;</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
-    <description>Removed assignment to member variable message</description>
-    <lineContent>private String message = &quot;&quot;;</lineContent>
-  </mutation>
 
   <mutation unstable="false">
     <sourceFile>MultilineDetector.java</sourceFile>
