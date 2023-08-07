@@ -28,7 +28,7 @@ public void guessTheOutput()
   {
     whichIsWhich = 2;
   }
-  System.out.println(&quot;value = &quot; + whichIsWhich);
+  System.out.println("value = " + whichIsWhich);
 }
         </source>
 
@@ -36,7 +36,7 @@ public void guessTheOutput()
         <source>
 // if (conditionThatIsNotUsedAnyLonger)
 {
-  System.out.println(&quot;unconditional&quot;);
+  System.out.println("unconditional");
 }
         </source>
 
@@ -73,7 +73,7 @@ public void guessTheOutput()
       <subsection name="Examples" id="Examples">
         <p>To configure the check:</p>
         <source>
-&lt;module name=&quot;AvoidNestedBlocks&quot;/&gt;
+&lt;module name="AvoidNestedBlocks"/&gt;
         </source>
         <p>Example:</p>
         <source>
@@ -82,24 +82,24 @@ public void foo() {
   {                      // violation
     myInteger = 2;
   }
-  System.out.println(&quot;myInteger = &quot; + myInteger);
+  System.out.println("myInteger = " + myInteger);
 
   switch (a) {
     case 1:
       {                    // violation
-        System.out.println(&quot;Case 1&quot;);
+        System.out.println("Case 1");
         break;
       }
     case 2:
-      System.out.println(&quot;Case 2&quot;);     // OK
+      System.out.println("Case 2");     // OK
       break;
   }
 }
         </source>
         <p>To configure the check to allow nested blocks in switch case:</p>
         <source>
-&lt;module name=&quot;AvoidNestedBlocks&quot;&gt;
-  &lt;property name=&quot;allowInSwitchCase&quot; value=&quot;true&quot;/&gt;
+&lt;module name="AvoidNestedBlocks"&gt;
+  &lt;property name="allowInSwitchCase" value="true"/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>
@@ -109,17 +109,17 @@ public void foo() {
   {                      // violation
     myInteger = 2;
   }
-  System.out.println(&quot;myInteger = &quot; + myInteger);
+  System.out.println("myInteger = " + myInteger);
 
   switch (a)
   {
     case 1:
       {                    // OK
-        System.out.println(&quot;Case 1&quot;);
+        System.out.println("Case 1");
         break;
       }
     case 2:
-      System.out.println(&quot;Case 2&quot;);     // OK
+      System.out.println("Case 2");     // OK
       break;
   }
 }
