@@ -40,7 +40,7 @@
                 If check meets variable name matching specified value - empty block is suppressed.
               </td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
-              <td><code>&quot;^$&quot;</code></td>
+              <td><code>"^$"</code></td>
               <td>6.4</td>
             </tr>
             <tr>
@@ -51,7 +51,7 @@
                 block is suppressed. If it is multi-line comment - only its first line is analyzed.
               </td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
-              <td><code>&quot;.*&quot;</code></td>
+              <td><code>".*"</code></td>
               <td>6.4</td>
             </tr>
           </table>
@@ -63,7 +63,7 @@
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;EmptyCatchBlock&quot;/&gt;
+&lt;module name="EmptyCatchBlock"/&gt;
         </source>
         <p>
           Example:
@@ -96,8 +96,8 @@ try {
           <code>expected</code> or <code>ignore</code> or there's any comment inside:
         </p>
         <source>
-&lt;module name=&quot;EmptyCatchBlock&quot;&gt;
-  &lt;property name=&quot;exceptionVariableName&quot; value=&quot;expected|ignore&quot;/&gt;
+&lt;module name="EmptyCatchBlock"&gt;
+  &lt;property name="exceptionVariableName" value="expected|ignore"/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -128,11 +128,11 @@ try {
         </source>
         <p>
           To configure the check to suppress empty catch block if single-line comment inside
-           is &quot;//This is expected&quot;:
+           is "//This is expected":
         </p>
         <source>
-&lt;module name=&quot;EmptyCatchBlock&quot;&gt;
-  &lt;property name=&quot;commentFormat&quot; value=&quot;This is expected&quot;/&gt;
+&lt;module name="EmptyCatchBlock"&gt;
+  &lt;property name="commentFormat" value="This is expected"/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -163,13 +163,13 @@ try {
         </source>
         <p>
           To configure the check to suppress empty catch block if single-line comment inside
-          is &quot;//This is expected&quot; or exception's
-          variable name is &quot;myException&quot; (any option is matching):
+          is "//This is expected" or exception's
+          variable name is "myException" (any option is matching):
         </p>
         <source>
-&lt;module name=&quot;EmptyCatchBlock&quot;&gt;
-  &lt;property name=&quot;commentFormat&quot; value=&quot;This is expected&quot;/&gt;
-  &lt;property name=&quot;exceptionVariableName&quot; value=&quot;myException&quot;/&gt;
+&lt;module name="EmptyCatchBlock"&gt;
+  &lt;property name="commentFormat" value="This is expected"/&gt;
+  &lt;property name="exceptionVariableName" value="myException"/&gt;
 &lt;/module&gt;
         </source>
         <p>

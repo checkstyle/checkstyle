@@ -81,7 +81,7 @@
       <subsection name="Examples" id="Examples">
         <p> To configure the check: </p>
         <source>
-&lt;module name=&quot;NeedBraces&quot;/&gt;
+&lt;module name="NeedBraces"/&gt;
         </source>
         <p>Example:</p>
         <source>
@@ -110,8 +110,8 @@ switch (num) {
           <code> else</code> blocks:
         </p>
         <source>
-&lt;module name=&quot;NeedBraces&quot;&gt;
-  &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_IF, LITERAL_ELSE&quot;/&gt;
+&lt;module name="NeedBraces"&gt;
+  &lt;property name="tokens" value="LITERAL_IF, LITERAL_ELSE"/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>
@@ -141,10 +141,10 @@ switch (num) {
           (<code>if, while, do-while, for</code>) without braces:
         </p>
         <source>
-&lt;module name=&quot;NeedBraces&quot;&gt;
-  &lt;property name=&quot;allowSingleLineStatement&quot; value=&quot;true&quot;/&gt;
-  &lt;property name=&quot;tokens&quot;
-         value=&quot;LITERAL_IF, LITERAL_WHILE, LITERAL_DO, LITERAL_FOR&quot;/&gt;
+&lt;module name="NeedBraces"&gt;
+  &lt;property name="allowSingleLineStatement" value="true"/&gt;
+  &lt;property name="tokens"
+         value="LITERAL_IF, LITERAL_WHILE, LITERAL_DO, LITERAL_FOR"/&gt;
 &lt;/module&gt;
         </source>
 
@@ -181,9 +181,9 @@ for (int i = 0; ; ) this.notify();   // OK
           without braces:
         </p>
         <source>
-&lt;module name=&quot;NeedBraces&quot;&gt;
-  &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_CASE, LITERAL_DEFAULT&quot;/&gt;
-  &lt;property name=&quot;allowSingleLineStatement&quot; value=&quot;true&quot;/&gt;
+&lt;module name="NeedBraces"&gt;
+  &lt;property name="tokens" value="LITERAL_CASE, LITERAL_DEFAULT"/&gt;
+  &lt;property name="allowSingleLineStatement" value="true"/&gt;
 &lt;/module&gt;
         </source>
 
@@ -217,9 +217,9 @@ switch (num) {
           To configure the check to allow loops (<code>while, for</code>) with empty bodies:
         </p>
         <source>
-&lt;module name=&quot;NeedBraces&quot;&gt;
-  &lt;property name=&quot;allowEmptyLoopBody&quot; value=&quot;true&quot;/&gt;
-  &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_WHILE, LITERAL_FOR&quot;/&gt;
+&lt;module name="NeedBraces"&gt;
+  &lt;property name="allowEmptyLoopBody" value="true"/&gt;
+  &lt;property name="tokens" value="LITERAL_WHILE, LITERAL_FOR"/&gt;
 &lt;/module&gt;
         </source>
 
@@ -251,21 +251,21 @@ case 1: counter++; break;           // OK
           To configure the check to lambdas:
         </p>
         <source>
-&lt;module name=&quot;NeedBraces&quot;&gt;
-  &lt;property name=&quot;tokens&quot; value=&quot;LAMBDA&quot;/&gt;
-  &lt;property name=&quot;allowSingleLineStatement&quot; value=&quot;true&quot;/&gt;
+&lt;module name="NeedBraces"&gt;
+  &lt;property name="tokens" value="LAMBDA"/&gt;
+  &lt;property name="allowSingleLineStatement" value="true"/&gt;
 &lt;/module&gt;
         </source>
         <p>
           Results in following:
         </p>
         <source>
-allowedFuture.addCallback(result -&gt; assertEquals(&quot;Invalid response&quot;,
+allowedFuture.addCallback(result -&gt; assertEquals("Invalid response",
   EnumSet.of(HttpMethod.GET, HttpMethod.OPTIONS), result), // violation, lambda spans 2 lines
   ex -&gt; fail(ex.getMessage())); // OK
 
 allowedFuture.addCallback(result -&gt; {
-  return assertEquals(&quot;Invalid response&quot;,
+  return assertEquals("Invalid response",
     EnumSet.of(HttpMethod.GET, HttpMethod.OPTIONS), result);
   }, // OK
   ex -&gt; fail(ex.getMessage()));
