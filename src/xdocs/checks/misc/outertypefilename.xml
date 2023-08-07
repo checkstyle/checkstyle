@@ -21,7 +21,7 @@
           To configure the check:
         </p>
         <source>
-&lt;module name="OuterTypeFilename"/&gt;
+&lt;module name=&quot;OuterTypeFilename&quot;/&gt;
         </source>
         <p>Example of class Test in a file named Test.java</p>
         <source>

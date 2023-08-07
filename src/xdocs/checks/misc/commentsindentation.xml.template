@@ -132,21 +132,21 @@
         <p>Example #6: 'fallthrough' comments and similar.</p>
         <source>
 0   switch(a) {
-1     case &quot;1&quot;:
+1     case "1":
 2       int k = 7;
 3       // it is OK
-4     case &quot;2&quot;:
+4     case "2":
 5       int k = 7;
 6     // it is OK
-7     case &quot;3&quot;:
+7     case "3":
 8       if (true) {}
 9           // violation (should have the same indentation level as line 8 or 10)
-10    case &quot;4&quot;:
-11    case &quot;5&quot;: {
+10    case "4":
+11    case "5": {
 12      int a;
 13    }
 14    // fall through (it is OK)
-15    case &quot;12&quot;: {
+15    case "12": {
 16      int a;
 17    }
 18    default:
@@ -155,12 +155,12 @@
         </source>
         <p>Example #7: Comment is placed within a distributed statement.</p>
         <source>
-1   String breaks = &quot;J&quot;
+1   String breaks = "J"
 2   // violation (comment should have the same indentation level as line 3)
-3       + &quot;A&quot;
+3       + "A"
 4       // it is OK
-5       + &quot;V&quot;
-6       + &quot;A&quot;
+5       + "V"
+6       + "A"
 7   // it is OK
 8   ;
         </source>
@@ -181,14 +181,14 @@
         </source>
         <p>Example #9: Single line block comment has previous and next statement.</p>
         <source>
-1   String s1 = &quot;Clean code!&quot;;
+1   String s1 = "Clean code!";
 2      s.toString().toString().toString();
 3   // single-line
 4   // block
 5   // comment (it is OK)
 6   int a = 5;
 7
-8   String s2 = &quot;Code complete!&quot;;
+8   String s2 = "Code complete!";
 9    s.toString().toString().toString();
 10            // violation (should have the same indentation level as line 11)
 11       // violation (should have the same indentation level as line 12)
@@ -216,7 +216,7 @@
           To configure the Check:
         </p>
         <source>
-&lt;module name=&quot;CommentsIndentation&quot;/&gt;
+&lt;module name="CommentsIndentation"/&gt;
         </source>
       </subsection>
 

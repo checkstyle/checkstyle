@@ -115,11 +115,11 @@
           with no default case:
         </p>
         <source>
-&lt;module name=&quot;DescendantToken&quot;&gt;
-  &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_SWITCH&quot;/&gt;
-  &lt;property name=&quot;maximumDepth&quot; value=&quot;2&quot;/&gt;
-  &lt;property name=&quot;limitedTokens&quot; value=&quot;LITERAL_DEFAULT&quot;/&gt;
-  &lt;property name=&quot;minimumNumber&quot; value=&quot;1&quot;/&gt;
+&lt;module name="DescendantToken"&gt;
+  &lt;property name="tokens" value="LITERAL_SWITCH"/&gt;
+  &lt;property name="maximumDepth" value="2"/&gt;
+  &lt;property name="limitedTokens" value="LITERAL_DEFAULT"/&gt;
+  &lt;property name="minimumNumber" value="1"/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -131,17 +131,17 @@ class Test {
     int x = 1;
     switch (x) { // ok
       case 1:
-        System.out.println(&quot;hi&quot;);
+        System.out.println("hi");
         break;
       default:
-        System.out.println(&quot;Default&quot;);
+        System.out.println("Default");
         break;
     }
 
     int y = 1;
     switch (y) { // violation
       case 1:
-        System.out.println(&quot;hi&quot;);
+        System.out.println("hi");
         break;
     }
   }
@@ -150,11 +150,11 @@ class Test {
 
         <p>To configure the check to produce a violation on a switch with too many cases:</p>
         <source>
-&lt;module name=&quot;DescendantToken&quot;&gt;
-  &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_SWITCH&quot;/&gt;
-  &lt;property name=&quot;limitedTokens&quot; value=&quot;LITERAL_CASE&quot;/&gt;
-  &lt;property name=&quot;maximumDepth&quot; value=&quot;2&quot;/&gt;
-  &lt;property name=&quot;maximumNumber&quot; value=&quot;1&quot;/&gt;
+&lt;module name="DescendantToken"&gt;
+  &lt;property name="tokens" value="LITERAL_SWITCH"/&gt;
+  &lt;property name="limitedTokens" value="LITERAL_CASE"/&gt;
+  &lt;property name="maximumDepth" value="2"/&gt;
+  &lt;property name="maximumNumber" value="1"/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -193,11 +193,11 @@ class Test {
           nested in another switch:
         </p>
         <source>
-&lt;module name=&quot;DescendantToken&quot;&gt;
-  &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_SWITCH&quot;/&gt;
-  &lt;property name=&quot;limitedTokens&quot; value=&quot;LITERAL_SWITCH&quot;/&gt;
-  &lt;property name=&quot;maximumNumber&quot; value=&quot;0&quot;/&gt;
-  &lt;property name=&quot;minimumDepth&quot; value=&quot;1&quot;/&gt;
+&lt;module name="DescendantToken"&gt;
+  &lt;property name="tokens" value="LITERAL_SWITCH"/&gt;
+  &lt;property name="limitedTokens" value="LITERAL_SWITCH"/&gt;
+  &lt;property name="maximumNumber" value="0"/&gt;
+  &lt;property name="minimumDepth" value="1"/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -210,14 +210,14 @@ class Test {
     int y = 2;
     switch (x) { // ok
       case 1:
-        System.out.println(&quot;xyz&quot;);
+        System.out.println("xyz");
         break;
     }
     switch (y) { // violation
       case 1:
         switch (y) {
           case 2:
-            System.out.println(&quot;xyz&quot;);
+            System.out.println("xyz");
             break;
         }
         break;
@@ -231,10 +231,10 @@ class Test {
           condition in <code>for</code> which performs no check:
         </p>
         <source>
-&lt;module name=&quot;DescendantToken&quot;&gt;
-  &lt;property name=&quot;tokens&quot; value=&quot;FOR_CONDITION&quot;/&gt;
-  &lt;property name=&quot;limitedTokens&quot; value=&quot;EXPR&quot;/&gt;
-  &lt;property name=&quot;minimumNumber&quot; value=&quot;1&quot;/&gt;
+&lt;module name="DescendantToken"&gt;
+  &lt;property name="tokens" value="FOR_CONDITION"/&gt;
+  &lt;property name="limitedTokens" value="EXPR"/&gt;
+  &lt;property name="minimumNumber" value="1"/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -260,10 +260,10 @@ class Test {
           statement could be used instead):
         </p>
         <source>
-&lt;module name=&quot;DescendantToken&quot;&gt;
-  &lt;property name=&quot;tokens&quot; value=&quot;FOR_INIT&quot;/&gt;
-  &lt;property name=&quot;limitedTokens&quot; value=&quot;EXPR&quot;/&gt;
-  &lt;property name=&quot;minimumNumber&quot; value=&quot;1&quot;/&gt;
+&lt;module name="DescendantToken"&gt;
+  &lt;property name="tokens" value="FOR_INIT"/&gt;
+  &lt;property name="limitedTokens" value="EXPR"/&gt;
+  &lt;property name="minimumNumber" value="1"/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -292,10 +292,10 @@ class Test {
           from within a catch or finally block:
         </p>
         <source>
-&lt;module name=&quot;DescendantToken&quot;&gt;
-  &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_FINALLY,LITERAL_CATCH&quot;/&gt;
-  &lt;property name=&quot;limitedTokens&quot; value=&quot;LITERAL_RETURN&quot;/&gt;
-  &lt;property name=&quot;maximumNumber&quot; value=&quot;0&quot;/&gt;
+&lt;module name="DescendantToken"&gt;
+  &lt;property name="tokens" value="LITERAL_FINALLY,LITERAL_CATCH"/&gt;
+  &lt;property name="limitedTokens" value="LITERAL_RETURN"/&gt;
+  &lt;property name="maximumNumber" value="0"/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -307,10 +307,10 @@ class Test {
     try {
       // Some code
     } catch (Exception e) {
-        System.out.println(&quot;xyz&quot;);
+        System.out.println("xyz");
         return; // violation
     } finally {
-        System.out.println(&quot;xyz&quot;);
+        System.out.println("xyz");
     }
   }
 }
@@ -321,10 +321,10 @@ class Test {
           within a catch or finally block:
         </p>
         <source>
-&lt;module name=&quot;DescendantToken&quot;&gt;
-  &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_CATCH,LITERAL_FINALLY&quot;/&gt;
-  &lt;property name=&quot;limitedTokens&quot; value=&quot;LITERAL_TRY&quot;/&gt;
-  &lt;property name=&quot;maximumNumber&quot; value=&quot;0&quot;/&gt;
+&lt;module name="DescendantToken"&gt;
+  &lt;property name="tokens" value="LITERAL_CATCH,LITERAL_FINALLY"/&gt;
+  &lt;property name="limitedTokens" value="LITERAL_TRY"/&gt;
+  &lt;property name="maximumNumber" value="0"/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -336,10 +336,10 @@ class Test {
     try {
         // Some code
     } catch (Exception e) { // ok
-        System.out.println(&quot;xyz&quot;);
+        System.out.println("xyz");
         return;
     } finally { // ok
-        System.out.println(&quot;xyz&quot;);
+        System.out.println("xyz");
     }
     try {
         // Some code
@@ -365,11 +365,11 @@ class Test {
           too many local variables:
         </p>
         <source>
-&lt;module name=&quot;DescendantToken&quot;&gt;
-  &lt;property name=&quot;tokens&quot; value=&quot;METHOD_DEF&quot;/&gt;
-  &lt;property name=&quot;limitedTokens&quot; value=&quot;VARIABLE_DEF&quot;/&gt;
-  &lt;property name=&quot;maximumDepth&quot; value=&quot;2&quot;/&gt;
-  &lt;property name=&quot;maximumNumber&quot; value=&quot;1&quot;/&gt;
+&lt;module name="DescendantToken"&gt;
+  &lt;property name="tokens" value="METHOD_DEF"/&gt;
+  &lt;property name="limitedTokens" value="VARIABLE_DEF"/&gt;
+  &lt;property name="maximumDepth" value="2"/&gt;
+  &lt;property name="maximumNumber" value="1"/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -392,10 +392,10 @@ class Test {
           with too many returns:
         </p>
         <source>
-&lt;module name=&quot;DescendantToken&quot;&gt;
-  &lt;property name=&quot;tokens&quot; value=&quot;METHOD_DEF&quot;/&gt;
-  &lt;property name=&quot;limitedTokens&quot; value=&quot;LITERAL_RETURN&quot;/&gt;
-  &lt;property name=&quot;maximumNumber&quot; value=&quot;2&quot;/&gt;
+&lt;module name="DescendantToken"&gt;
+  &lt;property name="tokens" value="METHOD_DEF"/&gt;
+  &lt;property name="limitedTokens" value="LITERAL_RETURN"/&gt;
+  &lt;property name="maximumNumber" value="2"/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -427,10 +427,10 @@ class Test {
           which throws too many exceptions:
         </p>
         <source>
-&lt;module name=&quot;DescendantToken&quot;&gt;
-  &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_THROWS&quot;/&gt;
-  &lt;property name=&quot;limitedTokens&quot; value=&quot;IDENT&quot;/&gt;
-  &lt;property name=&quot;maximumNumber&quot; value=&quot;1&quot;/&gt;
+&lt;module name="DescendantToken"&gt;
+  &lt;property name="tokens" value="LITERAL_THROWS"/&gt;
+  &lt;property name="limitedTokens" value="IDENT"/&gt;
+  &lt;property name="maximumNumber" value="1"/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -454,10 +454,10 @@ class Boo {
           with too many expressions:
         </p>
         <source>
-&lt;module name=&quot;DescendantToken&quot;&gt;
-  &lt;property name=&quot;tokens&quot; value=&quot;METHOD_DEF&quot;/&gt;
-  &lt;property name=&quot;limitedTokens&quot; value=&quot;EXPR&quot;/&gt;
-  &lt;property name=&quot;maximumNumber&quot; value=&quot;2&quot;/&gt;
+&lt;module name="DescendantToken"&gt;
+  &lt;property name="tokens" value="METHOD_DEF"/&gt;
+  &lt;property name="limitedTokens" value="EXPR"/&gt;
+  &lt;property name="maximumNumber" value="2"/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -483,13 +483,13 @@ class Boo {
           To configure the check to produce a violation on an empty statement:
         </p>
         <source>
-&lt;module name=&quot;DescendantToken&quot;&gt;
-  &lt;property name=&quot;tokens&quot; value=&quot;EMPTY_STAT&quot;/&gt;
-  &lt;property name=&quot;limitedTokens&quot; value=&quot;EMPTY_STAT&quot;/&gt;
-  &lt;property name=&quot;maximumNumber&quot; value=&quot;0&quot;/&gt;
-  &lt;property name=&quot;maximumDepth&quot; value=&quot;0&quot;/&gt;
-  &lt;property name=&quot;maximumMessage&quot;
-    value=&quot;Empty statement is not allowed.&quot;/&gt;
+&lt;module name="DescendantToken"&gt;
+  &lt;property name="tokens" value="EMPTY_STAT"/&gt;
+  &lt;property name="limitedTokens" value="EMPTY_STAT"/&gt;
+  &lt;property name="maximumNumber" value="0"/&gt;
+  &lt;property name="maximumDepth" value="0"/&gt;
+  &lt;property name="maximumMessage"
+    value="Empty statement is not allowed."/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -498,7 +498,7 @@ class Boo {
         <source>
 class Test {
   public void foo() { // ok
-      System.out.println(&quot;Hello&quot;);
+      System.out.println("Hello");
   }
   public void boo() {
       ; // violation
@@ -511,11 +511,11 @@ class Test {
           with too many fields:
         </p>
         <source>
-&lt;module name=&quot;DescendantToken&quot;&gt;
-  &lt;property name=&quot;tokens&quot; value=&quot;CLASS_DEF,INTERFACE_DEF&quot;/&gt;
-  &lt;property name=&quot;limitedTokens&quot; value=&quot;VARIABLE_DEF&quot;/&gt;
-  &lt;property name=&quot;maximumDepth&quot; value=&quot;2&quot;/&gt;
-  &lt;property name=&quot;maximumNumber&quot; value=&quot;1&quot;/&gt;
+&lt;module name="DescendantToken"&gt;
+  &lt;property name="tokens" value="CLASS_DEF,INTERFACE_DEF"/&gt;
+  &lt;property name="limitedTokens" value="VARIABLE_DEF"/&gt;
+  &lt;property name="maximumDepth" value="2"/&gt;
+  &lt;property name="maximumNumber" value="1"/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -547,12 +547,12 @@ interface D { // violation
           comparing <code>this</code> with <code>null</code>:
         </p>
         <source>
-&lt;module name=&quot;DescendantToken&quot;&gt;
-  &lt;property name=&quot;tokens&quot; value=&quot;EQUAL,NOT_EQUAL&quot;/&gt;
-  &lt;property name=&quot;limitedTokens&quot; value=&quot;LITERAL_THIS,LITERAL_NULL&quot;/&gt;
-  &lt;property name=&quot;maximumNumber&quot; value=&quot;1&quot;/&gt;
-  &lt;property name=&quot;maximumDepth&quot; value=&quot;1&quot;/&gt;
-  &lt;property name=&quot;sumTokenCounts&quot; value=&quot;true&quot;/&gt;
+&lt;module name="DescendantToken"&gt;
+  &lt;property name="tokens" value="EQUAL,NOT_EQUAL"/&gt;
+  &lt;property name="limitedTokens" value="LITERAL_THIS,LITERAL_NULL"/&gt;
+  &lt;property name="maximumNumber" value="1"/&gt;
+  &lt;property name="maximumDepth" value="1"/&gt;
+  &lt;property name="sumTokenCounts" value="true"/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -562,18 +562,18 @@ interface D { // violation
 class Test {
   public void foo() {
     if (this == null) { // violation
-      System.out.println(&quot;xyz&quot;);
+      System.out.println("xyz");
     }
     if (this != null) { // violation
-      System.out.println(&quot;xyz&quot;);
+      System.out.println("xyz");
     }
 
     Object obj = new Object();
     if (obj == null) { // ok
-      System.out.println(&quot;xyz&quot;);
+      System.out.println("xyz");
     }
     if (obj != null) { // ok
-      System.out.println(&quot;xyz&quot;);
+      System.out.println("xyz");
     }
   }
 }
@@ -584,11 +584,11 @@ class Test {
           literal equality check:
         </p>
         <source>
-&lt;module name=&quot;DescendantToken&quot;&gt;
-  &lt;property name=&quot;tokens&quot; value=&quot;EQUAL,NOT_EQUAL&quot;/&gt;
-  &lt;property name=&quot;limitedTokens&quot; value=&quot;STRING_LITERAL&quot;/&gt;
-  &lt;property name=&quot;maximumNumber&quot; value=&quot;0&quot;/&gt;
-  &lt;property name=&quot;maximumDepth&quot; value=&quot;1&quot;/&gt;
+&lt;module name="DescendantToken"&gt;
+  &lt;property name="tokens" value="EQUAL,NOT_EQUAL"/&gt;
+  &lt;property name="limitedTokens" value="STRING_LITERAL"/&gt;
+  &lt;property name="maximumNumber" value="0"/&gt;
+  &lt;property name="maximumDepth" value="1"/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -597,12 +597,12 @@ class Test {
         <source>
 class Test {
   public void foo() {
-    String str = &quot;abc&quot;;
-    if (str.equals(&quot;abc&quot;)) { // ok
-      System.out.println(&quot;equal.&quot;);
+    String str = "abc";
+    if (str.equals("abc")) { // ok
+      System.out.println("equal.");
     }
-    if (str == &quot;abc&quot;) { // violation
-      System.out.println(&quot;equal.&quot;);
+    if (str == "abc") { // violation
+      System.out.println("equal.");
     }
   }
 }
@@ -613,13 +613,13 @@ class Test {
           that may have side effects:
         </p>
         <source>
-&lt;module name=&quot;DescendantToken&quot;&gt;
-  &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_ASSERT&quot;/&gt;
-  &lt;property name=&quot;limitedTokens&quot; value=&quot;ASSIGN,DEC,INC,POST_DEC,
+&lt;module name="DescendantToken"&gt;
+  &lt;property name="tokens" value="LITERAL_ASSERT"/&gt;
+  &lt;property name="limitedTokens" value="ASSIGN,DEC,INC,POST_DEC,
     POST_INC,PLUS_ASSIGN,MINUS_ASSIGN,STAR_ASSIGN,DIV_ASSIGN,MOD_ASSIGN,
     BSR_ASSIGN,SR_ASSIGN,SL_ASSIGN,BAND_ASSIGN,BXOR_ASSIGN,BOR_ASSIGN,
-    METHOD_CALL&quot;/&gt;
-  &lt;property name=&quot;maximumNumber&quot; value=&quot;0&quot;/&gt;
+    METHOD_CALL"/&gt;
+  &lt;property name="maximumNumber" value="0"/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -629,9 +629,9 @@ class Test {
 class Test {
   public void foo() {
     int a = 5;
-    assert a++ == 0 : &quot;is not&quot;; // violation
+    assert a++ == 0 : "is not"; // violation
     System.out.println(a);
-    assert a == 0 : &quot;is not&quot;; // ok
+    assert a == 0 : "is not"; // ok
   }
 }
         </source>

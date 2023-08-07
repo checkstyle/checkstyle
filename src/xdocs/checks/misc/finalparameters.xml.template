@@ -75,7 +75,7 @@
           constructors:
         </p>
         <source>
-&lt;module name=&quot;FinalParameters&quot;/&gt;
+&lt;module name="FinalParameters"/&gt;
         </source>
         <p>
           Example:
@@ -95,8 +95,8 @@ public class Point {
           constructors:
         </p>
         <source>
-&lt;module name=&quot;FinalParameters&quot;&gt;
-  &lt;property name=&quot;tokens&quot; value=&quot;CTOR_DEF&quot;/&gt;
+&lt;module name="FinalParameters"&gt;
+  &lt;property name="tokens" value="CTOR_DEF"/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -118,8 +118,8 @@ public class Point {
            primitive datatypes</a> as parameters:
         </p>
         <source>
-&lt;module name=&quot;FinalParameters&quot;&gt;
-  &lt;property name=&quot;ignorePrimitiveTypes&quot; value=&quot;true&quot;/&gt;
+&lt;module name="FinalParameters"&gt;
+  &lt;property name="ignorePrimitiveTypes" value="true"/&gt;
 &lt;/module&gt;
         </source>
         <p>
