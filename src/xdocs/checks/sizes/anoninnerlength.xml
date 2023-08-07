@@ -48,14 +48,14 @@
           To configure the check to accept anonymous classes with up to 20 lines:
         </p>
         <source>
-&lt;module name="AnonInnerLength"/&gt;
+&lt;module name=&quot;AnonInnerLength&quot;/&gt;
         </source>
         <p>
           To configure the check to accept anonymous classes with up to 60 lines:
         </p>
         <source>
-&lt;module name="AnonInnerLength"&gt;
-  &lt;property name="max" value="60"/&gt;
+&lt;module name=&quot;AnonInnerLength&quot;&gt;
+  &lt;property name=&quot;max&quot; value=&quot;60&quot;/&gt;
 &lt;/module&gt;
         </source>
       </subsection>

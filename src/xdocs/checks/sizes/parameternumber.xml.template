@@ -71,16 +71,16 @@
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;ParameterNumber&quot;/&gt;
+&lt;module name="ParameterNumber"/&gt;
         </source>
 
         <p>
           To configure the check to allow 10 parameters for a method:
         </p>
         <source>
-&lt;module name=&quot;ParameterNumber&quot;&gt;
-  &lt;property name=&quot;max&quot; value=&quot;10&quot;/&gt;
-  &lt;property name=&quot;tokens&quot; value=&quot;METHOD_DEF&quot;/&gt;
+&lt;module name="ParameterNumber"&gt;
+  &lt;property name="max" value="10"/&gt;
+  &lt;property name="tokens" value="METHOD_DEF"/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -93,8 +93,8 @@
           In this case developer has no control over number of parameters.
         </p>
         <source>
-&lt;module name=&quot;ParameterNumber&quot;&gt;
-  &lt;property name=&quot;ignoreOverriddenMethods&quot; value=&quot;true&quot;/&gt;
+&lt;module name="ParameterNumber"&gt;
+  &lt;property name="ignoreOverriddenMethods" value="true"/&gt;
 &lt;/module&gt;
         </source>
         <p>

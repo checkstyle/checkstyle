@@ -42,7 +42,7 @@
               <td>ignorePattern</td>
               <td>Specify pattern for lines to ignore.</td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
-              <td><code>&quot;^(package|import) .*&quot;</code></td>
+              <td><code>"^(package|import) .*"</code></td>
               <td>3.0</td>
             </tr>
             <tr>
@@ -61,25 +61,25 @@
           To configure the check to accept lines up to 80 characters long:
         </p>
         <source>
-&lt;module name=&quot;LineLength&quot;/&gt;
+&lt;module name="LineLength"/&gt;
         </source>
 
         <p>
           To configure the check to accept lines up to 120 characters long:
         </p>
         <source>
-&lt;module name=&quot;LineLength&quot;&gt;
-  &lt;property name=&quot;max&quot; value=&quot;120&quot;/&gt;
+&lt;module name="LineLength"&gt;
+  &lt;property name="max" value="120"/&gt;
 &lt;/module&gt;
         </source>
 
         <p>
-          To configure the check to ignore lines that begin with <code>&quot; * &quot;</code>code,
+          To configure the check to ignore lines that begin with <code>" * "</code>code,
           followed by just one word, such as within a Javadoc comment:
         </p>
         <source>
-&lt;module name=&quot;LineLength&quot;&gt;
-  &lt;property name=&quot;ignorePattern&quot; value=&quot;^ *\* *[^ ]+$&quot;/&gt;
+&lt;module name="LineLength"&gt;
+  &lt;property name="ignorePattern" value="^ *\* *[^ ]+$"/&gt;
 &lt;/module&gt;
         </source>
 
@@ -87,8 +87,8 @@
           To configure the check to only validate java files and ignore other extensions:
         </p>
         <source>
-&lt;module name=&quot;LineLength&quot;&gt;
-  &lt;property name=&quot;fileExtensions&quot; value=&quot;java&quot;/&gt;
+&lt;module name="LineLength"&gt;
+  &lt;property name="fileExtensions" value="java"/&gt;
 &lt;/module&gt;
         </source>
 
@@ -97,8 +97,8 @@
           extensions:
         </p>
         <source>
-&lt;module name=&quot;LineLength&quot;&gt;
-  &lt;property name=&quot;fileExtensions&quot; value=&quot;xml, properties&quot;/&gt;
+&lt;module name="LineLength"&gt;
+  &lt;property name="fileExtensions" value="xml, properties"/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -106,9 +106,9 @@
           statements:
         </p>
         <source>
-&lt;module name=&quot;LineLength&quot;&gt;
-  &lt;property name=&quot;ignorePattern&quot; value=&quot;^$&quot;/&gt;
-  &lt;property name=&quot;max&quot; value=&quot;50&quot;/&gt;
+&lt;module name="LineLength"&gt;
+  &lt;property name="ignorePattern" value="^$"/&gt;
+  &lt;property name="max" value="50"/&gt;
 &lt;/module&gt;
         </source>
         <p>
