@@ -81,7 +81,7 @@
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;MethodLength&quot;/&gt;
+&lt;module name="MethodLength"/&gt;
         </source>
         <p>Example:</p>
         <source>
@@ -95,14 +95,14 @@ public class MyClass {
   public void firstExample() { // line 1
 
       // line 3
-      System.out.println(&quot;line 4&quot;);
+      System.out.println("line 4");
       /* line 5
          line 6 */
   } // line 7, OK, as it is less than 150
 
   public void secondExample() { // line 1
       // line 2
-      System.out.println(&quot;line 3&quot;);
+      System.out.println("line 3");
 
       /* line 5
           ...
@@ -115,9 +115,9 @@ public class MyClass {
           lines:
         </p>
         <source>
-&lt;module name=&quot;MethodLength&quot;&gt;
-  &lt;property name=&quot;tokens&quot; value=&quot;METHOD_DEF&quot;/&gt;
-  &lt;property name=&quot;max&quot; value=&quot;4&quot;/&gt;
+&lt;module name="MethodLength"&gt;
+  &lt;property name="tokens" value="METHOD_DEF"/&gt;
+  &lt;property name="max" value="4"/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>
@@ -131,7 +131,7 @@ public class MyTest {
 
   public void firstMethod() { // line 1
       // comment (line 2)
-      System.out.println(&quot;line 3&quot;);
+      System.out.println("line 3");
   } // line 4, OK, as it allows at most 4 lines
 
   public void secondMethod() { // line 1
@@ -144,7 +144,7 @@ public class MyTest {
   public void thirdMethod() { // line 1
 
       // comment (line 3)
-      System.out.println(&quot;line 4&quot;);
+      System.out.println("line 4");
   } // line 5, violation, as it is over 4 lines
 }
         </source>
@@ -153,10 +153,10 @@ public class MyTest {
           lines, not counting empty lines and comments:
         </p>
         <source>
-&lt;module name=&quot;MethodLength&quot;&gt;
-  &lt;property name=&quot;tokens&quot; value=&quot;METHOD_DEF&quot;/&gt;
-  &lt;property name=&quot;max&quot; value=&quot;4&quot;/&gt;
-  &lt;property name=&quot;countEmpty&quot; value=&quot;false&quot;/&gt;
+&lt;module name="MethodLength"&gt;
+  &lt;property name="tokens" value="METHOD_DEF"/&gt;
+  &lt;property name="max" value="4"/&gt;
+  &lt;property name="countEmpty" value="false"/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>
@@ -170,7 +170,7 @@ public class MyTest {
 
   public void firstMethod() { // line 1
       // comment - not counted as line
-      System.out.println(&quot;line 2&quot;);
+      System.out.println("line 2");
   } // line 3, OK, as it allows at most 4 lines
 
   public void secondMethod() { // line 1
@@ -183,7 +183,7 @@ public class MyTest {
   public void thirdMethod() { // line 1
 
       // comment - not counted as line
-      System.out.println(&quot;line 2&quot;);
+      System.out.println("line 2");
   } // line 3, OK, as it allows at most 4 lines
 }
         </source>
