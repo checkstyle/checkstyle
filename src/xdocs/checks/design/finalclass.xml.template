@@ -39,7 +39,7 @@
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;FinalClass&quot;/&gt;
+&lt;module name="FinalClass"/&gt;
         </source>
         <p>
             Example:
@@ -58,7 +58,7 @@ class MyClass { // OK, since it has a public constructor
   String field2;
   private MyClass(int value) {
     this.field1 = value;
-    this.field2 = &quot; &quot;;
+    this.field2 = " ";
   }
   public MyClass(String value) {
     this.field2 = value;

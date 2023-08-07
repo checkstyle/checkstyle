@@ -47,7 +47,7 @@ public class StringUtils // not final to allow subclassing
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;HideUtilityClassConstructor&quot;/&gt;
+&lt;module name="HideUtilityClassConstructor"/&gt;
         </source>
         <p>
           Example:

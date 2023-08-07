@@ -58,7 +58,7 @@
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;InterfaceIsType&quot;/&gt;
+&lt;module name="InterfaceIsType"/&gt;
         </source>
         <p>Example:</p>
         <source>
@@ -79,8 +79,8 @@ public interface Test3 { // OK
           To configure the check to report violation so that it doesn't allow Marker Interfaces:
         </p>
         <source>
-&lt;module name=&quot;InterfaceIsType&quot;&gt;
-  &lt;property name=&quot;allowMarkerInterfaces&quot; value=&quot;false&quot;/&gt;
+&lt;module name="InterfaceIsType"&gt;
+  &lt;property name="allowMarkerInterfaces" value="false"/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>
