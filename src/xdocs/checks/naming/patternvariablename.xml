@@ -28,7 +28,7 @@
               <td>format</td>
               <td>Specifies valid identifiers.</td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
-              <td><code>"^[a-z][a-zA-Z0-9]*$"</code></td>
+              <td><code>&quot;^[a-z][a-zA-Z0-9]*$&quot;</code></td>
               <td>8.36</td>
             </tr>
           </table>
@@ -41,7 +41,7 @@
         </p>
 
         <source>
-&lt;module name="PatternVariableName"/&gt;
+&lt;module name=&quot;PatternVariableName&quot;/&gt;
         </source>
         <p>Code Example:</p>
         <source>
@@ -60,8 +60,8 @@ class MyClass {
           followed by letters and digits, optionally separated by underscore:
         </p>
         <source>
-&lt;module name="PatternVariableName"&gt;
-    &lt;property name="format" value="^[a-z](_?[a-zA-Z0-9]+)*$"/&gt;
+&lt;module name=&quot;PatternVariableName&quot;&gt;
+    &lt;property name=&quot;format&quot; value=&quot;^[a-z](_?[a-zA-Z0-9]+)*$&quot;/&gt;
 &lt;/module&gt;
         </source>
         <p>Code Example:</p>
@@ -83,8 +83,8 @@ class MyClass {
           chars in name:
         </p>
         <source>
-&lt;module name="PatternVariableName"&gt;
-    &lt;property name="format" value="^[a-z][_a-zA-Z0-9]{2,}$"/&gt;
+&lt;module name=&quot;PatternVariableName&quot;&gt;
+    &lt;property name=&quot;format&quot; value=&quot;^[a-z][_a-zA-Z0-9]{2,}$&quot;/&gt;
 &lt;/module&gt;
         </source>
         <p>Code Example:</p>

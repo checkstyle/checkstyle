@@ -31,7 +31,7 @@
               <td>format</td>
               <td>Specifies valid identifiers.</td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
-              <td><code>&quot;^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$&quot;</code></td>
+              <td><code>"^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"</code></td>
               <td>3.0</td>
             </tr>
             <tr>
@@ -73,7 +73,7 @@
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;ConstantName&quot;/&gt;
+&lt;module name="ConstantName"/&gt;
         </source>
         <p>Example:</p>
         <source>
@@ -95,9 +95,9 @@ class Example1 {
         </p>
 
         <source>
-&lt;module name=&quot;ConstantName&quot;&gt;
-  &lt;property name=&quot;format&quot;
-    value=&quot;^log(ger)?$|^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$&quot;/&gt;
+&lt;module name="ConstantName"&gt;
+  &lt;property name="format"
+    value="^log(ger)?$|^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"/&gt;
 &lt;/module&gt;
         </source>
         <p>Code Example:</p>
@@ -119,9 +119,9 @@ class Example2 {
           public constant field and protected constant field.
         </p>
         <source>
-&lt;module name=&quot;ConstantName&quot;&gt;
-  &lt;property name=&quot;applyToPublic&quot; value=&quot;false&quot;/&gt;
-  &lt;property name=&quot;applyToProtected&quot; value=&quot;false&quot;/&gt;
+&lt;module name="ConstantName"&gt;
+  &lt;property name="applyToPublic" value="false"/&gt;
+  &lt;property name="applyToProtected" value="false"/&gt;
 &lt;/module&gt;
         </source>
         <p>Code Example:</p>

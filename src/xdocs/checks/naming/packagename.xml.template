@@ -38,7 +38,7 @@
               <td>format</td>
               <td>Specifies valid identifiers.</td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
-              <td><code>&quot;^[a-z]+(\.[a-zA-Z_]\w*)*$&quot;</code></td>
+              <td><code>"^[a-z]+(\.[a-zA-Z_]\w*)*$"</code></td>
               <td>3.0</td>
             </tr>
           </table>
@@ -50,7 +50,7 @@
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;PackageName&quot;/&gt;
+&lt;module name="PackageName"/&gt;
         </source>
         <p>Code Example:</p>
         <source>
@@ -67,9 +67,9 @@ package com._checkstyle.checks_; // OK
           letter and only contains lowercase letters or numbers is:
         </p>
         <source>
-&lt;module name=&quot;PackageName&quot;&gt;
-  &lt;property name=&quot;format&quot;
-    value=&quot;^[a-z]+(\.[a-z][a-z0-9]*)*$&quot;/&gt;
+&lt;module name="PackageName"&gt;
+  &lt;property name="format"
+    value="^[a-z]+(\.[a-z][a-z0-9]*)*$"/&gt;
 &lt;/module&gt;
         </source>
         <p>Code Example:</p>

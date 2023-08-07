@@ -3,17 +3,15 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
   <head>
-    <title>ConstantName</title>
+    <title>StaticVariableName</title>
   </head>
   <body>
-    <section name="ConstantName">
+    <section name="StaticVariableName">
       <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="Description">
         <p>
-          Checks that constant names conform to a specified pattern.
-          A <em>constant</em> is a <strong>static</strong> and <strong>final</strong> field or an
-          interface/annotation field, except <strong>serialVersionUID</strong> and
-          <strong>serialPersistentFields</strong>.
+          Checks that <code>static</code>, non-<code>final</code> variable names
+          conform to a specified pattern.
         </p>
       </subsection>
 
@@ -31,7 +29,7 @@
               <td>format</td>
               <td>Specifies valid identifiers.</td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
-              <td><code>&quot;^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$&quot;</code></td>
+              <td><code>"^[a-z][a-zA-Z0-9]*$"</code></td>
               <td>3.0</td>
             </tr>
             <tr>
@@ -73,69 +71,55 @@
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;ConstantName&quot;/&gt;
+&lt;module name="StaticVariableName"/&gt;
         </source>
-        <p>Example:</p>
+        <p>Code Example:</p>
         <source>
-class Example1 {
-  public final static int FIRST_CONSTANT1 = 10;
-  protected final static int SECOND_CONSTANT2 = 100;
-  final static int third_Constant3 = 1000; // violation 'must match pattern'
-  private final static int fourth_Const4 = 50; // violation 'must match pattern'
-  public final static int log = 10; // violation 'must match pattern'
-  protected final static int logger = 50; // violation 'must match pattern'
-  final static int loggerMYSELF = 5; // violation 'must match pattern'
-  final static int MYSELF = 100;
-  protected final static int myselfConstant = 1; // violation 'must match pattern'
+class MyClass {
+  public static int goodStatic = 2; // OK
+  private static int BadStatic = 2; // violation, name 'BadStatic'
+                                    // must match pattern '^[a-z][a-zA-Z0-9]*$'
 }
         </source>
         <p>
-          The following configuration apart from names allowed by default allows <code>log</code>
-          or <code>logger</code>:
+          An example of how to suppress the check to public and protected types is:
         </p>
-
         <source>
-&lt;module name=&quot;ConstantName&quot;&gt;
-  &lt;property name=&quot;format&quot;
-    value=&quot;^log(ger)?$|^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$&quot;/&gt;
+&lt;module name="StaticVariableName"&gt;
+  &lt;property name="applyToPublic" value="false"/&gt;
+  &lt;property name="applyToProtected" value="false"/&gt;
 &lt;/module&gt;
         </source>
         <p>Code Example:</p>
         <source>
-class Example2 {
-  public final static int FIRST_CONSTANT1 = 10;
-  protected final static int SECOND_CONSTANT2 = 100;
-  final static int third_Constant3 = 1000; // violation 'must match pattern'
-  private final static int fourth_Const4 = 50; // violation 'must match pattern'
-  public final static int log = 10;
-  protected final static int logger = 50;
-  final static int loggerMYSELF = 5; // violation 'must match pattern'
-  final static int MYSELF = 100;
-  protected final static int myselfConstant = 1; // violation 'must match pattern'
+class MyClass {
+  public static int GoodStatic1 = 2; // OK
+  protected static int GoodStatic2 = 2; //OK
+  private static int goodStatic = 2 // OK
+  private static int BadStatic = 2; // violation, name 'BadStatic'
+                                    // must match pattern '^[a-z][a-zA-Z0-9]*$'
 }
         </source>
         <p>
-          The following configuration skip validation on
-          public constant field and protected constant field.
+          An example of how to configure the check for names that begin with a lower case letter,
+          followed by letters, digits, and underscores. Also, suppress the check from being
+          applied to private and package-private types:
         </p>
         <source>
-&lt;module name=&quot;ConstantName&quot;&gt;
-  &lt;property name=&quot;applyToPublic&quot; value=&quot;false&quot;/&gt;
-  &lt;property name=&quot;applyToProtected&quot; value=&quot;false&quot;/&gt;
+&lt;module name="StaticVariableName"&gt;
+  &lt;property name="format" value="^[a-z](_?[a-zA-Z0-9]+)*$"/&gt;
+  &lt;property name="applyToPrivate" value="false"/&gt;
+  &lt;property name="applyToPackage" value="false"/&gt;
 &lt;/module&gt;
         </source>
         <p>Code Example:</p>
         <source>
-class Example3 {
-  public final static int FIRST_CONSTANT1 = 10;
-  protected final static int SECOND_CONSTANT2 = 100;
-  final static int third_Constant3 = 1000; // violation 'must match pattern'
-  private final static int fourth_Const4 = 50; // violation 'must match pattern'
-  public final static int log = 10;
-  protected final static int logger = 50;
-  final static int loggerMYSELF = 5; // violation 'must match pattern'
-  final static int MYSELF = 100;
-  protected final static int myselfConstant = 1;
+class MyClass {
+  public static int good_static = 2; // OK
+  public static int Bad_Static = 2; // violation, name 'Bad_Static'
+                                    // must match pattern '^[a-z](_?[a-zA-Z0-9]+)*$'
+  private static int Good_Static1 = 2; // OK
+  static int Good_Static2 = 2; // OK
 }
         </source>
       </subsection>
@@ -143,11 +127,11 @@ class Example3 {
       <subsection name="Example of Usage" id="Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ConstantName">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+StaticVariableName">
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+ConstantName">
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+StaticVariableName">
             Checkstyle Style</a>
           </li>
         </ul>
