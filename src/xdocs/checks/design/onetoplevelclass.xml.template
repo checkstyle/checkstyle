@@ -24,11 +24,11 @@
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;OneTopLevelClass&quot;/&gt;
+&lt;module name="OneTopLevelClass"/&gt;
         </source>
         <p>
           <b>ATTENTION:</b> This Check does not support customization of validated tokens, so do
-          not use the &quot;tokens&quot; property.
+          not use the "tokens" property.
         </p>
         <p>
           An example of code with violations:
@@ -43,7 +43,7 @@ class Foo2 { // violation, second top-level class
   // methods
 }
 
-record Foo3 { // violation, third top-level &quot;class&quot;
+record Foo3 { // violation, third top-level "class"
   // methods
 }
           </pre>
