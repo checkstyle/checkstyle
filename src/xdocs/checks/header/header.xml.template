@@ -80,7 +80,7 @@ line 5: ////////////////////////////////////////////////////////////////////
               <td>header</td>
               <td>
                 Specify the required header specified inline. Individual header lines
-                must be separated by the string <code>&quot;\n&quot;</code> (even on platforms with
+                must be separated by the string <code>"\n"</code> (even on platforms with
                 a different line separator), see examples below.
               </td>
               <td><a href="../../property_types.html#String">String</a></td>
@@ -112,20 +112,20 @@ line 5: ////////////////////////////////////////////////////////////////////
         </p>
 
         <source>
-&lt;module name=&quot;Header&quot;/&gt;
+&lt;module name="Header"/&gt;
         </source>
 
         <p>
-          To configure the check to use header file <code>&quot;config/java.header&quot;</code> and
+          To configure the check to use header file <code>"config/java.header"</code> and
           ignore lines <code>2</code>, <code>3</code>, and <code> 4</code> and only process Java
           files:
         </p>
 
         <source>
-&lt;module name=&quot;Header&quot;&gt;
-  &lt;property name=&quot;headerFile&quot; value=&quot;config/java.header&quot;/&gt;
-  &lt;property name=&quot;ignoreLines&quot; value=&quot;2, 3, 4&quot;/&gt;
-  &lt;property name=&quot;fileExtensions&quot; value=&quot;java&quot;/&gt;
+&lt;module name="Header"&gt;
+  &lt;property name="headerFile" value="config/java.header"/&gt;
+  &lt;property name="ignoreLines" value="2, 3, 4"/&gt;
+  &lt;property name="fileExtensions" value="java"/&gt;
 &lt;/module&gt;
         </source>
 
@@ -142,9 +142,9 @@ line 5: ////////////////////////////////////////////////////////////////////
           without the need for an external header file:
         </p>
         <source>
-&lt;module name=&quot;Header&quot;&gt;
-  &lt;property name=&quot;header&quot;
-    value=&quot;// Copyright (C) 2004 MyCompany\n// All rights reserved&quot;/&gt;
+&lt;module name="Header"&gt;
+  &lt;property name="header"
+    value="// Copyright (C) 2004 MyCompany\n// All rights reserved"/&gt;
 &lt;/module&gt;
         </source>
       </subsection>
