@@ -105,21 +105,21 @@
           To configure the check to report file names that contain a space:
         </p>
         <source>
-&lt;module name=&quot;RegexpOnFilename&quot;/&gt;
+&lt;module name="RegexpOnFilename"/&gt;
         </source>
         <p>Example:</p>
         <div class="wrapper">
           <pre>
 src/xdocs/config_regexp.xml  //OK, contains no whitespace
-src/xdocs/&quot;config regexp&quot;.xml  //violation, contains whitespace
+src/xdocs/"config regexp".xml  //violation, contains whitespace
           </pre>
         </div>
         <p>
           To configure the check to forbid 'gif' files in folders:
         </p>
         <source>
-&lt;module name=&quot;RegexpOnFilename&quot;&gt;
-  &lt;property name=&quot;fileNamePattern&quot; value=&quot;\.gif$&quot;/&gt;
+&lt;module name="RegexpOnFilename"&gt;
+  &lt;property name="fileNamePattern" value="\.gif$"/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>
@@ -135,12 +135,12 @@ src/site/resources/images/groups.gif  //violation, .gif images not allowed
           with custom message:
         </p>
         <source>
-&lt;module name=&quot;RegexpOnFilename&quot;&gt;
-  &lt;property name=&quot;fileNamePattern&quot; value=&quot;README&quot;/&gt;
-  &lt;property name=&quot;fileExtensions&quot; value=&quot;md&quot;/&gt;
-  &lt;property name=&quot;match&quot; value=&quot;false&quot;/&gt;
-  &lt;message key=&quot;regexp.filename.mismatch&quot;
-    value=&quot;No '*.md' files other then 'README.md'&quot;/&gt;
+&lt;module name="RegexpOnFilename"&gt;
+  &lt;property name="fileNamePattern" value="README"/&gt;
+  &lt;property name="fileExtensions" value="md"/&gt;
+  &lt;property name="match" value="false"/&gt;
+  &lt;message key="regexp.filename.mismatch"
+    value="No '*.md' files other then 'README.md'"/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>
@@ -156,11 +156,11 @@ src/site/resources/Text.md  //violation, .md files other than 'README.md' are no
           in the resource folder:
         </p>
         <source>
-&lt;module name=&quot;RegexpOnFilename&quot;&gt;
-  &lt;property name=&quot;folderPattern&quot;
-    value=&quot;[\\/]src[\\/]\w+[\\/]resources[\\/]&quot;/&gt;
-  &lt;property name=&quot;match&quot; value=&quot;false&quot;/&gt;
-  &lt;property name=&quot;fileExtensions&quot; value=&quot;properties, xml&quot;/&gt;
+&lt;module name="RegexpOnFilename"&gt;
+  &lt;property name="folderPattern"
+    value="[\\/]src[\\/]\w+[\\/]resources[\\/]"/&gt;
+  &lt;property name="match" value="false"/&gt;
+  &lt;property name="fileExtensions" value="properties, xml"/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>
@@ -175,9 +175,9 @@ src/main/resources/JavaClass.java  //violation, xml|property files are allowed i
           To configure the check to only allow Java and XML files in your folders use the below.
         </p>
         <source>
-&lt;module name=&quot;RegexpOnFilename&quot;&gt;
-  &lt;property name=&quot;fileNamePattern&quot; value=&quot;\.(java|xml)$&quot;/&gt;
-  &lt;property name=&quot;match&quot; value=&quot;false&quot;/&gt;
+&lt;module name="RegexpOnFilename"&gt;
+  &lt;property name="fileNamePattern" value="\.(java|xml)$"/&gt;
+  &lt;property name="match" value="false"/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>
@@ -196,10 +196,10 @@ src/main/check_properties.properties  //violation, folders should only contain j
           and ignore any other folders:
         </p>
         <source>
-&lt;module name=&quot;RegexpOnFilename&quot;&gt;
-  &lt;property name=&quot;folderPattern&quot; value=&quot;[\\/]src[\\/]&quot;/&gt;
-  &lt;property name=&quot;fileNamePattern&quot; value=&quot;\.(java|xml)$&quot;/&gt;
-  &lt;property name=&quot;match&quot; value=&quot;false&quot;/&gt;
+&lt;module name="RegexpOnFilename"&gt;
+  &lt;property name="folderPattern" value="[\\/]src[\\/]"/&gt;
+  &lt;property name="fileNamePattern" value="\.(java|xml)$"/&gt;
+  &lt;property name="match" value="false"/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>
@@ -219,10 +219,10 @@ src/main/main_properties.properties  //OK, this check only applies to src folder
           To configure the check to only allow file names to be camel case:
         </p>
         <source>
-&lt;module name=&quot;RegexpOnFilename&quot;&gt;
-  &lt;property name=&quot;fileNamePattern&quot; value=&quot;^([A-Z][a-z0-9]+\.?)+$&quot;/&gt;
-  &lt;property name=&quot;match&quot; value=&quot;false&quot;/&gt;
-  &lt;property name=&quot;ignoreFileNameExtensions&quot; value=&quot;true&quot;/&gt;
+&lt;module name="RegexpOnFilename"&gt;
+  &lt;property name="fileNamePattern" value="^([A-Z][a-z0-9]+\.?)+$"/&gt;
+  &lt;property name="match" value="false"/&gt;
+  &lt;property name="ignoreFileNameExtensions" value="true"/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>
