@@ -135,4 +135,14 @@ public class RegexpSinglelineCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
                 getPath("InputRegexpSinglelineSemantic9.java"), EMPTY);
     }
+
+    @Test
+    public void testMessage() throws Exception {
+
+        final String[] expected = {
+            "17: " + getCheckMessage(MSG_REGEXP_EXCEEDED, "SYSTEM\\.(OUT)|(ERR)\\.PRINT(LN)?\\("),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputRegexpSinglelineSemantic10.java"), expected);
+    }
 }
