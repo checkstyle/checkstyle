@@ -89,7 +89,7 @@ public final class Person {
           Configuration:
         </p>
         <source>
-&lt;module name=&quot;ClassMemberImpliedModifier&quot; /&gt;
+&lt;module name="ClassMemberImpliedModifier" /&gt;
         </source>
         <p>
           Code:
