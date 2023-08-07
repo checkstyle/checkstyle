@@ -130,7 +130,7 @@
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;CyclomaticComplexity&quot;/&gt;
+&lt;module name="CyclomaticComplexity"/&gt;
         </source>
         <p>
           Example:
@@ -175,9 +175,9 @@ class CyclomaticComplexity {
           To configure the check with a threshold of 4 and check only for while and do-while loops:
         </p>
         <source>
-&lt;module name=&quot;CyclomaticComplexity&quot;&gt;
-  &lt;property name=&quot;max&quot; value=&quot;4&quot;/&gt;
-  &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_WHILE, LITERAL_DO&quot;/&gt;
+&lt;module name="CyclomaticComplexity"&gt;
+  &lt;property name="max" value="4"/&gt;
+  &lt;property name="tokens" value="LITERAL_WHILE, LITERAL_DO"/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -211,8 +211,8 @@ class CyclomaticComplexity {
           To configure the check to consider switch-case block as one decision point.
         </p>
         <source>
-&lt;module name=&quot;CyclomaticComplexity&quot;&gt;
-  &lt;property name=&quot;switchBlockAsSingleDecisionPoint&quot; value=&quot;true&quot;/&gt;
+&lt;module name="CyclomaticComplexity"&gt;
+  &lt;property name="switchBlockAsSingleDecisionPoint" value="true"/&gt;
 &lt;/module&gt;
         </source>
         <p>

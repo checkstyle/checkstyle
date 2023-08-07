@@ -127,7 +127,7 @@
           To configure the check:
         </p>
         <source>
-&lt;module name="ClassDataAbstractionCoupling"/&gt;
+&lt;module name=&quot;ClassDataAbstractionCoupling&quot;/&gt;
         </source>
 
         <p>
@@ -164,8 +164,8 @@ class InputClassCoupling {
           To configure the check with a threshold of 2:
         </p>
         <source>
-&lt;module name="ClassDataAbstractionCoupling"&gt;
-  &lt;property name="max" value="2"/&gt;
+&lt;module name=&quot;ClassDataAbstractionCoupling&quot;&gt;
+  &lt;property name=&quot;max&quot; value=&quot;2&quot;/&gt;
 &lt;/module&gt;
         </source>
 
@@ -202,8 +202,8 @@ class InputClassCoupling {
           <code>HashSet</code> and <code>Place</code>:
         </p>
         <source>
-&lt;module name="ClassDataAbstractionCoupling"&gt;
-  &lt;property name="excludedClasses" value="HashMap, HashSet, Place"/&gt;
+&lt;module name=&quot;ClassDataAbstractionCoupling&quot;&gt;
+  &lt;property name=&quot;excludedClasses&quot; value=&quot;HashMap, HashSet, Place&quot;/&gt;
 &lt;/module&gt;
         </source>
 
@@ -243,8 +243,8 @@ class InputClassCoupling {
           <code>.*Reader$</code>:
         </p>
         <source>
-&lt;module name="ClassDataAbstractionCoupling"&gt;
-  &lt;property name="excludeClassesRegexps" value=".*Reader$"/&gt;
+&lt;module name=&quot;ClassDataAbstractionCoupling&quot;&gt;
+  &lt;property name=&quot;excludeClassesRegexps&quot; value=&quot;.*Reader$&quot;/&gt;
 &lt;/module&gt;
         </source>
 
@@ -284,8 +284,8 @@ class InputClassCoupling {
         </p>
 
         <source>
-&lt;module name="ClassDataAbstractionCoupling"&gt;
-  &lt;property name="excludedPackages" value="java.io"/&gt;
+&lt;module name=&quot;ClassDataAbstractionCoupling&quot;&gt;
+  &lt;property name=&quot;excludedPackages&quot; value=&quot;java.io&quot;/&gt;
 &lt;/module&gt;
         </source>
 
@@ -356,8 +356,8 @@ class InputClassCoupling {
           assuming the config is
         </p>
         <source>
-&lt;module name="ClassDataAbstractionCoupling"&gt;
-  &lt;property name="excludedPackages" value="a.b"/&gt;
+&lt;module name=&quot;ClassDataAbstractionCoupling&quot;&gt;
+  &lt;property name=&quot;excludedPackages&quot; value=&quot;a.b&quot;/&gt;
 &lt;/module&gt;
         </source>
         <p>
