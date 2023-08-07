@@ -51,21 +51,21 @@
               <td>offCommentFormat</td>
               <td>Specify comment pattern to trigger filter to begin suppression.</td>
               <td><a href="../property_types.html#Pattern">Pattern</a></td>
-              <td><code>&quot;// CHECKSTYLE:OFF&quot;</code></td>
+              <td><code>"// CHECKSTYLE:OFF"</code></td>
               <td>8.6</td>
             </tr>
             <tr>
               <td>onCommentFormat</td>
               <td>Specify comment pattern to trigger filter to end suppression.</td>
               <td><a href="../property_types.html#Pattern">Pattern</a></td>
-              <td><code>&quot;// CHECKSTYLE:ON&quot;</code></td>
+              <td><code>"// CHECKSTYLE:ON"</code></td>
               <td>8.6</td>
             </tr>
             <tr>
               <td>checkFormat</td>
               <td>Specify check pattern to suppress.</td>
               <td><a href="../property_types.html#Pattern">Pattern</a></td>
-              <td><code>&quot;.*&quot;</code></td>
+              <td><code>".*"</code></td>
               <td>8.6</td>
             </tr>
             <tr>
@@ -104,9 +104,9 @@
           <code>CHECKSTYLE:ON</code>:
         </p>
         <source>
-&lt;module name=&quot;Checker&quot;&gt;
+&lt;module name="Checker"&gt;
   ...
-  &lt;module name=&quot;SuppressWithPlainTextCommentFilter&quot;/&gt;
+  &lt;module name="SuppressWithPlainTextCommentFilter"/&gt;
   ...
 &lt;/module&gt;
         </source>
@@ -117,12 +117,12 @@
             (Checker is configured to check only properties files):
         </p>
         <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;property name=&quot;fileExtensions&quot; value=&quot;properties&quot;/&gt;
+&lt;module name="Checker"&gt;
+  &lt;property name="fileExtensions" value="properties"/&gt;
 
-  &lt;module name=&quot;SuppressWithPlainTextCommentFilter&quot;&gt;
-    &lt;property name=&quot;offCommentFormat&quot; value=&quot;BEGIN GENERATED CONTENT&quot;/&gt;
-    &lt;property name=&quot;onCommentFormat&quot; value=&quot;END GENERATED CONTENT&quot;/&gt;
+  &lt;module name="SuppressWithPlainTextCommentFilter"&gt;
+    &lt;property name="offCommentFormat" value="BEGIN GENERATED CONTENT"/&gt;
+    &lt;property name="onCommentFormat" value="END GENERATED CONTENT"/&gt;
   &lt;/module&gt;
 
 &lt;/module&gt;
@@ -140,13 +140,13 @@ my.property=value2 // No violation events will be reported
           (Checker is configured to check only sql files):
         </p>
         <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;property name=&quot;fileExtensions&quot; value=&quot;sql&quot;/&gt;
+&lt;module name="Checker"&gt;
+  &lt;property name="fileExtensions" value="sql"/&gt;
 
-  &lt;module name=&quot;SuppressWithPlainTextCommentFilter&quot;&gt;
-    &lt;property name=&quot;offCommentFormat&quot; value=&quot;stop tab check&quot;/&gt;
-    &lt;property name=&quot;onCommentFormat&quot; value=&quot;resume tab check&quot;/&gt;
-    &lt;property name=&quot;checkFormat&quot; value=&quot;FileTabCharacterCheck&quot;/&gt;
+  &lt;module name="SuppressWithPlainTextCommentFilter"&gt;
+    &lt;property name="offCommentFormat" value="stop tab check"/&gt;
+    &lt;property name="onCommentFormat" value="resume tab check"/&gt;
+    &lt;property name="checkFormat" value="FileTabCharacterCheck"/&gt;
   &lt;/module&gt;
 
 &lt;/module&gt;
@@ -164,13 +164,13 @@ my.property=value2 // No violation events will be reported
           (Checker is configured to check only xml files):
         </p>
         <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;property name=&quot;fileExtensions&quot; value=&quot;xml&quot;/&gt;
+&lt;module name="Checker"&gt;
+  &lt;property name="fileExtensions" value="xml"/&gt;
 
-  &lt;module name=&quot;SuppressWithPlainTextCommentFilter&quot;&gt;
-    &lt;property name=&quot;offCommentFormat&quot; value=&quot;CSOFF\: ([\w\|]+)&quot;/&gt;
-    &lt;property name=&quot;onCommentFormat&quot; value=&quot;CSON\: ([\w\|]+)&quot;/&gt;
-    &lt;property name=&quot;checkFormat&quot; value=&quot;$1&quot;/&gt;
+  &lt;module name="SuppressWithPlainTextCommentFilter"&gt;
+    &lt;property name="offCommentFormat" value="CSOFF\: ([\w\|]+)"/&gt;
+    &lt;property name="onCommentFormat" value="CSON\: ([\w\|]+)"/&gt;
+    &lt;property name="checkFormat" value="$1"/&gt;
   &lt;/module&gt;
 
 &lt;/module&gt;
@@ -178,12 +178,12 @@ my.property=value2 // No violation events will be reported
         <source>
 // CSOFF: RegexpSinglelineCheck
  // RegexpSingleline check won't warn any lines below here if the line matches regexp
-&lt;condition property=&quot;checkstyle.ant.skip&quot;&gt;
-  &lt;isset property=&quot;checkstyle.ant.skip&quot;/&gt;
+&lt;condition property="checkstyle.ant.skip"&gt;
+  &lt;isset property="checkstyle.ant.skip"/&gt;
 &lt;/condition&gt;
 // CSON: RegexpSinglelineCheck
 // RegexpSingleline check will warn below here if the line matches regexp
-&lt;property name=&quot;checkstyle.pattern.todo&quot; value=&quot;NOTHingWillMatCH_-&quot;/&gt;
+&lt;property name="checkstyle.pattern.todo" value="NOTHingWillMatCH_-"/&gt;
         </source>
         <p>
           To configure a filter to suppress all audit events between a comment
@@ -192,16 +192,16 @@ my.property=value2 // No violation events will be reported
           check (Checker is configured to check only java files):
         </p>
         <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;property name=&quot;fileExtensions&quot; value=&quot;java&quot;/&gt;
+&lt;module name="Checker"&gt;
+  &lt;property name="fileExtensions" value="java"/&gt;
 
-  &lt;module name=&quot;SuppressWithPlainTextCommentFilter&quot;&gt;
-    &lt;property name=&quot;offCommentFormat&quot;
-      value=&quot;CHECKSTYLE_OFF: ALMOST_ALL&quot;/&gt;
-    &lt;property name=&quot;onCommentFormat&quot;
-      value=&quot;CHECKSTYLE_ON: ALMOST_ALL&quot;/&gt;
-    &lt;property name=&quot;checkFormat&quot;
-      value=&quot;^((?!(FileTabCharacterCheck)).)*$&quot;/&gt;
+  &lt;module name="SuppressWithPlainTextCommentFilter"&gt;
+    &lt;property name="offCommentFormat"
+      value="CHECKSTYLE_OFF: ALMOST_ALL"/&gt;
+    &lt;property name="onCommentFormat"
+      value="CHECKSTYLE_ON: ALMOST_ALL"/&gt;
+    &lt;property name="checkFormat"
+      value="^((?!(FileTabCharacterCheck)).)*$"/&gt;
   &lt;/module&gt;
 
 &lt;/module&gt;
@@ -221,13 +221,13 @@ private int array1 [];
           containing <code>stop</code> and comment containing <code>resume</code>:
         </p>
         <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;SuppressWithPlainTextCommentFilter&quot;&gt;
-    &lt;property name=&quot;offCommentFormat&quot; value=&quot;stop&quot;/&gt;
-    &lt;property name=&quot;onCommentFormat&quot; value=&quot;resume&quot;/&gt;
-    &lt;property name=&quot;checkFormat&quot; value=&quot;FileTabCharacterCheck&quot;/&gt;
-    &lt;property name=&quot;messageFormat&quot;
-        value=&quot;^File contains tab characters (this is the first instance)\.$&quot;/&gt;
+&lt;module name="Checker"&gt;
+  &lt;module name="SuppressWithPlainTextCommentFilter"&gt;
+    &lt;property name="offCommentFormat" value="stop"/&gt;
+    &lt;property name="onCommentFormat" value="resume"/&gt;
+    &lt;property name="checkFormat" value="FileTabCharacterCheck"/&gt;
+    &lt;property name="messageFormat"
+        value="^File contains tab characters (this is the first instance)\.$"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
@@ -242,18 +242,18 @@ private int array1 [];
           Examples of Checkstyle checks configuration:
         </p>
         <source>
-&lt;module name=&quot;RegexpSinglelineJava&quot;&gt;
-  &lt;property name=&quot;id&quot; value=&quot;count&quot;/&gt;
-  &lt;property name=&quot;format&quot; value=&quot;^.*COUNT(*).*$&quot;/&gt;
-  &lt;property name=&quot;message&quot;
-    value=&quot;Don't use COUNT(*), use COUNT(1) instead.&quot;/&gt;
+&lt;module name="RegexpSinglelineJava"&gt;
+  &lt;property name="id" value="count"/&gt;
+  &lt;property name="format" value="^.*COUNT(*).*$"/&gt;
+  &lt;property name="message"
+    value="Don't use COUNT(*), use COUNT(1) instead."/&gt;
 &lt;/module&gt;
 
-&lt;module name=&quot;RegexpSinglelineJava&quot;&gt;
-  &lt;property name=&quot;id&quot; value=&quot;join&quot;/&gt;
-  &lt;property name=&quot;format&quot; value=&quot;^.*JOIN\s.+\s(ON|USING)$&quot;/&gt;
-  &lt;property name=&quot;message&quot;
-    value=&quot;Don't use JOIN, use sub-select instead.&quot;/&gt;
+&lt;module name="RegexpSinglelineJava"&gt;
+  &lt;property name="id" value="join"/&gt;
+  &lt;property name="format" value="^.*JOIN\s.+\s(ON|USING)$"/&gt;
+  &lt;property name="message"
+    value="Don't use JOIN, use sub-select instead."/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -263,13 +263,13 @@ private int array1 [];
             regular expressions):
         </p>
         <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;property name=&quot;fileExtensions&quot; value=&quot;sql&quot;/&gt;
+&lt;module name="Checker"&gt;
+  &lt;property name="fileExtensions" value="sql"/&gt;
 
-  &lt;module name=&quot;SuppressWithPlainTextCommentFilter&quot;&gt;
-    &lt;property name=&quot;offCommentFormat&quot; value=&quot;CSOFF (\w+) \(\w+\)&quot;/&gt;
-    &lt;property name=&quot;onCommentFormat&quot; value=&quot;CSON (\w+)&quot;/&gt;
-    &lt;property name=&quot;idFormat&quot; value=&quot;$1&quot;/&gt;
+  &lt;module name="SuppressWithPlainTextCommentFilter"&gt;
+    &lt;property name="offCommentFormat" value="CSOFF (\w+) \(\w+\)"/&gt;
+    &lt;property name="onCommentFormat" value="CSON (\w+)"/&gt;
+    &lt;property name="idFormat" value="$1"/&gt;
   &lt;/module&gt;
 
 &lt;/module&gt;
@@ -290,12 +290,12 @@ EXPLAIN SELECT COUNT(*) FROM restaurants
             (Checker is configured to check only sql files).
         </p>
         <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;property name=&quot;fileExtensions&quot; value=&quot;sql&quot;/&gt;
+&lt;module name="Checker"&gt;
+  &lt;property name="fileExtensions" value="sql"/&gt;
 
-  &lt;module name=&quot;SuppressWithPlainTextCommentFilter&quot;&gt;
-    &lt;property name=&quot;offCommentFormat&quot; value=&quot;@cs-\: ([\w\|]+)&quot;/&gt;
-    &lt;property name=&quot;checkFormat&quot; value=&quot;$1&quot;/&gt;
+  &lt;module name="SuppressWithPlainTextCommentFilter"&gt;
+    &lt;property name="offCommentFormat" value="@cs-\: ([\w\|]+)"/&gt;
+    &lt;property name="checkFormat" value="$1"/&gt;
   &lt;/module&gt;
 
 &lt;/module&gt;
