@@ -54,28 +54,28 @@
           To configure the filter to exclude all 'module-info.java' files:
         </p>
         <source>
-&lt;module name=&quot;BeforeExecutionExclusionFileFilter&quot;&gt;
-  &lt;property name=&quot;fileNamePattern&quot; value=&quot;module\-info\.java$&quot;/&gt;
+&lt;module name="BeforeExecutionExclusionFileFilter"&gt;
+  &lt;property name="fileNamePattern" value="module\-info\.java$"/&gt;
 &lt;/module&gt;
         </source>
         <p>
-          To configure the filter to run only on required files for example that ends with &quot;Remote&quot;
-          or end with &quot;Client&quot; in names or named as &quot;Remote.java&quot; or &quot;Client.java&quot;
+          To configure the filter to run only on required files for example that ends with "Remote"
+          or end with "Client" in names or named as "Remote.java" or "Client.java"
           use <a href="https://www.regular-expressions.info/lookaround.html">negative lookahead</a>:
         </p>
         <source>
-&lt;module name=&quot;BeforeExecutionExclusionFileFilter&quot;&gt;
-  &lt;property name=&quot;fileNamePattern&quot;
-    value=&quot;^(?!.*(Remote\.java|Client\.java|[\\/]Remote\.java|[\\/]Client\.java)).*$&quot;/&gt;
+&lt;module name="BeforeExecutionExclusionFileFilter"&gt;
+  &lt;property name="fileNamePattern"
+    value="^(?!.*(Remote\.java|Client\.java|[\\/]Remote\.java|[\\/]Client\.java)).*$"/&gt;
 &lt;/module&gt;
         </source>
         <p>
           To configure the filter to exclude all Test folder files:
         </p>
         <source>
-&lt;module name=&quot;BeforeExecutionExclusionFileFilter&quot;&gt;
-  &lt;property name=&quot;fileNamePattern&quot;
-    value=&quot;.*[\\/]src[\\/]test[\\/].*$&quot;/&gt;
+&lt;module name="BeforeExecutionExclusionFileFilter"&gt;
+  &lt;property name="fileNamePattern"
+    value=".*[\\/]src[\\/]test[\\/].*$"/&gt;
 &lt;/module&gt;
         </source>
       </subsection>
