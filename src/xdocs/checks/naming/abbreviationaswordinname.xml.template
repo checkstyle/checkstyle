@@ -161,7 +161,7 @@
       <subsection name="Examples" id="Examples">
         <p>To configure the check:</p>
         <source>
-&lt;module name=&quot;AbbreviationAsWordInName&quot;/&gt;
+&lt;module name="AbbreviationAsWordInName"/&gt;
         </source>
         <p>Example:</p>
         <source>
@@ -191,9 +191,9 @@ public class MyClass extends SuperClass { // OK, camel case
         </p>
         <p>Configuration:</p>
         <source>
-&lt;module name=&quot;AbbreviationAsWordInName&quot;&gt;
-  &lt;property name=&quot;ignoreStatic&quot; value=&quot;false&quot;/&gt;
-  &lt;property name=&quot;ignoreOverriddenMethods&quot; value=&quot;false&quot;/&gt;
+&lt;module name="AbbreviationAsWordInName"&gt;
+  &lt;property name="ignoreStatic" value="false"/&gt;
+  &lt;property name="ignoreOverriddenMethods" value="false"/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>
@@ -226,11 +226,11 @@ public class MyClass extends SuperClass { // OK, camel case
         </p>
         <p>Configuration:</p>
         <source>
-&lt;module name=&quot;AbbreviationAsWordInName&quot;&gt;
-  &lt;property name=&quot;tokens&quot; value=&quot;VARIABLE_DEF,CLASS_DEF&quot;/&gt;
-  &lt;property name=&quot;ignoreStatic&quot; value=&quot;false&quot;/&gt;
-  &lt;property name=&quot;allowedAbbreviationLength&quot; value=&quot;0&quot;/&gt;
-  &lt;property name=&quot;allowedAbbreviations&quot; value=&quot;XML,URL,O&quot;/&gt;
+&lt;module name="AbbreviationAsWordInName"&gt;
+  &lt;property name="tokens" value="VARIABLE_DEF,CLASS_DEF"/&gt;
+  &lt;property name="ignoreStatic" value="false"/&gt;
+  &lt;property name="allowedAbbreviationLength" value="0"/&gt;
+  &lt;property name="allowedAbbreviations" value="XML,URL,O"/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>
@@ -258,21 +258,21 @@ public class MyClass { // OK
         </p>
         <p>Configuration:</p>
         <source>
-&lt;module name=&quot;AbbreviationAsWordInName&quot;&gt;
-  &lt;property name=&quot;tokens&quot; value=&quot;VARIABLE_DEF&quot;/&gt;
-  &lt;property name=&quot;ignoreStatic&quot; value=&quot;true&quot;/&gt;
-  &lt;property name=&quot;allowedAbbreviationLength&quot; value=&quot;1&quot;/&gt;
-  &lt;property name=&quot;allowedAbbreviations&quot; value=&quot;CSV&quot;/&gt;
+&lt;module name="AbbreviationAsWordInName"&gt;
+  &lt;property name="tokens" value="VARIABLE_DEF"/&gt;
+  &lt;property name="ignoreStatic" value="true"/&gt;
+  &lt;property name="allowedAbbreviationLength" value="1"/&gt;
+  &lt;property name="allowedAbbreviations" value="CSV"/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>
         <source>
 public class MyClass { // OK, ignore checking the class name
-  int firstNum; // OK, abbreviation &quot;N&quot; is of allowed length 1
+  int firstNum; // OK, abbreviation "N" is of allowed length 1
   int secondNUm; // OK
-  int secondMYNum; // violation, found &quot;MYN&quot; but only
+  int secondMYNum; // violation, found "MYN" but only
                    // 2 consecutive capital letters are allowed
-  int thirdNUM; // violation, found &quot;NUM&quot; but it is allowed
+  int thirdNUM; // violation, found "NUM" but it is allowed
                 // only 2 consecutive capital letters
   static int fourthNUM; // OK, variables with static modifier
                         // would be ignored
@@ -288,12 +288,12 @@ public class MyClass { // OK, ignore checking the class name
         </p>
         <p>Configuration:</p>
         <source>
-&lt;module name=&quot;AbbreviationAsWordInName&quot;&gt;
-    &lt;property name=&quot;tokens&quot; value=&quot;VARIABLE_DEF&quot;/&gt;
-    &lt;property name=&quot;ignoreFinal&quot; value=&quot;false&quot;/&gt;
-    &lt;property name=&quot;ignoreStatic&quot; value=&quot;false&quot;/&gt;
-    &lt;property name=&quot;ignoreStaticFinal&quot; value=&quot;true&quot;/&gt;
-    &lt;property name=&quot;allowedAbbreviationLength&quot; value=&quot;0&quot;/&gt;
+&lt;module name="AbbreviationAsWordInName"&gt;
+    &lt;property name="tokens" value="VARIABLE_DEF"/&gt;
+    &lt;property name="ignoreFinal" value="false"/&gt;
+    &lt;property name="ignoreStatic" value="false"/&gt;
+    &lt;property name="ignoreStaticFinal" value="true"/&gt;
+    &lt;property name="allowedAbbreviationLength" value="0"/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>
@@ -311,12 +311,12 @@ public class MyClass {
         </p>
         <p>Configuration:</p>
         <source>
-&lt;module name=&quot;AbbreviationAsWordInName&quot;&gt;
-    &lt;property name=&quot;tokens&quot; value=&quot;VARIABLE_DEF&quot;/&gt;
-    &lt;property name=&quot;ignoreFinal&quot; value=&quot;false&quot;/&gt;
-    &lt;property name=&quot;ignoreStatic&quot; value=&quot;true&quot;/&gt;
-    &lt;property name=&quot;ignoreStaticFinal&quot; value=&quot;false&quot;/&gt;
-    &lt;property name=&quot;allowedAbbreviationLength&quot; value=&quot;0&quot;/&gt;
+&lt;module name="AbbreviationAsWordInName"&gt;
+    &lt;property name="tokens" value="VARIABLE_DEF"/&gt;
+    &lt;property name="ignoreFinal" value="false"/&gt;
+    &lt;property name="ignoreStatic" value="true"/&gt;
+    &lt;property name="ignoreStaticFinal" value="false"/&gt;
+    &lt;property name="allowedAbbreviationLength" value="0"/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>
@@ -335,9 +335,9 @@ public class MyClass {
         </p>
         <p>Configuration:</p>
         <source>
-&lt;module name=&quot;AbbreviationAsWordInName&quot;&gt;
-    &lt;property name=&quot;allowedAbbreviations&quot; value=&quot;ALLOWED&quot;/&gt;
-    &lt;property name=&quot;ignoreStaticFinal&quot; value=&quot;false&quot;/&gt;
+&lt;module name="AbbreviationAsWordInName"&gt;
+    &lt;property name="allowedAbbreviations" value="ALLOWED"/&gt;
+    &lt;property name="ignoreStaticFinal" value="false"/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>

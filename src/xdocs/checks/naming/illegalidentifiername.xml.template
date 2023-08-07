@@ -11,13 +11,13 @@
       <subsection name="Description" id="Description">
         <p>
           Checks identifiers with a pattern for a set of illegal names, such as those
-          that are restricted or contextual keywords. Examples include &quot;yield&quot;, &quot;record&quot;,
-          &quot;_&quot;, and &quot;var&quot;. Please read more at
+          that are restricted or contextual keywords. Examples include "yield", "record",
+          "_", and "var". Please read more at
           <a href="https://docs.oracle.com/javase/specs/jls/se14/html/jls-3.html#jls-3.9">
           Java Language Specification
           </a>to get to know more about restricted keywords. Since this check uses a
           pattern to specify valid identifiers, users can also prohibit the usage
-          of certain symbols, such as &quot;$&quot;, or any non-ascii character.
+          of certain symbols, such as "$", or any non-ascii character.
         </p>
       </subsection>
 
@@ -38,7 +38,7 @@
                 <a href="../../property_types.html#Pattern">Pattern</a>
               </td>
               <td>
-                <code>&quot;(?i)^(?!(record|yield|var|permits|sealed|_)$).+$&quot;</code>
+                <code>"(?i)^(?!(record|yield|var|permits|sealed|_)$).+$"</code>
               </td>
               <td>8.36</td>
             </tr>
@@ -166,21 +166,21 @@
         </p>
         <p>Configuration:</p>
         <source>
-&lt;module name=&quot;IllegalIdentifierName&quot;/&gt;
+&lt;module name="IllegalIdentifierName"/&gt;
         </source>
         <p>Example:</p>
         <source>
 public class TestClass {
     public static void main(String... args) {
-        var var = 4; // violation, &quot;var&quot; should not be used as an identifier.
-        int record = 15; // violation, &quot;record&quot; should not be used as an identifier.
-        String yield = &quot;yield&quot;; // violation, &quot;yield&quot; should not be used as an identifier.
+        var var = 4; // violation, "var" should not be used as an identifier.
+        int record = 15; // violation, "record" should not be used as an identifier.
+        String yield = "yield"; // violation, "yield" should not be used as an identifier.
 
-        record Record // violation, &quot;Record&quot; should not be used as an identifier.
-        (Record record) { // violation, &quot;record&quot; should not be used as an identifier.
+        record Record // violation, "Record" should not be used as an identifier.
+        (Record record) { // violation, "record" should not be used as an identifier.
         }
 
-        String yieldString = &quot;yieldString&quot;; // ok, part of another word
+        String yieldString = "yieldString"; // ok, part of another word
         record MyRecord(){} // ok, part of another word
         var variable = 2; // ok, part of another word
         String _; // violation, underscore should not be used as an identifier.
@@ -188,14 +188,14 @@ public class TestClass {
 }
         </source>
         <p>
-          To configure the check to include &quot;open&quot; and &quot;transitive&quot; in the set of
+          To configure the check to include "open" and "transitive" in the set of
           illegal identifiers:
         </p>
         <p>Configuration:</p>
         <source>
-&lt;module name=&quot;IllegalIdentifierName&quot;&gt;
-    &lt;property name=&quot;format&quot; value=&quot;(?i)^(?!(record|yield|var
-                    |permits|sealed|open|transitive|_)$).+$&quot;/&gt;
+&lt;module name="IllegalIdentifierName"&gt;
+    &lt;property name="format" value="(?i)^(?!(record|yield|var
+                    |permits|sealed|open|transitive|_)$).+$"/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>
@@ -203,12 +203,12 @@ public class TestClass {
 public class TestClass {
     public static void main(String... args) {
 
-    int open = 4; // violation, &quot;open&quot; should not be used as an identifier
-    Object transitive = &quot;transitive&quot;; // violation, &quot;transitive&quot; should not
+    int open = 4; // violation, "open" should not be used as an identifier
+    Object transitive = "transitive"; // violation, "transitive" should not
                                       // be used as an identifier
 
-    int openInt = 4; // ok, &quot;open&quot; is part of another word
-    Object transitiveObject = &quot;transitiveObject&quot;; // ok, &quot;transitive&quot; is part of another word
+    int openInt = 4; // ok, "open" is part of another word
+    Object transitiveObject = "transitiveObject"; // ok, "transitive" is part of another word
     }
 }
         </source>

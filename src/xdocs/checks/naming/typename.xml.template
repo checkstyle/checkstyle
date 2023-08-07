@@ -3,15 +3,14 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
   <head>
-    <title>StaticVariableName</title>
+    <title>TypeName</title>
   </head>
   <body>
-    <section name="StaticVariableName">
+    <section name="TypeName">
       <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="Description">
         <p>
-          Checks that <code>static</code>, non-<code>final</code> variable names
-          conform to a specified pattern.
+          Checks that type names conform to a specified pattern.
         </p>
       </subsection>
 
@@ -29,7 +28,7 @@
               <td>format</td>
               <td>Specifies valid identifiers.</td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
-              <td><code>&quot;^[a-z][a-zA-Z0-9]*$&quot;</code></td>
+              <td><code>"^[A-Z][a-zA-Z0-9]*$"</code></td>
               <td>3.0</td>
             </tr>
             <tr>
@@ -62,6 +61,38 @@
               <td><code>true</code></td>
               <td>5.0</td>
             </tr>
+            <tr>
+              <td>tokens</td>
+              <td>tokens to check</td>
+              <td>
+                subset of tokens
+                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
+                  CLASS_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
+                  INTERFACE_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
+                  ENUM_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
+                  ANNOTATION_DEF</a>
+                ,<a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
+                  RECORD_DEF</a>
+                  .
+              </td>
+              <td>
+                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
+                  CLASS_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
+                  INTERFACE_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
+                  ENUM_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
+                  ANNOTATION_DEF</a>
+                ,<a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
+                  RECORD_DEF</a>
+                  .
+              </td>
+              <td>3.0</td>
+            </tr>
           </table>
         </div>
       </subsection>
@@ -70,68 +101,72 @@
         <p>
           To configure the check:
         </p>
+
         <source>
-&lt;module name=&quot;StaticVariableName&quot;/&gt;
+&lt;module name="TypeName"/&gt;
         </source>
         <p>Code Example:</p>
         <source>
-class MyClass {
-  public static int goodStatic = 2; // OK
-  private static int BadStatic = 2; // violation, name 'BadStatic'
-                                    // must match pattern '^[a-z][a-zA-Z0-9]*$'
-}
-        </source>
-        <p>
-          An example of how to suppress the check to public and protected types is:
-        </p>
-        <source>
-&lt;module name=&quot;StaticVariableName&quot;&gt;
-  &lt;property name=&quot;applyToPublic&quot; value=&quot;false&quot;/&gt;
-  &lt;property name=&quot;applyToProtected&quot; value=&quot;false&quot;/&gt;
-&lt;/module&gt;
-        </source>
-        <p>Code Example:</p>
-        <source>
-class MyClass {
-  public static int GoodStatic1 = 2; // OK
-  protected static int GoodStatic2 = 2; //OK
-  private static int goodStatic = 2 // OK
-  private static int BadStatic = 2; // violation, name 'BadStatic'
-                                    // must match pattern '^[a-z][a-zA-Z0-9]*$'
-}
+public interface FirstName {} // OK
+protected class SecondName {} // OK
+enum Third_Name {} // violation, name 'Third_Name' must match pattern '^[A-Z][a-zA-Z0-9]*$'
+private class FourthName_ {} // violation, name 'FourthName_'
+                            // must match pattern '^[A-Z][a-zA-Z0-9]*$'
         </source>
         <p>
           An example of how to configure the check for names that begin with a lower case letter,
           followed by letters, digits, and underscores. Also, suppress the check from being
-          applied to private and package-private types:
+          applied to protected and private type:
         </p>
         <source>
-&lt;module name=&quot;StaticVariableName&quot;&gt;
-  &lt;property name=&quot;format&quot; value=&quot;^[a-z](_?[a-zA-Z0-9]+)*$&quot;/&gt;
-  &lt;property name=&quot;applyToPrivate&quot; value=&quot;false&quot;/&gt;
-  &lt;property name=&quot;applyToPackage&quot; value=&quot;false&quot;/&gt;
+&lt;module name="TypeName"&gt;
+  &lt;property name="format" value="^[a-z](_?[a-zA-Z0-9]+)*$"/&gt;
+  &lt;property name="applyToProtected" value="false"/&gt;
+  &lt;property name="applyToPrivate" value="false"/&gt;
 &lt;/module&gt;
         </source>
         <p>Code Example:</p>
         <source>
-class MyClass {
-  public static int good_static = 2; // OK
-  public static int Bad_Static = 2; // violation, name 'Bad_Static'
-                                    // must match pattern '^[a-z](_?[a-zA-Z0-9]+)*$'
-  private static int Good_Static1 = 2; // OK
-  static int Good_Static2 = 2; // OK
-}
+public interface firstName {} // OK
+public class SecondName {} // violation, name 'SecondName'
+                          // must match pattern '^[a-z](_?[a-zA-Z0-9]+)*$'
+protected class ThirdName {} // OK
+private class FourthName {} // OK
         </source>
+        <p>
+          The following configuration element ensures that
+          interface names begin with <code>"I_"</code>, followed by
+          letters and digits:
+        </p>
+        <source>
+&lt;module name="TypeName"&gt;
+  &lt;property name="format"
+    value="^I_[a-zA-Z0-9]*$"/&gt;
+  &lt;property name="tokens"
+    value="INTERFACE_DEF"/&gt;
+&lt;/module&gt;
+        </source>
+        <p>Code Example:</p>
+        <source>
+public interface I_firstName {} // OK
+interface SecondName {} // violation, name 'SecondName'
+                       // must match pattern '^I_[a-zA-Z0-9]*$'
+        </source>
+
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+StaticVariableName">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+TypeName">
+            Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+TypeName">
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+StaticVariableName">
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+TypeName">
             Checkstyle Style</a>
           </li>
         </ul>
