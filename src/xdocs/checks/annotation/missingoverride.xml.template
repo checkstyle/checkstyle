@@ -69,7 +69,7 @@
       <subsection name="Examples" id="Examples">
         <p> To configure the check:</p>
         <source>
-&lt;module name=&quot;MissingOverride&quot;/&gt;
+&lt;module name="MissingOverride"/&gt;
         </source>
         <p>Example:</p>
         <source>
@@ -102,9 +102,9 @@ class Test extends SuperClass {
           mode:
         </p>
         <source>
-&lt;module name=&quot;MissingOverride&quot;&gt;
-  &lt;property name=&quot;javaFiveCompatibility&quot;
-      value=&quot;true&quot;/&gt;
+&lt;module name="MissingOverride"&gt;
+  &lt;property name="javaFiveCompatibility"
+      value="true"/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>

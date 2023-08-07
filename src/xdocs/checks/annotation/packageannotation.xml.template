@@ -24,13 +24,13 @@
         </p>
         <p>
           See <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-7.html#jls-7.4.1">
-          Java Language Specification, &#xa7;7.4.1</a> for more info.
+          Java Language Specification, §7.4.1</a> for more info.
         </p>
       </subsection>
 
       <subsection name="Examples" id="Examples">
         <p> To configure the check:</p>
-        <source> &lt;module name=&quot;PackageAnnotation&quot;/&gt; </source>
+        <source> &lt;module name="PackageAnnotation"/&gt; </source>
         <p>Example of validating MyClass.java:</p>
         <source>
 @Deprecated
