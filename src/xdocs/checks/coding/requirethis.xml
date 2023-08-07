@@ -11,9 +11,9 @@
       <subsection name="Description" id="Description">
         <p>
           Checks that references to instance variables and methods of the present
-          object are explicitly of the form "this.varName" or
-          "this.methodName(args)" and that those references don't
-          rely on the default behavior when "this." is absent.
+          object are explicitly of the form &quot;this.varName&quot; or
+          &quot;this.methodName(args)&quot; and that those references don't
+          rely on the default behavior when &quot;this.&quot; is absent.
         </p>
 
         <p>
@@ -27,7 +27,7 @@
         <ol>
           <li>
             The same notation/habit for C++ and Java (C++ have global methods, so having
-            "this." do make sense in it to distinguish call of method of class
+            &quot;this.&quot; do make sense in it to distinguish call of method of class
             instead of global).
           </li>
           <li>
@@ -86,7 +86,7 @@
           To configure the default check:
         </p>
         <source>
-&lt;module name="RequireThis"/&gt;
+&lt;module name=&quot;RequireThis&quot;/&gt;
         </source>
         <p>Example:</p>
         <source>
@@ -104,7 +104,7 @@ public class Test {
 
   public void foo(int c) {
     // overlapping by method argument
-    c = c;            // violation, reference to instance variable "c" requires "this"
+    c = c;            // violation, reference to instance variable &quot;c&quot; requires &quot;this&quot;
   }
 }
         </source>
@@ -112,8 +112,8 @@ public class Test {
           To configure the check for fields only:
         </p>
         <source>
-&lt;module name="RequireThis"&gt;
-  &lt;property name="checkMethods" value="false"/&gt;
+&lt;module name=&quot;RequireThis&quot;&gt;
+  &lt;property name=&quot;checkMethods&quot; value=&quot;false&quot;/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>
@@ -132,7 +132,7 @@ public class Test {
 
   public void foo(int c) {
     // overlapping by method argument
-    c = c;            // violation, reference to instance variable "c" requires "this"
+    c = c;            // violation, reference to instance variable &quot;c&quot; requires &quot;this&quot;
   }
 }
         </source>
@@ -140,8 +140,8 @@ public class Test {
             To configure the check for methods only:
         </p>
         <source>
-&lt;module name="RequireThis"&gt;
-  &lt;property name="checkFields" value="false"/&gt;
+&lt;module name=&quot;RequireThis&quot;&gt;
+  &lt;property name=&quot;checkFields&quot; value=&quot;false&quot;/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>
@@ -172,8 +172,8 @@ public class Test {
             To configure the check to validate for non-overlapping fields and methods:
         </p>
         <source>
-&lt;module name="RequireThis"&gt;
-  &lt;property name="validateOnlyOverlapping" value="false"/&gt;
+&lt;module name=&quot;RequireThis&quot;&gt;
+  &lt;property name=&quot;validateOnlyOverlapping&quot; value=&quot;false&quot;/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>
@@ -186,13 +186,13 @@ public class Test {
   public Test(int a) {
     // overlapping by constructor argument
     this.a = a;       // OK, no validation for fields
-    b = 0;            // violation, reference to instance variable "b" requires "this"
-    foo(5);           // violation, method call "foo(5)" requires "this"
+    b = 0;            // violation, reference to instance variable &quot;b&quot; requires &quot;this&quot;
+    foo(5);           // violation, method call &quot;foo(5)&quot; requires &quot;this&quot;
   }
 
   public void foo(int c) {
     // overlapping by method argument
-    c = c;            // violation, reference to instance variable "c" requires "this"
+    c = c;            // violation, reference to instance variable &quot;c&quot; requires &quot;this&quot;
   }
 }
         </source>
@@ -227,7 +227,7 @@ public class D {
   private String prefix;
 
   public String modifyPrefix(String prefix) {
-    prefix = "^" + prefix + "$";  // no violation, because method parameter is returned
+    prefix = &quot;^&quot; + prefix + &quot;$&quot;;  // no violation, because method parameter is returned
     return prefix;
   }
 }

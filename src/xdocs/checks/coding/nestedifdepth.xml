@@ -38,7 +38,7 @@
           To configure the check:
         </p>
         <source>
-&lt;module name="NestedIfDepth"/&gt;
+&lt;module name=&quot;NestedIfDepth&quot;/&gt;
         </source>
         <p>Valid code example:</p>
         <source>
@@ -60,8 +60,8 @@ if (true) {
           To configure the check to allow nesting depth 3:
         </p>
         <source>
-&lt;module name="NestedIfDepth"&gt;
-  &lt;property name="max" value="3"/&gt;
+&lt;module name=&quot;NestedIfDepth&quot;&gt;
+  &lt;property name=&quot;max&quot; value=&quot;3&quot;/&gt;
 &lt;/module&gt;
         </source>
         <p>Valid code example:</p>

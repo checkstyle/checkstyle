@@ -18,7 +18,7 @@
             Rationale: Finalizers are unpredictable, often dangerous, and generally unnecessary.
             Their use can cause erratic behavior, poor performance, and portability problems.
             For more information for the finalize method and its issues, see Effective Java:
-            Programming Language Guide Third Edition by Joshua Bloch, §8.
+            Programming Language Guide Third Edition by Joshua Bloch, &#xa7;8.
         </p>
       </subsection>
 
@@ -27,7 +27,7 @@
           To configure the check:
         </p>
         <source>
-&lt;module name="NoFinalizer"/&gt;
+&lt;module name=&quot;NoFinalizer&quot;/&gt;
         </source>
         <p>Example:</p>
         <source>
@@ -35,7 +35,7 @@ public class Test {
 
     protected void finalize() throws Throwable { // violation
         try {
-           System.out.println("overriding finalize()");
+           System.out.println(&quot;overriding finalize()&quot;);
         } catch (Throwable t) {
            throw t;
         } finally {

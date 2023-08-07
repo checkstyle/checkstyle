@@ -26,8 +26,8 @@ int[] foo = new int[] {
         </p>
         <source>
 String[] foo = new String[] {
-  "FOO",
-  "BAR", //violation
+  &quot;FOO&quot;,
+  &quot;BAR&quot;, //violation
 }
         </source>
       </subsection>
@@ -36,22 +36,22 @@ String[] foo = new String[] {
           To configure the check:
         </p>
         <source>
-&lt;module name="NoArrayTrailingComma"/&gt;
+&lt;module name=&quot;NoArrayTrailingComma&quot;/&gt;
         </source>
         <p>
           Which results in the following violations:
         </p>
         <source>
 String[] foo1 = {
-  "FOO", // OK
-  "BAR", // violation
+  &quot;FOO&quot;, // OK
+  &quot;BAR&quot;, // violation
 };
-String[] foo2 = { "FOO", "BAR", }; // violation
+String[] foo2 = { &quot;FOO&quot;, &quot;BAR&quot;, }; // violation
 String[] foo3 = {
-  "FOO", // OK
-  "BAR" // OK
+  &quot;FOO&quot;, // OK
+  &quot;BAR&quot; // OK
 };
-String[] foo4 = { "FOO", "BAR" }; // OK
+String[] foo4 = { &quot;FOO&quot;, &quot;BAR&quot; }; // OK
         </source>
       </subsection>
       <subsection name="Example of Usage" id="Example_of_Usage">

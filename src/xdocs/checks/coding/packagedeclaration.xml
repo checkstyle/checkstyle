@@ -51,7 +51,7 @@
           To configure the check:
         </p>
         <source>
-&lt;module name="PackageDeclaration"/&gt;
+&lt;module name=&quot;PackageDeclaration&quot;/&gt;
         </source>
         <p>
           Let us consider the class AnnotationLocationCheck which is in the directory
@@ -69,8 +69,8 @@ public class AnnotationLocationCheck extends AbstractCheck {
           /com/puppycrawl/tools/checkstyle/checks/annotations/ along with the following setup,
         </p>
         <source>
-&lt;module name="PackageDeclaration"&gt;
-&lt;property name="matchDirectoryStructure" value="false"/&gt;
+&lt;module name=&quot;PackageDeclaration&quot;&gt;
+&lt;property name=&quot;matchDirectoryStructure&quot; value=&quot;false&quot;/&gt;
 &lt;/module&gt;
         </source>
         <source>
