@@ -45,20 +45,20 @@
         </p>
         <source>
 public interface AddressFactory {
-  // check enforces code contains &quot;public static final&quot;
-  public static final String UNKNOWN = &quot;Unknown&quot;;
+  // check enforces code contains "public static final"
+  public static final String UNKNOWN = "Unknown";
 
-  String OTHER = &quot;Other&quot;;  // violation
+  String OTHER = "Other";  // violation
 
-  // check enforces code contains &quot;public&quot; or &quot;private&quot;
+  // check enforces code contains "public" or "private"
   public static AddressFactory instance();
 
-  // check enforces code contains &quot;public abstract&quot;
+  // check enforces code contains "public abstract"
   public abstract Address createAddress(String addressLine, String city);
 
   List&lt;Address&gt; findAddresses(String city);  // violation
 
-  // check enforces default methods are explicitly declared &quot;public&quot;
+  // check enforces default methods are explicitly declared "public"
   public default Address createAddress(String city) {
     return createAddress(UNKNOWN, city);
   }
@@ -167,7 +167,7 @@ public interface AddressFactory {
           Configuration:
         </p>
         <source>
-&lt;module name=&quot;InterfaceMemberImpliedModifier&quot;/&gt;
+&lt;module name="InterfaceMemberImpliedModifier"/&gt;
         </source>
         <p>
           Code:
@@ -175,9 +175,9 @@ public interface AddressFactory {
         <source>
 public interface AddressFactory {
 
-  public static final String UNKNOWN = &quot;Unknown&quot;;  // valid
+  public static final String UNKNOWN = "Unknown";  // valid
 
-  String OTHER = &quot;Other&quot;;  // violation
+  String OTHER = "Other";  // violation
 
   public static AddressFactory instance();  // valid
 
@@ -199,9 +199,9 @@ public interface AddressFactory {
           Configuration:
         </p>
         <source>
-&lt;module name=&quot;InterfaceMemberImpliedModifier&quot;&gt;
-  &lt;property name=&quot;violateImpliedPublicNested&quot; value=&quot;false&quot;/&gt;
-  &lt;property name=&quot;violateImpliedStaticNested&quot; value=&quot;false&quot;/&gt;
+&lt;module name="InterfaceMemberImpliedModifier"&gt;
+  &lt;property name="violateImpliedPublicNested" value="false"/&gt;
+  &lt;property name="violateImpliedStaticNested" value="false"/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -210,7 +210,7 @@ public interface AddressFactory {
         <source>
 public interface RoadFeature {
 
-  String STOP = &quot;Stop&quot;;  // violation
+  String STOP = "Stop";  // violation
 
   enum Lights {  // valid because of configured properties
 
