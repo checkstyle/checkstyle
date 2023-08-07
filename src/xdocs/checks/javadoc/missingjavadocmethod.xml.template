@@ -142,7 +142,7 @@ public boolean isSomething()
           To configure the default check:
         </p>
         <source>
-&lt;module name=&quot;MissingJavadocMethod&quot;/&gt;
+&lt;module name="MissingJavadocMethod"/&gt;
         </source>
         <p>
           Example:
@@ -158,7 +158,7 @@ public class Test {
 
   @Override
   public String toString() { // OK
-    return &quot;Some string&quot;;
+    return "Some string";
   }
 
   private void test1() {} // OK
@@ -172,8 +172,8 @@ public class Test {
           scope:
         </p>
         <source>
-&lt;module name=&quot;MissingJavadocMethod&quot;&gt;
-  &lt;property name=&quot;scope&quot; value=&quot;private&quot;/&gt;
+&lt;module name="MissingJavadocMethod"&gt;
+  &lt;property name="scope" value="private"/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>
@@ -188,9 +188,9 @@ public class Test {
           but not in <code>protected</code> scope:
         </p>
         <source>
-&lt;module name=&quot;MissingJavadocMethod&quot;&gt;
-  &lt;property name=&quot;scope&quot; value=&quot;private&quot;/&gt;
-  &lt;property name=&quot;excludeScope&quot; value=&quot;protected&quot;/&gt;
+&lt;module name="MissingJavadocMethod"&gt;
+  &lt;property name="scope" value="private"/&gt;
+  &lt;property name="excludeScope" value="protected"/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>
@@ -209,8 +209,8 @@ public class Test {
           To configure the check for ignoring methods named <code>foo(),foo1(),foo2()</code>, etc.:
         </p>
         <source>
-&lt;module name=&quot;MissingJavadocMethod&quot;&gt;
-  &lt;property name=&quot;ignoreMethodNamesRegex&quot; value=&quot;^foo.*$&quot;/&gt;
+&lt;module name="MissingJavadocMethod"&gt;
+  &lt;property name="ignoreMethodNamesRegex" value="^foo.*$"/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>
@@ -226,8 +226,8 @@ public class Test {
           To configure the check for ignoring missing javadoc for accessor methods:
         </p>
         <source>
-&lt;module name=&quot;MissingJavadocMethod&quot;&gt;
-  &lt;property name=&quot;allowMissingPropertyJavadoc&quot; value=&quot;true&quot;/&gt;
+&lt;module name="MissingJavadocMethod"&gt;
+  &lt;property name="allowMissingPropertyJavadoc" value="true"/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>
@@ -245,8 +245,8 @@ public class Test {
           To configure the check with annotations that allow missed documentation:
         </p>
         <source>
-&lt;module name=&quot;MissingJavadocMethod&quot;&gt;
-  &lt;property name=&quot;allowedAnnotations&quot; value=&quot;Override,Deprecated&quot;/&gt;
+&lt;module name="MissingJavadocMethod"&gt;
+  &lt;property name="allowedAnnotations" value="Override,Deprecated"/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>

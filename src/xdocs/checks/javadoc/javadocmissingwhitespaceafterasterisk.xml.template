@@ -47,7 +47,7 @@
           To configure the default check:
         </p>
         <source>
-&lt;module name=&quot;JavadocMissingWhitespaceAfterAsterisk&quot;/&gt;
+&lt;module name="JavadocMissingWhitespaceAfterAsterisk"/&gt;
         </source>
         <p>
           Code Example:

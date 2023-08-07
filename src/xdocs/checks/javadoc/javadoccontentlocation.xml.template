@@ -64,7 +64,7 @@ public void method();
   */
         </source>
         <p>
-          The documentation generated will be just &quot;Some text.&quot; without any asterisks.
+          The documentation generated will be just "Some text." without any asterisks.
           Since these asterisks will not appear in the generated documentation,
           they should not be considered as the beginning of the Javadoc content.
           In such cases, the check assumes that the Javadoc content begins on the second line.
@@ -101,7 +101,7 @@ public void method();
           second line:
         </p>
         <source>
-&lt;module name=&quot;JavadocContentLocationCheck&quot;/&gt;
+&lt;module name="JavadocContentLocationCheck"/&gt;
         </source>
         <p>
           This setting produces a violation for each multi-line comment
@@ -121,8 +121,8 @@ public void method();
           To ensure that Javadoc content starts from the first line:
         </p>
         <source>
-&lt;module name=&quot;JavadocContentLocationCheck&quot;&gt;
-  &lt;property name=&quot;location&quot; value=&quot;first_line&quot;/&gt;
+&lt;module name="JavadocContentLocationCheck"&gt;
+  &lt;property name="location" value="first_line"/&gt;
 &lt;/module&gt;
         </source>
         <p>

@@ -56,15 +56,15 @@
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;JavadocPackage&quot;/&gt;
+&lt;module name="JavadocPackage"/&gt;
         </source>
         <p>
           To configure the check to use legacy <code>package.html</code> file
           when <code>package-info.java</code> file is absent:
         </p>
         <source>
-&lt;module name=&quot;JavadocPackage&quot;&gt;
-  &lt;property name=&quot;allowLegacy&quot; value=&quot;true&quot;/&gt;
+&lt;module name="JavadocPackage"&gt;
+  &lt;property name="allowLegacy" value="true"/&gt;
 &lt;/module&gt;
         </source>
       </subsection>

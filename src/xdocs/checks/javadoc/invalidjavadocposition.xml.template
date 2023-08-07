@@ -26,14 +26,14 @@
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;InvalidJavadocPosition&quot;/&gt;
+&lt;module name="InvalidJavadocPosition"/&gt;
         </source>
         <p>
           The following code produces a violation because Javadocs should be before all
           annotations of the Javadoc's target:
         </p>
         <source>
-@SuppressWarnings(&quot;serial&quot;)
+@SuppressWarnings("serial")
 /**
  * This comment looks like javadoc but it at an invalid location.
  * Therefore, the text will not get into TestClass.html and the check will produce a violation.
