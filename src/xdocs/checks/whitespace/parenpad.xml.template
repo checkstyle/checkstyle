@@ -155,7 +155,7 @@
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;ParenPad&quot;/&gt;
+&lt;module name="ParenPad"/&gt;
         </source>
         <p>
           Example:
@@ -192,10 +192,10 @@ class Foo {
           constructor, method, and super constructor calls:
         </p>
         <source>
-&lt;module name=&quot;ParenPad&quot;&gt;
-  &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_FOR, LITERAL_CATCH,
-    SUPER_CTOR_CALL&quot;/&gt;
-  &lt;property name=&quot;option&quot; value=&quot;space&quot;/&gt;
+&lt;module name="ParenPad"&gt;
+  &lt;property name="tokens" value="LITERAL_FOR, LITERAL_CATCH,
+    SUPER_CTOR_CALL"/&gt;
+  &lt;property name="option" value="space"/&gt;
 &lt;/module&gt;
         </source>
         <p>

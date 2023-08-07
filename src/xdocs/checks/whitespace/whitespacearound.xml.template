@@ -38,7 +38,7 @@ public @interface Beta {} // empty annotation type
         <div class="wrapper">
           <pre><code>
 new Properties() {{
-    setProperty(&quot;key&quot;, &quot;value&quot;);
+    setProperty("key", "value");
 }};
           </code></pre>
         </div>
@@ -357,7 +357,7 @@ try {
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;WhitespaceAround&quot;/&gt;
+&lt;module name="WhitespaceAround"/&gt;
         </source>
         <p>Example:</p>
         <source>
@@ -391,11 +391,11 @@ class Test {
           To configure the check for whitespace only around assignment operators:
         </p>
         <source>
-&lt;module name=&quot;WhitespaceAround&quot;&gt;
-  &lt;property name=&quot;tokens&quot;
-    value=&quot;ASSIGN,DIV_ASSIGN,PLUS_ASSIGN,MINUS_ASSIGN,STAR_ASSIGN,
+&lt;module name="WhitespaceAround"&gt;
+  &lt;property name="tokens"
+    value="ASSIGN,DIV_ASSIGN,PLUS_ASSIGN,MINUS_ASSIGN,STAR_ASSIGN,
            MOD_ASSIGN,SR_ASSIGN,BSR_ASSIGN,SL_ASSIGN,BXOR_ASSIGN,
-           BOR_ASSIGN,BAND_ASSIGN&quot;/&gt;
+           BOR_ASSIGN,BAND_ASSIGN"/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>
@@ -435,8 +435,8 @@ class Test {
           To configure the check for whitespace only around curly braces:
         </p>
         <source>
-&lt;module name=&quot;WhitespaceAround&quot;&gt;
-  &lt;property name=&quot;tokens&quot; value=&quot;LCURLY,RCURLY&quot;/&gt;
+&lt;module name="WhitespaceAround"&gt;
+  &lt;property name="tokens" value="LCURLY,RCURLY"/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>
@@ -450,8 +450,8 @@ class Test {
           To configure the check to allow empty method bodies:
         </p>
         <source>
-&lt;module name=&quot;WhitespaceAround&quot;&gt;
-  &lt;property name=&quot;allowEmptyMethods&quot; value=&quot;true&quot;/&gt;
+&lt;module name="WhitespaceAround"&gt;
+  &lt;property name="allowEmptyMethods" value="true"/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>
@@ -465,8 +465,8 @@ class Test {
           To configure the check to allow empty constructor bodies:
         </p>
         <source>
-&lt;module name=&quot;WhitespaceAround&quot;&gt;
-  &lt;property name=&quot;allowEmptyConstructors&quot; value=&quot;true&quot;/&gt;
+&lt;module name="WhitespaceAround"&gt;
+  &lt;property name="allowEmptyConstructors" value="true"/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>
@@ -480,8 +480,8 @@ class Test {
           To configure the check to allow empty type bodies:
         </p>
         <source>
-&lt;module name=&quot;WhitespaceAround&quot;&gt;
-  &lt;property name=&quot;allowEmptyTypes&quot; value=&quot;true&quot;/&gt;
+&lt;module name="WhitespaceAround"&gt;
+  &lt;property name="allowEmptyTypes" value="true"/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>
@@ -496,8 +496,8 @@ class anotherTest {
           To configure the check to allow empty loop bodies:
         </p>
         <source>
-&lt;module name=&quot;WhitespaceAround&quot;&gt;
-  &lt;property name=&quot;allowEmptyLoops&quot; value=&quot;true&quot;/&gt;
+&lt;module name="WhitespaceAround"&gt;
+  &lt;property name="allowEmptyLoops" value="true"/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>
@@ -514,8 +514,8 @@ class Test {
           To configure the check to allow empty lambda bodies:
         </p>
         <source>
-&lt;module name=&quot;WhitespaceAround&quot;&gt;
-  &lt;property name=&quot;allowEmptyLambdas&quot; value=&quot;true&quot;/&gt;
+&lt;module name="WhitespaceAround"&gt;
+  &lt;property name="allowEmptyLambdas" value="true"/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>
@@ -531,8 +531,8 @@ class Test {
           To configure the check to allow empty catch bodies:
         </p>
         <source>
-&lt;module name=&quot;WhitespaceAround&quot;&gt;
-  &lt;property name=&quot;allowEmptyCatches&quot; value=&quot;true&quot;/&gt;
+&lt;module name="WhitespaceAround"&gt;
+  &lt;property name="allowEmptyCatches" value="true"/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>
@@ -554,8 +554,8 @@ class Test {
           To configure the check to ignore the colon:
         </p>
         <source>
-&lt;module name=&quot;WhitespaceAround&quot;&gt;
-  &lt;property name=&quot;ignoreEnhancedForColon&quot; value=&quot;false&quot; /&gt;
+&lt;module name="WhitespaceAround"&gt;
+  &lt;property name="ignoreEnhancedForColon" value="false" /&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>
