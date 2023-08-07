@@ -48,7 +48,7 @@ for (
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;EmptyForInitializerPad&quot;/&gt;
+&lt;module name="EmptyForInitializerPad"/&gt;
         </source>
         <p>
           Example:
@@ -67,8 +67,8 @@ for (
           iterator:
         </p>
         <source>
-&lt;module name=&quot;EmptyForInitializerPad&quot;&gt;
-  &lt;property name=&quot;option&quot; value=&quot;space&quot;/&gt;
+&lt;module name="EmptyForInitializerPad"&gt;
+  &lt;property name="option" value="space"/&gt;
 &lt;/module&gt;
         </source>
         <p>

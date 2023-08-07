@@ -66,7 +66,7 @@ public long toMicros(long d) { return d / (C1 / C0); }
         </p>
 
         <source>
-&lt;module name=&quot;SingleSpaceSeparator&quot;/&gt;
+&lt;module name="SingleSpaceSeparator"/&gt;
         </source>
         <p>Example:</p>
         <source>
@@ -83,8 +83,8 @@ void  fun2() {} // violation, 2 whitespaces
         </p>
 
         <source>
-&lt;module name=&quot;SingleSpaceSeparator&quot;&gt;
-  &lt;property name=&quot;validateComments&quot; value=&quot;true&quot;/&gt;
+&lt;module name="SingleSpaceSeparator"&gt;
+  &lt;property name="validateComments" value="true"/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>

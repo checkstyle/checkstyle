@@ -101,7 +101,7 @@
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;MethodParamPad&quot;/&gt;
+&lt;module name="MethodParamPad"/&gt;
         </source>
         <source>
 public class Test {
@@ -127,10 +127,10 @@ public class Test {
           line:
         </p>
         <source>
-&lt;module name=&quot;MethodParamPad&quot;&gt;
-  &lt;property name=&quot;tokens&quot; value=&quot;METHOD_DEF&quot;/&gt;
-  &lt;property name=&quot;option&quot; value=&quot;space&quot;/&gt;
-  &lt;property name=&quot;allowLineBreaks&quot; value=&quot;true&quot;/&gt;
+&lt;module name="MethodParamPad"&gt;
+  &lt;property name="tokens" value="METHOD_DEF"/&gt;
+  &lt;property name="option" value="space"/&gt;
+  &lt;property name="allowLineBreaks" value="true"/&gt;
 &lt;/module&gt;
         </source>
         <source>

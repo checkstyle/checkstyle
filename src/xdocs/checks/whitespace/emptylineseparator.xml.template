@@ -130,7 +130,7 @@
             To configure the default check:
         </p>
         <source>
-&lt;module name=&quot;EmptyLineSeparator&quot;/&gt;
+&lt;module name="EmptyLineSeparator"/&gt;
         </source>
         <p>
           Example of declarations without empty line separator:
@@ -168,8 +168,8 @@ class FirstClass {
                   METHOD_DEF</a>:
         </p>
         <source>
-&lt;module name=&quot;EmptyLineSeparator&quot;&gt;
-  &lt;property name=&quot;tokens&quot; value=&quot;VARIABLE_DEF, METHOD_DEF&quot;/&gt;
+&lt;module name="EmptyLineSeparator"&gt;
+  &lt;property name="tokens" value="VARIABLE_DEF, METHOD_DEF"/&gt;
 &lt;/module&gt;
         </source>
         <source>
@@ -202,8 +202,8 @@ class FirstClass {
           To allow no empty line between fields:
         </p>
         <source>
-&lt;module name=&quot;EmptyLineSeparator&quot;&gt;
-  &lt;property name=&quot;allowNoEmptyLineBetweenFields&quot; value=&quot;true&quot;/&gt;
+&lt;module name="EmptyLineSeparator"&gt;
+  &lt;property name="allowNoEmptyLineBetweenFields" value="true"/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -238,8 +238,8 @@ class FirstClass {
           To disallow multiple empty lines between class members:
         </p>
         <source>
-&lt;module name=&quot;EmptyLineSeparator&quot;&gt;
-  &lt;property name=&quot;allowMultipleEmptyLines&quot; value=&quot;false&quot;/&gt;
+&lt;module name="EmptyLineSeparator"&gt;
+  &lt;property name="allowMultipleEmptyLines" value="false"/&gt;
 &lt;/module&gt;
         </source>
         <source>
@@ -272,8 +272,8 @@ class FirstClass {
             initialization block and method:
         </p>
         <source>
-&lt;module name=&quot;EmptyLineSeparator&quot;&gt;
-  &lt;property name=&quot;allowMultipleEmptyLinesInsideClassMembers&quot; value=&quot;false&quot;/&gt;
+&lt;module name="EmptyLineSeparator"&gt;
+  &lt;property name="allowMultipleEmptyLinesInsideClassMembers" value="false"/&gt;
 &lt;/module&gt;
         </source>
 

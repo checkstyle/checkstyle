@@ -64,7 +64,7 @@
       <subsection name="Examples" id="Examples">
         <p>To configure the check to report only the first instance in each file:</p>
         <source>
-&lt;module name=&quot;FileTabCharacter&quot;/&gt;
+&lt;module name="FileTabCharacter"/&gt;
         </source>
         <p>Example - Test.java:</p>
         <source>
@@ -78,8 +78,8 @@ public class Test {
         </source>
         <p>To configure the check to report each instance in each file:</p>
         <source>
-&lt;module name=&quot;FileTabCharacter&quot;&gt;
-  &lt;property name=&quot;eachLine&quot; value=&quot;true&quot;/&gt;
+&lt;module name="FileTabCharacter"&gt;
+  &lt;property name="eachLine" value="true"/&gt;
 &lt;/module&gt;
         </source>
         <p>Example - Test.java:</p>
@@ -94,8 +94,8 @@ public class Test {
         </source>
         <p>To configure the check to report instances on only certain file types:</p>
         <source>
-&lt;module name=&quot;FileTabCharacter&quot;&gt;
-  &lt;property name=&quot;fileExtensions&quot; value=&quot;java, xml&quot;/&gt;
+&lt;module name="FileTabCharacter"&gt;
+  &lt;property name="fileExtensions" value="java, xml"/&gt;
 &lt;/module&gt;
         </source>
         <p>Example - Test.java:</p>
@@ -110,7 +110,7 @@ public class Test {
         </source>
         <p>Example - Test.xml:</p>
         <source>
-&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;
+&lt;?xml version="1.0" encoding="UTF-8" ?&gt;
 &lt;UserAccount&gt;
   &lt;FirstName&gt;John&lt;/FirstName&gt; &lt;!-- violation, indented using tab --&gt;
   &lt;LastName&gt;Doe&lt;/LastName&gt;    &lt;!-- only first occurrence in file reported --&gt;

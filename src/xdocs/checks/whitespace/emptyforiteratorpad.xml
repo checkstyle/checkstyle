@@ -48,7 +48,7 @@ for (Iterator foo = very.long.line.iterator();
           To configure the check:
         </p>
         <source>
-&lt;module name="EmptyForIteratorPad"/&gt;
+&lt;module name=&quot;EmptyForIteratorPad&quot;/&gt;
         </source>
         <p>
           Example:
@@ -67,8 +67,8 @@ for (Iterator foo = very.long.line.iterator();
           iterator:
         </p>
         <source>
-&lt;module name="EmptyForIteratorPad"&gt;
-  &lt;property name="option" value="space"/&gt;
+&lt;module name=&quot;EmptyForIteratorPad&quot;&gt;
+  &lt;property name=&quot;option&quot; value=&quot;space&quot;/&gt;
 &lt;/module&gt;
         </source>
         <p>
