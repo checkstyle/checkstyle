@@ -243,14 +243,14 @@
     <lineContent>boolean isName = !str.isEmpty();</lineContent>
   </mutation>
 
-  <mutation unstable="false">
-    <sourceFile>CommonUtil.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.utils.CommonUtil</mutatedClass>
-    <mutatedMethod>isName</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
-    <description>removed conditional - replaced equality check with true</description>
-    <lineContent>boolean isName = !str.isEmpty();</lineContent>
-  </mutation>
+
+
+
+
+
+
+
+
 
   <mutation unstable="false">
     <sourceFile>CommonUtil.java</sourceFile>
