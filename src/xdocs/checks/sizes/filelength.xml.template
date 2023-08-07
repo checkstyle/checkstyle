@@ -3,20 +3,20 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
   <head>
-    <title>OuterTypeNumber</title>
+    <title>FileLength</title>
   </head>
   <body>
-    <section name="OuterTypeNumber">
+    <section name="FileLength">
       <p>Since Checkstyle 5.0</p>
       <subsection name="Description" id="Description">
         <p>
-          Checks for the number of types declared at the <i>outer</i>
-          (or <i>root</i>) level in a file.
+          Checks for long source files.
         </p>
 
         <p>
-          Rationale: It is considered good practice to only define one outer
-          type per file.
+          Rationale: If a source file becomes very long it is hard to
+          understand. Therefore, long classes should usually be refactored
+          into several individual classes that focus on a specific task.
         </p>
       </subsection>
 
@@ -32,9 +32,16 @@
             </tr>
             <tr>
               <td>max</td>
-              <td>Specify the maximum number of outer types allowed.</td>
+              <td>Specify the maximum number of lines allowed.</td>
               <td><a href="../../property_types.html#int">int</a></td>
-              <td><code>1</code></td>
+              <td><code>2000</code></td>
+              <td>3.2</td>
+            </tr>
+            <tr>
+              <td>fileExtensions</td>
+              <td>Specify the file type extension of files to process.</td>
+              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
+              <td><code>all files</code></td>
               <td>5.0</td>
             </tr>
           </table>
@@ -43,27 +50,29 @@
 
       <subsection name="Examples" id="Examples">
         <p>
-          To configure the check to accept 1 outer type per file:
+          To configure the check:
         </p>
         <source>
-&lt;module name=&quot;OuterTypeNumber&quot;/&gt;
+&lt;module name="FileLength"/&gt;
         </source>
-
         <p>
-          To configure the check to accept 2 outer types per file:
+          To configure the check to accept files with up to 1500 lines:
         </p>
         <source>
-&lt;module name=&quot;OuterTypeNumber&quot;&gt;
-  &lt;property name=&quot;max&quot; value=&quot;2&quot;/&gt;
+&lt;module name="FileLength"&gt;
+  &lt;property name="max" value="1500"/&gt;
 &lt;/module&gt;
         </source>
-
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+OuterTypeNumber">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+FileLength">
+            Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+FileLength">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -72,8 +81,8 @@
       <subsection name="Violation Messages" id="Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fsizes%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22maxOuterTypes%22">
-            maxOuterTypes</a>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fsizes%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22maxLen.file%22">
+            maxLen.file</a>
           </li>
         </ul>
         <p>
@@ -91,7 +100,7 @@
 
       <subsection name="Parent Module" id="Parent_Module">
         <p>
-          <a href="../../config.html#TreeWalker">TreeWalker</a>
+          <a href="../../config.html#Checker">Checker</a>
         </p>
       </subsection>
     </section>
