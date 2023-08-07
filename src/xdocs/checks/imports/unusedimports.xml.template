@@ -83,7 +83,7 @@
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;UnusedImports&quot;/&gt;
+&lt;module name="UnusedImports"/&gt;
         </source>
         <p>Example:</p>
         <source>
@@ -115,8 +115,8 @@ class MyClass{
           To configure the check so that it ignores the imports referenced in Javadoc comments:
         </p>
         <source>
-&lt;module name=&quot;UnusedImports&quot;&gt;
-  &lt;property name=&quot;processJavadoc&quot; value=&quot;false&quot;/&gt;
+&lt;module name="UnusedImports"&gt;
+  &lt;property name="processJavadoc" value="false"/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>
