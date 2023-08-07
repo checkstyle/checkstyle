@@ -28,7 +28,7 @@
               <td>format</td>
               <td>Specifies valid identifiers.</td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
-              <td><code>&quot;^[A-Z]$&quot;</code></td>
+              <td><code>"^[A-Z]$"</code></td>
               <td>5.0</td>
             </tr>
           </table>
@@ -40,7 +40,7 @@
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;MethodTypeParameterName&quot;/&gt;
+&lt;module name="MethodTypeParameterName"/&gt;
         </source>
         <p>Code Example:</p>
         <source>
@@ -55,8 +55,8 @@ class MyClass {
           An example of how to configure the check for names that are only a single letter is:
         </p>
         <source>
-&lt;module name=&quot;MethodTypeParameterName&quot;&gt;
-   &lt;property name=&quot;format&quot; value=&quot;^[a-zA-Z]$&quot;/&gt;
+&lt;module name="MethodTypeParameterName"&gt;
+   &lt;property name="format" value="^[a-zA-Z]$"/&gt;
 &lt;/module&gt;
         </source>
         <p>Code Example:</p>

@@ -28,7 +28,7 @@
               <td>format</td>
               <td>Specifies valid identifiers.</td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
-              <td><code>"^[a-z][a-zA-Z0-9]*$"</code></td>
+              <td><code>&quot;^[a-z][a-zA-Z0-9]*$&quot;</code></td>
               <td>8.11</td>
             </tr>
           </table>
@@ -40,7 +40,7 @@
           To configure the check:
         </p>
         <source>
-&lt;module name="LambdaParameterName"/&gt;
+&lt;module name=&quot;LambdaParameterName&quot;/&gt;
         </source>
         <p>Code Example:</p>
         <source>
@@ -53,8 +53,8 @@ Function&lt;String, String&gt; function2 = S -&gt; S.toLowerCase(); // violation
           followed by letters is:
         </p>
         <source>
-&lt;module name="LambdaParameterName"&gt;
-  &lt;property name="format" value="^[a-z]([a-zA-Z]+)*$"/&gt;
+&lt;module name=&quot;LambdaParameterName&quot;&gt;
+  &lt;property name=&quot;format&quot; value=&quot;^[a-z]([a-zA-Z]+)*$&quot;/&gt;
 &lt;/module&gt;
         </source>
         <p>Code Example:</p>
@@ -65,9 +65,9 @@ class MyClass {
                                              // must match pattern '^[a-z]([a-zA-Z]+)*$'
 
   public boolean myMethod(String sentence) {
-    return Stream.of(sentence.split(" "))
+    return Stream.of(sentence.split(&quot; &quot;))
             .map(word -&gt; word.trim()) // OK
-            .anyMatch(Word -&gt; "in".equals(Word)); // violation, name 'Word'
+            .anyMatch(Word -&gt; &quot;in&quot;.equals(Word)); // violation, name 'Word'
                                    // must match pattern '^[a-z]([a-zA-Z]+)*$'
   }
 }

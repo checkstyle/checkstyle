@@ -36,7 +36,7 @@
               <td>format</td>
               <td>Specifies valid identifiers.</td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
-              <td><code>&quot;^[a-z][a-zA-Z0-9]*$&quot;</code></td>
+              <td><code>"^[a-z][a-zA-Z0-9]*$"</code></td>
               <td>3.0</td>
             </tr>
             <tr>
@@ -99,7 +99,7 @@ class MyClass {
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;MethodName&quot;/&gt;
+&lt;module name="MethodName"/&gt;
         </source>
         <p>Code Example:</p>
         <source>
@@ -117,16 +117,16 @@ class MyClass {
           followed by letters, digits, and underscores is:
         </p>
         <source>
-&lt;module name=&quot;MethodName&quot;&gt;
-   &lt;property name=&quot;format&quot; value=&quot;^[a-z](_?[a-zA-Z0-9]+)*$&quot;/&gt;
+&lt;module name="MethodName"&gt;
+   &lt;property name="format" value="^[a-z](_?[a-zA-Z0-9]+)*$"/&gt;
 &lt;/module&gt;
         </source>
         <p>Code Example:</p>
         <source>
 class MyClass {
   public void myMethod() {} // OK
-  public void MyMethod() {} // violation, name &quot;MyMethod&quot;
-                            // should match the pattern &quot;^[a-z](_?[a-zA-Z0-9]+)*$&quot;
+  public void MyMethod() {} // violation, name "MyMethod"
+                            // should match the pattern "^[a-z](_?[a-zA-Z0-9]+)*$"
 }
         </source>
         <p>
@@ -134,9 +134,9 @@ class MyClass {
           residing class name is:
         </p>
         <source>
-&lt;module name=&quot;MethodName&quot;&gt;
-   &lt;property name=&quot;format&quot; value=&quot;^[a-zA-Z](_?[a-zA-Z0-9]+)*$&quot;/&gt;
-   &lt;property name=&quot;allowClassName&quot; value=&quot;true&quot;/&gt;
+&lt;module name="MethodName"&gt;
+   &lt;property name="format" value="^[a-zA-Z](_?[a-zA-Z0-9]+)*$"/&gt;
+   &lt;property name="allowClassName" value="true"/&gt;
 &lt;/module&gt;
         </source>
         <p>Code Example:</p>
@@ -152,9 +152,9 @@ class MyClass {
           residing class name is:
         </p>
         <source>
-&lt;module name=&quot;MethodName&quot;&gt;
-   &lt;property name=&quot;format&quot; value=&quot;^[a-zA-Z](_?[a-zA-Z0-9]+)*$&quot;/&gt;
-   &lt;property name=&quot;allowClassName&quot; value=&quot;false&quot;/&gt;
+&lt;module name="MethodName"&gt;
+   &lt;property name="format" value="^[a-zA-Z](_?[a-zA-Z0-9]+)*$"/&gt;
+   &lt;property name="allowClassName" value="false"/&gt;
 &lt;/module&gt;
         </source>
         <p>Code Example:</p>
@@ -169,10 +169,10 @@ class MyClass {
           An example of how to suppress the check to public and protected methods:
         </p>
         <source>
-&lt;module name=&quot;MethodName&quot;&gt;
-   &lt;property name=&quot;format&quot; value=&quot;^[a-z](_?[a-zA-Z0-9]+)*$&quot;/&gt;
-   &lt;property name=&quot;applyToPublic&quot; value=&quot;false&quot;/&gt;
-   &lt;property name=&quot;applyToProtected&quot; value=&quot;false&quot;/&gt;
+&lt;module name="MethodName"&gt;
+   &lt;property name="format" value="^[a-z](_?[a-zA-Z0-9]+)*$"/&gt;
+   &lt;property name="applyToPublic" value="false"/&gt;
+   &lt;property name="applyToProtected" value="false"/&gt;
 &lt;/module&gt;
         </source>
         <p>Code Example:</p>

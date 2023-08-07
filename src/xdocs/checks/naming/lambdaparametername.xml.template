@@ -3,14 +3,14 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
   <head>
-    <title>MethodTypeParameterName</title>
+    <title>LambdaParameterName</title>
   </head>
   <body>
-    <section name="MethodTypeParameterName">
-      <p>Since Checkstyle 5.0</p>
+    <section name="LambdaParameterName">
+      <p>Since Checkstyle 8.11</p>
       <subsection name="Description" id="Description">
         <p>
-          Checks that method type parameter names conform to a specified pattern.
+          Checks lambda parameter names.
         </p>
       </subsection>
 
@@ -28,8 +28,8 @@
               <td>format</td>
               <td>Specifies valid identifiers.</td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
-              <td><code>&quot;^[A-Z]$&quot;</code></td>
-              <td>5.0</td>
+              <td><code>"^[a-z][a-zA-Z0-9]*$"</code></td>
+              <td>8.11</td>
             </tr>
           </table>
         </div>
@@ -40,32 +40,36 @@
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;MethodTypeParameterName&quot;/&gt;
+&lt;module name="LambdaParameterName"/&gt;
         </source>
         <p>Code Example:</p>
         <source>
-class MyClass {
-  public &lt;T&gt; void method1() {} // OK
-  public &lt;a&gt; void method2() {} // violation, name 'a' must match pattern '^[A-Z]$'
-  public &lt;K, V&gt; void method3() {} // OK
-  public &lt;k, V&gt; void method4() {} // violation, name 'k' must match pattern '^[A-Z]$'
-}
+Function&lt;String, String&gt; function1 = s -&gt; s.toLowerCase(); // OK
+Function&lt;String, String&gt; function2 = S -&gt; S.toLowerCase(); // violation, name 'S'
+                                               // must match pattern '^[a-z][a-zA-Z0-9]*$'
         </source>
         <p>
-          An example of how to configure the check for names that are only a single letter is:
+          An example of how to configure the check for names that begin with a lower case letter,
+          followed by letters is:
         </p>
         <source>
-&lt;module name=&quot;MethodTypeParameterName&quot;&gt;
-   &lt;property name=&quot;format&quot; value=&quot;^[a-zA-Z]$&quot;/&gt;
+&lt;module name="LambdaParameterName"&gt;
+  &lt;property name="format" value="^[a-z]([a-zA-Z]+)*$"/&gt;
 &lt;/module&gt;
         </source>
         <p>Code Example:</p>
         <source>
 class MyClass {
-  public &lt;T&gt; void method1() {} // OK
-  public &lt;a&gt; void method2() {} // OK
-  public &lt;K, V&gt; void method3() {} // OK
-  public &lt;k, V&gt; void method4() {} // OK
+  Function&lt;String, String&gt; function1 = str -&gt; str.toUpperCase().trim(); // OK
+  Function&lt;String, String&gt; function2 = _s -&gt; _s.trim(); // violation, name '_s'
+                                             // must match pattern '^[a-z]([a-zA-Z]+)*$'
+
+  public boolean myMethod(String sentence) {
+    return Stream.of(sentence.split(" "))
+            .map(word -&gt; word.trim()) // OK
+            .anyMatch(Word -&gt; "in".equals(Word)); // violation, name 'Word'
+                                   // must match pattern '^[a-z]([a-zA-Z]+)*$'
+  }
 }
         </source>
       </subsection>
@@ -73,12 +77,12 @@ class MyClass {
       <subsection name="Example of Usage" id="Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MethodTypeParameterName">
-            Google Style</a>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LambdaParameterName">
+              Google Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+MethodTypeParameterName">
-            Checkstyle Style</a>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+LambdaParameterName">
+              Checkstyle Style</a>
           </li>
         </ul>
       </subsection>
@@ -87,7 +91,7 @@ class MyClass {
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fnaming%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22name.invalidPattern%22">
-            name.invalidPattern</a>
+              name.invalidPattern</a>
           </li>
         </ul>
         <p>

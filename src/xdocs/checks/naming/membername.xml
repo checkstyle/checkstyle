@@ -28,7 +28,7 @@
               <td>format</td>
               <td>Specifies valid identifiers.</td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
-              <td><code>"^[a-z][a-zA-Z0-9]*$"</code></td>
+              <td><code>&quot;^[a-z][a-zA-Z0-9]*$&quot;</code></td>
               <td>3.0</td>
             </tr>
             <tr>
@@ -70,7 +70,7 @@
          To configure the check:
         </p>
         <source>
-&lt;module name="MemberName"/&gt;
+&lt;module name=&quot;MemberName&quot;/&gt;
         </source>
         <p>Code Example:</p>
         <source>
@@ -95,16 +95,16 @@ class MyClass {
         </source>
         <p>
           An example of how to configure the check for names that begin with
-          <code>"m"</code>, followed by an upper case letter, and then letters
+          <code>&quot;m&quot;</code>, followed by an upper case letter, and then letters
           and digits. Also, suppress the check from being applied to protected
           and package-private member:
         </p>
 
         <source>
-&lt;module name="MemberName"&gt;
-  &lt;property name="format" value="^m[A-Z][a-zA-Z0-9]*$"/&gt;
-  &lt;property name="applyToProtected" value="false"/&gt;
-  &lt;property name="applyToPackage" value="false"/&gt;
+&lt;module name=&quot;MemberName&quot;&gt;
+  &lt;property name=&quot;format&quot; value=&quot;^m[A-Z][a-zA-Z0-9]*$&quot;/&gt;
+  &lt;property name=&quot;applyToProtected&quot; value=&quot;false&quot;/&gt;
+  &lt;property name=&quot;applyToPackage&quot; value=&quot;false&quot;/&gt;
 &lt;/module&gt;
         </source>
         <p>Code Example:</p>
@@ -123,9 +123,9 @@ class MyClass {
           public and private member:
         </p>
         <source>
-&lt;module name="MemberName"&gt;
-  &lt;property name="applyToPublic" value="false"/&gt;
-  &lt;property name="applyToPrivate" value="false"/&gt;
+&lt;module name=&quot;MemberName&quot;&gt;
+  &lt;property name=&quot;applyToPublic&quot; value=&quot;false&quot;/&gt;
+  &lt;property name=&quot;applyToPrivate&quot; value=&quot;false&quot;/&gt;
 &lt;/module&gt;
         </source>
         <p>Code Example:</p>
