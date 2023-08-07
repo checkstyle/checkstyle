@@ -95,12 +95,12 @@
         </p>
         <div class="wrapper">
           <pre>
-&lt;module name=&quot;SuppressionXpathSingleFilter&quot;&gt;
-  &lt;property name=&quot;files&quot; value=&quot;File(One|Two)\.java&quot;/&gt;
-  &lt;property name=&quot;checks&quot; value=&quot;MethodName&quot;/&gt;
-  &lt;property name=&quot;query&quot; value=&quot;(//CLASS_DEF[@text='FileOne']/OBJBLOCK/
+&lt;module name="SuppressionXpathSingleFilter"&gt;
+  &lt;property name="files" value="File(One|Two)\.java"/&gt;
+  &lt;property name="checks" value="MethodName"/&gt;
+  &lt;property name="query" value="(//CLASS_DEF[@text='FileOne']/OBJBLOCK/
             METHOD_DEF[@text='MyMethod']/IDENT)|
-            (//CLASS_DEF[@text='FileTwo']/OBJBLOCK/METHOD_DEF[@text='MyMethod']/IDENT)&quot;/&gt;
+            (//CLASS_DEF[@text='FileTwo']/OBJBLOCK/METHOD_DEF[@text='MyMethod']/IDENT)"/&gt;
 &lt;/module&gt;
           </pre>
         </div>
@@ -126,9 +126,9 @@ public class FileThree {
         </p>
         <div class="wrapper">
           <pre>
-&lt;module name=&quot;SuppressionXpathSingleFilter&quot;&gt;
-  &lt;property name=&quot;checks&quot; value=&quot;MethodName&quot;/&gt;
-  &lt;property name=&quot;message&quot; value=&quot;MyMethod[0-9]&quot;/&gt;
+&lt;module name="SuppressionXpathSingleFilter"&gt;
+  &lt;property name="checks" value="MethodName"/&gt;
+  &lt;property name="message" value="MyMethod[0-9]"/&gt;
 &lt;/module&gt;
           </pre>
         </div>
@@ -148,13 +148,13 @@ public class FileOne {
         </p>
         <div class="wrapper">
           <pre>
-&lt;module name=&quot;MethodName&quot;&gt;
-  &lt;property name=&quot;id&quot; value=&quot;MethodName1&quot;/&gt;
-  &lt;property name=&quot;format&quot; value=&quot;^[a-z](_?[a-zA-Z0-9]+)*$&quot;/&gt;
+&lt;module name="MethodName"&gt;
+  &lt;property name="id" value="MethodName1"/&gt;
+  &lt;property name="format" value="^[a-z](_?[a-zA-Z0-9]+)*$"/&gt;
 &lt;module/&gt;
-&lt;module name=&quot;SuppressionXpathSingleFilter&quot;&gt;
-  &lt;property name=&quot;files&quot; value=&quot;FileOne.java&quot;/&gt;
-  &lt;property name=&quot;id&quot; value=&quot;MethodName1&quot;/&gt;
+&lt;module name="SuppressionXpathSingleFilter"&gt;
+  &lt;property name="files" value="FileOne.java"/&gt;
+  &lt;property name="id" value="MethodName1"/&gt;
 &lt;module/&gt;
           </pre>
         </div>
@@ -175,9 +175,9 @@ public class FileTwo {
         </p>
         <div class="wrapper">
           <pre>
-&lt;module name=&quot;SuppressionXpathSingleFilter&quot;&gt;
-  &lt;property name=&quot;checks&quot; value=&quot;PackageName&quot;/&gt;
-  &lt;property name=&quot;query&quot; value=&quot;/PACKAGE_DEF[@text='File']/IDENT&quot;/&gt;
+&lt;module name="SuppressionXpathSingleFilter"&gt;
+  &lt;property name="checks" value="PackageName"/&gt;
+  &lt;property name="query" value="/PACKAGE_DEF[@text='File']/IDENT"/&gt;
 &lt;/module&gt;
           </pre>
         </div>
@@ -194,9 +194,9 @@ public class FileOne {}
         </p>
         <div class="wrapper">
           <pre>
-&lt;module name=&quot;SuppressionXpathSingleFilter&quot;&gt;
-  &lt;property name=&quot;checks&quot; value=&quot;RedundantModifier&quot;/&gt;
-  &lt;property name=&quot;query&quot; value=&quot;//INTERFACE_DEF//*&quot;/&gt;
+&lt;module name="SuppressionXpathSingleFilter"&gt;
+  &lt;property name="checks" value="RedundantModifier"/&gt;
+  &lt;property name="query" value="//INTERFACE_DEF//*"/&gt;
 &lt;module/&gt;
           </pre>
         </div>
@@ -213,9 +213,9 @@ public interface TestClass {
         </p>
         <div class="wrapper">
           <pre>
-&lt;module name=&quot;SuppressionXpathSingleFilter&quot;&gt;
-  &lt;property name=&quot;files&quot; value=&quot;FileOne.java&quot;/&gt;
-  &lt;property name=&quot;checks&quot; value=&quot;MyMethod&quot;/&gt;
+&lt;module name="SuppressionXpathSingleFilter"&gt;
+  &lt;property name="files" value="FileOne.java"/&gt;
+  &lt;property name="checks" value="MyMethod"/&gt;
 &lt;/module&gt;
           </pre>
         </div>
@@ -238,11 +238,11 @@ public class FileTwo {
         </p>
         <div class="wrapper">
           <pre>
-&lt;module name=&quot;SuppressionXpathSingleFilter&quot;&gt;
-  &lt;property name=&quot;checks&quot; value=&quot;.*&quot;/&gt;
-  &lt;property name=&quot;query&quot;
-            value=&quot;(//CLASS_DEF[@text='FileOne'])|
-            (//CLASS_DEF[@text='FileOne']/OBJBLOCK/METHOD_DEF[@text='MyMethod']/IDENT)&quot;/&gt;
+&lt;module name="SuppressionXpathSingleFilter"&gt;
+  &lt;property name="checks" value=".*"/&gt;
+  &lt;property name="query"
+            value="(//CLASS_DEF[@text='FileOne'])|
+            (//CLASS_DEF[@text='FileOne']/OBJBLOCK/METHOD_DEF[@text='MyMethod']/IDENT)"/&gt;
 &lt;/module&gt;
           </pre>
         </div>
@@ -254,7 +254,7 @@ abstract class FileOne { // OK
 }
 
 abstract class FileTwo { // violation of the AbstractClassName check,
-                         // it should match the pattern &quot;^Abstract.+$&quot;
+                         // it should match the pattern "^Abstract.+$"
   public void MyMethod() {} // violation, name 'MyMethod'
                             // must match pattern '^[a-z](_?[a-zA-Z0-9]+)*$'
 }
@@ -265,10 +265,10 @@ abstract class FileTwo { // violation of the AbstractClassName check,
         </p>
         <div class="wrapper">
           <pre>
-&lt;module name=&quot;SuppressionXpathSingleFilter&quot;&gt;
-  &lt;property name=&quot;checks&quot; value=&quot;MethodName&quot;/&gt;
-  &lt;property name=&quot;query&quot; value=&quot;//CLASS_DEF[@text='FileOne']/OBJBLOCK/
-            METHOD_DEF[@text='MyMethod1' or @text='MyMethod2']/IDENT&quot;/&gt;
+&lt;module name="SuppressionXpathSingleFilter"&gt;
+  &lt;property name="checks" value="MethodName"/&gt;
+  &lt;property name="query" value="//CLASS_DEF[@text='FileOne']/OBJBLOCK/
+            METHOD_DEF[@text='MyMethod1' or @text='MyMethod2']/IDENT"/&gt;
 &lt;/module&gt;
           </pre>
         </div>
@@ -289,11 +289,11 @@ public class FileOne {
         </p>
         <div class="wrapper">
           <pre>
-&lt;module name=&quot;SuppressionXpathSingleFilter&quot;&gt;
-  &lt;property name=&quot;checks&quot; value=&quot;LocalFinalVariableName&quot;/&gt;
-  &lt;property name=&quot;query&quot; value=&quot;//CLASS_DEF[@text='TestClass']/OBJBLOCK
+&lt;module name="SuppressionXpathSingleFilter"&gt;
+  &lt;property name="checks" value="LocalFinalVariableName"/&gt;
+  &lt;property name="query" value="//CLASS_DEF[@text='TestClass']/OBJBLOCK
         /METHOD_DEF[@text='testMethod']/SLIST
-        /VARIABLE_DEF[@text='testVariable1']/IDENT&quot;/&gt;
+        /VARIABLE_DEF[@text='testVariable1']/IDENT"/&gt;
 &lt;/module&gt;
           </pre>
         </div>
@@ -316,10 +316,10 @@ public class TestClass {
         </p>
         <div class="wrapper">
           <pre>
-&lt;module name=&quot;SuppressionXpathSingleFilter&quot;&gt;
-  &lt;property name=&quot;checks&quot; value=&quot;LeftCurly&quot;/&gt;
-  &lt;property name=&quot;query&quot; value=&quot;//CLASS_DEF[@text='TestClass']/OBJBLOCK
-        /METHOD_DEF[@text='testMethod1']/SLIST*&quot;/&gt;
+&lt;module name="SuppressionXpathSingleFilter"&gt;
+  &lt;property name="checks" value="LeftCurly"/&gt;
+  &lt;property name="query" value="//CLASS_DEF[@text='TestClass']/OBJBLOCK
+        /METHOD_DEF[@text='testMethod1']/SLIST*"/&gt;
 &lt;/module&gt;
           </pre>
         </div>
@@ -343,10 +343,10 @@ public class TestClass {
         </p>
         <div class="wrapper">
           <pre>
-&lt;module name=&quot;SuppressionXpathSingleFilter&quot;&gt;
-  &lt;property name=&quot;checks&quot; value=&quot;RequireThis&quot;/&gt;
-  &lt;property name=&quot;query&quot; value=&quot;//CLASS_DEF[@text='InputTest']
-        //METHOD_DEF[@text='changeAge']//ASSIGN[@text='age']/IDENT&quot;/&gt;
+&lt;module name="SuppressionXpathSingleFilter"&gt;
+  &lt;property name="checks" value="RequireThis"/&gt;
+  &lt;property name="query" value="//CLASS_DEF[@text='InputTest']
+        //METHOD_DEF[@text='changeAge']//ASSIGN[@text='age']/IDENT"/&gt;
 &lt;/module&gt;
           </pre>
         </div>
@@ -372,10 +372,10 @@ public class InputTest {
         </p>
         <div class="wrapper">
           <pre>
-&lt;module name=&quot;SuppressionXpathSingleFilter&quot;&gt;
-  &lt;property name=&quot;checks&quot; value=&quot;IllegalThrows&quot;/&gt;
-  &lt;property name=&quot;query&quot; value=&quot;//LITERAL_THROWS/IDENT[
-      ..[@text='RuntimeException'] and ./ancestor::METHOD_DEF[@text='throwsMethod']]&quot;/&gt;
+&lt;module name="SuppressionXpathSingleFilter"&gt;
+  &lt;property name="checks" value="IllegalThrows"/&gt;
+  &lt;property name="query" value="//LITERAL_THROWS/IDENT[
+      ..[@text='RuntimeException'] and ./ancestor::METHOD_DEF[@text='throwsMethod']]"/&gt;
 &lt;/module&gt;
           </pre>
         </div>
@@ -400,10 +400,10 @@ public class InputTest {
         </p>
         <div class="wrapper">
           <pre>
-&lt;module name=&quot;SuppressionXpathSingleFilter&quot;&gt;
-  &lt;property name=&quot;checks&quot; value=&quot;.*&quot;/&gt;
-  &lt;property name=&quot;query&quot; value=&quot;//METHOD_DEF[@text='TestMethod1']
-        /descendant-or-self::node()&quot;/&gt;
+&lt;module name="SuppressionXpathSingleFilter"&gt;
+  &lt;property name="checks" value=".*"/&gt;
+  &lt;property name="query" value="//METHOD_DEF[@text='TestMethod1']
+        /descendant-or-self::node()"/&gt;
 &lt;/module&gt;
           </pre>
         </div>
@@ -431,17 +431,17 @@ public class TestClass {
         </p>
         <div class="wrapper">
           <pre>
-&lt;module name=&quot;SuppressionXpathSingleFilter&quot;&gt;
-  &lt;property name=&quot;files&quot; value=&quot;[\\/]src[\\/]test[\\/]java[\\/]&quot;/&gt;
-  &lt;property name=&quot;checks&quot; value=&quot;Javadoc*&quot;/&gt;
+&lt;module name="SuppressionXpathSingleFilter"&gt;
+  &lt;property name="files" value="[\\/]src[\\/]test[\\/]java[\\/]"/&gt;
+  &lt;property name="checks" value="Javadoc*"/&gt;
 &lt;/module&gt;
-&lt;module name=&quot;SuppressionXpathSingleFilter&quot;&gt;
-  &lt;property name=&quot;files&quot; value=&quot;.*Tests\.java&quot;&gt;
-  &lt;property name=&quot;checks&quot; value=&quot;Javadoc*&quot;&gt;
+&lt;module name="SuppressionXpathSingleFilter"&gt;
+  &lt;property name="files" value=".*Tests\.java"&gt;
+  &lt;property name="checks" value="Javadoc*"&gt;
 &lt;/module&gt;
-&lt;module name=&quot;SuppressionXpathSingleFilter&quot;&gt;
-  &lt;property name=&quot;files&quot; value=&quot;generated-sources&quot;&gt;
-  &lt;property name=&quot;checks&quot; value=&quot;[a-zA-Z0-9]*&quot;&gt;
+&lt;module name="SuppressionXpathSingleFilter"&gt;
+  &lt;property name="files" value="generated-sources"&gt;
+  &lt;property name="checks" value="[a-zA-Z0-9]*"&gt;
 &lt;/module&gt;
           </pre>
         </div>

@@ -28,7 +28,7 @@
         </p>
         <p>
           Attention: This filter may only be specified within the TreeWalker module
-          (<code>&lt;module name=&quot;TreeWalker&quot;/&gt;</code>) and only
+          (<code>&lt;module name="TreeWalker"/&gt;</code>) and only
           applies to checks which are also defined within this module.
           To filter non-TreeWalker checks like <code>RegexpSingleline</code>,
           a <a href="suppresswithplaintextcommentfilter.html#SuppressWithPlainTextCommentFilter">
@@ -59,21 +59,21 @@
               <td>offCommentFormat</td>
               <td>Specify comment pattern to trigger filter to begin suppression.</td>
               <td><a href="../property_types.html#Pattern">Pattern</a></td>
-              <td><code>&quot;CHECKSTYLE:OFF&quot;</code></td>
+              <td><code>"CHECKSTYLE:OFF"</code></td>
               <td>3.5</td>
             </tr>
             <tr>
               <td>onCommentFormat</td>
               <td>Specify comment pattern to trigger filter to end suppression.</td>
               <td><a href="../property_types.html#Pattern">Pattern</a></td>
-              <td><code>&quot;CHECKSTYLE:ON&quot;</code></td>
+              <td><code>"CHECKSTYLE:ON"</code></td>
               <td>3.5</td>
             </tr>
             <tr>
               <td>checkFormat</td>
               <td>Specify check pattern to suppress.</td>
               <td><a href="../property_types.html#Pattern">Pattern</a></td>
-              <td><code>&quot;.*&quot;</code></td>
+              <td><code>".*"</code></td>
               <td>3.5</td>
             </tr>
             <tr>
@@ -115,10 +115,10 @@
           <code>CHECKSTYLE:ON</code>:
         </p>
         <source>
-&lt;module name=&quot;SuppressionCommentFilter&quot;/&gt;
-&lt;module name=&quot;MemberName&quot;/&gt;
-&lt;module name=&quot;ConstantName&quot;/&gt;
-&lt;module name=&quot;IllegalCatch&quot;/&gt;
+&lt;module name="SuppressionCommentFilter"/&gt;
+&lt;module name="MemberName"/&gt;
+&lt;module name="ConstantName"/&gt;
+&lt;module name="IllegalCatch"/&gt;
         </source>
         <source>
 class InputSuppressionCommentFilter
@@ -157,14 +157,14 @@ class InputSuppressionCommentFilter
           legitimate constant names:
         </p>
         <source>
-&lt;module name=&quot;SuppressionCommentFilter&quot;&gt;
-  &lt;property name=&quot;offCommentFormat&quot; value=&quot;stop constant check&quot;/&gt;
-  &lt;property name=&quot;onCommentFormat&quot; value=&quot;resume constant check&quot;/&gt;
-  &lt;property name=&quot;checkFormat&quot; value=&quot;ConstantNameCheck&quot;/&gt;
+&lt;module name="SuppressionCommentFilter"&gt;
+  &lt;property name="offCommentFormat" value="stop constant check"/&gt;
+  &lt;property name="onCommentFormat" value="resume constant check"/&gt;
+  &lt;property name="checkFormat" value="ConstantNameCheck"/&gt;
 &lt;/module&gt;
-&lt;module name=&quot;MemberName&quot;/&gt;
-&lt;module name=&quot;ConstantName&quot;/&gt;
-&lt;module name=&quot;IllegalCatch&quot;/&gt;
+&lt;module name="MemberName"/&gt;
+&lt;module name="ConstantName"/&gt;
+&lt;module name="IllegalCatch"/&gt;
         </source>
         <source>
 class InputSuppressionCommentFilter
@@ -204,15 +204,15 @@ class InputSuppressionCommentFilter
           matching the variable name in the message through a specified message in messageFormat:
         </p>
         <source>
-&lt;module name=&quot;SuppressionCommentFilter&quot;&gt;
-  &lt;property name=&quot;offCommentFormat&quot; value=&quot;ILLEGAL OFF\: (\w+)&quot;/&gt;
-  &lt;property name=&quot;onCommentFormat&quot; value=&quot;ILLEGAL ON\: (\w+)&quot;/&gt;
-  &lt;property name=&quot;checkFormat&quot; value=&quot;IllegalCatch&quot;/&gt;
-  &lt;property name=&quot;messageFormat&quot; value=&quot;^Catching '$1' is not allowed.$&quot;/&gt;
+&lt;module name="SuppressionCommentFilter"&gt;
+  &lt;property name="offCommentFormat" value="ILLEGAL OFF\: (\w+)"/&gt;
+  &lt;property name="onCommentFormat" value="ILLEGAL ON\: (\w+)"/&gt;
+  &lt;property name="checkFormat" value="IllegalCatch"/&gt;
+  &lt;property name="messageFormat" value="^Catching '$1' is not allowed.$"/&gt;
 &lt;/module&gt;
-&lt;module name=&quot;MemberName&quot;/&gt;
-&lt;module name=&quot;ConstantName&quot;/&gt;
-&lt;module name=&quot;IllegalCatch&quot;/&gt;
+&lt;module name="MemberName"/&gt;
+&lt;module name="ConstantName"/&gt;
+&lt;module name="IllegalCatch"/&gt;
         </source>
         <source>
 class InputSuppressionCommentFilter
@@ -252,14 +252,14 @@ class InputSuppressionCommentFilter
           and <code>CSON: <i>regexp</i></code> mark a matching check:
         </p>
         <source>
-&lt;module name=&quot;SuppressionCommentFilter&quot;&gt;
-  &lt;property name=&quot;offCommentFormat&quot; value=&quot;CSOFF\: ([\w\|]+)&quot;/&gt;
-  &lt;property name=&quot;onCommentFormat&quot; value=&quot;CSON\: ([\w\|]+)&quot;/&gt;
-  &lt;property name=&quot;checkFormat&quot; value=&quot;$1&quot;/&gt;
+&lt;module name="SuppressionCommentFilter"&gt;
+  &lt;property name="offCommentFormat" value="CSOFF\: ([\w\|]+)"/&gt;
+  &lt;property name="onCommentFormat" value="CSON\: ([\w\|]+)"/&gt;
+  &lt;property name="checkFormat" value="$1"/&gt;
 &lt;/module&gt;
-&lt;module name=&quot;MemberName&quot;/&gt;
-&lt;module name=&quot;ConstantName&quot;/&gt;
-&lt;module name=&quot;IllegalCatch&quot;/&gt;
+&lt;module name="MemberName"/&gt;
+&lt;module name="ConstantName"/&gt;
+&lt;module name="IllegalCatch"/&gt;
         </source>
         <source>
 class InputSuppressionCommentFilter
@@ -298,14 +298,14 @@ class InputSuppressionCommentFilter
           <code>CHECKSTYLE_OFF: ALMOST_ALL</code> except for the <em>ConstantName</em> check:
         </p>
         <source>
-&lt;module name=&quot;SuppressionCommentFilter&quot;&gt;
-  &lt;property name=&quot;offCommentFormat&quot; value=&quot;CHECKSTYLE_OFF: ALMOST_ALL&quot;/&gt;
-  &lt;property name=&quot;onCommentFormat&quot; value=&quot;CHECKSTYLE_ON: ALMOST_ALL&quot;/&gt;
-  &lt;property name=&quot;checkFormat&quot; value=&quot;^((?!(ConstantName)).)*$&quot;/&gt;
+&lt;module name="SuppressionCommentFilter"&gt;
+  &lt;property name="offCommentFormat" value="CHECKSTYLE_OFF: ALMOST_ALL"/&gt;
+  &lt;property name="onCommentFormat" value="CHECKSTYLE_ON: ALMOST_ALL"/&gt;
+  &lt;property name="checkFormat" value="^((?!(ConstantName)).)*$"/&gt;
 &lt;/module&gt;
-&lt;module name=&quot;MemberName&quot;/&gt;
-&lt;module name=&quot;ConstantName&quot;/&gt;
-&lt;module name=&quot;IllegalCatch&quot;/&gt;
+&lt;module name="MemberName"/&gt;
+&lt;module name="ConstantName"/&gt;
+&lt;module name="IllegalCatch"/&gt;
         </source>
         <source>
 class InputSuppressionCommentFilter
@@ -349,19 +349,19 @@ class InputSuppressionCommentFilter
           case is written below:
         </p>
         <source>
-&lt;module name=&quot;SuppressionCommentFilter&quot;&gt;
-  &lt;property name=&quot;offCommentFormat&quot; value=&quot;CSOFF (\w+)&quot;/&gt;
-  &lt;property name=&quot;onCommentFormat&quot; value=&quot;CSON (\w+)&quot;/&gt;
-  &lt;property name=&quot;idFormat&quot; value=&quot;$1&quot;/&gt;
+&lt;module name="SuppressionCommentFilter"&gt;
+  &lt;property name="offCommentFormat" value="CSOFF (\w+)"/&gt;
+  &lt;property name="onCommentFormat" value="CSON (\w+)"/&gt;
+  &lt;property name="idFormat" value="$1"/&gt;
 &lt;/module&gt;
-&lt;module name=&quot;MemberName&quot;&gt;
-&lt;property name=&quot;id&quot; value=&quot;MemberID&quot;/&gt;
+&lt;module name="MemberName"&gt;
+&lt;property name="id" value="MemberID"/&gt;
 &lt;/module&gt;
-&lt;module name=&quot;ConstantName&quot;&gt;
-  &lt;property name=&quot;id&quot; value=&quot;ConstantID&quot;/&gt;
+&lt;module name="ConstantName"&gt;
+  &lt;property name="id" value="ConstantID"/&gt;
 &lt;/module&gt;
-&lt;module name=&quot;IllegalCatch&quot;&gt;
-  &lt;property name=&quot;id&quot; value=&quot;IllegalID&quot;/&gt;
+&lt;module name="IllegalCatch"&gt;
+  &lt;property name="id" value="IllegalID"/&gt;
 &lt;/module&gt;
         </source>
         <source>
@@ -399,14 +399,14 @@ class InputSuppressionCommentFilter
           Example of how to configure the check to suppress checks by name defined in comment.
         </p>
         <source>
-&lt;module name=&quot;SuppressionCommentFilter&quot;&gt;
-  &lt;property name=&quot;offCommentFormat&quot; value=&quot;csoff (\w+)&quot;/&gt;
-  &lt;property name=&quot;onCommentFormat&quot; value=&quot;cson (\w+)&quot;/&gt;
-  &lt;property name=&quot;checkFormat&quot; value=&quot;$1&quot;/&gt;
+&lt;module name="SuppressionCommentFilter"&gt;
+  &lt;property name="offCommentFormat" value="csoff (\w+)"/&gt;
+  &lt;property name="onCommentFormat" value="cson (\w+)"/&gt;
+  &lt;property name="checkFormat" value="$1"/&gt;
 &lt;/module&gt;
-&lt;module name=&quot;MemberName&quot;/&gt;
-&lt;module name=&quot;ConstantName&quot;/&gt;
-&lt;module name=&quot;IllegalCatch&quot;/&gt;
+&lt;module name="MemberName"/&gt;
+&lt;module name="ConstantName"/&gt;
+&lt;module name="IllegalCatch"/&gt;
         </source>
         <source>
 class InputSuppressionCommentFilter
@@ -444,13 +444,13 @@ class InputSuppressionCommentFilter
           Example depicting use of checkC and checkCPP style comments
         </p>
         <source>
-&lt;module name=&quot;SuppressionCommentFilter&quot;&gt;
-  &lt;property name=&quot;checkC&quot; value=&quot;true&quot;/&gt;
-  &lt;property name=&quot;checkCPP&quot; value=&quot;false&quot;/&gt;
+&lt;module name="SuppressionCommentFilter"&gt;
+  &lt;property name="checkC" value="true"/&gt;
+  &lt;property name="checkCPP" value="false"/&gt;
 &lt;/module&gt;
-&lt;module name=&quot;MemberName&quot;/&gt;
-&lt;module name=&quot;ConstantName&quot;/&gt;
-&lt;module name=&quot;IllegalCatch&quot;/&gt;
+&lt;module name="MemberName"/&gt;
+&lt;module name="ConstantName"/&gt;
+&lt;module name="IllegalCatch"/&gt;
         </source>
         <source>
 class InputSuppressionCommentFilter

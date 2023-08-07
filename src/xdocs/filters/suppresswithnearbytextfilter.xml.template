@@ -37,7 +37,7 @@
               <td>nearbyTextPattern</td>
               <td>Specify nearby text pattern to trigger filter to begin suppression.</td>
               <td><a href="../property_types.html#Pattern">Pattern</a></td>
-              <td><code>&quot;SUPPRESS CHECKSTYLE (\w+)&quot;</code></td>
+              <td><code>"SUPPRESS CHECKSTYLE (\w+)"</code></td>
               <td>10.10.0</td>
             </tr>
             <tr>
@@ -47,7 +47,7 @@
                 in format of <code>$x</code> and be picked from line
                 that matches <code>nearbyTextPattern</code>.</td>
               <td><a href="../property_types.html#Pattern">Pattern</a></td>
-              <td><code>&quot;.*&quot;</code></td>
+              <td><code>".*"</code></td>
               <td>10.10.0</td>
             </tr>
             <tr>
@@ -72,7 +72,7 @@
                 in format of <code>$x</code> and be picked from line
                 that matches <code>nearbyTextPattern</code>.</td>
               <td><a href="../property_types.html#String">String</a></td>
-              <td><code>&quot;0&quot;</code></td>
+              <td><code>"0"</code></td>
               <td>10.10.0</td>
             </tr>
           </table>
@@ -83,10 +83,10 @@
           To configure the filter to suppress audit events on the same line:
         </p>
         <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;SuppressWithNearbyTextFilter&quot;/&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;MagicNumber&quot;/&gt;
+&lt;module name="Checker"&gt;
+  &lt;module name="SuppressWithNearbyTextFilter"/&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MagicNumber"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
@@ -102,12 +102,12 @@ int daysInWeek = 7; // violation
           <code>DO NOT CHECK THIS LINE</code>:
         </p>
         <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;SuppressWithNearbyTextFilter&quot;&gt;
-    &lt;property name=&quot;nearbyTextPattern&quot; value=&quot;DO NOT CHECK THIS LINE&quot;/&gt;
+&lt;module name="Checker"&gt;
+  &lt;module name="SuppressWithNearbyTextFilter"&gt;
+    &lt;property name="nearbyTextPattern" value="DO NOT CHECK THIS LINE"/&gt;
   &lt;/module&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;MagicNumber&quot;/&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MagicNumber"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
@@ -124,13 +124,13 @@ int b = 43; // violation
             message contains it:
         </p>
         <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;SuppressWithNearbyTextFilter&quot;&gt;
-    &lt;property name=&quot;messagePattern&quot; value=&quot;.*Line.*&quot;/&gt;
-    &lt;property name=&quot;nearbyTextPattern&quot; value=&quot;.*&quot;/&gt;
+&lt;module name="Checker"&gt;
+  &lt;module name="SuppressWithNearbyTextFilter"&gt;
+    &lt;property name="messagePattern" value=".*Line.*"/&gt;
+    &lt;property name="nearbyTextPattern" value=".*"/&gt;
   &lt;/module&gt;
-  &lt;module name=&quot;LineLength&quot;&gt;
-    &lt;property name=&quot;max&quot; value=&quot;10&quot;/&gt;
+  &lt;module name="LineLength"&gt;
+    &lt;property name="max" value="10"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
@@ -145,16 +145,16 @@ export FOO=BAR # ok, because violation message is matching suppress pattern
           <code>ignoreMe</code>:
         </p>
         <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;SuppressWithNearbyTextFilter&quot;&gt;
-    &lt;property name=&quot;idPattern&quot; value=&quot;ignoreMe&quot;/&gt;
+&lt;module name="Checker"&gt;
+  &lt;module name="SuppressWithNearbyTextFilter"&gt;
+    &lt;property name="idPattern" value="ignoreMe"/&gt;
   &lt;/module&gt;
-  &lt;module name=&quot;LineLength&quot;&gt;
-    &lt;property name=&quot;max&quot; value=&quot;55&quot;/&gt;
+  &lt;module name="LineLength"&gt;
+    &lt;property name="max" value="55"/&gt;
   &lt;/module&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;MagicNumber&quot;&gt;
-      &lt;property name=&quot;id&quot; value=&quot;ignoreMe&quot;/&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MagicNumber"&gt;
+      &lt;property name="id" value="ignoreMe"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
@@ -170,11 +170,11 @@ static final int LONG_VAR_NAME_TO_TAKE_MORE_THAN_55_CHARS = 22; // LineLength vi
           To configure the filter to suppress audit events for the current and next 2 lines:
         </p>
         <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;SuppressWithNearbyTextFilter&quot;&gt;
-    &lt;property name=&quot;lineRange&quot; value=&quot;2&quot;/&gt;
+&lt;module name="Checker"&gt;
+  &lt;module name="SuppressWithNearbyTextFilter"&gt;
+    &lt;property name="lineRange" value="2"/&gt;
   &lt;/module&gt;
-  &lt;module name=&quot;UniqueProperties&quot;/&gt;
+  &lt;module name="UniqueProperties"/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -190,11 +190,11 @@ key.one=44 # violation
           To configure the filter to suppress audit events for the current and previous line:
         </p>
         <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;SuppressWithNearbyTextFilter&quot;&gt;
-    &lt;property name=&quot;lineRange&quot; value=&quot;-1&quot;/&gt;
+&lt;module name="Checker"&gt;
+  &lt;module name="SuppressWithNearbyTextFilter"&gt;
+    &lt;property name="lineRange" value="-1"/&gt;
   &lt;/module&gt;
-  &lt;module name=&quot;UniqueProperties&quot;/&gt;
+  &lt;module name="UniqueProperties"/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -211,14 +211,14 @@ key.one=44 # violation
           to accept variable <code>checkPattern</code>:
         </p>
         <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;SuppressWithNearbyTextFilter&quot;&gt;
-    &lt;property name=&quot;nearbyTextPattern&quot;
-      value=&quot;-@cs\[(\w+)\] (\w+)&quot;/&gt;
-    &lt;property name=&quot;checkPattern&quot; value=&quot;$1&quot;/&gt;
+&lt;module name="Checker"&gt;
+  &lt;module name="SuppressWithNearbyTextFilter"&gt;
+    &lt;property name="nearbyTextPattern"
+      value="-@cs\[(\w+)\] (\w+)"/&gt;
+    &lt;property name="checkPattern" value="$1"/&gt;
   &lt;/module&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;MagicNumber&quot;/&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MagicNumber"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
@@ -234,15 +234,15 @@ int b = 43; // violation
           and <code>lineRange</code>:
         </p>
         <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;SuppressWithNearbyTextFilter&quot;&gt;
-    &lt;property name=&quot;nearbyTextPattern&quot;
-      value=&quot;@cs-: (\w+) for ([+-]\d+) lines&quot;/&gt;
-    &lt;property name=&quot;checkPattern&quot; value=&quot;$1&quot;/&gt;
-    &lt;property name=&quot;lineRange&quot; value=&quot;$2&quot;/&gt;
+&lt;module name="Checker"&gt;
+  &lt;module name="SuppressWithNearbyTextFilter"&gt;
+    &lt;property name="nearbyTextPattern"
+      value="@cs-: (\w+) for ([+-]\d+) lines"/&gt;
+    &lt;property name="checkPattern" value="$1"/&gt;
+    &lt;property name="lineRange" value="$2"/&gt;
   &lt;/module&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;MagicNumber&quot;/&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MagicNumber"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
@@ -261,14 +261,14 @@ int e = 46; // violation
           violations for lines containing a URL:
         </p>
         <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;SuppressWithNearbyTextFilter&quot;&gt;
-    &lt;property name=&quot;checkPattern&quot; value=&quot;LineLength&quot;/&gt;
-    &lt;property name=&quot;nearbyTextPattern&quot;
-      value=&quot;&amp;lt;a href=&amp;quot;[^&amp;quot;]+&amp;quot;&amp;gt;&quot;/&gt;
+&lt;module name="Checker"&gt;
+  &lt;module name="SuppressWithNearbyTextFilter"&gt;
+    &lt;property name="checkPattern" value="LineLength"/&gt;
+    &lt;property name="nearbyTextPattern"
+      value="&amp;lt;a href=&amp;quot;[^&amp;quot;]+&amp;quot;&amp;gt;"/&gt;
   &lt;/module&gt;
-  &lt;module name=&quot;LineLength&quot;&gt;
-    &lt;property name=&quot;max&quot; value=&quot;90&quot;/&gt;
+  &lt;module name="LineLength"&gt;
+    &lt;property name="max" value="90"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
@@ -279,7 +279,7 @@ int e = 46; // violation
 /**
 * Flag description.
 *
-* Disabled until &lt;a href=&quot;www.github.com/owner/repo/issue/9#comment&quot;&gt; // ok
+* Disabled until &lt;a href="www.github.com/owner/repo/issue/9#comment"&gt; // ok
 */
 public static final boolean SOME_FLAG = false;
         </source>

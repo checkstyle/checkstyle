@@ -23,7 +23,7 @@
         </p>
         <p>
           Attention: This filter may only be specified within the TreeWalker module
-          (<code>&lt;module name=&quot;TreeWalker&quot;/&gt;</code>) and only
+          (<code>&lt;module name="TreeWalker"/&gt;</code>) and only
           applies to checks which are also defined within this module.
           To filter non-TreeWalker checks like <code>RegexpSingleline</code>,
           a <a href="suppresswithplaintextcommentfilter.html#SuppressWithPlainTextCommentFilter">
@@ -50,14 +50,14 @@
               <td>commentFormat</td>
               <td>Specify comment pattern to trigger filter to begin suppression.</td>
               <td><a href="../property_types.html#Pattern">Pattern</a></td>
-              <td><code>&quot;SUPPRESS CHECKSTYLE (\w+)&quot;</code></td>
+              <td><code>"SUPPRESS CHECKSTYLE (\w+)"</code></td>
               <td>5.0</td>
             </tr>
             <tr>
               <td>checkFormat</td>
               <td>Specify check pattern to suppress.</td>
               <td><a href="../property_types.html#Pattern">Pattern</a></td>
-              <td><code>&quot;.*&quot;</code></td>
+              <td><code>".*"</code></td>
               <td>5.0</td>
             </tr>
             <tr>
@@ -79,7 +79,7 @@
               <td>Specify negative/zero/positive value that defines the number of
                   lines preceding/at/following the suppression comment.</td>
               <td><a href="../property_types.html#String">String</a></td>
-              <td><code>&quot;0&quot;</code></td>
+              <td><code>"0"</code></td>
               <td>5.0</td>
             </tr>
             <tr>
@@ -105,7 +105,7 @@
           on any line with a comment <code>SUPPRESS CHECKSTYLE <i>check</i></code>:
         </p>
         <source>
-&lt;module name=&quot;SuppressWithNearbyCommentFilter&quot;/&gt;
+&lt;module name="SuppressWithNearbyCommentFilter"/&gt;
         </source>
         <source>
 private int [] array; // SUPPRESS CHECKSTYLE
@@ -115,10 +115,10 @@ private int [] array; // SUPPRESS CHECKSTYLE
           containing the comment <code>CHECKSTYLE IGNORE THIS LINE</code>:
         </p>
         <source>
-&lt;module name=&quot;SuppressWithNearbyCommentFilter&quot;&gt;
-  &lt;property name=&quot;commentFormat&quot; value=&quot;CHECKSTYLE IGNORE THIS LINE&quot;/&gt;
-  &lt;property name=&quot;checkFormat&quot; value=&quot;.*&quot;/&gt;
-  &lt;property name=&quot;influenceFormat&quot; value=&quot;0&quot;/&gt;
+&lt;module name="SuppressWithNearbyCommentFilter"&gt;
+  &lt;property name="commentFormat" value="CHECKSTYLE IGNORE THIS LINE"/&gt;
+  &lt;property name="checkFormat" value=".*"/&gt;
+  &lt;property name="influenceFormat" value="0"/&gt;
 &lt;/module&gt;
         </source>
         <source>
@@ -131,11 +131,11 @@ public static final int lowerCaseConstant; // CHECKSTYLE IGNORE THIS LINE
           audit event:
         </p>
         <source>
-&lt;module name=&quot;SuppressWithNearbyCommentFilter&quot;&gt;
-  &lt;property name=&quot;commentFormat&quot; value=&quot;OK to catch (\w+) here&quot;/&gt;
-  &lt;property name=&quot;checkFormat&quot; value=&quot;IllegalCatchCheck&quot;/&gt;
-  &lt;property name=&quot;messageFormat&quot; value=&quot;$1&quot;/&gt;
-  &lt;property name=&quot;influenceFormat&quot; value=&quot;-1&quot;/&gt;
+&lt;module name="SuppressWithNearbyCommentFilter"&gt;
+  &lt;property name="commentFormat" value="OK to catch (\w+) here"/&gt;
+  &lt;property name="checkFormat" value="IllegalCatchCheck"/&gt;
+  &lt;property name="messageFormat" value="$1"/&gt;
+  &lt;property name="influenceFormat" value="-1"/&gt;
 &lt;/module&gt;
         </source>
         <source>
@@ -153,11 +153,11 @@ catch (Throwable th) { ... }
           the current line and the next <i>var</i> lines (for a total of <i>var</i>+1 lines):
         </p>
         <source>
-&lt;module name=&quot;SuppressWithNearbyCommentFilter&quot;&gt;
-  &lt;property name=&quot;commentFormat&quot;
-      value=&quot;CHECKSTYLE IGNORE (\w+) FOR NEXT (\d+) LINES&quot;/&gt;
-  &lt;property name=&quot;checkFormat&quot; value=&quot;$1&quot;/&gt;
-  &lt;property name=&quot;influenceFormat&quot; value=&quot;$2&quot;/&gt;
+&lt;module name="SuppressWithNearbyCommentFilter"&gt;
+  &lt;property name="commentFormat"
+      value="CHECKSTYLE IGNORE (\w+) FOR NEXT (\d+) LINES"/&gt;
+  &lt;property name="checkFormat" value="$1"/&gt;
+  &lt;property name="influenceFormat" value="$2"/&gt;
 &lt;/module&gt;
         </source>
         <source>
@@ -171,11 +171,11 @@ static final int lowerCaseConstant4; // will warn here
           To configure a filter to avoid any audits on code like:
         </p>
         <source>
-&lt;module name=&quot;SuppressWithNearbyCommentFilter&quot;&gt;
-  &lt;property name=&quot;commentFormat&quot;
-    value=&quot;ALLOW (\\w+) ON PREVIOUS LINE&quot;/&gt;
-  &lt;property name=&quot;checkFormat&quot; value=&quot;$1&quot;/&gt;
-  &lt;property name=&quot;influenceFormat&quot; value=&quot;-1&quot;/&gt;
+&lt;module name="SuppressWithNearbyCommentFilter"&gt;
+  &lt;property name="commentFormat"
+    value="ALLOW (\\w+) ON PREVIOUS LINE"/&gt;
+  &lt;property name="checkFormat" value="$1"/&gt;
+  &lt;property name="influenceFormat" value="-1"/&gt;
 &lt;/module&gt;
         </source>
         <source>
@@ -186,14 +186,14 @@ private int D2;
 
         <p>
           To configure a filter to allow suppress one or more Checks
-          (separated by &quot;|&quot;) and demand comment no less than 14 symbols:
+          (separated by "|") and demand comment no less than 14 symbols:
         </p>
         <source>
-&lt;module name=&quot;SuppressWithNearbyCommentFilter&quot;&gt;
-  &lt;property name=&quot;commentFormat&quot;
-    value=&quot;@cs\.suppress \[(\w+(\|\w+)*)\] \w[-\.'`,:;\w ]{14,}&quot;/&gt;
-  &lt;property name=&quot;checkFormat&quot; value=&quot;$1&quot;/&gt;
-  &lt;property name=&quot;influenceFormat&quot; value=&quot;1&quot;/&gt;
+&lt;module name="SuppressWithNearbyCommentFilter"&gt;
+  &lt;property name="commentFormat"
+    value="@cs\.suppress \[(\w+(\|\w+)*)\] \w[-\.'`,:;\w ]{14,}"/&gt;
+  &lt;property name="checkFormat" value="$1"/&gt;
+  &lt;property name="influenceFormat" value="1"/&gt;
 &lt;/module&gt;
         </source>
         <source>
@@ -210,16 +210,16 @@ public static final int [] array; // @cs.suppress [ConstantName|NoWhitespaceAfte
           Examples of Checkstyle checks configuration:
         </p>
         <source>
-&lt;module name=&quot;RegexpSinglelineJava&quot;&gt;
-  &lt;property name=&quot;id&quot; value=&quot;ignore&quot;/&gt;
-  &lt;property name=&quot;format&quot; value=&quot;^.*@Ignore\s*$&quot;/&gt;
-  &lt;property name=&quot;message&quot; value=&quot;@Ignore should have a reason.&quot;/&gt;
+&lt;module name="RegexpSinglelineJava"&gt;
+  &lt;property name="id" value="ignore"/&gt;
+  &lt;property name="format" value="^.*@Ignore\s*$"/&gt;
+  &lt;property name="message" value="@Ignore should have a reason."/&gt;
 &lt;/module&gt;
 
-&lt;module name=&quot;RegexpSinglelineJava&quot;&gt;
-  &lt;property name=&quot;id&quot; value=&quot;systemout&quot;/&gt;
-  &lt;property name=&quot;format&quot; value=&quot;^.*System\.(out|err).*$&quot;/&gt;
-  &lt;property name=&quot;message&quot; value=&quot;Don't use System.out/err, use SLF4J instead.&quot;/&gt;
+&lt;module name="RegexpSinglelineJava"&gt;
+  &lt;property name="id" value="systemout"/&gt;
+  &lt;property name="format" value="^.*System\.(out|err).*$"/&gt;
+  &lt;property name="message" value="Don't use System.out/err, use SLF4J instead."/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -228,10 +228,10 @@ public static final int [] array; // @cs.suppress [ConstantName|NoWhitespaceAfte
           commentFormat regular expressions):
         </p>
         <source>
-&lt;module name=&quot;SuppressWithNearbyCommentFilter&quot;&gt;
-  &lt;property name=&quot;commentFormat&quot; value=&quot;@cs-: (\w+) \(.*\)&quot;/&gt;
-  &lt;property name=&quot;idFormat&quot; value=&quot;$1&quot;/&gt;
-  &lt;property name=&quot;influenceFormat&quot; value=&quot;0&quot;/&gt;
+&lt;module name="SuppressWithNearbyCommentFilter"&gt;
+  &lt;property name="commentFormat" value="@cs-: (\w+) \(.*\)"/&gt;
+  &lt;property name="idFormat" value="$1"/&gt;
+  &lt;property name="influenceFormat" value="0"/&gt;
 &lt;/module&gt;
         </source>
         <source>
@@ -240,7 +240,7 @@ public static final int [] array; // @cs.suppress [ConstantName|NoWhitespaceAfte
 public void testMethod() { }
 
 public static void foo() {
-  System.out.println(&quot;Debug info.&quot;); // @cs-: systemout (should not fail RegexpSinglelineJava)
+  System.out.println("Debug info."); // @cs-: systemout (should not fail RegexpSinglelineJava)
 }
         </source>
         <p>
@@ -248,10 +248,10 @@ public static void foo() {
           The influence format is specified in the second regexp group.
         </p>
         <source>
-&lt;module name=&quot;SuppressWithNearbyCommentFilter&quot;&gt;
-  &lt;property name=&quot;commentFormat&quot; value=&quot;@cs-\: ([\w\|]+) influence (\d+)&quot;/&gt;
-  &lt;property name=&quot;checkFormat&quot; value=&quot;$1&quot;/&gt;
-  &lt;property name=&quot;influenceFormat&quot; value=&quot;$2&quot;/&gt;
+&lt;module name="SuppressWithNearbyCommentFilter"&gt;
+  &lt;property name="commentFormat" value="@cs-\: ([\w\|]+) influence (\d+)"/&gt;
+  &lt;property name="checkFormat" value="$1"/&gt;
+  &lt;property name="influenceFormat" value="$2"/&gt;
 &lt;/module&gt;
         </source>
         <source>
