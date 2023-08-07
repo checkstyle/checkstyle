@@ -34,8 +34,8 @@
 
           <li>
             Check text for incomplete HTML tags. Verifies that HTML
-            tags have corresponding end tags and issues an &quot;Unclosed
-            HTML tag found:&quot; error if not. An &quot;Extra HTML tag found:&quot;
+            tags have corresponding end tags and issues an "Unclosed
+            HTML tag found:" error if not. An "Extra HTML tag found:"
             error is issued if an end tag is found without a previous
             open tag.
           </li>
@@ -45,13 +45,13 @@
           </li>
           <li>
             Check for allowed HTML tags. The list of allowed HTML tags
-            is &quot;a&quot;, &quot;abbr&quot;, &quot;acronym&quot;, &quot;address&quot;, &quot;area&quot;, &quot;b&quot;, &quot;bdo&quot;, &quot;big&quot;,
-            &quot;blockquote&quot;, &quot;br&quot;, &quot;caption&quot;, &quot;cite&quot;, &quot;code&quot;, &quot;colgroup&quot;, &quot;dd&quot;,
-            &quot;del&quot;, &quot;dfn&quot;, &quot;div&quot;, &quot;dl&quot;, &quot;dt&quot;, &quot;em&quot;, &quot;fieldset&quot;, &quot;font&quot;, &quot;h1&quot;,
-            &quot;h2&quot;, &quot;h3&quot;, &quot;h4&quot;, &quot;h5&quot;, &quot;h6&quot;, &quot;hr&quot;, &quot;i&quot;, &quot;img&quot;, &quot;ins&quot;, &quot;kbd&quot;, &quot;li&quot;,
-            &quot;ol&quot;, &quot;p&quot;, &quot;pre&quot;, &quot;q&quot;, &quot;samp&quot;, &quot;small&quot;, &quot;span&quot;, &quot;strong&quot;, &quot;sub&quot;,
-            &quot;sup&quot;, &quot;table&quot;, &quot;tbody&quot;, &quot;td&quot;, &quot;tfoot&quot;, &quot;th&quot;, &quot;thead&quot;, &quot;tr&quot;, &quot;tt&quot;,
-            &quot;u&quot;, &quot;ul&quot;, &quot;var&quot;.
+            is "a", "abbr", "acronym", "address", "area", "b", "bdo", "big",
+            "blockquote", "br", "caption", "cite", "code", "colgroup", "dd",
+            "del", "dfn", "div", "dl", "dt", "em", "fieldset", "font", "h1",
+            "h2", "h3", "h4", "h5", "h6", "hr", "i", "img", "ins", "kbd", "li",
+            "ol", "p", "pre", "q", "samp", "small", "span", "strong", "sub",
+            "sup", "table", "tbody", "td", "tfoot", "th", "thead", "tr", "tt",
+            "u", "ul", "var".
           </li>
         </ul>
 
@@ -101,7 +101,7 @@
                 Specify the format for matching the end of a sentence.
               </td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
-              <td><code>&quot;([.?!][ \t\n\r\f&lt;])|([.?!]$)&quot;</code></td>
+              <td><code>"([.?!][ \t\n\r\f&lt;])|([.?!]$)"</code></td>
               <td>5.0</td>
             </tr>
             <tr>
@@ -189,7 +189,7 @@
         </p>
 
         <source>
-&lt;module name=&quot;JavadocStyle&quot;/&gt;
+&lt;module name="JavadocStyle"/&gt;
         </source>
 
         <p>Example:</p>
@@ -211,8 +211,8 @@ public class Test {
           To configure the check for <code>public</code> scope:
         </p>
         <source>
-&lt;module name=&quot;JavadocStyle&quot;&gt;
-&lt;property name=&quot;scope&quot; value=&quot;public&quot;/&gt;
+&lt;module name="JavadocStyle"&gt;
+&lt;property name="scope" value="public"/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>
@@ -236,9 +236,9 @@ public class Test {
         </p>
 
         <source>
-&lt;module name=&quot;JavadocStyle&quot;&gt;
-&lt;property name=&quot;scope&quot; value=&quot;private&quot;/&gt;
-&lt;property name=&quot;excludeScope&quot; value=&quot;package&quot;/&gt;
+&lt;module name="JavadocStyle"&gt;
+&lt;property name="scope" value="private"/&gt;
+&lt;property name="excludeScope" value="package"/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>
@@ -261,8 +261,8 @@ public class Test {
         </p>
 
         <source>
-&lt;module name=&quot;JavadocStyle&quot;&gt;
-&lt;property name=&quot;checkFirstSentence&quot; value=&quot;false&quot;/&gt;
+&lt;module name="JavadocStyle"&gt;
+&lt;property name="checkFirstSentence" value="false"/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>
@@ -280,8 +280,8 @@ public class Test {
           To configure the check to turn off validation of incomplete html tags:
         </p>
         <source>
-&lt;module name=&quot;JavadocStyle&quot;&gt;
-&lt;property name=&quot;checkHtml&quot; value=&quot;false&quot;/&gt;
+&lt;module name="JavadocStyle"&gt;
+&lt;property name="checkHtml" value="false"/&gt;
 &lt;/module&gt;
         </source>
 
@@ -300,8 +300,8 @@ public class Test {
           To configure the check for only class definitions:
         </p>
         <source>
-&lt;module name=&quot;JavadocStyle&quot;&gt;
-&lt;property name=&quot;tokens&quot; value=&quot;CLASS_DEF&quot;/&gt;
+&lt;module name="JavadocStyle"&gt;
+&lt;property name="tokens" value="CLASS_DEF"/&gt;
 &lt;/module&gt;
         </source>
 

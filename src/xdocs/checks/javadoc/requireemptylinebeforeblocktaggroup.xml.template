@@ -3,20 +3,16 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
   <head>
-    <title>JavadocMissingWhitespaceAfterAsterisk</title>
+    <title>RequireEmptyLineBeforeBlockTagGroup</title>
   </head>
   <body>
-    <section name="JavadocMissingWhitespaceAfterAsterisk">
-      <p>Since Checkstyle 8.32</p>
+    <section name="RequireEmptyLineBeforeBlockTagGroup">
+      <p>Since Checkstyle 8.36</p>
       <subsection name="Description" id="Description">
         <p>
-          Checks that there is at least one whitespace after the leading asterisk.
-          Although spaces after asterisks are optional in the Javadoc comments, their absence
-          makes the documentation difficult to read. It is the de facto standard to put at least
-          one whitespace after the leading asterisk.
+          Checks that one blank line before the block tag if it is present in Javadoc.
         </p>
       </subsection>
-
       <subsection name="Properties" id="Properties">
         <div class="wrapper">
           <table>
@@ -36,7 +32,7 @@
               </td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
-              <td>8.3</td>
+              <td>8.36</td>
             </tr>
           </table>
         </div>
@@ -44,42 +40,50 @@
 
       <subsection name="Examples" id="Examples">
         <p>
-          To configure the default check:
+          To configure the check:
         </p>
         <source>
-&lt;module name=&quot;JavadocMissingWhitespaceAfterAsterisk&quot;/&gt;
+&lt;module name="RequireEmptyLineBeforeBlockTagGroup"/&gt;
         </source>
         <p>
-          Code Example:
+          By default, the check will report a violation if there is no blank line before the
+          block tag, like in the example below.
         </p>
         <source>
-/** This is valid single-line Javadoc. */
-class TestClass {
-  /**
-   *This is invalid Javadoc.
-   */
-  int invalidJavaDoc;
-  /**
-   * This is valid Javadoc.
-   */
-  void validJavaDocMethod() {
-  }
-  /**This is invalid single-line Javadoc. */
-  void invalidSingleLineJavaDocMethod() {
-  }
-  /** This is valid single-line Javadoc. */
-  void validSingleLineJavaDocMethod() {
-  }
+/**
+ * testMethod's javadoc.
+ * @return something (violation)
+ */
+public boolean testMethod() {
+    return false;
+}
+        </source>
+        <p>
+          Valid javadoc should have a blank line separating the parameters, return, throw, or
+          other tags like in the example below.
+        </p>
+        <source>
+/**
+* testMethod's javadoc.
+*
+* @param firstParam
+* @return something
+*/
+public boolean testMethod(int firstParam) {
+    return false;
 }
         </source>
       </subsection>
 
-      <subsection name="Example of Usage"
-        id="Example_of_Usage">
+      <subsection name="Example of Usage" id="Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocMissingWhitespaceAfterAsterisk">
-              Checkstyle Style</a>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+RequireEmptyLineBeforeBlockTagGroup">
+                Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+RequireEmptyLineBeforeBlockTagGroup">
+                Checkstyle Style</a>
           </li>
         </ul>
       </subsection>
@@ -89,19 +93,19 @@ class TestClass {
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.missed.html.close%22">
-            javadoc.missed.html.close</a>
-          </li>
-          <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.missing.whitespace%22">
-            javadoc.missing.whitespace</a>
+                javadoc.missed.html.close</a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.parse.rule.error%22">
-            javadoc.parse.rule.error</a>
+                javadoc.parse.rule.error</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.tag.line.before%22">
+                javadoc.tag.line.before</a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.wrong.singleton.html.tag%22">
-            javadoc.wrong.singleton.html.tag</a>
+                javadoc.wrong.singleton.html.tag</a>
           </li>
         </ul>
         <p>

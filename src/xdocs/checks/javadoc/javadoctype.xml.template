@@ -140,7 +140,7 @@
           To configure the default check:
         </p>
         <source>
-&lt;module name=&quot;JavadocType&quot;/&gt;
+&lt;module name="JavadocType"/&gt;
         </source>
         <p>Example:</p>
         <source>
@@ -175,8 +175,8 @@ public class ClassF&lt;T&gt; {} // OK
           To configure the check for <code>public</code> scope:
         </p>
         <source>
-&lt;module name=&quot;JavadocType&quot;&gt;
-  &lt;property name=&quot;scope&quot; value=&quot;public&quot;/&gt;
+&lt;module name="JavadocType"&gt;
+  &lt;property name="scope" value="public"/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>
@@ -212,8 +212,8 @@ public class ClassF&lt;T&gt; {} // OK
           To configure the check for an <code>@author</code> tag:
         </p>
         <source>
-&lt;module name=&quot;JavadocType&quot;&gt;
-  &lt;property name=&quot;authorFormat&quot; value=&quot;\S&quot;/&gt;
+&lt;module name="JavadocType"&gt;
+  &lt;property name="authorFormat" value="\S"/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>
@@ -249,8 +249,8 @@ public class ClassF&lt;T&gt; {} // OK
           To configure the check for a CVS revision version tag:
         </p>
         <source>
-&lt;module name=&quot;JavadocType&quot;&gt;
-  &lt;property name=&quot;versionFormat&quot; value=&quot;\$Revision.*\$&quot;/&gt;
+&lt;module name="JavadocType"&gt;
+  &lt;property name="versionFormat" value="\$Revision.*\$"/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>
@@ -286,9 +286,9 @@ public class ClassF&lt;T&gt; {} // OK
           To configure the check for <code>private</code> classes only:
         </p>
         <source>
-&lt;module name=&quot;JavadocType&quot;&gt;
-  &lt;property name=&quot;scope&quot; value=&quot;private&quot;/&gt;
-  &lt;property name=&quot;excludeScope&quot; value=&quot;package&quot;/&gt;
+&lt;module name="JavadocType"&gt;
+  &lt;property name="scope" value="private"/&gt;
+  &lt;property name="excludeScope" value="package"/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>
@@ -324,8 +324,8 @@ public class ClassF&lt;T&gt; {} // OK
           To configure the check that allows missing <code>@param</code> tags:
         </p>
         <source>
-&lt;module name=&quot;JavadocType&quot;&gt;
-  &lt;property name=&quot;allowMissingParamTags&quot; value=&quot;true&quot;/&gt;
+&lt;module name="JavadocType"&gt;
+  &lt;property name="allowMissingParamTags" value="true"/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>
@@ -361,8 +361,8 @@ public class ClassF&lt;T&gt; {} // OK
             To configure the check that allows unknown tags:
         </p>
         <source>
-&lt;module name=&quot;JavadocType&quot;&gt;
-  &lt;property name=&quot;allowUnknownTags&quot; value=&quot;true&quot;/&gt;
+&lt;module name="JavadocType"&gt;
+  &lt;property name="allowUnknownTags" value="true"/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>
@@ -400,8 +400,8 @@ public class ClassF&lt;T&gt; {} // OK
           and <code>@Configuration</code>:
         </p>
         <source>
-&lt;module name=&quot;JavadocType&quot;&gt;
-  &lt;property name=&quot;allowedAnnotations&quot; value=&quot;SpringBootApplication,Configuration&quot;/&gt;
+&lt;module name="JavadocType"&gt;
+  &lt;property name="allowedAnnotations" value="SpringBootApplication,Configuration"/&gt;
 &lt;/module&gt;
         </source>
         <p>

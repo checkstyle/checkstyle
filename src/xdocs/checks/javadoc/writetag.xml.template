@@ -97,7 +97,7 @@
           Example of default Check configuration that do nothing.
         </p>
         <source>
-&lt;module name=&quot;WriteTag&quot;/&gt;
+&lt;module name="WriteTag"/&gt;
         </source>
         <p>
         Example:
@@ -116,8 +116,8 @@ public class Test {
           to be present on classes javadoc.
         </p>
         <source>
-&lt;module name=&quot;WriteTag&quot;&gt;
-  &lt;property name=&quot;tag&quot; value=&quot;@since&quot;/&gt;
+&lt;module name="WriteTag"&gt;
+  &lt;property name="tag" value="@since"/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -137,10 +137,10 @@ public class Test { // violation as required tag is missed
           to be present on method javadocs also in addition to default tokens.
         </p>
         <source>
-&lt;module name=&quot;WriteTag&quot;&gt;
-  &lt;property name=&quot;tag&quot; value=&quot;@since&quot;/&gt;
-  &lt;property name=&quot;tokens&quot;
-            value=&quot;INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF, METHOD_DEF&quot; /&gt;
+&lt;module name="WriteTag"&gt;
+  &lt;property name="tag" value="@since"/&gt;
+  &lt;property name="tokens"
+            value="INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF, METHOD_DEF" /&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -158,16 +158,16 @@ public class Test { // violation as required tag is missed
         <p>
           To configure Check to demand <code>@since</code> tag
           to be present with digital value on method javadocs also in addition to default tokens.
-          Attention: usage of non &quot;ignore&quot; in tagSeverity will print violation with such severity
+          Attention: usage of non "ignore" in tagSeverity will print violation with such severity
           on each presence of such tag.
         </p>
         <source>
-&lt;module name=&quot;WriteTag&quot;&gt;
-  &lt;property name=&quot;tag&quot; value=&quot;@since&quot;/&gt;
-  &lt;property name=&quot;tokens&quot;
-            value=&quot;INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF, METHOD_DEF&quot; /&gt;
-  &lt;property name=&quot;tagFormat&quot; value=&quot;[1-9\.]&quot;/&gt;
-  &lt;property name=&quot;tagSeverity&quot; value=&quot;ignore&quot;/&gt;
+&lt;module name="WriteTag"&gt;
+  &lt;property name="tag" value="@since"/&gt;
+  &lt;property name="tokens"
+            value="INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF, METHOD_DEF" /&gt;
+  &lt;property name="tagFormat" value="[1-9\.]"/&gt;
+  &lt;property name="tagSeverity" value="ignore"/&gt;
 &lt;/module&gt;
         </source>
         <p>

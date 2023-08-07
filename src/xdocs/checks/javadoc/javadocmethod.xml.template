@@ -172,7 +172,7 @@ public int checkReturnTag(final int aTagIndex,
           To configure the default check:
         </p>
         <source>
-&lt;module name=&quot;JavadocMethod&quot;/&gt;
+&lt;module name="JavadocMethod"/&gt;
         </source>
         <p> Example:</p>
         <source>
@@ -213,9 +213,9 @@ public class Test {
         </p>
 
         <source>
-&lt;module name=&quot;JavadocMethod&quot;&gt;
-  &lt;property name=&quot;accessModifiers&quot; value=&quot;public&quot;/&gt;
-  &lt;property name=&quot;allowMissingParamTags&quot; value=&quot;true&quot;/&gt;
+&lt;module name="JavadocMethod"&gt;
+  &lt;property name="accessModifiers" value="public"/&gt;
+  &lt;property name="allowMissingParamTags" value="true"/&gt;
 &lt;/module&gt;
         </source>
         <p>Example: </p>
@@ -256,8 +256,8 @@ public class Test {
           <code>package</code>, but not any other modifier:
         </p>
         <source>
-&lt;module name=&quot;JavadocMethod&quot;&gt;
-  &lt;property name=&quot;accessModifiers&quot; value=&quot;private, package&quot;/&gt;
+&lt;module name="JavadocMethod"&gt;
+  &lt;property name="accessModifiers" value="private, package"/&gt;
 &lt;/module&gt;
         </source>
         <p> Example:</p>
@@ -297,8 +297,8 @@ class Test {
               To configure the check to ignore any missing return tags:
         </p>
         <source>
-&lt;module name=&quot;JavadocMethod&quot;&gt;
-    &lt;property name=&quot;allowMissingReturnTag&quot; value=&quot;true&quot;/&gt;
+&lt;module name="JavadocMethod"&gt;
+    &lt;property name="allowMissingReturnTag" value="true"/&gt;
 &lt;/module&gt;
         </source>
         <p> Example:</p>
@@ -338,8 +338,8 @@ public class Test {
               To configure the check to ignore Methods with annotation <code>Deprecated</code>:
         </p>
         <source>
-&lt;module name=&quot;JavadocMethod&quot;&gt;
-    &lt;property name=&quot;allowedAnnotations&quot; value=&quot;Deprecated&quot;/&gt;
+&lt;module name="JavadocMethod"&gt;
+    &lt;property name="allowedAnnotations" value="Deprecated"/&gt;
 &lt;/module&gt;
         </source>
         <p> Example:</p>
@@ -379,8 +379,8 @@ public class Test {
               To configure the check only for tokens which are Constructor Definitions:
         </p>
         <source>
-&lt;module name=&quot;JavadocMethod&quot;&gt;
-    &lt;property name=&quot;tokens&quot; value=&quot;CTOR_DEF&quot;/&gt;
+&lt;module name="JavadocMethod"&gt;
+    &lt;property name="tokens" value="CTOR_DEF"/&gt;
 &lt;/module&gt;
         </source>
         <p> Example:</p>
@@ -421,8 +421,8 @@ public class Test {
           To configure the check to validate <code>throws</code> tags, you can use following config.
         </p>
         <source>
-&lt;module name=&quot;JavadocMethod&quot;&gt;
-  &lt;property name=&quot;validateThrows&quot; value=&quot;true&quot;/&gt;
+&lt;module name="JavadocMethod"&gt;
+  &lt;property name="validateThrows" value="true"/&gt;
 &lt;/module&gt;
         </source>
         <p> Example:</p>
@@ -465,13 +465,13 @@ public int parsePositiveInt(String s) {
     try {
         int value = Integer.parseInt(s);
         if (value &lt;= 0) {
-            throw new NumberFormatException(value + &quot; is negative/zero&quot;); // ok, try
+            throw new NumberFormatException(value + " is negative/zero"); // ok, try
         }
         return value;
     } catch (NumberFormatException ex) {
-        throw new IllegalArgumentException(&quot;Invalid number&quot;, ex); // violation, catch
+        throw new IllegalArgumentException("Invalid number", ex); // violation, catch
     } finally {
-        throw new IllegalStateException(&quot;Should never reach here&quot;); // violation, finally
+        throw new IllegalStateException("Should never reach here"); // violation, finally
     }
 }
 
@@ -483,7 +483,7 @@ public int parsePositiveInt(String s) {
 public String readLine() {
     try (Scanner sc = new Scanner(System.in)) {
         if (!sc.hasNext()) {
-            throw new IllegalStateException(&quot;Empty input&quot;); // violation, not caught
+            throw new IllegalStateException("Empty input"); // violation, not caught
         }
         return sc.next();
     }

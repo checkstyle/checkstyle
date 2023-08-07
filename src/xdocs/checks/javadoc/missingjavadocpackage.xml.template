@@ -31,7 +31,7 @@
             To configure the check:
         </p>
         <source>
-&lt;module name=&quot;MissingJavadocPackage&quot;/&gt;
+&lt;module name="MissingJavadocPackage"/&gt;
         </source>
         <p>Example:</p>
         <source>
