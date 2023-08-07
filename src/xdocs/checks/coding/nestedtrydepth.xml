@@ -38,7 +38,7 @@
           To configure the check:
         </p>
         <source>
-&lt;module name="NestedTryDepth"/&gt;
+&lt;module name=&quot;NestedTryDepth&quot;/&gt;
         </source>
         <p>
             case 1: Example of code with violation:
@@ -87,8 +87,8 @@ try {
           To configure the check to allow nesting depth 3:
         </p>
         <source>
-&lt;module name="NestedTryDepth"&gt;
-  &lt;property name="max" value="3"/&gt;
+&lt;module name=&quot;NestedTryDepth&quot;&gt;
+  &lt;property name=&quot;max&quot; value=&quot;3&quot;/&gt;
 &lt;/module&gt;
         </source>
         <p>

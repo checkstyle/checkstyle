@@ -51,7 +51,7 @@ while ((line = bufferedReader.readLine()) != null); // OK
           To configure the check:
         </p>
         <source>
-&lt;module name="InnerAssignment"/&gt;
+&lt;module name=&quot;InnerAssignment&quot;/&gt;
         </source>
         <p>Example:</p>
         <source>
@@ -71,7 +71,7 @@ class MyClass {
 
     String nameOne;
     List&lt;String&gt; myList = new ArrayList&lt;String&gt;();
-    myList.add(nameOne = "tom"); // violation
+    myList.add(nameOne = &quot;tom&quot;); // violation
 
     for (int k = 0; k &lt; 10; k = k + 2) { // OK
       // some code
@@ -84,7 +84,7 @@ class MyClass {
 
     while (someVal = false) {} // violation
 
-    InputStream is = new FileInputStream("textFile.txt");
+    InputStream is = new FileInputStream(&quot;textFile.txt&quot;);
     while ((b = is.read()) != -1) { // OK, this is a common idiom
       // some code
     }

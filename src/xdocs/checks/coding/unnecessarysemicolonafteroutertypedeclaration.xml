@@ -71,7 +71,7 @@
           To configure the check:
         </p>
         <source>
-&lt;module name="UnnecessarySemicolonAfterOuterTypeDeclaration"/&gt;
+&lt;module name=&quot;UnnecessarySemicolonAfterOuterTypeDeclaration&quot;/&gt;
         </source>
         <p>
           Example:
@@ -102,8 +102,8 @@ enum C {
            definitions:
         </p>
         <source>
-&lt;module name="UnnecessarySemicolonAfterOuterTypeDeclaration"&gt;
-  &lt;property name="tokens" value="CLASS_DEF"/&gt;
+&lt;module name=&quot;UnnecessarySemicolonAfterOuterTypeDeclaration&quot;&gt;
+  &lt;property name=&quot;tokens&quot; value=&quot;CLASS_DEF&quot;/&gt;
 &lt;/module&gt;
         </source>
         <p>

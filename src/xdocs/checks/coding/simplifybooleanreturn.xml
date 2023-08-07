@@ -38,7 +38,7 @@ return !valid();
           To configure the check:
         </p>
         <source>
-&lt;module name="SimplifyBooleanReturn"/&gt;
+&lt;module name=&quot;SimplifyBooleanReturn&quot;/&gt;
         </source>
         <p>Example:</p>
         <source>
@@ -64,11 +64,11 @@ public class Test {
 
  // violations, can be simplified
  public boolean check3() {
-  if (cond == true) { // can be simplified to "if (cond)"
+  if (cond == true) { // can be simplified to &quot;if (cond)&quot;
     return false;
   }
   else {
-    return true; // can be simplified to "return !cond"
+    return true; // can be simplified to &quot;return !cond&quot;
   }
  }
 

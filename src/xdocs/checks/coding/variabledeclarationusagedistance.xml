@@ -42,7 +42,7 @@
                 Define RegExp to ignore distance calculation for variables listed in this pattern.
               </td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
-              <td><code>""</code></td>
+              <td><code>&quot;&quot;</code></td>
               <td>5.8</td>
             </tr>
 
@@ -71,7 +71,7 @@
             To configure the check with default config:
         </p>
         <source>
-&lt;module name="VariableDeclarationUsageDistance"/&gt;
+&lt;module name=&quot;VariableDeclarationUsageDistance&quot;/&gt;
         </source>
         <p>Example:</p>
         <source>
@@ -80,9 +80,9 @@ public class Test {
   public void foo1() {
     int num;        // violation, distance = 4
     final double PI;   // OK, final variables not checked
-    System.out.println("Statement 1");
-    System.out.println("Statement 2");
-    System.out.println("Statement 3");
+    System.out.println(&quot;Statement 1&quot;);
+    System.out.println(&quot;Statement 2&quot;);
+    System.out.println(&quot;Statement 3&quot;);
     num = 1;
     PI = 3.14;
   }
@@ -93,7 +93,7 @@ public class Test {
     int count = 0;  // OK, used in different scope
 
     {
-      System.out.println("Inside inner scope");
+      System.out.println(&quot;Inside inner scope&quot;);
       a = 1;
       b = 2;
       count++;
@@ -119,7 +119,7 @@ cal.set(Calendar.HOUR_OF_DAY, hh);
 cal.set(Calendar.MINUTE, minutes);
         </source>
         <p>
-          The distance for the variable "minutes" is 1 even
+          The distance for the variable &quot;minutes&quot; is 1 even
           though this variable is used in the fifth method's call.
         </p>
         <p>
@@ -136,15 +136,15 @@ cal.set(Calendar.HOUR_OF_DAY, hh);
 cal.set(Calendar.MINUTE, minutes);
         </source>
         <p>
-          The distance for the variable "minutes" is 6 because there is one more expression
+          The distance for the variable &quot;minutes&quot; is 6 because there is one more expression
           (except the initialization block) between the declaration of this variable and its usage.
         </p>
         <p>
             To configure the check to set allowed distance:
         </p>
         <source>
-&lt;module name="VariableDeclarationUsageDistance"&gt;
-  &lt;property name="allowedDistance" value="4"/&gt;
+&lt;module name=&quot;VariableDeclarationUsageDistance&quot;&gt;
+  &lt;property name=&quot;allowedDistance&quot; value=&quot;4&quot;/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>
@@ -154,9 +154,9 @@ public class Test {
   public void foo1() {
     int num;        // OK, distance = 4
     final double PI;   // OK, final variables not checked
-    System.out.println("Statement 1");
-    System.out.println("Statement 2");
-    System.out.println("Statement 3");
+    System.out.println(&quot;Statement 1&quot;);
+    System.out.println(&quot;Statement 2&quot;);
+    System.out.println(&quot;Statement 3&quot;);
     num = 1;
     PI = 3.14;
   }
@@ -167,7 +167,7 @@ public class Test {
     int count = 0;  // OK, used in different scope
 
     {
-      System.out.println("Inside inner scope");
+      System.out.println(&quot;Inside inner scope&quot;);
       a = 1;
       b = 2;
       count++;
@@ -179,12 +179,12 @@ public class Test {
             To configure the check to ignore certain variables:
         </p>
         <source>
-&lt;module name="VariableDeclarationUsageDistance"&gt;
-  &lt;property name="ignoreVariablePattern" value="^num$"/&gt;
+&lt;module name=&quot;VariableDeclarationUsageDistance&quot;&gt;
+  &lt;property name=&quot;ignoreVariablePattern&quot; value=&quot;^num$&quot;/&gt;
 &lt;/module&gt;
         </source>
         <p>
-            This configuration ignores variables named "num".
+            This configuration ignores variables named &quot;num&quot;.
         </p>
         <p>Example:</p>
         <source>
@@ -193,9 +193,9 @@ public class Test {
   public void foo1() {
     int num;        // OK, variable ignored
     final double PI;   // OK, final variables not checked
-    System.out.println("Statement 1");
-    System.out.println("Statement 2");
-    System.out.println("Statement 3");
+    System.out.println(&quot;Statement 1&quot;);
+    System.out.println(&quot;Statement 2&quot;);
+    System.out.println(&quot;Statement 3&quot;);
     num = 1;
     PI = 3.14;
   }
@@ -206,7 +206,7 @@ public class Test {
     int count = 0;  // OK, used in different scope
 
     {
-      System.out.println("Inside inner scope");
+      System.out.println(&quot;Inside inner scope&quot;);
       a = 1;
       b = 2;
       count++;
@@ -218,8 +218,8 @@ public class Test {
             To configure the check to force validation between scopes:
         </p>
         <source>
-&lt;module name="VariableDeclarationUsageDistance"&gt;
-  &lt;property name="validateBetweenScopes" value="true"/&gt;
+&lt;module name=&quot;VariableDeclarationUsageDistance&quot;&gt;
+  &lt;property name=&quot;validateBetweenScopes&quot; value=&quot;true&quot;/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>
@@ -229,9 +229,9 @@ public class Test {
   public void foo1() {
     int num;        // violation, distance = 4
     final double PI;   // OK, final variables not checked
-    System.out.println("Statement 1");
-    System.out.println("Statement 2");
-    System.out.println("Statement 3");
+    System.out.println(&quot;Statement 1&quot;);
+    System.out.println(&quot;Statement 2&quot;);
+    System.out.println(&quot;Statement 3&quot;);
     num = 1;
     PI = 3.14;
   }
@@ -242,7 +242,7 @@ public class Test {
     int count = 0;  // violation, distance = 4
 
     {
-      System.out.println("Inside inner scope");
+      System.out.println(&quot;Inside inner scope&quot;);
       a = 1;
       b = 2;
       count++;
@@ -254,8 +254,8 @@ public class Test {
             To configure the check to check final variables:
         </p>
         <source>
-&lt;module name="VariableDeclarationUsageDistance"&gt;
-  &lt;property name="ignoreFinal" value="false"/&gt;
+&lt;module name=&quot;VariableDeclarationUsageDistance&quot;&gt;
+  &lt;property name=&quot;ignoreFinal&quot; value=&quot;false&quot;/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>
@@ -265,9 +265,9 @@ public class Test {
   public void foo1() {
     int num;        // violation, distance = 4
     final double PI;   // violation, distance = 5
-    System.out.println("Statement 1");
-    System.out.println("Statement 2");
-    System.out.println("Statement 3");
+    System.out.println(&quot;Statement 1&quot;);
+    System.out.println(&quot;Statement 2&quot;);
+    System.out.println(&quot;Statement 3&quot;);
     num = 1;
     PI = 3.14;
   }
@@ -278,7 +278,7 @@ public class Test {
     int count = 0;  // OK, used in different scope
 
     {
-      System.out.println("Inside inner scope");
+      System.out.println(&quot;Inside inner scope&quot;);
       a = 1;
       b = 2;
       count++;
