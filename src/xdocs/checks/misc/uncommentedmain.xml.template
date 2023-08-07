@@ -38,7 +38,7 @@
               <td>Specify pattern for qualified names of classes which are allowed
               to have a <code>main</code> method.</td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
-              <td><code>&quot;^$&quot;</code></td>
+              <td><code>"^$"</code></td>
               <td>3.2</td>
             </tr>
           </table>
@@ -50,7 +50,7 @@
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;UncommentedMain&quot;/&gt;
+&lt;module name="UncommentedMain"/&gt;
         </source>
         <p>Example:</p>
         <source>
@@ -80,11 +80,11 @@ public record MyRecord2 {
         </source>
         <p>
           To configure the check to allow the <code>main</code> method for all classes
-          with &quot;Main&quot; name:
+          with "Main" name:
         </p>
         <source>
-&lt;module name=&quot;UncommentedMain&quot;&gt;
-  &lt;property name=&quot;excludedClasses&quot; value=&quot;\.Main$&quot;/&gt;
+&lt;module name="UncommentedMain"&gt;
+  &lt;property name="excludedClasses" value="\.Main$"/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>
