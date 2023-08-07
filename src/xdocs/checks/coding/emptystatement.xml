@@ -10,7 +10,7 @@
       <p>Since Checkstyle 3.1</p>
       <subsection name="Description" id="Description">
         <p>
-          Detects empty statements (standalone <code>";"</code> semicolon).
+          Detects empty statements (standalone <code>&quot;;&quot;</code> semicolon).
           Empty statements often introduce bugs that are hard to spot
         </p>
       </subsection>
@@ -20,7 +20,7 @@
           To configure the check:
         </p>
         <source>
-&lt;module name="EmptyStatement"/&gt;
+&lt;module name=&quot;EmptyStatement&quot;/&gt;
         </source>
         <p>
             Example:
@@ -28,7 +28,7 @@
         <source>
 public void foo() {
   int i = 5;
-  if (i &gt; 3); // violation, ";" right after if statement
+  if (i &gt; 3); // violation, &quot;;&quot; right after if statement
     i++;
   for (i = 0; i &lt; 5; i++); // violation
     i++;

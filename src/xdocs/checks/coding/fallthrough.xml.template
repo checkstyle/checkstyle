@@ -19,9 +19,9 @@
         <p>
           The check honors special comments to suppress the warning.
           By default, the texts
-          &quot;fallthru&quot;, &quot;fall thru&quot;, &quot;fall-thru&quot;,
-          &quot;fallthrough&quot;, &quot;fall through&quot;, &quot;fall-through&quot;
-          &quot;fallsthrough&quot;, &quot;falls through&quot;, &quot;falls-through&quot; (case-sensitive).
+          "fallthru", "fall thru", "fall-thru",
+          "fallthrough", "fall through", "fall-through"
+          "fallsthrough", "falls through", "falls-through" (case-sensitive).
           The comment containing these words must be all on one line,
           and must be on the last non-empty line before the
           <code>case</code> triggering the warning or on
@@ -60,7 +60,7 @@
                 the warning about a fall through.
               </td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
-              <td><code>&quot;falls?[ -]?thr(u|ough)&quot;</code></td>
+              <td><code>"falls?[ -]?thr(u|ough)"</code></td>
               <td>4.0</td>
             </tr>
           </table>
@@ -72,7 +72,7 @@
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;FallThrough&quot;/&gt;
+&lt;module name="FallThrough"/&gt;
         </source>
         <p>
           Example:
@@ -111,8 +111,8 @@ public class Example1 {
             To configure the check to enable check for last case group:
         </p>
         <source>
-&lt;module name=&quot;FallThrough&quot;&gt;
-   &lt;property name=&quot;checkLastCaseGroup&quot; value=&quot;true&quot;/&gt;
+&lt;module name="FallThrough"&gt;
+   &lt;property name="checkLastCaseGroup" value="true"/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -152,8 +152,8 @@ public class Example2 {
             To configure the check with custom relief pattern:
         </p>
         <source>
-&lt;module name=&quot;FallThrough&quot;&gt;
-   &lt;property name=&quot;reliefPattern&quot; value=&quot;no break by design&quot;/&gt;
+&lt;module name="FallThrough"&gt;
+   &lt;property name="reliefPattern" value="no break by design"/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>

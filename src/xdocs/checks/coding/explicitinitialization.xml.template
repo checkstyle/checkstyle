@@ -51,7 +51,7 @@
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;ExplicitInitialization&quot;/&gt;
+&lt;module name="ExplicitInitialization"/&gt;
         </source>
         <p>Example:</p>
         <source>
@@ -82,8 +82,8 @@ public class Test {
           for objects that explicitly initialize to null:
         </p>
         <source>
-&lt;module name=&quot;ExplicitInitialization&quot;&gt;
-  &lt;property name=&quot;onlyObjectReferences&quot; value=&quot;true&quot;/&gt;
+&lt;module name="ExplicitInitialization"&gt;
+  &lt;property name="onlyObjectReferences" value="true"/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>

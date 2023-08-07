@@ -106,7 +106,7 @@ return new int[] {
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;ArrayTrailingComma&quot;/&gt;
+&lt;module name="ArrayTrailingComma"/&gt;
         </source>
         <p>
           Which results in the following violations:
@@ -131,7 +131,7 @@ char[] chars = {'a', 'b', 'c'
   };        / /no violation
 
 String[] letters = {
-  &quot;a&quot;, &quot;b&quot;, &quot;c&quot;};        // no violation
+  "a", "b", "c"};        // no violation
 
 int[] a1 = new int[]{
   1,
@@ -147,8 +147,8 @@ int[] a2 = new int[]{
 
         <p>To configure check to always validate trailing comma:</p>
         <source>
-&lt;module name=&quot;ArrayTrailingComma&quot;&gt;
-    &lt;property name=&quot;alwaysDemandTrailingComma&quot; value=&quot;true&quot;/&gt;
+&lt;module name="ArrayTrailingComma"&gt;
+    &lt;property name="alwaysDemandTrailingComma" value="true"/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>
@@ -172,7 +172,7 @@ char[] chars = {'a', 'b', 'c'  // violation
   };
 
 String[] letters = {
-  &quot;a&quot;, &quot;b&quot;, &quot;c&quot;}; // violation
+  "a", "b", "c"}; // violation
 
 int[] a1 = new int[]{
   1,
