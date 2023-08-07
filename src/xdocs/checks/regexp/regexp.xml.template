@@ -70,7 +70,7 @@
               <td>format</td>
               <td>Specify the pattern to match against.</td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
-              <td><code>&quot;^$&quot;</code></td>
+              <td><code>"^$"</code></td>
               <td>4.0</td>
             </tr>
             <tr>
@@ -138,8 +138,8 @@
         </source>
         <p> The check. </p>
         <source>
-&lt;module name=&quot;Regexp&quot;&gt;
-  &lt;property name=&quot;format&quot; value=&quot;// This code is copyrighted&quot;/&gt;
+&lt;module name="Regexp"&gt;
+  &lt;property name="format" value="// This code is copyrighted"/&gt;
 &lt;/module&gt;
         </source>
         <p> Your statement may be multiline. </p>
@@ -149,8 +149,8 @@
         </source>
         <p> Then the check would be. </p>
         <source>
-&lt;module name=&quot;Regexp&quot;&gt;
-  &lt;property name=&quot;format&quot; value=&quot;// This code is copyrighted\n// \(c\) MyCompany&quot;/&gt;
+&lt;module name="Regexp"&gt;
+  &lt;property name="format" value="// This code is copyrighted\n// \(c\) MyCompany"/&gt;
 &lt;/module&gt;
         </source>
         <p><b>Note:</b> To search for parentheses () in a regular expression
@@ -161,18 +161,18 @@
           And to make sure it appears only once:
         </p>
         <source>
-&lt;module name=&quot;Regexp&quot;&gt;
-  &lt;property name=&quot;format&quot; value=&quot;// This code is copyrighted\n// \(c\) MyCompany&quot;/&gt;
-  &lt;property name=&quot;duplicateLimit&quot; value=&quot;0&quot;/&gt;
+&lt;module name="Regexp"&gt;
+  &lt;property name="format" value="// This code is copyrighted\n// \(c\) MyCompany"/&gt;
+  &lt;property name="duplicateLimit" value="0"/&gt;
 &lt;/module&gt;
         </source>
         <p>
           It can also be useful to attach a meaningful message to the check:
         </p>
         <source>
-&lt;module name=&quot;Regexp&quot;&gt;
-  &lt;property name=&quot;format&quot; value=&quot;// This code is copyrighted\n// \(c\) MyCompany&quot;/&gt;
-  &lt;property name=&quot;message&quot; value=&quot;Copyright&quot;/&gt;
+&lt;module name="Regexp"&gt;
+  &lt;property name="format" value="// This code is copyrighted\n// \(c\) MyCompany"/&gt;
+  &lt;property name="message" value="Copyright"/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -183,20 +183,20 @@
           calls to <code>System.out.println</code>:
         </p>
         <source>
-&lt;module name=&quot;Regexp&quot;&gt;
+&lt;module name="Regexp"&gt;
   &lt;!-- . matches any character, so we need to escape it and use \. to match dots. --&gt;
-  &lt;property name=&quot;format&quot; value=&quot;System\.out\.println&quot;/&gt;
-  &lt;property name=&quot;illegalPattern&quot; value=&quot;true&quot;/&gt;
+  &lt;property name="format" value="System\.out\.println"/&gt;
+  &lt;property name="illegalPattern" value="true"/&gt;
 &lt;/module&gt;
         </source>
         <p>
           You may want to make the above check ignore comments, like this:
         </p>
         <source>
-&lt;module name=&quot;Regexp&quot;&gt;
-  &lt;property name=&quot;format&quot; value=&quot;System\.out\.println&quot;/&gt;
-  &lt;property name=&quot;illegalPattern&quot; value=&quot;true&quot;/&gt;
-  &lt;property name=&quot;ignoreComments&quot; value=&quot;true&quot;/&gt;
+&lt;module name="Regexp"&gt;
+  &lt;property name="format" value="System\.out\.println"/&gt;
+  &lt;property name="illegalPattern" value="true"/&gt;
+  &lt;property name="ignoreComments" value="true"/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -204,20 +204,20 @@
           at the end of a line:
         </p>
         <source>
-&lt;module name=&quot;Regexp&quot;&gt;
-  &lt;property name=&quot;format&quot; value=&quot;[ \t]+$&quot;/&gt;
-  &lt;property name=&quot;illegalPattern&quot; value=&quot;true&quot;/&gt;
-  &lt;property name=&quot;message&quot; value=&quot;Trailing whitespace&quot;/&gt;
+&lt;module name="Regexp"&gt;
+  &lt;property name="format" value="[ \t]+$"/&gt;
+  &lt;property name="illegalPattern" value="true"/&gt;
+  &lt;property name="message" value="Trailing whitespace"/&gt;
 &lt;/module&gt;
         </source>
         <p>
           An example of how to configure the check to find case-insensitive
-          occurrences of &quot;debug&quot;:
+          occurrences of "debug":
         </p>
         <source>
-&lt;module name=&quot;Regexp&quot;&gt;
-  &lt;property name=&quot;format&quot; value=&quot;(?i)debug&quot;/&gt;
-  &lt;property name=&quot;illegalPattern&quot; value=&quot;true&quot;/&gt;
+&lt;module name="Regexp"&gt;
+  &lt;property name="format" value="(?i)debug"/&gt;
+  &lt;property name="illegalPattern" value="true"/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -232,10 +232,10 @@
           the following example.
         </p>
         <source>
-&lt;module name=&quot;Regexp&quot;&gt;
-  &lt;property name=&quot;format&quot; value=&quot;(?i)debug&quot;/&gt;
-  &lt;property name=&quot;illegalPattern&quot; value=&quot;true&quot;/&gt;
-  &lt;property name=&quot;errorLimit&quot; value=&quot;1000&quot;/&gt;
+&lt;module name="Regexp"&gt;
+  &lt;property name="format" value="(?i)debug"/&gt;
+  &lt;property name="illegalPattern" value="true"/&gt;
+  &lt;property name="errorLimit" value="1000"/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -257,10 +257,10 @@
 // All rights reserved
         </source>
         <source>
-&lt;module name=&quot;Regexp&quot;&gt;
+&lt;module name="Regexp"&gt;
   &lt;property
-    name=&quot;format&quot;
-    value=&quot;\A// Copyright \(C\) \d\d\d\d MyCompany\n// All rights reserved&quot;/&gt;
+    name="format"
+    value="\A// Copyright \(C\) \d\d\d\d MyCompany\n// All rights reserved"/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -288,13 +288,13 @@ import java.util.thing3;
 */
         </source>
         <source>
-&lt;module name=&quot;Regexp&quot;&gt;
+&lt;module name="Regexp"&gt;
   &lt;property
-    name=&quot;format&quot;
-    value=&quot;\A/{71}\n// checkstyle:\n// Checks Java source code for
+    name="format"
+    value="\A/{71}\n// checkstyle:\n// Checks Java source code for
     adherence to a set of rules\.\n// Copyright \(C\) \d\d\d\d  Oliver Burn\n
     // Last modification by \$Author.*\$\n/{71}\n\npackage [\w\.]*;\n\n
-    (import [\w\.]*;\n)*\n/\*\*\n( \*[^/]*\n)* \*/&quot;/&gt;
+    (import [\w\.]*;\n)*\n/\*\*\n( \*[^/]*\n)* \*/"/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -312,7 +312,7 @@ import java.util.thing3;
 * Somewhere.
 *
 * This software is the confidential and proprietary information of ACME.
-* (&quot;Confidential Information&quot;). You shall not disclose such
+* ("Confidential Information"). You shall not disclose such
 * Confidential Information and shall use it only in accordance with
 * the terms of the license agreement you entered into with ACME.
 *
@@ -347,7 +347,7 @@ import com.acme.thing3;
 *
 * &lt;P&gt;
 *   &lt;I&gt;This software is the confidential and proprietary information of
-*   ACME (&lt;B&gt;&quot;Confidential Information&quot;&lt;/B&gt;). You shall not
+*   ACME (&lt;B&gt;"Confidential Information"&lt;/B&gt;). You shall not
 *   disclose such Confidential Information and shall use it only in
 *   accordance with the terms of the license agreement you entered into
 *   with ACME.&lt;/I&gt;
@@ -377,10 +377,10 @@ public static final int A_SETPOINT = 1;
         </ul>
 
         <source>
-&lt;module name=&quot;Regexp&quot;&gt;
+&lt;module name="Regexp"&gt;
   &lt;property
-    name=&quot;format&quot;
-    value=&quot;\A/\*\n \* (\w*)\.java\n \*\n \* Copyright \(c\)
+    name="format"
+    value="\A/\*\n \* (\w*)\.java\n \*\n \* Copyright \(c\)
     \d\d\d\d ACME\n \* 123 Some St\.\n \* Somewhere\.\n \*\n
     \* This software is the confidential and proprietary information
     of ACME\.\n \* \(&amp;quot;Confidential Information&amp;quot;\)\. You
@@ -403,8 +403,8 @@ public static final int A_SETPOINT = 1;
     \*
     \* Revision 1.5  2005/11/06 11:54:12  oburn
     \* Incorporate excellent patch \[ 1344344 \] Consolidation of regexp checks.
-    \* \\n(.*\n)*([\w|\s]*( class | interface )\1)&quot;/&gt;
-  &lt;property name=&quot;message&quot; value=&quot;Correct header not found&quot;/&gt;
+    \* \\n(.*\n)*([\w|\s]*( class | interface )\1)"/&gt;
+  &lt;property name="message" value="Correct header not found"/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -412,20 +412,20 @@ public static final int A_SETPOINT = 1;
           javadoc, lines 24 to 37.
         </p>
         <source>
-&lt;module name=&quot;Regexp&quot;&gt;
+&lt;module name="Regexp"&gt;
   &lt;property
-    name=&quot;format&quot;
-    value=&quot;(/\*\*\n)( \*.*\n)*( \* &amp;lt;P&amp;gt;\n \*   &amp;lt;I&amp;gt;
+    name="format"
+    value="(/\*\*\n)( \*.*\n)*( \* &amp;lt;P&amp;gt;\n \*   &amp;lt;I&amp;gt;
     This software is the confidential and proprietary information of\n
     \*   ACME \(&amp;lt;B&amp;gt;&amp;quot;Confidential Information&amp;quot;&amp;lt;/B&amp;gt;
     \)\. You shall not\n \*   disclose such Confidential Information
     and shall use it only in\n \*   accordance with the terms of the
     license agreement you entered into\n \*   with ACME\.&amp;lt;/I&amp;gt;\n
     \* &amp;lt;/P&amp;gt;\n \*\n \* &amp;#169; copyright \d\d\d\d ACME\n
-    \*\n \* @author .*)(\n\s\*.*)*/\n[\w|\s]*( class | interface )&quot;/&gt;
-  &lt;property name=&quot;message&quot;
-    value=&quot;Copyright in class/interface Javadoc&quot;/&gt;
-  &lt;property name=&quot;duplicateLimit&quot; value=&quot;0&quot;/&gt;
+    \*\n \* @author .*)(\n\s\*.*)*/\n[\w|\s]*( class | interface )"/&gt;
+  &lt;property name="message"
+    value="Copyright in class/interface Javadoc"/&gt;
+  &lt;property name="duplicateLimit" value="0"/&gt;
 &lt;/module&gt;
         </source>
         <p>
