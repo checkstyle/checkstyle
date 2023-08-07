@@ -26,7 +26,7 @@
               <td>format</td>
               <td>Specifies valid identifiers.</td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
-              <td><code>"^[A-Z]$"</code></td>
+              <td><code>&quot;^[A-Z]$&quot;</code></td>
               <td>5.0</td>
             </tr>
           </table>
@@ -38,7 +38,7 @@
           To configure the check:
         </p>
         <source>
-&lt;module name="ClassTypeParameterName"/&gt;
+&lt;module name=&quot;ClassTypeParameterName&quot;/&gt;
         </source>
         <p>Example:</p>
         <source>
@@ -52,8 +52,8 @@ class MyClass5&lt;RequestT&gt; {} // violation
           To configure the check for names that are uppercase word:
         </p>
         <source>
-&lt;module name="ClassTypeParameterName"&gt;
-  &lt;property name="format" value="^[A-Z]{2,}$"/&gt;
+&lt;module name=&quot;ClassTypeParameterName&quot;&gt;
+  &lt;property name=&quot;format&quot; value=&quot;^[A-Z]{2,}$&quot;/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>
@@ -69,8 +69,8 @@ class MyClass5&lt;RequestT&gt; {} // violation
           (<a href="https://checkstyle.org/styleguides/google-java-style-20180523/javaguide.html#s5.2.8-type-variable-names">Google Style</a>):
         </p>
         <source>
-&lt;module name="ClassTypeParameterName"&gt;
-  &lt;property name="format" value="(^[A-Z][0-9]?)$|([A-Z][a-zA-Z0-9]*[T]$)"/&gt;
+&lt;module name=&quot;ClassTypeParameterName&quot;&gt;
+  &lt;property name=&quot;format&quot; value=&quot;(^[A-Z][0-9]?)$|([A-Z][a-zA-Z0-9]*[T]$)&quot;/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>

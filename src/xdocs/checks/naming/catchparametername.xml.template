@@ -43,7 +43,7 @@
               <td>Specifies valid identifiers.</td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
               <td>
-                <code>&quot;^(e|t|ex|[a-z][a-z][a-zA-Z]+)$&quot;</code>
+                <code>"^(e|t|ex|[a-z][a-z][a-zA-Z]+)$"</code>
               </td>
               <td>6.14</td>
             </tr>
@@ -56,7 +56,7 @@
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;CatchParameterName&quot;/&gt;
+&lt;module name="CatchParameterName"/&gt;
         </source>
         <p>Example:
         </p>
@@ -96,8 +96,8 @@ public class MyTest {
         </p>
         <p>Configuration:</p>
         <source>
-&lt;module name=&quot;CatchParameterName&quot;&gt;
-  &lt;property name=&quot;format&quot; value=&quot;^[a-z][a-zA-Z0-9]+$&quot;/&gt;
+&lt;module name="CatchParameterName"&gt;
+  &lt;property name="format" value="^[a-z][a-zA-Z0-9]+$"/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>

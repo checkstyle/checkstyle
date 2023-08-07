@@ -3,15 +3,13 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
   <head>
-    <title>MethodTypeParameterName</title>
+    <title>ClassTypeParameterName</title>
   </head>
   <body>
-    <section name="MethodTypeParameterName">
+    <section name="ClassTypeParameterName">
       <p>Since Checkstyle 5.0</p>
       <subsection name="Description" id="Description">
-        <p>
-          Checks that method type parameter names conform to a specified pattern.
-        </p>
+        <p>Checks that class type parameter names conform to a specified pattern.</p>
       </subsection>
 
       <subsection name="Properties" id="Properties">
@@ -28,7 +26,7 @@
               <td>format</td>
               <td>Specifies valid identifiers.</td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
-              <td><code>&quot;^[A-Z]$&quot;</code></td>
+              <td><code>"^[A-Z]$"</code></td>
               <td>5.0</td>
             </tr>
           </table>
@@ -40,44 +38,59 @@
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;MethodTypeParameterName&quot;/&gt;
+&lt;module name="ClassTypeParameterName"/&gt;
         </source>
-        <p>Code Example:</p>
+        <p>Example:</p>
         <source>
-class MyClass {
-  public &lt;T&gt; void method1() {} // OK
-  public &lt;a&gt; void method2() {} // violation, name 'a' must match pattern '^[A-Z]$'
-  public &lt;K, V&gt; void method3() {} // OK
-  public &lt;k, V&gt; void method4() {} // violation, name 'k' must match pattern '^[A-Z]$'
-}
+class MyClass1&lt;T&gt; {}        // OK
+class MyClass2&lt;t&gt; {}        // violation
+class MyClass3&lt;abc&gt; {}      // violation
+class MyClass4&lt;LISTENER&gt; {} // violation
+class MyClass5&lt;RequestT&gt; {} // violation
         </source>
         <p>
-          An example of how to configure the check for names that are only a single letter is:
+          To configure the check for names that are uppercase word:
         </p>
         <source>
-&lt;module name=&quot;MethodTypeParameterName&quot;&gt;
-   &lt;property name=&quot;format&quot; value=&quot;^[a-zA-Z]$&quot;/&gt;
+&lt;module name="ClassTypeParameterName"&gt;
+  &lt;property name="format" value="^[A-Z]{2,}$"/&gt;
 &lt;/module&gt;
         </source>
-        <p>Code Example:</p>
+        <p>Example:</p>
         <source>
-class MyClass {
-  public &lt;T&gt; void method1() {} // OK
-  public &lt;a&gt; void method2() {} // OK
-  public &lt;K, V&gt; void method3() {} // OK
-  public &lt;k, V&gt; void method4() {} // OK
-}
+class MyClass1&lt;T&gt; {}        // violation
+class MyClass2&lt;t&gt; {}        // violation
+class MyClass3&lt;abc&gt; {}      // violation
+class MyClass4&lt;LISTENER&gt; {} // OK
+class MyClass5&lt;RequestT&gt; {} // violation
+        </source>
+        <p>
+          To configure the check for names that are camel case word with T as suffix
+          (<a href="https://checkstyle.org/styleguides/google-java-style-20180523/javaguide.html#s5.2.8-type-variable-names">Google Style</a>):
+        </p>
+        <source>
+&lt;module name="ClassTypeParameterName"&gt;
+  &lt;property name="format" value="(^[A-Z][0-9]?)$|([A-Z][a-zA-Z0-9]*[T]$)"/&gt;
+&lt;/module&gt;
+        </source>
+        <p>Example:</p>
+        <source>
+class MyClass1&lt;T&gt; {}        // violation
+class MyClass2&lt;t&gt; {}        // violation
+class MyClass3&lt;abc&gt; {}      // violation
+class MyClass4&lt;LISTENER&gt; {} // violation
+class MyClass5&lt;RequestT&gt; {} // OK
         </source>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MethodTypeParameterName">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ClassTypeParameterName">
             Google Style</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+MethodTypeParameterName">
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+ClassTypeParameterName">
             Checkstyle Style</a>
           </li>
         </ul>
