@@ -13,7 +13,7 @@
           Checks that any combination of String literals
           is on the left side of an <code>equals()</code> comparison.
           Also checks for String literals assigned to some field
-          (such as <code>someString.equals(anotherString = &quot;text&quot;)</code>).
+          (such as <code>someString.equals(anotherString = "text")</code>).
         </p>
 
         <p>
@@ -54,25 +54,25 @@
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;EqualsAvoidNull&quot;/&gt;
+&lt;module name="EqualsAvoidNull"/&gt;
         </source>
         <p>
          Example:
         </p>
         <source>
 String nullString = null;
-nullString.equals(&quot;My_Sweet_String&quot;);            // violation
-&quot;My_Sweet_String&quot;.equals(nullString);            // OK
-nullString.equalsIgnoreCase(&quot;My_Sweet_String&quot;);  // violation
-&quot;My_Sweet_String&quot;.equalsIgnoreCase(nullString);  // OK
+nullString.equals("My_Sweet_String");            // violation
+"My_Sweet_String".equals(nullString);            // OK
+nullString.equalsIgnoreCase("My_Sweet_String");  // violation
+"My_Sweet_String".equalsIgnoreCase(nullString);  // OK
         </source>
 
         <p>
          To configure the check to allow ignoreEqualsIgnoreCase:
         </p>
         <source>
-&lt;module name=&quot;EqualsAvoidNull&quot;&gt;
-  &lt;property name=&quot;ignoreEqualsIgnoreCase&quot; value=&quot;true&quot;/&gt;
+&lt;module name="EqualsAvoidNull"&gt;
+  &lt;property name="ignoreEqualsIgnoreCase" value="true"/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -80,10 +80,10 @@ nullString.equalsIgnoreCase(&quot;My_Sweet_String&quot;);  // violation
         </p>
         <source>
 String nullString = null;
-nullString.equals(&quot;My_Sweet_String&quot;);            // violation
-&quot;My_Sweet_String&quot;.equals(nullString);            // OK
-nullString.equalsIgnoreCase(&quot;My_Sweet_String&quot;);  // OK
-&quot;My_Sweet_String&quot;.equalsIgnoreCase(nullString);  // OK
+nullString.equals("My_Sweet_String");            // violation
+"My_Sweet_String".equals(nullString);            // OK
+nullString.equalsIgnoreCase("My_Sweet_String");  // OK
+"My_Sweet_String".equalsIgnoreCase(nullString);  // OK
         </source>
       </subsection>
 

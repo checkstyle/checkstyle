@@ -35,7 +35,7 @@
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;AvoidDoubleBraceInitialization&quot;/&gt;
+&lt;module name="AvoidDoubleBraceInitialization"/&gt;
         </source>
         <p>
           Which results in the following violations:
@@ -51,7 +51,7 @@ class MyClass {
         ;
         // comments and semicolons are ignored
         {
-            add(&quot;foo&quot;);
+            add("foo");
         }
     };
 }

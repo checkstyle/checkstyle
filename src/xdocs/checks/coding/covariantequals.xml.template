@@ -66,7 +66,7 @@ public boolean equals(Foo obj) {...}
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;CovariantEquals&quot;/&gt;
+&lt;module name="CovariantEquals"/&gt;
         </source>
 
         <p>

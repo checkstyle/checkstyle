@@ -75,7 +75,7 @@
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;FinalLocalVariable&quot;/&gt;
+&lt;module name="FinalLocalVariable"/&gt;
         </source>
 
         <p>
@@ -83,8 +83,8 @@
           parameters:
         </p>
         <source>
-&lt;module name=&quot;FinalLocalVariable&quot;&gt;
-  &lt;property name=&quot;tokens&quot; value=&quot;VARIABLE_DEF,PARAMETER_DEF&quot;/&gt;
+&lt;module name="FinalLocalVariable"&gt;
+  &lt;property name="tokens" value="VARIABLE_DEF,PARAMETER_DEF"/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -101,9 +101,9 @@
           Variable is:
         </p>
         <source>
-&lt;module name=&quot;FinalLocalVariable&quot;&gt;
-  &lt;property name=&quot;tokens&quot; value=&quot;VARIABLE_DEF&quot;/&gt;
-  &lt;property name=&quot;validateEnhancedForLoopVariable&quot; value=&quot;true&quot;/&gt;
+&lt;module name="FinalLocalVariable"&gt;
+  &lt;property name="tokens" value="VARIABLE_DEF"/&gt;
+  &lt;property name="validateEnhancedForLoopVariable" value="true"/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>
@@ -117,9 +117,9 @@ for (int number : myNumbers) { // violation
           but do not validate loop variables:
         </p>
         <source>
-&lt;module name=&quot;FinalLocalVariable&quot;&gt;
-  &lt;property name=&quot;tokens&quot; value=&quot;VARIABLE_DEF,PARAMETER_DEF&quot;/&gt;
-  &lt;property name=&quot;validateEnhancedForLoopVariable&quot; value=&quot;false&quot;/&gt;
+&lt;module name="FinalLocalVariable"&gt;
+  &lt;property name="tokens" value="VARIABLE_DEF,PARAMETER_DEF"/&gt;
+  &lt;property name="validateEnhancedForLoopVariable" value="false"/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>
