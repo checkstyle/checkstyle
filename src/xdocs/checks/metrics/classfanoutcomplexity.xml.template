@@ -96,7 +96,7 @@
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;ClassFanOutComplexity&quot;/&gt;
+&lt;module name="ClassFanOutComplexity"/&gt;
         </source>
 
         <p>
@@ -114,7 +114,7 @@ class InputClassComplexity {
   Place place = new Place(); // Counted, 3
   int value = 10; // int is ignored due to default excludedClasses property
   void method() {
-    var result = &quot;result&quot;; // var is ignored due to default excludedClasses property
+    var result = "result"; // var is ignored due to default excludedClasses property
   }
 }
         </source>
@@ -137,8 +137,8 @@ class InputClassComplexity {
           To configure the check with a threshold of 2:
         </p>
         <source>
-&lt;module name=&quot;ClassFanOutComplexity&quot;&gt;
-  &lt;property name=&quot;max&quot; value=&quot;2&quot;/&gt;
+&lt;module name="ClassFanOutComplexity"&gt;
+  &lt;property name="max" value="2"/&gt;
 &lt;/module&gt;
         </source>
 
@@ -175,8 +175,8 @@ class InputClassComplexity {
           <code>HashSet</code> and <code>Place</code>:
         </p>
         <source>
-&lt;module name=&quot;ClassFanOutComplexity&quot;&gt;
-  &lt;property name=&quot;excludedClasses&quot; value=&quot;HashMap, HashSet, Place&quot;/&gt;
+&lt;module name="ClassFanOutComplexity"&gt;
+  &lt;property name="excludedClasses" value="HashMap, HashSet, Place"/&gt;
 &lt;/module&gt;
         </source>
 
@@ -216,8 +216,8 @@ class InputClassComplexity {
           <code>.*Reader$</code>:
         </p>
         <source>
-&lt;module name=&quot;ClassFanOutComplexity&quot;&gt;
-  &lt;property name=&quot;excludeClassesRegexps&quot; value=&quot;.*Reader$&quot;/&gt;
+&lt;module name="ClassFanOutComplexity"&gt;
+  &lt;property name="excludeClassesRegexps" value=".*Reader$"/&gt;
 &lt;/module&gt;
         </source>
 
@@ -257,8 +257,8 @@ class InputClassComplexity {
         </p>
 
         <source>
-&lt;module name=&quot;ClassFanOutComplexity&quot;&gt;
-  &lt;property name=&quot;excludedPackages&quot; value=&quot;java.io&quot;/&gt;
+&lt;module name="ClassFanOutComplexity"&gt;
+  &lt;property name="excludedPackages" value="java.io"/&gt;
 &lt;/module&gt;
         </source>
 
@@ -329,8 +329,8 @@ class InputClassComplexity {
           assuming the config is
         </p>
         <source>
-&lt;module name=&quot;ClassFanOutComplexity&quot;&gt;
-  &lt;property name=&quot;excludedPackages&quot; value=&quot;a.b&quot;/&gt;
+&lt;module name="ClassFanOutComplexity"&gt;
+  &lt;property name="excludedPackages" value="a.b"/&gt;
 &lt;/module&gt;
         </source>
         <p>

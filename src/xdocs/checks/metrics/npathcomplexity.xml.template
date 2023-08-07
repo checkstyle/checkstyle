@@ -25,7 +25,7 @@
         </p>
         <p>
           Metric was described at <a href="http://dl.acm.org/citation.cfm?id=42379">
-          &quot;NPATH: a measure of execution pathcomplexity and its applications&quot;</a>.
+          "NPATH: a measure of execution pathcomplexity and its applications"</a>.
           If you need detailed description of algorithm, please read that article,
           it is well written and have number of examples and details.
         </p>
@@ -129,7 +129,7 @@
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;NPathComplexity&quot;/&gt;
+&lt;module name="NPathComplexity"/&gt;
         </source>
         <p>
           Example:
@@ -190,8 +190,8 @@ public abstract void print(String str);
           To configure the check with a threshold of 100:
         </p>
         <source>
-&lt;module name=&quot;NPathComplexity&quot;&gt;
-  &lt;property name=&quot;max&quot; value=&quot;100&quot;/&gt;
+&lt;module name="NPathComplexity"&gt;
+  &lt;property name="max" value="100"/&gt;
 &lt;/module&gt;
         </source>
         <p>
