@@ -96,7 +96,7 @@
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;AnnotationOnSameLine&quot;/&gt;
+&lt;module name="AnnotationOnSameLine"/&gt;
         </source>
         <p>
           Example:
@@ -104,16 +104,16 @@
         <source>
 class Foo {
 
-  @SuppressWarnings(&quot;deprecation&quot;)  // violation, annotation should be on the same line
+  @SuppressWarnings("deprecation")  // violation, annotation should be on the same line
   public Foo() {
   }
 
-  @SuppressWarnings(&quot;unchecked&quot;) public void fun2() {  // OK
+  @SuppressWarnings("unchecked") public void fun2() {  // OK
   }
 
 }
 
-@SuppressWarnings(&quot;unchecked&quot;) class Bar extends Foo {  // OK
+@SuppressWarnings("unchecked") class Bar extends Foo {  // OK
 
   @Deprecated public Bar() {  // OK
   }
@@ -125,7 +125,7 @@ class Foo {
   @Before @Override public void fun2() {  // OK
   }
 
-  @SuppressWarnings(&quot;deprecation&quot;)  // violation, annotation should be on the same line
+  @SuppressWarnings("deprecation")  // violation, annotation should be on the same line
   @Before public void fun3() {
   }
 
@@ -136,9 +136,9 @@ class Foo {
           interfaces, variables and constructors:
         </p>
         <source>
-&lt;module name=&quot;AnnotationOnSameLine&quot;&gt;
-  &lt;property name=&quot;tokens&quot;
-      value=&quot;INTERFACE_DEF, VARIABLE_DEF, CTOR_DEF&quot;/&gt;
+&lt;module name="AnnotationOnSameLine"&gt;
+  &lt;property name="tokens"
+      value="INTERFACE_DEF, VARIABLE_DEF, CTOR_DEF"/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -153,7 +153,7 @@ class Foo {
 
 class Bar implements Foo {
 
-  @SuppressWarnings(&quot;deprecation&quot;)  // violation, annotation should be on the same line
+  @SuppressWarnings("deprecation")  // violation, annotation should be on the same line
   public Bar() {
   }
 
