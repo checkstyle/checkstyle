@@ -99,25 +99,25 @@
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;JavaNCSS&quot;/&gt;
+&lt;module name="JavaNCSS"/&gt;
         </source>
         <p>
           Example:
         </p>
         <source>
 public void test() {
-  System.out.println(&quot;Line 1&quot;);
+  System.out.println("Line 1");
   // another 48 lines of code
-  System.out.println(&quot;Line 50&quot;) // OK
-  System.out.println(&quot;Line 51&quot;) // violation, the method crosses 50 non commented lines
+  System.out.println("Line 50") // OK
+  System.out.println("Line 51") // violation, the method crosses 50 non commented lines
 }
         </source>
         <p>
           To configure the check with 40 allowed non commented lines for a method:
         </p>
         <source>
-&lt;module name=&quot;JavaNCSS&quot;&gt;
-  &lt;property name=&quot;methodMaximum&quot; value=&quot;40&quot;/&gt;
+&lt;module name="JavaNCSS"&gt;
+  &lt;property name="methodMaximum" value="40"/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -125,33 +125,33 @@ public void test() {
         </p>
         <source>
 public void test() {
-  System.out.println(&quot;Line 1&quot;);
+  System.out.println("Line 1");
   // another 38 lines of code
-  System.out.println(&quot;Line 40&quot;) // OK
-  System.out.println(&quot;Line 41&quot;) // violation, the method crosses 40 non commented lines
+  System.out.println("Line 40") // OK
+  System.out.println("Line 41") // violation, the method crosses 40 non commented lines
 }
         </source>
         <p>
           To configure the check to set limit of non commented lines in class to 100:
         </p>
         <source>
-&lt;module name=&quot;JavaNCSS&quot;&gt;
-  &lt;property name=&quot;classMaximum&quot; value=&quot;100&quot;/&gt;
+&lt;module name="JavaNCSS"&gt;
+  &lt;property name="classMaximum" value="100"/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>
         <source>
 public class Test {
   public void test() {
-    System.out.println(&quot;Line 1&quot;);
+    System.out.println("Line 1");
     // another 47 lines of code
-    System.out.println(&quot;Line 49&quot;);
+    System.out.println("Line 49");
   }
 
   public void test1() {
-    System.out.println(&quot;Line 50&quot;);  // OK
+    System.out.println("Line 50");  // OK
     // another 47 lines of code
-    System.out.println(&quot;Line 98&quot;); // violation
+    System.out.println("Line 98"); // violation
   }
 }
         </source>
@@ -159,33 +159,33 @@ public class Test {
           To configure the check to set limit of non commented lines in file to 200:
         </p>
         <source>
-&lt;module name=&quot;JavaNCSS&quot;&gt;
-  &lt;property name=&quot;fileMaximum&quot; value=&quot;200&quot;/&gt;
+&lt;module name="JavaNCSS"&gt;
+  &lt;property name="fileMaximum" value="200"/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>
         <source>
 public class Test1 {
   public void test() {
-    System.out.println(&quot;Line 1&quot;);
+    System.out.println("Line 1");
     // another 48 lines of code
-    System.out.println(&quot;Line 49&quot;);
+    System.out.println("Line 49");
   }
 
   public void test1() {
-    System.out.println(&quot;Line 50&quot;);
+    System.out.println("Line 50");
     // another 47 lines of code
-    System.out.println(&quot;Line 98&quot;); // OK
+    System.out.println("Line 98"); // OK
   }
 }
 
 class Test2 {
   public void test() {
-    System.out.println(&quot;Line 150&quot;); // OK
+    System.out.println("Line 150"); // OK
   }
 
   public void test1() {
-    System.out.println(&quot;Line 200&quot;); // violation
+    System.out.println("Line 200"); // violation
   }
 }
         </source>

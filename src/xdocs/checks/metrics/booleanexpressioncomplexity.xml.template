@@ -95,7 +95,7 @@
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;BooleanExpressionComplexity&quot;/&gt;
+&lt;module name="BooleanExpressionComplexity"/&gt;
         </source>
         <p>Code Example:</p>
         <source>
@@ -117,8 +117,8 @@ public class Test
           expression:
         </p>
         <source>
-&lt;module name=&quot;BooleanExpressionComplexity&quot;&gt;
-  &lt;property name=&quot;max&quot; value=&quot;5&quot;/&gt;
+&lt;module name="BooleanExpressionComplexity"&gt;
+  &lt;property name="max" value="5"/&gt;
 &lt;/module&gt;
         </source>
         <p>Code Example:</p>
@@ -142,8 +142,8 @@ public class Test
           <code>|</code>:
         </p>
         <source>
-&lt;module name=&quot;BooleanExpressionComplexity&quot;&gt;
-  &lt;property name=&quot;tokens&quot; value=&quot;BXOR,LAND,LOR&quot;/&gt;
+&lt;module name="BooleanExpressionComplexity"&gt;
+  &lt;property name="tokens" value="BXOR,LAND,LOR"/&gt;
 &lt;/module&gt;
         </source>
         <p>Code Example:</p>
