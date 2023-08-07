@@ -105,7 +105,7 @@
       <subsection name="Examples" id="Examples">
         <p> To configure the check: </p>
         <source>
-&lt;module name=&quot;RightCurly&quot;/&gt;
+&lt;module name="RightCurly"/&gt;
         </source>
 
         <p>Example: </p>
@@ -159,9 +159,9 @@ public class Test {
           tokens:
         </p>
         <source>
-&lt;module name=&quot;RightCurly&quot;&gt;
-  &lt;property name=&quot;option&quot; value=&quot;alone&quot;/&gt;
-  &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_ELSE, METHOD_DEF&quot;/&gt;
+&lt;module name="RightCurly"&gt;
+  &lt;property name="option" value="alone"/&gt;
+  &lt;property name="tokens" value="LITERAL_ELSE, METHOD_DEF"/&gt;
 &lt;/module&gt;
         </source>
 
@@ -203,9 +203,9 @@ public class Test {
           Statements:
         </p>
         <source>
-&lt;module name=&quot;RightCurly&quot;&gt;
-  &lt;property name=&quot;option&quot; value=&quot;alone&quot;/&gt;
-  &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_SWITCH&quot;/&gt;
+&lt;module name="RightCurly"&gt;
+  &lt;property name="option" value="alone"/&gt;
+  &lt;property name="tokens" value="LITERAL_SWITCH"/&gt;
 &lt;/module&gt;
         </source>
 
@@ -243,9 +243,9 @@ class Test {
           tokens:
         </p>
         <source>
-&lt;module name=&quot;RightCurly&quot;&gt;
-  &lt;property name=&quot;option&quot; value=&quot;alone_or_singleline&quot;/&gt;
-  &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_IF, METHOD_DEF&quot;/&gt;
+&lt;module name="RightCurly"&gt;
+  &lt;property name="option" value="alone_or_singleline"/&gt;
+  &lt;property name="tokens" value="LITERAL_IF, METHOD_DEF"/&gt;
 &lt;/module&gt;
         </source>
 
@@ -286,9 +286,9 @@ public class Test {
           Statements:
         </p>
         <source>
-&lt;module name=&quot;RightCurly&quot;&gt;
-  &lt;property name=&quot;option&quot; value=&quot;alone_or_singleline&quot;/&gt;
-  &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_SWITCH&quot;/&gt;
+&lt;module name="RightCurly"&gt;
+  &lt;property name="option" value="alone_or_singleline"/&gt;
+  &lt;property name="tokens" value="LITERAL_SWITCH"/&gt;
 &lt;/module&gt;
         </source>
         <source>

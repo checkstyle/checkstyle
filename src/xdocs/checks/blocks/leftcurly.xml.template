@@ -154,7 +154,7 @@
       <subsection name="Examples" id="Examples">
         <p> To configure the check: </p>
         <source>
-&lt;module name=&quot;LeftCurly&quot;/&gt;
+&lt;module name="LeftCurly"/&gt;
         </source>
         <source>
 class Test
@@ -179,9 +179,9 @@ class Test
           type blocks:
         </p>
         <source>
-&lt;module name=&quot;LeftCurly&quot;&gt;
-  &lt;property name=&quot;option&quot; value=&quot;nl&quot;/&gt;
-  &lt;property name=&quot;tokens&quot; value=&quot;CLASS_DEF,INTERFACE_DEF&quot;/&gt;
+&lt;module name="LeftCurly"&gt;
+  &lt;property name="option" value="nl"/&gt;
+  &lt;property name="tokens" value="CLASS_DEF,INTERFACE_DEF"/&gt;
 &lt;/module&gt;
         </source>
         <source>
@@ -207,9 +207,9 @@ class Test
           type blocks:
         </p>
         <source>
-&lt;module name=&quot;LeftCurly&quot;&gt;
-  &lt;property name=&quot;option&quot; value=&quot;nlow&quot;/&gt;
-  &lt;property name=&quot;tokens&quot; value=&quot;CLASS_DEF,INTERFACE_DEF&quot;/&gt;
+&lt;module name="LeftCurly"&gt;
+  &lt;property name="option" value="nlow"/&gt;
+  &lt;property name="tokens" value="CLASS_DEF,INTERFACE_DEF"/&gt;
 &lt;/module&gt;
         </source>
         <source>
@@ -233,8 +233,8 @@ class Test
           An example of how to configure the check to validate enum definitions:
         </p>
         <source>
-&lt;module name=&quot;LeftCurly&quot;&gt;
-  &lt;property name=&quot;ignoreEnums&quot; value=&quot;false&quot;/&gt;
+&lt;module name="LeftCurly"&gt;
+  &lt;property name="ignoreEnums" value="false"/&gt;
 &lt;/module&gt;
         </source>
         <source>

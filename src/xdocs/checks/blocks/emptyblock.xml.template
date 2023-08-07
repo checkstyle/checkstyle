@@ -115,7 +115,7 @@ switch (a) {
       <subsection name="Examples" id="Examples">
         <p> To configure the check: </p>
         <source>
-&lt;module name=&quot;EmptyBlock&quot;/&gt;
+&lt;module name="EmptyBlock"/&gt;
         </source>
         <p>
           Example:
@@ -139,9 +139,9 @@ public class Test {
           policy and only <code> try</code> blocks:
         </p>
         <source>
-&lt;module name=&quot;EmptyBlock&quot;&gt;
-  &lt;property name=&quot;option&quot; value=&quot;text&quot;/&gt;
-  &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_TRY&quot;/&gt;
+&lt;module name="EmptyBlock"&gt;
+  &lt;property name="option" value="text"/&gt;
+  &lt;property name="tokens" value="LITERAL_TRY"/&gt;
 &lt;/module&gt;
         </source>
         <p> Example: </p>
@@ -165,8 +165,8 @@ public class Test {
           To configure the check for default in switch block:
         </p>
         <source>
-&lt;module name=&quot;EmptyBlock&quot;&gt;
-  &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_DEFAULT&quot;/&gt;
+&lt;module name="EmptyBlock"&gt;
+  &lt;property name="tokens" value="LITERAL_DEFAULT"/&gt;
 &lt;/module&gt;
         </source>
         <p> Example: </p>
