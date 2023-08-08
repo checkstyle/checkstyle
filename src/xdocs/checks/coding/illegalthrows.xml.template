@@ -61,7 +61,7 @@
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;IllegalThrows&quot;/&gt;
+&lt;module name="IllegalThrows"/&gt;
         </source>
         <p>Example:</p>
         <source>
@@ -79,8 +79,8 @@ public class Test {
           To configure the check rejecting throws NullPointerException from methods:
         </p>
         <source>
-&lt;module name=&quot;IllegalThrows&quot;&gt;
-  &lt;property name=&quot;illegalClassNames&quot; value=&quot;NullPointerException&quot;/&gt;
+&lt;module name="IllegalThrows"&gt;
+  &lt;property name="illegalClassNames" value="NullPointerException"/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>
@@ -96,11 +96,11 @@ public class Test {
 }
         </source>
         <p>
-          To configure the check ignoring method named &quot;func1()&quot;:
+          To configure the check ignoring method named "func1()":
         </p>
         <source>
-&lt;module name=&quot;IllegalThrows&quot;&gt;
-  &lt;property name=&quot;ignoredMethodNames&quot; value=&quot;func1&quot;/&gt;
+&lt;module name="IllegalThrows"&gt;
+  &lt;property name="ignoredMethodNames" value="func1"/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>
@@ -119,8 +119,8 @@ public class Test {
           To configure the check to warn on overridden methods:
         </p>
         <source>
-&lt;module name=&quot;IllegalThrows&quot;&gt;
-  &lt;property name=&quot;ignoreOverriddenMethods&quot; value=&quot;false&quot;/&gt;
+&lt;module name="IllegalThrows"&gt;
+  &lt;property name="ignoreOverriddenMethods" value="false"/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>
