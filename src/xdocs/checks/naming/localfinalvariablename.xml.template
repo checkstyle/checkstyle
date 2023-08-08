@@ -30,7 +30,7 @@
               <td>format</td>
               <td>Specifies valid identifiers.</td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
-              <td><code>&quot;^[a-z][a-zA-Z0-9]*$&quot;</code></td>
+              <td><code>"^[a-z][a-zA-Z0-9]*$"</code></td>
               <td>3.0</td>
             </tr>
             <tr>
@@ -66,15 +66,15 @@
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;LocalFinalVariableName&quot;/&gt;
+&lt;module name="LocalFinalVariableName"/&gt;
         </source>
         <p>
           An example of how to configure the check for names that are only upper case letters and
           digits is:
         </p>
         <source>
-&lt;module name=&quot;LocalFinalVariableName&quot;&gt;
-  &lt;property name=&quot;format&quot; value=&quot;^[A-Z][A-Z0-9]*$&quot;/&gt;
+&lt;module name="LocalFinalVariableName"&gt;
+  &lt;property name="format" value="^[A-Z][A-Z0-9]*$"/&gt;
 &lt;/module&gt;
         </source>
         <p>Code Example:</p>
@@ -83,10 +83,10 @@ class MyClass {
   void MyMethod() {
     try {
       final int VAR1 = 5; // OK
-      final int var1 = 10; // violation,  name 'var1' must match pattern &quot;^[A-Z][A-Z0-9]*$&quot;
+      final int var1 = 10; // violation,  name 'var1' must match pattern "^[A-Z][A-Z0-9]*$"
     } catch (Exception ex) {
       final int VAR2 = 15; // OK
-      final int var2 = 20; // violation,  name 'var2' must match pattern &quot;^[A-Z][A-Z0-9]*$&quot;
+      final int var2 = 20; // violation,  name 'var2' must match pattern "^[A-Z][A-Z0-9]*$"
     }
   }
 }
@@ -96,9 +96,9 @@ class MyClass {
           resources in try statements (without checks on variables):
         </p>
         <source>
-&lt;module name=&quot;LocalFinalVariableName&quot;&gt;
-  &lt;property name=&quot;format&quot; value=&quot;^[A-Z][A-Z0-9]*$&quot;/&gt;
-  &lt;property name=&quot;tokens&quot; value=&quot;PARAMETER_DEF,RESOURCE&quot;/&gt;
+&lt;module name="LocalFinalVariableName"&gt;
+  &lt;property name="format" value="^[A-Z][A-Z0-9]*$"/&gt;
+  &lt;property name="tokens" value="PARAMETER_DEF,RESOURCE"/&gt;
 &lt;/module&gt;
         </source>
         <p>Code Example:</p>

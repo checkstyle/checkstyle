@@ -28,7 +28,7 @@
               <td>format</td>
               <td>Specifies valid identifiers.</td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
-              <td><code>"^[A-Z]$"</code></td>
+              <td><code>&quot;^[A-Z]$&quot;</code></td>
               <td>5.8</td>
             </tr>
           </table>
@@ -40,7 +40,7 @@
           To configure the check:
         </p>
         <source>
-&lt;module name="InterfaceTypeParameterName"/&gt;
+&lt;module name=&quot;InterfaceTypeParameterName&quot;/&gt;
         </source>
         <p>Code Example:</p>
         <source>
@@ -52,8 +52,8 @@ interface SecondInterface&lt;t&gt; {} // violation, name 't' must match pattern 
           letter is:
         </p>
         <source>
-&lt;module name="InterfaceTypeParameterName"&gt;
-   &lt;property name="format" value="^[a-zA-Z]$"/&gt;
+&lt;module name=&quot;InterfaceTypeParameterName&quot;&gt;
+   &lt;property name=&quot;format&quot; value=&quot;^[a-zA-Z]$&quot;/&gt;
 &lt;/module&gt;
         </source>
         <p>Code Example:</p>
