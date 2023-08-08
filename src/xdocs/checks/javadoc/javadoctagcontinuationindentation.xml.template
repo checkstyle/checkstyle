@@ -3,17 +3,19 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
   <head>
-    <title>JavadocMissingWhitespaceAfterAsterisk</title>
+    <title>JavadocTagContinuationIndentation</title>
   </head>
   <body>
-    <section name="JavadocMissingWhitespaceAfterAsterisk">
-      <p>Since Checkstyle 8.32</p>
+    <section name="JavadocTagContinuationIndentation">
+      <p>Since Checkstyle 6.0</p>
       <subsection name="Description" id="Description">
         <p>
-          Checks that there is at least one whitespace after the leading asterisk.
-          Although spaces after asterisks are optional in the Javadoc comments, their absence
-          makes the documentation difficult to read. It is the de facto standard to put at least
-          one whitespace after the leading asterisk.
+          Checks the indentation of the continuation lines in block tags.
+          That is whether the
+          continued description of at clauses should be indented or not. If the text is not properly
+          indented it throws a violation. A continuation line is when the description starts/spans
+          past the line with the tag. Default indentation required is at least 4, but this can be
+          changed with the help of properties below.
         </p>
       </subsection>
 
@@ -34,9 +36,17 @@
                 violates the tight html rules defined at
                 <a href="../../writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.
               </td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property_types.html#boolean">boolean</a>
+              </td>
               <td><code>false</code></td>
               <td>8.3</td>
+            </tr>
+            <tr>
+              <td>offset</td>
+              <td>Specify how many spaces to use for new indentation level.</td>
+              <td><a href="../../property_types.html#int">int</a></td>
+              <td><code>4</code></td>
+              <td>6.0</td>
             </tr>
           </table>
         </div>
@@ -47,39 +57,72 @@
           To configure the default check:
         </p>
         <source>
-&lt;module name=&quot;JavadocMissingWhitespaceAfterAsterisk&quot;/&gt;
+&lt;module name="JavadocTagContinuationIndentation"/&gt;
         </source>
         <p>
-          Code Example:
+          Example:
         </p>
         <source>
-/** This is valid single-line Javadoc. */
-class TestClass {
-  /**
-   *This is invalid Javadoc.
-   */
-  int invalidJavaDoc;
-  /**
-   * This is valid Javadoc.
-   */
-  void validJavaDocMethod() {
-  }
-  /**This is invalid single-line Javadoc. */
-  void invalidSingleLineJavaDocMethod() {
-  }
-  /** This is valid single-line Javadoc. */
-  void validSingleLineJavaDocMethod() {
-  }
+/**
+ * @tag comment
+ *  Indentation spacing is 1. Line with violation
+ *   Indentation spacing is 2. Line with violation
+ *     Indentation spacing is 4. OK
+ */
+public class Test {
+}
+        </source>
+        <p>
+          To configure the check with two spaces indentation:
+        </p>
+        <source>
+&lt;module name="JavadocTagContinuationIndentation"&gt;
+  &lt;property name="offset" value="2"/&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          Example:
+        </p>
+        <source>
+/**
+ * @tag comment
+ * Indentation spacing is 0. Line with violation
+ *   Indentation spacing is 2. OK
+ *  Indentation spacing is 1. Line with violation
+ */
+public class Test {
+}
+        </source>
+        <p>
+          To configure the check to show violations for Tight-HTML Rules:
+        </p>
+        <source>
+&lt;module name="JavadocTagContinuationIndentation"&gt;
+  &lt;property name="violateExecutionOnNonTightHtml" value="true"/&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          Example:
+        </p>
+        <source>
+/**
+ * &lt;p&gt; 'p' tag is unclosed. Line with violation, this html tag needs closing tag.
+ * &lt;p&gt; 'p' tag is closed&lt;/p&gt;. OK
+ */
+public class Test {
 }
         </source>
       </subsection>
 
-      <subsection name="Example of Usage"
-        id="Example_of_Usage">
+      <subsection name="Example of Usage" id="Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocMissingWhitespaceAfterAsterisk">
-              Checkstyle Style</a>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocTagContinuationIndentation">
+            Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocTagContinuationIndentation">
+            Checkstyle Style</a>
           </li>
         </ul>
       </subsection>
@@ -92,16 +135,16 @@ class TestClass {
             javadoc.missed.html.close</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.missing.whitespace%22">
-            javadoc.missing.whitespace</a>
-          </li>
-          <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.parse.rule.error%22">
             javadoc.parse.rule.error</a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.wrong.singleton.html.tag%22">
             javadoc.wrong.singleton.html.tag</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22tag.continuation.indent%22">
+            tag.continuation.indent</a>
           </li>
         </ul>
         <p>

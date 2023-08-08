@@ -3,17 +3,23 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
   <head>
-    <title>JavadocMissingWhitespaceAfterAsterisk</title>
+    <title>JavadocMissingLeadingAsterisk</title>
   </head>
   <body>
-    <section name="JavadocMissingWhitespaceAfterAsterisk">
-      <p>Since Checkstyle 8.32</p>
+    <section name="JavadocMissingLeadingAsterisk">
+      <p>Since Checkstyle 8.38</p>
       <subsection name="Description" id="Description">
         <p>
-          Checks that there is at least one whitespace after the leading asterisk.
-          Although spaces after asterisks are optional in the Javadoc comments, their absence
-          makes the documentation difficult to read. It is the de facto standard to put at least
-          one whitespace after the leading asterisk.
+          Checks if the javadoc has
+          <a href="https://docs.oracle.com/en/java/javase/14/docs/specs/javadoc/doc-comment-spec.html#leading-asterisks">
+            leading asterisks
+          </a>
+          on each line.
+        </p>
+        <p>
+          The check does not require asterisks on the first line, nor on the last line
+          if it is blank. All other lines in a Javadoc should start with <code>*</code>,
+          including blank lines and code blocks.
         </p>
       </subsection>
 
@@ -36,7 +42,7 @@
               </td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
-              <td>8.3</td>
+              <td>8.38</td>
             </tr>
           </table>
         </div>
@@ -44,64 +50,79 @@
 
       <subsection name="Examples" id="Examples">
         <p>
-          To configure the default check:
+          To configure the check:
         </p>
         <source>
-&lt;module name=&quot;JavadocMissingWhitespaceAfterAsterisk&quot;/&gt;
+&lt;module name="JavadocMissingLeadingAsterisk"/&gt;
         </source>
-        <p>
-          Code Example:
-        </p>
+        <p>Example:</p>
         <source>
-/** This is valid single-line Javadoc. */
-class TestClass {
-  /**
-   *This is invalid Javadoc.
-   */
-  int invalidJavaDoc;
-  /**
-   * This is valid Javadoc.
-   */
-  void validJavaDocMethod() {
-  }
-  /**This is invalid single-line Javadoc. */
-  void invalidSingleLineJavaDocMethod() {
-  }
-  /** This is valid single-line Javadoc. */
-  void validSingleLineJavaDocMethod() {
-  }
-}
+/**
+ * Valid Java-style comment.
+ *
+ * &lt;pre&gt;
+ *   int value = 0;
+ * &lt;/pre&gt;
+ */
+class JavaStyle {} // ok
+
+/** Valid Scala-style comment.
+  * Some description here.
+  **/
+class ScalaStyle {} // ok
+
+/** **
+  * Asterisks on first and last lines are optional.
+  * */
+class Asterisks {} // ok
+
+/** No asterisks are required for single-line comments. */
+class SingleLine {} // ok
+
+/** // violation on next blank line, javadoc has lines without leading asterisk.
+
+ */
+class BlankLine {}
+
+/** Wrapped
+    single-line comment */ // violation, javadoc has lines without leading asterisk.
+class Wrapped {}
+
+/**
+  * &lt;pre&gt;
+    int value; // violation, javadoc has lines without leading asterisk.
+  * &lt;/pre&gt;
+  */
+class Code {}
         </source>
       </subsection>
 
-      <subsection name="Example of Usage"
-        id="Example_of_Usage">
+      <subsection name="Example of Usage" id="Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocMissingWhitespaceAfterAsterisk">
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocMissingLeadingAsterisk">
               Checkstyle Style</a>
           </li>
         </ul>
       </subsection>
 
-      <subsection name="Violation Messages"
-        id="Violation_Messages">
+      <subsection name="Violation Messages" id="Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.missed.html.close%22">
-            javadoc.missed.html.close</a>
+              javadoc.missed.html.close</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.missing.whitespace%22">
-            javadoc.missing.whitespace</a>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.missing.asterisk%22">
+              javadoc.missing.asterisk</a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.parse.rule.error%22">
-            javadoc.parse.rule.error</a>
+              javadoc.parse.rule.error</a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.wrong.singleton.html.tag%22">
-            javadoc.wrong.singleton.html.tag</a>
+              javadoc.wrong.singleton.html.tag</a>
           </li>
         </ul>
         <p>

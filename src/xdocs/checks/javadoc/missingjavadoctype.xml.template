@@ -95,7 +95,7 @@
           annotation interface, definitions have javadocs:
         </p>
         <source>
-&lt;module name=&quot;MissingJavadocType&quot;/&gt;
+&lt;module name="MissingJavadocType"/&gt;
         </source>
 
         <p>Example:</p>
@@ -110,8 +110,8 @@ class PackagePrivateClass {}
           To configure the check for <code>private</code> scope:
         </p>
         <source>
-&lt;module name=&quot;MissingJavadocType&quot;&gt;
-  &lt;property name=&quot;scope&quot; value=&quot;private&quot;/&gt;
+&lt;module name="MissingJavadocType"&gt;
+  &lt;property name="scope" value="private"/&gt;
 &lt;/module&gt;
         </source>
 
@@ -127,9 +127,9 @@ class PackagePrivateClass {} // violation
           To configure the check for <code>private</code> classes only:
         </p>
         <source>
-&lt;module name=&quot;MissingJavadocType&quot;&gt;
-  &lt;property name=&quot;scope&quot; value=&quot;private&quot;/&gt;
-  &lt;property name=&quot;excludeScope&quot; value=&quot;package&quot;/&gt;
+&lt;module name="MissingJavadocType"&gt;
+  &lt;property name="scope" value="private"/&gt;
+  &lt;property name="excludeScope" value="package"/&gt;
 &lt;/module&gt;
         </source>
 
@@ -145,8 +145,8 @@ class PackagePrivateClass {}
           <code>@SpringBootApplication</code> and <code>@Configuration</code>:
         </p>
         <source>
-&lt;module name=&quot;MissingJavadocType&quot;&gt;
-  &lt;property name=&quot;skipAnnotations&quot; value=&quot;SpringBootApplication,Configuration&quot;/&gt;
+&lt;module name="MissingJavadocType"&gt;
+  &lt;property name="skipAnnotations" value="SpringBootApplication,Configuration"/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>
@@ -162,8 +162,8 @@ class DatabaseConfiguration {}
           <code>@Annotation</code> and <code>@MyClass.Annotation</code>:
         </p>
         <source>
-&lt;module name=&quot;MissingJavadocType&quot;&gt;
-  &lt;property name=&quot;skipAnnotations&quot; value=&quot;Annotation,MyClass.Annotation&quot;/&gt;
+&lt;module name="MissingJavadocType"&gt;
+  &lt;property name="skipAnnotations" value="Annotation,MyClass.Annotation"/&gt;
 &lt;/module&gt;
         </source>
         <p>

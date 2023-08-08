@@ -45,14 +45,14 @@
               <td>forbiddenSummaryFragments</td>
               <td>Specify the regexp for forbidden summary fragments.</td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
-              <td><code>&quot;^$&quot;</code></td>
+              <td><code>"^$"</code></td>
               <td>6.0</td>
             </tr>
             <tr>
               <td>period</td>
               <td>Specify the period symbol at the end of first javadoc sentence.</td>
               <td><a href="../../property_types.html#String">String</a></td>
-              <td><code>&quot;.&quot;</code></td>
+              <td><code>"."</code></td>
               <td>6.2</td>
             </tr>
           </table>
@@ -65,7 +65,7 @@
           sentence is not missing:
         </p>
         <source>
-&lt;module name=&quot;SummaryJavadocCheck&quot;/&gt;
+&lt;module name="SummaryJavadocCheck"/&gt;
         </source>
         <p>
           Example of <code>{@inheritDoc}</code> without summary.
@@ -77,14 +77,14 @@ public class Test extends Exception {
    * {@inheritDoc}
    */
   public String ValidFunction(){
-    return &quot;&quot;;
+    return "";
   }
   //Violation
   /**
    *
    */
   public String InvalidFunction(){
-    return &quot;&quot;;
+    return "";
   }
 }
         </source>
@@ -97,14 +97,14 @@ public class Test extends Exception {
    * {@summary  }
    */
   public String InvalidFunctionOne(){ // violation
-    return &quot;&quot;;
+    return "";
   }
 
   /**
    * {@summary &lt;p&gt; &lt;p/&gt;}
    */
   public String InvalidFunctionTwo(){ // violation
-    return &quot;&quot;;
+    return "";
   }
 
   /**
@@ -114,21 +114,21 @@ public class Test extends Exception {
 }
         </source>
         <p>
-          To ensure that summary does not contain phrase like &quot;This method returns&quot;, use
+          To ensure that summary does not contain phrase like "This method returns", use
           following config:
         </p>
         <source>
-&lt;module name=&quot;SummaryJavadocCheck&quot;&gt;
-  &lt;property name=&quot;forbiddenSummaryFragments&quot;
-    value=&quot;^This method returns.*&quot;/&gt;
+&lt;module name="SummaryJavadocCheck"&gt;
+  &lt;property name="forbiddenSummaryFragments"
+    value="^This method returns.*"/&gt;
 &lt;/module&gt;
         </source>
         <p>
           To specify period symbol at the end of first javadoc sentence:
         </p>
         <source>
-&lt;module name=&quot;SummaryJavadocCheck&quot;&gt;
-  &lt;property name=&quot;period&quot; value=&quot;&#x3002;&quot;/&gt;
+&lt;module name="SummaryJavadocCheck"&gt;
+  &lt;property name="period" value="。"/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -143,7 +143,7 @@ public class TestClass {
   void invalidJavaDocMethod() {
   }
  /**
-  * This is valid java doc&#x3002;
+  * This is valid java doc。
   */
   void validJavaDocMethod() {
   }
@@ -160,7 +160,7 @@ public class TestClass {
   public void invalidJavaDocMethod() { // violation
   }
  /**
-  * {@summary This is valid java doc&#x3002;}
+  * {@summary This is valid java doc。}
   */
   public void validJavaDocMethod() { // ok
   }
