@@ -34,7 +34,7 @@
               <td>format</td>
               <td>Specify the format of the regular expression to match.</td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
-              <td><code>&quot;$.&quot;</code></td>
+              <td><code>"$."</code></td>
               <td>5.0</td>
             </tr>
             <tr>
@@ -82,7 +82,7 @@
           To configure the default check:
         </p>
         <source>
-&lt;module name=&quot;RegexpSinglelineJava&quot;/&gt;
+&lt;module name="RegexpSinglelineJava"/&gt;
         </source>
         <p>
           This configuration does not match to anything,
@@ -93,28 +93,28 @@
           To configure the check for calls to <code>System.out.println</code>, except in comments:
         </p>
         <source>
-&lt;module name=&quot;RegexpSinglelineJava&quot;&gt;
+&lt;module name="RegexpSinglelineJava"&gt;
   &lt;!-- . matches any character, so we need to
        escape it and use \. to match dots. --&gt;
-  &lt;property name=&quot;format&quot; value=&quot;System\.out\.println&quot;/&gt;
-  &lt;property name=&quot;ignoreComments&quot; value=&quot;true&quot;/&gt;
+  &lt;property name="format" value="System\.out\.println"/&gt;
+  &lt;property name="ignoreComments" value="true"/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>
         <source>
-System.out.println(&quot;&quot;); // violation, instruction matches illegal pattern
+System.out.println(""); // violation, instruction matches illegal pattern
 System.out.
-println(&quot;&quot;); // OK
+println(""); // OK
 /* System.out.println */ // OK, comments are ignored
         </source>
         <p>
           To configure the check to find case-insensitive occurrences of
-          &quot;debug&quot;:
+          "debug":
         </p>
         <source>
-&lt;module name=&quot;RegexpSinglelineJava&quot;&gt;
-  &lt;property name=&quot;format&quot; value=&quot;debug&quot;/&gt;
-  &lt;property name=&quot;ignoreCase&quot; value=&quot;true&quot;/&gt;
+&lt;module name="RegexpSinglelineJava"&gt;
+  &lt;property name="format" value="debug"/&gt;
+  &lt;property name="ignoreCase" value="true"/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>
@@ -126,66 +126,66 @@ public class Debug { // violation, class name matches illegal pattern
         </source>
         <p>
           To configure the check to find occurrences of
-          &quot;\.read(.*)|\.write(.*)&quot;
-          and display &quot;IO found&quot; for each violation.
+          "\.read(.*)|\.write(.*)"
+          and display "IO found" for each violation.
         </p>
         <source>
-&lt;module name=&quot;RegexpSinglelineJava&quot;&gt;
-  &lt;property name=&quot;format&quot; value=&quot;\.read(.*)|\.write(.*)&quot;/&gt;
-  &lt;property name=&quot;message&quot; value=&quot;IO found&quot;/&gt;
+&lt;module name="RegexpSinglelineJava"&gt;
+  &lt;property name="format" value="\.read(.*)|\.write(.*)"/&gt;
+  &lt;property name="message" value="IO found"/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>
         <source>
-FileReader in = new FileReader(&quot;path/to/input&quot;);
+FileReader in = new FileReader("path/to/input");
 int ch = in.read(); // violation
 while(ch != -1) {
   System.out.print((char)ch);
   ch = in.read(); // violation
 }
 
-FileWriter out = new FileWriter(&quot;path/to/output&quot;);
-out.write(&quot;something&quot;); // violation
+FileWriter out = new FileWriter("path/to/output");
+out.write("something"); // violation
         </source>
         <p>
           To configure the check to find occurrences of
-          &quot;\.log(.*)&quot;. We want to allow a maximum of 2 occurrences.
+          "\.log(.*)". We want to allow a maximum of 2 occurrences.
         </p>
         <source>
-&lt;module name=&quot;RegexpSinglelineJava&quot;&gt;
-  &lt;property name=&quot;format&quot; value=&quot;\.log(.*)&quot;/&gt;
-  &lt;property name=&quot;maximum&quot; value=&quot;2&quot;/&gt;
+&lt;module name="RegexpSinglelineJava"&gt;
+  &lt;property name="format" value="\.log(.*)"/&gt;
+  &lt;property name="maximum" value="2"/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>
         <source>
 public class Foo{
   public void bar(){
-    Logger.log(&quot;first&quot;); // OK, first occurrence is allowed
-    Logger.log(&quot;second&quot;); // OK, second occurrence is allowed
-    Logger.log(&quot;third&quot;); // violation
-    System.out.println(&quot;fourth&quot;);
-    Logger.log(&quot;fifth&quot;); // violation
+    Logger.log("first"); // OK, first occurrence is allowed
+    Logger.log("second"); // OK, second occurrence is allowed
+    Logger.log("third"); // violation
+    System.out.println("fourth");
+    Logger.log("fifth"); // violation
   }
 }
         </source>
         <p>
           To configure the check to find all occurrences of
-          &quot;public&quot;. We want to ignore comments,
-          display &quot;public member found&quot; for each violation
+          "public". We want to ignore comments,
+          display "public member found" for each violation
           and say if less than 2 occurrences.
         </p>
         <source>
-&lt;module name=&quot;RegexpSinglelineJava&quot;&gt;
-  &lt;property name=&quot;format&quot; value=&quot;public&quot;/&gt;
-  &lt;property name=&quot;minimum&quot; value=&quot;2&quot;/&gt;
-  &lt;property name=&quot;message&quot; value=&quot;public member found&quot;/&gt;
-  &lt;property name=&quot;ignoreComments&quot; value=&quot;true&quot;/&gt;
+&lt;module name="RegexpSinglelineJava"&gt;
+  &lt;property name="format" value="public"/&gt;
+  &lt;property name="minimum" value="2"/&gt;
+  &lt;property name="message" value="public member found"/&gt;
+  &lt;property name="ignoreComments" value="true"/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>
         <source>
-class Foo{ // violation, file contains less than 2 occurrences of &quot;public&quot;
+class Foo{ // violation, file contains less than 2 occurrences of "public"
   private int a;
   /* public comment */ // OK, comment is ignored
   private void bar1() {}
