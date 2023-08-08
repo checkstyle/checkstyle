@@ -208,12 +208,12 @@ public class JavadocContentLocationCheck extends AbstractCheck {
             final String commentContent = JavadocUtil.getJavadocCommentContent(ast);
             final int indexOfFirstNonBlankLine = findIndexOfFirstNonBlankLine(commentContent);
             if (indexOfFirstNonBlankLine >= 0) {
-                if (location == JavadocContentLocationOption.FIRST_LINE) {
-                    if (indexOfFirstNonBlankLine != 0) {
-                        log(ast, MSG_JAVADOC_CONTENT_FIRST_LINE);
-                    }
+                if (location == JavadocContentLocationOption.FIRST_LINE
+                        && indexOfFirstNonBlankLine != 0) {
+                    log(ast, MSG_JAVADOC_CONTENT_FIRST_LINE);
                 }
-                else if (indexOfFirstNonBlankLine != 1) {
+                else if (location == JavadocContentLocationOption.SECOND_LINE
+                        && indexOfFirstNonBlankLine != 1) {
                     log(ast, MSG_JAVADOC_CONTENT_SECOND_LINE);
                 }
             }
