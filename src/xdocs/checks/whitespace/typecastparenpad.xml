@@ -42,7 +42,7 @@
           To configure the check:
         </p>
         <source>
-&lt;module name="TypecastParenPad"/&gt;
+&lt;module name=&quot;TypecastParenPad&quot;/&gt;
         </source>
         <p>
           Example:
@@ -69,8 +69,8 @@ class Foo {
           To configure the check to require spaces:
         </p>
         <source>
-&lt;module name="TypecastParenPad"&gt;
-  &lt;property name="option" value="space"/&gt;
+&lt;module name=&quot;TypecastParenPad&quot;&gt;
+  &lt;property name=&quot;option&quot; value=&quot;space&quot;/&gt;
 &lt;/module&gt;
         </source>
         <p>

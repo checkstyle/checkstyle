@@ -91,7 +91,7 @@
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;NoWhitespaceBefore&quot;/&gt;
+&lt;module name="NoWhitespaceBefore"/&gt;
         </source>
         <p>Example:</p>
         <source>
@@ -105,7 +105,7 @@ int[][] array = { { 1, 2 }
                 , { 3, 4 } }; // violation, whitespace before ',' is not allowed
 int[][] array2 = { { 1, 2 },
                    { 3, 4 } }; // OK
-Lists.charactersOf(&quot;foo&quot;).listIterator()
+Lists.charactersOf("foo").listIterator()
        .forEachRemaining(System.out::print)
        ; // violation, whitespace before ';' is not allowed
 {
@@ -122,8 +122,8 @@ Lists.charactersOf(&quot;foo&quot;).listIterator()
             To configure the check to allow linebreaks before default tokens:
         </p>
         <source>
-&lt;module name=&quot;NoWhitespaceBefore&quot;&gt;
-  &lt;property name=&quot;allowLineBreaks&quot; value=&quot;true&quot;/&gt;
+&lt;module name="NoWhitespaceBefore"&gt;
+  &lt;property name="allowLineBreaks" value="true"/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>
@@ -135,7 +135,7 @@ int[][] array2 = { { 1, 2 },
 void ellipsisExample(String ...params) {}; // violation, whitespace before '...' is not allowed
 void ellipsisExample2(String
                         ...params) {}; //OK, linebreak is allowed before '...'
-Lists.charactersOf(&quot;foo&quot;)
+Lists.charactersOf("foo")
        .listIterator()
        .forEachRemaining(System.out::print); // OK
         </source>
@@ -143,36 +143,36 @@ Lists.charactersOf(&quot;foo&quot;)
         To Configure the check to restrict the use of whitespace before METHOD_REF and DOT tokens:
         </p>
         <source>
-&lt;module name=&quot;NoWhitespaceBefore&quot;&gt;
-  &lt;property name=&quot;tokens&quot; value=&quot;METHOD_REF&quot;/&gt;
-  &lt;property name=&quot;tokens&quot; value=&quot;DOT&quot;/&gt;
+&lt;module name="NoWhitespaceBefore"&gt;
+  &lt;property name="tokens" value="METHOD_REF"/&gt;
+  &lt;property name="tokens" value="DOT"/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>
         <source>
-Lists.charactersOf(&quot;foo&quot;).listIterator()
+Lists.charactersOf("foo").listIterator()
        .forEachRemaining(System.out::print); // violation, whitespace before '.' is not allowed
-Lists.charactersOf(&quot;foo&quot;).listIterator().forEachRemaining(System.out ::print); // violation,
+Lists.charactersOf("foo").listIterator().forEachRemaining(System.out ::print); // violation,
                           // whitespace before '::' is not allowed  ^
-Lists.charactersOf(&quot;foo&quot;).listIterator().forEachRemaining(System.out::print); // OK
+Lists.charactersOf("foo").listIterator().forEachRemaining(System.out::print); // OK
         </source>
         <p>
            To configure the check to allow linebreak before METHOD_REF and DOT tokens:
         </p>
         <source>
-&lt;module name=&quot;NoWhitespaceBefore&quot;&gt;
-  &lt;property name=&quot;tokens&quot; value=&quot;METHOD_REF&quot;/&gt;
-  &lt;property name=&quot;tokens&quot; value=&quot;DOT&quot;/&gt;
-  &lt;property name=&quot;allowLineBreaks&quot; value=&quot;true&quot;/&gt;
+&lt;module name="NoWhitespaceBefore"&gt;
+  &lt;property name="tokens" value="METHOD_REF"/&gt;
+  &lt;property name="tokens" value="DOT"/&gt;
+  &lt;property name="allowLineBreaks" value="true"/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>
         <source>
-Lists .charactersOf(&quot;foo&quot;) //violation, whitespace before '.' is not allowed
+Lists .charactersOf("foo") //violation, whitespace before '.' is not allowed
         .listIterator()
         .forEachRemaining(System.out ::print); // violation,
                                  // ^ whitespace before '::' is not allowed
-Lists.charactersOf(&quot;foo&quot;)
+Lists.charactersOf("foo")
        .listIterator()
        .forEachRemaining(System.out::print); // OK
         </source>

@@ -73,7 +73,7 @@
           in package and import statements (default values):
         </p>
         <source>
-&lt;module name=&quot;NoLineWrap&quot;/&gt;
+&lt;module name="NoLineWrap"/&gt;
         </source>
         <p>
           Examples of line-wrapped statements (bad case):
@@ -115,8 +115,8 @@ import static java.math.BigInteger.ONE; // OK
           in import statements:
         </p>
         <source>
-&lt;module name=&quot;NoLineWrap&quot;&gt;
-  &lt;property name=&quot;tokens&quot; value=&quot;IMPORT&quot;/&gt;
+&lt;module name="NoLineWrap"&gt;
+  &lt;property name="tokens" value="IMPORT"/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -138,8 +138,8 @@ import static java.math. // OK
           in class, method and constructor definitions:
         </p>
         <source>
-&lt;module name=&quot;NoLineWrap&quot;&gt;
-  &lt;property name=&quot;tokens&quot; value=&quot;CLASS_DEF, METHOD_DEF, CTOR_DEF&quot;/&gt;
+&lt;module name="NoLineWrap"&gt;
+  &lt;property name="tokens" value="CLASS_DEF, METHOD_DEF, CTOR_DEF"/&gt;
 &lt;/module&gt;
         </source>
         <p>
