@@ -61,7 +61,7 @@
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;RecordComponentNumber&quot;/&gt;
+&lt;module name="RecordComponentNumber"/&gt;
         </source>
         <p>
           Java code example:
@@ -83,8 +83,8 @@ record MyRecord2(int x, int y, String str,
           levels for record definitions:
         </p>
         <source>
-&lt;module name=&quot;RecordComponentNumber&quot;&gt;
-  &lt;property name=&quot;max&quot; value=&quot;5&quot;/&gt;
+&lt;module name="RecordComponentNumber"&gt;
+  &lt;property name="max" value="5"/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -106,13 +106,13 @@ public record MyRecord2(int x, int y, String str,
           but 3 for private record definitions:
         </p>
         <source>
-&lt;module name=&quot;RecordComponentNumber&quot;&gt;
-  &lt;property name=&quot;max&quot; value=&quot;3&quot;/&gt;
-  &lt;property name=&quot;accessModifiers&quot; value=&quot;private&quot;/&gt;
+&lt;module name="RecordComponentNumber"&gt;
+  &lt;property name="max" value="3"/&gt;
+  &lt;property name="accessModifiers" value="private"/&gt;
 &lt;/module&gt;
-&lt;module name=&quot;RecordComponentNumber&quot;&gt;
-  &lt;property name=&quot;max&quot; value=&quot;10&quot;/&gt;
-  &lt;property name=&quot;accessModifiers&quot; value=&quot;public&quot;/&gt;
+&lt;module name="RecordComponentNumber"&gt;
+  &lt;property name="max" value="10"/&gt;
+  &lt;property name="accessModifiers" value="public"/&gt;
 &lt;/module&gt;
         </source>
         <p>

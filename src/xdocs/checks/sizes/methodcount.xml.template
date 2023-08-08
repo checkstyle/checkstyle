@@ -146,15 +146,15 @@ public class ExampleClass {
           To configure the default check:
         </p>
         <source>
-&lt;module name=&quot;MethodCount&quot;/&gt;
+&lt;module name="MethodCount"/&gt;
         </source>
 
         <p>
           To configure the check to allow no more than 30 methods per type declaration:
         </p>
         <source>
-&lt;module name=&quot;MethodCount&quot;&gt;
-  &lt;property name=&quot;maxTotal&quot; value=&quot;30&quot;/&gt;
+&lt;module name="MethodCount"&gt;
+  &lt;property name="maxTotal" value="30"/&gt;
 &lt;/module&gt;
         </source>
 
@@ -163,9 +163,9 @@ public class ExampleClass {
           type declaration, and 40 methods in total:
         </p>
         <source>
-&lt;module name=&quot;MethodCount&quot;&gt;
-  &lt;property name=&quot;maxPublic&quot; value=&quot;10&quot;/&gt;
-  &lt;property name=&quot;maxTotal&quot; value=&quot;40&quot;/&gt;
+&lt;module name="MethodCount"&gt;
+  &lt;property name="maxPublic" value="10"/&gt;
+  &lt;property name="maxTotal" value="40"/&gt;
 &lt;/module&gt;
         </source>
 
