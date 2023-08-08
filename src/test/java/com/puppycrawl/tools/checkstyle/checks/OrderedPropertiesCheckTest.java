@@ -180,6 +180,15 @@ public class OrderedPropertiesCheckTest extends AbstractModuleTestSupport {
                 .isEqualTo(check.getFileExtensions()[0]);
     }
 
+    @Test
+    public void test() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(OrderedPropertiesCheck.class);
+        final String[] expected = {
+            "3: " + getCheckMessage(MSG_KEY, " A ", " B"),
+        };
+        verify(checkConfig, getPath("InputOrderedProperties2.properties"), expected);
+    }
+
     /**
      * Method generates NoSuchFileException details. It tries to open a file that does not exist.
      *
