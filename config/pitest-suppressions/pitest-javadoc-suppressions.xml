@@ -81,14 +81,14 @@
 
 
 
-  <mutation unstable="false">
-    <sourceFile>JavadocContentLocationCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocContentLocationCheck</mutatedClass>
-    <mutatedMethod>&lt;init&gt;</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
-    <description>Removed assignment to member variable location</description>
-    <lineContent>private JavadocContentLocationOption location = JavadocContentLocationOption.SECOND_LINE;</lineContent>
-  </mutation>
+
+
+
+
+
+
+
+
 
   <mutation unstable="false">
     <sourceFile>JavadocMethodCheck.java</sourceFile>
