@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.internal;
 
 import static com.tngtech.archunit.library.dependencies.SlicesRuleDefinition.slices;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import com.tngtech.archunit.core.domain.JavaClasses;
@@ -29,6 +30,7 @@ import com.tngtech.archunit.core.importer.ImportOption;
 import com.tngtech.archunit.lang.ArchRule;
 import com.tngtech.archunit.library.freeze.FreezingArchRule;
 
+@Disabled("until https://github.com/checkstyle/checkstyle/issues/13544")
 public class ArchUnitCyclesCheckTest {
 
     /**
