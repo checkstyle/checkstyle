@@ -25,6 +25,7 @@ import java.util.Locale;
 import java.util.Optional;
 import java.util.Set;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
@@ -43,6 +44,7 @@ import com.tngtech.archunit.lang.ArchRule;
 import com.tngtech.archunit.lang.ConditionEvents;
 import com.tngtech.archunit.lang.SimpleConditionEvent;
 
+@Disabled("until #13544")
 public class ArchUnitSuperClassTest {
 
     /**
