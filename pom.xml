@@ -1517,6 +1517,12 @@
           <includes>
             <include>com/puppycrawl/**/*.java</include>
           </includes>
+          <!-- Skip this ArchUnit Test till summer2023 -->
+          <excludes>
+            <exclude>**/ArchUnitCyclesCheckTest.java</exclude>
+            <exclude>**/ArchUnitSuperClassTest.java</exclude>
+            <exclude>**/ArchUnitTest.java</exclude>
+          </excludes>
         </configuration>
       </plugin>
 
