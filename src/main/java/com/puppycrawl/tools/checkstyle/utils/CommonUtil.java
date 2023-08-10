@@ -311,7 +311,7 @@ public final class CommonUtil {
      *     {@code false} otherwise.
      */
     public static boolean endsWithChar(String value, char suffix) {
-        return !value.isEmpty() && value.charAt(value.length() - 1) == suffix;
+        return value.charAt(value.length() - 1) == suffix;
     }
 
     /**
