@@ -2712,17 +2712,6 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/CheckUtil.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter beginIndex of substring.</message>
-    <lineContent>txt = txt.substring(1);</lineContent>
-    <details>
-      found   : @UpperBoundLiteral(1) int
-      required: @LTEqLengthOf(&quot;txt&quot;) int
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/CheckUtil.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter beginIndex of substring.</message>
     <lineContent>returnString = line.substring(indent, lastNonWhitespace);</lineContent>
     <details>
       found   : int
@@ -2760,6 +2749,17 @@
     <details>
       found   : int
       required: @LTEqLengthOf(&quot;line&quot;) int
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/CheckUtil.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter index of charAt.</message>
+    <lineContent>final boolean negative = txt.charAt(0) == &apos;-&apos;;</lineContent>
+    <details>
+      found   : @UpperBoundLiteral(0) int
+      required: @LTLengthOf(&quot;txt&quot;) int
     </details>
   </checkerFrameworkError>
 
@@ -2870,6 +2870,17 @@
     <details>
       found   : @LTEqLengthOf(&quot;com.puppycrawl.tools.checkstyle.utils.CommonUtil.CLASSPATH_URL_PROTOCOL&quot;) int
       required: @LTEqLengthOf(&quot;filename&quot;) int
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/CommonUtil.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter index of charAt.</message>
+    <lineContent>return value.charAt(value.length() - 1) == suffix;</lineContent>
+    <details>
+      found   : @GTENegativeOne int
+      required: @NonNegative int
     </details>
   </checkerFrameworkError>
 
