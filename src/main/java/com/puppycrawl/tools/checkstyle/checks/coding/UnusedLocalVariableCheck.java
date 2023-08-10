@@ -500,15 +500,15 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      *
      * @param obtainedClass super class of the anon inner class
      * @param variablesStack stack of all the relevant variables in the scope
-     * @param literalNewAst ast node of type {@link TokenTypes#LITERAL_NEW}
+     * @param objBlockAst ast node of type {@link TokenTypes#OBJBLOCK}
      */
     private void modifyVariablesStack(TypeDeclDesc obtainedClass,
             Deque<VariableDesc> variablesStack,
-            DetailAST literalNewAst) {
+            DetailAST objBlockAst) {
         if (obtainedClass != null) {
             final Deque<VariableDesc> instAndClassVarDeque = typeDeclAstToTypeDeclDesc
                     .get(obtainedClass.getTypeDeclAst())
-                    .getUpdatedCopyOfVarStack(literalNewAst);
+                    .getUpdatedCopyOfVarStack(objBlockAst);
             instAndClassVarDeque.forEach(variablesStack::push);
         }
     }
@@ -640,9 +640,12 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
         else if (type == TokenTypes.IDENT) {
             visitIdentToken(ast, variablesStack);
         }
-        else if (isInsideLocalAnonInnerClass(ast)) {
-            final TypeDeclDesc obtainedClass = getSuperClassOfAnonInnerClass(ast);
-            modifyVariablesStack(obtainedClass, variablesStack, ast);
+        else {
+            final DetailAST lastChild = ast.getLastChild();
+            if (lastChild != null && lastChild.getType() == TokenTypes.OBJBLOCK) {
+                final TypeDeclDesc obtainedClass = getSuperClassOfAnonInnerClass(ast);
+                modifyVariablesStack(obtainedClass, variablesStack, lastChild);
+            }
         }
     }
 
@@ -958,15 +961,14 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
         /**
          * Get the copy of variables in instanceAndClassVar stack with updated scope.
          *
-         * @param literalNewAst ast node of type {@link TokenTypes#LITERAL_NEW}
+         * @param objBlockAst ast node of type {@link TokenTypes#OBJBLOCK}
          * @return copy of variables in instanceAndClassVar stack with updated scope.
          */
-        public Deque<VariableDesc> getUpdatedCopyOfVarStack(DetailAST literalNewAst) {
-            final DetailAST updatedScope = literalNewAst.getLastChild();
+        public Deque<VariableDesc> getUpdatedCopyOfVarStack(DetailAST objBlockAst) {
             final Deque<VariableDesc> instAndClassVarDeque = new ArrayDeque<>();
             instanceAndClassVarStack.forEach(instVar -> {
                 final VariableDesc variableDesc = new VariableDesc(instVar.getName(),
-                        updatedScope);
+                        objBlockAst);
                 variableDesc.registerAsInstOrClassVar();
                 instAndClassVarDeque.push(variableDesc);
             });
