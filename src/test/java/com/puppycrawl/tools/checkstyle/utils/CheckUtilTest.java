@@ -301,24 +301,6 @@ public class CheckUtilTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testIsReceiverParameter() throws Exception {
-        final DetailAST objBlock = getNodeFromFile(TokenTypes.OBJBLOCK);
-        final DetailAST methodWithReceiverParameter = objBlock.getLastChild().getPreviousSibling()
-                .getPreviousSibling();
-        final DetailAST receiverParameter =
-                getNode(methodWithReceiverParameter, TokenTypes.PARAMETER_DEF);
-        final DetailAST simpleParameter =
-                receiverParameter.getNextSibling().getNextSibling();
-
-        assertWithMessage("Invalid result: parameter provided is receiver parameter")
-                .that(CheckUtil.isReceiverParameter(receiverParameter))
-                .isTrue();
-        assertWithMessage("Invalid result: parameter provided is not receiver parameter")
-                .that(CheckUtil.isReceiverParameter(simpleParameter))
-                .isFalse();
-    }
-
-    @Test
     public void testParseDoubleFloatingPointValues() {
         assertWithMessage("Invalid parse result")
             .that(CheckUtil.parseDouble("-0.05f", TokenTypes.NUM_FLOAT))

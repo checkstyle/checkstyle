@@ -2793,9 +2793,6 @@
     </details>
   </checkerFrameworkError>
 
-  <!-- This is not possible to fix because if we initialize this in constructor or in
-       field itself pitest will be failed. This is conflict with pitest but value of
-       pitest is above checker -->
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/header/AbstractHeaderCheck.java</fileName>
     <specifier>initialization.field.uninitialized</specifier>
@@ -6196,9 +6193,6 @@
     <lineContent>+ clss.getPackage().getName().replace(&quot;.&quot;, &quot;%2F&quot;)</lineContent>
   </checkerFrameworkError>
 
-  <!-- First parameter is namespace of the attribute and documentation states that null should
-       be passed whenever namespaces are not enabled
-       https://github.com/sonatype/plexus-utils/blob/master/src/main/java/org/codehaus/plexus/util/xml/pull/XmlPullParser.java#L895 -->
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/XdocsTemplateParser.java</fileName>
     <specifier>argument</specifier>
@@ -6232,7 +6226,6 @@
     </details>
   </checkerFrameworkError>
 
-  <!-- Value is reset after parsing is done. -->
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/XdocsTemplateParser.java</fileName>
     <specifier>assignment</specifier>
@@ -6244,7 +6237,6 @@
     </details>
   </checkerFrameworkError>
 
-  <!-- The following 2 fields are initialized during parsing step -->
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/XdocsTemplateParser.java</fileName>
     <specifier>initialization.field.uninitialized</specifier>
