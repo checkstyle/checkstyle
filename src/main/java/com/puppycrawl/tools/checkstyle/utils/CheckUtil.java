@@ -378,17 +378,6 @@ public final class CheckUtil {
     }
 
     /**
-     * Checks whether a parameter is a receiver.
-     *
-     * @param parameterDefAst the parameter node.
-     * @return true if the parameter is a receiver.
-     */
-    public static boolean isReceiverParameter(DetailAST parameterDefAst) {
-        return parameterDefAst.getType() == TokenTypes.PARAMETER_DEF
-                && parameterDefAst.findFirstToken(TokenTypes.IDENT) == null;
-    }
-
-    /**
      * Returns the access modifier of the method/constructor at the specified AST. If
      * the method is in an interface or annotation block, the access modifier is assumed
      * to be public.
