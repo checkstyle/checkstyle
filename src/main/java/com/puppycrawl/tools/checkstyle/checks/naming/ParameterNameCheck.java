@@ -237,7 +237,7 @@ public class ParameterNameCheck extends AbstractNameCheck {
         if (ignoreOverridden && isOverriddenMethod(ast)
                 || parent.getType() == TokenTypes.LITERAL_CATCH
                 || parent.getParent().getType() == TokenTypes.LAMBDA
-                || CheckUtil.isReceiverParameter(ast)
+                || ast.findFirstToken(TokenTypes.IDENT) == null
                 || !matchAccessModifiers(
                         CheckUtil.getAccessModifierFromModifiersToken(parent.getParent()))) {
             checkName = false;

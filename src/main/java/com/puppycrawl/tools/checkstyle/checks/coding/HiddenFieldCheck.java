@@ -30,7 +30,6 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
@@ -517,7 +516,7 @@ public class HiddenFieldCheck
      */
     private void processVariable(DetailAST ast) {
         if (!ScopeUtil.isInInterfaceOrAnnotationBlock(ast)
-            && !CheckUtil.isReceiverParameter(ast)
+            && ast.findFirstToken(TokenTypes.IDENT) != null
             && (ScopeUtil.isLocalVariableDef(ast)
                 || ast.getType() == TokenTypes.PARAMETER_DEF
                 || ast.getType() == TokenTypes.PATTERN_VARIABLE_DEF)) {
