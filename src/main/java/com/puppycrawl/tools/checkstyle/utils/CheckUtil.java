@@ -384,8 +384,14 @@ public final class CheckUtil {
      * @return true if the parameter is a receiver.
      */
     public static boolean isReceiverParameter(DetailAST parameterDefAst) {
-        return parameterDefAst.getType() == TokenTypes.PARAMETER_DEF
-                && parameterDefAst.findFirstToken(TokenTypes.IDENT) == null;
+        final boolean ans;
+        if (parameterDefAst.findFirstToken(TokenTypes.LITERAL_THIS) != null) {
+            ans = true;
+        }
+        else {
+            ans = parameterDefAst.getLastChild().findFirstToken(TokenTypes.LITERAL_THIS) != null;
+        }
+        return ans;
     }
 
     /**
