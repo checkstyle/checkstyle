@@ -49,4 +49,8 @@
   <suppress checks="FileLength"
     files="visibilitymodifier[\\/]Example\d+.java"/>
 
+  <!-- Examples for understanding fallthrough cases -->
+  <suppress checks="FallThrough"
+    files="fallthrough[\\/]Example\d+.java"/>
+
 </suppressions>
