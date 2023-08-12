@@ -566,7 +566,8 @@ public class RequireThisCheck extends AbstractCheck {
                 ((ClassFrame) frame).addInstanceMember(componentIdent);
                 break;
             case TokenTypes.PARAMETER_DEF:
-                if (!CheckUtil.isReceiverParameter(ast)
+                if (!(ast.findFirstToken(TokenTypes.LITERAL_THIS) != null
+                        || ast.getLastChild().findFirstToken(TokenTypes.LITERAL_THIS) != null)
                         && !isLambdaParameter(ast)) {
                     final DetailAST parameterIdent = ast.findFirstToken(TokenTypes.IDENT);
                     frame.addIdent(parameterIdent);

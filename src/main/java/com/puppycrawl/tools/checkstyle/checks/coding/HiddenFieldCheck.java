@@ -30,7 +30,6 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
@@ -517,7 +516,7 @@ public class HiddenFieldCheck
      */
     private void processVariable(DetailAST ast) {
         if (!ScopeUtil.isInInterfaceOrAnnotationBlock(ast)
-            && !CheckUtil.isReceiverParameter(ast)
+            && !isReceiver(ast)
             && (ScopeUtil.isLocalVariableDef(ast)
                 || ast.getType() == TokenTypes.PARAMETER_DEF
                 || ast.getType() == TokenTypes.PATTERN_VARIABLE_DEF)) {
@@ -531,6 +530,17 @@ public class HiddenFieldCheck
                 log(nameAST, MSG_KEY, name);
             }
         }
+    }
+
+    /**
+     * Check whether ast is Receiver parameter.
+     *
+     * @param ast the variable token.
+     * @return true if ast is Receiver parameter
+     */
+    private boolean isReceiver(DetailAST ast) {
+        return ast.findFirstToken(TokenTypes.LITERAL_THIS) != null
+                || ast.getLastChild().findFirstToken(TokenTypes.LITERAL_THIS) != null;
     }
 
     /**
