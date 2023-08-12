@@ -29,7 +29,6 @@ import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
@@ -257,7 +256,9 @@ public final class ParameterAssignmentCheck extends AbstractCheck {
 
         while (parameterDefAST != null) {
             if (parameterDefAST.getType() == TokenTypes.PARAMETER_DEF
-                    && !CheckUtil.isReceiverParameter(parameterDefAST)) {
+                    && !(parameterDefAST.findFirstToken(TokenTypes.LITERAL_THIS) != null
+                    || parameterDefAST.getLastChild()
+                    .findFirstToken(TokenTypes.LITERAL_THIS) != null)) {
                 final DetailAST param =
                     parameterDefAST.findFirstToken(TokenTypes.IDENT);
                 parameterNames.add(param.getText());
