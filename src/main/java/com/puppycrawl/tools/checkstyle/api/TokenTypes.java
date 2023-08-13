@@ -712,32 +712,41 @@ public final class TokenTypes {
      * after the TYPE child).
      * <p>For example</p>
      * <pre>
-     *      void foo(int firstParameter, int... secondParameter) {}
+     *      void foo(SomeType SomeType.this, int firstParameter, int... secondParameter) {}
      * </pre>
      * <p>parses as:</p>
      * <pre>
-     * METHOD_DEF -&gt; METHOD_DEF
-     *  |--MODIFIERS -&gt; MODIFIERS
-     *  |--TYPE -&gt; TYPE
-     *  |   `--LITERAL_VOID -&gt; void
-     *  |--IDENT -&gt; foo
-     *  |--LPAREN -&gt; (
-     *  |--PARAMETERS -&gt; PARAMETERS
-     *  |   |--PARAMETER_DEF -&gt; PARAMETER_DEF
-     *  |   |   |--MODIFIERS -&gt; MODIFIERS
-     *  |   |   |--TYPE -&gt; TYPE
-     *  |   |   |   `--LITERAL_INT -&gt; int
-     *  |   |   `--IDENT -&gt; firstParameter
-     *  |   |--COMMA -&gt; ,
-     *  |   `--PARAMETER_DEF -&gt; PARAMETER_DEF
-     *  |       |--MODIFIERS -&gt; MODIFIERS
-     *  |       |--TYPE -&gt; TYPE
-     *  |       |   `--LITERAL_INT -&gt; int
-     *  |       |--ELLIPSIS -&gt; ...
-     *  |       `--IDENT -&gt; secondParameter
-     *  |--RPAREN -&gt; )
-     *      `--SLIST -&gt; {
-     *          `--RCURLY -&gt; }
+     * METHOD_DEF -> METHOD_DEF
+     *  |--MODIFIERS -> MODIFIERS
+     *  |--TYPE -> TYPE
+     *  |   `--LITERAL_VOID -> void
+     *  |--IDENT -> foo
+     *  |--LPAREN -> (
+     *  |--PARAMETERS -> PARAMETERS
+     *  |   |--PARAMETER_DEF -> PARAMETER_DEF
+     *  |   |   |--MODIFIERS -> MODIFIERS
+     *  |   |   |--TYPE -> TYPE
+     *  |   |   |   `--IDENT -> SomeType
+     *  |   |   `--DOT -> .
+     *  |   |       |--IDENT -> SomeType
+     *  |   |       `--LITERAL_THIS -> this
+     *  |   |--COMMA -> ,
+     *  |   |--PARAMETER_DEF -> PARAMETER_DEF
+     *  |   |   |--MODIFIERS -> MODIFIERS
+     *  |   |   |--TYPE -> TYPE
+     *  |   |   |   `--LITERAL_INT -> int
+     *  |   |   `--IDENT -> firstParameter
+     *  |   |--COMMA -> ,
+     *  |   `--PARAMETER_DEF -> PARAMETER_DEF
+     *  |       |--MODIFIERS -> MODIFIERS
+     *  |       |--TYPE -> TYPE
+     *  |       |   `--LITERAL_INT -> int
+     *  |       |--ELLIPSIS -> ...
+     *  |       `--IDENT -> secondParameter
+     *  |--RPAREN -> )
+     *  `--SLIST -> {
+     *      `--RCURLY -> }
+     *
      * </pre>
      *
      * @see #MODIFIERS
