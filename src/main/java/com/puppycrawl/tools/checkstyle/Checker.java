@@ -551,7 +551,7 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
             fileExtensions = new String[extensions.length];
             for (int i = 0; i < extensions.length; i++) {
                 final String extension = extensions[i];
-                if (CommonUtil.startsWithChar(extension, '.')) {
+                if (extension.startsWith(".")) {
                     fileExtensions[i] = extension;
                 }
                 else {

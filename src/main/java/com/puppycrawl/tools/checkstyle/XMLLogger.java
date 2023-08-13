@@ -313,7 +313,7 @@ public class XMLLogger
     public static boolean isReference(String ent) {
         boolean reference = false;
 
-        if (ent.charAt(0) == '&' && CommonUtil.endsWithChar(ent, ';')) {
+        if (ent.charAt(0) == '&' && ent.endsWith(";")) {
             if (ent.charAt(1) == '#') {
                 // prefix is "&#"
                 int prefixLength = 2;

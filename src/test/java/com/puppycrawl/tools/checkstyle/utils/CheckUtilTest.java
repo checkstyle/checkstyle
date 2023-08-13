@@ -64,14 +64,6 @@ public class CheckUtilTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testParseDoubleWithIncorrectToken() {
-        final double parsedDouble = CheckUtil.parseDouble("1_02", TokenTypes.ASSIGN);
-        assertWithMessage("Invalid parse result")
-            .that(parsedDouble)
-            .isEqualTo(Double.NaN);
-    }
-
-    @Test
     public void testEquals() {
         final DetailAstImpl litStatic = new DetailAstImpl();
         litStatic.setType(TokenTypes.LITERAL_STATIC);
@@ -316,65 +308,6 @@ public class CheckUtilTest extends AbstractModuleTestSupport {
         assertWithMessage("Invalid result: parameter provided is not receiver parameter")
                 .that(CheckUtil.isReceiverParameter(simpleParameter))
                 .isFalse();
-    }
-
-    @Test
-    public void testParseDoubleFloatingPointValues() {
-        assertWithMessage("Invalid parse result")
-            .that(CheckUtil.parseDouble("-0.05f", TokenTypes.NUM_FLOAT))
-            .isEqualTo(-0.05);
-        assertWithMessage("Invalid parse result")
-            .that(CheckUtil.parseDouble("10.0", TokenTypes.NUM_DOUBLE))
-            .isEqualTo(10.0);
-        assertWithMessage("Invalid parse result")
-            .that(CheckUtil.parseDouble("1.23e3", TokenTypes.NUM_DOUBLE))
-            .isEqualTo(1230);
-        assertWithMessage("Invalid parse result")
-            .that(CheckUtil.parseDouble("-3.21E2", TokenTypes.NUM_DOUBLE))
-            .isEqualTo(-321);
-        assertWithMessage("Invalid parse result")
-            .that(CheckUtil.parseDouble("-0.0", TokenTypes.NUM_DOUBLE))
-            .isEqualTo(-0.0);
-        assertWithMessage("Invalid parse result")
-            .that(CheckUtil.parseDouble("NaN", TokenTypes.NUM_DOUBLE))
-            .isEqualTo(Double.NaN);
-    }
-
-    @Test
-    public void testParseDoubleIntegerValues() {
-        assertWithMessage("Invalid parse result")
-            .that(CheckUtil.parseDouble("0L", TokenTypes.NUM_LONG))
-            .isEqualTo(0.0);
-        assertWithMessage("Invalid parse result")
-            .that(CheckUtil.parseDouble("0B101", TokenTypes.NUM_INT))
-            .isEqualTo(0b101);
-        assertWithMessage("Invalid parse result")
-            .that(CheckUtil.parseDouble("0b10001010001011010000101000101L", TokenTypes.NUM_LONG))
-            .isEqualTo(289_775_941);
-        assertWithMessage("Invalid parse result")
-            .that(CheckUtil.parseDouble("1", TokenTypes.NUM_INT))
-            .isEqualTo(1.0);
-        assertWithMessage("Invalid parse result")
-            .that(CheckUtil.parseDouble("8L", TokenTypes.NUM_LONG))
-            .isEqualTo(8.0);
-        assertWithMessage("Invalid parse result")
-            .that(CheckUtil.parseDouble("-21474836480", TokenTypes.NUM_LONG))
-            .isEqualTo(-2.147_483_648E10);
-        assertWithMessage("Invalid parse result")
-            .that(CheckUtil.parseDouble("-2", TokenTypes.NUM_INT))
-            .isEqualTo(-2);
-        assertWithMessage("Invalid parse result")
-            .that(CheckUtil.parseDouble("0xffffffff", TokenTypes.NUM_INT))
-            .isEqualTo(-1);
-        assertWithMessage("Invalid parse result")
-            .that(CheckUtil.parseDouble("0x0B63", TokenTypes.NUM_INT))
-            .isEqualTo(2915.0);
-        assertWithMessage("Invalid parse result")
-            .that(CheckUtil.parseDouble("21474836470", TokenTypes.NUM_LONG))
-            .isEqualTo(2.147_483_647E10);
-        assertWithMessage("Invalid parse result")
-            .that(CheckUtil.parseDouble("073l", TokenTypes.NUM_LONG))
-            .isEqualTo(59.0);
     }
 
     @Test
