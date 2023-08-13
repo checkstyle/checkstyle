@@ -256,8 +256,7 @@ public final class ParameterAssignmentCheck extends AbstractCheck {
             parametersAst.findFirstToken(TokenTypes.PARAMETER_DEF);
 
         while (parameterDefAST != null) {
-            if (parameterDefAST.getType() == TokenTypes.PARAMETER_DEF
-                    && !CheckUtil.isReceiverParameter(parameterDefAST)) {
+            if (!CheckUtil.isReceiverParameter(parameterDefAST)) {
                 final DetailAST param =
                     parameterDefAST.findFirstToken(TokenTypes.IDENT);
                 parameterNames.add(param.getText());
