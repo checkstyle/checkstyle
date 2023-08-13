@@ -712,7 +712,7 @@ public final class TokenTypes {
      * after the TYPE child).
      * <p>For example</p>
      * <pre>
-     *      void foo(int firstParameter, int... secondParameter) {}
+     *      void foo(SomeType SomeType.this, int firstParameter, int... secondParameter) {}
      * </pre>
      * <p>parses as:</p>
      * <pre>
@@ -726,6 +726,14 @@ public final class TokenTypes {
      *  |   |--PARAMETER_DEF -&gt; PARAMETER_DEF
      *  |   |   |--MODIFIERS -&gt; MODIFIERS
      *  |   |   |--TYPE -&gt; TYPE
+     *  |   |   |   `--IDENT -&gt; SomeType
+     *  |   |   `--DOT -&gt; .
+     *  |   |       |--IDENT -&gt; SomeType
+     *  |   |       `--LITERAL_THIS -&gt; this
+     *  |   |--COMMA -&gt; ,
+     *  |   |--PARAMETER_DEF -&gt; PARAMETER_DEF
+     *  |   |   |--MODIFIERS -&gt; MODIFIERS
+     *  |   |   |--TYPE -&gt; TYPE
      *  |   |   |   `--LITERAL_INT -&gt; int
      *  |   |   `--IDENT -&gt; firstParameter
      *  |   |--COMMA -&gt; ,
@@ -736,8 +744,9 @@ public final class TokenTypes {
      *  |       |--ELLIPSIS -&gt; ...
      *  |       `--IDENT -&gt; secondParameter
      *  |--RPAREN -&gt; )
-     *      `--SLIST -&gt; {
-     *          `--RCURLY -&gt; }
+     *  `--SLIST -&gt; {
+     *      `--RCURLY -&gt; }
+     *
      * </pre>
      *
      * @see #MODIFIERS
