@@ -380,12 +380,27 @@ public final class CheckUtil {
     /**
      * Checks whether a parameter is a receiver.
      *
+     * <p>A receiver parameter is a special parameter that
+     * represents the object for which the method is invoked.
+     * It is denoted by the reserved keyword {@code this}
+     * in the method declaration.
+     * For example, the following method has a receiver parameter:
+     *
+     * <pre>
+     * public class Param {
+     *   public void foo(Param this) {
+     *     // ...
+     *   }
+     * }
+     * </pre>
+     *
      * @param parameterDefAst the parameter node.
      * @return true if the parameter is a receiver.
+     * @see <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-8.html#jls-8.4.1">
+     *     ReceiverParameter</a>
      */
     public static boolean isReceiverParameter(DetailAST parameterDefAst) {
-        return parameterDefAst.getType() == TokenTypes.PARAMETER_DEF
-                && parameterDefAst.findFirstToken(TokenTypes.IDENT) == null;
+        return parameterDefAst.findFirstToken(TokenTypes.IDENT) == null;
     }
 
     /**
