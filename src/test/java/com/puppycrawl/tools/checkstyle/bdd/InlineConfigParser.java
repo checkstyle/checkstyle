@@ -70,9 +70,9 @@ public final class InlineConfigParser {
     private static final Pattern VIOLATION_BELOW_WITH_EXPLANATION_PATTERN = Pattern
             .compile(".*//\\s*violation below,\\s.+\\s(?:'(.*)')?$");
 
-    /** A pattern to find the string: "// violation, explanation". */
+    /** A pattern to find the string: "// violation, explanation 'violation message'". */
     private static final Pattern VIOLATION_WITH_EXPLANATION_PATTERN = Pattern
-            .compile(".*//\\s*violation,\\s.+\\s(?:'(.*)')?$");
+            .compile(".*//\\s*violation,\\s(?:.+\\s)?(?:'(.*)')?$");
 
     /** A pattern to find the string: "// X violations". */
     private static final Pattern MULTIPLE_VIOLATIONS_PATTERN = Pattern
