@@ -276,4 +276,11 @@ public class DescendantTokenCheckTest extends AbstractModuleTestSupport {
                 getPath("InputDescendantTokenLastTokenType2.java"), expected);
     }
 
+    @Test
+    public void testDefaultLimitedToken() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputDescendantTokenTestDefaultLimitedToken.java"), expected);
+    }
+
 }
