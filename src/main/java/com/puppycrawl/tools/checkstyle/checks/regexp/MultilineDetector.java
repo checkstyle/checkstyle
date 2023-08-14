@@ -116,7 +116,7 @@ class MultilineDetector {
             // OK http://blog.igorminar.com/2008/05/catching-stackoverflowerror-and-bug-in.html
             // http://programmers.stackexchange.com/questions/
             //        209099/is-it-ever-okay-to-catch-stackoverflowerror-in-java
-            options.getReporter().log(1, MSG_STACKOVERFLOW, matcher.pattern().toString());
+            options.getReporter().log(1, MSG_STACKOVERFLOW);
         }
     }
 
