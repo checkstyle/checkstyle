@@ -46,6 +46,26 @@
     <property name="files"
               value=".*[\\/]src[\\/](test|it|xdocs-examples)[\\/].*(?&lt;!Support)\.java"/>
   </module>
+  <module name="SuppressionSingleFilter">
+    <property name="checks" value="MultipleStringLiterals"/>
+    <property name="files" value=".*[\\/]Checker\.java"/>
+  </module>
+  <module name="SuppressionSingleFilter">
+    <property name="checks" value="MultipleStringLiterals"/>
+    <property name="files" value=".*[\\/]AbstractFileSetCheck\.java"/>
+  </module>
+  <module name="SuppressionSingleFilter">
+    <property name="checks" value="MultipleStringLiterals"/>
+    <property name="files" value=".*[\\/]ImportOrderCheck\.java"/>
+  </module>
+  <module name="SuppressionSingleFilter">
+    <property name="checks" value="MultipleStringLiterals"/>
+    <property name="files" value=".*[\\/]JavadocMethodCheck\.java"/>
+  </module>
+  <module name="SuppressionSingleFilter">
+    <property name="checks" value="MultipleStringLiterals"/>
+    <property name="files" value=".*[\\/]CommonUtil\.java"/>
+  </module>
   <module name="SuppressWarningsFilter"/>
   <module name="SuppressWithPlainTextCommentFilter">
     <!--
