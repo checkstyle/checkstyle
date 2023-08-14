@@ -40,7 +40,6 @@ import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * Loads a list of package names from a package name XML file.
@@ -110,7 +109,7 @@ public final class PackageNamesLoader
         while (iterator.hasNext()) {
             final String subPackage = iterator.next();
             buf.append(subPackage);
-            if (!CommonUtil.endsWithChar(subPackage, '.') && iterator.hasNext()) {
+            if (!subPackage.endsWith(".") && iterator.hasNext()) {
                 buf.append('.');
             }
         }
