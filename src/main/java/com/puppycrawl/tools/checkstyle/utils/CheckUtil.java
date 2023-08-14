@@ -140,9 +140,8 @@ public final class CheckUtil {
                     radix = BASE_2;
                     txt = txt.substring(2);
                 }
-                else if (CommonUtil.startsWithChar(txt, '0')) {
+                else if (txt.startsWith("0")) {
                     radix = BASE_8;
-                    txt = txt.substring(1);
                 }
                 result = parseNumber(txt, radix, type);
                 break;
@@ -167,32 +166,29 @@ public final class CheckUtil {
      */
     private static double parseNumber(final String text, final int radix, final int type) {
         String txt = text;
-        if (CommonUtil.endsWithChar(txt, 'L') || CommonUtil.endsWithChar(txt, 'l')) {
+        if (txt.endsWith("L") || txt.endsWith("l")) {
             txt = txt.substring(0, txt.length() - 1);
         }
         final double result;
-        if (txt.isEmpty()) {
-            result = 0.0;
-        }
-        else {
-            final boolean negative = txt.charAt(0) == '-';
-            if (type == TokenTypes.NUM_INT) {
-                if (negative) {
-                    result = Integer.parseInt(txt, radix);
-                }
-                else {
-                    result = Integer.parseUnsignedInt(txt, radix);
-                }
+
+        final boolean negative = txt.charAt(0) == '-';
+        if (type == TokenTypes.NUM_INT) {
+            if (negative) {
+                result = Integer.parseInt(txt, radix);
             }
             else {
-                if (negative) {
-                    result = Long.parseLong(txt, radix);
-                }
-                else {
-                    result = Long.parseUnsignedLong(txt, radix);
-                }
+                result = Integer.parseUnsignedInt(txt, radix);
             }
         }
+        else {
+            if (negative) {
+                result = Long.parseLong(txt, radix);
+            }
+            else {
+                result = Long.parseUnsignedLong(txt, radix);
+            }
+        }
+
         return result;
     }
 

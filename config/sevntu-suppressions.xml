@@ -46,4 +46,11 @@
   <!-- Require for testing of util package -->
   <suppress checks="ForbidCertainImports" files="AnnotationUtilTest\.java"/>
   <suppress checks="ForbidCertainImports" files="CheckUtilTest\.java"/>
+
+  <!-- Require for code optimization -->
+  <suppress checks="MultipleStringLiteralsExtended" files="Checker\.java"/>
+  <suppress checks="MultipleStringLiteralsExtended" files="AbstractFileSetCheck\.java"/>
+  <suppress checks="MultipleStringLiteralsExtended" files="ImportOrderCheck\.java"/>
+  <suppress checks="MultipleStringLiteralsExtended" files="JavadocMethodCheck\.java"/>
+  <suppress checks="MultipleStringLiteralsExtended" files="CommonUtil\.java"/>
 </suppressions>
