@@ -544,6 +544,7 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
      *     initial '.' character of an extension is automatically added.
      */
     public final void setFileExtensions(String... extensions) {
+        final String dot = ".";
         if (extensions == null) {
             fileExtensions = null;
         }
@@ -551,11 +552,11 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
             fileExtensions = new String[extensions.length];
             for (int i = 0; i < extensions.length; i++) {
                 final String extension = extensions[i];
-                if (CommonUtil.startsWithChar(extension, '.')) {
+                if (extension.startsWith(dot)) {
                     fileExtensions[i] = extension;
                 }
                 else {
-                    fileExtensions[i] = "." + extension;
+                    fileExtensions[i] = dot + extension;
                 }
             }
         }

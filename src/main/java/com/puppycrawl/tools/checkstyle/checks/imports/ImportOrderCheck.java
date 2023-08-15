@@ -28,7 +28,6 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * <p>
@@ -1144,7 +1143,7 @@ public class ImportOrderCheck
      */
     private static Pattern[] compilePatterns(String... packageGroups) {
         final Pattern[] patterns = new Pattern[packageGroups.length];
-
+        final String forwardSlash = "/";
         for (int i = 0; i < packageGroups.length; i++) {
             String pkg = packageGroups[i];
             final Pattern grp;
@@ -1155,8 +1154,8 @@ public class ImportOrderCheck
                 // matches any package
                 grp = Pattern.compile("");
             }
-            else if (CommonUtil.startsWithChar(pkg, '/')) {
-                if (!CommonUtil.endsWithChar(pkg, '/')) {
+            else if (pkg.startsWith(forwardSlash)) {
+                if (!pkg.endsWith(forwardSlash)) {
                     throw new IllegalArgumentException("Invalid group: " + pkg);
                 }
                 pkg = pkg.substring(1, pkg.length() - 1);
@@ -1164,7 +1163,7 @@ public class ImportOrderCheck
             }
             else {
                 final StringBuilder pkgBuilder = new StringBuilder(pkg);
-                if (!CommonUtil.endsWithChar(pkg, '.')) {
+                if (!pkg.endsWith(".")) {
                     pkgBuilder.append('.');
                 }
                 grp = Pattern.compile("^" + Pattern.quote(pkgBuilder.toString()));

@@ -324,7 +324,7 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
         final DetailNode nextSibling = JavadocUtil.getNextSibling(tag);
         return nextSibling.getType() == JavadocTokenTypes.NEWLINE
                 || nextSibling.getType() == JavadocTokenTypes.EOF
-                || CommonUtil.startsWithChar(nextSibling.getText(), ' ');
+                || nextSibling.getText().startsWith(" ");
     }
 
 }
