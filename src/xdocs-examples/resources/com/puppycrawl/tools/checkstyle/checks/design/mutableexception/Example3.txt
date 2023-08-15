@@ -1,0 +1,45 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="MutableException">
+      <property name="extendedClassNameFormat" value="^.*Throwable$"/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+class FirstClass extends Exception {
+  private int code; // OK, extended class name doesn't match with given pattern
+
+  public FirstClass() {
+    code = 1;
+  }
+}
+
+class MyException extends Exception {
+  private int code; // OK, extended class name doesn't match with given pattern
+
+  public MyException() {
+    code = 2;
+  }
+}
+
+class MyThrowable extends Throwable {
+  final int code; // OK
+  String message; // violation, The field 'message' must be declared final
+
+  public MyThrowable(int code, String message) {
+    this.code = code;
+    this.message = message;
+  }
+}
+
+class BadException extends java.lang.Exception {
+  int code; // OK, extended class name doesn't match with given pattern
+
+  public BadException(int code) {
+    this.code = code;
+  }
+}
+// xdoc section -- end

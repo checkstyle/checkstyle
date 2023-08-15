@@ -20,21 +20,24 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;OneTopLevelClass&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;OneTopLevelClass&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
         </source>
         <p>
           <b>ATTENTION:</b> This Check does not support customization of validated tokens, so do
           not use the &quot;tokens&quot; property.
         </p>
-        <p>
+        <p id="Example1-code">
           An example of code with violations:
         </p>
-        <div class="wrapper">
-          <pre>
+        <source>
 public class Foo { // OK, first top-level class
   // methods
 }
@@ -46,13 +49,11 @@ class Foo2 { // violation, second top-level class
 record Foo3 { // violation, third top-level &quot;class&quot;
   // methods
 }
-          </pre>
-        </div>
-        <p>
+        </source>
+        <p id="Example2-code">
           An example of code without public top-level type:
         </p>
-        <div class="wrapper">
-          <pre>
+        <source>
 class Foo { // OK, first top-level class
   // methods
 }
@@ -60,18 +61,15 @@ class Foo { // OK, first top-level class
 class Foo2 { // violation, second top-level class
   // methods
 }
-          </pre>
-        </div>
-        <p>
+        </source>
+        <p id="Example3-code">
           An example of code without violations:
         </p>
-        <div class="wrapper">
-          <pre>
+        <source>
 public class Foo { // OK, only one top-level class
   // methods
 }
-          </pre>
-        </div>
+        </source>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">
