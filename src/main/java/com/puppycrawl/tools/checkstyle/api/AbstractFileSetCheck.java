@@ -172,13 +172,14 @@ public abstract class AbstractFileSetCheck
         }
 
         fileExtensions = new String[extensions.length];
+        final String dot = ".";
         for (int i = 0; i < extensions.length; i++) {
             final String extension = extensions[i];
-            if (CommonUtil.startsWithChar(extension, '.')) {
+            if (extension.startsWith(dot)) {
                 fileExtensions[i] = extension;
             }
             else {
-                fileExtensions[i] = "." + extension;
+                fileExtensions[i] = dot + extension;
             }
         }
     }

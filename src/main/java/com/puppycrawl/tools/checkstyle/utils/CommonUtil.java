@@ -122,13 +122,14 @@ public final class CommonUtil {
         else {
             // normalize extensions so all of them have a leading dot
             final String[] withDotExtensions = new String[fileExtensions.length];
+            final String dot = ".";
             for (int i = 0; i < fileExtensions.length; i++) {
                 final String extension = fileExtensions[i];
-                if (startsWithChar(extension, '.')) {
+                if (extension.startsWith(dot)) {
                     withDotExtensions[i] = extension;
                 }
                 else {
-                    withDotExtensions[i] = "." + extension;
+                    withDotExtensions[i] = dot + extension;
                 }
             }
 
@@ -270,48 +271,6 @@ public final class CommonUtil {
             resultPath = pathBase.relativize(pathAbsolute).toString();
         }
         return resultPath;
-    }
-
-    /**
-     * Tests if this string starts with the specified prefix.
-     * <p>
-     * It is faster version of {@link String#startsWith(String)} optimized for
-     *  one-character prefixes at the expense of
-     * some readability. Suggested by
-     * <a href="https://docs.pmd-code.org/latest/pmd_rules_java_performance.html#simplifystartswith">
-     * SimplifyStartsWith</a> PMD rule:
-     * </p>
-     *
-     * @param value
-     *            the {@code String} to check
-     * @param prefix
-     *            the prefix to find
-     * @return {@code true} if the {@code char} is a prefix of the given {@code String};
-     *     {@code false} otherwise.
-     */
-    public static boolean startsWithChar(String value, char prefix) {
-        return !value.isEmpty() && value.charAt(0) == prefix;
-    }
-
-    /**
-     * Tests if this string ends with the specified suffix.
-     * <p>
-     * It is faster version of {@link String#endsWith(String)} optimized for
-     *  one-character suffixes at the expense of
-     * some readability. Suggested by
-     * <a href="https://docs.pmd-code.org/latest/pmd_rules_java_performance.html#simplifystartswith">
-     * SimplifyStartsWith</a> PMD rule:
-     * </p>
-     *
-     * @param value
-     *            the {@code String} to check
-     * @param suffix
-     *            the suffix to find
-     * @return {@code true} if the {@code char} is a suffix of the given {@code String};
-     *     {@code false} otherwise.
-     */
-    public static boolean endsWithChar(String value, char suffix) {
-        return !value.isEmpty() && value.charAt(value.length() - 1) == suffix;
     }
 
     /**
