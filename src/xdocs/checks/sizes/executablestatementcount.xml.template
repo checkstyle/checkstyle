@@ -70,23 +70,24 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name="ExecutableStatementCount"/&gt;
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/executablestatementcount/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
 
-        <p>
+        <p id="Example2-config">
           To configure the check with a threshold of 20 for constructor and
           method definitions:
         </p>
-        <source>
-&lt;module name="ExecutableStatementCount"&gt;
-  &lt;property name="max" value="20"/&gt;
-  &lt;property name="tokens" value="CTOR_DEF,METHOD_DEF"/&gt;
-&lt;/module&gt;
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/executablestatementcount/Example2.txt"/>
+          <param name="type" value="config"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

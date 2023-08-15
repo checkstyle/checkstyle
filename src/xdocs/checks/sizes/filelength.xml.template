@@ -49,20 +49,22 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name="FileLength"/&gt;
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/filelength/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-config">
           To configure the check to accept files with up to 1500 lines:
         </p>
-        <source>
-&lt;module name="FileLength"&gt;
-  &lt;property name="max" value="1500"/&gt;
-&lt;/module&gt;
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/filelength/Example2.txt"/>
+          <param name="type" value="config"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

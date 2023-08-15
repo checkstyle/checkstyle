@@ -142,32 +142,33 @@ public class ExampleClass {
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the default check:
         </p>
-        <source>
-&lt;module name="MethodCount"/&gt;
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/methodcount/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
 
-        <p>
+        <p id="Example2-config">
           To configure the check to allow no more than 30 methods per type declaration:
         </p>
-        <source>
-&lt;module name="MethodCount"&gt;
-  &lt;property name="maxTotal" value="30"/&gt;
-&lt;/module&gt;
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/methodcount/Example2.txt"/>
+          <param name="type" value="config"/>
+        </macro>
 
-        <p>
+        <p id="Example3-config">
           To configure the check to allow no more than 10 public methods per
           type declaration, and 40 methods in total:
         </p>
-        <source>
-&lt;module name="MethodCount"&gt;
-  &lt;property name="maxPublic" value="10"/&gt;
-  &lt;property name="maxTotal" value="40"/&gt;
-&lt;/module&gt;
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/methodcount/Example3.txt"/>
+          <param name="type" value="config"/>
+        </macro>
 
       </subsection>
 
