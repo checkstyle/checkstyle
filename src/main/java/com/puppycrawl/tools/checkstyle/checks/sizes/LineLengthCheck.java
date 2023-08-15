@@ -76,63 +76,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </li>
  * </ul>
  * <p>
- * To configure the check to accept lines up to 80 characters long:
- * </p>
- * <pre>
- * &lt;module name="LineLength"/&gt;
- * </pre>
- * <p>
- * To configure the check to accept lines up to 120 characters long:
- * </p>
- * <pre>
- * &lt;module name="LineLength"&gt;
- *   &lt;property name="max" value="120"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * To configure the check to ignore lines that begin with {@code " * "} code,
- * followed by just one word, such as within a Javadoc comment:
- * </p>
- * <pre>
- * &lt;module name="LineLength"&gt;
- *   &lt;property name="ignorePattern" value="^ *\* *[^ ]+$"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>To configure the check to only validate java files and ignore other extensions:
- * </p>
- * <pre>
- * &lt;module name="LineLength"&gt;
- *   &lt;property name="fileExtensions" value="java"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>To configure the check to only validate xml and property files and ignore other extensions:
- * </p>
- * <pre>
- * &lt;module name="LineLength"&gt;
- *   &lt;property name="fileExtensions" value="xml, properties"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>To configure check to validate {@code import} and {@code package} statements:
- * </p>
- * <pre>
- * &lt;module name="LineLength"&gt;
- *   &lt;property name="ignorePattern" value="^$"/&gt;
- *   &lt;property name="max" value="50"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * // violation below 'Line is longer than 50 characters (found 54)'
- * package com.puppycrawl.tools.checkstyle.checks.design;
- *
- * // violation below 'Line is longer than 50 characters (found 86)'
- * import com.puppycrawl.tools.checkstyle.grammar.comments.InputFullOfSinglelineComments;
- *
- * import java.util.Arrays; // ok
- * </pre>
- * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.Checker}
  * </p>
  * <p>

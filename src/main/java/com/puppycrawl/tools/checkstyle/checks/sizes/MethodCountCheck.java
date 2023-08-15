@@ -118,30 +118,6 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * </li>
  * </ul>
  * <p>
- * To configure the default check:
- * </p>
- * <pre>
- * &lt;module name="MethodCount"/&gt;
- * </pre>
- * <p>
- * To configure the check to allow no more than 30 methods per type declaration:
- * </p>
- * <pre>
- * &lt;module name="MethodCount"&gt;
- *   &lt;property name="maxTotal" value="30"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * To configure the check to allow no more than 10 public methods per type declaration,
- * and 40 methods in total:
- * </p>
- * <pre>
- * &lt;module name="MethodCount"&gt;
- *   &lt;property name="maxPublic" value="10"/&gt;
- *   &lt;property name="maxTotal" value="40"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
  * <p>

@@ -47,20 +47,6 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * </li>
  * </ul>
  * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name="FileLength"/&gt;
- * </pre>
- * <p>
- * To configure the check to accept files with up to 1500 lines:
- * </p>
- * <pre>
- * &lt;module name="FileLength"&gt;
- *   &lt;property name="max" value="1500"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.Checker}
  * </p>
  * <p>
