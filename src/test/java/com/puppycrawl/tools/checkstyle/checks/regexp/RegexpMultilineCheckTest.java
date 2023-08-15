@@ -29,6 +29,7 @@ import java.io.File;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 
+import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
@@ -186,7 +187,7 @@ public class RegexpMultilineCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("format", "(x|y)*");
 
         final String[] expected = {
-            "1: " + getCheckMessage(MSG_STACKOVERFLOW),
+            "1: " + "java.util.regex.Matcher caused a java.lang.StackOverflowError for pattern (x|y)* . (you may be scanning a binary file instead of text?)",
         };
 
         final File file = File.createTempFile("junit", null, temporaryFolder);
