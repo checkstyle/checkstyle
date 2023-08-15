@@ -54,13 +54,17 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;InterfaceIsType&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;InterfaceIsType&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
         </source>
-        <p>Example:</p>
+        <p id="Example1-code">Example:</p>
         <source>
 public interface Test1 { // violation
     int a = 3;
@@ -75,15 +79,19 @@ public interface Test3 { // OK
     void test();
 }
         </source>
-        <p>
+        <p id="Example2-config">
           To configure the check to report violation so that it doesn't allow Marker Interfaces:
         </p>
         <source>
-&lt;module name=&quot;InterfaceIsType&quot;&gt;
-  &lt;property name=&quot;allowMarkerInterfaces&quot; value=&quot;false&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;InterfaceIsType&quot;&gt;
+      &lt;property name=&quot;allowMarkerInterfaces&quot; value=&quot;false&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p>Example:</p>
+        <p id="Example2-code">Example:</p>
         <source>
 public interface Test1 { // violation
     int a = 3;

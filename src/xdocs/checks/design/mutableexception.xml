@@ -62,15 +62,18 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;MutableException&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;MutableException&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
         </source>
-        <p>Example:</p>
-        <div class="wrapper">
-          <source>
+        <p id="Example1-code">Example:</p>
+        <source>
 class FirstClass extends Exception {
   private int code; // OK, class name doesn't match with default pattern
 
@@ -104,21 +107,23 @@ class BadException extends java.lang.Exception {
     this.code = code;
   }
 }
-          </source>
-        </div>
+        </source>
 
-        <p>
+        <p id="Example2-config">
           To configure the check so that it checks for class name that ends
           with 'Exception':
         </p>
         <source>
-&lt;module name=&quot;MutableException&quot;&gt;
-  &lt;property name=&quot;format&quot; value=&quot;^.*Exception$&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;MutableException&quot;&gt;
+      &lt;property name=&quot;format&quot; value=&quot;^.*Exception$&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p>Example:</p>
-        <div class="wrapper">
-          <source>
+        <p id="Example2-code">Example:</p>
+        <source>
 class FirstClass extends Exception {
   private int code; // OK, class name doesn't match with given pattern
 
@@ -152,21 +157,23 @@ class BadException extends java.lang.Exception {
     this.code = code;
   }
 }
-          </source>
-        </div>
+        </source>
 
-        <p>
+        <p id="Example3-config">
           To configure the check so that it checks for type name that is used in
           'extends' and ends with 'Throwable':
         </p>
         <source>
-&lt;module name=&quot;MutableException&quot;&gt;
-  &lt;property name=&quot;extendedClassNameFormat&quot; value=&quot;^.*Throwable$&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;MutableException&quot;&gt;
+      &lt;property name=&quot;extendedClassNameFormat&quot; value=&quot;^.*Throwable$&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p>Example:</p>
-        <div class="wrapper">
-          <source>
+        <p id="Example3-code">Example:</p>
+        <source>
 class FirstClass extends Exception {
   private int code; // OK, extended class name doesn't match with given pattern
 
@@ -200,8 +207,7 @@ class BadException extends java.lang.Exception {
     this.code = code;
   }
 }
-          </source>
-        </div>
+        </source>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

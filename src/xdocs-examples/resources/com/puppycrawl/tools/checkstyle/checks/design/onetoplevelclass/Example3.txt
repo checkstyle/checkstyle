@@ -1,0 +1,13 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="OneTopLevelClass"/>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+public class Foo { // OK, only one top-level class
+  // methods
+}
+// xdoc section -- end

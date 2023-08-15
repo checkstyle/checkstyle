@@ -117,7 +117,12 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
     // until https://github.com/checkstyle/checkstyle/issues/13429
     private static final Set<String> MODULES_EXAMPLES_TO_SKIP = Set.of(
         "WhitespaceAfter",
-        "InnerTypeLast"
+        "InnerTypeLast",
+        "InterfaceIsType",
+        "MutableException",
+        "OneTopLevelClass",
+        "ThrowsCount",
+        "VisibilityModifier"
     );
 
     private static final List<List<Node>> CHECK_PROPERTIES = new ArrayList<>();

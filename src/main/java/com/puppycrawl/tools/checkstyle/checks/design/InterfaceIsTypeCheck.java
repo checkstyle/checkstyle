@@ -49,46 +49,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </li>
  * </ul>
  * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name="InterfaceIsType"/&gt;
- * </pre>
- * <p>Example:</p>
- * <pre>
- * public interface Test1 { // violation
- *     int a = 3;
- *
- * }
- *
- * public interface Test2 { // OK
- *
- * }
- *
- * public interface Test3 { // OK
- *     int a = 3;
- *     void test();
- * }
- * </pre>
- * <p>
- * To configure the check to report violation so that it doesn't allow Marker Interfaces:
- * </p>
- * <pre>
- * &lt;module name=&quot;InterfaceIsType&quot;&gt;
- *   &lt;property name=&quot;allowMarkerInterfaces&quot; value=&quot;false&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>Example:</p>
- * <pre>
- * public interface Test1 { // violation
- *     int a = 3;
- * }
- *
- * public interface Test2 { // violation
- *
- * }
- * </pre>
- * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
  * <p>
