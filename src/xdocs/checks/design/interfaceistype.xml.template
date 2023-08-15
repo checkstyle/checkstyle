@@ -54,45 +54,34 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name="InterfaceIsType"/&gt;
-        </source>
-        <p>Example:</p>
-        <source>
-public interface Test1 { // violation
-    int a = 3;
-}
-
-public interface Test2 { // OK
-
-}
-
-public interface Test3 { // OK
-    int a = 3;
-    void test();
-}
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/design/interfaceistype/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/design/interfaceistype/Example1.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example2-config">
           To configure the check to report violation so that it doesn't allow Marker Interfaces:
         </p>
-        <source>
-&lt;module name="InterfaceIsType"&gt;
-  &lt;property name="allowMarkerInterfaces" value="false"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>Example:</p>
-        <source>
-public interface Test1 { // violation
-    int a = 3;
-}
-
-public interface Test2 { // violation
-
-}
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/design/interfaceistype/Example2.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/design/interfaceistype/Example2.txt"/>
+          <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">
