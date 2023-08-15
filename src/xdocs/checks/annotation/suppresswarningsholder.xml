@@ -53,9 +53,10 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>To use default module configuration:</p>
+        <p id="Example1-config">To use default module configuration:</p>
         <source>
-&lt;module name=&quot;TreeWalker&quot;&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
   &lt;module name=&quot;MemberName&quot;/&gt;
   &lt;module name=&quot;ConstantName&quot;/&gt;
   &lt;module name=&quot;ParameterNumber&quot;&gt;
@@ -64,9 +65,11 @@
   &lt;module name=&quot;NoWhitespaceAfter&quot;/&gt;
 
   &lt;module name=&quot;SuppressWarningsHolder&quot;/&gt;
+  &lt;/module&gt;
+  &lt;module name=&quot;SuppressWarningsFilter&quot;/&gt;
 &lt;/module&gt;
-&lt;module name=&quot;SuppressWarningsFilter&quot;/&gt;
         </source>
+        <p id="Example1-code">Example:</p>
         <source>
 class Test {
 
@@ -98,21 +101,25 @@ class Test {
           matched against class name of the check in any letter case. Adding <code>check</code>
           suffix is also accepted.
         </p>
-        <p>If <code>aliasList</code> property was provided you can use your own names e.g. below
-             code will work if there was provided a <code>ParameterNumberCheck=paramnum</code> in
-             the <code>aliasList</code>:
+        <p id="Example2-config">
+          If <code>aliasList</code> property was provided you can use your own names e.g. below
+          code will work if there was provided a <code>ParameterNumberCheck=paramnum</code> in
+          the <code>aliasList</code>:
         </p>
         <source>
-&lt;module name=&quot;TreeWalker&quot;&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
   &lt;module name=&quot;ParameterNumber&quot;/&gt;
 
   &lt;module name=&quot;SuppressWarningsHolder&quot;&gt;
     &lt;property name=&quot;aliasList&quot; value=
       &quot;com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck=paramnum&quot;/&gt;
   &lt;/module&gt;
+  &lt;/module&gt;
+  &lt;module name=&quot;SuppressWarningsFilter&quot;/&gt;
 &lt;/module&gt;
-&lt;module name=&quot;SuppressWarningsFilter&quot;/&gt;
         </source>
+        <p id="Example2-code">Example:</p>
         <source>
 class Test {
 

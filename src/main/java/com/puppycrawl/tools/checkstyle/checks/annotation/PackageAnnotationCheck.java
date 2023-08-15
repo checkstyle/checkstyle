@@ -44,26 +44,6 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
  * Java Language Specification, &#167;7.4.1</a> for more info.
  * </p>
  * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name=&quot;PackageAnnotation&quot;/&gt;
- * </pre>
- * <p>Example of validating MyClass.java:</p>
- * <pre>
- * &#64;Deprecated
- * package com.example.annotations.packageannotation; //violation
- * </pre>
- * <p>Example of fixing violation in MyClass.java:</p>
- * <pre>
- * package com.example.annotations.packageannotation; //ok
- * </pre>
- * <p>Example of validating package-info.java:</p>
- * <pre>
- * &#64;Deprecated
- * package com.example.annotations.packageannotation; //ok
- * </pre>
- * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
  * <p>
