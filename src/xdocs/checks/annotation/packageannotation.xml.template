@@ -29,22 +29,30 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p> To configure the check:</p>
-        <source> &lt;module name="PackageAnnotation"/&gt; </source>
-        <p>Example of validating MyClass.java:</p>
-        <source>
-@Deprecated
-package com.example.annotations.packageannotation; //violation
-        </source>
-        <p>Example of fixing violation in MyClass.java:</p>
-        <source>
-package com.example.annotations.packageannotation; //ok
-        </source>
-        <p>Example of validating package-info.java:</p>
-        <source>
-@Deprecated
-package com.example.annotations.packageannotation; //ok
-        </source>
+        <p id="Example1-config"> To configure the check:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/packageannotation/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">Example of validating MyClass.java:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/packageannotation/Example1.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example2-code">Example of fixing violation in MyClass.java:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/packageannotation/Example2.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example3-code">Example of validating package-info.java:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/packageannotation/Example3.txt"/>
+          <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

@@ -53,82 +53,38 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>To use default module configuration:</p>
-        <source>
-&lt;module name="TreeWalker"&gt;
-  &lt;module name="MemberName"/&gt;
-  &lt;module name="ConstantName"/&gt;
-  &lt;module name="ParameterNumber"&gt;
-    &lt;property name="id" value="ParamNumberId"/&gt;
-  &lt;/module&gt;
-  &lt;module name="NoWhitespaceAfter"/&gt;
-
-  &lt;module name="SuppressWarningsHolder"/&gt;
-&lt;/module&gt;
-&lt;module name="SuppressWarningsFilter"/&gt;
-        </source>
-        <source>
-class Test {
-
-   private int K; // violation
-   @SuppressWarnings({"membername"})
-   private int J; // violation suppressed
-
-   private static final int i = 0; // violation
-   @SuppressWarnings("checkstyle:constantname")
-   private static final int m = 0; // violation suppressed
-
-   public void needsLotsOfParameters (int a, // violation
-      int b, int c, int d, int e, int f, int g, int h) {
-      // ...
-   }
-
-   @SuppressWarnings("ParamNumberId")
-   public void needsLotsOfParameters1 (int a, // violation suppressed
-      int b, int c, int d, int e, int f, int g, int h) {
-      // ...
-   }
-
-   private int [] ARR; // 2 violations
-   @SuppressWarnings("all")
-   private int [] ARRAY; // violations suppressed
-}
-        </source>
+        <p id="Example1-config">To use default module configuration:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/suppresswarningsholder/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/suppresswarningsholder/Example1.txt"/>
+          <param name="type" value="code"/>
+        </macro>
         <p>The general rule is that the argument of the <code>@SuppressWarnings</code> will be
           matched against class name of the check in any letter case. Adding <code>check</code>
           suffix is also accepted.
         </p>
-        <p>If <code>aliasList</code> property was provided you can use your own names e.g. below
-             code will work if there was provided a <code>ParameterNumberCheck=paramnum</code> in
-             the <code>aliasList</code>:
+        <p id="Example2-config">
+          If <code>aliasList</code> property was provided you can use your own names e.g. below
+          code will work if there was provided a <code>ParameterNumberCheck=paramnum</code> in
+          the <code>aliasList</code>:
         </p>
-        <source>
-&lt;module name="TreeWalker"&gt;
-  &lt;module name="ParameterNumber"/&gt;
-
-  &lt;module name="SuppressWarningsHolder"&gt;
-    &lt;property name="aliasList" value=
-      "com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck=paramnum"/&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
-&lt;module name="SuppressWarningsFilter"/&gt;
-        </source>
-        <source>
-class Test {
-
-   public void needsLotsOfParameters (int a, // violation
-      int b, int c, int d, int e, int f, int g, int h) {
-      // ...
-   }
-
-   @SuppressWarnings("paramnum")
-   public void needsLotsOfParameters1 (int a, // violation suppressed
-      int b, int c, int d, int e, int f, int g, int h) {
-      // ...
-   }
-
-}
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/suppresswarningsholder/Example2.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/suppresswarningsholder/Example2.txt"/>
+          <param name="type" value="code"/>
+        </macro>
 
       </subsection>
 
