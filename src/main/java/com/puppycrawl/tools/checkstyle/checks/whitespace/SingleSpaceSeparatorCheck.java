@@ -280,7 +280,7 @@ public class SingleSpaceSeparatorCheck extends AbstractCheck {
      */
     private static boolean isBlockCommentEnd(int[] line, int columnNo) {
         final int[] strippedLine = CodePointUtil
-                .stripTrailing(Arrays.copyOfRange(line, 0, columnNo));
+                .stripWhitespace(Arrays.copyOfRange(line, 0, columnNo));
         return CodePointUtil.endsWith(strippedLine, "*/");
     }
 
