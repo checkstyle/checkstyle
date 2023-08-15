@@ -1758,7 +1758,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/SummaryJavadocCheck.java</fileName>
     <specifier>array.access.unsafe.high</specifier>
     <message>Potentially unsafe array access: the index could be larger than the array&apos;s bound</message>
-    <lineContent>final DetailNode child = children[i];</lineContent>
+    <lineContent>if (children[i].getType() == JavadocTokenTypes.TEXT</lineContent>
     <details>
       found   : int
       required: @IndexFor(&quot;children&quot;) or @LTLengthOf(&quot;children&quot;) -- an integer less than children&apos;s length
@@ -1813,7 +1813,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/SummaryJavadocCheck.java</fileName>
     <specifier>array.access.unsafe.high.constant</specifier>
     <message>Potentially unsafe array access: the constant index 1 could be larger than the array&apos;s bound</message>
-    <lineContent>&amp;&amp; child.getChildren()[1].getType() == JavadocTokenTypes.INHERIT_DOC_LITERAL) {</lineContent>
+    <lineContent>&amp;&amp; children[i].getChildren()[1].getType()</lineContent>
     <details>
       found   : DetailNode []
       required: @MinLen(2) -- an array guaranteed to have at least 2 elements
@@ -1861,6 +1861,42 @@
     <details>
       found   : DetailNode []
       required: @MinLen(4) -- an array guaranteed to have at least 4 elements
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/SummaryJavadocCheck.java</fileName>
+    <specifier>array.access.unsafe.high.range</specifier>
+    <message>Potentially unsafe array access: the index could be larger than the array&apos;s bound</message>
+    <lineContent>&amp;&amp; !CommonUtil.isBlank(children[i].getText())) {</lineContent>
+    <details>
+      index type found: @IntRange(from=-2147483648) int
+      array type found: DetailNode []
+      required        : index of type @IndexFor(&quot;children&quot;) or @LTLengthOf(&quot;children&quot;), or array of type @MinLen(-9223372036854775808)
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/SummaryJavadocCheck.java</fileName>
+    <specifier>array.access.unsafe.high.range</specifier>
+    <message>Potentially unsafe array access: the index could be larger than the array&apos;s bound</message>
+    <lineContent>&amp;&amp; children[i].getChildren()[1].getType()</lineContent>
+    <details>
+      index type found: @IntRange(from=-2147483648) int
+      array type found: DetailNode []
+      required        : index of type @IndexFor(&quot;children&quot;) or @LTLengthOf(&quot;children&quot;), or array of type @MinLen(-9223372036854775808)
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/SummaryJavadocCheck.java</fileName>
+    <specifier>array.access.unsafe.high.range</specifier>
+    <message>Potentially unsafe array access: the index could be larger than the array&apos;s bound</message>
+    <lineContent>if (children[i].getType() == JavadocTokenTypes.JAVADOC_INLINE_TAG</lineContent>
+    <details>
+      index type found: @IntRange(from=-2147483648) int
+      array type found: DetailNode []
+      required        : index of type @IndexFor(&quot;children&quot;) or @LTLengthOf(&quot;children&quot;), or array of type @MinLen(-9223372036854775808)
     </details>
   </checkerFrameworkError>
 

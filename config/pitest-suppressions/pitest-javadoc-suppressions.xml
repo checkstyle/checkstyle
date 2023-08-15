@@ -816,14 +816,14 @@
 
 
 
-  <mutation unstable="false">
-    <sourceFile>SummaryJavadocCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck</mutatedClass>
-    <mutatedMethod>startsWithInheritDoc</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
-    <description>removed conditional - replaced equality check with true</description>
-    <lineContent>for (int i = 0; !found; i++) {</lineContent>
-  </mutation>
+
+
+
+
+
+
+
+
 
 
 
