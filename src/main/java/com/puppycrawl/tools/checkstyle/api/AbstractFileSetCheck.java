@@ -167,6 +167,7 @@ public abstract class AbstractFileSetCheck
      * @throws IllegalArgumentException is argument is null
      */
     public final void setFileExtensions(String... extensions) {
+        final String dot = ".";
         if (extensions == null) {
             throw new IllegalArgumentException("Extensions array can not be null");
         }
@@ -174,11 +175,11 @@ public abstract class AbstractFileSetCheck
         fileExtensions = new String[extensions.length];
         for (int i = 0; i < extensions.length; i++) {
             final String extension = extensions[i];
-            if (CommonUtil.startsWithChar(extension, '.')) {
+            if (extension.startsWith(dot)) {
                 fileExtensions[i] = extension;
             }
             else {
-                fileExtensions[i] = "." + extension;
+                fileExtensions[i] = dot + extension;
             }
         }
     }
