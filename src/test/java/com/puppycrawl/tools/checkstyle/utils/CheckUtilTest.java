@@ -441,6 +441,16 @@ public class CheckUtilTest extends AbstractModuleTestSupport {
                 getNonCompilablePath("InputCheckUtil1.java"), expected);
     }
 
+    @Test
+    public void testJavadoc() throws Exception {
+        final String[] expected = {
+            "25:39: " + getCheckMessage(JavadocMethodCheck.class,
+                  MSG_EXPECTED_TAG, "@param", "i"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputCheckUtil7.java"), expected);
+    }
+
     private DetailAST getNodeFromFile(int type) throws Exception {
         return getNode(JavaParser.parseFile(new File(getPath("InputCheckUtilTest.java")),
             JavaParser.Options.WITH_COMMENTS), type);
