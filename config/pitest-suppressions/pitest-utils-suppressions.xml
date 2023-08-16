@@ -45,14 +45,14 @@
 
 
 
-  <mutation unstable="false">
-    <sourceFile>CheckUtil.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.utils.CheckUtil</mutatedClass>
-    <mutatedMethod>getAccessModifierFromModifiersTokenDirectly</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getNextSibling</description>
-    <lineContent>token = token.getNextSibling()) {</lineContent>
-  </mutation>
+
+
+
+
+
+
+
+
 
 
 
