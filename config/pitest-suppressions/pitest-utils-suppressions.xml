@@ -99,23 +99,23 @@
 
 
 
-  <mutation unstable="false">
-    <sourceFile>CheckUtil.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.utils.CheckUtil</mutatedClass>
-    <mutatedMethod>isGetterMethod</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
-    <description>removed conditional - replaced equality check with true</description>
-    <lineContent>if (matchesGetterFormat &amp;&amp; noParams) {</lineContent>
-  </mutation>
 
-  <mutation unstable="false">
-    <sourceFile>CheckUtil.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.utils.CheckUtil</mutatedClass>
-    <mutatedMethod>isGetterMethod</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
-    <description>removed conditional - replaced equality check with true</description>
-    <lineContent>if (slist != null &amp;&amp; slist.getChildCount() == GETTER_BODY_SIZE) {</lineContent>
-  </mutation>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   <mutation unstable="false">
     <sourceFile>CheckUtil.java</sourceFile>
