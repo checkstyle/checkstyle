@@ -351,7 +351,7 @@ public final class CheckUtil {
                 // RCURLY
                 final DetailAST slist = ast.findFirstToken(TokenTypes.SLIST);
 
-                if (slist != null && slist.getChildCount() == GETTER_BODY_SIZE) {
+                if (slist != null) {
                     final DetailAST expr = slist.getFirstChild();
                     getterMethod = expr.getType() == TokenTypes.LITERAL_RETURN;
                 }
