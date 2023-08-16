@@ -648,14 +648,14 @@
     <lineContent>if (ScopeUtil.isOuterMostType(ast)) {</lineContent>
   </mutation>
 
-  <mutation unstable="false">
-    <sourceFile>MissingJavadocMethodCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocMethodCheck</mutatedClass>
-    <mutatedMethod>&lt;init&gt;</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
-    <description>Removed assignment to member variable minLineCount</description>
-    <lineContent>private int minLineCount = DEFAULT_MIN_LINE_COUNT;</lineContent>
-  </mutation>
+
+
+
+
+
+
+
+
 
   <mutation unstable="false">
     <sourceFile>MissingJavadocMethodCheck.java</sourceFile>
