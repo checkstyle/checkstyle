@@ -21,4 +21,13 @@ public class InputCheckUtil9 {
         mNumber = number; // violation above 'Missing a Javadoc comment'
     }
 
+    public int Cost1() // violation 'Missing a Javadoc comment'
+    {
+        return 666;
+    }
+
+    public int getCost1(int forMe) // violation 'Missing a Javadoc comment'
+    {
+        return 666;
+    }
 }
