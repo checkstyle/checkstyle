@@ -28,7 +28,6 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * <p>
@@ -573,6 +572,9 @@ public class ImportOrderCheck
 
     /** The special wildcard that catches all remaining groups. */
     private static final String WILDCARD_GROUP_NAME = "*";
+
+    /** The Forward slash. */
+    private static final String FORWARD_SLASH = "/";
 
     /** Empty array of pattern type needed to initialize check. */
     private static final Pattern[] EMPTY_PATTERN_ARRAY = new Pattern[0];
@@ -1144,7 +1146,6 @@ public class ImportOrderCheck
      */
     private static Pattern[] compilePatterns(String... packageGroups) {
         final Pattern[] patterns = new Pattern[packageGroups.length];
-
         for (int i = 0; i < packageGroups.length; i++) {
             String pkg = packageGroups[i];
             final Pattern grp;
@@ -1155,8 +1156,8 @@ public class ImportOrderCheck
                 // matches any package
                 grp = Pattern.compile("");
             }
-            else if (CommonUtil.startsWithChar(pkg, '/')) {
-                if (!CommonUtil.endsWithChar(pkg, '/')) {
+            else if (pkg.startsWith(FORWARD_SLASH)) {
+                if (!pkg.endsWith(FORWARD_SLASH)) {
                     throw new IllegalArgumentException("Invalid group: " + pkg);
                 }
                 pkg = pkg.substring(1, pkg.length() - 1);
@@ -1164,7 +1165,7 @@ public class ImportOrderCheck
             }
             else {
                 final StringBuilder pkgBuilder = new StringBuilder(pkg);
-                if (!CommonUtil.endsWithChar(pkg, '.')) {
+                if (!pkg.endsWith(".")) {
                     pkgBuilder.append('.');
                 }
                 grp = Pattern.compile("^" + Pattern.quote(pkgBuilder.toString()));
