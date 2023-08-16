@@ -554,6 +554,12 @@ public class JavadocMethodCheck extends AbstractCheck {
      */
     public static final String MSG_DUPLICATE_TAG = "javadoc.duplicateTag";
 
+    /** The Generic start. */
+    private static final String GENERIC_START = "<";
+
+    /** The Generic end. */
+    private static final String GENERIC_END = ">";
+
     /** Compiled regexp to match Javadoc tags that take an argument. */
     private static final Pattern MATCH_JAVADOC_ARG = CommonUtil.createPattern(
             "^\\s*(?>\\*|\\/\\*\\*)?\\s*@(throws|exception|param)\\s+(\\S+)\\s+\\S*");
@@ -1114,7 +1120,7 @@ public class JavadocMethodCheck extends AbstractCheck {
             final String arg1 = tag.getFirstArg();
             boolean found = removeMatchingParam(params, arg1);
 
-            if (CommonUtil.startsWithChar(arg1, '<') && CommonUtil.endsWithChar(arg1, '>')) {
+            if (arg1.startsWith(GENERIC_START) && arg1.endsWith(GENERIC_END)) {
                 found = searchMatchingTypeParameter(typeParams,
                         arg1.substring(1, arg1.length() - 1));
             }
@@ -1137,8 +1143,8 @@ public class JavadocMethodCheck extends AbstractCheck {
             for (DetailAST typeParam : typeParams) {
                 log(typeParam, MSG_EXPECTED_TAG,
                     JavadocTagInfo.PARAM.getText(),
-                    "<" + typeParam.findFirstToken(TokenTypes.IDENT).getText()
-                    + ">");
+                    GENERIC_START + typeParam.findFirstToken(TokenTypes.IDENT).getText()
+                    + GENERIC_END);
             }
         }
     }
