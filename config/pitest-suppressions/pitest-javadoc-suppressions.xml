@@ -702,14 +702,14 @@
     <lineContent>log(ast.getLineNumber(), MSG_KEY, ast.getText());</lineContent>
   </mutation>
 
-  <mutation unstable="false">
-    <sourceFile>RequireEmptyLineBeforeBlockTagGroupCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.RequireEmptyLineBeforeBlockTagGroupCheck</mutatedClass>
-    <mutatedMethod>hasInsufficientConsecutiveNewlines</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_ORDER_IF</mutator>
-    <description>removed conditional - replaced comparison check with true</description>
-    <lineContent>while (count &lt;= 1</lineContent>
-  </mutation>
+
+
+
+
+
+
+
+
 
 
 

@@ -242,11 +242,10 @@ public class RequireEmptyLineBeforeBlockTagGroupCheck extends AbstractJavadocChe
     private static boolean hasInsufficientConsecutiveNewlines(DetailNode tagNode) {
         int count = 0;
         DetailNode currentNode = JavadocUtil.getPreviousSibling(tagNode);
-        while (count <= 1
-                && currentNode != null
+        while (currentNode != null
                 && (currentNode.getType() == JavadocTokenTypes.NEWLINE
-                    || currentNode.getType() == JavadocTokenTypes.WS
-                    || currentNode.getType() == JavadocTokenTypes.LEADING_ASTERISK)) {
+                || currentNode.getType() == JavadocTokenTypes.WS
+                || currentNode.getType() == JavadocTokenTypes.LEADING_ASTERISK)) {
             if (currentNode.getType() == JavadocTokenTypes.NEWLINE) {
                 count++;
             }
