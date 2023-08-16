@@ -155,7 +155,7 @@ public class NonEmptyAtclauseDescriptionCheck extends AbstractJavadocCheck {
     @Override
     public void visitJavadocToken(DetailNode ast) {
         if (isEmptyTag(ast.getParent())) {
-            log(ast.getLineNumber(), MSG_KEY, ast.getText());
+            log(ast.getLineNumber(), MSG_KEY);
         }
     }
 
