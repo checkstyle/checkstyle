@@ -4051,8 +4051,9 @@
   <!-- the only violation found is false-positive at AvoidEscapedUnicodeCharactersCheck -->
   <inspection_tool class="SingleCharAlternation" enabled="false" level="WARNING"
                    enabled_by_default="false"/>
-  <inspection_tool class="SingleCharacterStartsWith" enabled="true" level="ERROR"
-                   enabled_by_default="true"/>
+  <!-- See reason at https://github.com/checkstyle/checkstyle/pull/13427 -->
+  <inspection_tool class="SingleCharacterStartsWith" enabled="false" level="ERROR"
+                   enabled_by_default="false"/>
   <!-- we like single import for single class -->
   <inspection_tool class="SingleClassImport" enabled="false" level="ERROR"
                    enabled_by_default="false"/>

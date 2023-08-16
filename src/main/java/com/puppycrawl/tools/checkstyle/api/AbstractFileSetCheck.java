@@ -38,6 +38,9 @@ public abstract class AbstractFileSetCheck
     extends AbstractViolationReporter
     implements FileSetCheck {
 
+    /** The extension separator. */
+    private static final String EXTENSION_SEPARATOR = ".";
+
     /**
      * The check context.
      *
@@ -174,11 +177,11 @@ public abstract class AbstractFileSetCheck
         fileExtensions = new String[extensions.length];
         for (int i = 0; i < extensions.length; i++) {
             final String extension = extensions[i];
-            if (CommonUtil.startsWithChar(extension, '.')) {
+            if (extension.startsWith(EXTENSION_SEPARATOR)) {
                 fileExtensions[i] = extension;
             }
             else {
-                fileExtensions[i] = "." + extension;
+                fileExtensions[i] = EXTENSION_SEPARATOR + extension;
             }
         }
     }
