@@ -29,11 +29,6 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 public class FallThroughCheckExamplesTest extends AbstractExamplesModuleTestSupport {
 
     @Override
-    protected String getResourceLocation() {
-        return "xdocs-examples";
-    }
-
-    @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/coding/fallthrough";
     }
