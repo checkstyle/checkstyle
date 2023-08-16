@@ -427,6 +427,10 @@ public class CheckUtilTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "20:5: " + getCheckMessage(MissingJavadocMethodCheck.class,
                     MSG_JAVADOC_MISSING),
+            "24:5: " + getCheckMessage(MissingJavadocMethodCheck.class,
+                    MSG_JAVADOC_MISSING),
+            "29:5: " + getCheckMessage(MissingJavadocMethodCheck.class,
+                    MSG_JAVADOC_MISSING),
         };
         verifyWithInlineConfigParser(
                 getPath("InputCheckUtil9.java"), expected);

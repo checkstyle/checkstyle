@@ -60,9 +60,6 @@ public final class CheckUtil {
     /** Maximum nodes allowed in a body of setter. */
     private static final int SETTER_BODY_SIZE = 3;
 
-    /** Maximum nodes allowed in a body of getter. */
-    private static final int GETTER_BODY_SIZE = 2;
-
     /** Pattern matching underscore characters ('_'). */
     private static final Pattern UNDERSCORE_PATTERN = Pattern.compile("_");
 
@@ -347,7 +344,7 @@ public final class CheckUtil {
                 // RCURLY
                 final DetailAST slist = ast.findFirstToken(TokenTypes.SLIST);
 
-                if (slist != null && slist.getChildCount() == GETTER_BODY_SIZE) {
+                if (slist != null) {
                     final DetailAST expr = slist.getFirstChild();
                     getterMethod = expr.getType() == TokenTypes.LITERAL_RETURN;
                 }
