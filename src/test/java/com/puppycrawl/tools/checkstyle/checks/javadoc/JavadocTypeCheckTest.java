@@ -395,4 +395,27 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
                 getPath("InputJavadocTypeTestTrimProperty.java"), expected);
     }
+
+    @Test
+    public void testAuthorFormat() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocType1.java"), expected);
+    }
+
+    @Test
+    public void testAuthorFormat2() throws Exception {
+        final String[] expected = {
+            "15:1: " + getCheckMessage(MSG_MISSING_TAG, "@author"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocType2.java"), expected);
+    }
+
+    @Test
+    public void testJavadocType() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocType3.java"), expected);
+    }
 }
