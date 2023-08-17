@@ -85,13 +85,15 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
         To run the check with its default configuration (no matches will be):
         </p>
         <source>
-&lt;module name=&quot;RegexpMultiline&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;RegexpMultiline&quot;/&gt;
+&lt;/module&gt;
         </source>
-        <p>
+        <p id="Example1-code">
         Example:
         </p>
         <source>
@@ -100,15 +102,17 @@ void method() {
   System.out.println(i); // OK
 }
         </source>
-        <p>
+        <p id="Example2-config">
           To configure the check to find calls to print to the console:
         </p>
         <source>
-&lt;module name=&quot;RegexpMultiline&quot;&gt;
-  &lt;property name=&quot;format&quot; value=&quot;System\.(out)|(err)\.print(ln)?\(&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;RegexpMultiline&quot;&gt;
+    &lt;property name=&quot;format&quot; value=&quot;System\.(out)|(err)\.print(ln)?\(&quot;/&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p>
+        <p id="Example2-code">
           Example:
         </p>
         <source>
@@ -129,17 +133,19 @@ void method() {
   err.println(&quot;Example&quot;);        // violation
 }
         </source>
-        <p>
+        <p id="Example3-config">
           To configure the check to match text that spans multiple lines,
           like normal code in a Java file:
         </p>
         <source>
-&lt;module name=&quot;RegexpMultiline&quot;&gt;
-  &lt;property name=&quot;matchAcrossLines&quot; value=&quot;true&quot;/&gt;
-  &lt;property name=&quot;format&quot; value=&quot;System\.out.*?print\(&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;RegexpMultiline&quot;&gt;
+    &lt;property name=&quot;matchAcrossLines&quot; value=&quot;true&quot;/&gt;
+    &lt;property name=&quot;format&quot; value=&quot;System\.out.*?print\(&quot;/&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p>
+        <p id="Example3-code">
           Example:
         </p>
         <source>
@@ -168,17 +174,19 @@ void method() {
           optional, like <code>.*?</code>. Changing the example expression to not be greedy
           will allow multiple violations in the example to be found in the same file.
         </p>
-        <p>
+        <p id="Example4-config">
         To configure the check to match a maximum of three test strings:
         </p>
         <source>
-&lt;module name=&quot;RegexpMultiline&quot;&gt;
-  &lt;property name=&quot;format&quot; value=&quot;Test #[0-9]+:[A-Za-z ]+&quot;/&gt;
-  &lt;property name=&quot;ignoreCase&quot; value=&quot;true&quot;/&gt;
-  &lt;property name=&quot;maximum&quot; value=&quot;3&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;RegexpMultiline&quot;&gt;
+    &lt;property name=&quot;format&quot; value=&quot;Test #[0-9]+:[A-Za-z ]+&quot;/&gt;
+    &lt;property name=&quot;ignoreCase&quot; value=&quot;true&quot;/&gt;
+    &lt;property name=&quot;maximum&quot; value=&quot;3&quot;/&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p>
+        <p id="Example4-code">
           Example:
         </p>
         <source>
@@ -192,16 +200,18 @@ void method() {
   System.out.println(&quot;TEst #5: This is a test string&quot;); // violation
 }
         </source>
-        <p>
+        <p id="Example5-config">
         To configure the check to match a minimum of two test strings:
         </p>
         <source>
-&lt;module name=&quot;RegexpMultiline&quot;&gt;
-  &lt;property name=&quot;format&quot; value=&quot;Test #[0-9]+:[A-Za-z ]+&quot;/&gt;
-  &lt;property name=&quot;minimum&quot; value=&quot;2&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;RegexpMultiline&quot;&gt;
+    &lt;property name=&quot;format&quot; value=&quot;Test #[0-9]+:[A-Za-z ]+&quot;/&gt;
+    &lt;property name=&quot;minimum&quot; value=&quot;2&quot;/&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p>
+        <p id="Example5-code">
           Example:
         </p>
         <source>
@@ -214,17 +224,19 @@ void method() {
   System.out.println(&quot;Test #4: This is a test string&quot;); // violation
 }
         </source>
-        <p>
+        <p id="Example6-config">
           To configure the check to restrict an empty file:
         </p>
         <source>
-&lt;module name=&quot;RegexpMultiline&quot;&gt;
-    &lt;property name=&quot;format&quot; value=&quot;^\s*$&quot; /&gt;
-    &lt;property name=&quot;matchAcrossLines&quot; value=&quot;true&quot; /&gt;
-    &lt;property name=&quot;message&quot; value=&quot;Empty file is not allowed&quot; /&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;RegexpMultiline&quot;&gt;
+      &lt;property name=&quot;format&quot; value=&quot;^\s*$&quot; /&gt;
+      &lt;property name=&quot;matchAcrossLines&quot; value=&quot;true&quot; /&gt;
+      &lt;property name=&quot;message&quot; value=&quot;Empty file is not allowed&quot; /&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p>
+        <p id="Example6-code">
           Example of violation from the above config:
         </p>
 
