@@ -652,7 +652,7 @@ public class JavadocTypeCheck
                 || !customScope.isIn(excludeScope)
                 || surroundingScope != null
                 && !surroundingScope.isIn(excludeScope))
-            && !AnnotationUtil.containsAnnotation(ast, allowedAnnotations);
+            && true;
     }
 
     /**
