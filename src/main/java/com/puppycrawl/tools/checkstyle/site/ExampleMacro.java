@@ -79,13 +79,11 @@ public class ExampleMacro extends AbstractMacro {
         }
 
         if ("config".equals(type)) {
-            final String config = getSnippetBetweenDelimiters(lines,
-                    XML_CONFIG_START, XML_CONFIG_END);
+            final String config = getConfigSnippet(lines);
             writeSnippet(sink, config);
         }
         else if ("code".equals(type)) {
-            final String code = getSnippetBetweenDelimiters(lines,
-                    CODE_SNIPPET_START, CODE_SNIPPET_END);
+            final String code = getCodeSnippet(lines);
             writeSnippet(sink, code);
         }
         else {
@@ -113,20 +111,33 @@ public class ExampleMacro extends AbstractMacro {
     }
 
     /**
-     * Extract a snippet between the given start and end delimiters.
-     * The lines containing the delimiter are not included in the snippet.
+     * Extract a configuration snippet from the given lines. Config delimiters use the whole
+     * line for themselves and have no indentation. We use equals() instead of contains()
+     * to be more strict because some examples contain those delimiters.
      *
      * @param lines the lines to extract the snippet from.
-     * @param startingDelimiter the starting delimiter.
-     * @param endingDelimiter the ending delimiter.
-     * @return the snippet.
+     * @return the configuration snippet.
      */
-    private static String getSnippetBetweenDelimiters(
-            Collection<String> lines, String startingDelimiter, String endingDelimiter) {
+    private static String getConfigSnippet(Collection<String> lines) {
         return lines.stream()
-                .dropWhile(line -> !line.contains(startingDelimiter))
+                .dropWhile(line -> !XML_CONFIG_START.equals(line))
                 .skip(1)
-                .takeWhile(line -> !line.contains(endingDelimiter))
+                .takeWhile(line -> !XML_CONFIG_END.equals(line))
+                .collect(Collectors.joining(NEWLINE));
+    }
+
+    /**
+     * Extract a code snippet from the given lines. Code delimiters can be indented, so
+     * we use contains() instead of equals().
+     *
+     * @param lines the lines to extract the snippet from.
+     * @return the code snippet.
+     */
+    private static String getCodeSnippet(Collection<String> lines) {
+        return lines.stream()
+                .dropWhile(line -> !line.contains(CODE_SNIPPET_START))
+                .skip(1)
+                .takeWhile(line -> !line.contains(CODE_SNIPPET_END))
                 .collect(Collectors.joining(NEWLINE));
     }
 

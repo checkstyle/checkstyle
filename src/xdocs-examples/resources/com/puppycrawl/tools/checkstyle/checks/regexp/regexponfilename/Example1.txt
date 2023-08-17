@@ -1,0 +1,10 @@
+/*xml
+<module name="Checker">
+  <module name="RegexpOnFilename"/>
+</module>
+*/
+
+// xdoc section -- start
+src/xdocs/config_regexp.xml  //OK, contains no whitespace
+src/xdocs/"config regexp".xml  //violation, contains whitespace
+// xdoc section -- end

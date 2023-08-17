@@ -85,81 +85,55 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
         To run the check with its default configuration (no matches will be):
         </p>
-        <source>
-&lt;module name="RegexpMultiline"/&gt;
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpmultiline/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">
         Example:
         </p>
-        <source>
-void method() {
-  int i = 5; // OK
-  System.out.println(i); // OK
-}
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpmultiline/Example1.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example2-config">
           To configure the check to find calls to print to the console:
         </p>
-        <source>
-&lt;module name="RegexpMultiline"&gt;
-  &lt;property name="format" value="System\.(out)|(err)\.print(ln)?\("/&gt;
-&lt;/module&gt;
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpmultiline/Example2.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">
           Example:
         </p>
-        <source>
-void method() {
-  System.out.print("Example");   // violation
-  System.err.println("Example"); // violation
-  System.out.print
-    ("Example");                 // violation
-  System.err.println
-    ("Example");          // OK
-  System
-  .out.print("Example");  // OK
-  System
-  .err.println("Example");       // violation
-  System.
-  out.print("Example");   // OK
-  System.
-  err.println("Example");        // violation
-}
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpmultiline/Example2.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example3-config">
           To configure the check to match text that spans multiple lines,
           like normal code in a Java file:
         </p>
-        <source>
-&lt;module name="RegexpMultiline"&gt;
-  &lt;property name="matchAcrossLines" value="true"/&gt;
-  &lt;property name="format" value="System\.out.*?print\("/&gt;
-&lt;/module&gt;
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpmultiline/Example3.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example3-code">
           Example:
         </p>
-        <source>
-void method() {
-  System.out.print("Example");  // violation
-  System.err.println("Example");
-  System.out.print              // violation
-    ("Example");
-  System.err.println
-    ("Example");
-  System
-  .out.print("Example");
-  System
-  .err.println("Example");
-  System.
-  out.print("Example");
-  System.
-  err.println("Example");
-}
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpmultiline/Example3.txt"/>
+          <param name="type" value="code"/>
+        </macro>
         <p>
           Note: Beware of the greedy regular expression used in the above example.
           <code>.*</code> will match as much as possible and not produce multiple violations in
@@ -168,73 +142,55 @@ void method() {
           optional, like <code>.*?</code>. Changing the example expression to not be greedy
           will allow multiple violations in the example to be found in the same file.
         </p>
-        <p>
+        <p id="Example4-config">
         To configure the check to match a maximum of three test strings:
         </p>
-        <source>
-&lt;module name="RegexpMultiline"&gt;
-  &lt;property name="format" value="Test #[0-9]+:[A-Za-z ]+"/&gt;
-  &lt;property name="ignoreCase" value="true"/&gt;
-  &lt;property name="maximum" value="3"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpmultiline/Example4.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example4-code">
           Example:
         </p>
-        <source>
-void method() {
-  System.out.println("Test #1: this is a test string"); // OK
-  System.out.println("TeSt #2: This is a test string"); // OK
-  System.out.println("TEST #3: This is a test string"); // OK
-  int i = 5;
-  System.out.println("Value of i: " + i);
-  System.out.println("Test #4: This is a test string"); // violation
-  System.out.println("TEst #5: This is a test string"); // violation
-}
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpmultiline/Example4.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example5-config">
         To configure the check to match a minimum of two test strings:
         </p>
-        <source>
-&lt;module name="RegexpMultiline"&gt;
-  &lt;property name="format" value="Test #[0-9]+:[A-Za-z ]+"/&gt;
-  &lt;property name="minimum" value="2"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpmultiline/Example5.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example5-code">
           Example:
         </p>
-        <source>
-void method() {
-  System.out.println("Test #1: this is a test string"); // violation
-  System.out.println("TEST #2: This is a test string"); // OK, "ignoreCase" is false by default
-  int i = 5;
-  System.out.println("Value of i: " + i);
-  System.out.println("Test #3: This is a test string"); // violation
-  System.out.println("Test #4: This is a test string"); // violation
-}
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpmultiline/Example5.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example6-config">
           To configure the check to restrict an empty file:
         </p>
-        <source>
-&lt;module name="RegexpMultiline"&gt;
-    &lt;property name="format" value="^\s*$" /&gt;
-    &lt;property name="matchAcrossLines" value="true" /&gt;
-    &lt;property name="message" value="Empty file is not allowed" /&gt;
-&lt;/module&gt;
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpmultiline/Example6.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example6-code">
           Example of violation from the above config:
         </p>
 
-        <source>
-/var/tmp$ cat -n Test.java
-1
-2
-3
-4
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpmultiline/Example6.txt"/>
+          <param name="type" value="code"/>
+        </macro>
         <p>Result:</p>
         <source>
 /var/tmp/Test.java // violation, a file must not be empty.
