@@ -50,9 +50,27 @@ public final class InlineConfigParser {
     /** A pattern matching the symbol: "\" or "/". */
     private static final Pattern SLASH_PATTERN = Pattern.compile("[\\\\/]");
 
-    /** A pattern to find the string: "// violation". */
+    /**
+     * A pattern that matches the following comments formats.
+     * <ol>
+     *     <li> "// violation" </li>
+     *     <li> "// violation, 'violation message'" </li>
+     *     <li> "// violation 'violation messages'" </li>
+     * </ol>
+     *
+     * <p>
+     * This pattern will not match the following formats.
+     * <ol>
+     *     <li> "// violation, explanation" </li>
+     *     <li> "// violation, explanation, 'violation message'" </li>
+     * </ol>
+     *
+     * These are matched by
+     * {@link InlineConfigParser#VIOLATION_WITH_EXPLANATION_PATTERN}.
+     * </p>
+     */
     private static final Pattern VIOLATION_PATTERN = Pattern
-            .compile(".*//\\s*violation\\s*(?:'(.*)')?$");
+            .compile(".*//\\s*violation,?\\s*(?:'(.*)')?$");
 
     /** A pattern to find the string: "// violation above". */
     private static final Pattern VIOLATION_ABOVE_PATTERN = Pattern
