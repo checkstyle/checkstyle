@@ -112,9 +112,13 @@
     <!-- Regexp -->
     <module name="RegexpSinglelineJava">
       <property name="id" value="exampleClassName"/>
-      <property name="format" value="^class Example\d+"/>
+      <property name="format" value="class Example\d+"/>
       <property name="minimum" value="1"/>
       <property name="maximum" value="1"/>
+      <message key="regexp.minimum"
+               value="Example test input must declare exactly one class matching ''Example\d+''"/>
+      <message key="regexp.maximum"
+               value="Example test input must declare exactly one class matching ''Example\d+''"/>
     </module>
 
   </module>
