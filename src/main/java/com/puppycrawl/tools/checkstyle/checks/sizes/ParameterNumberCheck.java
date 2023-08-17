@@ -54,44 +54,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </li>
  * </ul>
  * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name="ParameterNumber"/&gt;
- * </pre>
- * <p>
- * To configure the check to allow 10 parameters for a method:
- * </p>
- * <pre>
- * &lt;module name="ParameterNumber"&gt;
- *   &lt;property name="max" value="10"/&gt;
- *   &lt;property name="tokens" value="METHOD_DEF"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * To configure the check to ignore number of parameters for methods with
- * {@code @Override} or {@code @java.lang.Override annotation}.
- * </p>
- * <p>
- * Rationale: developer may need to override method with many parameters from
- * 3-rd party library. In this case developer has no control over number of parameters.
- * </p>
- * <pre>
- * &lt;module name="ParameterNumber"&gt;
- *   &lt;property name="ignoreOverriddenMethods" value="true"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Java code example:
- * </p>
- * <pre>
- * &#064;Override
- * public void needsLotsOfParameters(int a,
- *     int b, int c, int d, int e, int f, int g, int h) {
- *     ...
- * }
- * </pre>
- * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
  * <p>

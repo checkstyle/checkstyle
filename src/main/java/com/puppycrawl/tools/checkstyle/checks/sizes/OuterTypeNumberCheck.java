@@ -39,20 +39,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </li>
  * </ul>
  * <p>
- * To configure the check to accept 1 outer type per file:
- * </p>
- * <pre>
- * &lt;module name="OuterTypeNumber"/&gt;
- * </pre>
- * <p>
- * To configure the check to accept 2 outer types per file:
- * </p>
- * <pre>
- * &lt;module name="OuterTypeNumber"&gt;
- *   &lt;property name="max" value="2"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
  * <p>

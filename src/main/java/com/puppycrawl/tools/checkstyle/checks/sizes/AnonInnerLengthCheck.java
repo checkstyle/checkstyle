@@ -43,20 +43,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </li>
  * </ul>
  * <p>
- * To configure the check to accept anonymous classes with up to 20 lines:
- * </p>
- * <pre>
- * &lt;module name="AnonInnerLength"/&gt;
- * </pre>
- * <p>
- * To configure the check to accept anonymous classes with up to 60 lines:
- * </p>
- * <pre>
- * &lt;module name="AnonInnerLength"&gt;
- *   &lt;property name="max" value="60"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
  * <p>

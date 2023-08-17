@@ -44,18 +44,26 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check to accept anonymous classes with up to 20 lines:
         </p>
         <source>
-&lt;module name=&quot;AnonInnerLength&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;AnonInnerLength&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
         </source>
-        <p>
+        <p id="Example2-config">
           To configure the check to accept anonymous classes with up to 60 lines:
         </p>
         <source>
-&lt;module name=&quot;AnonInnerLength&quot;&gt;
-  &lt;property name=&quot;max&quot; value=&quot;60&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;AnonInnerLength&quot;&gt;
+      &lt;property name=&quot;max&quot; value=&quot;60&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
       </subsection>

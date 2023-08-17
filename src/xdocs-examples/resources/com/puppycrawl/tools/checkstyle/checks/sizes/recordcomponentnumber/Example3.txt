@@ -1,0 +1,24 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="RecordComponentNumber">
+      <property name="max" value="3"/>
+      <property name="accessModifiers" value="private"/>
+    </module>
+    <module name="RecordComponentNumber">
+      <property name="max" value="10"/>
+      <property name="accessModifiers" value="public"/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+public record MyRecord1(int x, int y, String str) { // ok, public record definition allowed 10
+   ...
+}
+
+private record MyRecord2(int x, int y, String str, Node node) { // violation
+   ...                                // private record definition allowed 3 components
+}
+// xdoc section -- end

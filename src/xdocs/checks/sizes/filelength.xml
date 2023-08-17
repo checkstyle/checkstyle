@@ -49,18 +49,22 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;FileLength&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;FileLength&quot;/&gt;
+&lt;/module&gt;
         </source>
-        <p>
+        <p id="Example2-config">
           To configure the check to accept files with up to 1500 lines:
         </p>
         <source>
-&lt;module name=&quot;FileLength&quot;&gt;
-  &lt;property name=&quot;max&quot; value=&quot;1500&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;FileLength&quot;&gt;
+    &lt;property name=&quot;max&quot; value=&quot;1500&quot;/&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
       </subsection>

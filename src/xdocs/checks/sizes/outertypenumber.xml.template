@@ -42,21 +42,23 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check to accept 1 outer type per file:
         </p>
-        <source>
-&lt;module name="OuterTypeNumber"/&gt;
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/outertypenumber/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
 
-        <p>
+        <p id="Example2-config">
           To configure the check to accept 2 outer types per file:
         </p>
-        <source>
-&lt;module name="OuterTypeNumber"&gt;
-  &lt;property name="max" value="2"/&gt;
-&lt;/module&gt;
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/outertypenumber/Example2.txt"/>
+          <param name="type" value="config"/>
+        </macro>
 
       </subsection>
 

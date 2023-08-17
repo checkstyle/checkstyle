@@ -57,13 +57,17 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;RecordComponentNumber&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;RecordComponentNumber&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
         </source>
-        <p>
+        <p id="Example1-code">
           Java code example:
         </p>
         <source>
@@ -76,18 +80,21 @@ record MyRecord2(int x, int y, String str,
                          String location, Date date, Image image) { // violation, 9 components
    ...
 }
-
         </source>
-        <p>
+        <p id="Example2-config">
           To configure the check to allow 5 record components at all access modifier
           levels for record definitions:
         </p>
         <source>
-&lt;module name=&quot;RecordComponentNumber&quot;&gt;
-  &lt;property name=&quot;max&quot; value=&quot;5&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;RecordComponentNumber&quot;&gt;
+      &lt;property name=&quot;max&quot; value=&quot;5&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p>
+        <p id="Example2-code">
           Java code example:
         </p>
         <source>
@@ -99,23 +106,26 @@ public record MyRecord2(int x, int y, String str,
                          Node node, Order order, Data data) { // violation, 6 components
    ...
 }
-
         </source>
-        <p>
+        <p id="Example3-config">
           To configure the check to allow 10 record components for a public record definition,
           but 3 for private record definitions:
         </p>
         <source>
-&lt;module name=&quot;RecordComponentNumber&quot;&gt;
-  &lt;property name=&quot;max&quot; value=&quot;3&quot;/&gt;
-  &lt;property name=&quot;accessModifiers&quot; value=&quot;private&quot;/&gt;
-&lt;/module&gt;
-&lt;module name=&quot;RecordComponentNumber&quot;&gt;
-  &lt;property name=&quot;max&quot; value=&quot;10&quot;/&gt;
-  &lt;property name=&quot;accessModifiers&quot; value=&quot;public&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;RecordComponentNumber&quot;&gt;
+      &lt;property name=&quot;max&quot; value=&quot;3&quot;/&gt;
+      &lt;property name=&quot;accessModifiers&quot; value=&quot;private&quot;/&gt;
+    &lt;/module&gt;
+    &lt;module name=&quot;RecordComponentNumber&quot;&gt;
+      &lt;property name=&quot;max&quot; value=&quot;10&quot;/&gt;
+      &lt;property name=&quot;accessModifiers&quot; value=&quot;public&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p>
+        <p id="Example3-code">
           Java code example:
         </p>
         <source>
@@ -126,7 +136,6 @@ public record MyRecord1(int x, int y, String str) { // ok, public record definit
 private record MyRecord2(int x, int y, String str, Node node) { // violation
    ...                                // private record definition allowed 3 components
 }
-
         </source>
       </subsection>
 

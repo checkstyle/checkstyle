@@ -58,21 +58,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </li>
  * </ul>
  * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name="ExecutableStatementCount"/&gt;
- * </pre>
- * <p>
- * To configure the check with a threshold of 20 for constructor and method definitions:
- * </p>
- * <pre>
- * &lt;module name="ExecutableStatementCount"&gt;
- *   &lt;property name="max" value="20"/&gt;
- *   &lt;property name="tokens" value="CTOR_DEF,METHOD_DEF"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
  * <p>
