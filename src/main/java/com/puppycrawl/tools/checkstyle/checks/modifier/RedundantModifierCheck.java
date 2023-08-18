@@ -171,20 +171,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </li>
  * </ul>
  * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name="RedundantModifier"/&gt;
- * </pre>
- * <p>
- * To configure the check to check only methods and not variables:
- * </p>
- * <pre>
- * &lt;module name="RedundantModifier"&gt;
- *   &lt;property name="tokens" value="METHOD_DEF"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
  * <p>

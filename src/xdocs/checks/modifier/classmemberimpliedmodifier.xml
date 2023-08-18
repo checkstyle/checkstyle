@@ -85,13 +85,17 @@ public final class Person {
           To configure the check so that it checks that all implicit modifiers on nested interfaces,
           enums, and records are explicitly specified in classes and records.
         </p>
-        <p>
+        <p id="Example1-config">
           Configuration:
         </p>
         <source>
-&lt;module name=&quot;ClassMemberImpliedModifier&quot; /&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;ClassMemberImpliedModifier&quot; /&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
         </source>
-        <p>
+        <p id="Example1-code">
           Code:
         </p>
         <source>

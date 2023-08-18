@@ -76,44 +76,6 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * </li>
  * </ul>
  * <p>
- * To configure the check so that it checks that all implicit modifiers on nested interfaces, enums,
- * and records are explicitly specified in classes and records.
- * </p>
- * <p>
- * Configuration:
- * </p>
- * <pre>
- * &lt;module name="ClassMemberImpliedModifier" /&gt;
- * </pre>
- * <p>
- * Code:
- * </p>
- * <pre>
- * public final class Person {
- *   static interface Address1 {  // valid
- *   }
- *
- *   interface Address2 {  // violation
- *   }
- *
- *   static enum Age1 {  // valid
- *     CHILD, ADULT
- *   }
- *
- *   enum Age2 {  // violation
- *     CHILD, ADULT
- *   }
- *
- *   public static record GoodRecord() {} // valid
- *   public record BadRecord() {} // violation
- *
- *   public static record OuterRecord() {
- *     static record InnerRecord1(){} // valid
- *     record InnerRecord2(){} // violation
- *   }
- * }
- * </pre>
- * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
  * <p>

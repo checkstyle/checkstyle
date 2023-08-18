@@ -76,10 +76,12 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p> To configure the check: </p>
-        <source>
-&lt;module name="ModifierOrder"/&gt;
-        </source>
+        <p id="Example1-config"> To configure the check: </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/modifier/modifierorder/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">
