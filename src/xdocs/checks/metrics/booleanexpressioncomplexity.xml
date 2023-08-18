@@ -91,13 +91,17 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;BooleanExpressionComplexity&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;BooleanExpressionComplexity&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
         </source>
-        <p>Code Example:</p>
+        <p id="Example1-code">Code Example:</p>
         <source>
 public class Test
 {
@@ -112,16 +116,20 @@ public class Test
   }
 }
         </source>
-        <p>
+        <p id="Example2-config">
           To configure the check with 5 allowed operation in boolean
           expression:
         </p>
         <source>
-&lt;module name=&quot;BooleanExpressionComplexity&quot;&gt;
-  &lt;property name=&quot;max&quot; value=&quot;5&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;BooleanExpressionComplexity&quot;&gt;
+      &lt;property name=&quot;max&quot; value=&quot;5&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p>Code Example:</p>
+        <p id="Example2-code">Code Example:</p>
         <source>
 public class Test
 {
@@ -137,16 +145,20 @@ public class Test
   }
 }
         </source>
-        <p>
+        <p id="Example3-config">
           To configure the check to ignore <code>&amp;</code> and
           <code>|</code>:
         </p>
         <source>
-&lt;module name=&quot;BooleanExpressionComplexity&quot;&gt;
-  &lt;property name=&quot;tokens&quot; value=&quot;BXOR,LAND,LOR&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;BooleanExpressionComplexity&quot;&gt;
+      &lt;property name=&quot;tokens&quot; value=&quot;BXOR,LAND,LOR&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p>Code Example:</p>
+        <p id="Example3-code">Code Example:</p>
         <source>
 public class Test
 {
