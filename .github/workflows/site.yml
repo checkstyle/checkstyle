@@ -11,10 +11,12 @@
 # If you need to change bucket name or region, change AWS_REGION and AWS_BUCKET_NAME variables.
 # For another bucket, you will need to change the secrets.
 #####################################################################################
-name: Site
+name: "Site"
+
 env:
-  AWS_REGION: us-east-2
+  AWS_REGION: "us-east-2"
   AWS_BUCKET_NAME: "checkstyle-diff-reports"
+
 on:
   issue_comment:
     types: [ created, edited ]
