@@ -49,36 +49,38 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name="TodoComment"/&gt;
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/todocomment/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">
           Example:
         </p>
-        <source>
-i++; // TODO: do differently in future   // violation
-i++; // todo: do differently in future   // OK
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/todocomment/Example1.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example2-config">
           To configure the check for comments that contain <code>TODO</code> and <code>FIXME</code>:
         </p>
-        <source>
-&lt;module name="TodoComment"&gt;
-  &lt;property name="format" value="(TODO)|(FIXME)"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/todocomment/Example2.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">
           Example:
         </p>
-        <source>
-i++;   // TODO: do differently in future   // violation
-i++;   // todo: do differently in future   // OK
-i=i/x; // FIXME: handle x = 0 case         // violation
-i=i/x; // FIX :  handle x = 0 case         // OK
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/todocomment/Example2.txt"/>
+          <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

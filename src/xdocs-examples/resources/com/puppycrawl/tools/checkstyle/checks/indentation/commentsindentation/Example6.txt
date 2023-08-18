@@ -1,0 +1,31 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="CommentsIndentation"/>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+0   switch(a) {
+1     case "1":
+2       int k = 7;
+3       // it is OK
+4     case "2":
+5       int k = 7;
+6     // it is OK
+7     case "3":
+8       if (true) {}
+9           // violation (should have the same indentation level as line 8 or 10)
+10    case "4":
+11    case "5": {
+12      int a;
+13    }
+14    // fall through (it is OK)
+15    case "12": {
+16      int a;
+17    }
+18    default:
+19      // it is OK
+20  }
+// xdoc section -- end

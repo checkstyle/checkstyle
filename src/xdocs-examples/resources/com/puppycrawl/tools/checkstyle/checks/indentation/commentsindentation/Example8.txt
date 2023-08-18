@@ -1,0 +1,15 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="CommentsIndentation"/>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+1   case 4:
+2     // it is OK
+3   case 5:
+4  // violation (should have the same indentation level as line 3 or 5)
+5   case 6:
+// xdoc section -- end
