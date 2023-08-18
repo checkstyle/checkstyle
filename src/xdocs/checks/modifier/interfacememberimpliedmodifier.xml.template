@@ -45,20 +45,20 @@
         </p>
         <source>
 public interface AddressFactory {
-  // check enforces code contains "public static final"
-  public static final String UNKNOWN = "Unknown";
+  // check enforces code contains &quot;public static final&quot;
+  public static final String UNKNOWN = &quot;Unknown&quot;;
 
-  String OTHER = "Other";  // violation
+  String OTHER = &quot;Other&quot;;  // violation
 
-  // check enforces code contains "public" or "private"
+  // check enforces code contains &quot;public&quot; or &quot;private&quot;
   public static AddressFactory instance();
 
-  // check enforces code contains "public abstract"
+  // check enforces code contains &quot;public abstract&quot;
   public abstract Address createAddress(String addressLine, String city);
 
   List&lt;Address&gt; findAddresses(String city);  // violation
 
-  // check enforces default methods are explicitly declared "public"
+  // check enforces default methods are explicitly declared &quot;public&quot;
   public default Address createAddress(String city) {
     return createAddress(UNKNOWN, city);
   }
@@ -163,61 +163,42 @@ public interface AddressFactory {
           To configure the check so that it checks that all implicit modifiers on methods,
           fields and nested types are explicitly specified in interfaces.
         </p>
-        <p>
+        <p id="Example1-config">
           Configuration:
         </p>
-        <source>
-&lt;module name="InterfaceMemberImpliedModifier"/&gt;
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/modifier/interfacememberimpliedmodifier/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">
           Code:
         </p>
-        <source>
-public interface AddressFactory {
-
-  public static final String UNKNOWN = "Unknown";  // valid
-
-  String OTHER = "Other";  // violation
-
-  public static AddressFactory instance();  // valid
-
-  public abstract Address createAddress(String addressLine, String city);  // valid
-
-  List&lt;Address&gt; findAddresses(String city);  // violation
-
-  interface Address {  // violation
-
-    String getCity();  // violation
-  }
-}
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/modifier/interfacememberimpliedmodifier/Example1.txt"/>
+          <param name="type" value="code"/>
+        </macro>
         <p>
           This example checks that all implicit modifiers on methods and fields are
           explicitly specified, but nested types do not need to be.
         </p>
-        <p>
+        <p id="Example2-config">
           Configuration:
         </p>
-        <source>
-&lt;module name="InterfaceMemberImpliedModifier"&gt;
-  &lt;property name="violateImpliedPublicNested" value="false"/&gt;
-  &lt;property name="violateImpliedStaticNested" value="false"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/modifier/interfacememberimpliedmodifier/Example2.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">
           Code:
         </p>
-        <source>
-public interface RoadFeature {
-
-  String STOP = "Stop";  // violation
-
-  enum Lights {  // valid because of configured properties
-
-    RED, YELLOW, GREEN;
-  }
-}
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/modifier/interfacememberimpliedmodifier/Example2.txt"/>
+          <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

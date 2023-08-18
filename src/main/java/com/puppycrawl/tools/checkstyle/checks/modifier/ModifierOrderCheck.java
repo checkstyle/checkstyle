@@ -66,12 +66,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * type annotations</a> from validation.
  * </p>
  * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name="ModifierOrder"/&gt;
- * </pre>
- * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
  * <p>
