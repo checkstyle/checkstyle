@@ -91,78 +91,50 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name="BooleanExpressionComplexity"/&gt;
-        </source>
-        <p>Code Example:</p>
-        <source>
-public class Test
-{
-  public static void main(String ... args)
-  {
-    boolean a = true;
-    boolean b = false;
-
-    boolean c = (a &amp; b) | (b ^ a);       // OK, 1(&amp;) + 1(|) + 1(^) = 3 (max allowed 3)
-
-    boolean d = (a &amp; b) ^ (a || b) | a;  // violation, 1(&amp;) + 1(^) + 1(||) + 1(|) = 4
-  }
-}
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/booleanexpressioncomplexity/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">Code Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/booleanexpressioncomplexity/Example1.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example2-config">
           To configure the check with 5 allowed operation in boolean
           expression:
         </p>
-        <source>
-&lt;module name="BooleanExpressionComplexity"&gt;
-  &lt;property name="max" value="5"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>Code Example:</p>
-        <source>
-public class Test
-{
-  public static void main(String ... args)
-  {
-    boolean a = true;
-    boolean b = false;
-
-    boolean c = (a &amp; b) | (b ^ a) | (a ^ b);   // OK, 1(&amp;) + 1(|) + 1(^) + 1(|) + 1(^) = 5
-
-    boolean d = (a | b) ^ (a | b) ^ (a || b) &amp; b; // violation,
-                                                 // 1(|) + 1(^) + 1(|) + 1(^) + 1(||) + 1(&amp;) = 6
-  }
-}
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/booleanexpressioncomplexity/Example2.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">Code Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/booleanexpressioncomplexity/Example2.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example3-config">
           To configure the check to ignore <code>&amp;</code> and
           <code>|</code>:
         </p>
-        <source>
-&lt;module name="BooleanExpressionComplexity"&gt;
-  &lt;property name="tokens" value="BXOR,LAND,LOR"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>Code Example:</p>
-        <source>
-public class Test
-{
-  public static void main(String ... args)
-  {
-    boolean a = true;
-    boolean b = false;
-
-    boolean c = (!a &amp;&amp; b) | (a || !b) ^ a;    // OK, 1(&amp;&amp;) + 1(||) + 1(^) = 3
-                                              // | is ignored here
-
-    boolean d = a ^ (a || b) ^ (b || a) &amp; a; // violation, 1(^) + 1(||) + 1(^) + 1(||) = 4
-                                             // &amp; is ignored here
-  }
-}
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/booleanexpressioncomplexity/Example3.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example3-code">Code Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/booleanexpressioncomplexity/Example3.txt"/>
+          <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">
