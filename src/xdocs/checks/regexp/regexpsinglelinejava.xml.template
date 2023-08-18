@@ -78,129 +78,102 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the default check:
         </p>
-        <source>
-&lt;module name="RegexpSinglelineJava"/&gt;
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpsinglelinejava/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
         <p>
           This configuration does not match to anything,
           so we do not provide any code example for it
           as no violation will ever be reported.
         </p>
-        <p>
+        <p id="Example2-config">
           To configure the check for calls to <code>System.out.println</code>, except in comments:
         </p>
-        <source>
-&lt;module name="RegexpSinglelineJava"&gt;
-  &lt;!-- . matches any character, so we need to
-       escape it and use \. to match dots. --&gt;
-  &lt;property name="format" value="System\.out\.println"/&gt;
-  &lt;property name="ignoreComments" value="true"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>Example:</p>
-        <source>
-System.out.println(""); // violation, instruction matches illegal pattern
-System.out.
-println(""); // OK
-/* System.out.println */ // OK, comments are ignored
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpsinglelinejava/Example2.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpsinglelinejava/Example2.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example3-config">
           To configure the check to find case-insensitive occurrences of
           "debug":
         </p>
-        <source>
-&lt;module name="RegexpSinglelineJava"&gt;
-  &lt;property name="format" value="debug"/&gt;
-  &lt;property name="ignoreCase" value="true"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>Example:</p>
-        <source>
-int debug = 0; // violation, variable name matches illegal pattern
-public class Debug { // violation, class name matches illegal pattern
-/* this is for de
-   bug only; */ // OK
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpsinglelinejava/Example3.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example3-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpsinglelinejava/Example3.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example4-config">
           To configure the check to find occurrences of
           "\.read(.*)|\.write(.*)"
           and display "IO found" for each violation.
         </p>
-        <source>
-&lt;module name="RegexpSinglelineJava"&gt;
-  &lt;property name="format" value="\.read(.*)|\.write(.*)"/&gt;
-  &lt;property name="message" value="IO found"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>Example:</p>
-        <source>
-FileReader in = new FileReader("path/to/input");
-int ch = in.read(); // violation
-while(ch != -1) {
-  System.out.print((char)ch);
-  ch = in.read(); // violation
-}
-
-FileWriter out = new FileWriter("path/to/output");
-out.write("something"); // violation
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpsinglelinejava/Example4.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example4-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpsinglelinejava/Example4.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example5-config">
           To configure the check to find occurrences of
           "\.log(.*)". We want to allow a maximum of 2 occurrences.
         </p>
-        <source>
-&lt;module name="RegexpSinglelineJava"&gt;
-  &lt;property name="format" value="\.log(.*)"/&gt;
-  &lt;property name="maximum" value="2"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>Example:</p>
-        <source>
-public class Foo{
-  public void bar(){
-    Logger.log("first"); // OK, first occurrence is allowed
-    Logger.log("second"); // OK, second occurrence is allowed
-    Logger.log("third"); // violation
-    System.out.println("fourth");
-    Logger.log("fifth"); // violation
-  }
-}
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpsinglelinejava/Example5.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example5-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpsinglelinejava/Example5.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example6-config">
           To configure the check to find all occurrences of
           "public". We want to ignore comments,
           display "public member found" for each violation
           and say if less than 2 occurrences.
         </p>
-        <source>
-&lt;module name="RegexpSinglelineJava"&gt;
-  &lt;property name="format" value="public"/&gt;
-  &lt;property name="minimum" value="2"/&gt;
-  &lt;property name="message" value="public member found"/&gt;
-  &lt;property name="ignoreComments" value="true"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>Example:</p>
-        <source>
-class Foo{ // violation, file contains less than 2 occurrences of "public"
-  private int a;
-  /* public comment */ // OK, comment is ignored
-  private void bar1() {}
-  public  void bar2() {} // violation
-}
-        </source>
-        <p>Example:</p>
-        <source>
-class Foo{
-  private int a;
-  /* public comment */ // OK, comment is ignored
-  public void bar1() {} // violation
-  public void bar2() {} // violation
-}
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpsinglelinejava/Example6.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example6-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpsinglelinejava/Example6.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example7-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpsinglelinejava/Example7.txt"/>
+          <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

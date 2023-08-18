@@ -1,0 +1,13 @@
+/*xml
+<module name="Checker">
+  <module name="RegexpOnFilename">
+    <property name="fileNamePattern" value="\.gif$"/>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+src/site/resources/images/favicon.png  //OK
+src/site/resources/images/logo.jpg  //OK
+src/site/resources/images/groups.gif  //violation, .gif images not allowed
+// xdoc section -- end
