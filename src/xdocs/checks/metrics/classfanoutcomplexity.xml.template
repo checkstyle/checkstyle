@@ -92,210 +92,158 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name="ClassFanOutComplexity"/&gt;
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/classfanoutcomplexity/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
 
         <p>
           Example:
         </p>
-        <p>
+        <p id="Example1-code">
           The check passes without violations in the following:
         </p>
-        <source>
-class InputClassComplexity {
-  Set set = new HashSet(); // Set, HashSet ignored due to default excludedClasses property
-  Map map = new HashMap(); // Map, HashMap ignored due to default excludedClasses property
-  Date date = new Date(); // Counted, 1
-  Time time = new Time(); // Counted, 2
-  Place place = new Place(); // Counted, 3
-  int value = 10; // int is ignored due to default excludedClasses property
-  void method() {
-    var result = "result"; // var is ignored due to default excludedClasses property
-  }
-}
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/classfanoutcomplexity/Example1.txt"/>
+          <param name="type" value="code"/>
+        </macro>
 
-        <p>
+        <p id="Example2-code">
           The check results in a violation in the following:
         </p>
-        <source>
-class InputClassComplexity {
-  Set set = new HashSet(); // Set, HashSet ignored due to default excludedClasses property
-  Map map = new HashMap(); // Map, HashMap ignored due to default excludedClasses property
-  Date date = new Date(); // Counted, 1
-  Time time = new Time(); // Counted, 2
-  // mention of 18 other user defined classes
-  Place place = new Place(); // violation, total is 21
-}
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/classfanoutcomplexity/Example2.txt"/>
+          <param name="type" value="code"/>
+        </macro>
 
-        <p>
+        <p id="Example3-config">
           To configure the check with a threshold of 2:
         </p>
-        <source>
-&lt;module name="ClassFanOutComplexity"&gt;
-  &lt;property name="max" value="2"/&gt;
-&lt;/module&gt;
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/classfanoutcomplexity/Example3.txt"/>
+          <param name="type" value="config"/>
+        </macro>
 
         <p>
           Example:
         </p>
-        <p>
+        <p id="Example3-code">
           The check passes without violations in the following:
         </p>
-        <source>
-class InputClassComplexity {
-  Set set = new HashSet(); // Set, HashSet ignored due to default excludedClasses property
-  Map map = new HashMap(); // Map, HashMap ignored due to default excludedClasses property
-  Date date = new Date(); // Counted, 1
-  Time time = new Time(); // Counted, 2
-}
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/classfanoutcomplexity/Example3.txt"/>
+          <param name="type" value="code"/>
+        </macro>
 
-        <p>
+        <p id="Example4-code">
           The check results in a violation in the following:
         </p>
-        <source>
-class InputClassComplexity {
-  Set set = new HashSet(); // Set, HashSet ignored due to default excludedClasses property
-  Map map = new HashMap(); // Map, HashMap ignored due to default excludedClasses property
-  Date date = new Date(); // Counted, 1
-  Time time = new Time(); // Counted, 2
-  Place place = new Place(); // violation, total is 3
-}
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/classfanoutcomplexity/Example4.txt"/>
+          <param name="type" value="code"/>
+        </macro>
 
-        <p>
+        <p id="Example5-config">
           To configure the check with three excluded classes <code>HashMap</code>,
           <code>HashSet</code> and <code>Place</code>:
         </p>
-        <source>
-&lt;module name="ClassFanOutComplexity"&gt;
-  &lt;property name="excludedClasses" value="HashMap, HashSet, Place"/&gt;
-&lt;/module&gt;
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/classfanoutcomplexity/Example5.txt"/>
+          <param name="type" value="config"/>
+        </macro>
 
         <p>
           Example:
         </p>
-        <p>
+        <p id="Example5-code">
           The check passes without violations in the following:
         </p>
-        <source>
-class InputClassComplexity {
-  Set set = new HashSet(); // Set counted 1, HashSet ignored
-  Map map = new HashMap(); // Map counted 2, HashMap ignored
-  Date date = new Date(); // Counted, 3
-  Time time = new Time(); // Counted, 4
-  // mention of 16 other user defined classes
-  Place place = new Place(); // Ignored
-}
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/classfanoutcomplexity/Example5.txt"/>
+          <param name="type" value="code"/>
+        </macro>
 
-        <p>
+        <p id="Example6-code">
           The check results in a violation in the following:
         </p>
-        <source>
-class InputClassComplexity {
-  Set set = new HashSet(); // Set counted 1, HashSet ignored
-  Map map = new HashMap(); // Map counted 2, HashMap ignored
-  Date date = new Date(); // Counted, 3
-  Time time = new Time(); // Counted, 4
-  // mention of 16 other user defined classes
-  Space space = new Space(); // violation, total is 21
-}
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/classfanoutcomplexity/Example6.txt"/>
+          <param name="type" value="code"/>
+        </macro>
 
-        <p>
+        <p id="Example7-config">
           To configure the check to exclude classes with a regular expression
           <code>.*Reader$</code>:
         </p>
-        <source>
-&lt;module name="ClassFanOutComplexity"&gt;
-  &lt;property name="excludeClassesRegexps" value=".*Reader$"/&gt;
-&lt;/module&gt;
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/classfanoutcomplexity/Example7.txt"/>
+          <param name="type" value="config"/>
+        </macro>
 
         <p>
           Example:
         </p>
-        <p>
+        <p id="Example7-code">
           The check passes without violations in the following:
         </p>
-        <source>
-class InputClassComplexity {
-  Set set = new HashSet(); // Set, HashSet ignored due to default excludedClasses property
-  Map map = new HashMap(); // Map, HashMap ignored due to default excludedClasses property
-  Date date = new Date(); // Counted, 1
-  Time time = new Time(); // Counted, 2
-  // mention of 18 other user defined classes
-  BufferedReader br; // Ignored
-}
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/classfanoutcomplexity/Example7.txt"/>
+          <param name="type" value="code"/>
+        </macro>
 
-        <p>
+        <p id="Example8-code">
           The check results in a violation in the following:
         </p>
-        <source>
-class InputClassComplexity {
-  Set set = new HashSet(); // Set, HashSet ignored due to default excludedClasses property
-  Map map = new HashMap(); // Map, HashMap ignored due to default excludedClasses property
-  Date date = new Date(); // Counted, 1
-  Time time = new Time(); // Counted, 2
-  // mention of 18 other user defined classes
-  File file; // violation, total is 21
-}
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/classfanoutcomplexity/Example8.txt"/>
+          <param name="type" value="code"/>
+        </macro>
 
-        <p>
+        <p id="Example9-config">
           To configure the check with an excluded package <code>java.io</code>:
         </p>
 
-        <source>
-&lt;module name="ClassFanOutComplexity"&gt;
-  &lt;property name="excludedPackages" value="java.io"/&gt;
-&lt;/module&gt;
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/classfanoutcomplexity/Example9.txt"/>
+          <param name="type" value="config"/>
+        </macro>
 
         <p>
           Example:
         </p>
-        <p>
+        <p id="Example9-code">
           The check passes without violations in the following:
         </p>
-        <source>
-import java.io.BufferedReader;
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/classfanoutcomplexity/Example9.txt"/>
+          <param name="type" value="code"/>
+        </macro>
 
-class InputClassComplexity {
-  Set set = new HashSet(); // Set, HashSet ignored due to default excludedClasses property
-  Map map = new HashMap(); // Map, HashMap ignored due to default excludedClasses property
-  Date date = new Date(); // Counted, 1
-  Time time = new Time(); // Counted, 2
-  // mention of 18 other user defined classes
-  BufferedReader br; // Ignored
-}
-        </source>
-
-        <p>
+        <p id="Example10-code">
           The check results in a violation in the following:
         </p>
-        <source>
-import java.util.StringTokenizer;
-
-class InputClassComplexity {
-  Set set = new HashSet(); // Set, HashSet ignored due to default excludedClasses property
-  Map map = new HashMap(); // Map, HashMap ignored due to default excludedClasses property
-  Date date = new Date(); // Counted, 1
-  Time time = new Time(); // Counted, 2
-  // mention of 18 other user defined classes
-  StringTokenizer st; // violation, total is 21
-}
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/classfanoutcomplexity/Example10.txt"/>
+          <param name="type" value="code"/>
+        </macro>
 
         <p>
           Override property <code>excludedPackages</code> to mark some packages as excluded.
@@ -323,35 +271,24 @@ class InputClassComplexity {
           wildcard (e.g. <code>import java.math.*</code>). Instead of wildcard import you should
           use direct import (e.g. <code>import java.math.BigDecimal</code>).
         </p>
-        <p>
+        <p id="Example11-config">
           Also note, that checkstyle will not exclude classes within the same file
           even if it was listed in the <code>excludedPackages</code> parameter. For example,
           assuming the config is
         </p>
-        <source>
-&lt;module name="ClassFanOutComplexity"&gt;
-  &lt;property name="excludedPackages" value="a.b"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/classfanoutcomplexity/Example11.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example11-code">
           And the file <code>a.b.Foo.java</code> is:
         </p>
-        <source>
-package a.b;
-
-import a.b.Bar;
-import a.b.c.Baz;
-
-class Foo {
-  Bar bar; // Will be ignored, located inside ignored a.b package
-  Baz baz; // Will not be ignored, located inside a.b.c package
-  Data data; // Will not be ignored, same file
-
-  class Data {
-    Foo foo; // Will not be ignored, same file
-  }
-}
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/classfanoutcomplexity/Example11.txt"/>
+          <param name="type" value="code"/>
+        </macro>
         <p>
           The <code>bar</code> member will not be counted,
           since the <code>a.b</code> added to the <code>excludedPackages</code>.

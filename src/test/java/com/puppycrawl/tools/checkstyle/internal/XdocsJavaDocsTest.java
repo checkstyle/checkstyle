@@ -140,7 +140,13 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         "MutableException",
         "OneTopLevelClass",
         "ThrowsCount",
-        "VisibilityModifier"
+        "VisibilityModifier",
+        "BooleanExpressionComplexity",
+        "ClassDataAbstractionCoupling",
+        "ClassFanOutComplexity",
+        "CyclomaticComplexity",
+        "JavaNCSS",
+        "NPathComplexity"
     );
 
     private static final List<List<Node>> CHECK_PROPERTIES = new ArrayList<>();
