@@ -1,0 +1,35 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="DescendantToken">
+      <property name="tokens" value="LITERAL_SWITCH"/>
+      <property name="maximumDepth" value="2"/>
+      <property name="limitedTokens" value="LITERAL_DEFAULT"/>
+      <property name="minimumNumber" value="1"/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+class Test {
+  public static void main(String[] args) {
+    int x = 1;
+    switch (x) { // ok
+      case 1:
+        System.out.println("hi");
+        break;
+      default:
+        System.out.println("Default");
+        break;
+    }
+
+    int y = 1;
+    switch (y) { // violation
+      case 1:
+        System.out.println("hi");
+        break;
+    }
+  }
+}
+// xdoc section -- end

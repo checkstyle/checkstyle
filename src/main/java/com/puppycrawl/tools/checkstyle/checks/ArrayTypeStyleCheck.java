@@ -46,54 +46,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </li>
  * </ul>
  * <p>
- * To configure the check to enforce Java style:
- * </p>
- * <pre>
- * &lt;module name="ArrayTypeStyle"/&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * public class MyClass {
- *   int[] nums; // OK
- *   String strings[]; // violation
- *
- *   char[] toCharArray() { // OK
- *     return null;
- *   }
- *
- *   byte getData()[] { // violation
- *     return null;
- *   }
- * }
- * </pre>
- * <p>
- * To configure the check to enforce C style:
- * </p>
- * <pre>
- * &lt;module name="ArrayTypeStyle"&gt;
- *   &lt;property name="javaStyle" value="false"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * public class MyClass {
- *   int[] nums; // violation
- *   String strings[]; // OK
- *
- *   char[] toCharArray() { // OK
- *     return null;
- *   }
- *
- *   byte getData()[] { // violation
- *     return null;
- *   }
- * }
- * </pre>
- * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
  * <p>

@@ -1,0 +1,19 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="CommentsIndentation"/>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+1   public void foo1() {
+2     foo2();
+3     // it is OK
+4   }
+5
+6   public void foo2() {
+7     foo3();
+8       // violation (comment should have the same indentation level as line 7)
+9   }
+// xdoc section -- end

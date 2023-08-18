@@ -46,13 +46,17 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;UncommentedMain&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;UncommentedMain&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
         </source>
-        <p>Example:</p>
+        <p id="Example1-code">Example:</p>
         <source>
 public class Game {
    public static void main(String... args){}   // violation
@@ -78,16 +82,20 @@ public record MyRecord2 {
     //public void main(){}                     // OK
 }
         </source>
-        <p>
+        <p id="Example2-config">
           To configure the check to allow the <code>main</code> method for all classes
           with &quot;Main&quot; name:
         </p>
         <source>
-&lt;module name=&quot;UncommentedMain&quot;&gt;
-  &lt;property name=&quot;excludedClasses&quot; value=&quot;\.Main$&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;UncommentedMain&quot;&gt;
+      &lt;property name=&quot;excludedClasses&quot; value=&quot;\.Main$&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p>Example:</p>
+        <p id="Example2-code">Example:</p>
         <source>
 public class Game {
    public static void main(String... args){}   // violation
@@ -108,7 +116,6 @@ public class Start {
 public record MyRecord1 {
     public void main(){}                      // OK
 }
-
         </source>
       </subsection>
 

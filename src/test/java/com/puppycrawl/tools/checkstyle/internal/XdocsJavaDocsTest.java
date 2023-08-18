@@ -140,7 +140,23 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         "MutableException",
         "OneTopLevelClass",
         "ThrowsCount",
-        "VisibilityModifier"
+        "VisibilityModifier",
+        "ArrayTypeStyle",
+        "AvoidEscapedUnicodeCharacters",
+        "CommentsIndentation",
+        "DescendantToken",
+        "FinalParameters",
+        "Indentation",
+        "NewlineAtEndOfFile",
+        "NoCodeInFile",
+        "OrderedProperties",
+        "OuterTypeFilename",
+        "TodoComment",
+        "TrailingComment",
+        "Translation",
+        "UncommentedMain",
+        "UniqueProperties",
+        "UpperEll"
     );
 
     private static final List<List<Node>> CHECK_PROPERTIES = new ArrayList<>();

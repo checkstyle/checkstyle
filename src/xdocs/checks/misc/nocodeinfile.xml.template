@@ -28,26 +28,31 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name="NoCodeInFile"/&gt;
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/nocodeinfile/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
         <p>
           Example:
         </p>
-        <p>
+        <p id="Example1-code">
           Content of the files:
         </p>
-        <source>
-// single-line comment // violation
-        </source>
-        <source>
-/* // violation
- block comment
-*/
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/nocodeinfile/Example1.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example2-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/nocodeinfile/Example2.txt"/>
+          <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

@@ -101,14 +101,18 @@ d = e / f;        // Another comment for this line
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;TrailingComment&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;TrailingComment&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
         </source>
 
-        <p>
+        <p id="Example1-code">
           Example:
         </p>
         <source>
@@ -120,16 +124,20 @@ doSomething(
 ); // OK, by default such trailing of method/code-block ending is allowed
         </source>
 
-        <p>
+        <p id="Example2-config">
           To configure the check to enforce only comment on a line:
         </p>
         <source>
-&lt;module name=&quot;TrailingComment&quot;&gt;
-  &lt;property name=&quot;format&quot; value=&quot;^\s*$&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;TrailingComment&quot;&gt;
+      &lt;property name=&quot;format&quot; value=&quot;^\s*$&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
 
-        <p>
+        <p id="Example2-code">
           Example:
         </p>
         <source>
@@ -141,22 +149,26 @@ doSomething(
 ); // violation, line content before comment should match pattern &quot;^\s*$&quot;
         </source>
 
-        <p>
+        <p id="Example3-config">
           To configure check so that trailing comment with exact comments like
           &quot;SUPPRESS CHECKSTYLE&quot;, &quot;NOPMD&quot;, &quot;NOSONAR&quot;
           are suppressed:
         </p>
         <source>
-&lt;module name=&quot;TrailingComment&quot;/&gt;
-&lt;module name=&quot;SuppressionXpathSingleFilter&quot;&gt;
-  &lt;property name=&quot;checks&quot; value=&quot;TrailingCommentCheck&quot;/&gt;
-  &lt;property name=&quot;query&quot; value=&quot;//SINGLE_LINE_COMMENT
-    [./COMMENT_CONTENT[@text=' NOSONAR\n' or @text=' NOPMD\n'
-    or @text=' SUPPRESS CHECKSTYLE\n']]&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;TrailingComment&quot;/&gt;
+    &lt;module name=&quot;SuppressionXpathSingleFilter&quot;&gt;
+      &lt;property name=&quot;checks&quot; value=&quot;TrailingCommentCheck&quot;/&gt;
+      &lt;property name=&quot;query&quot; value=&quot;//SINGLE_LINE_COMMENT
+        [./COMMENT_CONTENT[@text=' NOSONAR\n' or @text=' NOPMD\n'
+        or @text=' SUPPRESS CHECKSTYLE\n']]&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
 
-        <p>
+        <p id="Example3-code">
           Example for trailing comments check to suppress specific trailing comment:
         </p>
         <source>
@@ -168,24 +180,28 @@ public class Test {
 }
         </source>
 
-        <p>
+        <p id="Example4-config">
           To configure check so that trailing comment starting with &quot;SUPPRESS CHECKSTYLE&quot;,
           &quot;NOPMD&quot;, &quot;NOSONAR&quot; are suppressed:
         </p>
         <source>
-&lt;module name=&quot;TrailingComment&quot;/&gt;
-&lt;module name=&quot;SuppressionXpathSingleFilter&quot;&gt;
-  &lt;property name=&quot;checks&quot; value=&quot;TrailingCommentCheck&quot;/&gt;
-  &lt;property name=&quot;query&quot; value=&quot;//SINGLE_LINE_COMMENT
-    [./COMMENT_CONTENT[starts-with(@text, ' NOPMD')]]&quot;/&gt;
-  &lt;property name=&quot;query&quot; value=&quot;//SINGLE_LINE_COMMENT
-    [./COMMENT_CONTENT[starts-with(@text, ' SUPPRESS CHECKSTYLE')]]&quot;/&gt;
-  &lt;property name=&quot;query&quot; value=&quot;//SINGLE_LINE_COMMENT
-    [./COMMENT_CONTENT[starts-with(@text, ' NOSONAR')]]&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;TrailingComment&quot;/&gt;
+    &lt;module name=&quot;SuppressionXpathSingleFilter&quot;&gt;
+      &lt;property name=&quot;checks&quot; value=&quot;TrailingCommentCheck&quot;/&gt;
+      &lt;property name=&quot;query&quot; value=&quot;//SINGLE_LINE_COMMENT
+        [./COMMENT_CONTENT[starts-with(@text, ' NOPMD')]]&quot;/&gt;
+      &lt;property name=&quot;query&quot; value=&quot;//SINGLE_LINE_COMMENT
+        [./COMMENT_CONTENT[starts-with(@text, ' SUPPRESS CHECKSTYLE')]]&quot;/&gt;
+      &lt;property name=&quot;query&quot; value=&quot;//SINGLE_LINE_COMMENT
+        [./COMMENT_CONTENT[starts-with(@text, ' NOSONAR')]]&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
 
-        <p>
+        <p id="Example4-code">
           Example:
         </p>
         <source>
