@@ -48,54 +48,38 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check to enforce Java style:
         </p>
-        <source>
-&lt;module name="ArrayTypeStyle"/&gt;
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/arraytypestyle/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">
           Example:
         </p>
-        <source>
-public class MyClass {
-  int[] nums; // OK
-  String strings[]; // violation
-
-  char[] toCharArray() { // OK
-    return null;
-  }
-
-  byte getData()[] { // violation
-    return null;
-  }
-}
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/arraytypestyle/Example1.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example2-config">
           To configure the check to enforce C style:
         </p>
-        <source>
-&lt;module name="ArrayTypeStyle"&gt;
-  &lt;property name="javaStyle" value="false"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/arraytypestyle/Example2.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">
           Example:
         </p>
-        <source>
-public class MyClass {
-  int[] nums; // violation
-  String strings[]; // OK
-
-  char[] toCharArray() { // OK
-    return null;
-  }
-
-  byte getData()[] { // violation
-    return null;
-  }
-}
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/arraytypestyle/Example2.txt"/>
+          <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

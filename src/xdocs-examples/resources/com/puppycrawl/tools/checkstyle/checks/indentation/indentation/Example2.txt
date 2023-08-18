@@ -1,0 +1,17 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="Indentation">
+      <property name="caseIndent" value="0"/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+void fooCase() {          // basicOffset
+    switch (field) {      // basicOffset
+    case "value" : bar(); // caseIndent
+    }
+}
+// xdoc section -- end

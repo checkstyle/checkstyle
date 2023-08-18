@@ -85,66 +85,6 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * </li>
  * </ul>
  * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name=&quot;NewlineAtEndOfFile&quot;/&gt;
- * </pre>
- * <p>Example:</p>
- * <pre>
- * // File ending with a new line
- * public class Test {⤶
- * ⤶
- * }⤶ // ok
- * Note: The comment // ok is a virtual, not actually present in the file
- *
- * // File ending without a new line
- * public class Test1 {⤶
- * ⤶
- * } // violation, the file does not end with a new line
- * </pre>
- * <p>
- * To configure the check to always use Unix-style line separators:
- * </p>
- * <pre>
- * &lt;module name=&quot;NewlineAtEndOfFile&quot;&gt;
- *   &lt;property name=&quot;lineSeparator&quot; value=&quot;lf&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>Example:</p>
- * <pre>
- * // File ending with a new line
- * public class Test {⤶
- * ⤶
- * }⤶ // ok
- * Note: The comment // ok is a virtual, not actually present in the file
- *
- * // File ending without a new line
- * public class Test1 {⤶
- * ⤶
- * }␍⤶ // violation, expected line ending for file is LF(\n), but CRLF(\r\n) is detected
- * </pre>
- * <p>
- * To configure the check to work only on Java, XML and Python files:
- * </p>
- * <pre>
- * &lt;module name=&quot;NewlineAtEndOfFile&quot;&gt;
- *   &lt;property name=&quot;fileExtensions&quot; value=&quot;java, xml, py&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>Example:</p>
- * <pre>
- * // Any java file
- * public class Test {⤶
- * } // violation, file should end with a new line.
- *
- * // Any py file
- * print("Hello World") // violation, file should end with a new line.
- *
- * // Any txt file
- * This is a sample text file. // ok, this file is not specified in the config.
- * </pre>
- * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.Checker}
  * </p>
  * <p>
