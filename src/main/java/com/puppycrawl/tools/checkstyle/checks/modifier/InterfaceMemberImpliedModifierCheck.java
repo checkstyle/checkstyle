@@ -138,65 +138,6 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * </li>
  * </ul>
  * <p>
- * To configure the check so that it checks that all implicit modifiers on methods, fields
- * and nested types are explicitly specified in interfaces.
- * </p>
- * <p>
- * Configuration:
- * </p>
- * <pre>
- * &lt;module name=&quot;InterfaceMemberImpliedModifier&quot;/&gt;
- * </pre>
- * <p>
- * Code:
- * </p>
- * <pre>
- * public interface AddressFactory {
- *
- *   public static final String UNKNOWN = "Unknown";  // valid
- *
- *   String OTHER = "Other";  // violation
- *
- *   public static AddressFactory instance();  // valid
- *
- *   public abstract Address createAddress(String addressLine, String city);  // valid
- *
- *   List&lt;Address&gt; findAddresses(String city);  // violation
- *
- *   interface Address {  // violation
- *
- *     String getCity();  // violation
- *   }
- * }
- * </pre>
- * <p>
- * This example checks that all implicit modifiers on methods and fields are
- * explicitly specified, but nested types do not need to be.
- * </p>
- * <p>
- * Configuration:
- * </p>
- * <pre>
- * &lt;module name=&quot;InterfaceMemberImpliedModifier&quot;&gt;
- *   &lt;property name=&quot;violateImpliedPublicNested&quot; value=&quot;false&quot;/&gt;
- *   &lt;property name=&quot;violateImpliedStaticNested&quot; value=&quot;false&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Code:
- * </p>
- * <pre>
- * public interface RoadFeature {
- *
- *   String STOP = "Stop";  // violation
- *
- *   enum Lights {  // valid because of configured properties
- *
- *     RED, YELLOW, GREEN;
- *   }
- * }
- * </pre>
- * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
  * <p>

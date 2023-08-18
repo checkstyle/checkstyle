@@ -210,17 +210,25 @@ public class ClassExtending extends ClassExample {
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p> To configure the check: </p>
+        <p id="Example1-config"> To configure the check: </p>
         <source>
-&lt;module name=&quot;RedundantModifier&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;RedundantModifier&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
         </source>
 
-        <p>
+        <p id="Example2-config">
           To configure the check to check only methods and not variables:
         </p>
         <source>
-&lt;module name=&quot;RedundantModifier&quot;&gt;
-  &lt;property name=&quot;tokens&quot; value=&quot;METHOD_DEF&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;RedundantModifier&quot;&gt;
+      &lt;property name=&quot;tokens&quot; value=&quot;METHOD_DEF&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
       </subsection>

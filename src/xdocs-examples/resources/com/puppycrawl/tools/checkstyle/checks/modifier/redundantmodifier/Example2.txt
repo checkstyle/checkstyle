@@ -1,0 +1,12 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="RedundantModifier">
+      <property name="tokens" value="METHOD_DEF"/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+// xdoc section -- end

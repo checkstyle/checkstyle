@@ -85,40 +85,22 @@ public final class Person {
           To configure the check so that it checks that all implicit modifiers on nested interfaces,
           enums, and records are explicitly specified in classes and records.
         </p>
-        <p>
+        <p id="Example1-config">
           Configuration:
         </p>
-        <source>
-&lt;module name="ClassMemberImpliedModifier" /&gt;
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/modifier/classmemberimpliedmodifier/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">
           Code:
         </p>
-        <source>
-public final class Person {
-  static interface Address1 {  // valid
-  }
-
-  interface Address2 {  // violation
-  }
-
-  static enum Age1 {  // valid
-    CHILD, ADULT
-  }
-
-  enum Age2 {  // violation
-    CHILD, ADULT
-  }
-
-  public static record GoodRecord() {} // valid
-  public record BadRecord() {} // violation
-
-  public static record OuterRecord() {
-    static record InnerRecord1(){} // valid
-    record InnerRecord2(){} // violation
-  }
-}
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/modifier/classmemberimpliedmodifier/Example1.txt"/>
+          <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

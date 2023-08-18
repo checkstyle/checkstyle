@@ -163,13 +163,17 @@ public interface AddressFactory {
           To configure the check so that it checks that all implicit modifiers on methods,
           fields and nested types are explicitly specified in interfaces.
         </p>
-        <p>
+        <p id="Example1-config">
           Configuration:
         </p>
         <source>
-&lt;module name=&quot;InterfaceMemberImpliedModifier&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;InterfaceMemberImpliedModifier&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
         </source>
-        <p>
+        <p id="Example1-code">
           Code:
         </p>
         <source>
@@ -195,16 +199,20 @@ public interface AddressFactory {
           This example checks that all implicit modifiers on methods and fields are
           explicitly specified, but nested types do not need to be.
         </p>
-        <p>
+        <p id="Example2-config">
           Configuration:
         </p>
         <source>
-&lt;module name=&quot;InterfaceMemberImpliedModifier&quot;&gt;
-  &lt;property name=&quot;violateImpliedPublicNested&quot; value=&quot;false&quot;/&gt;
-  &lt;property name=&quot;violateImpliedStaticNested&quot; value=&quot;false&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;InterfaceMemberImpliedModifier&quot;&gt;
+      &lt;property name=&quot;violateImpliedPublicNested&quot; value=&quot;false&quot;/&gt;
+      &lt;property name=&quot;violateImpliedStaticNested&quot; value=&quot;false&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p>
+        <p id="Example2-code">
           Code:
         </p>
         <source>
