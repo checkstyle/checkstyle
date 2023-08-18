@@ -1,0 +1,26 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="DescendantToken">
+      <property name="tokens" value="EQUAL,NOT_EQUAL"/>
+      <property name="limitedTokens" value="STRING_LITERAL"/>
+      <property name="maximumNumber" value="0"/>
+      <property name="maximumDepth" value="1"/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+class Test {
+  public void foo() {
+    String str = "abc";
+    if (str.equals("abc")) { // ok
+      System.out.println("equal.");
+    }
+    if (str == "abc") { // violation
+      System.out.println("equal.");
+    }
+  }
+}
+// xdoc section -- end

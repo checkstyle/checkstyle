@@ -1,0 +1,33 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="DescendantToken">
+      <property name="tokens" value="CLASS_DEF,INTERFACE_DEF"/>
+      <property name="limitedTokens" value="VARIABLE_DEF"/>
+      <property name="maximumDepth" value="2"/>
+      <property name="maximumNumber" value="1"/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+class A { // ok
+  private int field1;
+
+  // Some code
+}
+class B { // violation
+  private int field1;
+  private int field2;
+
+  // Some code
+}
+interface C { // ok
+  int FIELD_1 = 1;
+}
+interface D { // violation
+  int FIELD_1 = 1;
+  int FIELD_2 = 2;
+}
+// xdoc section -- end

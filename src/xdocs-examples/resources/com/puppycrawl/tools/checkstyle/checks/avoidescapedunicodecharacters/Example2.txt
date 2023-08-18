@@ -1,0 +1,15 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="AvoidEscapedUnicodeCharacters">
+      <property name="allowEscapesForControlCharacters" value="true"/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+String unitAbbrev = "μs";      // OK, a normal String
+String unitAbbrev = "\u03bcs"; // violation, "\u03bcs" is a printable character.
+return '\ufeff' + content;     // OK, non-printable control character.
+// xdoc section -- end

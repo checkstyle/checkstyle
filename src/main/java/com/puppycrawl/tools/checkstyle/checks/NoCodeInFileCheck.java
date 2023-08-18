@@ -40,26 +40,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </li>
  * </ul>
  * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name="NoCodeInFile"/&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <p>
- * Content of the files:
- * </p>
- * <pre>
- * // single-line comment // violation
- * </pre>
- * <pre>
- * /* // violation
- *  block comment
- * *&#47;
- * </pre>
- * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
  * <p>

@@ -36,19 +36,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Rationale: The lower-case ell {@code 'l'} looks a lot like {@code 1}.
  * </p>
  * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name=&quot;UpperEll&quot;/&gt;
- * </pre>
- * <pre>
- * class Test {
- *   long var1 = 508987; // OK
- *   long var2 = 508987l; // violation
- *   long var3 = 508987L; // OK
- * }
- * </pre>
- * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
  * <p>

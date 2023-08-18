@@ -1,0 +1,27 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="DescendantToken">
+      <property name="tokens" value="METHOD_DEF"/>
+      <property name="limitedTokens" value="EXPR"/>
+      <property name="maximumNumber" value="2"/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+class Foo {
+  public void foo() { // ok
+      int x = 1;
+      int z = x + 2;
+  }
+}
+class Boo {
+  public void boo() { // violation
+      int x = 1;
+      int y = 2;
+      int z = x + y;
+  }
+}
+// xdoc section -- end
