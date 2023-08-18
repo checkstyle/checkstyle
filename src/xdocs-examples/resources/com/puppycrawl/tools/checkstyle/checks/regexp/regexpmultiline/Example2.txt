@@ -1,0 +1,26 @@
+/*xml
+<module name="Checker">
+  <module name="RegexpMultiline">
+    <property name="format" value="System\.(out)|(err)\.print(ln)?\("/>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+void method() {
+  System.out.print("Example");   // violation
+  System.err.println("Example"); // violation
+  System.out.print
+    ("Example");                 // violation
+  System.err.println
+    ("Example");          // OK
+  System
+  .out.print("Example");  // OK
+  System
+  .err.println("Example");       // violation
+  System.
+  out.print("Example");   // OK
+  System.
+  err.println("Example");        // violation
+}
+// xdoc section -- end
