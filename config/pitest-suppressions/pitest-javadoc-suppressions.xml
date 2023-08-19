@@ -594,23 +594,23 @@
 
 
 
-  <mutation unstable="false">
-    <sourceFile>JavadocTypeCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck</mutatedClass>
-    <mutatedMethod>shouldCheck</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to com/puppycrawl/tools/checkstyle/utils/AnnotationUtil::containsAnnotation</description>
-    <lineContent>&amp;&amp; !AnnotationUtil.containsAnnotation(ast, allowedAnnotations);</lineContent>
-  </mutation>
 
-  <mutation unstable="false">
-    <sourceFile>JavadocTypeCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck</mutatedClass>
-    <mutatedMethod>shouldCheck</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
-    <description>removed conditional - replaced equality check with true</description>
-    <lineContent>&amp;&amp; !AnnotationUtil.containsAnnotation(ast, allowedAnnotations);</lineContent>
-  </mutation>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
