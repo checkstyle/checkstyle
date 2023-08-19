@@ -418,4 +418,11 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
                 getPath("InputJavadocType3.java"), expected);
     }
+
+    @Test
+    public void testJavadocType2() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocType4.java"), expected);
+    }
 }
