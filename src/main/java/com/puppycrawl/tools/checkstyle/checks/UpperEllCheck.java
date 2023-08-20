@@ -23,7 +23,6 @@ import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * <p>
@@ -75,7 +74,7 @@ public class UpperEllCheck extends AbstractCheck {
 
     @Override
     public void visitToken(DetailAST ast) {
-        if (CommonUtil.endsWithChar(ast.getText(), 'l')) {
+        if (ast.getText().endsWith("l")) {
             log(ast, MSG_KEY);
         }
     }
