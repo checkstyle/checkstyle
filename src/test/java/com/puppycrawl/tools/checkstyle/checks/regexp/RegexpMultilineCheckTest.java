@@ -186,7 +186,7 @@ public class RegexpMultilineCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("format", "(x|y)*");
 
         final String[] expected = {
-            "1: " + getCheckMessage(MSG_STACKOVERFLOW),
+            "1: " + getCheckMessage(MSG_STACKOVERFLOW, "(x|y)*"),
         };
 
         final File file = File.createTempFile("junit", null, temporaryFolder);
