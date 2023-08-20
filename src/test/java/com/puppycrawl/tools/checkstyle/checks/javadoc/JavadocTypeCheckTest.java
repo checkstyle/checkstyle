@@ -327,7 +327,9 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testAllowedAnnotationsNotAllowed() throws Exception {
 
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        final String[] expected = {
+            "38:1: " + getCheckMessage(MSG_MISSING_TAG, "@param <T>"),
+        };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocTypeAllowedAnnotations_3.java"),
             expected);
