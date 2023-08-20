@@ -70,32 +70,6 @@ public final class CodePointUtil {
     }
 
     /**
-     * Removes leading whitespaces.
-     *
-     * @param codePoints array of unicode code points
-     * @return unicode code points array with leading whitespaces removed
-     */
-    public static int[] stripLeading(int... codePoints) {
-        int startIndex = 0;
-        while (startIndex < codePoints.length
-            && CommonUtil.isCodePointWhitespace(codePoints, startIndex)) {
-            startIndex++;
-        }
-        return Arrays.copyOfRange(codePoints, startIndex, codePoints.length);
-    }
-
-    /**
-     * Removes leading and trailing whitespaces.
-     *
-     * @param codePoints array of unicode code points
-     * @return unicode code points array with leading and trailing whitespaces removed
-     */
-    public static int[] trim(int... codePoints) {
-        final int[] strippedCodePoints = stripTrailing(codePoints);
-        return stripLeading(strippedCodePoints);
-    }
-
-    /**
      * Tests if the unicode code points array
      * ends with the specified suffix.
      *
