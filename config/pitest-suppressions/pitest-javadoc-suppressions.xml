@@ -504,14 +504,14 @@
     <lineContent>while (builder.charAt(index - 1) == &apos;*&apos;) {</lineContent>
   </mutation>
 
-  <mutation unstable="false">
-    <sourceFile>JavadocTagContinuationIndentationCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagContinuationIndentationCheck</mutatedClass>
-    <mutatedMethod>getAllNewlineNodes</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
-    <description>replaced call to com/puppycrawl/tools/checkstyle/utils/JavadocUtil::getNextSibling with argument</description>
-    <lineContent>while (JavadocUtil.getNextSibling(node) != null) {</lineContent>
-  </mutation>
+
+
+
+
+
+
+
+
 
   <mutation unstable="false">
     <sourceFile>JavadocTagContinuationIndentationCheck.java</sourceFile>
