@@ -25,7 +25,7 @@
      XpathUtil&lt;/a&gt;.
  &lt;/p&gt;</description>
          <properties>
-            <property default-value="" name="query" type="java.lang.String">
+            <property name="query" type="java.lang.String">
                <description>Specify Xpath query.</description>
             </property>
          </properties>
