@@ -9,7 +9,6 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctype;
 
 import javax.annotation.processing.Generated;
 
-// ok
 public class InputJavadocType4 {
 
 }
