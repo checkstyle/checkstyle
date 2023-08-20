@@ -65,6 +65,9 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
     /** Message to use when an exception occurs and should be printed as a violation. */
     public static final String EXCEPTION_MSG = "general.exception";
 
+    /** The extension separator. */
+    private static final String EXTENSION_SEPARATOR = ".";
+
     /** Logger for Checker. */
     private final Log log;
 
@@ -551,11 +554,11 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
             fileExtensions = new String[extensions.length];
             for (int i = 0; i < extensions.length; i++) {
                 final String extension = extensions[i];
-                if (CommonUtil.startsWithChar(extension, '.')) {
+                if (extension.startsWith(EXTENSION_SEPARATOR)) {
                     fileExtensions[i] = extension;
                 }
                 else {
-                    fileExtensions[i] = "." + extension;
+                    fileExtensions[i] = EXTENSION_SEPARATOR + extension;
                 }
             }
         }
