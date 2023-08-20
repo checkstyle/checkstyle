@@ -739,7 +739,6 @@ public class JavadocTypeCheck
 
         final boolean found = tags
             .stream()
-            .filter(JavadocTag::isParamTag)
             .anyMatch(tag -> tag.getFirstArg().indexOf(typeParamNameWithBrackets) == 0);
 
         if (!found) {
