@@ -585,14 +585,14 @@
     <lineContent>.filter(JavadocTag::isParamTag)</lineContent>
   </mutation>
 
-  <mutation unstable="false">
-    <sourceFile>JavadocTypeCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck</mutatedClass>
-    <mutatedMethod>setAllowedAnnotations</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
-    <description>Removed assignment to member variable allowedAnnotations</description>
-    <lineContent>allowedAnnotations = Set.of(userAnnotations);</lineContent>
-  </mutation>
+
+
+
+
+
+
+
+
 
   <mutation unstable="false">
     <sourceFile>JavadocTypeCheck.java</sourceFile>

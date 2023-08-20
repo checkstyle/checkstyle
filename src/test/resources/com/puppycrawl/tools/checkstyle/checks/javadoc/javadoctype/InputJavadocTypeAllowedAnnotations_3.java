@@ -33,3 +33,10 @@ class InputJavadocTypeAllowedAnnotationByDefault_3 {
  * Annotation for unit tests.
  */
 @interface ThisIsOk_3 {}
+
+/** */
+@Generated // violation 'Type Javadoc comment is missing @param <T> tag'
+class Application<T> {}
+
+@interface Generated {
+}
