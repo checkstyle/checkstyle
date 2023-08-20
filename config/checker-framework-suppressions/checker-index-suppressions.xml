@@ -115,17 +115,6 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/XMLLogger.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter beginIndex of substring.</message>
-    <lineContent>final String name = ent.substring(1, ent.length() - 1);</lineContent>
-    <details>
-      found   : @UpperBoundLiteral(1) int
-      required: @LTEqLengthOf(&quot;ent&quot;) int
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/XMLLogger.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter beginIndex of substring.</message>
     <lineContent>ent.substring(prefixLength, ent.length() - 1), radix);</lineContent>
     <details>
       found   : int
@@ -136,30 +125,8 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/XMLLogger.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter endIndex of substring.</message>
-    <lineContent>ent.substring(prefixLength, ent.length() - 1), radix);</lineContent>
-    <details>
-      found   : @GTENegativeOne int
-      required: @NonNegative int
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/XMLLogger.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter endIndex of substring.</message>
-    <lineContent>final String name = ent.substring(1, ent.length() - 1);</lineContent>
-    <details>
-      found   : @GTENegativeOne int
-      required: @NonNegative int
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/XMLLogger.java</fileName>
-    <specifier>argument</specifier>
     <message>incompatible argument for parameter index of charAt.</message>
-    <lineContent>if (ent.charAt(0) == &apos;&amp;&apos; &amp;&amp; CommonUtil.endsWithChar(ent, &apos;;&apos;)) {</lineContent>
+    <lineContent>if (ent.charAt(0) == &apos;&amp;&apos; &amp;&amp; ent.endsWith(&quot;;&quot;)) {</lineContent>
     <details>
       found   : @UpperBoundLiteral(0) int
       required: @LTLengthOf(&quot;ent&quot;) int
@@ -1095,28 +1062,6 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/imports/ImportOrderCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter beginIndex of substring.</message>
-    <lineContent>pkg = pkg.substring(1, pkg.length() - 1);</lineContent>
-    <details>
-      found   : @UpperBoundLiteral(1) int
-      required: @LTEqLengthOf(&quot;pkg&quot;) int
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/imports/ImportOrderCheck.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter endIndex of substring.</message>
-    <lineContent>pkg = pkg.substring(1, pkg.length() - 1);</lineContent>
-    <details>
-      found   : @GTENegativeOne int
-      required: @NonNegative int
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/imports/ImportOrderCheck.java</fileName>
-    <specifier>argument</specifier>
     <message>incompatible argument for parameter endIndex of substring.</message>
     <lineContent>return qualifiedImportName.substring(0, lastDotIndex);</lineContent>
     <details>
@@ -1420,28 +1365,6 @@
     <lineContent>return position != text.length() - 1 &amp;&amp; text.charAt(position + 1) == &apos;/&apos;;</lineContent>
     <details>
       found   : int
-      required: @NonNegative int
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocMethodCheck.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter beginIndex of substring.</message>
-    <lineContent>arg1.substring(1, arg1.length() - 1));</lineContent>
-    <details>
-      found   : @UpperBoundLiteral(1) int
-      required: @LTEqLengthOf(&quot;arg1&quot;) int
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocMethodCheck.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter endIndex of substring.</message>
-    <lineContent>arg1.substring(1, arg1.length() - 1));</lineContent>
-    <details>
-      found   : @GTENegativeOne int
       required: @NonNegative int
     </details>
   </checkerFrameworkError>
@@ -2712,17 +2635,6 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/CheckUtil.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter beginIndex of substring.</message>
-    <lineContent>txt = txt.substring(1);</lineContent>
-    <details>
-      found   : @UpperBoundLiteral(1) int
-      required: @LTEqLengthOf(&quot;txt&quot;) int
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/CheckUtil.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter beginIndex of substring.</message>
     <lineContent>returnString = line.substring(indent, lastNonWhitespace);</lineContent>
     <details>
       found   : int
@@ -2745,21 +2657,21 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/CheckUtil.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter endIndex of substring.</message>
-    <lineContent>txt = txt.substring(0, txt.length() - 1);</lineContent>
+    <lineContent>returnString = line.substring(indent, lastNonWhitespace);</lineContent>
     <details>
-      found   : @GTENegativeOne int
-      required: @NonNegative int
+      found   : int
+      required: @LTEqLengthOf(&quot;line&quot;) int
     </details>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/CheckUtil.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter endIndex of substring.</message>
-    <lineContent>returnString = line.substring(indent, lastNonWhitespace);</lineContent>
+    <message>incompatible argument for parameter index of charAt.</message>
+    <lineContent>final boolean negative = txt.charAt(0) == &apos;-&apos;;</lineContent>
     <details>
-      found   : int
-      required: @LTEqLengthOf(&quot;line&quot;) int
+      found   : @UpperBoundLiteral(0) int
+      required: @LTLengthOf(&quot;txt&quot;) int
     </details>
   </checkerFrameworkError>
 
