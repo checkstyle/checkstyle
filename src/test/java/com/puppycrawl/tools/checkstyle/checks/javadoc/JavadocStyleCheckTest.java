@@ -764,7 +764,9 @@ public class JavadocStyleCheckTest
 
     @Test
     public void testJavadocTag3() throws Exception {
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        final String[] expected = {
+            "18:4: " + getCheckMessage(MSG_EXTRA_HTML, "</body>"),
+        };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocStyleCheck2.java"),
                 expected);
