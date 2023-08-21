@@ -387,23 +387,23 @@
     <lineContent>if (token.equalsIgnoreCase(tag.getId())) {</lineContent>
   </mutation>
 
-  <mutation unstable="false">
-    <sourceFile>JavadocStyleCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck</mutatedClass>
-    <mutatedMethod>shouldCheck</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getType</description>
-    <lineContent>if (ast.getType() == TokenTypes.PACKAGE_DEF) {</lineContent>
-  </mutation>
 
-  <mutation unstable="false">
-    <sourceFile>JavadocStyleCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck</mutatedClass>
-    <mutatedMethod>shouldCheck</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
-    <description>removed conditional - replaced equality check with false</description>
-    <lineContent>if (ast.getType() == TokenTypes.PACKAGE_DEF) {</lineContent>
-  </mutation>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   <mutation unstable="false">
     <sourceFile>JavadocStyleCheck.java</sourceFile>

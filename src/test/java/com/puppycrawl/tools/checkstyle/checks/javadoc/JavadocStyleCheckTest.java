@@ -761,4 +761,12 @@ public class JavadocStyleCheckTest
                 getPath("InputJavadocStyleCheck1.java"),
                 expected);
     }
+
+    @Test
+    public void testJavadocTag3() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocStyleCheck2.java"),
+                expected);
+    }
 }
