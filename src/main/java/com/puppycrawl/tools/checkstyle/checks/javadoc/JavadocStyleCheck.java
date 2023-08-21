@@ -561,7 +561,7 @@ public class JavadocStyleCheck
                 builder.deleteCharAt(index - 1);
                 index--;
                 while (builder.charAt(index - 1) == '*') {
-                    builder.deleteCharAt(index - 1);
+
                     index--;
                 }
             }
