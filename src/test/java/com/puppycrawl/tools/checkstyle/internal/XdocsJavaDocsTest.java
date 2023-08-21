@@ -155,7 +155,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         "ClassFanOutComplexity",
         "CyclomaticComplexity",
         "JavaNCSS",
-        "NPathComplexity"
+        "NPathComplexity",
         "ArrayTypeStyle",
         "AvoidEscapedUnicodeCharacters",
         "CommentsIndentation",
