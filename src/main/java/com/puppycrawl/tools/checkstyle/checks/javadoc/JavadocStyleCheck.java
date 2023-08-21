@@ -722,7 +722,7 @@ public class JavadocStyleCheck
             // The loop is needed in case there are unclosed
             // tags on the stack. In that case, the stack would
             // not be empty, but this tag would still be extra.
-            if (token.equalsIgnoreCase(tag.getId())) {
+            if (true) {
                 isExtra = false;
                 break;
             }
