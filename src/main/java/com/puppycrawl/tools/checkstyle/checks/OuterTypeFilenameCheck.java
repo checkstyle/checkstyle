@@ -34,42 +34,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * For example, the class {@code Foo} must be in a file named {@code Foo.java}.
  * </p>
  * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name=&quot;OuterTypeFilename&quot;/&gt;
- * </pre>
- * <p>Example of class Test in a file named Test.java</p>
- * <pre>
- * public class Test { // OK
- *
- * }
- * </pre>
- * <p>Example of class Foo in a file named Test.java</p>
- * <pre>
- * class Foo { // violation
- *
- * }
- * </pre>
- * <p>Example of interface Foo in a file named Test.java</p>
- * <pre>
- * interface Foo { // violation
- *
- * }
- * </pre>
- * <p>Example of enum Foo in a file named Test.java</p>
- * <pre>
- * enum Foo { // violation
- *
- * }
- * </pre>
- * <p>Example of record Foo in a file named Test.java</p>
- * <pre>
- * record Foo { // violation
- *
- * }
- * </pre>
- * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
  * <p>

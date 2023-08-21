@@ -59,27 +59,6 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * Default value is {@code .properties}.
  * </li></ul>
  * <p>
- * To configure the check:
- * </p>
- * <pre>&lt;module name="OrderedProperties"/&gt;</pre>
- * <p>Example properties file:</p>
- * <pre>
- * A =65
- * a =97
- * key =107 than nothing
- * key.sub =k is 107 and dot is 46
- * key.png =value - violation
- * </pre>
- * <p>We check order of key's only. Here we would like to use a Locale independent
- * order mechanism and binary order. The order is case-insensitive and ascending.</p>
- * <ul>
- *   <li>The capital 'A' is on 65 and the lowercase 'a' is on position 97 on the ascii table.</li>
- *   <li>Key and key.sub are in correct order here, because only keys are relevant.
- *   Therefore, on line 5 you have only "key" and nothing behind.
- *   On line 6 you have "key." The dot is on position 46 which is higher than nothing.
- *   key.png will be reported as violation because "png" comes before "sub".</li>
- * </ul>
- * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.Checker}
  * </p>
  * <p>

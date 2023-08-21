@@ -45,36 +45,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </li>
  * </ul>
  * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name="TodoComment"/&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * i++; // TODO: do differently in future   // violation
- * i++; // todo: do differently in future   // OK
- * </pre>
- * <p>
- * To configure the check for comments that contain {@code TODO} and {@code FIXME}:
- * </p>
- * <pre>
- * &lt;module name="TodoComment"&gt;
- *   &lt;property name="format" value="(TODO)|(FIXME)"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * i++;   // TODO: do differently in future   // violation
- * i++;   // todo: do differently in future   // OK
- * i=i/x; // FIXME: handle x = 0 case         // violation
- * i=i/x; // FIX :  handle x = 0 case         // OK
- * </pre>
- * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
  * <p>

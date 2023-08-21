@@ -1,0 +1,13 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="NoCodeInFile"/>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+/* // violation
+ block comment
+*/
+// xdoc section -- end

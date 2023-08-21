@@ -43,44 +43,46 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name="UniqueProperties"/&gt;
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/uniqueproperties/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">
           Example: in foo.properties file
         </p>
-        <source>
-key.one=44
-key.two=32 // OK
-key.one=54 // violation
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/uniqueproperties/Example1.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example2-config">
           To configure the check to scan custom file extensions:
         </p>
-        <source>
-&lt;module name="UniqueProperties"&gt;
-  &lt;property name="fileExtensions" value="customProperties"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/uniqueproperties/Example2.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">
           Example: in foo.customProperties file
         </p>
-        <source>
-key.one=44
-key.two=32 // OK
-key.one=54 // violation
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/uniqueproperties/Example2.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example3-code">
           Example: in foo.properties file
         </p>
-        <source>
-key.one=44
-key.two=32 // OK
-key.one=54 // OK, file is not checked
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/uniqueproperties/Example3.txt"/>
+          <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

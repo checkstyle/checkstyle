@@ -46,70 +46,35 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name="UncommentedMain"/&gt;
-        </source>
-        <p>Example:</p>
-        <source>
-public class Game {
-   public static void main(String... args){}   // violation
-}
-
-public class Main {
-   public static void main(String[] args){}   // violation
-}
-
-public class Launch {
-   //public static void main(String[] args){} // OK
-}
-
-public class Start {
-   public void main(){}                       // OK
-}
-
-public record MyRecord1 {
-    public void main(){}                       // violation
-}
-
-public record MyRecord2 {
-    //public void main(){}                     // OK
-}
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/uncommentedmain/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/uncommentedmain/Example1.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example2-config">
           To configure the check to allow the <code>main</code> method for all classes
           with "Main" name:
         </p>
-        <source>
-&lt;module name="UncommentedMain"&gt;
-  &lt;property name="excludedClasses" value="\.Main$"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>Example:</p>
-        <source>
-public class Game {
-   public static void main(String... args){}   // violation
-}
-
-public class Main {
-   public static void main(String[] args){}   // OK
-}
-
-public class Launch {
-   //public static void main(String[] args){} // OK
-}
-
-public class Start {
-   public void main(){}                       // OK
-}
-
-public record MyRecord1 {
-    public void main(){}                      // OK
-}
-
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/uncommentedmain/Example2.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/uncommentedmain/Example2.txt"/>
+          <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">
