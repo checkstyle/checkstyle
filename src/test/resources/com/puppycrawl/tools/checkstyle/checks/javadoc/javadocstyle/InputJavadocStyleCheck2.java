@@ -10,3 +10,15 @@ package /** package */ com.puppycrawl.tools
 public class InputJavadocStyleCheck2 {
 
 }
+
+/**
+ * <body>
+ * <p> This class is only meant for testing. </p>
+ * <p> In html, closing all tags is not necessary.
+ * </body>
+ *
+ * @see "https://www.w3.org/TR/html51/syntax.html#optional-start-and-end-tags"
+ */
+// violation 4 lines above 'Extra HTML tag found: </body>'
+class check {
+}
