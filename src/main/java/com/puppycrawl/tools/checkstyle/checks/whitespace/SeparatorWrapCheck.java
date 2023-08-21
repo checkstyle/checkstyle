@@ -224,10 +224,10 @@ public class SeparatorWrapCheck
         final int colNo = ast.getColumnNo();
         final int lineNo = ast.getLineNo();
         final int[] currentLine = getLineCodePoints(lineNo - 1);
-        final int[] substringAfterToken = CodePointUtil.trim(
+        final int[] substringAfterToken = CodePointUtil.stripTrailing(
                 Arrays.copyOfRange(currentLine, colNo + text.length(), currentLine.length)
         );
-        final int[] substringBeforeToken = CodePointUtil.trim(
+        final int[] substringBeforeToken = CodePointUtil.stripTrailing(
                 Arrays.copyOfRange(currentLine, 0, colNo)
         );
 
