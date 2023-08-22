@@ -1,0 +1,17 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="MissingJavadocType">
+      <property name="scope" value="private"/>
+      <property name="excludeScope" value="package"/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+public class PublicClass {}
+private class PublicClass {} // violation
+protected class PublicClass {}
+class PackagePrivateClass {}
+// xdoc section -- end

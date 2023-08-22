@@ -75,53 +75,37 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the default check:
         </p>
-        <source>
-&lt;module name="JavadocBlockTagLocation"/&gt;
-        </source>
-        <p>Example:</p>
-        <source>
-/**
- * Escaped tag &amp;#64;version (OK)
- * Plain text with {@code @see} (OK)
- * A @custom tag (OK)
- * <!-- @see commented out (OK) -->
- * email@author (OK)
- * (@param in parentheses) (OK)
- * '@param in single quotes' (OK)
- * @since 1.0 (OK)
- * text @return (violation)
- * * @param (violation)
-+* @serial (violation)
- * @see first (OK) @see second (violation)
- */
-public int field;
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocblocktaglocation/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocblocktaglocation/Example1.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example2-config">
           To configure the check to verify tags from
           <a href="https://openjdk.org/jeps/8068562">JEP 8068562</a> only:
         </p>
-        <source>
-&lt;module name="JavadocBlockTagLocation"&gt;
-  &lt;property name="tags" value="apiNote, implSpec, implNote"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocblocktaglocation/Example2.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">
           To configure the check to verify all default tags and some custom tags in addition:
         </p>
-        <source>
-&lt;module name="JavadocBlockTagLocation"&gt;
-  &lt;!-- default tags --&gt;
-  &lt;property name="tags" value="author, deprecated, exception, hidden"/&gt;
-  &lt;property name="tags" value="param, provides, return, see, serial"/&gt;
-  &lt;property name="tags" value="serialData, serialField, since, throws"/&gt;
-  &lt;property name="tags" value="uses, version"/&gt;
-  &lt;!-- additional tags used in the project --&gt;
-  &lt;property name="tags" value="noinspection"/&gt;
-&lt;/module&gt;
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocblocktaglocation/Example2.txt"/>
+          <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

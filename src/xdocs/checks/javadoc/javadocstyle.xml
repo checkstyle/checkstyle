@@ -184,15 +184,19 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the default check:
         </p>
 
         <source>
-&lt;module name=&quot;JavadocStyle&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;JavadocStyle&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
         </source>
 
-        <p>Example:</p>
+        <p id="Example1-code">Example:</p>
         <source>
 public class Test {
     /**
@@ -207,15 +211,19 @@ public class Test {
 }
         </source>
 
-        <p>
+        <p id="Example2-config">
           To configure the check for <code>public</code> scope:
         </p>
         <source>
-&lt;module name=&quot;JavadocStyle&quot;&gt;
-&lt;property name=&quot;scope&quot; value=&quot;public&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;JavadocStyle&quot;&gt;
+    &lt;property name=&quot;scope&quot; value=&quot;public&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p>Example:</p>
+        <p id="Example2-code">Example:</p>
         <source>
 public class Test {
     /**
@@ -230,18 +238,22 @@ public class Test {
 }
         </source>
 
-        <p>
+        <p id="Example3-config">
           To configure the check for javadoc which is in <code>private</code>, but not in
           <code>package</code> scope:
         </p>
 
         <source>
-&lt;module name=&quot;JavadocStyle&quot;&gt;
-&lt;property name=&quot;scope&quot; value=&quot;private&quot;/&gt;
-&lt;property name=&quot;excludeScope&quot; value=&quot;package&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;JavadocStyle&quot;&gt;
+    &lt;property name=&quot;scope&quot; value=&quot;private&quot;/&gt;
+    &lt;property name=&quot;excludeScope&quot; value=&quot;package&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p>Example:</p>
+        <p id="Example3-code">Example:</p>
         <source>
 public class Test {
     /**
@@ -256,16 +268,20 @@ public class Test {
 }
         </source>
 
-        <p>
+        <p id="Example4-config">
           To configure the check to turn off first sentence checking:
         </p>
 
         <source>
-&lt;module name=&quot;JavadocStyle&quot;&gt;
-&lt;property name=&quot;checkFirstSentence&quot; value=&quot;false&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;JavadocStyle&quot;&gt;
+    &lt;property name=&quot;checkFirstSentence&quot; value=&quot;false&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p>Example:</p>
+        <p id="Example4-code">Example:</p>
         <source>
 public class Test {
     /**
@@ -276,16 +292,20 @@ public class Test {
 }
         </source>
 
-        <p>
+        <p id="Example5-config">
           To configure the check to turn off validation of incomplete html tags:
         </p>
         <source>
-&lt;module name=&quot;JavadocStyle&quot;&gt;
-&lt;property name=&quot;checkHtml&quot; value=&quot;false&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;JavadocStyle&quot;&gt;
+    &lt;property name=&quot;checkHtml&quot; value=&quot;false&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
 
-        <p>Example:</p>
+        <p id="Example5-code">Example:</p>
         <source>
 public class Test {
     /**
@@ -296,16 +316,20 @@ public class Test {
 }
         </source>
 
-        <p>
+        <p id="Example6-config">
           To configure the check for only class definitions:
         </p>
         <source>
-&lt;module name=&quot;JavadocStyle&quot;&gt;
-&lt;property name=&quot;tokens&quot; value=&quot;CLASS_DEF&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;JavadocStyle&quot;&gt;
+    &lt;property name=&quot;tokens&quot; value=&quot;CLASS_DEF&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
 
-        <p>Example:</p>
+        <p id="Example6-code">Example:</p>
         <source>
 /**
  * Some description here // violation, the sentence must end with a proper punctuation

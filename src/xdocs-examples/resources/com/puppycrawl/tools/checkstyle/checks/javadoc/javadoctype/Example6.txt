@@ -1,0 +1,37 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="JavadocType">
+      <property name="allowMissingParamTags" value="true"/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+/**
+ * @author a
+ * @version $Revision1$
+ */
+public class ClassA { // OK
+    /** */
+    private class ClassB {} // OK
+}
+
+/**
+ * @author
+ * @version abc
+ * @unknownTag value // violation
+ */
+public class ClassC {} // OK
+
+/** */
+public class ClassD<T> {} // OK, as missing param tag is allowed
+
+/** */
+private class ClassE<T> {} // OK, as missing param tag is allowed
+
+/** */
+@Generated
+public class ClassF<T> {} // OK
+// xdoc section -- end

@@ -51,21 +51,6 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * </li>
  * </ul>
  * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name="JavadocPackage"/&gt;
- * </pre>
- * <p>
- * To configure the check to use legacy {@code package.html} file
- * when {@code package-info.java} file is absent:
- * </p>
- * <pre>
- * &lt;module name="JavadocPackage"&gt;
- *   &lt;property name="allowLegacy" value="true"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.Checker}
  * </p>
  * <p>

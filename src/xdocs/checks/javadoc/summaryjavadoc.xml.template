@@ -60,129 +60,73 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the default check to validate that first sentence is not empty and first
           sentence is not missing:
         </p>
-        <source>
-&lt;module name="SummaryJavadocCheck"/&gt;
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/summaryjavadoc/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">
           Example of <code>{@inheritDoc}</code> without summary.
         </p>
-        <source>
-public class Test extends Exception {
-//Valid
-  /**
-   * {@inheritDoc}
-   */
-  public String ValidFunction(){
-    return "";
-  }
-  //Violation
-  /**
-   *
-   */
-  public String InvalidFunction(){
-    return "";
-  }
-}
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/summaryjavadoc/Example1.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example2-code">
               Example of non permitted empty javadoc for Inline Summary Javadoc.
         </p>
-        <source>
-public class Test extends Exception {
-  /**
-   * {@summary  }
-   */
-  public String InvalidFunctionOne(){ // violation
-    return "";
-  }
-
-  /**
-   * {@summary &lt;p&gt; &lt;p/&gt;}
-   */
-  public String InvalidFunctionTwo(){ // violation
-    return "";
-  }
-
-  /**
-   * {@summary &lt;p&gt;This is summary for validFunctionThree.&lt;p/&gt;}
-   */
-  public void validFunctionThree(){} // ok
-}
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/summaryjavadoc/Example2.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example3-config">
           To ensure that summary does not contain phrase like "This method returns", use
           following config:
         </p>
-        <source>
-&lt;module name="SummaryJavadocCheck"&gt;
-  &lt;property name="forbiddenSummaryFragments"
-    value="^This method returns.*"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/summaryjavadoc/Example3.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example4-config">
           To specify period symbol at the end of first javadoc sentence:
         </p>
-        <source>
-&lt;module name="SummaryJavadocCheck"&gt;
-  &lt;property name="period" value="。"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/summaryjavadoc/Example4.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example4-code">
           Example of period property.
         </p>
 
-        <source>
-public class TestClass {
- /**
-  * This is invalid java doc.
-  */
-  void invalidJavaDocMethod() {
-  }
- /**
-  * This is valid java doc。
-  */
-  void validJavaDocMethod() {
-  }
-}
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/summaryjavadoc/Example4.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example5-code">
           Example of period property for inline summary javadoc.
         </p>
-        <source>
-public class TestClass {
- /**
-  * {@summary This is invalid java doc.}
-  */
-  public void invalidJavaDocMethod() { // violation
-  }
- /**
-  * {@summary This is valid java doc。}
-  */
-  public void validJavaDocMethod() { // ok
-  }
-}
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/summaryjavadoc/Example5.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example6-code">
           Example of inline summary javadoc with HTML tags.
         </p>
-        <source>
-public class Test {
- /**
-  * {@summary First sentence is normally the summary.
-  * Use of html tags:
-  * &lt;ul&gt;
-  * &lt;li&gt;Item one.&lt;/li&gt;
-  * &lt;li&gt;Item two.&lt;/li&gt;
-  * &lt;/ul&gt;}
-  */
-  public void validInlineJavadoc() { // ok
-  }
-}
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/summaryjavadoc/Example6.txt"/>
+          <param name="type" value="code"/>
+        </macro>
       </subsection>
       <subsection name="Example of Usage" id="Example_of_Usage">
         <ul>

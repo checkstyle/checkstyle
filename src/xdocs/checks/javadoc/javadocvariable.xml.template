@@ -68,117 +68,84 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the default check:
         </p>
-        <source>
-&lt;module name="JavadocVariable"/&gt;
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocvariable/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">
           By default, this setting will report a violation if
           there is no javadoc for any scope member.
         </p>
-        <source>
-public class Test {
-private int a; // violation, missing javadoc for private member
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocvariable/Example1.txt"/>
+          <param name="type" value="code"/>
+        </macro>
 
-/**
- * Some description here
- */
-private int b; // OK
-protected int c; // violation, missing javadoc for protected member
-public int d; // violation, missing javadoc for public member
-/*package*/ int e; // violation, missing javadoc for package member
-}
-        </source>
-
-        <p>
+        <p id="Example2-config">
           To configure the check for <code>public</code>
           scope:
         </p>
 
-        <source>
-&lt;module name="JavadocVariable"&gt;
-  &lt;property name="scope" value="public"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocvariable/Example2.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">
           This setting will report a violation if there
           is no javadoc for <code>public</code> member.
         </p>
-        <source>
-public class Test {
-private int a; // OK
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocvariable/Example2.txt"/>
+          <param name="type" value="code"/>
+        </macro>
 
-/**
- * Some description here
- */
-private int b; // OK
-protected int c; // OK
-public int d; // violation, missing javadoc for public member
-/*package*/ int e; // OK
-}
-        </source>
-
-        <p>
+        <p id="Example3-config">
           To configure the check for members which are in <code>private</code>, but not in
           <code>protected</code> scope:
         </p>
 
-        <source>
-&lt;module name="JavadocVariable"&gt;
-  &lt;property name="scope" value="private"/&gt;
-  &lt;property name="excludeScope" value="protected"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocvariable/Example3.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example3-code">
           This setting will report a violation if there is no
           javadoc for <code>private</code> member and
           ignores <code>protected</code> member.
         </p>
-        <source>
-public class Test {
-private int a; // violation, missing javadoc for private member
-
-/**
- * Some description here
- */
-private int b; // OK
-protected int c; // OK
-public int d; // OK
-/*package*/ int e; // violation, missing javadoc for package member
-}
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocvariable/Example3.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example4-config">
           To ignore absence of Javadoc comments for variables with names <code>log</code> or
           <code>logger</code>:
         </p>
 
-        <source>
-&lt;module name="JavadocVariable"&gt;
-  &lt;property name="ignoreNamePattern" value="log|logger"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocvariable/Example4.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example4-code">
           This setting will report a violation if there is no
           javadoc for any scope member and ignores members with
           name <code>log</code> or <code>logger</code>.
         </p>
-        <source>
-public class Test {
-private int a; // violation, missing javadoc for private member
-
-/**
- * Some description here
- */
-private int b; // OK
-protected int c; // violation, missing javadoc for protected member
-public int d; // violation, missing javadoc for public member
-/*package*/ int e; // violation, missing javadoc for package member
-private int log; // OK
-private int logger; // OK
-}
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocvariable/Example4.txt"/>
+          <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

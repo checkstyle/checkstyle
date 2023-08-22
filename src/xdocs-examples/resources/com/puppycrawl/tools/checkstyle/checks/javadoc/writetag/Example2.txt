@@ -1,0 +1,19 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="WriteTag">
+      <property name="tag" value="@since"/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+/**
+* Some class
+*/
+public class Test { // violation as required tag is missed
+  /** some doc */
+  void foo() {} // OK, as methods are not checked by default
+}
+// xdoc section -- end

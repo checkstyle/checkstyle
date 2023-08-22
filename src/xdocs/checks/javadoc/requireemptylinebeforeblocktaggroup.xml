@@ -39,13 +39,17 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;RequireEmptyLineBeforeBlockTagGroup&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;RequireEmptyLineBeforeBlockTagGroup&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
         </source>
-        <p>
+        <p id="Example1-code">
           By default, the check will report a violation if there is no blank line before the
           block tag, like in the example below.
         </p>
