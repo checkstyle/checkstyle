@@ -324,14 +324,14 @@
     <lineContent>DetailNode tag = JavadocUtil.getNextSibling(node);</lineContent>
   </mutation>
 
-  <mutation unstable="false">
-    <sourceFile>JavadocParagraphCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck</mutatedClass>
-    <mutatedMethod>isEmptyLine</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
-    <description>removed conditional - replaced equality check with true</description>
-    <lineContent>if (previousSibling.getType() == JavadocTokenTypes.TEXT</lineContent>
-  </mutation>
+
+
+
+
+
+
+
+
 
   <mutation unstable="false">
     <sourceFile>JavadocParagraphCheck.java</sourceFile>
