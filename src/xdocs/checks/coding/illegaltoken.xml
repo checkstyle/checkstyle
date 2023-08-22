@@ -49,15 +49,18 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;IllegalToken&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;IllegalToken&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
         </source>
-        <p>Example:</p>
-        <div class="wrapper">
-          <pre>
+        <p id="Example1-code">Example:</p>
+        <source>
 public void myTest() {
     outer: // violation
     for (int i = 0; i &lt; 5; i++) {
@@ -66,22 +69,23 @@ public void myTest() {
         }
     }
 }
-          </pre>
-        </div>
-        <p>
+        </source>
+        <p id="Example2-config">
           To configure the check to report violation on token LITERAL_NATIVE:
         </p>
         <source>
-&lt;module name=&quot;IllegalToken&quot;&gt;
-  &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_NATIVE&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;IllegalToken&quot;&gt;
+      &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_NATIVE&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p>Example:</p>
-        <div class="wrapper">
-          <pre>
+        <p id="Example2-code">Example:</p>
+        <source>
 public native void myTest(); // violation
-          </pre>
-        </div>
+        </source>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

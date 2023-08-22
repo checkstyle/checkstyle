@@ -49,39 +49,34 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name="IllegalToken"/&gt;
-        </source>
-        <p>Example:</p>
-        <div class="wrapper">
-          <pre>
-public void myTest() {
-    outer: // violation
-    for (int i = 0; i &lt; 5; i++) {
-        if (i == 1) {
-            break outer;
-        }
-    }
-}
-          </pre>
-        </div>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/illegaltoken/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/illegaltoken/Example1.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example2-config">
           To configure the check to report violation on token LITERAL_NATIVE:
         </p>
-        <source>
-&lt;module name="IllegalToken"&gt;
-  &lt;property name="tokens" value="LITERAL_NATIVE"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>Example:</p>
-        <div class="wrapper">
-          <pre>
-public native void myTest(); // violation
-          </pre>
-        </div>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/illegaltoken/Example2.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/illegaltoken/Example2.txt"/>
+          <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

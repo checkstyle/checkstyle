@@ -24,29 +24,20 @@ String b = (a==null || a.length()&lt;1) ? null : a.substring(1);
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name="AvoidInlineConditionals"/&gt;
-        </source>
-        <p>Example:</p>
-        <source>
-int x = 5;
-boolean foobar = (x == 5); // OK
-
-String text;
-text = (text == null) ? "" : text; // violation
-
-String b;
-if (a != null &amp;&amp; a.length() &gt;= 1) { // OK
-    b = a.substring(1);
-} else {
-    b = null;
-}
-
-b = (a != null &amp;&amp; a.length() &gt;= 1) ? a.substring(1) : null; // violation
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/avoidinlineconditionals/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/avoidinlineconditionals/Example1.txt"/>
+          <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

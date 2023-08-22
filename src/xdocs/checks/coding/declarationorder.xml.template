@@ -88,97 +88,48 @@ public class A {
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name="DeclarationOrder"/&gt;
-        </source>
-        <p>Example:</p>
-        <source>
-public class Test {
-
-  public int a;
-  protected int b;
-  public int c;            // violation, variable access definition in wrong order
-
-  Test() {
-    this.a = 0;
-  }
-
-  public void foo() {
-    // This method does nothing
-  }
-
-  Test(int a) {            // violation, constructor definition in wrong order
-    this.a = a;
-  }
-
-  private String name;     // violation, instance variable declaration in wrong order
-}
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/declarationorder/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/declarationorder/Example1.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example2-config">
           To configure the check to ignore validation of constructors:
         </p>
-        <source>
-&lt;module name="DeclarationOrder"&gt;
-  &lt;property name="ignoreConstructors" value="true"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>Example:</p>
-        <source>
-public class Test {
-
-  public int a;
-  protected int b;
-  public int c;            // violation, variable access definition in wrong order
-
-  Test() {
-    this.a = 0;
-  }
-
-  public void foo() {
-    // This method does nothing
-  }
-
-  Test(int a) {            // OK, validation of constructors ignored
-    this.a = a;
-  }
-
-  private String name;     // violation, instance variable declaration in wrong order
-}
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/declarationorder/Example2.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/declarationorder/Example2.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example3-config">
           To configure the check to ignore modifiers:
         </p>
-        <source>
-&lt;module name="DeclarationOrder"&gt;
-  &lt;property name="ignoreModifiers" value="true"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>Example:</p>
-        <source>
-public class Test {
-
-  public int a;
-  protected int b;
-  public int c;            // OK, access modifiers not considered while validating
-
-  Test() {
-    this.a = 0;
-  }
-
-  public void foo() {
-    // This method does nothing
-  }
-
-  Test(int a) {            // violation, constructor definition in wrong order
-    this.a = a;
-  }
-
-  private String name;     // violation, instance variable declaration in wrong order
-}
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/declarationorder/Example3.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example3-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/declarationorder/Example3.txt"/>
+          <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

@@ -47,35 +47,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </li>
  * </ul>
  * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name=&quot;IllegalToken&quot;/&gt;
- * </pre>
- * <p>Example:</p>
- * <pre>
- * public void myTest() {
- *     outer: // violation
- *     for (int i = 0; i &lt; 5; i++) {
- *         if (i == 1) {
- *             break outer;
- *         }
- *     }
- * }
- * </pre>
- * <p>
- * To configure the check to report violation on token LITERAL_NATIVE:
- * </p>
- * <pre>
- * &lt;module name=&quot;IllegalToken&quot;&gt;
- *   &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_NATIVE&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>Example:</p>
- * <pre>
- * public native void myTest(); // violation
- * </pre>
- * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
  * <p>

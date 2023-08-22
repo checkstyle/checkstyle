@@ -57,13 +57,17 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;IllegalThrows&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;IllegalThrows&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
         </source>
-        <p>Example:</p>
+        <p id="Example1-code">Example:</p>
         <source>
 public class Test {
   public void func1() throws RuntimeException {} // violation
@@ -75,15 +79,19 @@ public class Test {
   public void toString() throws Error {} // ok
 }
         </source>
-        <p>
+        <p id="Example2-config">
           To configure the check rejecting throws NullPointerException from methods:
         </p>
         <source>
-&lt;module name=&quot;IllegalThrows&quot;&gt;
-  &lt;property name=&quot;illegalClassNames&quot; value=&quot;NullPointerException&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;IllegalThrows&quot;&gt;
+      &lt;property name=&quot;illegalClassNames&quot; value=&quot;NullPointerException&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p>Example:</p>
+        <p id="Example2-code">Example:</p>
         <source>
 public class Test {
   public void func1() throws RuntimeException {} // ok
@@ -95,15 +103,19 @@ public class Test {
   public void toString() throws Error {} // ok
 }
         </source>
-        <p>
+        <p id="Example3-config">
           To configure the check ignoring method named &quot;func1()&quot;:
         </p>
         <source>
-&lt;module name=&quot;IllegalThrows&quot;&gt;
-  &lt;property name=&quot;ignoredMethodNames&quot; value=&quot;func1&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;IllegalThrows&quot;&gt;
+      &lt;property name=&quot;ignoredMethodNames&quot; value=&quot;func1&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p>Example:</p>
+        <p id="Example3-code">Example:</p>
         <source>
 public class Test {
   public void func1() throws RuntimeException {} // ok
@@ -115,15 +127,19 @@ public class Test {
   public void toString() throws Error {} // ok
 }
         </source>
-        <p>
+        <p id="Example4-config">
           To configure the check to warn on overridden methods:
         </p>
         <source>
-&lt;module name=&quot;IllegalThrows&quot;&gt;
-  &lt;property name=&quot;ignoreOverriddenMethods&quot; value=&quot;false&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;IllegalThrows&quot;&gt;
+      &lt;property name=&quot;ignoreOverriddenMethods&quot; value=&quot;false&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p>Example:</p>
+        <p id="Example4-code">Example:</p>
         <source>
 public class Test {
   public void func1() throws RuntimeException {} // violation

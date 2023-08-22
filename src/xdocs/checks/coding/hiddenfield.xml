@@ -144,12 +144,17 @@ class PageBuilder {
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;HiddenField&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;HiddenField&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
         </source>
+        <p id="Example1-code">Example:</p>
         <source>
 public class SomeClass {
 
@@ -171,15 +176,20 @@ public class SomeClass {
 }
         </source>
 
-        <p>
+        <p id="Example2-config">
           To configure the check so that it checks local variables but not
           parameters:
         </p>
         <source>
-&lt;module name=&quot;HiddenField&quot;&gt;
-  &lt;property name=&quot;tokens&quot; value=&quot;VARIABLE_DEF&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;HiddenField&quot;&gt;
+      &lt;property name=&quot;tokens&quot; value=&quot;VARIABLE_DEF&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
+        <p id="Example2-code">Example:</p>
         <source>
 public class SomeClass {
 
@@ -200,16 +210,20 @@ public class SomeClass {
 }
         </source>
 
-        <p>
+        <p id="Example3-config">
           To configure the check so that it ignores the variables and parameters named
           &quot;test&quot;:
         </p>
         <source>
-&lt;module name=&quot;HiddenField&quot;&gt;
-  &lt;property name=&quot;ignoreFormat&quot; value=&quot;^testField&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;HiddenField&quot;&gt;
+      &lt;property name=&quot;ignoreFormat&quot; value=&quot;^testField&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
-
+        <p id="Example3-code">Example:</p>
         <source>
 public class SomeClass {
 
@@ -230,14 +244,19 @@ public class SomeClass {
 }
         </source>
 
-        <p>
+        <p id="Example4-config">
           To configure the check so that it ignores constructor parameters:
         </p>
         <source>
-&lt;module name=&quot;HiddenField&quot;&gt;
-  &lt;property name=&quot;ignoreConstructorParameter&quot; value=&quot;true&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;HiddenField&quot;&gt;
+      &lt;property name=&quot;ignoreConstructorParameter&quot; value=&quot;true&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
+        <p id="Example4-code">Example:</p>
         <source>
 public class SomeClass {
 
@@ -259,15 +278,20 @@ public class SomeClass {
 }
         </source>
 
-        <p>
+        <p id="Example5-config">
           To configure the check so that it ignores the parameter of setter
           methods:
         </p>
         <source>
-&lt;module name=&quot;HiddenField&quot;&gt;
-  &lt;property name=&quot;ignoreSetter&quot; value=&quot;true&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;HiddenField&quot;&gt;
+      &lt;property name=&quot;ignoreSetter&quot; value=&quot;true&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
+        <p id="Example5-code">Example:</p>
         <source>
 public class SomeClass {
 
@@ -288,17 +312,22 @@ public class SomeClass {
 }
         </source>
 
-        <p>
+        <p id="Example6-config">
           To configure the check so that it ignores the parameter of setter
           methods recognizing setter as returning either <code>void</code> or
           a class in which it is declared:
         </p>
         <source>
-&lt;module name=&quot;HiddenField&quot;&gt;
-  &lt;property name=&quot;ignoreSetter&quot; value=&quot;true&quot;/&gt;
-  &lt;property name=&quot;setterCanReturnItsClass&quot; value=&quot;true&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;HiddenField&quot;&gt;
+      &lt;property name=&quot;ignoreSetter&quot; value=&quot;true&quot;/&gt;
+      &lt;property name=&quot;setterCanReturnItsClass&quot; value=&quot;true&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
+        <p id="Example6-code">Example:</p>
         <source>
 public class SomeClass {
 
@@ -318,14 +347,19 @@ public class SomeClass {
   }
 }
         </source>
-        <p>
+        <p id="Example7-config">
           To configure the check so that it ignores parameters of abstract methods:
         </p>
         <source>
-&lt;module name=&quot;HiddenField&quot;&gt;
-  &lt;property name=&quot;ignoreAbstractMethods&quot; value=&quot;true&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;HiddenField&quot;&gt;
+      &lt;property name=&quot;ignoreAbstractMethods&quot; value=&quot;true&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
+        <p id="Example7-code">Example:</p>
         <source>
 abstract class SomeClass {
 

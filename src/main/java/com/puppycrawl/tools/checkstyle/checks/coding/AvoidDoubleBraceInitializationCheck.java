@@ -49,47 +49,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Check ignores any comments and semicolons in class body.
  * </p>
  * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name=&quot;AvoidDoubleBraceInitialization&quot;/&gt;
- * </pre>
- * <p>
- * Which results in the following violations:
- * </p>
- * <pre>
- * class MyClass {
- *     List&lt;Integer&gt; list1 = new ArrayList&lt;&gt;() { // violation
- *         {
- *             add(1);
- *         }
- *     };
- *     List&lt;String&gt; list2 = new ArrayList&lt;&gt;() { // violation
- *         ;
- *         // comments and semicolons are ignored
- *         {
- *             add("foo");
- *         }
- *     };
- * }
- * </pre>
- * <p>
- * Check only looks for double brace initialization and it ignores cases
- * where the anonymous class has fields or methods.
- * Though these might create the same memory issues as double brace,
- * the extra class members can produce side effects if changed incorrectly.
- * </p>
- * <pre>
- * class MyClass {
- *     List&lt;Object&gt; list = new ArrayList&lt;&gt;() { // OK, not pure double brace pattern
- *         private int field;
- *         {
- *             add(new Object());
- *         }
- *     };
- * }
- * </pre>
- * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
  * <p>
