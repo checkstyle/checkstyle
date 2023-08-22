@@ -190,12 +190,12 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
      * @return nearest node.
      */
     private static DetailNode getNearestNode(DetailNode node) {
-        DetailNode tag = JavadocUtil.getNextSibling(node);
-        while (tag.getType() == JavadocTokenTypes.LEADING_ASTERISK
-                || tag.getType() == JavadocTokenTypes.NEWLINE) {
-            tag = JavadocUtil.getNextSibling(tag);
+        DetailNode currentNode = node;
+        while (currentNode.getType() == JavadocTokenTypes.LEADING_ASTERISK
+                || currentNode.getType() == JavadocTokenTypes.NEWLINE) {
+            currentNode = JavadocUtil.getNextSibling(currentNode);
         }
-        return tag;
+        return currentNode;
     }
 
     /**
