@@ -1,0 +1,17 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="WriteTag"/>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+/**
+* Some class
+*/
+public class Test {
+  /** some doc */
+  void foo() {}
+}
+// xdoc section -- end

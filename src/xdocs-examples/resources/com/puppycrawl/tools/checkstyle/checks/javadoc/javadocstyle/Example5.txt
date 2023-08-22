@@ -1,0 +1,19 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="JavadocStyle">
+    <property name="checkHtml" value="false"/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+public class Test {
+    /**
+     * Some description here // violation, the sentence must end with a proper punctuation
+     * <p // OK
+     */
+    private void test1() {}
+}
+// xdoc section -- end

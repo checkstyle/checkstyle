@@ -22,25 +22,23 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name="InvalidJavadocPosition"/&gt;
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/invalidjavadocposition/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">
           The following code produces a violation because Javadocs should be before all
           annotations of the Javadoc's target:
         </p>
-        <source>
-@SuppressWarnings("serial")
-/**
- * This comment looks like javadoc but it at an invalid location.
- * Therefore, the text will not get into TestClass.html and the check will produce a violation.
- */
-public class TestClass {
-}
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/invalidjavadocposition/Example1.txt"/>
+          <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

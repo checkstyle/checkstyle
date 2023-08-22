@@ -68,13 +68,17 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the default check:
         </p>
         <source>
-&lt;module name=&quot;JavadocVariable&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;JavadocVariable&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
         </source>
-        <p>
+        <p id="Example1-code">
           By default, this setting will report a violation if
           there is no javadoc for any scope member.
         </p>
@@ -92,17 +96,21 @@ public int d; // violation, missing javadoc for public member
 }
         </source>
 
-        <p>
+        <p id="Example2-config">
           To configure the check for <code>public</code>
           scope:
         </p>
 
         <source>
-&lt;module name=&quot;JavadocVariable&quot;&gt;
-  &lt;property name=&quot;scope&quot; value=&quot;public&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;JavadocVariable&quot;&gt;
+      &lt;property name=&quot;scope&quot; value=&quot;public&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p>
+        <p id="Example2-code">
           This setting will report a violation if there
           is no javadoc for <code>public</code> member.
         </p>
@@ -120,18 +128,22 @@ public int d; // violation, missing javadoc for public member
 }
         </source>
 
-        <p>
+        <p id="Example3-config">
           To configure the check for members which are in <code>private</code>, but not in
           <code>protected</code> scope:
         </p>
 
         <source>
-&lt;module name=&quot;JavadocVariable&quot;&gt;
-  &lt;property name=&quot;scope&quot; value=&quot;private&quot;/&gt;
-  &lt;property name=&quot;excludeScope&quot; value=&quot;protected&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;JavadocVariable&quot;&gt;
+      &lt;property name=&quot;scope&quot; value=&quot;private&quot;/&gt;
+      &lt;property name=&quot;excludeScope&quot; value=&quot;protected&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p>
+        <p id="Example3-code">
           This setting will report a violation if there is no
           javadoc for <code>private</code> member and
           ignores <code>protected</code> member.
@@ -149,17 +161,21 @@ public int d; // OK
 /*package*/ int e; // violation, missing javadoc for package member
 }
         </source>
-        <p>
+        <p id="Example4-config">
           To ignore absence of Javadoc comments for variables with names <code>log</code> or
           <code>logger</code>:
         </p>
 
         <source>
-&lt;module name=&quot;JavadocVariable&quot;&gt;
-  &lt;property name=&quot;ignoreNamePattern&quot; value=&quot;log|logger&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;JavadocVariable&quot;&gt;
+      &lt;property name=&quot;ignoreNamePattern&quot; value=&quot;log|logger&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p>
+        <p id="Example4-code">
           This setting will report a violation if there is no
           javadoc for any scope member and ignores members with
           name <code>log</code> or <code>logger</code>.

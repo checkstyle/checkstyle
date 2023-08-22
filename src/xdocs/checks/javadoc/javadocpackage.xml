@@ -52,13 +52,15 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;JavadocPackage&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;JavadocPackage&quot;/&gt;
+&lt;/module&gt;
         </source>
-        <p>
+        <p id="Example1-code">
           To configure the check to use legacy <code>package.html</code> file
           when <code>package-info.java</code> file is absent:
         </p>

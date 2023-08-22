@@ -36,25 +36,6 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * invalid by this check.
  * </p>
  * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name="InvalidJavadocPosition"/&gt;
- * </pre>
- * <p>
- * The following code produces a violation because Javadocs should be before all annotations of
- * the Javadoc's target:
- * </p>
- * <pre>
- * &#064;SuppressWarnings("serial")
- * /**
- *  * This comment looks like javadoc but it at an invalid location.
- *  * Therefore, the text will not get into TestClass.html and the check will produce a violation.
- *  *&#47;
- * public class TestClass {
- * }
- * </pre>
- * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
  * <p>

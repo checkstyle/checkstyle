@@ -96,14 +96,18 @@ public void method();
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the default check to validate that the Javadoc content starts from the
           second line:
         </p>
         <source>
-&lt;module name=&quot;JavadocContentLocationCheck&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;JavadocContentLocationCheck&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
         </source>
-        <p>
+        <p id="Example1-code">
           This setting produces a violation for each multi-line comment
           starting on the same line as the initial asterisks:
         </p>
@@ -117,15 +121,19 @@ public void method();
 /** This comment is OK because it is on the single-line. */
         </source>
 
-        <p>
+        <p id="Example2-config">
           To ensure that Javadoc content starts from the first line:
         </p>
         <source>
-&lt;module name=&quot;JavadocContentLocationCheck&quot;&gt;
-  &lt;property name=&quot;location&quot; value=&quot;first_line&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;JavadocContentLocationCheck&quot;&gt;
+      &lt;property name=&quot;location&quot; value=&quot;first_line&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p>
+        <p id="Example2-code">
           This setting produces a violation for each comment not
           starting on the same line as the initial asterisks:
         </p>

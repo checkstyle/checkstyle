@@ -51,65 +51,6 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * </li>
  * </ul>
  * <p>
- * To configure the default check:
- * </p>
- * <pre>
- * &lt;module name="JavadocTagContinuationIndentation"/&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * &#47;**
- *  * @tag comment
- *  *  Indentation spacing is 1. Line with violation
- *  *   Indentation spacing is 2. Line with violation
- *  *     Indentation spacing is 4. OK
- *  *&#47;
- * public class Test {
- * }
- * </pre>
- * <p>
- * To configure the check with two spaces indentation:
- * </p>
- * <pre>
- * &lt;module name="JavadocTagContinuationIndentation"&gt;
- *   &lt;property name="offset" value="2"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * &#47;**
- *  * @tag comment
- *  * Indentation spacing is 0. Line with violation
- *  *   Indentation spacing is 2. OK
- *  *  Indentation spacing is 1. Line with violation
- *  *&#47;
- * public class Test {
- * }
- * </pre>
- * <p>
- * To configure the check to show violations for Tight-HTML Rules:
- * </p>
- * <pre>
- * &lt;module name="JavadocTagContinuationIndentation"&gt;
- *   &lt;property name="violateExecutionOnNonTightHtml" value="true"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * &#47;**
- *  * &lt;p&gt; 'p' tag is unclosed. Line with violation, this html tag needs closing tag.
- *  * &lt;p&gt; 'p' tag is closed&lt;/p&gt;. OK
- *  *&#47;
- * public class Test {
- * }
- * </pre>
- * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
  * <p>

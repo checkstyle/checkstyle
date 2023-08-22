@@ -41,35 +41,6 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * </li>
  * </ul>
  * <p>
- * To configure the default check:
- * </p>
- * <pre>
- * &lt;module name="JavadocMissingWhitespaceAfterAsterisk"/&gt;
- * </pre>
- * <p>
- * Code Example:
- * </p>
- * <pre>
- * &#47;** This is valid single-line Javadoc. *&#47;
- * class TestClass {
- *   &#47;**
- *     *This is invalid Javadoc.
- *     *&#47;
- *   int invalidJavaDoc;
- *   &#47;**
- *     * This is valid Javadoc.
- *     *&#47;
- *   void validJavaDocMethod() {
- *   }
- *   &#47;**This is invalid single-line Javadoc. *&#47;
- *   void invalidSingleLineJavaDocMethod() {
- *   }
- *   &#47;** This is valid single-line Javadoc. *&#47;
- *   void validSingleLineJavaDocMethod() {
- *   }
- * }
- * </pre>
- * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
  * <p>

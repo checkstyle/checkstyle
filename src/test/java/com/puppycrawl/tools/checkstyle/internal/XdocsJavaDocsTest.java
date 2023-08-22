@@ -171,7 +171,28 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         "Translation",
         "UncommentedMain",
         "UniqueProperties",
-        "UpperEll"
+        "UpperEll",
+        "AtclauseOrder",
+        "InvalidJavadocPosition",
+        "JavadocBlockTagLocation",
+        "JavadocContentLocation",
+        "JavadocMethod",
+        "JavadocMissingLeadingAsterisk",
+        "JavadocMissingWhitespaceAfterAsterisk",
+        "JavadocPackage",
+        "JavadocParagraph",
+        "JavadocStyle",
+        "JavadocTagContinuationIndentation",
+        "JavadocType",
+        "JavadocVariable",
+        "MissingJavadocMethod",
+        "MissingJavadocPackage",
+        "MissingJavadocType",
+        "NonEmptyAtclauseDescription",
+        "RequireEmptyLineBeforeBlockTagGroup",
+        "SingleLineJavadoc",
+        "SummaryJavadoc",
+        "WriteTag"
     );
 
     private static final List<List<Node>> CHECK_PROPERTIES = new ArrayList<>();

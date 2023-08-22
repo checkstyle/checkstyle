@@ -44,23 +44,6 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * interfaces declared in the package-info.java file.
  * </p>
  * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name="MissingJavadocPackage"/&gt;
- * </pre>
- * <p>Example:</p>
- * <pre>
- * /**
- * * Provides API classes
- * *&#47;
- * package com.checkstyle.api; // no violation
- * /*
- * * Block comment is not a javadoc
- * *&#47;
- * package com.checkstyle.api; // violation
- * </pre>
- * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
  * <p>

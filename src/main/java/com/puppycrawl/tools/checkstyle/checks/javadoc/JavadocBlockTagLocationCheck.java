@@ -72,55 +72,6 @@ import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
  * </li>
  * </ul>
  * <p>
- * To configure the default check:
- * </p>
- * <pre>
- * &lt;module name="JavadocBlockTagLocation"/&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * &#47;**
- *  * Escaped tag &amp;#64;version (OK)
- *  * Plain text with {&#64;code &#64;see} (OK)
- *  * A @custom tag (OK)
- *  * <!-- @see commented out (OK) -->
- *  * email@author (OK)
- *  * (@param in parentheses) (OK)
- *  * '@param in single quotes' (OK)
- *  * &#64;since 1.0 (OK)
- *  * text &#64;return (violation)
- *  * * &#64;param (violation)
- * +* &#64;serial (violation)
- *  * &#64;see first (OK) &#64;see second (violation)
- *  *&#47;
- * public int field;
- * </pre>
- * <p>
- * To configure the check to verify tags from
- * <a href="https://openjdk.org/jeps/8068562">JEP 8068562</a> only:
- * </p>
- * <pre>
- * &lt;module name="JavadocBlockTagLocation"&gt;
- *   &lt;property name="tags" value="apiNote, implSpec, implNote"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * To configure the check to verify all default tags and some custom tags in addition:
- * </p>
- * <pre>
- * &lt;module name="JavadocBlockTagLocation"&gt;
- *   &lt;!-- default tags --&gt;
- *   &lt;property name="tags" value="author, deprecated, exception, hidden"/&gt;
- *   &lt;property name="tags" value="param, provides, return, see, serial"/&gt;
- *   &lt;property name="tags" value="serialData, serialField, since, throws"/&gt;
- *   &lt;property name="tags" value="uses, version"/&gt;
- *   &lt;!-- additional tags used in the project --&gt;
- *   &lt;property name="tags" value="noinspection"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
  * <p>
