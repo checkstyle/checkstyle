@@ -54,60 +54,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </li>
  * </ul>
  * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name=&quot;OneStatementPerLine&quot;/&gt;
- * </pre>
- * <p>
- * The following examples will be flagged as a violation:
- * </p>
- * <pre>
- * //Each line causes violation:
- * int var1; int var2;
- * var1 = 1; var2 = 2;
- * int var1 = 1; int var2 = 2;
- * var1++; var2++;
- * Object obj1 = new Object(); Object obj2 = new Object();
- * import java.io.EOFException; import java.io.BufferedReader;
- * ;; //two empty statements on the same line.
- *
- * //Multi-line statements:
- * int var1 = 1
- * ; var2 = 2; //violation here
- * int o = 1, p = 2,
- * r = 5; int t; //violation here
- * </pre>
- * <p>
- * An example of how to configure the check to treat resources
- * in a try statement as statements to require them on their own line:
- * </p>
- * <pre>
- * &lt;module name=&quot;OneStatementPerLine&quot;&gt;
- *   &lt;property name=&quot;treatTryResourcesAsStatement&quot; value=&quot;true&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Note: resource declarations can contain variable definitions
- * and variable references (from java9).
- * When property "treatTryResourcesAsStatement" is enabled,
- * this check is only applied to variable definitions.
- * If there are one or more variable references
- * and one variable definition on the same line in resources declaration,
- * there is no violation.
- * The following examples will illustrate difference:
- * </p>
- * <pre>
- * OutputStream s1 = new PipedOutputStream();
- * OutputStream s2 = new PipedOutputStream();
- * // only one statement(variable definition) with two variable references
- * try (s1; s2; OutputStream s3 = new PipedOutputStream();) // OK
- * {}
- * // two statements with variable definitions
- * try (Reader r = new PipedReader(); s2; Reader s3 = new PipedReader() // violation
- * ) {}
- * </pre>
- * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
  * <p>

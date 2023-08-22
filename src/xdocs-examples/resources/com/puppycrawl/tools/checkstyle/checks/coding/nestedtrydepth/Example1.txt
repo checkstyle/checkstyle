@@ -1,0 +1,19 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="NestedTryDepth"/>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+try {
+    try {
+        try { // violation, current depth is 2, default max allowed depth is 1
+        } catch (Exception e) {
+        }
+    } catch (Exception e) {
+    }
+} catch (Exception e) {
+}
+// xdoc section -- end

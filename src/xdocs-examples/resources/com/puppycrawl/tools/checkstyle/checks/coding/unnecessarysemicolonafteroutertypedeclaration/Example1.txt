@@ -1,0 +1,29 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="UnnecessarySemicolonAfterOuterTypeDeclaration"/>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+class A {
+
+   class Nested {
+
+   }; // OK, nested type declarations are ignored
+
+}; // violation
+
+interface B {
+
+}; // violation
+
+enum C {
+
+}; // violation
+
+{@literal @}interface D {
+
+}; // violation
+// xdoc section -- end

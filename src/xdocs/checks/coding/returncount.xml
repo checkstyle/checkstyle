@@ -96,17 +96,21 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check so that it doesn't allow more than three
           return statements per method (ignoring the <code>equals()</code>
           method):
         </p>
         <source>
-&lt;module name=&quot;ReturnCount&quot;&gt;
-  &lt;property name=&quot;max&quot; value=&quot;3&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;ReturnCount&quot;&gt;
+      &lt;property name=&quot;max&quot; value=&quot;3&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p>
+        <p id="Example1-code">
             Example:
         </p>
         <source>
@@ -131,16 +135,20 @@ public class MyClass {
 }
         </source>
 
-        <p>
+        <p id="Example2-config">
           To configure the check so that it doesn't allow any
           return statements per void method:
         </p>
         <source>
-&lt;module name=&quot;ReturnCount&quot;&gt;
-  &lt;property name=&quot;maxForVoid&quot; value=&quot;0&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;ReturnCount&quot;&gt;
+      &lt;property name=&quot;maxForVoid&quot; value=&quot;0&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p>
+        <p id="Example2-code">
             Example:
         </p>
         <source>
@@ -154,18 +162,22 @@ public class MyClass {
 }
         </source>
 
-        <p>
+        <p id="Example3-config">
           To configure the check so that it doesn't allow more than 2
           return statements per method (ignoring the <code>equals()</code>
           method) and more than 1 return statements per void method:
         </p>
         <source>
-&lt;module name=&quot;ReturnCount&quot;&gt;
-  &lt;property name=&quot;max&quot; value=&quot;2&quot;/&gt;
-  &lt;property name=&quot;maxForVoid&quot; value=&quot;1&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;ReturnCount&quot;&gt;
+      &lt;property name=&quot;max&quot; value=&quot;2&quot;/&gt;
+      &lt;property name=&quot;maxForVoid&quot; value=&quot;1&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p>
+        <p id="Example3-code">
             Example:
         </p>
         <source>
@@ -199,17 +211,21 @@ public class MyClass {
 }
         </source>
 
-        <p>
+        <p id="Example4-config">
           To configure the check so that it doesn't allow more than three
           return statements per method for all methods:
         </p>
         <source>
-&lt;module name=&quot;ReturnCount&quot;&gt;
-  &lt;property name=&quot;max&quot; value=&quot;3&quot;/&gt;
-  &lt;property name=&quot;format&quot; value=&quot;^$&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;ReturnCount&quot;&gt;
+      &lt;property name=&quot;max&quot; value=&quot;3&quot;/&gt;
+      &lt;property name=&quot;format&quot; value=&quot;^$&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p>
+        <p id="Example4-code">
             Example:
         </p>
         <source>
@@ -234,26 +250,30 @@ public class MyClass {
 }
         </source>
 
-        <p>
+        <p id="Example5-config">
           To configure the check so that it doesn't allow any return statements
           in constructors, more than one return statement in all lambda
           expressions and more than two return statements in methods:
         </p>
         <source>
-&lt;module name=&quot;ReturnCount&quot;&gt;
-  &lt;property name=&quot;maxForVoid&quot; value=&quot;0&quot;/&gt;
-  &lt;property name=&quot;tokens&quot; value=&quot;CTOR_DEF&quot;/&gt;
-&lt;/module&gt;
-&lt;module name=&quot;ReturnCount&quot;&gt;
-  &lt;property name=&quot;max&quot; value=&quot;1&quot;/&gt;
-  &lt;property name=&quot;tokens&quot; value=&quot;LAMBDA&quot;/&gt;
-&lt;/module&gt;
-&lt;module name=&quot;ReturnCount&quot;&gt;
-  &lt;property name=&quot;max&quot; value=&quot;2&quot;/&gt;
-  &lt;property name=&quot;tokens&quot; value=&quot;METHOD_DEF&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;ReturnCount&quot;&gt;
+      &lt;property name=&quot;maxForVoid&quot; value=&quot;0&quot;/&gt;
+      &lt;property name=&quot;tokens&quot; value=&quot;CTOR_DEF&quot;/&gt;
+    &lt;/module&gt;
+    &lt;module name=&quot;ReturnCount&quot;&gt;
+      &lt;property name=&quot;max&quot; value=&quot;1&quot;/&gt;
+      &lt;property name=&quot;tokens&quot; value=&quot;LAMBDA&quot;/&gt;
+    &lt;/module&gt;
+    &lt;module name=&quot;ReturnCount&quot;&gt;
+      &lt;property name=&quot;max&quot; value=&quot;2&quot;/&gt;
+      &lt;property name=&quot;tokens&quot; value=&quot;METHOD_DEF&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p>
+        <p id="Example5-code">
             Example:
         </p>
         <source>

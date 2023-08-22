@@ -30,48 +30,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Semicolon is not needed if enum body contains only enum constants.
  * </p>
  * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name=&quot;UnnecessarySemicolonInEnumeration&quot;/&gt;
- * </pre>
- * <p>
- * Example of violations
- * </p>
- * <pre>
- * enum One {
- *     A,B; // violation
- * }
- * enum Two {
- *     A,B,; // violation
- * }
- * enum Three {
- *     A,B(); // violation
- * }
- * enum Four {
- *     A,B{}; // violation
- * }
- * enum Five {
- *     A,
- *     B
- *     ; // violation
- * }
- * </pre>
- * <p>
- * Example of good cases
- * </p>
- * <pre>
- * enum Normal {
- *     A,
- *     B,
- *     ; // required ";", no violation
- *     Normal(){}
- * }
- * enum NoSemicolon {
- *     A, B // only enum constants, no semicolon required
- * }
- * </pre>
- * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
  * <p>

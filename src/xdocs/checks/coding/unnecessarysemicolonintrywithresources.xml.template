@@ -37,50 +37,39 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name="UnnecessarySemicolonInTryWithResources"/&gt;
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/unnecessarysemicolonintrywithresources/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">
           Example of violations
         </p>
-        <source>
-class A {
-    void method() throws IOException {
-        try(Reader r1 = new PipedReader();){} // violation
-        try(Reader r4 = new PipedReader();Reader r5 = new PipedReader()
-        ;){} // violation
-        try(Reader r6 = new PipedReader();
-            Reader r7
-                   = new PipedReader();
-        ){}
-    }
-}
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/unnecessarysemicolonintrywithresources/Example1.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example2-config">
           To configure the check to detect unnecessary semicolon
           if closing paren is not on same line
         </p>
-        <source>
-&lt;module name="UnnecessarySemicolonInTryWithResources"&gt;
-  &lt;property name="allowWhenNoBraceAfterSemicolon" value="false"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/unnecessarysemicolonintrywithresources/Example2.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">
           Example of exclusion
         </p>
-        <source>
-class A {
-    void method() throws IOException {
-        try(Reader r1 = new PipedReader();){} // violation
-        try(Reader r6 = new PipedReader();
-            Reader r7 = new PipedReader(); // violation
-        ){}
-    }
-}
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/unnecessarysemicolonintrywithresources/Example2.txt"/>
+          <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage"

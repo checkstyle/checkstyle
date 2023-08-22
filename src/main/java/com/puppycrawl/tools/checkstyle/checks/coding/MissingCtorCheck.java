@@ -30,33 +30,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * on the default one.
  * </p>
  * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name=&quot;MissingCtor&quot;/&gt;
- * </pre>
- * <p>Example:</p>
- * <pre>
- * class ExampleOk { // OK
- *   private int a;
- *   ExampleOk(int a) {
- *     this.a = a;
- *   }
- * }
- * class ExampleDefaultCtor { // OK
- *   private String s;
- *   ExampleDefaultCtor() {
- *     s = "foobar";
- *   }
- * }
- * class InvalidExample { // violation, class must have a constructor.
- *   public void test() {}
- * }
- * abstract class AbstractExample { // OK
- *   public abstract void test() {}
- * }
- * </pre>
- * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
  * <p>

@@ -25,26 +25,20 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name="SuperFinalize"/&gt;
-        </source>
-        <p>Example:</p>
-        <source>
-public class A {
-      protected void finalize() throws Throwable {
-            System.out.println("In finalize block");
-            super.finalize(); // OK, calls super.finalize()
-      }
-}
-public class B {
-      protected void finalize() throws Throwable { // violation
-            System.out.println("In finalize block");
-      }
-}
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/superfinalize/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/superfinalize/Example1.txt"/>
+          <param name="type" value="code"/>
+        </macro>
 
       </subsection>
 

@@ -49,47 +49,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * }
  * </pre>
  * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name=&quot;NoEnumTrailingComma&quot;/&gt;
- * </pre>
- * <p>
- * Which results in the following violations:
- * </p>
- * <pre>
- * enum Foo1 {
- *   FOO,
- *   BAR; //OK
- * }
- * enum Foo2 {
- *   FOO,
- *   BAR //OK
- * }
- * enum Foo3 {
- *   FOO,
- *   BAR, //violation
- * }
- * enum Foo4 {
- *   FOO,
- *   BAR, // violation
- *   ;
- * }
- * enum Foo5 {
- *   FOO,
- *   BAR,; // violation
- * }
- * enum Foo6 { FOO, BAR,; } // violation
- * enum Foo7 { FOO, BAR, } // violation
- * enum Foo8 {
- *   FOO,
- *   BAR // OK
- *   ;
- * }
- * enum Foo9 { FOO, BAR; } // OK
- * enum Foo10 { FOO, BAR } // OK
- * </pre>
- * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
  * <p>

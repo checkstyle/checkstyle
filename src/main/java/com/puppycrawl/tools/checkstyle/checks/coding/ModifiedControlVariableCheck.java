@@ -77,52 +77,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </li>
  * </ul>
  * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name="ModifiedControlVariable"/&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * for(int i=0;i &lt; 8;i++) {
- *   i++; // violation, control variable modified
- * }
- * String args1[]={"Coding", "block"};
- * for (String arg: args1) {
- *   arg = arg.trim(); // violation, control variable modified
- * }
- * </pre>
- * <p>
- * By default, This Check validates
- *  <a href = "https://docs.oracle.com/javase/specs/jls/se11/html/jls-14.html#jls-14.14.2">
- * Enhanced For-Loop</a>.
- * </p>
- * <p>
- * Option 'skipEnhancedForLoopVariable' could be used to skip check of variable
- *  from Enhanced For Loop.
- * </p>
- * <p>
- * An example of how to configure the check so that it skips enhanced For Loop Variable is:
- * </p>
- * <pre>
- * &lt;module name="ModifiedControlVariable"&gt;
- *   &lt;property name="skipEnhancedForLoopVariable" value="true"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>Example:</p>
- *
- * <pre>
- * for(int i=0;i &lt; 8;i++) {
- *   i++; // violation, control variable modified
- * }
- * String args1[]={"Coding", "block"};
- * for (String arg: args1) {
- *   arg = arg.trim(); // ok
- * }
- * </pre>
- * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
  * <p>

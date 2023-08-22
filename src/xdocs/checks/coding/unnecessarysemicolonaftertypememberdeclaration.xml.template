@@ -101,38 +101,22 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name="UnnecessarySemicolonAfterTypeMemberDeclaration"/&gt;
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/unnecessarysemicolonaftertypememberdeclaration/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">
           Results in following:
         </p>
-        <source>
-class A {
-    ; // violation, standalone semicolon
-    {}; // violation, extra semicolon after init block
-    static {}; // violation, extra semicolon after static init block
-    A(){}; // violation, extra semicolon after constructor definition
-    void method() {}; // violation, extra semicolon after method definition
-    int field = 10;; // violation, extra semicolon after field declaration
-
-    {
-        ; // no violation, it is empty statement inside init block
-    }
-
-    static {
-        ; // no violation, it is empty statement inside static init block
-    }
-
-    void anotherMethod() {
-        ; // no violation, it is empty statement
-        if(true); // no violation, it is empty statement
-    }
-}
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/unnecessarysemicolonaftertypememberdeclaration/Example1.txt"/>
+          <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage"

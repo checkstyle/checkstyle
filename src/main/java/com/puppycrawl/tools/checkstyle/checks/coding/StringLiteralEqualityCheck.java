@@ -46,31 +46,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * if ("something".equals(x))
  * </pre>
  * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name=&quot;StringLiteralEquality&quot;/&gt;
- * </pre>
- * <p>
- * Examples of violations:
- * </p>
- * <pre>
- * String status = "pending";
- *
- * if (status == "done") {} // violation
- *
- * while (status != "done") {} // violation
- *
- * boolean flag = (status == "done"); // violation
- *
- * boolean flag = (status.equals("done")); // OK
- *
- * String name = "X";
- *
- * if (name == getName()) {}
- * // OK, limitation that check cannot tell runtime type returned from method call
- * </pre>
- * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
  * <p>

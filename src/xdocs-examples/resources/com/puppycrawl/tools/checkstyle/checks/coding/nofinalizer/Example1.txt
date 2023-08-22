@@ -1,0 +1,22 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="NoFinalizer"/>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+public class Test {
+
+    protected void finalize() throws Throwable { // violation
+        try {
+           System.out.println("overriding finalize()");
+        } catch (Throwable t) {
+           throw t;
+        } finally {
+           super.finalize();
+        }
+    }
+}
+// xdoc section -- end
