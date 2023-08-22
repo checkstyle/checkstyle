@@ -75,40 +75,38 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the default check:
         </p>
         <source>
-&lt;module name=&quot;JavadocBlockTagLocation&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;JavadocBlockTagLocation&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
         </source>
-        <p>Example:</p>
+        <p id="Example1-code">Example:</p>
         <source>
 /**
  * Escaped tag &amp;#64;version (OK)
  * Plain text with {@code @see} (OK)
  * A @custom tag (OK)
- * <!-- @see commented out (OK) -->
- * email@author (OK)
- * (@param in parentheses) (OK)
- * '@param in single quotes' (OK)
- * @since 1.0 (OK)
- * text @return (violation)
- * * @param (violation)
-+* @serial (violation)
- * @see first (OK) @see second (violation)
- */
-public int field;
+ *
         </source>
-        <p>
+        <p id="Example2-config">
           To configure the check to verify tags from
           <a href="https://openjdk.org/jeps/8068562">JEP 8068562</a> only:
         </p>
         <source>
-&lt;module name=&quot;JavadocBlockTagLocation&quot;&gt;
-  &lt;property name=&quot;tags&quot; value=&quot;apiNote, implSpec, implNote&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;JavadocBlockTagLocation&quot;&gt;
+      &lt;property name=&quot;tags&quot; value=&quot;apiNote, implSpec, implNote&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p>
+        <p id="Example2-code">
           To configure the check to verify all default tags and some custom tags in addition:
         </p>
         <source>

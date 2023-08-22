@@ -62,13 +62,17 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the default check:
         </p>
         <source>
-&lt;module name=&quot;JavadocParagraph&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;JavadocParagraph&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
         </source>
-        <p>By default, the check will report a violation if there is a new line
+        <p id="Example1-code">By default, the check will report a violation if there is a new line
           or whitespace after the &lt;p&gt; tag: </p>
         <source>
 /**
@@ -86,15 +90,19 @@
 public class TestClass {
 }
         </source>
-        <p>
+        <p id="Example2-config">
           To allow newlines and spaces immediately after the &lt;p&gt; tag:
         </p>
         <source>
-&lt;module name=&quot;JavadocParagraph&quot;&gt;
-  &lt;property name=&quot;allowNewlineParagraph&quot; value=&quot;false&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;JavadocParagraph&quot;&gt;
+      &lt;property name=&quot;allowNewlineParagraph&quot; value=&quot;false&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p>
+        <p id="Example2-code">
           In case of <code>allowNewlineParagraph</code> set to <code>false</code>
           the following example will not have any violations:
         </p>

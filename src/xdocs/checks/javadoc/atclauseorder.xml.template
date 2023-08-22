@@ -83,51 +83,22 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
             To configure the default check:
         </p>
-        <source>
-&lt;module name="AtclauseOrder"/&gt;
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/atclauseorder/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">
           Example:
         </p>
-        <source>
-/**
-* Some javadoc. // OK
-*
-* @author Some javadoc. // OK
-* @version Some javadoc. // OK
-* @param Some javadoc. // OK
-* @return Some javadoc. // OK
-* @throws Some javadoc. // OK
-* @exception Some javadoc. // OK
-* @see Some javadoc. // OK
-* @since Some javadoc. // OK
-* @serial Some javadoc. // OK
-* @serialField // OK
-* @serialData // OK
-* @deprecated Some javadoc. // OK
-*/
-
-class Valid implements Serializable
-{
-}
-
-/**
-* Some javadoc.
-*
-* @since Some javadoc. // OK
-* @version Some javadoc. // Violation - wrong order
-* @deprecated
-* @see Some javadoc. // Violation - wrong order
-* @author Some javadoc. // Violation - wrong order
-*/
-
-class Invalid implements Serializable
-{
-}
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/atclauseorder/Example1.txt"/>
+          <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

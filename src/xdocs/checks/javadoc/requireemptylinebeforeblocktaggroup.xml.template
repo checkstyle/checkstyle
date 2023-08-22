@@ -39,25 +39,23 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name="RequireEmptyLineBeforeBlockTagGroup"/&gt;
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/requireemptylinebeforeblocktaggroup/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">
           By default, the check will report a violation if there is no blank line before the
           block tag, like in the example below.
         </p>
-        <source>
-/**
- * testMethod's javadoc.
- * @return something (violation)
- */
-public boolean testMethod() {
-    return false;
-}
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/requireemptylinebeforeblocktaggroup/Example1.txt"/>
+          <param name="type" value="code"/>
+        </macro>
         <p>
           Valid javadoc should have a blank line separating the parameters, return, throw, or
           other tags like in the example below.

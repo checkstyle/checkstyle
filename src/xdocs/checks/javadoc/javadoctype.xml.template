@@ -136,286 +136,129 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the default check:
         </p>
-        <source>
-&lt;module name="JavadocType"/&gt;
-        </source>
-        <p>Example:</p>
-        <source>
-/**
- * @author a
- * @version $Revision1$
- */
-public class ClassA { // OK
-    /** */
-    private class ClassB {} // OK
-}
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadoctype/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadoctype/Example1.txt"/>
+          <param name="type" value="code"/>
+        </macro>
 
-/**
- * @author
- * @version abc
- * @unknownTag value // violation
- */
-public class ClassC {} // OK
-
-/** */
-public class ClassD&lt;T&gt; {} // violation, as param tag for &lt;T&gt; is missing
-
-/** */
-private class ClassE&lt;T&gt; {} // violation, as param tag for &lt;T&gt; is missing
-
-/** */
-@Generated
-public class ClassF&lt;T&gt; {} // OK
-        </source>
-
-        <p>
+        <p id="Example2-config">
           To configure the check for <code>public</code> scope:
         </p>
-        <source>
-&lt;module name="JavadocType"&gt;
-  &lt;property name="scope" value="public"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>Example:</p>
-        <source>
-/**
- * @author a
- * @version $Revision1$
- */
-public class ClassA { // OK
-    /** */
-    private class ClassB {} // OK
-}
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadoctype/Example2.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadoctype/Example2.txt"/>
+          <param name="type" value="code"/>
+        </macro>
 
-/**
- * @author
- * @version abc
- * @unknownTag value // violation
- */
-public class ClassC {} // OK
-
-/** */
-public class ClassD&lt;T&gt; {} // violation, as param tag for &lt;T&gt; is missing
-
-/** */
-private class ClassE&lt;T&gt; {} // OK
-
-/** */
-@Generated
-public class ClassF&lt;T&gt; {} // OK
-        </source>
-
-        <p>
+        <p id="Example3-config">
           To configure the check for an <code>@author</code> tag:
         </p>
-        <source>
-&lt;module name="JavadocType"&gt;
-  &lt;property name="authorFormat" value="\S"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>Example:</p>
-        <source>
-/**
- * @author a
- * @version $Revision1$
- */
-public class ClassA { // OK
-    /** */
-    private class ClassB {} // OK, as author tag check is ignored for inner class
-}
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadoctype/Example3.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example3-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadoctype/Example3.txt"/>
+          <param name="type" value="code"/>
+        </macro>
 
-/**
- * @author
- * @version abc
- * @unknownTag value // violation
- */
-public class ClassC {} // violation, as author format with only whitespace or new line is invalid
-
-/** */
-public class ClassD {} // violation, as author tag is missing
-
-/** */
-private class ClassE {} // violation, as author tag is missing
-
-/** */
-@Generated
-public class ClassF&lt;T&gt; {} // OK
-        </source>
-
-        <p>
+        <p id="Example4-config">
           To configure the check for a CVS revision version tag:
         </p>
-        <source>
-&lt;module name="JavadocType"&gt;
-  &lt;property name="versionFormat" value="\$Revision.*\$"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>Example:</p>
-        <source>
-/**
- * @author a
- * @version $Revision1$
- */
-public class ClassA { // OK
-    /** */
-    private class ClassB {} // OK, as version tag check is ignored for inner class
-}
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadoctype/Example4.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example4-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadoctype/Example4.txt"/>
+          <param name="type" value="code"/>
+        </macro>
 
-/**
- * @author
- * @version abc
- * @unknownTag value // violation
- */
-public class ClassC {} // violation, as version format is invalid
-
-/** */
-public class ClassD {} // violation, as version tag is missing
-
-/** */
-private class ClassE {} // violation, as version tag is missing
-
-/** */
-@Generated
-public class ClassF&lt;T&gt; {} // OK
-        </source>
-
-        <p>
+        <p id="Example5-config">
           To configure the check for <code>private</code> classes only:
         </p>
-        <source>
-&lt;module name="JavadocType"&gt;
-  &lt;property name="scope" value="private"/&gt;
-  &lt;property name="excludeScope" value="package"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>Example:</p>
-        <source>
-/**
- * @author a
- * @version $Revision1$
- */
-public class ClassA { // OK
-    /** */
-    private class ClassB {} // OK
-}
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadoctype/Example5.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example5-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadoctype/Example5.txt"/>
+          <param name="type" value="code"/>
+        </macro>
 
-/**
- * @author
- * @version abc
- * @unknownTag value // OK
- */
-public class ClassC {} // OK
-
-/** */
-public class ClassD&lt;T&gt; {} // OK
-
-/** */
-private class ClassE&lt;T&gt; {} // violation, as param tag for &lt;T&gt; is missing
-
-/** */
-@Generated
-public class ClassF&lt;T&gt; {} // OK
-        </source>
-
-        <p>
+        <p id="Example6-config">
           To configure the check that allows missing <code>@param</code> tags:
         </p>
-        <source>
-&lt;module name="JavadocType"&gt;
-  &lt;property name="allowMissingParamTags" value="true"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>Example:</p>
-        <source>
-/**
- * @author a
- * @version $Revision1$
- */
-public class ClassA { // OK
-    /** */
-    private class ClassB {} // OK
-}
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadoctype/Example6.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example6-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadoctype/Example6.txt"/>
+          <param name="type" value="code"/>
+        </macro>
 
-/**
- * @author
- * @version abc
- * @unknownTag value // violation
- */
-public class ClassC {} // OK
-
-/** */
-public class ClassD&lt;T&gt; {} // OK, as missing param tag is allowed
-
-/** */
-private class ClassE&lt;T&gt; {} // OK, as missing param tag is allowed
-
-/** */
-@Generated
-public class ClassF&lt;T&gt; {} // OK
-        </source>
-
-        <p>
+        <p id="Example7-config">
             To configure the check that allows unknown tags:
         </p>
-        <source>
-&lt;module name="JavadocType"&gt;
-  &lt;property name="allowUnknownTags" value="true"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>Example:</p>
-        <source>
-/**
- * @author a
- * @version $Revision1$
- */
-public class ClassA { // OK
-  /** */
-  private class ClassB {} // OK
-}
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadoctype/Example7.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example7-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadoctype/Example7.txt"/>
+          <param name="type" value="code"/>
+        </macro>
 
-/**
- * @author
- * @version abc
- * @unknownTag value // OK, as unknown tag is allowed
- */
-public class ClassC {} // OK
-
-/** */
-public class ClassD {} // OK
-
-/** */
-private class ClassE {} // OK
-
-/** */
-@Generated
-public class ClassF&lt;T&gt; {} // OK
-        </source>
-
-        <p>
+        <p id="Example8-config">
           To configure a check that allows skipping validation at all
           for classes annotated with <code>@SpringBootApplication</code>
           and <code>@Configuration</code>:
         </p>
-        <source>
-&lt;module name="JavadocType"&gt;
-  &lt;property name="allowedAnnotations" value="SpringBootApplication,Configuration"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadoctype/Example8.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example8-code">
           Example:
         </p>
-        <source>
-/** */
-@SpringBootApplication // no violations about missing param tag on class
-public class Application&lt;T&gt; {}
-
-/** */
-@Configuration // no violations about missing param tag on class
-class DatabaseConfiguration&lt;T&gt; {}
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadoctype/Example8.txt"/>
+          <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

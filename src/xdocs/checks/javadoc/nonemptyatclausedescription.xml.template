@@ -71,62 +71,40 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the default check that will check <code>@param</code>,
           <code>@deprecated</code>,<code>@throws</code>,<code>@return</code>:
         </p>
-        <source>
-&lt;module name="NonEmptyAtclauseDescription"/&gt;
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/nonemptyatclausedescription/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">
         Example:
         </p>
-        <source>
-class Test
-{
-  // Violation for param "b" and at tags "deprecated", "throws" and "return".
-  /**
-  * Some summary.
-  * <code>@param</code> a Some description
-  * <code>@param</code> b
-  * <code>@deprecated</code>
-  * <code>@throws</code> Exception
-  * <code>@return</code>
-  */
-  public int method(String a, int b) throws Exception {
-    return 1;
-  }
-}
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/nonemptyatclausedescription/Example1.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example2-config">
           To configure the check to validate <code>@param</code>,
           <code>@throws</code> tags:
         </p>
-        <source>
-&lt;module name="NonEmptyAtclauseDescription"&gt;
-  &lt;property name="javadocTokens" value="PARAM_LITERAL,THROWS_LITERAL"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/nonemptyatclausedescription/Example2.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">
         Example:
         </p>
-        <source>
-class Test
-{
-  // Violation for param "b" and at tag "throws".
-  /**
-  * Some summary.
-  * <code>@param</code> a Some description
-  * <code>@param</code> b
-  * <code>@deprecated</code>
-  * <code>@throws</code> Exception
-  * <code>@return</code>
-  */
-  public int method(String a, int b) throws Exception {
-    return 1;
-  }
-}
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/nonemptyatclausedescription/Example2.txt"/>
+          <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

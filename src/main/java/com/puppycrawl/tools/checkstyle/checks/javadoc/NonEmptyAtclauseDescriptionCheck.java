@@ -55,61 +55,6 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * </li>
  * </ul>
  * <p>
- * To configure the default check that will check {@code @param}, {@code @deprecated},
- * {@code @throws}, {@code @return}:
- * </p>
- * <pre>
- * &lt;module name="NonEmptyAtclauseDescription"/&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * class Test
- * {
- *  // Violation for param "b" and at tags "deprecated", "throws" and "return".
- *  &#47;**
- *  * Some summary.
- *  * &#64;param a Some description
- *  * &#64;param b
- *  * &#64;deprecated
- *  * &#64;throws Exception
- *  * &#64;return
- *  *&#47;
- * public int method(String a, int b) throws Exception {
- *   return 1;
- *  }
- * }
- * </pre>
- * <p>
- * To configure the check to validate {@code @param}, {@code @throws} tags:
- * </p>
- * <pre>
- * &lt;module name="NonEmptyAtclauseDescription"&gt;
- *   &lt;property name="javadocTokens" value="PARAM_LITERAL,THROWS_LITERAL"/&gt;
- *  &lt;/module&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * class Test
- * {
- *  // Violation for param "b" and at tag "throws".
- *  &#47;**
- *  * Some summary.
- *  * &#64;param a Some description
- *  * &#64;param b
- *  * &#64;deprecated
- *  * &#64;throws Exception
- *  * &#64;return
- *  *&#47;
- * public int method(String a, int b) throws Exception {
- *   return 1;
- *  }
- * }
- * </pre>
- * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
  * <p>

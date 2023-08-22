@@ -1,0 +1,19 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="JavadocType">
+      <property name="allowedAnnotations" value="SpringBootApplication,Configuration"/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+/** */
+@SpringBootApplication // no violations about missing param tag on class
+public class Application<T> {}
+
+/** */
+@Configuration // no violations about missing param tag on class
+class DatabaseConfiguration<T> {}
+// xdoc section -- end

@@ -1,0 +1,16 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="NonEmptyAtclauseDescription"/>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+class Test
+{
+  // Violation for param "b" and at tags "deprecated", "throws" and "return".
+  /**
+  * Some summary.
+  *
+// xdoc section -- end
