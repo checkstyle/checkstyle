@@ -20,4 +20,12 @@ public class InputJavadocType3 {
      * @param <P> some parameter
      */
     public interface InvalidParameterInJavadoc<T> {}
+
+    /**
+    *
+    * @link <T>
+    */
+    protected class InnerPublic2<T> // violation 'missing @param <T> tag.'
+    {
+    }
 }

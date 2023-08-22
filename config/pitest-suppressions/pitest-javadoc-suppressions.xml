@@ -576,14 +576,14 @@
     <lineContent>return astType == TokenTypes.VARIABLE_DEF</lineContent>
   </mutation>
 
-  <mutation unstable="false">
-    <sourceFile>JavadocTypeCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck</mutatedClass>
-    <mutatedMethod>checkTypeParamTag</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
-    <description>replaced call to java/util/stream/Stream::filter with receiver</description>
-    <lineContent>.filter(JavadocTag::isParamTag)</lineContent>
-  </mutation>
+
+
+
+
+
+
+
+
 
 
 
