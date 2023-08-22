@@ -37,13 +37,17 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;UnnecessarySemicolonInTryWithResources&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;UnnecessarySemicolonInTryWithResources&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
         </source>
-        <p>
+        <p id="Example1-code">
           Example of violations
         </p>
         <source>
@@ -59,16 +63,20 @@ class A {
     }
 }
         </source>
-        <p>
+        <p id="Example2-config">
           To configure the check to detect unnecessary semicolon
           if closing paren is not on same line
         </p>
         <source>
-&lt;module name=&quot;UnnecessarySemicolonInTryWithResources&quot;&gt;
-  &lt;property name=&quot;allowWhenNoBraceAfterSemicolon&quot; value=&quot;false&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;UnnecessarySemicolonInTryWithResources&quot;&gt;
+      &lt;property name=&quot;allowWhenNoBraceAfterSemicolon&quot; value=&quot;false&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p>
+        <p id="Example2-code">
           Example of exclusion
         </p>
         <source>

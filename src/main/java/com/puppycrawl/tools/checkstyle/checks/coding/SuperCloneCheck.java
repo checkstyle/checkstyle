@@ -32,38 +32,6 @@ import com.puppycrawl.tools.checkstyle.StatelessCheck;
  * Object.clone()</a>.
  * </p>
  * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name=&quot;SuperClone&quot;/&gt;
- * </pre>
- * <p>Example:</p>
- * <pre>
- * class A {
- *
- *  public Object clone() { // OK
- *   return super.clone();
- *  }
- * }
- *
- * class B {
- * private int b;
- *
- *  public B clone() { // violation, does not call super.clone()
- *   B other = new B();
- *   other.b = this.b;
- *   return other;
- *  }
- * }
- *
- * class C {
- *
- *  public C clone() { // OK
- *   return (C) super.clone();
- *  }
- * }
- * </pre>
- * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
  * <p>

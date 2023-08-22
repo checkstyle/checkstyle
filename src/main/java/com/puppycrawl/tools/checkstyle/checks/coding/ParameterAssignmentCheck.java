@@ -45,46 +45,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * the best of both worlds.
  * </p>
  * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name=&quot;ParameterAssignment&quot;/&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * class MyClass {
- *   int methodOne(int parameter) {
- *     if (parameter &lt;= 0 ) {
- *       throw new IllegalArgumentException("A positive value is expected");
- *     }
- *     parameter -= 2;  // violation
- *     return parameter;
- *   }
- *
- *   int methodTwo(int parameter) {
- *     if (parameter &lt;= 0 ) {
- *       throw new IllegalArgumentException("A positive value is expected");
- *     }
- *     int local = parameter;
- *     local -= 2;  // OK
- *     return local;
- *   }
- *
- *   IntPredicate obj = a -&gt; ++a == 12; // violation
- *   IntBinaryOperator obj2 = (int a, int b) -&gt; {
- *       a++;     // violation
- *       b += 12; // violation
- *       return a + b;
- *   };
- *   IntPredicate obj3 = a -&gt; {
- *       int b = a; // ok
- *       return ++b == 12;
- *   };
- * }
- * </pre>
- * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
  * <p>

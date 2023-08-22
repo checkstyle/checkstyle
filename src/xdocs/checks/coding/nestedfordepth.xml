@@ -34,13 +34,17 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;NestedForDepth&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;NestedForDepth&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
         </source>
-        <p>Example:</p>
+        <p id="Example1-code">Example:</p>
         <source>
 for(int i=0; i&lt;10; i++) {
     for(int j=0; j&lt;i; j++) {
@@ -54,15 +58,19 @@ for(int i=0; i&lt;10; i++) {
     }
 }
         </source>
-        <p>
+        <p id="Example2-config">
           To configure the check to allow nesting depth 2:
         </p>
         <source>
-&lt;module name=&quot;NestedForDepth&quot;&gt;
-  &lt;property name=&quot;max&quot; value=&quot;2&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;NestedForDepth&quot;&gt;
+      &lt;property name=&quot;max&quot; value=&quot;2&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p>Example:</p>
+        <p id="Example2-code">Example:</p>
         <source>
 for(int i=0; i&lt;10; i++) {
     for(int j=0; j&lt;i; j++) {

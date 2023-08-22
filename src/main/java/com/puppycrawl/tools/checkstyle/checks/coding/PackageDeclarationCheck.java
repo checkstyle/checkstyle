@@ -51,39 +51,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </li>
  * </ul>
  * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name=&quot;PackageDeclaration&quot;/&gt;
- * </pre>
- * <p>
- * Let us consider the class AnnotationLocationCheck which is in the directory
- * /com/puppycrawl/tools/checkstyle/checks/annotations/
- * </p>
- * <pre>
- * package com.puppycrawl.tools.checkstyle.checks; //Violation
- * public class AnnotationLocationCheck extends AbstractCheck {
- *   //...
- * }
- * </pre>
- * <p>
- * Example of how the check works when matchDirectoryStructure option is set to false.
- * Let us again consider the AnnotationLocationCheck class located at directory
- * /com/puppycrawl/tools/checkstyle/checks/annotations/ along with the following setup,
- * </p>
- * <pre>
- * &lt;module name=&quot;PackageDeclaration&quot;&gt;
- * &lt;property name=&quot;matchDirectoryStructure&quot; value=&quot;false&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <pre>
- * package com.puppycrawl.tools.checkstyle.checks;  //No Violation
- *
- * public class AnnotationLocationCheck extends AbstractCheck {
- *   //...
- * }
- * </pre>
- * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
  * <p>

@@ -71,38 +71,6 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * </li>
  * </ul>
  * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name=&quot;UnnecessarySemicolonAfterTypeMemberDeclaration&quot;/&gt;
- * </pre>
- * <p>
- * Results in following:
- * </p>
- * <pre>
- * class A {
- *     ; // violation, standalone semicolon
- *     {}; // violation, extra semicolon after init block
- *     static {}; // violation, extra semicolon after static init block
- *     A(){}; // violation, extra semicolon after constructor definition
- *     void method() {}; // violation, extra semicolon after method definition
- *     int field = 10;; // violation, extra semicolon after field declaration
- *
- *     {
- *         ; // no violation, it is empty statement inside init block
- *     }
- *
- *     static {
- *         ; // no violation, it is empty statement inside static init block
- *     }
- *
- *     void anotherMethod() {
- *         ; // no violation, it is empty statement
- *         if(true); // no violation, it is empty statement
- *     }
- * }
- * </pre>
- * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
  * <p>

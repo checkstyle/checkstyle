@@ -47,13 +47,17 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;PackageDeclaration&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;PackageDeclaration&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
         </source>
-        <p>
+        <p id="Example1-code">
           Let us consider the class AnnotationLocationCheck which is in the directory
           /com/puppycrawl/tools/checkstyle/checks/annotations/
         </p>
@@ -63,16 +67,21 @@ public class AnnotationLocationCheck extends AbstractCheck {
   //...
 }
         </source>
-        <p>
+        <p id="Example2-config">
           Example of how the check works when matchDirectoryStructure option is set to false.
           Let us again consider the AnnotationLocationCheck class located at directory
           /com/puppycrawl/tools/checkstyle/checks/annotations/ along with the following setup,
         </p>
         <source>
-&lt;module name=&quot;PackageDeclaration&quot;&gt;
-&lt;property name=&quot;matchDirectoryStructure&quot; value=&quot;false&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;PackageDeclaration&quot;&gt;
+    &lt;property name=&quot;matchDirectoryStructure&quot; value=&quot;false&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
+        <p id="Example2-code">Example:</p>
         <source>
 package com.puppycrawl.tools.checkstyle.checks;  //No Violation
 

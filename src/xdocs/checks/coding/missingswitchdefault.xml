@@ -41,13 +41,17 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;MissingSwitchDefault&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;MissingSwitchDefault&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
         </source>
-        <p>
+        <p id="Example1-code">
           Example of violation:
         </p>
         <source>
@@ -58,7 +62,7 @@ switch (i) {    // violation
     break;
 }
         </source>
-        <p>
+        <p id="Example2-code">
           Example of correct code:
         </p>
         <source>
@@ -81,7 +85,7 @@ switch (o) {
         break;
 }
         </source>
-        <p>
+        <p id="Example3-code">
           Example of correct code which does not require default labels:
         </p>
         <source>

@@ -128,26 +128,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * pages 45-52.  Give Bloch credit for writing an excellent book.
  * </p>
  * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name=&quot;NoClone&quot;/&gt;
- * </pre>
- * <p>Example: </p>
- * <pre>
- * public class Foo {
- *
- *  public Object clone() {return null;} // violation, overrides the clone method
- *
- *  public Foo clone() {return null;} // violation, overrides the clone method
- *
- *  public static Object clone(Object o) {return null;} // OK
- *
- *  public static Foo clone(Foo o) {return null;} // OK
- *
- * }
- * </pre>
- * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
  * <p>

@@ -17,26 +17,24 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>To configure the check:</p>
-        <source>
-&lt;module name="OverloadMethodsDeclarationOrder"/&gt;
-        </source>
-        <p>Example of correct grouping of overloaded methods:</p>
-        <source>
-public void foo(int i) {}
-public void foo(String s) {}
-public void foo(String s, int i) {}
-public void foo(int i, String s) {}
-public void notFoo() {}
-        </source>
-        <p>Example of incorrect grouping of overloaded methods:</p>
-        <source>
-public void foo(int i) {} // OK
-public void foo(String s) {} // OK
-public void notFoo() {} // violation. Have to be after foo(String s, int i)
-public void foo(int i, String s) {}
-public void foo(String s, int i) {}
-        </source>
+        <p id="Example1-config">To configure the check:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/overloadmethodsdeclarationorder/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">Example of correct grouping of overloaded methods:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/overloadmethodsdeclarationorder/Example1.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example2-code">Example of incorrect grouping of overloaded methods:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/overloadmethodsdeclarationorder/Example2.txt"/>
+          <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

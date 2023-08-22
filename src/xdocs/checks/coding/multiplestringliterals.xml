@@ -70,13 +70,17 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;MultipleStringLiterals&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;MultipleStringLiterals&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
         </source>
-        <p>Example:</p>
+        <p id="Example1-code">Example:</p>
         <source>
 public class MyClass {
   String a = &quot;StringContents&quot;;
@@ -90,16 +94,20 @@ public class MyClass {
   }
 }
         </source>
-        <p>
+        <p id="Example2-config">
           To configure the check so that it allows two occurrences of each
           string:
         </p>
         <source>
-&lt;module name=&quot;MultipleStringLiterals&quot;&gt;
-  &lt;property name=&quot;allowedDuplicates&quot; value=&quot;2&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;MultipleStringLiterals&quot;&gt;
+      &lt;property name=&quot;allowedDuplicates&quot; value=&quot;2&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p>Example:</p>
+        <p id="Example2-code">Example:</p>
         <source>
 public class MyClass {
   String a = &quot;StringContents&quot;;
@@ -113,16 +121,20 @@ public class MyClass {
   }
 }
         </source>
-        <p>
+        <p id="Example3-config">
           To configure the check so that it ignores &quot;, &quot; and empty strings:
         </p>
         <source>
-&lt;module name=&quot;MultipleStringLiterals&quot;&gt;
-  &lt;property name=&quot;ignoreStringsRegexp&quot;
-    value='^((&quot;&quot;)|(&quot;, &quot;))$'/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;MultipleStringLiterals&quot;&gt;
+      &lt;property name=&quot;ignoreStringsRegexp&quot;
+        value='^((&quot;&quot;)|(&quot;, &quot;))$'/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p>Example:</p>
+        <p id="Example3-code">Example:</p>
         <source>
 public class MyClass {
   String a = &quot;StringContents&quot;;
@@ -136,17 +148,21 @@ public class MyClass {
   }
 }
         </source>
-        <p>
+        <p id="Example4-config">
           To configure the check so that it flags duplicate strings in all
           syntactical contexts, even in annotations like
           <code>@SuppressWarnings(&quot;unchecked&quot;)</code>:
         </p>
         <source>
-&lt;module name=&quot;MultipleStringLiterals&quot;&gt;
-  &lt;property name=&quot;ignoreOccurrenceContext&quot; value=&quot;&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;MultipleStringLiterals&quot;&gt;
+      &lt;property name=&quot;ignoreOccurrenceContext&quot; value=&quot;&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p>Example:</p>
+        <p id="Example4-code">Example:</p>
         <source>
 public class MyClass {
   String a = &quot;StringContents&quot;;

@@ -67,65 +67,39 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name="UnnecessarySemicolonAfterOuterTypeDeclaration"/&gt;
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/unnecessarysemicolonafteroutertypedeclaration/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">
           Example:
         </p>
-        <source>
-class A {
-
-   class Nested {
-
-   }; // OK, nested type declarations are ignored
-
-}; // violation
-
-interface B {
-
-}; // violation
-
-enum C {
-
-}; // violation
-
-{@literal @}interface D {
-
-}; // violation
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/unnecessarysemicolonafteroutertypedeclaration/Example1.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example2-config">
            To configure the check to detect unnecessary semicolon only after top level class
            definitions:
         </p>
-        <source>
-&lt;module name="UnnecessarySemicolonAfterOuterTypeDeclaration"&gt;
-  &lt;property name="tokens" value="CLASS_DEF"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/unnecessarysemicolonafteroutertypedeclaration/Example2.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">
           Example:
         </p>
-        <source>
-class A {
-
-}; // violation
-
-interface B {
-
-}; // OK
-
-enum C {
-
-}; // OK
-
-{@literal @}interface D {
-
-}; // OK
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/unnecessarysemicolonafteroutertypedeclaration/Example2.txt"/>
+          <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage"

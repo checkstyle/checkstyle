@@ -34,47 +34,22 @@ enum Foo1 {
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name="NoEnumTrailingComma"/&gt;
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/noenumtrailingcomma/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">
           Which results in the following violations:
         </p>
-        <source>
-enum Foo1 {
-  FOO,
-  BAR; //OK
-}
-enum Foo2 {
-  FOO,
-  BAR //OK
-}
-enum Foo3 {
-  FOO,
-  BAR, //violation
-}
-enum Foo4 {
-  FOO,
-  BAR, // violation
-  ;
-}
-enum Foo5 {
-  FOO,
-  BAR,; // violation
-}
-enum Foo6 { FOO, BAR,; } // violation
-enum Foo7 { FOO, BAR, } // violation
-enum Foo8 {
-  FOO,
-  BAR // OK
-  ;
-}
-enum Foo9 { FOO, BAR; } // OK
-enum Foo10 { FOO, BAR } // OK
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/noenumtrailingcomma/Example1.txt"/>
+          <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

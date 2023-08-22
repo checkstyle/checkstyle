@@ -51,41 +51,32 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name="OneStatementPerLine"/&gt;
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/onestatementperline/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">
           The following examples will be flagged as a violation:
         </p>
-        <source>
-//Each line causes violation:
-int var1; int var2;
-var1 = 1; var2 = 2;
-int var1 = 1; int var2 = 2;
-var1++; var2++;
-Object obj1 = new Object(); Object obj2 = new Object();
-import java.io.EOFException; import java.io.BufferedReader;
-;; //two empty statements on the same line.
-
-//Multi-line statements:
-int var1 = 1
-; var2 = 2; //violation here
-int o = 1, p = 2,
-r = 5; int t; //violation here
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/onestatementperline/Example1.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example2-config">
           An example of how to configure the check to treat resources
           in a try statement as statements to require them on their own line:
         </p>
-        <source>
-&lt;module name="OneStatementPerLine"&gt;
-  &lt;property name="treatTryResourcesAsStatement" value="true"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/onestatementperline/Example2.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">
           Note: resource declarations can contain variable definitions
           and variable references (from java9).
           When property "treatTryResourcesAsStatement" is enabled,
@@ -95,16 +86,11 @@ r = 5; int t; //violation here
           there is no violation.
           The following examples will illustrate difference:
         </p>
-        <source>
-OutputStream s1 = new PipedOutputStream();
-OutputStream s2 = new PipedOutputStream();
-// only one statement(variable definition) with two variable references
-try (s1; s2; OutputStream s3 = new PipedOutputStream();) // OK
-{}
-// two statements with variable definitions
-try (Reader r = new PipedReader(); s2; Reader s3 = new PipedReader() // violation
-) {}
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/onestatementperline/Example2.txt"/>
+          <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

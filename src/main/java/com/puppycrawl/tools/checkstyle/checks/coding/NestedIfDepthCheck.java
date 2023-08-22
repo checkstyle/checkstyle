@@ -36,62 +36,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </li>
  * </ul>
  * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name=&quot;NestedIfDepth&quot;/&gt;
- * </pre>
- * <p>Valid code example:</p>
- * <pre>
- * if (true) {
- *     if (true) {} // OK
- *     else {}
- * }
- * </pre>
- * <p>Invalid code example:</p>
- * <pre>
- * if (true) {
- *     if (true) {
- *         if (true) { // violation, nested if-else depth is 2 (max allowed is 1)
- *         }
- *     }
- * }
- * </pre>
- * <p>
- * To configure the check to allow nesting depth 3:
- * </p>
- * <pre>
- * &lt;module name=&quot;NestedIfDepth&quot;&gt;
- *   &lt;property name=&quot;max&quot; value=&quot;3&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>Valid code example:</p>
- * <pre>
- * if (true) {
- *    if (true) {
- *       if (true) {
- *          if (true) {} // OK
- *          else {}
- *       }
- *    }
- * }
- * </pre>
- * <p>Invalid code example:</p>
- * <pre>
- * if (true) {
- *    if (true) {
- *       if (true) {
- *          if (true) {
- *             if (true) { // violation, nested if-else depth is 4 (max allowed is 3)
- *                if (true) {} // violation, nested if-else depth is 5 (max allowed is 3)
- *                else {}
- *             }
- *          }
- *       }
- *    }
- * }
- * </pre>
- * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
  * <p>
