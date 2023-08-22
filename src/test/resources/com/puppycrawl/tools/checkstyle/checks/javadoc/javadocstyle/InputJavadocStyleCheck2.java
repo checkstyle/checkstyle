@@ -21,4 +21,11 @@ public class InputJavadocStyleCheck2 {
  */
 // violation 4 lines above 'Extra HTML tag found: </body>'
 class check {
+
+    /**
+     * Clear the cache and free all cached SSL_SESSION*.
+     */
+    synchronized void clear() {
+    }
+
 }
