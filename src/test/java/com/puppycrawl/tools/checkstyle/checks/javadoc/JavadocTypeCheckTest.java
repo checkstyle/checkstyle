@@ -416,7 +416,9 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testJavadocType() throws Exception {
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        final String[] expected = {
+            "28:5: " + getCheckMessage(MSG_MISSING_TAG, "@param <T>"),
+        };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocType3.java"), expected);
     }
