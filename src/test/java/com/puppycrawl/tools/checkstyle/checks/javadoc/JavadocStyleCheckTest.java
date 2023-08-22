@@ -771,4 +771,14 @@ public class JavadocStyleCheckTest
                 getPath("InputJavadocStyleCheck2.java"),
                 expected);
     }
+
+    @Test
+    public void testJavadocStyleCheck3() throws Exception {
+        final String[] expected = {
+            "11: " + getCheckMessage(MSG_NO_PERIOD),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocStyleCheck3.java"),
+                expected);
+    }
 }
