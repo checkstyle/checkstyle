@@ -106,30 +106,34 @@ line 5: ////////////////////////////////////////////////////////////////////
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check such that no violations arise.
           Default values of properties are used.
         </p>
 
         <source>
-&lt;module name=&quot;Header&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;Header&quot;/&gt;
+&lt;/module&gt;
         </source>
 
-        <p>
+        <p id="Example2-config">
           To configure the check to use header file <code>&quot;config/java.header&quot;</code> and
           ignore lines <code>2</code>, <code>3</code>, and <code> 4</code> and only process Java
           files:
         </p>
 
         <source>
-&lt;module name=&quot;Header&quot;&gt;
-  &lt;property name=&quot;headerFile&quot; value=&quot;config/java.header&quot;/&gt;
-  &lt;property name=&quot;ignoreLines&quot; value=&quot;2, 3, 4&quot;/&gt;
-  &lt;property name=&quot;fileExtensions&quot; value=&quot;java&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;Header&quot;&gt;
+    &lt;property name=&quot;headerFile&quot; value=&quot;config/java.header&quot;/&gt;
+    &lt;property name=&quot;ignoreLines&quot; value=&quot;2, 3, 4&quot;/&gt;
+    &lt;property name=&quot;fileExtensions&quot; value=&quot;java&quot;/&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
 
-        <p>
+        <p id="Example3-code">
           To configure the check to verify that each file starts with the
           header
         </p>
@@ -138,13 +142,15 @@ line 5: ////////////////////////////////////////////////////////////////////
 // All rights reserved
         </source>
 
-        <p>
+        <p id="Example3-config">
           without the need for an external header file:
         </p>
         <source>
-&lt;module name=&quot;Header&quot;&gt;
-  &lt;property name=&quot;header&quot;
-    value=&quot;// Copyright (C) 2004 MyCompany\n// All rights reserved&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;Header&quot;&gt;
+    &lt;property name=&quot;header&quot;
+      value=&quot;// Copyright (C) 2004 MyCompany\n// All rights reserved&quot;/&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
       </subsection>

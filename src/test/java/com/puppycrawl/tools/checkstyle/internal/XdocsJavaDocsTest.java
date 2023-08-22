@@ -161,6 +161,8 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         "CommentsIndentation",
         "DescendantToken",
         "FinalParameters",
+        "Header",
+        "RegexpHeader",
         "Indentation",
         "NewlineAtEndOfFile",
         "NoCodeInFile",

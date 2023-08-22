@@ -1,0 +1,13 @@
+/*xml
+<module name="Checker">
+  <module name="Header">
+    <property name="header"
+      value="// Copyright (C) 2004 MyCompany\n// All rights reserved"/>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+// Copyright (C) 2004 MyCompany
+// All rights reserved
+// xdoc section -- end
