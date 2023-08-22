@@ -37,29 +37,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * their employer's coding standards forbid them.
  * </p>
  * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name=&quot;AvoidInlineConditionals&quot;/&gt;
- * </pre>
- * <p>Example:</p>
- * <pre>
- * int x = 5;
- * boolean foobar = (x == 5); // OK
- *
- * String text;
- * text = (text == null) ? "" : text; // violation
- *
- * String b;
- * if (a != null &amp;&amp; a.length() &gt;= 1) { // OK
- *   b = a.substring(1);
- * } else {
- *   b = null;
- * }
- *
- * b = (a != null &amp;&amp; a.length() &gt;= 1) ? a.substring(1) : null; // violation
- * </pre>
- * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
  * <p>

@@ -144,206 +144,114 @@ class PageBuilder {
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name="HiddenField"/&gt;
-        </source>
-        <source>
-public class SomeClass {
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/hiddenfield/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/hiddenfield/Example1.txt"/>
+          <param name="type" value="code"/>
+        </macro>
 
-  private String field;
-  private String testField;
-
-  public SomeClass(String testField) { // violation, 'testField' param hides 'testField' field
-  }
-  public void method(String param) { // OK
-      String field = param; // violation, 'field' variable hides 'field' field
-  }
-  public void setTestField(String testField) { // violation, 'testField' param
-                                               // hides 'testField' field
-      this.field = field;
-  }
-  public SomeClass setField(String field) { // violation, 'field' param hides 'field' field
-      this.field = field;
-  }
-}
-        </source>
-
-        <p>
+        <p id="Example2-config">
           To configure the check so that it checks local variables but not
           parameters:
         </p>
-        <source>
-&lt;module name="HiddenField"&gt;
-  &lt;property name="tokens" value="VARIABLE_DEF"/&gt;
-&lt;/module&gt;
-        </source>
-        <source>
-public class SomeClass {
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/hiddenfield/Example2.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/hiddenfield/Example2.txt"/>
+          <param name="type" value="code"/>
+        </macro>
 
-  private String field;
-  private String testField;
-
-  public SomeClass(String testField) { // OK, 'testField' param doesn't hide any field
-  }
-  public void method(String param) { // OK
-      String field = param; // violation, 'field' variable hides 'field' field
-  }
-  public void setTestField(String testField) { // OK, 'testField' param doesn't hide any field
-      this.field = field;
-  }
-  public SomeClass setField(String field) { // OK, 'field' param doesn't hide any field
-      this.field = field;
-  }
-}
-        </source>
-
-        <p>
+        <p id="Example3-config">
           To configure the check so that it ignores the variables and parameters named
           "test":
         </p>
-        <source>
-&lt;module name="HiddenField"&gt;
-  &lt;property name="ignoreFormat" value="^testField"/&gt;
-&lt;/module&gt;
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/hiddenfield/Example3.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example3-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/hiddenfield/Example3.txt"/>
+          <param name="type" value="code"/>
+        </macro>
 
-        <source>
-public class SomeClass {
-
-  private String field;
-  private String testField;
-
-  public SomeClass(String testField) { // OK, because it match ignoreFormat
-  }
-  public void method(String param) { // OK
-      String field = param; // violation, 'field' variable hides 'field' field
-  }
-  public void setTestField(String testField) { // OK, because it match ignoreFormat
-      this.field = field;
-  }
-  public SomeClass setField(String field) { // violation, 'field' param hides 'field' field
-      this.field = field;
-  }
-}
-        </source>
-
-        <p>
+        <p id="Example4-config">
           To configure the check so that it ignores constructor parameters:
         </p>
-        <source>
-&lt;module name="HiddenField"&gt;
-  &lt;property name="ignoreConstructorParameter" value="true"/&gt;
-&lt;/module&gt;
-        </source>
-        <source>
-public class SomeClass {
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/hiddenfield/Example4.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example4-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/hiddenfield/Example4.txt"/>
+          <param name="type" value="code"/>
+        </macro>
 
-  private String field;
-  private String testField;
-
-  public SomeClass(String testField) { // OK, 'testField' param doesn't hide any field
-  }
-  public void method(String param) { // OK
-      String field = param; // violation, 'field' variable hides 'field' field
-  }
-  public void setTestField(String testField) { // violation, 'testField' variable
-                                               // hides 'testField' field
-      this.field = field;
-  }
-  public SomeClass setField(String field) { // violation, 'field' param hides 'field' field
-      this.field = field;
-  }
-}
-        </source>
-
-        <p>
+        <p id="Example5-config">
           To configure the check so that it ignores the parameter of setter
           methods:
         </p>
-        <source>
-&lt;module name="HiddenField"&gt;
-  &lt;property name="ignoreSetter" value="true"/&gt;
-&lt;/module&gt;
-        </source>
-        <source>
-public class SomeClass {
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/hiddenfield/Example5.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example5-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/hiddenfield/Example5.txt"/>
+          <param name="type" value="code"/>
+        </macro>
 
-  private String field;
-  private String testField;
-
-  public SomeClass(String testField) { // violation, 'testField' param hides 'testField' field
-  }
-  public void method(String param) { // OK
-      String field = param; // violation, 'field' variable hides 'field' field
-  }
-  public void setTestField(String testField) { // OK, 'testField' param doesn't hide any field
-      this.field = field;
-  }
-  public SomeClass setField(String field) { // violation, 'field' param hides 'field' field
-      this.field = field;
-  }
-}
-        </source>
-
-        <p>
+        <p id="Example6-config">
           To configure the check so that it ignores the parameter of setter
           methods recognizing setter as returning either <code>void</code> or
           a class in which it is declared:
         </p>
-        <source>
-&lt;module name="HiddenField"&gt;
-  &lt;property name="ignoreSetter" value="true"/&gt;
-  &lt;property name="setterCanReturnItsClass" value="true"/&gt;
-&lt;/module&gt;
-        </source>
-        <source>
-public class SomeClass {
-
-  private String field;
-  private String testField;
-
-  public SomeClass(String testField) { // violation, 'testField' param hides 'testField' field
-  }
-  public void method(String param) { // OK
-      String field = param; // violation, 'field' variable hides 'field' field
-  }
-  public void setTestField(String testField) { // OK, 'testField' param doesn't hide any field
-      this.field = field;
-  }
-  public SomeClass setField(String field) { // OK, 'field' param doesn't hide any field
-      this.field = field;
-  }
-}
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/hiddenfield/Example6.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example6-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/hiddenfield/Example6.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example7-config">
           To configure the check so that it ignores parameters of abstract methods:
         </p>
-        <source>
-&lt;module name="HiddenField"&gt;
-  &lt;property name="ignoreAbstractMethods" value="true"/&gt;
-&lt;/module&gt;
-        </source>
-        <source>
-abstract class SomeClass {
-
-  private String field;
-
-  public SomeClass(int field) { // violation, 'field' param hides a 'field' field
-    float field; // violation, 'field' variable hides a 'field' field
-  }
-  public abstract int method(String field); // OK
-}
-
-public class Demo extends SomeClass {
-
-  public int method(String param){
-    return param;
-  }
-}
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/hiddenfield/Example7.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example7-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/hiddenfield/Example7.txt"/>
+          <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

@@ -75,60 +75,6 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
  * of bug can elude testing and code inspections.
  * </p>
  * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name=&quot;CovariantEquals&quot;/&gt;
- * </pre>
- * <p>
- * For example:
- * </p>
- * <pre>
- * class Test {
- *   public boolean equals(Test i) {  // violation
- *     return false;
- *   }
- * }
- * </pre>
- * <p>
- * The same class without violations:
- * </p>
- * <pre>
- * class Test {
- *   public boolean equals(Test i) {  // no violation
- *     return false;
- *   }
- *
- *   public boolean equals(Object i) {
- *     return false;
- *   }
- * }
- * </pre>
- * <p>
- * Another example:
- * </p>
- * <pre>
- * record Test(String str) {
- *   public boolean equals(Test r) {  // violation
- *     return false;
- *   }
- * }
- * </pre>
- * <p>
- * The same record without violations:
- * </p>
- * <pre>
- * record Test(String str) {
- *   public boolean equals(Test r) {  // no violation
- *     return false;
- *   }
- *
- *   public boolean equals(Object r) {
- *     return false;
- *   }
- * }
- * </pre>
- * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
  * <p>

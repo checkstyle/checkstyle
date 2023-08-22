@@ -33,30 +33,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * specification</a> for detailed information.
  * </p>
  * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name=&quot;AvoidNoArgumentSuperConstructorCall&quot;/&gt;
- * </pre>
- * <p>
- * Example of violations
- * </p>
- * <pre>
- * class MyClass extends SomeOtherClass {
- *     MyClass() {
- *         super(); // violation
- *     }
- *
- *     MyClass(int arg) {
- *         super(arg); // OK, call with argument have to be explicit
- *     }
- *
- *     MyClass(long arg) {
- *         // OK, call is implicit
- *     }
- * }
- * </pre>
- * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
  * <p>
