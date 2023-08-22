@@ -147,30 +147,22 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name="ImportOrder"/&gt;
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importorder/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">
           Example:
         </p>
-        <source>
-import java.io.IOException;
-import java.net.URL;
-
-import java.io.IOException; // violation, extra separation before import
-                            // and wrong order, comes before 'java.net.URL'.
-import javax.net.ssl.TrustManager; // violation, extra separation due to above comment
-import javax.swing.JComponent;
-import org.apache.http.conn.ClientConnectionManager; // OK
-import java.util.Set; // violation, wrong order, 'java' should not come after 'org' imports
-import com.neurologic.http.HttpClient; // violation, wrong order, 'com' imports comes at top
-import com.neurologic.http.impl.ApacheHttpClient; // OK
-
-public class SomeClass { }
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importorder/Example1.txt"/>
+          <param name="type" value="code"/>
+        </macro>
         <p>
           To configure the check so that it matches default Eclipse formatter configuration
           (tested on Kepler and Luna releases):
@@ -182,42 +174,27 @@ public class SomeClass { }
           <li>imports will be sorted in the groups</li>
           <li>groups are separated by, at least, one blank line and aren't separated internally</li>
         </ul>
-        <p>Notes:</p>
+        <p id="Example2-config">Notes:</p>
         <ul>
           <li>"com" package is not mentioned on configuration, because it is
               ignored by Eclipse Kepler and Luna (looks like Eclipse defect)</li>
           <li>configuration below doesn't work in all 100% cases due to inconsistent behavior
               prior to Mars release, but covers most scenarios</li>
         </ul>
-        <source>
-&lt;module name="ImportOrder"&gt;
-  &lt;property name="groups" value="/^java\./,javax,org"/&gt;
-  &lt;property name="ordered" value="true"/&gt;
-  &lt;property name="separated" value="true"/&gt;
-  &lt;property name="option" value="above"/&gt;
-  &lt;property name="sortStaticImportsAlphabetically" value="true"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importorder/Example2.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">
           Example:
         </p>
-        <source>
-import static java.lang.System.out;
-import static java.lang.Math; // violation, alphabetical case-sensitive ASCII order, 'M' &lt; 'S'
-import java.io.IOException;
-
-import java.net.URL; // violation, extra separation before import
-import java.security.KeyManagementException;
-
-import javax.net.ssl.TrustManager;
-
-import javax.net.ssl.X509TrustManager; // violation, groups should not be separated internally
-
-import org.apache.http.conn.ClientConnectionManager;
-
-public class SomeClass { }
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importorder/Example2.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example3-config">
           To configure the check so that it matches default Eclipse formatter configuration
           (tested on Mars release):
         </p>
@@ -229,38 +206,19 @@ public class SomeClass { }
           <li>groups are separated by, at least, one blank line and aren't separated internally</li>
         </ul>
 
-        <source>
-&lt;module name="ImportOrder"&gt;
-  &lt;property name="groups" value="/^java\./,javax,org,com"/&gt;
-  &lt;property name="ordered" value="true"/&gt;
-  &lt;property name="separated" value="true"/&gt;
-  &lt;property name="option" value="above"/&gt;
-  &lt;property name="sortStaticImportsAlphabetically" value="true"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importorder/Example3.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example3-code">
           Example:
         </p>
-        <source>
-import static java.io.File.createTempFile;
-import static java.lang.Math.abs; // OK, alphabetical case-sensitive ASCII order, 'i' &lt; 'l'
-import java.lang.Math.sqrt; // OK, follows property 'Option' value 'above'
-import java.io.File; // violation, alphabetical case-sensitive ASCII order, 'i' &lt; 'l'
-
-import java.io.IOException; // violation, extra separation in 'java' import group
-
-import org.albedo.*;
-
-import static javax.WindowConstants.*; // violation, wrong order, 'javax' comes before 'org'
-import javax.swing.JComponent;
-import org.apache.http.ClientConnectionManager; // violation, must separate from previous import
-import org.linux.apache.server.SoapServer; // OK
-
-import com.neurologic.http.HttpClient; // OK
-import com.neurologic.http.impl.ApacheHttpClient; // OK
-
-public class SomeClass { }
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importorder/Example3.txt"/>
+          <param name="type" value="code"/>
+        </macro>
         <p>
           To configure the check so that it matches default IntelliJ IDEA formatter
           configuration (tested on v2018.2):
@@ -281,39 +239,24 @@ public class SomeClass { }
           ("java", "javax"). There is no flexibility to enforce empty lines between some
           groups and no empty lines between other groups.
         </p>
-        <p>
+        <p id="Example4-config">
           Note: "separated" option is disabled because IDEA default has blank line
           between "java" and static imports, and no blank line between "javax" and "java".
         </p>
-        <source>
-&lt;module name="ImportOrder"&gt;
-  &lt;property name="groups" value="*,javax,java"/&gt;
-  &lt;property name="ordered" value="true"/&gt;
-  &lt;property name="separated" value="false"/&gt;
-  &lt;property name="option" value="bottom"/&gt;
-  &lt;property name="sortStaticImportsAlphabetically" value="true"/&gt;
-&lt;/module&gt;
-&lt;module name="SuppressionXpathSingleFilter"&gt;
-  &lt;property name="checks" value="ImportOrder"/&gt;
-  &lt;property name="message" value="^'java\..*'.*"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importorder/Example4.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example4-code">
           Example:
         </p>
-        <source>
-import com.neurologic.http.impl.ApacheHttpClient; // OK
-import static java.awt.Button.A;
-import javax.swing.JComponent; // violation, wrong order, caused by above static import
-                               // all static imports comes at bottom
-import java.net.URL; // violation, extra separation in import group
-import java.security.KeyManagementException;
-import javax.swing.JComponent; // violation, wrong order, 'javax' should be above 'java' imports
-import com.neurologic.http.HttpClient; // violation, wrong order, 'com' imports should be at top
-
-public class TestClass { }
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importorder/Example4.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example5-config">
           To configure the check so that it matches default NetBeans formatter configuration
           (tested on v8):
         </p>
@@ -322,23 +265,19 @@ public class TestClass { }
               group</li>
           <li>static imports are not separated, they will be sorted along with other imports</li>
         </ul>
-        <source>
-&lt;module name="ImportOrder"&gt;
-  &lt;property name="option" value="inflow"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importorder/Example5.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example5-code">
           Example:
         </p>
-        <source>
-import static java.io.File.createTempFile;
-import java.lang.Math.sqrt;
-
-import javax.swing.JComponent; // violation, extra separation in import group
-import static javax.windowConstants.*; // OK
-                                    // all static imports are processed like non static imports.
-public class SomeClass { }
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importorder/Example5.txt"/>
+          <param name="type" value="code"/>
+        </macro>
         <p>
           Group descriptions enclosed in slashes are interpreted as regular expressions.
           If multiple groups match, the one matching a longer
@@ -360,49 +299,42 @@ public class SomeClass { }
           with <b>top</b> or <b>bottom</b> options. This option is helping in reconciling
           of this Check and other tools like Eclipse's Organize Imports feature.
         </p>
-        <p>
+        <p id="Example6-config">
           To configure the Check allows static imports grouped to the <b>top</b> being sorted
           alphabetically:
         </p>
-        <source>
-&lt;module name="ImportOrder"&gt;
-  &lt;property name="sortStaticImportsAlphabetically" value="true"/&gt;
-  &lt;property name="option" value="top"/&gt;
-&lt;/module&gt;
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importorder/Example6.txt"/>
+          <param name="type" value="config"/>
+        </macro>
 
-        <source>
-import static java.lang.Math.PI;
-import static java.lang.Math.abs; // OK, alphabetical case-sensitive ASCII order, 'P' &lt; 'a'
-import static org.abego.treelayout.Configuration.AlignmentInLevel; // OK, alphabetical order
+        <p id="Example6-code">
+          Example:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importorder/Example6.txt"/>
+          <param name="type" value="code"/>
+        </macro>
 
-import java.util.Set; // violation, extra separation in import group
-import static java.lang.Math.abs; // violation, wrong order, all static imports comes at 'top'
-import org.abego.*;
-
-public class SomeClass { }
-        </source>
-
-        <p>
+        <p id="Example7-config">
           To configure the Check with groups of static imports:
         </p>
 
-        <source>
-&lt;module name="ImportOrder"&gt;
-  &lt;property name="staticGroups" value="org,java"/&gt;
-  &lt;property name="sortStaticImportsAlphabetically" value="true"/&gt;
-  &lt;property name="option" value="top"/&gt;
-&lt;/module&gt;
-        </source>
-
-        <source>
-import static org.abego.treelayout.Configuration.AlignmentInLevel; // Group 1
-import static java.lang.Math.abs; // Group 2
-import static java.lang.String.format; // Group 2
-import static com.google.common.primitives.Doubles.BYTES; // Group "everything else"
-
-public class SomeClass { }
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importorder/Example7.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example7-code">
+          Example:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importorder/Example7.txt"/>
+          <param name="type" value="code"/>
+        </macro>
 
         <p>
           The following example shows the idea of 'useContainerOrderingForStatic' option that is
@@ -424,38 +356,33 @@ import static HttpHeaders.Names.DATE  =&gt; HttpHeaders.Names
         <p>
           According to this logic, HttpHeaders.Names should come after HttpHeaders.
         </p>
-        <p>
+        <p id="Example8-config">
           Example for <code>useContainerOrderingForStatic=true</code>
         </p>
-        <source>
-&lt;module name="ImportOrder"&gt;
-  &lt;property name="useContainerOrderingForStatic" value="true"/&gt;
-  &lt;property name="ordered" value="true"/&gt;
-  &lt;property name="option" value="top"/&gt;
-  &lt;property name="caseSensitive" value="false"/&gt;
-  &lt;property name="sortStaticImportsAlphabetically" value="true"/&gt;
-&lt;/module&gt;
-        </source>
-        <source>
-import static io.netty.handler.codec.http.HttpConstants.COLON;
-import static io.netty.handler.codec.http.HttpHeaders.addHeader;
-import static io.netty.handler.codec.http.HttpHeaders.setHeader;
-import static io.netty.handler.codec.http.HttpHeaders.Names.DATE;
-
-public class InputEclipseStaticImportsOrder { }
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importorder/Example8.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example8-code">
+          Example:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importorder/Example8.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example9-config">
           Example for <code>useContainerOrderingForStatic=false</code>
         </p>
-        <source>
-&lt;module name="ImportOrder"&gt;
-  &lt;property name="useContainerOrderingForStatic" value="false"/&gt;
-  &lt;property name="ordered" value="true"/&gt;
-  &lt;property name="option" value="top"/&gt;
-  &lt;property name="caseSensitive" value="false"/&gt;
-  &lt;property name="sortStaticImportsAlphabetically" value="true"/&gt;
-&lt;/module&gt;
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importorder/Example9.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example9-code">
+          Example:
+        </p>
         <source>
 import static io.netty.handler.codec.http.HttpConstants.COLON;
 import static io.netty.handler.codec.http.HttpHeaders.addHeader;
@@ -467,67 +394,59 @@ public class InputEclipseStaticImportsOrder { }
         <p>
           To configure the check to enforce static import group separation
         </p>
-        <p>
+        <p id="Example10-config">
           Example for <code>separatedStaticGroups=true</code>
         </p>
-        <source>
-&lt;module name="ImportOrder"&gt;
-  &lt;property name="staticGroups" value="*,java,javax,org"/&gt;
-  &lt;property name="option" value="top"/&gt;
-  &lt;property name="separatedStaticGroups" value="true"/&gt;
-&lt;/module&gt;
-        </source>
-        <source>
-import static java.lang.Math.PI;
-import static java.io.File.createTempFile;
-import static javax.swing.JComponent; // violation, should be separated from previous imports
-import static javax.WindowConstants.*; // OK
-
-import java.net.URL;
-
-public class SomeClass { }
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importorder/Example10.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example10-code">
+          Example:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importorder/Example10.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example11-config">
           To configure the Check with groups of static imports when staticGroups=""
           represents all imports as {@code everything else} group:
         </p>
-        <source>
-&lt;module name="ImportOrder"&gt;
-  &lt;property name="staticGroups" value=""/&gt;
-  &lt;property name="option" value="top"/&gt;
-&lt;/module&gt;
-        </source>
-
-        <source>
-import static java.io.File.listRoots;   // OK
-import static javax.swing.WindowConstants.*; // OK
-import static java.io.File.createTempFile; // OK
-import static com.puppycrawl.tools.checkstyle;  // OK
-
-public class SomeClass { }
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importorder/Example11.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example11-code">
+          Example:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importorder/Example11.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example12-config">
           To configure the Check with groups of static imports when
           staticGroups="java, javax" represents three groups i.e java*, javax*
           and * (everything else). In below example the static imports <code> com...</code>
           should be in last group:
         </p>
 
-        <source>
-&lt;module name="ImportOrder"&gt;
-  &lt;property name="staticGroups" value="java, javax"/&gt;
-  &lt;property name="option" value="top"/&gt;
-&lt;/module&gt;
-        </source>
-
-        <source>
-import static java.io.File.listRoots;   // OK
-import static javax.swing.WindowConstants.*; // OK
-import static java.io.File.createTempFile; // violation should be before javax
-import static com.puppycrawl.tools.checkstyle;  // OK
-
-public class SomeClass { }
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importorder/Example12.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example12-code">
+          Example:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importorder/Example12.txt"/>
+          <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

@@ -1,0 +1,24 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="CustomImportOrder">
+      <property name="customImportOrderRules"
+        value="STATIC###STANDARD_JAVA_PACKAGE###THIRD_PARTY_PACKAGE"/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+package com.company;
+
+import static java.util.*; // OK
+
+import java.time.*; // OK
+import javax.net.*; // OK
+import static java.io.*; // violation as static imports should be in top
+
+import org.apache.commons.io.FileUtils; // OK
+import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; // OK
+import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; // OK
+// xdoc section -- end
