@@ -9,6 +9,9 @@ package /** package */ com.puppycrawl.tools
 
 public class InputJavadocStyleCheck2 {
 
+    /** Empty constructor block. **/
+    public InputJavadocStyleCheck2() {
+    }
 }
 
 /**
