@@ -79,13 +79,17 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;UnusedImports&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;UnusedImports&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
         </source>
-        <p>Example:</p>
+        <p id="Example1-code">Example:</p>
         <source>
 // limitation as it match field name in code
 import java.awt.Component; //OK
@@ -111,15 +115,19 @@ class MyClass{
     int[] array = copyOf(arr , 1);
 }
         </source>
-        <p>
+        <p id="Example2-config">
           To configure the check so that it ignores the imports referenced in Javadoc comments:
         </p>
         <source>
-&lt;module name=&quot;UnusedImports&quot;&gt;
-  &lt;property name=&quot;processJavadoc&quot; value=&quot;false&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;UnusedImports&quot;&gt;
+      &lt;property name=&quot;processJavadoc&quot; value=&quot;false&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p>Example:</p>
+        <p id="Example2-code">Example:</p>
         <source>
 // limitation as it match field name in code
 import java.awt.Component; //OK
