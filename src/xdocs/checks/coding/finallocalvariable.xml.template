@@ -71,22 +71,24 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name="FinalLocalVariable"/&gt;
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/finallocalvariable/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
 
-        <p>
+        <p id="Example2-config">
           To configure the check so that it checks local variables and
           parameters:
         </p>
-        <source>
-&lt;module name="FinalLocalVariable"&gt;
-  &lt;property name="tokens" value="VARIABLE_DEF,PARAMETER_DEF"/&gt;
-&lt;/module&gt;
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/finallocalvariable/Example2.txt"/>
+          <param name="type" value="config"/>
+        </macro>
         <p>
           By default, this Check skip final validation on
           <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-14.html#jls-14.14.2">
@@ -96,46 +98,36 @@
           Option 'validateEnhancedForLoopVariable' could be used to make Check to validate
           even variable from Enhanced For Loop.
         </p>
-        <p>
+        <p id="Example3-config">
           An example of how to configure the check so that it also validates enhanced For Loop
           Variable is:
         </p>
-        <source>
-&lt;module name="FinalLocalVariable"&gt;
-  &lt;property name="tokens" value="VARIABLE_DEF"/&gt;
-  &lt;property name="validateEnhancedForLoopVariable" value="true"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>Example:</p>
-        <source>
-for (int number : myNumbers) { // violation
-  System.out.println(number);
-}
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/finallocalvariable/Example3.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example3-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/finallocalvariable/Example3.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example4-config">
           An example of how to configure check on local variables and parameters
           but do not validate loop variables:
         </p>
-        <source>
-&lt;module name="FinalLocalVariable"&gt;
-  &lt;property name="tokens" value="VARIABLE_DEF,PARAMETER_DEF"/&gt;
-  &lt;property name="validateEnhancedForLoopVariable" value="false"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>Example:</p>
-        <source>
-public class MyClass {
-  static int foo(int x, int y) { //violations, parameters should be final
-    return x+y;
-  }
-  public static void main (String []args) { //violation, parameters should be final
-    for (String i : args) {
-      System.out.println(i);
-    }
-    int result=foo(1,2); // violation
-  }
-}
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/finallocalvariable/Example4.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example4-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/finallocalvariable/Example4.txt"/>
+          <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

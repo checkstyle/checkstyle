@@ -102,13 +102,17 @@ return new int[] {
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;ArrayTrailingComma&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;ArrayTrailingComma&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
         </source>
-        <p>
+        <p id="Example1-code">
           Which results in the following violations:
         </p>
         <source>
@@ -145,13 +149,17 @@ int[] a2 = new int[]{
   ,};        // no violation
         </source>
 
-        <p>To configure check to always validate trailing comma:</p>
+        <p id="Example2-config">To configure check to always validate trailing comma:</p>
         <source>
-&lt;module name=&quot;ArrayTrailingComma&quot;&gt;
-    &lt;property name=&quot;alwaysDemandTrailingComma&quot; value=&quot;true&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;ArrayTrailingComma&quot;&gt;
+        &lt;property name=&quot;alwaysDemandTrailingComma&quot; value=&quot;true&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p>Example:</p>
+        <p id="Example2-code">Example:</p>
         <source>
 int[] numbers = {1, 2, 3}; // violation
 boolean[] bools = {

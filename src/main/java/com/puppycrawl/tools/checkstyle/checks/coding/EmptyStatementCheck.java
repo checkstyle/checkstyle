@@ -30,26 +30,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Empty statements often introduce bugs that are hard to spot
  * </p>
  * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name=&quot;EmptyStatement&quot;/&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * public void foo() {
- *   int i = 5;
- *   if (i &gt; 3); // violation, ";" right after if statement
- *     i++;
- *   for (i = 0; i &lt; 5; i++); // violation
- *     i++;
- *   while (i &gt; 10) // OK
- *     i++;
- * }
- * </pre>
- * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
  * <p>

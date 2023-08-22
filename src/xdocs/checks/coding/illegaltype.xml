@@ -182,12 +182,17 @@ List list; //No violation here
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
             To configure the default check:
         </p>
         <source>
-&lt;module name=&quot;IllegalType&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;IllegalType&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
         </source>
+        <p id="Example1-code">Example:</p>
         <source>
 public class Test extends TreeSet { // violation
   public &lt;T extends java.util.HashSet&gt; void method() { // violation
@@ -205,14 +210,19 @@ public class Test extends TreeSet { // violation
 
 }
         </source>
-        <p>
+        <p id="Example2-config">
           To configure the Check so that particular tokens are checked:
         </p>
         <source>
-&lt;module name=&quot;IllegalType&quot;&gt;
-  &lt;property name=&quot;tokens&quot; value=&quot;METHOD_DEF&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;IllegalType&quot;&gt;
+      &lt;property name=&quot;tokens&quot; value=&quot;METHOD_DEF&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
+        <p id="Example2-code">Example:</p>
         <source>
 public class Test extends TreeSet { // OK
   public &lt;T extends java.util.HashSet&gt; void method() { // violation
@@ -229,14 +239,19 @@ public class Test extends TreeSet { // OK
 
 }
         </source>
-        <p>
+        <p id="Example3-config">
           To configure the Check so that it ignores function() methods:
         </p>
         <source>
-&lt;module name=&quot;IllegalType&quot;&gt;
-  &lt;property name=&quot;ignoredMethodNames&quot; value=&quot;function&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;IllegalType&quot;&gt;
+      &lt;property name=&quot;ignoredMethodNames&quot; value=&quot;function&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
+        <p id="Example3-code">Example:</p>
         <source>
 public class Test {
   public HashMap&lt;String, String&gt; function() { // OK
@@ -248,15 +263,20 @@ public class Test {
   }
 }
         </source>
-        <p>
+        <p id="Example4-config">
           To configure the Check so that it validates abstract class names:
         </p>
         <source>
-&lt;module name=&quot;IllegalType&quot;&gt;
-  &lt;property name=&quot;validateAbstractClassNames&quot; value=&quot;true&quot;/&gt;
-  &lt;property name=&quot;illegalAbstractClassNameFormat&quot; value=&quot;Gitt&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;IllegalType&quot;&gt;
+      &lt;property name=&quot;validateAbstractClassNames&quot; value=&quot;true&quot;/&gt;
+      &lt;property name=&quot;illegalAbstractClassNameFormat&quot; value=&quot;Gitt&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
+        <p id="Example4-code">Example:</p>
         <source>
 class Test extends Gitter { // violation
 }
@@ -264,16 +284,21 @@ class Test extends Gitter { // violation
 class Test1 extends Github { // OK
 }
         </source>
-        <p>
+        <p id="Example5-config">
           To configure the Check so that it verifies only public, protected or static
            methods and fields:
         </p>
         <source>
-&lt;module name=&quot;IllegalType&quot;&gt;
-  &lt;property name=&quot;memberModifiers&quot; value=&quot;LITERAL_PUBLIC,
-    LITERAL_PROTECTED, LITERAL_STATIC&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;IllegalType&quot;&gt;
+      &lt;property name=&quot;memberModifiers&quot; value=&quot;LITERAL_PUBLIC,
+        LITERAL_PROTECTED, LITERAL_STATIC&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
+        <p id="Example5-code">Example:</p>
         <source>
 public class Test {
   public HashMap&lt;String, String&gt; function1() { // violation
@@ -294,15 +319,20 @@ public class Test {
 
 }
         </source>
-        <p>
+        <p id="Example6-config">
           To configure the check so that it verifies usage of types Boolean and Foo:
         </p>
         <source>
-&lt;module name=&quot;IllegalType&quot;&gt;
-  &lt;property name=&quot;illegalClassNames&quot; value=&quot;Boolean, Foo&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;IllegalType&quot;&gt;
+      &lt;property name=&quot;illegalClassNames&quot; value=&quot;Boolean, Foo&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
 
+        <p id="Example6-code">Example:</p>
         <source>
 public class Test {
 
@@ -326,20 +356,25 @@ public class Test {
 
 }
         </source>
-        <p>
+        <p id="Example7-config">
           To configure the check to target fields types only:
         </p>
         <source>
-&lt;module name=&quot;IllegalType&quot;&gt;
-  &lt;property name=&quot;illegalClassNames&quot; value=&quot;java.util.Optional&quot;/&gt;
-  &lt;property name=&quot;tokens&quot; value=&quot;VARIABLE_DEF&quot;/&gt;
-  &lt;property name=&quot;id&quot; value=&quot;IllegalTypeOptionalAsField&quot;/&gt;
-&lt;/module&gt;
-&lt;module name=&quot;SuppressionXpathSingleFilter&quot;&gt;
-  &lt;property name=&quot;query&quot; value=&quot;//METHOD_DEF//*&quot;/&gt;
-  &lt;property name=&quot;id&quot; value=&quot;IllegalTypeOptionalAsField&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;IllegalType&quot;&gt;
+      &lt;property name=&quot;illegalClassNames&quot; value=&quot;java.util.Optional&quot;/&gt;
+      &lt;property name=&quot;tokens&quot; value=&quot;VARIABLE_DEF&quot;/&gt;
+      &lt;property name=&quot;id&quot; value=&quot;IllegalTypeOptionalAsField&quot;/&gt;
+    &lt;/module&gt;
+    &lt;module name=&quot;SuppressionXpathSingleFilter&quot;&gt;
+      &lt;property name=&quot;query&quot; value=&quot;//METHOD_DEF//*&quot;/&gt;
+      &lt;property name=&quot;id&quot; value=&quot;IllegalTypeOptionalAsField&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
+        <p id="Example7-code">Example:</p>
         <source>
 import java.util.Optional;
 

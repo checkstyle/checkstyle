@@ -47,13 +47,17 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;IllegalCatch&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;IllegalCatch&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
         </source>
-        <p>
+        <p id="Example1-code">
           Example:
         </p>
         <source>
@@ -83,17 +87,21 @@ try {
 
 }
         </source>
-        <p>
+        <p id="Example2-config">
           To configure the check to override the default list with
           ArithmeticException and OutOfMemoryError:
         </p>
         <source>
-&lt;module name=&quot;IllegalCatch&quot;&gt;
-  &lt;property name=&quot;illegalClassNames&quot; value=&quot;ArithmeticException,
-              OutOfMemoryError&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;IllegalCatch&quot;&gt;
+      &lt;property name=&quot;illegalClassNames&quot; value=&quot;ArithmeticException,
+                  OutOfMemoryError&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p>
+        <p id="Example2-code">
             Example:
         </p>
         <source>

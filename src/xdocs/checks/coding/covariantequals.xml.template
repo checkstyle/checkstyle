@@ -62,61 +62,47 @@ public boolean equals(Foo obj) {...}
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name="CovariantEquals"/&gt;
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/covariantequals/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
 
-        <p>
+        <p id="Example1-code">
           For example:
         </p>
-        <source>
-class Test {
-  public boolean equals(Test i) {  // violation
-    return false;
-  }
-}
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/covariantequals/Example1.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example2-code">
           The same class without violations:
         </p>
-        <source>
-class Test {
-  public boolean equals(Test i) {  // no violation
-    return false;
-  }
-
-  public boolean equals(Object i) {
-    return false;
-  }
-}
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/covariantequals/Example2.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example3-code">
           Another example:
         </p>
-        <source>
-record Test(String str) {
-    public boolean equals(Test r) {  // violation
-        return false;
-    }
-}
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/covariantequals/Example3.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example4-code">
           The same record without violations:
         </p>
-        <source>
-record Test(String str) {
-    public boolean equals(Test r) {  // no violation
-        return false;
-    }
-
-    public boolean equals(Object r) {
-        return false;
-    }
-}
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/covariantequals/Example4.txt"/>
+          <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

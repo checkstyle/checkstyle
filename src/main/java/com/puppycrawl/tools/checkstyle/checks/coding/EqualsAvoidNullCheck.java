@@ -52,40 +52,6 @@ import com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil;
  * </li>
  * </ul>
  * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name=&quot;EqualsAvoidNull&quot;/&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * String nullString = null;
- * nullString.equals("My_Sweet_String");            // violation
- * "My_Sweet_String".equals(nullString);            // OK
- * nullString.equalsIgnoreCase("My_Sweet_String");  // violation
- * "My_Sweet_String".equalsIgnoreCase(nullString);  // OK
- * </pre>
- * <p>
- * To configure the check to allow ignoreEqualsIgnoreCase:
- * </p>
- * <pre>
- * &lt;module name=&quot;EqualsAvoidNull&quot;&gt;
- *   &lt;property name=&quot;ignoreEqualsIgnoreCase&quot; value=&quot;true&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * String nullString = null;
- * nullString.equals("My_Sweet_String");            // violation
- * "My_Sweet_String".equals(nullString);            // OK
- * nullString.equalsIgnoreCase("My_Sweet_String");  // OK
- * "My_Sweet_String".equalsIgnoreCase(nullString);  // OK
- * </pre>
- * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
  * <p>
