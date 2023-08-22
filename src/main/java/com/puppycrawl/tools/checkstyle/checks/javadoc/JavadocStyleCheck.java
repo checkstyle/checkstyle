@@ -511,7 +511,7 @@ public class JavadocStyleCheck
             }
         }
 
-        return builder.toString().trim();
+        return builder.toString();
     }
 
     /**
