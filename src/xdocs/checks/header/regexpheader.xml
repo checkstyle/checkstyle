@@ -147,26 +147,30 @@ line 6: ^\W*$
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
             To configure the check such that no violations arise.
             Default values of properties are used.
         </p>
         <source>
-&lt;module name=&quot;RegexpHeader&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;RegexpHeader&quot;/&gt;
+&lt;/module&gt;
         </source>
 
-        <p>
+        <p id="Example2-config">
           To configure the check to use header file <code>&quot;config/java.header&quot;</code> and
           <code>10</code> and <code>13</code> multi-lines:
         </p>
         <source>
-&lt;module name=&quot;RegexpHeader&quot;&gt;
-  &lt;property name=&quot;headerFile&quot; value=&quot;config/java.header&quot;/&gt;
-  &lt;property name=&quot;multiLines&quot; value=&quot;10, 13&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;RegexpHeader&quot;&gt;
+    &lt;property name=&quot;headerFile&quot; value=&quot;config/java.header&quot;/&gt;
+    &lt;property name=&quot;multiLines&quot; value=&quot;10, 13&quot;/&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
 
-        <p>
+        <p id="Example3-code">
           To configure the check to verify that each file starts with the
           header
         </p>
@@ -175,29 +179,33 @@ line 6: ^\W*$
 ^// All rights reserved$
         </source>
 
-        <p>
+        <p id="Example3-config">
           without the need for an external header file:
         </p>
         <source>
-&lt;module name=&quot;RegexpHeader&quot;&gt;
-  &lt;property
-    name=&quot;header&quot;
-    value=&quot;^// Copyright \(C\) (\d\d\d\d -)? 2004 MyCompany$
-      \n^// All rights reserved$&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;RegexpHeader&quot;&gt;
+    &lt;property
+      name=&quot;header&quot;
+      value=&quot;^// Copyright \(C\) (\d\d\d\d -)? 2004 MyCompany$
+        \n^// All rights reserved$&quot;/&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
 
-        <p>
+        <p id="Example4-config">
           For regex containing <code>&quot;\n\n&quot;</code>
         </p>
         <source>
-&lt;module name=&quot;RegexpHeader&quot;&gt;
-  &lt;property
-    name=&quot;header&quot;
-    value=&quot;^package .*\n\n.*&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;RegexpHeader&quot;&gt;
+    &lt;property
+      name=&quot;header&quot;
+      value=&quot;^package .*\n\n.*&quot;/&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p>
+        <p id="Example4-code">
           <code>&quot;\n\n&quot;</code> will be treated as '^$' and will forcefully
           expect the line to be empty. For example -
         </p>
@@ -205,7 +213,7 @@ line 6: ^\W*$
 package com.some.package;
 public class ThisWillFail { }
         </source>
-        <p>
+        <p id="Example5-code">
           would fail for the regex above. Expected -
         </p>
         <source>

@@ -84,40 +84,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </li>
  * </ul>
  * <p>
- * To configure the check such that no violations arise.
- * Default values of properties are used.
- * </p>
- * <pre>
- * &lt;module name="Header"/&gt;
- * </pre>
- * <p>
- * To configure the check to use header file {@code "config/java.header"}
- * and ignore lines {@code 2}, {@code 3}, and {@code 4} and only process Java files:
- * </p>
- * <pre>
- * &lt;module name="Header"&gt;
- *   &lt;property name="headerFile" value="config/java.header"/&gt;
- *   &lt;property name="ignoreLines" value="2, 3, 4"/&gt;
- *   &lt;property name="fileExtensions" value="java"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * To configure the check to verify that each file starts with the header
- * </p>
- * <pre>
- * // Copyright (C) 2004 MyCompany
- * // All rights reserved
- * </pre>
- * <p>
- * without the need for an external header file:
- * </p>
- * <pre>
- * &lt;module name="Header"&gt;
- *   &lt;property name="header"
- *     value="// Copyright (C) 2004 MyCompany\n// All rights reserved"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.Checker}
  * </p>
  * <p>
