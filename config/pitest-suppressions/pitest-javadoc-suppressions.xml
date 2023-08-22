@@ -351,14 +351,14 @@
     <lineContent>&amp;&amp; previousNode.getType() != JavadocTokenTypes.TEXT) {</lineContent>
   </mutation>
 
-  <mutation unstable="false">
-    <sourceFile>JavadocParagraphCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck</mutatedClass>
-    <mutatedMethod>isFirstParagraph</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
-    <description>removed conditional - replaced equality check with false</description>
-    <lineContent>|| previousNode.getType() != JavadocTokenTypes.LEADING_ASTERISK</lineContent>
-  </mutation>
+
+
+
+
+
+
+
+
 
   <mutation unstable="false">
     <sourceFile>JavadocStyleCheck.java</sourceFile>

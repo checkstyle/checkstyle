@@ -285,7 +285,7 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
         while (previousNode != null) {
             if (previousNode.getType() == JavadocTokenTypes.TEXT
                     && !CommonUtil.isBlank(previousNode.getText())
-                || previousNode.getType() != JavadocTokenTypes.LEADING_ASTERISK
+                || false
                     && previousNode.getType() != JavadocTokenTypes.NEWLINE
                     && previousNode.getType() != JavadocTokenTypes.TEXT) {
                 result = false;
