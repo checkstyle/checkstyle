@@ -79,72 +79,34 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name="UnusedImports"/&gt;
-        </source>
-        <p>Example:</p>
-        <source>
-// limitation as it match field name in code
-import java.awt.Component; //OK
-
-// no ability to recognize what import is not used
-import static java.util.Map.copyOf; //OK
-import static java.util.Arrays.copyOf; //OK
-
-import java.lang.String; // violation
-
-import java.util.Stack;  // OK
-import java.util.Map;   // violation
-
-import java.util.List; // OK
-
-/**
-* @link List
-*/
-class MyClass{
-    Stack stack = new Stack();
-    private Object Component;
-    int[] arr = {0,0};
-    int[] array = copyOf(arr , 1);
-}
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/unusedimports/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/unusedimports/Example1.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example2-config">
           To configure the check so that it ignores the imports referenced in Javadoc comments:
         </p>
-        <source>
-&lt;module name="UnusedImports"&gt;
-  &lt;property name="processJavadoc" value="false"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>Example:</p>
-        <source>
-// limitation as it match field name in code
-import java.awt.Component; //OK
-
-// no ability to recognize what import is not used
-import static java.util.Map.copyOf; //OK
-import static java.util.Arrays.copyOf; //OK
-
-import java.lang.String; // violation
-
-import java.util.Stack;  // OK
-import java.util.Map;   // violation
-
-import java.util.List; // violation
-
-/**
-* @link List
-*/
-class MyClass{
-    Stack stack = new Stack();
-    private Object Component;
-    int[] arr = {0,0};
-    int[] array = copyOf(arr , 1);
-}
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/unusedimports/Example2.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/unusedimports/Example2.txt"/>
+          <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">
