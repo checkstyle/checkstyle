@@ -315,14 +315,14 @@
     <lineContent>DetailNode newLine = JavadocUtil.getPreviousSibling(node);</lineContent>
   </mutation>
 
-  <mutation unstable="false">
-    <sourceFile>JavadocParagraphCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck</mutatedClass>
-    <mutatedMethod>getNearestNode</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
-    <description>replaced call to com/puppycrawl/tools/checkstyle/utils/JavadocUtil::getNextSibling with argument</description>
-    <lineContent>DetailNode tag = JavadocUtil.getNextSibling(node);</lineContent>
-  </mutation>
+
+
+
+
+
+
+
+
 
   <mutation unstable="false">
     <sourceFile>JavadocParagraphCheck.java</sourceFile>
