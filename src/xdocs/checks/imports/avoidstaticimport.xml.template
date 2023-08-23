@@ -60,40 +60,39 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name="AvoidStaticImport"/&gt;
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/avoidstaticimport/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">
           Example:
         </p>
-        <source>
-import static java.lang.Math.pow;          // violation
-import static java.lang.System.*;          // violation
-import java.io.File;                       // OK
-import java.util.*;                        // OK
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/avoidstaticimport/Example1.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example2-config">
           To configure the check so that the <code>java.lang.System.out</code>
           member and all members from <code>java.lang.Math</code> are allowed:
         </p>
-        <source>
-&lt;module name="AvoidStaticImport"&gt;
-  &lt;property name="excludes" value="java.lang.System.out,java.lang.Math.*"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/avoidstaticimport/Example2.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">
          Example:
         </p>
-        <source>
-import static java.lang.Math.*;            // OK
-import static java.lang.System.out;        // OK
-import static java.lang.Integer.parseInt;  // violation
-import java.io.*;                          // OK
-import java.util.*;                        // OK
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/avoidstaticimport/Example2.txt"/>
+          <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

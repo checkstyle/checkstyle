@@ -30,26 +30,22 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name="RedundantImport"/&gt;
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/redundantimport/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">
             Example:
         </p>
-        <source>
-package Test;
-import static Test.MyClass.*; // OK, static import
-import static java.lang.Integer.MAX_VALUE; // OK, static import
-
-import Test.MyClass; // violation, imported from the same package as the current package
-import java.lang.String; // violation, the class imported is from the 'java.lang' package
-import java.util.Scanner; // OK
-import java.util.Scanner; // violation, it is a duplicate of another import
-public class MyClass{ };
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/redundantimport/Example1.txt"/>
+          <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

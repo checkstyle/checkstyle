@@ -1,0 +1,22 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="ImportOrder">
+      <property name="useContainerOrderingForStatic" value="false"/>
+      <property name="ordered" value="true"/>
+      <property name="option" value="top"/>
+      <property name="caseSensitive" value="false"/>
+      <property name="sortStaticImportsAlphabetically" value="true"/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+import static io.netty.handler.codec.http.HttpConstants.COLON;
+import static io.netty.handler.codec.http.HttpHeaders.addHeader;
+import static io.netty.handler.codec.http.HttpHeaders.setHeader;
+import static io.netty.handler.codec.http.HttpHeaders.Names.DATE; // violation
+
+public class InputEclipseStaticImportsOrder { }
+// xdoc section -- end
