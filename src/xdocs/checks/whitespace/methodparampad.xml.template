@@ -97,59 +97,37 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name="MethodParamPad"/&gt;
-        </source>
-        <source>
-public class Test {
-  public Test() { // OK
-    super(); // OK
-  }
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/methodparampad/Example1.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/methodparampad/Example1.java"/>
+          <param name="type" value="code"/>
+        </macro>
 
-  public Test (int aParam) { // Violation - '(' is preceded with whitespace
-    super (); // Violation - '(' is preceded with whitespace
-  }
-
-  public void method() {} // OK
-
-  public void methodWithVeryLongName
-    () {} // Violation - '(' is preceded with whitespace
-
-}
-        </source>
-
-        <p>
+        <p id="Example2-config">
           To configure the check to require a space after the identifier of a
           method definition, except if the left parenthesis occurs on a new
           line:
         </p>
-        <source>
-&lt;module name="MethodParamPad"&gt;
-  &lt;property name="tokens" value="METHOD_DEF"/&gt;
-  &lt;property name="option" value="space"/&gt;
-  &lt;property name="allowLineBreaks" value="true"/&gt;
-&lt;/module&gt;
-        </source>
-        <source>
-public class Test {
-  public Test() { // OK
-    super(); // OK
-  }
-
-  public Test (int aParam) { // OK
-    super (); // OK
-  }
-
-  public void method() {} // Violation - '(' is NOT preceded with whitespace
-
-  public void methodWithVeryLongName
-    () {} // OK, because allowLineBreaks is true
-
-}
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/methodparampad/Example2.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/methodparampad/Example2.java"/>
+          <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

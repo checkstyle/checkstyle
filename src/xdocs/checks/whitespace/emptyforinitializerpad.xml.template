@@ -44,44 +44,40 @@ for (
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name="EmptyForInitializerPad"/&gt;
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/emptyforinitializerpad/Example1.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">
           Example:
         </p>
-        <source>
-for ( ; i &lt; 1; i++ );  // violation semicolon is preceded with whitespace
-for (; i &lt; 2; i++ );   // ok
-for (;i&lt;2;i++);        // ok
-for ( ;i&lt;2;i++);       // violation semicolon is preceded with whitespace
-for (
-      ; i &lt; 2; i++ );  // ok
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/emptyforinitializerpad/Example1.java"/>
+          <param name="type" value="code"/>
+        </macro>
 
-        <p>
+        <p id="Example2-config">
           To configure the check to require white space at an empty for
           iterator:
         </p>
-        <source>
-&lt;module name="EmptyForInitializerPad"&gt;
-  &lt;property name="option" value="space"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/emptyforinitializerpad/Example2.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">
           Example:
         </p>
-        <source>
-for ( ; i &lt; 2; i++ );   // ok
-for (; i &lt; 2; i++ );    // violation semicolon is not preceded with whitespace
-for (;i&lt;2;i++);         // violation semicolon is not preceded with whitespace
-for ( ;i&lt;2;i++);        // ok
-for (
-      ; i &lt; 2; i++ );   // ok
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/emptyforinitializerpad/Example2.java"/>
+          <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">
