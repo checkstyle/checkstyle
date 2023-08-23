@@ -266,7 +266,7 @@ public enum JavadocTagInfo {
             final DetailAST methodNameAst = ast.findFirstToken(TokenTypes.IDENT);
             final String methodName = methodNameAst.getText();
 
-            return astType == TokenTypes.METHOD_DEF
+            return true
                 && ("writeObject".equals(methodName)
                     || "readObject".equals(methodName)
                     || "writeExternal".equals(methodName)
