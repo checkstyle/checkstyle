@@ -36,42 +36,35 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name="LambdaParameterName"/&gt;
-        </source>
-        <p>Code Example:</p>
-        <source>
-Function&lt;String, String&gt; function1 = s -&gt; s.toLowerCase(); // OK
-Function&lt;String, String&gt; function2 = S -&gt; S.toLowerCase(); // violation, name 'S'
-                                               // must match pattern '^[a-z][a-zA-Z0-9]*$'
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/lambdaparametername/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">Code Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/lambdaparametername/Example1.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example2-config">
           An example of how to configure the check for names that begin with a lower case letter,
           followed by letters is:
         </p>
-        <source>
-&lt;module name="LambdaParameterName"&gt;
-  &lt;property name="format" value="^[a-z]([a-zA-Z]+)*$"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>Code Example:</p>
-        <source>
-class MyClass {
-  Function&lt;String, String&gt; function1 = str -&gt; str.toUpperCase().trim(); // OK
-  Function&lt;String, String&gt; function2 = _s -&gt; _s.trim(); // violation, name '_s'
-                                             // must match pattern '^[a-z]([a-zA-Z]+)*$'
-
-  public boolean myMethod(String sentence) {
-    return Stream.of(sentence.split(" "))
-            .map(word -&gt; word.trim()) // OK
-            .anyMatch(Word -&gt; "in".equals(Word)); // violation, name 'Word'
-                                   // must match pattern '^[a-z]([a-zA-Z]+)*$'
-  }
-}
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/lambdaparametername/Example2.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">Code Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/lambdaparametername/Example2.txt"/>
+          <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

@@ -36,13 +36,17 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;MethodTypeParameterName&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;MethodTypeParameterName&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
         </source>
-        <p>Code Example:</p>
+        <p id="Example1-code">Code Example:</p>
         <source>
 class MyClass {
   public &lt;T&gt; void method1() {} // OK
@@ -51,15 +55,19 @@ class MyClass {
   public &lt;k, V&gt; void method4() {} // violation, name 'k' must match pattern '^[A-Z]$'
 }
         </source>
-        <p>
+        <p id="Example2-config">
           An example of how to configure the check for names that are only a single letter is:
         </p>
         <source>
-&lt;module name=&quot;MethodTypeParameterName&quot;&gt;
-   &lt;property name=&quot;format&quot; value=&quot;^[a-zA-Z]$&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;MethodTypeParameterName&quot;&gt;
+       &lt;property name=&quot;format&quot; value=&quot;^[a-zA-Z]$&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p>Code Example:</p>
+        <p id="Example2-code">Code Example:</p>
         <source>
 class MyClass {
   public &lt;T&gt; void method1() {} // OK

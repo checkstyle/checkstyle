@@ -34,38 +34,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </li>
  * </ul>
  * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name=&quot;MethodTypeParameterName&quot;/&gt;
- * </pre>
- * <p>Code Example:</p>
- * <pre>
- * class MyClass {
- *   public &lt;T&gt; void method1() {} // OK
- *   public &lt;a&gt; void method2() {} // violation, name 'a' must match pattern '^[A-Z]$'
- *   public &lt;K, V&gt; void method3() {} // OK
- *   public &lt;k, V&gt; void method4() {} // violation, name 'k' must match pattern '^[A-Z]$'
- * }
- * </pre>
- * <p>
- * An example of how to configure the check for names that are only a single letter is:
- * </p>
- * <pre>
- * &lt;module name=&quot;MethodTypeParameterName&quot;&gt;
- *    &lt;property name=&quot;format&quot; value=&quot;^[a-zA-Z]$&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>Code Example:</p>
- * <pre>
- * class MyClass {
- *   public &lt;T&gt; void method1() {} // OK
- *   public &lt;a&gt; void method2() {} // OK
- *   public &lt;K, V&gt; void method3() {} // OK
- *   public &lt;k, V&gt; void method4() {} // OK
- * }
- * </pre>
- * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
  * <p>

@@ -34,36 +34,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </li>
  * </ul>
  * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name="RecordComponentName"/&gt;
- * </pre>
- * <p>Example:</p>
- * <pre>
- * record MyRecord1(String value, int otherComponentName) {} // OK
- * record MyRecord2(String... Values) {} // violation, the record component name
- *                                     // should match the regular expression "^[a-z][a-zA-Z0-9]*$"
- * record MyRecord3(double my_number) {} // violation, the record component name
- *                                     // should match the regular expression "^[a-z][a-zA-Z0-9]*$"
- * </pre>
- * <p>
- * An example of how to configure the check for names that are only letters in lowercase:
- * </p>
- * <p>Configuration:</p>
- * <pre>
- * &lt;module name="RecordComponentName"&gt;
- *   &lt;property name="format" value="^[a-z]+$"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>Example:</p>
- * <pre>
- * record MyRecord1(String value, int other) {} // OK
- * record MyRecord2(String... strings) {} // OK
- * record MyRecord3(double myNumber) {} // violation, the record component name
- *                              // should match the regular expression "^[a-z]+$"
- * </pre>
- * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
  * <p>

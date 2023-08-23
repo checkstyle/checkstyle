@@ -34,67 +34,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </li>
  * </ul>
  * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name="PatternVariableName"/&gt;
- * </pre>
- * <p>Code Example:</p>
- * <pre>
- * class MyClass {
- *     MyClass(Object o1){
- *         if (o1 instanceof String STRING) { // violation, name 'STRING' must
- *                                            // match pattern '^[a-z][a-zA-Z0-9]*$'
- *         }
- *         if (o1 instanceof Integer num) { // OK
- *         }
- *     }
- * }
- * </pre>
- * <p>
- * An example of how to configure the check for names that have a lower case letter, followed by
- * letters and digits, optionally separated by underscore:
- * </p>
- * <pre>
- * &lt;module name="PatternVariableName"&gt;
- *   &lt;property name="format" value="^[a-z](_?[a-zA-Z0-9]+)*$"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>Code Example:</p>
- * <pre>
- * class MyClass {
- *     MyClass(Object o1){
- *         if (o1 instanceof String STR) { // violation, name 'STR' must
- *                                         // match pattern '^[a-z](_?[a-zA-Z0-9]+)*$'
- *         }
- *         if (o1 instanceof Integer num) { // OK
- *         }
- *         if (o1 instanceof Integer num_1) { // OK
- *         }
- *     }
- * }
- * </pre>
- * <p>
- * An example of how to configure the check to that all variables have 3 or more chars in name:
- * </p>
- * <pre>
- * &lt;module name="PatternVariableName"&gt;
- *   &lt;property name="format" value="^[a-z][_a-zA-Z0-9]{2,}$"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>Code Example:</p>
- * <pre>
- * class MyClass {
- *     MyClass(Object o1){
- *         if (o1 instanceof String s) { // violation, name 's' must
- *                                       // match pattern '^[a-z][_a-zA-Z0-9]{2,}$'
- *         }
- *         if (o1 instanceof Integer num) { // OK
- *         }
- *     }
- * }
- * </pre>
- * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
  * <p>
