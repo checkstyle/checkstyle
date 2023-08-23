@@ -83,7 +83,11 @@ public class ExampleMacro extends AbstractMacro {
             writeSnippet(sink, config);
         }
         else if ("code".equals(type)) {
-            final String code = getCodeSnippet(lines);
+            String code = getCodeSnippet(lines);
+            // Replace tabs with spaces for FileTabCharacterCheck examples
+            if (path.contains("filetabcharacter")) {
+                code = code.replace("\t", "  ");
+            }
             writeSnippet(sink, code);
         }
         else {

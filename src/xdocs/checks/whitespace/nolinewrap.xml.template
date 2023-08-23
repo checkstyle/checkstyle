@@ -68,105 +68,71 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check to force no line-wrapping
           in package and import statements (default values):
         </p>
-        <source>
-&lt;module name="NoLineWrap"/&gt;
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/nolinewrap/Example1.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">
           Examples of line-wrapped statements (bad case):
         </p>
-        <source>
-package com.puppycrawl. // violation
-    tools.checkstyle.checks;
-
-import com.puppycrawl.tools. // violation
-    checkstyle.api.AbstractCheck;
-
-import static java.math. // violation
-    BigInteger.ZERO;
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/nolinewrap/Example1.java"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example2-code">
           Examples:
         </p>
-        <source>
-package com.puppycrawl.tools.checkstyle. // violation
-  checks.whitespace;
-
-import java.lang.Object; // OK
-import java.lang. // violation
-  Integer;
-
-import static java.math. // violation
-  BigInteger.TEN;
-        </source>
-        <source>
-package com.puppycrawl.tools.checkstyle.checks.coding; // OK
-
-import java.lang. // violation
-  Boolean;
-
-import static java.math.BigInteger.ONE; // OK
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/nolinewrap/Example2.java"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example3-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/nolinewrap/Example3.java"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example4-config">
           To configure the check to force no line-wrapping only
           in import statements:
         </p>
-        <source>
-&lt;module name="NoLineWrap"&gt;
-  &lt;property name="tokens" value="IMPORT"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/nolinewrap/Example4.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example4-code">
           Example:
         </p>
-        <source>
-package com.puppycrawl. // OK
-  tools.checkstyle.checks;
-
-import java.io.*; // OK
-import java.lang. // violation
-  Boolean;
-
-import static java.math. // OK
-  BigInteger.ZERO;
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/nolinewrap/Example4.java"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example5-config">
           To configure the check to force no line-wrapping only
           in class, method and constructor definitions:
         </p>
-        <source>
-&lt;module name="NoLineWrap"&gt;
-  &lt;property name="tokens" value="CLASS_DEF, METHOD_DEF, CTOR_DEF"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/nolinewrap/Example5.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example5-code">
           Example:
         </p>
-        <source>
-public class // violation, class definition not wrapped in a single-line
-  Foo {
-
-  public Foo() { // OK
-  }
-
-  public static void // violation, method definition not wrapped in a single-line
-    doSomething() {
-  }
-}
-
-public class Bar { // OK
-
-  public // violation, constructor definition not wrapped in a single-line
-    Bar() {
-  }
-
-  public int fun() { // OK
-  }
-}
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/nolinewrap/Example5.java"/>
+          <param name="type" value="code"/>
+        </macro>
         <p>
           Examples of not line-wrapped statements (good case):
         </p>

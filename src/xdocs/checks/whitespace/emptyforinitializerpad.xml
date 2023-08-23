@@ -44,43 +44,61 @@ for (
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;EmptyForInitializerPad&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;EmptyForInitializerPad&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
         </source>
-        <p>
+        <p id="Example1-code">
           Example:
         </p>
         <source>
-for ( ; i &lt; 1; i++ );  // violation semicolon is preceded with whitespace
-for (; i &lt; 2; i++ );   // ok
-for (;i&lt;2;i++);        // ok
-for ( ;i&lt;2;i++);       // violation semicolon is preceded with whitespace
-for (
-      ; i &lt; 2; i++ );  // ok
+class Example1 {
+  int i = 0;
+  void example() {
+    for ( ; i &lt; 1; i++ );  // violation '';' is preceded with whitespace'
+    for (; i &lt; 2; i++ );
+    for (;i&lt;2;i++);
+    for ( ;i&lt;2;i++);       // violation '';' is preceded with whitespace'
+    for (
+          ; i &lt; 2; i++ );
+  }
+}
         </source>
 
-        <p>
+        <p id="Example2-config">
           To configure the check to require white space at an empty for
           iterator:
         </p>
         <source>
-&lt;module name=&quot;EmptyForInitializerPad&quot;&gt;
-  &lt;property name=&quot;option&quot; value=&quot;space&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;EmptyForInitializerPad&quot;&gt;
+      &lt;property name=&quot;option&quot; value=&quot;space&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p>
+        <p id="Example2-code">
           Example:
         </p>
         <source>
-for ( ; i &lt; 2; i++ );   // ok
-for (; i &lt; 2; i++ );    // violation semicolon is not preceded with whitespace
-for (;i&lt;2;i++);         // violation semicolon is not preceded with whitespace
-for ( ;i&lt;2;i++);        // ok
-for (
-      ; i &lt; 2; i++ );   // ok
+class Example2 {
+  int i = 0;
+  void example() {
+    for ( ; i &lt; 2; i++ ) { };
+    for (; i &lt; 2; i++ ) { };    // violation '';' is not preceded with whitespace'
+    for (;i&lt;2;i++) { };         // violation '';' is not preceded with whitespace'
+    for ( ;i&lt;2;i++) { };
+    for (
+          ; i &lt; 2; i++ );
+  }
+}
         </source>
       </subsection>
 
