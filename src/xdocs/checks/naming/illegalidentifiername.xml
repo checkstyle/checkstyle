@@ -164,11 +164,15 @@
         <p>
           To configure the check:
         </p>
-        <p>Configuration:</p>
+        <p id="Example1-config">Configuration:</p>
         <source>
-&lt;module name=&quot;IllegalIdentifierName&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;IllegalIdentifierName&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
         </source>
-        <p>Example:</p>
+        <p id="Example1-code">Example:</p>
         <source>
 public class TestClass {
     public static void main(String... args) {
@@ -191,14 +195,18 @@ public class TestClass {
           To configure the check to include &quot;open&quot; and &quot;transitive&quot; in the set of
           illegal identifiers:
         </p>
-        <p>Configuration:</p>
+        <p id="Example2-config">Configuration:</p>
         <source>
-&lt;module name=&quot;IllegalIdentifierName&quot;&gt;
-    &lt;property name=&quot;format&quot; value=&quot;(?i)^(?!(record|yield|var
-                    |permits|sealed|open|transitive|_)$).+$&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;IllegalIdentifierName&quot;&gt;
+        &lt;property name=&quot;format&quot; value=&quot;(?i)^(?!(record|yield|var
+                        |permits|sealed|open|transitive|_)$).+$&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p>Example:</p>
+        <p id="Example2-code">Example:</p>
         <source>
 public class TestClass {
     public static void main(String... args) {

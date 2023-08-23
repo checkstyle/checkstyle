@@ -38,28 +38,29 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name="RecordTypeParameterName"/&gt;
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/recordtypeparametername/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
         <p>
           An example of how to configure the check for names that are only a single letter is:
         </p>
-        <p>Configuration:</p>
-        <source>
-&lt;module name="RecordTypeParameterName"&gt;
-    &lt;property name="format" value="^[a-zA-Z]$"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>Example:</p>
-        <source>
-record MyRecord1&lt;T&gt; {} // OK
-record MyRecord2&lt;t&gt; {} // OK
-record MyRecord3&lt;abc&gt; {} // violation, the record type parameter
-// name should match the regular expression "^[a-zA-Z]$"
-        </source>
+        <p id="Example2-config">Configuration:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/recordtypeparametername/Example2.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/recordtypeparametername/Example2.txt"/>
+          <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

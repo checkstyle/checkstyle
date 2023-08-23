@@ -74,58 +74,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </li>
  * </ul>
  * <p>
- * To configure the check:
- * </p>
- * <p>Configuration:</p>
- * <pre>
- * &lt;module name="IllegalIdentifierName"/&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * public class TestClass {
- *     public static void main(String... args) {
- *         var var = 4; // violation, "var" should not be used as an identifier.
- *         int record = 15; // violation, "record" should not be used as an identifier.
- *         String yield = "yield"; // violation, "yield" should not be used as an identifier.
- *
- *         record Record // violation, "Record" should not be used as an identifier.
- *             (Record record) { // violation, "record" should not be used as an identifier.
- *         }
- *
- *         String yieldString = "yieldString"; // ok, part of another word
- *         record MyRecord(){} // ok, part of another word
- *         var variable = 2; // ok, part of another word
- *         String _; // violation, underscore should not be used as an identifier.
- *     }
- * }
- * </pre>
- * <p>
- * To configure the check to include "open" and "transitive" in the set of illegal identifiers:
- * </p>
- * <p>Configuration:</p>
- * <pre>
- * &lt;module name="IllegalIdentifierName"&gt;
- *     &lt;property name="format" value="(?i)^(?!(record|yield|var
- *                        |permits|sealed|open|transitive|_)$).+$"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>Example:</p>
- * <pre>
- * public class TestClass {
- *     public static void main(String... args) {
- *
- *         int open = 4; // violation, "open" should not be used as an identifier
- *         Object transitive = "transitive"; // violation, "transitive" should not
- *                                                // be used as an identifier
- *
- *         int openInt = 4; // ok, "open" is part of another word
- *         Object transitiveObject = "transitiveObject"; // ok, "transitive" is part of another word
- *     }
- * }
- * </pre>
- * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
  * <p>

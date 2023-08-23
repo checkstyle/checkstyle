@@ -34,53 +34,49 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name="ClassTypeParameterName"/&gt;
-        </source>
-        <p>Example:</p>
-        <source>
-class MyClass1&lt;T&gt; {}        // OK
-class MyClass2&lt;t&gt; {}        // violation
-class MyClass3&lt;abc&gt; {}      // violation
-class MyClass4&lt;LISTENER&gt; {} // violation
-class MyClass5&lt;RequestT&gt; {} // violation
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/classtypeparametername/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/classtypeparametername/Example1.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example2-config">
           To configure the check for names that are uppercase word:
         </p>
-        <source>
-&lt;module name="ClassTypeParameterName"&gt;
-  &lt;property name="format" value="^[A-Z]{2,}$"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>Example:</p>
-        <source>
-class MyClass1&lt;T&gt; {}        // violation
-class MyClass2&lt;t&gt; {}        // violation
-class MyClass3&lt;abc&gt; {}      // violation
-class MyClass4&lt;LISTENER&gt; {} // OK
-class MyClass5&lt;RequestT&gt; {} // violation
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/classtypeparametername/Example2.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/classtypeparametername/Example2.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example3-config">
           To configure the check for names that are camel case word with T as suffix
           (<a href="https://checkstyle.org/styleguides/google-java-style-20180523/javaguide.html#s5.2.8-type-variable-names">Google Style</a>):
         </p>
-        <source>
-&lt;module name="ClassTypeParameterName"&gt;
-  &lt;property name="format" value="(^[A-Z][0-9]?)$|([A-Z][a-zA-Z0-9]*[T]$)"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>Example:</p>
-        <source>
-class MyClass1&lt;T&gt; {}        // violation
-class MyClass2&lt;t&gt; {}        // violation
-class MyClass3&lt;abc&gt; {}      // violation
-class MyClass4&lt;LISTENER&gt; {} // violation
-class MyClass5&lt;RequestT&gt; {} // OK
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/classtypeparametername/Example3.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example3-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/classtypeparametername/Example3.txt"/>
+          <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">
