@@ -151,90 +151,92 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;ParenPad&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;ParenPad&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
         </source>
-        <p>
+        <p id="Example1-code">
           Example:
         </p>
         <source>
-class Foo {
-
+class Example1 {
   int n;
 
-  public void fun() {  // OK
-    bar( 1);  // violation, space after left parenthesis
+  public void fun() {
+    bar( 1);  // violation 'is followed by whitespace'
   }
 
-  public void bar(int k ) {  // violation, space before right parenthesis
-    while (k &gt; 0) {  // OK
+  public void bar(int k ) {  // violation 'is preceded with whitespace'
+    while (k &gt; 0) {
     }
 
-    Test obj = new Test(k);  // OK
+    StringBuilder obj = new StringBuilder(k);
   }
 
-  public void fun2() {  // OK
-    switch( n) {  // violation, space after left parenthesis
+  public void fun2() {
+    switch( n) {  // violation 'is followed by whitespace'
       case 2:
-        bar(n);  // OK
+        bar(n);
       default:
         break;
     }
   }
-
 }
         </source>
-        <p>
+        <p id="Example2-config">
           To configure the check to require spaces for the parentheses of
           constructor, method, and super constructor calls:
         </p>
         <source>
-&lt;module name=&quot;ParenPad&quot;&gt;
-  &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_FOR, LITERAL_CATCH,
-    SUPER_CTOR_CALL&quot;/&gt;
-  &lt;property name=&quot;option&quot; value=&quot;space&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;ParenPad&quot;&gt;
+      &lt;property name=&quot;tokens&quot;
+                value=&quot;LITERAL_FOR, LITERAL_CATCH, SUPER_CTOR_CALL&quot;/&gt;
+      &lt;property name=&quot;option&quot; value=&quot;space&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p>
+        <p id="Example2-code">
           Example:
         </p>
         <source>
-class Foo {
-
+class Example2 {
   int x;
 
-  public Foo(int n) {
+  public Example2(int n) {
   }
 
   public void fun() {
     try {
-      System.out.println(x);
-    } catch( IOException e) {  // violation, no space before right parenthesis
-    } catch( Exception e ) {  // OK
+      throw new IOException();
+    } catch( IOException e) { // violation 'not preceded with whitespace'
+    } catch( Exception e ) {
     }
 
-    for ( int i = 0; i &lt; x; i++ ) {  // OK
-    }
-  }
-
-}
-
-class Bar extends Foo {
-
-  public Bar() {
-    super(1 );  // violation, no space after left parenthesis
-  }
-
-  public Bar(int k) {
-    super( k ); // OK
-
-    for ( int i = 0; i &lt; k; i++) {  // violation, no space before right parenthesis
+    for ( int i = 0; i &lt; x; i++ ) {
     }
   }
 
+  class Bar extends Example2 {
+    public Bar() {
+      super(1 ); // violation 'not followed by whitespace'
+    }
+
+    public Bar(int k) {
+      super( k );
+
+      for ( int i = 0; i &lt; k; i++) { // violation 'not preceded with whitespace'
+      }
+    }
+  }
 }
         </source>
         <p>

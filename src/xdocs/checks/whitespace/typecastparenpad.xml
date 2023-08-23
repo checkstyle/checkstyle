@@ -38,59 +38,63 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;TypecastParenPad&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;TypecastParenPad&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
         </source>
-        <p>
+        <p id="Example1-code">
           Example:
         </p>
         <source>
-class Foo {
-
+class Example1 {
   float f1 = 3.14f;
 
-  int n = ( int ) f1; // violation, space after left parenthesis and before right parenthesis
+  int n = ( int ) f1; // 2 violations
 
   double d = 1.234567;
 
-  float f2 = (float ) d; // violation, space before right parenthesis
+  float f2 = (float ) d; // violation 'preceded with whitespace'
 
-  float f3 = (float) d; // OK
+  float f3 = (float) d;
 
-  float f4 = ( float) d; // violation, space after left parenthesis
-
+  float f4 = ( float) d; // violation 'followed by whitespace'
 }
         </source>
 
-        <p>
+        <p id="Example2-config">
           To configure the check to require spaces:
         </p>
         <source>
-&lt;module name=&quot;TypecastParenPad&quot;&gt;
-  &lt;property name=&quot;option&quot; value=&quot;space&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;TypecastParenPad&quot;&gt;
+      &lt;property name=&quot;option&quot; value=&quot;space&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p>
+        <p id="Example2-code">
           Example:
         </p>
         <source>
-class Bar {
-
+class Example2 {
   double d1 = 3.14;
 
-  int n = ( int ) d1; // OK
+  int n = ( int ) d1;
 
-  int m = (int ) d1; // violation, no space after left parenthesis
+  int m = (int ) d1; // violation 'not followed by whitespace'
 
   double d2 = 9.8;
 
-  int x = (int) d2; // violation, no space after left parenthesis and before right parenthesis
+  int x = (int) d2; // 2 violations
 
-  int y = ( int) d2; // violation, no space before right parenthesis
-
+  int y = ( int) d2; // violation 'not preceded with whitespace'
 }
         </source>
       </subsection>

@@ -151,92 +151,39 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name="ParenPad"/&gt;
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/parenpad/Example1.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">
           Example:
         </p>
-        <source>
-class Foo {
-
-  int n;
-
-  public void fun() {  // OK
-    bar( 1);  // violation, space after left parenthesis
-  }
-
-  public void bar(int k ) {  // violation, space before right parenthesis
-    while (k &gt; 0) {  // OK
-    }
-
-    Test obj = new Test(k);  // OK
-  }
-
-  public void fun2() {  // OK
-    switch( n) {  // violation, space after left parenthesis
-      case 2:
-        bar(n);  // OK
-      default:
-        break;
-    }
-  }
-
-}
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/parenpad/Example1.java"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example2-config">
           To configure the check to require spaces for the parentheses of
           constructor, method, and super constructor calls:
         </p>
-        <source>
-&lt;module name="ParenPad"&gt;
-  &lt;property name="tokens" value="LITERAL_FOR, LITERAL_CATCH,
-    SUPER_CTOR_CALL"/&gt;
-  &lt;property name="option" value="space"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/parenpad/Example2.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">
           Example:
         </p>
-        <source>
-class Foo {
-
-  int x;
-
-  public Foo(int n) {
-  }
-
-  public void fun() {
-    try {
-      System.out.println(x);
-    } catch( IOException e) {  // violation, no space before right parenthesis
-    } catch( Exception e ) {  // OK
-    }
-
-    for ( int i = 0; i &lt; x; i++ ) {  // OK
-    }
-  }
-
-}
-
-class Bar extends Foo {
-
-  public Bar() {
-    super(1 );  // violation, no space after left parenthesis
-  }
-
-  public Bar(int k) {
-    super( k ); // OK
-
-    for ( int i = 0; i &lt; k; i++) {  // violation, no space before right parenthesis
-    }
-  }
-
-}
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/parenpad/Example2.java"/>
+          <param name="type" value="code"/>
+        </macro>
         <p>
           The following cases are not checked:
         </p>
