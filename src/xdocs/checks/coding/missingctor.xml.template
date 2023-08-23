@@ -16,33 +16,20 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name="MissingCtor"/&gt;
-        </source>
-        <p>Example:</p>
-        <source>
-class ExampleOk { // OK
-  private int a;
-  ExampleOk(int a) {
-    this.a = a;
-  }
-}
-class ExampleDefaultCtor { // OK
-  private String s;
-  ExampleDefaultCtor() {
-    s = "foobar";
-  }
-}
-class InvalidExample { // violation, class must have a constructor.
-  public void test() {}
-}
-abstract class AbstractExample { // OK
-  public abstract void test() {}
-}
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/missingctor/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/missingctor/Example1.txt"/>
+          <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

@@ -34,61 +34,20 @@ return !valid();
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name="SimplifyBooleanReturn"/&gt;
-        </source>
-        <p>Example:</p>
-        <source>
-public class Test {
-
- private boolean cond;
- private Foo a;
- private Foo b;
-
- public boolean check1() {
-  if (cond) { // violation, can be simplified
-    return true;
-  }
-  else {
-    return false;
-  }
- }
-
- // Ok, simplified version of check1()
- public boolean check2() {
-  return cond;
- }
-
- // violations, can be simplified
- public boolean check3() {
-  if (cond == true) { // can be simplified to "if (cond)"
-    return false;
-  }
-  else {
-    return true; // can be simplified to "return !cond"
-  }
- }
-
- // Ok, can be simplified but doesn't return a Boolean
- public Foo choose1() {
-  if (cond) {
-    return a;
-  }
-  else {
-    return b;
-  }
- }
-
- // Ok, simplified version of choose1()
- public Foo choose2() {
-  return cond ? a: b;
- }
-
-}
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/simplifybooleanreturn/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/simplifybooleanreturn/Example1.txt"/>
+          <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

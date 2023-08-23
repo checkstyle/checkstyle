@@ -74,13 +74,17 @@ for (int a[]={0};a[0] &lt; 10;a[0]++) {
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;ModifiedControlVariable&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;ModifiedControlVariable&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
         </source>
-        <p>
+        <p id="Example1-code">
           Example:
         </p>
         <source>
@@ -101,15 +105,19 @@ for (String arg: args1) {
           Option 'skipEnhancedForLoopVariable' could be used to skip check of variable
           from Enhanced For Loop.
         </p>
-        <p>
+        <p id="Example2-config">
           An example of how to configure the check so that it skips enhanced For Loop Variable is:
         </p>
         <source>
-&lt;module name=&quot;ModifiedControlVariable&quot;&gt;
-  &lt;property name=&quot;skipEnhancedForLoopVariable&quot; value=&quot;true&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;ModifiedControlVariable&quot;&gt;
+      &lt;property name=&quot;skipEnhancedForLoopVariable&quot; value=&quot;true&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p>Example:</p>
+        <p id="Example2-code">Example:</p>
         <source>
 for(int i=0;i &lt; 8;i++) {
   i++; // violation, control variable modified

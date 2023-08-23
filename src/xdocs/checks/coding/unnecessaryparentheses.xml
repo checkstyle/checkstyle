@@ -272,13 +272,17 @@ if ((++f) &gt; g &amp;&amp; a) { // violation, unnecessary paren
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;UnnecessaryParentheses&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;UnnecessaryParentheses&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
         </source>
-        <p>
+        <p id="Example1-code">
           Which results in the following violations:
         </p>
         <source>
@@ -314,16 +318,21 @@ if (x==(y == z)) { // ok
     return;
 }
         </source>
-        <p>
+        <p id="Example2-config">
           To configure the check to detect unnecessary parentheses around bitwise inclusive OR
           <code> '|' </code>, bitwise AND <code> '&amp;' </code>, bitwise exclusive OR
           <code> '^' </code>:
         </p>
         <source>
-&lt;module name=&quot;UnnecessaryParentheses&quot;&gt;
-  &lt;property name=&quot;tokens&quot; value=&quot;BOR, BAND, BXOR&quot; /&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;UnnecessaryParentheses&quot;&gt;
+      &lt;property name=&quot;tokens&quot; value=&quot;BOR, BAND, BXOR&quot; /&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
+        <p id="Example2-code">Example:</p>
         <source>
 class Test {
 

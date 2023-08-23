@@ -47,39 +47,39 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name="PackageDeclaration"/&gt;
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/packagedeclaration/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">
           Let us consider the class AnnotationLocationCheck which is in the directory
           /com/puppycrawl/tools/checkstyle/checks/annotations/
         </p>
-        <source>
-package com.puppycrawl.tools.checkstyle.checks; //Violation
-public class AnnotationLocationCheck extends AbstractCheck {
-  //...
-}
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/packagedeclaration/Example1.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example2-config">
           Example of how the check works when matchDirectoryStructure option is set to false.
           Let us again consider the AnnotationLocationCheck class located at directory
           /com/puppycrawl/tools/checkstyle/checks/annotations/ along with the following setup,
         </p>
-        <source>
-&lt;module name="PackageDeclaration"&gt;
-&lt;property name="matchDirectoryStructure" value="false"/&gt;
-&lt;/module&gt;
-        </source>
-        <source>
-package com.puppycrawl.tools.checkstyle.checks;  //No Violation
-
-public class AnnotationLocationCheck extends AbstractCheck {
-  //...
-}
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/packagedeclaration/Example2.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/packagedeclaration/Example2.txt"/>
+          <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

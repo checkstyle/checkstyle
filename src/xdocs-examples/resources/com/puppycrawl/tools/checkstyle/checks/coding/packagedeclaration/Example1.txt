@@ -1,0 +1,14 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="PackageDeclaration"/>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+package com.puppycrawl.tools.checkstyle.checks; //Violation
+public class AnnotationLocationCheck extends AbstractCheck {
+  //...
+}
+// xdoc section -- end

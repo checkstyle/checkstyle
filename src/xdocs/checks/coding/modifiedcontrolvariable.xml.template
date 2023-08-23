@@ -74,24 +74,22 @@ for (int a[]={0};a[0] &lt; 10;a[0]++) {
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name="ModifiedControlVariable"/&gt;
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/modifiedcontrolvariable/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">
           Example:
         </p>
-        <source>
-for(int i=0;i &lt; 8;i++) {
-  i++; // violation, control variable modified
-}
-String args1[]={"Coding", "block"};
-for (String arg: args1) {
-  arg = arg.trim(); // violation, control variable modified
-}
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/modifiedcontrolvariable/Example1.txt"/>
+          <param name="type" value="code"/>
+        </macro>
         <p>
           By default, This Check validates
           <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-14.html#jls-14.14.2">
@@ -101,24 +99,20 @@ for (String arg: args1) {
           Option 'skipEnhancedForLoopVariable' could be used to skip check of variable
           from Enhanced For Loop.
         </p>
-        <p>
+        <p id="Example2-config">
           An example of how to configure the check so that it skips enhanced For Loop Variable is:
         </p>
-        <source>
-&lt;module name="ModifiedControlVariable"&gt;
-  &lt;property name="skipEnhancedForLoopVariable" value="true"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>Example:</p>
-        <source>
-for(int i=0;i &lt; 8;i++) {
-  i++; // violation, control variable modified
-}
-String args1[]={"Coding", "block"};
-for (String arg: args1) {
-  arg = arg.trim(); // ok
-}
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/modifiedcontrolvariable/Example2.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/modifiedcontrolvariable/Example2.txt"/>
+          <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

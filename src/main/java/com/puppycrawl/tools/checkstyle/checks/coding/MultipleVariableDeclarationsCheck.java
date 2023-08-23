@@ -38,33 +38,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * declarations should be one per line/statement.
  * </p>
  * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name="MultipleVariableDeclarations"/&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * public class Test {
- *   public void myTest() {
- *     int mid;
- *     int high;
- *     // ...
- *
- *     int lower, higher; // violation
- *     // ...
- *
- *     int value,
- *         index; // violation
- *     // ...
- *
- *     int place = mid, number = high;  // violation
- *   }
- * }
- * </pre>
- * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
  * <p>

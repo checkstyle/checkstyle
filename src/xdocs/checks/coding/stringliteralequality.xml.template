@@ -24,41 +24,32 @@
           Rationale: Novice Java programmers often use code like:
         </p>
         <source>
-if (x == "something")
+if (x == &quot;something&quot;)
         </source>
 
         <p>when they mean</p>
         <source>
-if ("something".equals(x))
+if (&quot;something&quot;.equals(x))
         </source>
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name="StringLiteralEquality"/&gt;
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/stringliteralequality/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">
           Examples of violations:
         </p>
-        <source>
-String status = "pending";
-
-if (status == "done") {} // violation
-
-while (status != "done") {} // violation
-
-boolean flag = (status == "done"); // violation
-
-boolean flag = (status.equals("done")); // OK
-
-String name = "X";
-
-if (name == getName()) {}
-// OK, limitation that check cannot tell runtime type returned from method call
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/stringliteralequality/Example1.txt"/>
+          <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

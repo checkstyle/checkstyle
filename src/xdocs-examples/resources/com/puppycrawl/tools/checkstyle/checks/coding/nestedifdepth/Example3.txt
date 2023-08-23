@@ -1,0 +1,20 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="NestedIfDepth">
+      <property name="max" value="3"/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+if (true) {
+   if (true) {
+      if (true) {
+         if (true) {} // OK
+         else {}
+      }
+   }
+}
+// xdoc section -- end

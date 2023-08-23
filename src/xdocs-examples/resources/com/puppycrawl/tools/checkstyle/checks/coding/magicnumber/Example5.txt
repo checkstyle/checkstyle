@@ -1,0 +1,28 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="MagicNumber">
+      <property name="constantWaiverParentToken" value="ASSIGN,ARRAY_INIT,EXPR,
+      UNARY_PLUS, UNARY_MINUS, TYPECAST, ELIST, DIV, PLUS "/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+class TestMethodCall {
+  public void method2() {
+    final TestMethodCall dummyObject = new TestMethodCall(62);    //violation
+    final int a = 3;        // ok as waiver is ASSIGN
+    final int [] b = {4, 5} // ok as waiver is ARRAY_INIT
+    final int c = -3;       // ok as waiver is UNARY_MINUS
+    final int d = +4;       // ok as waiver is UNARY_PLUS
+    final int e = method(1, 2) // ELIST is there but violation due to METHOD_CALL
+    final int x = 3 * 4;    // violation
+    final int y = 3 / 4;    // ok as waiver is DIV
+    final int z = 3 + 4;    // ok as waiver is PLUS
+    final int w = 3 - 4;    // violation
+    final int x = (int)(3.4);    //ok as waiver is TYPECAST
+  }
+}
+// xdoc section -- end

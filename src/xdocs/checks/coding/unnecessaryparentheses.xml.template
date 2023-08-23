@@ -62,7 +62,7 @@ if (a &amp;&amp; (b || c)) { // ok
 }
 if ((a == b) &amp;&amp; c) { // violation, unnecessary paren
 }
-String e = "e";
+String e = &quot;e&quot;;
 if ((e instanceof String) &amp;&amp; a || b) { // violation, unnecessary paren
 }
 int f = 0;
@@ -272,84 +272,38 @@ if ((++f) &gt; g &amp;&amp; a) { // violation, unnecessary paren
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name="UnnecessaryParentheses"/&gt;
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/unnecessaryparentheses/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">
           Which results in the following violations:
         </p>
-        <source>
-public int square(int a, int b){
-  int square = (a * b); // violation
-  return (square);      // violation
-}
-int sumOfSquares = 0;
-for(int i=(0); i&lt;10; i++){          // violation
-  int x = (i + 1);                  // violation
-  sumOfSquares += (square(x * x));  // violation
-}
-double num = (10.0); //violation
-List&lt;String&gt; list = Arrays.asList("a1", "b1", "c1");
-myList.stream()
-  .filter((s) -&gt; s.startsWith("c")) // violation
-  .forEach(System.out::println);
-int a = 10, b = 12, c = 15;
-boolean x = true, y = false, z= true;
-if ((a &gt;= 0 &amp;&amp; b &lt;= 9)            // violation, unnecessary parenthesis
-         || (c &gt;= 5 &amp;&amp; b &lt;= 5)    // violation, unnecessary parenthesis
-         || (c &gt;= 3 &amp;&amp; a &lt;= 7)) { // violation, unnecessary parenthesis
-    return;
-}
-if ((-a) != -27 // violation, unnecessary parenthesis
-         &amp;&amp; b &gt; 5) {
-    return;
-}
-if (x==(a &lt;= 15)) { // ok
-    return;
-}
-if (x==(y == z)) { // ok
-    return;
-}
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/unnecessaryparentheses/Example1.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example2-config">
           To configure the check to detect unnecessary parentheses around bitwise inclusive OR
           <code> '|' </code>, bitwise AND <code> '&amp;' </code>, bitwise exclusive OR
           <code> '^' </code>:
         </p>
-        <source>
-&lt;module name="UnnecessaryParentheses"&gt;
-  &lt;property name="tokens" value="BOR, BAND, BXOR" /&gt;
-&lt;/module&gt;
-        </source>
-        <source>
-class Test {
-
-    void method() {
-        int x = 9, y = 8;
-        if(x&gt;= 0 ^ (x&lt;=8 &amp; y&lt;=11) // violation, unnecessary parenthesis
-            ^ y&gt;=8) {
-            return;
-        }
-         if(x&gt;= 0 ^ x&lt;=8 &amp; y&lt;=11 ^ y&gt;=8) { // ok
-            return;
-        }
-        if(x&gt;= 0 || (x&lt;=8 &amp; y&lt;=11) // violation, unnecessary parenthesis
-            &amp;&amp; y&gt;=8) {
-            return;
-        }
-        if(x&gt;= 0 || x&lt;=8 &amp; y&lt;=11 &amp;&amp; y&gt;=8) { // ok
-            return;
-        }
-        if(x&gt;= 0 &amp; (x&lt;=8 ^ y&lt;=11) &amp; y&gt;=8) { // ok
-            return;
-        }
-    }
-
-}
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/unnecessaryparentheses/Example2.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/unnecessaryparentheses/Example2.txt"/>
+          <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

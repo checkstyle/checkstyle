@@ -22,38 +22,20 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name="SuperClone"/&gt;
-        </source>
-        <p>Example:</p>
-        <source>
-class A {
-
- public Object clone() { // OK
-  return super.clone();
- }
-}
-
-class B {
-private int b;
-
- public B clone() { // violation, does not call super.clone()
-  B other = new B();
-  other.b = this.b;
-  return other;
- }
-}
-
-class C {
-
- public C clone() { // OK
-  return (C) super.clone();
- }
-}
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/superclone/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/superclone/Example1.txt"/>
+          <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

@@ -34,20 +34,24 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;NestedIfDepth&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;NestedIfDepth&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
         </source>
-        <p>Valid code example:</p>
+        <p id="Example1-code">Valid code example:</p>
         <source>
 if (true) {
     if (true) {} // OK
     else {}
 }
         </source>
-        <p>Invalid code example:</p>
+        <p id="Example2-code">Invalid code example:</p>
         <source>
 if (true) {
     if (true) {
@@ -56,15 +60,19 @@ if (true) {
     }
 }
         </source>
-        <p>
+        <p id="Example3-config">
           To configure the check to allow nesting depth 3:
         </p>
         <source>
-&lt;module name=&quot;NestedIfDepth&quot;&gt;
-  &lt;property name=&quot;max&quot; value=&quot;3&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;NestedIfDepth&quot;&gt;
+      &lt;property name=&quot;max&quot; value=&quot;3&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p>Valid code example:</p>
+        <p id="Example3-code">Valid code example:</p>
         <source>
 if (true) {
    if (true) {
@@ -75,7 +83,7 @@ if (true) {
    }
 }
         </source>
-        <p>Invalid code example:</p>
+        <p id="Example4-code">Invalid code example:</p>
         <source>
 if (true) {
    if (true) {

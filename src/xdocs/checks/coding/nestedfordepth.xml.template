@@ -34,52 +34,34 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name="NestedForDepth"/&gt;
-        </source>
-        <p>Example:</p>
-        <source>
-for(int i=0; i&lt;10; i++) {
-    for(int j=0; j&lt;i; j++) {
-        for(int k=0; k&lt;j; k++) { // violation, max allowed nested loop number is 1
-        }
-    }
-}
-
-for(int i=0; i&lt;10; i++) {
-    for(int j=0; j&lt;i; j++) { // ok
-    }
-}
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/nestedfordepth/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/nestedfordepth/Example1.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example2-config">
           To configure the check to allow nesting depth 2:
         </p>
-        <source>
-&lt;module name="NestedForDepth"&gt;
-  &lt;property name="max" value="2"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>Example:</p>
-        <source>
-for(int i=0; i&lt;10; i++) {
-    for(int j=0; j&lt;i; j++) {
-        for(int k=0; k&lt;j; k++) {
-            for(int l=0; l&lt;k; l++) { // violation, max allowed nested loop number is 2
-            }
-        }
-    }
-}
-
-for(int i=0; i&lt;10; i++) {
-    for(int j=0; j&lt;i; j++) {
-        for(int k=0; k&lt;j; k++) { // ok
-        }
-    }
-}
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/nestedfordepth/Example2.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/nestedfordepth/Example2.txt"/>
+          <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">
