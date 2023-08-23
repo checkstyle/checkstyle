@@ -1,0 +1,19 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="TypeName">
+      <property name="format" value="^[a-z](_?[a-zA-Z0-9]+)*$"/>
+      <property name="applyToProtected" value="false"/>
+      <property name="applyToPrivate" value="false"/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+public interface firstName {} // OK
+public class SecondName {} // violation, name 'SecondName'
+                          // must match pattern '^[a-z](_?[a-zA-Z0-9]+)*$'
+protected class ThirdName {} // OK
+private class FourthName {} // OK
+// xdoc section -- end

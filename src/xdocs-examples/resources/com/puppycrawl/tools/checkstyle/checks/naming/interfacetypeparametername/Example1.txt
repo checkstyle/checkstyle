@@ -1,0 +1,12 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="InterfaceTypeParameterName"/>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+interface FirstInterface<T> {} // OK
+interface SecondInterface<t> {} // violation, name 't' must match pattern '^[A-Z]$'
+// xdoc section -- end

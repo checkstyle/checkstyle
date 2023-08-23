@@ -272,7 +272,27 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         "RequireEmptyLineBeforeBlockTagGroup",
         "SingleLineJavadoc",
         "SummaryJavadoc",
-        "WriteTag"
+        "WriteTag",
+        "AbbreviationAsWordInName",
+        "AbstractClassName",
+        "CatchParameterName",
+        "ClassTypeParameterName",
+        "ConstantName",
+        "IllegalIdentifierName",
+        "InterfaceTypeParameterName",
+        "LambdaParameterName",
+        "LocalFinalVariableName",
+        "LocalVariableName",
+        "MemberName",
+        "MethodName",
+        "MethodTypeParameterName",
+        "PackageName",
+        "ParameterName",
+        "PatternVariableName",
+        "RecordComponentName",
+        "RecordTypeParameterName",
+        "StaticVariableName",
+        "TypeName"
     );
 
     private static final List<List<Node>> CHECK_PROPERTIES = new ArrayList<>();

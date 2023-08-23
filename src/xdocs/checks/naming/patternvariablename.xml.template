@@ -36,69 +36,51 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
 
-        <source>
-&lt;module name="PatternVariableName"/&gt;
-        </source>
-        <p>Code Example:</p>
-        <source>
-class MyClass {
-    MyClass(Object o1){
-        if (o1 instanceof String STRING) { // violation, name 'STRING' must
-        // match pattern '^[a-z][a-zA-Z0-9]*$'
-        }
-        if (o1 instanceof Integer num) { // OK
-        }
-    }
-}
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/patternvariablename/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">Code Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/patternvariablename/Example1.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example2-config">
           An example of how to configure the check for names that have a lower case letter,
           followed by letters and digits, optionally separated by underscore:
         </p>
-        <source>
-&lt;module name="PatternVariableName"&gt;
-    &lt;property name="format" value="^[a-z](_?[a-zA-Z0-9]+)*$"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>Code Example:</p>
-        <source>
-class MyClass {
-    MyClass(Object o1){
-        if (o1 instanceof String STR) { // violation, name 'STR' must
-        // match pattern '^[a-z](_?[a-zA-Z0-9]+)*$'
-        }
-        if (o1 instanceof Integer num) { // OK
-        }
-        if (o1 instanceof Integer num_1) { // OK
-        }
-    }
-}
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/patternvariablename/Example2.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">Code Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/patternvariablename/Example2.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example3-config">
           An example of how to configure the check to that all variables have 3 or more
           chars in name:
         </p>
-        <source>
-&lt;module name="PatternVariableName"&gt;
-    &lt;property name="format" value="^[a-z][_a-zA-Z0-9]{2,}$"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>Code Example:</p>
-        <source>
-class MyClass {
-    MyClass(Object o1){
-        if (o1 instanceof String s) { // violation, name 's' must
-        // match pattern '^[a-z][_a-zA-Z0-9]{2,}$'
-        }
-        if (o1 instanceof Integer num) { // OK
-        }
-    }
-}
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/patternvariablename/Example3.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example3-code">Code Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/patternvariablename/Example3.txt"/>
+          <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

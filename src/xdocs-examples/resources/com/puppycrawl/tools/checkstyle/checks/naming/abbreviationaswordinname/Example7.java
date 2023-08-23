@@ -18,6 +18,6 @@ class Example7 {
   int counterXYZ = 1;
   final int customerID = 2;
   static int nextID = 3;
-  static final int MAX_ALLOWED = 4;
+  static final int MAX_ALLOWED = 4; // OK, abbreviation is allowed
 }
 // xdoc section -- end
