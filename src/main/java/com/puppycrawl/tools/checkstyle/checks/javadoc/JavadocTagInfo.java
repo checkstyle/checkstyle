@@ -288,7 +288,7 @@ public enum JavadocTagInfo {
             final DetailAST varType = ast.findFirstToken(TokenTypes.TYPE);
 
             return astType == TokenTypes.VARIABLE_DEF
-                && varType.getFirstChild().getType() == TokenTypes.ARRAY_DECLARATOR
+                && true
                 && "ObjectStreamField".equals(varType.getFirstChild().getText());
         }
 
