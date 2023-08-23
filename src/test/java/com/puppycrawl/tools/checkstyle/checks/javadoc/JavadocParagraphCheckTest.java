@@ -126,4 +126,15 @@ public class JavadocParagraphCheckTest extends AbstractModuleTestSupport {
                 getPath("InputJavadocParagraphIncorrect2.java"), expected);
     }
 
+    @Test
+    public void testJavadocParagraph() throws Exception {
+        final String[] expected = {
+            "19: " + getCheckMessage(MSG_LINE_BEFORE),
+            "30: " + getCheckMessage(MSG_MISPLACED_TAG),
+            "30: " + getCheckMessage(MSG_LINE_BEFORE),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocParagraphCheck1.java"), expected);
+    }
 }
