@@ -188,4 +188,8 @@
        until https://github.com/checkstyle/checkstyle/issues/13426 -->
   <suppress id="lineLengthXml"
             files="[\\/]src[\\/]xdocs[\\/](checks|(file)?filters)[\\/](?!.*index\.xml)(?!.*\.xml\.template).+\.xml"/>
+
+  <!-- The file is generated -->
+  <suppress checks="FileTabCharacter"
+    files="src[\\/]xdocs[\\/]checks[\\/]whitespace[\\/]filetabcharacter\.xml"/>
 </suppressions>
