@@ -1,0 +1,18 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="MethodName">
+       <property name="format" value="^[a-zA-Z](_?[a-zA-Z0-9]+)*$"/>
+       <property name="allowClassName" value="false"/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+class MyClass {
+  public MyClass() {} // OK
+  public void MyClass() {} // violation, method Name 'MyClass' must not
+                           // equal the enclosing class name
+}
+// xdoc section -- end

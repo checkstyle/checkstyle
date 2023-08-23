@@ -36,38 +36,34 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name="MethodTypeParameterName"/&gt;
-        </source>
-        <p>Code Example:</p>
-        <source>
-class MyClass {
-  public &lt;T&gt; void method1() {} // OK
-  public &lt;a&gt; void method2() {} // violation, name 'a' must match pattern '^[A-Z]$'
-  public &lt;K, V&gt; void method3() {} // OK
-  public &lt;k, V&gt; void method4() {} // violation, name 'k' must match pattern '^[A-Z]$'
-}
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/methodtypeparametername/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">Code Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/methodtypeparametername/Example1.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example2-config">
           An example of how to configure the check for names that are only a single letter is:
         </p>
-        <source>
-&lt;module name="MethodTypeParameterName"&gt;
-   &lt;property name="format" value="^[a-zA-Z]$"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>Code Example:</p>
-        <source>
-class MyClass {
-  public &lt;T&gt; void method1() {} // OK
-  public &lt;a&gt; void method2() {} // OK
-  public &lt;K, V&gt; void method3() {} // OK
-  public &lt;k, V&gt; void method4() {} // OK
-}
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/methodtypeparametername/Example2.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">Code Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/methodtypeparametername/Example2.txt"/>
+          <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

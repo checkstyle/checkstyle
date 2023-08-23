@@ -36,33 +36,35 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name="InterfaceTypeParameterName"/&gt;
-        </source>
-        <p>Code Example:</p>
-        <source>
-interface FirstInterface&lt;T&gt; {} // OK
-interface SecondInterface&lt;t&gt; {} // violation, name 't' must match pattern '^[A-Z]$'
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/interfacetypeparametername/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">Code Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/interfacetypeparametername/Example1.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example2-config">
           An example of how to configure the check for names that are only a single
           letter is:
         </p>
-        <source>
-&lt;module name="InterfaceTypeParameterName"&gt;
-   &lt;property name="format" value="^[a-zA-Z]$"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>Code Example:</p>
-        <source>
-interface FirstInterface&lt;T&gt; {} // OK
-interface SecondInterface&lt;t&gt; {} // OK
-interface ThirdInterface&lt;type&gt; {} // violation, name 'type' must
-                                        // match pattern '^[a-zA-Z]$'
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/interfacetypeparametername/Example2.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">Code Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/interfacetypeparametername/Example2.txt"/>
+          <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

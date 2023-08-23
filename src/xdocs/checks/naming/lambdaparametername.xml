@@ -36,28 +36,36 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;LambdaParameterName&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;LambdaParameterName&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
         </source>
-        <p>Code Example:</p>
+        <p id="Example1-code">Code Example:</p>
         <source>
 Function&lt;String, String&gt; function1 = s -&gt; s.toLowerCase(); // OK
 Function&lt;String, String&gt; function2 = S -&gt; S.toLowerCase(); // violation, name 'S'
                                                // must match pattern '^[a-z][a-zA-Z0-9]*$'
         </source>
-        <p>
+        <p id="Example2-config">
           An example of how to configure the check for names that begin with a lower case letter,
           followed by letters is:
         </p>
         <source>
-&lt;module name=&quot;LambdaParameterName&quot;&gt;
-  &lt;property name=&quot;format&quot; value=&quot;^[a-z]([a-zA-Z]+)*$&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;LambdaParameterName&quot;&gt;
+      &lt;property name=&quot;format&quot; value=&quot;^[a-z]([a-zA-Z]+)*$&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p>Code Example:</p>
+        <p id="Example2-code">Code Example:</p>
         <source>
 class MyClass {
   Function&lt;String, String&gt; function1 = str -&gt; str.toUpperCase().trim(); // OK
