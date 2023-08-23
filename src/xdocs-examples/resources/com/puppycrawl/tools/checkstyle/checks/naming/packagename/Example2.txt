@@ -1,0 +1,23 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="PackageName">
+      <property name="format"
+        value="^[a-z]+(\.[a-z][a-z0-9]*)*$"/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+package com; // OK
+package COM; // violation, name 'COM' must match pattern '^[a-z]+(\.[a-z][a-z0-9]*)*$'
+package com.checkstyle.checks; // OK
+package com.A.checkstyle.checks; // violation, name 'com.A.checkstyle' must match
+                                 // pattern '^[a-z]+(\.[a-z][a-z0-9]*)*$'
+package com.checkstyle1.checks; // OK
+package com.checkSTYLE.checks; // violation, name 'com.checkSTYLE.checks' must
+                               // match pattern '^[a-z]+(\.[a-z][a-z0-9]*)*$'
+package com._checkstyle.checks_; // violation, name 'com._checkstyle.checks_' must match
+                                 // pattern '^[a-z]+(\.[a-z][a-z0-9]*)*$'
+// xdoc section -- end

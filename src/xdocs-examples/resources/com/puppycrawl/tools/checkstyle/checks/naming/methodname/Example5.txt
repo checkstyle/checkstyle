@@ -1,0 +1,22 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="MethodName">
+       <property name="format" value="^[a-z](_?[a-zA-Z0-9]+)*$"/>
+       <property name="applyToPublic" value="false"/>
+       <property name="applyToProtected" value="false"/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+class MyClass {
+  public void FirstMethod() {} // OK
+  protected void SecondMethod() {} // OK
+  private void ThirdMethod() {} // violation, name 'ThirdMethod' must match
+                                // pattern '^[a-z](_?[a-zA-Z0-9]+)*$'
+  void FourthMethod() {} // violation, name 'FourthMethod' must match
+                         // pattern '^[a-z](_?[a-zA-Z0-9]+)*$'
+}
+// xdoc section -- end

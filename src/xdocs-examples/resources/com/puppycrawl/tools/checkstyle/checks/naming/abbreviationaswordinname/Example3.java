@@ -19,14 +19,14 @@ package com.puppycrawl.tools.checkstyle.checks.naming.abbreviationaswordinname;
 class Example3 {
   int firstNum;
   int secondNUM; // violation 'no more than '1' consecutive capital letters'
-  static int thirdNum;
+  static int thirdNum; // OK, the static modifier would be checked
   static int fourthNUm; // violation 'no more than '1' consecutive capital letters'
-  String firstXML;
-  String firstURL;
-  final int TOTAL = 5;
-  static final int LIMIT = 10;
-  void newOAuth2Client() {}
-  void OAuth2() {}
+  String firstXML; // OK, XML abbreviation is allowed
+  String firstURL; // OK, URL abbreviation is allowed
+  final int TOTAL = 5; // OK, final is ignored
+  static final int LIMIT = 10; // OK, static final is ignored
+  void newOAuth2Client() {} // OK, O abbreviation is allowed
+  void OAuth2() {} // OK, O abbreviation is allowed
   void OAUth2() {}
 }
 // xdoc section -- end

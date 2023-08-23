@@ -22,6 +22,6 @@ class Example5 {
   // violation below 'no more than '1' consecutive capital letters'
   final int customerID = 2;
   static int nextID = 3; // violation 'no more than '1' consecutive capital letters'
-  static final int MAX_ALLOWED = 4;
+  static final int MAX_ALLOWED = 4; // OK, ignored
 }
 // xdoc section -- end
