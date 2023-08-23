@@ -50,34 +50,32 @@
         </div>
       </subsection>
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the filter to exclude all 'module-info.java' files:
         </p>
-        <source>
-&lt;module name="BeforeExecutionExclusionFileFilter"&gt;
-  &lt;property name="fileNamePattern" value="module\-info\.java$"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filefilters/beforeexecutionexclusionfilefilter/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-config">
           To configure the filter to run only on required files for example that ends with "Remote"
           or end with "Client" in names or named as "Remote.java" or "Client.java"
           use <a href="https://www.regular-expressions.info/lookaround.html">negative lookahead</a>:
         </p>
-        <source>
-&lt;module name="BeforeExecutionExclusionFileFilter"&gt;
-  &lt;property name="fileNamePattern"
-    value="^(?!.*(Remote\.java|Client\.java|[\\/]Remote\.java|[\\/]Client\.java)).*$"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filefilters/beforeexecutionexclusionfilefilter/Example2.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example3-config">
           To configure the filter to exclude all Test folder files:
         </p>
-        <source>
-&lt;module name="BeforeExecutionExclusionFileFilter"&gt;
-  &lt;property name="fileNamePattern"
-    value=".*[\\/]src[\\/]test[\\/].*$"/&gt;
-&lt;/module&gt;
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filefilters/beforeexecutionexclusionfilefilter/Example3.txt"/>
+          <param name="type" value="config"/>
+        </macro>
       </subsection>
       <subsection name="Example of Usage" id="Example_of_Usage">
         <ul>
