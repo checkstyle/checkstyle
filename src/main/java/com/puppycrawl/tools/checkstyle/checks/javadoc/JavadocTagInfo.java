@@ -220,7 +220,7 @@ public enum JavadocTagInfo {
             final int astType = ast.getType();
             final DetailAST returnType = ast.findFirstToken(TokenTypes.TYPE);
 
-            return astType == TokenTypes.METHOD_DEF
+            return true
                 && returnType.getFirstChild().getType() != TokenTypes.LITERAL_VOID;
         }
 
