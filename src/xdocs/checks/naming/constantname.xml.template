@@ -69,75 +69,51 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name="ConstantName"/&gt;
-        </source>
-        <p>Example:</p>
-        <source>
-class Example1 {
-  public final static int FIRST_CONSTANT1 = 10;
-  protected final static int SECOND_CONSTANT2 = 100;
-  final static int third_Constant3 = 1000; // violation 'must match pattern'
-  private final static int fourth_Const4 = 50; // violation 'must match pattern'
-  public final static int log = 10; // violation 'must match pattern'
-  protected final static int logger = 50; // violation 'must match pattern'
-  final static int loggerMYSELF = 5; // violation 'must match pattern'
-  final static int MYSELF = 100;
-  protected final static int myselfConstant = 1; // violation 'must match pattern'
-}
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/constantname/Example1.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/constantname/Example1.java"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example2-config">
           The following configuration apart from names allowed by default allows <code>log</code>
           or <code>logger</code>:
         </p>
 
-        <source>
-&lt;module name="ConstantName"&gt;
-  &lt;property name="format"
-    value="^log(ger)?$|^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>Code Example:</p>
-        <source>
-class Example2 {
-  public final static int FIRST_CONSTANT1 = 10;
-  protected final static int SECOND_CONSTANT2 = 100;
-  final static int third_Constant3 = 1000; // violation 'must match pattern'
-  private final static int fourth_Const4 = 50; // violation 'must match pattern'
-  public final static int log = 10;
-  protected final static int logger = 50;
-  final static int loggerMYSELF = 5; // violation 'must match pattern'
-  final static int MYSELF = 100;
-  protected final static int myselfConstant = 1; // violation 'must match pattern'
-}
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/constantname/Example2.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">Code Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/constantname/Example2.java"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example3-config">
           The following configuration skip validation on
           public constant field and protected constant field.
         </p>
-        <source>
-&lt;module name="ConstantName"&gt;
-  &lt;property name="applyToPublic" value="false"/&gt;
-  &lt;property name="applyToProtected" value="false"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>Code Example:</p>
-        <source>
-class Example3 {
-  public final static int FIRST_CONSTANT1 = 10;
-  protected final static int SECOND_CONSTANT2 = 100;
-  final static int third_Constant3 = 1000; // violation 'must match pattern'
-  private final static int fourth_Const4 = 50; // violation 'must match pattern'
-  public final static int log = 10;
-  protected final static int logger = 50;
-  final static int loggerMYSELF = 5; // violation 'must match pattern'
-  final static int MYSELF = 100;
-  protected final static int myselfConstant = 1;
-}
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/constantname/Example3.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example3-code">Code Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/constantname/Example3.java"/>
+          <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">
