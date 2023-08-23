@@ -51,38 +51,6 @@ import com.puppycrawl.tools.checkstyle.api.BeforeExecutionFileFilter;
  * Type is {@code java.util.regex.Pattern}.
  * Default value is {@code null}.</li>
  * </ul>
- *
- * <p>
- * To configure the filter to exclude all 'module-info.java' files:
- * </p>
- *
- * <pre>
- * &lt;module name=&quot;BeforeExecutionExclusionFileFilter&quot;&gt;
- *   &lt;property name=&quot;fileNamePattern&quot; value=&quot;module\-info\.java$&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * To configure the filter to run only on required files for example that ends with "Remote"
- * or end with "Client" in names or named as "Remote.java" or "Client.java"
- * use <a href="https://www.regular-expressions.info/lookaround.html">negative lookahead</a>:
- * </p>
- *
- * <pre>
- * &lt;module name=&quot;BeforeExecutionExclusionFileFilter&quot;&gt;
- *   &lt;property name=&quot;fileNamePattern&quot;
- *  value=&quot;^(?!.*(Remote\.java|Client\.java|[\\/]Remote\.java|[\\/]Client\.java)).*$&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * To configure the filter to exclude all Test folder files:
- * </p>
- *
- * <pre>
- * &lt;module name=&quot;BeforeExecutionExclusionFileFilter&quot;&gt;
- *   &lt;property name=&quot;fileNamePattern&quot;
- *     value=&quot;.*[\\/]src[\\/]test[\\/].*$&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.Checker}
  * </p>
