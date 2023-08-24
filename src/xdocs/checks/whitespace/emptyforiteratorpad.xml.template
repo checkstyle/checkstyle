@@ -44,46 +44,39 @@ for (Iterator foo = very.long.line.iterator();
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name="EmptyForIteratorPad"/&gt;
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/emptyforiteratorpad/Example1.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">
           Example:
         </p>
-        <source>
-for (Iterator it = map.entrySet().iterator();  it.hasNext(););  // ok
-for (Iterator it = map.entrySet().iterator();  it.hasNext(); ); // violation since whitespace
-                                                                //after semicolon
-
-for (Iterator foo = very.long.line.iterator();
-     foo.hasNext();
-     ); // ok
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/emptyforiteratorpad/Example1.java"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example2-config">
           To configure the check to require white space at an empty for
           iterator:
         </p>
-        <source>
-&lt;module name="EmptyForIteratorPad"&gt;
-  &lt;property name="option" value="space"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/emptyforiteratorpad/Example2.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">
           Example:
         </p>
-        <source>
-for (Iterator it = map.entrySet().iterator();  it.hasNext();); // violation as there is no
-                                                               // whitespace after semicolon
-
-for (Iterator it = map.entrySet().iterator();  it.hasNext(); ); // ok
-
-for (Iterator foo = very.long.line.iterator();
-     foo.hasNext();
-     ); // violation as there  is no whitespace after semicolon
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/emptyforiteratorpad/Example2.java"/>
+          <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

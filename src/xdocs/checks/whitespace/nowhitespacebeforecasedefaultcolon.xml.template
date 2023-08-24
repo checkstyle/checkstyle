@@ -15,43 +15,20 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name="NoWhitespaceBeforeCaseDefaultColon"/&gt;
-        </source>
-        <p>Example:</p>
-        <source>
-class Test {
-  {
-    switch(1) {
-        case 1 : // violation, whitespace before ':' is not allowed here
-            break;
-        case 2: // ok
-            break;
-        default : // violation, whitespace before ':' is not allowed here
-            break;
-    }
-
-    switch(2) {
-        case 2: // ok
-            break;
-        case 3, 4
-                 : break; // violation, whitespace before ':' is not allowed here
-        case 4,
-              5: break; // ok
-        default
-              : // violation, whitespace before ':' is not allowed here
-            break;
-    }
-
-    switch(day) {
-        case MONDAY, FRIDAY, SUNDAY: System.out.println("  6"); break;
-        case TUESDAY               : System.out.println("  7"); break; // violation
-    }
-}
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/whitespace/nowhitespacebeforecasedefaultcolon/Example1.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/whitespace/nowhitespacebeforecasedefaultcolon/Example1.java"/>
+          <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">
