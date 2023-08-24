@@ -224,19 +224,19 @@ public class SeparatorWrapCheck
         final int colNo = ast.getColumnNo();
         final int lineNo = ast.getLineNo();
         final int[] currentLine = getLineCodePoints(lineNo - 1);
-        final int[] substringAfterToken = CodePointUtil.trim(
+        final boolean isTokenEmptyAfterSubstring = CodePointUtil.isBlank(
                 Arrays.copyOfRange(currentLine, colNo + text.length(), currentLine.length)
         );
-        final int[] substringBeforeToken = CodePointUtil.trim(
+        final boolean isTokenEmptyBeforeSubstring = CodePointUtil.isBlank(
                 Arrays.copyOfRange(currentLine, 0, colNo)
         );
 
         if (option == WrapOption.EOL
-                && substringBeforeToken.length == 0) {
+                && isTokenEmptyBeforeSubstring) {
             log(ast, MSG_LINE_PREVIOUS, text);
         }
         else if (option == WrapOption.NL
-                 && substringAfterToken.length == 0) {
+                 && isTokenEmptyAfterSubstring) {
             log(ast, MSG_LINE_NEW, text);
         }
     }
