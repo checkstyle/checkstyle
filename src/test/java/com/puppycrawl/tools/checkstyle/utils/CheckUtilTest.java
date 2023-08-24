@@ -186,34 +186,6 @@ public class CheckUtilTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testIsGetterMethod() throws Exception {
-        final DetailAST notGetterMethod = getNodeFromFile(TokenTypes.METHOD_DEF);
-        final DetailAST getterMethod = notGetterMethod.getNextSibling().getNextSibling();
-
-        assertWithMessage("Invalid result: AST provided is getter method")
-                .that(CheckUtil.isGetterMethod(getterMethod))
-                .isTrue();
-        assertWithMessage("Invalid result: AST provided is not getter method")
-                .that(CheckUtil.isGetterMethod(notGetterMethod))
-                .isFalse();
-    }
-
-    @Test
-    public void testIsSetterMethod() throws Exception {
-        final DetailAST firstClassMethod = getNodeFromFile(TokenTypes.METHOD_DEF);
-        final DetailAST setterMethod =
-                firstClassMethod.getNextSibling().getNextSibling().getNextSibling();
-        final DetailAST notSetterMethod = setterMethod.getNextSibling();
-
-        assertWithMessage("Invalid result: AST provided is setter method")
-                .that(CheckUtil.isSetterMethod(setterMethod))
-                .isTrue();
-        assertWithMessage("Invalid result: AST provided is not setter method")
-                .that(CheckUtil.isSetterMethod(notSetterMethod))
-                .isFalse();
-    }
-
-    @Test
     public void testGetAccessModifierFromModifiersToken() throws Exception {
         final DetailAST interfaceDef = getNodeFromFile(TokenTypes.INTERFACE_DEF);
         final AccessModifierOption modifierInterface = CheckUtil
@@ -455,7 +427,15 @@ public class CheckUtilTest extends AbstractModuleTestSupport {
                 getPath("InputCheckUtil7.java"), expected);
     }
 
-    private DetailAST getNodeFromFile(int type) throws Exception {
+    /**
+     * Retrieves the AST node associated with a file based on the specified token type.
+     *
+     * @param type The token type to search for in the file.
+     *             This parameter determines the type of AST node to retrieve.
+     * @return The AST node associated with the specified token type.
+     * @throws Exception If there's an issue reading or parsing the file.
+     */
+    public DetailAST getNodeFromFile(int type) throws Exception {
         return getNode(JavaParser.parseFile(new File(getPath("InputCheckUtilTest.java")),
             JavaParser.Options.WITH_COMMENTS), type);
     }

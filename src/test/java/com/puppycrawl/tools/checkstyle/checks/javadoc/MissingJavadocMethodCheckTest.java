@@ -22,6 +22,8 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocMethodCheck.MSG_JAVADOC_MISSING;
 
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.utils.CheckUtilTest;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
@@ -455,4 +457,35 @@ public class MissingJavadocMethodCheckTest extends AbstractModuleTestSupport {
                 getNonCompilablePath("InputMissingJavadocMethod1.java"),
                 expected);
     }
+
+    @Test
+    public void testIsGetterMethod() throws Exception {
+        final CheckUtilTest utilTestDelegate = new CheckUtilTest();
+        final DetailAST notGetterMethod = utilTestDelegate.getNodeFromFile(TokenTypes.METHOD_DEF);
+        final DetailAST getterMethod = notGetterMethod.getNextSibling().getNextSibling();
+
+        assertWithMessage("Invalid result: AST provided is getter method")
+                .that(MissingJavadocMethodCheck.isGetterMethod(getterMethod))
+                .isTrue();
+        assertWithMessage("Invalid result: AST provided is not getter method")
+                .that(MissingJavadocMethodCheck.isGetterMethod(notGetterMethod))
+                .isFalse();
+    }
+
+    @Test
+    public void testIsSetterMethod() throws Exception {
+        final CheckUtilTest utilTestDelegate = new CheckUtilTest();
+        final DetailAST firstClassMethod = utilTestDelegate.getNodeFromFile(TokenTypes.METHOD_DEF);
+        final DetailAST setterMethod =
+                firstClassMethod.getNextSibling().getNextSibling().getNextSibling();
+        final DetailAST notSetterMethod = setterMethod.getNextSibling();
+
+        assertWithMessage("Invalid result: AST provided is setter method")
+                .that(MissingJavadocMethodCheck.isSetterMethod(setterMethod))
+                .isTrue();
+        assertWithMessage("Invalid result: AST provided is not setter method")
+                .that(MissingJavadocMethodCheck.isSetterMethod(notSetterMethod))
+                .isFalse();
+    }
+
 }
