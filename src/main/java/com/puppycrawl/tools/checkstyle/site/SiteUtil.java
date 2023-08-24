@@ -80,7 +80,7 @@ public final class SiteUtil {
         // We use a TreeSet to sort the message keys alphabetically
         final Set<String> messageKeys = new TreeSet<>();
         for (Field field : messageKeyFields) {
-            messageKeys.add(getFieldValue(field, module));
+            messageKeys.add(getFieldValue(field, module).toString());
         }
         return messageKeys;
     }
@@ -145,12 +145,12 @@ public final class SiteUtil {
      * @return the value of the field.
      * @throws MacroExecutionException if the value could not be retrieved.
      */
-    private static String getFieldValue(Field field, Object instance)
+    public static Object getFieldValue(Field field, Object instance)
             throws MacroExecutionException {
         try {
             // required for package/private classes
             field.trySetAccessible();
-            return field.get(instance).toString();
+            return field.get(instance);
         }
         catch (IllegalAccessException ex) {
             throw new MacroExecutionException("Couldn't get field value", ex);
@@ -203,6 +203,24 @@ public final class SiteUtil {
      */
     public static String getNewlineAndIndentSpaces(int amountOfSpaces) {
         return System.lineSeparator() + " ".repeat(amountOfSpaces);
+    }
+
+    /**
+     * Returns path to the template for the given module name or throws an exception if the
+     * template cannot be found.
+     *
+     * @param moduleName the module whose template we are looking for.
+     * @return path to the template.
+     * @throws MacroExecutionException if the template cannot be found.
+     */
+    public static Path getTemplatePath(String moduleName) throws MacroExecutionException {
+        final String fileNamePattern = ".*[\\\\/]"
+                + moduleName.toLowerCase(Locale.ROOT) + "\\..*";
+        return getXdocsTemplatesFilePaths()
+            .stream()
+            .filter(path -> path.toString().matches(fileNamePattern))
+            .findFirst()
+            .orElse(null);
     }
 
     /**
