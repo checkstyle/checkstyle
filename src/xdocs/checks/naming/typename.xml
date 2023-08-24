@@ -98,14 +98,18 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
 
         <source>
-&lt;module name=&quot;TypeName&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;TypeName&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
         </source>
-        <p>Code Example:</p>
+        <p id="Example1-code">Code Example:</p>
         <source>
 public interface FirstName {} // OK
 protected class SecondName {} // OK
@@ -113,19 +117,23 @@ enum Third_Name {} // violation, name 'Third_Name' must match pattern '^[A-Z][a-
 private class FourthName_ {} // violation, name 'FourthName_'
                             // must match pattern '^[A-Z][a-zA-Z0-9]*$'
         </source>
-        <p>
+        <p id="Example2-config">
           An example of how to configure the check for names that begin with a lower case letter,
           followed by letters, digits, and underscores. Also, suppress the check from being
           applied to protected and private type:
         </p>
         <source>
-&lt;module name=&quot;TypeName&quot;&gt;
-  &lt;property name=&quot;format&quot; value=&quot;^[a-z](_?[a-zA-Z0-9]+)*$&quot;/&gt;
-  &lt;property name=&quot;applyToProtected&quot; value=&quot;false&quot;/&gt;
-  &lt;property name=&quot;applyToPrivate&quot; value=&quot;false&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;TypeName&quot;&gt;
+      &lt;property name=&quot;format&quot; value=&quot;^[a-z](_?[a-zA-Z0-9]+)*$&quot;/&gt;
+      &lt;property name=&quot;applyToProtected&quot; value=&quot;false&quot;/&gt;
+      &lt;property name=&quot;applyToPrivate&quot; value=&quot;false&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p>Code Example:</p>
+        <p id="Example2-code">Code Example:</p>
         <source>
 public interface firstName {} // OK
 public class SecondName {} // violation, name 'SecondName'
@@ -133,20 +141,24 @@ public class SecondName {} // violation, name 'SecondName'
 protected class ThirdName {} // OK
 private class FourthName {} // OK
         </source>
-        <p>
+        <p id="Example3-config">
           The following configuration element ensures that
           interface names begin with <code>&quot;I_&quot;</code>, followed by
           letters and digits:
         </p>
         <source>
-&lt;module name=&quot;TypeName&quot;&gt;
-  &lt;property name=&quot;format&quot;
-    value=&quot;^I_[a-zA-Z0-9]*$&quot;/&gt;
-  &lt;property name=&quot;tokens&quot;
-    value=&quot;INTERFACE_DEF&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;TypeName&quot;&gt;
+      &lt;property name=&quot;format&quot;
+        value=&quot;^I_[a-zA-Z0-9]*$&quot;/&gt;
+      &lt;property name=&quot;tokens&quot;
+        value=&quot;INTERFACE_DEF&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p>Code Example:</p>
+        <p id="Example3-code">Code Example:</p>
         <source>
 public interface I_firstName {} // OK
 interface SecondName {} // violation, name 'SecondName'

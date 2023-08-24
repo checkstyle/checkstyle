@@ -1,0 +1,18 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="MethodTypeParameterName">
+       <property name="format" value="^[a-zA-Z]$"/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+class MyClass {
+  public <T> void method1() {} // OK
+  public <a> void method2() {} // OK
+  public <K, V> void method3() {} // OK
+  public <k, V> void method4() {} // OK
+}
+// xdoc section -- end

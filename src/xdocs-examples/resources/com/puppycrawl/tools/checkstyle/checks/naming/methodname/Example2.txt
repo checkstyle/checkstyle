@@ -1,0 +1,17 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="MethodName">
+       <property name="format" value="^[a-z](_?[a-zA-Z0-9]+)*$"/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+class MyClass {
+  public void myMethod() {} // OK
+  public void MyMethod() {} // violation, name "MyMethod"
+                            // should match the pattern "^[a-z](_?[a-zA-Z0-9]+)*$"
+}
+// xdoc section -- end
