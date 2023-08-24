@@ -76,98 +76,56 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name="SeparatorWrap"/&gt;
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/separatorwrap/Example1.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">
           Example:
         </p>
-        <source>
-import java.io.
-         IOException; // OK
-
-class Test {
-
-  String s;
-
-  public void foo(int a,
-                    int b) { // OK
-  }
-
-  public void bar(int p
-                    , int q) { // violation, separator comma on new line
-    if (s
-          .isEmpty()) { // violation, separator dot on new line
-    }
-  }
-
-}
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/separatorwrap/Example1.java"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example2-config">
           To configure the check for
           <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_REF">
             METHOD_REF</a> at new line:
         </p>
-        <source>
-&lt;module name="SeparatorWrap"&gt;
-  &lt;property name="tokens" value="METHOD_REF"/&gt;
-  &lt;property name="option" value="nl"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/separatorwrap/Example2.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">
           Example:
         </p>
-        <source>
-import java.util.Arrays;
-
-class Test2 {
-
-  String[] stringArray = {"foo", "bar"};
-
-  void fun() {
-    Arrays.sort(stringArray, String::
-      compareToIgnoreCase);  // violation, separator method reference on same line
-    Arrays.sort(stringArray, String
-      ::compareTo);  // OK
-  }
-
-}
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/separatorwrap/Example2.java"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example3-config">
           To configure the check for comma at the new line:
         </p>
-        <source>
-&lt;module name="SeparatorWrap"&gt;
-  &lt;property name="tokens" value="COMMA"/&gt;
-  &lt;property name="option" value="nl"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/separatorwrap/Example3.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example3-code">
           Example:
         </p>
-        <source>
-class Test3 {
-
-  String s;
-
-  int a,
-    b;  // violation, separator comma on same line
-
-  public void foo(int a,
-                     int b) {  // violation, separator comma on the same line
-    int r
-      , t; // OK
-  }
-
-  public void bar(int p
-                    , int q) {  // OK
-  }
-
-}
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/separatorwrap/Example3.java"/>
+          <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

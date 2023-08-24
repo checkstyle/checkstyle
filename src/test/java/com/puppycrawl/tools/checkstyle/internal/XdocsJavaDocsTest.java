@@ -116,6 +116,22 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
     // We skip validation of examples section on modules that have this section generated
     // until https://github.com/checkstyle/checkstyle/issues/13429
     private static final Set<String> MODULES_EXAMPLES_TO_SKIP = Set.of(
+        "EmptyForInitializerPad",
+        "EmptyForIteratorPad",
+        "EmptyLineSeparator",
+        "FileTabCharacter",
+        "GenericWhitespace",
+        "MethodParamPad",
+        "NoLineWrap",
+        "NoWhitespaceAfter",
+        "NoWhitespaceBefore",
+        "NoWhitespaceBeforeCaseDefaultColon",
+        "OperatorWrap",
+        "ParenPad",
+        "SeparatorWrap",
+        "SingleSpaceSeparator",
+        "TypecastParenPad",
+        "WhitespaceAround",
         "InnerAssignment",
         "MagicNumber",
         "MatchXpath",

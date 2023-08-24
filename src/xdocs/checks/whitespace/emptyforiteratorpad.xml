@@ -44,45 +44,62 @@ for (Iterator foo = very.long.line.iterator();
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;EmptyForIteratorPad&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;EmptyForIteratorPad&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
         </source>
-        <p>
+        <p id="Example1-code">
           Example:
         </p>
         <source>
-for (Iterator it = map.entrySet().iterator();  it.hasNext(););  // ok
-for (Iterator it = map.entrySet().iterator();  it.hasNext(); ); // violation since whitespace
-                                                                //after semicolon
+class Example1 {
+  Map&lt;String, String&gt; map = new HashMap&lt;&gt;();
+  void example() {
+    for (Iterator it = map.entrySet().iterator();  it.hasNext(););
+    for (Iterator it = map.entrySet().iterator();  it.hasNext(); );
+    // violation above '';' is followed by whitespace'
 
-for (Iterator foo = very.long.line.iterator();
-     foo.hasNext();
-     ); // ok
+    for (Iterator foo = map.entrySet().iterator();
+         foo.hasNext();
+         );
+  }
+}
         </source>
-        <p>
+        <p id="Example2-config">
           To configure the check to require white space at an empty for
           iterator:
         </p>
         <source>
-&lt;module name=&quot;EmptyForIteratorPad&quot;&gt;
-  &lt;property name=&quot;option&quot; value=&quot;space&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;EmptyForIteratorPad&quot;&gt;
+      &lt;property name=&quot;option&quot; value=&quot;space&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p>
+        <p id="Example2-code">
           Example:
         </p>
         <source>
-for (Iterator it = map.entrySet().iterator();  it.hasNext();); // violation as there is no
-                                                               // whitespace after semicolon
+class Example2 {
+  Map&lt;String, String&gt; map = new HashMap&lt;&gt;();
+  void example() {
+    for (Iterator it = map.entrySet().iterator();  it.hasNext(););
+    // violation above '';' is not followed by whitespace.'
+    for (Iterator it = map.entrySet().iterator();  it.hasNext(); );
 
-for (Iterator it = map.entrySet().iterator();  it.hasNext(); ); // ok
-
-for (Iterator foo = very.long.line.iterator();
-     foo.hasNext();
-     ); // violation as there  is no whitespace after semicolon
+    for (Iterator foo = map.entrySet().iterator();
+         foo.hasNext();
+         );
+  }
+}
         </source>
       </subsection>
 
