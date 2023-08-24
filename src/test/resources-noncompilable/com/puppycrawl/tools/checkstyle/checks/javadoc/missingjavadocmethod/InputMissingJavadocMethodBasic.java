@@ -6,9 +6,9 @@ allowMissingPropertyJavadoc = true
 */
 
 //non-compiled with javac: Compilable with Java14
-package com.puppycrawl.tools.checkstyle.utils.checkutil;
+package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadocmethod;
 
-public class InputCheckUtil1 {
+public class InputMissingJavadocMethodBasic {
 
     public void validAssign(String result) { // violation 'Missing a Javadoc comment'
          result = switch ("in") {
