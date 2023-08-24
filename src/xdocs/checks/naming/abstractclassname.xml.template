@@ -22,6 +22,10 @@
 
       <subsection name="Properties" id="Properties">
         <div class="wrapper">
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/naming/AbstractClassNameCheck.java"/>
+          </macro>
           <table>
             <tr>
               <th>name</th>
