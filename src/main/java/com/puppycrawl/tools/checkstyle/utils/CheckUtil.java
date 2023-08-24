@@ -54,20 +54,8 @@ public final class CheckUtil {
     /** Hex radix. */
     private static final int BASE_16 = 16;
 
-    /** Maximum children allowed in setter/getter. */
-    private static final int SETTER_GETTER_MAX_CHILDREN = 7;
-
-    /** Maximum nodes allowed in a body of setter. */
-    private static final int SETTER_BODY_SIZE = 3;
-
     /** Pattern matching underscore characters ('_'). */
     private static final Pattern UNDERSCORE_PATTERN = Pattern.compile("_");
-
-    /** Pattern matching names of setter methods. */
-    private static final Pattern SETTER_PATTERN = Pattern.compile("^set[A-Z].*");
-
-    /** Pattern matching names of getter methods. */
-    private static final Pattern GETTER_PATTERN = Pattern.compile("^(is|get)[A-Z].*");
 
     /** Compiled pattern for all system newlines. */
     private static final Pattern ALL_NEW_LINES = Pattern.compile("\\R");
@@ -278,79 +266,6 @@ public final class CheckUtil {
         }
 
         return typeParams;
-    }
-
-    /**
-     * Returns whether an AST represents a setter method.
-     *
-     * @param ast the AST to check with
-     * @return whether the AST represents a setter method
-     */
-    public static boolean isSetterMethod(final DetailAST ast) {
-        boolean setterMethod = false;
-
-        // Check have a method with exactly 7 children which are all that
-        // is allowed in a proper setter method which does not throw any
-        // exceptions.
-        if (ast.getType() == TokenTypes.METHOD_DEF
-                && ast.getChildCount() == SETTER_GETTER_MAX_CHILDREN) {
-            final DetailAST type = ast.findFirstToken(TokenTypes.TYPE);
-            final String name = type.getNextSibling().getText();
-            final boolean matchesSetterFormat = SETTER_PATTERN.matcher(name).matches();
-
-            final DetailAST params = ast.findFirstToken(TokenTypes.PARAMETERS);
-            final boolean singleParam = params.getChildCount(TokenTypes.PARAMETER_DEF) == 1;
-
-            if (matchesSetterFormat && singleParam) {
-                // Now verify that the body consists of:
-                // SLIST -> EXPR -> ASSIGN
-                // SEMI
-                // RCURLY
-                final DetailAST slist = ast.findFirstToken(TokenTypes.SLIST);
-
-                if (slist != null && slist.getChildCount() == SETTER_BODY_SIZE) {
-                    final DetailAST expr = slist.getFirstChild();
-                    setterMethod = expr.getFirstChild().getType() == TokenTypes.ASSIGN;
-                }
-            }
-        }
-        return setterMethod;
-    }
-
-    /**
-     * Returns whether an AST represents a getter method.
-     *
-     * @param ast the AST to check with
-     * @return whether the AST represents a getter method
-     */
-    public static boolean isGetterMethod(final DetailAST ast) {
-        boolean getterMethod = false;
-
-        // Check have a method with exactly 7 children which are all that
-        // is allowed in a proper getter method which does not throw any
-        // exceptions.
-        if (ast.getType() == TokenTypes.METHOD_DEF
-                && ast.getChildCount() == SETTER_GETTER_MAX_CHILDREN) {
-            final DetailAST type = ast.findFirstToken(TokenTypes.TYPE);
-            final String name = type.getNextSibling().getText();
-            final boolean matchesGetterFormat = GETTER_PATTERN.matcher(name).matches();
-
-            final DetailAST params = ast.findFirstToken(TokenTypes.PARAMETERS);
-            final boolean noParams = params.getChildCount(TokenTypes.PARAMETER_DEF) == 0;
-
-            if (matchesGetterFormat && noParams) {
-                // Now verify that the body consists of:
-                // SLIST -> RETURN
-                // RCURLY
-                final DetailAST slist = ast.findFirstToken(TokenTypes.SLIST);
-
-                if (slist != null) {
-                    final DetailAST expr = slist.getFirstChild();
-                    getterMethod = expr.getType() == TokenTypes.LITERAL_RETURN;
-                }
-            }
-        }
-        return getterMethod;
     }
 
     /**
