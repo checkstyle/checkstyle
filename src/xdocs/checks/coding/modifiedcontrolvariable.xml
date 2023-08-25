@@ -142,7 +142,8 @@ for (String arg: args1) {
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22modified.control.variable%22">
-            modified.control.variable</a>
+              modified.control.variable
+            </a>
           </li>
         </ul>
         <p>
