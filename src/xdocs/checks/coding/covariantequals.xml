@@ -136,7 +136,8 @@ record Test(String str) {
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22covariant.equals%22">
-            covariant.equals</a>
+              covariant.equals
+            </a>
           </li>
         </ul>
         <p>

@@ -104,11 +104,13 @@ public class AnnotationLocationCheck extends AbstractCheck {
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22mismatch.package.directory%22">
-            mismatch.package.directory</a>
+              mismatch.package.directory
+            </a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22missing.package.declaration%22">
-            missing.package.declaration</a>
+              missing.package.declaration
+            </a>
           </li>
         </ul>
         <p>

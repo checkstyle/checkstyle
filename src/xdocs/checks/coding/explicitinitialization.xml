@@ -133,7 +133,8 @@ public class Test {
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22explicit.init%22">
-            explicit.init</a>
+              explicit.init
+            </a>
           </li>
         </ul>
         <p>
