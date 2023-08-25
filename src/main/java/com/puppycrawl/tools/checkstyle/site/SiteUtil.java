@@ -32,6 +32,7 @@ import java.util.TreeSet;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import com.puppycrawl.tools.checkstyle.api.BeforeExecutionFileFilter;
 import org.apache.maven.doxia.macro.MacroExecutionException;
 
 import com.puppycrawl.tools.checkstyle.Checker;
@@ -58,7 +59,8 @@ public final class SiteUtil {
         Map.entry(AbstractCheck.class, TreeWalker.class.getSimpleName()),
         Map.entry(TreeWalkerFilter.class, TreeWalker.class.getSimpleName()),
         Map.entry(AbstractFileSetCheck.class, Checker.class.getSimpleName()),
-        Map.entry(Filter.class, Checker.class.getSimpleName())
+        Map.entry(Filter.class, Checker.class.getSimpleName()),
+        Map.entry(BeforeExecutionFileFilter.class, Checker.class.getSimpleName())
     );
 
     /**
