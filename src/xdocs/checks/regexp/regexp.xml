@@ -503,15 +503,18 @@ public static final int A_SETPOINT = 1;
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fregexp%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22duplicate.regexp%22">
-            duplicate.regexp</a>
+              duplicate.regexp
+            </a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fregexp%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22illegal.regexp%22">
-            illegal.regexp</a>
+              illegal.regexp
+            </a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fregexp%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22required.regexp%22">
-            required.regexp</a>
+              required.regexp
+            </a>
           </li>
         </ul>
         <p>
