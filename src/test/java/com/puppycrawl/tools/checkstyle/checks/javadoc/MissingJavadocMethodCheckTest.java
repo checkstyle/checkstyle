@@ -22,10 +22,14 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocMethodCheck.MSG_JAVADOC_MISSING;
 
+import java.io.File;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CheckUtilTest;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class MissingJavadocMethodCheckTest extends AbstractModuleTestSupport {
@@ -454,5 +458,55 @@ public class MissingJavadocMethodCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputMissingJavadocMethod1.java"),
                 expected);
+    }
+
+    @Test
+    public void testIsGetterMethod() throws Exception {
+        final File testFile =
+                new File(getPath("InputMissingJavadocMethodSetterGetter3.java"));
+        final DetailAST notGetterMethod =
+                CheckUtilTest.getNodeFromSpecificFile(TokenTypes.METHOD_DEF, testFile);
+        final DetailAST nonGetterWithoutParam = notGetterMethod.getNextSibling();
+        final DetailAST getterMethod = nonGetterWithoutParam.getNextSibling();
+        final DetailAST getterWithParam = getterMethod.getNextSibling();
+
+        assertWithMessage("Invalid result: AST provided is getter method")
+                .that(MissingJavadocMethodCheck.isGetterMethod(notGetterMethod))
+                .isFalse();
+        assertWithMessage("Invalid result: AST provided is getter method but has parameters")
+                .that(MissingJavadocMethodCheck.isGetterMethod(nonGetterWithoutParam))
+                .isFalse();
+        assertWithMessage("Invalid result: AST provided is not getter method")
+                .that(MissingJavadocMethodCheck.isGetterMethod(getterMethod))
+                .isTrue();
+        assertWithMessage("Invalid result: AST provided is getter method but has parameters")
+                .that(MissingJavadocMethodCheck.isGetterMethod(getterWithParam))
+                .isFalse();
+    }
+
+    @Test
+    public void testIsSetterMethod() throws Exception {
+        final File testFile =
+                new File(getPath("InputMissingJavadocMethodSetterGetter3.java"));
+        final DetailAST firstClassMethod =
+                CheckUtilTest.getNodeFromSpecificFile(TokenTypes.METHOD_DEF, testFile);
+        final DetailAST setterMethod =
+                firstClassMethod.getNextSibling().getNextSibling().getNextSibling();
+        final DetailAST nonSetterWithSingleParam = setterMethod.getNextSibling();
+        final DetailAST setterWithNoParam = nonSetterWithSingleParam.getNextSibling();
+        final DetailAST setterWithMultipleParam = setterWithNoParam.getNextSibling();
+
+        assertWithMessage("Invalid result: AST provided is setter method")
+                .that(MissingJavadocMethodCheck.isSetterMethod(setterMethod))
+                .isTrue();
+        assertWithMessage("Invalid result: AST provided is not setter method")
+                .that(MissingJavadocMethodCheck.isSetterMethod(nonSetterWithSingleParam))
+                .isFalse();
+        assertWithMessage("Invalid result: AST with setter format but no parameters")
+                .that(MissingJavadocMethodCheck.isSetterMethod(setterWithNoParam))
+                .isFalse();
+        assertWithMessage("Invalid result: AST with setter format but has multiple parameters")
+                .that(MissingJavadocMethodCheck.isSetterMethod(setterWithMultipleParam))
+                .isFalse();
     }
 }
