@@ -4811,7 +4811,7 @@
                 <mutator>PRIMITIVE_RETURNS</mutator>
               </mutators>
               <targetClasses>
-                <param>com.puppycrawl.tools.checkstyle.utils.*</param>
+                <param>com.puppycrawl.tools.checkstyle.utils.CodePointUtil</param>
               </targetClasses>
               <excludedMethods>
                 <!-- unkilled in generated code https://github.com/hcoles/pitest/issues/255 -->
@@ -4841,10 +4841,6 @@
                 </param>
                 <param>
                   com.puppycrawl.tools.checkstyle.checks.whitespace.SingleSpaceSeparatorCheckTest
-                </param>
-                <!-- 35% coverage, 29% mutation in CodePointUtil -->
-                <param>
-                  com.puppycrawl.tools.checkstyle.checks.whitespace.SeparatorWrapCheckTest
                 </param>
                 <!-- 2% mutation in ScopeUtil -->
                 <param>
