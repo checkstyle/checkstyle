@@ -290,7 +290,8 @@ public class InputIllegalImport { }
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22import.illegal%22">
-            import.illegal</a>
+              import.illegal
+            </a>
           </li>
         </ul>
         <p>

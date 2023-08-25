@@ -222,12 +222,9 @@
       </subsection>
 
       <subsection name="Violation Messages" id="Violation_Messages">
-        <ul>
-          <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22import.illegal%22">
-            import.illegal</a>
-          </li>
-        </ul>
+        <macro name="violation-messages">
+          <param name="checkName" value="IllegalImport"/>
+        </macro>
         <p>
           All messages can be customized if the default message doesn't suit you.
           Please <a href="../../config.html#Custom_messages">see the documentation</a>
