@@ -223,7 +223,8 @@ class BadException extends java.lang.Exception {
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fdesign%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22mutable.exception%22">
-            mutable.exception</a>
+              mutable.exception
+            </a>
           </li>
         </ul>
         <p>
