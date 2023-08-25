@@ -143,7 +143,8 @@ public void foo() {
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fblocks%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22block.nested%22">
-            block.nested</a>
+              block.nested
+            </a>
           </li>
         </ul>
         <p>
