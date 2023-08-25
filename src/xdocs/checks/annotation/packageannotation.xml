@@ -66,7 +66,8 @@ package com.example.annotations.packageannotation; //ok
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fannotation%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22annotation.package.location%22">
-            annotation.package.location</a>
+              annotation.package.location
+            </a>
           </li>
         </ul>
         <p>

@@ -220,12 +220,9 @@ class TestB {}
       </subsection>
 
       <subsection name="Violation Messages" id="Violation_Messages">
-        <ul>
-          <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fannotation%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22suppressed.warning.not.allowed%22">
-            suppressed.warning.not.allowed</a>
-          </li>
-        </ul>
+        <macro name="violation-messages">
+          <param name="checkName" value="SuppressWarnings"/>
+        </macro>
         <p>
           All messages can be customized if the default message doesn't suit you.
           Please <a href="../../config.html#Custom_messages">
