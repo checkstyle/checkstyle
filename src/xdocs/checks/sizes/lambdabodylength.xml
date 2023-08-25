@@ -146,7 +146,8 @@ class Example2 {
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fsizes%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22maxLen.lambdaBody%22">
-              maxLen.lambdaBody</a>
+              maxLen.lambdaBody
+            </a>
           </li>
         </ul>
         <p>
