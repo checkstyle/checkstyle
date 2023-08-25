@@ -42,6 +42,7 @@ import com.puppycrawl.tools.checkstyle.TreeWalker;
 import com.puppycrawl.tools.checkstyle.TreeWalkerFilter;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
+import com.puppycrawl.tools.checkstyle.api.BeforeExecutionFileFilter;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Filter;
 import com.puppycrawl.tools.checkstyle.checks.regexp.RegexpMultilineCheck;
@@ -58,7 +59,8 @@ public final class SiteUtil {
         Map.entry(AbstractCheck.class, TreeWalker.class.getSimpleName()),
         Map.entry(TreeWalkerFilter.class, TreeWalker.class.getSimpleName()),
         Map.entry(AbstractFileSetCheck.class, Checker.class.getSimpleName()),
-        Map.entry(Filter.class, Checker.class.getSimpleName())
+        Map.entry(Filter.class, Checker.class.getSimpleName()),
+        Map.entry(BeforeExecutionFileFilter.class, Checker.class.getSimpleName())
     );
 
     /**
