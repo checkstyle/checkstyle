@@ -187,9 +187,9 @@ import java.util.regex.Pattern; // The length of this comment will be taken into
       </subsection>
 
       <subsection name="Parent Module" id="Parent_Module">
-        <p>
-          <a href="../../config.html#Checker">Checker</a>
-        </p>
+        <macro name="parent-module">
+          <param name="moduleName" value="LineLength"/>
+        </macro>
       </subsection>
     </section>
   </body>
