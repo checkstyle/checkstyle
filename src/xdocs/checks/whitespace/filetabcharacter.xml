@@ -158,11 +158,13 @@ class Example3 {
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22containsTab%22">
-            containsTab</a>
+              containsTab
+            </a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22file.containsTab%22">
-            file.containsTab</a>
+              file.containsTab
+            </a>
           </li>
         </ul>
         <p>

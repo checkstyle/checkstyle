@@ -373,19 +373,23 @@ class Example5 {
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22empty.line.separator%22">
-            empty.line.separator</a>
+              empty.line.separator
+            </a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22empty.line.separator.multiple.lines%22">
-            empty.line.separator.multiple.lines</a>
+              empty.line.separator.multiple.lines
+            </a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22empty.line.separator.multiple.lines.after%22">
-            empty.line.separator.multiple.lines.after</a>
+              empty.line.separator.multiple.lines.after
+            </a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22empty.line.separator.multiple.lines.inside%22">
-            empty.line.separator.multiple.lines.inside</a>
+              empty.line.separator.multiple.lines.inside
+            </a>
           </li>
         </ul>
         <p>
