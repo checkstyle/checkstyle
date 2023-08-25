@@ -77,11 +77,13 @@ public class Test {
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22multiple.variable.declarations%22">
-            multiple.variable.declarations</a>
+              multiple.variable.declarations
+            </a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22multiple.variable.declarations.comma%22">
-            multiple.variable.declarations.comma</a>
+              multiple.variable.declarations.comma
+            </a>
           </li>
         </ul>
         <p>

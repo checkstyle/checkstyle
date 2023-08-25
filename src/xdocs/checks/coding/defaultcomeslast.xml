@@ -147,11 +147,13 @@ case 2 -&gt; x = 32;
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22default.comes.last%22">
-            default.comes.last</a>
+              default.comes.last
+            </a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22default.comes.last.in.casegroup%22">
-            default.comes.last.in.casegroup</a>
+              default.comes.last.in.casegroup
+            </a>
           </li>
         </ul>
         <p>

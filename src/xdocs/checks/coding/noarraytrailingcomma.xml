@@ -71,7 +71,8 @@ String[] foo4 = { &quot;FOO&quot;, &quot;BAR&quot; }; // OK
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22no.array.trailing.comma%22">
-            no.array.trailing.comma</a>
+              no.array.trailing.comma
+            </a>
           </li>
         </ul>
         <p>

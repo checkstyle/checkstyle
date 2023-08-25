@@ -103,7 +103,8 @@ for(int i=0; i&lt;10; i++) {
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22nested.for.depth%22">
-            nested.for.depth</a>
+              nested.for.depth
+            </a>
           </li>
         </ul>
         <p>
