@@ -393,7 +393,8 @@ class Example7 {
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fnaming%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22abbreviation.as.word%22">
-            abbreviation.as.word</a>
+              abbreviation.as.word
+            </a>
           </li>
         </ul>
         <p>
