@@ -175,11 +175,13 @@ class Example4 {
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fnaming%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22illegal.abstract.class.name%22">
-            illegal.abstract.class.name</a>
+              illegal.abstract.class.name
+            </a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fnaming%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22no.abstract.class.modifier%22">
-            no.abstract.class.modifier</a>
+              no.abstract.class.modifier
+            </a>
           </li>
         </ul>
         <p>
