@@ -369,14 +369,14 @@
     <lineContent>index += 2;</lineContent>
   </mutation>
 
-  <mutation unstable="false">
-    <sourceFile>JavadocStyleCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck</mutatedClass>
-    <mutatedMethod>getCommentText</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
-    <description>replaced call to java/lang/String::trim with receiver</description>
-    <lineContent>return builder.toString().trim();</lineContent>
-  </mutation>
+
+
+
+
+
+
+
+
 
 
 
