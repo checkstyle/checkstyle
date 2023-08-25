@@ -135,9 +135,9 @@ public boolean equals(Foo obj) {...}
       </subsection>
 
       <subsection name="Parent Module" id="Parent_Module">
-        <p>
-          <a href="../../config.html#TreeWalker">TreeWalker</a>
-        </p>
+        <macro name="parent-module">
+          <param name="moduleName" value="CovariantEquals"/>
+        </macro>
       </subsection>
     </section>
   </body>
