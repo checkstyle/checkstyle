@@ -266,19 +266,23 @@ void method() {
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fregexp%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22regexp.StackOverflowError%22">
-            regexp.StackOverflowError</a>
+              regexp.StackOverflowError
+            </a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fregexp%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22regexp.empty%22">
-            regexp.empty</a>
+              regexp.empty
+            </a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fregexp%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22regexp.exceeded%22">
-            regexp.exceeded</a>
+              regexp.exceeded
+            </a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fregexp%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22regexp.minimum%22">
-            regexp.minimum</a>
+              regexp.minimum
+            </a>
           </li>
         </ul>
         <p>
