@@ -6318,12 +6318,6 @@
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]whitespace[\\/]emptylineseparator[\\/]packageinfo[\\/]test2[\\/]package-info.java"/>
   <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]whitespace[\\/]methodparampad[\\/]InputMethodParamPad4.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]whitespace[\\/]methodparampad[\\/]InputMethodParamPadSetOptionTrim.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]whitespace[\\/]methodparampad[\\/]InputMethodParamPadWhitespaceAround.java"/>
-  <suppress id="UnnecessaryOkComment"
             files="checks[\\/]whitespace[\\/]nolinewrap[\\/]InputNoLineWrapGood.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]whitespace[\\/]nolinewrap[\\/]InputNoLineWrapGood.java"/>
