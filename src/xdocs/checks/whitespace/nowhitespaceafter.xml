@@ -228,7 +228,8 @@ class Example2 {
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ws.followed%22">
-            ws.followed</a>
+              ws.followed
+            </a>
           </li>
         </ul>
         <p>
