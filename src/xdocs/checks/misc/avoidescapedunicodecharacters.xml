@@ -188,7 +188,8 @@ return '\ufeff' + content;           // OK, non-printable escape character.
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22forbid.escaped.unicode.char%22">
-            forbid.escaped.unicode.char</a>
+              forbid.escaped.unicode.char
+            </a>
           </li>
         </ul>
         <p>
