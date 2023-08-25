@@ -147,23 +147,28 @@ public static final int CONST = 12; // violation, tight HTML rules not obeyed
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fannotation%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22annotation.missing.deprecated%22">
-            annotation.missing.deprecated</a>
+              annotation.missing.deprecated
+            </a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fannotation%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.duplicateTag%22">
-            javadoc.duplicateTag</a>
+              javadoc.duplicateTag
+            </a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fannotation%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.missed.html.close%22">
-            javadoc.missed.html.close</a>
+              javadoc.missed.html.close
+            </a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fannotation%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.parse.rule.error%22">
-            javadoc.parse.rule.error</a>
+              javadoc.parse.rule.error
+            </a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fannotation%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.wrong.singleton.html.tag%22">
-            javadoc.wrong.singleton.html.tag</a>
+              javadoc.wrong.singleton.html.tag
+            </a>
           </li>
         </ul>
         <p>
