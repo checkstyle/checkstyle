@@ -227,11 +227,13 @@ messages_ja.properties: Key 'name' missing.
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22translation.missingKey%22">
-            translation.missingKey</a>
+              translation.missingKey
+            </a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22translation.missingTranslationFile%22">
-            translation.missingTranslationFile</a>
+              translation.missingTranslationFile
+            </a>
           </li>
         </ul>
         <p>
