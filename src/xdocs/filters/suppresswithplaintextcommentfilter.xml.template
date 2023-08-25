@@ -324,7 +324,9 @@ CREATE TABLE STATION (
       </subsection>
 
       <subsection name="Parent Module" id="Parent_Module">
-        <p> <a href="../config.html#Checker">Checker</a> </p>
+        <macro name="parent-module">
+          <param name="moduleName" value="SuppressWithPlainTextCommentFilter"/>
+        </macro>
       </subsection>
     </section>
   </body>
