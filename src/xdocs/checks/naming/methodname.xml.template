@@ -188,16 +188,9 @@ class MyClass {
       </subsection>
 
       <subsection name="Violation Messages" id="Violation_Messages">
-        <ul>
-          <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fnaming%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22method.name.equals.class.name%22">
-            method.name.equals.class.name</a>
-          </li>
-          <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fnaming%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22name.invalidPattern%22">
-            name.invalidPattern</a>
-          </li>
-        </ul>
+        <macro name="violation-messages">
+          <param name="checkName" value="MethodName"/>
+        </macro>
         <p>
           All messages can be customized if the default message doesn't suit you.
           Please <a href="../../config.html#Custom_messages">see the documentation</a>
