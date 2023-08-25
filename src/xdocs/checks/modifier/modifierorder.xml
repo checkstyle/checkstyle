@@ -107,11 +107,13 @@
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fmodifier%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22annotation.order%22">
-            annotation.order</a>
+              annotation.order
+            </a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fmodifier%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22mod.order%22">
-            mod.order</a>
+              mod.order
+            </a>
           </li>
         </ul>
         <p>
