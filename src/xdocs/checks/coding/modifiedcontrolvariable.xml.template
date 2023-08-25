@@ -145,9 +145,9 @@ for (int a[]={0};a[0] &lt; 10;a[0]++) {
       </subsection>
 
       <subsection name="Parent Module" id="Parent_Module">
-        <p>
-          <a href="../../config.html#TreeWalker">TreeWalker</a>
-        </p>
+        <macro name="parent-module">
+          <param name="moduleName" value="ModifiedControlVariable"/>
+        </macro>
       </subsection>
     </section>
   </body>
