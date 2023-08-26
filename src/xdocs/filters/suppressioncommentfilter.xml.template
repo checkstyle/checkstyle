@@ -108,238 +108,89 @@
         </div>
       </subsection>
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure a filter to suppress audit events (MemberNameCheck,
           ConstantNameCheck and IllegalCatchCheck have been taken here for reference)
           between a comment containing <code>CHECKSTYLE:OFF</code> and a comment containing
           <code>CHECKSTYLE:ON</code>:
         </p>
-        <source>
-&lt;module name="SuppressionCommentFilter"/&gt;
-&lt;module name="MemberName"/&gt;
-&lt;module name="ConstantName"/&gt;
-&lt;module name="IllegalCatch"/&gt;
-        </source>
-        <source>
-class InputSuppressionCommentFilter
-{
-  int VAR1; // violation , Name 'VAR1' must match pattern '^[a-z][a-zA-Z0-9]*$'
-
-  //CHECKSTYLE:OFF
-  int VAR2; // suppressed violation
-  //CHECKSTYLE:ON
-
-  public static final int var3;
-  // violation above , Name 'var3' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'
-
-  //CHECKSTYLE:OFF
-  public static final int var4; // suppressed violation
-  //CHECKSTYLE:ON
-
-  public void method1()
-  {
-    try {}
-    catch(Exception ex) {} // violation , Catching 'Exception' is not allowed
-
-    //CHECKSTYLE:OFF
-
-    try {}
-    catch(Exception ex) {} // suppressed violation
-    catch(Error err) {} // suppressed violation
-
-    //CHECKSTYLE:ON
-  }
-}
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressioncommentfilter/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressioncommentfilter/Example1.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example2-config">
           To configure a filter so that <code>// stop constant
           check</code> and <code>// resume constant check</code> marks
           legitimate constant names:
         </p>
-        <source>
-&lt;module name="SuppressionCommentFilter"&gt;
-  &lt;property name="offCommentFormat" value="stop constant check"/&gt;
-  &lt;property name="onCommentFormat" value="resume constant check"/&gt;
-  &lt;property name="checkFormat" value="ConstantNameCheck"/&gt;
-&lt;/module&gt;
-&lt;module name="MemberName"/&gt;
-&lt;module name="ConstantName"/&gt;
-&lt;module name="IllegalCatch"/&gt;
-        </source>
-        <source>
-class InputSuppressionCommentFilter
-{
-  int VAR1; // violation , Name 'VAR1' must match pattern '^[a-z][a-zA-Z0-9]*$'
-
-  //stop constant check
-  int VAR2; // violation , Name 'VAR2' must match pattern '^[a-z][a-zA-Z0-9]*$'
-  //resume constant check
-
-  public static final int var3;
-  // violation above , Name 'var3' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'
-
-  //stop constant check
-  public static final int var4; // suppressed violation
-  //resume constant check
-
-  public void method1()
-  {
-    try {}
-    catch(Exception ex) {} // violation , Catching 'Exception' is not allowed
-
-    //stop constant check
-
-    try {}
-    catch(Exception ex) {} // violation , Catching 'Exception' is not allowed
-    catch(Error err) {} // violation , Catching 'Error' is not allowed
-
-    //resume constant check
-  }
-}
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressioncommentfilter/Example2.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressioncommentfilter/Example2.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example3-config">
           To configure a filter so that <code>UNUSED OFF:<i>var</i></code>
           and <code>UNUSED ON: <i>var</i></code> marks a
           variable or parameter known not to be used by the code by
           matching the variable name in the message through a specified message in messageFormat:
         </p>
-        <source>
-&lt;module name="SuppressionCommentFilter"&gt;
-  &lt;property name="offCommentFormat" value="ILLEGAL OFF\: (\w+)"/&gt;
-  &lt;property name="onCommentFormat" value="ILLEGAL ON\: (\w+)"/&gt;
-  &lt;property name="checkFormat" value="IllegalCatch"/&gt;
-  &lt;property name="messageFormat" value="^Catching '$1' is not allowed.$"/&gt;
-&lt;/module&gt;
-&lt;module name="MemberName"/&gt;
-&lt;module name="ConstantName"/&gt;
-&lt;module name="IllegalCatch"/&gt;
-        </source>
-        <source>
-class InputSuppressionCommentFilter
-{
-  int VAR1; // violation , Name 'VAR1' must match pattern '^[a-z][a-zA-Z0-9]*$'
-
-  //ILLEGAL OFF: Exception
-  int VAR2; // violation , Name 'VAR2' must match pattern '^[a-z][a-zA-Z0-9]*$'
-  //ILLEGAL ON: Exception
-
-  public static final int var3;
-  // violation above , Name 'var3' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'
-
-  //ILLEGAL OFF: Exception
-  public static final int var4;
-  // violation above ,  Name 'var4' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'
-  //ILLEGAL ON: Exception
-
-  public void method1()
-  {
-    try {}
-    catch(Exception ex) {} // violation , Catching 'Exception' is not allowed
-
-    //ILLEGAL OFF: Exception
-
-    try {}
-    catch(Exception ex) {} // suppressed violation
-    catch(Error err) {} // violation , Catching 'Error' is not allowed
-
-    //ILLEGAL ON: Exception
-  }
-}
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressioncommentfilter/Example3.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example3-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressioncommentfilter/Example3.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example4-config">
           To configure a filter so that name of suppressed check mentioned
           in comment <code>CSOFF: <i>regexp</i></code>
           and <code>CSON: <i>regexp</i></code> mark a matching check:
         </p>
-        <source>
-&lt;module name="SuppressionCommentFilter"&gt;
-  &lt;property name="offCommentFormat" value="CSOFF\: ([\w\|]+)"/&gt;
-  &lt;property name="onCommentFormat" value="CSON\: ([\w\|]+)"/&gt;
-  &lt;property name="checkFormat" value="$1"/&gt;
-&lt;/module&gt;
-&lt;module name="MemberName"/&gt;
-&lt;module name="ConstantName"/&gt;
-&lt;module name="IllegalCatch"/&gt;
-        </source>
-        <source>
-class InputSuppressionCommentFilter
-{
-  int VAR1; // violation , Name 'VAR1' must match pattern '^[a-z][a-zA-Z0-9]*$'
-
-  //CSOFF: MemberName
-  int VAR2; // suppressed violation
-  //CSON: MemberName
-
-  public static final int var3;
-  // violation above , Name 'var3' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'
-
-  //CSOFF: ConstantName
-  public static final int var4; // suppressed violation
-  //CSON: ConstantName
-
-  public void method1()
-  {
-    try {}
-    catch(Exception ex) {} // violation , Catching 'Exception' is not allowed
-
-    //CSOFF: IllegalCatch
-
-    try {}
-    catch(Exception ex) {} // suppressed violation
-    catch(Error err) {} // suppressed violation
-
-    //CSON: IllegalCatch
-  }
-}
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressioncommentfilter/Example4.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example4-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressioncommentfilter/Example4.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example5-config">
           To configure a filter to suppress all audit events between a comment
           containing <code>CHECKSTYLE_OFF: ALMOST_ALL</code> and a comment containing
           <code>CHECKSTYLE_OFF: ALMOST_ALL</code> except for the <em>ConstantName</em> check:
         </p>
-        <source>
-&lt;module name="SuppressionCommentFilter"&gt;
-  &lt;property name="offCommentFormat" value="CHECKSTYLE_OFF: ALMOST_ALL"/&gt;
-  &lt;property name="onCommentFormat" value="CHECKSTYLE_ON: ALMOST_ALL"/&gt;
-  &lt;property name="checkFormat" value="^((?!(ConstantName)).)*$"/&gt;
-&lt;/module&gt;
-&lt;module name="MemberName"/&gt;
-&lt;module name="ConstantName"/&gt;
-&lt;module name="IllegalCatch"/&gt;
-        </source>
-        <source>
-class InputSuppressionCommentFilter
-{
-  int VAR1; // violation , Name 'VAR1' must match pattern '^[a-z][a-zA-Z0-9]*$'
-
-  //CHECKSTYLE_OFF: ALMOST_ALL
-  int VAR2; // suppressed violation
-  //CHECKSTYLE_ON: ALMOST_ALL
-
-  public static final int var3;
-  // violation above , Name 'var3' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'
-
-  //CHECKSTYLE_OFF: ALMOST_ALL
-  public static final int var4;
-  // violation above ,  Name 'var4' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'
-  //CHECKSTYLE_ON: ALMOST_ALL
-
-  public void method1()
-  {
-    try {}
-    catch(Exception ex) {} // violation , Catching 'Exception' is not allowed
-
-    //CHECKSTYLE_OFF: ALMOST_ALL
-
-    try {}
-    catch(Exception ex) {} // suppressed violation
-    catch(Error err) {} // suppressed violation
-
-    //CHECKSTYLE_ON: ALMOST_ALL
-  }
-}
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressioncommentfilter/Example5.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example5-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressioncommentfilter/Example5.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example6-config">
           It is possible to specify an ID of checks, so that it can be leveraged by the
           SuppressionCommentFilter to skip validations. The following examples show how to skip
           validations near code that is surrounded with <code>// CSOFF &lt;ID&gt;</code>
@@ -348,141 +199,45 @@ class InputSuppressionCommentFilter
           to the ID written in the offCommentFormat and onCommentFormat. Config for such a
           case is written below:
         </p>
-        <source>
-&lt;module name="SuppressionCommentFilter"&gt;
-  &lt;property name="offCommentFormat" value="CSOFF (\w+)"/&gt;
-  &lt;property name="onCommentFormat" value="CSON (\w+)"/&gt;
-  &lt;property name="idFormat" value="$1"/&gt;
-&lt;/module&gt;
-&lt;module name="MemberName"&gt;
-&lt;property name="id" value="MemberID"/&gt;
-&lt;/module&gt;
-&lt;module name="ConstantName"&gt;
-  &lt;property name="id" value="ConstantID"/&gt;
-&lt;/module&gt;
-&lt;module name="IllegalCatch"&gt;
-  &lt;property name="id" value="IllegalID"/&gt;
-&lt;/module&gt;
-        </source>
-        <source>
-class InputSuppressionCommentFilter
-{
-  int VAR1; // violation , Name 'VAR1' must match pattern '^[a-z][a-zA-Z0-9]*$'
-
-  //CSOFF MemberID
-  int VAR2; // suppressed violation
-  //CSON: MemberID
-
-  public static final int var3;
-  // violation above , Name 'var3' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'
-
-  //CSOFF ConstantID
-  public static final int var4; // suppressed violation
-  //CSON ConstantID
-
-  public void method1()
-  {
-    try {}
-    catch(Exception ex) {} // violation , Catching 'Exception' is not allowed
-
-    //CSOFF IllegalID
-
-    try {}
-    catch(Exception ex) {} // suppressed violation
-    catch(Error err) {} // suppressed violation
-
-    //CSON IllegalID
-  }
-}
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressioncommentfilter/Example6.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example6-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressioncommentfilter/Example6.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example7-config">
           Example of how to configure the check to suppress checks by name defined in comment.
         </p>
-        <source>
-&lt;module name="SuppressionCommentFilter"&gt;
-  &lt;property name="offCommentFormat" value="csoff (\w+)"/&gt;
-  &lt;property name="onCommentFormat" value="cson (\w+)"/&gt;
-  &lt;property name="checkFormat" value="$1"/&gt;
-&lt;/module&gt;
-&lt;module name="MemberName"/&gt;
-&lt;module name="ConstantName"/&gt;
-&lt;module name="IllegalCatch"/&gt;
-        </source>
-        <source>
-class InputSuppressionCommentFilter
-{
-  int VAR1; // violation , Name 'VAR1' must match pattern '^[a-z][a-zA-Z0-9]*$'
-
-  //csoff MemberName
-  int VAR2; // suppressed violation
-  //cson MemberName
-
-  public static final int var3;
-  // violation above , Name 'var3' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'
-
-  //csoff ConstantName
-  //csoff IllegalCatch
-
-  public static final int var4; // suppressed violation
-
-  public void method1()
-  {
-    try {}
-    catch(Exception ex) {} // suppressed violation
-
-    try {}
-    catch(Exception ex) {} // suppressed violation
-    catch(Error err) {} // suppressed violation
-  }
-
-  //cson ConstantName
-  //cson IllegalCatch
-
-}
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressioncommentfilter/Example7.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example7-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressioncommentfilter/Example7.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example8-config">
           Example depicting use of checkC and checkCPP style comments
         </p>
-        <source>
-&lt;module name="SuppressionCommentFilter"&gt;
-  &lt;property name="checkC" value="true"/&gt;
-  &lt;property name="checkCPP" value="false"/&gt;
-&lt;/module&gt;
-&lt;module name="MemberName"/&gt;
-&lt;module name="ConstantName"/&gt;
-&lt;module name="IllegalCatch"/&gt;
-        </source>
-        <source>
-class InputSuppressionCommentFilter
-{
-  int VAR1; // violation , Name 'VAR1' must match pattern '^[a-z][a-zA-Z0-9]*$'
-
-  //CHECKSTYLE:OFF
-  int VAR2; // violation , Name 'VAR2' must match pattern '^[a-z][a-zA-Z0-9]*$'
-  //CHECKSTYLE:ON
-
-  public static final int var3;
-  // violation above , Name 'var3' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'
-
-  /*CHECKSTYLE:OFF*/
-  public static final int var4; // suppressed violation
-  /*CHECKSTYLE:ON*/
-
-  public void method1()
-  {
-    try {}
-    catch(Exception ex) {} // violation , Catching 'Exception' is not allowed
-
-    //CHECKSTYLE:OFF
-
-    try {}
-    catch(Exception ex) {} // violation , Catching 'Exception' is not allowed
-    catch(Error err) {} // violation , Catching 'Error' is not allowed
-
-    //CHECKSTYLE:ON
-  }
-}
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressioncommentfilter/Example8.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example8-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressioncommentfilter/Example8.txt"/>
+          <param name="type" value="code"/>
+        </macro>
       </subsection>
       <subsection name="Example of Usage" id="Example_of_Usage">
         <ul>

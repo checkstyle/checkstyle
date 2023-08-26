@@ -98,7 +98,7 @@
         </div>
       </subsection>
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           The following suppressions directs
           a <code>SuppressionSingleFilter</code> to
           reject <code>JavadocStyleCheck</code> violations for
@@ -109,103 +109,84 @@
           and <code>'Missing a Javadoc comment'</code> violations
           for all lines and files:
         </p>
-        <source>
-&lt;module name="SuppressionSingleFilter"&gt;
-  &lt;property name="checks" value="JavadocStyleCheck"/&gt;
-  &lt;property name="files" value="AbstractComplexityCheck.java"/&gt;
-  &lt;property name="lines" value="82,108-122"/&gt;
-&lt;/module&gt;
-&lt;module name="SuppressionSingleFilter"&gt;
-  &lt;property name="checks" value="MagicNumberCheck"/&gt;
-  &lt;property name="files" value="JavadocStyleCheck.java"/&gt;
-  &lt;property name="lines" value="221"/&gt;
-&lt;/module&gt;
-&lt;module name="SuppressionSingleFilter"&gt;
-  &lt;property name="message" value="Missing a Javadoc comment"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionsinglefilter/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-config">
           Suppress check by <a href="https://checkstyle.org/config.html#Id">module id</a>
           when config have two instances on the same check:
         </p>
-        <source>
-&lt;module name="SuppressionSingleFilter"&gt;
-  &lt;property name="id" value="stringEqual"/&gt;
-  &lt;property name="files" value="SomeTestCode.java"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionsinglefilter/Example2.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example3-config">
           Suppress all checks for hidden files and folders:
         </p>
-        <source>
-&lt;module name="SuppressionSingleFilter"&gt;
-  &lt;property name="files" value="[/\\]\..+"/&gt;
-  &lt;property name="checks" value=".*"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionsinglefilter/Example3.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example4-config">
           Suppress all checks for Maven-generated code:
         </p>
-        <source>
-&lt;module name="SuppressionSingleFilter"&gt;
-  &lt;property name="files" value="[/\\]target[/\\]"/&gt;
-  &lt;property name="checks" value=".*"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionsinglefilter/Example4.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example5-config">
           Suppress all checks for archives, classes and other binary files:
         </p>
-        <source>
-&lt;module name="SuppressionSingleFilter"&gt;
-  &lt;property name="files" value=".+\.(?:jar|zip|war|class|tar|bin)$"/&gt;
-  &lt;property name="checks" value=".*"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionsinglefilter/Example5.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example6-config">
           Suppress all checks for image files:
         </p>
-        <source>
-&lt;module name="SuppressionSingleFilter"&gt;
-  &lt;property name="files" value=".+\.(?:png|gif|jpg|jpeg)$"/&gt;
-  &lt;property name="checks" value=".*"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionsinglefilter/Example6.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example7-config">
           Suppress all checks for non-java files:
         </p>
-        <source>
-&lt;module name="SuppressionSingleFilter"&gt;
-  &lt;property name="files"
-    value=".+\.(?:txt|xml|csv|sh|thrift|html|sql|eot|ttf|woff|css|png)$"/&gt;
-  &lt;property name="checks" value=".*"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionsinglefilter/Example7.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example8-config">
           Suppress all checks in generated sources:
         </p>
-        <source>
-&lt;module name="SuppressionSingleFilter"&gt;
-  &lt;property name="files" value="com[\\/]mycompany[\\/]app[\\/]gen[\\/]"/&gt;
-  &lt;property name="checks" value=".*"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionsinglefilter/Example8.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example9-config">
           Suppress FileLength check on integration tests in certain folder:
         </p>
-        <source>
-&lt;module name="SuppressionSingleFilter"&gt;
-  &lt;property name="files" value="com[\\/]mycompany[\\/]app[\\/].*IT.java"/&gt;
-  &lt;property name="checks" value="FileLength"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionsinglefilter/Example9.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example10-config">
           Suppress naming violations on variable named 'log' in all files:
         </p>
-        <source>
-&lt;module name="SuppressionSingleFilter"&gt;
-  &lt;property name="message" value="Name 'log' must match pattern"/&gt;
-&lt;/module&gt;
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionsinglefilter/Example10.txt"/>
+          <param name="type" value="config"/>
+        </macro>
       </subsection>
       <subsection name="Example of Usage" id="Example_of_Usage">
         <ul>
