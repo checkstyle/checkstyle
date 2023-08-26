@@ -13,18 +13,18 @@ public class InputFallThrough6 {
         switch(i) {
             case 1:
                  int fallthru = 2; // fallthru
-            case 2: // violation 'Fall through from previous branch of the switch statement'
+            case 2: // violation 'Fall\ through from previous branch of the switch statement'
                  int fallthrough = 2; //            fall thru
-            case 3: // violation 'Fall through from previous branch of the switch statement'
+            case 3: // violation 'Fall\ through from previous branch of the switch statement'
                  break;
             case 4:
                  int fallthru2 = 3;
                  //     fall   -   thru
-            case 5: // violation 'Fall through from previous branch of the switch statement.'
+            case 5: // violation 'Fall\ through from previous branch of the switch statement.'
                  int fallthru3 = 4; // This is a fallthru comment
-            case 6: // violation 'Fall through from previous branch of the switch statement'
+            case 6: // violation 'Fall\ through from previous branch of the switch statement'
                  int fallthru4 = 5; // falldown
-            default: // violation 'Fall through from previous branch of the switch statement.'
+            default: // violation 'Fall\ through from previous branch of the switch statement.'
             }
     }
 
@@ -35,7 +35,7 @@ public class InputFallThrough6 {
          case 2: case 3: i *= i; // fall through
          case 4: case 5: i *= i; // fall through
          case 6: case 7: i *= i;
-             break; // violation above 'Fall through from previous branch of the switch statement'
+             break; // violation above 'Fall\ through from previous branch of the switch statement'
          default:
              throw new RuntimeException();
          }
@@ -49,7 +49,7 @@ public class InputFallThrough6 {
             case 1:
                 // fall through
                 i++;
-            case 2: // violation 'Fall through from previous branch of the switch statement'
+            case 2: // violation 'Fall\ through from previous branch of the switch statement'
                 break;
         }
      }
@@ -62,7 +62,7 @@ public class InputFallThrough6 {
             case 1: // random
                 // fall through
                i++;
-            case 2: // violation 'Fall through from previous branch of the switch statement'
+            case 2: // violation 'Fall\ through from previous branch of the switch statement'
                 break;
         }
      }
@@ -77,7 +77,7 @@ public class InputFallThrough6 {
                 // non fall
              /* comment */
                i++;
-            case 2: // violation 'Fall through from previous branch of the switch statement'
+            case 2: // violation 'Fall\ through from previous branch of the switch statement'
                 break;
         }
      }
@@ -91,7 +91,7 @@ public class InputFallThrough6 {
                 /* fallthru */
             // comment
                i++;
-            case 2: // violation 'Fall through from previous branch of the switch statement'
+            case 2: // violation 'Fall\ through from previous branch of the switch statement'
                 break;
         }
      }
@@ -106,7 +106,7 @@ public class InputFallThrough6 {
                 // fall through
             // comment
                 System.out.println("check");
-            case 2: // violation 'Fall through from previous branch of the switch statement'
+            case 2: // violation 'Fall\ through from previous branch of the switch statement'
                 break;
         }
      }
