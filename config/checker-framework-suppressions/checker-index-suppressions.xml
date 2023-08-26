@@ -2764,17 +2764,6 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/CodePointUtil.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter from of copyOfRange.</message>
-    <lineContent>return Arrays.copyOfRange(codePoints, startIndex, codePoints.length);</lineContent>
-    <details>
-      found   : int
-      required: @LTEqLengthOf(&quot;codePoints&quot;) int
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/CommonUtil.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter beginIndex of substring.</message>
