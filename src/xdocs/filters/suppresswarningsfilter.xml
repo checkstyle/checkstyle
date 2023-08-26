@@ -56,6 +56,16 @@
         <source>
 &lt;module name=&quot;SuppressWarningsFilter&quot; /&gt;
         </source>
+        <p id="Example1-config">Full configuration:</p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;SuppressWarningsHolder&quot; /&gt;
+  &lt;/module&gt;
+  &lt;module name=&quot;SuppressWarningsFilter&quot; /&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example1-code">Example:</p>
         <source>
 @SuppressWarnings({&quot;memberName&quot;})
 private int J; // should NOT fail MemberNameCheck
@@ -98,6 +108,22 @@ private int [] ARRAY; // should NOT fail MemberNameCheck and NoWhitespaceAfterCh
         <source>
 &lt;module name=&quot;SuppressWarningsFilter&quot; /&gt;
         </source>
+        <p id="Example2-config">Full configuration:</p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;SuppressWarningsHolder&quot; /&gt;
+    &lt;module name=&quot;RegexpSinglelineJava&quot;&gt;
+      &lt;property name=&quot;id&quot; value=&quot;systemout&quot;/&gt;
+      &lt;property name=&quot;format&quot; value=&quot;^.*System\.(out|err).*$&quot;/&gt;
+      &lt;property name=&quot;message&quot;
+        value=&quot;Don't use System.out/err, use SLF4J instead.&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+  &lt;module name=&quot;SuppressWarningsFilter&quot; /&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example2-code">Example:</p>
         <source>
 @SuppressWarnings(&quot;checkstyle:systemout&quot;)
 public static void foo() {

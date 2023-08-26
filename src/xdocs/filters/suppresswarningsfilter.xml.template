@@ -56,6 +56,13 @@
         <source>
 &lt;module name="SuppressWarningsFilter" /&gt;
         </source>
+        <p id="Example1-config">Full configuration:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswarningsfilter/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">Example:</p>
         <source>
 @SuppressWarnings({"memberName"})
 private int J; // should NOT fail MemberNameCheck
@@ -98,12 +105,18 @@ private int [] ARRAY; // should NOT fail MemberNameCheck and NoWhitespaceAfterCh
         <source>
 &lt;module name="SuppressWarningsFilter" /&gt;
         </source>
-        <source>
-@SuppressWarnings("checkstyle:systemout")
-public static void foo() {
-  System.out.println("Debug info."); // should NOT fail RegexpSinglelineJava
-}
-        </source>
+        <p id="Example2-config">Full configuration:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswarningsfilter/Example2.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswarningsfilter/Example2.txt"/>
+          <param name="type" value="code"/>
+        </macro>
       </subsection>
       <subsection name="Example of Usage" id="Example_of_Usage">
         <ul>
