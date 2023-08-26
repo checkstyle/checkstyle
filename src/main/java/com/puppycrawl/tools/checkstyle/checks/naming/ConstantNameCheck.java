@@ -25,7 +25,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 
 /**
  * <p>
- * Checks that constant names conform to a specified pattern.
+ * Checks that constant names conform to a specified pattern. Test
  * A <em>constant</em> is a <strong>static</strong> and <strong>final</strong>
  * field or an interface/annotation field, except
  * <strong>serialVersionUID</strong> and <strong>serialPersistentFields

@@ -5,7 +5,7 @@
              name="ConstantName"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
- Checks that constant names conform to a specified pattern.
+ Checks that constant names conform to a specified pattern. Test
  A &lt;em&gt;constant&lt;/em&gt; is a &lt;strong&gt;static&lt;/strong&gt; and &lt;strong&gt;final&lt;/strong&gt;
  field or an interface/annotation field, except
  &lt;strong&gt;serialVersionUID&lt;/strong&gt; and &lt;strong&gt;serialPersistentFields
