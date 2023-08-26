@@ -53,16 +53,17 @@ public final class InlineConfigParser {
     /**
      * A pattern that matches the following comments formats.
      * <ol>
-     *     <li> "// violation" </li>
-     *     <li> "// violation, 'violation message'" </li>
-     *     <li> "// violation 'violation messages'" </li>
+     *     <li> // violation </li>
+     *     <li> // violation, 'violation message' </li>
+     *     <li> // violation 'violation messages' </li>
+     *     <li> // violation, "violation messages" </li>
      * </ol>
      *
      * <p>
      * This pattern will not match the following formats.
      * <ol>
-     *     <li> "// violation, explanation" </li>
-     *     <li> "// violation, explanation, 'violation message'" </li>
+     *     <li> // violation, explanation </li>
+     *     <li> // violation, explanation, 'violation message' </li>
      * </ol>
      *
      * These are matched by
@@ -70,27 +71,27 @@ public final class InlineConfigParser {
      * </p>
      */
     private static final Pattern VIOLATION_PATTERN = Pattern
-            .compile(".*//\\s*violation,?\\s*(?:'(.*)')?$");
+            .compile(".*//\\s*violation,?\\s*(?:['\"](.*)['\"])?$");
 
     /** A pattern to find the string: "// violation above". */
     private static final Pattern VIOLATION_ABOVE_PATTERN = Pattern
-            .compile(".*//\\s*violation above\\s*(?:'(.*)')?$");
+            .compile(".*//\\s*violation above,?\\s*(?:['\"](.*)['\"])?$");
 
     /** A pattern to find the string: "// violation below". */
     private static final Pattern VIOLATION_BELOW_PATTERN = Pattern
-            .compile(".*//\\s*violation below\\s*(?:'(.*)')?$");
+            .compile(".*//\\s*violation below,?\\s*(?:['\"](.*)['\"])?$");
 
     /** A pattern to find the string: "// violation above, explanation". */
     private static final Pattern VIOLATION_ABOVE_WITH_EXPLANATION_PATTERN = Pattern
-            .compile(".*//\\s*violation above,\\s.+\\s(?:'(.*)')?$");
+            .compile(".*//\\s*violation above,\\s.+\\s(?:['\"](.*)['\"])?$");
 
     /** A pattern to find the string: "// violation below, explanation". */
     private static final Pattern VIOLATION_BELOW_WITH_EXPLANATION_PATTERN = Pattern
-            .compile(".*//\\s*violation below,\\s.+\\s(?:'(.*)')?$");
+            .compile(".*//\\s*violation below,\\s.+\\s(?:['\"](.*)['\"])?$");
 
     /** A pattern to find the string: "// violation, explanation". */
     private static final Pattern VIOLATION_WITH_EXPLANATION_PATTERN = Pattern
-            .compile(".*//\\s*violation,\\s.+\\s(?:'(.*)')?$");
+            .compile(".*//\\s*violation,\\s.+\\s(?:['\"](.*)['\"])?$");
 
     /** A pattern to find the string: "// X violations". */
     private static final Pattern MULTIPLE_VIOLATIONS_PATTERN = Pattern
@@ -106,23 +107,23 @@ public final class InlineConfigParser {
 
     /** A pattern to find the string: "// filtered violation". */
     private static final Pattern FILTERED_VIOLATION_PATTERN = Pattern
-            .compile(".*//\\s*filtered violation\\s*(?:'(.*)')?$");
+            .compile(".*//\\s*filtered violation\\s*(?:['\"](.*)['\"])?$");
 
     /** A pattern to find the string: "// filtered violation above". */
     private static final Pattern FILTERED_VIOLATION_ABOVE_PATTERN = Pattern
-            .compile(".*//\\s*filtered violation above\\s*(?:'(.*)')?$");
+            .compile(".*//\\s*filtered violation above\\s*(?:['\"](.*)['\"])?$");
 
     /** A pattern to find the string: "// filtered violation below". */
     private static final Pattern FILTERED_VIOLATION_BELOW_PATTERN = Pattern
-            .compile(".*//\\s*filtered violation below\\s*(?:'(.*)')?$");
+            .compile(".*//\\s*filtered violation below\\s*(?:['\"](.*)['\"])?$");
 
     /** A pattern to find the string: "// violation X lines above". */
     private static final Pattern VIOLATION_SOME_LINES_ABOVE_PATTERN = Pattern
-            .compile(".*//\\s*violation (\\d+) lines above\\s*(?:'(.*)')?$");
+            .compile(".*//\\s*violation (\\d+) lines above\\s*(?:['\"](.*)['\"])?$");
 
     /** A pattern to find the string: "// violation X lines below". */
     private static final Pattern VIOLATION_SOME_LINES_BELOW_PATTERN = Pattern
-            .compile(".*//\\s*violation (\\d+) lines below\\s*(?:'(.*)')?$");
+            .compile(".*//\\s*violation (\\d+) lines below\\s*(?:['\"](.*)['\"])?$");
 
     /** The String "(null)". */
     private static final String NULL_STRING = "(null)";
