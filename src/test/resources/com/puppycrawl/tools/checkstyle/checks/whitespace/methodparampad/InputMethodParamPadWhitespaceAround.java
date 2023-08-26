@@ -11,11 +11,11 @@ tokens = (default)CTOR_DEF, LITERAL_NEW, METHOD_CALL, METHOD_DEF, SUPER_CTOR_CAL
 package com.puppycrawl.tools.checkstyle.checks.whitespace.methodparampad;
 
 @SuppressWarnings({"this", "that"})
-public class InputMethodParamPadWhitespaceAround // ok
+public class InputMethodParamPadWhitespaceAround
 {
     protected InputMethodParamPadWhitespaceAround ( int i )
     {
-        this (); //whitespace
+        this ();
         toString ();
     }
     protected InputMethodParamPadWhitespaceAround ()
@@ -37,5 +37,5 @@ public class InputMethodParamPadWhitespaceAround // ok
 }
 
 @interface CronExpression1 {
-    Class<?>[] groups() default { }; // extra space
+    Class<?>[] groups() default { };
 }
