@@ -7,7 +7,7 @@ validateOnlyOverlapping = false
 
 */
 
-package com.puppycrawl.tools.checkstyle.checks.coding.requirethis; // ok
+package com.puppycrawl.tools.checkstyle.checks.coding.requirethis;
 
 public class InputRequireThisEnumConstant {
     private final String TEST = "";

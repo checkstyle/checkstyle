@@ -19,8 +19,8 @@ public class InputUnusedLocalVariable {
     String s;
 
     Obj obj = new Obj() {
-        int a = 12; // ok
-        int b = 12; // ok
+        int a = 12;
+        int b = 12;
     };
 
     private void sameName(int unusedParameter) {
@@ -38,19 +38,19 @@ public class InputUnusedLocalVariable {
     }
 
     public void testCallingMethods() {
-        int var = 21; // ok
+        int var = 21;
         sameName(var);
         var = sameName;
     }
 
     public static void testInLambdas(int q) {
-        int test = 21; // ok
-        int isInOuterScope = 32; // ok
+        int test = 21;
+        int isInOuterScope = 32;
         Predicate<Integer> foo = integer -> {
             int b; // violation
-            int a = integer; // ok
+            int a = integer;
             b = integer;
-            boolean ans = a > 12; // ok
+            boolean ans = a > 12;
             int c = 21; // violation
             c = -isInOuterScope;
             return ans;
@@ -69,7 +69,7 @@ public class InputUnusedLocalVariable {
 
     public void testChainedCalls() throws InterruptedException {
         Obj p; // violation
-        Obj q = null; // ok
+        Obj q = null;
         p = q.foo().p;
         if (s instanceof String) {
         }

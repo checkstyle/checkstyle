@@ -23,8 +23,8 @@ import java.util.function.Consumer;
 
 public abstract class InputIllegalTypeTestGenerics {
 
-    private Set<Boolean> privateSet; // OK
-    private java.util.List<Map<Boolean, Foo>> privateList; // OK
+    private Set<Boolean> privateSet;
+    private java.util.List<Map<Boolean, Foo>> privateList;
     public Set<Boolean> set; // violation
     public java.util.List<Map<Boolean, Foo>> list; // 2 violations
 
@@ -40,7 +40,7 @@ public abstract class InputIllegalTypeTestGenerics {
     public abstract Set<Boolean> shortName(Set<? super Set<Boolean>> a); // 2 violations
 
     public Set<? extends Foo<Boolean>> typeArgument() { // 2 violations
-        return new TreeSet<Foo<Boolean>>(); // OK
+        return new TreeSet<Foo<Boolean>>();
     }
 
     public class MyClass<Foo extends Boolean> {} // 2 violations
@@ -50,13 +50,13 @@ public abstract class InputIllegalTypeTestGenerics {
 class Bounded {
 
     public boolean match = new TreeSet<Integer>().stream()
-            .allMatch(new TreeSet<>()::add); // OK
+            .allMatch(new TreeSet<>()::add);
 
     public static <Boolean> void foo() {} // violation
 
 }
 
-class Foo<T extends Boolean & Serializable> { // OK
+class Foo<T extends Boolean & Serializable> {
 
     void foo() {}
 
@@ -64,7 +64,7 @@ class Foo<T extends Boolean & Serializable> { // OK
 
 @interface Annotation {
 
-    Class<? extends Boolean>[] nonPublic(); // OK
+    Class<? extends Boolean>[] nonPublic();
     public Class<? extends Boolean>[] value(); // violation
 
 }

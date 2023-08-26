@@ -87,6 +87,6 @@ class A {
         }
     }
 }
-@interface InputMagicNumberIntMethodAnnotation { // ok
+@interface InputMagicNumberIntMethodAnnotation {
         int value();
 }

@@ -13,7 +13,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding.variabledeclarationusagedi
 public class InputVariableDeclarationUsageDistanceDefault2 {
 
     void method() {
-        int VARIABLE_DEF = 12; // ok
+        int VARIABLE_DEF = 12;
         method();
         method();
         method();

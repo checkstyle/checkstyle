@@ -30,10 +30,10 @@ public class InputNestedForDepth1 {
       for (i2 = 0; i2 < 10; i2++) {
         for (i3 = 0; i3 < 10; i3++) {
           for (i4 = 0; i4 < 10; i4++) {
-            for (i5 = 0; i5 < 10; i5++) { // ok
+            for (i5 = 0; i5 < 10; i5++) {
               i += 1;
             }
-            for (int i5a = 0; i5a < 10; i5a++) { // ok
+            for (int i5a = 0; i5a < 10; i5a++) {
                 i += 1;
               }
           }

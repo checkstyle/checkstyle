@@ -16,7 +16,7 @@ import java.awt.Color;
  * Test case for detecting simple semantic violations.
  * @author Lars Kühne
  **/
-class InputIllegalInstantiationSemantic // ok
+class InputIllegalInstantiationSemantic
 {
     /* Boolean instantiation in a static initializer */
     static {

@@ -24,6 +24,6 @@ public class InputRequireThisFinalInstanceVariable {
     }
 
     public void foo(int x) {
-        x = x; // ok
+        x = x;
     }
 }

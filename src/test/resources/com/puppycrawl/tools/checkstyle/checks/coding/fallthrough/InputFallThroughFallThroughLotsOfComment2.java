@@ -56,7 +56,7 @@ public class InputFallThroughFallThroughLotsOfComment2 {
                 case "EVICTING":
                     // In the case of eviction we add the node back as if it was a HIR_RESIDENT
                     // we now have a HIR resident
-                case "HIR_RESIDENT": // ok
+                case "HIR_RESIDENT":
                     // case 2
                     if (lirsNode.stackNode != null) {
                         // This is the (a) example
