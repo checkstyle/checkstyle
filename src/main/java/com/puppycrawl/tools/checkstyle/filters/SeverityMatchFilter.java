@@ -49,16 +49,6 @@ import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
  * </li>
  * </ul>
  * <p>
- * For example, the following configuration fragment directs the Checker to not
- * report audit events with severity level {@code info}:
- * </p>
- * <pre>
- * &lt;module name=&quot;SeverityMatchFilter&quot;&gt;
- *   &lt;property name=&quot;severity&quot; value=&quot;info&quot;/&gt;
- *   &lt;property name=&quot;acceptOnMatch&quot; value=&quot;false&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.Checker}
  * </p>
  *

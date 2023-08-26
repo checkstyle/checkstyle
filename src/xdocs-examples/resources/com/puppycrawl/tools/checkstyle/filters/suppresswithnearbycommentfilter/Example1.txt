@@ -1,0 +1,11 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="SuppressWithNearbyCommentFilter"/>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+private int [] array; // SUPPRESS CHECKSTYLE
+// xdoc section -- end

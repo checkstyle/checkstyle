@@ -292,7 +292,17 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         "RecordComponentName",
         "RecordTypeParameterName",
         "StaticVariableName",
-        "TypeName"
+        "TypeName",
+        "SeverityMatchFilter",
+        "SuppressionCommentFilter",
+        "SuppressionFilter",
+        "SuppressionSingleFilter",
+        "SuppressionXpathFilter",
+        "SuppressionXpathSingleFilter",
+        "SuppressWarningsFilter",
+        "SuppressWithNearbyCommentFilter",
+        "SuppressWithNearbyTextFilter",
+        "SuppressWithPlainTextCommentFilter"
     );
 
     private static final List<List<Node>> CHECK_PROPERTIES = new ArrayList<>();

@@ -88,25 +88,26 @@
         </div>
       </subsection>
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure to suppress the MethodName check
           for all methods with name MyMethod
           inside FileOne and FileTwo files:
         </p>
-        <div class="wrapper">
-          <pre>
-&lt;module name=&quot;SuppressionXpathSingleFilter&quot;&gt;
-  &lt;property name=&quot;files&quot; value=&quot;File(One|Two)\.java&quot;/&gt;
-  &lt;property name=&quot;checks&quot; value=&quot;MethodName&quot;/&gt;
-  &lt;property name=&quot;query&quot; value=&quot;(//CLASS_DEF[@text='FileOne']/OBJBLOCK/
-            METHOD_DEF[@text='MyMethod']/IDENT)|
-            (//CLASS_DEF[@text='FileTwo']/OBJBLOCK/METHOD_DEF[@text='MyMethod']/IDENT)&quot;/&gt;
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;SuppressionXpathSingleFilter&quot;&gt;
+      &lt;property name=&quot;files&quot; value=&quot;File(One|Two)\.java&quot;/&gt;
+      &lt;property name=&quot;checks&quot; value=&quot;MethodName&quot;/&gt;
+      &lt;property name=&quot;query&quot; value=&quot;(//CLASS_DEF[@text='FileOne']/OBJBLOCK/
+                METHOD_DEF[@text='MyMethod']/IDENT)|
+                (//CLASS_DEF[@text='FileTwo']/OBJBLOCK/METHOD_DEF[@text='MyMethod']/IDENT)&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
-          </pre>
-        </div>
-        <p>Code example:</p>
-        <div class="wrapper">
-          <pre>
+        </source>
+        <p id="Example1-code">Code example:</p>
+        <source>
 public class FileOne {
   public void MyMethod() {} // OK
 }
@@ -119,48 +120,48 @@ public class FileThree {
   public void MyMethod() {} // violation, name 'MyMethod'
                             // must match pattern '^[a-z](_?[a-zA-Z0-9]+)*$'
 }
-          </pre>
-        </div>
-        <p>
+        </source>
+        <p id="Example2-config">
           To suppress MethodName check for method names matched pattern 'MyMethod[0-9]':
         </p>
-        <div class="wrapper">
-          <pre>
-&lt;module name=&quot;SuppressionXpathSingleFilter&quot;&gt;
-  &lt;property name=&quot;checks&quot; value=&quot;MethodName&quot;/&gt;
-  &lt;property name=&quot;message&quot; value=&quot;MyMethod[0-9]&quot;/&gt;
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;SuppressionXpathSingleFilter&quot;&gt;
+      &lt;property name=&quot;checks&quot; value=&quot;MethodName&quot;/&gt;
+      &lt;property name=&quot;message&quot; value=&quot;MyMethod[0-9]&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
-          </pre>
-        </div>
-        <p>Code Example:</p>
-        <div class="wrapper">
-          <pre>
+        </source>
+        <p id="Example2-code">Code Example:</p>
+        <source>
 public class FileOne {
   public void MyMethod1() {} // OK
   public void MyMethod2() {} // OK
   public void MyMethodA() {} // violation, name 'MyMethodA' must
                              // match pattern '^[a-z](_?[a-zA-Z0-9]+)*$'
 }
-          </pre>
-        </div>
-        <p>
+        </source>
+        <p id="Example3-config">
           To suppress checks being specified by id property:
         </p>
-        <div class="wrapper">
-          <pre>
-&lt;module name=&quot;MethodName&quot;&gt;
-  &lt;property name=&quot;id&quot; value=&quot;MethodName1&quot;/&gt;
-  &lt;property name=&quot;format&quot; value=&quot;^[a-z](_?[a-zA-Z0-9]+)*$&quot;/&gt;
-&lt;module/&gt;
-&lt;module name=&quot;SuppressionXpathSingleFilter&quot;&gt;
-  &lt;property name=&quot;files&quot; value=&quot;FileOne.java&quot;/&gt;
-  &lt;property name=&quot;id&quot; value=&quot;MethodName1&quot;/&gt;
-&lt;module/&gt;
-          </pre>
-        </div>
-        <p>Code example:</p>
-        <div class="wrapper">
-          <pre>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;MethodName&quot;&gt;
+      &lt;property name=&quot;id&quot; value=&quot;MethodName1&quot;/&gt;
+      &lt;property name=&quot;format&quot; value=&quot;^[a-z](_?[a-zA-Z0-9]+)*$&quot;/&gt;
+    &lt;/module&gt;
+    &lt;module name=&quot;SuppressionXpathSingleFilter&quot;&gt;
+      &lt;property name=&quot;files&quot; value=&quot;FileOne.java&quot;/&gt;
+      &lt;property name=&quot;id&quot; value=&quot;MethodName1&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example3-code">Code example:</p>
+        <source>
 public class FileOne {
   public void MyMethod() {} // OK
 }
@@ -168,60 +169,60 @@ public class FileTwo {
   public void MyMethod() {} // violation,  name 'MyMethod' must
                             //match pattern '^[a-z](_?[a-zA-Z0-9]+)*$'
 }
-          </pre>
-        </div>
-        <p>
+        </source>
+        <p id="Example4-config">
           To suppress checks for all package definitions:
         </p>
-        <div class="wrapper">
-          <pre>
-&lt;module name=&quot;SuppressionXpathSingleFilter&quot;&gt;
-  &lt;property name=&quot;checks&quot; value=&quot;PackageName&quot;/&gt;
-  &lt;property name=&quot;query&quot; value=&quot;/PACKAGE_DEF[@text='File']/IDENT&quot;/&gt;
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;SuppressionXpathSingleFilter&quot;&gt;
+      &lt;property name=&quot;checks&quot; value=&quot;PackageName&quot;/&gt;
+      &lt;property name=&quot;query&quot; value=&quot;/PACKAGE_DEF[@text='File']/IDENT&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
-          </pre>
-        </div>
-        <p>Code example:</p>
-        <div class="wrapper">
-          <pre>
+        </source>
+        <p id="Example4-code">Code example:</p>
+        <source>
 package File; // OK
 
 public class FileOne {}
-          </pre>
-        </div>
-        <p>
+        </source>
+        <p id="Example5-config">
           To suppress RedundantModifier check for interface definitions:
         </p>
-        <div class="wrapper">
-          <pre>
-&lt;module name=&quot;SuppressionXpathSingleFilter&quot;&gt;
-  &lt;property name=&quot;checks&quot; value=&quot;RedundantModifier&quot;/&gt;
-  &lt;property name=&quot;query&quot; value=&quot;//INTERFACE_DEF//*&quot;/&gt;
-&lt;module/&gt;
-          </pre>
-        </div>
-        <p>Code Example:</p>
-        <div class="wrapper">
-          <pre>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;SuppressionXpathSingleFilter&quot;&gt;
+      &lt;property name=&quot;checks&quot; value=&quot;RedundantModifier&quot;/&gt;
+      &lt;property name=&quot;query&quot; value=&quot;//INTERFACE_DEF//*&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example5-code">Code Example:</p>
+        <source>
 public interface TestClass {
   public static final int CONSTANT1 = 1;  // OK
 }
-          </pre>
-        </div>
-        <p>
+        </source>
+        <p id="Example6-config">
           To suppress checks in the FileOne file by non-query:
         </p>
-        <div class="wrapper">
-          <pre>
-&lt;module name=&quot;SuppressionXpathSingleFilter&quot;&gt;
-  &lt;property name=&quot;files&quot; value=&quot;FileOne.java&quot;/&gt;
-  &lt;property name=&quot;checks&quot; value=&quot;MyMethod&quot;/&gt;
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;SuppressionXpathSingleFilter&quot;&gt;
+      &lt;property name=&quot;files&quot; value=&quot;FileOne.java&quot;/&gt;
+      &lt;property name=&quot;checks&quot; value=&quot;MyMethod&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
-          </pre>
-        </div>
-        <p>Code example:</p>
-        <div class="wrapper">
-          <pre>
+        </source>
+        <p id="Example6-code">Code example:</p>
+        <source>
 public class FileOne {
   public void MyMethod() {} // OK
 }
@@ -230,25 +231,25 @@ public class FileTwo {
   public void MyMethod() {} // violation, name 'MyMethod'
                             // must match pattern '^[a-z](_?[a-zA-Z0-9]+)*$'
 }
-          </pre>
-        </div>
-        <p>
+        </source>
+        <p id="Example7-config">
           Suppress checks for elements which are either class definitions,
           either method definitions:
         </p>
-        <div class="wrapper">
-          <pre>
-&lt;module name=&quot;SuppressionXpathSingleFilter&quot;&gt;
-  &lt;property name=&quot;checks&quot; value=&quot;.*&quot;/&gt;
-  &lt;property name=&quot;query&quot;
-            value=&quot;(//CLASS_DEF[@text='FileOne'])|
-            (//CLASS_DEF[@text='FileOne']/OBJBLOCK/METHOD_DEF[@text='MyMethod']/IDENT)&quot;/&gt;
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;SuppressionXpathSingleFilter&quot;&gt;
+      &lt;property name=&quot;checks&quot; value=&quot;.*&quot;/&gt;
+      &lt;property name=&quot;query&quot;
+                value=&quot;(//CLASS_DEF[@text='FileOne'])|
+                (//CLASS_DEF[@text='FileOne']/OBJBLOCK/METHOD_DEF[@text='MyMethod']/IDENT)&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
-          </pre>
-        </div>
-        <p>Code example:</p>
-        <div class="wrapper">
-          <pre>
+        </source>
+        <p id="Example7-code">Code example:</p>
+        <source>
 abstract class FileOne { // OK
   public void MyMethod() {} // OK
 }
@@ -258,48 +259,48 @@ abstract class FileTwo { // violation of the AbstractClassName check,
   public void MyMethod() {} // violation, name 'MyMethod'
                             // must match pattern '^[a-z](_?[a-zA-Z0-9]+)*$'
 }
-          </pre>
-        </div>
-        <p>
+        </source>
+        <p id="Example8-config">
           Suppress checks for MyMethod1 or MyMethod2 methods:
         </p>
-        <div class="wrapper">
-          <pre>
-&lt;module name=&quot;SuppressionXpathSingleFilter&quot;&gt;
-  &lt;property name=&quot;checks&quot; value=&quot;MethodName&quot;/&gt;
-  &lt;property name=&quot;query&quot; value=&quot;//CLASS_DEF[@text='FileOne']/OBJBLOCK/
-            METHOD_DEF[@text='MyMethod1' or @text='MyMethod2']/IDENT&quot;/&gt;
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;SuppressionXpathSingleFilter&quot;&gt;
+      &lt;property name=&quot;checks&quot; value=&quot;MethodName&quot;/&gt;
+      &lt;property name=&quot;query&quot; value=&quot;//CLASS_DEF[@text='FileOne']/OBJBLOCK/
+                METHOD_DEF[@text='MyMethod1' or @text='MyMethod2']/IDENT&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
-          </pre>
-        </div>
-        <p>Code example:</p>
-        <div class="wrapper">
-          <pre>
+        </source>
+        <p id="Example8-code">Code example:</p>
+        <source>
 public class FileOne {
   public void MyMethod1() {} // OK
   public void MyMethod2() {} // OK
   public void MyMethod3() {} // violation, name 'MyMethod3' must
                              // match pattern '^[a-z](_?[a-zA-Z0-9]+)*$'
 }
-          </pre>
-        </div>
-        <p>
+        </source>
+        <p id="Example9-config">
           Suppress checks for variable testVariable inside
           testMethod method inside TestClass class:
         </p>
-        <div class="wrapper">
-          <pre>
-&lt;module name=&quot;SuppressionXpathSingleFilter&quot;&gt;
-  &lt;property name=&quot;checks&quot; value=&quot;LocalFinalVariableName&quot;/&gt;
-  &lt;property name=&quot;query&quot; value=&quot;//CLASS_DEF[@text='TestClass']/OBJBLOCK
-        /METHOD_DEF[@text='testMethod']/SLIST
-        /VARIABLE_DEF[@text='testVariable1']/IDENT&quot;/&gt;
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;SuppressionXpathSingleFilter&quot;&gt;
+      &lt;property name=&quot;checks&quot; value=&quot;LocalFinalVariableName&quot;/&gt;
+      &lt;property name=&quot;query&quot; value=&quot;//CLASS_DEF[@text='TestClass']/OBJBLOCK
+            /METHOD_DEF[@text='testMethod']/SLIST
+            /VARIABLE_DEF[@text='testVariable1']/IDENT&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
-          </pre>
-        </div>
-        <p>Code Example:</p>
-        <div class="wrapper">
-          <pre>
+        </source>
+        <p id="Example9-code">Code Example:</p>
+        <source>
 public class TestClass {
   public void testMethod() {
     final int testVariable1 = 10; // OK
@@ -307,25 +308,25 @@ public class TestClass {
                                   // name 'testVariable2' must match pattern '^[A-Z][A-Z0-9]*$'
   }
 }
-          </pre>
-        </div>
-        <p>
+        </source>
+        <p id="Example10-config">
           In the following sample, violations for LeftCurly check
           will be suppressed for classes with name Main or for methods
           with name calculate.
         </p>
-        <div class="wrapper">
-          <pre>
-&lt;module name=&quot;SuppressionXpathSingleFilter&quot;&gt;
-  &lt;property name=&quot;checks&quot; value=&quot;LeftCurly&quot;/&gt;
-  &lt;property name=&quot;query&quot; value=&quot;//CLASS_DEF[@text='TestClass']/OBJBLOCK
-        /METHOD_DEF[@text='testMethod1']/SLIST*&quot;/&gt;
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;SuppressionXpathSingleFilter&quot;&gt;
+      &lt;property name=&quot;checks&quot; value=&quot;LeftCurly&quot;/&gt;
+      &lt;property name=&quot;query&quot; value=&quot;//CLASS_DEF[@text='TestClass']/OBJBLOCK
+            /METHOD_DEF[@text='testMethod1']/SLIST&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
-          </pre>
-        </div>
-        <p>Code Example:</p>
-        <div class="wrapper">
-          <pre>
+        </source>
+        <p id="Example10-code">Code Example:</p>
+        <source>
 public class TestClass {
   public void testMethod1()
   { // OK
@@ -335,24 +336,24 @@ public class TestClass {
   { // violation, '{' should be on the previous line
   }
 }
-          </pre>
-        </div>
-        <p>
+        </source>
+        <p id="Example11-config">
           The following example demonstrates how to suppress
           RequireThis violations for variable age inside changeAge method.
         </p>
-        <div class="wrapper">
-          <pre>
-&lt;module name=&quot;SuppressionXpathSingleFilter&quot;&gt;
-  &lt;property name=&quot;checks&quot; value=&quot;RequireThis&quot;/&gt;
-  &lt;property name=&quot;query&quot; value=&quot;//CLASS_DEF[@text='InputTest']
-        //METHOD_DEF[@text='changeAge']//ASSIGN[@text='age']/IDENT&quot;/&gt;
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;SuppressionXpathSingleFilter&quot;&gt;
+      &lt;property name=&quot;checks&quot; value=&quot;RequireThis&quot;/&gt;
+      &lt;property name=&quot;query&quot; value=&quot;//CLASS_DEF[@text='InputTest']
+            //METHOD_DEF[@text='changeAge']//ASSIGN[@text='age']/IDENT&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
-          </pre>
-        </div>
-        <p>Code Example:</p>
-        <div class="wrapper">
-          <pre>
+        </source>
+        <p id="Example11-code">Code Example:</p>
+        <source>
 public class InputTest {
   private int age = 23;
 
@@ -360,9 +361,8 @@ public class InputTest {
     age = 24; // violation will be suppressed
   }
 }
-          </pre>
-        </div>
-        <p>
+        </source>
+        <p id="Example12-config">
           Suppress <code>IllegalThrows</code> violations only for methods with name
           <i>throwsMethod</i> and only for <code>RuntimeException</code> exceptions.
           Double colon is used for axis iterations. In the following example <code>ancestor</code>
@@ -370,18 +370,19 @@ public class InputTest {
           <code>METHOD_DEF</code> and name <i>throwsMethod</i>. Please read more about xpath axes at
           <a href="https://www.w3schools.com/xml/xpath_axes.asp">W3Schools Xpath Axes</a>.
         </p>
-        <div class="wrapper">
-          <pre>
-&lt;module name=&quot;SuppressionXpathSingleFilter&quot;&gt;
-  &lt;property name=&quot;checks&quot; value=&quot;IllegalThrows&quot;/&gt;
-  &lt;property name=&quot;query&quot; value=&quot;//LITERAL_THROWS/IDENT[
-      ..[@text='RuntimeException'] and ./ancestor::METHOD_DEF[@text='throwsMethod']]&quot;/&gt;
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;SuppressionXpathSingleFilter&quot;&gt;
+      &lt;property name=&quot;checks&quot; value=&quot;IllegalThrows&quot;/&gt;
+      &lt;property name=&quot;query&quot; value=&quot;//LITERAL_THROWS/IDENT[
+          ..[@text='RuntimeException'] and ./ancestor::METHOD_DEF[@text='throwsMethod']]&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
-          </pre>
-        </div>
-        <p>Code Example:</p>
-        <div class="wrapper">
-          <pre>
+        </source>
+        <p id="Example12-code">Code Example:</p>
+        <source>
 public class InputTest {
   public void throwsMethod() throws RuntimeException { // violation will be suppressed
   }
@@ -389,27 +390,27 @@ public class InputTest {
   public void sampleMethod() throws RuntimeException { // will throw violation here
   }
 }
-          </pre>
-        </div>
-        <p>
+        </source>
+        <p id="Example13-config">
           The following sample demonstrates how to suppress all violations for method itself and
           all descendants. <code>descendant-or-self</code> axis iterates through current node and
           all children nodes at any level. Keyword <code>node()</code> selects node elements.
           Please read more about xpath syntax at
           <a href="https://www.w3schools.com/xml/xpath_syntax.asp">W3Schools Xpath Syntax</a>.
         </p>
-        <div class="wrapper">
-          <pre>
-&lt;module name=&quot;SuppressionXpathSingleFilter&quot;&gt;
-  &lt;property name=&quot;checks&quot; value=&quot;.*&quot;/&gt;
-  &lt;property name=&quot;query&quot; value=&quot;//METHOD_DEF[@text='TestMethod1']
-        /descendant-or-self::node()&quot;/&gt;
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;SuppressionXpathSingleFilter&quot;&gt;
+      &lt;property name=&quot;checks&quot; value=&quot;.*&quot;/&gt;
+      &lt;property name=&quot;query&quot; value=&quot;//METHOD_DEF[@text='TestMethod1']
+            /descendant-or-self::node()&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
-          </pre>
-        </div>
-        <p>Code Example:</p>
-        <div class="wrapper">
-          <pre>
+        </source>
+        <p id="Example13-code">Code Example:</p>
+        <source>
 public class TestClass {
   public void TestMethod1() { // OK
     final int num = 10; // OK
@@ -421,30 +422,31 @@ public class TestClass {
                         // name 'num' must match pattern '^[A-Z][A-Z0-9]*$'
   }
 }
-          </pre>
-        </div>
-        <p>
+        </source>
+        <p id="Example14-config">
           The following example is an example of what checks would be suppressed
           while building Spring projects with checkstyle plugin.
           Please find more information at:
           <a href="https://github.com/spring-io/spring-javaformat">spring-javaformat</a>
         </p>
-        <div class="wrapper">
-          <pre>
-&lt;module name=&quot;SuppressionXpathSingleFilter&quot;&gt;
-  &lt;property name=&quot;files&quot; value=&quot;[\\/]src[\\/]test[\\/]java[\\/]&quot;/&gt;
-  &lt;property name=&quot;checks&quot; value=&quot;Javadoc*&quot;/&gt;
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;SuppressionXpathSingleFilter&quot;&gt;
+      &lt;property name=&quot;files&quot; value=&quot;[\\/]src[\\/]test[\\/]java[\\/]&quot;/&gt;
+      &lt;property name=&quot;checks&quot; value=&quot;Javadoc*&quot;/&gt;
+    &lt;/module&gt;
+    &lt;module name=&quot;SuppressionXpathSingleFilter&quot;&gt;
+      &lt;property name=&quot;files&quot; value=&quot;.*Tests\.java&quot;/&gt;
+      &lt;property name=&quot;checks&quot; value=&quot;Javadoc*&quot;/&gt;
+    &lt;/module&gt;
+    &lt;module name=&quot;SuppressionXpathSingleFilter&quot;&gt;
+      &lt;property name=&quot;files&quot; value=&quot;generated-sources&quot;/&gt;
+      &lt;property name=&quot;checks&quot; value=&quot;[a-zA-Z0-9]*&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
-&lt;module name=&quot;SuppressionXpathSingleFilter&quot;&gt;
-  &lt;property name=&quot;files&quot; value=&quot;.*Tests\.java&quot;&gt;
-  &lt;property name=&quot;checks&quot; value=&quot;Javadoc*&quot;&gt;
-&lt;/module&gt;
-&lt;module name=&quot;SuppressionXpathSingleFilter&quot;&gt;
-  &lt;property name=&quot;files&quot; value=&quot;generated-sources&quot;&gt;
-  &lt;property name=&quot;checks&quot; value=&quot;[a-zA-Z0-9]*&quot;&gt;
-&lt;/module&gt;
-          </pre>
-        </div>
+        </source>
       </subsection>
       <subsection name="Example of Usage" id="Example_of_Usage">
         <ul>

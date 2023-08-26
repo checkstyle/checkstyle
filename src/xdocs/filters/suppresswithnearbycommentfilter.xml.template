@@ -100,105 +100,100 @@
         </div>
       </subsection>
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure a filter to suppress audit events for <i>check</i>
           on any line with a comment <code>SUPPRESS CHECKSTYLE <i>check</i></code>:
         </p>
-        <source>
-&lt;module name="SuppressWithNearbyCommentFilter"/&gt;
-        </source>
-        <source>
-private int [] array; // SUPPRESS CHECKSTYLE
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbycommentfilter/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbycommentfilter/Example1.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example2-config">
           To configure a filter to suppress all audit events on any line
           containing the comment <code>CHECKSTYLE IGNORE THIS LINE</code>:
         </p>
-        <source>
-&lt;module name="SuppressWithNearbyCommentFilter"&gt;
-  &lt;property name="commentFormat" value="CHECKSTYLE IGNORE THIS LINE"/&gt;
-  &lt;property name="checkFormat" value=".*"/&gt;
-  &lt;property name="influenceFormat" value="0"/&gt;
-&lt;/module&gt;
-        </source>
-        <source>
-public static final int lowerCaseConstant; // CHECKSTYLE IGNORE THIS LINE
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbycommentfilter/Example2.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbycommentfilter/Example2.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example3-config">
           To configure a filter so that
           <code>// OK to catch (Throwable|Exception|RuntimeException) here</code>
           permits the current and previous line to avoid generating an IllegalCatch
           audit event:
         </p>
-        <source>
-&lt;module name="SuppressWithNearbyCommentFilter"&gt;
-  &lt;property name="commentFormat" value="OK to catch (\w+) here"/&gt;
-  &lt;property name="checkFormat" value="IllegalCatchCheck"/&gt;
-  &lt;property name="messageFormat" value="$1"/&gt;
-  &lt;property name="influenceFormat" value="-1"/&gt;
-&lt;/module&gt;
-        </source>
-        <source>
-. . .
-catch (RuntimeException re) {
-// OK to catch RuntimeException here
-}
-catch (Throwable th) { ... }
-. . .
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbycommentfilter/Example3.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example3-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbycommentfilter/Example3.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example4-config">
           To configure a filter so that
           <code>CHECKSTYLE IGNORE <i>check</i> FOR NEXT<i>var</i> LINES</code>
           avoids triggering any audits for the given check for
           the current line and the next <i>var</i> lines (for a total of <i>var</i>+1 lines):
         </p>
-        <source>
-&lt;module name="SuppressWithNearbyCommentFilter"&gt;
-  &lt;property name="commentFormat"
-      value="CHECKSTYLE IGNORE (\w+) FOR NEXT (\d+) LINES"/&gt;
-  &lt;property name="checkFormat" value="$1"/&gt;
-  &lt;property name="influenceFormat" value="$2"/&gt;
-&lt;/module&gt;
-        </source>
-        <source>
-static final int lowerCaseConstant; // CHECKSTYLE IGNORE ConstantNameCheck FOR NEXT 3 LINES
-static final int lowerCaseConstant1;
-static final int lowerCaseConstant2;
-static final int lowerCaseConstant3;
-static final int lowerCaseConstant4; // will warn here
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbycommentfilter/Example4.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example4-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbycommentfilter/Example4.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example5-config">
           To configure a filter to avoid any audits on code like:
         </p>
-        <source>
-&lt;module name="SuppressWithNearbyCommentFilter"&gt;
-  &lt;property name="commentFormat"
-    value="ALLOW (\\w+) ON PREVIOUS LINE"/&gt;
-  &lt;property name="checkFormat" value="$1"/&gt;
-  &lt;property name="influenceFormat" value="-1"/&gt;
-&lt;/module&gt;
-        </source>
-        <source>
-private int D2;
-// ALLOW MemberName ON PREVIOUS LINE
-. . .
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbycommentfilter/Example5.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example5-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbycommentfilter/Example5.txt"/>
+          <param name="type" value="code"/>
+        </macro>
 
-        <p>
+        <p id="Example6-config">
           To configure a filter to allow suppress one or more Checks
           (separated by "|") and demand comment no less than 14 symbols:
         </p>
-        <source>
-&lt;module name="SuppressWithNearbyCommentFilter"&gt;
-  &lt;property name="commentFormat"
-    value="@cs\.suppress \[(\w+(\|\w+)*)\] \w[-\.'`,:;\w ]{14,}"/&gt;
-  &lt;property name="checkFormat" value="$1"/&gt;
-  &lt;property name="influenceFormat" value="1"/&gt;
-&lt;/module&gt;
-        </source>
-        <source>
-public static final int [] array; // @cs.suppress [ConstantName|NoWhitespaceAfter] A comment here
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbycommentfilter/Example6.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example6-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbycommentfilter/Example6.txt"/>
+          <param name="type" value="code"/>
+        </macro>
         <p>
           It is possible to specify an ID of checks, so that it can be leveraged by the
           SuppressWithNearbyCommentFilter to skip validations. The following examples
@@ -206,63 +201,38 @@ public static final int [] array; // @cs.suppress [ConstantName|NoWhitespaceAfte
           <code>// @cs-: &lt;ID/&gt; (reason)</code>, where ID is the ID of checks you want to
           suppress.
         </p>
-        <p>
-          Examples of Checkstyle checks configuration:
-        </p>
-        <source>
-&lt;module name="RegexpSinglelineJava"&gt;
-  &lt;property name="id" value="ignore"/&gt;
-  &lt;property name="format" value="^.*@Ignore\s*$"/&gt;
-  &lt;property name="message" value="@Ignore should have a reason."/&gt;
-&lt;/module&gt;
-
-&lt;module name="RegexpSinglelineJava"&gt;
-  &lt;property name="id" value="systemout"/&gt;
-  &lt;property name="format" value="^.*System\.(out|err).*$"/&gt;
-  &lt;property name="message" value="Don't use System.out/err, use SLF4J instead."/&gt;
-&lt;/module&gt;
-        </source>
-        <p>
-          Example of SuppressWithNearbyCommentFilter configuration (idFormat which
+        <p id="Example7-config">
+          Example of Checkstyle checks and
+          SuppressWithNearbyCommentFilter configuration (idFormat which
           is set to '$1' points that ID of the checks is in the first group of
           commentFormat regular expressions):
         </p>
-        <source>
-&lt;module name="SuppressWithNearbyCommentFilter"&gt;
-  &lt;property name="commentFormat" value="@cs-: (\w+) \(.*\)"/&gt;
-  &lt;property name="idFormat" value="$1"/&gt;
-  &lt;property name="influenceFormat" value="0"/&gt;
-&lt;/module&gt;
-        </source>
-        <source>
-@Ignore // @cs-: ignore (test has not been implemented yet)
-@Test
-public void testMethod() { }
-
-public static void foo() {
-  System.out.println("Debug info."); // @cs-: systemout (should not fail RegexpSinglelineJava)
-}
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbycommentfilter/Example7.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example7-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbycommentfilter/Example7.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example8-config">
           Example of how to configure the check to suppress more than one checks.
           The influence format is specified in the second regexp group.
         </p>
-        <source>
-&lt;module name="SuppressWithNearbyCommentFilter"&gt;
-  &lt;property name="commentFormat" value="@cs-\: ([\w\|]+) influence (\d+)"/&gt;
-  &lt;property name="checkFormat" value="$1"/&gt;
-  &lt;property name="influenceFormat" value="$2"/&gt;
-&lt;/module&gt;
-        </source>
-        <source>
-// @cs-: ClassDataAbstractionCoupling influence 2
-// @cs-: MagicNumber influence 4
-@Service // no violations from ClassDataAbstractionCoupling here
-@Transactional
-public class UserService {
-  private int value = 10022; // no violations from MagicNumber here
-}
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbycommentfilter/Example8.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example8-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbycommentfilter/Example8.txt"/>
+          <param name="type" value="code"/>
+        </macro>
       </subsection>
       <subsection name="Example of Usage" id="Example_of_Usage">
         <ul>
