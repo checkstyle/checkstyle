@@ -6,6 +6,8 @@
 </module>
 */
 
+package com.puppycrawl.tools.checkstyle.checks.design.finalclass;
+
 // xdoc section -- start
 final class Example1 {
   private Example1() { }
@@ -28,11 +30,11 @@ class B { // ok, since it has a public constructor
   }
 }
 
-class TestAnonymousInnerClasses { // ok, class has an anonymous inner class.
-  public static final TestAnonymousInnerClasses ONE
-          = new TestAnonymousInnerClasses() {};
+class AnonymousInner { // ok, class has an anonymous inner class.
+  public static final AnonymousInner ONE
+          = new AnonymousInner() {};
 
-  private TestAnonymousInnerClasses() {
+  private AnonymousInner() {
   }
 }
 
