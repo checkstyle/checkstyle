@@ -61,50 +61,64 @@ public long toMicros(long d) { return d / (C1 / C0); }
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
 
         <source>
-&lt;module name=&quot;SingleSpaceSeparator&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;SingleSpaceSeparator&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
         </source>
-        <p>Example:</p>
+        <p id="Example1-code">Example:</p>
         <source>
-int foo()   { // violation, 3 whitespaces
-  return  1; // violation, 2 whitespaces
+class Example1 {
+  int foo()   { // violation 'Use a single space'
+    return  1; // violation 'Use a single space'
+  }
+  int fun1() {
+    return 3;
+  }
+  void  fun2() {} // violation 'Use a single space'
 }
-int fun1() { // OK, 1 whitespace
-  return 3; // OK, 1 whitespace
-}
-void  fun2() {} // violation, 2 whitespaces
         </source>
-        <p>
+        <p id="Example2-config">
           To configure the check so that it validates comments:
         </p>
 
         <source>
-&lt;module name=&quot;SingleSpaceSeparator&quot;&gt;
-  &lt;property name=&quot;validateComments&quot; value=&quot;true&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;SingleSpaceSeparator&quot;&gt;
+      &lt;property name=&quot;validateComments&quot; value=&quot;true&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p>Example:</p>
+        <p id="Example2-code">Example:</p>
         <source>
-void fun1() {}  // violation, 2 whitespaces before the comment starts
-void fun2() { return; }  /* violation here, 2 whitespaces before the comment starts */
+class Example2 {
+  // violation below 'Use a single space'
+  void fun1() {}  // 2 whitespaces before the comment starts
+  // violation below 'Use a single space'
+  void fun2() { return; }  /* 2 whitespaces before the comment starts */
+  // violation below 'Use a single space'
+  /* 2 whitespaces after the comment ends */  int a;
 
-/* violation, 2 whitespaces after the comment ends */  int a;
+  String s; /* OK, 1 whitespace */
 
-String s; /* OK, 1 whitespace */
+  /**
+   * This is a Javadoc comment
+   */  int b; // 2 whitespaces after the javadoc comment ends
+  // violation above 'Use a single space'
+  float f1;
 
-/**
- * This is a Javadoc comment
- */  int b; // violation, 2 whitespaces after the javadoc comment ends
-
-float f1; // OK, 1 whitespace
-
-/**
- * OK, 1 white space after the doc comment ends
- */ float f2;
+  /**
+   * OK, 1 white space after the doc comment ends
+   */ float f2;
+}
         </source>
       </subsection>
 
@@ -121,7 +135,8 @@ float f1; // OK, 1 whitespace
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22single.space.separator%22">
-            single.space.separator</a>
+              single.space.separator
+            </a>
           </li>
         </ul>
         <p>

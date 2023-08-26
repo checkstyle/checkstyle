@@ -159,63 +159,70 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>To configure the check:</p>
+        <p id="Example1-config">To configure the check:</p>
         <source>
-&lt;module name=&quot;AbbreviationAsWordInName&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;AbbreviationAsWordInName&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
         </source>
-        <p>Example:</p>
+        <p id="Example1-code">Example:</p>
         <source>
-public class MyClass extends SuperClass { // OK, camel case
-  int CURRENT_COUNTER; // violation, at most 4 consecutive capital letters allowed
+class Example1 extends SuperClass { // OK, camel case
+  int CURRENT_COUNTER; // violation 'no more than '4' consecutive capital letters'
   static int GLOBAL_COUNTER; // OK, static is ignored
   final Set&lt;String&gt; stringsFOUND = new HashSet&lt;&gt;(); // OK, final is ignored
 
   @Override
-  void printCOUNTER() { // OK, overridden method is ignored
-    System.out.println(CURRENT_COUNTER); // OK, only definitions are checked
+  public void printCOUNTER() { // OK, overridden method is ignored
+    System.out.println(CURRENT_COUNTER);
   }
-
-  void incrementCOUNTER() { // violation, at most 4 consecutive capital letters allowed
+  // violation below 'no more than '4' consecutive capital letters'
+  void incrementCOUNTER() {
     CURRENT_COUNTER++; // OK, only definitions are checked
   }
-
-  static void incrementGLOBAL() { // violation, static method is not ignored
+  // violation below 'no more than '4' consecutive capital letters'
+  static void incrementGLOBAL() {
     GLOBAL_COUNTER++; // OK, only definitions are checked
   }
-
 }
         </source>
         <p>
           To configure to include static variables and
           methods tagged with <code>@Override</code> annotation.
         </p>
-        <p>Configuration:</p>
+        <p id="Example2-config">Configuration:</p>
         <source>
-&lt;module name=&quot;AbbreviationAsWordInName&quot;&gt;
-  &lt;property name=&quot;ignoreStatic&quot; value=&quot;false&quot;/&gt;
-  &lt;property name=&quot;ignoreOverriddenMethods&quot; value=&quot;false&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;AbbreviationAsWordInName&quot;&gt;
+      &lt;property name=&quot;ignoreStatic&quot; value=&quot;false&quot;/&gt;
+      &lt;property name=&quot;ignoreOverriddenMethods&quot; value=&quot;false&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p>Example:</p>
+        <p id="Example2-code">Example:</p>
         <source>
-public class MyClass extends SuperClass { // OK, camel case
-  int CURRENT_COUNTER; // violation, at most 4 consecutive capital letters allowed
-  static int GLOBAL_COUNTER; // violation, static is not ignored
+class Example2 extends SuperClass { // OK, camel case
+  int CURRENT_COUNTER; // violation 'no more than '4' consecutive capital letters'
+  // violation below 'no more than '4' consecutive capital letters'
+  static int GLOBAL_COUNTER;
   final Set&lt;String&gt; stringsFOUND = new HashSet&lt;&gt;(); // OK, final is ignored
 
-  @Override
-  void printCOUNTER() { // violation, overridden method is not ignored
+  @Override // violation below 'no more than '4' consecutive capital letters'
+  public void printCOUNTER() {
     System.out.println(CURRENT_COUNTER); // OK, only definitions are checked
   }
-
-  void incrementCOUNTER() { // violation, at most 4 consecutive capital letters allowed
+  // violation below 'no more than '4' consecutive capital letters'
+  void incrementCOUNTER() {
     CURRENT_COUNTER++; // OK, only definitions are checked
   }
-
-  static void incrementGLOBAL() { // violation, at most 4 consecutive capital letters allowed
+  // violation below 'no more than '4' consecutive capital letters'
+  static void incrementGLOBAL() {
     GLOBAL_COUNTER++; // OK, only definitions are checked
   }
-
 }
         </source>
         <p>
@@ -224,31 +231,33 @@ public class MyClass extends SuperClass { // OK, camel case
           no abbreviations (essentially camel case) except for
           words like 'XML' and 'URL'.
         </p>
-        <p>Configuration:</p>
+        <p id="Example3-config">Configuration:</p>
         <source>
-&lt;module name=&quot;AbbreviationAsWordInName&quot;&gt;
-  &lt;property name=&quot;tokens&quot; value=&quot;VARIABLE_DEF,CLASS_DEF&quot;/&gt;
-  &lt;property name=&quot;ignoreStatic&quot; value=&quot;false&quot;/&gt;
-  &lt;property name=&quot;allowedAbbreviationLength&quot; value=&quot;0&quot;/&gt;
-  &lt;property name=&quot;allowedAbbreviations&quot; value=&quot;XML,URL,O&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;AbbreviationAsWordInName&quot;&gt;
+      &lt;property name=&quot;allowedAbbreviationLength&quot; value=&quot;0&quot;/&gt;
+      &lt;property name=&quot;allowedAbbreviations&quot; value=&quot;XML,URL,O&quot;/&gt;
+      &lt;property name=&quot;ignoreStatic&quot; value=&quot;false&quot;/&gt;
+      &lt;property name=&quot;tokens&quot; value=&quot;VARIABLE_DEF,CLASS_DEF&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p>Example:</p>
+        <p id="Example3-code">Example:</p>
         <source>
-public class MyClass { // OK
-  int firstNum; // OK
-  int secondNUM; // violation, it allowed only 1 consecutive capital letter
+class Example3 {
+  int firstNum;
+  int secondNUM; // violation 'no more than '1' consecutive capital letters'
   static int thirdNum; // OK, the static modifier would be checked
-  static int fourthNUm; // violation, the static modifier would be checked,
-                        // and only 1 consecutive capital letter is allowed
+  static int fourthNUm; // violation 'no more than '1' consecutive capital letters'
   String firstXML; // OK, XML abbreviation is allowed
   String firstURL; // OK, URL abbreviation is allowed
   final int TOTAL = 5; // OK, final is ignored
   static final int LIMIT = 10; // OK, static final is ignored
   void newOAuth2Client() {} // OK, O abbreviation is allowed
   void OAuth2() {} // OK, O abbreviation is allowed
-  void OAUth2() {} // violation, OA abbreviation is not allowed
-                   // split occurs as 'OA', 'Uth2'
+  void OAUth2() {}
 }
         </source>
         <p>
@@ -256,28 +265,29 @@ public class MyClass { // OK
           the static modifier, and allow abbreviations up to 2
           consecutive capital letters ignoring the longer word 'CSV'.
         </p>
-        <p>Configuration:</p>
+        <p id="Example4-config">Configuration:</p>
         <source>
-&lt;module name=&quot;AbbreviationAsWordInName&quot;&gt;
-  &lt;property name=&quot;tokens&quot; value=&quot;VARIABLE_DEF&quot;/&gt;
-  &lt;property name=&quot;ignoreStatic&quot; value=&quot;true&quot;/&gt;
-  &lt;property name=&quot;allowedAbbreviationLength&quot; value=&quot;1&quot;/&gt;
-  &lt;property name=&quot;allowedAbbreviations&quot; value=&quot;CSV&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;AbbreviationAsWordInName&quot;&gt;
+      &lt;property name=&quot;allowedAbbreviationLength&quot; value=&quot;1&quot;/&gt;
+      &lt;property name=&quot;allowedAbbreviations&quot; value=&quot;CSV&quot;/&gt;
+      &lt;property name=&quot;ignoreStatic&quot; value=&quot;true&quot;/&gt;
+      &lt;property name=&quot;tokens&quot; value=&quot;VARIABLE_DEF&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p>Example:</p>
+        <p id="Example4-code">Example:</p>
         <source>
-public class MyClass { // OK, ignore checking the class name
+class Example4 { // OK, ignore checking the class name
   int firstNum; // OK, abbreviation &quot;N&quot; is of allowed length 1
-  int secondNUm; // OK
-  int secondMYNum; // violation, found &quot;MYN&quot; but only
-                   // 2 consecutive capital letters are allowed
-  int thirdNUM; // violation, found &quot;NUM&quot; but it is allowed
-                // only 2 consecutive capital letters
-  static int fourthNUM; // OK, variables with static modifier
-                        // would be ignored
+  int secondNUm;
+  int secondMYNum; // violation 'no more than '2' consecutive capital letters'
+  int thirdNUM; // violation 'no more than '2' consecutive capital letters'
+  static int fourthNUM; // OK, variables with static modifier would be ignored
   String firstCSV; // OK, CSV abbreviation is allowed
-  String firstXML; // violation, XML abbreviation is not allowed
+  String firstXML; // violation 'no more than '2' consecutive capital letters'
   final int TOTAL = 5; // OK, final is ignored
   static final int LIMIT = 10; // OK, static final is ignored
 }
@@ -286,46 +296,57 @@ public class MyClass { // OK, ignore checking the class name
           To configure to check variables, enforcing no abbreviations
           except for variables that are both static and final.
         </p>
-        <p>Configuration:</p>
+        <p id="Example5-config">Configuration:</p>
         <source>
-&lt;module name=&quot;AbbreviationAsWordInName&quot;&gt;
-    &lt;property name=&quot;tokens&quot; value=&quot;VARIABLE_DEF&quot;/&gt;
-    &lt;property name=&quot;ignoreFinal&quot; value=&quot;false&quot;/&gt;
-    &lt;property name=&quot;ignoreStatic&quot; value=&quot;false&quot;/&gt;
-    &lt;property name=&quot;ignoreStaticFinal&quot; value=&quot;true&quot;/&gt;
-    &lt;property name=&quot;allowedAbbreviationLength&quot; value=&quot;0&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;AbbreviationAsWordInName&quot;&gt;
+      &lt;property name=&quot;allowedAbbreviationLength&quot; value=&quot;0&quot;/&gt;
+      &lt;property name=&quot;ignoreFinal&quot; value=&quot;false&quot;/&gt;
+      &lt;property name=&quot;ignoreStatic&quot; value=&quot;false&quot;/&gt;
+      &lt;property name=&quot;ignoreStaticFinal&quot; value=&quot;true&quot;/&gt;
+      &lt;property name=&quot;tokens&quot; value=&quot;VARIABLE_DEF&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p>Example:</p>
+        <p id="Example5-code">Example:</p>
         <source>
-public class MyClass {
-    public int counterXYZ = 1;                // violation
-    public final int customerID = 2;          // violation
-    public static int nextID = 3;             // violation
-    public static final int MAX_ALLOWED = 4;  // OK, ignored
+class Example5 {
+  int counterXYZ = 1; // violation 'no more than '1' consecutive capital letters'
+  // violation below 'no more than '1' consecutive capital letters'
+  final int customerID = 2;
+  static int nextID = 3; // violation 'no more than '1' consecutive capital letters'
+  static final int MAX_ALLOWED = 4; // OK, ignored
 }
         </source>
         <p>
           To configure to check variables, enforcing no abbreviations
           and ignoring static (but non-final) variables only.
         </p>
-        <p>Configuration:</p>
+        <p id="Example6-config">Configuration:</p>
         <source>
-&lt;module name=&quot;AbbreviationAsWordInName&quot;&gt;
-    &lt;property name=&quot;tokens&quot; value=&quot;VARIABLE_DEF&quot;/&gt;
-    &lt;property name=&quot;ignoreFinal&quot; value=&quot;false&quot;/&gt;
-    &lt;property name=&quot;ignoreStatic&quot; value=&quot;true&quot;/&gt;
-    &lt;property name=&quot;ignoreStaticFinal&quot; value=&quot;false&quot;/&gt;
-    &lt;property name=&quot;allowedAbbreviationLength&quot; value=&quot;0&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;AbbreviationAsWordInName&quot;&gt;
+      &lt;property name=&quot;allowedAbbreviationLength&quot; value=&quot;0&quot;/&gt;
+      &lt;property name=&quot;ignoreFinal&quot; value=&quot;false&quot;/&gt;
+      &lt;property name=&quot;ignoreStatic&quot; value=&quot;true&quot;/&gt;
+      &lt;property name=&quot;ignoreStaticFinal&quot; value=&quot;false&quot;/&gt;
+      &lt;property name=&quot;tokens&quot; value=&quot;VARIABLE_DEF&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p>Example:</p>
+        <p id="Example6-code">Example:</p>
         <source>
-public class MyClass {
-    public int counterXYZ = 1;                // violation
-    public final int customerID = 2;          // violation
-    public static int nextID = 3;             // OK, ignored
-    public static final int MAX_ALLOWED = 4;  // violation
+class Example6 {
+  int counterXYZ = 1; // violation 'no more than '1' consecutive capital letters'
+  // violation below 'no more than '1' consecutive capital letters'
+  final int customerID = 2;
+  static int nextID = 3; // OK, ignored
+  // violation below 'no more than '1' consecutive capital letters'
+  static final int MAX_ALLOWED = 4;
 }
         </source>
         <p>
@@ -333,20 +354,24 @@ public class MyClass {
           no abbreviations (essentially camel case) except for
           words like 'ALLOWED'.
         </p>
-        <p>Configuration:</p>
+        <p id="Example7-config">Configuration:</p>
         <source>
-&lt;module name=&quot;AbbreviationAsWordInName&quot;&gt;
-    &lt;property name=&quot;allowedAbbreviations&quot; value=&quot;ALLOWED&quot;/&gt;
-    &lt;property name=&quot;ignoreStaticFinal&quot; value=&quot;false&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;AbbreviationAsWordInName&quot;&gt;
+      &lt;property name=&quot;allowedAbbreviations&quot; value=&quot;ALLOWED&quot;/&gt;
+      &lt;property name=&quot;ignoreStaticFinal&quot; value=&quot;false&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p>Example:</p>
+        <p id="Example7-code">Example:</p>
         <source>
-public class MyClass {
-    public int counterXYZ = 1;                // OK
-    public final int customerID = 2;          // OK
-    public static int nextID = 3;             // OK
-    public static final int MAX_ALLOWED = 4;  // OK, abbreviation is allowed
+class Example7 {
+  int counterXYZ = 1;
+  final int customerID = 2;
+  static int nextID = 3;
+  static final int MAX_ALLOWED = 4; // OK, abbreviation is allowed
 }
         </source>
       </subsection>
@@ -368,7 +393,8 @@ public class MyClass {
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fnaming%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22abbreviation.as.word%22">
-            abbreviation.as.word</a>
+              abbreviation.as.word
+            </a>
           </li>
         </ul>
         <p>
@@ -383,7 +409,9 @@ public class MyClass {
       </subsection>
 
       <subsection name="Parent Module" id="Parent_Module">
-        <p> <a href="../../config.html#TreeWalker">TreeWalker</a> </p>
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
       </subsection>
     </section>
   </body>

@@ -94,7 +94,8 @@ enum Foo10 { FOO, BAR } // OK
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22no.enum.trailing.comma%22">
-            no.enum.trailing.comma</a>
+              no.enum.trailing.comma
+            </a>
           </li>
         </ul>
         <p>

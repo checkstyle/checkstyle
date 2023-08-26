@@ -170,94 +170,38 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name="OperatorWrap"/&gt;
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/operatorwrap/Example1.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">
          Example:
         </p>
-        <source>
-class Test {
-    public static void main(String[] args) {
-        String s = "Hello" +
-        "World"; // violation, '+' should be on new line
-
-        if (10 ==
-                20) { // violation, '==' should be on new line.
-        // body
-        }
-        if (10
-                ==
-                20) { // ok
-        // body
-        }
-
-        int c = 10 /
-                5; // violation, '/' should be on new line.
-
-        int d = c
-                + 10; // ok
-    }
-
-}
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/operatorwrap/Example1.java"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example2-config">
           To configure the check for assignment operators at the end of a line:
         </p>
-        <source>
-&lt;module name="OperatorWrap"&gt;
-  &lt;property name="tokens"
-    value="ASSIGN,DIV_ASSIGN,PLUS_ASSIGN,MINUS_ASSIGN,STAR_ASSIGN,MOD_ASSIGN,
-           SR_ASSIGN,BSR_ASSIGN,SL_ASSIGN,BXOR_ASSIGN,BOR_ASSIGN,BAND_ASSIGN"/&gt;
-  &lt;property name="option" value="eol"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/operatorwrap/Example2.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">
          Example:
         </p>
-        <source>
-class Test {
-    public static void main(String[] args) {
-            int b
-                    = 10; // violation, '=' should be on previous line
-            int c =
-                    10; // ok
-            b
-                    += 10; // violation, '+=' should be on previous line
-            b +=
-                    10; // ok
-            c
-                    *= 10; // violation, '*=' should be on previous line
-            c *=
-                    10; // ok
-            c
-                    -= 5; // violation, '-=' should be on previous line
-            c -=
-                    5; // ok
-            c
-                    /= 2; // violation, '/=' should be on previous line
-            c
-                    %= 1; // violation, '%=' should be on previous line
-            c
-                    &gt;&gt;= 1; // violation, '&gt;&gt;=' should be on previous line
-            c
-                &gt;&gt;&gt;= 1; // violation, '&gt;&gt;&gt;=' should be on previous line
-        }
-        public void myFunction() {
-            c
-                    ^= 1; // violation, '^=' should be on previous line
-            c
-                    |= 1; // violation, '|=' should be on previous line
-            c
-                    &amp;=1 ; // violation, '&amp;=' should be on previous line
-            c
-                    &lt;&lt;= 1; // violation, '&lt;&lt;=' should be on previous line
-    }
-}
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/operatorwrap/Example2.java"/>
+          <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">
@@ -278,16 +222,9 @@ class Test {
       </subsection>
 
       <subsection name="Violation Messages" id="Violation_Messages">
-        <ul>
-          <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22line.new%22">
-            line.new</a>
-          </li>
-          <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22line.previous%22">
-            line.previous</a>
-          </li>
-        </ul>
+        <macro name="violation-messages">
+          <param name="checkName" value="OperatorWrap"/>
+        </macro>
         <p>
           All messages can be customized if the default message doesn't suit you.
           Please <a href="../../config.html#Custom_messages">see the documentation</a>
@@ -302,9 +239,9 @@ class Test {
       </subsection>
 
       <subsection name="Parent Module" id="Parent_Module">
-        <p>
-          <a href="../../config.html#TreeWalker">TreeWalker</a>
-        </p>
+        <macro name="parent-module">
+          <param name="moduleName" value="OperatorWrap"/>
+        </macro>
       </subsection>
     </section>
   </body>

@@ -36,38 +36,34 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name="MethodTypeParameterName"/&gt;
-        </source>
-        <p>Code Example:</p>
-        <source>
-class MyClass {
-  public &lt;T&gt; void method1() {} // OK
-  public &lt;a&gt; void method2() {} // violation, name 'a' must match pattern '^[A-Z]$'
-  public &lt;K, V&gt; void method3() {} // OK
-  public &lt;k, V&gt; void method4() {} // violation, name 'k' must match pattern '^[A-Z]$'
-}
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/methodtypeparametername/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">Code Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/methodtypeparametername/Example1.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example2-config">
           An example of how to configure the check for names that are only a single letter is:
         </p>
-        <source>
-&lt;module name="MethodTypeParameterName"&gt;
-   &lt;property name="format" value="^[a-zA-Z]$"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>Code Example:</p>
-        <source>
-class MyClass {
-  public &lt;T&gt; void method1() {} // OK
-  public &lt;a&gt; void method2() {} // OK
-  public &lt;K, V&gt; void method3() {} // OK
-  public &lt;k, V&gt; void method4() {} // OK
-}
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/methodtypeparametername/Example2.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">Code Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/methodtypeparametername/Example2.txt"/>
+          <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">
@@ -84,12 +80,9 @@ class MyClass {
       </subsection>
 
       <subsection name="Violation Messages" id="Violation_Messages">
-        <ul>
-          <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fnaming%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22name.invalidPattern%22">
-            name.invalidPattern</a>
-          </li>
-        </ul>
+        <macro name="violation-messages">
+          <param name="checkName" value="MethodTypeParameterName"/>
+        </macro>
         <p>
           All messages can be customized if the default message doesn't suit you.
           Please <a href="../../config.html#Custom_messages">see the documentation</a>
@@ -102,7 +95,9 @@ class MyClass {
       </subsection>
 
       <subsection name="Parent Module" id="Parent_Module">
-        <p> <a href="../../config.html#TreeWalker">TreeWalker</a> </p>
+        <macro name="parent-module">
+          <param name="moduleName" value="MethodTypeParameterName"/>
+        </macro>
       </subsection>
     </section>
   </body>

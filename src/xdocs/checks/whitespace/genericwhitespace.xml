@@ -35,17 +35,20 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;GenericWhitespace&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;GenericWhitespace&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
         </source>
-        <p>
+        <p id="Example1-code">
           Examples with correct spacing:
         </p>
-        <div class="wrapper">
-          <pre>
+        <source>
 // Generic methods definitions
 public void &lt;K, V extends Number&gt; boolean foo(K, V) {}
 // Generic type definition
@@ -62,13 +65,11 @@ List&lt;T&gt; list = ImmutableList.Builder&lt;T&gt;::new;
 sort(list, Comparable::&lt;String&gt;compareTo);
 // Constructor call
 MyClass obj = new &lt;String&gt;MyClass();
-          </pre>
-        </div>
-        <p>
+        </source>
+        <p id="Example2-code">
           Examples with incorrect spacing:
         </p>
-        <div class="wrapper">
-          <pre>
+        <source>
 List&lt; String&gt; l; // violation, &quot;&lt;&quot; followed by whitespace
 Box b = Box. &lt;String&gt;of(&quot;foo&quot;); // violation, &quot;&lt;&quot; preceded with whitespace
 public&lt;T&gt; void foo() {} // violation, &quot;&lt;&quot; not preceded with whitespace
@@ -76,8 +77,7 @@ public&lt;T&gt; void foo() {} // violation, &quot;&lt;&quot; not preceded with w
 List a = new ArrayList&lt;&gt; (); // violation, &quot;&gt;&quot; followed by whitespace
 Map&lt;Integer, String&gt;m; // violation, &quot;&gt;&quot; not followed by whitespace
 Pair&lt;Integer, Integer &gt; p; // violation, &quot;&gt;&quot; preceded with whitespace
-          </pre>
-        </div>
+        </source>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">
@@ -101,19 +101,23 @@ Pair&lt;Integer, Integer &gt; p; // violation, &quot;&gt;&quot; preceded with wh
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ws.followed%22">
-            ws.followed</a>
+              ws.followed
+            </a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ws.illegalFollow%22">
-            ws.illegalFollow</a>
+              ws.illegalFollow
+            </a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ws.notPreceded%22">
-            ws.notPreceded</a>
+              ws.notPreceded
+            </a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ws.preceded%22">
-            ws.preceded</a>
+              ws.preceded
+            </a>
           </li>
         </ul>
         <p>

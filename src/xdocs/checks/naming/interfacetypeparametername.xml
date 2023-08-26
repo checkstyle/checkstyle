@@ -36,27 +36,35 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;InterfaceTypeParameterName&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;InterfaceTypeParameterName&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
         </source>
-        <p>Code Example:</p>
+        <p id="Example1-code">Code Example:</p>
         <source>
 interface FirstInterface&lt;T&gt; {} // OK
 interface SecondInterface&lt;t&gt; {} // violation, name 't' must match pattern '^[A-Z]$'
         </source>
-        <p>
+        <p id="Example2-config">
           An example of how to configure the check for names that are only a single
           letter is:
         </p>
         <source>
-&lt;module name=&quot;InterfaceTypeParameterName&quot;&gt;
-   &lt;property name=&quot;format&quot; value=&quot;^[a-zA-Z]$&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;InterfaceTypeParameterName&quot;&gt;
+       &lt;property name=&quot;format&quot; value=&quot;^[a-zA-Z]$&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p>Code Example:</p>
+        <p id="Example2-code">Code Example:</p>
         <source>
 interface FirstInterface&lt;T&gt; {} // OK
 interface SecondInterface&lt;t&gt; {} // OK
@@ -82,7 +90,8 @@ interface ThirdInterface&lt;type&gt; {} // violation, name 'type' must
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fnaming%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22name.invalidPattern%22">
-            name.invalidPattern</a>
+              name.invalidPattern
+            </a>
           </li>
         </ul>
         <p>
@@ -97,7 +106,9 @@ interface ThirdInterface&lt;type&gt; {} // violation, name 'type' must
       </subsection>
 
       <subsection name="Parent Module" id="Parent_Module">
-        <p> <a href="../../config.html#TreeWalker">TreeWalker</a> </p>
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
       </subsection>
     </section>
   </body>

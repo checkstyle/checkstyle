@@ -38,28 +38,29 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name="RecordTypeParameterName"/&gt;
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/recordtypeparametername/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
         <p>
           An example of how to configure the check for names that are only a single letter is:
         </p>
-        <p>Configuration:</p>
-        <source>
-&lt;module name="RecordTypeParameterName"&gt;
-    &lt;property name="format" value="^[a-zA-Z]$"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>Example:</p>
-        <source>
-record MyRecord1&lt;T&gt; {} // OK
-record MyRecord2&lt;t&gt; {} // OK
-record MyRecord3&lt;abc&gt; {} // violation, the record type parameter
-// name should match the regular expression "^[a-zA-Z]$"
-        </source>
+        <p id="Example2-config">Configuration:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/recordtypeparametername/Example2.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/recordtypeparametername/Example2.txt"/>
+          <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">
@@ -78,13 +79,9 @@ record MyRecord3&lt;abc&gt; {} // violation, the record type parameter
       </subsection>
 
       <subsection name="Violation Messages" id="Violation_Messages">
-        <ul>
-          <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fnaming%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22name.invalidPattern%22">
-              name.invalidPattern
-            </a>
-          </li>
-        </ul>
+        <macro name="violation-messages">
+          <param name="checkName" value="RecordTypeParameterName"/>
+        </macro>
         <p>
           All messages can be customized if the default message doesn't suit you.
           Please <a href="../../config.html#Custom_messages">see the documentation</a>
@@ -97,9 +94,9 @@ record MyRecord3&lt;abc&gt; {} // violation, the record type parameter
       </subsection>
 
       <subsection name="Parent Module" id="Parent_Module">
-        <p>
-          <a href="../../config.html#TreeWalker">TreeWalker</a>
-        </p>
+        <macro name="parent-module">
+          <param name="moduleName" value="RecordTypeParameterName"/>
+        </macro>
       </subsection>
     </section>
   </body>

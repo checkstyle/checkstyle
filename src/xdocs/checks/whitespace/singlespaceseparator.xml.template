@@ -61,51 +61,36 @@ public long toMicros(long d) { return d / (C1 / C0); }
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
 
-        <source>
-&lt;module name="SingleSpaceSeparator"/&gt;
-        </source>
-        <p>Example:</p>
-        <source>
-int foo()   { // violation, 3 whitespaces
-  return  1; // violation, 2 whitespaces
-}
-int fun1() { // OK, 1 whitespace
-  return 3; // OK, 1 whitespace
-}
-void  fun2() {} // violation, 2 whitespaces
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/singlespaceseparator/Example1.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/singlespaceseparator/Example1.java"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example2-config">
           To configure the check so that it validates comments:
         </p>
 
-        <source>
-&lt;module name="SingleSpaceSeparator"&gt;
-  &lt;property name="validateComments" value="true"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>Example:</p>
-        <source>
-void fun1() {}  // violation, 2 whitespaces before the comment starts
-void fun2() { return; }  /* violation here, 2 whitespaces before the comment starts */
-
-/* violation, 2 whitespaces after the comment ends */  int a;
-
-String s; /* OK, 1 whitespace */
-
-/**
- * This is a Javadoc comment
- */  int b; // violation, 2 whitespaces after the javadoc comment ends
-
-float f1; // OK, 1 whitespace
-
-/**
- * OK, 1 white space after the doc comment ends
- */ float f2;
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/singlespaceseparator/Example2.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/singlespaceseparator/Example2.java"/>
+          <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">
@@ -118,12 +103,9 @@ float f1; // OK, 1 whitespace
       </subsection>
 
       <subsection name="Violation Messages" id="Violation_Messages">
-        <ul>
-          <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22single.space.separator%22">
-            single.space.separator</a>
-          </li>
-        </ul>
+        <macro name="violation-messages">
+          <param name="checkName" value="SingleSpaceSeparator"/>
+        </macro>
         <p>
           All messages can be customized if the default message doesn't suit you.
           Please <a href="../../config.html#Custom_messages">see the documentation</a>
@@ -138,9 +120,9 @@ float f1; // OK, 1 whitespace
       </subsection>
 
       <subsection name="Parent Module" id="Parent_Module">
-        <p>
-          <a href="../../config.html#TreeWalker">TreeWalker</a>
-        </p>
+        <macro name="parent-module">
+          <param name="moduleName" value="SingleSpaceSeparator"/>
+        </macro>
       </subsection>
     </section>
   </body>

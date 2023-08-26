@@ -52,13 +52,17 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;CatchParameterName&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;CatchParameterName&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
         </source>
-        <p>Example:
+        <p id="Example1-code">Example:
         </p>
         <source>
 public class MyTest {
@@ -94,13 +98,17 @@ public class MyTest {
           An example of how to configure the check for names that begin with
           a lower case letter, followed by any letters or digits is:
         </p>
-        <p>Configuration:</p>
+        <p id="Example2-config">Configuration:</p>
         <source>
-&lt;module name=&quot;CatchParameterName&quot;&gt;
-  &lt;property name=&quot;format&quot; value=&quot;^[a-z][a-zA-Z0-9]+$&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;CatchParameterName&quot;&gt;
+      &lt;property name=&quot;format&quot; value=&quot;^[a-z][a-zA-Z0-9]+$&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p>Example:</p>
+        <p id="Example2-code">Example:</p>
         <source>
 public class MyTest {
   public void myTest() {
@@ -140,7 +148,8 @@ public class MyTest {
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fnaming%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22name.invalidPattern%22">
-            name.invalidPattern</a>
+              name.invalidPattern
+            </a>
           </li>
         </ul>
         <p>

@@ -343,15 +343,18 @@ class Test {
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fblocks%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22line.alone%22">
-            line.alone</a>
+              line.alone
+            </a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fblocks%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22line.break.before%22">
-            line.break.before</a>
+              line.break.before
+            </a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fblocks%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22line.same%22">
-            line.same</a>
+              line.same
+            </a>
           </li>
         </ul>
         <p>
@@ -366,7 +369,9 @@ class Test {
       </subsection>
 
       <subsection name="Parent Module" id="Parent_Module">
-        <p> <a href="../../config.html#TreeWalker">TreeWalker</a> </p>
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
       </subsection>
     </section>
   </body>

@@ -1,0 +1,18 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="TypeName">
+      <property name="format"
+        value="^I_[a-zA-Z0-9]*$"/>
+      <property name="tokens"
+        value="INTERFACE_DEF"/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+public interface I_firstName {} // OK
+interface SecondName {} // violation, name 'SecondName'
+                       // must match pattern '^I_[a-zA-Z0-9]*$'
+// xdoc section -- end

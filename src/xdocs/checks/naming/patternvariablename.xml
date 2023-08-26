@@ -36,14 +36,18 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
 
         <source>
-&lt;module name=&quot;PatternVariableName&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;PatternVariableName&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
         </source>
-        <p>Code Example:</p>
+        <p id="Example1-code">Code Example:</p>
         <source>
 class MyClass {
     MyClass(Object o1){
@@ -55,16 +59,20 @@ class MyClass {
     }
 }
         </source>
-        <p>
+        <p id="Example2-config">
           An example of how to configure the check for names that have a lower case letter,
           followed by letters and digits, optionally separated by underscore:
         </p>
         <source>
-&lt;module name=&quot;PatternVariableName&quot;&gt;
-    &lt;property name=&quot;format&quot; value=&quot;^[a-z](_?[a-zA-Z0-9]+)*$&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;PatternVariableName&quot;&gt;
+        &lt;property name=&quot;format&quot; value=&quot;^[a-z](_?[a-zA-Z0-9]+)*$&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p>Code Example:</p>
+        <p id="Example2-code">Code Example:</p>
         <source>
 class MyClass {
     MyClass(Object o1){
@@ -78,16 +86,20 @@ class MyClass {
     }
 }
         </source>
-        <p>
+        <p id="Example3-config">
           An example of how to configure the check to that all variables have 3 or more
           chars in name:
         </p>
         <source>
-&lt;module name=&quot;PatternVariableName&quot;&gt;
-    &lt;property name=&quot;format&quot; value=&quot;^[a-z][_a-zA-Z0-9]{2,}$&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;PatternVariableName&quot;&gt;
+        &lt;property name=&quot;format&quot; value=&quot;^[a-z][_a-zA-Z0-9]{2,}$&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p>Code Example:</p>
+        <p id="Example3-code">Code Example:</p>
         <source>
 class MyClass {
     MyClass(Object o1){
@@ -136,7 +148,9 @@ class MyClass {
       </subsection>
 
       <subsection name="Parent Module" id="Parent_Module">
-        <p> <a href="../../config.html#TreeWalker">TreeWalker</a> </p>
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
       </subsection>
     </section>
   </body>

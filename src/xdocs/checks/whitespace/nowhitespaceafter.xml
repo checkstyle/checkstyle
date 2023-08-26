@@ -136,70 +136,76 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;NoWhitespaceAfter&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;NoWhitespaceAfter&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
         </source>
-        <p>Example:</p>
+        <p id="Example1-code">Example:</p>
         <source>
-class Test {
-
+class Example1 {
   public void lineBreak(String x) {
     Integer.
-        parseInt(x); // Ok
-    Integer.parseInt(x); // Ok
+        parseInt(x);
+    Integer.parseInt(x);
   }
 
   public void dotOperator(String s) {
-    Integer.parseInt(s); // Ok
-    Integer. parseInt(s); // violation, '.' is followed by whitespace
+    Integer.parseInt(s);
+    Integer. parseInt(s); // violation ''.' is followed by whitespace'
   }
 
   public void arrayDec() {
-    int[] arr = arr; // Ok
-    int [] arr = arr; // violation, int is followed by whitespace
+    int[] arr;
+    int [] array; // violation ''int' is followed by whitespace'
   }
 
   public void bitwiseNot(int a) {
-    a = ~ a; // violation '~' is followed by whitespace
-    a = ~a; // Ok
+    a = ~ a; // violation ''~' is followed by whitespace'
+    a = ~a;
   }
 }
         </source>
-        <p>
+        <p id="Example2-config">
           To configure the check to forbid linebreaks after a DOT token:
         </p>
         <source>
-&lt;module name=&quot;NoWhitespaceAfter&quot;&gt;
-  &lt;property name=&quot;tokens&quot; value=&quot;DOT&quot;/&gt;
-  &lt;property name=&quot;allowLineBreaks&quot; value=&quot;false&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;NoWhitespaceAfter&quot;&gt;
+      &lt;property name=&quot;allowLineBreaks&quot; value=&quot;false&quot;/&gt;
+      &lt;property name=&quot;tokens&quot; value=&quot;DOT&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p>Example:</p>
+        <p id="Example2-code">Example:</p>
         <source>
-class Test {
-
+class Example2 {
   public void lineBreak(String x) {
     Integer.
-        parseInt(x); // violation, '.' is followed by whitespace
-    Integer.parseInt(x); // Ok
+        parseInt(x); // violation above ''.' is followed by whitespace'
+    Integer.parseInt(x);
   }
 
   public void dotOperator(String s) {
-    Integer.parseInt(s); // Ok
-    Integer. parseInt(s); // violation, '.' is followed by whitespace
+    Integer.parseInt(s);
+    Integer. parseInt(s); // violation ''.' is followed by whitespace'
   }
 
   public void arrayDec() {
-    int[] arr = arr; // Ok
-    int [] arr = arr; // Ok
+    int[] arr;
+    int [] array;
   }
 
   public void bitwiseNot(int a) {
-    a = ~ a; // Ok
-    a = ~a; // Ok
+    a = ~ a;
+    a = ~a;
   }
 }
         </source>
@@ -222,7 +228,8 @@ class Test {
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ws.followed%22">
-            ws.followed</a>
+              ws.followed
+            </a>
           </li>
         </ul>
         <p>

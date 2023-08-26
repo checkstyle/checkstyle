@@ -21,7 +21,7 @@ class Example6 {
   int counterXYZ = 1; // violation 'no more than '1' consecutive capital letters'
   // violation below 'no more than '1' consecutive capital letters'
   final int customerID = 2;
-  static int nextID = 3;
+  static int nextID = 3; // OK, ignored
   // violation below 'no more than '1' consecutive capital letters'
   static final int MAX_ALLOWED = 4;
 }

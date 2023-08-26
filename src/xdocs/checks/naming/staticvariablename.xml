@@ -67,13 +67,17 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;StaticVariableName&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;StaticVariableName&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
         </source>
-        <p>Code Example:</p>
+        <p id="Example1-code">Code Example:</p>
         <source>
 class MyClass {
   public static int goodStatic = 2; // OK
@@ -81,16 +85,20 @@ class MyClass {
                                     // must match pattern '^[a-z][a-zA-Z0-9]*$'
 }
         </source>
-        <p>
+        <p id="Example2-config">
           An example of how to suppress the check to public and protected types is:
         </p>
         <source>
-&lt;module name=&quot;StaticVariableName&quot;&gt;
-  &lt;property name=&quot;applyToPublic&quot; value=&quot;false&quot;/&gt;
-  &lt;property name=&quot;applyToProtected&quot; value=&quot;false&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;StaticVariableName&quot;&gt;
+      &lt;property name=&quot;applyToPublic&quot; value=&quot;false&quot;/&gt;
+      &lt;property name=&quot;applyToProtected&quot; value=&quot;false&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p>Code Example:</p>
+        <p id="Example2-code">Code Example:</p>
         <source>
 class MyClass {
   public static int GoodStatic1 = 2; // OK
@@ -100,19 +108,23 @@ class MyClass {
                                     // must match pattern '^[a-z][a-zA-Z0-9]*$'
 }
         </source>
-        <p>
+        <p id="Example3-config">
           An example of how to configure the check for names that begin with a lower case letter,
           followed by letters, digits, and underscores. Also, suppress the check from being
           applied to private and package-private types:
         </p>
         <source>
-&lt;module name=&quot;StaticVariableName&quot;&gt;
-  &lt;property name=&quot;format&quot; value=&quot;^[a-z](_?[a-zA-Z0-9]+)*$&quot;/&gt;
-  &lt;property name=&quot;applyToPrivate&quot; value=&quot;false&quot;/&gt;
-  &lt;property name=&quot;applyToPackage&quot; value=&quot;false&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;StaticVariableName&quot;&gt;
+      &lt;property name=&quot;format&quot; value=&quot;^[a-z](_?[a-zA-Z0-9]+)*$&quot;/&gt;
+      &lt;property name=&quot;applyToPrivate&quot; value=&quot;false&quot;/&gt;
+      &lt;property name=&quot;applyToPackage&quot; value=&quot;false&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p>Code Example:</p>
+        <p id="Example3-code">Code Example:</p>
         <source>
 class MyClass {
   public static int good_static = 2; // OK
@@ -141,7 +153,8 @@ class MyClass {
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fnaming%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22name.invalidPattern%22">
-            name.invalidPattern</a>
+              name.invalidPattern
+            </a>
           </li>
         </ul>
         <p>
@@ -156,7 +169,9 @@ class MyClass {
       </subsection>
 
       <subsection name="Parent Module" id="Parent_Module">
-        <p> <a href="../../config.html#TreeWalker">TreeWalker</a> </p>
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
       </subsection>
     </section>
   </body>

@@ -34,29 +34,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </li>
  * </ul>
  * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name="RecordTypeParameterName"/&gt;
- * </pre>
- * <p>
- * An example of how to configure the check for names that are only a single
- * letter is:
- * </p>
- * <p>Configuration:</p>
- * <pre>
- * &lt;module name="RecordTypeParameterName"&gt;
- *   &lt;property name="format" value="^[a-zA-Z]$"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>Example:</p>
- * <pre>
- * record MyRecord1&lt;T&gt; {} // OK
- * record MyRecord2&lt;t&gt; {} // OK
- * record MyRecord3&lt;abc&gt; {} // violation, the record type parameter
- *                              // name should match the regular expression "^[a-zA-Z]$"
- * </pre>
- * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
  * <p>

@@ -97,57 +97,65 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;MethodParamPad&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;MethodParamPad&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
         </source>
+        <p id="Example1-code">Example:</p>
         <source>
-public class Test {
-  public Test() { // OK
-    super(); // OK
+class Example1 {
+  public Example1() {
+    super();
   }
 
-  public Test (int aParam) { // Violation - '(' is preceded with whitespace
-    super (); // Violation - '(' is preceded with whitespace
+  public Example1 (int aParam) { // violation ''(' is preceded with whitespace'
+    super (); // violation ''(' is preceded with whitespace'
   }
 
-  public void method() {} // OK
+  public void method() {}
 
   public void methodWithVeryLongName
-    () {} // Violation - '(' is preceded with whitespace
-
+  () {} // violation ''(' should be on the previous line.'
 }
         </source>
 
-        <p>
+        <p id="Example2-config">
           To configure the check to require a space after the identifier of a
           method definition, except if the left parenthesis occurs on a new
           line:
         </p>
         <source>
-&lt;module name=&quot;MethodParamPad&quot;&gt;
-  &lt;property name=&quot;tokens&quot; value=&quot;METHOD_DEF&quot;/&gt;
-  &lt;property name=&quot;option&quot; value=&quot;space&quot;/&gt;
-  &lt;property name=&quot;allowLineBreaks&quot; value=&quot;true&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;MethodParamPad&quot;&gt;
+      &lt;property name=&quot;allowLineBreaks&quot; value=&quot;true&quot;/&gt;
+      &lt;property name=&quot;option&quot; value=&quot;space&quot;/&gt;
+      &lt;property name=&quot;tokens&quot; value=&quot;METHOD_DEF&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
+        <p id="Example2-code">Example:</p>
         <source>
-public class Test {
-  public Test() { // OK
-    super(); // OK
+class Example2 {
+  public Example2() {
+    super();
   }
 
-  public Test (int aParam) { // OK
-    super (); // OK
+  public Example2 (int aParam) {
+    super ();
   }
 
-  public void method() {} // Violation - '(' is NOT preceded with whitespace
+  public void method() {} // violation ''(' is not preceded with whitespace'
 
   public void methodWithVeryLongName
-    () {} // OK, because allowLineBreaks is true
-
+  () {} // OK, because allowLineBreaks is true
 }
         </source>
       </subsection>
@@ -173,15 +181,18 @@ public class Test {
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22line.previous%22">
-            line.previous</a>
+              line.previous
+            </a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ws.notPreceded%22">
-            ws.notPreceded</a>
+              ws.notPreceded
+            </a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ws.preceded%22">
-            ws.preceded</a>
+              ws.preceded
+            </a>
           </li>
         </ul>
         <p>

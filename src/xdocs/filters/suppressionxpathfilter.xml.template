@@ -472,7 +472,9 @@ CLASS_DEF -&gt; CLASS_DEF [1:0]
       </subsection>
 
       <subsection name="Parent Module" id="Parent_Module">
-        <p> <a href="../config.html#TreeWalker">TreeWalker</a> </p>
+        <macro name="parent-module">
+          <param name="moduleName" value="SuppressionXpathFilter"/>
+        </macro>
       </subsection>
     </section>
   </body>

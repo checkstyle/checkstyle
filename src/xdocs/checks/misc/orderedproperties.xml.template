@@ -97,16 +97,9 @@
       </subsection>
 
       <subsection name="Violation Messages" id="Violation_Messages">
-        <ul>
-          <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22properties.notSorted.property%22">
-              properties.notSorted.property</a>
-          </li>
-          <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22unable.open.cause%22">
-              unable.open.cause</a>
-          </li>
-        </ul>
+        <macro name="violation-messages">
+          <param name="checkName" value="OrderedProperties"/>
+        </macro>
         <p>
           All messages can be customized if the default message doesn't suit you.
           Please <a href="../../config.html#Custom_messages">see the documentation</a>
@@ -121,9 +114,9 @@
       </subsection>
 
       <subsection name="Parent Module" id="Parent_Module">
-        <p>
-          <a href="../../config.html#Checker">Checker</a>
-        </p>
+        <macro name="parent-module">
+          <param name="moduleName" value="OrderedProperties"/>
+        </macro>
       </subsection>
     </section>
   </body>

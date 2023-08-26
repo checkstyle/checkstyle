@@ -36,28 +36,36 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;LambdaParameterName&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;LambdaParameterName&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
         </source>
-        <p>Code Example:</p>
+        <p id="Example1-code">Code Example:</p>
         <source>
 Function&lt;String, String&gt; function1 = s -&gt; s.toLowerCase(); // OK
 Function&lt;String, String&gt; function2 = S -&gt; S.toLowerCase(); // violation, name 'S'
                                                // must match pattern '^[a-z][a-zA-Z0-9]*$'
         </source>
-        <p>
+        <p id="Example2-config">
           An example of how to configure the check for names that begin with a lower case letter,
           followed by letters is:
         </p>
         <source>
-&lt;module name=&quot;LambdaParameterName&quot;&gt;
-  &lt;property name=&quot;format&quot; value=&quot;^[a-z]([a-zA-Z]+)*$&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;LambdaParameterName&quot;&gt;
+      &lt;property name=&quot;format&quot; value=&quot;^[a-z]([a-zA-Z]+)*$&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p>Code Example:</p>
+        <p id="Example2-code">Code Example:</p>
         <source>
 class MyClass {
   Function&lt;String, String&gt; function1 = str -&gt; str.toUpperCase().trim(); // OK
@@ -91,7 +99,8 @@ class MyClass {
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fnaming%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22name.invalidPattern%22">
-              name.invalidPattern</a>
+              name.invalidPattern
+            </a>
           </li>
         </ul>
         <p>
@@ -106,7 +115,9 @@ class MyClass {
       </subsection>
 
       <subsection name="Parent Module" id="Parent_Module">
-        <p> <a href="../../config.html#TreeWalker">TreeWalker</a> </p>
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
       </subsection>
     </section>
   </body>

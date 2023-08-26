@@ -36,33 +36,35 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name="InterfaceTypeParameterName"/&gt;
-        </source>
-        <p>Code Example:</p>
-        <source>
-interface FirstInterface&lt;T&gt; {} // OK
-interface SecondInterface&lt;t&gt; {} // violation, name 't' must match pattern '^[A-Z]$'
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/interfacetypeparametername/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">Code Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/interfacetypeparametername/Example1.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example2-config">
           An example of how to configure the check for names that are only a single
           letter is:
         </p>
-        <source>
-&lt;module name="InterfaceTypeParameterName"&gt;
-   &lt;property name="format" value="^[a-zA-Z]$"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>Code Example:</p>
-        <source>
-interface FirstInterface&lt;T&gt; {} // OK
-interface SecondInterface&lt;t&gt; {} // OK
-interface ThirdInterface&lt;type&gt; {} // violation, name 'type' must
-                                        // match pattern '^[a-zA-Z]$'
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/interfacetypeparametername/Example2.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">Code Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/interfacetypeparametername/Example2.txt"/>
+          <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">
@@ -79,12 +81,9 @@ interface ThirdInterface&lt;type&gt; {} // violation, name 'type' must
       </subsection>
 
       <subsection name="Violation Messages" id="Violation_Messages">
-        <ul>
-          <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fnaming%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22name.invalidPattern%22">
-            name.invalidPattern</a>
-          </li>
-        </ul>
+        <macro name="violation-messages">
+          <param name="checkName" value="InterfaceTypeParameterName"/>
+        </macro>
         <p>
           All messages can be customized if the default message doesn't suit you.
           Please <a href="../../config.html#Custom_messages">see the documentation</a>
@@ -97,7 +96,9 @@ interface ThirdInterface&lt;type&gt; {} // violation, name 'type' must
       </subsection>
 
       <subsection name="Parent Module" id="Parent_Module">
-        <p> <a href="../../config.html#TreeWalker">TreeWalker</a> </p>
+        <macro name="parent-module">
+          <param name="moduleName" value="InterfaceTypeParameterName"/>
+        </macro>
       </subsection>
     </section>
   </body>

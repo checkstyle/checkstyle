@@ -95,13 +95,17 @@ class MyClass {
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;MethodName&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;MethodName&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
         </source>
-        <p>Code Example:</p>
+        <p id="Example1-code">Code Example:</p>
         <source>
 class MyClass {
   public void firstMethod1() {} // OK
@@ -112,16 +116,20 @@ class MyClass {
                                  // default pattern '^[a-z][a-zA-Z0-9]*$'
 }
         </source>
-        <p>
+        <p id="Example2-config">
           An example of how to configure the check for names that begin with a lower case letter,
           followed by letters, digits, and underscores is:
         </p>
         <source>
-&lt;module name=&quot;MethodName&quot;&gt;
-   &lt;property name=&quot;format&quot; value=&quot;^[a-z](_?[a-zA-Z0-9]+)*$&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;MethodName&quot;&gt;
+       &lt;property name=&quot;format&quot; value=&quot;^[a-z](_?[a-zA-Z0-9]+)*$&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p>Code Example:</p>
+        <p id="Example2-code">Code Example:</p>
         <source>
 class MyClass {
   public void myMethod() {} // OK
@@ -129,17 +137,21 @@ class MyClass {
                             // should match the pattern &quot;^[a-z](_?[a-zA-Z0-9]+)*$&quot;
 }
         </source>
-        <p>
+        <p id="Example3-config">
           An example of how to configure the check to allow method names to be equal to the
           residing class name is:
         </p>
         <source>
-&lt;module name=&quot;MethodName&quot;&gt;
-   &lt;property name=&quot;format&quot; value=&quot;^[a-zA-Z](_?[a-zA-Z0-9]+)*$&quot;/&gt;
-   &lt;property name=&quot;allowClassName&quot; value=&quot;true&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;MethodName&quot;&gt;
+       &lt;property name=&quot;format&quot; value=&quot;^[a-zA-Z](_?[a-zA-Z0-9]+)*$&quot;/&gt;
+       &lt;property name=&quot;allowClassName&quot; value=&quot;true&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p>Code Example:</p>
+        <p id="Example3-code">Code Example:</p>
         <source>
 class MyClass {
   public MyClass() {} // OK
@@ -147,17 +159,21 @@ class MyClass {
                            // equal to the enclosing class name
 }
         </source>
-        <p>
+        <p id="Example4-config">
           An example of how to configure the check to disallow method names to be equal to the
           residing class name is:
         </p>
         <source>
-&lt;module name=&quot;MethodName&quot;&gt;
-   &lt;property name=&quot;format&quot; value=&quot;^[a-zA-Z](_?[a-zA-Z0-9]+)*$&quot;/&gt;
-   &lt;property name=&quot;allowClassName&quot; value=&quot;false&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;MethodName&quot;&gt;
+       &lt;property name=&quot;format&quot; value=&quot;^[a-zA-Z](_?[a-zA-Z0-9]+)*$&quot;/&gt;
+       &lt;property name=&quot;allowClassName&quot; value=&quot;false&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p>Code Example:</p>
+        <p id="Example4-code">Code Example:</p>
         <source>
 class MyClass {
   public MyClass() {} // OK
@@ -165,17 +181,21 @@ class MyClass {
                            // equal the enclosing class name
 }
         </source>
-        <p>
+        <p id="Example5-config">
           An example of how to suppress the check to public and protected methods:
         </p>
         <source>
-&lt;module name=&quot;MethodName&quot;&gt;
-   &lt;property name=&quot;format&quot; value=&quot;^[a-z](_?[a-zA-Z0-9]+)*$&quot;/&gt;
-   &lt;property name=&quot;applyToPublic&quot; value=&quot;false&quot;/&gt;
-   &lt;property name=&quot;applyToProtected&quot; value=&quot;false&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;MethodName&quot;&gt;
+       &lt;property name=&quot;format&quot; value=&quot;^[a-z](_?[a-zA-Z0-9]+)*$&quot;/&gt;
+       &lt;property name=&quot;applyToPublic&quot; value=&quot;false&quot;/&gt;
+       &lt;property name=&quot;applyToProtected&quot; value=&quot;false&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p>Code Example:</p>
+        <p id="Example5-code">Code Example:</p>
         <source>
 class MyClass {
   public void FirstMethod() {} // OK
@@ -209,11 +229,13 @@ class MyClass {
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fnaming%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22method.name.equals.class.name%22">
-            method.name.equals.class.name</a>
+              method.name.equals.class.name
+            </a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fnaming%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22name.invalidPattern%22">
-            name.invalidPattern</a>
+              name.invalidPattern
+            </a>
           </li>
         </ul>
         <p>
@@ -228,7 +250,9 @@ class MyClass {
       </subsection>
 
       <subsection name="Parent Module" id="Parent_Module">
-        <p> <a href="../../config.html#TreeWalker">TreeWalker</a> </p>
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
       </subsection>
     </section>
   </body>

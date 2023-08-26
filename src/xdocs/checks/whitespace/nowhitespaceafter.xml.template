@@ -136,73 +136,34 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name="NoWhitespaceAfter"/&gt;
-        </source>
-        <p>Example:</p>
-        <source>
-class Test {
-
-  public void lineBreak(String x) {
-    Integer.
-        parseInt(x); // Ok
-    Integer.parseInt(x); // Ok
-  }
-
-  public void dotOperator(String s) {
-    Integer.parseInt(s); // Ok
-    Integer. parseInt(s); // violation, '.' is followed by whitespace
-  }
-
-  public void arrayDec() {
-    int[] arr = arr; // Ok
-    int [] arr = arr; // violation, int is followed by whitespace
-  }
-
-  public void bitwiseNot(int a) {
-    a = ~ a; // violation '~' is followed by whitespace
-    a = ~a; // Ok
-  }
-}
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/nowhitespaceafter/Example1.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/nowhitespaceafter/Example1.java"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example2-config">
           To configure the check to forbid linebreaks after a DOT token:
         </p>
-        <source>
-&lt;module name="NoWhitespaceAfter"&gt;
-  &lt;property name="tokens" value="DOT"/&gt;
-  &lt;property name="allowLineBreaks" value="false"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>Example:</p>
-        <source>
-class Test {
-
-  public void lineBreak(String x) {
-    Integer.
-        parseInt(x); // violation, '.' is followed by whitespace
-    Integer.parseInt(x); // Ok
-  }
-
-  public void dotOperator(String s) {
-    Integer.parseInt(s); // Ok
-    Integer. parseInt(s); // violation, '.' is followed by whitespace
-  }
-
-  public void arrayDec() {
-    int[] arr = arr; // Ok
-    int [] arr = arr; // Ok
-  }
-
-  public void bitwiseNot(int a) {
-    a = ~ a; // Ok
-    a = ~a; // Ok
-  }
-}
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/nowhitespaceafter/Example2.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/nowhitespaceafter/Example2.java"/>
+          <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">
@@ -219,12 +180,9 @@ class Test {
       </subsection>
 
       <subsection name="Violation Messages" id="Violation_Messages">
-        <ul>
-          <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ws.followed%22">
-            ws.followed</a>
-          </li>
-        </ul>
+        <macro name="violation-messages">
+          <param name="checkName" value="NoWhitespaceAfter"/>
+        </macro>
         <p>
           All messages can be customized if the default message doesn't suit you.
           Please <a href="../../config.html#Custom_messages">see the documentation</a>
@@ -239,9 +197,9 @@ class Test {
       </subsection>
 
       <subsection name="Parent Module" id="Parent_Module">
-        <p>
-          <a href="../../config.html#TreeWalker">TreeWalker</a>
-        </p>
+        <macro name="parent-module">
+          <param name="moduleName" value="NoWhitespaceAfter"/>
+        </macro>
       </subsection>
     </section>
   </body>

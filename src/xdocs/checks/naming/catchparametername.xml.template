@@ -52,73 +52,37 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name="CatchParameterName"/&gt;
-        </source>
-        <p>Example:
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/catchparametername/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">Example:
         </p>
-        <source>
-public class MyTest {
-  public void myTest() {
-    try {
-      // ...
-    } catch (ArithmeticException e) { // OK
-      // ...
-    } catch (ArrayIndexOutOfBoundsException ex) { // OK
-      // ...
-    } catch (Throwable t) { // OK
-      // ...
-    } catch (IndexOutOfBoundsException e123) { // violation, digits
-                                               // not allowed
-      // ...
-    } catch (NullPointerException ab) { // violation, should have at least
-                                        // three characters if not e|t|ex
-      // ...
-    } catch (ArrayStoreException abc) { // OK
-      // ...
-    } catch (InterruptedException aBC) { // violation, first two characters
-                                         // should be in lowercase
-      // ...
-    } catch (RuntimeException abC) { // OK
-      // ...
-    } catch (Exception abCD) { // OK
-      // ...
-    }
-  }
-}
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/catchparametername/Example1.txt"/>
+          <param name="type" value="code"/>
+        </macro>
         <p>
           An example of how to configure the check for names that begin with
           a lower case letter, followed by any letters or digits is:
         </p>
-        <p>Configuration:</p>
-        <source>
-&lt;module name="CatchParameterName"&gt;
-  &lt;property name="format" value="^[a-z][a-zA-Z0-9]+$"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>Example:</p>
-        <source>
-public class MyTest {
-  public void myTest() {
-    try {
-      // ...
-    } catch (ArithmeticException ex) { // OK
-      // ...
-    } catch (ArrayIndexOutOfBoundsException ex2) { // OK
-      // ...
-    } catch (IOException thirdException) { // OK
-      // ...
-    } catch (Exception FourthException) { // violation, the initial letter
-                                          // should be lowercase
-      // ...
-    }
-  }
-}
-        </source>
+        <p id="Example2-config">Configuration:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/catchparametername/Example2.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/catchparametername/Example2.txt"/>
+          <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">
@@ -137,12 +101,9 @@ public class MyTest {
       </subsection>
 
       <subsection name="Violation Messages" id="Violation_Messages">
-        <ul>
-          <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fnaming%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22name.invalidPattern%22">
-            name.invalidPattern</a>
-          </li>
-        </ul>
+        <macro name="violation-messages">
+          <param name="checkName" value="CatchParameterName"/>
+        </macro>
         <p>
           All messages can be customized if the default message doesn't suit you.
           Please <a href="../../config.html#Custom_messages">see the documentation</a>
@@ -155,9 +116,9 @@ public class MyTest {
       </subsection>
 
       <subsection name="Parent Module" id="Parent_Module">
-        <p>
-          <a href="../../config.html#TreeWalker">TreeWalker</a>
-        </p>
+        <macro name="parent-module">
+          <param name="moduleName" value="CatchParameterName"/>
+        </macro>
       </subsection>
     </section>
   </body>

@@ -46,13 +46,17 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;PackageName&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;PackageName&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
         </source>
-        <p>Code Example:</p>
+        <p id="Example1-code">Code Example:</p>
         <source>
 package com; // OK
 package COM; // violation, name 'COM' must match pattern '^[a-z]+(\.[a-zA-Z_]\w*)*$'
@@ -62,17 +66,21 @@ package com.checkstyle1.checks; // OK
 package com.checkSTYLE.checks; // OK
 package com._checkstyle.checks_; // OK
         </source>
-        <p>
+        <p id="Example2-config">
           An example of how to configure the check to ensure with packages start with a lowercase
           letter and only contains lowercase letters or numbers is:
         </p>
         <source>
-&lt;module name=&quot;PackageName&quot;&gt;
-  &lt;property name=&quot;format&quot;
-    value=&quot;^[a-z]+(\.[a-z][a-z0-9]*)*$&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;PackageName&quot;&gt;
+      &lt;property name=&quot;format&quot;
+        value=&quot;^[a-z]+(\.[a-z][a-z0-9]*)*$&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p>Code Example:</p>
+        <p id="Example2-code">Code Example:</p>
         <source>
 package com; // OK
 package COM; // violation, name 'COM' must match pattern '^[a-z]+(\.[a-z][a-z0-9]*)*$'
@@ -108,7 +116,8 @@ package com._checkstyle.checks_; // violation, name 'com._checkstyle.checks_' mu
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fnaming%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22name.invalidPattern%22">
-            name.invalidPattern</a>
+              name.invalidPattern
+            </a>
           </li>
         </ul>
         <p>
@@ -123,7 +132,9 @@ package com._checkstyle.checks_; // violation, name 'com._checkstyle.checks_' mu
       </subsection>
 
       <subsection name="Parent Module" id="Parent_Module">
-        <p> <a href="../../config.html#TreeWalker">TreeWalker</a> </p>
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
       </subsection>
     </section>
   </body>

@@ -249,11 +249,13 @@ src/main/main_class.java  //violation, file names should be in Camel Case
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fregexp%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22regexp.filename.match%22">
-            regexp.filename.match</a>
+              regexp.filename.match
+            </a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fregexp%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22regexp.filename.mismatch%22">
-            regexp.filename.mismatch</a>
+              regexp.filename.mismatch
+            </a>
           </li>
         </ul>
         <p>

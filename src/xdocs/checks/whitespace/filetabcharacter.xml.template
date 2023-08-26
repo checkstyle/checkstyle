@@ -62,69 +62,58 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>To configure the check to report only the first instance in each file:</p>
-        <source>
-&lt;module name="FileTabCharacter"/&gt;
-        </source>
-        <p>Example - Test.java:</p>
-        <source>
-public class Test {
-  int a;      // violation, indented using tab
-
-  public void foo (int arg) { // OK, indented using tab, only first occurrence in file reported
-      a = arg;                // OK, indented using spaces
-  }                           // OK, indented using spaces
-}
-        </source>
-        <p>To configure the check to report each instance in each file:</p>
-        <source>
-&lt;module name="FileTabCharacter"&gt;
-  &lt;property name="eachLine" value="true"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>Example - Test.java:</p>
-        <source>
-public class Test {
-  int a;      // violation, indented using tab
-
-  public void foo (int arg) { // violation, indented using tab
-      a = arg;                // OK, indented using spaces
-  }                           // OK, indented using spaces
-}
-        </source>
-        <p>To configure the check to report instances on only certain file types:</p>
-        <source>
-&lt;module name="FileTabCharacter"&gt;
-  &lt;property name="fileExtensions" value="java, xml"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>Example - Test.java:</p>
-        <source>
-public class Test {
-  int a;      // violation, indented using tab
-
-  public void foo (int arg) { // OK, indented using tab, only first occurrence in file reported
-      a = arg;                // OK, indented using spaces
-  }                           // OK, indented using spaces
-}
-        </source>
-        <p>Example - Test.xml:</p>
-        <source>
-&lt;?xml version="1.0" encoding="UTF-8" ?&gt;
-&lt;UserAccount&gt;
-  &lt;FirstName&gt;John&lt;/FirstName&gt; &lt;!-- violation, indented using tab --&gt;
-  &lt;LastName&gt;Doe&lt;/LastName&gt;    &lt;!-- only first occurrence in file reported --&gt;
-&lt;/UserAccount&gt;
-        </source>
-        <p>Example - Test.html:</p>
-        <source>
-&lt;head&gt;
-  &lt;title&gt;Page Title&lt;/title&gt; &lt;!-- no check performed, html file extension --&gt;
-&lt;/head&gt;                     &lt;!-- not specified in check config --&gt;
-&lt;body&gt;
-  &lt;p&gt;This is a simple html document.&lt;/p&gt;
-&lt;/body&gt;
-        </source>
+        <p id="Example1-config">
+          To configure the check to report only the first instance in each file:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/filetabcharacter/Example1.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">Example - Test.java:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/filetabcharacter/Example1.java"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example2-config">To configure the check to report each instance in each file:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/filetabcharacter/Example2.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">Example - Test.java:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/filetabcharacter/Example2.java"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example3-config">
+          To configure the check to report instances on only certain file types:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/filetabcharacter/Example3.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example3-code">Example - Test.java:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/filetabcharacter/Example3.java"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example4-code">Example - Test.xml:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/filetabcharacter/Example4.xml"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example5-code">Example - Test.html:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/filetabcharacter/Example5.html"/>
+          <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">
@@ -145,16 +134,9 @@ public class Test {
       </subsection>
 
       <subsection name="Violation Messages" id="Violation_Messages">
-        <ul>
-          <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22containsTab%22">
-            containsTab</a>
-          </li>
-          <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22file.containsTab%22">
-            file.containsTab</a>
-          </li>
-        </ul>
+        <macro name="violation-messages">
+          <param name="checkName" value="FileTabCharacter"/>
+        </macro>
         <p>
           All messages can be customized if the default message doesn't suit you.
           Please <a href="../../config.html#Custom_messages">see the documentation</a>
@@ -169,9 +151,9 @@ public class Test {
       </subsection>
 
       <subsection name="Parent Module" id="Parent_Module">
-        <p>
-          <a href="../../config.html#Checker">Checker</a>
-        </p>
+        <macro name="parent-module">
+          <param name="moduleName" value="FileTabCharacter"/>
+        </macro>
       </subsection>
     </section>
   </body>

@@ -38,36 +38,35 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name="RecordComponentName"/&gt;
-        </source>
-        <p>Example:</p>
-        <source>
-record MyRecord1(String value, int otherComponentName) {} // OK
-record MyRecord2(String... Values) {} // violation, the record component name
-                                    // should match the regular expression "^[a-z][a-zA-Z0-9]*$"
-record MyRecord3(double my_number) {} // violation, the record component name
-                                    // should match the regular expression "^[a-z][a-zA-Z0-9]*$"
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/recordcomponentname/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/recordcomponentname/Example1.txt"/>
+          <param name="type" value="code"/>
+        </macro>
         <p>
           An example of how to configure the check for names that are only letters in lowercase:
         </p>
-        <p>Configuration:</p>
-        <source>
-&lt;module name="RecordComponentName"&gt;
-    &lt;property name="format" value="^[a-z]+$"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>Example:</p>
-        <source>
-record MyRecord1(String value, int other) {} // OK
-record MyRecord2(String... strings) {} // OK
-record MyRecord3(double myNumber) {} // violation, the record component name
-                             // should match the regular expression "^[a-z]+$"
-        </source>
+        <p id="Example2-config">Configuration:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/recordcomponentname/Example2.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/recordcomponentname/Example2.txt"/>
+          <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">
@@ -86,13 +85,9 @@ record MyRecord3(double myNumber) {} // violation, the record component name
       </subsection>
 
       <subsection name="Violation Messages" id="Violation_Messages">
-        <ul>
-          <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fnaming%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22name.invalidPattern%22">
-              name.invalidPattern
-            </a>
-          </li>
-        </ul>
+        <macro name="violation-messages">
+          <param name="checkName" value="RecordComponentName"/>
+        </macro>
         <p>
           All messages can be customized if the default message doesn't suit you.
           Please <a href="../../config.html#Custom_messages">see the documentation</a>
@@ -105,9 +100,9 @@ record MyRecord3(double myNumber) {} // violation, the record component name
       </subsection>
 
       <subsection name="Parent Module" id="Parent_Module">
-        <p>
-          <a href="../../config.html#TreeWalker">TreeWalker</a>
-        </p>
+        <macro name="parent-module">
+          <param name="moduleName" value="RecordComponentName"/>
+        </macro>
       </subsection>
     </section>
   </body>

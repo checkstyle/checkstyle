@@ -38,61 +38,39 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name="TypecastParenPad"/&gt;
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/typecastparenpad/Example1.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">
           Example:
         </p>
-        <source>
-class Foo {
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/typecastparenpad/Example1.java"/>
+          <param name="type" value="code"/>
+        </macro>
 
-  float f1 = 3.14f;
-
-  int n = ( int ) f1; // violation, space after left parenthesis and before right parenthesis
-
-  double d = 1.234567;
-
-  float f2 = (float ) d; // violation, space before right parenthesis
-
-  float f3 = (float) d; // OK
-
-  float f4 = ( float) d; // violation, space after left parenthesis
-
-}
-        </source>
-
-        <p>
+        <p id="Example2-config">
           To configure the check to require spaces:
         </p>
-        <source>
-&lt;module name="TypecastParenPad"&gt;
-  &lt;property name="option" value="space"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/typecastparenpad/Example2.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">
           Example:
         </p>
-        <source>
-class Bar {
-
-  double d1 = 3.14;
-
-  int n = ( int ) d1; // OK
-
-  int m = (int ) d1; // violation, no space after left parenthesis
-
-  double d2 = 9.8;
-
-  int x = (int) d2; // violation, no space after left parenthesis and before right parenthesis
-
-  int y = ( int) d2; // violation, no space before right parenthesis
-
-}
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/typecastparenpad/Example2.java"/>
+          <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">
@@ -109,24 +87,9 @@ class Bar {
       </subsection>
 
       <subsection name="Violation Messages" id="Violation_Messages">
-        <ul>
-          <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ws.followed%22">
-            ws.followed</a>
-          </li>
-          <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ws.notFollowed%22">
-            ws.notFollowed</a>
-          </li>
-          <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ws.notPreceded%22">
-            ws.notPreceded</a>
-          </li>
-          <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ws.preceded%22">
-            ws.preceded</a>
-          </li>
-        </ul>
+        <macro name="violation-messages">
+          <param name="checkName" value="TypecastParenPad"/>
+        </macro>
         <p>
           All messages can be customized if the default message doesn't suit you.
           Please <a href="../../config.html#Custom_messages">see the documentation</a>
@@ -141,9 +104,9 @@ class Bar {
       </subsection>
 
       <subsection name="Parent Module" id="Parent_Module">
-        <p>
-          <a href="../../config.html#TreeWalker">TreeWalker</a>
-        </p>
+        <macro name="parent-module">
+          <param name="moduleName" value="TypecastParenPad"/>
+        </macro>
       </subsection>
     </section>
   </body>
