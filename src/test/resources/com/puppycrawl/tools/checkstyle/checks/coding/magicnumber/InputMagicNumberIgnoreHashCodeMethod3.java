@@ -79,7 +79,7 @@ class BinaryIgnoreHashCodeMethod3 {
     int value() default 101;
     int[] ar() default {102};
 }
-class AIgnoreHashCodeMethod3 {
+class  AIgnoreHashCodeMethod3 {
     {
         switch (Blah2IgnoreHashCodeMethod1.LOW) {
         default:

@@ -18,7 +18,7 @@ public class InputVariableDeclarationUsageDistanceLabels {
         nothing();
         nothing();
         nothing();
-        myLoop: // ok
+        myLoop:
         for (int i = 0; i < 5; i++) {
             if (i == 5) {
                 eol = true;

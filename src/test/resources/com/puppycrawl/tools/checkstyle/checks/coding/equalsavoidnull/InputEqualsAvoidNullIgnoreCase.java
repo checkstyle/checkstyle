@@ -439,7 +439,7 @@ class TestThisWithNotStringInstance1 {
     MyString1 notString;
 
     void foo() {
-        this.notString.equals(""); // ok
+        this.notString.equals("");
     }
 
 }

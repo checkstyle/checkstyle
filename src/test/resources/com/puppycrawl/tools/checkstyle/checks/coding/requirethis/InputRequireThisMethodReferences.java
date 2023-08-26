@@ -15,7 +15,7 @@ import java.util.Set;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
 
-public class InputRequireThisMethodReferences { // ok
+public class InputRequireThisMethodReferences {
     private Set<String> tags = Collections.unmodifiableSortedSet(
         Arrays.stream(new String[] {"br", "li", "dt", "dd", "hr", "img", "p", "td", "tr", "th",})
             .collect(Collectors.toCollection(TreeSet::new)));

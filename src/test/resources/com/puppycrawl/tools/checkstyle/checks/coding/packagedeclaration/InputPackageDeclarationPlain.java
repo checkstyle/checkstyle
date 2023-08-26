@@ -5,7 +5,7 @@ matchDirectoryStructure = (default)true
 
 */
 
-package com.puppycrawl.tools.checkstyle.checks.coding.packagedeclaration; // ok
+package com.puppycrawl.tools.checkstyle.checks.coding.packagedeclaration;
 
 class InputPackageDeclarationPlain {
     public String value;

@@ -61,10 +61,10 @@ public class InputOneStatementPerLineSingleLine {
    */
   public void doLegalComment() {
     one = 1;
-    //one = 1; two = 2; // ok
+    //one = 1; two = 2;
     two = 2;
     /*
-     * one = 1; two = 2; // ok
+     * one = 1; two = 2;
      */
   }
 
@@ -74,14 +74,14 @@ public class InputOneStatementPerLineSingleLine {
   public void doLegalString() {
     one = 1;
     two = 2;
-    System.identityHashCode("one = 1; two = 2"); // ok
+    System.identityHashCode("one = 1; two = 2");
   }
 
   /**
    * Within the for-header there are 3 Statements, but this is legal.
    */
   public void doLegalForLoop() {
-    for (int i = 0; i < 20; i++) { // ok
+    for (int i = 0; i < 20; i++) {
       one = i;
     }
   }

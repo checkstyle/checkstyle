@@ -13,7 +13,7 @@ public class InputFallThroughStringSwitch
     int method(String arg) {
         int i = 0;
         switch (arg) {
-        case "ok": // ok
+        case "ok":
         case "break":
             break;
         case "violation":

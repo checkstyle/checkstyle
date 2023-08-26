@@ -8,7 +8,7 @@ tokens = PARAMETER_DEF
 
 package com.puppycrawl.tools.checkstyle.checks.coding.finallocalvariable;
 
-public class InputFinalLocalVariableNativeMethods // ok
+public class InputFinalLocalVariableNativeMethods
 {
     public native String nativeFoo(int a, int b);
     private native double average(int n1, int n2);

@@ -68,10 +68,10 @@ public enum InputUnusedLocalVariableEnum {
     }
 
     public void testBooleanExpressions() {
-        boolean b = false; // ok
+        boolean b = false;
         if (!b) {
         }
-        boolean b1 = true; // ok
+        boolean b1 = true;
         if (b1) {
         }
         boolean a; // violation

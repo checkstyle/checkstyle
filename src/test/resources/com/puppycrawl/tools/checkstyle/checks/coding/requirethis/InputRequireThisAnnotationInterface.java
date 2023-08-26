@@ -7,7 +7,7 @@ validateOnlyOverlapping = false
 
 */
 
-package com.puppycrawl.tools.checkstyle.checks.coding.requirethis; // ok
+package com.puppycrawl.tools.checkstyle.checks.coding.requirethis;
 
 public @interface InputRequireThisAnnotationInterface {
     String DEFAULT_VALUE = "DEFAULT_VALUE";

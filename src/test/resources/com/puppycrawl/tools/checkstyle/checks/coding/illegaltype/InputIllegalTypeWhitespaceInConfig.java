@@ -19,7 +19,7 @@ import java.lang.annotation.Target;
 import java.util.List;
 
 public class InputIllegalTypeWhitespaceInConfig {
-    public void example(List<@MyPattern String> strings) { // ok
+    public void example(List<@MyPattern String> strings) {
     }
 
     @Target(ElementType.TYPE_USE)

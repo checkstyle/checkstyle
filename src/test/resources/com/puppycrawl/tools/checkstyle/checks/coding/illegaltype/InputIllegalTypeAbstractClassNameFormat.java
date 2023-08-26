@@ -15,7 +15,7 @@ public class InputIllegalTypeAbstractClassNameFormat {
 class Test extends Gitter { // violation 'Usage of type 'Gitter' is not allowed'
 }
 
-class Test1 extends Github { // OK
+class Test1 extends Github {
 }
 
 class Gitter{}
