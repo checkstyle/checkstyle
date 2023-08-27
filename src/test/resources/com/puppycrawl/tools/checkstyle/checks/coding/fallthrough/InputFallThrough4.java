@@ -45,7 +45,7 @@ public class InputFallThrough4 {
    void methodFall(int i, int j) {
       while (true) {
           switch (i){
-          case 5: // violation 'Fall .* from the last branch of the switch statement'
+          case 5: // violation 'Fall\ .* from the last branch of the switch statement'
               i++;
           }
       }
@@ -80,7 +80,7 @@ public class InputFallThrough4 {
               i++;
           /* fallthru */case 4:
                 break;
-          case 5: // violation 'Fall .* from the last branch of the switch statement'
+          case 5: // violation 'Fall\ .* from the last branch of the switch statement'
               i++;
           }
       }
