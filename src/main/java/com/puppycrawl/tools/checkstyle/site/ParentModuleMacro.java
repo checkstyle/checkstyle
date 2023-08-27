@@ -97,6 +97,7 @@ public class ParentModuleMacro extends AbstractMacro {
                 .relativize(Paths.get("src", "xdocs", "config.xml"))
                 .toString()
                 .replace(".xml", ".html")
+                .replace('\\', '/')
                 + "#" + parentModule;
     }
 
