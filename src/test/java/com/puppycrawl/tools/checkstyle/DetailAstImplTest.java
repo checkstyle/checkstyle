@@ -648,17 +648,6 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
         }
     }
 
-    @Test
-    public void testToString() {
-        final DetailAstImpl ast = new DetailAstImpl();
-        ast.setText("text");
-        ast.setColumnNo(0);
-        ast.setLineNo(0);
-        assertWithMessage("Invalid text")
-            .that(ast.toString())
-            .isEqualTo("text[0x0]");
-    }
-
     private static List<File> getAllFiles(File dir) {
         final List<File> result = new ArrayList<>();
 

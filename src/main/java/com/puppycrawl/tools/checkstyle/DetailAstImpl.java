@@ -411,11 +411,6 @@ public final class DetailAstImpl implements DetailAST {
     }
 
     @Override
-    public String toString() {
-        return text + "[" + getLineNo() + "x" + getColumnNo() + "]";
-    }
-
-    @Override
     public DetailAstImpl getNextSibling() {
         return nextSibling;
     }
