@@ -18,7 +18,7 @@ public class InputFallThroughLastLineCommentCheck {
                 // comment
                 // fall through
                 // check
-            case 2: // violation 'Fall through from previous branch of the switch statement'
+            case 2: // violation 'Fall\ through from previous branch of the switch statement'
                 break;
             case 3:
                 break;
