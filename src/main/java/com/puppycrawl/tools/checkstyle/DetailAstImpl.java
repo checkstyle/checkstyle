@@ -166,7 +166,6 @@ public final class DetailAstImpl implements DetailAST {
         if (child != null) {
             final DetailAstImpl astImpl = (DetailAstImpl) child;
             astImpl.setParent(this);
-            astImpl.previousSibling = (DetailAstImpl) getLastChild();
         }
         DetailAST temp = firstChild;
         if (temp == null) {
