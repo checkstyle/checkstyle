@@ -147,10 +147,8 @@ public final class DetailAstImpl implements DetailAST {
 
             if (sibling != null) {
                 astImpl.setNextSibling(sibling);
-                sibling.previousSibling = astImpl;
             }
 
-            astImpl.previousSibling = this;
             setNextSibling(astImpl);
         }
     }
