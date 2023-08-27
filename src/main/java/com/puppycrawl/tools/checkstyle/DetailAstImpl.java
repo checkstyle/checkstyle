@@ -47,7 +47,7 @@ public final class DetailAstImpl implements DetailAST {
     private int columnNo = NOT_INITIALIZED;
 
     /** Number of children. */
-    private int childCount = NOT_INITIALIZED;
+    private int childCount;
     /** The parent token. */
     private DetailAstImpl parent;
     /** Previous sibling. */
