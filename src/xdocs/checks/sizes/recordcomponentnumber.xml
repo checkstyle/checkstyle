@@ -171,7 +171,7 @@ private record MyRecord2(int x, int y, String str, Node node) { // violation
 
       <subsection name="Parent Module" id="Parent_Module">
         <p>
-          <a href="../../config.html#TreeWalker">TreeWalker</a>
+          <a href="..\..\config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>
