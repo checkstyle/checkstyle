@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle;
 
 import static com.google.common.truth.Truth.assertWithMessage;
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocContentLocationCheck.MSG_JAVADOC_CONTENT_SECOND_LINE;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -32,6 +33,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocContentLocationCheck;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
 public class JavaParserTest extends AbstractModuleTestSupport {
@@ -272,6 +274,17 @@ public class JavaParserTest extends AbstractModuleTestSupport {
         assertWithMessage("File parsing should complete successfully.")
                 .that(JavaParser.parseFile(file, JavaParser.Options.WITH_COMMENTS))
                 .isNotNull();
+    }
+
+    @Test
+    public void testReturnValueOfAppendHiddenCommentNodes()
+            throws Exception {
+        final String[] expected = {
+            "9:1: " + getCheckMessage(JavadocContentLocationCheck.class,
+                    MSG_JAVADOC_CONTENT_SECOND_LINE),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavaParserHiddenComments4.java"), expected);
     }
 
     private static final class CountComments {
