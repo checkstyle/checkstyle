@@ -21,7 +21,7 @@ public class InputFallThrough5 {
         switch (o) { // violation below 'Fall .* from the last branch of the switch statement'
             case Object obj, null: ;
         }
-        switch (o) { // violation below 'Fall .* from the last branch of the switch statement'
+        switch (o) {
             case Object obj, null: ; // fall thru
         }
     }
