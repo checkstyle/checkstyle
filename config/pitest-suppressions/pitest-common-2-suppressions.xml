@@ -90,14 +90,14 @@
     <lineContent>return text + &quot;[&quot; + getLineNo() + &quot;x&quot; + getColumnNo() + &quot;]&quot;;</lineContent>
   </mutation>
 
-  <mutation unstable="false">
-    <sourceFile>JavaParser.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.JavaParser</mutatedClass>
-    <mutatedMethod>appendHiddenCommentNodes</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.returns.NullReturnValsMutator</mutator>
-    <description>replaced return value with null for com/puppycrawl/tools/checkstyle/JavaParser::appendHiddenCommentNodes</description>
-    <lineContent>return root;</lineContent>
-  </mutation>
+
+
+
+
+
+
+
+
 
   <mutation unstable="false">
     <sourceFile>JavaParser.java</sourceFile>
