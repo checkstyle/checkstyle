@@ -22,44 +22,10 @@
 
       <subsection name="Properties" id="Properties">
         <div class="wrapper">
-          <table>
-            <tr>
-              <th>name</th>
-              <th>description</th>
-              <th>type</th>
-              <th>default value</th>
-              <th>since</th>
-            </tr>
-            <tr>
-              <td>format</td>
-              <td>Specify valid identifiers.</td>
-              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
-              <td><code>"^Abstract.+$"</code></td>
-              <td>3.2</td>
-            </tr>
-            <tr>
-              <td>ignoreModifier</td>
-              <td>
-                Control whether to ignore checking for the
-                <code>abstract</code> modifier on classes that match the
-                name.
-              </td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
-              <td><code>false</code></td>
-              <td>5.3</td>
-            </tr>
-            <tr>
-              <td>ignoreName</td>
-              <td>
-                Control whether to ignore checking the name. Realistically
-                only useful if using the check to identify that match name
-                and do not have the <code>abstract</code> modifier.
-              </td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
-              <td><code>false</code></td>
-              <td>5.3</td>
-            </tr>
-          </table>
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/naming/AbstractClassNameCheck.java"/>
+          </macro>
         </div>
       </subsection>
 
