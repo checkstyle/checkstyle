@@ -140,19 +140,15 @@ public final class DetailAstImpl implements DetailAST {
     public void addNextSibling(DetailAST ast) {
         clearBranchTokenTypes();
         clearChildCountCache(parent);
-        if (ast != null) {
-            // parent is set in setNextSibling
-            final DetailAstImpl sibling = nextSibling;
-            final DetailAstImpl astImpl = (DetailAstImpl) ast;
+        // parent is set in setNextSibling
+        final DetailAstImpl sibling = nextSibling;
+        final DetailAstImpl astImpl = (DetailAstImpl) ast;
 
-            if (sibling != null) {
-                astImpl.setNextSibling(sibling);
-                sibling.previousSibling = astImpl;
-            }
-
-            astImpl.previousSibling = this;
-            setNextSibling(astImpl);
+        if (sibling != null) {
+            astImpl.setNextSibling(sibling);
         }
+
+        setNextSibling(astImpl);
     }
 
     /**

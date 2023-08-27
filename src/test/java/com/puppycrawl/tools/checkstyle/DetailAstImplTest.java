@@ -477,20 +477,57 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
         final DetailAstImpl parent = new DetailAstImpl();
         final DetailAstImpl child = new DetailAstImpl();
         final DetailAstImpl sibling = new DetailAstImpl();
-        final DetailAST newSibling = new DetailAstImpl();
+        final DetailAstImpl newSibling = new DetailAstImpl();
+        final DetailAST newNextSibling = new DetailAstImpl();
+
         parent.setFirstChild(child);
         child.setNextSibling(sibling);
         child.addNextSibling(newSibling);
+        newSibling.addNextSibling(newNextSibling);
 
+        assertWithMessage("")
+                .that(newNextSibling.getPreviousSibling())
+                        .isEqualTo(newSibling);
+        assertWithMessage("")
+                .that(newNextSibling.getNextSibling())
+                        .isEqualTo(sibling);
+        assertWithMessage("")
+                .that(sibling.getNextSibling())
+                        .isNull();
+        assertWithMessage("")
+                .that(sibling.getPreviousSibling().getPreviousSibling())
+                        .isEqualTo(newSibling);
+        assertWithMessage("")
+                .that(newNextSibling.getPreviousSibling().getPreviousSibling())
+                        .isEqualTo(child);
         assertWithMessage("Invalid parent")
             .that(newSibling.getParent())
             .isEqualTo(parent);
         assertWithMessage("Invalid next sibling")
             .that(newSibling.getNextSibling())
-            .isEqualTo(sibling);
+            .isEqualTo(newNextSibling);
         assertWithMessage("Invalid child")
             .that(child.getNextSibling())
             .isEqualTo(newSibling);
+    }
+
+    @Test
+    public void testAddNextSibling2() {
+        final DetailAstImpl parent = new DetailAstImpl();
+        final DetailAstImpl child = new DetailAstImpl();
+        parent.setFirstChild(child);
+        final DetailAstImpl siblingOfChild = new DetailAstImpl();
+        child.addNextSibling(siblingOfChild);
+
+        assertWithMessage("")
+                .that(siblingOfChild.getPreviousSibling())
+                .isEqualTo(child);
+
+        final DetailAST nullChild = null;
+        siblingOfChild.addNextSibling(nullChild);
+        assertWithMessage("")
+                .that(siblingOfChild.getNextSibling())
+                .isNull();
     }
 
     @Test
