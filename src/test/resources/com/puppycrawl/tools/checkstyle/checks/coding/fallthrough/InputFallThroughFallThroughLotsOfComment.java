@@ -17,7 +17,7 @@ public class InputFallThroughFallThroughLotsOfComment {
                 int line = 2;
                 // fall-through intended - the line contains already the first entries
                 // the following 4 lines contain additional satellite ids
-            case 4: // violation 'Fall through from previous branch of the switch statement'
+            case 4: // violation 'Fall\ through from previous branch of the switch statement'
             case 5:
             case 6:
             case 7: {
@@ -40,7 +40,7 @@ public class InputFallThroughFallThroughLotsOfComment {
 
                 // base = line.substring(14, 26).trim();
             }
-            case 16: // violation 'Fall through from previous branch of the switch statement'
+            case 16: // violation 'Fall\ through from previous branch of the switch statement'
             case 17:
             case 18:
                 // ignore additional custom parameters
