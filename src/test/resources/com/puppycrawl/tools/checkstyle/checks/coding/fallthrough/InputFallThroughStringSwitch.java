@@ -18,7 +18,7 @@ public class InputFallThroughStringSwitch
             break;
         case "violation":
             i++;
-        case "fallthru": // violation 'Fall through from previous branch of the switch statement.'
+        case "fallthru": // violation 'Fall\ through from previous branch of the switch statement.'
       }
       return i;
    }
