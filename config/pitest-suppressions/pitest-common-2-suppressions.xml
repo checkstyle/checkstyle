@@ -63,14 +63,14 @@
 
 
 
-  <mutation unstable="false">
-    <sourceFile>DetailAstImpl.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.DetailAstImpl</mutatedClass>
-    <mutatedMethod>removeChildren</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
-    <description>Removed assignment to member variable firstChild</description>
-    <lineContent>firstChild = null;</lineContent>
-  </mutation>
+
+
+
+
+
+
+
+
 
   <mutation unstable="false">
     <sourceFile>DetailAstImpl.java</sourceFile>
