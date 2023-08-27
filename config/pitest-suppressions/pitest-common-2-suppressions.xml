@@ -72,23 +72,23 @@
     <lineContent>firstChild = null;</lineContent>
   </mutation>
 
-  <mutation unstable="false">
-    <sourceFile>DetailAstImpl.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.DetailAstImpl</mutatedClass>
-    <mutatedMethod>toString</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to com/puppycrawl/tools/checkstyle/DetailAstImpl::getColumnNo</description>
-    <lineContent>return text + &quot;[&quot; + getLineNo() + &quot;x&quot; + getColumnNo() + &quot;]&quot;;</lineContent>
-  </mutation>
 
-  <mutation unstable="false">
-    <sourceFile>DetailAstImpl.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.DetailAstImpl</mutatedClass>
-    <mutatedMethod>toString</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to com/puppycrawl/tools/checkstyle/DetailAstImpl::getLineNo</description>
-    <lineContent>return text + &quot;[&quot; + getLineNo() + &quot;x&quot; + getColumnNo() + &quot;]&quot;;</lineContent>
-  </mutation>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   <mutation unstable="false">
     <sourceFile>JavaParser.java</sourceFile>
