@@ -106,7 +106,7 @@ record MyRecord3&lt;abc&gt; {} // violation, the record type parameter
 
       <subsection name="Parent Module" id="Parent_Module">
         <p>
-          <a href="../../config.html#TreeWalker">TreeWalker</a>
+          <a href="..\..\config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>

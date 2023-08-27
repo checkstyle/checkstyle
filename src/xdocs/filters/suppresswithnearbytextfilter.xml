@@ -298,7 +298,7 @@ public static final boolean SOME_FLAG = false;
 
       <subsection name="Parent Module" id="Parent_Module">
         <p>
-          <a href="../config.html#Checker">Checker</a>
+          <a href="..\config.html#Checker">Checker</a>
         </p>
       </subsection>
     </section>
