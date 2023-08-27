@@ -652,11 +652,11 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
     public void testToString() {
         final DetailAstImpl ast = new DetailAstImpl();
         ast.setText("text");
-        ast.setColumnNo(0);
-        ast.setLineNo(0);
+        ast.setColumnNo(1);
+        ast.setLineNo(1);
         assertWithMessage("Invalid text")
             .that(ast.toString())
-            .isEqualTo("text[0x0]");
+            .isEqualTo("text[1x1]");
     }
 
     private static List<File> getAllFiles(File dir) {
