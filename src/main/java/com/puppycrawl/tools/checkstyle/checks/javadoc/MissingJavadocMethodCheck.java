@@ -303,9 +303,7 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
      * @return True if this method or constructor doesn't need Javadoc.
      */
     private boolean isContentsAllowMissingJavadoc(DetailAST ast) {
-        return (ast.getType() == TokenTypes.METHOD_DEF
-                || ast.getType() == TokenTypes.CTOR_DEF
-                || ast.getType() == TokenTypes.COMPACT_CTOR_DEF)
+        return ast.getType() != TokenTypes.ANNOTATION_FIELD_DEF
                 && (getMethodsNumberOfLine(ast) <= minLineCount
                     || AnnotationUtil.containsAnnotation(ast, allowedAnnotations));
     }
@@ -341,11 +339,10 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
     private boolean shouldCheck(final DetailAST ast, final Scope nodeScope) {
         final Scope surroundingScope = ScopeUtil.getSurroundingScope(ast);
 
-        return (excludeScope == null
-                || nodeScope != excludeScope
-                && surroundingScope != excludeScope)
-            && nodeScope.isIn(scope)
-            && surroundingScope.isIn(scope);
+        return nodeScope != excludeScope
+                && surroundingScope != excludeScope
+                && nodeScope.isIn(scope)
+                && surroundingScope.isIn(scope);
     }
 
 }
