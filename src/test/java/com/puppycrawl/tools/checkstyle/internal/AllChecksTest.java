@@ -516,6 +516,10 @@ public class AllChecksTest extends AbstractModuleTestSupport {
     public void testAllCheckstyleChecksHaveMessage() throws Exception {
         for (Class<?> module : CheckUtil.getCheckstyleChecks()) {
             final String name = module.getSimpleName();
+            // Module is not a check
+            if ("ClassAndPropertiesSettersJavadocScraper".equals(name)) {
+                continue;
+            }
             final Set<Field> messages = CheckUtil.getCheckMessages(module, false);
 
             // No messages in just module
