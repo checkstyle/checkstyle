@@ -657,41 +657,41 @@
 
 
 
-  <mutation unstable="false">
-    <sourceFile>MissingJavadocMethodCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocMethodCheck</mutatedClass>
-    <mutatedMethod>isContentsAllowMissingJavadoc</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
-    <description>removed conditional - replaced equality check with false</description>
-    <lineContent>return (ast.getType() == TokenTypes.METHOD_DEF</lineContent>
-  </mutation>
 
-  <mutation unstable="false">
-    <sourceFile>MissingJavadocMethodCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocMethodCheck</mutatedClass>
-    <mutatedMethod>isContentsAllowMissingJavadoc</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
-    <description>removed conditional - replaced equality check with true</description>
-    <lineContent>|| ast.getType() == TokenTypes.COMPACT_CTOR_DEF)</lineContent>
-  </mutation>
 
-  <mutation unstable="false">
-    <sourceFile>MissingJavadocMethodCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocMethodCheck</mutatedClass>
-    <mutatedMethod>isContentsAllowMissingJavadoc</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
-    <description>removed conditional - replaced equality check with false</description>
-    <lineContent>|| ast.getType() == TokenTypes.CTOR_DEF</lineContent>
-  </mutation>
 
-  <mutation unstable="false">
-    <sourceFile>MissingJavadocMethodCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocMethodCheck</mutatedClass>
-    <mutatedMethod>shouldCheck</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
-    <description>removed conditional - replaced equality check with true</description>
-    <lineContent>return (excludeScope == null</lineContent>
-  </mutation>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -455,4 +455,16 @@ public class MissingJavadocMethodCheckTest extends AbstractModuleTestSupport {
                 getNonCompilablePath("InputMissingJavadocMethod1.java"),
                 expected);
     }
+
+    @Test
+    public void testAnnotationField() throws Exception {
+        final String[] expected = {
+            "25:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "27:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputMissingJavadocMethodAnnotationField.java"),
+                expected);
+    }
 }
