@@ -55,17 +55,16 @@
         </div>
       </subsection>
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           For example, the following configuration fragment directs the
           Checker to not report audit events with severity
           level <code>info</code>:
         </p>
-        <source>
-&lt;module name="SeverityMatchFilter"&gt;
-  &lt;property name="severity" value="info"/&gt;
-  &lt;property name="acceptOnMatch" value="false"/&gt;
-&lt;/module&gt;
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/severitymatchfilter/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
       </subsection>
       <subsection name="Example of Usage" id="Example_of_Usage">
         <ul>

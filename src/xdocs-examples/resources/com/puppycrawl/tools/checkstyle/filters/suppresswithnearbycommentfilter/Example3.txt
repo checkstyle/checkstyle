@@ -1,0 +1,21 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="SuppressWithNearbyCommentFilter">
+      <property name="commentFormat" value="OK to catch (\w+) here"/>
+      <property name="checkFormat" value="IllegalCatchCheck"/>
+      <property name="messageFormat" value="$1"/>
+      <property name="influenceFormat" value="-1"/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+. . .
+catch (RuntimeException re) {
+// OK to catch RuntimeException here
+}
+catch (Throwable th) { ... }
+. . .
+// xdoc section -- end

@@ -35,7 +35,7 @@ public class InputFallThrough6 {
          case 2: case 3: i *= i; // fall through
          case 4: case 5: i *= i; // fall through
          case 6: case 7: i *= i;
-             break; // violation above 'Fall through from previous branch of the switch statement'
+             break;
          default:
              throw new RuntimeException();
          }

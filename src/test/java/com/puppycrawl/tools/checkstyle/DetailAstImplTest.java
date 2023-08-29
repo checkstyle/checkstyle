@@ -652,11 +652,26 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
     public void testToString() {
         final DetailAstImpl ast = new DetailAstImpl();
         ast.setText("text");
-        ast.setColumnNo(0);
-        ast.setLineNo(0);
+        ast.setColumnNo(1);
+        ast.setLineNo(1);
         assertWithMessage("Invalid text")
             .that(ast.toString())
-            .isEqualTo("text[0x0]");
+            .isEqualTo("text[1x1]");
+    }
+
+    @Test
+    public void testRemoveChildren() {
+        final DetailAstImpl parent = new DetailAstImpl();
+        final DetailAstImpl child1 = new DetailAstImpl();
+        parent.setFirstChild(child1);
+        final DetailAstImpl child2 = new DetailAstImpl();
+        child1.setNextSibling(child2);
+
+        parent.removeChildren();
+
+        assertWithMessage("")
+                .that(parent.getChildCount())
+                .isEqualTo(0);
     }
 
     private static List<File> getAllFiles(File dir) {

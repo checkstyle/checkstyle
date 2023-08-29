@@ -10,6 +10,136 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 10.12.3">
+      <div class="releaseDate">28.08.2023</div>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            UnnecessarySemicolonAfterTypeMemberDeclaration throws Exception on on Local Class.
+            Author: piyush kumar sadangi
+            <a href="https://github.com/checkstyle/checkstyle/issues/13411">#13411</a>
+          </li>
+          <li>
+            Record pattern causes checkstyle to fail in JDK 20 (preview).
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/13279">#13279</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Ensure only forward slashes are in relative link to parent module.
+            Author: Stoyan Kostadinov
+            <a href="https://github.com/checkstyle/checkstyle/issues/13656">#13656</a>
+          </li>
+          <li>
+            Resolve pitest survivals in modules - 3.
+            Author: Kevin222004
+            <a href="https://github.com/checkstyle/checkstyle/issues/13501">#13501</a>
+          </li>
+          <li>
+            Use violation messages macro in all templates.
+            Author: Stoyan Kostadinov
+            <a href="https://github.com/checkstyle/checkstyle/issues/13627">#13627</a>
+          </li>
+          <li>
+            Use parent module macro in all templates.
+            Author: Stoyan Kostadinov
+            <a href="https://github.com/checkstyle/checkstyle/issues/13610">#13610</a>
+          </li>
+          <li>
+            Create tests from xdoc examples.
+            Author: Stoyan Kostadinov, stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/13100">#13100</a>
+          </li>
+          <li>
+            Resolve pitest survivals in modules - 2.
+            Author: Kevin222004
+            <a href="https://github.com/checkstyle/checkstyle/issues/13321">#13321</a>
+          </li>
+          <li>
+            setup UnnecessaryOkComment module and suppressions (related to….
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/13556">#13556</a>
+          </li>
+          <li>
+            CircleCI periodically failing with yml violations on site.yml.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/13567">#13567</a>
+          </li>
+          <li>
+            Enable examples tests.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/13345">#13345</a>
+          </li>
+          <li>
+            Update doc of FallThroughCheck to use same java snippet example .
+            Author: Kumar Kalpadiptya Roy
+            <a href="https://github.com/checkstyle/checkstyle/issues/12974">#12974</a>
+          </li>
+          <li>
+            Create templates from xdocs.
+            Author: Stoyan Kostadinov
+            <a href="https://github.com/checkstyle/checkstyle/issues/13498">#13498</a>
+          </li>
+          <li>
+            Exclude xdocs from line length validation and validate templates instead.
+            Author: Stoyan Kostadinov
+            <a href="https://github.com/checkstyle/checkstyle/issues/13499">#13499</a>
+          </li>
+          <li>
+            Remove from EmptyLineSeparator documentation attention note about no xpath suppression
+            support .
+            Author: piyush kumar sadangi
+            <a href="https://github.com/checkstyle/checkstyle/issues/13506">#13506</a>
+          </li>
+          <li>
+            Implement parent module macro.
+            Author: Stoyan Kostadinov
+            <a href="https://github.com/checkstyle/checkstyle/issues/13434">#13434</a>
+          </li>
+          <li>
+            Add a test to ensure examples have a paragraph with an id before them.
+            Author: Stoyan Kostadinov
+            <a href="https://github.com/checkstyle/checkstyle/issues/13428">#13428</a>
+          </li>
+          <li>
+            Restore usage of TreeSet.
+            Author: Stoyan Kostadinov
+            <a href="https://github.com/checkstyle/checkstyle/issues/13505">#13505</a>
+          </li>
+          <li>
+            Implement module violation messages macro.
+            Author: Stoyan Kostadinov
+            <a href="https://github.com/checkstyle/checkstyle/issues/13422">#13422</a>
+          </li>
+          <li>
+            Targeted Pitest Mutation in July 2023.
+            Author: Kevin222004
+            <a href="https://github.com/checkstyle/checkstyle/issues/13328">#13328</a>
+          </li>
+          <li>
+            Move all example tests to extend `AbstractExamplesModuleTestSupport`.
+            Author: Stoyan Kostadinov
+            <a href="https://github.com/checkstyle/checkstyle/issues/13496">#13496</a>
+          </li>
+          <li>
+            Add `@since` in javadoc of each property setter.
+            Author: Stoyan Kostadinov
+            <a href="https://github.com/checkstyle/checkstyle/issues/13421">#13421</a>
+          </li>
+          <li>
+            Add links to examples paragraphs.
+            Author: Stoyan Kostadinov
+            <a href="https://github.com/checkstyle/checkstyle/issues/13205">#13205</a>
+          </li>
+          <li>
+            Fix package/resource location in example tests.
+            Author: Stoyan Kostadinov
+            <a href="https://github.com/checkstyle/checkstyle/issues/13484">#13484</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 10.12.2">
       <div class="releaseDate">30.07.2023</div>
       <p>Bug fixes:</p>
