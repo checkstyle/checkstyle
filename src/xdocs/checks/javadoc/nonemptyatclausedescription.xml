@@ -92,6 +92,16 @@ class Test
   /**
   * Some summary.
   *
+  * &lt;code&gt;@param&lt;/code&gt; a Some description
+  * &lt;code&gt;@param&lt;/code&gt; b
+  * &lt;code&gt;@deprecated&lt;/code&gt;
+  * &lt;code&gt;@throws&lt;/code&gt; Exception
+  * &lt;code&gt;@return&lt;/code&gt;
+  */
+  public int method(String a, int b) throws Exception {
+    return 1;
+  }
+}
         </source>
         <p id="Example2-config">
           To configure the check to validate <code>@param</code>,
@@ -116,6 +126,16 @@ class Test
   /**
   * Some summary.
   *
+  * &lt;code&gt;@param&lt;/code&gt; a Some description
+  * &lt;code&gt;@param&lt;/code&gt; b
+  * &lt;code&gt;@deprecated&lt;/code&gt;
+  * &lt;code&gt;@throws&lt;/code&gt; Exception
+  * &lt;code&gt;@return&lt;/code&gt;
+  */
+  public int method(String a, int b) throws Exception {
+    return 1;
+  }
+}
         </source>
       </subsection>
 
