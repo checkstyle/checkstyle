@@ -261,14 +261,14 @@
     <lineContent>lineNo = fullIdent.getLineNo();</lineContent>
   </mutation>
 
-  <mutation unstable="false">
-    <sourceFile>JavadocMissingLeadingAsteriskCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMissingLeadingAsteriskCheck</mutatedClass>
-    <mutatedMethod>isLastLine</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
-    <description>removed conditional - replaced equality check with true</description>
-    <lineContent>if (detailNode.getType() == JavadocTokenTypes.TEXT</lineContent>
-  </mutation>
+
+
+
+
+
+
+
+
 
   <mutation unstable="false">
     <sourceFile>JavadocNodeImpl.java</sourceFile>
