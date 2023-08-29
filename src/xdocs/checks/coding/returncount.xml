@@ -352,7 +352,7 @@ public class Test {
 
       <subsection name="Parent Module" id="Parent_Module">
         <p>
-          <a href="../../config.html#TreeWalker">TreeWalker</a>
+          <a href="..\..\config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>
