@@ -20,7 +20,7 @@ import java.util.HashMap;
 import java.util.TreeSet;
 
 public class InputIllegalTypeTestDefaults implements InputIllegalTypeSuper {
-    private AbstractClass a = null; // ok
+    private AbstractClass a = null;
     private NotAnAbstractClass b = null; /*another comment*/
 
     private com.puppycrawl.tools.checkstyle.checks.coding.illegaltype.InputIllegalType.AbstractClass
@@ -40,7 +40,7 @@ public class InputIllegalTypeTestDefaults implements InputIllegalTypeSuper {
     InputIllegalTypeTestDefaults(Integer i) {}
     private void table2(Integer i) {}
 
-    private void getInitialContext(java.util.TreeSet v) {} // ok
+    private void getInitialContext(java.util.TreeSet v) {}
 
     @Override
     public void foo(HashMap<?, ?> buffer) {} // ignore

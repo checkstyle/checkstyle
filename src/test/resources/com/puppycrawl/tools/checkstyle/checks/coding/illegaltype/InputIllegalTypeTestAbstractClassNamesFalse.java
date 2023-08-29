@@ -24,7 +24,7 @@ public class InputIllegalTypeTestAbstractClassNamesFalse {
         abstract boolean isPerfectClass();
     }
 
-    class MyNonAbstractClass extends AbstractClass { // ok
+    class MyNonAbstractClass extends AbstractClass {
 
         boolean perfect = true;
 
@@ -41,7 +41,7 @@ public class InputIllegalTypeTestAbstractClassNamesFalse {
         }
     }
 
-    AbstractClass a = new MyNonAbstractClass(); // ok
+    AbstractClass a = new MyNonAbstractClass();
 
     public String getInnerClassInfo(AbstractClass clazz) { // ok
         return clazz.getClassInfo();

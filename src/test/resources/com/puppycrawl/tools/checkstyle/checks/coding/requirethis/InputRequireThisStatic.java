@@ -14,7 +14,7 @@ import java.io.FileNotFoundException;
 import java.io.InputStreamReader;
 import java.io.IOException;
 
-public final class InputRequireThisStatic { // ok
+public final class InputRequireThisStatic {
     public static String staticField1 = "";
 
     public static String staticField2 = new String(staticField1);

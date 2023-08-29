@@ -70,16 +70,16 @@ public class InputUnnecessaryParenthesesOperator {
         }
         int x = 10, y = 38;
         if(x>= 0 != (x<=8 ^ y<=11) && y>=8) {
-            return; // ok
+            return;
         }
         if(x>= 0 != (x<=8 || y<=11) && y>=8) {
-            return; // ok
+            return;
         }
         if(x== 0 != (x<=8 ^ y<=11) && y==8) {
-            return; // ok
+            return;
         }
         boolean v = true, w = false;
-        if ((v & w) != // ok
+        if ((v & w) !=
             (w | v)) {
         }
         if(x>= 0 | (x<=8 | y<=11) | y>=8) {
@@ -89,22 +89,22 @@ public class InputUnnecessaryParenthesesOperator {
 
     void method3() {
         int code1 = 9;
-        if ((code1 & 1) == 8) {}// ok
-        if ((code1 | 1) == 8) {} // ok
-        if ((code1 ^ 1) == 8) {} // ok
+        if ((code1 & 1) == 8) {}
+        if ((code1 | 1) == 8) {}
+        if ((code1 ^ 1) == 8) {}
 
-        if ((code1 & 1) != 8) {} // ok
-        if ((code1 | 1) != 8) {} // ok
-        if ((code1 ^ 1) != 8) {} // ok
+        if ((code1 & 1) != 8) {}
+        if ((code1 | 1) != 8) {}
+        if ((code1 ^ 1) != 8) {}
     }
     void method4() {
         int a = 2;
          if ((~a) < -27 // violation 'Unnecessary parentheses around expression'
-             && a-- < 30) { // ok
+             && a-- < 30) {
             return;
         }
         if ((~a) <= -27 // violation 'Unnecessary parentheses around expression'
-             && a-- < 30) { // ok
+             && a-- < 30) {
             return;
         }
     }

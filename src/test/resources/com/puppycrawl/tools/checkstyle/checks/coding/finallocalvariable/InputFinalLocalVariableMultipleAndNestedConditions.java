@@ -8,7 +8,7 @@ tokens = (default)VARIABLE_DEF
 
 package com.puppycrawl.tools.checkstyle.checks.coding.finallocalvariable;
 
-public class InputFinalLocalVariableMultipleAndNestedConditions { // ok
+public class InputFinalLocalVariableMultipleAndNestedConditions {
 
     // False positive
     // https://github.com/checkstyle/checkstyle/issues/3186

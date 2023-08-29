@@ -8,7 +8,7 @@ tokens = PARAMETER_DEF,VARIABLE_DEF
 
 package com.puppycrawl.tools.checkstyle.checks.coding.finallocalvariable;
 
-public class InputFinalLocalVariableMultiCatch { // ok
+public class InputFinalLocalVariableMultiCatch {
     public void demo() throws Throwable {
         try {
             // do nothing

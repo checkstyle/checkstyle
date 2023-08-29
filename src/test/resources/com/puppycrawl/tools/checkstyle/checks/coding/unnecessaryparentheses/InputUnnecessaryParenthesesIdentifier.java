@@ -24,7 +24,7 @@ public class InputUnnecessaryParenthesesIdentifier {
 
     public static boolean isOk(Class<?> clazz) {
         return true
-            && test(clazz); // ok
+            && test(clazz);
     }
 
     public int square(int a, int b){
@@ -33,8 +33,8 @@ public class InputUnnecessaryParenthesesIdentifier {
     }
 
     public int square1(int a, int b){
-    int square = a * b; // ok
-    return square;      // ok
+    int square = a * b;
+    return square;
     }
 
     public static boolean test(Class<?> clazz) {
@@ -48,7 +48,7 @@ public class InputUnnecessaryParenthesesIdentifier {
 
     public static boolean newTest1(Class<?> clazz) {
         return true
-            && test(clazz); // ok
+            && test(clazz);
     }
 
     public static boolean newTest2(Class<?> clazz) {

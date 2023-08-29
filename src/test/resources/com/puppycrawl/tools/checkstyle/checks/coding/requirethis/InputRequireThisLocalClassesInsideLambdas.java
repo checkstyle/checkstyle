@@ -23,7 +23,7 @@ public interface InputRequireThisLocalClassesInsideLambdas {
                 int index;
 
                 public InnerSubscriber(int index) {
-                    this.index = index; // ok
+                    this.index = index;
                 }
             }
         });

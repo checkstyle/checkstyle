@@ -65,7 +65,7 @@ class testClass {
 
     void test() {
         int variable = 1; // violation
-        int mainVar = 2; // ok
+        int mainVar = 2;
         int anotherVar = 1; // violation
         testingGenerics<Integer>.nested obj
                 = new testingGenerics<Integer>().new nested() {

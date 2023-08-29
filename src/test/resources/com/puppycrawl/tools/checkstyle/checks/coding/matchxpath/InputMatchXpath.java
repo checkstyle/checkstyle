@@ -12,5 +12,5 @@ public class InputMatchXpath {
 
     public void foo() { }
 
-    public void correct() { } // ok
+    public void correct() { }
 }

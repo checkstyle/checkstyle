@@ -136,7 +136,7 @@ enum InputDeclarationOrderEnum
     private int mMaxInitVars = 3;
 
     // statics should be before instance members
-    // publics before private
+    // public before private
     public static final int MAX_ITER_VARS = 3; // violation 'Static.*variable.*wrong.*order'
 
     private class InnerClass
