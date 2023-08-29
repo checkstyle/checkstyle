@@ -63,13 +63,13 @@ import com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyOption;
 import com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyOption;
 import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderOption;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocContentLocationOption;
+import com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocMethodCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.PadOption;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.WrapOption;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.internal.utils.XdocUtil;
 import com.puppycrawl.tools.checkstyle.internal.utils.XmlUtil;
-import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
@@ -890,7 +890,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
 
         /**
          * Returns whether an AST represents a setter method. This is similar to
-         * {@link CheckUtil#isSetterMethod(DetailAST)} except this doesn't care
+         * {@link MissingJavadocMethodCheck#isSetterMethod(DetailAST)} except this doesn't care
          * about the number of children in the method.
          *
          * @param ast the AST to check with.
