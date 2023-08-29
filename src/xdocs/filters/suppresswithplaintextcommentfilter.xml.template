@@ -98,139 +98,95 @@
         </p>
       </subsection>
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure a filter to suppress audit events between a comment
           containing <code>CHECKSTYLE:OFF</code> and a comment containing
           <code>CHECKSTYLE:ON</code>:
         </p>
-        <source>
-&lt;module name="Checker"&gt;
-  ...
-  &lt;module name="SuppressWithPlainTextCommentFilter"/&gt;
-  ...
-&lt;/module&gt;
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-config">
             To configure a filter to suppress audit events between a comment
             containing line <code>BEGIN GENERATED CONTENT</code> and a comment
             containing line <code>END GENERATED CONTENT</code>
             (Checker is configured to check only properties files):
         </p>
-        <source>
-&lt;module name="Checker"&gt;
-  &lt;property name="fileExtensions" value="properties"/&gt;
-
-  &lt;module name="SuppressWithPlainTextCommentFilter"&gt;
-    &lt;property name="offCommentFormat" value="BEGIN GENERATED CONTENT"/&gt;
-    &lt;property name="onCommentFormat" value="END GENERATED CONTENT"/&gt;
-  &lt;/module&gt;
-
-&lt;/module&gt;
-        </source>
-        <source>
-//BEGIN GENERATED CONTENT
-my.property=value1 // No violation events will be reported
-my.property=value2 // No violation events will be reported
-//END GENERATED CONTENT
-. . .
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/Example2.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/Example2.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example3-config">
           To configure a filter so that <code>-- stop tab
           check</code> and <code>-- resume tab check</code> marks allowed tab positions
           (Checker is configured to check only sql files):
         </p>
-        <source>
-&lt;module name="Checker"&gt;
-  &lt;property name="fileExtensions" value="sql"/&gt;
-
-  &lt;module name="SuppressWithPlainTextCommentFilter"&gt;
-    &lt;property name="offCommentFormat" value="stop tab check"/&gt;
-    &lt;property name="onCommentFormat" value="resume tab check"/&gt;
-    &lt;property name="checkFormat" value="FileTabCharacterCheck"/&gt;
-  &lt;/module&gt;
-
-&lt;/module&gt;
-        </source>
-        <source>
--- stop tab check
-  SELECT * FROM users // won't warn here if there is a tab character on line
--- resume tab check
-  SELECT 1 // will warn here if there is a tab character on line
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/Example3.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example3-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/Example3.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example4-config">
           To configure a filter so that name of suppressed check mentioned
           in comment <code>CSOFF: <i>regexp</i></code>
           and <code>CSON: <i>regexp</i></code> mark a matching check
           (Checker is configured to check only xml files):
         </p>
-        <source>
-&lt;module name="Checker"&gt;
-  &lt;property name="fileExtensions" value="xml"/&gt;
-
-  &lt;module name="SuppressWithPlainTextCommentFilter"&gt;
-    &lt;property name="offCommentFormat" value="CSOFF\: ([\w\|]+)"/&gt;
-    &lt;property name="onCommentFormat" value="CSON\: ([\w\|]+)"/&gt;
-    &lt;property name="checkFormat" value="$1"/&gt;
-  &lt;/module&gt;
-
-&lt;/module&gt;
-        </source>
-        <source>
-// CSOFF: RegexpSinglelineCheck
- // RegexpSingleline check won't warn any lines below here if the line matches regexp
-&lt;condition property="checkstyle.ant.skip"&gt;
-  &lt;isset property="checkstyle.ant.skip"/&gt;
-&lt;/condition&gt;
-// CSON: RegexpSinglelineCheck
-// RegexpSingleline check will warn below here if the line matches regexp
-&lt;property name="checkstyle.pattern.todo" value="NOTHingWillMatCH_-"/&gt;
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/Example4.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example4-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/Example4.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example5-config">
           To configure a filter to suppress all audit events between a comment
           containing <code>CHECKSTYLE_OFF: ALMOST_ALL</code> and a comment containing
           <code>CHECKSTYLE_OFF: ALMOST_ALL</code> except for the <em>EqualsHashCode</em>
           check (Checker is configured to check only java files):
         </p>
-        <source>
-&lt;module name="Checker"&gt;
-  &lt;property name="fileExtensions" value="java"/&gt;
-
-  &lt;module name="SuppressWithPlainTextCommentFilter"&gt;
-    &lt;property name="offCommentFormat"
-      value="CHECKSTYLE_OFF: ALMOST_ALL"/&gt;
-    &lt;property name="onCommentFormat"
-      value="CHECKSTYLE_ON: ALMOST_ALL"/&gt;
-    &lt;property name="checkFormat"
-      value="^((?!(FileTabCharacterCheck)).)*$"/&gt;
-  &lt;/module&gt;
-
-&lt;/module&gt;
-        </source>
-        <source>
-// CHECKSTYLE_OFF: ALMOST_ALL
-public static final int array [];
-private String [] strArray;
-// CHECKSTYLE_ON: ALMOST_ALL
-private int array1 [];
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/Example5.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example5-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/Example5.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example6-config">
           To configure a filter to suppress Check's violation message <b>which matches
           specified message in messageFormat</b> (so suppression will not be only by
           Check's name, but also by message text, as the same Check can report
           violations with different message format) between a comment
           containing <code>stop</code> and comment containing <code>resume</code>:
         </p>
-        <source>
-&lt;module name="Checker"&gt;
-  &lt;module name="SuppressWithPlainTextCommentFilter"&gt;
-    &lt;property name="offCommentFormat" value="stop"/&gt;
-    &lt;property name="onCommentFormat" value="resume"/&gt;
-    &lt;property name="checkFormat" value="FileTabCharacterCheck"/&gt;
-    &lt;property name="messageFormat"
-        value="^File contains tab characters (this is the first instance)\.$"/&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/Example6.txt"/>
+          <param name="type" value="config"/>
+        </macro>
         <p>
           It is possible to specify an ID of checks, so that it can be leveraged by the
           SuppressWithPlainTextCommentFilter to skip validations.
@@ -238,78 +194,38 @@ private int array1 [];
           with <code>-- CSOFF &lt;ID&gt; (reason)</code> and <code>-- CSON &lt;ID&gt;</code>,
           where ID is the ID of checks you want to suppress.
         </p>
-        <p>
-          Examples of Checkstyle checks configuration:
-        </p>
-        <source>
-&lt;module name="RegexpSinglelineJava"&gt;
-  &lt;property name="id" value="count"/&gt;
-  &lt;property name="format" value="^.*COUNT(*).*$"/&gt;
-  &lt;property name="message"
-    value="Don't use COUNT(*), use COUNT(1) instead."/&gt;
-&lt;/module&gt;
-
-&lt;module name="RegexpSinglelineJava"&gt;
-  &lt;property name="id" value="join"/&gt;
-  &lt;property name="format" value="^.*JOIN\s.+\s(ON|USING)$"/&gt;
-  &lt;property name="message"
-    value="Don't use JOIN, use sub-select instead."/&gt;
-&lt;/module&gt;
-        </source>
-        <p>
-            Example of SuppressWithPlainTextCommentFilter configuration
+        <p id="Example7-config">
+            Example of Checkstyle checks and SuppressWithPlainTextCommentFilter configuration
             (checkFormat which is set to '$1' points that ID of the checks
             is in the first group of offCommentFormat and onCommentFormat
             regular expressions):
         </p>
-        <source>
-&lt;module name="Checker"&gt;
-  &lt;property name="fileExtensions" value="sql"/&gt;
-
-  &lt;module name="SuppressWithPlainTextCommentFilter"&gt;
-    &lt;property name="offCommentFormat" value="CSOFF (\w+) \(\w+\)"/&gt;
-    &lt;property name="onCommentFormat" value="CSON (\w+)"/&gt;
-    &lt;property name="idFormat" value="$1"/&gt;
-  &lt;/module&gt;
-
-&lt;/module&gt;
-        </source>
-        <source>
--- CSOFF join (it is ok to use join here for performance reasons)
-SELECT name, job_name
-FROM users AS u
-JOIN jobs AS j ON u.job_id = j.id
--- CSON join
-
--- CSOFF count (test query execution plan)
-EXPLAIN SELECT COUNT(*) FROM restaurants
--- CSON count
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/Example7.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example7-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/Example7.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example8-config">
             Example of how to configure the check to suppress more than one check
             (Checker is configured to check only sql files).
         </p>
-        <source>
-&lt;module name="Checker"&gt;
-  &lt;property name="fileExtensions" value="sql"/&gt;
-
-  &lt;module name="SuppressWithPlainTextCommentFilter"&gt;
-    &lt;property name="offCommentFormat" value="@cs-\: ([\w\|]+)"/&gt;
-    &lt;property name="checkFormat" value="$1"/&gt;
-  &lt;/module&gt;
-
-&lt;/module&gt;
-        </source>
-        <source>
--- @cs-: RegexpSinglelineCheck
--- @cs-: FileTabCharacterCheck
-CREATE TABLE STATION (
-  ID INTEGER PRIMARY KEY,
-  CITY CHAR(20),
-  STATE CHAR(2),
-  LAT_N REAL,
-  LONG_W REAL);
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/Example8.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example8-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/Example8.txt"/>
+          <param name="type" value="code"/>
+        </macro>
       </subsection>
       <subsection name="Example of Usage" id="Example_of_Usage">
         <ul>

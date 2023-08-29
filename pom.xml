@@ -12,7 +12,7 @@
 
   <groupId>com.puppycrawl.tools</groupId>
   <artifactId>checkstyle</artifactId>
-  <version>10.12.3-SNAPSHOT</version>
+  <version>10.12.4-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>checkstyle</name>
@@ -242,7 +242,7 @@
     <dependency>
       <groupId>info.picocli</groupId>
       <artifactId>picocli</artifactId>
-      <version>4.7.4</version>
+      <version>4.7.5</version>
     </dependency>
     <dependency>
       <groupId>org.antlr</groupId>
@@ -4841,10 +4841,6 @@
                 </param>
                 <param>
                   com.puppycrawl.tools.checkstyle.checks.whitespace.SingleSpaceSeparatorCheckTest
-                </param>
-                <!-- 35% coverage, 29% mutation in CodePointUtil -->
-                <param>
-                  com.puppycrawl.tools.checkstyle.checks.whitespace.SeparatorWrapCheckTest
                 </param>
                 <!-- 2% mutation in ScopeUtil -->
                 <param>

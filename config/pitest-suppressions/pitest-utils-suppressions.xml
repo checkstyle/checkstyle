@@ -171,68 +171,68 @@
 
 
 
-  <mutation unstable="false">
-    <sourceFile>CodePointUtil.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.utils.CodePointUtil</mutatedClass>
-    <mutatedMethod>stripLeading</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to com/puppycrawl/tools/checkstyle/utils/CommonUtil::isCodePointWhitespace</description>
-    <lineContent>&amp;&amp; CommonUtil.isCodePointWhitespace(codePoints, startIndex)) {</lineContent>
-  </mutation>
 
-  <mutation unstable="false">
-    <sourceFile>CodePointUtil.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.utils.CodePointUtil</mutatedClass>
-    <mutatedMethod>stripLeading</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
-    <description>removed conditional - replaced equality check with false</description>
-    <lineContent>&amp;&amp; CommonUtil.isCodePointWhitespace(codePoints, startIndex)) {</lineContent>
-  </mutation>
 
-  <mutation unstable="false">
-    <sourceFile>CodePointUtil.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.utils.CodePointUtil</mutatedClass>
-    <mutatedMethod>stripLeading</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
-    <description>replaced call to java/util/Arrays::copyOfRange with argument</description>
-    <lineContent>return Arrays.copyOfRange(codePoints, startIndex, codePoints.length);</lineContent>
-  </mutation>
 
-  <mutation unstable="false">
-    <sourceFile>CodePointUtil.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.utils.CodePointUtil</mutatedClass>
-    <mutatedMethod>stripLeading</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_ORDER_ELSE</mutator>
-    <description>removed conditional - replaced comparison check with false</description>
-    <lineContent>while (startIndex &lt; codePoints.length</lineContent>
-  </mutation>
 
-  <mutation unstable="false">
-    <sourceFile>CodePointUtil.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.utils.CodePointUtil</mutatedClass>
-    <mutatedMethod>trim</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
-    <description>replaced call to com/puppycrawl/tools/checkstyle/utils/CodePointUtil::stripTrailing with argument</description>
-    <lineContent>final int[] strippedCodePoints = stripTrailing(codePoints);</lineContent>
-  </mutation>
 
-  <mutation unstable="false">
-    <sourceFile>CodePointUtil.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.utils.CodePointUtil</mutatedClass>
-    <mutatedMethod>trim</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
-    <description>replaced call to com/puppycrawl/tools/checkstyle/utils/CodePointUtil::stripLeading with argument</description>
-    <lineContent>return stripLeading(strippedCodePoints);</lineContent>
-  </mutation>
 
-  <mutation unstable="false">
-    <sourceFile>CommonUtil.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.utils.CommonUtil</mutatedClass>
-    <mutatedMethod>baseClassName</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
-    <description>removed conditional - replaced equality check with false</description>
-    <lineContent>if (index == -1) {</lineContent>
-  </mutation>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -55,15 +55,17 @@
         </div>
       </subsection>
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           For example, the following configuration fragment directs the
           Checker to not report audit events with severity
           level <code>info</code>:
         </p>
         <source>
-&lt;module name=&quot;SeverityMatchFilter&quot;&gt;
-  &lt;property name=&quot;severity&quot; value=&quot;info&quot;/&gt;
-  &lt;property name=&quot;acceptOnMatch&quot; value=&quot;false&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;SeverityMatchFilter&quot;&gt;
+    &lt;property name=&quot;severity&quot; value=&quot;info&quot;/&gt;
+    &lt;property name=&quot;acceptOnMatch&quot; value=&quot;false&quot;/&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
       </subsection>

@@ -1,0 +1,17 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="SuppressWarningsHolder" />
+  </module>
+  <module name="SuppressWarningsFilter" />
+</module>
+*/
+
+// xdoc section -- start
+@SuppressWarnings({"memberName"})
+private int J; // should NOT fail MemberNameCheck
+
+@SuppressWarnings({"MemberName"})
+@SuppressWarnings({"NoWhitespaceAfter"})
+private int [] ARRAY; // should NOT fail MemberNameCheck and NoWhitespaceAfterCheck
+// xdoc section -- end

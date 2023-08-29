@@ -79,210 +79,157 @@
         </div>
       </subsection>
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the filter to suppress audit events on the same line:
         </p>
-        <source>
-&lt;module name="Checker"&gt;
-  &lt;module name="SuppressWithNearbyTextFilter"/&gt;
-  &lt;module name="TreeWalker"&gt;
-    &lt;module name="MagicNumber"/&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbytextfilter/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">
           Example:
         </p>
-        <source>
-int hoursInDay = 24; // SUPPRESS CHECKSTYLE because it is too obvious
-int daysInWeek = 7; // violation
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbytextfilter/Example1.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example2-config">
           To configure the filter to suppress audit events on any line that contains
           <code>DO NOT CHECK THIS LINE</code>:
         </p>
-        <source>
-&lt;module name="Checker"&gt;
-  &lt;module name="SuppressWithNearbyTextFilter"&gt;
-    &lt;property name="nearbyTextPattern" value="DO NOT CHECK THIS LINE"/&gt;
-  &lt;/module&gt;
-  &lt;module name="TreeWalker"&gt;
-    &lt;module name="MagicNumber"/&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbytextfilter/Example2.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">
           Example:
         </p>
-        <source>
-int a = 42; // DO NOT CHECK THIS LINE
-int b = 43; // violation
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbytextfilter/Example2.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example3-config">
            To configure the filter to suppress audit events whose check message contains
             the word <code>Line</code>. In this case, <code>LineLengthCheck</code>'s violation
             message contains it:
         </p>
-        <source>
-&lt;module name="Checker"&gt;
-  &lt;module name="SuppressWithNearbyTextFilter"&gt;
-    &lt;property name="messagePattern" value=".*Line.*"/&gt;
-    &lt;property name="nearbyTextPattern" value=".*"/&gt;
-  &lt;/module&gt;
-  &lt;module name="LineLength"&gt;
-    &lt;property name="max" value="10"/&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbytextfilter/Example3.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example3-code">
           Example:
         </p>
-        <source>
-export FOO=BAR # ok, because violation message is matching suppress pattern
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbytextfilter/Example3.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example4-config">
           To configure the filter to suppress audit events only on a check whose id is
           <code>ignoreMe</code>:
         </p>
-        <source>
-&lt;module name="Checker"&gt;
-  &lt;module name="SuppressWithNearbyTextFilter"&gt;
-    &lt;property name="idPattern" value="ignoreMe"/&gt;
-  &lt;/module&gt;
-  &lt;module name="LineLength"&gt;
-    &lt;property name="max" value="55"/&gt;
-  &lt;/module&gt;
-  &lt;module name="TreeWalker"&gt;
-    &lt;module name="MagicNumber"&gt;
-      &lt;property name="id" value="ignoreMe"/&gt;
-    &lt;/module&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbytextfilter/Example4.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example4-code">
           Example:
         </p>
-        <source>
-int a = 42; // SUPPRESS CHECKSTYLE because i want to
-static final int LONG_VAR_NAME_TO_TAKE_MORE_THAN_55_CHARS = 22; // LineLength violation
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbytextfilter/Example4.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example5-config">
           To configure the filter to suppress audit events for the current and next 2 lines:
         </p>
-        <source>
-&lt;module name="Checker"&gt;
-  &lt;module name="SuppressWithNearbyTextFilter"&gt;
-    &lt;property name="lineRange" value="2"/&gt;
-  &lt;/module&gt;
-  &lt;module name="UniqueProperties"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbytextfilter/Example5.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example5-code">
           Example:
         </p>
-        <source>
-key.one=41 # SUPPRESS CHECKSTYLE because I want to
-key.one=42 # ok
-key.one=43 # ok
-key.one=44 # violation
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbytextfilter/Example5.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example6-config">
           To configure the filter to suppress audit events for the current and previous line:
         </p>
-        <source>
-&lt;module name="Checker"&gt;
-  &lt;module name="SuppressWithNearbyTextFilter"&gt;
-    &lt;property name="lineRange" value="-1"/&gt;
-  &lt;/module&gt;
-  &lt;module name="UniqueProperties"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbytextfilter/Example6.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example6-code">
           Example:
         </p>
-        <source>
-key.one=41 # violation
-key.one=42 # ok
-key.one=43 # SUPPRESS CHECKSTYLE because I want to
-key.one=44 # violation
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbytextfilter/Example6.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example7-config">
           To configure the filter with a more compact <code>nearbyTextPattern</code>
           to accept variable <code>checkPattern</code>:
         </p>
-        <source>
-&lt;module name="Checker"&gt;
-  &lt;module name="SuppressWithNearbyTextFilter"&gt;
-    &lt;property name="nearbyTextPattern"
-      value="-@cs\[(\w+)\] (\w+)"/&gt;
-    &lt;property name="checkPattern" value="$1"/&gt;
-  &lt;/module&gt;
-  &lt;module name="TreeWalker"&gt;
-    &lt;module name="MagicNumber"/&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbytextfilter/Example7.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example7-code">
           Example:
         </p>
-        <source>
-int a = 42; // -@cs[MagicNumber] We do not consider this number as magic for some reason.
-int b = 43; // violation
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbytextfilter/Example7.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example8-config">
           To configure the filter to accept variable <code>checkPattern</code>
           and <code>lineRange</code>:
         </p>
-        <source>
-&lt;module name="Checker"&gt;
-  &lt;module name="SuppressWithNearbyTextFilter"&gt;
-    &lt;property name="nearbyTextPattern"
-      value="@cs-: (\w+) for ([+-]\d+) lines"/&gt;
-    &lt;property name="checkPattern" value="$1"/&gt;
-    &lt;property name="lineRange" value="$2"/&gt;
-  &lt;/module&gt;
-  &lt;module name="TreeWalker"&gt;
-    &lt;module name="MagicNumber"/&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbytextfilter/Example8.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example8-code">
           Example:
         </p>
-        <source>
-int a = 42; // @cs-: MagicNumber for +3 lines
-int b = 43;
-int c = 44;
-int d = 45;
-int e = 46; // violation
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbytextfilter/Example8.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example9-config">
           To configure the filter to suppress <code>LineLength</code>
           violations for lines containing a URL:
         </p>
-        <source>
-&lt;module name="Checker"&gt;
-  &lt;module name="SuppressWithNearbyTextFilter"&gt;
-    &lt;property name="checkPattern" value="LineLength"/&gt;
-    &lt;property name="nearbyTextPattern"
-      value="&amp;lt;a href=&amp;quot;[^&amp;quot;]+&amp;quot;&amp;gt;"/&gt;
-  &lt;/module&gt;
-  &lt;module name="LineLength"&gt;
-    &lt;property name="max" value="90"/&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbytextfilter/Example9.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example9-code">
           Example:
         </p>
-        <source>
-/**
-* Flag description.
-*
-* Disabled until &lt;a href="www.github.com/owner/repo/issue/9#comment"&gt; // ok
-*/
-public static final boolean SOME_FLAG = false;
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbytextfilter/Example9.txt"/>
+          <param name="type" value="code"/>
+        </macro>
       </subsection>
       <subsection name="Example of Usage" id="Example_of_Usage">
         <ul>

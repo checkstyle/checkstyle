@@ -70,67 +70,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </li>
  * </ul>
  * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name="AvoidNestedBlocks"/&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * public void foo() {
- *   int myInteger = 0;
- *   {                      // violation
- *     myInteger = 2;
- *   }
- *   System.out.println("myInteger = " + myInteger);
- *
- *   switch (a) {
- *     case 1:
- *       {                    // violation
- *         System.out.println("Case 1");
- *         break;
- *       }
- *     case 2:
- *       System.out.println("Case 2");     // OK
- *       break;
- *   }
- * }
- * </pre>
- * <p>
- * To configure the check to allow nested blocks in switch case:
- * </p>
- * <pre>
- * &lt;module name=&quot;AvoidNestedBlocks&quot;&gt;
- *   &lt;property name=&quot;allowInSwitchCase&quot; value=&quot;true&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * public void foo() {
- *   int myInteger = 0;
- *   {                      // violation
- *     myInteger = 2;
- *   }
- *   System.out.println("myInteger = " + myInteger);
- *
- *   switch (a)
- *   {
- *     case 1:
- *       {                    // OK
- *         System.out.println("Case 1");
- *         break;
- *       }
- *     case 2:
- *       System.out.println("Case 2");     // OK
- *       break;
- *   }
- * }
- * </pre>
- * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
  * <p>

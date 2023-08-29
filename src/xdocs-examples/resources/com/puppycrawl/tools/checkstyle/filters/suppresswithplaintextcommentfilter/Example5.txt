@@ -1,0 +1,23 @@
+/*xml
+<module name="Checker">
+  <property name="fileExtensions" value="java"/>
+
+  <module name="SuppressWithPlainTextCommentFilter">
+    <property name="offCommentFormat"
+      value="CHECKSTYLE_OFF: ALMOST_ALL"/>
+    <property name="onCommentFormat"
+      value="CHECKSTYLE_ON: ALMOST_ALL"/>
+    <property name="checkFormat"
+      value="^((?!(FileTabCharacterCheck)).)*$"/>
+  </module>
+
+</module>
+*/
+
+// xdoc section -- start
+// CHECKSTYLE_OFF: ALMOST_ALL
+public static final int array [];
+private String [] strArray;
+// CHECKSTYLE_ON: ALMOST_ALL
+private int array1 [];
+// xdoc section -- end
