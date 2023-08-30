@@ -86,19 +86,6 @@
               <th>since</th>
             </tr>
             <tr>
-              <td>elementStyle</td>
-              <td>
-                Define the annotation element styles.
-              </td>
-              <td>
-                <a href="../../property_types.html#ElementStyleOption">ElementStyleOption</a>
-              </td>
-              <td>
-                <code>compact_no_array</code>
-              </td>
-              <td>5.0</td>
-            </tr>
-            <tr>
               <td>closingParens</td>
               <td>
                 Define the policy for ending parenthesis.
@@ -108,6 +95,19 @@
               </td>
               <td>
                 <code>never</code>
+              </td>
+              <td>5.0</td>
+            </tr>
+            <tr>
+              <td>elementStyle</td>
+              <td>
+                Define the annotation element styles.
+              </td>
+              <td>
+                <a href="../../property_types.html#ElementStyleOption">ElementStyleOption</a>
+              </td>
+              <td>
+                <code>compact_no_array</code>
               </td>
               <td>5.0</td>
             </tr>

@@ -98,16 +98,16 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </p>
  * <ul>
  * <li>
- * Property {@code elementStyle} - Define the annotation element styles.
- * Type is {@code
- * com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ElementStyleOption}.
- * Default value is {@code compact_no_array}.
- * </li>
- * <li>
  * Property {@code closingParens} - Define the policy for ending parenthesis.
  * Type is {@code
  * com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ClosingParensOption}.
  * Default value is {@code never}.
+ * </li>
+ * <li>
+ * Property {@code elementStyle} - Define the annotation element styles.
+ * Type is {@code
+ * com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ElementStyleOption}.
+ * Default value is {@code compact_no_array}.
  * </li>
  * <li>
  * Property {@code trailingArrayComma} - Define the policy for trailing comma in arrays.

@@ -65,16 +65,16 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Default value is {@code false}.
  * </li>
  * <li>
- * Property {@code allowSamelineSingleParameterlessAnnotation} - Allow single parameterless
- * annotation to be located on the same line as target element.
- * Type is {@code boolean}.
- * Default value is {@code true}.
- * </li>
- * <li>
  * Property {@code allowSamelineParameterizedAnnotation} - Allow one and only parameterized
  * annotation to be located on the same line as target element.
  * Type is {@code boolean}.
  * Default value is {@code false}.
+ * </li>
+ * <li>
+ * Property {@code allowSamelineSingleParameterlessAnnotation} - Allow single parameterless
+ * annotation to be located on the same line as target element.
+ * Type is {@code boolean}.
+ * Default value is {@code true}.
  * </li>
  * <li>
  * Property {@code tokens} - tokens to check
