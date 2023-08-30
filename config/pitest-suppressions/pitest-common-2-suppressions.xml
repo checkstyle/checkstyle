@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suppressedMutations>
-  <mutation unstable="false">
-    <sourceFile>DetailAstImpl.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.DetailAstImpl</mutatedClass>
-    <mutatedMethod>&lt;init&gt;</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
-    <description>Removed assignment to member variable childCount</description>
-    <lineContent>private int childCount = NOT_INITIALIZED;</lineContent>
-  </mutation>
+
+
+
+
+
+
+
+
 
   <mutation unstable="false">
     <sourceFile>DetailAstImpl.java</sourceFile>
@@ -99,14 +99,14 @@
 
 
 
-  <mutation unstable="false">
-    <sourceFile>JavaParser.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.JavaParser</mutatedClass>
-    <mutatedMethod>parseFile</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
-    <description>replaced call to java/io/File::getAbsoluteFile with receiver</description>
-    <lineContent>final FileText text = new FileText(file.getAbsoluteFile(),</lineContent>
-  </mutation>
+
+
+
+
+
+
+
+
 
   <mutation unstable="false">
     <sourceFile>JavadocPropertiesGenerator.java</sourceFile>
