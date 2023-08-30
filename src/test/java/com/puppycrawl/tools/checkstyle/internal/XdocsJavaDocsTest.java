@@ -70,6 +70,7 @@ import com.puppycrawl.tools.checkstyle.checks.whitespace.WrapOption;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.internal.utils.XdocUtil;
 import com.puppycrawl.tools.checkstyle.internal.utils.XmlUtil;
+import com.puppycrawl.tools.checkstyle.site.SiteUtil;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
@@ -145,6 +146,8 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
     @Test
     public void testAllCheckSectionJavaDocs() throws Exception {
         final ModuleFactory moduleFactory = TestUtil.getPackageObjectFactory();
+        final List<Path> templatesWithPropertiesMacro =
+                SiteUtil.getTemplatesThatContainPropertiesMacro();
 
         for (Path path : XdocUtil.getXdocsConfigFilePaths(XdocUtil.getXdocsFilePaths())) {
             currentXdocPath = path;
@@ -152,7 +155,9 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
             final String fileName = file.getName();
 
             if ("config_system_properties.xml".equals(fileName)
-                    || "index.xml".equals(fileName)) {
+                    || "index.xml".equals(fileName)
+                    || templatesWithPropertiesMacro
+                        .contains(Path.of(currentXdocPath + ".template"))) {
                 continue;
             }
 
