@@ -12,7 +12,7 @@ public class InputFallThroughWeird {
         switch(i) {
             case 1:
                  int fallthru = 2; // some comment
-            case 2: // violation 'Fall through from previous branch of the switch statement.'
+            case 2: // violation 'Fall\ through from previous branch of the switch statement.'
                  break;
             case 3:
                  int c = 2; // fall thru
