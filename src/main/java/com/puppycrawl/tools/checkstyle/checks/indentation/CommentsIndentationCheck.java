@@ -346,7 +346,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
     }
 
     /**
-     * Checks whether comment is a 'fall through' comment.
+     * Checks whether comment is a 'Fall\ through' comment.
      * For example:
      * <p>
      * {@code
@@ -363,7 +363,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
      *
      * @param prevStmt previous statement.
      * @param nextStmt next statement.
-     * @return true if a comment is a 'fall through' comment.
+     * @return true if a comment is a 'Fall\ through' comment.
      */
     private static boolean isFallThroughComment(DetailAST prevStmt, DetailAST nextStmt) {
         return prevStmt != null
@@ -440,8 +440,8 @@ public class CommentsIndentationCheck extends AbstractCheck {
     }
 
     /**
-     * Handles 'fall through' single-line comment.
-     * Note, 'fall through' and similar comments can have indentation level as next or previous
+     * Handles 'Fall\ through' single-line comment.
+     * Note, 'Fall\ through' and similar comments can have indentation level as next or previous
      * statement.
      * For example:
      * <p>
