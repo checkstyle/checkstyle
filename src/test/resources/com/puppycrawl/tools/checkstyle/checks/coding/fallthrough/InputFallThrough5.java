@@ -91,7 +91,7 @@ class Test {
                 // fall through
                 i++;
                 // i am comment
-            case 2: // violation 'Fall through from previous branch of the switch statement'
+            case 2: // violation 'Fall\ through from previous branch of the switch statement'
                 break;
         }
      }
