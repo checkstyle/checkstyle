@@ -49,7 +49,7 @@ public class InputFallThroughWithEmoji {
                 case "9": String s = "s🥳d🥳s";
                 // violation above 'Fall through from previous branch of the switch statement.'
                 // FALLTHRU (case-sensitive)
-                default: // violation 'Fall through from previous branch of the switch statement.'
+                default: // violation 'Fall\ through from previous branch of the switch statement.'
                     "🥳".toString().equals("🥳");
 
                     // this is the last label
