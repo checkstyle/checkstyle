@@ -270,7 +270,6 @@ public class XdocsPagesTest {
         "MutableException",
         "JavadocType",
         "CustomImportOrder",
-        "AnnotationLocation",
         "Header",
         "DescendantToken",
         "RegexpMultiline",
