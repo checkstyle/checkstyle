@@ -275,7 +275,6 @@ public class XdocsPagesTest {
         "DescendantToken",
         "RegexpMultiline",
         "JavadocVariable",
-        "AnnotationUseStyle",
         "SuppressionSingleFilter",
         "InterfaceMemberImpliedModifier",
         "IllegalImport",
