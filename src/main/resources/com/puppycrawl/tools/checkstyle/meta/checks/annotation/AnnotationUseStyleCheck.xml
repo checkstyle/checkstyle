@@ -74,15 +74,15 @@
  Java Language specification, &amp;#167;9.7&lt;/a&gt;.
  &lt;/p&gt;</description>
          <properties>
-            <property default-value="compact_no_array"
-                      name="elementStyle"
-                      type="com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ElementStyleOption">
-               <description>Define the annotation element styles.</description>
-            </property>
             <property default-value="never"
                       name="closingParens"
                       type="com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ClosingParensOption">
                <description>Define the policy for ending parenthesis.</description>
+            </property>
+            <property default-value="compact_no_array"
+                      name="elementStyle"
+                      type="com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ElementStyleOption">
+               <description>Define the annotation element styles.</description>
             </property>
             <property default-value="never"
                       name="trailingArrayComma"
