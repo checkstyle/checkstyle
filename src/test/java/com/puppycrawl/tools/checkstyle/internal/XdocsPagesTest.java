@@ -226,6 +226,79 @@ public class XdocsPagesTest {
     private static final Set<String> GOOGLE_MODULES = Collections.unmodifiableSet(
         CheckUtil.getConfigGoogleStyleModules());
 
+    // until https://github.com/checkstyle/checkstyle/issues/13666
+    private static final Set<String> MODULES_WITH_UNORDERED_PROPERTIES = Set.of(
+        "Checker",
+        "MissingJavadocMethod",
+        "VariableDeclarationUsageDistance",
+        "LocalVariableName",
+        "JavadocTagContinuationIndentation",
+        "ClassFanOutComplexity",
+        "Translation",
+        "MethodCount",
+        "SummaryJavadoc",
+        "ClassDataAbstractionCoupling",
+        "JavadocMethod",
+        "VisibilityModifier",
+        "MethodLength",
+        "Regexp",
+        "Indentation",
+        "MethodName",
+        "AtclauseOrder",
+        "SuppressWithNearbyTextFilter",
+        "SuppressWithPlainTextCommentFilter",
+        "MemberName",
+        "AvoidStarImport",
+        "ReturnCount",
+        "StaticVariableName",
+        "AvoidEscapedUnicodeCharacters",
+        "ParameterNumber",
+        "RecordComponentNumber",
+        "RegexpSingleline",
+        "RegexpOnFilename",
+        "JavaNCSS",
+        "EmptyCatchBlock",
+        "ParameterName",
+        "IllegalThrows",
+        "HiddenField",
+        "SuppressionXpathSingleFilter",
+        "WhitespaceAround",
+        "RegexpSinglelineJava",
+        "ImportOrder",
+        "IllegalType",
+        "ConstantName",
+        "MutableException",
+        "JavadocType",
+        "CustomImportOrder",
+        "AnnotationLocation",
+        "Header",
+        "DescendantToken",
+        "RegexpMultiline",
+        "JavadocVariable",
+        "AnnotationUseStyle",
+        "SuppressionSingleFilter",
+        "InterfaceMemberImpliedModifier",
+        "IllegalImport",
+        "NewlineAtEndOfFile",
+        "SingleLineJavadoc",
+        "MissingJavadocType",
+        "FileLength",
+        "RegexpHeader",
+        "ThrowsCount",
+        "SuppressionCommentFilter",
+        "TypeName",
+        "MagicNumber",
+        "NeedBraces",
+        "SeverityMatchFilter",
+        "SuppressWithNearbyCommentFilter",
+        "MultipleStringLiterals",
+        "LeftCurly",
+        "AbbreviationAsWordInName",
+        "EmptyLineSeparator",
+        "JavadocStyle",
+        "JavadocParagraph"
+    );
+
     /**
      * Generate xdoc content from templates before validation.
      * This method will be removed once
@@ -797,6 +870,10 @@ public class XdocsPagesTest {
                 .that(table.getNodeName())
                 .isEqualTo("table");
 
+            if (!MODULES_WITH_UNORDERED_PROPERTIES.contains(sectionName)) {
+                validatePropertySectionPropertiesOrder(fileName, sectionName, table, properties);
+            }
+
             validatePropertySectionProperties(fileName, sectionName, table, instance,
                     properties);
         }
@@ -805,6 +882,43 @@ public class XdocsPagesTest {
                 fileName + " section '" + sectionName + "' should show properties: " + properties)
             .that(properties)
             .isEmpty();
+    }
+
+    private static void validatePropertySectionPropertiesOrder(String fileName, String sectionName,
+                                                               Node table, Set<String> properties) {
+        final Set<Node> rows = XmlUtil.getChildrenElements(table);
+        final List<String> orderedPropertyNames = new ArrayList<>(properties);
+        final List<String> tablePropertyNames = new ArrayList<>();
+
+        // javadocTokens and tokens should be last
+        if (orderedPropertyNames.contains("javadocTokens")) {
+            orderedPropertyNames.remove("javadocTokens");
+            orderedPropertyNames.add("javadocTokens");
+        }
+        if (orderedPropertyNames.contains("tokens")) {
+            orderedPropertyNames.remove("tokens");
+            orderedPropertyNames.add("tokens");
+        }
+
+        rows
+            .stream()
+            // First row is header row
+            .skip(1)
+            .forEach(row -> {
+                final List<Node> columns = new ArrayList<>(XmlUtil.getChildrenElements(row));
+                assertWithMessage(fileName + " section '" + sectionName
+                        + "' should have the requested columns")
+                    .that(columns)
+                    .hasSize(5);
+
+                final String propertyName = columns.get(0).getTextContent();
+                tablePropertyNames.add(propertyName);
+            });
+
+        assertWithMessage(fileName + " section '" + sectionName
+                + "' should have properties in the requested order")
+            .that(tablePropertyNames)
+            .isEqualTo(orderedPropertyNames);
     }
 
     private static void fixCapturedProperties(String sectionName, Object instance, Class<?> clss,
