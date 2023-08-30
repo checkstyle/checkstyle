@@ -22,26 +22,26 @@ class InputAnnotationLocationIncorrect
 
     @MyAnnotation1(value = "") public int b; // violation '.* should be alone on line.'
 
-    @MyAnn_21 // ok
+    @MyAnn_21
         @MyAnnotation1 // violation '.* incorrect .* level 8, .* should be 4.'
 (value = "")
     public int c;
 
-    @MyAnnotation1(value = "") // ok
+    @MyAnnotation1(value = "")
     public int d;
 
-    @MyAnn_21 // ok
+    @MyAnn_21
         @MyAnnotation1 // violation '.* incorrect .* level 8, .* should be 4.'
 (value = "")
     public InputAnnotationLocationIncorrect() {}
 
     @MyAnnotation1("foo") @MyAnn_21 void foo1() {} // 2 violations
 
-    @MyAnnotation1(value = "") // ok
+    @MyAnnotation1(value = "")
        @MyAnn_21 // violation '.* incorrect .* level 7, .* should be 4.'
     void foo2() {}
 
-    @MyAnnotation1(value = "") // ok
+    @MyAnnotation1(value = "")
         @MyAnn_21 // violation '.* incorrect .* level 8, .* should be 4.'
       @MyAnnotation3 // violation '.* incorrect .* level 6, .* should be 4.'
           @MyAnnotation4 // violation '.* incorrect .* level 10, .* should be 4.'
@@ -53,15 +53,15 @@ class InputAnnotationLocationIncorrect
 
         @MyAnnotation1(value = "") public int b; // violation '.* should be alone on line.'
 
-        @MyAnn_21 // ok
+        @MyAnn_21
             @MyAnnotation1 // violation '.* incorrect .* level 12, .* should be 8.'
 (value = "")
         public int c;
 
-        @MyAnnotation1(value = "") // ok
+        @MyAnnotation1(value = "")
         public int d;
 
-        @MyAnn_21 // ok
+        @MyAnn_21
         @MyAnnotation1(value = "") public InnerClass() // violation '.* should be alone on line.'
         {
             // comment
@@ -83,17 +83,17 @@ class InputAnnotationLocationIncorrect
 
         @MyAnnotation1(value = "") public int b; // violation '.* should be alone on line.'
 
-        @MyAnn_21 // ok
-        @MyAnnotation1(value = "") // ok
+        @MyAnn_21
+        @MyAnnotation1(value = "")
         public int c;
 
-        @MyAnnotation1(value = "") // ok
+        @MyAnnotation1(value = "")
         public int d;
 
-        @MyAnnotation1(value = "") // ok
+        @MyAnnotation1(value = "")
            @MyAnn_21 void foo1() {} // violation '.* incorrect .* level 11, .* should be 8.'
 
-        @MyAnnotation1(value = "") // ok
+        @MyAnnotation1(value = "")
           @MyAnn_21 // violation '.* incorrect .* level 10, .* should be 8.'
         void foo2() {}
         @MyAnnotation1(value = "") void foo42() {} // violation '.* should be alone on line.'
@@ -101,7 +101,7 @@ class InputAnnotationLocationIncorrect
 
 }
 
-   @MyAnnotation1 // ok
+   @MyAnnotation1
 (value = "")
 @MyAnn_21 // violation '.* incorrect .* level 0, .* should be 3.'
 class Foo {
