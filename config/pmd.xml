@@ -257,9 +257,11 @@
   </rule>
   <rule ref="category/java/design.xml/CouplingBetweenObjects">
     <properties>
-      <!-- I do not see any problem, looks like a false positive. -->
+      <!-- I do not see any problem, looks like a false positive.
+           SiteUtil is a utility class providing different functionality. -->
       <property name="violationSuppressXPath"
-                value="//ClassOrInterfaceDeclaration[@SimpleName='HandlerFactory']"/>
+                value="//ClassOrInterfaceDeclaration[@SimpleName='HandlerFactory'
+                or @SimpleName='SiteUtil']"/>
     </properties>
   </rule>
   <rule ref="category/java/design.xml/NcssCount">
@@ -274,7 +276,9 @@
              AbstractElementNode.iterateAxis,
              NoWhitespaceAfterCheck.getArrayDeclaratorPreviousElement
              are also huge switches, they had to be monolithic.
-           SuppressFilterElement is a single constructor and can't be split easily -->
+           SuppressFilterElement is a single constructor and can't be split easily
+           Splitting PropertiesMacro.getDefaultValue will damage readability
+           Splitting SiteUtil.getDefaultValue would not make it more readable -->
       <property name="violationSuppressXPath"
                 value="//ClassOrInterfaceDeclaration[@SimpleName='Main'
         or @SimpleName='PackageObjectFactory' or @SimpleName='RequireThisCheck'
@@ -297,6 +301,12 @@
              //MethodDeclaration[@Name='iterateAxis']
       | //ClassOrInterfaceDeclaration[@SimpleName='SuppressFilterElement']
              //ConstructorDeclaration
+      | //ClassOrInterfaceDeclaration[@SimpleName='PropertiesMacro']
+             //MethodDeclaration[@Name='getDefaultValue']
+      | //ClassOrInterfaceDeclaration[@SimpleName='SiteUtil']
+               //MethodDeclaration[@Name='getDefaultValue']
+      | //ClassOrInterfaceDeclaration[@SimpleName='DescriptionExtractor']
+               //MethodDeclaration[@Name='getDescriptionFromJavadoc']"/>
       "/>
     </properties>
   </rule>
@@ -322,11 +332,13 @@
     <properties>
       <!-- *TokenTypes are special classes that are big due to a lot of description comments.
            RequireThisCheck has to work with and identify many frames.
-           JavadocMethodCheck is in the process of being rewritten. -->
+           JavadocMethodCheck is in the process of being rewritten.
+           SiteUtil provides a lot of functionality to generate documentation. -->
       <property name="violationSuppressXPath"
                 value="//ClassOrInterfaceDeclaration[@SimpleName='JavadocTokenTypes'
         or @SimpleName='TokenTypes' or @SimpleName='RequireThisCheck'
-        or @SimpleName='JavadocMethodCheck' or @SimpleName='JavaAstVisitor']"/>
+        or @SimpleName='JavadocMethodCheck' or @SimpleName='JavaAstVisitor'
+        or @SimpleName='SiteUtil']"/>
     </properties>
   </rule>
   <rule ref="category/java/design.xml/ExcessiveParameterList">
@@ -342,21 +354,28 @@
            Checker collects external resource locations and sets up the configuration.
            CheckstyleAntTask integrates Checkstyle with Ant.
            TranslationCheck uses a lot of imports for it's logic and custom violations.
+           SiteUtil uses a lot of imports to provide logic for generating documentation
             -->
       <property name="violationSuppressXPath"
                 value="//ClassOrInterfaceDeclaration[@SimpleName='Main'
         or @SimpleName='Checker' or @SimpleName='CheckstyleAntTask'
         or @SimpleName='TranslationCheck'
-        or @SimpleName='AbstractAutomaticBean']"/>
+        or @SimpleName='AbstractAutomaticBean'
+        or @SimpleName='SiteUtil']"/>
     </properties>
   </rule>
   <rule ref="category/java/design.xml/CognitiveComplexity">
     <properties>
       <property name="reportLevel" value="22"/>
-      <!-- Till https://github.com/checkstyle/checkstyle/issues/10064 -->
+      <!-- Till https://github.com/checkstyle/checkstyle/issues/10064
+           Splitting SiteUtil's methods will damage readability -->
       <property name="violationSuppressXPath"
                 value="//ClassOrInterfaceDeclaration[@SimpleName='XdocsPagesTest']
-                    //MethodDeclaration[@Name='getModulePropertyExpectedValue']"/>
+                    //MethodDeclaration[@Name='getModulePropertyExpectedValue']
+                    |  //ClassOrInterfaceDeclaration[@SimpleName='SiteUtil']
+                    //MethodDeclaration[@Name='getDefaultValue']
+                    |  //ClassOrInterfaceDeclaration[@SimpleName='DescriptionExtractor']
+                    //MethodDeclaration[@Name='getDescriptionFromJavadoc']"/>
     </properties>
   </rule>
 
@@ -386,6 +405,14 @@
     <properties>
       <property name="violationSuppressXPath"
                 value="//ClassOrInterfaceDeclaration[@SimpleName='JavaAstVisitor']"/>
+    </properties>
+  </rule>
+
+  <rule ref="category/java/design.xml/NPathComplexity">
+    <properties>
+      <property name="violationSuppressXPath"
+                value="//ClassOrInterfaceDeclaration[@SimpleName='DescriptionExtractor']
+                      //MethodDeclaration[@Name='getDescriptionFromJavadoc']"/>
     </properties>
   </rule>
 </ruleset>
