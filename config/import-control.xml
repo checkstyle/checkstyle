@@ -275,6 +275,10 @@
     <file name="MetadataGeneratorUtil">
       <allow class="com.puppycrawl.tools.checkstyle.AbstractAutomaticBean.OutputStreamOptions"/>
       <allow class="com.puppycrawl.tools.checkstyle.MetadataGeneratorLogger"/>
+      <allow class="java.lang.reflect.Field" local-only="true"/>
+      <allow class="org.apache.maven.doxia.macro.MacroExecutionException" local-only="true"/>
+      <allow class="com.puppycrawl.tools.checkstyle.site.SiteUtil" local-only="true"/>
+      <allow class="com.puppycrawl.tools.checkstyle.utils.JavadocUtil" local-only="true"/>
     </file>
 
   </subpackage>

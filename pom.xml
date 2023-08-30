@@ -860,6 +860,7 @@
                     <exclude>
                       com.puppycrawl.tools.checkstyle.api.AutomaticBean*
                     </exclude>
+                    <exclude>com.puppycrawl.tools.checkstyle.meta.MetadataGeneratorUtil</exclude>
                     <!-- until https://github.com/checkstyle/checkstyle/issues/13393 -->
                     <exclude>com.puppycrawl.tools.checkstyle.site.*</exclude>
                     <!-- Parser related classes -->

@@ -83,6 +83,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 /**
  * Utility class for site generation.
  */
+// -@cs[MethodCount] Class is a utility class and has a lot of methods
 public final class SiteUtil {
 
     /** The string 'tokens'. */
@@ -101,6 +102,8 @@ public final class SiteUtil {
     /** The path to the JavadocTokenTypes.html file. */
     public static final String PATH_TO_JAVADOC_TOKEN_TYPES =
             "apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html";
+    /** The string ','. */
+    public static final String COMMA = ",";
     /** The url of the checkstyle website. */
     private static final String CHECKSTYLE_ORG_URL = "https://checkstyle.org/";
     /** The string 'charset'. */
@@ -115,6 +118,10 @@ public final class SiteUtil {
     private static final String NAMING = "naming";
     /** The string 'src'. */
     private static final String SRC = "src";
+    /** The string 'Check'. */
+    private static final String CHECK = "Check";
+    /** Template file extension. */
+    private static final String TEMPLATE_FILE_EXTENSION = ".xml.template";
 
     /** Class name and their corresponding parent module name. */
     private static final Map<Class<?>, String> CLASS_TO_PARENT_MODULE = Map.ofEntries(
@@ -361,7 +368,7 @@ public final class SiteUtil {
         try (Stream<Path> stream = Files.find(directory, Integer.MAX_VALUE,
                 (path, attr) -> {
                     return attr.isRegularFile()
-                            && path.toString().endsWith(".xml.template");
+                            && path.toString().endsWith(TEMPLATE_FILE_EXTENSION);
                 })) {
             return stream.collect(Collectors.toSet());
         }
@@ -665,7 +672,7 @@ public final class SiteUtil {
         }
         else {
             final String descriptionString = DescriptionExtractor
-                    .getDescriptionFromJavadoc(javadoc, moduleName)
+                    .getDescriptionFromJavadocForXdoc(javadoc, moduleName)
                     .substring("Setter to ".length());
             final String firstLetterCapitalized = descriptionString.substring(0, 1)
                     .toUpperCase(Locale.ROOT);
@@ -991,7 +998,7 @@ public final class SiteUtil {
      * @throws MacroExecutionException if an error occurs during getting the class.
      */
     // -@cs[CyclomaticComplexity] Splitting would not make the code more readable
-    private static Class<?> getFieldClass(Field field, String propertyName,
+    public static Class<?> getFieldClass(Field field, String propertyName,
                                           String moduleName, Object instance)
             throws MacroExecutionException {
         Class<?> result = null;
@@ -1093,7 +1100,7 @@ public final class SiteUtil {
      */
     public static String getLinkToDocument(String moduleName, String document)
             throws MacroExecutionException {
-        final Path templatePath = getTemplatePath(moduleName.replace("Check", ""));
+        final Path templatePath = getTemplatePath(moduleName.replace(CHECK, ""));
         if (templatePath == null) {
             throw new MacroExecutionException(
                     String.format(Locale.ROOT,
@@ -1110,12 +1117,119 @@ public final class SiteUtil {
                 .replace('\\', '/');
     }
 
+    /**
+     * Get all templates whose content contains properties macro.
+     *
+     * @return templates whose content contains properties macro.
+     * @throws CheckstyleException if file could not be read.
+     * @throws MacroExecutionException if template file is not found.
+     */
+    public static List<Path> getTemplatesThatContainPropertiesMacro()
+            throws CheckstyleException, MacroExecutionException {
+        final List<Path> result = new ArrayList<>();
+        final Set<Path> templatesPaths = SiteUtil.getXdocsTemplatesFilePaths();
+        for (Path templatePath: templatesPaths) {
+            final String content = getFileContents(templatePath);
+            final String propertiesMacroDefinition = "<macro name=\"properties\"";
+            if (content.contains(propertiesMacroDefinition)) {
+                result.add(templatePath);
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Remove "Check" suffix from the given string value.
+     *
+     * @param value value to remove suffix from.
+     * @return value without suffix.
+     */
+    public static String removeCheckSuffix(String value) {
+        String result = value;
+        if (result.endsWith(CHECK)) {
+            result = result.substring(0, result.length() - CHECK.length());
+        }
+        return result;
+    }
+
+    /**
+     * Get file contents as string.
+     *
+     * @param pathToFile path to file.
+     * @return file contents as string.
+     * @throws CheckstyleException if file could not be read.
+     */
+    private static String getFileContents(Path pathToFile) throws CheckstyleException {
+        final String content;
+        try {
+            content = Files.readString(pathToFile, StandardCharsets.UTF_8);
+        }
+        catch (IOException ioException) {
+            final String message = String.format(Locale.ROOT, "Failed to read file: %s",
+                    pathToFile);
+            throw new CheckstyleException(message, ioException);
+        }
+        return content;
+    }
+
+    /**
+     * Get the module name from the file. The module name is the file name without the extension.
+     *
+     * @param file file to extract the module name from.
+     * @return module name.
+     */
+    public static String getModuleName(File file) {
+        final String fullFileName = file.getName();
+        return CommonUtil.getFileNameWithoutExtension(fullFileName);
+    }
+
+    /**
+     * Get the description from the given javadoc. Description is any text until an asterisk
+     * alone on a line is encountered.
+     *
+     * @param javadoc the Javadoc to extract the description from.
+     * @return the description of the javadoc.
+     */
+    public static String getDescriptionFromJavadoc(DetailNode javadoc) {
+        return DescriptionExtractor.getDescriptionFromJavadoc(javadoc);
+    }
+
     /** Utility class for extracting description from a method's Javadoc. */
     private static final class DescriptionExtractor {
 
         /**
+         * Get the description from the Javadoc with no additional processing.
+         *
+         * @param javadoc the Javadoc to extract the description from.
+         * @return the description of the setter.
+         */
+        private static String getDescriptionFromJavadoc(DetailNode javadoc) {
+            DetailNode detailNode;
+
+            final Deque<DetailNode> stack = new ArrayDeque<>();
+            final List<DetailNode> descriptionNodes = getDescriptionNodes(javadoc);
+            Lists.reverse(descriptionNodes).forEach(stack::push);
+            final StringBuilder result = new StringBuilder(1024);
+            while (!stack.isEmpty()) {
+                detailNode = stack.pop();
+
+                Lists.reverse(Arrays.asList(detailNode.getChildren())).forEach(stack::push);
+
+                final String childText = detailNode.getText();
+                // Regular expression for detecting ANTLR tokens(for e.g. CLASS_DEF).
+                final Pattern tokenTextPattern = Pattern.compile("([A-Z_]{2,})+");
+                if (detailNode.getType() != JavadocTokenTypes.LEADING_ASTERISK
+                        && !tokenTextPattern.matcher(childText).matches()) {
+                    result.append(childText);
+                }
+            }
+            return result.toString().trim();
+        }
+
+        /**
          * Extracts the description from the javadoc detail node. Performs a DFS traversal on the
-         * detail node and extracts the text nodes.
+         * detail node and extracts the text nodes. This description is additionally processed to
+         * fit Xdoc format.
          *
          * @param javadoc the Javadoc to extract the description from.
          * @param moduleName the name of the module.
@@ -1126,7 +1240,8 @@ public final class SiteUtil {
          */
         // -@cs[NPathComplexity] Splitting would not make the code more readable
         // -@cs[CyclomaticComplexity] Splitting would not make the code more readable.
-        private static String getDescriptionFromJavadoc(DetailNode javadoc, String moduleName)
+        private static String getDescriptionFromJavadocForXdoc(DetailNode javadoc,
+                                                               String moduleName)
                 throws MacroExecutionException {
             boolean isInCodeLiteral = false;
             boolean isInHtmlElement = false;

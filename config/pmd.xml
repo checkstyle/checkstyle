@@ -355,13 +355,15 @@
            CheckstyleAntTask integrates Checkstyle with Ant.
            TranslationCheck uses a lot of imports for it's logic and custom violations.
            SiteUtil uses a lot of imports to provide logic for generating documentation
+           MetadataGeneratorUtil uses a lot of imports to provide logic for generating documentation
             -->
       <property name="violationSuppressXPath"
                 value="//ClassOrInterfaceDeclaration[@SimpleName='Main'
         or @SimpleName='Checker' or @SimpleName='CheckstyleAntTask'
         or @SimpleName='TranslationCheck'
         or @SimpleName='AbstractAutomaticBean'
-        or @SimpleName='SiteUtil']"/>
+        or @SimpleName='SiteUtil'
+        or @SimpleName='MetadataGeneratorUtil']"/>
     </properties>
   </rule>
   <rule ref="category/java/design.xml/CognitiveComplexity">
