@@ -16,7 +16,7 @@
  &lt;/p&gt;</description>
          <properties>
             <property default-value="TODO:" name="format" type="java.util.regex.Pattern">
-               <description>Specify pattern to match comments against.</description>
+               <description>Regular expression to match against the comment.</description>
             </property>
          </properties>
          <message-keys>

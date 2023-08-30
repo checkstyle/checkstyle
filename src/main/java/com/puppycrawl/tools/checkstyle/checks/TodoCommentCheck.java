@@ -37,24 +37,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Using {@code TODO:} comments is a great way to keep track of tasks that need to be done.
  * Having them reported by Checkstyle makes it very hard to forget about them.
  * </p>
- * <ul>
- * <li>
- * Property {@code format} - Specify pattern to match comments against.
- * Type is {@code java.util.regex.Pattern}.
- * Default value is {@code "TODO:"}.
- * </li>
- * </ul>
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code todo.match}
- * </li>
- * </ul>
  *
  * @since 3.0
  */
