@@ -24,7 +24,6 @@ import static com.puppycrawl.tools.checkstyle.checks.coding.EqualsAvoidNullCheck
 import static com.puppycrawl.tools.checkstyle.checks.coding.MultipleVariableDeclarationsCheck.MSG_MULTIPLE;
 import static com.puppycrawl.tools.checkstyle.checks.coding.NestedIfDepthCheck.MSG_KEY;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.MSG_EXPECTED_TAG;
-import static com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocMethodCheck.MSG_JAVADOC_MISSING;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.findTokenInAstByPredicate;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
 
@@ -46,7 +45,6 @@ import com.puppycrawl.tools.checkstyle.checks.coding.EqualsAvoidNullCheck;
 import com.puppycrawl.tools.checkstyle.checks.coding.MultipleVariableDeclarationsCheck;
 import com.puppycrawl.tools.checkstyle.checks.coding.NestedIfDepthCheck;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck;
-import com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocMethodCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption;
 
 public class CheckUtilTest extends AbstractModuleTestSupport {
@@ -182,34 +180,6 @@ public class CheckUtilTest extends AbstractModuleTestSupport {
                 .isTrue();
         assertWithMessage("Invalid result: AST provided is non void method")
                 .that(CheckUtil.isNonVoidMethod(voidMethod))
-                .isFalse();
-    }
-
-    @Test
-    public void testIsGetterMethod() throws Exception {
-        final DetailAST notGetterMethod = getNodeFromFile(TokenTypes.METHOD_DEF);
-        final DetailAST getterMethod = notGetterMethod.getNextSibling().getNextSibling();
-
-        assertWithMessage("Invalid result: AST provided is getter method")
-                .that(CheckUtil.isGetterMethod(getterMethod))
-                .isTrue();
-        assertWithMessage("Invalid result: AST provided is not getter method")
-                .that(CheckUtil.isGetterMethod(notGetterMethod))
-                .isFalse();
-    }
-
-    @Test
-    public void testIsSetterMethod() throws Exception {
-        final DetailAST firstClassMethod = getNodeFromFile(TokenTypes.METHOD_DEF);
-        final DetailAST setterMethod =
-                firstClassMethod.getNextSibling().getNextSibling().getNextSibling();
-        final DetailAST notSetterMethod = setterMethod.getNextSibling();
-
-        assertWithMessage("Invalid result: AST provided is setter method")
-                .that(CheckUtil.isSetterMethod(setterMethod))
-                .isTrue();
-        assertWithMessage("Invalid result: AST provided is not setter method")
-                .that(CheckUtil.isSetterMethod(notSetterMethod))
                 .isFalse();
     }
 
@@ -423,29 +393,6 @@ public class CheckUtilTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testSetterGetterOn() throws Exception {
-        final String[] expected = {
-            "20:5: " + getCheckMessage(MissingJavadocMethodCheck.class,
-                    MSG_JAVADOC_MISSING),
-            "24:5: " + getCheckMessage(MissingJavadocMethodCheck.class,
-                    MSG_JAVADOC_MISSING),
-            "29:5: " + getCheckMessage(MissingJavadocMethodCheck.class,
-                    MSG_JAVADOC_MISSING),
-        };
-        verifyWithInlineConfigParser(
-                getPath("InputCheckUtil9.java"), expected);
-    }
-
-    @Test
-    public void missingJavadoc() throws Exception {
-        final String[] expected = {
-            "13:5: " + getCheckMessage(MissingJavadocMethodCheck.class, MSG_JAVADOC_MISSING),
-        };
-        verifyWithInlineConfigParser(
-                getNonCompilablePath("InputCheckUtil1.java"), expected);
-    }
-
-    @Test
     public void testJavadoc() throws Exception {
         final String[] expected = {
             "25:39: " + getCheckMessage(JavadocMethodCheck.class,
@@ -460,6 +407,19 @@ public class CheckUtilTest extends AbstractModuleTestSupport {
             JavaParser.Options.WITH_COMMENTS), type);
     }
 
+    /**
+     * Retrieves the AST node from a specific file based on the specified token type.
+     *
+     * @param type The token type to search for in the file.
+     *             This parameter determines the type of AST node to retrieve.
+     * @param file The file from which the AST node should be retrieved.
+     * @return The AST node associated with the specified token type from the given file.
+     * @throws Exception If there's an issue reading or parsing the file.
+     */
+    public static DetailAST getNode(File file, int type) throws Exception {
+        return getNode(JavaParser.parseFile(file, JavaParser.Options.WITH_COMMENTS), type);
+    }
+
     private static DetailAST getNode(DetailAST root, int type) {
         final Optional<DetailAST> node = findTokenInAstByPredicate(root,
             ast -> ast.getType() == type);
@@ -470,5 +430,4 @@ public class CheckUtilTest extends AbstractModuleTestSupport {
 
         return node.get();
     }
-
 }
