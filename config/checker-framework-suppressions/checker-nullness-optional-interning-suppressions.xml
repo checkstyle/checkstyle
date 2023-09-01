@@ -6228,17 +6228,6 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/SiteUtil.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter value of putIfAbsent.</message>
-    <lineContent>javadocs.putIfAbsent(property, SUPER_CLASS_PROPERTIES_JAVADOCS.get(property));</lineContent>
-    <details>
-      found   : @Initialized @Nullable DetailNode
-      required: @Initialized @NonNull DetailNode
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/SiteUtil.java</fileName>
     <specifier>dereference.of.nullable</specifier>
     <message>dereference of possibly-null reference currentClass</message>
     <lineContent>result = currentClass.getDeclaredField(propertyName);</lineContent>
