@@ -7842,16 +7842,6 @@
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]whitespace[\\/]emptylineseparator[\\/]packageinfo[\\/]test2[\\/]package-info.java"/>
   <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]whitespace[\\/]genericwhitespace[\\/]InputGenericWhitespaceEndsTheLine.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]whitespace[\\/]genericwhitespace[\\/]InputGenericWhitespaceInnerClass.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]whitespace[\\/]genericwhitespace[\\/]InputGenericWhitespaceList.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]whitespace[\\/]genericwhitespace[\\/]InputGenericWhitespaceMethodRef1.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]whitespace[\\/]genericwhitespace[\\/]InputGenericWhitespaceWithEmoji.java"/>
-  <suppress id="UnnecessaryOkComment"
             files="checks[\\/]whitespace[\\/]methodparampad[\\/]InputMethodParamPad4.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]whitespace[\\/]methodparampad[\\/]InputMethodParamPadSetOptionTrim.java"/>
