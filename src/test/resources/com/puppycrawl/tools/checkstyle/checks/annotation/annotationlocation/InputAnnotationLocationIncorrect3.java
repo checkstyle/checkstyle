@@ -22,12 +22,12 @@ class InputAnnotationLocationIncorrect3
 
     @MyAnnotation_13(value = "") public int b; // violation '.* should be alone on line.'
 
-    @MyAnn_23 // ok
+    @MyAnn_23
         @MyAnnotation_13 // violation '.* incorrect .* level 8, .* should be 4.'
 (value = "")
     public int c;
 
-    @MyAnnotation_13(value = "") // ok
+    @MyAnnotation_13(value = "")
     public int d;
 
     @MyAnn_23
@@ -37,11 +37,11 @@ class InputAnnotationLocationIncorrect3
 
     @MyAnnotation_13("foo") @MyAnn_23 void foo1() {} // 2 violations
 
-    @MyAnnotation_13(value = "") // ok
+    @MyAnnotation_13(value = "")
        @MyAnn_23 // violation '.* incorrect .* level 7, .* should be 4.'
     void foo2() {}
 
-    @MyAnnotation_13(value = "") // ok
+    @MyAnnotation_13(value = "")
         @MyAnn_23 // violation '.* incorrect .* level 8, .* should be 4.'
       @MyAnnotation_33 // violation '.* incorrect .* level 6, .* should be 4.'
           @MyAnnotation_43 // violation '.* incorrect .* level 10, .* should be 4.'
@@ -53,29 +53,29 @@ class InputAnnotationLocationIncorrect3
 
         @MyAnnotation_13(value = "") public int b; // violation '.* should be alone on line.'
 
-        @MyAnn_23 // ok
+        @MyAnn_23
             @MyAnnotation_13 // violation '.* incorrect .* level 12, .* should be 8.'
 (value = "")
         public int c;
 
-        @MyAnnotation_13(value = "") // ok
+        @MyAnnotation_13(value = "")
         public int d;
 
-        @MyAnn_23 // ok
+        @MyAnn_23
         @MyAnnotation_13(value = "") public InnerClass3() // violation '.* should be alone on line.'
         {
             // comment
         }
-        @MyAnnotation_13(value = "") // ok
+        @MyAnnotation_13(value = "")
             @MyAnn_23 // violation '.* incorrect .* level 12, .* should be 8.'
         void foo1() {}
 
-        @MyAnnotation_13(value = "") // ok
+        @MyAnnotation_13(value = "")
             @MyAnn_23 // violation '.*'MyAnn_23' have incorrect indentation level 12,.*should be 8.'
         void foo2() {}
     }
 
-    @MyAnnotation_13(value = "") // ok
+    @MyAnnotation_13(value = "")
        @MyAnn_23 // violation '.*'MyAnn_23' have incorrect indentation level 7,.*should be 4.'
     InnerClass3 anon = new InnerClass3()
     {
@@ -84,17 +84,17 @@ class InputAnnotationLocationIncorrect3
 
         @MyAnnotation_13(value = "") public int b; // violation '.* should be alone on line.'
 
-        @MyAnn_23 // ok
-        @MyAnnotation_13(value = "") // ok
+        @MyAnn_23
+        @MyAnnotation_13(value = "")
         public int c;
 
-        @MyAnnotation_13(value = "") // ok
+        @MyAnnotation_13(value = "")
         public int d;
 
-        @MyAnnotation_13(value = "") // ok
+        @MyAnnotation_13(value = "")
            @MyAnn_23 void foo1() {} // violation '.* incorrect .* level 11, .* should be 8.'
 
-        @MyAnnotation_13(value = "") // ok
+        @MyAnnotation_13(value = "")
           @MyAnn_23 // violation '.* incorrect .* level 10, .* should be 8.'
         void foo2() {}
 
@@ -103,7 +103,7 @@ class InputAnnotationLocationIncorrect3
 
 }
 
-   @MyAnnotation_13 // ok
+   @MyAnnotation_13
 (value = "")
 @MyAnn_23 // violation 'Annotation 'MyAnn_23' have incorrect indentation level 0, .* should be 3.'
 class Foo3 {
