@@ -19,11 +19,11 @@ import java.lang.Integer; // violation
 import java.lang.Float; // violation
 import java.lang.Short; // violation
 
-import java.lang.annotation.Annotation; // OK
-import java.lang.reflect.Modifier; // OK
-import java.lang.reflect.Field; // OK
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Modifier;
+import java.lang.reflect.Field;
 
-import java.lang.*; // OK
+import java.lang.*;
 
 public class InputUnusedImportsFromJavaLang {
     private static final String SOMETHING = "a string";
