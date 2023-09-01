@@ -452,9 +452,24 @@ public final class SiteUtil {
         final Map<String, DetailNode> unmodifiableJavadocs =
                 ClassAndPropertiesSettersJavadocScraper.getJavadocsForModuleOrProperty();
         final Map<String, DetailNode> javadocs = new LinkedHashMap<>(unmodifiableJavadocs);
-        properties.forEach(property -> {
-            javadocs.putIfAbsent(property, SUPER_CLASS_PROPERTIES_JAVADOCS.get(property));
-        });
+
+        for (String property : properties) {
+            final DetailNode superClassPropertyJavadoc = SUPER_CLASS_PROPERTIES_JAVADOCS
+                    .get(property);
+            if (superClassPropertyJavadoc != null) {
+                javadocs.putIfAbsent(property, superClassPropertyJavadoc);
+            }
+
+            final boolean isPropertySetterJavadocFound = javadocs.containsKey(property)
+                       || TOKENS.equals(property) || JAVADOC_TOKENS.equals(property);
+            if (!isPropertySetterJavadocFound) {
+                final String message = String.format(Locale.ROOT,
+                        "%s: Failed to find setter javadoc for property '%s'",
+                        moduleName, property);
+                throw new MacroExecutionException(message);
+            }
+        }
+
         return javadocs;
     }
 
