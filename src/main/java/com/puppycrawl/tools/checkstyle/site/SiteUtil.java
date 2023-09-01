@@ -958,7 +958,7 @@ public final class SiteUtil {
      * @throws MacroExecutionException if an error occurs during getting the class.
      */
     // -@cs[CyclomaticComplexity] Splitting would not make the code more readable
-    private static Class<?> getFieldClass(Field field, String propertyName,
+    public static Class<?> getFieldClass(Field field, String propertyName,
                                           String moduleName, Object instance)
             throws MacroExecutionException {
         Class<?> result = null;
