@@ -674,6 +674,27 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
                 .isEqualTo(0);
     }
 
+    @Test
+    public void testAddChild() {
+        final DetailAstImpl grandParent = new DetailAstImpl();
+        grandParent.setText("grandparent");
+        final DetailAstImpl parent = new DetailAstImpl();
+        parent.setText("parent");
+        grandParent.setFirstChild(parent);
+
+        final DetailAstImpl child = new DetailAstImpl();
+        child.setText("child");
+        parent.setFirstChild(child);
+
+        final DetailAstImpl secondChild = new DetailAstImpl();
+        secondChild.setText("SecondChild");
+        parent.addChild(secondChild);
+
+        assertWithMessage("Invalid previous sibling")
+                .that(secondChild.getPreviousSibling())
+                .isEqualTo(child);
+    }
+
     private static List<File> getAllFiles(File dir) {
         final List<File> result = new ArrayList<>();
 
