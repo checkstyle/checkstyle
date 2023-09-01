@@ -37,22 +37,10 @@
 
       <subsection name="Properties" id="Properties">
         <div class="wrapper">
-          <table>
-            <tr>
-              <th>name</th>
-              <th>description</th>
-              <th>type</th>
-              <th>default value</th>
-              <th>since</th>
-            </tr>
-            <tr>
-              <td>query</td>
-              <td>Specify Xpath query.</td>
-              <td><a href="../../property_types.html#String">String</a></td>
-              <td><code>""</code></td>
-              <td>8.39</td>
-            </tr>
-          </table>
+          <macro name="properties">
+            <param name="modulePath"
+              value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/MatchXpathCheck.java"/>
+          </macro>
         </div>
       </subsection>
 
