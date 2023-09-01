@@ -23,7 +23,6 @@ import java.beans.Introspector;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.Set;
 import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
@@ -47,12 +46,6 @@ public class ClassAndPropertiesSettersJavadocScraper extends AbstractJavadocChec
      */
     private static final Map<String, DetailNode> JAVADOC_FOR_MODULE_OR_PROPERTY =
             new LinkedHashMap<>();
-
-    /** List of setter methods that the scraper ignores but shouldn't. */
-    private static final Set<String> SUPERCLASS_SETTERS = Set.of(
-        "AbstractFileSetCheck.setFileExtensions",
-        "AbstractHeaderCheck.setHeader"
-    );
 
     /** Name of the module being scraped. */
     private static String moduleName = "";
@@ -89,9 +82,8 @@ public class ClassAndPropertiesSettersJavadocScraper extends AbstractJavadocChec
         if (BlockCommentPosition.isOnMethod(blockCommentAst)) {
             final DetailAST methodDef = getParentAst(blockCommentAst, TokenTypes.METHOD_DEF);
             if (methodDef != null) {
-                final String methodName = methodDef.findFirstToken(TokenTypes.IDENT).getText();
-                if (isSetterMethod(methodDef) && isMethodOfScrapedModule(methodDef)
-                    || SUPERCLASS_SETTERS.contains(moduleName + "." + methodName)) {
+                if (isSetterMethod(methodDef) && isMethodOfScrapedModule(methodDef)) {
+                    final String methodName = methodDef.findFirstToken(TokenTypes.IDENT).getText();
                     final String propertyName = getPropertyName(methodName);
                     JAVADOC_FOR_MODULE_OR_PROPERTY.put(propertyName, ast);
                 }
@@ -169,34 +161,12 @@ public class ClassAndPropertiesSettersJavadocScraper extends AbstractJavadocChec
     private static boolean isSetterMethod(DetailAST ast) {
         boolean setterMethod = false;
 
-        // Check have a method with exactly 7 children which are all that
-        // is allowed in a proper setter method which does not throw any
-        // exceptions.
-        final int setterGetterMaxChildren = 7;
-        if (ast.getType() == TokenTypes.METHOD_DEF
-                && ast.getChildCount() == setterGetterMaxChildren) {
+        if (ast.getType() == TokenTypes.METHOD_DEF) {
             final DetailAST type = ast.findFirstToken(TokenTypes.TYPE);
             final String name = type.getNextSibling().getText();
             final Pattern setterPattern = Pattern.compile("^set[A-Z].*");
-            final boolean matchesSetterFormat = setterPattern.matcher(name).matches();
 
-            final DetailAST params = ast.findFirstToken(TokenTypes.PARAMETERS);
-            final boolean singleParam = params.getChildCount(TokenTypes.PARAMETER_DEF) == 1;
-
-            if (matchesSetterFormat && singleParam) {
-                // Now verify that the body consists of:
-                // SLIST -> EXPR -> ASSIGN
-                // SEMI
-                // RCURLY
-                final DetailAST slist = ast.findFirstToken(TokenTypes.SLIST);
-
-                // Maximum nodes allowed in a body of setter
-                final int setterBodySize = 3;
-                if (slist != null && slist.getChildCount() == setterBodySize) {
-                    final DetailAST expr = slist.getFirstChild();
-                    setterMethod = expr.getFirstChild().getType() == TokenTypes.ASSIGN;
-                }
-            }
+            setterMethod = setterPattern.matcher(name).matches();
         }
         return setterMethod;
     }
