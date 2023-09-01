@@ -9,7 +9,7 @@ package com.puppycrawl.tools.checkstyle.checks.imports.unusedimports;
 
 import java.util.Calendar;
 
-public class InputUnusedImportsWithValueTag { // ok
+public class InputUnusedImportsWithValueTag {
 
     /**
      * Method determines current month as for {@value Calendar#MONTH}.

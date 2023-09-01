@@ -7,7 +7,7 @@ processJavadoc = (default)true
 
 package com.puppycrawl.tools.checkstyle.checks.imports.unusedimports;
 
-import java.util.HashMap; // ok
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.ArrayList; // violation
