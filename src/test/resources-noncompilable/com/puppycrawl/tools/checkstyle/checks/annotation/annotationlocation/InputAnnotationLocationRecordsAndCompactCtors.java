@@ -42,7 +42,7 @@ public class InputAnnotationLocationRecordsAndCompactCtors {
      *
      * @return
      */
-    @SuppressWarnings("deprecation") // ok
+    @SuppressWarnings("deprecation")
     public record MyRecord6() {
         record MyInnerRecord () {
             // violation below 'Annotation 'SuppressWarnings' should be alone on line.'
