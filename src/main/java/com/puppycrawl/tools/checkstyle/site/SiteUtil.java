@@ -452,9 +452,19 @@ public final class SiteUtil {
         final Map<String, DetailNode> unmodifiableJavadocs =
                 ClassAndPropertiesSettersJavadocScraper.getJavadocsForModuleOrProperty();
         final Map<String, DetailNode> javadocs = new LinkedHashMap<>(unmodifiableJavadocs);
-        properties.forEach(property -> {
+
+        for (String property : properties) {
             javadocs.putIfAbsent(property, SUPER_CLASS_PROPERTIES_JAVADOCS.get(property));
-        });
+
+            if (javadocs.get(property) == null
+                    && !TOKENS.equals(property)
+                    && !JAVADOC_TOKENS.equals(property)) {
+                final String message = String.format(Locale.ROOT,
+                        "%s: Failed to find javadoc for property '%s'", moduleName, property);
+                throw new MacroExecutionException(message);
+            }
+        }
+
         return javadocs;
     }
 
