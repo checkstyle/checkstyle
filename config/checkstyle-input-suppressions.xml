@@ -1594,12 +1594,6 @@
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]annotation[\\/]suppresswarnings[\\/]InputSuppressWarningsValuePair.java"/>
   <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]arraytypestyle[\\/]InputArrayTypeStyleNestedGenerics.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]arraytypestyle[\\/]InputArrayTypeStyleNestedGenerics.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]arraytypestyle[\\/]InputArrayTypeStyleNestedGenerics.java"/>
-  <suppress id="UnnecessaryOkComment"
             files="checks[\\/]avoidescapedunicodecharacters[\\/]InputAvoidEscapedUnicodeCharactersAllEscapedUnicodeCharacters.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]avoidescapedunicodecharacters[\\/]InputAvoidEscapedUnicodeCharactersAllEscapedUnicodeCharacters.java"/>
