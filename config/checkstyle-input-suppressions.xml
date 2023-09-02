@@ -3792,8 +3792,6 @@
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]finalparameters[\\/]InputFinalParametersReceiver.java"/>
   <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]imports[\\/]avoidstaticimport[\\/]InputAvoidStaticImportNestedClass.java"/>
-  <suppress id="UnnecessaryOkComment"
             files="checks[\\/]imports[\\/]customimportorder[\\/]InputCustomImportOrderDefault5.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]imports[\\/]customimportorder[\\/]InputCustomImportOrderDefault6.java"/>
