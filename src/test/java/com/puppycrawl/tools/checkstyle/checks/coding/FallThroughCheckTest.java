@@ -48,7 +48,7 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
             "187:11: " + getCheckMessage(MSG_FALL_THROUGH),
             "377:11: " + getCheckMessage(MSG_FALL_THROUGH),
             "380:11: " + getCheckMessage(MSG_FALL_THROUGH),
-            "382:40: " + getCheckMessage(MSG_FALL_THROUGH),
+            "382:27: " + getCheckMessage(MSG_FALL_THROUGH),
             "424:13: " + getCheckMessage(MSG_FALL_THROUGH),
             "432:9: " + getCheckMessage(MSG_FALL_THROUGH),
             "444:9: " + getCheckMessage(MSG_FALL_THROUGH),
