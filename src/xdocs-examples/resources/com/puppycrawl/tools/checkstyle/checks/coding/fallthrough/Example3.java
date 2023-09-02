@@ -20,7 +20,7 @@ class Example3 {
       switch (i) {
         case 1:
           i++;
-        case 2: // violation 'Fall through from previous branch of the switch'
+        case 2: // violation 'Fall\ through from previous branch of the switch'
           i++;
           break;
         case 3:
