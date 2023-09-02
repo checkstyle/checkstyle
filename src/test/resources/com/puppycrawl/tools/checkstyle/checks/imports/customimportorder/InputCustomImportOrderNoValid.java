@@ -16,5 +16,5 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.NoSuchElementException;
 
-public class InputCustomImportOrderNoValid { // ok
+public class InputCustomImportOrderNoValid {
 }
