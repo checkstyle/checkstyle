@@ -31,10 +31,10 @@ class InputAnnotationLocationSingleParameterless {
     @Annotation("") @Annotation(value = "") void multipleParametrized() {} // 2 violations
 
     void parameterlessSamelineInForEach() {
-        for (@Annotation Object o : new Object[0]) break; //ok
-        for (@Annotation @Annotation Object o : new Object[0]) break; //ok
-        for (@Annotation Object o;;) break; // ok
-        for (@Annotation @Annotation Object o;;) break; //ok
+        for (@Annotation Object o : new Object[0]) break;
+        for (@Annotation @Annotation Object o : new Object[0]) break;
+        for (@Annotation Object o;;) break;
+        for (@Annotation @Annotation Object o;;) break;
     }
 
     @Repeatable(Annotations.class)
