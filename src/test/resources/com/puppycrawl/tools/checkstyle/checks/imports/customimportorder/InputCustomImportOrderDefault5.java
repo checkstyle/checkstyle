@@ -34,5 +34,5 @@ import com.puppycrawl.tools.checkstyle.*;
 import com.google.common.collect.*;
 import org.junit.*;
 
-public class InputCustomImportOrderDefault5 { // ok
+public class InputCustomImportOrderDefault5 {
 }
