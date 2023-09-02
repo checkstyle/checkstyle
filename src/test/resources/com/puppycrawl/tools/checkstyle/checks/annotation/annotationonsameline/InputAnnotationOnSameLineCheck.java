@@ -10,7 +10,7 @@ package com.puppycrawl.tools.checkstyle.checks.annotation.annotationonsameline;
 
 public class InputAnnotationOnSameLineCheck {
 
-    @Annotation int x;      // ok
+    @Annotation int x;
 
     int y;
 
@@ -25,7 +25,7 @@ public class InputAnnotationOnSameLineCheck {
     public int field;
 
     public
-    @Annotation int field2; // ok
+    @Annotation int field2;
 }
 
 class SomeClass {
