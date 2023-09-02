@@ -15,7 +15,7 @@ import java.lang.annotation.Repeatable;
 
 class InputAnnotationLocationMultiple {
 
-    @Annotation void singleParameterless() {}
+    @Annotation void singleParameterless() {} // ok
 
     @Annotation @Annotation void multipleParameterless() {}
 

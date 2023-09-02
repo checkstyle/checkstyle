@@ -15,7 +15,7 @@ import java.lang.annotation.Target;
  */
 
 @Target(ElementType.PACKAGE)
-@interface PackageAnnotations {
+@interface PackageAnnotations { // ok
 
     PackageAnnotation[] value();
 

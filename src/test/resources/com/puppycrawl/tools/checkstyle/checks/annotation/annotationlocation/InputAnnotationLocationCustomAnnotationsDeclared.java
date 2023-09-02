@@ -14,13 +14,13 @@ package com.puppycrawl.tools.checkstyle.checks.annotation.annotationlocation;
 @MyAnnotation11 @MyAnnotation12 @MyAnnotation13 // 3 violations
 public class InputAnnotationLocationCustomAnnotationsDeclared {
 
-    @MyAnnotation13
+    @MyAnnotation13 // ok
     void method() {
 
     }
 
-    @MyAnnotation13
-    @MyAnnotation12
+    @MyAnnotation13 // ok
+    @MyAnnotation12 // ok
     void method2() {
 
     }
