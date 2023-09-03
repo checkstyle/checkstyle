@@ -313,4 +313,14 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
                 getPath("InputSummaryJavadoc1.java"), expected);
     }
+
+    @Test
+    public void testInheritDoc() throws Exception {
+        final String[] expected = {
+            "14: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputSummaryJavadocInheritDoc.java"), expected);
+    }
 }
