@@ -12,17 +12,17 @@ package com.puppycrawl.tools.checkstyle.checks.annotation.annotationusestyle;
 
 public class InputAnnotationUseStyleWithTrailingComma
 {
-    @SuppressWarnings({"common",}) // ok
+    @SuppressWarnings({"common",})
     public void foo() {
 
 
-        @SuppressWarnings({"common","foo",}) // ok
+        @SuppressWarnings({"common","foo",})
         Object o = new Object() {
 
             @SuppressWarnings(value={"common",}) // ok
             public String toString() {
 
-                @SuppressWarnings(value={"leo","herbie",}) // ok
+                @SuppressWarnings(value={"leo","herbie",})
                 final String pooches = "leo.herbie";
 
                 return pooches;
@@ -30,13 +30,13 @@ public class InputAnnotationUseStyleWithTrailingComma
         };
     }
 
-    @Test(value={"foo",}, more={"bar",}) // ok
+    @Test(value={"foo",}, more={"bar",})
     /**
 
     */
     enum P {
 
-        @Pooches(tokens={Pooches.class,},other={1,}) // ok
+        @Pooches(tokens={Pooches.class,},other={1,})
         L,
 
         /**
