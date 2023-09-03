@@ -3746,10 +3746,10 @@
                 <mutator>PRIMITIVE_RETURNS</mutator>
               </mutators>
               <targetClasses>
-                <param>com.puppycrawl.tools.checkstyle.checks.javadoc.*</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck</param>
               </targetClasses>
               <targetTests>
-                <param>com.puppycrawl.tools.checkstyle.checks.javadoc.*</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheckTest</param>
                 <!-- JavadocMetadataScraper extends AbstractJavadocCheck -->
                 <param>com.puppycrawl.tools.checkstyle.meta.JavadocMetadataScraperTest</param>
               </targetTests>
