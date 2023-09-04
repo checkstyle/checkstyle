@@ -514,13 +514,13 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
         boolean found = false;
         final DetailNode[] children = root.getChildren();
 
-        for (int i = 0; !found; i++) {
-            final DetailNode child = children[i];
+        for (DetailNode child : children) {
             if (child.getType() == JavadocTokenTypes.JAVADOC_INLINE_TAG
                     && child.getChildren()[1].getType() == JavadocTokenTypes.INHERIT_DOC_LITERAL) {
                 found = true;
             }
-            else if (child.getType() != JavadocTokenTypes.LEADING_ASTERISK
+            if ((child.getType() == JavadocTokenTypes.TEXT
+                    || child.getType() == JavadocTokenTypes.HTML_ELEMENT)
                     && !CommonUtil.isBlank(child.getText())) {
                 break;
             }
