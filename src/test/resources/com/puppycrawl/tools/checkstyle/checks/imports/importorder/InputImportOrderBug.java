@@ -8,7 +8,7 @@ package com.puppycrawl.tools.checkstyle.checks.imports.importorder;
 
 import java.net.URL;
 
-public class InputImportOrderBug { // ok
+public class InputImportOrderBug {
    //same as a class name
    private static String URL = "This is a String object";
 
