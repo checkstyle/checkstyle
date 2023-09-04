@@ -16,13 +16,13 @@ tokens = (default)STATIC_IMPORT
 
 package com.puppycrawl.tools.checkstyle.checks.imports.importorder;
 
-import static java.lang.Math.*; // ok
-import static org.antlr.v4.runtime.CommonToken.*; // ok
-import static org.antlr.v4.runtime.CommonToken.*;  // ok
+import static java.lang.Math.*;
+import static org.antlr.v4.runtime.CommonToken.*;
+import static org.antlr.v4.runtime.CommonToken.*;
 
-import java.util.Set; // ok
+import java.util.Set;
 
-import org.junit.Test; // ok
+import org.junit.Test;
 
 public class InputImportOrderStaticRepetition1 {
 }
