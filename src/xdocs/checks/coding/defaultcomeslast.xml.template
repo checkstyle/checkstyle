@@ -22,25 +22,10 @@
       </subsection>
       <subsection name="Properties" id="Properties">
         <div class="wrapper">
-          <table>
-            <tr>
-              <th>name</th>
-              <th>description</th>
-              <th>type</th>
-              <th>default value</th>
-              <th>since</th>
-            </tr>
-            <tr>
-              <td>skipIfLastAndSharedWithCase</td>
-              <td>
-                Control whether to allow <code>default</code> along with
-                <code>case</code> if they are not last.
-              </td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
-              <td><code>false</code></td>
-              <td>7.7</td>
-            </tr>
-          </table>
+          <macro name="properties">
+            <param name="modulePath"
+              value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/DefaultComesLastCheck.java"/>
+          </macro>
         </div>
       </subsection>
       <subsection name="Examples" id="Examples">

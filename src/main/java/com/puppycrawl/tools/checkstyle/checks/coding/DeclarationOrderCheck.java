@@ -73,12 +73,12 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * </pre>
  * <ul>
  * <li>
- * Property {@code ignoreConstructors} - control whether to ignore constructors.
+ * Property {@code ignoreConstructors} - Control whether to ignore constructors.
  * Type is {@code boolean}.
  * Default value is {@code false}.
  * </li>
  * <li>
- * Property {@code ignoreModifiers} - control whether to ignore modifiers (fields, ...).
+ * Property {@code ignoreModifiers} - Control whether to ignore modifiers (fields, ...).
  * Type is {@code boolean}.
  * Default value is {@code false}.
  * </li>
