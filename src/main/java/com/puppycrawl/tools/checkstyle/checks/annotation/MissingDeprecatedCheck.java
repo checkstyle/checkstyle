@@ -66,40 +66,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *     &lt;property name="files" value="package-info\.java"/&gt;
  * &lt;/module&gt;
  * </pre>
- * <ul>
- * <li>
- * Property {@code violateExecutionOnNonTightHtml} - Control when to
- * print violations if the Javadoc being examined by this check violates the
- * tight html rules defined at
- * <a href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules">
- * Tight-HTML Rules</a>.
- * Type is {@code boolean}.
- * Default value is {@code false}.
- * </li>
- * </ul>
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code annotation.missing.deprecated}
- * </li>
- * <li>
- * {@code javadoc.duplicateTag}
- * </li>
- * <li>
- * {@code javadoc.missed.html.close}
- * </li>
- * <li>
- * {@code javadoc.parse.rule.error}
- * </li>
- * <li>
- * {@code javadoc.wrong.singleton.html.tag}
- * </li>
- * </ul>
  *
  * @since 5.0
  */
