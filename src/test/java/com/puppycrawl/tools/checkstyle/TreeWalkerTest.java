@@ -308,6 +308,13 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         catch (CheckstyleException ex) {
             assertWithMessage("Error message is unexpected")
                     .that(ex.getMessage())
+                    .isEqualTo("cannot initialize module com.puppycrawl.tools.checkstyle."
+                            + "TreeWalker - Check 'com.puppycrawl.tools.checkstyle."
+                            + "TreeWalkerTest$BadJavaDocCheck' waits for comment type token "
+                            + "('SINGLE_LINE_COMMENT') and should override "
+                            + "'isCommentNodesRequired()' method to return 'true'");
+            assertWithMessage("Error message is unexpected")
+                    .that(ex.getMessage())
                     .contains("isCommentNodesRequired");
         }
     }

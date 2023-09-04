@@ -452,10 +452,43 @@ public final class SiteUtil {
         final Map<String, DetailNode> unmodifiableJavadocs =
                 ClassAndPropertiesSettersJavadocScraper.getJavadocsForModuleOrProperty();
         final Map<String, DetailNode> javadocs = new LinkedHashMap<>(unmodifiableJavadocs);
+
         properties.forEach(property -> {
-            javadocs.putIfAbsent(property, SUPER_CLASS_PROPERTIES_JAVADOCS.get(property));
+            final DetailNode superClassPropertyJavadoc =
+                    SUPER_CLASS_PROPERTIES_JAVADOCS.get(property);
+            if (superClassPropertyJavadoc != null) {
+                javadocs.putIfAbsent(property, superClassPropertyJavadoc);
+            }
         });
+
+        assertAllPropertySetterJavadocsAreFound(properties, moduleName, javadocs);
+
         return javadocs;
+    }
+
+    /**
+     * Assert that each property has a corresponding setter javadoc that is not null.
+     * 'tokens' and 'javadocTokens' are excluded from this check, because their
+     * description is different from the description of the setter.
+     *
+     * @param properties the properties of the module.
+     * @param moduleName the name of the module.
+     * @param javadocs the javadocs of the properties of the module.
+     * @throws MacroExecutionException if an error occurs during processing.
+     */
+    private static void assertAllPropertySetterJavadocsAreFound(
+            Set<String> properties, String moduleName, Map<String, DetailNode> javadocs)
+            throws MacroExecutionException {
+        for (String property : properties) {
+            final boolean isPropertySetterJavadocFound = javadocs.containsKey(property)
+                       || TOKENS.equals(property) || JAVADOC_TOKENS.equals(property);
+            if (!isPropertySetterJavadocFound) {
+                final String message = String.format(Locale.ROOT,
+                        "%s: Failed to find setter javadoc for property '%s'",
+                        moduleName, property);
+                throw new MacroExecutionException(message);
+            }
+        }
     }
 
     /**

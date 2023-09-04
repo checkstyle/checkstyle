@@ -107,31 +107,4 @@
     <description>replaced return value with &quot;&quot; for com/puppycrawl/tools/checkstyle/TreeWalker::lambda$createNewCheckSortedSet$3</description>
     <lineContent>Comparator.&lt;AbstractCheck, String&gt;comparing(check -&gt; check.getClass().getName())</lineContent>
   </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>TreeWalker.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.TreeWalker</mutatedClass>
-    <mutatedMethod>registerCheck</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to java/lang/Class::getName</description>
-    <lineContent>+ &quot;method to return &apos;true&apos;&quot;, check.getClass().getName(),</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>TreeWalker.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.TreeWalker</mutatedClass>
-    <mutatedMethod>registerCheck</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to com/puppycrawl/tools/checkstyle/utils/TokenUtil::getTokenName</description>
-    <lineContent>TokenUtil.getTokenName(tokenId));</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>TreeWalker.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.TreeWalker</mutatedClass>
-    <mutatedMethod>registerCheck</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
-    <description>replaced call to java/lang/String::format with argument</description>
-    <lineContent>final String message = String.format(Locale.ROOT, &quot;Check &apos;%s&apos; waits for comment type &quot;</lineContent>
-  </mutation>
 </suppressedMutations>

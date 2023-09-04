@@ -9,7 +9,7 @@ package com.puppycrawl.tools.checkstyle.checks.imports.unusedimports;
 
 import java.net.URL;
 
-public class InputUnusedImportsBug { // ok
+public class InputUnusedImportsBug {
    //same as a class name
    private static String URL = "This is a String object";
 
