@@ -12,7 +12,7 @@ package com.puppycrawl.tools.checkstyle.checks.annotation.annotationusestyle;
 
 public class InputAnnotationUseStyleWithTrailingComma
 {
-    @Test(value={(false) ? "" : "foo",}, more={(true) ? "" : "bar",}) // ok
+    @Test(value={(false) ? "" : "foo",}, more={(true) ? "" : "bar",})
     /**
 
     */
