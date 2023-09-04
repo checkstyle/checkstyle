@@ -16,9 +16,9 @@ tokens = (default)STATIC_IMPORT
 
 package com.puppycrawl.tools.checkstyle.checks.imports.importorder;
 
-import java.io.File; // ok
-import java.io.IOException; // ok
-import java.util.Iterator; // ok
+import java.io.File;
+import java.io.IOException;
+import java.util.Iterator;
 
 import com.puppycrawl.tools.checkstyle.checks.imports.importorder.InputImportOrderBug; // violation 'Extra separation in import group before .*'
 
