@@ -38,6 +38,7 @@ import java.util.stream.Collectors;
 
 import javax.xml.parsers.ParserConfigurationException;
 
+import com.puppycrawl.tools.checkstyle.site.SiteUtil;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.w3c.dom.Document;
@@ -145,6 +146,8 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
     @Test
     public void testAllCheckSectionJavaDocs() throws Exception {
         final ModuleFactory moduleFactory = TestUtil.getPackageObjectFactory();
+        final List<Path> templatesWithPropertiesMacro =
+                SiteUtil.getTemplatesThatContainPropertiesMacro();
 
         for (Path path : XdocUtil.getXdocsConfigFilePaths(XdocUtil.getXdocsFilePaths())) {
             currentXdocPath = path;
@@ -152,7 +155,8 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
             final String fileName = file.getName();
 
             if ("config_system_properties.xml".equals(fileName)
-                    || "index.xml".equals(fileName)) {
+                    || "index.xml".equals(fileName)
+                    || templatesWithPropertiesMacro.contains(Path.of(currentXdocPath + ".template"))) {
                 continue;
             }
 
