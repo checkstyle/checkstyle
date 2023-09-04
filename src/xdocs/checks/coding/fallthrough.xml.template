@@ -36,34 +36,10 @@
 
       <subsection name="Properties" id="Properties">
         <div class="wrapper">
-          <table>
-            <tr>
-              <th>name</th>
-              <th>description</th>
-              <th>type</th>
-              <th>default value</th>
-              <th>since</th>
-            </tr>
-            <tr>
-              <td>checkLastCaseGroup</td>
-              <td>
-                Control whether the last case group must be checked.
-              </td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
-              <td><code>false</code></td>
-              <td>4.0</td>
-            </tr>
-            <tr>
-              <td>reliefPattern</td>
-              <td>
-                Define the RegExp to match the relief comment that suppresses
-                the warning about a fall through.
-              </td>
-              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
-              <td><code>"falls?[ -]?thr(u|ough)"</code></td>
-              <td>4.0</td>
-            </tr>
-          </table>
+          <macro name="properties">
+            <param name="modulePath"
+              value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FallThroughCheck.java"/>
+          </macro>
         </div>
       </subsection>
 
