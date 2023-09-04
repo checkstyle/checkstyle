@@ -36,8 +36,7 @@
             </tr>
             <tr>
               <td>onlyObjectReferences</td>
-              <td>control whether only explicit initializations made to
-                  null for objects should be checked.</td>
+              <td>Control whether only explicit initializations made to null for objects should be checked.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>7.8</td>
