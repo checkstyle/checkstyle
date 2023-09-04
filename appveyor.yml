@@ -70,6 +70,7 @@ build_script:
       } else {
         Write-Host "build is skipped ..."
       }
+  - ps: CMD: "./.ci/validation.cmd git_diff"
   - ps: echo "Size of caches (bytes):"
   - ps: Get-ChildItem -Recurse 'C:\maven\apache-maven-3.8.6' | Measure-Object -Property Length -Sum
   - ps: Get-ChildItem -Recurse 'C:\Users\appveyor\.m2' | Measure-Object -Property Length -Sum
