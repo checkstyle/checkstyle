@@ -79,25 +79,10 @@ return new int[] {
 
       <subsection name="Properties" id="Properties">
         <div class="wrapper">
-          <table>
-            <tr>
-              <th>name</th>
-              <th>description</th>
-              <th>type</th>
-              <th>default value</th>
-              <th>since</th>
-            </tr>
-            <tr>
-              <td>alwaysDemandTrailingComma</td>
-              <td>
-                  Control whether to always check for a trailing comma, even when an array is
-                  inline.
-              </td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
-              <td><code>false</code></td>
-              <td>8.33</td>
-            </tr>
-          </table>
+          <macro name="properties">
+            <param name="modulePath"
+              value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/ArrayTrailingCommaCheck.java"/>
+          </macro>
         </div>
       </subsection>
 

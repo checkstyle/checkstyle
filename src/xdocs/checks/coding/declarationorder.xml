@@ -71,14 +71,14 @@ public class A {
             </tr>
             <tr>
               <td>ignoreConstructors</td>
-              <td>control whether to ignore constructors.</td>
+              <td>Control whether to ignore constructors.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>5.2</td>
             </tr>
             <tr>
               <td>ignoreModifiers</td>
-              <td>control whether to ignore modifiers (fields, ...).</td>
+              <td>Control whether to ignore modifiers (fields, ...).</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>5.2</td>

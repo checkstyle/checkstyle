@@ -89,10 +89,7 @@ return new int[] {
             </tr>
             <tr>
               <td>alwaysDemandTrailingComma</td>
-              <td>
-                  Control whether to always check for a trailing comma, even when an array is
-                  inline.
-              </td>
+              <td>Control whether to always check for a trailing comma, even when an array is inline.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>8.33</td>
