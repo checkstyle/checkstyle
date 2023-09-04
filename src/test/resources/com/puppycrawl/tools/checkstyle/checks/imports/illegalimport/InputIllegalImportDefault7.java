@@ -9,28 +9,28 @@ regexp = true
 
 package com.puppycrawl.tools.checkstyle.checks.imports.illegalimport;
 
-import com.puppycrawl.tools.checkstyle.checks.imports.illegalimport.*; // ok
+import com.puppycrawl.tools.checkstyle.checks.imports.illegalimport.*;
 
-import java.io.*; // ok
-import java.lang.*; // ok
-import java.sql.Connection; // ok
+import java.io.*;
+import java.lang.*;
+import java.sql.Connection;
 import java.util.List; // violation
 import java.util.List; // violation
-import java.lang.ArithmeticException; // ok
-import org.junit.jupiter.api.*; // ok
+import java.lang.ArithmeticException;
+import org.junit.jupiter.api.*;
 import java.util.Enumeration; // violation
 import java.util.Arrays; // violation
 
-import javax.swing.JToolBar; // ok
-import javax.swing.JToggleButton; // ok
-import javax.swing.ScrollPaneLayout; // ok
-import javax.swing.BorderFactory; // ok
-import static java.io.File.listRoots; // ok
+import javax.swing.JToolBar;
+import javax.swing.JToggleButton;
+import javax.swing.ScrollPaneLayout;
+import javax.swing.BorderFactory;
+import static java.io.File.listRoots;
 
-import static javax.swing.WindowConstants.*; // ok
-import static javax.swing.WindowConstants.*; // ok
-import static java.io.File.createTempFile; // ok
-import org.junit.jupiter.api.*; // ok
+import static javax.swing.WindowConstants.*;
+import static javax.swing.WindowConstants.*;
+import static java.io.File.createTempFile;
+import org.junit.jupiter.api.*;
 
 import java.awt.Component; // violation
 import java.awt.Graphics2D; // violation
