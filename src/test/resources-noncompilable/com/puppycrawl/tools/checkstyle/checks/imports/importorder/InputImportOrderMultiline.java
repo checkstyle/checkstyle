@@ -16,29 +16,29 @@ tokens = (default)STATIC_IMPORT
 
 package com.puppycrawl.tools.checkstyle.checks.imports.importorder;
 import
-    java.awt.Button; // ok
+    java.awt.Button;
 import java.awt.Dialog
-    ; // ok
+    ;
 import
-java.awt.Frame; // ok
+java.awt.Frame;
 import java
     .awt.event.
     ActionEvent
-    ; // ok
+    ;
 import
 java.io.File
-; // ok
+;
 import java.
     io.
-    IOException; // ok
-import java.io.InputStream; // ok
+    IOException;
+import java.io.InputStream;
 import
-  static java.awt.Button.ABORT; // ok
+  static java.awt.Button.ABORT;
 import static
- java.io.File.createTempFile; // ok
+ java.io.File.createTempFile;
 import static javax.swing
     .WindowConstants.*
-    ; // ok
+    ;
 
 public class InputImportOrderMultiline {
 }
