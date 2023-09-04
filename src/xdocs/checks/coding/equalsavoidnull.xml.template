@@ -28,24 +28,10 @@
 
       <subsection name="Properties" id="Properties">
         <div class="wrapper">
-          <table>
-            <tr>
-              <th>name</th>
-              <th>description</th>
-              <th>type</th>
-              <th>default value</th>
-              <th>since</th>
-            </tr>
-            <tr>
-              <td>ignoreEqualsIgnoreCase</td>
-              <td>
-                Control whether to ignore <code>String.equalsIgnoreCase(String)</code> invocations.
-              </td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
-              <td><code>false</code></td>
-              <td>5.4</td>
-            </tr>
-          </table>
+          <macro name="properties">
+            <param name="modulePath"
+              value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/EqualsAvoidNullCheck.java"/>
+          </macro>
         </div>
       </subsection>
 
