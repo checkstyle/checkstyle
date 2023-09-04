@@ -45,10 +45,10 @@
  &lt;/pre&gt;</description>
          <properties>
             <property default-value="false" name="ignoreConstructors" type="boolean">
-               <description>control whether to ignore constructors.</description>
+               <description>Control whether to ignore constructors.</description>
             </property>
             <property default-value="false" name="ignoreModifiers" type="boolean">
-               <description>control whether to ignore modifiers (fields, ...).</description>
+               <description>Control whether to ignore modifiers (fields, ...).</description>
             </property>
          </properties>
          <message-keys>
