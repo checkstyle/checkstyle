@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+
+  <head>
+    <title>Writing Listeners</title>
+  </head>
+
+  <body>
+
+    <section name="Overview">
+      <p>
+        A Checkstyle listener monitors the progress of a <code>Checker</code> during the audit
+        of files. The <code>Checker</code> notifies its attached listeners of
+        significant events such as the start of the audit of a file and
+        the logging of a Check violation, and the listeners respond
+        appropriately.  Any number of listeners can be attached to a
+        <code> Checker</code>. An audit always adds one of
+        the distribution listeners, <a
+        href="apidocs/com/puppycrawl/tools/checkstyle/DefaultLogger.html">DefaultLogger</a>
+        or <a
+        href="apidocs/com/puppycrawl/tools/checkstyle/XMLLogger.html">XMLLogger</a>,
+        to report events. A <code>DefaultLogger</code>
+        produces simple text output for the events it receives, and a
+        <code>XMLLogger</code> produces an XML document for
+        its events.
+      </p>
+
+      <p>
+        Listeners <code>DefaultLogger</code> and <code> XMLLogger</code> are sufficient for most
+        Checkstyle users, but you may find a need for a custom
+        listener. For example, a user has requested verbose output of
+        progress information during a Checkstyle run. Another user would
+        like to filter violation events. This document explains how to write
+        listeners for such tasks and how to integrate them in a Checker
+        module. It also describes two custom listeners that are inspired
+        by ANT listeners: a listener that is a wrapper for the Jakarta
+        Commons Logging API, and a listener that sends its results via
+        email.
+      </p>
+
+      <p>
+        A listener is an implementation of the <a
+        href="apidocs/com/puppycrawl/tools/checkstyle/api/AuditListener.html">AuditListener</a>
+        interface. During an audit, a <code>Checker</code>
+        informs its attached <code>AuditListeners</code> of
+        six kinds of events: audit started/ended, file started/ended,
+        and logging of an error(violation)/exception.
+      </p>
+
+      <p>
+        An audit passes an event to a listener as an <a
+        href="apidocs/com/puppycrawl/tools/checkstyle/api/AuditEvent.html">AuditEvent</a>.
+        A file-related <code>AuditEvent</code> contains the
+        name of that file. An <code>AuditEvent</code> for
+        violation logging has a message, a severity level, a message source
+        such as the name of a <code>Check</code>, and file
+        line and column numbers that may be relevant to the violation. The
+        notification of an exception to a <code>AuditListener</code> includes a violation
+        <code>AuditEvent</code> and the details of the exception. Here is a UML diagram for
+        classes <code>AuditListener</code> and <code>AuditEvent</code>.
+      </p>
+
+      <span class="wrapper">
+        <img src="images/AuditListener.gif" width="381" height="488"
+               alt="AuditListener UML diagram"/>
+      </span>
+
+    </section>
+
+    <section name="Writing Listeners">
+      <p>
+        A custom listener is an implementation of the <a
+        href="apidocs/com/puppycrawl/tools/checkstyle/api/AuditListener.html">AuditListener</a>
+        interface. If the listener has properties that can be set from a
+        configuration, the listener must extend <a
+        href="apidocs/com/puppycrawl/tools/checkstyle/api/AutomaticBean.html">AutomaticBean</a>.
+        An <code>AutomaticBean</code> uses JavaBean
+        introspection to set JavaBean properties.
+      </p>
+
+      <p>
+        The custom listener that we demonstrate here is a verbose
+        listener that simply prints each event notification to an output
+        stream, and reports the number of violations per audited file and
+        the total number of violations. The default output stream is <code>System.out</code>.
+        In order to enable the specification of output to a file through property
+        <code>file</code>, the class extends <code>AutomaticBean</code> and defines method
+        <code>setFile(String)</code>.
+      </p>
+
+      <source>
+package com.mycompany.listeners;
+
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
+import java.io.PrintWriter;
+
+import com.puppycrawl.tools.checkstyle.api.AuditEvent;
+import com.puppycrawl.tools.checkstyle.api.AuditListener;
+import com.puppycrawl.tools.checkstyle.AbstractAutomaticBean;
+import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
+
+public class VerboseListener
+    extends AutomaticBean
+    implements AuditListener
+{
+  private PrintWriter mWriter = new PrintWriter(System.out);
+  private boolean mCloseOut = false;
+  private int mTotalErrors;
+  private int mErrors;
+
+  public void setFile(String aFileName)
+      throws FileNotFoundException
+  {
+    final OutputStream out = new FileOutputStream(aFileName);
+    mWriter = new PrintWriter(out);
+    mCloseOut = true;
+  }
+
+  public void auditStarted(AuditEvent aEvt)
+  {
+    mTotalErrors = 0;
+    mWriter.println("Audit started.");
+  }
+
+  public void auditFinished(AuditEvent aEvt)
+  {
+    mWriter.println("Audit finished. Total errors: " + mTotalErrors);
+    mWriter.flush();
+    if (mCloseOut) {
+      mWriter.close();
+    }
+  }
+
+  public void fileStarted(AuditEvent aEvt)
+  {
+    mErrors = 0;
+    mWriter.println(
+        "Started checking file '" + aEvt.getFileName() + "'.");
+  }
+
+  public void fileFinished(AuditEvent aEvt)
+  {
+    mWriter.println("Finished checking file '" + aEvt.getFileName()
+        + "'. Errors: " + mErrors);
+  }
+
+  public void addError(AuditEvent aEvt)
+  {
+    printEvent(aEvt);
+    if (SeverityLevel.ERROR.equals(aEvt.getSeverityLevel())) {
+      mErrors++;
+      mTotalErrors++;
+    }
+  }
+
+  public void addException(AuditEvent aEvt, Throwable aThrowable)
+  {
+    printEvent(aEvt);
+    aThrowable.printStackTrace(System.out);
+    mErrors++;
+    mTotalErrors++;
+  }
+
+  private void printEvent(AuditEvent aEvt)
+  {
+    mWriter.println("Logging error -"
+        + " file: '" + aEvt.getFileName() + "'"
+        + " line: " + aEvt.getLine()
+        + " column: " + aEvt.getColumn()
+        + " severity: " + aEvt.getSeverityLevel()
+        + " message: " + aEvt.getMessage()
+        + " source: " + aEvt.getSourceName());
+  }
+}
+      </source>
+
+      <p>
+        A listener that filters error events could perform the filtering
+        in methods <code> addError</code> and <code>addException</code>. As further examples of
+        listeners, <a
+        href="#CommonsLoggingListener">CommonsLoggingListener</a>
+        reports its events through the Commons Logging API, and <a
+        href="#MailLogger">MailLogger</a> e-mails the audit report of a
+        <code>DefaultLogger</code>.
+      </p>
+    </section>
+
+    <section name="Using Listeners">
+      <p>
+        To incorporate a custom listener in the set of listeners for a
+        <code>Checker</code>, include a module element for
+        the listener in the <a
+        href="config.html#Audit_Listeners">configuration file</a>. For
+        example, to configure a <code>Checker</code> so
+        that it uses custom listener
+        <a href="https://github.com/checkstyle/contribution/blob/master/examples/listeners/com/mycompany/listeners/VerboseListener.java">
+            VerboseListener</a>
+        to print audit messages to a
+        file named &quot;audit.txt&quot;, include the following module
+        in the configuration file:
+      </p>
+
+      <source>
+&lt;module name=&quot;com.mycompany.listeners.VerboseListener&quot;&gt;
+  &lt;property name=&quot;file&quot; value=&quot;audit.txt&quot;/&gt;
+&lt;/module&gt;
+      </source>
+
+      <p>
+        Here is a truncated example of audit output from a <code> VerboseListener</code>:
+      </p>
+
+      <source>
+Audit started.
+Started checking file 'CommonsLoggingListener.java'.
+Finished checking file 'CommonsLoggingListener.java'. Errors: 0
+Started checking file 'MailLogger.java'.
+Finished checking file 'MailLogger.java'. Errors: 0
+Started checking file 'VerboseListener.java'.
+Logging error - file: 'VerboseListener.java' line: 23 ...
+Finished checking file 'VerboseListener.java'. Errors: 1
+Audit finished. Total errors: 1
+      </source>
+    </section>
+
+    <section name="Examples">
+      <p>
+        This section describes two examples based on <a
+        href="https://ant.apache.org/">ANT</a> listeners. The first
+        listener, <code> CommonsLoggingListener</code>,
+        hands off events to the <a
+        href="https://commons.apache.org/proper/commons-logging/">Apache
+        Commons Logging</a> facade and the second, <code>MailLogger</code>,
+        sends a report of an audit via
+        e-mail. The discussion of these examples and how to use them is
+        derived from material in <a
+        href="https://www.manning.com/books/java-development-with-ant">&quot;Java Development
+        with Ant&quot;</a> by Eric Hatcher and Steve Loughran, an
+        excellent ANT book.
+      </p>
+
+      <a name="CommonsLoggingListener"/>
+      <h4>CommonsLoggingListener</h4>
+
+      <p>
+        <a
+        href="https://commons.apache.org/proper/commons-logging/">Apache
+        Commons Logging</a> provides a facade for logging tools
+        <a
+        href="https://logging.apache.org/log4j/2.x/index.html">log4j</a>,
+        J2SE 1.4, and others. Checkstyle listener <code>CommonsLoggingListener</code>
+        responds to an AuditEvent by handing it off to the current Commons Logging Log.
+      </p>
+
+      <p>
+        The source code for
+        <a href="https://github.com/checkstyle/contribution/blob/master/examples/listeners/com/mycompany/listeners/CommonsLoggingListener.java">
+        CommonsLoggingListener</a>.  Notice that
+        each <code>AuditListener</code> method that
+        receives an <code> AuditEvent</code> calls a method
+        for the Commons Logging log level corresponding to the
+        Checkstyle <code>SeverityLevel</code> of the <code> AuditEvent</code>.
+      </p>
+
+      <p>
+        The easiest way to use <code>CommonsLoggingListener</code> is to include
+        <code>checkstyle-${projectVersion}-all.jar</code>
+        in the classpath because that jar file contains all the Commons
+        Logging classes.  The default Log under J2SE 1.4 is wrapper
+        class <a
+        href="https://commons.apache.org/proper/commons-logging/apidocs/org/apache/commons/logging/impl/Jdk14Logger.html">
+          Jdk14Logger</a>.
+        Under earlier Java versions, the default Log is a simple wrapper
+        class, <a
+        href="https://commons.apache.org/proper/commons-logging/apidocs/org/apache/commons/logging/impl/SimpleLog.html">
+          SimpleLog</a>.
+        Both default logging tools can be used directly from Commons
+        Logging; if you need to use other tools such as log4j, then you
+        must include the appropriate jar file(s) in the classpath.
+      </p>
+
+      <p>
+        Logging configuration details for Jakarta Commons Logging are in
+        the <a
+        href="https://commons.apache.org/proper/commons-logging/">documentation</a>.
+        As a simple example, assume that <code>log4j.jar</code> is in the classpath and the
+        following <code>log4j.properties</code> file is
+        in the current directory:
+      </p>
+
+      <source>
+# Set root logger level to INFO and its only appender to A1.
+log4j.rootLogger=INFO, A1
+
+# A1 is set to be a ConsoleAppender.
+log4j.appender.A1=org.apache.log4j.ConsoleAppender
+
+# A1 uses PatternLayout.
+log4j.appender.A1.layout=org.apache.log4j.PatternLayout
+log4j.appender.A1.layout.ConversionPattern=%-5p %c %x- %m%n
+      </source>
+
+      <p>
+        Running a Checkstyle audit with a <code>CommonsLoggingListener</code> yields this
+        (abbreviated) output:
+      </p>
+
+      <source>
+INFO  com.puppycrawl...Checker  - Audit started.
+INFO  com.puppycrawl...Checker  - File "CommonsLoggingListener.java" started.
+INFO  com.puppycrawl...Checker  - File "CommonsLoggingListener.java" finished.
+INFO  com.puppycrawl...Checker  - File "MailLogger.java" started.
+INFO  com.puppycrawl...Checker  - File "MailLogger.java" finished.
+INFO  com.puppycrawl...Checker  - File "VerboseListener.java" started.
+ERROR com.puppycrawl...ParenPadCheck  - Line: 23 Column: 28 ...
+INFO  com.puppycrawl...Checker  - File "VerboseListener.java" finished.
+INFO  com.puppycrawl...Checker  - Audit finished.
+      </source>
+
+      <a name="MailLogger"/>
+      <h4>MailLogger</h4>
+      <p>
+        <a href="https://github.com/checkstyle/contribution/blob/master/examples/listeners/com/mycompany/listeners/MailLogger.java">
+        MailLogger</a>
+        sends an audit report in an
+        email message.  The listener uses a <code>DefaultLogger</code> to prepare the text of the
+        message. The listener obtains other message parameters such as
+        <code>to</code> and <code>subject</code> from environment properties that
+        can be read from a properties file.
+      </p>
+
+      <p>
+        This
+        implementation uses the <a
+        href="https://www.oracle.com/java/technologies/javamail.html">JavaMail API</a> as
+        the mail system, and you must include appropriate jar files in
+        the classpath.
+      </p>
+
+      <p>
+        As an example of using <code>MailLogger</code>, set
+        system property <code>-DMailLogger.properties.file=MailLogger.properties</code>,
+        so that <code>MailLogger</code> reads message
+        parameters from file <code>MailLogger.properties</code> of the current
+        directory:
+      </p>
+
+      <source>
+MailLogger.from=user@example.org
+MailLogger.failure.to=user@example.org
+MailLogger.success.to=user@example.org
+MailLogger.mailhost=localhost
+      </source>
+    </section>
+
+    <section name="Huh? I can&#39;t figure it out!">
+      <p>
+        That&#39;s probably our fault, and it means that we have to
+        provide better documentation. Please do not hesitate to ask
+        questions on the user mailing list, this will help us to improve
+        this document.  Please ask your questions as precisely as
+        possible. We will not be able to answer questions like &quot;I
+        want to write a listener but I don&#39;t know how, can you help
+        me?&quot;. Tell us what you are trying to do (the purpose of the
+        listener), what you have understood so far, and what exactly you
+        are getting stuck on.
+      </p>
+    </section>
+
+    <section name="Contributing">
+      <p>
+        We need <em>your</em> help to keep improving Checkstyle.
+        Whenever you write a listener that you think is generally
+        useful, please consider <a
+        href="contributing.html">contributing</a> it to the Checkstyle
+        community and submit it for inclusion in the next release of
+        Checkstyle.
+      </p>
+    </section>
+  </body>
+</document>

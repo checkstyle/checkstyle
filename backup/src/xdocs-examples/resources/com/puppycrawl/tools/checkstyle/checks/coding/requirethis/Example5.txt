@@ -1,0 +1,25 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="RequireThis">
+      <property name="validateOnlyOverlapping" value="false"/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+public class C {
+  private int scale;
+  private int x;
+
+  public void foo(int scale) {
+    scale = this.scale;      // no violation
+
+    if (scale > 0) {
+      scale = -scale;        // no violation
+    }
+    x *= scale;
+  }
+}
+// xdoc section -- end

@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>IllegalInstantiation</title>
+  </head>
+  <body>
+    <section name="IllegalInstantiation">
+      <p>Since Checkstyle 3.0</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Checks for illegal instantiations where a factory method is
+          preferred.
+        </p>
+
+        <p>
+          Rationale: Depending on the project, for some classes it might be
+          preferable to create instances through factory methods rather than
+          calling the constructor.
+        </p>
+
+        <p>
+          A simple example is the <code>java.lang.Boolean</code>
+          class. For performance reasons, it is preferable to
+          use the predefined constants <code> TRUE</code> and
+          <code>FALSE</code>. Constructor invocations should be
+          replaced by calls to <code>Boolean.valueOf()</code>.
+        </p>
+
+        <p>
+          Some extremely performance sensitive projects may require the use of
+          factory methods for other classes as well, to enforce the usage of
+          number caches or object pools.
+        </p>
+      </subsection>
+
+      <subsection name="Notes" id="Notes">
+        <p>
+          There is a limitation that it is currently not possible to specify
+          array classes.
+        </p>
+      </subsection>
+
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>classes</td>
+              <td>Specify fully qualified class names that should not be instantiated.</td>
+              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
+              <td><code>{}</code></td>
+              <td>3.0</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;IllegalInstantiation&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example1-code">Example:</p>
+        <source>
+public class MyTest {
+  public class Boolean {
+    boolean a;
+
+    public Boolean (boolean a) { this.a = a; }
+  }
+
+  public void myTest (boolean a, int b) {
+    Boolean c = new Boolean(a); // OK
+    java.lang.Boolean d = new java.lang.Boolean(a); // OK
+
+    Integer e = new Integer(b); // OK
+    Integer f = Integer.valueOf(b); // OK
+  }
+}
+        </source>
+        <p id="Example2-config">
+          To configure the check to find instantiations of <code>java.lang.Boolean</code>
+          and <code>java.lang.Integer</code>:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;IllegalInstantiation&quot;&gt;
+      &lt;property name=&quot;classes&quot; value=&quot;java.lang.Boolean,
+        java.lang.Integer&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example2-code">Example:</p>
+        <source>
+public class MyTest {
+  public class Boolean {
+    boolean a;
+
+    public Boolean (boolean a) { this.a = a; }
+  }
+
+  public void myTest (boolean a, int b) {
+    Boolean c = new Boolean(a); // OK
+    java.lang.Boolean d = new java.lang.Boolean(a); // violation, instantiation of
+                                                    // java.lang.Boolean should be avoided
+
+    Integer e = new Integer(b); // violation, instantiation of
+                                // java.lang.Integer should be avoided
+    Integer f = Integer.valueOf(b); // OK
+  }
+}
+        </source>
+        <p id="Example3-config">
+          Finally, there is a limitation that it is currently not possible to specify array classes:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;IllegalInstantiation&quot;&gt;
+      &lt;property name=&quot;classes&quot; value=&quot;java.lang.Boolean[],
+         Boolean[], java.lang.Integer[], Integer[]&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example3-code">Example:</p>
+        <source>
+public class MyTest {
+  public void myTest () {
+    Boolean[] newBoolArray = new Boolean[]{true,true,false}; // OK
+    Integer[] newIntArray = new Integer[]{1,2,3}; // OK
+  }
+}
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+IllegalInstantiation">
+            Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+IllegalInstantiation">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22instantiation.avoid%22">
+              instantiation.avoid
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.coding
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

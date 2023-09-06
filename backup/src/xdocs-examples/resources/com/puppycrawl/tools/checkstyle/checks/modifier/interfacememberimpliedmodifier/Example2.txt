@@ -1,0 +1,22 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="InterfaceMemberImpliedModifier">
+      <property name="violateImpliedPublicNested" value="false"/>
+      <property name="violateImpliedStaticNested" value="false"/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+public interface RoadFeature {
+
+  String STOP = "Stop";  // violation
+
+  enum Lights {  // valid because of configured properties
+
+    RED, YELLOW, GREEN;
+  }
+}
+// xdoc section -- end

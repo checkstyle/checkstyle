@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+
+  <head>
+    <title>Extending Checkstyle</title>
+  </head>
+
+  <body>
+    <section name="Extending Checkstyle">
+      <p>
+        This section covers the ways that Checkstyle's behaviour can be
+        extended, including writing your own checks.
+      </p>
+
+      <ul>
+        <li><a href="writingchecks.html">Writing Checks</a>;</li>
+        <li><a href="writingjavadocchecks.html">Writing Javadoc Checks</a>;</li>
+        <li><a href="writingfilters.html">Writing filters</a>;</li>
+        <li><a href="writingfilefilters.html">Writing file filters</a>;</li>
+        <li><a href="writinglisteners.html">Writing listeners</a>.</li>
+      </ul>
+    </section>
+  </body>
+</document>

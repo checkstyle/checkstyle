@@ -1,0 +1,28 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="AnnotationUseStyle">
+      <property name="elementStyle" value="compact"/>
+      <property name="closingParens" value="always"/>
+      <property name="trailingArrayComma" value="ignore"/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+@SuppressWarnings("unchecked") // OK
+@Deprecated // Violation - must have a closing parenthesis
+@SomeArrays({"unchecked","unused"}) // OK
+public class TestOne
+{
+
+}
+
+@SuppressWarnings(value={"unchecked"}) // Violation - parameter 'value' shouldn't be used
+@Deprecated() // OK
+@SomeArrays(value={"unchecked","unused",}) // Violation - parameter 'value' shouldn't be used
+class TestTwo {
+
+}
+// xdoc section -- end

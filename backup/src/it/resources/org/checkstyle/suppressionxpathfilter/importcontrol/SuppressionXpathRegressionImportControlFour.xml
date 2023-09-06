@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<!DOCTYPE import-control PUBLIC
+    "-//Checkstyle//DTD ImportControl Configuration 1.3//EN"
+    "https://checkstyle.org/dtds/import_control_1_3.dtd">
+
+<import-control pkg="org.checkstyle.suppressionxpathfilter">
+  <disallow pkg="java.util"/>
+  <subpackage name="importcontrol">
+    <allow class="java.util.Arrays"/>
+    <allow pkg="java.io"/>
+  </subpackage>
+</import-control>

@@ -1,0 +1,21 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="MatchXpath">
+      <property name="query" value="//CTOR_DEF[count(./PARAMETERS/*)
+              > 0]"/>
+      <message key="matchxpath.match"
+              value="Parameterized constructors are not allowed, there should be only default
+              ctor"/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+public class Test {
+  public Test(Object c) { } // violation
+  public Test(int a, HashMap<String, Integer> b) { } // violation
+  public Test() { } // ok
+}
+// xdoc section -- end

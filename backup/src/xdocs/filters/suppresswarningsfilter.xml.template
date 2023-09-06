@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>SuppressWarningsFilter</title>
+  </head>
+  <body>
+    <section name="SuppressWarningsFilter">
+      <p>Since Checkstyle 5.7</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Filter <code>SuppressWarningsFilter</code> uses annotation
+          <code>@SuppressWarnings</code> to suppress audit events.
+        </p>
+        <p>
+          Rationale: Same as for
+          <code>SuppressionCommentFilter</code>. In the contrary to it
+          here, comments are not used comments but the builtin syntax of
+          <code>@SuppressWarnings</code>. This can be perceived as a
+          more elegant solution than using comments. Also, this approach
+          maybe supported by various IDE.
+        </p>
+        <p>
+          Usage: This filter only works in conjunction with a
+          <a href="../checks/annotation/suppresswarningsholder.html#SuppressWarningsHolder">
+          SuppressWarningsHolder</a>,
+          since that check finds
+          the annotations in the Java files and makes them available for
+          the filter. Because of that, a configuration that includes
+          this filter must also include
+          <code>SuppressWarningsHolder</code> as a child module of the
+          <code>TreeWalker</code>. Name of check in annotation is case-insensitive
+          and should be written with any dotted prefix or "Check" suffix removed.
+        </p>
+      </subsection>
+      <subsection name="Notes" id="Notes">
+        <p>
+          SuppressWarningsFilter can suppress Checks that have Treewalker or
+          Checker as parent module.
+        </p>
+      </subsection>
+      <subsection name="Examples" id="Examples">
+        <p>
+          To configure the check that makes tha annotations available to
+          the filter.
+        </p>
+        <source>
+&lt;module name="TreeWalker"&gt;
+              ...
+&lt;module name="SuppressWarningsHolder" /&gt;
+              ...
+&lt;/module&gt;
+        </source>
+        <p>To configure filter to suppress audit events for annotations add:</p>
+        <source>
+&lt;module name="SuppressWarningsFilter" /&gt;
+        </source>
+        <p id="Example1-config">Full configuration:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswarningsfilter/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">Example:</p>
+        <source>
+@SuppressWarnings({"memberName"})
+private int J; // should NOT fail MemberNameCheck
+
+@SuppressWarnings({"MemberName"})
+@SuppressWarnings({"NoWhitespaceAfter"})
+private int [] ARRAY; // should NOT fail MemberNameCheck and NoWhitespaceAfterCheck
+        </source>
+        <p>
+          It is possible to specify an ID of checks, so that it can be leveraged by the
+          SuppressWarningsFilter to skip validations. The following examples show how to skip
+          validations near code that has  <code>@SuppressWarnings("checkstyle:&lt;ID&gt;")</code> or
+          just <code>@SuppressWarnings("&lt;ID&gt;")</code> annotation, where ID is the ID of checks
+          you want to suppress.
+        </p>
+        <p>
+          Example of Checkstyle check configuration:
+        </p>
+        <source>
+&lt;module name="RegexpSinglelineJava"&gt;
+  &lt;property name="id" value="systemout"/&gt;
+  &lt;property name="format" value="^.*System\.(out|err).*$"/&gt;
+  &lt;property name="message"
+    value="Don't use System.out/err, use SLF4J instead."/&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          To make the annotations available to the filter.
+        </p>
+        <source>
+&lt;module name="TreeWalker"&gt;
+  ...
+  &lt;module name="SuppressWarningsHolder" /&gt;
+  ...
+&lt;/module&gt;
+        </source>
+        <p>
+          To configure filter to suppress audit events for annotations add:
+        </p>
+        <source>
+&lt;module name="SuppressWarningsFilter" /&gt;
+        </source>
+        <p id="Example2-config">Full configuration:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswarningsfilter/Example2.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswarningsfilter/Example2.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+      </subsection>
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressWarningsFilter">
+            Checkstyle Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressWarningsFilter">
+            Google Style</a>
+          </li>
+        </ul>
+      </subsection>
+      <subsection name="Package" id="Package">
+        <p> com.puppycrawl.tools.checkstyle.filters </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <macro name="parent-module">
+          <param name="moduleName" value="SuppressWarningsFilter"/>
+        </macro>
+      </subsection>
+    </section>
+  </body>
+</document>

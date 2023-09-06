@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suppressedMutations>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <mutation unstable="false">
+    <sourceFile>BlockCommentPosition.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.utils.BlockCommentPosition</mutatedClass>
+    <mutatedMethod>isOnPlainClassMember</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>&amp;&amp; parent.getParent().getType() == memberType</lineContent>
+  </mutation>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <mutation unstable="false">
+    <sourceFile>CommonUtil.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.utils.CommonUtil</mutatedClass>
+    <mutatedMethod>matchesFileExtension</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (extension.startsWith(EXTENSION_SEPARATOR)) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CommonUtil.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.utils.CommonUtil</mutatedClass>
+    <mutatedMethod>relativizeAndNormalizePath</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to java/nio/file/Path::normalize with receiver</description>
+    <lineContent>final Path pathAbsolute = Paths.get(path).normalize();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CommonUtil.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.utils.CommonUtil</mutatedClass>
+    <mutatedMethod>relativizeAndNormalizePath</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to java/nio/file/Path::normalize with receiver</description>
+    <lineContent>final Path pathBase = Paths.get(baseDirectory).normalize();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>ModuleReflectionUtil.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.utils.ModuleReflectionUtil</mutatedClass>
+    <mutatedMethod>getCheckstyleModules</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to java/util/stream/Stream::filter with receiver</description>
+    <lineContent>.filter(ModuleReflectionUtil::isCheckstyleModule)</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>ScopeUtil.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.utils.ScopeUtil</mutatedClass>
+    <mutatedMethod>getDeclaredScopeFromMods</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>for (DetailAST token = aMods.getFirstChild(); token != null &amp;&amp; result == null;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>ScopeUtil.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.utils.ScopeUtil</mutatedClass>
+    <mutatedMethod>getSurroundingScope</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getParent with receiver</description>
+    <lineContent>for (DetailAST token = node.getParent();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>ScopeUtil.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.utils.ScopeUtil</mutatedClass>
+    <mutatedMethod>isInBlockOf</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>token != null &amp;&amp; !returnValue;</lineContent>
+  </mutation>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <mutation unstable="false">
+    <sourceFile>ScopeUtil.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.utils.ScopeUtil</mutatedClass>
+    <mutatedMethod>lambda$getScopeFromMods$1</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getParent with receiver</description>
+    <lineContent>.orElseGet(() -&gt; getDefaultScope(aMods.getParent()));</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>TokenUtil.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.utils.TokenUtil</mutatedClass>
+    <mutatedMethod>lambda$nameToValueMapFromPublicIntFields$1</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/lang/reflect/Field::getName</description>
+    <lineContent>Field::getName, fld -&gt; getIntFromField(fld, fld.getName()))</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>XpathUtil.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.utils.XpathUtil</mutatedClass>
+    <mutatedMethod>getXpathItems</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to java/util/stream/Stream::map with receiver</description>
+    <lineContent>.map(NodeInfo.class::cast)</lineContent>
+  </mutation>
+</suppressedMutations>

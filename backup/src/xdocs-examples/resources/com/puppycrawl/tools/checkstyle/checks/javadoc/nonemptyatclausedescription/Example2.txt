@@ -1,0 +1,28 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="NonEmptyAtclauseDescription">
+      <property name="javadocTokens" value="PARAM_LITERAL,THROWS_LITERAL"/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+class Test
+{
+  // Violation for param "b" and at tag "throws".
+  /**
+  * Some summary.
+  *
+  * <code>@param</code> a Some description
+  * <code>@param</code> b
+  * <code>@deprecated</code>
+  * <code>@throws</code> Exception
+  * <code>@return</code>
+  */
+  public int method(String a, int b) throws Exception {
+    return 1;
+  }
+}
+// xdoc section -- end

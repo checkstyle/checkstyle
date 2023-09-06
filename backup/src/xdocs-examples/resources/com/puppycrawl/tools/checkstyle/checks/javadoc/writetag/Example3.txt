@@ -1,0 +1,21 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="WriteTag">
+      <property name="tag" value="@since"/>
+      <property name="tokens"
+                value="INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF, METHOD_DEF" />
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+/**
+* Some class
+*/
+public class Test { // violation as required tag is missed
+  /** some doc */
+  void foo() {} // violation as required tag is missed
+}
+// xdoc section -- end

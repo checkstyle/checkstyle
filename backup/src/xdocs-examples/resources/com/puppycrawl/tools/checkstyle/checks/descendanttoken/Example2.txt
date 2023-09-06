@@ -1,0 +1,40 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="DescendantToken">
+      <property name="tokens" value="LITERAL_SWITCH"/>
+      <property name="limitedTokens" value="LITERAL_CASE"/>
+      <property name="maximumDepth" value="2"/>
+      <property name="maximumNumber" value="1"/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+class Test {
+  public void foo() {
+    int x = 1;
+    switch (x) { // ok
+      case 1:
+        // Some code
+        break;
+      default:
+        // Some code
+        break;
+    }
+
+    switch (x) { // violation
+      case 1:
+        // Some code
+        break;
+      case 2:
+        // Some code
+        break;
+      default:
+        // Some code
+        break;
+    }
+  }
+}
+// xdoc section -- end

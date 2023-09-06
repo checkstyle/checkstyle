@@ -1,0 +1,8 @@
+/*xml
+<module name="Checker">
+  <module name="RegexpHeader"/>
+</module>
+*/
+
+// xdoc section -- start
+// xdoc section -- end

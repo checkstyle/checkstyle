@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>OrderedProperties</title>
+  </head>
+  <body>
+    <section name="OrderedProperties">
+      <p>Since Checkstyle 8.22</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Detects if keys in properties files are in correct order.
+        </p>
+        <p>
+          Rationale: Sorted properties make it easy for people to find required properties by name
+          in file. This makes it easier to merge. While there are no problems at runtime.
+          This check is valuable only on files with string resources where order of lines
+          does not matter at all, but this can be improved.
+          E.g.: checkstyle/src/main/resources/com/puppycrawl/tools/checkstyle/messages.properties
+          You may suppress warnings of this check for files that have a logical structure like
+          build files or log4j configuration files. See SuppressionFilter.
+          <code>
+              &lt;suppress checks=&quot;OrderedProperties&quot;
+                  files=&quot;log4j.properties|ResourceBundle/Bug.*.properties|logging.properties&quot;/&gt;
+          </code>
+        </p>
+        <p>
+          Known limitation: The key should not contain a newline.
+          The string compare will work, but not the line number reporting.
+        </p>
+      </subsection>
+
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>fileExtensions</td>
+              <td>Specify file type extension of the files to check.</td>
+              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
+              <td><code>.properties</code></td>
+              <td>8.22</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;OrderedProperties&quot;/&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example1-code">
+          Example properties file:
+        </p>
+        <source>
+A =65
+a =97
+key =107 than nothing
+key.sub =k is 107 and dot is 46
+key.png =value - violation
+        </source>
+        <p>
+          We check order of key's only. Here we would like to use a Locale independent
+          order mechanism and binary order. The order is case-insensitive and ascending.
+        </p>
+        <ul>
+          <li>
+            The capital 'A' is on 65 and the lowercase 'a' is on position 97 on the ascii table.
+          </li>
+          <li>
+            Key and key.sub are in correct order here, because only keys are relevant.
+            Therefore, on line 5 you have only &quot;key&quot; and nothing behind.
+            On line 6 you have &quot;key.&quot; The dot is on position 46 which is higher than nothing.
+            key.png will be reported as violation because &quot;png&quot; comes before &quot;sub&quot;.
+          </li>
+        </ul>
+
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+OrderedProperties">
+              Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22properties.notSorted.property%22">
+              properties.notSorted.property
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22unable.open.cause%22">
+              unable.open.cause
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <p>
+          <a href="../../config.html#Checker">Checker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

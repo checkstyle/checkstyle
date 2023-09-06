@@ -1,0 +1,18 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="MissingJavadocPackage"/>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+/**
+* Provides API classes
+*/
+package com.checkstyle.api; // no violation
+/*
+* Block comment is not a javadoc
+*/
+package com.checkstyle.api; // violation
+// xdoc section -- end

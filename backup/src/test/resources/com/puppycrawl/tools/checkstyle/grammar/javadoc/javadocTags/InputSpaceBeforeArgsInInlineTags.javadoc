@@ -1,0 +1,18 @@
+* {@link
+*     reference
+*     Description-on-multiple-
+*     lines}
+
+* {@linkplain
+*     reference
+*     Description-on-multiple-
+*     lines}
+
+
+* {@customlink
+*     reference
+*     Description-on-multiple-
+*     lines}
+
+* {@value
+*     Reference}

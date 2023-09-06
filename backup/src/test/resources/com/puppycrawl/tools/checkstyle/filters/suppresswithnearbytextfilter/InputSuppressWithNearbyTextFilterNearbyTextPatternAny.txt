@@ -1,0 +1,18 @@
+/*
+SuppressWithNearbyTextFilter
+nearbyTextPattern = .*
+checkPattern = (default).*
+messagePattern = .*Line.*
+idPattern = (default)(null)
+lineRange = (default)0
+
+com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck
+fileExtensions = (default)all files
+ignorePattern = (default)^(package|import) .*
+max = 76
+
+
+*/
+
+// filtered violation below 'Line is longer than 76 characters (found 80).'
+This is a line longer than 70 characters but violation should be suppressed.....

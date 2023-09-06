@@ -1,0 +1,17 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="AvoidEscapedUnicodeCharacters">
+      <property name="allowIfAllCharactersEscaped" value="true"/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+String unitAbbrev = "μs";      // OK, a normal String
+String unitAbbrev = "\u03bcs"; // violation, not all characters are escaped ('s').
+String unitAbbrev = "\u03bc\u03bc\u03bc"; // OK
+String unitAbbrev = "\u03bc\u03bcs";// violation, not all characters are escaped ('s').
+return '\ufeff' + content;          // OK, all control characters are escaped
+// xdoc section -- end

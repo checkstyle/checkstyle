@@ -1,0 +1,24 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="FinalLocalVariable">
+      <property name="tokens" value="VARIABLE_DEF,PARAMETER_DEF"/>
+      <property name="validateEnhancedForLoopVariable" value="false"/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+public class MyClass {
+  static int foo(int x, int y) { //violations, parameters should be final
+    return x+y;
+  }
+  public static void main (String []args) { //violation, parameters should be final
+    for (String i : args) {
+      System.out.println(i);
+    }
+    int result=foo(1,2); // violation
+  }
+}
+// xdoc section -- end

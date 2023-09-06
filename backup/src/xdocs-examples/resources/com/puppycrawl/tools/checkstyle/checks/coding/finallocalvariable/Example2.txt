@@ -1,0 +1,12 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="FinalLocalVariable">
+      <property name="tokens" value="VARIABLE_DEF,PARAMETER_DEF"/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+// xdoc section -- end

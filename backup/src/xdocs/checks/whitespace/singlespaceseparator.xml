@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>SingleSpaceSeparator</title>
+  </head>
+  <body>
+    <section name="SingleSpaceSeparator">
+      <p>Since Checkstyle 6.19</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Checks that non-whitespace characters are separated by no more than one
+          whitespace. Separating characters by tabs or multiple spaces will be
+          reported. Currently, the check doesn't permit horizontal alignment. To inspect
+          whitespaces before and after comments, set the property
+          <code>validateComments</code> to true.
+        </p>
+
+        <p>
+          Setting <code>validateComments</code> to false will ignore cases like:
+        </p>
+
+        <source>
+int i;  // Multiple whitespaces before comment tokens will be ignored.
+private void foo(int  /* whitespaces before and after block-comments will be
+ignored */  i) {
+        </source>
+
+        <p>
+          Sometimes, users like to space similar items on different lines to the same
+          column position for easier reading. This feature isn't supported by this
+          check, so both braces in the following case will be reported as violations.
+        </p>
+
+        <source>
+public long toNanos(long d)  { return d;             } // 2 violations
+public long toMicros(long d) { return d / (C1 / C0); }
+        </source>
+      </subsection>
+
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>validateComments</td>
+              <td>Control whether to validate whitespaces surrounding comments.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>6.19</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;SingleSpaceSeparator&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example1-code">Example:</p>
+        <source>
+class Example1 {
+  int foo()   { // violation 'Use a single space'
+    return  1; // violation 'Use a single space'
+  }
+  int fun1() {
+    return 3;
+  }
+  void  fun2() {} // violation 'Use a single space'
+}
+        </source>
+        <p id="Example2-config">
+          To configure the check so that it validates comments:
+        </p>
+
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;SingleSpaceSeparator&quot;&gt;
+      &lt;property name=&quot;validateComments&quot; value=&quot;true&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example2-code">Example:</p>
+        <source>
+class Example2 {
+  // violation below 'Use a single space'
+  void fun1() {}  // 2 whitespaces before the comment starts
+  // violation below 'Use a single space'
+  void fun2() { return; }  /* 2 whitespaces before the comment starts */
+  // violation below 'Use a single space'
+  /* 2 whitespaces after the comment ends */  int a;
+
+  String s; /* OK, 1 whitespace */
+
+  /**
+   * This is a Javadoc comment
+   */  int b; // 2 whitespaces after the javadoc comment ends
+  // violation above 'Use a single space'
+  float f1;
+
+  /**
+   * OK, 1 white space after the doc comment ends
+   */ float f2;
+}
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+SingleSpaceSeparator">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22single.space.separator%22">
+              single.space.separator
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.whitespace
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

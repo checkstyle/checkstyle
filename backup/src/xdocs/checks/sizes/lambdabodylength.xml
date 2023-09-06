@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>LambdaBodyLength</title>
+  </head>
+  <body>
+    <section name="LambdaBodyLength">
+      <p>Since Checkstyle 8.37</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Checks lambda body length.
+        </p>
+
+        <p>
+          Rationale: Similar to anonymous inner classes, if lambda body becomes very long
+          it is hard to understand and to see the flow of the method
+          where the lambda is defined. Therefore, long lambda body
+          should usually be extracted to method.
+        </p>
+      </subsection>
+
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>max</td>
+              <td>Specify the maximum number of lines allowed.</td>
+              <td><a href="../../property_types.html#int">int</a></td>
+              <td><code>10</code></td>
+              <td>8.37</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the check to accept lambda bodies with up to 10 lines:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;LambdaBodyLength&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example1-code">
+        Example:
+        </p>
+        <source>
+class Example1 {
+  Runnable r = () -&gt; { // OK, length is 10
+    System.out.println(2); // line 2 of lambda
+    System.out.println(3);
+    System.out.println(4);
+    System.out.println(5);
+    System.out.println(6);
+    System.out.println(7);
+    System.out.println(8);
+    System.out.println(9);
+  }; // line 10
+  Runnable r2 = () -&gt; { // violation 'length is 11'
+    System.out.println(2); // line 2 of lambda
+    System.out.println(3);
+    System.out.println(4);
+    System.out.println(5);
+    System.out.println(6);
+    System.out.println(7);
+    System.out.println(8);
+    System.out.println(9);
+    System.out.println(10);
+  }; // line 11
+  Runnable r3 = () -&gt; // violation 'length is 11'
+    &quot;someString&quot;.concat(&quot;1&quot;) // line 1 of lambda
+                .concat(&quot;2&quot;)
+                .concat(&quot;3&quot;)
+                .concat(&quot;4&quot;)
+                .concat(&quot;5&quot;)
+                .concat(&quot;6&quot;)
+                .concat(&quot;7&quot;)
+                .concat(&quot;8&quot;)
+                .concat(&quot;9&quot;)
+                .concat(&quot;10&quot;)
+                .concat(&quot;11&quot;); // line 11
+}
+        </source>
+        <p id="Example2-config">
+          To configure the check to accept lambda bodies with max 5 lines:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;LambdaBodyLength&quot;&gt;
+      &lt;property name=&quot;max&quot; value=&quot;5&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example2-code">
+          Example:
+        </p>
+        <source>
+class Example2 {
+  Runnable r = () -&gt; { // OK, length is 5
+    System.out.println(2);
+    System.out.println(3);
+    System.out.println(4);
+  };
+  Runnable r2 = () -&gt; { // violation 'length is 6'
+    System.out.println(2); // line 2 of lambda
+    System.out.println(3);
+    System.out.println(4);
+    System.out.println(5);
+  };
+
+  Runnable r3 = () -&gt; // violation 'length is 6'
+    &quot;someString&quot;.concat(&quot;1&quot;)
+                .concat(&quot;2&quot;)
+                .concat(&quot;3&quot;)
+                .concat(&quot;4&quot;)
+                .concat(&quot;5&quot;)
+                .concat(&quot;6&quot;);
+}
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+LambdaBodyLength">
+              Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fsizes%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22maxLen.lambdaBody%22">
+              maxLen.lambdaBody
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.sizes
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

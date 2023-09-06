@@ -1,0 +1,12 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="MethodCount">
+      <property name="maxTotal" value="30"/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+// xdoc section -- end

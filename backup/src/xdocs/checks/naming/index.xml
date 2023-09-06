@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>Naming Conventions</title>
+  </head>
+  <body>
+    <section name="Naming Conventions Checks">
+      <subsection name="Overview" id="Overview">
+        <p>
+          Each of these naming modules validates identifiers for particular code
+          elements. Valid identifiers for a naming module are specified by its
+          <code> format</code> property. The value of <code>format</code> is a
+          <a href="https://docs.oracle.com/javase/1.5.0/docs/api/java/util/regex/Pattern.html">
+            pattern</a> for valid identifiers.
+        </p>
+      </subsection>
+      <div class="wrapper">
+        <table>
+          <tr>
+            <td>
+              <a href="abbreviationaswordinname.html#AbbreviationAsWordInName">
+                AbbreviationAsWordInName
+              </a>
+            </td>
+            <td>
+              Validates abbreviations (consecutive capital letters)
+             length in identifier name, it also allows to enforce camel case naming.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="abstractclassname.html#AbstractClassName">
+                AbstractClassName
+              </a>
+            </td>
+            <td>
+              Ensures that the names of abstract classes conforming to some pattern and
+              check that <code>abstract</code> modifier exists.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="catchparametername.html#CatchParameterName">
+                CatchParameterName
+              </a>
+            </td>
+            <td>
+              Checks that <code>catch</code> parameter names conform to a specified pattern.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="classtypeparametername.html#ClassTypeParameterName">
+                ClassTypeParameterName
+              </a>
+            </td>
+            <td>
+              Checks that class type parameter names conform to a specified pattern.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="constantname.html#ConstantName">
+                ConstantName
+              </a>
+            </td>
+            <td>
+              Checks that constant names conform to a specified pattern.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="illegalidentifiername.html#IllegalIdentifierName">
+                IllegalIdentifierName
+              </a>
+            </td>
+            <td>
+              Checks identifiers with a pattern for a set of illegal names, such as those
+            that are restricted or contextual keywords.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="interfacetypeparametername.html#InterfaceTypeParameterName">
+                InterfaceTypeParameterName
+              </a>
+            </td>
+            <td>
+              Checks that interface type parameter names conform to a specified pattern.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="lambdaparametername.html#LambdaParameterName">
+                LambdaParameterName
+              </a>
+            </td>
+            <td>
+              Checks lambda parameter names.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="localfinalvariablename.html#LocalFinalVariableName">
+                LocalFinalVariableName
+              </a>
+            </td>
+            <td>
+              Checks that local final variable names conform to a specified pattern.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="localvariablename.html#LocalVariableName">
+                LocalVariableName
+              </a>
+            </td>
+            <td>
+              Checks that local, non-final variable names conform to a specified pattern.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="membername.html#MemberName">
+                MemberName
+              </a>
+            </td>
+            <td>
+              Checks that instance variable names conform to a specified pattern.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="methodname.html#MethodName">
+                MethodName
+              </a>
+            </td>
+            <td>
+              Checks that method names conform to a specified pattern.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="methodtypeparametername.html#MethodTypeParameterName">
+                MethodTypeParameterName
+              </a>
+            </td>
+            <td>
+              Checks that method type parameter names conform to a specified pattern.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="packagename.html#PackageName">
+                PackageName
+              </a>
+            </td>
+            <td>
+              Checks that package names conform to a specified pattern.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="parametername.html#ParameterName">
+                ParameterName
+              </a>
+            </td>
+            <td>
+              Checks that method parameter names conform to a specified pattern.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="patternvariablename.html#PatternVariableName">
+                PatternVariableName
+              </a>
+            </td>
+            <td>
+              Checks that pattern variable names conform to a specified pattern.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="recordcomponentname.html#RecordComponentName">
+                RecordComponentName
+              </a>
+            </td>
+            <td>
+              Checks that record component names conform to a specified pattern.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="recordtypeparametername.html#RecordTypeParameterName">
+                RecordTypeParameterName
+              </a>
+            </td>
+            <td>
+              Checks that record type parameter names conform to a specified pattern.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="staticvariablename.html#StaticVariableName">
+                StaticVariableName
+              </a>
+            </td>
+            <td>
+              Checks that <code>static</code>, non-<code>final</code> variable names
+              conform to a specified pattern.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="typename.html#TypeName">
+                TypeName
+              </a>
+            </td>
+            <td>
+              Checks that type names conform to a specified pattern.
+            </td>
+          </tr>
+        </table>
+      </div>
+    </section>
+  </body>
+</document>

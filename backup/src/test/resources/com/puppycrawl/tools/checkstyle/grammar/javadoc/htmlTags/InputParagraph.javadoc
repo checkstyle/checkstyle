@@ -1,0 +1,44 @@
+* <p> <li> </li> </p>
+* <P> <li> </p>
+* <p> </li> </P>
+* <p> <tr> </tr> </p>
+* <P> <tr> </p>
+* <p> </tr> </P>
+* <p> <td> </td> </p>
+* <P> <td> </p>
+* <p> </td> </P>
+* <p> <th> </th> </p>
+* <P> <th> </p>
+* <p> </th> </P>
+* <p> <body> </body> </p>
+* <P> <body> </p>
+* <p> </body> </P>
+* <p> <colgroup> </colgroup> </p>
+* <P> <colgroup> </p>
+* <p> </colgroup> </P>
+* <p> <dd> </dd> </p>
+* <P> <dd> </p>
+* <p> </dd> </P>
+* <p> <dt> </dt> </p>
+* <P> <dt> </p>
+* <p> </dt> </P>
+* <p> <head> </head> </p>
+* <P> <head> </p>
+* <p> </head> </P>
+* <p> <html> </html> </p>
+* <P> <html> </p>
+* <p> </html> </P>
+* <p> <option> </option> </p>
+* <P> <option> </p>
+* <p> </option> </P>
+* <p> <tbody> </tbody> </p>
+* <P> <tbody> </p>
+* <p> </tbody> </P>
+* <p> <tfoot> </tfoot> </p>
+* <P> <tfoot> </p>
+* <p> </tfoot> </P>
+* <p style="color:red"
+*
+* > <!--HTML COMMENT-->  </p
+*
+* >

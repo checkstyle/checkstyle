@@ -1,0 +1,1027 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/XDOC/2.0
+                              https://maven.apache.org/xsd/xdoc-2.0.xsd">
+
+  <head>
+    <title>Sun's Java Style</title>
+  </head>
+
+  <body>
+    <section name="Sun's Java Style Checkstyle Coverage">
+      <subsection name="Useful information" id="Sun_Useful_information">
+        <p>
+          This coverage report was created for
+          <a href="https://www.oracle.com/java/technologies/javase/codeconventions-contents.html">
+            Code Conventions for the Java™ Programming Language</a>(<a
+            href="styleguides/sun-code-conventions-19990420/CodeConvTOC.doc.html"
+        >cached page</a>),
+          version of 20 April 1999, current as of 30 March 2019
+        </p>
+
+        <p>
+          <a href="https://checkstyle.org/reports/javadoc/openjdk8/">
+            Checkstyle's html report for Open JDK library (javadoc validation)</a>
+        </p>
+        <p>
+          <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml">
+            incomplete Checkstyle configuration for 'Sun's Java Style'</a>
+        </p>
+      </subsection>
+      <subsection name="Legend" id="Sun_Legend">
+        <p>
+          "???" - Report is incomplete in this line.
+          <br />
+          "--" - There is no rule in this paragraph.
+          <br />
+          "↓" - This paragraph is the high-level point of some group.
+          <br />
+          <span class="wrapper inline">
+            <img
+                src="images/ok_green.png"
+                alt="" />
+          </span>
+          - Existing Check covers all requirements from Sun.
+          <br />
+          <span class="wrapper inline">
+            <img
+                src="images/ok_blue.png"
+                alt="" />
+          </span>
+          - Existing Check covers some part of requirements from Sun.
+          <br />
+          <span class="wrapper inline">
+            <img
+                src="images/ban_red.png"
+                alt="" />
+          </span>
+          - Requirements are not possible to check by Checkstyle at all.
+          <br />
+        </p>
+      </subsection>
+      <subsection name="Coverage table" id="Sun_Coverage_table">
+        <p>
+          <b>ATTENTION:</b>
+          Links to config and test in following table reference to latest (not released yet) config.
+          Config might be slightly different from what we have in latest release.
+          Please always use config that is embedded to jar or use a custom version copied
+          from one that matches your checkstyle version.
+        </p>
+        <div class="wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th/>
+                <th>Sun's Java Style Rule</th>
+                <th>Checkstyle Check</th>
+                <th>Applied to config</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <a name="1"/>
+                  <a href="#1">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/sun-code-conventions-19990420/CodeConventions.doc.html#a18407">
+                    <strong>1 - Introduction</strong>
+                  </a>
+                </td>
+                <td>???</td>
+                <td/>
+              </tr>
+              <tr>
+                <td>
+                  <a name="1.1"/>
+                  <a href="#1.1">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/sun-code-conventions-19990420/CodeConventions.doc.html#a16712">
+                    1.1 Why Have Code Conventions
+                  </a>
+                </td>
+                <td>???</td>
+                <td/>
+              </tr>
+              <tr>
+                <td>
+                  <a name="1.2"/>
+                  <a href="#1.2">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/sun-code-conventions-19990420/CodeConventions.doc.html#a16729">
+                    1.2 Acknowledgments
+                  </a>
+                </td>
+                <td>???</td>
+                <td/>
+              </tr>
+              <tr>
+                <td>
+                  <a name="2"/>
+                  <a href="#2">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/sun-code-conventions-19990420/CodeConventions.doc1.html#a16732">
+                    <strong>2 - File Names</strong>
+                  </a>
+                </td>
+                <td>???</td>
+                <td/>
+              </tr>
+              <tr>
+                <td>
+                  <a name="2.1"/>
+                  <a href="#2.1">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/sun-code-conventions-19990420/CodeConventions.doc1.html#a647">
+                    2.1 File Suffixes
+                  </a>
+                </td>
+                <td>???</td>
+                <td/>
+              </tr>
+              <tr>
+                <td>
+                  <a name="2.2"/>
+                  <a href="#2.2">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/sun-code-conventions-19990420/CodeConventions.doc1.html#a253">
+                    2.2 Common File Names
+                  </a>
+                </td>
+                <td>???</td>
+                <td/>
+              </tr>
+              <tr>
+                <td>
+                  <a name="3"/>
+                  <a href="#3">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/sun-code-conventions-19990420/CodeConventions.doc2.html#a3043">
+                    <strong>3 - File Organization</strong>
+                  </a>
+                </td>
+                <td>???</td>
+                <td/>
+              </tr>
+              <tr>
+                <td>
+                  <a name="3.1"/>
+                  <a href="#3.1">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/sun-code-conventions-19990420/CodeConventions.doc2.html#a11684">
+                    3.1 Java Source Files
+                  </a>
+                </td>
+                <td>???</td>
+                <td/>
+              </tr>
+              <tr>
+                <td>
+                  <a name="3.1.1"/>
+                  <a href="#3.1.1">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/sun-code-conventions-19990420/CodeConventions.doc2.html#a3441">
+                    3.1.1 Beginning Comments
+                  </a>
+                </td>
+                <td>???</td>
+                <td/>
+              </tr>
+              <tr>
+                <td>
+                  <a name="3.1.2"/>
+                  <a href="#3.1.2">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/sun-code-conventions-19990420/CodeConventions.doc2.html#a277">
+                    3.1.2 Package and Import Statements
+                  </a>
+                </td>
+                <td>???</td>
+                <td/>
+              </tr>
+              <tr>
+                <td>
+                  <a name="3.1.3"/>
+                  <a href="#3.1.3">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/sun-code-conventions-19990420/CodeConventions.doc2.html#a1852">
+                    3.1.3 Class and Interface Declarations
+                  </a>
+                </td>
+                <td>???</td>
+                <td/>
+              </tr>
+              <tr>
+                <td>
+                  <a name="4"/>
+                  <a href="#4">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/sun-code-conventions-19990420/CodeConventions.doc3.html#a262">
+                    <strong>4 - Indentation</strong>
+                  </a>
+                </td>
+                <td>???</td>
+                <td/>
+              </tr>
+              <tr>
+                <td>
+                  <a name="4.1"/>
+                  <a href="#4.1">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/sun-code-conventions-19990420/CodeConventions.doc3.html#a313">
+                    4.1 Line Length
+                  </a>
+                </td>
+                <td>???</td>
+                <td/>
+              </tr>
+              <tr>
+                <td>
+                  <a name="4.2"/>
+                  <a href="#4.2">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/sun-code-conventions-19990420/CodeConventions.doc3.html#a248">
+                    4.2 Wrapping Lines
+                  </a>
+                </td>
+                <td>???</td>
+                <td/>
+              </tr>
+              <tr>
+                <td>
+                  <a name="5"/>
+                  <a href="#5">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/sun-code-conventions-19990420/CodeConventions.doc4.html#a385">
+                    <strong>5 - Comments</strong>
+                  </a>
+                </td>
+                <td>???</td>
+                <td/>
+              </tr>
+              <tr>
+                <td>
+                  <a name="5.1"/>
+                  <a href="#5.1">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/sun-code-conventions-19990420/CodeConventions.doc4.html#a216">
+                    5.1 Implementation Comment Formats
+                  </a>
+                </td>
+                <td>???</td>
+                <td/>
+              </tr>
+              <tr>
+                <td>
+                  <a name="5.1.1"/>
+                  <a href="#5.1.1">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/sun-code-conventions-19990420/CodeConventions.doc4.html#a680">
+                    5.1.1 Block Comments
+                  </a>
+                </td>
+                <td>???</td>
+                <td/>
+              </tr>
+              <tr>
+                <td>
+                  <a name="5.1.2"/>
+                  <a href="#5.1.2">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/sun-code-conventions-19990420/CodeConventions.doc4.html#a341">
+                    5.1.2 Single-Line Comments
+                  </a>
+                </td>
+                <td>???</td>
+                <td/>
+              </tr>
+              <tr>
+                <td>
+                  <a name="5.1.3"/>
+                  <a href="#5.1.3">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/sun-code-conventions-19990420/CodeConventions.doc4.html#a342">
+                    5.1.3 Trailing Comments
+                  </a>
+                </td>
+                <td>???</td>
+                <td/>
+              </tr>
+              <tr>
+                <td>
+                  <a name="5.1.4"/>
+                  <a href="#5.1.4">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/sun-code-conventions-19990420/CodeConventions.doc4.html#a286">
+                    5.1.4 End-Of-Line Comments
+                  </a>
+                </td>
+                <td>???</td>
+                <td/>
+              </tr>
+              <tr>
+                <td>
+                  <a name="5.2"/>
+                  <a href="#5.2">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/sun-code-conventions-19990420/CodeConventions.doc4.html#a16838">
+                    5.2 Documentation Comments
+                  </a>
+                </td>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_blue.png" alt=""/>
+                  </span>
+                  <a href="checks/javadoc/invalidjavadocposition.html#InvalidJavadocPosition">
+                    InvalidJavadocPosition
+                  </a>
+                </td>
+                <td>
+                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+InvalidJavadocPosition">
+                    config
+                  </a>
+                  <br/>
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/sun/checkstyle/test/chapter5comments/rule52documentationcomments/InvalidJavadocPositionTest.java">
+                    test
+                  </a>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <a name="6"/>
+                  <a href="#6">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/sun-code-conventions-19990420/CodeConventions.doc5.html#a2991">
+                    <strong>6 - Declarations</strong>
+                  </a>
+                </td>
+                <td>???</td>
+                <td/>
+              </tr>
+              <tr>
+                <td>
+                  <a name="6.1"/>
+                  <a href="#6.1">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/sun-code-conventions-19990420/CodeConventions.doc5.html#a2992">
+                    6.1 Number Per Line
+                  </a>
+                </td>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
+                  <a href="checks/coding/multiplevariabledeclarations.html#MultipleVariableDeclarations">
+                    MultipleVariableDeclarations
+                  </a>
+                </td>
+                <td>
+                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MultipleVariableDeclarations">
+                    config
+                  </a>
+                  <br/>
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/sun/checkstyle/test/chapter6declarations/rule61numberperline/MultipleVariableDeclarationsTest.java">
+                    test
+                  </a>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <a name="6.2"/>
+                  <a href="#6.2">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/sun-code-conventions-19990420/CodeConventions.doc5.html#a18761">
+                    6.2 Initialization
+                  </a>
+                </td>
+                <td>???</td>
+                <td/>
+              </tr>
+              <tr>
+                <td>
+                  <a name="6.3"/>
+                  <a href="#6.3">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/sun-code-conventions-19990420/CodeConventions.doc5.html#a16817">
+                    6.3 Placement
+                  </a>
+                </td>
+                <td>???</td>
+                <td/>
+              </tr>
+              <tr>
+                <td>
+                  <a name="6.4"/>
+                  <a href="#6.4">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/sun-code-conventions-19990420/CodeConventions.doc5.html#a381">
+                    6.4 Class and Interface Declarations
+                  </a>
+                </td>
+                <td>???</td>
+                <td/>
+              </tr>
+              <tr>
+                <td>
+                  <a name="7"/>
+                  <a href="#7">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/sun-code-conventions-19990420/CodeConventions.doc6.html#a430">
+                    <strong>7 - Statements</strong>
+                  </a>
+                </td>
+                <td>???</td>
+                <td/>
+              </tr>
+              <tr>
+                <td>
+                  <a name="7.1"/>
+                  <a href="#7.1">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/sun-code-conventions-19990420/CodeConventions.doc6.html#a431">
+                    7.1 Simple Statements
+                  </a>
+                </td>
+                <td>???</td>
+                <td/>
+              </tr>
+              <tr>
+                <td>
+                  <a name="7.2"/>
+                  <a href="#7.2">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/sun-code-conventions-19990420/CodeConventions.doc6.html#a15395">
+                    7.2 Compound Statements
+                  </a>
+                </td>
+                <td>???</td>
+                <td/>
+              </tr>
+              <tr>
+                <td>
+                  <a name="7.3"/>
+                  <a href="#7.3">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/sun-code-conventions-19990420/CodeConventions.doc6.html#a438">
+                    7.3 return Statements
+                  </a>
+                </td>
+                <td>???</td>
+                <td/>
+              </tr>
+              <tr>
+                <td>
+                  <a name="7.4"/>
+                  <a href="#7.4">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/sun-code-conventions-19990420/CodeConventions.doc6.html#a449">
+                    7.4 if, if-else, if else-if else Statements
+                  </a>
+                </td>
+                <td>???</td>
+                <td/>
+              </tr>
+              <tr>
+                <td>
+                  <a name="7.5"/>
+                  <a href="#7.5">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/sun-code-conventions-19990420/CodeConventions.doc6.html#a454">
+                    7.5 for Statements
+                  </a>
+                </td>
+                <td>???</td>
+                <td/>
+              </tr>
+              <tr>
+                <td>
+                  <a name="7.6"/>
+                  <a href="#7.6">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/sun-code-conventions-19990420/CodeConventions.doc6.html#a460">
+                    7.6 while Statements
+                  </a>
+                </td>
+                <td>???</td>
+                <td/>
+              </tr>
+              <tr>
+                <td>
+                  <a name="7.7"/>
+                  <a href="#7.7">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/sun-code-conventions-19990420/CodeConventions.doc6.html#a465">
+                    7.7 do-while Statements
+                  </a>
+                </td>
+                <td>???</td>
+                <td/>
+              </tr>
+              <tr>
+                <td>
+                  <a name="7.8"/>
+                  <a href="#7.8">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/sun-code-conventions-19990420/CodeConventions.doc6.html#a468">
+                    7.8 switch Statements
+                  </a>
+                </td>
+                <td>???</td>
+                <td/>
+              </tr>
+              <tr>
+                <td>
+                  <a name="7.9"/>
+                  <a href="#7.9">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/sun-code-conventions-19990420/CodeConventions.doc6.html#a472">
+                    7.9 try-catch Statements
+                  </a>
+                </td>
+                <td>???</td>
+                <td/>
+              </tr>
+              <tr>
+                <td>
+                  <a name="8"/>
+                  <a href="#8">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/sun-code-conventions-19990420/CodeConventions.doc7.html#a475">
+                    <strong>8 - White Space</strong>
+                  </a>
+                </td>
+                <td>???</td>
+                <td/>
+              </tr>
+              <tr>
+                <td>
+                  <a name="8.1"/>
+                  <a href="#8.1">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/sun-code-conventions-19990420/CodeConventions.doc7.html#a487">
+                    8.1 Blank Lines
+                  </a>
+                </td>
+                <td>???</td>
+                <td/>
+              </tr>
+              <tr>
+                <td>
+                  <a name="8.2"/>
+                  <a href="#8.2">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/sun-code-conventions-19990420/CodeConventions.doc7.html#a682">
+                    8.2 Blank Spaces
+                  </a>
+                </td>
+                <td>???</td>
+                <td/>
+              </tr>
+              <tr>
+                <td>
+                  <a name="9"/>
+                  <a href="#9">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/sun-code-conventions-19990420/CodeConventions.doc8.html#a367">
+                    <strong>9 - Naming Conventions</strong>
+                  </a>
+                </td>
+                <td>???</td>
+                <td/>
+              </tr>
+              <tr>
+                <td>
+                  <a name="10"/>
+                  <a href="#10">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/sun-code-conventions-19990420/CodeConventions.doc9.html#a529">
+                    <strong>10 - Programming Practices</strong>
+                  </a>
+                </td>
+                <td>???</td>
+                <td/>
+              </tr>
+              <tr>
+                <td>
+                  <a name="10.1"/>
+                  <a href="#10.1">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/sun-code-conventions-19990420/CodeConventions.doc9.html#a177">
+                    10.1 Providing Access to Instance and Class Variables
+                  </a>
+                </td>
+                <td>???</td>
+                <td/>
+              </tr>
+              <tr>
+                <td>
+                  <a name="10.2"/>
+                  <a href="#10.2">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/sun-code-conventions-19990420/CodeConventions.doc9.html#a587">
+                    10.2 Referring to Class Variables and Methods
+                  </a>
+                </td>
+                <td>???</td>
+                <td/>
+              </tr>
+              <tr>
+                <td>
+                  <a name="10.3"/>
+                  <a href="#10.3">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/sun-code-conventions-19990420/CodeConventions.doc9.html#a1255">
+                    10.3 Constants
+                  </a>
+                </td>
+                <td>???</td>
+                <td/>
+              </tr>
+              <tr>
+                <td>
+                  <a name="10.4"/>
+                  <a href="#10.4">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/sun-code-conventions-19990420/CodeConventions.doc9.html#a547">
+                    10.4 Variable Assignments
+                  </a>
+                </td>
+                <td>???</td>
+                <td/>
+              </tr>
+              <tr>
+                <td>
+                  <a name="10.5"/>
+                  <a href="#10.5">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/sun-code-conventions-19990420/CodeConventions.doc9.html#a554">
+                    10.5 Miscellaneous Practices
+                  </a>
+                </td>
+                <td>???</td>
+                <td/>
+              </tr>
+              <tr>
+                <td>
+                  <a name="10.5.1"/>
+                  <a href="#10.5.1">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/sun-code-conventions-19990420/CodeConventions.doc9.html#a331">
+                    10.5.1 Parentheses
+                  </a>
+                </td>
+                <td>???</td>
+                <td/>
+              </tr>
+              <tr>
+                <td>
+                  <a name="10.5.2"/>
+                  <a href="#10.5.2">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/sun-code-conventions-19990420/CodeConventions.doc9.html#a333">
+                    10.5.2 Returning Values
+                  </a>
+                </td>
+                <td>???</td>
+                <td/>
+              </tr>
+              <tr>
+                <td>
+                  <a name="10.5.3"/>
+                  <a href="#10.5.3">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/sun-code-conventions-19990420/CodeConventions.doc9.html#a353">
+                    10.5.3 Expressions before `?' in the Conditional Operator
+                  </a>
+                </td>
+                <td>???</td>
+                <td/>
+              </tr>
+              <tr>
+                <td>
+                  <a name="10.5.4"/>
+                  <a href="#10.5.4">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/sun-code-conventions-19990420/CodeConventions.doc9.html#a395">
+                    10.5.4 Special Comments
+                  </a>
+                </td>
+                <td>???</td>
+                <td/>
+              </tr>
+              <tr>
+                <td>
+                  <a name="11"/>
+                  <a href="#11">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/sun-code-conventions-19990420/CodeConventions.doc10.html#a186">
+                    <strong>11 - Code Examples</strong>
+                  </a>
+                </td>
+                <td>???</td>
+                <td/>
+              </tr>
+              <tr>
+                <td>
+                  <a name="11.1"/>
+                  <a href="#11.1">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/sun-code-conventions-19990420/CodeConventions.doc10.html#a182">
+                    11.1 Java Source File Example
+                  </a>
+                </td>
+                <td>???</td>
+                <td/>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </subsection>
+      <subsection name="Suppressions" id="Sun_Suppressions">
+        <p>
+          It is possible to suppress some violations by embeded filters
+          <a href="filters/suppressionfilter.html#SuppressionFilter">
+            SuppressionFilter</a>
+          and
+          <a href="filters/suppressionxpathfilter.html#SuppressionXpathFilter">
+            SuppressionXpathFilter</a>.
+          Location of config file for <i>SuppressionFilter</i> can be defined by system property
+          <i>org.checkstyle.sun.suppressionfilter.config</i> (default value is
+          <i>checkstyle-suppressions.xml</i>).
+          Location of config file for <i>SuppressionXpathFilter</i>
+          can be defined by system property
+          <i>org.checkstyle.sun.suppressionxpathfilter.config</i> (default value is
+          <i>checkstyle-xpath-suppressions.xml</i>).
+        </p>
+        <p>
+          For more details please review exact configuration of Filters in sun_checks.xml:
+          <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressionFilter">
+                    SuppressionFilter</a>,
+          <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressionXpathFilter">
+                    SuppressionXpathFilter</a>.
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

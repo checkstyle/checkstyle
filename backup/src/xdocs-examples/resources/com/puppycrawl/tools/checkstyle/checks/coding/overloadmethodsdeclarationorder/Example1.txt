@@ -1,0 +1,15 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="OverloadMethodsDeclarationOrder"/>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+public void foo(int i) {}
+public void foo(String s) {}
+public void foo(String s, int i) {}
+public void foo(int i, String s) {}
+public void notFoo() {}
+// xdoc section -- end

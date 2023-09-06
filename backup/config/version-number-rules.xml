@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ruleset xmlns="http://mojo.codehaus.org/versions-maven-plugin/rule/2.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         comparisonMethod="maven"
+         xsi:schemaLocation="http://mojo.codehaus.org/versions-maven-plugin/rule/2.0.0
+                             https://mojo.codehaus.org/versions-maven-plugin/xsd/rule-2.0.0.xsd">
+
+  <ignoreVersions>
+    <ignoreVersion type="regex">
+      .*[-_\.](alpha|Alpha|ALPHA|beta|Beta|BETA|rc|RC|M|EA)[-_\.]?[0-9]?.*
+    </ignoreVersion>
+  </ignoreVersions>
+  <rules>
+    <rule groupId="com.github.caciocavallosilano" artifactId="cacio-tta">
+      <ignoreVersions>
+        <!-- The version 1.11 we are on is the last version with Java 11 support. -->
+        <ignoreVersion type="regex">.*</ignoreVersion>
+      </ignoreVersions>
+    </rule>
+    <rule groupId="com.google.guava" artifactId="guava">
+      <ignoreVersions>
+        <ignoreVersion type="regex">.*-android</ignoreVersion>
+      </ignoreVersions>
+    </rule>
+    <rule groupId="org.apache.maven.plugins" artifactId="maven-release-plugin">
+      <ignoreVersions>
+        <!-- we use 2.1 version that is defined at our parent
+        https://repo1.maven.org/maven2/org/sonatype/oss/oss-parent/9/oss-parent-9.pom
+        It is better to use same version as in parent, we have to use such parent
+        to use nexus-staging-maven-plugin to deploy maven central
+        -->
+        <ignoreVersion type="regex">.*</ignoreVersion>
+      </ignoreVersions>
+    </rule>
+  </rules>
+</ruleset>

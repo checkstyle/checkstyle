@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+
+  <head>
+    <title>Writing Before Execution Filters</title>
+  </head>
+
+  <body>
+    <section name="Content">
+      <macro name="toc">
+        <param name="fromDepth" value="1"/>
+        <param name="toDepth" value="1"/>
+      </macro>
+    </section>
+
+    <section name="Overview">
+      <p>
+        A <code>Checker</code> has a set of <code>BeforeExecutionFileFilter</code>s that decide
+        which files the <code>Checker</code> processes.  Interface
+        <code>BeforeExecutionFileFilter</code> and class <code>BeforeExecutionFileFilterSet</code>
+        are intended to support general file uri filtering using a set of
+        <code>BeforeExecutionFileFilter</code>s.
+      </p>
+
+      <p>
+        A <code>BeforeExecutionFileFilter</code> has <code>boolean</code> method
+        <code>accept(String uri)</code> that returns <code>true</code> if the
+        <code>BeforeExecutionFileFilter</code> accepts the <code>file uri</code> parameter and
+        returns <code>false</code> if the <code>file uri</code> rejects it.
+      </p>
+
+      <p>
+        A <code>BeforeExecutionFileFilterSet</code> is a particular
+        <code>BeforeExecutionFileFilter</code> that contains a set of
+        <code>BeforeExecutionFileFilter</code>s. A <code>BeforeExecutionFileFilterSet</code>
+        accepts an <code>file uri</code> if and only if all
+        <code>BeforeExecutionFileFilter</code>s in the set accept the <code>file uri</code>.
+      </p>
+    </section>
+
+    <section name="Writing Before Execution File Filters">
+      <p>
+        The <code>BeforeExecutionFileFilter</code> that we demonstrate here rejects
+        file uris whose name matches a <a
+        href="property_types.html#Pattern">Pattern</a>.  In order to
+        enable the specification of the file name pattern as a property in a
+        configuration file, the <code>BeforeExecutionFileFilter</code> is an <a
+        href="apidocs/com/puppycrawl/tools/checkstyle/api/AutomaticBean.html">AutomaticBean</a>
+        with mutator method <code>setFiles(String)</code> that
+        receives the file name pattern.  An <code>AutomaticBean</code> uses JavaBean
+        introspection to set JavaBean properties such as <code>files</code>.
+      </p>
+
+      <source>
+package com.mycompany.filefilters;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.regex.PatternSyntaxException;
+
+import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
+import com.puppycrawl.tools.checkstyle.api.BeforeExecutionFileFilter;
+import com.puppycrawl.tools.checkstyle.api.Utils;
+
+public class FilesBeforeExecutionFileFilter
+    extends AutomaticBean
+    implements BeforeExecutionFileFilter
+{
+  private Pattern mFileRegexp;
+
+  public FilesBeforeExecutionFileFilter()
+      throws PatternSyntaxException
+  {
+    setFiles("^$");
+  }
+
+  public boolean accept(String uri)
+  {
+    return ((uri == null) || !mFileRegexp.matcher(uri).find());
+  }
+
+  public void setFiles(String aFilesPattern)
+      throws PatternSyntaxException
+  {
+    mFileRegexp = Utils.getPattern(aFilesPattern);
+  }
+}
+      </source>
+    </section>
+
+    <section name="Using Before Execution File Filters">
+      <p>
+        To incorporate a <code>BeforeExecutionFileFilter</code> in the before execution file
+        filter set for a <code>Checker</code>, include a module element for
+        the <code>BeforeExecutionFileFilter</code> in the <a
+        href="config.html#Before Execution File Filters">configuration file</a>. For example, to
+        configure a <code>Checker</code> so that it uses custom
+        filter <code>FilesBeforeExecutionFileFilter</code> to prevent processing
+        files whose name contains &quot;Generated&quot;,
+        include the following module in the configuration file:
+      </p>
+
+      <source>
+&lt;module name=&quot;com.mycompany.filters.FilesBeforeExecutionFileFilter&quot;&gt;
+  &lt;property name=&quot;files&quot; value=&quot;Generated&quot;/&gt;
+&lt;/module&gt;
+      </source>
+    </section>
+
+    <section name="Huh? I can&#39;t figure it out!">
+      <p>
+        That&#39;s probably our fault, and it means that we have to provide
+        better documentation. Please do not hesitate to ask questions on the
+        user mailing list, this will help us to improve this document.  Please
+        ask your questions as precisely as possible. We will not be able to
+        answer questions like &quot;I want to write a filter but I don&#39;t
+        know how, can you help me?&quot;. Tell us what you are trying to do
+        (the purpose of the filter), what you have understood so far, and what
+        exactly you are getting stuck on.
+      </p>
+    </section>
+
+    <section name="Contributing">
+      <p>
+        We need <em>your</em> help to keep improving Checkstyle. Whenever you
+        write a before execution file filter that you think is generally useful,
+        please consider <a href="contributing.html">contributing</a> it to the Checkstyle
+        community and submit it for inclusion in the next release of
+        Checkstyle.
+      </p>
+    </section>
+  </body>
+</document>

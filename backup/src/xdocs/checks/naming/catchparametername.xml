@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>CatchParameterName</title>
+  </head>
+  <body>
+    <section name="CatchParameterName">
+      <p>Since Checkstyle 6.14</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Checks that <code>catch</code> parameter names conform to a specified pattern.
+        </p>
+        <p>
+          Default pattern has the following characteristic:
+        </p>
+        <ul>
+          <li>allows names beginning with two lowercase letters followed by at least one uppercase
+            or lowercase letter</li>
+          <li>allows <code>e</code> abbreviation (suitable for exceptions end errors)</li>
+          <li>allows <code>ex</code> abbreviation (suitable for exceptions)</li>
+          <li>allows <code>t</code> abbreviation (suitable for throwables)</li>
+          <li>prohibits numbered abbreviations like <code>e1</code> or <code>t2</code></li>
+          <li>prohibits one letter prefixes like <code>pException</code></li>
+          <li>prohibits two letter abbreviations like <code>ie</code> or <code>ee</code></li>
+          <li>prohibits any other characters than letters</li>
+        </ul>
+      </subsection>
+
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>format</td>
+              <td>Specifies valid identifiers.</td>
+              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
+              <td>
+                <code>&quot;^(e|t|ex|[a-z][a-z][a-zA-Z]+)$&quot;</code>
+              </td>
+              <td>6.14</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;CatchParameterName&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example1-code">Example:
+        </p>
+        <source>
+public class MyTest {
+  public void myTest() {
+    try {
+      // ...
+    } catch (ArithmeticException e) { // OK
+      // ...
+    } catch (ArrayIndexOutOfBoundsException ex) { // OK
+      // ...
+    } catch (Throwable t) { // OK
+      // ...
+    } catch (IndexOutOfBoundsException e123) { // violation, digits
+                                               // not allowed
+      // ...
+    } catch (NullPointerException ab) { // violation, should have at least
+                                        // three characters if not e|t|ex
+      // ...
+    } catch (ArrayStoreException abc) { // OK
+      // ...
+    } catch (InterruptedException aBC) { // violation, first two characters
+                                         // should be in lowercase
+      // ...
+    } catch (RuntimeException abC) { // OK
+      // ...
+    } catch (Exception abCD) { // OK
+      // ...
+    }
+  }
+}
+        </source>
+        <p>
+          An example of how to configure the check for names that begin with
+          a lower case letter, followed by any letters or digits is:
+        </p>
+        <p id="Example2-config">Configuration:</p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;CatchParameterName&quot;&gt;
+      &lt;property name=&quot;format&quot; value=&quot;^[a-z][a-zA-Z0-9]+$&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example2-code">Example:</p>
+        <source>
+public class MyTest {
+  public void myTest() {
+    try {
+      // ...
+    } catch (ArithmeticException ex) { // OK
+      // ...
+    } catch (ArrayIndexOutOfBoundsException ex2) { // OK
+      // ...
+    } catch (IOException thirdException) { // OK
+      // ...
+    } catch (Exception FourthException) { // violation, the initial letter
+                                          // should be lowercase
+      // ...
+    }
+  }
+}
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+CatchParameterName">
+              Google Style
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+CatchParameterName">
+              Checkstyle Style
+            </a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fnaming%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22name.invalidPattern%22">
+              name.invalidPattern
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p>com.puppycrawl.tools.checkstyle.checks.naming</p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

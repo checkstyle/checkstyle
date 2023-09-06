@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.naming.MethodNameCheck"
+             name="MethodName"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;p&gt;
+ Checks that method names conform to a specified pattern.
+ &lt;/p&gt;
+
+ &lt;p&gt;Also, checks if a method name has the same name as the residing class.
+ The default is false (it is not allowed). It is legal in Java to have
+ method with the same name as a class. As long as a return type is specified
+ it is a method and not a constructor which it could be easily confused as.
+ Does not check-style the name of an overridden methods because the developer does not
+ have a choice in renaming such methods.
+ &lt;/p&gt;</description>
+         <properties>
+            <property default-value="^[a-z][a-zA-Z0-9]*$"
+                      name="format"
+                      type="java.util.regex.Pattern">
+               <description>Specifies valid identifiers.</description>
+            </property>
+            <property default-value="false" name="allowClassName" type="boolean">
+               <description>Controls whether to allow a method name to have the same name
+ as the residing class name. This is not to be confused with a constructor. An easy mistake is
+ to place a return type on a constructor declaration which turns it into a method. For example:
+ &lt;pre&gt;
+ class MyClass {
+     public void MyClass() {} //this is a method
+     public MyClass() {} //this is a constructor
+ }
+ &lt;/pre&gt;</description>
+            </property>
+            <property default-value="true" name="applyToPublic" type="boolean">
+               <description>Controls whether to apply the check to public member.</description>
+            </property>
+            <property default-value="true" name="applyToProtected" type="boolean">
+               <description>Controls whether to apply the check to protected member.</description>
+            </property>
+            <property default-value="true" name="applyToPackage" type="boolean">
+               <description>Controls whether to apply the check to package-private member.</description>
+            </property>
+            <property default-value="true" name="applyToPrivate" type="boolean">
+               <description>Controls whether to apply the check to private member.</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="method.name.equals.class.name"/>
+            <message-key key="name.invalidPattern"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>

@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>MissingSwitchDefault</title>
+  </head>
+  <body>
+    <section name="MissingSwitchDefault">
+      <p>Since Checkstyle 3.1</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Checks that switch statement has a <code>default</code> clause.
+        </p>
+
+        <p>
+          Rationale: It's usually a good idea to introduce a default case in
+          every switch statement. Even if the developer is sure that all
+          currently possible cases are covered, this should be expressed in
+          the default branch, e.g. by using an assertion. This way the code is
+          protected against later changes, e.g. introduction of new types in an
+          enumeration type.
+        </p>
+        <p>
+          This check does not validate any switch expressions. Rationale:
+          The compiler requires switch expressions to be exhaustive. This means
+          that all possible inputs must be covered.
+        </p>
+        <p>
+          This check does not validate switch statements that use pattern or null
+          labels. Rationale: Switch statements that use pattern or null labels are
+          checked by the compiler for exhaustiveness. This means that all possible
+          inputs must be covered.
+        </p>
+        <p>
+          See the
+          <a href="https://docs.oracle.com/javase/specs/jls/se17/html/jls-15.html#jls-15.28">
+          Java Language Specification</a> for more information about switch statements
+          and expressions.
+        </p>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;MissingSwitchDefault&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example1-code">
+          Example of violation:
+        </p>
+        <source>
+switch (i) {    // violation
+  case 1:
+    break;
+  case 2:
+    break;
+}
+        </source>
+        <p id="Example2-code">
+          Example of correct code:
+        </p>
+        <source>
+switch (i) {
+  case 1:
+    break;
+  case 2:
+    break;
+  default: // OK
+    break;
+}
+switch (o) {
+    case String s: // type pattern
+        System.out.println(s);
+        break;
+    case Integer i: // type pattern
+        System.out.println(&quot;Integer&quot;);
+        break;
+    default:    // will not compile without default label, thanks to type pattern label usage
+        break;
+}
+        </source>
+        <p id="Example3-code">
+          Example of correct code which does not require default labels:
+        </p>
+        <source>
+sealed interface S permits A, B, C {}
+final class A implements S {}
+final class B implements S {}
+record C(int i) implements S {}  // Implicitly final
+
+/**
+ * The completeness of a switch statement can be
+ * determined by the contents of the permits clause
+ * of interface S. No default label or default case
+ * label is allowed by the compiler in this situation, so
+ * this check does not enforce a default label in such
+ * statements.
+ */
+static void showSealedCompleteness(S s) {
+    switch (s) {
+        case A a: System.out.println(&quot;A&quot;); break;
+        case B b: System.out.println(&quot;B&quot;); break;
+        case C c: System.out.println(&quot;C&quot;); break;
+    }
+}
+
+/**
+ * A total type pattern matches all possible inputs,
+ * including null. A default label or
+ * default case is not allowed by the compiler in this
+ * situation. Accordingly, check does not enforce a
+ * default label in this case.
+ */
+static void showTotality(String s) {
+    switch (s) {
+        case Object o: // total type pattern
+            System.out.println(&quot;o!&quot;);
+    }
+}
+
+enum Color { RED, GREEN, BLUE }
+
+static int showSwitchExpressionExhaustiveness(Color color) {
+    switch (color) {
+        case RED: System.out.println(&quot;RED&quot;); break;
+        case BLUE: System.out.println(&quot;BLUE&quot;); break;
+        case GREEN: System.out.println(&quot;GREEN&quot;); break;
+        // Check will require default label below, compiler
+        // does not enforce a switch statement with constants
+        // to be complete.
+        default: System.out.println(&quot;Something else&quot;);
+    }
+
+    // Check will not require default label in switch
+    // expression below, because code will not compile
+    // if all possible values are not handled. If the
+    // 'Color' enum is extended, code will fail to compile.
+    return switch (color) {
+        case RED:
+            yield 1;
+        case GREEN:
+            yield 2;
+        case BLUE:
+            yield 3;
+    };
+}
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingSwitchDefault">
+            Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingSwitchDefault">
+            Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingSwitchDefault">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22missing.switch.default%22">
+              missing.switch.default
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.coding
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

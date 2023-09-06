@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>EqualsHashCode</title>
+  </head>
+  <body>
+    <section name="EqualsHashCode">
+      <p>Since Checkstyle 3.0</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Checks that classes that either override <code>equals()</code>
+          or <code>hashCode()</code> also overrides the other.
+          This check only verifies that the method declarations match
+          <code>Object.equals(Object)</code> and <code>Object.hashCode()</code> exactly to be
+          considered an override. This check does not verify invalid method names, parameters
+          other than <code>Object</code>, or anything else.
+        </p>
+
+        <p>
+          Rationale: The contract of <code>equals()</code> and
+          <code>hashCode()</code> requires that equal objects
+          have the same hashCode. Therefore, whenever you override
+          <code>equals()</code> you must override <code>hashCode()</code>
+          to ensure that your class can be used in hash-based collections.
+        </p>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/equalshashcode/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/equalshashcode/Example1.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+EqualsHashCode">
+            Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+EqualsHashCode">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <macro name="violation-messages">
+          <param name="checkName" value="EqualsHashCode"/>
+        </macro>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.coding
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <macro name="parent-module">
+          <param name="moduleName" value="EqualsHashCode"/>
+        </macro>
+      </subsection>
+    </section>
+  </body>
+</document>
