@@ -49,7 +49,7 @@
     <section name="byte[]">
       <p>
         This type represents a set of bytes. The string representation
-        is parsed as a set of comma (',') separated bytes that are parsed
+        is parsed as a set of comma (',') separated bytes. Extra spaces are allowed, that are parsed
         using the <code>java.lang.Byte</code> class.
       </p>
       <p>
@@ -68,7 +68,7 @@
     <section name="char[]">
       <p>
         This type represents a set of chars. The string representation
-        is parsed as a set of comma (',') separated chars that are parsed
+        is parsed as a set of comma (',') separated chars. Extra spaces are allowed, that are parsed
         using the <code>java.lang.Character</code> class.
       </p>
       <p>
@@ -87,7 +87,7 @@
     <section name="double[]">
       <p>
         This type represents a set of doubles. The string representation
-        is parsed as a set of comma (',') separated doubles that are parsed
+        is parsed as a set of comma (',') separated doubles. Extra spaces are allowed, that are parsed
         using the <code>java.lang.Double</code> class.
       </p>
       <p>
@@ -96,7 +96,7 @@
         following:
       </p>
       <source>
-&lt;property name=&quot;tokens&quot; value=&quot;0.42,0.666&quot;/&gt;
+&lt;property name=&quot;tokens&quot; value=&quot;0.42, 0.666&quot;/&gt;
       </source>
       <p>can instead be expressed as:</p>
       <source>
@@ -115,7 +115,7 @@
     <section name="float[]">
       <p>
         This type represents a set of floats. The string representation
-        is parsed as a set of comma (',') separated floats that are parsed
+        is parsed as a set of comma (',') separated floats. Extra spaces are allowed, that are parsed
         using the <code>java.lang.Float</code> class.
       </p>
       <p>
@@ -134,7 +134,7 @@
     <section name="int[]">
       <p>
         This type represents a set of integers. The string representation
-        is parsed as a set of comma (',') separated integers that are parsed
+        is parsed as a set of comma (',') separated integers. Extra spaces are allowed, that are parsed
         using the <code>java.lang.Integer</code> class.
       </p>
       <p>
@@ -143,7 +143,7 @@
         following:
       </p>
       <source>
-&lt;property name=&quot;tokens&quot; value=&quot;42,666&quot;/&gt;
+&lt;property name=&quot;tokens&quot; value=&quot;42, 666&quot;/&gt;
       </source>
       <p>can instead be expressed as:</p>
       <source>
@@ -162,7 +162,7 @@
     <section name="long[]">
       <p>
         This type represents a set of longs. The string representation
-        is parsed as a set of comma (',') separated longs that are parsed
+        is parsed as a set of comma (',') separated longs. Extra spaces are allowed, that are parsed
         using the <code>java.lang.Long</code> class.
       </p>
       <p>
@@ -181,7 +181,7 @@
     <section name="short[]">
       <p>
         This type represents a set of shorts. The string representation
-        is parsed as a set of comma (',') separated shorts that are parsed
+        is parsed as a set of comma (',') separated shorts. Extra spaces are allowed, that are parsed
         using the <code>java.lang.Short</code> class.
       </p>
       <p>
@@ -307,11 +307,11 @@
               in other languages.
               Example:
               <div class="wrapper">
-                <pre>@SuppressWarnings(value={"unchecked","unused",})</pre>
+                <pre>@SuppressWarnings(value={"unchecked", "unused",})</pre>
               </div>
               Example of violation:
               <div class="wrapper">
-                <pre>@SuppressWarnings({"unchecked","unused",})</pre>
+                <pre>@SuppressWarnings({"unchecked", "unused",})</pre>
               </div>
             </td>
           </tr>
@@ -325,14 +325,14 @@
               Example:
               <div class="wrapper">
                 <pre>
-                @SuppressWarnings({"unchecked","unused",})
+                @SuppressWarnings({"unchecked", "unused",})
                 @SuppressWarnings("unchecked")
                 </pre>
               </div>
               Example of violation:
               <div class="wrapper">
                 <pre>
-                @SuppressWarnings(value = {"unchecked","unused",})
+                @SuppressWarnings(value = {"unchecked", "unused",})
                 @SuppressWarnings(value = "unchecked")
                 </pre>
               </div>
@@ -925,7 +925,7 @@
     <section name="String[]">
       <p>
         This type represents a set of strings. The string representation
-        is parsed as a set of comma (',') separated strings.
+        is parsed as a set of comma (',') separated strings. Extra spaces are allowed.
       </p>
       <p>
         Alternatively, a property of this type can be supplied multiple times which
@@ -933,7 +933,7 @@
         following:
       </p>
       <source>
-&lt;property name=&quot;tokens&quot; value=&quot;DIV_ASSIGN,PLUS_ASSIGN&quot;/&gt;
+&lt;property name=&quot;tokens&quot; value=&quot;DIV_ASSIGN, PLUS_ASSIGN&quot;/&gt;
       </source>
       <p>can instead be expressed as:</p>
       <source>
@@ -960,7 +960,7 @@
             <td>
               Example:
               <div class="wrapper">
-                <pre>@SuppressWarnings(value={"unchecked","unused",})</pre>
+                <pre>@SuppressWarnings(value={"unchecked", "unused",})</pre>
               </div>
             </td>
           </tr>
@@ -970,7 +970,7 @@
             <td>
               Example:
               <div class="wrapper">
-                <pre>@SuppressWarnings(value={"unchecked","unused"})</pre>
+                <pre>@SuppressWarnings(value={"unchecked", "unused"})</pre>
               </div>
             </td>
           </tr>
