@@ -19,15 +19,14 @@ public class InputRightCurlyTestSwitchExpression {
                 case 2 -> "Tuesday";
                 case 3 -> "Wednesday";
                 default -> "Invalid day";
-            }; } // ok
-
+            }; } 
     public void test1() {
         int day = 3;
         String check =
             switch (day) {
                 case 1 -> "Monday";
                 default -> "Invalid day";
-            }; // ok
+            }; 
     }
 
     public void test2() {
@@ -36,7 +35,7 @@ public class InputRightCurlyTestSwitchExpression {
             switch (day) {
                 case 1 -> "Monday";
                 default -> "Invalid day";
-            }; System.out.println(check); // ok
+            }; System.out.println(check); 
     }
 
     public void test3() {
@@ -60,7 +59,7 @@ public class InputRightCurlyTestSwitchExpression {
         switch (num) {
             case 1 -> System.out.println("One");
             default -> System.out.println("Other");
-        } // ok
+        } 
     }
 
     public void test6() {
@@ -68,7 +67,7 @@ public class InputRightCurlyTestSwitchExpression {
 
         switch (num) {
             //no case or default statement
-        } // ok
+        } 
     }
 
     public void test7() {
@@ -76,7 +75,7 @@ public class InputRightCurlyTestSwitchExpression {
 
         switch (num) {
             //no case or default statement
-        } // ok
+        } 
     }
 
     public void test8() {
@@ -102,17 +101,17 @@ public class InputRightCurlyTestSwitchExpression {
             default -> {
                 Runnable defaultResult = () -> System.out.println("defaultResult");
             }
-        } // ok
+        } 
     }
 
     public void test10() {
         int expression = 2;
         switch (expression) { case 1 -> { Runnable result1 = () -> System.out.println("r1"); }
-        } // ok
+        } 
         switch (expression) {
             case 1 -> {
                 Runnable result1 = () -> System.out.println("r1");
             }
-        } // ok
+        } 
     }
 }

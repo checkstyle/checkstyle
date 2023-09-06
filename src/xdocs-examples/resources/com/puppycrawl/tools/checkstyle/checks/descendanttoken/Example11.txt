@@ -12,7 +12,7 @@
 
 // xdoc section -- start
 class Foo {
-  public void foo() { // ok
+  public void foo() { 
       int x = 1;
       int z = x + 2;
   }

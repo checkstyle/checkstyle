@@ -108,8 +108,8 @@ class MyClass {
         <p id="Example1-code">Code Example:</p>
         <source>
 class MyClass {
-  public void firstMethod1() {} // OK
-  protected void secondMethod() {} // OK
+  public void firstMethod1() {} 
+  protected void secondMethod() {} 
   private void ThirdMethod() {} // violation, method name must match to the
                                 // default pattern '^[a-z][a-zA-Z0-9]*$'
   public void fourth_Method4() {} // violation, method name must match to the
@@ -132,7 +132,7 @@ class MyClass {
         <p id="Example2-code">Code Example:</p>
         <source>
 class MyClass {
-  public void myMethod() {} // OK
+  public void myMethod() {} 
   public void MyMethod() {} // violation, name &quot;MyMethod&quot;
                             // should match the pattern &quot;^[a-z](_?[a-zA-Z0-9]+)*$&quot;
 }
@@ -154,7 +154,7 @@ class MyClass {
         <p id="Example3-code">Code Example:</p>
         <source>
 class MyClass {
-  public MyClass() {} // OK
+  public MyClass() {} 
   public void MyClass() {} // OK, method Name 'MyClass' is allowed to be
                            // equal to the enclosing class name
 }
@@ -176,7 +176,7 @@ class MyClass {
         <p id="Example4-code">Code Example:</p>
         <source>
 class MyClass {
-  public MyClass() {} // OK
+  public MyClass() {} 
   public void MyClass() {} // violation, method Name 'MyClass' must not
                            // equal the enclosing class name
 }
@@ -198,8 +198,8 @@ class MyClass {
         <p id="Example5-code">Code Example:</p>
         <source>
 class MyClass {
-  public void FirstMethod() {} // OK
-  protected void SecondMethod() {} // OK
+  public void FirstMethod() {} 
+  protected void SecondMethod() {} 
   private void ThirdMethod() {} // violation, name 'ThirdMethod' must match
                                 // pattern '^[a-z](_?[a-zA-Z0-9]+)*$'
   void FourthMethod() {} // violation, name 'FourthMethod' must match

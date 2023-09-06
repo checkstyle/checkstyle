@@ -18,7 +18,7 @@ public class Test {
   * <li>Item two.</li>
   * </ul>}
   */
-  public void validInlineJavadoc() { // ok
+  public void validInlineJavadoc() { 
   }
 }
 // xdoc section -- end

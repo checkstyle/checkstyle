@@ -13,21 +13,20 @@ class Foo {
   public Foo() {
   }
 
-  @SuppressWarnings("unchecked") public void fun2() {  // OK
+  @SuppressWarnings("unchecked") public void fun2() {  
   }
 
 }
 
-@SuppressWarnings("unchecked") class Bar extends Foo {  // OK
-
-  @Deprecated public Bar() {  // OK
+@SuppressWarnings("unchecked") class Bar extends Foo {  
+  @Deprecated public Bar() {  
   }
 
   @Override  // violation, annotation should be on the same line
   public void fun1() {
   }
 
-  @Before @Override public void fun2() {  // OK
+  @Before @Override public void fun2() {  
   }
 
   @SuppressWarnings("deprecation")  // violation, annotation should be on the same line

@@ -19,7 +19,7 @@ class Test {
     int a = 5;
     assert a++ == 0 : "is not"; // violation
     System.out.println(a);
-    assert a == 0 : "is not"; // ok
+    assert a == 0 : "is not"; 
   }
 }
 // xdoc section -- end

@@ -7,7 +7,6 @@
 */
 
 // xdoc section -- start
-public class Test { // OK
-
+public class Test { 
 }
 // xdoc section -- end

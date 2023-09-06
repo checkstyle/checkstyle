@@ -10,12 +10,12 @@
 */
 
 // xdoc section -- start
-package com; // OK
+package com; 
 package COM; // violation, name 'COM' must match pattern '^[a-z]+(\.[a-z][a-z0-9]*)*$'
-package com.checkstyle.checks; // OK
+package com.checkstyle.checks; 
 package com.A.checkstyle.checks; // violation, name 'com.A.checkstyle' must match
                                  // pattern '^[a-z]+(\.[a-z][a-z0-9]*)*$'
-package com.checkstyle1.checks; // OK
+package com.checkstyle1.checks; 
 package com.checkSTYLE.checks; // violation, name 'com.checkSTYLE.checks' must
                                // match pattern '^[a-z]+(\.[a-z][a-z0-9]*)*$'
 package com._checkstyle.checks_; // violation, name 'com._checkstyle.checks_' must match

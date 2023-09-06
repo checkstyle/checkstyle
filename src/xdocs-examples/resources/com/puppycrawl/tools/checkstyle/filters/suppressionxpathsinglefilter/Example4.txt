@@ -10,7 +10,6 @@
 */
 
 // xdoc section -- start
-package File; // OK
-
+package File; 
 public class FileOne {}
 // xdoc section -- end

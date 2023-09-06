@@ -10,7 +10,7 @@
 
 // xdoc section -- start
 public class Test {
-  public HashMap<String, String> function() { // OK
+  public HashMap<String, String> function() { 
     // code
   }
 

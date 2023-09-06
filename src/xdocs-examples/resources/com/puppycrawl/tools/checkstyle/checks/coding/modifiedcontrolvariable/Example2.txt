@@ -14,6 +14,6 @@ for(int i=0;i < 8;i++) {
 }
 String args1[]={"Coding", "block"};
 for (String arg: args1) {
-  arg = arg.trim(); // ok
+  arg = arg.trim(); 
 }
 // xdoc section -- end

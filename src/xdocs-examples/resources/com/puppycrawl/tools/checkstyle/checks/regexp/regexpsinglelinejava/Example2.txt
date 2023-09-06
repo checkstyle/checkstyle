@@ -14,6 +14,6 @@
 // xdoc section -- start
 System.out.println(""); // violation, instruction matches illegal pattern
 System.out.
-println(""); // OK
+println(""); 
 /* System.out.println */ // OK, comments are ignored
 // xdoc section -- end

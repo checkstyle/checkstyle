@@ -26,9 +26,8 @@ import com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupli
 import com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.inputs.c.CClass;
 
 public class InputClassDataAbstractionCouplingExcludedPackagesCommonPackage { // violation
-    public AAClass aa = new AAClass(); // ok
-    public ABClass ab = new ABClass(); // ok
-
+    public AAClass aa = new AAClass(); 
+    public ABClass ab = new ABClass(); 
     class Inner { // violation
         public BClass b = new BClass();
         public CClass c = new CClass();

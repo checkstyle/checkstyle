@@ -12,7 +12,7 @@
 */
 
 // xdoc section -- start
-class A { // ok
+class A { 
   private int field1;
 
   // Some code
@@ -23,7 +23,7 @@ class B { // violation
 
   // Some code
 }
-interface C { // ok
+interface C { 
   int FIELD_1 = 1;
 }
 interface D { // violation

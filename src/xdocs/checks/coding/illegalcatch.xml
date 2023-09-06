@@ -69,8 +69,7 @@ try {
 
 try {
     // some code here
-} catch (ArithmeticException e) { // OK
-
+} catch (ArithmeticException e) { 
 } catch (Exception e) { // violation, catching Exception is illegal
                           and order of catch blocks doesn't matter
 }
@@ -83,8 +82,7 @@ try {
 
 try {
     // some code here
-} catch (ArithmeticException e) { // OK
-
+} catch (ArithmeticException e) { 
 }
         </source>
         <p id="Example2-config">
@@ -119,8 +117,7 @@ try {
 
 try {
     // some code here
-} catch (NullPointerException e) { // OK
-
+} catch (NullPointerException e) { 
 } catch (OutOfMemoryError e) { // violation
 
 }
@@ -133,8 +130,7 @@ try {
 
 try {
     // some code here
-} catch (Exception e) { // OK
-
+} catch (Exception e) { 
 }
         </source>
       </subsection>

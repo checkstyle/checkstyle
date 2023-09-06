@@ -25,6 +25,6 @@ public class Test extends Exception {
   /**
    * {@summary <p>This is summary for validFunctionThree.<p/>}
    */
-  public void validFunctionThree(){} // ok
+  public void validFunctionThree(){} 
 }
 // xdoc section -- end

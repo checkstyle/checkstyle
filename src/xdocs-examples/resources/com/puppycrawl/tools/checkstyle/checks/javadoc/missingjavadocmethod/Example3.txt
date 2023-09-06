@@ -15,7 +15,7 @@ public class Test {
   /**
    * Some description here
    */
-  private void test1() {} // OK
-  protected void test2() {} // OK
+  private void test1() {} 
+  protected void test2() {} 
 }
 // xdoc section -- end

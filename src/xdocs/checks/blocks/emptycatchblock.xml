@@ -89,7 +89,7 @@ try {
   throw new RuntimeException();
 } catch (RuntimeException ex) {
   // This is expected
-} // ok
+} 
         </source>
         <p>
           To configure the check to suppress empty catch block if exception's variable name is
@@ -107,14 +107,12 @@ try {
 try {
   throw new RuntimeException();
 } catch (RuntimeException expected) {
-} // ok
-
+} 
 try {
   throw new RuntimeException();
 } catch (RuntimeException ignore) {
   // no handling
-} // ok
-
+} 
 try {
   throw new RuntimeException();
 } catch (RuntimeException o) {
@@ -124,7 +122,7 @@ try {
   throw new RuntimeException();
 } catch (RuntimeException ex) {
   // This is expected
-} // ok
+} 
         </source>
         <p>
           To configure the check to suppress empty catch block if single-line comment inside
@@ -159,7 +157,7 @@ try {
   throw new RuntimeException();
 } catch (RuntimeException ex) {
   // This is expected
-} // ok
+} 
         </source>
         <p>
           To configure the check to suppress empty catch block if single-line comment inside

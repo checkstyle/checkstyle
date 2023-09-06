@@ -15,13 +15,11 @@ class A {
 
 interface B {
 
-}; // OK
-
+}; 
 enum C {
 
-}; // OK
-
+}; 
 {@literal @}interface D {
 
-}; // OK
+}; 
 // xdoc section -- end

@@ -17,7 +17,7 @@ class Test
 
   private
   class
-  MyClass { // OK
+  MyClass { 
   }
 
   enum Colors {RED, // Violation - '{' should have line break after

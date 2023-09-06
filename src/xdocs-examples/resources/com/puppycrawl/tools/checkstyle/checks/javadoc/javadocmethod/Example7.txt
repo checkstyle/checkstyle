@@ -80,7 +80,7 @@ public String readLine() {
 public Runnable printLater(String s) {
     return () -> {
         if (s == null) {
-            throw new NullPointerException(); // ok
+            throw new NullPointerException(); 
         }
         System.out.println(s);
     };

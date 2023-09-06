@@ -18,8 +18,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocstyle;
 public class InputJavadocStyleFirstSentenceFormatOne
 {
    // This is OK. We don't flag missing javadoc.  That's left for other checks.
-   private String first; // ok
-
+   private String first; 
    /** This Javadoc is missing an ending period */ // violation
    private String second;
 
@@ -28,8 +27,7 @@ public class InputJavadocStyleFirstSentenceFormatOne
     * tags to stop the scan for the end of sentence.
     * @see Something
     */
-   public InputJavadocStyleFirstSentenceFormatOne() {} // ok
-
+   public InputJavadocStyleFirstSentenceFormatOne() {} 
    /** // violation
     * This is ok!
     */
@@ -43,8 +41,7 @@ public class InputJavadocStyleFirstSentenceFormatOne
    /**
     * And This is ok.<br>
     */
-   private void method3() {} // ok
-
+   private void method3() {} 
    /** // violation
     * This should fail even.though.there are embedded periods
     */
@@ -60,8 +57,7 @@ public class InputJavadocStyleFirstSentenceFormatOne
     * <style>this tag isn't supported in Javadoc</style>
     * @param arg1 <code>dummy.
     */
-   private void method5(int arg1) {} // ok
-
+   private void method5(int arg1) {} 
    /** // violation
     * Protected check <b>should fail
     */
@@ -79,9 +75,7 @@ public class InputJavadocStyleFirstSentenceFormatOne
    public void method8() {}
 
    /** {@inheritDoc} **/
-   public void method9() {} // ok
-
-
+   public void method9() {} 
     // Testcases to exercise the Tag parser (bug 843887)
 
     /**
@@ -91,8 +85,7 @@ public class InputJavadocStyleFirstSentenceFormatOne
      * < br/>
      * <img src="schattenparker.jpg"/></img>
      */
-    private void method10() {} // ok
-
+    private void method10() {} 
     /**
      * Tag content can be really mean.
      * <p>
@@ -108,12 +101,11 @@ public class InputJavadocStyleFirstSentenceFormatOne
      * <img src="slashesCanOccurWithin/attributes.jpg">
      * <!-- comments <div> should not be checked. -->
      */
-    private void method11() {} // ok
-
+    private void method11() {} 
     /**
      * Tags for two lines.
      * <a href="some_link"
      * >Link Text</a>
      */
-    private void method12() {} // ok
+    private void method12() {} 
 }

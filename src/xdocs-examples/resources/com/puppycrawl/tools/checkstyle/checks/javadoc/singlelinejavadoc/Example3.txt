@@ -16,7 +16,7 @@ public int foo() {
 
 /**
  * @return 42
- */  // ok
+ */  
 public int bar() {
   return 42;
 }
@@ -28,14 +28,14 @@ public int baz() {
 
 /**
  * <p>the answer to the ultimate question
- */ // ok
+ */ 
 public int magic() {
   return 42;
 }
 
 /**
  * <p>the answer to the ultimate question</p>
- */ // ok
+ */ 
 public int foobar() {
   return 42;
 }

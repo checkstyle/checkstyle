@@ -22,19 +22,17 @@ public class InputJavadocStyleFirstSentenceFormatFour
      * <a
      * href="someLink"/>
      */
-    void tagInTwoLines() {} // ok
-
+    void tagInTwoLines() {} 
     /**
      * This Javadoc contains unclosed tag.
      * <code>unclosed 'code' tag<code>
      */
-    private void unclosedTag() {} // ok
-
-    void javadocLikeCommentInMethod() { // ok
+    private void unclosedTag() {} 
+    void javadocLikeCommentInMethod() { 
         /**
          * It pretends to be Javadoc without dot, but it's just comment in method
          */
-        final int i = 0; // ok
+        final int i = 0; 
     }
     // violation below
     /**
@@ -45,8 +43,7 @@ public class InputJavadocStyleFirstSentenceFormatFour
     /**
      * <p><b>Note:<b> it's unterminated tag.</p>
      */
-    private void unterminatedTag() {} // ok
-
+    private void unterminatedTag() {} 
     /** // violation
      * Javadoc without dot
      */
@@ -57,7 +54,7 @@ public class InputJavadocStyleFirstSentenceFormatFour
         void method();
     }
 
-    static class TestStaticClass { // ok
+    static class TestStaticClass { 
         /** // violation
          * Javadoc without dot
          */
@@ -68,8 +65,7 @@ public class InputJavadocStyleFirstSentenceFormatFour
      * .
      * @throws Exception if an error occurs
      */
-    void foo() throws Exception {} // ok
-
+    void foo() throws Exception {} 
     /** // violation
      * text /
      * @throws Exception if an error occurs
@@ -81,8 +77,7 @@ public class InputJavadocStyleFirstSentenceFormatFour
      * <p>
      * @throws IllegalArgumentException with errMsg as its message
      */
-    void inheritDocWithThrows() {} // ok
-
+    void inheritDocWithThrows() {} 
     /** // violation
      * /
      *
@@ -93,8 +88,7 @@ public class InputJavadocStyleFirstSentenceFormatFour
     public int test(String s) { return 0; }
 
     /** Set of all class field names.*/
-    public String field; // ok
-
+    public String field; 
     /**
      * <p>Test.</p>
      * <pre class="body">
@@ -102,13 +96,12 @@ public class InputJavadocStyleFirstSentenceFormatFour
      ; i &lt; j; i++, j--) {}
      </pre>
      */
-    public void test2() {} // ok
-
+    public void test2() {} 
     /**
      * <p>Test.</p>
      * <pre><code>&#064;ExtendWith(SpotBugsExtension.class)
      public class SampleTest {
      }</code></pre>
      */
-    public void test3() {} // ok
+    public void test3() {} 
 }

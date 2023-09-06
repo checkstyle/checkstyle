@@ -20,7 +20,7 @@ class Test {
                 break;
             default:
                 x = 0;
-        } // ok
+        } 
     }
 
     public static void method7() {

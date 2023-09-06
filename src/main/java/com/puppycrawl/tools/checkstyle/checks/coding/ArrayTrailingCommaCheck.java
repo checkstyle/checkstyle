@@ -56,7 +56,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <pre>
  * {
  *   100000000000000000000,
- *   200000000000000000000, // OK
+ *   200000000000000000000, 
  * }
  *
  * {

@@ -15,10 +15,10 @@ class Test {
   public void foo() {
     try {
         // Some code
-    } catch (Exception e) { // ok
+    } catch (Exception e) { 
         System.out.println("xyz");
         return;
-    } finally { // ok
+    } finally { 
         System.out.println("xyz");
     }
     try {

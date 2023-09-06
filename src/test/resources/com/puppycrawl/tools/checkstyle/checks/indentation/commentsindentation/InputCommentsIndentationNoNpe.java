@@ -17,7 +17,6 @@ import java.lang.reflect.Method;
  * Provides convenience methods such as {@link #isPublic} and {@link #isPackagePrivate}.
  *
  */
-class InputCommentsIndentationNoNpe { // ok
-
+class InputCommentsIndentationNoNpe { 
 }
 /* The Check should not throw NPE here! */

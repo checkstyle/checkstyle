@@ -12,11 +12,10 @@
 // xdoc section -- start
 allowedFuture.addCallback(result -> assertEquals("Invalid response",
   EnumSet.of(HttpMethod.GET, HttpMethod.OPTIONS), result), // violation, lambda spans 2 lines
-  ex -> fail(ex.getMessage())); // OK
-
+  ex -> fail(ex.getMessage())); 
 allowedFuture.addCallback(result -> {
   return assertEquals("Invalid response",
     EnumSet.of(HttpMethod.GET, HttpMethod.OPTIONS), result);
-  }, // OK
+  }, 
   ex -> fail(ex.getMessage()));
 // xdoc section -- end

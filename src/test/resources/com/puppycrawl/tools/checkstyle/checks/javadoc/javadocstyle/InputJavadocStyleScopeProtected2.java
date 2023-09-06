@@ -15,7 +15,7 @@ tokens = (default)ANNOTATION_DEF, ANNOTATION_FIELD_DEF, CLASS_DEF, CTOR_DEF, \
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocstyle;
 
-public class InputJavadocStyleScopeProtected2 // ok
+public class InputJavadocStyleScopeProtected2 
 {
       /**
      * First sentence.
@@ -54,24 +54,21 @@ public class InputJavadocStyleScopeProtected2 // ok
      *     +--SEMI (;)
      * </pre>
      */
-    private void method13() {} // ok
-
+    private void method13() {} 
     /**
      * Some problematic javadoc. Sample usage:
      * <blockquote>
      */
 
-    private void method14() {} // ok
-
+    private void method14() {} 
     /**
      * Empty line between javadoc and method declaration cause wrong
      * line number for reporting error (bug 841942)
      */
 
-    private void method15() {} // ok
-
+    private void method15() {} 
     /** Description of field: {@value}. */
-    public static final int dummy = 4911; // ok
+    public static final int dummy = 4911; 
     // violation below
     /**
      */
@@ -85,12 +82,10 @@ public class InputJavadocStyleScopeProtected2 // ok
     /**
      * @exception RuntimeException should be thrown
      */
-    void method18(String a) {} // ok
-
+    void method18(String a) {} 
     /**
      */
-    private static int ASDF = 0; // ok
-
+    private static int ASDF = 0; 
     /** @see Object */ // violation
     public void method19() {}
 
@@ -104,6 +99,6 @@ public class InputJavadocStyleScopeProtected2 // ok
         /**
          * Value 2 with a period.
          */
-        value2, // ok
+        value2, 
     }
 }

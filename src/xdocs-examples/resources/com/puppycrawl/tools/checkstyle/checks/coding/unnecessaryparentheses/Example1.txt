@@ -32,10 +32,10 @@ if ((-a) != -27 // violation, unnecessary parenthesis
          && b > 5) {
     return;
 }
-if (x==(a <= 15)) { // ok
+if (x==(a <= 15)) { 
     return;
 }
-if (x==(y == z)) { // ok
+if (x==(y == z)) { 
     return;
 }
 // xdoc section -- end

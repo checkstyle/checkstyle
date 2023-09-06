@@ -30,20 +30,20 @@
         <p id="Example1-code">Example:</p>
         <source>
 class Test {
-    private String s; // OK
+    private String s; 
     class InnerTest1 {}
     public void test() {} // violation, method should be declared before inner types.
 }
 
 class Test2 {
-    static {}; // OK
+    static {}; 
     class InnerTest1 {}
     public Test2() {} // violation, constructor should be declared before inner types.
 }
 
 class Test3 {
-    private String s; // OK
-    public void test() {} // OK
+    private String s; 
+    public void test() {} 
     class InnerTest1 {}
 }
         </source>

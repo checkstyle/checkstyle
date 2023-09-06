@@ -200,7 +200,7 @@
         <source>
 public class Test {
     /**
-     * Some description here. // OK
+     * Some description here. 
      */
     private void methodWithValidCommentStyle() {}
 
@@ -232,7 +232,7 @@ public class Test {
     public void test1() {}
 
     /**
-     * Some description here // OK
+     * Some description here 
      */
     private void test2() {}
 }
@@ -262,7 +262,7 @@ public class Test {
     private void test1() {}
 
     /**
-     * Some description here // OK
+     * Some description here 
      */
     void test2() {}
 }
@@ -285,7 +285,7 @@ public class Test {
         <source>
 public class Test {
     /**
-     * Some description here // OK
+     * Some description here 
      * Second line of description // violation, the sentence must end with a proper punctuation
      */
     private void test1() {}
@@ -310,7 +310,7 @@ public class Test {
 public class Test {
     /**
      * Some description here // violation, the sentence must end with a proper punctuation
-     * &lt;p // OK
+     * &lt;p 
      */
     private void test1() {}
 }
@@ -336,7 +336,7 @@ public class Test {
  */
 public class Test {
     /**
-     * Some description here // OK
+     * Some description here 
      */
     private void test1() {}
 }

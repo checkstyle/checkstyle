@@ -84,11 +84,10 @@ public class MyTest {
   }
 
   public void myTest (boolean a, int b) {
-    Boolean c = new Boolean(a); // OK
-    java.lang.Boolean d = new java.lang.Boolean(a); // OK
-
-    Integer e = new Integer(b); // OK
-    Integer f = Integer.valueOf(b); // OK
+    Boolean c = new Boolean(a); 
+    java.lang.Boolean d = new java.lang.Boolean(a); 
+    Integer e = new Integer(b); 
+    Integer f = Integer.valueOf(b); 
   }
 }
         </source>
@@ -116,13 +115,13 @@ public class MyTest {
   }
 
   public void myTest (boolean a, int b) {
-    Boolean c = new Boolean(a); // OK
+    Boolean c = new Boolean(a); 
     java.lang.Boolean d = new java.lang.Boolean(a); // violation, instantiation of
                                                     // java.lang.Boolean should be avoided
 
     Integer e = new Integer(b); // violation, instantiation of
                                 // java.lang.Integer should be avoided
-    Integer f = Integer.valueOf(b); // OK
+    Integer f = Integer.valueOf(b); 
   }
 }
         </source>
@@ -143,8 +142,8 @@ public class MyTest {
         <source>
 public class MyTest {
   public void myTest () {
-    Boolean[] newBoolArray = new Boolean[]{true,true,false}; // OK
-    Integer[] newIntArray = new Integer[]{1,2,3}; // OK
+    Boolean[] newBoolArray = new Boolean[]{true,true,false}; 
+    Integer[] newIntArray = new Integer[]{1,2,3}; 
   }
 }
         </source>

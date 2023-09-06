@@ -16,9 +16,9 @@ private int a; // violation, missing javadoc for private member
 /**
  * Some description here
  */
-private int b; // OK
-protected int c; // OK
-public int d; // OK
+private int b; 
+protected int c; 
+public int d; 
 /*package*/ int e; // violation, missing javadoc for package member
 }
 // xdoc section -- end

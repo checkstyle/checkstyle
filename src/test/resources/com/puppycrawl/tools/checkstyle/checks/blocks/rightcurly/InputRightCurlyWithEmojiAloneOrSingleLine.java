@@ -12,10 +12,8 @@ package com.puppycrawl.tools.checkstyle.checks.blocks.rightcurly;
 public class InputRightCurlyWithEmojiAloneOrSingleLine {
     private String a;
     private static String b;
-    {  a = "🧐😏"; } // ok
-    static { b = "😧🤩"; } // ok
-
-
+    {  a = "🧐😏"; } 
+    static { b = "😧🤩"; } 
     void method2(java.util.HashSet<String> set) {
         java.util.Map<String, String> map1 = new java.util.LinkedHashMap<String, String>() {{
             put("Hello", "😧🤩");
@@ -30,12 +28,9 @@ public class InputRightCurlyWithEmojiAloneOrSingleLine {
         if (a.equals("🎄")) ; return "😆🤩"; }
     // violation above ''}' at column 43 should be alone on a line.'
     void method5(String a, int b) {
-        while ("👈🏻🧐".length() > 5) { ; } // ok
-
-        if ("👉🏻👉🏼".isEmpty()) { ; } // ok
-
-        do {b--;} while (a.equals("🤩")); // ok
-
+        while ("👈🏻🧐".length() > 5) { ; } 
+        if ("👉🏻👉🏼".isEmpty()) { ; } 
+        do {b--;} while (a.equals("🤩")); 
         for (int i = 1; i < 10; i++) {
             if("🎄🎄🎄".charAt(i) == 's') i++; }
             // violation above ''}' at column 45 should be alone on a line.'

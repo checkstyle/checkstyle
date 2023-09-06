@@ -14,16 +14,14 @@ class inputHeaderClass { //warn
 
 }
 
-class ValidName {} //ok
-
+class ValidName {} 
 class _ValidName {} //warn
 
 class Valid_Name {} //warn
 
 class ValidName_ {} //warn
 
-interface Foo {} // ok
-
+interface Foo {} 
 interface _Foo {} // warn
 
 interface Fo_o {} // warn
@@ -36,8 +34,7 @@ interface Fo$o {} // warn
 
 interface Foo$ {} // warn
 
-enum FooEnum {} //ok
-
+enum FooEnum {} 
 enum _FooEnum {} //warn
 
 enum Foo_Enum {} //warn
@@ -56,8 +53,7 @@ interface bbb {} //warn
 
 enum ccc {} //warn
 
-@interface Annotation {} //ok
-
+@interface Annotation {} 
 @interface _Annotation {} //warn
 
 @interface Annot_ation {} //warn

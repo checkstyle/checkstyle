@@ -56,7 +56,7 @@
         </p>
         <source>
 key.one=44
-key.two=32 // OK
+key.two=32 
 key.one=54 // violation
         </source>
         <p id="Example2-config">
@@ -74,7 +74,7 @@ key.one=54 // violation
         </p>
         <source>
 key.one=44
-key.two=32 // OK
+key.two=32 
 key.one=54 // violation
         </source>
         <p id="Example3-code">
@@ -82,7 +82,7 @@ key.one=54 // violation
         </p>
         <source>
 key.one=44
-key.two=32 // OK
+key.two=32 
 key.one=54 // OK, file is not checked
         </source>
       </subsection>

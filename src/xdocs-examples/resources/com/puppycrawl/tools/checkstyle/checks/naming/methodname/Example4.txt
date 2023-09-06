@@ -11,7 +11,7 @@
 
 // xdoc section -- start
 class MyClass {
-  public MyClass() {} // OK
+  public MyClass() {} 
   public void MyClass() {} // violation, method Name 'MyClass' must not
                            // equal the enclosing class name
 }

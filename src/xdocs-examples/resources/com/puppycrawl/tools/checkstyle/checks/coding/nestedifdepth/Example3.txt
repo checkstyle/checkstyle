@@ -12,7 +12,7 @@
 if (true) {
    if (true) {
       if (true) {
-         if (true) {} // OK
+         if (true) {} 
          else {}
       }
    }

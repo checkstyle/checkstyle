@@ -13,9 +13,9 @@
  * @author a
  * @version $Revision1$
  */
-public class ClassA { // OK
+public class ClassA { 
     /** */
-    private class ClassB {} // OK
+    private class ClassB {} 
 }
 
 /**
@@ -23,15 +23,13 @@ public class ClassA { // OK
  * @version abc
  * @unknownTag value // violation
  */
-public class ClassC {} // OK
-
+public class ClassC {} 
 /** */
 public class ClassD<T> {} // violation, as param tag for <T> is missing
 
 /** */
-private class ClassE<T> {} // OK
-
+private class ClassE<T> {} 
 /** */
 @Generated
-public class ClassF<T> {} // OK
+public class ClassF<T> {} 
 // xdoc section -- end

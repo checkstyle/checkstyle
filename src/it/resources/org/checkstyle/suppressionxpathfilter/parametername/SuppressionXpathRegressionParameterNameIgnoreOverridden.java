@@ -6,7 +6,7 @@ class SuppressionXpathRegressionParameterNameIgnoreOverridden {
     }
 
     @Override
-    public boolean equals(Object V3) { // ok
+    public boolean equals(Object V3) { 
         return true;
     }
 }

@@ -50,7 +50,7 @@
         </source>
         <p id="Example1-code">Example:</p>
         <source>
-record MyRecord1(String value, int otherComponentName) {} // OK
+record MyRecord1(String value, int otherComponentName) {} 
 record MyRecord2(String... Values) {} // violation, the record component name
                                     // should match the regular expression &quot;^[a-z][a-zA-Z0-9]*$&quot;
 record MyRecord3(double my_number) {} // violation, the record component name
@@ -71,8 +71,8 @@ record MyRecord3(double my_number) {} // violation, the record component name
         </source>
         <p id="Example2-code">Example:</p>
         <source>
-record MyRecord1(String value, int other) {} // OK
-record MyRecord2(String... strings) {} // OK
+record MyRecord1(String value, int other) {} 
+record MyRecord2(String... strings) {} 
 record MyRecord3(double myNumber) {} // violation, the record component name
                              // should match the regular expression &quot;^[a-z]+$&quot;
         </source>

@@ -21,7 +21,7 @@ public void foo() {
         break;
       }
     case 2:
-      System.out.println("Case 2");     // OK
+      System.out.println("Case 2");     
       break;
   }
 }

@@ -16,12 +16,12 @@ public int foo() {
 
 /**
  * @return 42
- */  // ok
+ */  
 public int bar() {
   return 42;
 }
 
-/** {@link #equals(Object)} */ // ok
+/** {@link #equals(Object)} */ 
 public int baz() {
   return 42;
 }
@@ -35,7 +35,7 @@ public int magic() {
 
 /**
  * <p>the answer to the ultimate question</p>
- */ // ok
+ */ 
 public int foobar() {
   return 42;
 }

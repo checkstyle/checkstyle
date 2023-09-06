@@ -23,7 +23,7 @@ public enum InputJavadocStyleEnumCtorScopeIsPrivate {
     /** */ // violation
     final int value;
 
-    /** */ // ok
+    /** */ 
     InputJavadocStyleEnumCtorScopeIsPrivate(int value) {
         this.value = value;
     }

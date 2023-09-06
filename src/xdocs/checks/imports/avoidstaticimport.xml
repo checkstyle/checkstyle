@@ -76,8 +76,8 @@
         <source>
 import static java.lang.Math.pow;          // violation
 import static java.lang.System.*;          // violation
-import java.io.File;                       // OK
-import java.util.*;                        // OK
+import java.io.File;                       
+import java.util.*;                        
         </source>
         <p id="Example2-config">
           To configure the check so that the <code>java.lang.System.out</code>
@@ -96,11 +96,11 @@ import java.util.*;                        // OK
          Example:
         </p>
         <source>
-import static java.lang.Math.*;            // OK
-import static java.lang.System.out;        // OK
+import static java.lang.Math.*;            
+import static java.lang.System.out;        
 import static java.lang.Integer.parseInt;  // violation
-import java.io.*;                          // OK
-import java.util.*;                        // OK
+import java.io.*;                          
+import java.util.*;                        
         </source>
       </subsection>
 

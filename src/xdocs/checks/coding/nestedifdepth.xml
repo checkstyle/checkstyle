@@ -47,7 +47,7 @@
         <p id="Example1-code">Valid code example:</p>
         <source>
 if (true) {
-    if (true) {} // OK
+    if (true) {} 
     else {}
 }
         </source>
@@ -77,7 +77,7 @@ if (true) {
 if (true) {
    if (true) {
       if (true) {
-         if (true) {} // OK
+         if (true) {} 
          else {}
       }
    }

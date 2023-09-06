@@ -5,7 +5,6 @@ package com.puppycrawl.tools.checkstyle.checks.coding.illegaltype;
  */
 public class InputIllegalTypeGregCal
 {
-    class SubCal { // ok
-
+    class SubCal { 
     }
 }

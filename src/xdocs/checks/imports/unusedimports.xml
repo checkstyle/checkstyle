@@ -92,19 +92,16 @@
         <p id="Example1-code">Example:</p>
         <source>
 // limitation as it match field name in code
-import java.awt.Component; //OK
-
+import java.awt.Component; 
 // no ability to recognize what import is not used
-import static java.util.Map.copyOf; //OK
-import static java.util.Arrays.copyOf; //OK
-
+import static java.util.Map.copyOf; 
+import static java.util.Arrays.copyOf; 
 import java.lang.String; // violation
 
-import java.util.Stack;  // OK
+import java.util.Stack;  
 import java.util.Map;   // violation
 
-import java.util.List; // OK
-
+import java.util.List; 
 /**
 * @link List
 */
@@ -130,15 +127,13 @@ class MyClass{
         <p id="Example2-code">Example:</p>
         <source>
 // limitation as it match field name in code
-import java.awt.Component; //OK
-
+import java.awt.Component; 
 // no ability to recognize what import is not used
-import static java.util.Map.copyOf; //OK
-import static java.util.Arrays.copyOf; //OK
-
+import static java.util.Map.copyOf; 
+import static java.util.Arrays.copyOf; 
 import java.lang.String; // violation
 
-import java.util.Stack;  // OK
+import java.util.Stack;  
 import java.util.Map;   // violation
 
 import java.util.List; // violation

@@ -16,9 +16,8 @@
 // xdoc section -- start
 package com.company;
 
-import static java.io.*; // OK
-import static java.util.*; // OK
-
+import static java.io.*; 
+import static java.util.*; 
 import java.time.*; // violation should be in standard package group
                    // below special import
 

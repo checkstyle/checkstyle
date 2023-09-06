@@ -11,7 +11,7 @@
 // xdoc section -- start
 public class Test {
   public void test1() {} // violation, method is missing javadoc
-  public void foo() {} // OK
-  public void foobar() {} // OK
+  public void foo() {} 
+  public void foobar() {} 
 }
 // xdoc section -- end

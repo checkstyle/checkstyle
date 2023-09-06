@@ -15,10 +15,8 @@ package com.puppycrawl.tools.checkstyle.checks.naming.methodname;
 
 public interface InputMethodNamePrivateMethodsInInterfaces {
 
-    private void PrivateMethod() {} // ok
-
-    private static void PrivateMethod2() {} // ok
-
+    private void PrivateMethod() {} 
+    private static void PrivateMethod2() {} 
     default void DefaultMethod() { // violation
     }
 

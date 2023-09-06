@@ -16,7 +16,7 @@ public class Test {
     public void test1() {}
 
     /**
-     * Some description here // OK
+     * Some description here 
      */
     private void test2() {}
 }

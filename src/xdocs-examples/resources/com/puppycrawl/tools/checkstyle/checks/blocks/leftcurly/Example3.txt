@@ -12,7 +12,7 @@
 // xdoc section -- start
 class Test
 { // Violation - '{' should be on the previous line
-  private interface TestInterface { // OK
+  private interface TestInterface { 
   }
 
   private
@@ -20,7 +20,7 @@ class Test
   MyClass { // Violation - '{' should be on a new line
   }
 
-  enum Colors {RED, // OK
+  enum Colors {RED, 
     BLUE,
     GREEN;
   }

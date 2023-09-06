@@ -16,6 +16,6 @@
 public class Test {
   public Test(Object c) { } // violation
   public Test(int a, HashMap<String, Integer> b) { } // violation
-  public Test() { } // ok
+  public Test() { } 
 }
 // xdoc section -- end

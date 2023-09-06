@@ -122,7 +122,7 @@ class InputAbstractJavadocCorrectParagraph {
 }
 
 /*
- *  This comment has paragraph without '<p>' tag. // ok
+ *  This comment has paragraph without '<p>' tag. 
  *
  *  It's fine, because this is plain comment.
  */

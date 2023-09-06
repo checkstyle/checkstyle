@@ -18,6 +18,6 @@ public class Test {
   public void method3() { }
   private void method4() { } // violation
   public void method5() { }
-  private void method6() { } // ok
+  private void method6() { } 
 }
 // xdoc section -- end

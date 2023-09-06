@@ -7,7 +7,7 @@
 */
 
 // xdoc section -- start
-// OK
+
 if (/* OK */ x > 5) {}
 int a = 5; // violation
 doSomething(

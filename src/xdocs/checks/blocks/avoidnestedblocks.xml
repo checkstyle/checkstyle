@@ -91,7 +91,7 @@ public void foo() {
         break;
       }
     case 2:
-      System.out.println(&quot;Case 2&quot;);     // OK
+      System.out.println(&quot;Case 2&quot;);     
       break;
   }
 }
@@ -114,12 +114,12 @@ public void foo() {
   switch (a)
   {
     case 1:
-      {                    // OK
+      {                    
         System.out.println(&quot;Case 1&quot;);
         break;
       }
     case 2:
-      System.out.println(&quot;Case 2&quot;);     // OK
+      System.out.println(&quot;Case 2&quot;);     
       break;
   }
 }

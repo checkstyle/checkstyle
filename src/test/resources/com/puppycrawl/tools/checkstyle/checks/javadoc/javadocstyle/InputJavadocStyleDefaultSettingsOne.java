@@ -15,11 +15,10 @@ tokens = (default)ANNOTATION_DEF, ANNOTATION_FIELD_DEF, CLASS_DEF, CTOR_DEF, \
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocstyle;
 
-public class InputJavadocStyleDefaultSettingsOne // ok
+public class InputJavadocStyleDefaultSettingsOne 
 {
    // This is OK. We don't flag missing javadoc.  That's left for other checks.
-   private String first; // ok
-
+   private String first; 
    /** This Javadoc is missing an ending period */ // violation
    private String second;
 
@@ -28,23 +27,19 @@ public class InputJavadocStyleDefaultSettingsOne // ok
     * tags to stop the scan for the end of sentence.
     * @see Something
     */
-   public InputJavadocStyleDefaultSettingsOne() {} // ok
-
+   public InputJavadocStyleDefaultSettingsOne() {} 
    /**
     * This is ok!
     */
-   private void method1() {} // ok
-
+   private void method1() {} 
    /**
     * This is ok?
     */
-   private void method2() {} // ok
-
+   private void method2() {} 
    /**
     * And This is ok.<br>
     */
-   private void method3() {} // ok
-
+   private void method3() {} 
    /** // violation
     * This should fail even.though.there are embedded periods
     */
@@ -79,9 +74,7 @@ public class InputJavadocStyleDefaultSettingsOne // ok
    public void method8() {}
 
    /** {@inheritDoc} **/
-   public void method9() {} // ok
-
-
+   public void method9() {} 
     // Testcases to exercise the Tag parser (bug 843887)
 
     /**
@@ -108,13 +101,12 @@ public class InputJavadocStyleDefaultSettingsOne // ok
      * <img src="slashesCanOccurWithin/attributes.jpg">
      * <!-- comments <div> should not be checked. -->
      */
-    private void method11() {} // ok
-
+    private void method11() {} 
     /**
      * Tags for two lines.
      * <a href="some_link"
      * >Link Text</a>
      */
-    private void method12() {} // ok
+    private void method12() {} 
 }
 

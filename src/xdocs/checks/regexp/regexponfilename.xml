@@ -126,8 +126,8 @@ src/xdocs/&quot;config regexp&quot;.xml  //violation, contains whitespace
         </source>
         <p id="Example2-code">Example:</p>
         <source>
-src/site/resources/images/favicon.png  //OK
-src/site/resources/images/logo.jpg  //OK
+src/site/resources/images/favicon.png  
+src/site/resources/images/logo.jpg  
 src/site/resources/images/groups.gif  //violation, .gif images not allowed
         </source>
         <p id="Example3-config">
@@ -147,8 +147,8 @@ src/site/resources/images/groups.gif  //violation, .gif images not allowed
         </source>
         <p id="Example3-code">Example:</p>
         <source>
-src/site/resources/README.md  //OK
-src/site/resources/Logo.png  //OK
+src/site/resources/README.md  
+src/site/resources/Logo.png  
 src/site/resources/Text.md  //violation, .md files other than 'README.md' are not allowed
         </source>
         <p id="Example4-config">
@@ -167,8 +167,8 @@ src/site/resources/Text.md  //violation, .md files other than 'README.md' are no
         </source>
         <p id="Example4-code">Example:</p>
         <source>
-src/main/resources/sun_checks.xml  //OK
-src/main/resources/check_properties.properties  //OK
+src/main/resources/sun_checks.xml  
+src/main/resources/check_properties.properties  
 src/main/resources/JavaClass.java  //violation, xml|property files are allowed in resource folder
         </source>
         <p id="Example5-config">
@@ -184,10 +184,10 @@ src/main/resources/JavaClass.java  //violation, xml|property files are allowed i
         </source>
         <p id="Example5-code">Example:</p>
         <source>
-src/main/java/JavaClass.java  //OK
-src/main/MainClass.java  //OK
-src/main/java/java_xml.xml  //OK
-src/main/main_xml.xml  //OK
+src/main/java/JavaClass.java  
+src/main/MainClass.java  
+src/main/java/java_xml.xml  
+src/main/main_xml.xml  
 src/main/java/image.png  //violation, folders should only contain java or xml files
 src/main/check_properties.properties  //violation, folders should only contain java or xml files
         </source>
@@ -206,8 +206,8 @@ src/main/check_properties.properties  //violation, folders should only contain j
         </source>
         <p id="Example6-code">Example:</p>
         <source>
-src/SourceClass.java  //OK
-src/source_xml.xml  //OK
+src/SourceClass.java  
+src/source_xml.xml  
 src/image.png  //violation, only java and xml files are allowed in src folder
 src/main/main_properties.properties  //OK, this check only applies to src folder
         </source>
@@ -229,8 +229,8 @@ src/main/main_properties.properties  //OK, this check only applies to src folder
         </source>
         <p id="Example7-code">Example:</p>
         <source>
-src/main/java/JavaClass.java  //OK
-src/main/MainClass.java  //OK
+src/main/java/JavaClass.java  
+src/main/MainClass.java  
 src/main/java/java_class.java  //violation, file names should be in Camel Case
 src/main/main_class.java  //violation, file names should be in Camel Case
         </source>

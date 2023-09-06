@@ -28,13 +28,13 @@
         </source>
         <p id="Example1-code">Example:</p>
         <source>
-class ExampleOk { // OK
+class ExampleOk { 
   private int a;
   ExampleOk(int a) {
     this.a = a;
   }
 }
-class ExampleDefaultCtor { // OK
+class ExampleDefaultCtor { 
   private String s;
   ExampleDefaultCtor() {
     s = &quot;foobar&quot;;
@@ -43,7 +43,7 @@ class ExampleDefaultCtor { // OK
 class InvalidExample { // violation, class must have a constructor.
   public void test() {}
 }
-abstract class AbstractExample { // OK
+abstract class AbstractExample { 
   public abstract void test() {}
 }
         </source>

@@ -66,9 +66,9 @@
         <source>
 String nullString = null;
 nullString.equals(&quot;My_Sweet_String&quot;);            // violation
-&quot;My_Sweet_String&quot;.equals(nullString);            // OK
+&quot;My_Sweet_String&quot;.equals(nullString);            
 nullString.equalsIgnoreCase(&quot;My_Sweet_String&quot;);  // violation
-&quot;My_Sweet_String&quot;.equalsIgnoreCase(nullString);  // OK
+&quot;My_Sweet_String&quot;.equalsIgnoreCase(nullString);  
         </source>
 
         <p id="Example2-config">
@@ -89,9 +89,9 @@ nullString.equalsIgnoreCase(&quot;My_Sweet_String&quot;);  // violation
         <source>
 String nullString = null;
 nullString.equals(&quot;My_Sweet_String&quot;);            // violation
-&quot;My_Sweet_String&quot;.equals(nullString);            // OK
-nullString.equalsIgnoreCase(&quot;My_Sweet_String&quot;);  // OK
-&quot;My_Sweet_String&quot;.equalsIgnoreCase(nullString);  // OK
+&quot;My_Sweet_String&quot;.equals(nullString);            
+nullString.equalsIgnoreCase(&quot;My_Sweet_String&quot;);  
+&quot;My_Sweet_String&quot;.equalsIgnoreCase(nullString);  
         </source>
       </subsection>
 

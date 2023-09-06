@@ -44,12 +44,12 @@ package com.example.annotations.packageannotation; //violation
         </source>
         <p id="Example2-code">Example of fixing violation in MyClass.java:</p>
         <source>
-package com.example.annotations.packageannotation; //ok
+package com.example.annotations.packageannotation; 
         </source>
         <p id="Example3-code">Example of validating package-info.java:</p>
         <source>
 @Deprecated
-package com.example.annotations.packageannotation; //ok
+package com.example.annotations.packageannotation; 
         </source>
       </subsection>
 

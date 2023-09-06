@@ -9,7 +9,7 @@ tokens = (default)METHOD_DEF , CTOR_DEF , COMPACT_CTOR_DEF
 
 package com.puppycrawl.tools.checkstyle.checks.sizes.methodlength;
 
-strictfp final class InputMethodLengthModifier // ok
+strictfp final class InputMethodLengthModifier 
 {
 
     /** Illegal order of modifiers for variables */

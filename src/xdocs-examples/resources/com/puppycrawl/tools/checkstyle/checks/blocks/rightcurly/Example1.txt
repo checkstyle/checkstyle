@@ -20,14 +20,14 @@ public class Test {
 
     if (foo) {
       bar();
-    } else {     // OK
+    } else {     
       bar();
     }
 
     if (foo) { bar(); } int i = 0;  // violation
                   // ^^^ statement is not allowed on same line after curly right brace
 
-    if (foo) { bar(); }            // OK
+    if (foo) { bar(); }            
     int i = 0;
 
     try {
@@ -39,12 +39,11 @@ public class Test {
 
     try {
       bar();
-    } catch (Exception e) { // OK
+    } catch (Exception e) { 
       bar();
     }
 
-  }                         // OK
-
+  }                         
   public void testSingleLine() { bar(); } // OK, because singleline is allowed
 }
 // xdoc section -- end

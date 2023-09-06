@@ -168,11 +168,10 @@ import java.io.IOException; // violation, extra separation before import
                             // and wrong order, comes before 'java.net.URL'.
 import javax.net.ssl.TrustManager; // violation, extra separation due to above comment
 import javax.swing.JComponent;
-import org.apache.http.conn.ClientConnectionManager; // OK
+import org.apache.http.conn.ClientConnectionManager; 
 import java.util.Set; // violation, wrong order, 'java' should not come after 'org' imports
 import com.neurologic.http.HttpClient; // violation, wrong order, 'com' imports comes at top
-import com.neurologic.http.impl.ApacheHttpClient; // OK
-
+import com.neurologic.http.impl.ApacheHttpClient; 
 public class SomeClass { }
         </source>
         <p>
@@ -266,11 +265,9 @@ import org.albedo.*;
 import static javax.WindowConstants.*; // violation, wrong order, 'javax' comes before 'org'
 import javax.swing.JComponent;
 import org.apache.http.ClientConnectionManager; // violation, must separate from previous import
-import org.linux.apache.server.SoapServer; // OK
-
-import com.neurologic.http.HttpClient; // OK
-import com.neurologic.http.impl.ApacheHttpClient; // OK
-
+import org.linux.apache.server.SoapServer; 
+import com.neurologic.http.HttpClient; 
+import com.neurologic.http.impl.ApacheHttpClient; 
 public class SomeClass { }
         </source>
         <p>
@@ -318,7 +315,7 @@ public class SomeClass { }
           Example:
         </p>
         <source>
-import com.neurologic.http.impl.ApacheHttpClient; // OK
+import com.neurologic.http.impl.ApacheHttpClient; 
 import static java.awt.Button.A;
 import javax.swing.JComponent; // violation, wrong order, caused by above static import
                                // all static imports comes at bottom
@@ -355,7 +352,7 @@ import static java.io.File.createTempFile;
 import java.lang.Math.sqrt;
 
 import javax.swing.JComponent; // violation, extra separation in import group
-import static javax.windowConstants.*; // OK
+import static javax.windowConstants.*; 
                                     // all static imports are processed like non static imports.
 public class SomeClass { }
         </source>
@@ -535,8 +532,7 @@ public class InputEclipseStaticImportsOrder { }
 import static java.lang.Math.PI;
 import static java.io.File.createTempFile;
 import static javax.swing.JComponent; // violation, should be separated from previous imports
-import static javax.WindowConstants.*; // OK
-
+import static javax.WindowConstants.*; 
 import java.net.URL;
 
 public class SomeClass { }
@@ -559,11 +555,10 @@ public class SomeClass { }
           Example:
         </p>
         <source>
-import static java.io.File.listRoots;   // OK
-import static javax.swing.WindowConstants.*; // OK
-import static java.io.File.createTempFile; // OK
-import static com.puppycrawl.tools.checkstyle;  // OK
-
+import static java.io.File.listRoots;   
+import static javax.swing.WindowConstants.*; 
+import static java.io.File.createTempFile; 
+import static com.puppycrawl.tools.checkstyle;  
 public class SomeClass { }
         </source>
         <p id="Example12-config">
@@ -587,11 +582,10 @@ public class SomeClass { }
           Example:
         </p>
         <source>
-import static java.io.File.listRoots;   // OK
-import static javax.swing.WindowConstants.*; // OK
+import static java.io.File.listRoots;   
+import static javax.swing.WindowConstants.*; 
 import static java.io.File.createTempFile; // violation should be before javax
-import static com.puppycrawl.tools.checkstyle;  // OK
-
+import static com.puppycrawl.tools.checkstyle;  
 public class SomeClass { }
         </source>
       </subsection>

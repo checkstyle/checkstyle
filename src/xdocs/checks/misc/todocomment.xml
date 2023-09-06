@@ -64,7 +64,7 @@
         </p>
         <source>
 i++; // TODO: do differently in future   // violation
-i++; // todo: do differently in future   // OK
+i++; // todo: do differently in future   
         </source>
         <p id="Example2-config">
           To configure the check for comments that contain <code>TODO</code> and <code>FIXME</code>:
@@ -83,9 +83,9 @@ i++; // todo: do differently in future   // OK
         </p>
         <source>
 i++;   // TODO: do differently in future   // violation
-i++;   // todo: do differently in future   // OK
+i++;   // todo: do differently in future   
 i=i/x; // FIXME: handle x = 0 case         // violation
-i=i/x; // FIX :  handle x = 0 case         // OK
+i=i/x; // FIX :  handle x = 0 case         
         </source>
       </subsection>
 

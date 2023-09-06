@@ -14,35 +14,35 @@ class InputRightCurlyOther
                 if (x > 0)
                 {
                     break;
-                } else if (x < 0) {  //ok
+                } else if (x < 0) {  
 
                     ;
                 } //warn
                 else
                 {
                     break;
-                }//ok
+                }
                 switch (a)
                 {
                 case 0:
                     break;
                 default:
                     break;
-                } //ok
+                } 
             } //warn
             catch (Exception e)
             {
                 break;
-            }//ok
-        }//ok
+            }
+        }
 
         synchronized (this)
         {
             do
             {
                 x = 2;
-            } while (x == 2); //ok
-        }//ok
+            } while (x == 2); 
+        }
 
         this.wait(666
                  ); // Bizarre, but legal
@@ -50,26 +50,26 @@ class InputRightCurlyOther
         for (int k = 0; k < 1; k++)
         {
             String innerBlockVariable = "";
-        }//ok
+        }
 
 
         if (System.currentTimeMillis() > 1000)
             return 1;
         else
             return 2;
-    }//ok
+    }
 
 
     static
     {
         int x = 1;
-    }//ok
+    }
 
     public enum GreetingsEnum
     {
         HELLO,
         GOODBYE
-    }; //ok
+    }; 
 
     void method2()
     {
@@ -81,8 +81,8 @@ class InputRightCurlyOther
 
 
         if (flag) { System.identityHashCode("some foo"); }
-    } //ok
-} //ok
+    } 
+} 
 
 /**
  * Test input for closing brace if that brace terminates
@@ -119,27 +119,27 @@ class FooInner
         {
 
         }
-    }} //ok
+    }} 
 
 class EnumContainer {
-    private enum Suit { CLUBS, HEARTS, SPADES, DIAMONDS } // ok
+    private enum Suit { CLUBS, HEARTS, SPADES, DIAMONDS } 
 }
 
 class WithArrays {
-    String[] s = {""}; // ok
-    String[] empty = {}; // ok
+    String[] s = {""}; 
+    String[] empty = {}; 
     String[] s1 = {
         "foo", "foo",
-    }; // ok
+    }; 
     String[] s2 =
         {
             "foo", "foo",
-        }; // ok
+        }; 
     String[] s3 =
         {
             "foo",
             "foo",
-        }; // ok
+        }; 
     String[] s4 =
-        {"foo", "foo"}; // ok
+        {"foo", "foo"}; 
 }

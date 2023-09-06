@@ -112,7 +112,7 @@
         <source>
 System.out.println(&quot;&quot;); // violation, instruction matches illegal pattern
 System.out.
-println(&quot;&quot;); // OK
+println(&quot;&quot;); 
 /* System.out.println */ // OK, comments are ignored
         </source>
         <p id="Example3-config">
@@ -134,7 +134,7 @@ println(&quot;&quot;); // OK
 int debug = 0; // violation, variable name matches illegal pattern
 public class Debug { // violation, class name matches illegal pattern
 /* this is for de
-   bug only; */ // OK
+   bug only; */ 
         </source>
         <p id="Example4-config">
           To configure the check to find occurrences of

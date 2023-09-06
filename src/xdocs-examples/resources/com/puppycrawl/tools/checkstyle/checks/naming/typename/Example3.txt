@@ -12,7 +12,7 @@
 */
 
 // xdoc section -- start
-public interface I_firstName {} // OK
+public interface I_firstName {} 
 interface SecondName {} // violation, name 'SecondName'
                        // must match pattern '^I_[a-zA-Z0-9]*$'
 // xdoc section -- end
