@@ -1,0 +1,43 @@
+/*
+SuppressWithNearbyTextFilter
+nearbyTextPattern = (default)SUPPRESS CHECKSTYLE (\\w+)
+checkPattern = (default).*
+messagePattern = .*longer.*
+idPattern = (default)(null)
+lineRange = (default)0
+
+com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck
+fileExtensions = (default)all files
+ignorePattern = (default)^(package|import) .*
+max = 90
+
+com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck
+format = this should not appear
+message = (default)(null)
+ignoreCase = (default)false
+minimum = (default)0
+maximum = (default)0
+ignoreComments = (default)false
+
+
+*/
+// violation 9 lines above 'Line matches the illegal pattern .*'
+
+<?xml version="1.0"?>
+<!DOCTYPE module PUBLIC
+        "-//Checkstyle//DTD Checkstyle Configuration 1.3//EN"
+        "https://checkstyle.org/dtds/configuration_1_3.dtd">
+
+<module name="Checker">
+    // violation below 'Line matches the illegal pattern .*'
+    <property name="sev" value="this should not appear"/> <!-- SUPPRESS CHECKSTYLE c -->
+    <property name="tabWidth" value="4"/>
+    <module name="TreeWalker">
+        <module name="AnnotationLocation">
+// filtered violation below 'Line is longer than 90 characters (found 98).'
+            <property name="allowSamelineSinglePara" value="true"/> <!-- SUPPRESS CHECKSTYLE c -->
+        </module>
+    </module>
+// filtered violation below 'Line is longer than 90 characters (found 96).'
+    <!-- SUPPRESS CHECKSTYLE c --> <module name="SomeLongModuleNameThatMakesThisRowMoreThan90"/>
+</module>

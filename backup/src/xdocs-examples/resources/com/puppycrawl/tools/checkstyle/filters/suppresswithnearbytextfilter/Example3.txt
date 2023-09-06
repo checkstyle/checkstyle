@@ -1,0 +1,15 @@
+/*xml
+<module name="Checker">
+  <module name="SuppressWithNearbyTextFilter">
+    <property name="messagePattern" value=".*Line.*"/>
+    <property name="nearbyTextPattern" value=".*"/>
+  </module>
+  <module name="LineLength">
+    <property name="max" value="10"/>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+export FOO=BAR # ok, because violation message is matching suppress pattern
+// xdoc section -- end

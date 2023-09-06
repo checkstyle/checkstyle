@@ -1,0 +1,18 @@
+/*
+SuppressWithNearbyTextFilter
+nearbyTextPattern = (default)SUPPRESS CHECKSTYLE (\\w+)
+checkPattern = (default).*
+messagePattern = a![b
+idPattern = (default)(null)
+lineRange = (default)0
+
+com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck
+fileExtensions = (default)all files
+ignorePattern = (default)^(package|import) .*
+max = (default)80
+
+
+*/
+
+// violation below 'Line is longer than 80 characters (found 93).'
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaSUPPRESS CHECKSTYLE LineLengthCheck

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>AvoidDoubleBraceInitialization</title>
+  </head>
+  <body>
+    <section name="AvoidDoubleBraceInitialization">
+      <p>Since Checkstyle 8.30</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Detects double brace initialization.
+        </p>
+        <p>
+          Rationale: Double brace initialization (set of
+          <a href="https://docs.oracle.com/javase/specs/jls/se12/html/jls-8.html#jls-8.6">
+          Instance Initializers</a> in class body) may look cool,
+          but it is considered as anti-pattern and should be avoided.
+          This is also can lead to a hard-to-detect memory leak, if the anonymous class instance is
+          returned outside and other object(s) hold reference to it.
+          Created anonymous class is not static, it holds an implicit reference to the outer class
+          instance.
+          See this
+          <a href="https://blog.jooq.org/dont-be-clever-the-double-curly-braces-anti-pattern/">
+          blog post</a> and
+          <a href="https://www.baeldung.com/java-double-brace-initialization">
+          article</a> for more details.
+          Check ignores any comments and semicolons in class body.
+        </p>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/avoiddoublebraceinitialization/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">
+          Which results in the following violations:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/avoiddoublebraceinitialization/Example1.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example2-code">
+          Check only looks for double brace initialization and it ignores cases
+          where the anonymous class has fields or methods.
+          Though these might create the same memory issues as double brace,
+          the extra class members can produce side effects if changed incorrectly.
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/avoiddoublebraceinitialization/Example2.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+AvoidDoubleBraceInitialization">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <macro name="violation-messages">
+          <param name="checkName" value="AvoidDoubleBraceInitialization"/>
+        </macro>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.coding
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <macro name="parent-module">
+          <param name="moduleName" value="AvoidDoubleBraceInitialization"/>
+        </macro>
+      </subsection>
+    </section>
+  </body>
+</document>

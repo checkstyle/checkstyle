@@ -1,0 +1,41 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="DescendantToken">
+      <property name="tokens" value="LITERAL_CATCH,LITERAL_FINALLY"/>
+      <property name="limitedTokens" value="LITERAL_TRY"/>
+      <property name="maximumNumber" value="0"/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+class Test {
+  public void foo() {
+    try {
+        // Some code
+    } catch (Exception e) { // ok
+        System.out.println("xyz");
+        return;
+    } finally { // ok
+        System.out.println("xyz");
+    }
+    try {
+        // Some code
+    } catch (Exception e) {
+        try { // violation
+          // Some code
+      } catch (Exception ex) {
+          // handle exception
+      }
+    } finally {
+        try { // violation
+          // Some code
+      } catch (Exception e) {
+          // handle exception
+      }
+    }
+  }
+}
+// xdoc section -- end

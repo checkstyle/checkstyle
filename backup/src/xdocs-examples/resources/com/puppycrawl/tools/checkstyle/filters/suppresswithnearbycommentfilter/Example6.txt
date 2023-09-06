@@ -1,0 +1,16 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="SuppressWithNearbyCommentFilter">
+      <property name="commentFormat"
+        value="@cs\.suppress \[(\w+(\|\w+)*)\] \w[-\.'`,:;\w ]{14,}"/>
+      <property name="checkFormat" value="$1"/>
+      <property name="influenceFormat" value="1"/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+public static final int [] array; // @cs.suppress [ConstantName|NoWhitespaceAfter] A comment here
+// xdoc section -- end

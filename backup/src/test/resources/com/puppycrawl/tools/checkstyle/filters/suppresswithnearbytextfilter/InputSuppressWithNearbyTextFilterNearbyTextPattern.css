@@ -1,0 +1,58 @@
+/*
+SuppressWithNearbyTextFilter
+nearbyTextPattern = -cs: (\\w+)
+checkPattern = (default).*
+messagePattern = (default)(null)
+idPattern = (default)(null)
+lineRange = (default)0
+
+com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck
+fileExtensions = (default)all files
+ignorePattern = (default)^(package|import) .*
+max = 90
+
+com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck
+format = this should not appear
+message = (default)(null)
+ignoreCase = (default)false
+minimum = (default)0
+maximum = (default)0
+ignoreComments = (default)false
+
+
+*/
+// violation 9 lines above 'Line matches the illegal pattern .*'
+
+.div-1 main {
+  // violation below 'Line is longer than 90 characters (found 94).'
+  grid-template-areas: "title title title title""bins timespan specific-printers full-screen";
+}
+
+.div-1 main>h1 {
+  // filtered violation below 'Line is longer than 90 characters (found 93).'
+  margiin: "this should not appear"; /* -cs: Long comment explainingasdasdasdasdasdasdasda */
+  // filtered violation above 'Line matches the illegal pattern .*'
+}
+
+.div-1 input[type="date"]::-webkit-calendar-picker-indicator {
+  // filtered violation below 'Line is longer than 90 characters (found 93).'
+  /* Some long comment explaining the purpose of some  property */ /* -cs: LineLengthCheck */
+}
+
+.div-3 {
+  // violation below 'Line matches the illegal pattern .*'
+  display: "this should not appear";
+}
+
+.div-2 {
+  // filtered violation below 'Line is longer than 90 characters (found 95).'
+  grid-template-area: "area1 area1 bb area1" /* -cs: LineLengthCheck */ "area3 area3 bb area3";
+}
+
+.div-3>div, .div-2>input {
+  // filtered violation below 'Line matches the illegal pattern .*'
+  position: "this should not appear"; /* -cs: RegexpSinglelineCheck */
+}
+
+// filtered violation below 'Line is longer than 90 characters (found 97).'
+/* long comment should be broken into two rows because the row limit*/ /* -cs: LineLengthCheck */

@@ -1,0 +1,24 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="EmptyBlock">
+      <property name="tokens" value="LITERAL_DEFAULT"/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+public class Test {
+  private void test(int a) {
+    switch (a) {
+      case 1: someMethod();
+      default: // OK, as there is no block
+    }
+    switch (a) {
+      case 1: someMethod();
+      default: {} // violation
+    }
+  }
+}
+// xdoc section -- end

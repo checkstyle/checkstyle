@@ -1,0 +1,22 @@
+# All files default to text with LF eol
+* eol=lf
+
+# Windows files always have CRLF eol
+*.bat eol=crlf
+
+# Binary files need to be listed explicitly as first rule makes all files text files
+*.gif binary
+*.ico binary
+*.jpeg binary
+*.jpg binary
+*.png binary
+
+# Test resources that need specific eol
+/src/test/resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/InputNewlineAtEndOfFileCrlf.java eol=crlf
+/src/test/resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/InputNewlineAtEndOfFileCrlf2.java eol=crlf
+/src/test/resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/InputNewlineAtEndOfFileCrlf3.java eol=crlf
+/src/test/resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/InputNewlineAtEndOfFileCr.java -text
+/src/test/resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/InputNewlineAtEndOfFileCr2.java -text
+src/test/resources-noncompilable/com/puppycrawl/tools/checkstyle/xpath/xpathquerygenerator/InputXpathQueryGeneratorTextBlockCrlf.java eol=crlf
+src/test/resources/com/puppycrawl/tools/checkstyle/grammar/javadoc/InputCrAsNewlineMultiline.javadoc -text
+src/test/resources/com/puppycrawl/tools/checkstyle/grammar/javadoc/InputDosLineEndingAsNewlineMultiline.javadoc eol=crlf

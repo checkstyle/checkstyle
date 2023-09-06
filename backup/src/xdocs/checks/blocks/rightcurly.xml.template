@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>RightCurly</title>
+  </head>
+  <body>
+    <section name="RightCurly">
+      <p>Since Checkstyle 3.0</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Checks the placement of right curly braces (<code>'}'</code>) for code blocks.
+          This check supports if-else, try-catch-finally blocks, switch statements,
+          while-loops, for-loops, method definitions, class definitions, constructor definitions,
+          instance, static initialization blocks, annotation definitions and enum definitions.
+          For right curly brace of expression blocks of arrays, lambdas and class instances
+          please follow issue
+          <a href="https://github.com/checkstyle/checkstyle/issues/5945">#5945</a>.
+          For right curly brace of enum constant please follow issue
+          <a href="https://github.com/checkstyle/checkstyle/issues/7519">#7519</a>.
+        </p>
+      </subsection>
+
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>option</td>
+              <td>Specify the policy on placement of a right curly brace (<code>'}'</code>).</td>
+              <td><a href="../../property_types.html#RightCurlyOption">RightCurlyOption</a></td>
+              <td><code>same</code></td>
+              <td>3.0</td>
+            </tr>
+            <tr>
+              <td>tokens</td>
+              <td>tokens to check</td>
+              <td>subset of tokens
+                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_TRY">
+                  LITERAL_TRY</a>
+              , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_CATCH">
+                  LITERAL_CATCH</a>
+              , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_FINALLY">
+                  LITERAL_FINALLY</a>
+              , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_IF">
+                  LITERAL_IF</a>
+              , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_ELSE">
+                  LITERAL_ELSE</a>
+              , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
+                  CLASS_DEF</a>
+              , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+                  METHOD_DEF</a>
+              , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
+                  CTOR_DEF</a>
+              , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_FOR">
+                  LITERAL_FOR</a>
+              , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_WHILE">
+                  LITERAL_WHILE</a>
+              , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_DO">
+                  LITERAL_DO</a>
+              , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STATIC_INIT">
+                  STATIC_INIT</a>
+              , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INSTANCE_INIT">
+                  INSTANCE_INIT</a>
+              , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
+                  ANNOTATION_DEF</a>
+              , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
+                  ENUM_DEF</a>
+              , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
+                  INTERFACE_DEF</a>
+                ,<a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
+                  RECORD_DEF</a>
+                ,<a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMPACT_CTOR_DEF">
+                  COMPACT_CTOR_DEF</a>
+                ,<a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_SWITCH">
+                  LITERAL_SWITCH</a>
+                .
+              </td>
+              <td>
+                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_TRY">
+                  LITERAL_TRY</a>
+              , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_CATCH">
+                  LITERAL_CATCH</a>
+              , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_FINALLY">
+                  LITERAL_FINALLY</a>
+              , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_IF">
+                  LITERAL_IF</a>
+              , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_ELSE">
+                  LITERAL_ELSE</a>
+                .
+              </td>
+              <td>3.0</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p> To configure the check: </p>
+        <source>
+&lt;module name="RightCurly"/&gt;
+        </source>
+
+        <p>Example: </p>
+        <source>
+public class Test {
+
+  public void test() {
+
+    if (foo) {
+      bar();
+    }           // violation, right curly must be in the same line as the 'else' keyword
+    else {
+      bar();
+    }
+
+    if (foo) {
+      bar();
+    } else {     // OK
+      bar();
+    }
+
+    if (foo) { bar(); } int i = 0;  // violation
+                  // ^^^ statement is not allowed on same line after curly right brace
+
+    if (foo) { bar(); }            // OK
+    int i = 0;
+
+    try {
+      bar();
+    }           // violation, rightCurly must be in the same line as 'catch' keyword
+    catch (Exception e) {
+      bar();
+    }
+
+    try {
+      bar();
+    } catch (Exception e) { // OK
+      bar();
+    }
+
+  }                         // OK
+
+  public void testSingleLine() { bar(); } // OK, because singleline is allowed
+}
+        </source>
+
+        <p>
+          To configure the check with policy <code>alone</code> for <code> else</code> and
+          <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+          METHOD_DEF</a>
+          tokens:
+        </p>
+        <source>
+&lt;module name="RightCurly"&gt;
+  &lt;property name="option" value="alone"/&gt;
+  &lt;property name="tokens" value="LITERAL_ELSE, METHOD_DEF"/&gt;
+&lt;/module&gt;
+        </source>
+
+        <p>Example: </p>
+        <source>
+public class Test {
+
+  public void test() {
+
+    if (foo) {
+      bar();
+    } else { bar(); }   // violation, right curly must be alone on line
+
+    if (foo) {
+      bar();
+    } else {
+      bar();
+    }                   // OK
+
+    try {
+      bar();
+    } catch (Exception e) { // OK because config is set to token METHOD_DEF and LITERAL_ELSE
+      bar();
+    }
+
+  }                         // OK
+
+  public void violate() { bar; } // violation, singleline is not allowed here
+
+  public void ok() {
+    bar();
+  }                              // OK
+}
+        </source>
+        <p>
+          To configure the check with policy <code>alone</code> for
+          <a href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/switch.html">
+          Switch</a>
+          Statements:
+        </p>
+        <source>
+&lt;module name="RightCurly"&gt;
+  &lt;property name="option" value="alone"/&gt;
+  &lt;property name="tokens" value="LITERAL_SWITCH"/&gt;
+&lt;/module&gt;
+        </source>
+
+        <source>
+class Test {
+
+    public void method0() {
+        int mode = 0;
+        switch (mode) {
+            case 1:
+                int x = 1;
+                break;
+            default:
+                x = 0;
+        } // ok, RightCurly is alone
+    }
+
+    public void method0() {
+        int mode = 0;
+        switch (mode) {
+            case 1:
+                int x = 1;
+                break;
+            default:
+                x = 0; } // violation, RightCurly should be alone on a line
+    }
+
+}
+        </source>
+        <p>
+          To configure the check with policy <code>alone_or_singleline</code> for <code> if</code>
+          and
+          <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+          METHOD_DEF</a>
+          tokens:
+        </p>
+        <source>
+&lt;module name="RightCurly"&gt;
+  &lt;property name="option" value="alone_or_singleline"/&gt;
+  &lt;property name="tokens" value="LITERAL_IF, METHOD_DEF"/&gt;
+&lt;/module&gt;
+        </source>
+
+        <p>Example: </p>
+        <source>
+public class Test {
+
+  public void test() {
+
+    if (foo) {
+      bar();
+    } else {        // violation, right curly must be alone on line
+      bar();
+    }
+
+    if (foo) {
+      bar();
+    }               // OK
+    else {
+      bar();
+    }
+
+    try {
+      bar();
+    } catch (Exception e) {        // OK because config did not set token LITERAL_TRY
+      bar();
+    }
+
+  }                                // OK
+
+  public void violate() { bar(); } // OK , because singleline
+}
+        </source>
+        <p>
+          To configure the check with policy <code>alone_or_singleline</code> for
+          <a href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/switch.html">
+          Switch</a>
+          Statements:
+        </p>
+        <source>
+&lt;module name="RightCurly"&gt;
+  &lt;property name="option" value="alone_or_singleline"/&gt;
+  &lt;property name="tokens" value="LITERAL_SWITCH"/&gt;
+&lt;/module&gt;
+        </source>
+        <source>
+class Test {
+
+    public void method0() {
+        int mode = 0;
+        switch (mode) {
+            case 1:
+                int x = 1;
+                break;
+            default:
+                x = 0;
+        } // ok
+    }
+
+    public static void method7() {
+        int mode = 0;
+        int x;
+        switch (mode) { case 1: x = 5; } // ok, RightCurly is on the same line as LeftCurly
+    }
+
+    public void method() {
+        int mode = 0;
+        int x;
+        switch (mode) {
+            case 1:
+                x = 1; } // violation, right curly should be alone on line
+    }
+}
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+RightCurly">
+            Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+RightCurly">
+            Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+RightCurly">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <macro name="violation-messages">
+          <param name="checkName" value="RightCurly"/>
+        </macro>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p> com.puppycrawl.tools.checkstyle.checks.blocks </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <macro name="parent-module">
+          <param name="moduleName" value="RightCurly"/>
+        </macro>
+      </subsection>
+    </section>
+  </body>
+</document>

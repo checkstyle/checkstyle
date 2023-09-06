@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck"
+             name="UnnecessaryParentheses"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;p&gt;
+ Checks if unnecessary parentheses are used in a statement or expression.
+ The check will flag the following with warnings:
+ &lt;/p&gt;
+ &lt;pre&gt;
+ return (x);          // parens around identifier
+ return (x + 1);      // parens around return value
+ int x = (y / 2 + 1); // parens around assignment rhs
+ for (int i = (0); i &amp;lt; 10; i++) {  // parens around literal
+ t -= (z + 1);                     // parens around assignment rhs
+ boolean a = (x &amp;gt; 7 &amp;amp;&amp;amp; y &amp;gt; 5)      // parens around expression
+             || z &amp;lt; 9;
+ boolean b = (~a) &amp;gt; -27            // parens around ~a
+             &amp;amp;&amp;amp; (a-- &amp;lt; 30);        // parens around expression
+ &lt;/pre&gt;
+ &lt;p&gt;
+ The check is not "type aware", that is to say, it can't tell if parentheses
+ are unnecessary based on the types in an expression. The check is partially aware about
+ operator precedence but unaware about operator associativity.
+ It won't catch cases such as:
+ &lt;/p&gt;
+ &lt;pre&gt;
+ int x = (a + b) + c; // 1st Case
+ boolean p = true; // 2nd Case
+ int q = 4;
+ int r = 3;
+ if (p == (q &amp;lt;= r)) {}&lt;/pre&gt;
+ &lt;p&gt;
+ In the first case, given that &lt;em&gt;a&lt;/em&gt;, &lt;em&gt;b&lt;/em&gt;, and &lt;em&gt;c&lt;/em&gt; are
+ all {@code int} variables, the parentheses around {@code a + b}
+ are not needed.
+ In the second case, parentheses are required as &lt;em&gt;q&lt;/em&gt;, &lt;em&gt;r&lt;/em&gt; are
+ of type {@code int} and &lt;em&gt;p&lt;/em&gt; is of type {@code boolean}
+ and removing parentheses will give a compile-time error. Even if &lt;em&gt;q&lt;/em&gt;
+ and &lt;em&gt;r&lt;/em&gt; were {@code boolean} still there will be no violation
+ raised as check is not "type aware".
+ &lt;/p&gt;
+ &lt;p&gt;
+ The partial support for operator precedence includes cases of the following type:
+ &lt;/p&gt;
+ &lt;pre&gt;
+ boolean a = true, b = true;
+ boolean c = false, d = false;
+ if ((a &amp;amp;&amp;amp; b) || c) { // violation, unnecessary paren
+ }
+ if (a &amp;amp;&amp;amp; (b || c)) { // ok
+ }
+ if ((a == b) &amp;amp;&amp;amp; c) { // violation, unnecessary paren
+ }
+ String e = &amp;quot;e&amp;quot;;
+ if ((e instanceof String) &amp;amp;&amp;amp; a || b) { // violation, unnecessary paren
+ }
+ int f = 0;
+ int g = 0;
+ if (!(f &amp;gt;= g) // ok
+         &amp;amp;&amp;amp; (g &amp;gt; f)) { // violation, unnecessary paren
+ }
+ if ((++f) &amp;gt; g &amp;amp;&amp;amp; a) { // violation, unnecessary paren
+ }
+ &lt;/pre&gt;</description>
+         <properties>
+            <property default-value="EXPR,IDENT,NUM_DOUBLE,NUM_FLOAT,NUM_INT,NUM_LONG,STRING_LITERAL,LITERAL_NULL,LITERAL_FALSE,LITERAL_TRUE,ASSIGN,BAND_ASSIGN,BOR_ASSIGN,BSR_ASSIGN,BXOR_ASSIGN,DIV_ASSIGN,MINUS_ASSIGN,MOD_ASSIGN,PLUS_ASSIGN,SL_ASSIGN,SR_ASSIGN,STAR_ASSIGN,LAMBDA,TEXT_BLOCK_LITERAL_BEGIN,LAND,LOR,LITERAL_INSTANCEOF,GT,LT,GE,LE,EQUAL,NOT_EQUAL,UNARY_MINUS,UNARY_PLUS,INC,DEC,LNOT,BNOT,POST_INC,POST_DEC"
+                      name="tokens"
+                      type="java.lang.String[]"
+                      validation-type="tokenSet">
+               <description>tokens to check</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="unnecessary.paren.assign"/>
+            <message-key key="unnecessary.paren.expr"/>
+            <message-key key="unnecessary.paren.ident"/>
+            <message-key key="unnecessary.paren.lambda"/>
+            <message-key key="unnecessary.paren.literal"/>
+            <message-key key="unnecessary.paren.return"/>
+            <message-key key="unnecessary.paren.string"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>

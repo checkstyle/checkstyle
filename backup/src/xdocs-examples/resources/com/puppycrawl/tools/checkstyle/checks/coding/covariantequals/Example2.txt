@@ -1,0 +1,19 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="CovariantEquals"/>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+class Test {
+  public boolean equals(Test i) {  // no violation
+    return false;
+  }
+
+  public boolean equals(Object i) {
+    return false;
+  }
+}
+// xdoc section -- end

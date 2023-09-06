@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.CovariantEqualsCheck"
+             name="CovariantEquals"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;p&gt;
+ Checks that classes and records which define a covariant {@code equals()} method
+ also override method {@code equals(Object)}.
+ &lt;/p&gt;
+ &lt;p&gt;
+ Covariant {@code equals()} - method that is similar to {@code equals(Object)},
+ but with a covariant parameter type (any subtype of Object).
+ &lt;/p&gt;
+ &lt;p&gt;
+ &lt;strong&gt;Notice&lt;/strong&gt;: the enums are also checked,
+ even though they cannot override {@code equals(Object)}.
+ The reason is to point out that implementing {@code equals()} in enums
+ is considered an awful practice: it may cause having two different enum values
+ that are equal using covariant enum method, and not equal when compared normally.
+ &lt;/p&gt;
+ &lt;p&gt;
+ Inspired by &lt;a href="https://www.cs.jhu.edu/~daveho/pubs/oopsla2004.pdf"&gt;
+ Finding Bugs is Easy, chapter '4.5 Bad Covariant Definition of Equals (Eq)'&lt;/a&gt;:
+ &lt;/p&gt;
+ &lt;p&gt;
+ Java classes and records may override the {@code equals(Object)} method to define
+ a predicate for object equality. This method is used by many of the Java
+ runtime library classes; for example, to implement generic containers.
+ &lt;/p&gt;
+ &lt;p&gt;
+ Programmers sometimes mistakenly use the type of their class {@code Foo}
+ as the type of the parameter to {@code equals()}:
+ &lt;/p&gt;
+ &lt;pre&gt;
+ public boolean equals(Foo obj) {...}
+ &lt;/pre&gt;
+ &lt;p&gt;
+ This covariant version of {@code equals()} does not override the version in
+ the {@code Object} class, and it may lead to unexpected behavior at runtime,
+ especially if the class is used with one of the standard collection classes
+ which expect that the standard {@code equals(Object)} method is overridden.
+ &lt;/p&gt;
+ &lt;p&gt;
+ This kind of bug is not obvious because it looks correct, and in circumstances
+ where the class is accessed through the references of the class type (rather
+ than a supertype), it will work correctly. However, the first time it is used
+ in a container, the behavior might be mysterious. For these reasons, this type
+ of bug can elude testing and code inspections.
+ &lt;/p&gt;</description>
+         <message-keys>
+            <message-key key="covariant.equals"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>

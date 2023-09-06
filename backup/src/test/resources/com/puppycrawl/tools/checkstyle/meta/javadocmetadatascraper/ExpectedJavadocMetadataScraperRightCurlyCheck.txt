@@ -1,0 +1,30 @@
+Key: com.puppycrawl.tools.checkstyle.meta.javadocmetadatascraper.InputJavad<split>
+ocMetadataScraperRightCurlyCheck
+Name: InputJavadocMetadataScraperRightCurly
+FullQualifiedName: com.puppycrawl.tools.checkstyle.meta.javadocmetadatascraper.InputJavad<split>
+ocMetadataScraperRightCurlyCheck
+Parent: com.puppycrawl.tools.checkstyle.TreeWalker
+Description: <p>
+ Checks the placement of right curly braces ({@code '}'}) for code blocks. This check supports
+ if-else, try-catch-finally blocks, while-loops, for-loops,
+ method definitions, class definitions, constructor definitions,
+ instance, static initialization blocks, annotation definitions and enum definitions.
+ For right curly brace of expression blocks of arrays, lambdas and class instances
+ please follow issue
+ <a href="https://github.com/checkstyle/checkstyle/issues/5945">#5945</a>.
+ For right curly brace of enum constant please follow issue
+ <a href="https://github.com/checkstyle/checkstyle/issues/7519">#7519</a>.
+ </p>
+ModuleType: CHECK
+Property Type: com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyOption
+Property DefaultValue: same
+Property ValidationType: null
+Property Description: Specify the policy on placement of a right curly brace
+ (<code>'}'</code>).
+Property Type: java.lang.String[]
+Property DefaultValue: LITERAL_TRY,LITERAL_CATCH,LITERAL_FINALLY,LITERAL_IF,LITERAL_ELSE
+Property ValidationType: tokenSet
+Property Description: tokens to check
+ViolationMessageKey: line.alone
+ViolationMessageKey: line.break.before
+ViolationMessageKey: line.same

@@ -1,0 +1,4 @@
+<!ELEMENT checkstyle-packages (package)*>
+
+<!ELEMENT package (package)*>
+<!ATTLIST package name NMTOKEN #REQUIRED>

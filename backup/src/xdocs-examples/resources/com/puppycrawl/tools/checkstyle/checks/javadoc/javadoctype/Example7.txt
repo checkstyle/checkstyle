@@ -1,0 +1,37 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="JavadocType">
+      <property name="allowUnknownTags" value="true"/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+/**
+ * @author a
+ * @version $Revision1$
+ */
+public class ClassA { // OK
+  /** */
+  private class ClassB {} // OK
+}
+
+/**
+ * @author
+ * @version abc
+ * @unknownTag value // OK, as unknown tag is allowed
+ */
+public class ClassC {} // OK
+
+/** */
+public class ClassD {} // OK
+
+/** */
+private class ClassE {} // OK
+
+/** */
+@Generated
+public class ClassF<T> {} // OK
+// xdoc section -- end

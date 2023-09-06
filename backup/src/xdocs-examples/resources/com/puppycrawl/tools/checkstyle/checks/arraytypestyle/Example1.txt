@@ -1,0 +1,22 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="ArrayTypeStyle"/>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+public class MyClass {
+  int[] nums; // OK
+  String strings[]; // violation
+
+  char[] toCharArray() { // OK
+    return null;
+  }
+
+  byte getData()[] { // violation
+    return null;
+  }
+}
+// xdoc section -- end

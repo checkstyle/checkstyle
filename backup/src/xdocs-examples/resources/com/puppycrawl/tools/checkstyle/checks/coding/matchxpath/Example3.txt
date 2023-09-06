@@ -1,0 +1,21 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="MatchXpath">
+      <property name="query" value="//METHOD_DEF[./IDENT[@text='test'
+              or @text='foo']]"/>
+      <message key="matchxpath.match"
+              value="Method name should not be 'test' or 'foo'"/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+public class Test {
+  public void test() {} // violation
+  public void getName() {} // ok
+  public void foo() {} // violation
+  public void sayHello() {} // ok
+}
+// xdoc section -- end

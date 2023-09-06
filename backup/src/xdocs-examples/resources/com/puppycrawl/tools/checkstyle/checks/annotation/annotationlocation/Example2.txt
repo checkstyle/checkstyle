@@ -1,0 +1,31 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="AnnotationLocation">
+      <property name="allowSamelineMultipleAnnotations" value="true"/>
+      <property name="allowSamelineSingleParameterlessAnnotation"
+                value="false"/>
+      <property name="allowSamelineParameterizedAnnotation" value="false"/>
+    </module>
+  </module>
+</module>
+
+
+*/
+
+package com.puppycrawl.tools.checkstyle.checks.annotation.annotationlocation;
+
+// xdoc section -- start
+class Example2 {
+  @NotNull private boolean field1; //ok
+  @Override public int hashCode() { return 1; } //ok
+  @NotNull //ok
+  private boolean field2;
+  @Override //ok
+  public boolean equals(Object obj) { return true; }
+  @Mock DataLoader loader; //ok
+  @SuppressWarnings("deprecation") DataLoader loader; //ok
+  @SuppressWarnings("deprecation") public int foo() { return 1; } //ok
+  @NotNull @Mock DataLoader loader; //ok
+}
+// xdoc section -- end

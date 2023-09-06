@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>UnusedLocalVariable</title>
+  </head>
+  <body>
+    <section name="UnusedLocalVariable">
+      <p>Since Checkstyle 9.3</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Checks that a local variable is declared and/or assigned, but not used.
+          Doesn't support <a href="https://docs.oracle.com/javase/specs/jls/se17/html/jls-14.html#jls-14.30">pattern variables yet</a>.
+          Doesn't check <a href="https://docs.oracle.com/javase/specs/jls/se17/html/jls-4.html#jls-4.12.3">array components</a> as array
+          components are classified as different kind of variables by <a href="https://docs.oracle.com/javase/specs/jls/se17/html/index.html">JLS</a>.
+        </p>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;UnusedLocalVariable&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example1-code">
+          Example:
+        </p>
+        <source>
+class Test {
+
+    int a;
+
+    {
+        int k = 12; // violation, assigned and updated but never used
+        k++;
+    }
+
+    Test(int a) {   // ok as 'a' is a constructor parameter not a local variable
+        this.a = 12;
+    }
+
+    void method(int b) {
+        int a = 10;             // violation
+        int[] arr = {1, 2, 3};  // violation
+        int[] anotherArr = {1}; // ok
+        anotherArr[0] = 4;
+    }
+
+    String convertValue(String newValue) {
+        String s = newValue.toLowerCase(); // violation
+        return newValue.toLowerCase();
+    }
+
+    void read() throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        String s; // violation
+        while ((s = reader.readLine()) != null) {
+        }
+        try (BufferedReader reader1 // ok as 'reader1' is a resource and resources are closed
+                                    // at the end of the statement
+            = new BufferedReader(new FileReader(&quot;abc.txt&quot;))) {
+        }
+        try {
+        } catch (Exception e) {     // ok as e is an exception parameter
+        }
+    }
+
+    void loops() {
+        int j = 12;
+        for (int i = 0; j &lt; 11; i++) { // violation, unused local variable 'i'.
+        }
+        for (int p = 0; j &lt; 11; p++)   // ok
+            p /= 2;
+    }
+
+    void lambdas() {
+        Predicate&lt;String&gt; obj = (String str) -&gt; { // ok as 'str' is a lambda parameter
+            return true;
+        };
+        obj.test(&quot;test&quot;);
+    }
+}
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+UnusedLocalVariable">
+                Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22unused.local.var%22">
+              unused.local.var
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.coding
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

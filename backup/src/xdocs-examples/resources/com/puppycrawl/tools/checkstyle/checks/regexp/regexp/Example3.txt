@@ -1,0 +1,13 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="Regexp">
+      <property name="format" value="// This code is copyrighted\n// \(c\) MyCompany"/>
+      <property name="duplicateLimit" value="0"/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+// xdoc section -- end

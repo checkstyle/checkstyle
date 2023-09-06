@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+
+  <head>
+    <title>Command Line</title>
+  </head>
+
+  <body>
+    <section name="Content">
+      <macro name="toc">
+        <param name="fromDepth" value="1"/>
+        <param name="toDepth" value="1"/>
+      </macro>
+    </section>
+
+    <section name="Description">
+      <p>
+        This document describes how to run Checkstyle using the command line
+        tool. The latest version of Checkstyle can be downloaded as described at
+        <a href="https://checkstyle.org/#Download">Download section</a>.
+        This command line tool is included in the Checkstyle distribution.
+      </p>
+    </section>
+
+    <section name="Command line usage">
+      <p>
+
+        <source>
+java -D&lt;property&gt;=&lt;value&gt;  \
+     com.puppycrawl.tools.checkstyle.Main \
+     -c &lt;configurationFile&gt; \
+     [-f &lt;format&gt;] [-p &lt;propertiesFile&gt;] [-o &lt;file&gt;] \
+     [-s &lt;line:column&gt;] [-g | --generate-xpath-suppression] [-w | --tabWidth &lt;length&gt;] \
+     [-t | --tree] [-T | --treeWithComments] [-J | --treeWithJavadoc] [-j | --javadocTree] \
+     [-V | --version] [-b | --branch-matching-xpath &lt;xpathQuery&gt;] [-h | --help] \
+     [-e | --exclude &lt;excludedPath&gt;] [-E | --executeIgnoredModules] [-d | --debug] \
+     [-x | --exclude-regexp &lt;excludedPathPattern&gt;] \
+     file(s) or folder(s) ...
+        </source>
+      </p>
+
+      <p>
+        Checkstyle will process the specified files and by default report
+        violations to standard out in plain format. Checkstyle requires a <a
+        href="config.html">configuration XML file</a> that configures the
+        checks to apply. Command line options are:
+      </p>
+
+      <ul id="CLI_Options">
+        <li>
+          <code>-c configurationFile</code> - Specifies the location of the
+          file that defines the configuration modules. The location can either
+          be a filesystem location, or a
+          <a href=
+            "https://docs.oracle.com/javase/8/docs/technotes/guides/lang/resources.html#res_names">
+              name</a>
+          passed to the ClassLoader.getResource() method.
+        </li>
+        <li>
+          <code>-f format</code> - Specifies the output
+          format. Valid values: <code>xml</code>, <code>sarif</code>, <code>plain</code> for <a
+          href="apidocs/com/puppycrawl/tools/checkstyle/XMLLogger.html">XMLLogger</a>,
+          <a href="apidocs/com/puppycrawl/tools/checkstyle/SarifLogger.html">SarifLogger</a>, and
+          <a href="apidocs/com/puppycrawl/tools/checkstyle/DefaultLogger.html">DefaultLogger</a>
+          respectively. Defaults to <code>plain</code>.
+        </li>
+        <li>
+          <code>-p propertiesFile</code> - Sets the property files to load.
+        </li>
+        <li>
+          <code>-o file</code> - Sets the output file. Defaults to stdout.
+        </li>
+        <li>
+          <code>-s line:column</code> - Prints xpath suppressions at the file's line and column
+          position.
+          Argument is the line and column number (separated by a <code>:</code> ) in the file
+          that the suppression should be generated for. The option cannot be used
+          with other options and requires exactly one file to run on to be specified.
+          ATTENTION: generated result will have few queries, joined by pipe(<code>|</code>).
+          Together they will match all AST nodes on specified line
+          and column. You need to choose only one and recheck that it works. Usage of all of them is
+          also ok, but might result in undesirable matching and suppress other issues.
+        </li>
+        <li>
+          <code>-g,--generate-xpath-suppression</code> - Generates to output a suppression xml
+          to use to suppress all violations from user's config. Instead of printing every violation,
+          all violations will be catched and single suppressions xml file will be printed out.
+          Used only
+          with <code>-c</code> option. Output location can be specified with <code>-o</code> option.
+        </li>
+        <li>
+          <code>-w, --tabWidth length</code> - Sets the length of the tab character. Used only with
+          <code>-s</code> option. Default value is 8.
+        </li>
+        <li>
+          <code>-t, --tree</code> - Prints Abstract Syntax Tree(AST) of the checked file. The option
+          cannot be used other options and requires exactly one file to run on to be specified.
+        </li>
+        <li>
+          <code>-T, --treeWithComments</code> - Prints Abstract Syntax Tree(AST) with comment nodes
+          of the checked file. The option cannot be used with other options and requires exactly
+          one file to run on to be specified.
+        </li>
+        <li>
+          <code>-J, --treeWithJavadoc</code> - Prints Abstract Syntax Tree(AST) with Javadoc nodes
+          and comment nodes of the checked file. Attention that line number and columns will not be
+          the same as it is a file due to the fact that each javadoc comment is parsed separately
+          from java file. The option cannot be used with other options and requires exactly one
+          file to run on to be specified.
+        </li>
+        <li>
+          <code>-j, --javadocTree</code> - Prints Parse Tree of the Javadoc comment.
+          The file have to contain <b>only Javadoc comment content</b> without including '/**' and
+          '*/' at the beginning and at the end respectively. The option
+          cannot be used other options and requires exactly one file to run on to be specified.
+        </li>
+        <li>
+          <code>-d, --debug</code> - Prints all debug logging of CheckStyle utility.
+        </li>
+        <li>
+          <code>-e, --exclude excludedPath</code> - Directory/file to exclude from
+          CheckStyle. The path can be the full, absolute path, or relative to the current path.
+          Multiple excludes are allowed.
+        </li>
+        <li>
+          <code>-x, --exclude-regexp excludedPathPattern</code> - Directory/file pattern to
+          exclude from CheckStyle. Multiple excludes are allowed.
+        </li>
+        <li>
+          <code>-V, --version</code> - print product version and exit. Any other option is ignored.
+        </li>
+        <li>
+          <code>-b, --branch-matching-xpath xpathQuery</code>
+           - Shows Abstract Syntax Tree(AST) branches that match given XPath query.
+        </li>
+        <li>
+          <code>-h, --help</code> - print usage help message and exit. Any other option is ignored.
+        </li>
+        <li>
+          <code>-E, --executeIgnoredModules</code> - Allows ignored modules to be run.
+        </li>
+      </ul>
+
+      <p>
+        Note that the <code>-n packageNamesFile</code>
+        option has been dropped for Checkstyle 5.0, because of significant changes regarding
+        package name file handling. See <a href="config.html#Packages">this link</a> for details.
+      </p>
+
+      <p>
+        Set the properties for <a href="config.html#Properties">expanded
+        property values</a> by either by assigning system properties using the
+        <code>-D&lt;property&gt;=&lt;value&gt;</code> arguments to java or
+        specifying a property file using the <code>-p</code> option.  If a
+        property file is specified, the system properties are ignored.
+      </p>
+      <p>
+        CLI is implemented by means of <a href="https://picocli.info">picocli</a>
+        library. Our CLI supports definition of arguments in file
+        by means of <a href="https://picocli.info/#AtFiles">AtFiles</a> feature
+        and also command line completion in Bash or ZSH Unix shells, see how to make it
+        <a href="https://picocli.info/autocomplete.html">here</a>.
+      </p>
+    </section>
+
+    <section name="Download and Run">
+      <p>
+        It is possible to run Checkstyle directly from the JAR file using
+        the <code>-jar</code> option. Download latest
+        <a href="https://github.com/checkstyle/checkstyle/releases/download/checkstyle-${projectVersion}/checkstyle-${projectVersion}-all.jar">
+        checkstyle-${projectVersion}-all.jar</a>.
+        An example of run would be:
+      </p>
+      <div class="wrap-content">
+        <source>
+          java -jar checkstyle-${projectVersion}-all.jar -c /sun_checks.xml MyClass.java
+          java -jar checkstyle-${projectVersion}-all.jar -c /google_checks.xml MyClass.java
+        </source>
+      </div>
+      <p>
+        It is recommended to use configuration files that are embedded in jar files, but latest
+        configuration files are there:
+        <a href=
+          "https://raw.githubusercontent.com/checkstyle/checkstyle/master/src/main/resources/sun_checks.xml">
+            sun_checks.xml</a>
+        <a href=
+          "https://raw.githubusercontent.com/checkstyle/checkstyle/master/src/main/resources/google_checks.xml">
+            google_checks.xml</a>
+      </p>
+      <p>
+        To run <a href="writingchecks.html#The_Checkstyle_SDK_Gui">Checkstyle UI viewer</a>
+        for AST tree directly from the JAR file using
+        the <code>-jar</code> option. Download latest
+        <a href="https://github.com/checkstyle/checkstyle/releases/download/checkstyle-${projectVersion}/checkstyle-${projectVersion}-all.jar">
+        checkstyle-${projectVersion}-all.jar</a>.
+        An example of run would be (path to java file is optional):
+      </p>
+      <div class="wrap-content">
+        <source>
+          java -cp checkstyle-${projectVersion}-all.jar com.puppycrawl.tools.checkstyle.gui.Main \
+          &#xa0;&#xa0;&#xa0;&#xa0;MyClass.java
+        </source>
+      </div>
+    </section>
+
+    <section name="Run after compilation">
+      <p>
+        Download and compile:
+      </p>
+      <div class="wrap-content">
+        <source>
+          git clone https://github.com/checkstyle/checkstyle.git
+          cd checkstyle
+          mvn clean compile
+        </source>
+      </div>
+      <p>
+        Run validation with arguments:
+      </p>
+      <div class="wrap-content">
+        <source>
+          mvn exec:java -Dexec.mainClass="com.puppycrawl.tools.checkstyle.Main" \
+          &#xa0;&#xa0;&#xa0;&#xa0;-Dexec.args="-c /sun_checks.xml src/main/java"
+        </source>
+      </div>
+      <p>
+        Run UI application for file :
+      </p>
+      <div class="wrap-content">
+        <source>
+          mvn exec:java -Dexec.mainClass="com.puppycrawl.tools.checkstyle.gui.Main" -Dexec.args=\
+          &#xa0;&#xa0;&#xa0;&#xa0;"src/main/java/com/puppycrawl/tools/checkstyle/Checker.java"
+        </source>
+      </div>
+      <p>
+        Build all jars, and launch CLI from new build:
+      </p>
+      <div class="wrap-content">
+        <source>
+          mvn clean package -Passembly,no-validations
+          java -jar target/checkstyle-X.X-SNAPSHOT-all.jar -c /sun_checks.xml MyClass.java
+        </source>
+      </div>
+    </section>
+
+    <section name="Usage by Classpath update">
+      <p>
+        The easiest way is to include
+        <a href=
+          "https://github.com/checkstyle/checkstyle/releases/download/checkstyle-${projectVersion}/checkstyle-${projectVersion}-all.jar">
+            checkstyle-${projectVersion}-all.jar</a>
+        in the
+        <a href=
+          "https://docs.oracle.com/javase/8/docs/technotes/tools/windows/classpath.html#sthref10">
+            classpath</a>.
+        Alternatively, you must include the
+        <code>compile</code> third party dependencies listed in
+
+        <a href="dependencies.html">Project Dependencies</a> in the
+        classpath.
+
+        <br/>
+        <br/>
+        <b>
+          Run checkstyle with configuration file at
+          <code>/sun_checks.xml</code> on a filesystem
+        </b>
+      </p>
+      <div class="wrap-content">
+        <source>
+          java com.puppycrawl.tools.checkstyle.Main -c /sun_checks.xml Check.java
+        </source>
+      </div>
+
+      <p>
+        <b>
+          Run checkstyle with configuration file
+          <code>/sun_checks.xml</code> on all Java files in a directory
+        </b>
+      </p>
+      <div class="wrap-content">
+        <source>
+          java com.puppycrawl.tools.checkstyle.Main -c /sun_checks.xml src/
+        </source>
+      </div>
+
+      <p>
+        <b>
+          Run checkstyle with configuration file
+          <code>/sun_checks.xml</code> on a file and provide a system
+          property
+        </b>
+      </p>
+      <div class="wrap-content">
+        <source>
+          java -Dcheckstyle.cache.file=target/cachefile com.puppycrawl.tools.checkstyle.Main \
+          &#xa0;&#xa0;&#xa0;&#xa0;-c /sun_checks.xml Check.java
+        </source>
+      </div>
+
+      <p>
+        <b>
+          Run checkstyle with configuration file
+          <code>/sun_checks.xml</code> on a file and use properties in a
+          file
+        </b>
+      </p>
+      <div class="wrap-content">
+        <source>
+          java com.puppycrawl.tools.checkstyle.Main -c /sun_checks.xml \
+          &#xa0;&#xa0;&#xa0;&#xa0;-p myCheckstyle.properties Check.java
+        </source>
+      </div>
+
+      <p>
+        <b>
+          Run checkstyle with configuration file
+          <code>/sun_checks.xml</code> on a file and output to a file in
+          XML format
+        </b>
+      </p>
+      <div class="wrap-content">
+        <source>
+          java com.puppycrawl.tools.checkstyle.Main -c /sun_checks.xml -f xml \
+          &#xa0;&#xa0;&#xa0;&#xa0;-o build/checkstyle_errors.xml Check.java
+        </source>
+      </div>
+
+      <p>
+        <b>
+          Run checkstyle with <a href="extending.html">custom module(s)
+          (Root module, Checks, etc)</a> in configuration file:
+        </b>
+      </p>
+      <div class="wrap-content">
+        <source>
+          java -classpath MyCustom.jar;checkstyle-${projectVersion}-all.jar \
+          &#xa0;&#xa0;&#xa0;&#xa0;com.puppycrawl.tools.checkstyle.Main -c config.xml Check.java
+        </source>
+      </div>
+      <p>
+        <b>Note</b>: Custom modules should be specified with the class'
+        <a href="writingchecks.html#Integrating_Checks">full classpath</a>
+        in the configuration file and the compiled class be located in the custom
+        JAR for Checkstyle to find.
+      </p>
+    </section>
+  </body>
+</document>

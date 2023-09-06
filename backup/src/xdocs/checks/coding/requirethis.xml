@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>RequireThis</title>
+  </head>
+  <body>
+    <section name="RequireThis">
+      <p>Since Checkstyle 3.4</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Checks that references to instance variables and methods of the present
+          object are explicitly of the form &quot;this.varName&quot; or
+          &quot;this.methodName(args)&quot; and that those references don't
+          rely on the default behavior when &quot;this.&quot; is absent.
+        </p>
+
+        <p>
+           Warning: the Check is very controversial if 'validateOnlyOverlapping' option is set to
+           'false' and not that actual nowadays.
+        </p>
+
+        <p>
+          Rationale:
+        </p>
+        <ol>
+          <li>
+            The same notation/habit for C++ and Java (C++ have global methods, so having
+            &quot;this.&quot; do make sense in it to distinguish call of method of class
+            instead of global).
+          </li>
+          <li>
+            Non-IDE development (ease of refactoring, some clearness to distinguish
+            static and non-static methods).
+          </li>
+        </ol>
+      </subsection>
+      <subsection name="Notes" id="Notes">
+        <p>
+          Limitations: Nothing is currently done about static variables
+          or catch-blocks.  Static methods invoked on a class name seem to be OK;
+          both the class name and the method name have a DOT parent.
+          Non-static methods invoked on either this or a variable name seem to be
+          OK, likewise.
+        </p>
+      </subsection>
+
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>checkFields</td>
+              <td>Control whether to check references to fields.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>true</code></td>
+              <td>3.4</td>
+            </tr>
+            <tr>
+              <td>checkMethods</td>
+              <td>Control whether to check references to methods.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>true</code></td>
+              <td>3.4</td>
+            </tr>
+            <tr>
+              <td>validateOnlyOverlapping</td>
+              <td>Control whether to check only overlapping by variables or arguments.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>true</code></td>
+              <td>6.17</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the default check:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;RequireThis&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example1-code">Example:</p>
+        <source>
+public class Test {
+  private int a;
+  private int b;
+  private int c;
+
+  public Test(int a) {
+    // overlapping by constructor argument
+    this.a = a;       // OK, this keyword used
+    b = 0;            // OK, no overlap
+    foo(5);           // OK
+  }
+
+  public void foo(int c) {
+    // overlapping by method argument
+    c = c;            // violation, reference to instance variable &quot;c&quot; requires &quot;this&quot;
+  }
+}
+        </source>
+        <p id="Example2-config">
+          To configure the check for fields only:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;RequireThis&quot;&gt;
+      &lt;property name=&quot;checkMethods&quot; value=&quot;false&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example2-code">Example:</p>
+        <source>
+public class Test {
+  private int a;
+  private int b;
+  private int c;
+
+  public Test(int a) {
+    // overlapping by constructor argument
+    this.a = a;       // OK, this keyword used
+    b = 0;            // OK, no overlap
+    foo(5);           // OK, no validation for methods
+  }
+
+  public void foo(int c) {
+    // overlapping by method argument
+    c = c;            // violation, reference to instance variable &quot;c&quot; requires &quot;this&quot;
+  }
+}
+        </source>
+        <p id="Example3-config">
+            To configure the check for methods only:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;RequireThis&quot;&gt;
+      &lt;property name=&quot;checkFields&quot; value=&quot;false&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example3-code">Example:</p>
+        <source>
+public class Test {
+  private int a;
+  private int b;
+  private int c;
+
+  public Test(int a) {
+    // overlapping by constructor argument
+    this.a = a;       // OK, no validation for fields
+    b = 0;            // OK, no validation for fields
+    foo(5);           // OK, no overlap
+  }
+
+  public void foo(int c) {
+    // overlapping by method argument
+    c = c;            // OK, no validation for fields
+  }
+}
+        </source>
+        <p>
+          Note that method call foo(5) does not raise a violation
+          because methods cannot be overlapped in java.
+        </p>
+        <p id="Example4-config">
+            To configure the check to validate for non-overlapping fields and methods:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;RequireThis&quot;&gt;
+      &lt;property name=&quot;validateOnlyOverlapping&quot; value=&quot;false&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example4-code">Example:</p>
+        <source>
+public class Test {
+  private int a;
+  private int b;
+  private int c;
+
+  public Test(int a) {
+    // overlapping by constructor argument
+    this.a = a;       // OK, no validation for fields
+    b = 0;            // violation, reference to instance variable &quot;b&quot; requires &quot;this&quot;
+    foo(5);           // violation, method call &quot;foo(5)&quot; requires &quot;this&quot;
+  }
+
+  public void foo(int c) {
+    // overlapping by method argument
+    c = c;            // violation, reference to instance variable &quot;c&quot; requires &quot;this&quot;
+  }
+}
+        </source>
+        <p>
+          Please, be aware of the following logic, which is implemented in the check:
+        </p>
+        <p id="Example5-code">
+          1) If you arrange 'this' in your code on your own, the check will not raise violation for
+          variables which use 'this' to reference a class field, for example:
+        </p>
+        <source>
+public class C {
+  private int scale;
+  private int x;
+
+  public void foo(int scale) {
+    scale = this.scale;      // no violation
+
+    if (scale &gt; 0) {
+      scale = -scale;        // no violation
+    }
+    x *= scale;
+  }
+}
+        </source>
+        <p id="Example6-code">
+          2) If method parameter is returned from the method, the check will not raise violation for
+             returned variable/parameter, for example:
+        </p>
+        <source>
+public class D {
+  private String prefix;
+
+  public String modifyPrefix(String prefix) {
+    prefix = &quot;^&quot; + prefix + &quot;$&quot;;  // no violation, because method parameter is returned
+    return prefix;
+  }
+}
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+RequireThis">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22require.this.method%22">
+              require.this.method
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22require.this.variable%22">
+              require.this.variable
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.coding
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

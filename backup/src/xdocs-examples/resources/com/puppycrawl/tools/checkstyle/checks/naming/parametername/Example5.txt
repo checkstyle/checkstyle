@@ -1,0 +1,29 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="ParameterName">
+      <property name="format" value="^[a-z]([a-z0-9][a-zA-Z0-9]*)?$"/>
+      <property name="accessModifiers" value="protected, package, private"/>
+      <message key="name.invalidPattern"
+        value="Parameter name ''{0}'' must match pattern ''{1}''"/>
+    </module>
+    <module name="ParameterName">
+      <property name="format" value="^[a-z][a-z0-9][a-zA-Z0-9]*$"/>
+      <property name="accessModifiers" value="public"/>
+      <message key="name.invalidPattern"
+        value="Parameter name ''{0}'' must match pattern ''{1}''"/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+class MyClass {
+  void method1(int v1) {} // OK
+  protected method2(int V2) {} // violation, Parameter name 'V2'
+                               // must match pattern '^[a-z]([a-z0-9][a-zA-Z0-9]*)?$'
+  private method3(int a) {} // OK
+  public method4(int b) {} // violation, Parameter name 'b'
+                           // must match pattern '^[a-z][a-z0-9][a-zA-Z0-9]*$'
+}
+// xdoc section -- end

@@ -1,0 +1,14 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="NestedIfDepth"/>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+if (true) {
+    if (true) {} // OK
+    else {}
+}
+// xdoc section -- end

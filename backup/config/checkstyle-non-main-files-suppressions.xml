@@ -1,0 +1,170 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE suppressions PUBLIC
+    "-//Checkstyle//DTD SuppressionFilter Configuration 1.1//EN"
+    "https://checkstyle.org/dtds/suppressions_1_1.dtd">
+
+<suppressions>
+
+  <!-- Input files for NewlineAtEndOfFileCheckTest, intentional no new line at the end. -->
+  <suppress checks="NewlineAtEndOfFile"
+             files="[\\/]test[\\/].*[\\/]InputNewlineAtEndOfFile.*\.(java|txt)"/>
+
+  <!-- Intentional no new line at the end. -->
+  <suppress checks="NewlineAtEndOfFile"
+             files="[\\/]test[\\/].*[\\/]grammar[\\/]comments[\\/]InputFullOfSinglelineComments\.java"/>
+  <suppress checks="NewlineAtEndOfFile"
+             files="[\\/]test[\\/].*[\\/]asttreestringprinter[\\/]InputAstTreeStringPrinterFullOfSinglelineComments\.java"/>
+  <suppress checks="NewlineAtEndOfFile"
+             files="src[\\/]test[\\/]resources[\\/].*[\\/]InputNoCodeInFile6\.java"/>
+  <suppress checks="NewlineAtEndOfFile"
+             files="src[\\/]test[\\/]resources[\\/].*[\\/]InputAntlr4AstRegressionCassandraInputWithComments\.java"/>
+
+  <!-- Grammar specific input file, should have exact structure to reproduce the case. -->
+  <suppress checks="NewlineAtEndOfFile"
+             files="[\\/]test[\\/].*[\\/]grammar[\\/]InputEmbeddedNullChar\.java"/>
+
+  <!-- Javadoc files should not have new line by design (on purpose). -->
+  <suppress checks="NewlineAtEndOfFile" files="[\\/]test[\\/].*\.javadoc"/>
+
+  <!-- Empty file cannot have any new line at the end. -->
+  <suppress checks="NewlineAtEndOfFile"
+             files="[\\/]test[\\/].*[\\/]checks[\\/]newlineatendoffile[\\/]InputNewlineAtEndOfFileEmptyFile\.txt"/>
+  <suppress checks="NewlineAtEndOfFile"
+             files="[\\/]test[\\/].*[\\/]grammar[\\/]InputRegressionEmptyAst\.txt"/>
+
+  <!-- File with CR line separators used for testing -->
+  <suppress checks="NewlineAtEndOfFile"
+             files="[\\/]test[\\/].*[\\/]asttreestringprinter[\\/]InputAstTreeStringPrinterFullOfBlockCommentsCR\.java"/>
+  <suppress checks="NewlineAtEndOfFile"
+             files="[\\/]test[\\/].*[\\/]grammar[\\/]InputAstRegressionNewlineCrAtEndOfFile\.java"/>
+
+  <!-- File with LF line separators used for testing -->
+  <suppress checks="NewlineAtEndOfFile"
+             files="[\\/]test[\\/].*[\\/]checks[\\/]blocks[\\/]emptycatchblock[\\/]InputEmptyCatchBlockDefaultLF\.java"/>
+
+  <!-- For the testing purposes -->
+  <suppress checks="NewlineAtEndOfFile"
+             files="[\\/]test[\\/].*[\\/]checks[\\/]uniqueproperties[\\/]InputUniquePropertiesWithDuplicates\.properties"/>
+
+  <!-- ArchUnit store is automatically updated by ArchUnit which
+       does not add new line at the end. -->
+  <suppress checks="NewlineAtEndOfFile"
+            files="config[\\/]archunit-store[\\/]slices-should-be-free-of-cycles-suppressions"/>
+
+  <!-- till https://issues.apache.org/jira/browse/MRELEASE-1008 -->
+  <suppress id="lineLength" files="pom.xml"/>
+  <!-- this file cannot be line wraped -->
+  <suppress id="lineLength" files="config[\\/]signatures.txt"/>
+  <suppress id="lineLength" files="config[\\/]signatures-test.txt"/>
+  <!-- test resources are weird by design, no validations in them -->
+  <suppress id="lineLength"
+         files="src[\\/]it[\\/]resources[\\/].*[\\/]InputLineLength.*\.java"/>
+  <suppress id="lineLength"
+         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputLineLength.*\.java"/>
+  <suppress id="lineLength"
+         files="src[\\/]test[\\/]resources[\\/].*[\\/]grammar[\\/]comments[\\/].*"/>
+  <suppress id="lineLength"
+         files="src[\\/]test[\\/]resources[\\/].*[\\/]asttreestringprinter[\\/]InputAstTreeStringPrinterFullOfBlockComments\.java"/>
+  <suppress id="lineLength"
+         files="src[\\/]test[\\/]resources[\\/].*[\\/]abstractjavadoc[\\/]InputAbstractJavadocPosition.*\.java"/>
+  <suppress id="lineLength"
+         files="src[\\/]test[\\/]resources[\\/].*[\\/]abstractjavadoc[\\/]InputAbstractJavadocLeaveToken.*\.java"/>
+
+  <!-- we can not change expected as it will require change of main class logic -->
+  <suppress id="lineLength"
+         files="src[\\/]test[\\/]resources[\\/].*[\\/].*ExpectedXMLLogger.*\.xml"/>
+  <suppress id="lineLength"
+         files="src[\\/]test[\\/]resources[\\/].*[\\/]ant[\\/]checkstyleanttask[\\/]ExpectedCheckstyleAntTaskXmlOutput\.xml"/>
+  <suppress id="lineLength"
+            files="src[\\/]test[\\/]resources[\\/].*[\\/]ant[\\/]checkstyleanttask[\\/]ExpectedCheckstyleAntTaskSarifOutput\.sarif"/>
+  <suppress id="lineLength"
+         files="src[\\/]test[\\/]resources[\\/].*[\\/]checks[\\/]translation[\\/]Expected.*\.xml"/>
+
+  <!-- property names a too long, nothing we can do -->
+  <suppress id="lineLength"
+         files="config[\\/]org.eclipse.jdt.core.prefs"/>
+  <!-- there is no way to make line wrap in property value -->
+  <suppress id="lineLength"
+         files="config[\\/]intellij-idea-inspection-scope.xml"/>
+
+  <!-- we must use full paths in file pattern property value -->
+  <suppress id="lineLength" files="config[\\/]projects-to-test[\\/]openjdk17-excluded.files"/>
+  <suppress id="lineLength" files="config[\\/]projects-to-test[\\/]openjdk19-excluded.files"/>
+  <suppress id="lineLength" files="config[\\/]projects-to-test[\\/]openjdk20-excluded.files"/>
+
+  <!-- this file cannot be line wrapped, It contains a list of suppressions -->
+  <suppress id="lineLength" files="config[\\/]pitest-suppressions[\\/].*"/>
+
+  <!-- this file cannot be line wrapped, It contains a list of suppressions -->
+  <suppress id="lineLength" files="config[\\/]error-prone-suppressions[\\/].*"/>
+
+  <!-- this file cannot be line wrapped, It contains a list of suppressions -->
+  <suppress id="lineLength" files="config[\\/]checker-framework-suppressions[\\/].*"/>
+
+  <!-- this file cannot be line wrapped, it contains cdg pitest licence -->
+  <suppress id="lineLength" files="cdg-pitest-licence.txt"/>
+
+  <!-- files in this directory cannot be line wrapped as they are generated by ArchUnit -->
+  <suppress id="lineLength" files="config[\\/]archunit-store.*"/>
+
+  <!-- We will preserve formatting of archived release notes -->
+  <suppress id="lineLength" files="[\\/]releasenotes_old_8\-0_8\-34\.xml"/>
+
+  <!-- All xdoc checks/filters files are generated from templates and have escaped characters that
+       make the lines long. We still validate index.xml and template files.
+       until https://github.com/checkstyle/checkstyle/issues/13426 -->
+  <suppress id="lineLength"
+            files="[\\/]src[\\/]xdocs[\\/](checks|(file)?filters)[\\/](?!.*index\.xml)(?!.*\.xml\.template).+\.xml"/>
+
+  <!-- apply check numberOfTestCasesInXpath only for files in suppressionxpathfilter directory -->
+  <suppress id="numberOfTestCasesInXpath"
+         files="src[\\/]it[\\/]java[\\/]com[\\/].*" />
+  <suppress id="numberOfTestCasesInXpath"
+         files="src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]base[\\/].*" />
+  <suppress id="numberOfTestCasesInXpath"
+         files="src[\\/]it[\\/]resources[\\/].*" />
+  <suppress id="numberOfTestCasesInXpath"
+         files="src[\\/]it[\\/]resources-noncompilable[\\/].*" />
+  <suppress id="numberOfTestCasesInXpath"
+         files="src[\\/]it[\\/]java[\\/]com[\\/].*" />
+  <suppress id="numberOfTestCasesInXpath"
+         files="src[\\/]test[\\/].*" />
+  <suppress id="numberOfTestCasesInXpath"
+         files="src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]AbstractXpathTestSupport.java"/>
+
+  <!-- Until https://github.com/checkstyle/checkstyle/issues/11549 -->
+  <suppress id="numberOfTestCasesInXpath"
+         files="src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]XpathRegressionJavadocStyleTest.java"/>
+  <suppress id="numberOfTestCasesInXpath"
+         files="src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]XpathRegressionJavadocStyleTest.java"/>
+
+  <!-- Empty files that are used as input for UT -->
+  <suppress id="noEmptyFile"
+             files="src[\\/]test[\\/]resources[\\/].*[\\/]checks[\\/]newlineatendoffile[\\/].*"/>
+  <suppress id="noEmptyFile"
+             files="src[\\/]test[\\/]resources[\\/].*[\\/]checks[\\/]translation[\\/].*"/>
+  <suppress id="noEmptyFile"
+             files="src[\\/]test[\\/]resources-noncompilable[\\/].*[\\/]checks[\\/]translation[\\/].*"/>
+  <suppress id="noEmptyFile"
+             files="src[\\/]test[\\/]resources-noncompilable[\\/].*[\\/]packagedeclaration[\\/]InputPackageDeclarationEmptyFile\.java"/>
+  <suppress id="noEmptyFile"
+             files="src[\\/]test[\\/]resources[\\/].*[\\/]checkstyleanttask[\\/]InputCheckstyleAntTaskEmptyConfig\.xml"/>
+  <suppress id="noEmptyFile"
+             files="src[\\/]test[\\/]resources[\\/].*[\\/]checkstyleanttask[\\/]InputCheckstyleAntTaskEmptyConfig\.xml"/>
+  <suppress id="noEmptyFile"
+             files="src[\\/]test[\\/]resources[\\/].*[\\/]regexponfilename[\\/].*"/>
+  <suppress id="noEmptyFile"
+             files="src[\\/]test[\\/]resources[\\/].*[\\/]grammar[\\/]InputRegressionEmptyAst\.txt"/>
+  <suppress id="noEmptyFile"
+             files="src[\\/]test[\\/]resources[\\/].*[\\/]InputNoCodeInFile1\.java"/>
+
+  <!-- not a curl command but a text replacement -->
+  <suppress id="properCurlCommand" files=".ci[\\/]validation\.sh"/>
+  <!-- other images that do not support newer curl commands -->
+  <suppress id="properCurlCommand" files=".ci[\\/]sonar-break-build\.sh"/>
+
+  <!-- We use negative suppression to check workflow files only. -->
+  <suppress id="workflowJobStepSpacing" files="^.((?!github[\\/]workflows[\\/]).)*$" />
+
+</suppressions>

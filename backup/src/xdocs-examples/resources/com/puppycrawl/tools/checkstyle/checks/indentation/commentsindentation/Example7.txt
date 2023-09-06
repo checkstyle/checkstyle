@@ -1,0 +1,18 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="CommentsIndentation"/>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+1   String breaks = "J"
+2   // violation (comment should have the same indentation level as line 3)
+3       + "A"
+4       // it is OK
+5       + "V"
+6       + "A"
+7   // it is OK
+8   ;
+// xdoc section -- end

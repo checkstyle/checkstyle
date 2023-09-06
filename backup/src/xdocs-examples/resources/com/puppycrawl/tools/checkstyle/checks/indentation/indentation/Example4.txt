@@ -1,0 +1,29 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="Indentation">
+      <property name="forceStrictCondition" value="true"/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+void foo(String aFooString,
+        int aFooInt) { // indent:8 ; expected: > 4; ok, because 8 > 4
+    if (cond1
+        || cond2) {
+        field.doSomething()
+            .doSomething();
+    }
+    if ((cond1 && cond2)
+              || (cond3 && cond4)
+              ||!(cond5 && cond6)) {
+        field.doSomething()
+             .doSomething()
+             .doSomething( c -> {
+                 return c.doSome();
+            });
+    }
+}
+// xdoc section -- end

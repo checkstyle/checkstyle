@@ -1,0 +1,21 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="SuperFinalize"/>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+public class A {
+      protected void finalize() throws Throwable {
+            System.out.println("In finalize block");
+            super.finalize(); // OK, calls super.finalize()
+      }
+}
+public class B {
+      protected void finalize() throws Throwable { // violation
+            System.out.println("In finalize block");
+      }
+}
+// xdoc section -- end

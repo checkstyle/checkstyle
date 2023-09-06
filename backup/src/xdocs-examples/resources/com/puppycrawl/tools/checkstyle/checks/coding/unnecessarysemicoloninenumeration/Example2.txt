@@ -1,0 +1,19 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="UnnecessarySemicolonInEnumeration"/>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+enum Normal {
+    A,
+    B,
+    ; // required ";", no violation
+    Normal(){}
+}
+enum NoSemicolon {
+    A, B // only enum constants, no semicolon required
+}
+// xdoc section -- end
