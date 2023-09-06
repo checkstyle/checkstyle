@@ -150,8 +150,7 @@ public class JavadocMissingLeadingAsteriskCheck extends AbstractJavadocCheck {
      */
     private static boolean isLastLine(DetailNode detailNode) {
         final DetailNode node;
-        if (detailNode.getType() == JavadocTokenTypes.TEXT
-                && CommonUtil.isBlank(detailNode.getText())) {
+        if (CommonUtil.isBlank(detailNode.getText())) {
             node = getNextNode(detailNode);
         }
         else {
