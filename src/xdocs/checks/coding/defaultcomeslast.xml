@@ -32,10 +32,7 @@
             </tr>
             <tr>
               <td>skipIfLastAndSharedWithCase</td>
-              <td>
-                Control whether to allow <code>default</code> along with
-                <code>case</code> if they are not last.
-              </td>
+              <td>Control whether to allow <code>default</code> along with <code>case</code> if they are not last.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>7.7</td>

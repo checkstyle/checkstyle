@@ -22,10 +22,14 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocMethodCheck.MSG_JAVADOC_MISSING;
 
+import java.io.File;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CheckUtilTest;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class MissingJavadocMethodCheckTest extends AbstractModuleTestSupport {
@@ -313,7 +317,7 @@ public class MissingJavadocMethodCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testSetterGetterOn() throws Exception {
+    public void testSetterGetterOnCheck() throws Exception {
         final String[] expected = {
             "30:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "35:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
@@ -454,5 +458,74 @@ public class MissingJavadocMethodCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputMissingJavadocMethod1.java"),
                 expected);
+    }
+
+    @Test
+    public void testAnnotationField() throws Exception {
+        final String[] expected = {
+            "25:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "27:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputMissingJavadocMethodAnnotationField.java"),
+                expected);
+    }
+
+    @Test
+    public void testIsGetterMethod() throws Exception {
+        final File testFile =
+                new File(getPath("InputMissingJavadocMethodSetterGetter3.java"));
+        final DetailAST notGetterMethod =
+                CheckUtilTest.getNode(testFile, TokenTypes.METHOD_DEF);
+        final DetailAST getterMethod = notGetterMethod.getNextSibling().getNextSibling();
+
+        assertWithMessage("Invalid result: AST provided is getter method")
+                .that(MissingJavadocMethodCheck.isGetterMethod(getterMethod))
+                .isTrue();
+        assertWithMessage("Invalid result: AST provided is not getter method")
+                .that(MissingJavadocMethodCheck.isGetterMethod(notGetterMethod))
+                .isFalse();
+    }
+
+    @Test
+    public void testIsSetterMethod() throws Exception {
+        final File testFile =
+            new File(getPath("InputMissingJavadocMethodSetterGetter3.java"));
+        final DetailAST firstClassMethod =
+            CheckUtilTest.getNode(testFile, TokenTypes.METHOD_DEF);
+        final DetailAST setterMethod =
+            firstClassMethod.getNextSibling().getNextSibling().getNextSibling();
+        final DetailAST notSetterMethod = setterMethod.getNextSibling();
+
+        assertWithMessage("Invalid result: AST provided is not setter method")
+                .that(MissingJavadocMethodCheck.isSetterMethod(setterMethod))
+                .isTrue();
+        assertWithMessage("Invalid result: AST provided is not setter method")
+                .that(MissingJavadocMethodCheck.isSetterMethod(notSetterMethod))
+                .isFalse();
+    }
+
+    @Test
+    public void testSetterGetterOn() throws Exception {
+        final String[] expected = {
+            "20:5: " + getCheckMessage(MissingJavadocMethodCheck.class,
+                    MSG_JAVADOC_MISSING),
+            "24:5: " + getCheckMessage(MissingJavadocMethodCheck.class,
+                    MSG_JAVADOC_MISSING),
+            "29:5: " + getCheckMessage(MissingJavadocMethodCheck.class,
+                    MSG_JAVADOC_MISSING),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputMissingJavadocMethodSetterGetter4.java"), expected);
+    }
+
+    @Test
+    public void missingJavadoc() throws Exception {
+        final String[] expected = {
+            "13:5: " + getCheckMessage(MissingJavadocMethodCheck.class, MSG_JAVADOC_MISSING),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputMissingJavadocMethodBasic.java"), expected);
     }
 }

@@ -9,36 +9,36 @@ regexp = (default)false
 
 package com.puppycrawl.tools.checkstyle.checks.imports.illegalimport;
 
-import com.puppycrawl.tools.checkstyle.checks.imports.illegalimport.*; // ok
+import com.puppycrawl.tools.checkstyle.checks.imports.illegalimport.*;
 
 import java.io.*; // violation
-import java.lang.*; // ok
-import java.sql.Connection; // ok
-import java.util.List; // ok
-import java.util.List; // ok
-import java.lang.ArithmeticException; // ok
+import java.lang.*;
+import java.sql.Connection;
+import java.util.List;
+import java.util.List;
+import java.lang.ArithmeticException;
 import org.junit.jupiter.api.*; // violation
-import java.util.Enumeration; // ok
-import java.util.Arrays; // ok
+import java.util.Enumeration;
+import java.util.Arrays;
 
-import javax.swing.JToolBar; // ok
-import javax.swing.JToggleButton; // ok
-import javax.swing.ScrollPaneLayout; // ok
-import javax.swing.BorderFactory; // ok
-import static java.io.File.listRoots; // ok
+import javax.swing.JToolBar;
+import javax.swing.JToggleButton;
+import javax.swing.ScrollPaneLayout;
+import javax.swing.BorderFactory;
+import static java.io.File.listRoots;
 
-import static javax.swing.WindowConstants.*; // ok
-import static javax.swing.WindowConstants.*; // ok
-import static java.io.File.createTempFile; // ok
+import static javax.swing.WindowConstants.*;
+import static javax.swing.WindowConstants.*;
+import static java.io.File.createTempFile;
 import org.junit.jupiter.api.*; // violation
 
-import java.awt.Component; // ok
-import java.awt.Graphics2D; // ok
-import java.awt.HeadlessException; // ok
-import java.awt.Label; // ok
-import java.util.Date; // ok
-import java.util.Calendar; // ok
-import java.util.BitSet; // ok
+import java.awt.Component;
+import java.awt.Graphics2D;
+import java.awt.HeadlessException;
+import java.awt.Label;
+import java.util.Date;
+import java.util.Calendar;
+import java.util.BitSet;
 
 class InputIllegalImportDefault4
 {

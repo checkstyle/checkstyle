@@ -43,7 +43,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * </p>
  * <ul>
  * <li>
- * Property {@code onlyObjectReferences} - control whether only explicit
+ * Property {@code onlyObjectReferences} - Control whether only explicit
  * initializations made to null for objects should be checked.
  * Type is {@code boolean}.
  * Default value is {@code false}.
