@@ -140,10 +140,6 @@
 
   <!-- until https://github.com/checkstyle/checkstyle/issues/13213 -->
   <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]annotation[\\/]annotationonsameline[\\/]InputAnnotationOnSameLineRecordsAndCompactCtors.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]annotation[\\/]annotationonsameline[\\/]InputAnnotationOnSameLineRecordsAndCompactCtors.java"/>
-  <suppress id="UnnecessaryOkComment"
             files="checks[\\/]annotation[\\/]annotationusestyle[\\/]InputAnnotationUseStyleWithTrailingComma.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]avoidescapedunicodecharacters[\\/]InputAvoidEscapedUnicodeCharactersEscapedS.java"/>
@@ -1371,18 +1367,6 @@
             files="checks[\\/]whitespace[\\/]whitespacearound[\\/]InputWhitespaceAroundRecordsAllowEmptyTypes.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]whitespace[\\/]whitespacearound[\\/]InputWhitespaceAroundRecordsAllowEmptyTypes.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]annotation[\\/]annotationonsameline[\\/]InputAnnotationOnSameLineCheck.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]annotation[\\/]annotationonsameline[\\/]InputAnnotationOnSameLineCheck.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]annotation[\\/]annotationonsameline[\\/]InputAnnotationOnSameLineCheck2.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]annotation[\\/]annotationonsameline[\\/]InputAnnotationOnSameLineCheck2.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]annotation[\\/]annotationonsameline[\\/]InputAnnotationOnSameLineCheck3.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]annotation[\\/]annotationonsameline[\\/]InputAnnotationOnSameLineCheck3.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]annotation[\\/]annotationusestyle[\\/]InputAnnotationUseStyle.java"/>
   <suppress id="UnnecessaryOkComment"
