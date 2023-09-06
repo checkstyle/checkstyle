@@ -1,0 +1,16 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="NestedIfDepth"/>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+if (true) {
+    if (true) {
+        if (true) { // violation, nested if-else depth is 2 (max allowed is 1)
+        }
+    }
+}
+// xdoc section -- end

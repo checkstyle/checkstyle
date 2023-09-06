@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suppressedMutations>
+  <mutation unstable="false">
+    <sourceFile>FinalLocalVariableCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck</mutatedClass>
+    <mutatedMethod>leaveToken</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/util/Deque::pop</description>
+    <lineContent>prevScopeUninitializedVariables.pop();</lineContent>
+  </mutation>
+
+
+
+
+
+
+
+
+
+
+
+  <mutation unstable="false">
+    <sourceFile>MatchXpathCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.MatchXpathCheck</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable query</description>
+    <lineContent>private String query = &quot;&quot;;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>MatchXpathCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.MatchXpathCheck</mutatedClass>
+    <mutatedMethod>setQuery</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable query</description>
+    <lineContent>this.query = query;</lineContent>
+  </mutation>
+
+
+
+
+
+
+
+
+
+
+  <mutation unstable="false">
+    <sourceFile>UnusedLocalVariableCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheck$TypeDeclDesc</mutatedClass>
+    <mutatedMethod>getUpdatedCopyOfVarStack</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getLastChild with receiver</description>
+    <lineContent>final DetailAST updatedScope = literalNewAst.getLastChild();</lineContent>
+  </mutation>
+
+</suppressedMutations>

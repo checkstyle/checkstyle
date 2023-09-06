@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck"
+             name="ParameterNumber"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;p&gt;
+ Checks the number of parameters of a method or constructor.
+ &lt;/p&gt;</description>
+         <properties>
+            <property default-value="7" name="max" type="int">
+               <description>Specify the maximum number of parameters allowed.</description>
+            </property>
+            <property default-value="false" name="ignoreOverriddenMethods" type="boolean">
+               <description>Ignore number of parameters for
+ methods with {@code @Override} annotation.</description>
+            </property>
+            <property default-value="METHOD_DEF,CTOR_DEF"
+                      name="tokens"
+                      type="java.lang.String[]"
+                      validation-type="tokenSet">
+               <description>tokens to check</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="maxParam"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"
+             name="Indentation"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;p&gt;
+ Checks correct indentation of Java code.
+ &lt;/p&gt;
+ &lt;p&gt;
+ The idea behind this is that while
+ pretty printers are sometimes convenient for bulk reformats of
+ legacy code, they often either aren't configurable enough or
+ just can't anticipate how format should be done. Sometimes this is
+ personal preference, other times it is practical experience. In any
+ case, this check should just ensure that a minimal set of indentation
+ rules is followed.
+ &lt;/p&gt;
+ &lt;p&gt;
+ Basic offset indentation is used for indentation inside code blocks.
+ For any lines that span more than 1, line wrapping indentation is used for those lines
+ after the first. Brace adjustment, case, and throws indentations are all used only if
+ those specific identifiers start the line. If, for example, a brace is used in the
+ middle of the line, its indentation will not take effect. All indentations have an
+ accumulative/recursive effect when they are triggered. If during a line wrapping, another
+ code block is found and it doesn't end on that same line, then the subsequent lines
+ afterwards, in that new code block, are increased on top of the line wrap and any
+ indentations above it.
+ &lt;/p&gt;
+ &lt;p&gt;
+ Example:
+ &lt;/p&gt;
+ &lt;pre&gt;
+ if ((condition1 &amp;amp;&amp;amp; condition2)
+         || (condition3 &amp;amp;&amp;amp; condition4)    // line wrap with bigger indentation
+         ||!(condition5 &amp;amp;&amp;amp; condition6)) { // line wrap with bigger indentation
+   field.doSomething()                    // basic offset
+       .doSomething()                     // line wrap
+       .doSomething( c -&amp;gt; {               // line wrap
+         return c.doSome();               // basic offset
+       });
+ }
+ &lt;/pre&gt;</description>
+         <properties>
+            <property default-value="4" name="basicOffset" type="int">
+               <description>Specify how far new indentation level should be
+ indented when on the next line.</description>
+            </property>
+            <property default-value="0" name="braceAdjustment" type="int">
+               <description>Specify how far a braces should be indented
+ when on the next line.</description>
+            </property>
+            <property default-value="4" name="caseIndent" type="int">
+               <description>Specify how far a case label should be indented
+ when on next line.</description>
+            </property>
+            <property default-value="4" name="throwsIndent" type="int">
+               <description>Specify how far a throws clause should be
+ indented when on next line.</description>
+            </property>
+            <property default-value="4" name="arrayInitIndent" type="int">
+               <description>Specify how far an array initialisation
+ should be indented when on next line.</description>
+            </property>
+            <property default-value="4" name="lineWrappingIndentation" type="int">
+               <description>Specify how far continuation line
+ should be indented when line-wrapping is present.</description>
+            </property>
+            <property default-value="false" name="forceStrictCondition" type="boolean">
+               <description>Force strict indent level in line
+ wrapping case. If value is true, line wrap indent have to be same as
+ lineWrappingIndentation parameter. If value is false, line wrap indent
+ could be bigger on any value user would like.</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="indentation.child.error"/>
+            <message-key key="indentation.child.error.multi"/>
+            <message-key key="indentation.error"/>
+            <message-key key="indentation.error.multi"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>

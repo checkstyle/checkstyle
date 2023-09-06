@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+
+  <head>
+    <title>How to report an issue ?</title>
+  </head>
+
+  <body>
+    <section name="Content">
+      <macro name="toc">
+        <param name="fromDepth" value="1"/>
+        <param name="toDepth" value="1"/>
+      </macro>
+    </section>
+
+    <section name="Introduction">
+
+      <p>
+        Hey, good to see you on this page. It means that you are considering reporting an
+        issue to the Checkstyle project. We welcome anything: bug reports, feature requests
+        to existing functionality, new Check ideas, etc.
+      </p>
+
+      <p>
+        Our issue tracker system is at GitHub -
+        <a href="https://github.com/checkstyle/checkstyle/issues">
+        https://github.com/checkstyle/checkstyle/issues</a>.
+      </p>
+    </section>
+
+    <section name="How to report a bug?">
+
+      <p>
+        First and foremost, do not think that your issue is obvious and doesn't need details.<br/>
+        Even a tiny issue needs all details
+        (Check name, config with options, source file, Checkstyle version) and context to be
+        shared with us.
+      </p>
+
+      <p>
+        The best way to report an Issue is to reproduce it by our
+        <a href="cmdline.html#Download_and_Run">
+        Command Line Interface (CLI)</a>. It is the most minimalistic way to launch Checkstyle.<br/>
+        PLEASE use our latest released version.
+      </p>
+
+      <p>
+        Our project is NOT responsible for problems at any extension or plugins.<br/>
+        Checkstyle is library that is used by number of IDEs and static analysis services.<br/>
+        We fix problems that are only reproducible on latest release.
+      </p>
+
+      <p>
+        We need minimized but compilable Java file and minimized config with one Check
+        that cause problem.<br/>
+        We do not need real source code. Any obfuscation of your super secret code is OK.<br/>
+        Link to your source code would be awesome.
+        Code has to be compilable, in other case behaviour could be strange.<br/>
+        Always specify what is expected.
+      </p>
+
+      <p>
+        Example of report that we expect (you can skip <code>-Duser.language=en
+        -Duser.country=US</code> if your default locale is English):
+
+        <source><![CDATA[
+Check documentation: https://checkstyle.org/checks/whitespace/whitespacearound.html#WhitespaceAround
+
+/var/tmp $ javac Test.java
+
+/var/tmp $ cat Test.java
+public class Test{ // Doesn't warn - incorrect
+private static final int SOMETHING = 1;
+}
+
+/var/tmp $ cat config.xml
+<?xml version="1.0"?>
+<!DOCTYPE module PUBLIC
+        "-//Checkstyle//DTD Checkstyle Configuration 1.3//EN"
+        "https://checkstyle.org/dtds/configuration_1_3.dtd">
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="WhitespaceAround">
+      <property name="allowEmptyTypes" value="true"/>
+    </module>
+  </module>
+</module>
+
+/var/tmp $ RUN_LOCALE="-Duser.language=en -Duser.country=US"
+/var/tmp $ java $RUN_LOCALE -jar checkstyle-X.XX-all.jar -c config.xml Test.java
+Starting audit...
+Audit done.
+
+Expected: violation on first line.
+/var/tmp/Test.java:1:28: error: '{' is not preceded with whitespace.
+        ]]></source>
+      </p>
+
+      <p>
+        For Windows users, please use "type" command instead of "cat".
+        Example of report that we expect:
+
+        <source><![CDATA[
+Check documentation: https://checkstyle.org/checks/misc/indentation.html
+
+D:\>type config.xml
+<?xml version="1.0"?>
+<!DOCTYPE module PUBLIC
+          "-//Puppy Crawl//DTD Check Configuration 1.3//EN"
+          "https://checkstyle.org/dtds/configuration_1_3.dtd">
+<module name="Checker">
+    <module name="TreeWalker">
+        <module name="Indentation"/>
+    </module>
+</module>
+
+D:\>type Test.java
+class Test {
+    void method() {
+        try { return; // violation, but it is not expected
+        }
+        catch (Exception e) { return; // no violation, but expected
+        }
+    }
+}
+
+D:\>set RUN_LOCALE="-Duser.language=en -Duser.country=US"
+D:\>java %RUN_LOCALE% -jar checkstyle-X.XX-all.jar -c config.xml Test.java
+Starting audit...
+[ERROR] D:\Test.java:3: 'try' child has incorrect indentation level 8,
+expected level should be 12. [Indentation]
+Audit done.
+
+Expected: A violation on line 5 and nowhere else.
+D:\Test.java:5: 'catch' child has incorrect indentation level 8,
+expected level should be 12. [Indentation]
+        ]]></source>
+      </p>
+      <p>
+        More Examples:
+        <a href="https://github.com/checkstyle/checkstyle/issues/8856#issue-711050333">
+          Example 1
+        </a>,
+        <a href="https://github.com/checkstyle/checkstyle/issues/8808#issue-695386080">
+          Example 2
+        </a>
+      </p>
+
+    </section>
+
+    <section name="How to request new feature for existing functionality?">
+
+      <p>
+        Please always specify exact name of the Check/Module.
+      </p>
+
+      <p>
+        Please provide a clear and detailed description of the problem and describe what
+        you would want to happen instead. Relevant chunks of code and config that you currently
+        have will definitely facilitate understanding. Any other context or
+        screenshots which elaborate further on the relevance and rationale behind
+        the new feature may also be added.
+      </p>
+
+      <p>
+        Imagine that everything is possible and propose name of the new option and its behaviour.
+        Do not think that your issue is so obvious.
+      </p>
+
+      <p>
+        Example of Feature Request/Enhancement that we expect:
+      </p>
+      <source>
+Check documentation: https://checkstyle.org/checks/whitespace/whitespacearound.html#WhitespaceAround
+
+Describe the problem in detail:
+
+/var/tmp $ javac Test.java
+
+/var/tmp $ cat config.xml
+#[[PLACE YOUR OUTPUT HERE, IF NEW PROPERTY IS PROPOSED PUT IT INSIDE CONFIG AS IT ALREADY EXISTS]]
+
+/var/tmp $ cat Test.java
+public class Test { // Note
+  private static final int SOMETHING = 1;
+}
+
+/var/tmp $ java $RUN_LOCALE -jar checkstyle-X.XX-all.jar -c config.xml Test.java
+#[[PLACE YOUR IMAGINARY OUTPUT HERE]]
+
+Describe how the additional functionality will solve the problem:
+
+Additional context, screenshots or examples:
+      </source>
+      <p>
+        More Examples:
+        <a href="https://github.com/checkstyle/checkstyle/issues/3201#issue-155988267">
+          Example 1
+        </a>,
+        <a href="https://github.com/checkstyle/checkstyle/issues/6582#issue-421909457">
+          Example 2
+        </a>
+      </p>
+    </section>
+
+    <section name="How to request new Check/Module?">
+      <p>
+        Please provide detailed description of problem.
+      </p>
+      <p>
+        You have to provide examples of code and expected violations on them.
+        The more examples the better.
+      </p>
+      <p>
+        Explain the rationale behind implementing the new check with relevant
+        references (if possible).
+      </p>
+      <p>
+        Feel free to propose a name for the new Check, along with all its attributes.
+        Example of good new Check proposal is
+        <a href="https://github.com/checkstyle/checkstyle/issues/5899">#5899</a>.
+      </p>
+      <p>
+        If you have open source project, please give a link to the whole java file.
+      </p>
+      <p>
+        Example of Check/Module Request that we expect:
+      </p>
+      <source>
+Describe the problem in detail:
+
+/var/tmp $ cat config.xml
+&lt;module name="YourNewModule"&gt;
+  &lt;property name="yourPossibleProperty1" value="true"/&gt;
+  &lt;property name="yourPossibleProperty2" value="123"/&gt;
+&lt;/module&gt;
+
+/var/tmp $ javac Test.java
+
+/var/tmp $ cat Test.java
+public class Test { // To be checked
+  private static final int SOMETHING = 1;
+}
+
+/var/tmp $ java $RUN_LOCALE -jar checkstyle-X.XX-all.jar -c config.xml Test.java
+#[[PLACE YOUR IMAGINARY OUTPUT HERE]]
+
+Describe how the new check will solve the problem. Mention the required properties
+and their behaviour.
+
+Additional context, screenshots or examples:
+      </source>
+    </section>
+
+  </body>
+</document>

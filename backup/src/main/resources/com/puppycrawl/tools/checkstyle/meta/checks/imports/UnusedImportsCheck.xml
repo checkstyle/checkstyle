@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck"
+             name="UnusedImports"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;p&gt;
+ Checks for unused import statements. An import statement
+ is considered unused if:
+ &lt;/p&gt;
+ &lt;ul&gt;
+ &lt;li&gt;
+ It is not referenced in the file. The algorithm does not support wild-card
+ imports like {@code import java.io.*;}. Most IDE's provide very sophisticated
+ checks for imports that handle wild-card imports.
+ &lt;/li&gt;
+ &lt;li&gt;
+ The class imported is from the {@code java.lang} package. For example
+ importing {@code java.lang.String}.
+ &lt;/li&gt;
+ &lt;li&gt;
+ The class imported is from the same package.
+ &lt;/li&gt;
+ &lt;li&gt;
+ &lt;b&gt;Optionally:&lt;/b&gt; it is referenced in Javadoc comments. This check is on by
+ default, but it is considered bad practice to introduce a compile-time
+ dependency for documentation purposes only. As an example, the import
+ {@code java.util.List} would be considered referenced with the Javadoc
+ comment {@code {@link List}}. The alternative to avoid introducing a compile-time
+ dependency would be to write the Javadoc comment as {@code {&amp;#64;link java.util.List}}.
+ &lt;/li&gt;
+ &lt;/ul&gt;
+ &lt;p&gt;
+ The main limitation of this check is handling the cases where:
+ &lt;/p&gt;
+ &lt;ul&gt;
+ &lt;li&gt;
+ An imported type has the same name as a declaration, such as a member variable.
+ &lt;/li&gt;
+ &lt;li&gt;
+ There are two or more static imports with the same method name
+ (javac can distinguish imports with same name but different parameters, but checkstyle can not
+ due to &lt;a href="https://checkstyle.org/writingchecks.html#Limitations"&gt;limitation.&lt;/a&gt;)
+ &lt;/li&gt;
+ &lt;/ul&gt;</description>
+         <properties>
+            <property default-value="true" name="processJavadoc" type="boolean">
+               <description>Control whether to process Javadoc comments.</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="import.unused"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>

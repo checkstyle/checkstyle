@@ -1,0 +1,15 @@
+/*xml
+<module name="Checker">
+  <module name="RegexpHeader">
+    <property
+      name="header"
+      value="^package .*\n\n.*"/>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+package com.some.package;
+
+public class ThisWillPass { }
+// xdoc section -- end

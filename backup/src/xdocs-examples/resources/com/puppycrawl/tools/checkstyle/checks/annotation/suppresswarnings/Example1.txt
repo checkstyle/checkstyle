@@ -1,0 +1,30 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="SuppressWarnings"/>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+@SuppressWarnings("") // violation
+class TestA {
+  @SuppressWarnings("") // violation
+  final int num1 = 1;
+  @SuppressWarnings("all") // ok
+  final int num2 = 2;
+  @SuppressWarnings("unused") // ok
+  final int num3 = 3;
+
+  void foo1(@SuppressWarnings("unused") int param) {} // ok
+
+  @SuppressWarnings("all") // ok
+  void foo2(int param) {}
+  @SuppressWarnings("unused") // ok
+  void foo3(int param) {}
+  @SuppressWarnings(true?"all":"unused") // ok
+  void foo4(int param) {}
+}
+@SuppressWarnings("unchecked") // ok
+class TestB {}
+// xdoc section -- end

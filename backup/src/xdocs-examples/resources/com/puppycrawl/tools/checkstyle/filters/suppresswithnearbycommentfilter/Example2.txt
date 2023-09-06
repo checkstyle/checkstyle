@@ -1,0 +1,15 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="SuppressWithNearbyCommentFilter">
+      <property name="commentFormat" value="CHECKSTYLE IGNORE THIS LINE"/>
+      <property name="checkFormat" value=".*"/>
+      <property name="influenceFormat" value="0"/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+public static final int lowerCaseConstant; // CHECKSTYLE IGNORE THIS LINE
+// xdoc section -- end

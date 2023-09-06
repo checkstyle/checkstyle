@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+
+  <head>
+    <title>Importing and debugging in IntelliJ IDE</title>
+  </head>
+
+  <body>
+    <section name="Content">
+      <macro name="toc">
+        <param name="fromDepth" value="1"/>
+        <param name="toDepth" value="1"/>
+      </macro>
+    </section>
+
+    <section name="Import Checkstyle Project">
+      <p>
+        If no project is currently open in IntelliJ IDEA, click Import Project on the
+        Welcome screen. Otherwise, select File > New > Project from Existing Sources<br/><br/>
+        <span class="wrapper block">
+          <img alt="screenshot" src="images/gui_screenshot_importing_idea.png"/>
+        </span>
+        <br/><br/>
+        <span class="wrapper block">
+          <img alt="screenshot" src="images/gui_screenshot_importing_idea1.png"/>
+        </span>
+        <br/><br/>
+        Then Next > Next > ... Until Finish.
+      </p>
+      <p>
+        Generate sources that a required by checkstyle
+        by right click over pom.xml file and click on menu "Maven / Generate Sources and Update
+        Folders"
+        <span class="wrapper block">
+          <img alt="screenshot" src="images/gui_screenshot_idea_generate_sources.png"/>
+        </span>
+        <br/><br/>
+      </p>
+    </section>
+
+    <section name="Debug">
+      <p>
+        Open the Check's source file by double-click on it in a source tree as is shown:<br/><br/>
+        <span class="wrapper block">
+          <img alt="screenshot" src="images/gui_screenshot_select_check_idea.png"/>
+        </span>
+        <br/><br/>
+        Debug the Check by putting the breakpoint at controversial place (double-click)
+        on the left part of line number as it is shown:<br/><br/>
+        <span class="wrapper block">
+          <img alt="screenshot" src="images/gui_screenshot_debug_idea.png"/>
+        </span>
+        <br/><br/>
+        Open the Test's source file by double-click on it in a source tree as is shown:<br/><br/>
+        <span class="wrapper block">
+          <img alt="screenshot" src="images/gui_screenshot_click_Test_File.png"/>
+        </span>
+        <br/><br/>
+        Then right-click the corresponding Unit-test file or class definition > Debug
+        &quot;testName&quot;<br/><br/>
+        <span class="wrapper block">
+          <img alt="screenshot" src="images/gui_screenshot_ut_select_idea.png"/>
+        </span>
+        <br/><br/>
+        Then manage you debug operations F8 (Step Over), Shift+F8 (Step Out),
+        F7 (Step Into), Alt+F9 (Run to Cursor)
+      </p>
+    </section>
+
+    <section name="Organize Imports">
+      <p>
+        One of the Checkstyle checks we run on our own code require certain order of import
+        statements. Few changes in IDE settings are required to help your IDE do it
+        automatically.<br/>
+        To change formatter settings please go to File->Settings in menu.<br/>
+        Then in the tree go to: Editor->Code Style->Java, open Import tab (follow numbers on a
+        picture) and apply settings highlighted:<br/><br/>
+        <span class="wrapper block">
+          <img alt="Organize Imports settings in IDEA"
+            src="images/gui_screenshot_organize_imports_idea.jpg"/>
+        </span>
+        <br/>
+      </p>
+    </section>
+
+    <section name="Inspections">
+      <p>
+        Checkstyle has its own very strict set of inspections. To import and enable them go to
+        Settings -> Editor -> Inspections -> Manage -> Import... and locate file
+        <code>config/intellij-idea-inspections.xml</code>.
+        <br/>
+        <br/>
+        <span class="wrapper block">
+          <img alt="Inspections in IntelliJ IDEA" src="images/gui_screenshot_inspections_idea.png"/>
+        </span>
+        <br/>
+        <br/>
+        ATTENTION: Not all files in repository should be analyzed.
+        For example test input files contain numerous violations on purpose.
+        Our shared inspection scope should be used to exclude such files.
+        <br/>
+        Add custom scope copy file <code>config/intellij-idea-inspection-scope.xml</code>
+        to <code>.idea/scopes</code> directory.
+        <br/>
+        Command from root of repo is:
+        <br/>
+        <code>mkdir -p .idea/scopes; cp config/intellij-idea-inspection-scope.xml
+        .idea/scopes/</code>
+        <br/>
+        Now it should be ready to be used in Inspect Code window (Analyse -> Inspect Code):
+        <br/>
+        <br/>
+        <span class="wrapper block">
+          <img alt="Scope for inspections" src="images/gui_screenshot_scope_idea.png"/>
+        </span>
+      </p>
+    </section>
+
+    <section name="Disable Auto Indent On Paste">
+      <p>
+        IDEA has its own rules of indentation when pasting code and it applies these rules to
+        all the lines of the copied code. This may result in wrong formatting of code in many
+        checkstyle files. A simple solution to this problem is by using the key combinations
+        <code>Ctrl + Shift + Alt + V</code> or <code>Edit | Paste Simple</code>. However, it is
+        recommended that these settings be changed by default as shown below
+        <span class="wrapper block">
+          <img alt="Disable Auto Indent on Paste"
+            src="images/gui_screenshot_disable_indent_paste_idea.png"/>
+        </span>
+      </p>
+    </section>
+
+  </body>
+</document>

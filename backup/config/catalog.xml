@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- This file allows us to use URL system IDs in XMLs without having to connect to the internet
+     and depend on a server handling the request. Server will sometimes deny the request if it is
+     asked too many times from test runs. -->
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+  <system systemId="https://checkstyle.org/dtds/configuration_1_0.dtd"
+          uri="./../src/main/resources/com/puppycrawl/tools/checkstyle/configuration_1_0.dtd"/>
+  <system systemId="https://checkstyle.org/dtds/configuration_1_1.dtd"
+          uri="./../src/main/resources/com/puppycrawl/tools/checkstyle/configuration_1_1.dtd"/>
+  <system systemId="https://checkstyle.org/dtds/configuration_1_2.dtd"
+          uri="./../src/main/resources/com/puppycrawl/tools/checkstyle/configuration_1_2.dtd"/>
+  <system systemId="https://checkstyle.org/dtds/configuration_1_3.dtd"
+          uri="./../src/main/resources/com/puppycrawl/tools/checkstyle/configuration_1_3.dtd"/>
+  <system systemId="https://checkstyle.org/dtds/packages_1_0.dtd"
+          uri="./../src/main/resources/com/puppycrawl/tools/checkstyle/packages_1_0.dtd"/>
+  <system systemId="https://checkstyle.org/dtds/suppressions_1_0.dtd"
+          uri="./../src/main/resources/com/puppycrawl/tools/checkstyle/suppressions_1_0.dtd"/>
+  <system systemId="https://checkstyle.org/dtds/suppressions_1_1.dtd"
+          uri="./../src/main/resources/com/puppycrawl/tools/checkstyle/suppressions_1_1.dtd"/>
+  <system systemId="https://checkstyle.org/dtds/suppressions_1_2.dtd"
+          uri="./../src/main/resources/com/puppycrawl/tools/checkstyle/suppressions_1_2.dtd"/>
+  <system systemId="https://checkstyle.org/dtds/suppressions_1_1_xpath_experimental.dtd"
+          uri="./../src/main/resources/com/puppycrawl/tools/checkstyle/suppressions_1_1_xpath_experimental.dtd"/>
+  <system systemId="https://checkstyle.org/dtds/suppressions_1_2_xpath_experimental.dtd"
+          uri="./../src/main/resources/com/puppycrawl/tools/checkstyle/suppressions_1_2_xpath_experimental.dtd"/>
+  <system systemId="https://checkstyle.org/dtds/import_control_1_0.dtd"
+          uri="./../src/main/resources/com/puppycrawl/tools/checkstyle/checks/imports/import_control_1_0.dtd"/>
+  <system systemId="https://checkstyle.org/dtds/import_control_1_1.dtd"
+          uri="./../src/main/resources/com/puppycrawl/tools/checkstyle/checks/imports/import_control_1_1.dtd"/>
+  <system systemId="https://checkstyle.org/dtds/import_control_1_2.dtd"
+          uri="./../src/main/resources/com/puppycrawl/tools/checkstyle/checks/imports/import_control_1_2.dtd"/>
+  <system systemId="https://checkstyle.org/dtds/import_control_1_3.dtd"
+          uri="./../src/main/resources/com/puppycrawl/tools/checkstyle/checks/imports/import_control_1_3.dtd"/>
+  <system systemId="https://checkstyle.org/dtds/import_control_1_4.dtd"
+          uri="./../src/main/resources/com/puppycrawl/tools/checkstyle/checks/imports/import_control_1_4.dtd"/>
+</catalog>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.annotation.SuppressWarningsCheck"
+             name="SuppressWarnings"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;p&gt;
+ Allows to specify what warnings that
+ {@code @SuppressWarnings} is not allowed to suppress.
+ You can also specify a list of TokenTypes that
+ the configured warning(s) cannot be suppressed on.
+ &lt;/p&gt;
+ &lt;p&gt;
+ Limitations:  This check does not consider conditionals
+ inside the &amp;#64;SuppressWarnings annotation.
+ &lt;/p&gt;
+ &lt;p&gt;
+ For example:
+ {@code @SuppressWarnings((false) ? (true) ? "unchecked" : "foo" : "unused")}.
+ According to the above example, the "unused" warning is being suppressed
+ not the "unchecked" or "foo" warnings.  All of these warnings will be
+ considered and matched against regardless of what the conditional
+ evaluates to.
+ The check also does not support code like {@code @SuppressWarnings("un" + "used")},
+ {@code @SuppressWarnings((String) "unused")} or
+ {@code @SuppressWarnings({('u' + (char)'n') + (""+("used" + (String)"")),})}.
+ &lt;/p&gt;
+ &lt;p&gt;
+ By default, any warning specified will be disallowed on
+ all legal TokenTypes unless otherwise specified via
+ the tokens property.
+ &lt;/p&gt;
+ &lt;p&gt;
+ Also, by default warnings that are empty strings or all
+ whitespace (regex: ^$|^\s+$) are flagged.  By specifying,
+ the format property these defaults no longer apply.
+ &lt;/p&gt;
+ &lt;p&gt;This check can be configured so that the "unchecked"
+ and "unused" warnings cannot be suppressed on
+ anything but variable and parameter declarations.
+ See below of an example.
+ &lt;/p&gt;</description>
+         <properties>
+            <property default-value="^\s*+$" name="format" type="java.util.regex.Pattern">
+               <description>Specify the RegExp to match against warnings. Any warning
+ being suppressed matching this pattern will be flagged.</description>
+            </property>
+            <property default-value="CLASS_DEF,INTERFACE_DEF,ENUM_DEF,ANNOTATION_DEF,ANNOTATION_FIELD_DEF,ENUM_CONSTANT_DEF,PARAMETER_DEF,VARIABLE_DEF,METHOD_DEF,CTOR_DEF,COMPACT_CTOR_DEF,RECORD_DEF"
+                      name="tokens"
+                      type="java.lang.String[]"
+                      validation-type="tokenSet">
+               <description>tokens to check</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="suppressed.warning.not.allowed"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>

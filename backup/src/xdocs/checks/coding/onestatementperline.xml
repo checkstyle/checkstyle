@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>OneStatementPerLine</title>
+  </head>
+  <body>
+    <section name="OneStatementPerLine">
+      <p>Since Checkstyle 5.3</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Checks that there is only one statement per line.
+        </p>
+        <p>
+          Rationale: It's very difficult to read multiple statements on one line.
+        </p>
+        <p>
+          In the Java programming language, statements are the fundamental unit of
+          execution. All statements except blocks are terminated by a semicolon.
+          Blocks are denoted by open and close curly braces.
+        </p>
+        <p>
+          OneStatementPerLineCheck checks the following types of statements:
+          variable declaration statements, empty statements, import statements,
+          assignment statements, expression statements, increment statements,
+          object creation statements, 'for loop' statements, 'break' statements,
+          'continue' statements, 'return' statements, resources statements (optional).
+        </p>
+      </subsection>
+
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>treatTryResourcesAsStatement</td>
+              <td>Enable resources processing.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>8.23</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;OneStatementPerLine&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example1-code">
+          The following examples will be flagged as a violation:
+        </p>
+        <source>
+//Each line causes violation:
+int var1; int var2;
+var1 = 1; var2 = 2;
+int var1 = 1; int var2 = 2;
+var1++; var2++;
+Object obj1 = new Object(); Object obj2 = new Object();
+import java.io.EOFException; import java.io.BufferedReader;
+;; //two empty statements on the same line.
+
+//Multi-line statements:
+int var1 = 1
+; var2 = 2; //violation here
+int o = 1, p = 2,
+r = 5; int t; //violation here
+        </source>
+        <p id="Example2-config">
+          An example of how to configure the check to treat resources
+          in a try statement as statements to require them on their own line:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;OneStatementPerLine&quot;&gt;
+      &lt;property name=&quot;treatTryResourcesAsStatement&quot; value=&quot;true&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example2-code">
+          Note: resource declarations can contain variable definitions
+          and variable references (from java9).
+          When property &quot;treatTryResourcesAsStatement&quot; is enabled,
+          this check is only applied to variable definitions.
+          If there are one or more variable references
+          and one variable definition on the same line in resources declaration,
+          there is no violation.
+          The following examples will illustrate difference:
+        </p>
+        <source>
+OutputStream s1 = new PipedOutputStream();
+OutputStream s2 = new PipedOutputStream();
+// only one statement(variable definition) with two variable references
+try (s1; s2; OutputStream s3 = new PipedOutputStream();) // OK
+{}
+// two statements with variable definitions
+try (Reader r = new PipedReader(); s2; Reader s3 = new PipedReader() // violation
+) {}
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+OneStatementPerLine">
+            Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+OneStatementPerLine">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22multiple.statements.line%22">
+              multiple.statements.line
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.coding
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

@@ -1,0 +1,1425 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+
+  <head>
+    <title>Checks</title>
+  </head>
+
+  <body>
+    <section name="Standard Checks">
+      <p>
+        The Standard Checkstyle Checks are applicable to general Java coding style
+        and require no external libraries. The standard checks are included in
+        the base distribution.
+      </p>
+
+      <p>
+        The site navigation menu lets you browse the individual checks by functionality.
+      </p>
+
+      <p>
+        Checkstyle provides many checks that you can apply to your
+        source code. Below is an alphabetical reference, the site
+        navigation menu provides a reference organized by functionality.
+      </p>
+      <div class="wrapper">
+        <table>
+          <tr>
+            <td><a href="checks/naming/abbreviationaswordinname.html#AbbreviationAsWordInName">
+              AbbreviationAsWordInName</a></td>
+            <td>Validates abbreviations (consecutive capital letters)
+             length in identifier name, it also allows to enforce camel case naming.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/naming/abstractclassname.html#AbstractClassName">
+                AbstractClassName
+              </a>
+            </td>
+            <td>
+              Ensures that the names of abstract classes conforming to some pattern and
+              check that <code>abstract</code> modifier exists.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/annotation/annotationlocation.html#AnnotationLocation">
+                AnnotationLocation
+              </a>
+            </td>
+            <td>Checks location of annotation on language elements.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/annotation/annotationonsameline.html#AnnotationOnSameLine">
+                AnnotationOnSameLine
+              </a>
+            </td>
+            <td>Checks that annotations are located on the same line with their targets.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/annotation/annotationusestyle.html#AnnotationUseStyle">
+                AnnotationUseStyle
+              </a>
+            </td>
+            <td>Checks the style of elements in annotations.</td>
+          </tr>
+          <tr>
+            <td><a href="checks/sizes/anoninnerlength.html#AnonInnerLength">AnonInnerLength</a></td>
+            <td>Checks for long anonymous inner classes.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/coding/arraytrailingcomma.html#ArrayTrailingComma">
+                ArrayTrailingComma
+              </a>
+            </td>
+            <td>Checks that array initialization contains a trailing comma.</td>
+          </tr>
+          <tr>
+            <td><a href="checks/misc/arraytypestyle.html#ArrayTypeStyle">ArrayTypeStyle</a></td>
+            <td>Checks the style of array type definitions.</td>
+          </tr>
+          <tr>
+            <td><a href="checks/javadoc/atclauseorder.html#AtclauseOrder">AtclauseOrder</a></td>
+            <td>Checks the order of javadoc block-tags or javadoc tags.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/coding/avoiddoublebraceinitialization.html#AvoidDoubleBraceInitialization">
+                AvoidDoubleBraceInitialization
+              </a>
+            </td>
+            <td>Detects double brace initialization.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/misc/avoidescapedunicodecharacters.html#AvoidEscapedUnicodeCharacters">
+                AvoidEscapedUnicodeCharacters
+              </a>
+            </td>
+            <td>Restricts using Unicode escapes (such as \u221e).</td>
+          </tr>
+          <tr>
+            <td><a href="checks/coding/avoidinlineconditionals.html#AvoidInlineConditionals">
+              AvoidInlineConditionals</a></td>
+            <td>Detects inline conditionals.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/blocks/avoidnestedblocks.html#AvoidNestedBlocks">
+                AvoidNestedBlocks
+              </a>
+            </td>
+            <td>Finds nested blocks (blocks that are used freely in the code).</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/coding/avoidnoargumentsuperconstructorcall.html#AvoidNoArgumentSuperConstructorCall">
+                AvoidNoArgumentSuperConstructorCall
+              </a>
+            </td>
+            <td>Checks if call to superclass constructor without arguments is present.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/imports/avoidstarimport.html#AvoidStarImport">
+                AvoidStarImport
+              </a>
+            </td>
+            <td>Checks that there are no import statements that use the * notation.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/imports/avoidstaticimport.html#AvoidStaticImport">
+                AvoidStaticImport
+              </a>
+            </td>
+            <td>Checks that there are no static import statements.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/metrics/booleanexpressioncomplexity.html#BooleanExpressionComplexity">
+                BooleanExpressionComplexity
+              </a>
+            </td>
+            <td>
+              Restricts the number of boolean operators (&amp;&amp;, ||, &amp;, | and ^)
+              in an expression.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/naming/catchparametername.html#CatchParameterName">
+                CatchParameterName
+              </a>
+            </td>
+            <td>Checks that <code>catch</code> parameter names conform to a specified pattern.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/metrics/classdataabstractioncoupling.html#ClassDataAbstractionCoupling">
+                ClassDataAbstractionCoupling
+              </a>
+            </td>
+            <td>Measures the number of instantiations of other classes within the given class
+              or record.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/metrics/classfanoutcomplexity.html#ClassFanOutComplexity">
+                ClassFanOutComplexity
+              </a>
+            </td>
+            <td>Checks the number of other types a given class/record/interface/enum/annotation
+              relies on.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/modifier/classmemberimpliedmodifier.html#ClassMemberImpliedModifier">
+                ClassMemberImpliedModifier
+              </a>
+            </td>
+            <td>Checks for implicit modifiers on nested types in classes and records.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/naming/classtypeparametername.html#ClassTypeParameterName">
+                ClassTypeParameterName
+              </a>
+            </td>
+            <td>
+              Checks that class type parameter names conform to a specified pattern.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/misc/commentsindentation.html#CommentsIndentation">
+                CommentsIndentation
+              </a>
+            </td>
+            <td>Controls the indentation between comments and surrounding code.</td>
+          </tr>
+          <tr>
+            <td><a href="checks/naming/constantname.html#ConstantName">ConstantName</a></td>
+            <td>Checks that constant names conform to a specified pattern.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/coding/covariantequals.html#CovariantEquals">
+                CovariantEquals
+              </a>
+            </td>
+            <td>
+              Checks that classes and records which define a covariant <code>equals()</code>
+              method also override method <code>equals(Object)</code>.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/imports/customimportorder.html#CustomImportOrder">
+                CustomImportOrder
+              </a>
+            </td>
+            <td>
+              Checks that the groups of import declarations appear in the order specified
+              by the user.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/metrics/cyclomaticcomplexity.html#CyclomaticComplexity">
+                CyclomaticComplexity
+              </a>
+            </td>
+            <td>Checks cyclomatic complexity against a specified limit.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/coding/declarationorder.html#DeclarationOrder">
+                DeclarationOrder
+              </a>
+            </td>
+            <td>
+              Checks that the parts of a class, record, or interface declaration
+              appear in the order suggested by the <a
+              href="styleguides/sun-code-conventions-19990420/CodeConventions.doc2.html#a1852"
+              >Code Conventions for the Java Programming Language</a>.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/coding/defaultcomeslast.html#DefaultComesLast">
+                DefaultComesLast
+              </a>
+            </td>
+            <td>
+              Check that the <code>default</code> is after all the
+              <code>case</code>s in a <code>switch</code> statement.
+            </td>
+          </tr>
+          <tr>
+            <td><a href="checks/misc/descendanttoken.html#DescendantToken">DescendantToken</a></td>
+            <td>Checks for restricted tokens beneath other tokens.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/design/designforextension.html#DesignForExtension">
+                DesignForExtension
+              </a>
+            </td>
+            <td>Checks that classes are designed for extension (subclass creation).</td>
+          </tr>
+          <tr>
+            <td><a href="checks/blocks/emptyblock.html#EmptyBlock">EmptyBlock</a></td>
+            <td>Checks for empty blocks.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/blocks/emptycatchblock.html#EmptyCatchBlock">
+                EmptyCatchBlock
+              </a>
+            </td>
+            <td>Checks for empty catch blocks.</td>
+          </tr>
+          <tr>
+            <td><a href="checks/whitespace/emptyforinitializerpad.html#EmptyForInitializerPad">
+              EmptyForInitializerPad</a></td>
+            <td>
+              Checks the padding of an empty for initializer; that is whether
+              a white space is required at an empty for initializer, or such white
+              space is forbidden.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/whitespace/emptyforiteratorpad.html#EmptyForIteratorPad">
+              EmptyForIteratorPad
+              </a>
+            </td>
+            <td>
+              Checks the padding of an empty for iterator; that is whether a white
+              space is required at an empty for iterator, or such white space is
+              forbidden.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/whitespace/emptylineseparator.html#EmptyLineSeparator">
+                EmptyLineSeparator
+              </a>
+            </td>
+            <td>
+              Checks for empty line separators before package,
+              all import declarations, fields, constructors, methods, nested classes,
+              static initializers and instance initializers.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/coding/emptystatement.html#EmptyStatement">
+                EmptyStatement
+              </a>
+            </td>
+            <td>Detects empty statements (standalone <code>";"</code> semicolon).</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/coding/equalsavoidnull.html#EqualsAvoidNull">
+                EqualsAvoidNull
+              </a>
+            </td>
+            <td>
+              Checks that any combination of String literals
+              is on the left side of an equals() comparison.</td>
+          </tr>
+          <tr>
+            <td><a href="checks/coding/equalshashcode.html#EqualsHashCode">EqualsHashCode</a></td>
+            <td>
+              Checks that classes that either override <code>equals()</code>
+              or <code>hashCode()</code> also overrides the other.
+            </td>
+          </tr>
+          <tr>
+            <td><a href="checks/sizes/executablestatementcount.html#ExecutableStatementCount">
+              ExecutableStatementCount</a></td>
+            <td>Restricts the number of executable statements to a specified limit.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/coding/explicitinitialization.html#ExplicitInitialization">
+                ExplicitInitialization
+              </a>
+            </td>
+            <td>
+              Checks if any class or object member is explicitly initialized to default
+              for its type value (<code>null</code> for object references, zero for numeric
+              types and <code>char</code> and <code>false</code> for <code>boolean</code>.
+            </td>
+          </tr>
+          <tr>
+            <td><a href="checks/coding/fallthrough.html#FallThrough">FallThrough</a></td>
+            <td>Checks for fall-through in switch statements.</td>
+          </tr>
+          <tr>
+            <td><a href="checks/sizes/filelength.html#FileLength">FileLength</a></td>
+            <td>
+            Checks for long source files.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/whitespace/filetabcharacter.html#FileTabCharacter">
+                FileTabCharacter
+              </a>
+            </td>
+            <td>Checks that there are no tab characters ('\t') in the source code.</td>
+          </tr>
+          <tr>
+            <td><a href="checks/design/finalclass.html#FinalClass">FinalClass</a></td>
+            <td>
+              Ensures that identifies classes that can be effectively declared as final are
+              explicitly marked as final.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/coding/finallocalvariable.html#FinalLocalVariable">
+                FinalLocalVariable
+              </a>
+            </td>
+            <td>
+              Checks that local variables that never have their values changed are declared final.
+            </td>
+          </tr>
+          <tr>
+            <td><a href="checks/misc/finalparameters.html#FinalParameters">FinalParameters</a></td>
+            <td>
+              Checks that parameters for methods, constructors, catch and for-each blocks are final.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/whitespace/genericwhitespace.html#GenericWhitespace">
+                GenericWhitespace
+              </a>
+            </td>
+            <td>
+              Checks that the whitespace around the Generic tokens (angle brackets)
+              "&lt;" and "&gt;" are correct to the typical convention.
+            </td>
+          </tr>
+          <tr>
+            <td><a href="checks/header/header.html#Header">Header</a></td>
+            <td>Checks that a source file begins with a specified header.</td>
+          </tr>
+          <tr>
+            <td><a href="checks/coding/hiddenfield.html#HiddenField">HiddenField</a></td>
+            <td>Checks that a local variable or a parameter does not shadow
+            a field that is defined in the same class.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/design/hideutilityclassconstructor.html#HideUtilityClassConstructor">
+                HideUtilityClassConstructor
+              </a>
+            </td>
+            <td>Makes sure that utility classes (classes that contain only static
+              methods or fields in their API) do not have a public constructor.</td>
+          </tr>
+          <tr>
+            <td><a href="checks/coding/illegalcatch.html#IllegalCatch">IllegalCatch</a></td>
+            <td>Checks that certain exception types do not appear in a catch statement.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/naming/illegalidentifiername.html#IllegalIdentifierName">
+                IllegalIdentifierName
+              </a>
+            </td>
+            <td>
+              Checks identifiers with a pattern for a set of illegal names, such as those
+              that are restricted or contextual keywords.
+            </td>
+          </tr>
+          <tr>
+            <td><a href="checks/imports/illegalimport.html#IllegalImport">IllegalImport</a></td>
+            <td>
+            Checks for imports from a set of illegal packages.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/coding/illegalinstantiation.html#IllegalInstantiation">
+                IllegalInstantiation
+              </a>
+            </td>
+            <td>
+            Checks for illegal instantiations where a factory method is preferred.</td>
+          </tr>
+          <tr>
+            <td><a href="checks/coding/illegalthrows.html#IllegalThrows">IllegalThrows</a></td>
+            <td>Checks that specified types are not declared to be thrown.</td>
+          </tr>
+          <tr>
+            <td><a href="checks/coding/illegaltoken.html#IllegalToken">IllegalToken</a></td>
+            <td>
+            Checks for illegal tokens.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/coding/illegaltokentext.html#IllegalTokenText">
+                IllegalTokenText
+              </a>
+            </td>
+            <td>
+              Checks specified tokens text for matching an illegal pattern.
+            </td>
+          </tr>
+          <tr>
+            <td><a href="checks/coding/illegaltype.html#IllegalType">IllegalType</a></td>
+            <td>
+              Checks that particular classes or interfaces are never used.</td>
+          </tr>
+          <tr>
+            <td><a href="checks/imports/importcontrol.html#ImportControl">ImportControl</a></td>
+            <td>Controls what can be imported in each package and file.</td>
+          </tr>
+          <tr>
+            <td><a href="checks/imports/importorder.html#ImportOrder">ImportOrder</a></td>
+            <td>Checks the ordering/grouping of imports.</td>
+          </tr>
+          <tr>
+            <td><a href="checks/misc/indentation.html#Indentation">Indentation</a></td>
+            <td>Checks correct indentation of Java code.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/coding/innerassignment.html#InnerAssignment">
+                InnerAssignment
+              </a>
+            </td>
+            <td>
+              Checks for assignments in subexpressions, such as in
+              <code>String s = Integer.toString(i = 2);</code>.
+            </td>
+          </tr>
+          <tr>
+            <td><a href="checks/design/innertypelast.html#InnerTypeLast">InnerTypeLast</a></td>
+            <td>
+              Checks nested (internal) classes/interfaces are declared at the bottom of the
+              primary (top-level) class after all init and static init blocks,
+              method, constructor and field declarations.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/design/interfaceistype.html#InterfaceIsType">
+                InterfaceIsType
+              </a>
+            </td>
+            <td>Implements Joshua Bloch, Effective Java, Item 17 - Use Interfaces only to
+              define types.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/modifier/interfacememberimpliedmodifier.html#InterfaceMemberImpliedModifier">
+                InterfaceMemberImpliedModifier
+              </a>
+            </td>
+            <td>
+              Checks for implicit modifiers on interface members and nested types.</td>
+          </tr>
+          <tr>
+            <td><a href="checks/naming/interfacetypeparametername.html#InterfaceTypeParameterName">
+              InterfaceTypeParameterName</a></td>
+            <td>
+              Checks that interface type parameter names conform to a specified pattern.</td>
+          </tr>
+          <tr>
+            <td><a href="checks/javadoc/invalidjavadocposition.html#InvalidJavadocPosition">
+              InvalidJavadocPosition</a></td>
+            <td>
+              Checks that Javadocs are located at the correct position.</td>
+          </tr>
+          <tr>
+            <td><a href="checks/javadoc/javadocblocktaglocation.html#JavadocBlockTagLocation">
+              JavadocBlockTagLocation</a></td>
+            <td>Checks that a javadoc block tag appears only at the beginning of a line,
+              ignoring leading asterisks and white space.</td>
+          </tr>
+          <tr>
+            <td><a href="checks/javadoc/javadoccontentlocation.html#JavadocContentLocation">
+              JavadocContentLocation</a></td>
+            <td>
+              Checks that the Javadoc content begins from the same position
+              for all Javadoc comments in the project.
+            </td>
+          </tr>
+          <tr>
+            <td><a href="checks/javadoc/javadocmethod.html#JavadocMethod">JavadocMethod</a></td>
+            <td>Checks the Javadoc of a method or constructor.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/javadoc/javadocmissingleadingasterisk.html#JavadocMissingLeadingAsterisk">
+                JavadocMissingLeadingAsterisk
+              </a>
+            </td>
+            <td>
+              Checks if the javadoc has
+              <a href="https://docs.oracle.com/en/java/javase/14/docs/specs/javadoc/doc-comment-spec.html#leading-asterisks">
+                leading asterisks
+              </a>
+              on each line.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/javadoc/javadocmissingwhitespaceafterasterisk.html#JavadocMissingWhitespaceAfterAsterisk">
+                JavadocMissingWhitespaceAfterAsterisk
+              </a>
+            </td>
+            <td>Checks that there is at least one whitespace after the leading asterisk.</td>
+          </tr>
+          <tr>
+            <td><a href="checks/javadoc/javadocpackage.html#JavadocPackage">JavadocPackage</a></td>
+            <td>Checks that each Java package has a Javadoc file used for commenting.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/javadoc/javadocparagraph.html#JavadocParagraph">
+                JavadocParagraph
+              </a>
+            </td>
+            <td>Checks the Javadoc paragraph.</td>
+          </tr>
+          <tr>
+            <td><a href="checks/javadoc/javadocstyle.html#JavadocStyle">JavadocStyle</a></td>
+            <td>Validates Javadoc comments to help ensure they are well formed.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/javadoc/javadoctagcontinuationindentation.html#JavadocTagContinuationIndentation">
+                JavadocTagContinuationIndentation
+              </a>
+            </td>
+            <td>Checks the indentation of the continuation lines in block tags.</td>
+          </tr>
+          <tr>
+            <td><a href="checks/javadoc/javadoctype.html#JavadocType">JavadocType</a></td>
+            <td>Checks the Javadoc comments for type definitions.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/javadoc/javadocvariable.html#JavadocVariable">
+                JavadocVariable
+              </a>
+            </td>
+            <td>Checks that a variable has a Javadoc comment.</td>
+          </tr>
+          <tr>
+            <td><a href="checks/metrics/javancss.html#JavaNCSS">JavaNCSS</a></td>
+            <td>
+              Determines complexity of methods, classes and files by counting
+              the Non Commenting Source Statements (NCSS).
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/sizes/lambdabodylength.html#LambdaBodyLength">
+                LambdaBodyLength
+              </a>
+            </td>
+            <td>Checks lambda body length.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/naming/lambdaparametername.html#LambdaParameterName">
+                LambdaParameterName
+              </a>
+            </td>
+            <td>Checks lambda parameter names.</td>
+          </tr>
+          <tr>
+            <td><a href="checks/blocks/leftcurly.html#LeftCurly">LeftCurly</a></td>
+            <td>
+              Checks for the placement of left curly braces (<code>'{'</code>) for code blocks.
+            </td>
+          </tr>
+          <tr>
+            <td><a href="checks/sizes/linelength.html#LineLength">LineLength</a></td>
+            <td>Checks for long lines.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/naming/localfinalvariablename.html#LocalFinalVariableName">
+                LocalFinalVariableName
+              </a>
+            </td>
+            <td>
+              Checks that local final variable names conform to a specified pattern.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/naming/localvariablename.html#LocalVariableName">
+                LocalVariableName
+              </a>
+            </td>
+            <td>
+              Checks that local, non-final variable names conform to a specified pattern.</td>
+          </tr>
+          <tr>
+            <td><a href="checks/coding/magicnumber.html#MagicNumber">MagicNumber</a></td>
+            <td>
+              Checks that there are no "magic numbers" where a magic number
+              is a numeric literal that is not defined as a constant.
+            </td>
+          </tr>
+          <tr>
+            <td><a href="checks/coding/matchxpath.html#MatchXpath">MatchXpath</a></td>
+            <td>Evaluates Xpath query and report violation on all matching AST nodes.</td>
+          </tr>
+          <tr>
+            <td><a href="checks/naming/membername.html#MemberName">MemberName</a></td>
+            <td>
+              Checks that instance variable names conform to a specified pattern.</td>
+          </tr>
+          <tr>
+            <td><a href="checks/sizes/methodcount.html#MethodCount">MethodCount</a></td>
+            <td>Checks the number of methods declared in each type declaration by access modifier
+            or total count.</td>
+          </tr>
+          <tr>
+            <td><a href="checks/sizes/methodlength.html#MethodLength">MethodLength</a></td>
+            <td>Checks for long methods and constructors.</td>
+          </tr>
+          <tr>
+            <td><a href="checks/naming/methodname.html#MethodName">MethodName</a></td>
+            <td>
+              Checks that method names conform to a specified pattern.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/whitespace/methodparampad.html#MethodParamPad">
+                MethodParamPad
+              </a>
+            </td>
+            <td>
+              Checks the padding between the identifier of a method definition,
+              constructor definition, method call, or constructor invocation;
+            and the left parenthesis of the parameter list.</td>
+          </tr>
+          <tr>
+            <td><a href="checks/naming/methodtypeparametername.html#MethodTypeParameterName">
+              MethodTypeParameterName</a></td>
+            <td>
+              Checks that method type parameter names conform to a specified pattern.</td>
+          </tr>
+          <tr>
+            <td><a href="checks/coding/missingctor.html#MissingCtor">MissingCtor</a></td>
+            <td>
+              Checks that classes (except abstract ones) define a constructor
+              and don't rely on the default one.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/annotation/missingdeprecated.html#MissingDeprecated">
+                MissingDeprecated
+              </a>
+            </td>
+            <td>
+              Verifies that the annotation <code>@Deprecated</code> and the Javadoc tag
+              <code>@deprecated</code>
+              are both present when either of them is present.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/javadoc/missingjavadocmethod.html#MissingJavadocMethod">
+                MissingJavadocMethod
+              </a>
+            </td>
+            <td>Checks for missing Javadoc comments for a method or constructor.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/javadoc/missingjavadocpackage.html#MissingJavadocPackage">
+                MissingJavadocPackage
+              </a>
+            </td>
+            <td>
+              Checks for missing package definition Javadoc comments in package-info.java files.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/javadoc/missingjavadoctype.html#MissingJavadocType">
+                MissingJavadocType
+              </a>
+            </td>
+            <td>Checks for missing Javadoc comments for class, enum, interface, and annotation
+            interface definitions.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/annotation/missingoverride.html#MissingOverride">MissingOverride</a>
+            </td>
+            <td>
+              Verifies that the <code>@Override</code> annotation is present
+              when the <code>@inheritDoc</code> javadoc tag is present.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/coding/missingswitchdefault.html#MissingSwitchDefault">
+                MissingSwitchDefault
+              </a>
+            </td>
+            <td>
+            Checks that switch statement has a <code>default</code> clause.</td>
+          </tr>
+          <tr>
+            <td><a href="checks/coding/modifiedcontrolvariable.html#ModifiedControlVariable">
+              ModifiedControlVariable</a></td>
+            <td>Checks that for loop control variables are not modified inside the for block.</td>
+          </tr>
+          <tr>
+            <td><a href="checks/modifier/modifierorder.html#ModifierOrder">ModifierOrder</a></td>
+            <td>
+              Checks that the order of modifiers conforms to the suggestions in the
+              Java Language specification, &#167; 8.1.1, 8.3.1, 8.4.3 and 9.4.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/coding/multiplestringliterals.html#MultipleStringLiterals">
+                MultipleStringLiterals
+              </a>
+            </td>
+            <td>Checks for multiple occurrences of the same string literal within a
+            single file.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/coding/multiplevariabledeclarations.html#MultipleVariableDeclarations">
+                MultipleVariableDeclarations
+              </a>
+            </td>
+            <td>
+              Checks that each variable declaration is in its own statement
+            and on its own line.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/design/mutableexception.html#MutableException">
+                MutableException
+              </a>
+            </td>
+            <td>
+              Ensures that exception classes (classes with names conforming to
+              some pattern and explicitly extending classes with names
+              conforming to other pattern) are immutable, that is,
+              that they have only final fields.
+            </td>
+          </tr>
+          <tr>
+            <td><a href="checks/blocks/needbraces.html#NeedBraces">NeedBraces</a></td>
+            <td>
+            Checks for braces around code blocks.</td>
+          </tr>
+          <tr>
+            <td><a href="checks/coding/nestedfordepth.html#NestedForDepth">NestedForDepth</a></td>
+            <td>Restricts nested <code>for</code> blocks to a specified depth.</td>
+          </tr>
+          <tr>
+            <td><a href="checks/coding/nestedifdepth.html#NestedIfDepth">NestedIfDepth</a></td>
+            <td>Restricts nested if-else blocks to a specified depth.</td>
+          </tr>
+          <tr>
+            <td><a href="checks/coding/nestedtrydepth.html#NestedTryDepth">NestedTryDepth</a></td>
+            <td>Restricts nested try-catch-finally blocks to a specified depth.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/misc/newlineatendoffile.html#NewlineAtEndOfFile">
+                NewlineAtEndOfFile
+              </a>
+            </td>
+            <td>
+              Checks whether files end with a line separator.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/coding/noarraytrailingcomma.html#NoArrayTrailingComma">
+                NoArrayTrailingComma
+              </a>
+            </td>
+            <td>Checks that array initialization do not contain a trailing comma.</td>
+          </tr>
+          <tr>
+            <td><a href="checks/coding/noclone.html#NoClone">NoClone</a></td>
+            <td>
+              Checks that the clone method is not overridden from the
+            Object class.</td>
+          </tr>
+          <tr>
+            <td><a href="checks/misc/nocodeinfile.html#NoCodeInFile">NoCodeInFile</a></td>
+            <td>
+              Checks whether file contains code.
+            </td>
+          </tr>
+          <tr>
+            <td><a href="checks/coding/nofinalizer.html#NoFinalizer">NoFinalizer</a></td>
+            <td>Checks that there is no method <code>finalize</code> with zero parameters.</td>
+          </tr>
+          <tr>
+            <td><a href="checks/whitespace/nolinewrap.html#NoLineWrap">NoLineWrap</a></td>
+            <td>
+            Checks that chosen statements are not line-wrapped.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/javadoc/nonemptyatclausedescription.html#NonEmptyAtclauseDescription">
+                NonEmptyAtclauseDescription
+              </a>
+            </td>
+            <td>
+            Checks that the block tag is followed by description.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/coding/noenumtrailingcomma.html#NoEnumTrailingComma">
+                NoEnumTrailingComma
+              </a>
+            </td>
+            <td>Checks that enum definition does not contain a trailing comma.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/whitespace/nowhitespaceafter.html#NoWhitespaceAfter">
+                NoWhitespaceAfter
+              </a>
+            </td>
+            <td>
+            Checks that there is no whitespace after a token.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/whitespace/nowhitespacebefore.html#NoWhitespaceBefore">
+                NoWhitespaceBefore
+              </a>
+            </td>
+            <td>
+            Checks that there is no whitespace before a token.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/whitespace/nowhitespacebeforecasedefaultcolon.html#NoWhitespaceBeforeCaseDefaultColon">
+                NoWhitespaceBeforeCaseDefaultColon
+              </a>
+            </td>
+            <td>
+              Checks that there is no whitespace before the colon in a switch block.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/metrics/npathcomplexity.html#NPathComplexity">
+                NPathComplexity
+              </a>
+            </td>
+            <td>Checks the NPATH complexity against a specified limit.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/coding/onestatementperline.html#OneStatementPerLine">
+                OneStatementPerLine
+              </a>
+            </td>
+            <td>Checks that there is only one statement per line.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/design/onetoplevelclass.html#OneTopLevelClass">
+                OneTopLevelClass
+              </a>
+            </td>
+            <td>Checks that each top-level class, interface, enum or annotation resides in
+              a source file of its own.</td>
+          </tr>
+          <tr>
+            <td><a href="checks/whitespace/operatorwrap.html#OperatorWrap">OperatorWrap</a></td>
+            <td>Checks the policy on how to wrap lines on operators.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/misc/orderedproperties.html#OrderedProperties">
+                OrderedProperties
+              </a>
+            </td>
+            <td>Detects if keys in properties files are in correct order.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/misc/outertypefilename.html#OuterTypeFilename">
+                OuterTypeFilename
+              </a>
+            </td>
+            <td>Checks that the outer type name and the file name match.</td>
+          </tr>
+          <tr>
+            <td><a href="checks/sizes/outertypenumber.html#OuterTypeNumber">OuterTypeNumber</a></td>
+            <td>
+              Checks for the number of types declared at the <i>outer</i>
+              (or <i>root</i>) level in a file.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/coding/overloadmethodsdeclarationorder.html#OverloadMethodsDeclarationOrder">
+                OverloadMethodsDeclarationOrder
+              </a>
+            </td>
+            <td>Checks that overloaded methods are grouped together.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/annotation/packageannotation.html#PackageAnnotation">
+                PackageAnnotation
+              </a>
+            </td>
+            <td>Checks that all package annotations are in the package-info.java file.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/coding/packagedeclaration.html#PackageDeclaration">
+                PackageDeclaration
+              </a>
+            </td>
+            <td>
+              Ensures that a class has a package declaration, and (optionally) whether
+              the package name matches the directory name for the source file.
+            </td>
+          </tr>
+          <tr>
+            <td><a href="checks/naming/packagename.html#PackageName">PackageName</a></td>
+            <td>
+              Checks that package names conform to a specified pattern.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/coding/parameterassignment.html#ParameterAssignment">
+                ParameterAssignment
+              </a>
+            </td>
+            <td>
+            Disallows assignment of parameters.</td>
+          </tr>
+          <tr>
+            <td><a href="checks/naming/parametername.html#ParameterName">ParameterName</a></td>
+            <td>
+              Checks that method parameter names conform to a specified pattern.</td>
+          </tr>
+          <tr>
+            <td><a href="checks/sizes/parameternumber.html#ParameterNumber">ParameterNumber</a></td>
+            <td>Checks the number of parameters of a method or constructor.</td>
+          </tr>
+          <tr>
+            <td><a href="checks/whitespace/parenpad.html#ParenPad">ParenPad</a></td>
+            <td>
+              Checks the policy on the padding of parentheses; that is whether a
+              space is required after a left parenthesis and before a right
+              parenthesis, or such spaces are forbidden.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/naming/patternvariablename.html#PatternVariableName">
+                PatternVariableName
+              </a>
+            </td>
+            <td>
+              Checks that pattern variable names conform to a specified pattern.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/sizes/recordcomponentnumber.html#RecordComponentNumber">
+                RecordComponentNumber
+              </a>
+            </td>
+            <td>Checks the number of record components in the header of a record definition.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/naming/recordcomponentname.html#RecordComponentName">
+                RecordComponentName
+              </a>
+            </td>
+            <td>
+              Checks that record component names conform to a specified pattern.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/naming/recordtypeparametername.html#RecordTypeParameterName">
+                RecordTypeParameterName
+              </a>
+            </td>
+            <td>
+              Checks that record type parameter names conform to a specified pattern.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/imports/redundantimport.html#RedundantImport">
+                RedundantImport
+              </a>
+            </td>
+            <td>Checks for redundant import statements.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/modifier/redundantmodifier.html#RedundantModifier">
+                RedundantModifier
+              </a>
+            </td>
+            <td>Checks for redundant modifiers.</td>
+          </tr>
+          <tr>
+            <td><a href="checks/regexp/regexp.html#Regexp">Regexp</a></td>
+            <td>
+              Checks that a specified pattern exists, exists less than a set
+              number of times, or does not exist in the file.
+            </td>
+          </tr>
+          <tr>
+            <td><a href="checks/header/regexpheader.html#RegexpHeader">RegexpHeader</a></td>
+            <td>
+              Checks the header of a source file against a header that contains
+              a pattern for each line of the source header.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/regexp/regexpmultiline.html#RegexpMultiline">
+                RegexpMultiline
+              </a>
+            </td>
+            <td>Checks that a specified pattern matches across multiple lines in
+            any file type.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/regexp/regexponfilename.html#RegexpOnFilename">
+                RegexpOnFilename
+              </a>
+            </td>
+            <td>Checks that a specified pattern matches based on file and/or folder path.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/regexp/regexpsingleline.html#RegexpSingleline">
+                RegexpSingleline
+              </a>
+            </td>
+            <td>Checks that a specified pattern matches a single-line in any file type.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/regexp/regexpsinglelinejava.html#RegexpSinglelineJava">
+                RegexpSinglelineJava
+              </a>
+            </td>
+            <td>Checks that a specified pattern matches a single-line in Java files.</td>
+          </tr>
+          <tr>
+            <td><a href="checks/coding/requirethis.html#RequireThis">RequireThis</a></td>
+            <td>
+              Checks that references to instance variables and methods of the present
+              object are explicitly of the form &quot;this.varName&quot; or
+              &quot;this.methodName(args)&quot; and that those references don't
+              rely on the default behavior when &quot;this.&quot; is absent.
+            </td>
+          </tr>
+          <tr>
+            <td><a href="checks/coding/returncount.html#ReturnCount">ReturnCount</a></td>
+            <td>
+              Restricts the number of return statements in methods, constructors
+              and lambda expressions.
+            </td>
+          </tr>
+          <tr>
+            <td><a href="checks/blocks/rightcurly.html#RightCurly">RightCurly</a></td>
+            <td>Checks the placement of right curly braces (<code>'}'</code>) for code blocks.</td>
+          </tr>
+          <tr>
+            <td><a href="checks/whitespace/separatorwrap.html#SeparatorWrap">SeparatorWrap</a></td>
+            <td>
+            Checks line wrapping with separators.</td>
+          </tr>
+          <tr>
+            <td><a href="checks/coding/simplifybooleanexpression.html#SimplifyBooleanExpression">
+              SimplifyBooleanExpression</a></td>
+            <td>Checks for over-complicated boolean expressions.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/coding/simplifybooleanreturn.html#SimplifyBooleanReturn">
+                SimplifyBooleanReturn
+              </a>
+            </td>
+            <td>Checks for over-complicated boolean return statements.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/javadoc/singlelinejavadoc.html#SingleLineJavadoc">
+                SingleLineJavadoc
+              </a>
+            </td>
+            <td>
+              Checks that a Javadoc block can fit in a single-line and doesn't contain
+              block tags.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/javadoc/requireemptylinebeforeblocktaggroup.html#RequireEmptyLineBeforeBlockTagGroup">
+                RequireEmptyLineBeforeBlockTagGroup
+              </a>
+            </td>
+            <td>
+              Checks that one blank line before the block tag if it is present in Javadoc.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/whitespace/singlespaceseparator.html#SingleSpaceSeparator">
+                SingleSpaceSeparator
+              </a>
+            </td>
+            <td>
+             Checks that non-whitespace characters are separated by no more than one
+              whitespace.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/naming/staticvariablename.html#StaticVariableName">
+                StaticVariableName
+              </a>
+            </td>
+            <td>
+              Checks that <code>static</code>, non-<code>final</code> variable names
+              conform to a specified pattern.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/coding/stringliteralequality.html#StringLiteralEquality">
+                StringLiteralEquality
+              </a>
+            </td>
+            <td>Checks that string literals are not used with
+              <code>==</code> or <code>&#33;=</code>.
+            </td>
+          </tr>
+          <tr>
+            <td><a href="checks/javadoc/summaryjavadoc.html#SummaryJavadoc">SummaryJavadoc</a></td>
+            <td>
+            Checks that Javadoc summary sentence does not contain phrases that are not recommended
+            to use.</td>
+          </tr>
+          <tr>
+            <td><a href="checks/coding/superclone.html#SuperClone">SuperClone</a></td>
+            <td>
+            Checks that an overriding clone() method invokes super.clone().</td>
+          </tr>
+          <tr>
+            <td><a href="checks/coding/superfinalize.html#SuperFinalize">SuperFinalize</a></td>
+            <td>
+            Checks that an overriding finalize() method invokes super.finalize().</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/annotation/suppresswarnings.html#SuppressWarnings">SuppressWarnings
+              </a>
+            </td>
+            <td>
+              Allows to specify what warnings that
+              <code>@SuppressWarnings</code>
+              is not allowed to suppress.
+            </td>
+          </tr>
+          <tr>
+            <td><a href="checks/design/throwscount.html#ThrowsCount">ThrowsCount</a></td>
+            <td>
+            Restricts throws statements to a specified count.</td>
+          </tr>
+          <tr>
+            <td><a href="checks/misc/todocomment.html#TodoComment">TodoComment</a></td>
+            <td>
+            Checks for TODO: comments.</td>
+          </tr>
+          <tr>
+            <td><a href="checks/misc/trailingcomment.html#TrailingComment">TrailingComment</a></td>
+            <td>The check to ensure that lines with code do not end with comment.</td>
+          </tr>
+          <tr>
+            <td><a href="checks/misc/translation.html#Translation">Translation</a></td>
+            <td>
+              Ensures the correct translation of code by checking property files
+              for consistency regarding their keys.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/whitespace/typecastparenpad.html#TypecastParenPad">
+                TypecastParenPad
+              </a>
+            </td>
+            <td>Checks the policy on the padding of parentheses for typecasts.</td>
+          </tr>
+          <tr>
+            <td><a href="checks/naming/typename.html#TypeName">TypeName</a></td>
+            <td>
+              Checks that type names conform to a specified pattern.</td>
+          </tr>
+          <tr>
+            <td><a href="checks/misc/uncommentedmain.html#UncommentedMain">UncommentedMain</a></td>
+            <td>Detects uncommented <code>main</code> methods.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/misc/uniqueproperties.html#UniqueProperties">
+                UniqueProperties
+              </a>
+            </td>
+            <td>Detects duplicated keys in properties files.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/coding/unnecessaryparentheses.html#UnnecessaryParentheses">
+                UnnecessaryParentheses
+              </a>
+            </td>
+            <td>
+            Checks if unnecessary parentheses are used in a statement or expression.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/coding/unnecessarysemicoloninenumeration.html#UnnecessarySemicolonInEnumeration">
+                UnnecessarySemicolonInEnumeration
+              </a>
+            </td>
+            <td>Checks if unnecessary semicolon is in enum definitions.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/coding/unnecessarysemicolonintrywithresources.html#UnnecessarySemicolonInTryWithResources">
+                UnnecessarySemicolonInTryWithResources
+              </a>
+            </td>
+            <td>Checks if unnecessary semicolon is used in last resource declaration.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/coding/unnecessarysemicolonafteroutertypedeclaration.html#UnnecessarySemicolonAfterOuterTypeDeclaration">
+                UnnecessarySemicolonAfterOuterTypeDeclaration
+              </a>
+            </td>
+            <td>Checks if unnecessary semicolon is used after type declaration.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/coding/unnecessarysemicolonaftertypememberdeclaration.html#UnnecessarySemicolonAfterTypeMemberDeclaration">
+                UnnecessarySemicolonAfterTypeMemberDeclaration
+              </a>
+            </td>
+            <td>Checks if unnecessary semicolon is used after type member declaration.</td>
+          </tr>
+          <tr>
+            <td><a href="checks/imports/unusedimports.html#UnusedImports">UnusedImports</a></td>
+            <td>
+            Checks for unused import statements.</td>
+          </tr>
+          <tr>
+            <td><a href="checks/misc/upperell.html#UpperEll">UpperEll</a></td>
+            <td>Checks that long constants are defined with an upper ell.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/coding/unusedlocalvariable.html#UnusedLocalVariable">
+                UnusedLocalVariable
+              </a>
+            </td>
+            <td>Checks that a local variable is declared and/or assigned, but not used.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/coding/variabledeclarationusagedistance.html#VariableDeclarationUsageDistance">
+                VariableDeclarationUsageDistance
+              </a>
+            </td>
+            <td>Checks the distance between declaration of variable and its first usage.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/design/visibilitymodifier.html#VisibilityModifier">
+                VisibilityModifier
+              </a>
+            </td>
+            <td>Checks visibility of class members.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/whitespace/whitespaceafter.html#WhitespaceAfter">
+                WhitespaceAfter
+              </a>
+            </td>
+            <td>
+              Checks that a token is followed by whitespace, with the exception that it
+            does not check for whitespace after the semicolon of an empty for iterator.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/whitespace/whitespacearound.html#WhitespaceAround">
+                WhitespaceAround
+              </a>
+            </td>
+            <td>
+            Checks that a token is surrounded by whitespace.</td>
+          </tr>
+          <tr>
+            <td><a href="checks/javadoc/writetag.html#WriteTag">WriteTag</a></td>
+            <td>
+              Requires user defined Javadoc tag to be present in Javadoc comment
+              with defined format.
+            </td>
+          </tr>
+        </table>
+      </div>
+    </section>
+
+    <section name="Holder Checks">
+      <p>
+        These checks aren't normal checks and are usually associated with a specialized filter
+        to gather information the filter can't get on its own.
+      </p>
+
+      <div class="wrapper">
+        <table>
+          <tr>
+            <td><a href="checks/annotation/suppresswarningsholder.html#SuppressWarningsHolder">
+              SuppressWarningsHolder</a></td>
+            <td>
+              Maintains a set of check suppressions from
+              <code>@SuppressWarnings</code> annotations.
+            </td>
+          </tr>
+        </table>
+      </div>
+    </section>
+  </body>
+</document>

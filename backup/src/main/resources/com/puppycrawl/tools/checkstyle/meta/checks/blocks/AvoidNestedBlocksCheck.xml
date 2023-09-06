@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.blocks.AvoidNestedBlocksCheck"
+             name="AvoidNestedBlocks"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;p&gt;
+ Finds nested blocks (blocks that are used freely in the code).
+ &lt;/p&gt;
+ &lt;p&gt;
+ Rationale: Nested blocks are often leftovers from the
+ debugging process, they confuse the reader.
+ &lt;/p&gt;
+ &lt;p&gt;
+ For example, this check finds the obsolete braces in
+ &lt;/p&gt;
+ &lt;pre&gt;
+ public void guessTheOutput()
+ {
+   int whichIsWhich = 0;
+   {
+     whichIsWhich = 2;
+   }
+   System.out.println("value = " + whichIsWhich);
+ }
+ &lt;/pre&gt;
+ &lt;p&gt;
+ and debugging / refactoring leftovers such as
+ &lt;/p&gt;
+ &lt;pre&gt;
+ // if (conditionThatIsNotUsedAnyLonger)
+ {
+   System.out.println("unconditional");
+ }
+ &lt;/pre&gt;
+ &lt;p&gt;
+ A case in a switch statement does not implicitly form a block.
+ Thus, to be able to introduce local variables that have case scope
+ it is necessary to open a nested block. This is supported, set
+ the allowInSwitchCase property to true and include all statements
+ of the case in the block.
+ &lt;/p&gt;</description>
+         <properties>
+            <property default-value="false" name="allowInSwitchCase" type="boolean">
+               <description>Allow nested blocks if they are the
+ only child of a switch case.</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="block.nested"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>

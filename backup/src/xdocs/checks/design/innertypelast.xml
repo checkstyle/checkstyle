@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>InnerTypeLast</title>
+  </head>
+  <body>
+    <section name="InnerTypeLast">
+      <p>Since Checkstyle 5.2</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Checks nested (internal) classes/interfaces are declared at the bottom of the
+          primary (top-level) class after all init and static init blocks,
+          method, constructor and field declarations.
+        </p>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;InnerTypeLast&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example1-code">Example:</p>
+        <source>
+class Test {
+    private String s; // OK
+    class InnerTest1 {}
+    public void test() {} // violation, method should be declared before inner types.
+}
+
+class Test2 {
+    static {}; // OK
+    class InnerTest1 {}
+    public Test2() {} // violation, constructor should be declared before inner types.
+}
+
+class Test3 {
+    private String s; // OK
+    public void test() {} // OK
+    class InnerTest1 {}
+}
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+InnerTypeLast">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fdesign%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22arrangement.members.before.inner%22">
+              arrangement.members.before.inner
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.design
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

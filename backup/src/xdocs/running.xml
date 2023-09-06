@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+
+  <head>
+    <title>Running</title>
+  </head>
+
+  <body>
+    <section name="Running">
+      <p>
+        This section documents the out-of-box supported methods for
+        running Checkstyle.
+      </p>
+
+      <ul>
+        <li>An <a href="anttask.html">Ant task</a>.</li>
+        <li>A <a href="cmdline.html">Command Line</a> tool.</li>
+      </ul>
+
+      <p>
+        Note that there are <a href="index.html#Related_Tools">loads of
+        plug-ins</a> for all the IDEs out there.
+      </p>
+    </section>
+  </body>
+</document>

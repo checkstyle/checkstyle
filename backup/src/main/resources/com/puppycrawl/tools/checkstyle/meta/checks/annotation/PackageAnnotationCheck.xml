@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.annotation.PackageAnnotationCheck"
+             name="PackageAnnotation"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;p&gt;
+ Checks that all package annotations are in the package-info.java file.
+ &lt;/p&gt;
+ &lt;p&gt;
+ For Java SE8 and above, placement of package annotations in the package-info.java
+ file is enforced by the compiler and this check is not necessary.
+ &lt;/p&gt;
+ &lt;p&gt;
+ For Java SE7 and below, the Java Language Specification highly recommends
+ but doesn't require that annotations are placed in the package-info.java file,
+ and this check can help to enforce that placement.
+ &lt;/p&gt;
+ &lt;p&gt;
+ See &lt;a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-7.html#jls-7.4.1"&gt;
+ Java Language Specification, &amp;#167;7.4.1&lt;/a&gt; for more info.
+ &lt;/p&gt;</description>
+         <message-keys>
+            <message-key key="annotation.package.location"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>

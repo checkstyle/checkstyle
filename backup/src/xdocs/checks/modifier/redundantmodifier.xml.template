@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>RedundantModifier</title>
+  </head>
+  <body>
+    <section name="RedundantModifier">
+      <p>Since Checkstyle 3.0</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Checks for redundant modifiers.
+        </p>
+        <p>
+          Rationale: The Java Language Specification strongly
+          discourages the usage of <code>public</code> and <code>abstract</code> for method
+          declarations in interface definitions as a matter of style.
+        </p>
+        <p>The check validates:</p>
+        <ol>
+          <li>Interface and annotation definitions.</li>
+          <li>Final modifier on methods of final and anonymous classes.</li>
+          <li>
+            Type declarations nested under interfaces that are declared as <code>public</code>
+            or <code>static</code>.
+          </li>
+          <li>Class constructors.</li>
+          <li>
+            Nested <code>enum</code> definitions that are declared
+            as <code>static</code>.
+          </li>
+          <li>
+            <code>record</code> definitions that are declared as <code>final</code> and nested
+            <code>record</code> definitions that are declared as <code>static</code>.
+          </li>
+        </ol>
+
+        <p>
+          interfaces by definition are abstract so the <code>abstract</code> modifier is
+          redundant on them.
+        </p>
+
+        <p>
+          Type declarations nested under interfaces by definition are public and static,
+          so the <code>public</code> and <code>static</code> modifiers on nested type
+          declarations are redundant. On the other hand, classes inside of interfaces can
+          be abstract or non abstract. So, <code>abstract</code> modifier is allowed.
+        </p>
+
+        <p>
+          Fields in interfaces and annotations are automatically
+          public, static and final, so these modifiers are redundant as
+          well.
+        </p>
+
+        <p>
+          As annotations are a form of interface, their fields are also
+          automatically public, static and final just as their
+          annotation fields are automatically public and abstract.
+        </p>
+
+        <p>
+          A record class is implicitly final and cannot be abstract, these restrictions emphasize
+          that the API of a record class is defined solely by its state description, and cannot be
+          enhanced later by another class. Nested records are implicitly static. This avoids an
+          immediately enclosing instance which would silently add state to the record class.
+          See <a href="https://openjdk.org/jeps/395">JEP 395</a> for more info.
+        </p>
+
+        <p>
+          Enums by definition are static implicit subclasses of java.lang.Enum&lt;E&gt;.
+          So, the <code>static</code> modifier on the enums is redundant. In addition,
+          if enum is inside of interface, <code>public</code> modifier is also redundant.
+        </p>
+
+        <p>
+          Enums can also contain abstract methods and methods which can be overridden by the
+          declared enumeration fields.
+          See the following example:
+        </p>
+
+        <source>
+public enum EnumClass {
+  FIELD_1,
+  FIELD_2 {
+    @Override
+    public final void method1() {} // violation expected
+  };
+
+  public void method1() {}
+  public final void method2() {} // no violation expected
+}
+        </source>
+
+        <p>
+          Since these methods can be overridden in these situations, the final methods are not
+          marked as redundant even though they can't be extended by other classes/enums.
+        </p>
+
+        <p>
+          Nested <code>enum</code> types are always static by default.
+        </p>
+
+        <p>
+          Final classes by definition cannot be extended so the <code>final</code>
+          modifier on the method of a final class is redundant.
+        </p>
+
+        <p>
+          Public modifier for constructors in non-public non-protected classes
+          is always obsolete:
+        </p>
+
+        <source>
+public class PublicClass {
+  public PublicClass() {} // OK
+}
+
+class PackagePrivateClass {
+  public PackagePrivateClass() {} // violation expected
+}
+        </source>
+
+        <p>There is no violation in the following example,
+          because removing public modifier from ProtectedInnerClass
+          constructor will make this code not compiling:
+        </p>
+
+        <source>
+package a;
+public class ClassExample {
+  protected class ProtectedInnerClass {
+    public ProtectedInnerClass () {}
+  }
+}
+
+package b;
+import a.ClassExample;
+public class ClassExtending extends ClassExample {
+  ProtectedInnerClass pc = new ProtectedInnerClass();
+}
+        </source>
+      </subsection>
+
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>tokens</td>
+              <td>tokens to check</td>
+              <td>
+                subset of tokens
+                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+                  METHOD_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
+                  VARIABLE_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">
+                  ANNOTATION_FIELD_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
+                  INTERFACE_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
+                  CTOR_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
+                  CLASS_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
+                  ENUM_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RESOURCE">
+                  RESOURCE</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
+                ANNOTATION_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
+                RECORD_DEF</a>
+                .
+              </td>
+              <td>
+                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+                  METHOD_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
+                  VARIABLE_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">
+                  ANNOTATION_FIELD_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
+                  INTERFACE_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
+                  CTOR_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
+                  CLASS_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
+                  ENUM_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RESOURCE">
+                  RESOURCE</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
+                ANNOTATION_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
+                RECORD_DEF</a>
+                .
+              </td>
+              <td>3.0</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config"> To configure the check: </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/modifier/redundantmodifier/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+
+        <p id="Example2-config">
+          To configure the check to check only methods and not variables:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/modifier/redundantmodifier/Example2.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+RedundantModifier">
+            Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+RedundantModifier">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <macro name="violation-messages">
+          <param name="checkName" value="RedundantModifier"/>
+        </macro>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p> com.puppycrawl.tools.checkstyle.checks.modifier </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <macro name="parent-module">
+          <param name="moduleName" value="RedundantModifier"/>
+        </macro>
+      </subsection>
+    </section>
+  </body>
+</document>

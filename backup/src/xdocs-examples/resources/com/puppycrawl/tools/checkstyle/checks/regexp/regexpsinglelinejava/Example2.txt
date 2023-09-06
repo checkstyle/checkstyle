@@ -1,0 +1,19 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="RegexpSinglelineJava">
+      <!-- . matches any character, so we need to
+           escape it and use \. to match dots. -->
+      <property name="format" value="System\.out\.println"/>
+      <property name="ignoreComments" value="true"/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+System.out.println(""); // violation, instruction matches illegal pattern
+System.out.
+println(""); // OK
+/* System.out.println */ // OK, comments are ignored
+// xdoc section -- end

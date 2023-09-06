@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>TypeName</title>
+  </head>
+  <body>
+    <section name="TypeName">
+      <p>Since Checkstyle 3.0</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Checks that type names conform to a specified pattern.
+        </p>
+      </subsection>
+
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>format</td>
+              <td>Specifies valid identifiers.</td>
+              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
+              <td><code>"^[A-Z][a-zA-Z0-9]*$"</code></td>
+              <td>3.0</td>
+            </tr>
+            <tr>
+              <td>applyToPublic</td>
+              <td>Controls whether to apply the check to public member.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>true</code></td>
+              <td>5.0</td>
+            </tr>
+            <tr>
+              <td>applyToProtected</td>
+              <td>Controls whether to apply the check to protected member.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>true</code></td>
+              <td>5.0</td>
+            </tr>
+            <tr>
+              <td>applyToPackage</td>
+              <td>
+                Controls whether to apply the check to package-private member.
+              </td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>true</code></td>
+              <td>5.0</td>
+            </tr>
+            <tr>
+              <td>applyToPrivate</td>
+              <td>Controls whether to apply the check to private member.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>true</code></td>
+              <td>5.0</td>
+            </tr>
+            <tr>
+              <td>tokens</td>
+              <td>tokens to check</td>
+              <td>
+                subset of tokens
+                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
+                  CLASS_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
+                  INTERFACE_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
+                  ENUM_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
+                  ANNOTATION_DEF</a>
+                ,<a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
+                  RECORD_DEF</a>
+                  .
+              </td>
+              <td>
+                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
+                  CLASS_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
+                  INTERFACE_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
+                  ENUM_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
+                  ANNOTATION_DEF</a>
+                ,<a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
+                  RECORD_DEF</a>
+                  .
+              </td>
+              <td>3.0</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/typename/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">Code Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/typename/Example1.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example2-config">
+          An example of how to configure the check for names that begin with a lower case letter,
+          followed by letters, digits, and underscores. Also, suppress the check from being
+          applied to protected and private type:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/typename/Example2.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">Code Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/typename/Example2.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example3-config">
+          The following configuration element ensures that
+          interface names begin with <code>"I_"</code>, followed by
+          letters and digits:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/typename/Example3.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example3-code">Code Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/typename/Example3.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+TypeName">
+            Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+TypeName">
+            Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+TypeName">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <macro name="violation-messages">
+          <param name="checkName" value="TypeName"/>
+        </macro>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p> com.puppycrawl.tools.checkstyle.checks.naming </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <macro name="parent-module">
+          <param name="moduleName" value="TypeName"/>
+        </macro>
+      </subsection>
+    </section>
+  </body>
+</document>

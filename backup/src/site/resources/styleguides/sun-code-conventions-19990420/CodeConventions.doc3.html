@@ -1,0 +1,114 @@
+<html><head><title></title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="CodeConvTOC.doc.html">[Contents]</a> <a href="CodeConventions.doc2.html">[Prev]</a> <a href="CodeConventions.doc4.html">[Next]</a>
+<hr><br>
+ 
+<a name="a262"> </a>
+<h2 align="center">4 - 	 Indentation</h2>
+<p><a name="396"> </a>
+Four spaces should be used as the unit of indentation. The exact construction of the indentation (spaces vs. tabs) is unspecified. Tabs must be set exactly every 8 spaces (not 4).
+</p><a name="a313"> </a>
+<h3> 4.1	 Line Length</h3>
+<p><a name="382"> </a>
+Avoid lines longer than 80 characters, since they're not handled well by many terminals and tools.
+</p><a name="267"> </a>
+<p>
+<b>Note:</b> Examples for use in documentation should have a shorter line length-generally no more than 70 characters.
+<a name="a248"> </a>
+<h3> 4.2	 Wrapping Lines</h3>
+<p><a name="272"> </a>
+When an expression will not fit on a single-line, break it according to these general principles:
+</p><ul><a name="1487"> </a>
+<li>Break after a comma.
+<a name="1488"> </a>
+<li>Break before an operator.
+<a name="1489"> </a>
+<li>Prefer higher-level breaks to lower-level breaks.
+<a name="1490"> </a>
+<li>Align the new line with the beginning of the expression at the same level on the previous line.
+<a name="1571"> </a>
+<li>If the above rules lead to confusing code or to code that's squished up against the right margin, just indent 8 spaces instead.
+</ul>
+<p><a name="1656"> </a>
+Here are some examples of breaking method calls:
+</p>
+<blockquote><pre>someMethod(longExpression1, longExpression2, longExpression3, 
+        longExpression4, longExpression5);
+ 
+var = someMethod1(longExpression1,
+                someMethod2(longExpression2,
+                        longExpression3)); 
+</pre></blockquote>
+<p><a name="1660"> </a>
+Following are two examples of breaking an arithmetic expression. The first is preferred, since the break occurs outside the parenthesized expression, which is at a higher level.
+</p>
+<pre><blockquote>longName1 = longName2 * (longName3 + longName4 - longName5)
+           + 4 * longname6; // PREFER
+
+longName1 = longName2 * (longName3 + longName4
+                       - longName5) + 4 * longname6; // AVOID 
+</pre></blockquote>
+<p><a name="11733"> </a>
+Following are two examples of indenting method declarations. The first is the conventional case. The second would shift the second and third lines to the far right if it used conventional indentation, so instead it indents only 8 spaces.
+</p><pre><blockquote>
+//CONVENTIONAL INDENTATION
+someMethod(int anArg, Object anotherArg, String yetAnotherArg,
+           Object andStillAnother) {
+    ...
+}
+
+//INDENT 8 SPACES TO AVOID VERY DEEP INDENTS
+private static synchronized horkingLongMethodName(int anArg,
+        Object anotherArg, String yetAnotherArg,
+        Object andStillAnother) {
+    ...
+}
+<p></pre></blockquote><a name="1574"> </a>
+Line wrapping for <code>if</code> statements should generally use the 8-space rule, since conventional (4 space) indentation makes seeing the body difficult. For example: 
+</p><pre><blockquote>//DON'T USE THIS INDENTATION
+if ((condition1 &amp;&amp; condition2)
+    || (condition3 &amp;&amp; condition4)
+    ||!(condition5 &amp;&amp; condition6)) { //BAD WRAPS
+    doSomethingAboutIt();            //MAKE THIS LINE EASY TO MISS
+} 
+
+//USE THIS INDENTATION INSTEAD
+if ((condition1 &amp;&amp; condition2)
+        || (condition3 &amp;&amp; condition4)
+        ||!(condition5 &amp;&amp; condition6)) {
+    doSomethingAboutIt();
+} 
+
+//OR USE THIS
+if ((condition1 &amp;&amp; condition2) || (condition3 &amp;&amp; condition4)
+        ||!(condition5 &amp;&amp; condition6)) {
+    doSomethingAboutIt();
+} 
+<p></pre></blockquote><a name="1676"> </a>
+Here are three acceptable ways to format ternary expressions:
+</p><pre><blockquote>alpha = (aLongBooleanExpression) ? beta : gamma;  
+
+alpha = (aLongBooleanExpression) ? beta
+                                 : gamma;  
+
+alpha = (aLongBooleanExpression)
+        ? beta 
+        : gamma;  
+</pre></blockquote>
+<hr><br>
+ 
+<a href="CodeConvTOC.doc.html">[Contents]</a> <a href="CodeConventions.doc2.html">[Prev]</a> <a href="CodeConventions.doc4.html">[Next]</a> 
+<hr><br>
+
+
+
+
+<i><a href="Copyright.doc.html">Copyright</a> &#169; 1995-1999, Sun Microsystems, Inc.   All rights
+reserved.</i>
+
+
+<!-- Last updated: Thu Apr 15 09:03:50 1999 -->
+
+</body>
+</html>

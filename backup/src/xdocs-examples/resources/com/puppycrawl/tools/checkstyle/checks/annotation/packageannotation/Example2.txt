@@ -1,0 +1,11 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="PackageAnnotation"/>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+package com.example.annotations.packageannotation; //ok
+// xdoc section -- end

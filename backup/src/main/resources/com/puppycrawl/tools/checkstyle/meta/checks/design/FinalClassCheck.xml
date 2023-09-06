@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.design.FinalClassCheck"
+             name="FinalClass"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;p&gt;
+ Ensures that identifies classes that can be effectively declared as final are explicitly
+ marked as final. The following are different types of classes that can be identified:
+ &lt;/p&gt;
+ &lt;ol&gt;
+   &lt;li&gt;
+       Private classes with no declared constructors.
+   &lt;/li&gt;
+   &lt;li&gt;
+       Classes with any modifier, and contains only private constructors.
+   &lt;/li&gt;
+ &lt;/ol&gt;
+ &lt;p&gt;
+ Classes are skipped if:
+ &lt;/p&gt;
+ &lt;ol&gt;
+   &lt;li&gt;
+       Class is Super class of some Anonymous inner class.
+   &lt;/li&gt;
+   &lt;li&gt;
+       Class is extended by another class in the same file.
+   &lt;/li&gt;
+ &lt;/ol&gt;</description>
+         <message-keys>
+            <message-key key="final.class"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>

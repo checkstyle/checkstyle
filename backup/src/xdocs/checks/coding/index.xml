@@ -1,0 +1,568 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>Coding</title>
+  </head>
+  <body>
+    <section name="Coding Checks">
+      <div class="wrapper">
+        <table>
+          <tr>
+            <td>
+              <a href="arraytrailingcomma.html#ArrayTrailingComma">
+                ArrayTrailingComma
+              </a>
+            </td>
+            <td>
+              Checks that array initialization contains a trailing comma.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="avoiddoublebraceinitialization.html#AvoidDoubleBraceInitialization">
+                AvoidDoubleBraceInitialization
+              </a>
+            </td>
+            <td>
+              Detects double brace initialization.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="avoidinlineconditionals.html#AvoidInlineConditionals">
+                AvoidInlineConditionals
+              </a>
+            </td>
+            <td>
+              Detects inline conditionals.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="avoidnoargumentsuperconstructorcall.html#AvoidNoArgumentSuperConstructorCall">
+                AvoidNoArgumentSuperConstructorCall
+              </a>
+            </td>
+            <td>
+              Checks if call to superclass constructor without arguments is present.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="covariantequals.html#CovariantEquals">
+                CovariantEquals
+              </a>
+            </td>
+            <td>
+              Checks that classes and records which define a covariant <code>equals()</code>
+              method also override method <code>equals(Object)</code>.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="declarationorder.html#DeclarationOrder">
+                DeclarationOrder
+              </a>
+            </td>
+            <td>
+              Checks that the parts of a class, record, or interface declaration
+              appear in the order suggested by the <a
+              href="../../styleguides/sun-code-conventions-19990420/CodeConventions.doc2.html#a1852"
+              >Code Conventions for the Java Programming Language</a>.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="defaultcomeslast.html#DefaultComesLast">
+                DefaultComesLast
+              </a>
+            </td>
+            <td>
+              Check that the <code>default</code> is after all the
+              <code>case</code>s in a <code>switch</code> statement.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="emptystatement.html#EmptyStatement">
+                EmptyStatement
+              </a>
+            </td>
+            <td>
+              Detects empty statements (standalone <code>";"</code> semicolon).
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="equalsavoidnull.html#EqualsAvoidNull">
+                EqualsAvoidNull
+              </a>
+            </td>
+            <td>
+              Checks that any combination of String literals
+            is on the left side of an equals() comparison.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="equalshashcode.html#EqualsHashCode">
+                EqualsHashCode
+              </a>
+            </td>
+            <td>
+              Checks that classes that either override <code>equals()</code>
+              or <code>hashCode()</code> also overrides the other.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="explicitinitialization.html#ExplicitInitialization">
+                ExplicitInitialization
+              </a>
+            </td>
+            <td>
+              Checks if any class or object member is explicitly initialized to default
+              for its type value (<code>null</code> for object references, zero for numeric
+              types and <code>char</code> and <code>false</code> for <code>boolean</code>.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="fallthrough.html#FallThrough">
+                FallThrough
+              </a>
+            </td>
+            <td>
+              Checks for fall-through in switch statements.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="finallocalvariable.html#FinalLocalVariable">
+                FinalLocalVariable
+              </a>
+            </td>
+            <td>
+              Checks that local variables that never have their values changed are declared final.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="hiddenfield.html#HiddenField">
+                HiddenField
+              </a>
+            </td>
+            <td>
+              Checks that a local variable or a parameter does not shadow
+            a field that is defined in the same class.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="illegalcatch.html#IllegalCatch">
+                IllegalCatch
+              </a>
+            </td>
+            <td>
+              Checks that certain exception types do not appear in a catch statement.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="illegalinstantiation.html#IllegalInstantiation">
+                IllegalInstantiation
+              </a>
+            </td>
+            <td>
+              Checks for illegal instantiations where a factory method is preferred.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="illegalthrows.html#IllegalThrows">
+                IllegalThrows
+              </a>
+            </td>
+            <td>
+              Checks that specified types are not declared to be thrown.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="illegaltoken.html#IllegalToken">
+                IllegalToken
+              </a>
+            </td>
+            <td>
+              Checks for illegal tokens.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="illegaltokentext.html#IllegalTokenText">
+                IllegalTokenText
+              </a>
+            </td>
+            <td>
+              Checks specified tokens text for matching an illegal pattern.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="illegaltype.html#IllegalType">
+                IllegalType
+              </a>
+            </td>
+            <td>
+              Checks that particular classes or interfaces are never used.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="innerassignment.html#InnerAssignment">
+                InnerAssignment
+              </a>
+            </td>
+            <td>
+              Checks for assignments in subexpressions, such as in
+              <code>String s = Integer.toString(i = 2);</code>.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="magicnumber.html#MagicNumber">
+                MagicNumber
+              </a>
+            </td>
+            <td>
+              Checks that there are no "magic numbers" where a magic number
+            is a numeric literal that is not defined as a constant.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="matchxpath.html#MatchXpath">
+                MatchXpath
+              </a>
+            </td>
+            <td>
+              Evaluates Xpath query and report violation on all matching AST nodes.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="missingctor.html#MissingCtor">
+                MissingCtor
+              </a>
+            </td>
+            <td>
+              Checks that classes (except abstract ones) define a constructor
+            and don't rely on the default one.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="missingswitchdefault.html#MissingSwitchDefault">
+                MissingSwitchDefault
+              </a>
+            </td>
+            <td>
+              Checks that switch statement has a <code>default</code> clause.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="modifiedcontrolvariable.html#ModifiedControlVariable">
+                ModifiedControlVariable
+              </a>
+            </td>
+            <td>
+              Checks that for loop control variables are not modified inside the for block.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="multiplestringliterals.html#MultipleStringLiterals">
+                MultipleStringLiterals
+              </a>
+            </td>
+            <td>
+              Checks for multiple occurrences of the same string literal within a
+            single file.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="multiplevariabledeclarations.html#MultipleVariableDeclarations">
+                MultipleVariableDeclarations
+              </a>
+            </td>
+            <td>
+              Checks that each variable declaration is in its own statement
+            and on its own line.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="nestedfordepth.html#NestedForDepth">
+                NestedForDepth
+              </a>
+            </td>
+            <td>
+              Restricts nested <code>for</code> blocks to a specified depth.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="nestedifdepth.html#NestedIfDepth">
+                NestedIfDepth
+              </a>
+            </td>
+            <td>
+              Restricts nested if-else blocks to a specified depth.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="nestedtrydepth.html#NestedTryDepth">
+                NestedTryDepth
+              </a>
+            </td>
+            <td>
+              Restricts nested try-catch-finally blocks to a specified depth.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="noarraytrailingcomma.html#NoArrayTrailingComma">
+                NoArrayTrailingComma
+              </a>
+            </td>
+            <td>
+              Checks that array initialization do not contain a trailing comma.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="noclone.html#NoClone">
+                NoClone
+              </a>
+            </td>
+            <td>
+              Checks that the clone method is not overridden from the
+            Object class.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="noenumtrailingcomma.html#NoEnumTrailingComma">
+                NoEnumTrailingComma
+              </a>
+            </td>
+            <td>
+              Checks that enum definition does not contain a trailing comma.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="nofinalizer.html#NoFinalizer">
+                NoFinalizer
+              </a>
+            </td>
+            <td>
+              Checks that there is no method <code>finalize</code> with zero parameters.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="onestatementperline.html#OneStatementPerLine">
+                OneStatementPerLine
+              </a>
+            </td>
+            <td>
+              Checks that there is only one statement per line.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="overloadmethodsdeclarationorder.html#OverloadMethodsDeclarationOrder">
+                OverloadMethodsDeclarationOrder
+              </a>
+            </td>
+            <td>
+              Checks that overloaded methods are grouped together.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="packagedeclaration.html#PackageDeclaration">
+                PackageDeclaration
+              </a>
+            </td>
+            <td>
+              Ensures that a class has a package declaration, and (optionally) whether
+            the package name matches the directory name for the source file.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="parameterassignment.html#ParameterAssignment">
+                ParameterAssignment
+              </a>
+            </td>
+            <td>
+              Disallows assignment of parameters.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="requirethis.html#RequireThis">
+                RequireThis
+              </a>
+            </td>
+            <td>
+              Checks that references to instance variables and methods of the present
+            object are explicitly of the form "this.varName" or
+            "this.methodName(args)" and that those references don't
+            rely on the default behavior when "this." is absent.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="returncount.html#ReturnCount">
+                ReturnCount
+              </a>
+            </td>
+            <td>
+              Restricts the number of return statements in methods, constructors
+            and lambda expressions.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="simplifybooleanexpression.html#SimplifyBooleanExpression">
+                SimplifyBooleanExpression
+              </a>
+            </td>
+            <td>
+              Checks for over-complicated boolean expressions.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="simplifybooleanreturn.html#SimplifyBooleanReturn">
+                SimplifyBooleanReturn
+              </a>
+            </td>
+            <td>
+              Checks for over-complicated boolean return statements.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="stringliteralequality.html#StringLiteralEquality">
+                StringLiteralEquality
+              </a>
+            </td>
+            <td>
+              Checks that string literals are not used with
+              <code>==</code> or <code>&#33;=</code>.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="superclone.html#SuperClone">
+                SuperClone
+              </a>
+            </td>
+            <td>
+              Checks that an overriding clone() method invokes super.clone().
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="superfinalize.html#SuperFinalize">
+                SuperFinalize
+              </a>
+            </td>
+            <td>
+              Checks that an overriding finalize() method invokes super.finalize().
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="unnecessaryparentheses.html#UnnecessaryParentheses">
+                UnnecessaryParentheses
+              </a>
+            </td>
+            <td>
+              Checks if unnecessary parentheses are used in a statement or expression.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="unnecessarysemicolonafteroutertypedeclaration.html#UnnecessarySemicolonAfterOuterTypeDeclaration">
+                UnnecessarySemicolonAfterOuterTypeDeclaration
+              </a>
+            </td>
+            <td>
+              Checks if unnecessary semicolon is used after type declaration.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="unnecessarysemicolonaftertypememberdeclaration.html#UnnecessarySemicolonAfterTypeMemberDeclaration">
+                UnnecessarySemicolonAfterTypeMemberDeclaration
+              </a>
+            </td>
+            <td>
+              Checks if unnecessary semicolon is used after type member declaration.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="unnecessarysemicoloninenumeration.html#UnnecessarySemicolonInEnumeration">
+                UnnecessarySemicolonInEnumeration
+              </a>
+            </td>
+            <td>
+              Checks if unnecessary semicolon is in enum definitions.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="unnecessarysemicolonintrywithresources.html#UnnecessarySemicolonInTryWithResources">
+                UnnecessarySemicolonInTryWithResources
+              </a>
+            </td>
+            <td>
+              Checks if unnecessary semicolon is used in last resource declaration.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="unusedlocalvariable.html#UnusedLocalVariable">
+                UnusedLocalVariable
+              </a>
+            </td>
+            <td>
+              Checks that a local variable is declared and/or assigned, but not used.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="variabledeclarationusagedistance.html#VariableDeclarationUsageDistance">
+                VariableDeclarationUsageDistance
+              </a>
+            </td>
+            <td>
+              Checks the distance between declaration of variable and its first usage.
+            </td>
+          </tr>
+        </table>
+      </div>
+    </section>
+  </body>
+</document>

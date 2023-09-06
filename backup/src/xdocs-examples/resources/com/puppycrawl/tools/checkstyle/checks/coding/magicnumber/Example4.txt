@@ -1,0 +1,16 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="MagicNumber">
+      <property name="ignoreAnnotationElementDefaults" value="false"/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+@interface anno {
+  int value() default 10; // violation
+  int[] value2() default {10}; // violation
+}
+// xdoc section -- end

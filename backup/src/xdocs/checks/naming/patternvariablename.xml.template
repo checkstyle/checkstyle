@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>PatternVariableName</title>
+  </head>
+  <body>
+    <section name="PatternVariableName">
+      <p>Since Checkstyle 8.36</p>
+      <subsection name="Description" id="Description">
+        <p>
+            Checks that pattern variable names conform to a specified pattern.
+        </p>
+      </subsection>
+
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>format</td>
+              <td>Specifies valid identifiers.</td>
+              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
+              <td><code>"^[a-z][a-zA-Z0-9]*$"</code></td>
+              <td>8.36</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/patternvariablename/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">Code Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/patternvariablename/Example1.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example2-config">
+          An example of how to configure the check for names that have a lower case letter,
+          followed by letters and digits, optionally separated by underscore:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/patternvariablename/Example2.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">Code Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/patternvariablename/Example2.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example3-config">
+          An example of how to configure the check to that all variables have 3 or more
+          chars in name:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/patternvariablename/Example3.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example3-code">Code Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/patternvariablename/Example3.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+PatternVariableName">
+              Google Style
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+PatternVariableName">
+              Checkstyle Style
+            </a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <macro name="violation-messages">
+          <param name="checkName" value="PatternVariableName"/>
+        </macro>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p> com.puppycrawl.tools.checkstyle.checks.naming </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <macro name="parent-module">
+          <param name="moduleName" value="PatternVariableName"/>
+        </macro>
+      </subsection>
+    </section>
+  </body>
+</document>

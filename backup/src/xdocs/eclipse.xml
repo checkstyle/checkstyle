@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+
+  <head>
+    <title>Importing and debugging in Eclipse IDE</title>
+  </head>
+
+  <body>
+    <section name="Content">
+      <macro name="toc">
+        <param name="fromDepth" value="1"/>
+        <param name="toDepth" value="1"/>
+      </macro>
+    </section>
+
+    <section name="Download Eclipse">
+      <p>
+        Please visit Eclipse IDE <a href="https://www.eclipse.org/"> official web site</a>,
+        download and install the latest version of Eclipse IDE for Java Developers.
+      </p>
+    </section>
+
+    <section name="Import Checkstyle Project">
+      <p>
+        Select File > Import > Maven > Existing Maven Projects<br/><br/>
+        <span class="wrapper block">
+          <img alt="screenshot" src="images/gui_screenshot_importing_eclipse.png"/>
+        </span>
+      </p>
+    </section>
+
+    <section name="Setup Maven plugin connectors">
+      <p>When you import Checkstyle Project, "Setup maven plugin connectors" window will appear.</p>
+      <p>
+        Left click on "Finish".<br/><br/>
+        <span class="wrapper block">
+          <img alt="screenshot"
+            src="images/gui_screenshot_setup_maven_plugin_connectors_eclipse.png"/>
+        </span>
+        <br/><br/>
+      </p>
+      <p>
+        Then plugin "Install" window will appear.
+        <br/><br/>
+        Left click on Next > Next.
+        <br/><br/>
+        <span class="wrapper block">
+          <img alt="screenshot" src="images/gui_screenshot_install_connector_eclipse.png"/>
+        </span>
+        <br/><br/>
+        <span class="wrapper block">
+          <img alt="screenshot" src="images/gui_screenshot_install_connector_details_eclipse.png"/>
+        </span>
+        <br/><br/>
+        Set "I accept the terms of the license agreement" > Finish.
+        <br/><br/>
+        <span class="wrapper block">
+          <img alt="screenshot" src="images/gui_screenshot_install_connector_license_eclipse.png"/>
+        </span>
+      </p>
+      <p>
+        <br/><br/>
+        Then "Security Warning" window will appear.
+        <br/><br/>
+        Left click on "OK", and then restart Eclipse.<br/><br/>
+        <span class="wrapper block">
+          <img alt="screenshot"
+            src="images/gui_screenshot_install_connector_security_warning_eclipse.png"/>
+        </span>
+      </p>
+      <p>
+        <br/><br/>
+        Then target/generated-sources/antlr folder will appear in Package Explorer.<br/><br/>
+        <span class="wrapper block">
+          <img alt="screenshot" src="images/gui_screenshot_package_explorer_eclipse.png"/>
+        </span>
+      </p>
+    </section>
+
+    <section name="Suppress Eclipse warnings">
+      <p>
+        1) Use Eclipse compiler preferences from repo:<br/><br/>
+        copy
+        <a href=
+          "https://github.com/checkstyle/checkstyle/blob/master/config/org.eclipse.jdt.core.prefs">
+          config/org.eclipse.jdt.core.prefs</a> file
+        to
+        <code>.settings</code> folder of cloned repository on your PC. Restart Eclipse.
+        Such folder does not exist in repository after clone and it is created by Eclipse
+        during project import. If folder not present please import checkstyle to Eclipse first.
+      </p>
+
+      <p>
+        2) Ignore optional compile problems on resource files:<br/><br/>
+        Right click on Checkstyle project > Build Path > Configure Build Path...<br/><br/>
+        <span class="wrapper block">
+          <img alt="screenshot" src="images/gui_screenshot_eclipse_build_path.png"/>
+        </span>
+      </p>
+      <p>
+        Set "Ignore optional compile problems" to "Yes" for following folders:
+      </p>
+      <ul>
+        <li>src/it/resources</li>
+        <li>src/main/resources</li>
+        <li>src/test/resources</li>
+        <li>target/generated-sources/antlr</li>
+      </ul>
+      <p>
+        <span class="wrapper block">
+          <img alt="screenshot" src="images/gui_screenshot_eclipse_ignore_warnings.png"/>
+        </span>
+      </p>
+    </section>
+
+    <section name="Organize Imports">
+      <p>
+        One of the Checkstyle checks we run on our own code require certain order of import
+        statements. Few changes in IDE settings are required to help your IDE do it
+        automatically.<br/>
+        To change settings of "Organize Imports" feature (Kepler, Luna &amp; Mars, other versions
+        are likely to work the same way), please go to Window -> Preferences in menu.<br/>
+        In Preferences window select Java->Code Style->Organize Imports (follow numbers on a
+        picture).<br/>
+        Default configuration should look as following (you can also try Restore Defaults
+        button):<br/><br/>
+        <span class="wrapper block">
+          <img alt="Organize Imports settings in Eclipse"
+            src="images/gui_screenshot_organize_imports_eclipse.png"/>
+        </span>
+        <br/>
+      </p>
+    </section>
+
+    <section name="Debug">
+      <p>
+        Open the Check's source file by double-click on it in a source tree as is shown:<br/><br/>
+        <span class="wrapper block">
+          <img alt="screenshot" src="images/gui_screenshot_select_check_eclipse.png"/>
+        </span>
+        <br/><br/>
+        Debug the Check by putting the breakpoint at controversial place (double-click)
+        on the left part of line number as it is shown:<br/><br/>
+        <span class="wrapper block">
+          <img alt="screenshot" src="images/gui_screenshot_debug_eclipse.png"/>
+        </span>
+        <br/><br/>
+        Then right-click the corresponding Unit-test file or class definition > Debug As >
+        JUnit Test<br/><br/>
+        <span class="wrapper block">
+          <img alt="screenshot" src="images/gui_screenshot_ut_select_eclipse.png"/>
+        </span>
+        <br/><br/>
+        Then manage you debug operations by F6 (Step Over), F5 (Step Into), F7 (Step Return)
+        and F8 (Resume)
+      </p>
+    </section>
+
+  </body>
+</document>

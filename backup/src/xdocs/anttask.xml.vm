@@ -1,0 +1,466 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+
+  <head>
+    <title>Ant Task</title>
+  </head>
+
+  <body>
+    <section name="Content">
+      <macro name="toc">
+        <param name="fromDepth" value="1"/>
+        <param name="toDepth" value="1"/>
+      </macro>
+    </section>
+
+    <section name="Description">
+
+      <p>
+        This task runs Checkstyle over specified Java files.
+        The latest version of checkstyle can be found at
+        <a href="https://checkstyle.org/">https://checkstyle.org/</a>.
+
+        This task is included in the checkstyle distribution.
+      </p>
+
+    </section>
+
+    <section name="Installation">
+
+      <p>
+        The easiest way is to include
+        <code>checkstyle-${projectVersion}-all.jar</code> in the
+        classpath. This contains all the classes required to run
+        Checkstyle. Alternatively, you must include the
+        <code>compile</code> third party dependencies listed in <a
+        href="dependencies.html">Project Dependencies</a> in the
+        classpath.
+      </p>
+
+      <p>
+        To use the task in a build file, you will need the following
+        <code>taskdef</code> declaration:
+      </p>
+
+      <source>
+&lt;taskdef resource=&quot;com/puppycrawl/tools/checkstyle/ant/checkstyle-ant-task.properties&quot;
+         classpath=&quot;/path/to/checkstyle-${projectVersion}-all.jar&quot;/&gt;
+      </source>
+
+      <p>
+        Or, assuming that Checkstyle is in the global classpath (not
+        recommended), then you will need the following <code>taskdef</code>
+        declaration:
+      </p>
+
+      <source>
+&lt;taskdef
+  resource=&quot;com/puppycrawl/tools/checkstyle/ant/checkstyle-ant-task.properties&quot;/&gt;
+      </source>
+
+      <p>
+        Or if you use Ant 1.6 and later and assuming that Checkstyle
+        is in the library search path, then you may use antlib feature
+        of Ant (see <a
+        href="https://ant.apache.org/manual/Types/antlib.html"
+        >https://ant.apache.org/manual/Types/antlib.html</a>
+        for more details).  For example:
+      </p>
+
+      <source>
+&lt;project name="foo" ...
+         xmlns:cs="antlib:com.puppycrawl.tools.checkstyle.ant"&gt;
+...
+  &lt;cs:checkstyle&gt;
+  ...
+  &lt;/cs:checkstyle&gt;
+...
+&lt;/project&gt;
+      </source>
+
+    </section>
+
+    <section name="Parameters">
+
+      <div class="wrapper">
+        <table summary="parameters">
+
+          <tr>
+            <td><b>Attribute</b></td>
+            <td><b>Description</b></td>
+            <td><b>Required</b></td>
+          </tr>
+
+          <tr>
+            <td>file</td>
+            <td>File to run checkstyle on.</td>
+            <td>
+              One of either <i>file</i> or at least one nested <i>fileset</i> or <i>path</i>
+              element
+            </td>
+          </tr>
+
+          <tr>
+            <td>fileset</td>
+            <td>
+              A set of files to run checkstyle on. Nested attribute.
+              See <a href="https://ant.apache.org/manual/Types/fileset.html">fileset</a>
+              ant documentation for details
+            </td>
+            <td>
+              One of either <i>file</i> or at least one nested <i>fileset</i> or <i>path</i>
+              element
+            </td>
+          </tr>
+
+          <tr>
+            <td>path</td>
+            <td>
+              A set of path to run checkstyle on. Nested attribute.
+              See <a href="https://ant.apache.org/manual/using.html#path">path</a>
+              ant documentation for details
+            </td>
+            <td>
+              One of either <i>file</i> or at least one nested <i>fileset</i> or <i>path</i>
+              element
+            </td>
+          </tr>
+
+          <tr>
+            <td>config</td>
+            <td>
+              Specifies the location of the file, URL, or Java resource that defines the
+              configuration modules.
+              <br/>
+              <a href="config.html">See here</a> for a description of how to
+              define a configuration.
+            </td>
+            <td>Exactly one config location</td>
+          </tr>
+
+          <tr>
+            <td>properties</td>
+            <td>
+              Specifies a file that contains properties for <a
+              href="config.html#Properties"> expanded property values</a> of the
+              configuration.  Ant properties (like ${basedir}) and nested
+              property elements override the properties in this file.
+            </td>
+            <td>No</td>
+          </tr>
+
+          <tr>
+            <td>failOnViolation</td>
+            <td>
+              Specifies whether the build will continue even if there are
+              violations. Defaults to <code>&quot;true&quot;</code>.
+            </td>
+            <td>No</td>
+          </tr>
+
+          <tr>
+            <td>failureProperty</td>
+            <td>The name of a property to set in the event of a violation.</td>
+            <td>No</td>
+          </tr>
+
+          <tr>
+            <td>maxErrors</td>
+            <td>
+              The maximum number of errors that are tolerated before
+              breaking the build or setting the failure property. Defaults
+              to <code>&quot;0&quot;</code>.
+            </td>
+            <td>No</td>
+          </tr>
+
+          <tr>
+            <td>maxWarnings</td>
+            <td>
+              The maximum number of warnings that are tolerated before
+              breaking the build or setting the failure property. Defaults
+              to <code>&quot;2147483647&quot;</code>, i.e.
+
+              <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html#MAX_VALUE">
+                  Integer.MAX_VALUE</a>.
+            </td>
+            <td>No</td>
+          </tr>
+
+          <tr>
+            <td>executeIgnoredModules</td>
+            <td>
+              For efficiency, Checkstyle does not invoke modules with a configured severity of
+              "ignore" (since their output would be ignored anyway). A small number of modules
+              may choose to log above their configured severity level and so always need to be
+              invoked. These settings specify that behaviour.
+              Defaults to <code>&quot;false&quot;</code>.
+            </td>
+            <td>No</td>
+          </tr>
+        </table>
+      </div>
+
+      <p>
+        Note that the <code>packageNamesFile</code>
+        parameter has been dropped for Checkstyle 5.0, because of
+        significant changes regarding package name file handling. See <a
+        href="config.html#Packages"/> for details.
+      </p>
+
+      <p>
+        Also note, that checkstyle ignores all duplicate files,
+        specified in the <i>file</i>, <i>fileset</i> or <i>path</i> parameters
+      </p>
+    </section>
+
+    <section name="Nested Elements">
+
+      <p>
+        This task supports the nested elements <a
+        href="https://ant.apache.org/manual/Types/fileset.html">&lt;fileset&gt;</a>,
+        <a
+        href="https://ant.apache.org/manual/using.html#path">&lt;classpath&gt;</a>,
+        <a
+        href="https://ant.apache.org/manual/using.html#path">&lt;path&gt;</a>,
+        <code>&lt;formatter&gt;</code>, and <code>&lt;property&gt;</code>.
+      </p>
+
+      <p>
+        The parameters for the <code>&lt;formatter&gt;</code>
+        element are:
+      </p>
+
+      <div class="wrapper">
+        <table summary="nested elements">
+          <tr>
+            <td><b>Attribute</b></td>
+            <td><b>Description</b></td>
+            <td><b>Required</b></td>
+          </tr>
+
+          <tr>
+            <td>type</td>
+            <td>
+              <p>The type of output to generate. The valid values are:</p>
+              <ul>
+                <li>
+                  <code>plain</code> - specifies the <a
+                  href="apidocs/com/puppycrawl/tools/checkstyle/DefaultLogger.html">
+                    DefaultLogger</a>
+                </li>
+                <li>
+                  <code>xml</code> - specifies the <a
+                  href="apidocs/com/puppycrawl/tools/checkstyle/XMLLogger.html">XMLLogger</a>
+                </li>
+                <li>
+                  <code>sarif</code> - specifies the <a
+                  href="apidocs/com/puppycrawl/tools/checkstyle/SarifLogger.html">SarifLogger</a>
+                </li>
+              </ul>
+              <p>Defaults to <code>"plain"</code>.</p>
+            </td>
+            <td>No</td>
+          </tr>
+
+          <tr>
+            <td>toFile</td>
+            <td>
+              The file to write output to. Defaults to standard output. Note,
+              there is no way to explicitly specify standard output.
+            </td>
+            <td>No</td>
+          </tr>
+          <tr>
+            <td>useFile</td>
+            <td>Boolean that determines whether output should be sent to
+            a file.  Default is <code>true</code>.</td>
+            <td>No</td>
+          </tr>
+        </table>
+      </div>
+
+      <p>
+        A <code>&lt;property&gt;</code> element provides a property for
+        <a href="config.html#Properties">expanded property values</a> of
+        the configuration.  The parameters for the
+        <code>&lt;property&gt;</code> element are:
+      </p>
+
+      <div class="wrapper">
+        <table summary="nested elements">
+          <tr>
+            <td><b>Attribute</b></td>
+            <td><b>Description</b></td>
+            <td><b>Required</b></td>
+          </tr>
+          <tr>
+            <td>key</td>
+            <td><p>The key for the property.</p></td>
+            <td>Yes</td>
+          </tr>
+
+          <tr>
+            <td>value</td>
+            <td>The value of the property specified as a string.</td>
+            <td>Either <i>value</i> or <i>file</i></td>
+          </tr>
+
+          <tr>
+            <td>file</td>
+            <td>
+              The value of the property specified as a file. This is great for
+              specifying file names relative to the ANT build file.
+            </td>
+            <td>Either <i>value</i> or <i>file</i></td>
+          </tr>
+        </table>
+      </div>
+
+    </section>
+
+    <section name="Examples">
+
+      <p>
+        An example project can be found
+        <a href="https://github.com/sevntu-checkstyle/checkstyle-samples/tree/master/ant-project">
+            here</a>.
+      </p>
+
+      <p>
+        <b>
+          Checkstyle use ant configuration to validate its own code. See example is our git
+          repository -
+          <a href="https://github.com/checkstyle/checkstyle/blob/master/config/ant-phase-verify.xml#L25">
+            config/ant-phase-verify.xml</a>.
+        </b>
+      </p>
+
+      <p>
+        <b>
+          Run checkstyle with configuration file
+          <code>docs/sun_checks.xml</code> on a single file
+        </b>
+      </p>
+
+      <source>
+&lt;checkstyle config=&quot;docs/sun_checks.xml&quot; file=&quot;Check.java&quot;/&gt;
+      </source>
+
+      <p>
+        <b>
+          Run checkstyle on a set of Java files using site-wide configuration
+          and an expanded property value
+        </b>
+      </p>
+      <source>
+&lt;checkstyle config=&quot;/path/to/site/sun_checks.xml&quot;&gt;
+  &lt;fileset dir=&quot;src/checkstyle&quot; includes=&quot;**/*.java&quot;/&gt;
+
+  &lt;!-- Location of cache-file. Something that is project specific --&gt;
+  &lt;property key=&quot;checkstyle.cache.file&quot; file=&quot;target/cachefile&quot;/&gt;
+&lt;/checkstyle&gt;
+      </source>
+
+      <p>
+        <b>
+          Run checkstyle on a previously defined source path.
+        </b>
+      </p>
+      <source>
+&lt;!-- Somewhere in your config --&gt;
+&lt;path id="project.sourcepath"&gt;
+  &lt;fileset dir="src"
+          includes="**/*"
+          excludes="it/resources/**/*,test/resources/**/*,test/resources-noncompilable/**/*"/&gt;
+&lt;/path&gt;
+
+&lt;!-- Actual checkstyle config --&gt;
+&lt;checkstyle config=&quot;/path/to/site/sun_checks.xml&quot;&gt;
+  &lt;!-- Refer to a previously defined source path --&gt;
+  &lt;path refid="project.sourcepath" /&gt;
+&lt;/checkstyle&gt;
+      </source>
+
+      <p>
+        <b>
+          Run checkstyle on a set of files and output messages to standard
+          output in plain format, and files in XML &amp; SARIF format
+        </b>
+      </p>
+      <source>
+&lt;checkstyle config=&quot;docs/sun_checks.xml&quot;&gt;
+  &lt;fileset dir=&quot;src/checkstyle&quot; includes=&quot;**/*.java&quot;/&gt;
+  &lt;formatter type=&quot;plain&quot;/&gt;
+  &lt;formatter type=&quot;xml&quot; toFile=&quot;build/checkstyle_errors.xml&quot;/&gt;
+  &lt;formatter type=&quot;sarif&quot; toFile=&quot;build/checkstyle_errors.sarif&quot;/&gt;
+&lt;/checkstyle&gt;
+      </source>
+
+      <p>
+        <b>
+          Run checkstyle with configuration file
+          <code>docs/sun_checks.xml</code> on a file and provide a package
+          names file
+        </b>
+      </p>
+      <source>
+&lt;checkstyle config=&quot;docs/sun_checks.xml&quot;
+            packageNamesFile=&quot;myPackageNames.xml&quot;
+            file=&quot;Check.java&quot;/&gt;
+      </source>
+
+      <p>
+        <b>
+          Run checkstyle in an automated build and send an email report if
+          style violations are detected
+        </b>
+      </p>
+      <source>
+&lt;target name=&quot;checkstyle&quot;
+        description=&quot;Generates a report of code convention violations.&quot;>
+
+  &lt;checkstyle config=&quot;docs/sun_checks.xml&quot;
+              failureProperty=&quot;checkstyle.failure&quot;
+              failOnViolation=&quot;false&quot;&gt;
+    &lt;formatter type=&quot;xml&quot; tofile=&quot;checkstyle_report.xml&quot;/&gt;
+    &lt;fileset dir=&quot;src&quot; includes=&quot;**/*.java&quot;/&gt;
+  &lt;/checkstyle&gt;
+
+  &lt;style in=&quot;checkstyle_report.xml&quot; out=&quot;checkstyle_report.html&quot;
+      style=&quot;checkstyle.xsl&quot;/&gt;
+
+&lt;/target&gt;
+
+&lt;!-- run this target as part of automated build --&gt;
+&lt;target name=&quot;checkstyle-nightly&quot;
+        depends=&quot;checkstyle&quot;
+        if=&quot;checkstyle.failure&quot;
+        description=&quot;Sends email if checkstyle detected code conventions violations.&quot;&gt;
+
+  &lt;!-- use your own server and email addresses below. See Ant documentation for details --&gt;
+
+  &lt;mail from=&quot;qa@some.domain&quot;
+        tolist=&quot;someone@some.domain,someoneelse@some.domain&quot;
+        mailhost=&quot;mailbox.some.domain&quot;
+        subject=&quot;Checkstyle violation(s) in project ${ant.project.name}&quot;
+        files=&quot;checkstyle_report.html&quot;/&gt;
+
+&lt;/target&gt;
+      </source>
+
+      <p>
+        <b>
+          To run checkstyle with a custom JAR with implementation of custom Checks
+          be sure the custom JAR is found on the classpath. An example can be found at
+          <a href="https://github.com/sevntu-checkstyle/checkstyle-samples/tree/master/ant-project">
+          checkstyle-samples</a>.
+        </b>
+      </p>
+
+    </section>
+  </body>
+</document>

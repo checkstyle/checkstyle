@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>Filters</title>
+  </head>
+  <body>
+    <section name="Filters Checks">
+      <div class="wrapper">
+        <table>
+          <tr>
+            <td>
+              <a href="severitymatchfilter.html#SeverityMatchFilter">
+                SeverityMatchFilter
+              </a>
+            </td>
+            <td>
+              Filter <code>SeverityMatchFilter</code> decides
+              audit events according to the <a href="../config.html#Severity">severity
+              level</a> of the event.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="suppressioncommentfilter.html#SuppressionCommentFilter">
+                SuppressionCommentFilter
+              </a>
+            </td>
+            <td>
+              Filter <code>SuppressionCommentFilter</code> uses
+              pairs of comments to suppress audit events.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="suppressionfilter.html#SuppressionFilter">
+                SuppressionFilter
+              </a>
+            </td>
+            <td>
+              Filter <code>SuppressionFilter</code> rejects
+              audit events for Check violations according to
+              a <a href="/dtds/suppressions_1_2.dtd">suppressions XML
+              document</a> in a file. If there is no configured
+              suppressions file or the optional is set to true and
+              suppressions file was not found the Filter accepts all audit events.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="suppressionsinglefilter.html#SuppressionSingleFilter">
+                SuppressionSingleFilter
+              </a>
+            </td>
+            <td>
+              Filter <code>SuppressionSingleFilter</code> suppresses audit events for
+              Checks violations in the specified file, class, checks, message, module id,
+              lines, and columns.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="suppressionxpathfilter.html#SuppressionXpathFilter">
+                SuppressionXpathFilter
+              </a>
+            </td>
+            <td>
+              Filter <code>SuppressionXpathFilter</code> works as
+              <a href="suppressionfilter.html#SuppressionFilter">
+              SuppressionFilter</a>.
+              Additionally, filter processes <code>suppress-xpath</code> elements,
+              which contains xpath-expressions. Xpath-expressions
+              are queries for suppressed nodes inside the AST tree.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="suppressionxpathsinglefilter.html#SuppressionXpathSingleFilter">
+                SuppressionXpathSingleFilter
+              </a>
+            </td>
+            <td>
+              Filter <code>SuppressionXpathSingleFilter</code> suppresses audit events for
+              Checks violations in the specified file, class, checks, message, module id,
+              and xpath.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="suppresswarningsfilter.html#SuppressWarningsFilter">
+                SuppressWarningsFilter
+              </a>
+            </td>
+            <td>
+              Filter <code>SuppressWarningsFilter</code> uses annotation
+              <code>@SuppressWarnings</code> to suppress audit events.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="suppresswithnearbycommentfilter.html#SuppressWithNearbyCommentFilter">
+                SuppressWithNearbyCommentFilter
+              </a>
+            </td>
+            <td>
+              Filter <code>SuppressWithNearbyCommentFilter</code> uses
+              nearby comments to suppress audit events.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="suppresswithnearbytextfilter.html#SuppressWithNearbyTextFilter">
+                SuppressWithNearbyTextFilter
+              </a>
+            </td>
+            <td>
+              Filter <code>SuppressWithNearbyTextFilter</code> uses plain text to suppress
+              nearby audit events. The filter can suppress all checks which have Checker
+              as a parent module.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="suppresswithplaintextcommentfilter.html#SuppressWithPlainTextCommentFilter">
+                SuppressWithPlainTextCommentFilter
+              </a>
+            </td>
+            <td>
+              Filter <code>SuppressWithPlainTextCommentFilter</code> uses plain text to suppress
+              audit events.
+            </td>
+          </tr>
+        </table>
+      </div>
+    </section>
+  </body>
+</document>

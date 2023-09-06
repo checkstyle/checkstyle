@@ -1,0 +1,15 @@
+        {
+          "level": "${severityLevel}",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "${uri}"
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "${message}"
+          }
+        }

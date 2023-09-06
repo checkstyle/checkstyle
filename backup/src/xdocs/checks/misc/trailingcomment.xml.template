@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>TrailingComment</title>
+  </head>
+  <body>
+    <section name="TrailingComment">
+      <p>Since Checkstyle 3.4</p>
+      <subsection name="Description" id="Description">
+        <p>
+          The check to ensure that lines with code do not end with comment.
+          For the case of <code>//</code> comments that means that the only thing
+          that should precede it is whitespace. It doesn't check comments if
+          they do not end a line; for example, it accepts the following:
+          <code>Thread.sleep( 10 /*some comment here*/ );</code> Format
+          property is intended to deal with the <code>} // while</code> example.
+        </p>
+
+        <p>
+          Rationale: Steve McConnell in <cite>Code Complete</cite> suggests that
+          endline comments are a bad practice. An end line comment would be
+          one that is on the same line as actual code. For example:
+        </p>
+
+        <source>
+a = b + c;      // Some insightful comment
+d = e / f;        // Another comment for this line
+        </source>
+
+        <p>
+          Quoting <cite>Code Complete</cite> for the justification:
+        </p>
+
+        <ul>
+          <li> "The comments have to be aligned so that they do not
+          interfere with the visual structure of the code. If you don't align
+          them neatly, they'll make your listing look like it's been through a
+          washing machine."
+          </li>
+          <li> "Endline comments tend to be hard to format...It takes
+          time to align them. Such time is not spent learning more about the
+          code; it's dedicated solely to the tedious task of pressing the
+          spacebar or tab key."
+          </li>
+          <li> "Endline comments are also hard to maintain. If the code
+          on any line containing an endline comment grows, it bumps the
+          comment farther out, and all the other endline comments will have to
+          bumped out to match. Styles that are hard to maintain aren't
+          maintained...."
+          </li>
+          <li> "Endline comments also tend to be cryptic. The right side
+          of the line doesn't offer much room and the desire to keep the
+          comment on one line means the comment must be short. Work then goes
+          into making the line as short as possible instead of as clear as
+          possible. The comment usually ends up as cryptic as
+          possible...."
+          </li>
+          <li> "A systemic problem with endline comments is that it's
+          hard to write a meaningful comment for one line of code. Most
+          endline comments just repeat the line of code, which hurts more than
+          it helps."
+          </li>
+        </ul>
+
+        <p>
+          McConnell's comments on being hard to maintain when the size of the line
+          changes are even more important in the age of automated
+          refactorings.
+        </p>
+      </subsection>
+
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>format</td>
+              <td>Specify pattern for strings allowed before the comment.</td>
+              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
+              <td><code>"^[\s});]*$"</code></td>
+              <td>3.4</td>
+            </tr>
+            <tr>
+              <td>legalComment</td>
+              <td>Define pattern for text allowed in trailing comments. This
+                  pattern will not be applied to multiline comments.</td>
+              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
+              <td><code>null</code></td>
+              <td>4.2</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/trailingcomment/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+
+        <p id="Example1-code">
+          Example:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/trailingcomment/Example1.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+
+        <p id="Example2-config">
+          To configure the check to enforce only comment on a line:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/trailingcomment/Example2.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+
+        <p id="Example2-code">
+          Example:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/trailingcomment/Example2.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+
+        <p id="Example3-config">
+          To configure check so that trailing comment with exact comments like
+          "SUPPRESS CHECKSTYLE", "NOPMD", "NOSONAR"
+          are suppressed:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/trailingcomment/Example3.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+
+        <p id="Example3-code">
+          Example for trailing comments check to suppress specific trailing comment:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/trailingcomment/Example3.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+
+        <p id="Example4-config">
+          To configure check so that trailing comment starting with "SUPPRESS CHECKSTYLE",
+          "NOPMD", "NOSONAR" are suppressed:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/trailingcomment/Example4.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+
+        <p id="Example4-code">
+          Example:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/trailingcomment/Example4.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+TrailingComment">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <macro name="violation-messages">
+          <param name="checkName" value="TrailingComment"/>
+        </macro>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <macro name="parent-module">
+          <param name="moduleName" value="TrailingComment"/>
+        </macro>
+      </subsection>
+    </section>
+  </body>
+</document>
