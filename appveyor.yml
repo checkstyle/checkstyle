@@ -55,6 +55,11 @@ environment:
     - JAVA_HOME: C:\Program Files\Java\jdk11
       DESC: "site, without verify (JDK11)"
       CMD: "./.ci/validation.cmd site_without_verify"
+    # site, git diff
+    - JAVA_HOME: C:\Program Files\Java\jdk11
+      DESC: "site, git diff"
+      CMD: "./.ci/validation.cmd git_diff"
+
 
 build_script:
   - ps: |
