@@ -9,7 +9,7 @@
 // xdoc section -- start
 String nullString = null;
 nullString.equals("My_Sweet_String");            // violation
-"My_Sweet_String".equals(nullString);            // OK
+"My_Sweet_String".equals(nullString);            
 nullString.equalsIgnoreCase("My_Sweet_String");  // violation
-"My_Sweet_String".equalsIgnoreCase(nullString);  // OK
+"My_Sweet_String".equalsIgnoreCase(nullString);  
 // xdoc section -- end

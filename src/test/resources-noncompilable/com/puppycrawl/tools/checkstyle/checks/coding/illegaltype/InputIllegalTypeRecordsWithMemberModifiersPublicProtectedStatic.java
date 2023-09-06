@@ -24,17 +24,16 @@ public class InputIllegalTypeRecordsWithMemberModifiersPublicProtectedStatic
 {
 
     public record IdentifiersPair(
-        UUID productId, // ok
-        String identifier // ok
+        UUID productId, 
+        String identifier 
     )
     {
 
     }
 
     public class IdentifiersPairEquivalent {
-        private final UUID productId; // ok
-        private final String identifier; // ok
-
+        private final UUID productId; 
+        private final String identifier; 
         public IdentifiersPairEquivalent(UUID productId, String identifier) {
             this.productId = productId;
             this.identifier = identifier;
@@ -43,18 +42,17 @@ public class InputIllegalTypeRecordsWithMemberModifiersPublicProtectedStatic
 
     public record IdentifiersPair2(
         HashSet x, // violation
-        String identifier // ok
+        String identifier 
     )
     {
 
     }
 
     public class IdentifiersPairEquivalent2 {
-        private final HashSet x; // ok
-        private final String identifier; // ok
-
-        public IdentifiersPairEquivalent2(Set x, String identifier) { // ok
-            this.x = (HashSet) x; // ok
+        private final HashSet x; 
+        private final String identifier; 
+        public IdentifiersPairEquivalent2(Set x, String identifier) { 
+            this.x = (HashSet) x; 
             this.identifier = identifier;
         }
     }

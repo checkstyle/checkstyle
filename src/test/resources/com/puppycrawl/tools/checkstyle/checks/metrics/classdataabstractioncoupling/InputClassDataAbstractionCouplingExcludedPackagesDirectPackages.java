@@ -32,11 +32,11 @@ public class InputClassDataAbstractionCouplingExcludedPackagesDirectPackages { /
     public ABClass ab = new ABClass();
 
     class Inner { // total: ok
-        public BClass b = new BClass(); // ok
-        public CClass c = new CClass(); // ok
+        public BClass b = new BClass(); 
+        public CClass c = new CClass(); 
     }
 }
 
 class InputClassDataAbstractionCouplingExcludedPackagesDirectPackagesHidden { // total: ok
-    public CClass c = new CClass(); // ok
+    public CClass c = new CClass(); 
 }

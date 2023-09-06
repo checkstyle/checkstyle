@@ -16,7 +16,7 @@ abstract class SomeClass {
   public SomeClass(int field) { // violation, 'field' param hides a 'field' field
     float field; // violation, 'field' variable hides a 'field' field
   }
-  public abstract int method(String field); // OK
+  public abstract int method(String field); 
 }
 
 public class Demo extends SomeClass {

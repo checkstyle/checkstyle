@@ -200,11 +200,10 @@ public class Test extends TreeSet { // violation
     LinkedHashMap&lt;Integer, String&gt; lhmap =
         new LinkedHashMap&lt;Integer, String&gt;(); // violation
     TreeMap&lt;Integer, String&gt; treemap = new TreeMap&lt;Integer, String&gt;(); // violation
-    Test t; // OK
+    Test t; 
     HashMap&lt;String, String&gt; hmap; // violation
-    Queue&lt;Integer&gt; intqueue; // OK
-
-    java.lang.IllegalArgumentException illegalex; // OK
+    Queue&lt;Integer&gt; intqueue; 
+    java.lang.IllegalArgumentException illegalex; 
     java.util.TreeSet treeset; // violation
   }
 
@@ -224,19 +223,17 @@ public class Test extends TreeSet { // violation
         </source>
         <p id="Example2-code">Example:</p>
         <source>
-public class Test extends TreeSet { // OK
+public class Test extends TreeSet { 
   public &lt;T extends java.util.HashSet&gt; void method() { // violation
 
-    LinkedHashMap&lt;Integer, String&gt; lhmap = new LinkedHashMap&lt;Integer, String&gt;(); // OK
-
-    java.lang.IllegalArgumentException illegalex; // OK
-    java.util.TreeSet treeset; // Ok
+    LinkedHashMap&lt;Integer, String&gt; lhmap = new LinkedHashMap&lt;Integer, String&gt;(); 
+    java.lang.IllegalArgumentException illegalex; 
+    java.util.TreeSet treeset; 
   }
 
   public &lt;T extends java.util.HashSet&gt; void typeParam(T t) {} // violation
 
-  public void fullName(TreeSet a) {} // OK
-
+  public void fullName(TreeSet a) {} 
 }
         </source>
         <p id="Example3-config">
@@ -254,7 +251,7 @@ public class Test extends TreeSet { // OK
         <p id="Example3-code">Example:</p>
         <source>
 public class Test {
-  public HashMap&lt;String, String&gt; function() { // OK
+  public HashMap&lt;String, String&gt; function() { 
     // code
   }
 
@@ -281,7 +278,7 @@ public class Test {
 class Test extends Gitter { // violation
 }
 
-class Test1 extends Github { // OK
+class Test1 extends Github { 
 }
         </source>
         <p id="Example5-config">
@@ -305,7 +302,7 @@ public class Test {
     // code
   }
 
-  private HashMap&lt;String, String&gt; function2() { // OK
+  private HashMap&lt;String, String&gt; function2() { 
     // code
   }
 
@@ -380,17 +377,17 @@ import java.util.Optional;
 
 public class Main {
 
-  static int field1 = 4; // OK
+  static int field1 = 4; 
   public Optional&lt;String&gt; field2; // violation, usage of type 'Optional' is not allowed
-  protected String field3; // OK
+  protected String field3; 
   Optional&lt;String&gt; field4; // violation, usage of type 'Optional' is not allowed
   private Optional&lt;String&gt; field5; // violation, usage of type 'Optional' is not allowed
 
   void foo() {
-    Optional&lt;String&gt; i; // OK
+    Optional&lt;String&gt; i; 
   }
-  public &lt;T extends java.util.Optional&gt; void method(T t) { // OK
-    Optional&lt;T&gt; i; // OK
+  public &lt;T extends java.util.Optional&gt; void method(T t) { 
+    Optional&lt;T&gt; i; 
   }
 }
         </source>

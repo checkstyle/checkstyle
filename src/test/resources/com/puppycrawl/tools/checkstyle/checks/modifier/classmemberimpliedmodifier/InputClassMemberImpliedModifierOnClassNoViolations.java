@@ -18,8 +18,7 @@ package com.puppycrawl.tools.checkstyle.checks.modifier.classmemberimpliedmodifi
  *  </module>
  * </pre>
  */
-public class InputClassMemberImpliedModifierOnClassNoViolations { // ok
-
+public class InputClassMemberImpliedModifierOnClassNoViolations { 
     public static final int fieldPublicStaticFinal = 1;
 
     public static int fieldPublicStatic = 1;

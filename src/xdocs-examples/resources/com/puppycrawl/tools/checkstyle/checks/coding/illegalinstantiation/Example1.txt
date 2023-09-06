@@ -15,11 +15,10 @@ public class MyTest {
   }
 
   public void myTest (boolean a, int b) {
-    Boolean c = new Boolean(a); // OK
-    java.lang.Boolean d = new java.lang.Boolean(a); // OK
-
-    Integer e = new Integer(b); // OK
-    Integer f = Integer.valueOf(b); // OK
+    Boolean c = new Boolean(a); 
+    java.lang.Boolean d = new java.lang.Boolean(a); 
+    Integer e = new Integer(b); 
+    Integer f = Integer.valueOf(b); 
   }
 }
 // xdoc section -- end

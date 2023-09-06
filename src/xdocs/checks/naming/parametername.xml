@@ -83,7 +83,7 @@
         <p id="Example1-code">Code Example:</p>
         <source>
 class MyClass {
-  void method1(int v1) {} // OK
+  void method1(int v1) {} 
   void method2(int V2) {} // violation, name 'V2' must match pattern '^[a-z][a-zA-Z0-9]*$'
 }
         </source>
@@ -103,8 +103,8 @@ class MyClass {
         <p id="Example2-code">Code Example:</p>
         <source>
 class MyClass {
-  void method1(int v1) {} // OK
-  void method2(int v_2) {} // OK
+  void method1(int v1) {} 
+  void method2(int v_2) {} 
   void method3(int V3) {} // violation, name 'V3' must match pattern '^[a-z][_a-zA-Z0-9]+$'
 }
         </source>
@@ -125,10 +125,10 @@ class MyClass {
         <p id="Example3-code">Code Example:</p>
         <source>
 class MyClass {
-  void method1(int v1) {} // OK
+  void method1(int v1) {} 
   void method2(int V2) {} // violation, name 'V2' must match pattern '^[a-z][a-zA-Z0-9]*$'
   @Override
-  public boolean equals(Object V3) { // OK
+  public boolean equals(Object V3) { 
     return true;
   }
 }
@@ -149,7 +149,7 @@ class MyClass {
         <p id="Example4-code">Code Example:</p>
         <source>
 class MyClass {
-  void method1(int v1) {} // OK
+  void method1(int v1) {} 
   void method2(int v_2) {} // violation, name 'v_2' must match pattern '^[a-z][a-zA-Z0-9]+$'
   void method3(int V3) {} // violation, name 'V3' must match pattern '^[a-z][a-zA-Z0-9]+$'
 }
@@ -180,10 +180,10 @@ class MyClass {
         <p id="Example5-code">Code Example:</p>
         <source>
 class MyClass {
-  void method1(int v1) {} // OK
+  void method1(int v1) {} 
   protected method2(int V2) {} // violation, Parameter name 'V2'
                                // must match pattern '^[a-z]([a-z0-9][a-zA-Z0-9]*)?$'
-  private method3(int a) {} // OK
+  private method3(int a) {} 
   public method4(int b) {} // violation, Parameter name 'b'
                            // must match pattern '^[a-z][a-z0-9][a-zA-Z0-9]*$'
 }

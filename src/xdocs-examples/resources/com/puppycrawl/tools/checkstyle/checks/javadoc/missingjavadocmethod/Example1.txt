@@ -13,15 +13,14 @@ public class Test {
   /**
    * Some description here.
    */
-  public void test2() {} // OK
-
+  public void test2() {} 
   @Override
-  public String toString() { // OK
+  public String toString() { 
     return "Some string";
   }
 
-  private void test1() {} // OK
-  protected void test2() {} // OK
-  void test3() {} // OK
+  private void test1() {} 
+  protected void test2() {} 
+  void test3() {} 
 }
 // xdoc section -- end

@@ -26,18 +26,18 @@
         </p>
         <source>
 String line;
-while ((line = bufferedReader.readLine()) != null) { // OK
+while ((line = bufferedReader.readLine()) != null) { 
   // process the line
 }
 
-for (;(line = bufferedReader.readLine()) != null;) { // OK
+for (;(line = bufferedReader.readLine()) != null;) { 
   // process the line
 }
 
 do {
   // process the line
 }
-while ((line = bufferedReader.readLine()) != null); // OK
+while ((line = bufferedReader.readLine()) != null); 
         </source>
         <p>
           Assignment inside a condition is not a problem here, as the assignment is surrounded by
@@ -66,10 +66,9 @@ class MyClass {
     a = b = 5; // violation, assignment to each variable should be in a separate statement
     a = b += 5; // violation
 
-    a = 5; // OK
-    b = 5; // OK
-    a = 5; b = 5; // OK
-
+    a = 5; 
+    b = 5; 
+    a = 5; b = 5; 
     double myDouble;
     double[] doubleArray = new double[] {myDouble = 4.5, 15.5}; // violation
 
@@ -77,7 +76,7 @@ class MyClass {
     List&lt;String&gt; myList = new ArrayList&lt;String&gt;();
     myList.add(nameOne = &quot;tom&quot;); // violation
 
-    for (int k = 0; k &lt; 10; k = k + 2) { // OK
+    for (int k = 0; k &lt; 10; k = k + 2) { 
       // some code
     }
 

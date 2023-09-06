@@ -42,29 +42,22 @@ public class InputEmptyLineSeparatorRecordsAndCompactCtors {
         public static final int Y = 1; // violation ''VARIABLE_DEF' .*separated .*previous line.'
     }
 
-    record MyRecord2(String foo) { // ok
-
+    record MyRecord2(String foo) { 
         public static final int FOO_CONST = 1;
 
-        public void method() {} // ok
-
-        public MyRecord2{} // ok
-
-        MyRecord2(int x){this("string");} // ok
-
-        static{} // ok
+        public void method() {} 
+        public MyRecord2{} 
+        MyRecord2(int x){this("string");} 
+        static{} 
     }
 
-    record InBetween3(int x, int y) {} // ok
-
+    record InBetween3(int x, int y) {} 
     class MyClass2 {
 
         public static final int FOO_CONST = 1;
 
-        public void method() {} // ok
-
-        public MyClass2(){} // ok
-
-        MyClass2(String foo){} // ok
+        public void method() {} 
+        public MyClass2(){} 
+        MyClass2(String foo){} 
     }
 }

@@ -24,7 +24,7 @@ class MyException extends Exception {
 }
 
 class MyThrowable extends Throwable {
-  final int code; // OK
+  final int code; 
   String message; // violation, The field 'message' must be declared final
 
   public MyThrowable(int code, String message) {

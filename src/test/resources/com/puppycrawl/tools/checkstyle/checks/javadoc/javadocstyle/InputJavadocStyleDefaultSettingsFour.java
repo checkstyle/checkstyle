@@ -22,8 +22,7 @@ public class InputJavadocStyleDefaultSettingsFour
      * <a
      * href="someLink"/>
      */
-    void tagInTwoLines() {} // ok
-
+    void tagInTwoLines() {} 
     /**
      * This Javadoc contains unclosed tag.
      * <code>unclosed 'code' tag<code> // violation
@@ -34,7 +33,7 @@ public class InputJavadocStyleDefaultSettingsFour
         /**
          * It pretends to be Javadoc without dot, but it's just comment in method
          */
-        final int i = 0; // ok
+        final int i = 0; 
     }
     // violation below
     /**
@@ -68,8 +67,7 @@ public class InputJavadocStyleDefaultSettingsFour
      * .
      * @throws Exception if an error occurs
      */
-    void foo() throws Exception {} // ok
-
+    void foo() throws Exception {} 
     /** // violation
      * text /
      * @throws Exception if an error occurs
@@ -81,8 +79,7 @@ public class InputJavadocStyleDefaultSettingsFour
      * <p>
      * @throws IllegalArgumentException with errMsg as its message
      */
-    void inheritDocWithThrows() {} // ok
-
+    void inheritDocWithThrows() {} 
     /** // violation
      * /
      *
@@ -93,8 +90,7 @@ public class InputJavadocStyleDefaultSettingsFour
     public int test(String s) { return 0; }
 
     /** Set of all class field names.*/
-    public String field; // ok
-
+    public String field; 
     /**
      * <p>Test.</p>
      * <pre class="body">
@@ -102,13 +98,12 @@ public class InputJavadocStyleDefaultSettingsFour
      ; i &lt; j; i++, j--) {}
      </pre>
      */
-    public void test2() {} // ok
-
+    public void test2() {} 
     /**
      * <p>Test.</p>
      * <pre><code>&#064;ExtendWith(SpotBugsExtension.class)
      public class SampleTest {
      }</code></pre>
      */
-    public void test3() {} // ok
+    public void test3() {} 
 }

@@ -8,11 +8,10 @@
 
 // xdoc section -- start
 class MyClass {
-  public int num1; // OK
-  protected int num2; // OK
-  final int num3 = 3; // OK
-  private int num4; // OK
-
+  public int num1; 
+  protected int num2; 
+  final int num3 = 3; 
+  private int num4; 
   static int num5; // ignored: not an instance variable
   public static final int CONSTANT = 1; // ignored: not an instance variable
 

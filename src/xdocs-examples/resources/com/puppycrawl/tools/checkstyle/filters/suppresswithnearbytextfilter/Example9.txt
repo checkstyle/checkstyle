@@ -15,7 +15,7 @@
 /**
 * Flag description.
 *
-* Disabled until <a href="www.github.com/owner/repo/issue/9#comment"> // ok
+* Disabled until <a href="www.github.com/owner/repo/issue/9#comment"> 
 */
 public static final boolean SOME_FLAG = false;
 // xdoc section -- end

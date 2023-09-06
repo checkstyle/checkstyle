@@ -9,8 +9,8 @@
 */
 
 // xdoc section -- start
-src/SourceClass.java  //OK
-src/source_xml.xml  //OK
+src/SourceClass.java  
+src/source_xml.xml  
 src/image.png  //violation, only java and xml files are allowed in src folder
 src/main/main_properties.properties  //OK, this check only applies to src folder
 // xdoc section -- end

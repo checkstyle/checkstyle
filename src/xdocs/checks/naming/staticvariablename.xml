@@ -80,7 +80,7 @@
         <p id="Example1-code">Code Example:</p>
         <source>
 class MyClass {
-  public static int goodStatic = 2; // OK
+  public static int goodStatic = 2; 
   private static int BadStatic = 2; // violation, name 'BadStatic'
                                     // must match pattern '^[a-z][a-zA-Z0-9]*$'
 }
@@ -101,9 +101,9 @@ class MyClass {
         <p id="Example2-code">Code Example:</p>
         <source>
 class MyClass {
-  public static int GoodStatic1 = 2; // OK
-  protected static int GoodStatic2 = 2; //OK
-  private static int goodStatic = 2 // OK
+  public static int GoodStatic1 = 2; 
+  protected static int GoodStatic2 = 2; 
+  private static int goodStatic = 2 
   private static int BadStatic = 2; // violation, name 'BadStatic'
                                     // must match pattern '^[a-z][a-zA-Z0-9]*$'
 }
@@ -127,11 +127,11 @@ class MyClass {
         <p id="Example3-code">Code Example:</p>
         <source>
 class MyClass {
-  public static int good_static = 2; // OK
+  public static int good_static = 2; 
   public static int Bad_Static = 2; // violation, name 'Bad_Static'
                                     // must match pattern '^[a-z](_?[a-zA-Z0-9]+)*$'
-  private static int Good_Static1 = 2; // OK
-  static int Good_Static2 = 2; // OK
+  private static int Good_Static1 = 2; 
+  static int Good_Static2 = 2; 
 }
         </source>
       </subsection>

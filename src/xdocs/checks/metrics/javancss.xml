@@ -112,7 +112,7 @@
 public void test() {
   System.out.println(&quot;Line 1&quot;);
   // another 48 lines of code
-  System.out.println(&quot;Line 50&quot;) // OK
+  System.out.println(&quot;Line 50&quot;) 
   System.out.println(&quot;Line 51&quot;) // violation, the method crosses 50 non commented lines
 }
         </source>
@@ -135,7 +135,7 @@ public void test() {
 public void test() {
   System.out.println(&quot;Line 1&quot;);
   // another 38 lines of code
-  System.out.println(&quot;Line 40&quot;) // OK
+  System.out.println(&quot;Line 40&quot;) 
   System.out.println(&quot;Line 41&quot;) // violation, the method crosses 40 non commented lines
 }
         </source>
@@ -161,7 +161,7 @@ public class Test {
   }
 
   public void test1() {
-    System.out.println(&quot;Line 50&quot;);  // OK
+    System.out.println(&quot;Line 50&quot;);  
     // another 47 lines of code
     System.out.println(&quot;Line 98&quot;); // violation
   }
@@ -191,13 +191,13 @@ public class Test1 {
   public void test1() {
     System.out.println(&quot;Line 50&quot;);
     // another 47 lines of code
-    System.out.println(&quot;Line 98&quot;); // OK
+    System.out.println(&quot;Line 98&quot;); 
   }
 }
 
 class Test2 {
   public void test() {
-    System.out.println(&quot;Line 150&quot;); // OK
+    System.out.println(&quot;Line 150&quot;); 
   }
 
   public void test1() {

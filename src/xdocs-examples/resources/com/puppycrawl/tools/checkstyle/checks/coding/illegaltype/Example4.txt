@@ -13,6 +13,6 @@
 class Test extends Gitter { // violation
 }
 
-class Test1 extends Github { // OK
+class Test1 extends Github { 
 }
 // xdoc section -- end

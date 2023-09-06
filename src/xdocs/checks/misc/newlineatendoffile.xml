@@ -107,7 +107,7 @@ StaticMethodCandidateCheck.name = Static Method Candidate
 // File ending with a new line
 public class Test {&#x2936;
 &#x2936;
-}&#x2936; // ok
+}&#x2936; 
 Note: The comment // ok is a virtual, not actually present in the file
 
 // File ending without a new line
@@ -131,7 +131,7 @@ public class Test1 {&#x2936;
 // File ending with a new line
 public class Test {&#x2936;
 &#x2936;
-}&#x2936; // ok
+}&#x2936; 
 Note: The comment // ok is a virtual, not actually present in the file
 
 // File ending without a new line

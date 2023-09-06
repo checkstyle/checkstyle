@@ -16,7 +16,7 @@
 public class Test {
   public void foo() {
     SomeObject a = new SomeObject(); // violation
-    var b = new SomeObject(); // OK
+    var b = new SomeObject(); 
   }
 }
 // xdoc section -- end

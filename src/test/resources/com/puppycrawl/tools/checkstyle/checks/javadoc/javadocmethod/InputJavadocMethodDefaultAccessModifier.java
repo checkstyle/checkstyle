@@ -14,8 +14,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocmethod;
 
 public interface InputJavadocMethodDefaultAccessModifier {
     /** Javadoc ok here. */
-    void testNoViolation(); // ok
-
+    void testNoViolation(); 
     class MyClass {
         /** Missing parameter here. */
         public MyClass(Integer a) { // violation 'Expected @param tag for 'a''
@@ -30,5 +29,5 @@ public interface InputJavadocMethodDefaultAccessModifier {
      *
      * @param c test parameter
      */
-    double testNoViolationParameterPresent(int c); // ok
+    double testNoViolationParameterPresent(int c); 
 }

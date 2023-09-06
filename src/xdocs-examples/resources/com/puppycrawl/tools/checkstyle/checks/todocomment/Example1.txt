@@ -8,5 +8,5 @@
 
 // xdoc section -- start
 i++; // TODO: do differently in future   // violation
-i++; // todo: do differently in future   // OK
+i++; // todo: do differently in future   
 // xdoc section -- end

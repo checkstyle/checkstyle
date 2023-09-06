@@ -8,13 +8,12 @@
 
 // xdoc section -- start
 int x = 5;
-boolean foobar = (x == 5); // OK
-
+boolean foobar = (x == 5); 
 String text;
 text = (text == null) ? "" : text; // violation
 
 String b;
-if (a != null && a.length() >= 1) { // OK
+if (a != null && a.length() >= 1) { 
     b = a.substring(1);
 } else {
     b = null;

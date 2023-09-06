@@ -13,7 +13,7 @@
  * @author a
  * @version $Revision1$
  */
-public class ClassA { // OK
+public class ClassA { 
     /** */
     private class ClassB {} // OK, as author tag check is ignored for inner class
 }
@@ -33,5 +33,5 @@ private class ClassE {} // violation, as author tag is missing
 
 /** */
 @Generated
-public class ClassF<T> {} // OK
+public class ClassF<T> {} 
 // xdoc section -- end

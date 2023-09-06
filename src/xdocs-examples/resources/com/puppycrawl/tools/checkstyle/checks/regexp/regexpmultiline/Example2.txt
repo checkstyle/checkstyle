@@ -13,13 +13,13 @@ void method() {
   System.out.print
     ("Example");                 // violation
   System.err.println
-    ("Example");          // OK
+    ("Example");          
   System
-  .out.print("Example");  // OK
+  .out.print("Example");  
   System
   .err.println("Example");       // violation
   System.
-  out.print("Example");   // OK
+  out.print("Example");   
   System.
   err.println("Example");        // violation
 }

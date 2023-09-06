@@ -6,5 +6,5 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.abstractjavadoc;
  */
 
 /** Javadoc */
-public class InputAbstractJavadocTokensPass { // ok
+public class InputAbstractJavadocTokensPass { 
 }

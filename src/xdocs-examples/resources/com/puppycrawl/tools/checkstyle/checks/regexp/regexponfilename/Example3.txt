@@ -11,7 +11,7 @@
 */
 
 // xdoc section -- start
-src/site/resources/README.md  //OK
-src/site/resources/Logo.png  //OK
+src/site/resources/README.md  
+src/site/resources/Logo.png  
 src/site/resources/Text.md  //violation, .md files other than 'README.md' are not allowed
 // xdoc section -- end

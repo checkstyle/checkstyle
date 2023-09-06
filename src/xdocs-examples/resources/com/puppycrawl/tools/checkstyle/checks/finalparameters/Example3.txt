@@ -10,11 +10,11 @@
 
 // xdoc section -- start
 public class Point {
-  public Point() { } // ok
-  public Point(final int m) { } // ok
-  public Point(final int m,int n) { } // ok
-  public void methodOne(final int x) { } // ok
-  public void methodTwo(int x) { } // ok
+  public Point() { } 
+  public Point(final int m) { } 
+  public Point(final int m,int n) { } 
+  public void methodOne(final int x) { } 
+  public void methodTwo(int x) { } 
   public static void main(String[] args) { } // violation, args should be final
 }
 // xdoc section -- end

@@ -11,9 +11,8 @@
 // xdoc section -- start
 public class MyClass {
   int[] nums; // violation
-  String strings[]; // OK
-
-  char[] toCharArray() { // OK
+  String strings[]; 
+  char[] toCharArray() { 
     return null;
   }
 

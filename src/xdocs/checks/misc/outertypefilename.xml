@@ -29,8 +29,7 @@
         </source>
         <p id="Example1-code">Example of class Test in a file named Test.java</p>
         <source>
-public class Test { // OK
-
+public class Test { 
 }
         </source>
         <p id="Example2-code">Example of class Foo in a file named Test.java</p>

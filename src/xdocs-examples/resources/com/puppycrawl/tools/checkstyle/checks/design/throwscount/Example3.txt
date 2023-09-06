@@ -19,7 +19,7 @@ class Test {
     }
 
     public void myFunc() throws ArithmeticException,
-                                NumberFormatException { // ok
+                                NumberFormatException { 
         // body
     }
 
@@ -32,7 +32,7 @@ class Test {
     }
 
     private void func() throws IllegalStateException,
-                                NullPointerException { // ok
+                                NullPointerException { 
         // body
     }
 

@@ -25,10 +25,8 @@ import org.albedo.*;
 import static javax.WindowConstants.*; // violation, wrong order, 'javax' comes before 'org'
 import javax.swing.JComponent;
 import org.apache.http.ClientConnectionManager; // violation, must separate from previous import
-import org.linux.apache.server.SoapServer; // OK
-
-import com.neurologic.http.HttpClient; // OK
-import com.neurologic.http.impl.ApacheHttpClient; // OK
-
+import org.linux.apache.server.SoapServer; 
+import com.neurologic.http.HttpClient; 
+import com.neurologic.http.impl.ApacheHttpClient; 
 public class SomeClass { }
 // xdoc section -- end

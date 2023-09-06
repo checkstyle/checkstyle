@@ -15,7 +15,7 @@
 class Test {
   public void foo() {
     int x = 1;
-    switch (x) { // ok
+    switch (x) { 
       case 1:
         // Some code
         break;

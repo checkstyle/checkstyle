@@ -16,7 +16,7 @@ public class SomeClass {
 
   public SomeClass(String testField) { // OK, because it match ignoreFormat
   }
-  public void method(String param) { // OK
+  public void method(String param) { 
       String field = param; // violation, 'field' variable hides 'field' field
   }
   public void setTestField(String testField) { // OK, because it match ignoreFormat

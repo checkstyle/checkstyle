@@ -14,9 +14,8 @@ import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
 
 import static java.math.BigInteger.ZERO;
 
-public class InputNoLineWrapGood { // ok
-
-    public void fooMethod() { // ok
+public class InputNoLineWrapGood { 
+    public void fooMethod() { 
         //
     }
 }

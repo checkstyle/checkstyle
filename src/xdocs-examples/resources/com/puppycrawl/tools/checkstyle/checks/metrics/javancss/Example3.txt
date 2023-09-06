@@ -17,7 +17,7 @@ public class Test {
   }
 
   public void test1() {
-    System.out.println("Line 50");  // OK
+    System.out.println("Line 50");  
     // another 47 lines of code
     System.out.println("Line 98"); // violation
   }

@@ -11,9 +11,9 @@
 
 // xdoc section -- start
 class Test
-{ // OK
+{ 
   private interface TestInterface
-  { // OK
+  { 
   }
 
   private
@@ -21,7 +21,7 @@ class Test
   MyClass { // Violation - '{' should be on a new line
   }
 
-  enum Colors {RED, // OK
+  enum Colors {RED, 
     BLUE,
     GREEN;
   }

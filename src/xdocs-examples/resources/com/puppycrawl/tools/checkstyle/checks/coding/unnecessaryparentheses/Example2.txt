@@ -17,17 +17,17 @@ class Test {
             ^ y>=8) {
             return;
         }
-         if(x>= 0 ^ x<=8 & y<=11 ^ y>=8) { // ok
+         if(x>= 0 ^ x<=8 & y<=11 ^ y>=8) { 
             return;
         }
         if(x>= 0 || (x<=8 & y<=11) // violation, unnecessary parenthesis
             && y>=8) {
             return;
         }
-        if(x>= 0 || x<=8 & y<=11 && y>=8) { // ok
+        if(x>= 0 || x<=8 & y<=11 && y>=8) { 
             return;
         }
-        if(x>= 0 & (x<=8 ^ y<=11) & y>=8) { // ok
+        if(x>= 0 & (x<=8 ^ y<=11) & y>=8) { 
             return;
         }
     }

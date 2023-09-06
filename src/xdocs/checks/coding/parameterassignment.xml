@@ -47,7 +47,7 @@ class MyClass {
       throw new IllegalArgumentException(&quot;A positive value is expected&quot;);
     }
     int local = parameter;
-    local -= 2;  // OK
+    local -= 2;  
     return local;
   }
 
@@ -58,7 +58,7 @@ class MyClass {
       return a + b;
   };
   IntPredicate obj3 = a -&gt; {
-      int b = a; // ok
+      int b = a; 
       return ++b == 12;
   };
 }

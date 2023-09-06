@@ -17,7 +17,7 @@ class Test {
     }
 
     public void myFunc() throws ArithmeticException,
-                                NumberFormatException { // ok
+                                NumberFormatException { 
         // body
     }
 

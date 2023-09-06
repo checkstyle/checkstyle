@@ -2,15 +2,15 @@ package com.google.checkstyle.test.chapter4formatting.rule412nonemptyblocks;
 
 class InputLeftCurlyMethod
 { //warn
-    InputLeftCurlyMethod() {} //ok
-    InputLeftCurlyMethod(String aOne) {//ok
+    InputLeftCurlyMethod() {} 
+    InputLeftCurlyMethod(String aOne) {
     }
     InputLeftCurlyMethod(int aOne)
     { //warn
     }
 
-    void method1() {}//ok
-    void method2() {//ok
+    void method1() {}
+    void method2() {
     }
     void method3()
     { //warn
@@ -23,7 +23,7 @@ class InputLeftCurlyMethod
     {//warn
     }
     void method6(String aOne,
-                 String aTwo) {// ok
+                 String aTwo) {
     }
 }
 
@@ -31,9 +31,9 @@ enum InputLeftCurlyMethodEnum
 {//warn
     CONSTANT1("hello")
     {//warn
-        void method1() {}//ok
+        void method1() {}
         void method2() {
-        }//ok
+        }
         void method3()
         {//warn
         }
@@ -45,11 +45,11 @@ enum InputLeftCurlyMethodEnum
         {//warn
         }
         void method6(String aOne,
-                     String aTwo) {//ok
+                     String aTwo) {
         }
     },
 
-    CONSTANT2("hello") {//ok
+    CONSTANT2("hello") {
 
     },
 
@@ -62,8 +62,8 @@ enum InputLeftCurlyMethodEnum
 
     }
 
-    void method1() {}//ok
-    void method2() {//ok
+    void method1() {}
+    void method2() {
     }
     void method3()
     {//warn
@@ -76,7 +76,7 @@ enum InputLeftCurlyMethodEnum
     {//warn
     }
     void method6(String aOne,
-                 String aTwo) {// ok
+                 String aTwo) {
     }
 }
 

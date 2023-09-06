@@ -7,5 +7,5 @@
 */
 
 // xdoc section -- start
-package com.example.annotations.packageannotation; //ok
+package com.example.annotations.packageannotation; 
 // xdoc section -- end

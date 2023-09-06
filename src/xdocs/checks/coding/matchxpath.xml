@@ -127,7 +127,7 @@ public class Test {
   public void method3() { }
   private void method4() { } // violation
   public void method5() { }
-  private void method6() { } // ok
+  private void method6() { } 
 }
         </source>
         <p id="Example2-config">To violate if there are any parametrized constructors</p>
@@ -149,7 +149,7 @@ public class Test {
 public class Test {
   public Test(Object c) { } // violation
   public Test(int a, HashMap&lt;String, Integer&gt; b) { } // violation
-  public Test() { } // ok
+  public Test() { } 
 }
         </source>
         <p id="Example3-config">To violate if method name is 'test' or 'foo'</p>
@@ -169,9 +169,9 @@ public class Test {
         <source>
 public class Test {
   public void test() {} // violation
-  public void getName() {} // ok
+  public void getName() {} 
   public void foo() {} // violation
-  public void sayHello() {} // ok
+  public void sayHello() {} 
 }
         </source>
         <p id="Example4-config">
@@ -195,7 +195,7 @@ public class Test {
 public class Test {
   public void foo() {
     SomeObject a = new SomeObject(); // violation
-    var b = new SomeObject(); // OK
+    var b = new SomeObject(); 
   }
 }
         </source>

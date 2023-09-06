@@ -339,7 +339,7 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlock {
     public void foo49() {
        // comment
        // block
-       // ok
+       
     }
 
     public void foo50() {

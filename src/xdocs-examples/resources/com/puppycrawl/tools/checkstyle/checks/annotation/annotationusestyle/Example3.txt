@@ -11,16 +11,16 @@
 */
 
 // xdoc section -- start
-@SuppressWarnings("unchecked") // OK
+@SuppressWarnings("unchecked") 
 @Deprecated // Violation - must have a closing parenthesis
-@SomeArrays({"unchecked","unused"}) // OK
+@SomeArrays({"unchecked","unused"}) 
 public class TestOne
 {
 
 }
 
 @SuppressWarnings(value={"unchecked"}) // Violation - parameter 'value' shouldn't be used
-@Deprecated() // OK
+@Deprecated() 
 @SomeArrays(value={"unchecked","unused",}) // Violation - parameter 'value' shouldn't be used
 class TestTwo {
 

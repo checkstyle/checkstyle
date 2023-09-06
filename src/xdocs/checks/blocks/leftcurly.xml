@@ -165,10 +165,10 @@ class Test
 
   private
   class
-  MyClass { // OK
+  MyClass { 
   }
 
-  enum Colors {RED, // OK
+  enum Colors {RED, 
     BLUE,
     GREEN;
   }
@@ -186,9 +186,9 @@ class Test
         </source>
         <source>
 class Test
-{ // OK
+{ 
   private interface TestInterface
-  { // OK
+  { 
   }
 
   private
@@ -196,7 +196,7 @@ class Test
   MyClass { // Violation - '{' should be on a new line
   }
 
-  enum Colors {RED, // OK
+  enum Colors {RED, 
     BLUE,
     GREEN;
   }
@@ -215,7 +215,7 @@ class Test
         <source>
 class Test
 { // Violation - '{' should be on the previous line
-  private interface TestInterface { // OK
+  private interface TestInterface { 
   }
 
   private
@@ -223,7 +223,7 @@ class Test
   MyClass { // Violation - '{' should be on a new line
   }
 
-  enum Colors {RED, // OK
+  enum Colors {RED, 
     BLUE,
     GREEN;
   }
@@ -246,7 +246,7 @@ class Test
 
   private
   class
-  MyClass { // OK
+  MyClass { 
   }
 
   enum Colors {RED, // Violation - '{' should have line break after

@@ -12,7 +12,7 @@
 
 // xdoc section -- start
 class Foo {
-  public void foo() throws ArithmeticException { // ok
+  public void foo() throws ArithmeticException { 
       // ...
   }
 }

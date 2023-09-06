@@ -23,10 +23,10 @@ class Test {
     }
 
     Object obj = new Object();
-    if (obj == null) { // ok
+    if (obj == null) { 
       System.out.println("xyz");
     }
-    if (obj != null) { // ok
+    if (obj != null) { 
       System.out.println("xyz");
     }
   }

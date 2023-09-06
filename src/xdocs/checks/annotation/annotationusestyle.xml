@@ -138,9 +138,9 @@
           Example:
         </p>
         <source>
-@SuppressWarnings(&quot;unchecked&quot;) // OK
-@Deprecated // OK
-@SomeArrays({&quot;unchecked&quot;,&quot;unused&quot;}) // OK
+@SuppressWarnings(&quot;unchecked&quot;) 
+@Deprecated 
+@SomeArrays({&quot;unchecked&quot;,&quot;unused&quot;}) 
 public class TestOne
 {
 
@@ -169,14 +169,14 @@ class TestTwo {
         </p>
         <source>
 @SuppressWarnings(&quot;unchecked&quot;) // Violation - parameters should be referenced
-@Deprecated // OK
+@Deprecated 
 @SomeArrays({&quot;unchecked&quot;,&quot;unused&quot;}) // Violation - parameters should be referenced
 public class TestOne
 {
 
 }
 
-@SuppressWarnings(value={&quot;unchecked&quot;}) // OK
+@SuppressWarnings(value={&quot;unchecked&quot;}) 
 @Deprecated() // Violation - cannot have a closing parenthesis
 @SomeArrays(value={&quot;unchecked&quot;,&quot;unused&quot;,}) // Violation - cannot have a trailing array comma
 class TestTwo {
@@ -198,16 +198,16 @@ class TestTwo {
           Example:
         </p>
         <source>
-@SuppressWarnings(&quot;unchecked&quot;) // OK
+@SuppressWarnings(&quot;unchecked&quot;) 
 @Deprecated // Violation - must have a closing parenthesis
-@SomeArrays({&quot;unchecked&quot;,&quot;unused&quot;}) // OK
+@SomeArrays({&quot;unchecked&quot;,&quot;unused&quot;}) 
 public class TestOne
 {
 
 }
 
 @SuppressWarnings(value={&quot;unchecked&quot;}) // Violation - parameter 'value' shouldn't be used
-@Deprecated() // OK
+@Deprecated() 
 @SomeArrays(value={&quot;unchecked&quot;,&quot;unused&quot;,}) // Violation - parameter 'value' shouldn't be used
 class TestTwo {
 
@@ -228,8 +228,8 @@ class TestTwo {
           Example:
         </p>
         <source>
-@SuppressWarnings(&quot;unchecked&quot;) // OK
-@Deprecated // OK
+@SuppressWarnings(&quot;unchecked&quot;) 
+@Deprecated 
 @SomeArrays({&quot;unchecked&quot;,&quot;unused&quot;}) // Violation - must have a trailing array comma
 public class TestOne
 {
@@ -237,8 +237,8 @@ public class TestOne
 }
 
 @SuppressWarnings(value={&quot;unchecked&quot;}) // Violation - must have a trailing array comma
-@Deprecated() // OK
-@SomeArrays(value={&quot;unchecked&quot;,&quot;unused&quot;,}) // OK
+@Deprecated() 
+@SomeArrays(value={&quot;unchecked&quot;,&quot;unused&quot;,}) 
 class TestTwo {
 
 }

@@ -11,11 +11,11 @@
 // xdoc section -- start
 class MyClass {
   void MyMethod() {
-    for (int var = 1; var < 10; var++) {} // OK
+    for (int var = 1; var < 10; var++) {} 
     for (int VAR = 1; VAR < 10; VAR++) {} // violation, name 'VAR' must match
                                              // pattern '^[a-z](_?[a-zA-Z0-9]+)*$'
-    for (int i = 1; i < 10; i++) {} // OK
-    for (int var_1 = 0; var_1 < 10; var_1++) {} // OK
+    for (int i = 1; i < 10; i++) {} 
+    for (int var_1 = 0; var_1 < 10; var_1++) {} 
   }
 }
 // xdoc section -- end

@@ -6,22 +6,22 @@ import java.io.Serializable;
  * Config: TempCheck
  */
 
-/**@author*/ // ok
+/**@author*/ 
 public class InputAbstractJavadocJavadocTagsWithoutArgs implements Serializable{
-    /**@serial*/ // ok
+    /**@serial*/ 
     private static final long serialVersionUID = 7556448691029650757L;
 
     /**@see*/ // violation 'Javadoc comment at column 4 has parse error. Details: no viable
     // alternative at input '<EOF> while parsing JAVADOC_TAG'
     private static int field2;
 
-    /**@since*/ // ok
+    /**@since*/ 
     private static String field3;
 
-    /**@version*/ // ok
+    /**@version*/ 
     private static Object field4;
 
-    /**serialField*/ // ok
+    /**serialField*/ 
     private static Object field5;
 
     /**@exception*/ // violation 'Javadoc comment at column 10 has parse error. Details: no
@@ -36,7 +36,7 @@ public class InputAbstractJavadocJavadocTagsWithoutArgs implements Serializable{
 
     }
 
-    /**@return*/ // ok
+    /**@return*/ 
     public static int method3() {
         return -1;
     }
@@ -47,17 +47,17 @@ public class InputAbstractJavadocJavadocTagsWithoutArgs implements Serializable{
 
     }
 
-    /**@customTag*/ // ok
+    /**@customTag*/ 
     public static void method5(int a) {
 
     }
 
-    /**@deprecated*/ // ok
+    /**@deprecated*/ 
     public static void method6(int a) {
 
     }
 
-    /**@serialData*/ // ok
+    /**@serialData*/ 
     private void readObject(java.io.ObjectInputStream inputStream) {
 
     }

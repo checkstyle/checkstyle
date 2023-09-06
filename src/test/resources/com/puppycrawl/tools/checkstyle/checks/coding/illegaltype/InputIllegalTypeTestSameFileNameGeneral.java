@@ -24,8 +24,7 @@ public class InputIllegalTypeTestSameFileNameGeneral
 {
     InputIllegalTypeGregCal cal = AnObject.getInstance(); // violation
     java.util.Date date = null;
-    SubCal subCalendar = null; // ok
-
+    SubCal subCalendar = null; 
     private static class AnObject extends InputIllegalTypeGregCal { // violation
 
         public static InputIllegalTypeGregCal getInstance() // violation

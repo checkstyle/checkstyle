@@ -36,7 +36,7 @@ public void foo() {
     i++;
   for (i = 0; i &lt; 5; i++); // violation
     i++;
-  while (i &gt; 10) // OK
+  while (i &gt; 10) 
     i++;
 }
         </source>

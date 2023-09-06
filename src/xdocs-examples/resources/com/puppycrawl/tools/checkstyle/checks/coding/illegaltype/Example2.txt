@@ -9,18 +9,16 @@
 */
 
 // xdoc section -- start
-public class Test extends TreeSet { // OK
+public class Test extends TreeSet { 
   public <T extends java.util.HashSet> void method() { // violation
 
-    LinkedHashMap<Integer, String> lhmap = new LinkedHashMap<Integer, String>(); // OK
-
-    java.lang.IllegalArgumentException illegalex; // OK
-    java.util.TreeSet treeset; // Ok
+    LinkedHashMap<Integer, String> lhmap = new LinkedHashMap<Integer, String>(); 
+    java.lang.IllegalArgumentException illegalex; 
+    java.util.TreeSet treeset; 
   }
 
   public <T extends java.util.HashSet> void typeParam(T t) {} // violation
 
-  public void fullName(TreeSet a) {} // OK
-
+  public void fullName(TreeSet a) {} 
 }
 // xdoc section -- end

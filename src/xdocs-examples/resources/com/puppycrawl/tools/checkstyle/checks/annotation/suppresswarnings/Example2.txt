@@ -16,18 +16,17 @@
 */
 
 // xdoc section -- start
-@SuppressWarnings("") // ok
+@SuppressWarnings("") 
 class TestA {
-  @SuppressWarnings("") // ok
+  @SuppressWarnings("") 
   final int num1 = 1;
-  @SuppressWarnings("all") // ok
+  @SuppressWarnings("all") 
   final int num2 = 2;
-  @SuppressWarnings("unused") // ok
+  @SuppressWarnings("unused") 
   final int num3 = 3;
 
-  void foo1(@SuppressWarnings("unused") int param) {} // ok
-
-  @SuppressWarnings("all") // ok
+  void foo1(@SuppressWarnings("unused") int param) {} 
+  @SuppressWarnings("all") 
   void foo2(int param) {}
   @SuppressWarnings("unused") // violation
   void foo3(int param) {}

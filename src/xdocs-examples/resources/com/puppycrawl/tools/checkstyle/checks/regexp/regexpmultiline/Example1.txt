@@ -6,7 +6,7 @@
 
 // xdoc section -- start
 void method() {
-  int i = 5; // OK
-  System.out.println(i); // OK
+  int i = 5; 
+  System.out.println(i); 
 }
 // xdoc section -- end

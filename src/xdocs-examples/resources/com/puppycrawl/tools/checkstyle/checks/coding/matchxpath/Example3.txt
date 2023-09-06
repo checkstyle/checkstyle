@@ -14,8 +14,8 @@
 // xdoc section -- start
 public class Test {
   public void test() {} // violation
-  public void getName() {} // ok
+  public void getName() {} 
   public void foo() {} // violation
-  public void sayHello() {} // ok
+  public void sayHello() {} 
 }
 // xdoc section -- end

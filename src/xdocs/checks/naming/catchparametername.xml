@@ -69,11 +69,11 @@ public class MyTest {
   public void myTest() {
     try {
       // ...
-    } catch (ArithmeticException e) { // OK
+    } catch (ArithmeticException e) { 
       // ...
-    } catch (ArrayIndexOutOfBoundsException ex) { // OK
+    } catch (ArrayIndexOutOfBoundsException ex) { 
       // ...
-    } catch (Throwable t) { // OK
+    } catch (Throwable t) { 
       // ...
     } catch (IndexOutOfBoundsException e123) { // violation, digits
                                                // not allowed
@@ -81,14 +81,14 @@ public class MyTest {
     } catch (NullPointerException ab) { // violation, should have at least
                                         // three characters if not e|t|ex
       // ...
-    } catch (ArrayStoreException abc) { // OK
+    } catch (ArrayStoreException abc) { 
       // ...
     } catch (InterruptedException aBC) { // violation, first two characters
                                          // should be in lowercase
       // ...
-    } catch (RuntimeException abC) { // OK
+    } catch (RuntimeException abC) { 
       // ...
-    } catch (Exception abCD) { // OK
+    } catch (Exception abCD) { 
       // ...
     }
   }
@@ -114,11 +114,11 @@ public class MyTest {
   public void myTest() {
     try {
       // ...
-    } catch (ArithmeticException ex) { // OK
+    } catch (ArithmeticException ex) { 
       // ...
-    } catch (ArrayIndexOutOfBoundsException ex2) { // OK
+    } catch (ArrayIndexOutOfBoundsException ex2) { 
       // ...
-    } catch (IOException thirdException) { // OK
+    } catch (IOException thirdException) { 
       // ...
     } catch (Exception FourthException) { // violation, the initial letter
                                           // should be lowercase

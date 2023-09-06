@@ -6,10 +6,10 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.abstractjavadoc;
 
 public class InputAbstractJavadocCustomTag {
     /**
-     * {@customTag} // ok
+     * {@customTag} 
      */
     void customTag() {}
 
-    /** {@customTag} */ // ok
+    /** {@customTag} */ 
     void customTag2() {}
 }

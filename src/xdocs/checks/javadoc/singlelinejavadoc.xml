@@ -85,26 +85,26 @@ public int foo() {
 
 /**
  * @return 42
- */  // ok
+ */  
 public int bar() {
   return 42;
 }
 
-/** {@link #equals(Object)} */ // ok
+/** {@link #equals(Object)} */ 
 public int baz() {
   return 42;
 }
 
 /**
  * &lt;p&gt;the answer to the ultimate question
- */ // ok
+ */ 
 public int magic() {
   return 42;
 }
 
 /**
  * &lt;p&gt;the answer to the ultimate question&lt;/p&gt;
- */ // ok
+ */ 
 public int foobar() {
   return 42;
 }
@@ -125,33 +125,33 @@ public int foobar() {
           Example:
         </p>
         <source>
-/** @see Math */ // ok
+/** @see Math */ 
 public int foo() {
     return 42;
 }
 
 /**
  * @return 42
- */  // ok
+ */  
 public int bar() {
   return 42;
 }
 
-/** {@link #equals(Object)} */ // ok
+/** {@link #equals(Object)} */ 
 public int baz() {
   return 42;
 }
 
 /**
  * &lt;p&gt;the answer to the ultimate question
- */ // ok
+ */ 
 public int magic() {
   return 42;
 }
 
 /**
  * &lt;p&gt;the answer to the ultimate question&lt;/p&gt;
- */ // ok
+ */ 
 public int foobar() {
   return 42;
 }
@@ -179,7 +179,7 @@ public int foo() {
 
 /**
  * @return 42
- */  // ok
+ */  
 public int bar() {
   return 42;
 }
@@ -191,14 +191,14 @@ public int baz() {
 
 /**
  * &lt;p&gt;the answer to the ultimate question
- */ // ok
+ */ 
 public int magic() {
   return 42;
 }
 
 /**
  * &lt;p&gt;the answer to the ultimate question&lt;/p&gt;
- */ // ok
+ */ 
 public int foobar() {
   return 42;
 }
@@ -226,12 +226,12 @@ public int foo() {
 
 /**
  * @return 42
- */  // ok
+ */  
 public int bar() {
   return 42;
 }
 
-/** {@link #equals(Object)} */ // ok
+/** {@link #equals(Object)} */ 
 public int baz() {
   return 42;
 }
@@ -245,7 +245,7 @@ public int magic() {
 
 /**
  * &lt;p&gt;the answer to the ultimate question&lt;/p&gt;
- */ // ok
+ */ 
 public int foobar() {
   return 42;
 }

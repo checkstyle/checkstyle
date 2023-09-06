@@ -24,8 +24,7 @@ try {
 
 try {
     // some code here
-} catch (NullPointerException e) { // OK
-
+} catch (NullPointerException e) { 
 } catch (OutOfMemoryError e) { // violation
 
 }
@@ -38,7 +37,6 @@ try {
 
 try {
     // some code here
-} catch (Exception e) { // OK
-
+} catch (Exception e) { 
 }
 // xdoc section -- end

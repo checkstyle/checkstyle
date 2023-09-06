@@ -54,7 +54,7 @@ for(int i=0; i&lt;10; i++) {
 }
 
 for(int i=0; i&lt;10; i++) {
-    for(int j=0; j&lt;i; j++) { // ok
+    for(int j=0; j&lt;i; j++) { 
     }
 }
         </source>
@@ -83,7 +83,7 @@ for(int i=0; i&lt;10; i++) {
 
 for(int i=0; i&lt;10; i++) {
     for(int j=0; j&lt;i; j++) {
-        for(int k=0; k&lt;j; k++) { // ok
+        for(int k=0; k&lt;j; k++) { 
         }
     }
 }

@@ -14,10 +14,10 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.abstractjavadoc;
  * @see "https://www.w3.org/TR/html51/syntax.html#optional-start-and-end-tags"
  */
 public class InputAbstractJavadocNonTightHtmlTagsNoViolation {
-    /** <p> <p> paraception </p> </p> */ // ok
+    /** <p> <p> paraception </p> </p> */ 
     private int field1;
 
-    /**<li> paraTags should be opened</p> list isn't nested in parse tree </li>*/ // ok
+    /**<li> paraTags should be opened</p> list isn't nested in parse tree </li>*/ 
     private int field2;
 
     /**

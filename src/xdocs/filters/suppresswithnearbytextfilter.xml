@@ -279,7 +279,7 @@ int e = 46; // violation
 /**
 * Flag description.
 *
-* Disabled until &lt;a href=&quot;www.github.com/owner/repo/issue/9#comment&quot;&gt; // ok
+* Disabled until &lt;a href=&quot;www.github.com/owner/repo/issue/9#comment&quot;&gt; 
 */
 public static final boolean SOME_FLAG = false;
         </source>

@@ -1,5 +1,5 @@
-package com.google.checkstyle.test.chapter4formatting.rule44columnlimit; //ok
-import com.google.checkstyle.test.chapter3filestructure.toolongpackagetotestcoveragegooglesjavastylerule.*; //ok
+package com.google.checkstyle.test.chapter4formatting.rule44columnlimit; 
+import com.google.checkstyle.test.chapter3filestructure.toolongpackagetotestcoveragegooglesjavastylerule.*; 
 final class InputLineLength
 {
     // Long line ---------------------------------------------------------------------------------------- //warn

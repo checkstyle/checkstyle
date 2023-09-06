@@ -10,23 +10,23 @@
 */
 
 // xdoc section -- start
-if (obj.isValid()) return true; // OK
-if (true) {                     // OK
+if (obj.isValid()) return true; 
+if (true) {                     
     return true;
-} else                          // OK
+} else                          
     return false;
-for (int i = 0; i < 5; i++) {   // OK
+for (int i = 0; i < 5; i++) {   
      ++count;
 }
-do                              // OK
+do                              
     ++count;
 while (false);
-for (int j = 0; j < 10; j++);   // OK
-for(int i = 0; i < 10; value.incrementValue()); // OK
+for (int j = 0; j < 10; j++);   
+for(int i = 0; i < 10; value.incrementValue()); 
 while (counter < 10)           // violation, single-line statements not allowed without braces
    ++count;
-while (value.incrementValue() < 5); // OK
+while (value.incrementValue() < 5); 
 switch (num) {
-case 1: counter++; break;           // OK
+case 1: counter++; break;           
 }
 // xdoc section -- end

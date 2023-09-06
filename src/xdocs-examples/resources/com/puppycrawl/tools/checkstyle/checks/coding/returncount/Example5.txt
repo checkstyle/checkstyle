@@ -22,8 +22,7 @@ import java.util.function.Predicate;
 
 public class Test {
   public Test() {
-  } // OK
-
+  } 
   public Test(int i) {
     return; // violation, max allowed for constructors is 0
   }
@@ -37,14 +36,12 @@ public class Test {
 
   final Predicate<Integer> q = i -> {
     return i > 5;
-  }; // OK
-
+  }; 
   public int sign(int x) {
     if (x > 0)
       return -1;
     return 0;
-  } // OK
-
+  } 
   public int badSign(int x) {
     if (x < 0)
       return -1;

@@ -63,7 +63,7 @@ switch (i) {
     break;
   case 2:
     break;
-  default: // OK
+  default: 
     break;
 }
 
@@ -111,7 +111,7 @@ switch (i) {
   case 1:
     break;
   case 2:
-  default: // OK
+  default: 
     break;
   case 3:
     break;

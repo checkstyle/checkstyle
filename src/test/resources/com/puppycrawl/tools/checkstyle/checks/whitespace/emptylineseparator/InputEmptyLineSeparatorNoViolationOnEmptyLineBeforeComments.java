@@ -44,10 +44,8 @@ import java.lang.Runnable;
 import java.lang.Thread;
 import java.lang.StringBuilder;
 
-public class InputEmptyLineSeparatorNoViolationOnEmptyLineBeforeComments { // ok
-
-    public int testNoViolation1 = 1; // ok
-
+public class InputEmptyLineSeparatorNoViolationOnEmptyLineBeforeComments { 
+    public int testNoViolation1 = 1; 
     public int testNoViolation2 = 2; // no violation
 
     // Should
@@ -75,7 +73,7 @@ public class InputEmptyLineSeparatorNoViolationOnEmptyLineBeforeComments { // ok
     } // no violation
 
     // Should not have
-    // ok
+    
     public void testNoViolationMethod3() {
 
 
@@ -144,8 +142,7 @@ public class InputEmptyLineSeparatorNoViolationOnEmptyLineBeforeComments { // ok
     public static class Class1 { } // no violation
 
 
-    public static class Class2 { } // ok
-
+    public static class Class2 { } 
     // no violation
 
     public static class Class3 {
@@ -331,7 +328,7 @@ public class InputEmptyLineSeparatorNoViolationOnEmptyLineBeforeComments { // ok
 
     public
 
-    // ok
+    
     static
 
     enum Enum6 { }
@@ -365,7 +362,7 @@ public class InputEmptyLineSeparatorNoViolationOnEmptyLineBeforeComments { // ok
 
     /* no violation */
 
-    // ok
+    
     {
         int i = 1;
     }
@@ -387,7 +384,7 @@ public class InputEmptyLineSeparatorNoViolationOnEmptyLineBeforeComments { // ok
 
 
         // no
-        // ok
+        
     }
 
     // no violation

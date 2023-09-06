@@ -163,7 +163,7 @@ public class SomeClass {
 
   public SomeClass(String testField) { // violation, 'testField' param hides 'testField' field
   }
-  public void method(String param) { // OK
+  public void method(String param) { 
       String field = param; // violation, 'field' variable hides 'field' field
   }
   public void setTestField(String testField) { // violation, 'testField' param
@@ -198,7 +198,7 @@ public class SomeClass {
 
   public SomeClass(String testField) { // OK, 'testField' param doesn't hide any field
   }
-  public void method(String param) { // OK
+  public void method(String param) { 
       String field = param; // violation, 'field' variable hides 'field' field
   }
   public void setTestField(String testField) { // OK, 'testField' param doesn't hide any field
@@ -232,7 +232,7 @@ public class SomeClass {
 
   public SomeClass(String testField) { // OK, because it match ignoreFormat
   }
-  public void method(String param) { // OK
+  public void method(String param) { 
       String field = param; // violation, 'field' variable hides 'field' field
   }
   public void setTestField(String testField) { // OK, because it match ignoreFormat
@@ -265,7 +265,7 @@ public class SomeClass {
 
   public SomeClass(String testField) { // OK, 'testField' param doesn't hide any field
   }
-  public void method(String param) { // OK
+  public void method(String param) { 
       String field = param; // violation, 'field' variable hides 'field' field
   }
   public void setTestField(String testField) { // violation, 'testField' variable
@@ -300,7 +300,7 @@ public class SomeClass {
 
   public SomeClass(String testField) { // violation, 'testField' param hides 'testField' field
   }
-  public void method(String param) { // OK
+  public void method(String param) { 
       String field = param; // violation, 'field' variable hides 'field' field
   }
   public void setTestField(String testField) { // OK, 'testField' param doesn't hide any field
@@ -336,7 +336,7 @@ public class SomeClass {
 
   public SomeClass(String testField) { // violation, 'testField' param hides 'testField' field
   }
-  public void method(String param) { // OK
+  public void method(String param) { 
       String field = param; // violation, 'field' variable hides 'field' field
   }
   public void setTestField(String testField) { // OK, 'testField' param doesn't hide any field
@@ -368,7 +368,7 @@ abstract class SomeClass {
   public SomeClass(int field) { // violation, 'field' param hides a 'field' field
     float field; // violation, 'field' variable hides a 'field' field
   }
-  public abstract int method(String field); // OK
+  public abstract int method(String field); 
 }
 
 public class Demo extends SomeClass {

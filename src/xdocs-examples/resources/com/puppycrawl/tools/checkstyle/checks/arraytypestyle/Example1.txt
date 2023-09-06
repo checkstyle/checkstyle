@@ -8,10 +8,10 @@
 
 // xdoc section -- start
 public class MyClass {
-  int[] nums; // OK
+  int[] nums; 
   String strings[]; // violation
 
-  char[] toCharArray() { // OK
+  char[] toCharArray() { 
     return null;
   }
 

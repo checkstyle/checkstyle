@@ -16,8 +16,8 @@ class InputEmptyBlock {
            if (!flag) {
                doSm();
            }
-        } catch (Exception e) { /* ignore */ } //ok
-        finally {/* ignore */} //ok
+        } catch (Exception e) { /* ignore */ } 
+        finally {/* ignore */} 
     }
 
     void foo2() {
@@ -37,8 +37,8 @@ class InputEmptyBlock {
                if (!flag) {
                    doSm();
                }
-            } catch (Exception e) { /* ignore */ } //ok
-            finally {/* ignore */} //ok
+            } catch (Exception e) { /* ignore */ } 
+            finally {/* ignore */} 
         }
 
         void foo2() {
@@ -59,8 +59,8 @@ class InputEmptyBlock {
                if (!flag) {
                    doSm();
                }
-            } catch (Exception e) { /* ignore */ } //ok
-            finally {/* ignore */} //ok
+            } catch (Exception e) { /* ignore */ } 
+            finally {/* ignore */} 
         }
 
         void foo2() {

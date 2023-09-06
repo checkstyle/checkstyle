@@ -15,12 +15,11 @@
 // xdoc section -- start
 package com.company;
 
-import static java.util.*; // OK
-import static java.io.*; // OK
-
-import java.time.*; // OK
-import javax.net.*; // OK
+import static java.util.*; 
+import static java.io.*; 
+import java.time.*; 
+import javax.net.*; 
 import org.apache.commons.io.FileUtils; // violation
 import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; // violation
-import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; // OK
+import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; 
 // xdoc section -- end

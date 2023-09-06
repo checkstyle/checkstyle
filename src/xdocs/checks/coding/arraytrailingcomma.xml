@@ -41,7 +41,7 @@ return new int[] {
         <source>
 {
   100000000000000000000,
-  200000000000000000000, // OK
+  200000000000000000000, 
 }
 
 {
@@ -168,10 +168,9 @@ true,
 false // violation
 };
 
-String[][] text = {{},{},}; // OK
-
+String[][] text = {{},{},}; 
 double[][] decimals = {
-{0.5, 2.3, 1.1,}, // OK
+{0.5, 2.3, 1.1,}, 
 {1.7, 1.9, 0.6}, // violation
 {0.8, 7.4, 6.5} // violation
 }; // violation, previous line misses a comma
@@ -186,12 +185,11 @@ int[] a1 = new int[]{
   1,
   2
   ,
-}; // OK
-
+}; 
 int[] a2 = new int[]{
   1,
   2
-  ,}; // OK
+  ,}; 
         </source>
       </subsection>
 

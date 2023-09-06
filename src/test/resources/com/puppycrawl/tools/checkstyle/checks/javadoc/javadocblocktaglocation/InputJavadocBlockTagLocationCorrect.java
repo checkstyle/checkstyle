@@ -25,6 +25,5 @@ public class InputJavadocBlockTagLocationCorrect {
      *
      * @since 1.0
      */
-    public int field; // ok
-
+    public int field; 
 }

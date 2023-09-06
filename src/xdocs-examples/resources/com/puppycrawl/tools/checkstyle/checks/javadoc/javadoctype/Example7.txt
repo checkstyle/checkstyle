@@ -13,9 +13,9 @@
  * @author a
  * @version $Revision1$
  */
-public class ClassA { // OK
+public class ClassA { 
   /** */
-  private class ClassB {} // OK
+  private class ClassB {} 
 }
 
 /**
@@ -23,15 +23,12 @@ public class ClassA { // OK
  * @version abc
  * @unknownTag value // OK, as unknown tag is allowed
  */
-public class ClassC {} // OK
-
+public class ClassC {} 
 /** */
-public class ClassD {} // OK
-
+public class ClassD {} 
 /** */
-private class ClassE {} // OK
-
+private class ClassE {} 
 /** */
 @Generated
-public class ClassF<T> {} // OK
+public class ClassF<T> {} 
 // xdoc section -- end

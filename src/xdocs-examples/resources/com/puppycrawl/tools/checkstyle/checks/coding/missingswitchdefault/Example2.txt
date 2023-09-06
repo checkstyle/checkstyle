@@ -12,7 +12,7 @@ switch (i) {
     break;
   case 2:
     break;
-  default: // OK
+  default: 
     break;
 }
 switch (o) {
