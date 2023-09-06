@@ -12,8 +12,8 @@
 
 // xdoc section -- start
 class MyClass {
-  public void FirstMethod() {} // OK
-  protected void SecondMethod() {} // OK
+  public void FirstMethod() {} 
+  protected void SecondMethod() {} 
   private void ThirdMethod() {} // violation, name 'ThirdMethod' must match
                                 // pattern '^[a-z](_?[a-zA-Z0-9]+)*$'
   void FourthMethod() {} // violation, name 'FourthMethod' must match

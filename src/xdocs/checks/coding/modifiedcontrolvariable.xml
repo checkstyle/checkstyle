@@ -124,7 +124,7 @@ for(int i=0;i &lt; 8;i++) {
 }
 String args1[]={&quot;Coding&quot;, &quot;block&quot;};
 for (String arg: args1) {
-  arg = arg.trim(); // ok
+  arg = arg.trim(); 
 }
         </source>
       </subsection>

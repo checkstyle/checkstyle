@@ -11,20 +11,19 @@
 class TestA {
   @SuppressWarnings("") // violation
   final int num1 = 1;
-  @SuppressWarnings("all") // ok
+  @SuppressWarnings("all") 
   final int num2 = 2;
-  @SuppressWarnings("unused") // ok
+  @SuppressWarnings("unused") 
   final int num3 = 3;
 
-  void foo1(@SuppressWarnings("unused") int param) {} // ok
-
-  @SuppressWarnings("all") // ok
+  void foo1(@SuppressWarnings("unused") int param) {} 
+  @SuppressWarnings("all") 
   void foo2(int param) {}
-  @SuppressWarnings("unused") // ok
+  @SuppressWarnings("unused") 
   void foo3(int param) {}
-  @SuppressWarnings(true?"all":"unused") // ok
+  @SuppressWarnings(true?"all":"unused") 
   void foo4(int param) {}
 }
-@SuppressWarnings("unchecked") // ok
+@SuppressWarnings("unchecked") 
 class TestB {}
 // xdoc section -- end

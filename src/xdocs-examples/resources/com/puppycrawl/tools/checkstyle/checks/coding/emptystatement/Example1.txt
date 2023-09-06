@@ -13,7 +13,7 @@ public void foo() {
     i++;
   for (i = 0; i < 5; i++); // violation
     i++;
-  while (i > 10) // OK
+  while (i > 10) 
     i++;
 }
 // xdoc section -- end

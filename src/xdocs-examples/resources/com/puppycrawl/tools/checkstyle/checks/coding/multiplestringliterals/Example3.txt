@@ -17,7 +17,7 @@ public class MyClass {
   public void myTest() {
     String a2 = "StringContents"; // violation, "StringContents" occurs twice
     String a3 = "DoubleString" + "DoubleString"; // violation, "DoubleString" occurs twice
-    String a4 = "SingleString"; // OK
+    String a4 = "SingleString"; 
     String a5 = ", " + ", " + ", "; // OK, multiple occurrences of ", " are allowed
   }
 }

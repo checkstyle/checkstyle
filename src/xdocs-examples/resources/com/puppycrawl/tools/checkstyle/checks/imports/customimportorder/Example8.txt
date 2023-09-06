@@ -15,13 +15,13 @@
 // xdoc section -- start
 package com.company;
 
-import static java.util.*; // OK
+import static java.util.*; 
 import static java.io.*; // Violation since it should come before"java.util"
 
-import java.time.*; // OK
-import javax.net.*; // OK
+import java.time.*; 
+import javax.net.*; 
 import org.apache.commons.io.FileUtils; // Violation should be separated by space
 
-import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; // OK
-import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; // OK
+import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; 
+import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; 
 // xdoc section -- end

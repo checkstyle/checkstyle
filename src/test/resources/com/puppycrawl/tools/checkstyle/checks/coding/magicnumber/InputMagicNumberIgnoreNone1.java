@@ -28,16 +28,14 @@ package com.puppycrawl.tools.checkstyle.checks.coding.magicnumber;
 public class InputMagicNumberIgnoreNone1 {
     public void magicMethod() {
 
-        final int INT_CONST = 101_000; // ok
-        final long LONG_CONST1 = 100_000L; // ok
-        final long LONG_CONST2 = 100l; // ok
-        final float FLOAT_CONST1 = 1.500_0F; // ok
-        final float FLOAT_CONST2 = 1.5f; // ok
-        final double DOUBLE_CONST1 = 1.500_0D; // ok
-        final double DOUBLE_CONST2 = 1.5d; // ok
-        final double DOUBLE_CONST3 = 1.5; // ok
-
-
+        final int INT_CONST = 101_000; 
+        final long LONG_CONST1 = 100_000L; 
+        final long LONG_CONST2 = 100l; 
+        final float FLOAT_CONST1 = 1.500_0F; 
+        final float FLOAT_CONST2 = 1.5f; 
+        final double DOUBLE_CONST1 = 1.500_0D; 
+        final double DOUBLE_CONST2 = 1.5d; 
+        final double DOUBLE_CONST3 = 1.5; 
         int int_var1 = 1; // violation
         int int_var2 = (2); // violation
         long long_var1 = 0L; // violation

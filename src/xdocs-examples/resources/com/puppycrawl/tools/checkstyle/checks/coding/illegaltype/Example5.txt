@@ -15,7 +15,7 @@ public class Test {
     // code
   }
 
-  private HashMap<String, String> function2() { // OK
+  private HashMap<String, String> function2() { 
     // code
   }
 

@@ -27,7 +27,7 @@ public static class Example3 {
     public int hashCode() {
         // code
     }
-    public boolean equals(Object o) { // OK
+    public boolean equals(Object o) { 
         // code
     }
     public boolean equals(String o) {
@@ -38,7 +38,7 @@ public static class Example4 {
     public int hashCode() {
         // code
     }
-    public boolean equals(java.lang.Object o) { // OK
+    public boolean equals(java.lang.Object o) { 
         // code
    }
 }

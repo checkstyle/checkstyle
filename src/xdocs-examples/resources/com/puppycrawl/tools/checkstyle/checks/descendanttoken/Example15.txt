@@ -15,7 +15,7 @@
 class Test {
   public void foo() {
     String str = "abc";
-    if (str.equals("abc")) { // ok
+    if (str.equals("abc")) { 
       System.out.println("equal.");
     }
     if (str == "abc") { // violation

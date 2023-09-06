@@ -36,7 +36,7 @@
         <source>
 class A {
 
- public Object clone() { // OK
+ public Object clone() { 
   return super.clone();
  }
 }
@@ -53,7 +53,7 @@ private int b;
 
 class C {
 
- public C clone() { // OK
+ public C clone() { 
   return (C) super.clone();
  }
 }

@@ -14,8 +14,7 @@ public class InputMissingOverrideBadOverrideFromOtherJava5 implements IFoo2Java5
     /**
      * {@inheritDoc}
      */
-    public void doFoo() {} // ok
-
+    public void doFoo() {} 
     public void doFoo2() {}
 
 }
@@ -30,7 +29,7 @@ interface IBar2Java5 extends IFoo2Java5 {
     /**
      * {@inheritDoc}
      */
-    public void doFoo(); // ok
+    public void doFoo(); 
 }
 
 class MoreJunk2Java5 extends InputMissingOverrideBadOverrideFromOtherJava5 {
@@ -38,24 +37,21 @@ class MoreJunk2Java5 extends InputMissingOverrideBadOverrideFromOtherJava5 {
     /**
      * {@inheritDoc}
      */
-    public void doFoo() {} // ok
-
+    public void doFoo() {} 
     /**
      * {@inheritDoc}
      */
-    public void doFoo2() {} // ok
-
+    public void doFoo2() {} 
     class EvenMoreJunk2 extends MoreJunk2Java5 implements Serializable {
 
         /**
          * {@inheritDoc}
          */
-        public void doFoo() {} // ok
-
+        public void doFoo() {} 
         /**
          * {@inheritDoc}
          */
-        public void doFoo2() {} // ok
+        public void doFoo2() {} 
     }
 }
 
@@ -65,5 +61,5 @@ enum Football2Java5 implements IFoo2Java5, IBar2Java5 {
     /**
      * {@inheritDoc}
      */
-    public void doFoo() {} // ok
+    public void doFoo() {} 
 }

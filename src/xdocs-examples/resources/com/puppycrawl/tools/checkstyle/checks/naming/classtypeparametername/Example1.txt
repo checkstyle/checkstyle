@@ -7,7 +7,7 @@
 */
 
 // xdoc section -- start
-class MyClass1<T> {}        // OK
+class MyClass1<T> {}        
 class MyClass2<t> {}        // violation
 class MyClass3<abc> {}      // violation
 class MyClass4<LISTENER> {} // violation

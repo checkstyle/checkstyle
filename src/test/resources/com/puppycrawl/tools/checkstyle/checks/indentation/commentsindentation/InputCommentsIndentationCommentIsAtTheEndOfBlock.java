@@ -346,7 +346,7 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlock {
     public void foo49() {
        // comment
        // block
-       // ok
+       
     }
 
     public void foo50() {
@@ -599,7 +599,7 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlock {
     void foo79() {
         /* violation */
         /* violation */new Object().toString();
-        // ok
+        
     }
 
     // We almost reached the end of the class here.

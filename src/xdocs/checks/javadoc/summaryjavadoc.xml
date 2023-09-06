@@ -114,7 +114,7 @@ public class Test extends Exception {
   /**
    * {@summary &lt;p&gt;This is summary for validFunctionThree.&lt;p/&gt;}
    */
-  public void validFunctionThree(){} // ok
+  public void validFunctionThree(){} 
 }
         </source>
         <p id="Example3-config">
@@ -174,7 +174,7 @@ public class TestClass {
  /**
   * {@summary This is valid java doc&#x3002;}
   */
-  public void validJavaDocMethod() { // ok
+  public void validJavaDocMethod() { 
   }
 }
         </source>
@@ -191,7 +191,7 @@ public class Test {
   * &lt;li&gt;Item two.&lt;/li&gt;
   * &lt;/ul&gt;}
   */
-  public void validInlineJavadoc() { // ok
+  public void validInlineJavadoc() { 
   }
 }
         </source>

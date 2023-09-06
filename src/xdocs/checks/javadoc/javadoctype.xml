@@ -152,9 +152,9 @@
  * @author a
  * @version $Revision1$
  */
-public class ClassA { // OK
+public class ClassA { 
     /** */
-    private class ClassB {} // OK
+    private class ClassB {} 
 }
 
 /**
@@ -162,8 +162,7 @@ public class ClassA { // OK
  * @version abc
  * @unknownTag value // violation
  */
-public class ClassC {} // OK
-
+public class ClassC {} 
 /** */
 public class ClassD&lt;T&gt; {} // violation, as param tag for &lt;T&gt; is missing
 
@@ -172,7 +171,7 @@ private class ClassE&lt;T&gt; {} // violation, as param tag for &lt;T&gt; is mis
 
 /** */
 @Generated
-public class ClassF&lt;T&gt; {} // OK
+public class ClassF&lt;T&gt; {} 
         </source>
 
         <p id="Example2-config">
@@ -193,9 +192,9 @@ public class ClassF&lt;T&gt; {} // OK
  * @author a
  * @version $Revision1$
  */
-public class ClassA { // OK
+public class ClassA { 
     /** */
-    private class ClassB {} // OK
+    private class ClassB {} 
 }
 
 /**
@@ -203,17 +202,15 @@ public class ClassA { // OK
  * @version abc
  * @unknownTag value // violation
  */
-public class ClassC {} // OK
-
+public class ClassC {} 
 /** */
 public class ClassD&lt;T&gt; {} // violation, as param tag for &lt;T&gt; is missing
 
 /** */
-private class ClassE&lt;T&gt; {} // OK
-
+private class ClassE&lt;T&gt; {} 
 /** */
 @Generated
-public class ClassF&lt;T&gt; {} // OK
+public class ClassF&lt;T&gt; {} 
         </source>
 
         <p id="Example3-config">
@@ -234,7 +231,7 @@ public class ClassF&lt;T&gt; {} // OK
  * @author a
  * @version $Revision1$
  */
-public class ClassA { // OK
+public class ClassA { 
     /** */
     private class ClassB {} // OK, as author tag check is ignored for inner class
 }
@@ -254,7 +251,7 @@ private class ClassE {} // violation, as author tag is missing
 
 /** */
 @Generated
-public class ClassF&lt;T&gt; {} // OK
+public class ClassF&lt;T&gt; {} 
         </source>
 
         <p id="Example4-config">
@@ -275,7 +272,7 @@ public class ClassF&lt;T&gt; {} // OK
  * @author a
  * @version $Revision1$
  */
-public class ClassA { // OK
+public class ClassA { 
     /** */
     private class ClassB {} // OK, as version tag check is ignored for inner class
 }
@@ -295,7 +292,7 @@ private class ClassE {} // violation, as version tag is missing
 
 /** */
 @Generated
-public class ClassF&lt;T&gt; {} // OK
+public class ClassF&lt;T&gt; {} 
         </source>
 
         <p id="Example5-config">
@@ -317,27 +314,25 @@ public class ClassF&lt;T&gt; {} // OK
  * @author a
  * @version $Revision1$
  */
-public class ClassA { // OK
+public class ClassA { 
     /** */
-    private class ClassB {} // OK
+    private class ClassB {} 
 }
 
 /**
  * @author
  * @version abc
- * @unknownTag value // OK
+ * @unknownTag value 
  */
-public class ClassC {} // OK
-
+public class ClassC {} 
 /** */
-public class ClassD&lt;T&gt; {} // OK
-
+public class ClassD&lt;T&gt; {} 
 /** */
 private class ClassE&lt;T&gt; {} // violation, as param tag for &lt;T&gt; is missing
 
 /** */
 @Generated
-public class ClassF&lt;T&gt; {} // OK
+public class ClassF&lt;T&gt; {} 
         </source>
 
         <p id="Example6-config">
@@ -358,9 +353,9 @@ public class ClassF&lt;T&gt; {} // OK
  * @author a
  * @version $Revision1$
  */
-public class ClassA { // OK
+public class ClassA { 
     /** */
-    private class ClassB {} // OK
+    private class ClassB {} 
 }
 
 /**
@@ -368,8 +363,7 @@ public class ClassA { // OK
  * @version abc
  * @unknownTag value // violation
  */
-public class ClassC {} // OK
-
+public class ClassC {} 
 /** */
 public class ClassD&lt;T&gt; {} // OK, as missing param tag is allowed
 
@@ -378,7 +372,7 @@ private class ClassE&lt;T&gt; {} // OK, as missing param tag is allowed
 
 /** */
 @Generated
-public class ClassF&lt;T&gt; {} // OK
+public class ClassF&lt;T&gt; {} 
         </source>
 
         <p id="Example7-config">
@@ -399,9 +393,9 @@ public class ClassF&lt;T&gt; {} // OK
  * @author a
  * @version $Revision1$
  */
-public class ClassA { // OK
+public class ClassA { 
   /** */
-  private class ClassB {} // OK
+  private class ClassB {} 
 }
 
 /**
@@ -409,17 +403,14 @@ public class ClassA { // OK
  * @version abc
  * @unknownTag value // OK, as unknown tag is allowed
  */
-public class ClassC {} // OK
-
+public class ClassC {} 
 /** */
-public class ClassD {} // OK
-
+public class ClassD {} 
 /** */
-private class ClassE {} // OK
-
+private class ClassE {} 
 /** */
 @Generated
-public class ClassF&lt;T&gt; {} // OK
+public class ClassF&lt;T&gt; {} 
         </source>
 
         <p id="Example8-config">

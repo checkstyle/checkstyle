@@ -123,14 +123,14 @@ public class Test {
 
     if (foo) {
       bar();
-    } else {     // OK
+    } else {     
       bar();
     }
 
     if (foo) { bar(); } int i = 0;  // violation
                   // ^^^ statement is not allowed on same line after curly right brace
 
-    if (foo) { bar(); }            // OK
+    if (foo) { bar(); }            
     int i = 0;
 
     try {
@@ -142,12 +142,11 @@ public class Test {
 
     try {
       bar();
-    } catch (Exception e) { // OK
+    } catch (Exception e) { 
       bar();
     }
 
-  }                         // OK
-
+  }                         
   public void testSingleLine() { bar(); } // OK, because singleline is allowed
 }
         </source>
@@ -179,21 +178,19 @@ public class Test {
       bar();
     } else {
       bar();
-    }                   // OK
-
+    }                   
     try {
       bar();
     } catch (Exception e) { // OK because config is set to token METHOD_DEF and LITERAL_ELSE
       bar();
     }
 
-  }                         // OK
-
+  }                         
   public void violate() { bar; } // violation, singleline is not allowed here
 
   public void ok() {
     bar();
-  }                              // OK
+  }                              
 }
         </source>
         <p>
@@ -263,7 +260,7 @@ public class Test {
 
     if (foo) {
       bar();
-    }               // OK
+    }               
     else {
       bar();
     }
@@ -274,8 +271,7 @@ public class Test {
       bar();
     }
 
-  }                                // OK
-
+  }                                
   public void violate() { bar(); } // OK , because singleline
 }
         </source>
@@ -302,7 +298,7 @@ class Test {
                 break;
             default:
                 x = 0;
-        } // ok
+        } 
     }
 
     public static void method7() {

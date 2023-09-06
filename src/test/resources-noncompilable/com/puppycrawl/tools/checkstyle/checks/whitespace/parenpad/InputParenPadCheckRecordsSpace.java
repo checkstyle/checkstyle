@@ -17,17 +17,15 @@ import java.util.HashMap;
 import org.w3c.dom.Node;
 
 public class InputParenPadCheckRecordsSpace {
-    record MyRecord1( ) { // ok
-
-        MyRecord1( int x ){this();} // ok
-
+    record MyRecord1( ) { 
+        MyRecord1( int x ){this();} 
         public MyRecord1{
             bar( 1);  // violation
         }
 
         static int n;
 
-        public void fun() {  // ok
+        public void fun() {  
             bar( 1);  // violation
         }
 
@@ -36,7 +34,7 @@ public class InputParenPadCheckRecordsSpace {
             }
         }
 
-        public void fun2() {  // ok
+        public void fun2() {  
             switch( n) {  // violation
                 case 2:
                     bar(n);  // 2 violations
@@ -49,7 +47,7 @@ public class InputParenPadCheckRecordsSpace {
 
     //record components
     record MyRecord2( String s){} // violation
-    record MyRecord4( String s, String ...varargs ){} // ok
+    record MyRecord4( String s, String ...varargs ){} 
     record MyRecord6( String[] strArr){} // violation
     record MyRecord7(HashMap<String, Node> hashMap ){} // violation
     record MyRecord8(int x // violation

@@ -5,5 +5,4 @@ OuterTypeFilename
 */
 
 @Deprecated
-package com.puppycrawl.tools.checkstyle.checks.outertypefilename; // ok
-
+package com.puppycrawl.tools.checkstyle.checks.outertypefilename; 

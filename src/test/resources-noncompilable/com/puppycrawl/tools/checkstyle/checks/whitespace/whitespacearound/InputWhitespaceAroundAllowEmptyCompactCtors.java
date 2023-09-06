@@ -27,8 +27,7 @@ public class InputWhitespaceAroundAllowEmptyCompactCtors {
 
     // simple record def
     record MyRecord1() {
-    } // ok
-
+    } 
     // nested constructs
     record MyRecord2() {
         class MyClass {} // 2 violations
@@ -58,7 +57,7 @@ public class InputWhitespaceAroundAllowEmptyCompactCtors {
     // compact ctor
     record MyRecord5() {
         public MyRecord5 {
-        } // ok
+        } 
     }
 
     // static fields
@@ -68,7 +67,7 @@ public class InputWhitespaceAroundAllowEmptyCompactCtors {
     }
 
     record TestRecord7() {
-        public TestRecord7 {} // ok
+        public TestRecord7 {} 
     }
 }
 

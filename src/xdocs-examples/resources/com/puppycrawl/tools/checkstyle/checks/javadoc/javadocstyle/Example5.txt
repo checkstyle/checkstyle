@@ -12,7 +12,7 @@
 public class Test {
     /**
      * Some description here // violation, the sentence must end with a proper punctuation
-     * <p // OK
+     * <p 
      */
     private void test1() {}
 }

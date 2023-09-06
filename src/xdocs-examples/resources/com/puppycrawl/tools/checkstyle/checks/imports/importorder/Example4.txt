@@ -17,7 +17,7 @@
 */
 
 // xdoc section -- start
-import com.neurologic.http.impl.ApacheHttpClient; // OK
+import com.neurologic.http.impl.ApacheHttpClient; 
 import static java.awt.Button.A;
 import javax.swing.JComponent; // violation, wrong order, caused by above static import
                                // all static imports comes at bottom

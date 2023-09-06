@@ -133,7 +133,7 @@ package com.puppycrawl.tools.checkstyle.checks.design;
 // violation below 'Line is longer than 50 characters (found 86)'
 import com.puppycrawl.tools.checkstyle.grammar.comments.InputFullOfSinglelineComments;
 
-import java.util.Arrays; // ok
+import java.util.Arrays; 
         </source>
       </subsection>
 

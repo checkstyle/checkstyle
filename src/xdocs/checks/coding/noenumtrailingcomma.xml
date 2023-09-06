@@ -50,11 +50,11 @@ enum Foo1 {
         <source>
 enum Foo1 {
   FOO,
-  BAR; //OK
+  BAR; 
 }
 enum Foo2 {
   FOO,
-  BAR //OK
+  BAR 
 }
 enum Foo3 {
   FOO,
@@ -73,11 +73,11 @@ enum Foo6 { FOO, BAR,; } // violation
 enum Foo7 { FOO, BAR, } // violation
 enum Foo8 {
   FOO,
-  BAR // OK
+  BAR 
   ;
 }
-enum Foo9 { FOO, BAR; } // OK
-enum Foo10 { FOO, BAR } // OK
+enum Foo9 { FOO, BAR; } 
+enum Foo10 { FOO, BAR } 
         </source>
       </subsection>
 

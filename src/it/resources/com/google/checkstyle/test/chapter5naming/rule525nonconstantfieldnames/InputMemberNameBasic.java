@@ -12,11 +12,10 @@ public class InputMemberNameBasic
     int package_; //warn
     private int priva$te; //warn
 
-    public int ppublic; //ok
-    protected int pprotected; //ok
-    int ppackage; //ok
-    private int pprivate; //ok
-
+    public int ppublic; 
+    protected int pprotected; 
+    int ppackage; 
+    private int pprivate; 
     int ABC = 0; //warn
     final int C_D_E = 0; //warn
 

@@ -7,7 +7,7 @@
 */
 
 // xdoc section -- start
-import java.util.Scanner;         // OK
+import java.util.Scanner;         
 import java.io.*;                 // violation
 import static java.lang.Math.*;   // violation
 import java.util.*;               // violation

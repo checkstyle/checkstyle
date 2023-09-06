@@ -6,8 +6,7 @@ strictfp abstract class InputModifierOrder //warn
 
     volatile public int whatImReading; //warn
 
-    public volatile boolean sModifierOrderVar = false; // ok
-
+    public volatile boolean sModifierOrderVar = false; 
     /**
      * Illegal order of modifiers for methods. Make sure that the
      * first and last modifier from the JLS sequence is used.
@@ -41,8 +40,7 @@ strictfp abstract class InputModifierOrder //warn
     {
     }
 
-    @MyAnnotation2 public static final synchronized strictfp void fooMethod() {}; //ok
-
+    @MyAnnotation2 public static final synchronized strictfp void fooMethod() {}; 
     strictfp protected final @MyAnnotation2 static synchronized void fooMethod1() {}; //warn
 
     synchronized @MyAnnotation2 strictfp private final static void fooMethod2() {}; //warn
@@ -97,8 +95,7 @@ final class RedundantFinalClass
 
     static protected @MyAnnotation2 synchronized native void fooMethod1(); // warn
 
-    @MyAnnotation2 protected synchronized native void fooMethod2(); // ok
-
+    @MyAnnotation2 protected synchronized native void fooMethod2(); 
     native synchronized protected static @MyAnnotation2 void fooMethod3(); // warn
 
     native @MyAnnotation2 protected static synchronized void fooMethod4(); // warn
@@ -138,8 +135,7 @@ class WithInner
 
         volatile public int whatImReading; //warn
 
-        @MyAnnotation2 protected synchronized native void fooMethod(); // ok
-
+        @MyAnnotation2 protected synchronized native void fooMethod(); 
         protected @MyAnnotation2 synchronized native void fooMethod1(); // warn
 
         synchronized protected @MyAnnotation2 native void fooMethod2(); // warn
@@ -177,8 +173,7 @@ class WithInner
 
             native synchronized protected @MyAnnotation2 void fooMethod3(); // warn
 
-            @MyAnnotation2 protected synchronized native void fooMethod4(); // ok
-
+            @MyAnnotation2 protected synchronized native void fooMethod4(); 
             public @MyAnnotation2 synchronized native void fooMethod5(); // warn
 
             synchronized native @MyAnnotation2 public void fooMethod6(); // warn
@@ -198,8 +193,7 @@ class WithInner
 
         volatile public int whatImReading; //warn
 
-        @MyAnnotation2 public final synchronized strictfp void fooMethod() {}; //ok
-
+        @MyAnnotation2 public final synchronized strictfp void fooMethod() {}; 
         strictfp protected final @MyAnnotation2 synchronized void fooMethod1() {}; //warn
 
         synchronized @MyAnnotation2 strictfp private final void fooMethod2() {}; //warn
@@ -240,7 +234,6 @@ class WithInner
 /** Illegal order of modifiers for interface methods */
 interface InputModifierOrderInterface
 {
-    default strictfp void a() { }  //ok
-
+    default strictfp void a() { }  
     strictfp default void b() { }  //warn
 }

@@ -109,11 +109,11 @@
         <p id="Example1-code">Code example:</p>
         <source>
 public class FileOne {
-  public void MyMethod() {} // OK
+  public void MyMethod() {} 
 }
 
 public class FileTwo {
-  public void MyMethod() {} // OK
+  public void MyMethod() {} 
 }
 
 public class FileThree {
@@ -137,8 +137,8 @@ public class FileThree {
         <p id="Example2-code">Code Example:</p>
         <source>
 public class FileOne {
-  public void MyMethod1() {} // OK
-  public void MyMethod2() {} // OK
+  public void MyMethod1() {} 
+  public void MyMethod2() {} 
   public void MyMethodA() {} // violation, name 'MyMethodA' must
                              // match pattern '^[a-z](_?[a-zA-Z0-9]+)*$'
 }
@@ -163,7 +163,7 @@ public class FileOne {
         <p id="Example3-code">Code example:</p>
         <source>
 public class FileOne {
-  public void MyMethod() {} // OK
+  public void MyMethod() {} 
 }
 public class FileTwo {
   public void MyMethod() {} // violation,  name 'MyMethod' must
@@ -185,8 +185,7 @@ public class FileTwo {
         </source>
         <p id="Example4-code">Code example:</p>
         <source>
-package File; // OK
-
+package File; 
 public class FileOne {}
         </source>
         <p id="Example5-config">
@@ -205,7 +204,7 @@ public class FileOne {}
         <p id="Example5-code">Code Example:</p>
         <source>
 public interface TestClass {
-  public static final int CONSTANT1 = 1;  // OK
+  public static final int CONSTANT1 = 1;  
 }
         </source>
         <p id="Example6-config">
@@ -224,7 +223,7 @@ public interface TestClass {
         <p id="Example6-code">Code example:</p>
         <source>
 public class FileOne {
-  public void MyMethod() {} // OK
+  public void MyMethod() {} 
 }
 
 public class FileTwo {
@@ -250,8 +249,8 @@ public class FileTwo {
         </source>
         <p id="Example7-code">Code example:</p>
         <source>
-abstract class FileOne { // OK
-  public void MyMethod() {} // OK
+abstract class FileOne { 
+  public void MyMethod() {} 
 }
 
 abstract class FileTwo { // violation of the AbstractClassName check,
@@ -277,8 +276,8 @@ abstract class FileTwo { // violation of the AbstractClassName check,
         <p id="Example8-code">Code example:</p>
         <source>
 public class FileOne {
-  public void MyMethod1() {} // OK
-  public void MyMethod2() {} // OK
+  public void MyMethod1() {} 
+  public void MyMethod2() {} 
   public void MyMethod3() {} // violation, name 'MyMethod3' must
                              // match pattern '^[a-z](_?[a-zA-Z0-9]+)*$'
 }
@@ -303,7 +302,7 @@ public class FileOne {
         <source>
 public class TestClass {
   public void testMethod() {
-    final int testVariable1 = 10; // OK
+    final int testVariable1 = 10; 
     final int testVariable2 = 10; // violation of the LocalFinalVariableName check,
                                   // name 'testVariable2' must match pattern '^[A-Z][A-Z0-9]*$'
   }
@@ -329,7 +328,7 @@ public class TestClass {
         <source>
 public class TestClass {
   public void testMethod1()
-  { // OK
+  { 
   }
 
   public void testMethod2()
@@ -412,8 +411,8 @@ public class InputTest {
         <p id="Example13-code">Code Example:</p>
         <source>
 public class TestClass {
-  public void TestMethod1() { // OK
-    final int num = 10; // OK
+  public void TestMethod1() { 
+    final int num = 10; 
   }
 
   public void TestMethod2() { // violation of the MethodName check,

@@ -10,8 +10,7 @@
 */
 
 // xdoc section -- start
-@Deprecated interface Foo {  // OK
-
+@Deprecated interface Foo {  
   void doSomething();
 
 }
@@ -22,7 +21,7 @@ class Bar implements Foo {
   public Bar() {
   }
 
-  @Override  // OK
+  @Override  
   public void doSomething() {
   }
 

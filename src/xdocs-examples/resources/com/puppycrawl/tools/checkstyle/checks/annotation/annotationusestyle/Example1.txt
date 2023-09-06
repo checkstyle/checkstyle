@@ -7,9 +7,9 @@
 */
 
 // xdoc section -- start
-@SuppressWarnings("unchecked") // OK
-@Deprecated // OK
-@SomeArrays({"unchecked","unused"}) // OK
+@SuppressWarnings("unchecked") 
+@Deprecated 
+@SomeArrays({"unchecked","unused"}) 
 public class TestOne
 {
 

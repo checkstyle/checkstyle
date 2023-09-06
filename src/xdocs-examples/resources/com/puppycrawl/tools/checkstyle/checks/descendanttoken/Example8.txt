@@ -13,7 +13,7 @@
 
 // xdoc section -- start
 class Test {
-  public void foo() { // ok
+  public void foo() { 
     int var1 = 1;
   }
   public void boo() { // violation

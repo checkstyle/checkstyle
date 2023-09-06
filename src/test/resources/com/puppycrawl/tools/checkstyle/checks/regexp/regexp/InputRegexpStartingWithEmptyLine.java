@@ -1,2 +1,2 @@
 
-package com.puppycrawl.tools.checkstyle.checks.regexp.regexp; // ok
+package com.puppycrawl.tools.checkstyle.checks.regexp.regexp; 

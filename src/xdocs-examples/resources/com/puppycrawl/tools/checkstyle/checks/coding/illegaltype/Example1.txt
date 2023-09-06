@@ -13,11 +13,10 @@ public class Test extends TreeSet { // violation
     LinkedHashMap<Integer, String> lhmap =
         new LinkedHashMap<Integer, String>(); // violation
     TreeMap<Integer, String> treemap = new TreeMap<Integer, String>(); // violation
-    Test t; // OK
+    Test t; 
     HashMap<String, String> hmap; // violation
-    Queue<Integer> intqueue; // OK
-
-    java.lang.IllegalArgumentException illegalex; // OK
+    Queue<Integer> intqueue; 
+    java.lang.IllegalArgumentException illegalex; 
     java.util.TreeSet treeset; // violation
   }
 

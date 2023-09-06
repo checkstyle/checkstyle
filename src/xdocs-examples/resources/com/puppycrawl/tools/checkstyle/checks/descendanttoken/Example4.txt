@@ -13,7 +13,7 @@
 // xdoc section -- start
 class Test {
   public static void main(String[] args) {
-    for (int i = 0; i != 10; i++) { // ok
+    for (int i = 0; i != 10; i++) { 
       System.out.println(i);
     }
     int k = 0;

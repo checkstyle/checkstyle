@@ -22,7 +22,6 @@ public class InputMissingOverrideNotOverride
   /**
    * {@inheritDoc}
    */
-  public String junk = "";        // ok
-
+  public String junk = "";        
   void dodoo() {}
 }

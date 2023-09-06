@@ -14,18 +14,18 @@ public class Game {
 }
 
 public class Main {
-   public static void main(String[] args){}   // OK
+   public static void main(String[] args){}   
 }
 
 public class Launch {
-   //public static void main(String[] args){} // OK
+   //public static void main(String[] args){} 
 }
 
 public class Start {
-   public void main(){}                       // OK
+   public void main(){}                       
 }
 
 public record MyRecord1 {
-    public void main(){}                      // OK
+    public void main(){}                      
 }
 // xdoc section -- end

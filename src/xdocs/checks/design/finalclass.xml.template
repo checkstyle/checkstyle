@@ -45,7 +45,7 @@
             Example:
         </p>
         <source>
-final class MyClass { // OK
+final class MyClass { 
   private MyClass() { }
 }
 
@@ -80,7 +80,7 @@ class Class1 {
     private class Class2 { // violation, class should be declared final
     }
 
-    public class Class3 { // ok
+    public class Class3 { 
     }
 
 }

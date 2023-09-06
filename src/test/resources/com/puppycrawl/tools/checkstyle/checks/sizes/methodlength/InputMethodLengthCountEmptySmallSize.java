@@ -25,14 +25,13 @@ class AA {
         oneLine();
     }
 
-    void twoLines() { // ok
-
+    void twoLines() { 
     }
 
-    void twoLines2() { // ok
+    void twoLines2() { 
         oneLine();}
 
-    void twoLinesAndComment() { // ok
+    void twoLinesAndComment() { 
         // some comment
     }
 

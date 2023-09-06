@@ -63,10 +63,10 @@
         </p>
         <source>
 public class MyClass {
-  int[] nums; // OK
+  int[] nums; 
   String strings[]; // violation
 
-  char[] toCharArray() { // OK
+  char[] toCharArray() { 
     return null;
   }
 
@@ -93,9 +93,8 @@ public class MyClass {
         <source>
 public class MyClass {
   int[] nums; // violation
-  String strings[]; // OK
-
-  char[] toCharArray() { // OK
+  String strings[]; 
+  char[] toCharArray() { 
     return null;
   }
 

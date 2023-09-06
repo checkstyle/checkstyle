@@ -213,10 +213,10 @@ enum MyEnum {
     }
 
     private void tryWithResources() throws Exception {
-        try (AutoCloseable a = null) {} // ok
-        try (AutoCloseable a = null; AutoCloseable b = null) {} // ok
-        try (AutoCloseable a = null; AutoCloseable b = null; ) {} // ok
-        try (AutoCloseable a = null; AutoCloseable b = null; ) {} // ok
+        try (AutoCloseable a = null) {} 
+        try (AutoCloseable a = null; AutoCloseable b = null) {} 
+        try (AutoCloseable a = null; AutoCloseable b = null; ) {} 
+        try (AutoCloseable a = null; AutoCloseable b = null; ) {} 
         try (AutoCloseable a = null ) {} // warning
         try (AutoCloseable a = null; AutoCloseable b = null ) {} // warning
     }

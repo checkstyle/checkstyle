@@ -29,5 +29,5 @@ try {
   throw new RuntimeException();
 } catch (RuntimeException ex) {
   // This is expected
-} // ok
+} 
 // xdoc section -- end

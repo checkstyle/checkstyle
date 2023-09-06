@@ -6,11 +6,11 @@ public class InputSeparatorWrapComma {
         int i = 0;
         String s = "ffffooooString";
         s
-            .isEmpty(); //ok
+            .isEmpty(); 
         s.isEmpty();
 
         foo(i,
-                s); //ok
+                s); 
     }
     public static void foo(int i, String s)
     {

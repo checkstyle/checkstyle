@@ -56,8 +56,7 @@ while (status != &quot;done&quot;) {} // violation
 
 boolean flag = (status == &quot;done&quot;); // violation
 
-boolean flag = (status.equals(&quot;done&quot;)); // OK
-
+boolean flag = (status.equals(&quot;done&quot;)); 
 String name = &quot;X&quot;;
 
 if (name == getName()) {}

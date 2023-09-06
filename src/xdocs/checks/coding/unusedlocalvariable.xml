@@ -48,7 +48,7 @@ class Test {
     void method(int b) {
         int a = 10;             // violation
         int[] arr = {1, 2, 3};  // violation
-        int[] anotherArr = {1}; // ok
+        int[] anotherArr = {1}; 
         anotherArr[0] = 4;
     }
 
@@ -75,7 +75,7 @@ class Test {
         int j = 12;
         for (int i = 0; j &lt; 11; i++) { // violation, unused local variable 'i'.
         }
-        for (int p = 0; j &lt; 11; p++)   // ok
+        for (int p = 0; j &lt; 11; p++)   
             p /= 2;
     }
 

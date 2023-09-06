@@ -10,10 +10,9 @@
 */
 
 // xdoc section -- start
-import static java.io.File.listRoots;   // OK
-import static javax.swing.WindowConstants.*; // OK
+import static java.io.File.listRoots;   
+import static javax.swing.WindowConstants.*; 
 import static java.io.File.createTempFile; // violation should be before javax
-import static com.puppycrawl.tools.checkstyle;  // OK
-
+import static com.puppycrawl.tools.checkstyle;  
 public class SomeClass { }
 // xdoc section -- end

@@ -14,7 +14,7 @@ import java.lang.annotation.Target;
 /////////////
 
 /**Javadoc*/ /*noise*/ //noise
-class/**nope*/ InputAbstractJavadocPositionWithSinglelineComments/**nope*/{ // ok
+class/**nope*/ InputAbstractJavadocPositionWithSinglelineComments/**nope*/{ 
     /**Javadoc*/ //noise
     protected/**nope*/ class/**nope*/ N/**nope*/{/**nope*/}
 

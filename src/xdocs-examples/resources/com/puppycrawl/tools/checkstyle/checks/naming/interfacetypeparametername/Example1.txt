@@ -7,6 +7,6 @@
 */
 
 // xdoc section -- start
-interface FirstInterface<T> {} // OK
+interface FirstInterface<T> {} 
 interface SecondInterface<t> {} // violation, name 't' must match pattern '^[A-Z]$'
 // xdoc section -- end

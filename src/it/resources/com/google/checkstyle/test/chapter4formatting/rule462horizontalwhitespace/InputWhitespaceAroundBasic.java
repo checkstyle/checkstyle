@@ -21,8 +21,8 @@ class InputWhitespaceAroundBasic
         b= 1; // warn
         b +=1; // warn
         b -=- 1 + (+ b); // warn
-        b = b ++ + b --; // ok
-        b = ++ b - -- b; // ok
+        b = b ++ + b --; 
+        b = ++ b - -- b; 
     }
 
     /** method **/
@@ -78,11 +78,11 @@ class InputWhitespaceAroundBasic
     /** test casts **/
     private void testCasts()
     {
-        Object o = (Object) new Object(); // ok
-        o = (Object)o; // ok
-        o = ( Object ) o; // ok
+        Object o = (Object) new Object(); 
+        o = (Object)o; 
+        o = ( Object ) o; 
         o = (Object)
-            o; // ok
+            o; 
     }
 
     /** test questions **/
@@ -134,10 +134,10 @@ class InputWhitespaceAroundBasic
     /** assert statement test */
     public void assertTest()
     {
-        // OK
+        
         assert true;
 
-        // OK
+        
         assert true : "Whups";
 
         // evil colons, should be OK
@@ -241,7 +241,7 @@ class SpecialCasesInForLoop
         for (int x:ll) {} // warn
         for (int x :ll) {} // warn
         for (int x: ll) {} // warn
-        for (int x : ll) {} // ok
+        for (int x : ll) {} 
     }
 }
 
@@ -256,9 +256,8 @@ class NewGoogleOperators
 
        l = ()-> { }; //warn
        l = () ->{ }; //warn
-       l = () -> { }; //ok
-       l = () -> {}; //ok
-
+       l = () -> { }; 
+       l = () -> {}; 
        java.util.Arrays.sort(null, String :: compareToIgnoreCase);
        java.util.Arrays.sort(null, String::compareToIgnoreCase);
 

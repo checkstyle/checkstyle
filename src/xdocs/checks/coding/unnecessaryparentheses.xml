@@ -58,7 +58,7 @@ boolean a = true, b = true;
 boolean c = false, d = false;
 if ((a &amp;&amp; b) || c) { // violation, unnecessary paren
 }
-if (a &amp;&amp; (b || c)) { // ok
+if (a &amp;&amp; (b || c)) { 
 }
 if ((a == b) &amp;&amp; c) { // violation, unnecessary paren
 }
@@ -67,7 +67,7 @@ if ((e instanceof String) &amp;&amp; a || b) { // violation, unnecessary paren
 }
 int f = 0;
 int g = 0;
-if (!(f &gt;= g) // ok
+if (!(f &gt;= g) 
         &amp;&amp; (g &gt; f)) { // violation, unnecessary paren
 }
 if ((++f) &gt; g &amp;&amp; a) { // violation, unnecessary paren
@@ -311,10 +311,10 @@ if ((-a) != -27 // violation, unnecessary parenthesis
          &amp;&amp; b &gt; 5) {
     return;
 }
-if (x==(a &lt;= 15)) { // ok
+if (x==(a &lt;= 15)) { 
     return;
 }
-if (x==(y == z)) { // ok
+if (x==(y == z)) { 
     return;
 }
         </source>
@@ -342,17 +342,17 @@ class Test {
             ^ y&gt;=8) {
             return;
         }
-         if(x&gt;= 0 ^ x&lt;=8 &amp; y&lt;=11 ^ y&gt;=8) { // ok
+         if(x&gt;= 0 ^ x&lt;=8 &amp; y&lt;=11 ^ y&gt;=8) { 
             return;
         }
         if(x&gt;= 0 || (x&lt;=8 &amp; y&lt;=11) // violation, unnecessary parenthesis
             &amp;&amp; y&gt;=8) {
             return;
         }
-        if(x&gt;= 0 || x&lt;=8 &amp; y&lt;=11 &amp;&amp; y&gt;=8) { // ok
+        if(x&gt;= 0 || x&lt;=8 &amp; y&lt;=11 &amp;&amp; y&gt;=8) { 
             return;
         }
-        if(x&gt;= 0 &amp; (x&lt;=8 ^ y&lt;=11) &amp; y&gt;=8) { // ok
+        if(x&gt;= 0 &amp; (x&lt;=8 ^ y&lt;=11) &amp; y&gt;=8) { 
             return;
         }
     }

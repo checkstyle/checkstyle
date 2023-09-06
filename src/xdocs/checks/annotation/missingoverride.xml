@@ -77,8 +77,7 @@ class Test extends SuperClass {
 
     /** {@inheritDoc} */
     @Override
-    public void test1() { // OK
-
+    public void test1() { 
     }
 
     /** {@inheritDoc} */

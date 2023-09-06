@@ -16,7 +16,7 @@ class Test {
   public void foo() {
     int x = 1;
     int y = 2;
-    switch (x) { // ok
+    switch (x) { 
       case 1:
         System.out.println("xyz");
         break;

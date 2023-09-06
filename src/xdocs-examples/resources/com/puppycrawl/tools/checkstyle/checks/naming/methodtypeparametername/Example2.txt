@@ -10,9 +10,9 @@
 
 // xdoc section -- start
 class MyClass {
-  public <T> void method1() {} // OK
-  public <a> void method2() {} // OK
-  public <K, V> void method3() {} // OK
-  public <k, V> void method4() {} // OK
+  public <T> void method1() {} 
+  public <a> void method2() {} 
+  public <K, V> void method3() {} 
+  public <k, V> void method4() {} 
 }
 // xdoc section -- end

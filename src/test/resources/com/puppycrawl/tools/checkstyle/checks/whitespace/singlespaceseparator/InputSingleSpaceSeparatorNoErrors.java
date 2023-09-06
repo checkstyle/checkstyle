@@ -10,11 +10,9 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace.singlespaceseparator;
 import java.util.ArrayList;
 import java.util.List;
 
-public class InputSingleSpaceSeparatorNoErrors { // ok
-
+public class InputSingleSpaceSeparatorNoErrors { 
     int count; //long indentation - OK
-    String text = "             "; // OK
-
+    String text = "             "; 
     private void foo(int i) {
         if (i > 10) {
             if (bar()) {

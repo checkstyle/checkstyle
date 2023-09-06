@@ -144,7 +144,7 @@ return '\ufeff' + content;
         <source>
 String unitAbbrev = &quot;&#x3bc;s&quot;;      // OK, a normal String
 String unitAbbrev = &quot;\u03bcs&quot;; // violation, not all characters are escaped ('s').
-String unitAbbrev = &quot;\u03bc\u03bc\u03bc&quot;; // OK
+String unitAbbrev = &quot;\u03bc\u03bc\u03bc&quot;; 
 String unitAbbrev = &quot;\u03bc\u03bcs&quot;;// violation, not all characters are escaped ('s').
 return '\ufeff' + content;          // OK, all control characters are escaped
         </source>

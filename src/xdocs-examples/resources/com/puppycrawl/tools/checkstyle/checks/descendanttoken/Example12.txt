@@ -15,7 +15,7 @@
 
 // xdoc section -- start
 class Test {
-  public void foo() { // ok
+  public void foo() { 
       System.out.println("Hello");
   }
   public void boo() {

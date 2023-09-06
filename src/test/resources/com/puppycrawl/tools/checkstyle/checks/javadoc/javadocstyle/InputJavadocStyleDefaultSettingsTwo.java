@@ -54,8 +54,7 @@ public class InputJavadocStyleDefaultSettingsTwo
      *     +--SEMI (;)
      * </pre>
      */
-    private void method13() {} // ok
-
+    private void method13() {} 
     /**
      * Some problematic javadoc. Sample usage:
      * <blockquote> // violation
@@ -71,29 +70,24 @@ public class InputJavadocStyleDefaultSettingsTwo
     private void method15() {}
 
     /** Description of field: {@value}. */
-    public static final int dummy = 4911; // ok
-
+    public static final int dummy = 4911; 
     /**
      */
-    public void method16() {} // ok
-
+    public void method16() {} 
     /**
      * @param a A parameter
      */
-    protected void method17(String a) {} // ok
-
+    protected void method17(String a) {} 
     /**
      * @exception RuntimeException should be thrown
      */
-    void method18(String a) {} // ok
+    void method18(String a) {} 
     /**
      */
-    private static int ASDF = 0; // ok
-
+    private static int ASDF = 0; 
     /** @see java.lang.Object */
-    public void method19() {} // ok
-
-    public enum Test // ok
+    public void method19() {} 
+    public enum Test 
     {
         /** // violation
          * Value 1 without a period
@@ -103,6 +97,6 @@ public class InputJavadocStyleDefaultSettingsTwo
         /**
          * Value 2 with a period.
          */
-        value2, // ok
+        value2, 
     }
 }

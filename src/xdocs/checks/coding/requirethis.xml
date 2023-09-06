@@ -103,7 +103,7 @@ public class Test {
     // overlapping by constructor argument
     this.a = a;       // OK, this keyword used
     b = 0;            // OK, no overlap
-    foo(5);           // OK
+    foo(5);           
   }
 
   public void foo(int c) {

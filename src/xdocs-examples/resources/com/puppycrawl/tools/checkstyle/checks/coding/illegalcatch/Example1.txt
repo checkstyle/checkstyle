@@ -15,8 +15,7 @@ try {
 
 try {
     // some code here
-} catch (ArithmeticException e) { // OK
-
+} catch (ArithmeticException e) { 
 } catch (Exception e) { // violation, catching Exception is illegal
                           and order of catch blocks doesn't matter
 }
@@ -29,7 +28,6 @@ try {
 
 try {
     // some code here
-} catch (ArithmeticException e) { // OK
-
+} catch (ArithmeticException e) { 
 }
 // xdoc section -- end

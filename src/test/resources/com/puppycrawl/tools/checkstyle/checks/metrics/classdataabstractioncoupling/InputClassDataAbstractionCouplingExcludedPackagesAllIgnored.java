@@ -29,17 +29,16 @@ import com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupli
 import com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.inputs.b.BClass;
 import com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.inputs.c.CClass;
 
-public class InputClassDataAbstractionCouplingExcludedPackagesAllIgnored { // ok
-    public AAClass aa = new AAClass(); // ok
-    public ABClass ab = new ABClass(); // ok
-
+public class InputClassDataAbstractionCouplingExcludedPackagesAllIgnored { 
+    public AAClass aa = new AAClass(); 
+    public ABClass ab = new ABClass(); 
     class Inner { // total: ok
-        public BClass b = new BClass(); // ok
-        public CClass c = new CClass(); // ok
+        public BClass b = new BClass(); 
+        public CClass c = new CClass(); 
     }
 }
 
 class InputClassDataAbstractionCouplingExcludedPackagesAllIgnoredHidden { // total: ok
-    public CClass c = new CClass(); // ok
+    public CClass c = new CClass(); 
 }
 

@@ -18,6 +18,5 @@ import java.lang.annotation.Target;
 import java.util.ArrayList;
 import java.util.List;
 
-class InputLeftCurlyTestFirstLine { // ok
-
+class InputLeftCurlyTestFirstLine { 
 }

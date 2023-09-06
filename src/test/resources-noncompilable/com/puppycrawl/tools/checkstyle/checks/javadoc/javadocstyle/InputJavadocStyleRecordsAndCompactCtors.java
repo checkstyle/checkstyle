@@ -16,10 +16,8 @@ tokens = (default)ANNOTATION_DEF, ANNOTATION_FIELD_DEF, CLASS_DEF, CTOR_DEF, \
 //non-compiled with javac: Compilable with Java14
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocstyle;
 
-public class InputJavadocStyleRecordsAndCompactCtors { // ok
-
-    public record MyRecord() { // ok
-
+public class InputJavadocStyleRecordsAndCompactCtors { 
+    public record MyRecord() { 
         /** // violation
          * This Javadoc is missing an ending period
          */
@@ -31,13 +29,13 @@ public class InputJavadocStyleRecordsAndCompactCtors { // ok
          *
          * @see Something
          */
-        public MyRecord() { // ok
+        public MyRecord() { 
         }
 
         /**
          * This is ok!
          */
-        private void method1() { // ok
+        private void method1() { 
         }
 
         /** // violation
@@ -78,10 +76,10 @@ public class InputJavadocStyleRecordsAndCompactCtors { // ok
     /**
      *
      */
-    public record MyThirdRecord(String myString) { // ok
+    public record MyThirdRecord(String myString) { 
     }
 
-    public record MyFourthRecord(String myString) { // ok
+    public record MyFourthRecord(String myString) { 
         /**
          * This Javadoc contains unclosed tag.
          * <code>unclosed 'code' tag<code> // violation
@@ -90,15 +88,15 @@ public class InputJavadocStyleRecordsAndCompactCtors { // ok
             System.out.println("stuff");
         }
 
-        public MyFourthRecord { // ok
+        public MyFourthRecord { 
             /**
              * No period at the end of this sentence
              */
-            String myOtherString = "mystring"; // ok
+            String myOtherString = "mystring"; 
         }
     }
 
-    public record MyFifthRecord() { // ok
+    public record MyFifthRecord() { 
         /** // violation
          * No period here on compact ctor
          */

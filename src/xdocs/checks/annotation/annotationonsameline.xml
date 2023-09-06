@@ -108,21 +108,20 @@ class Foo {
   public Foo() {
   }
 
-  @SuppressWarnings(&quot;unchecked&quot;) public void fun2() {  // OK
+  @SuppressWarnings(&quot;unchecked&quot;) public void fun2() {  
   }
 
 }
 
-@SuppressWarnings(&quot;unchecked&quot;) class Bar extends Foo {  // OK
-
-  @Deprecated public Bar() {  // OK
+@SuppressWarnings(&quot;unchecked&quot;) class Bar extends Foo {  
+  @Deprecated public Bar() {  
   }
 
   @Override  // violation, annotation should be on the same line
   public void fun1() {
   }
 
-  @Before @Override public void fun2() {  // OK
+  @Before @Override public void fun2() {  
   }
 
   @SuppressWarnings(&quot;deprecation&quot;)  // violation, annotation should be on the same line
@@ -145,8 +144,7 @@ class Foo {
           Example:
         </p>
         <source>
-@Deprecated interface Foo {  // OK
-
+@Deprecated interface Foo {  
   void doSomething();
 
 }
@@ -157,7 +155,7 @@ class Bar implements Foo {
   public Bar() {
   }
 
-  @Override  // OK
+  @Override  
   public void doSomething() {
   }
 

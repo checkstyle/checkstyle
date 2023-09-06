@@ -9,7 +9,7 @@
 // xdoc section -- start
 public class Test {
     /**
-     * Some description here. // OK
+     * Some description here. 
      */
     private void methodWithValidCommentStyle() {}
 

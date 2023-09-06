@@ -14,7 +14,7 @@ public interface InputJavadocContentLocationFirstLine {
      */
     void violation();
 
-    /** Text. // OK
+    /** Text. 
      */
     void ok();
     // violation below 'Javadoc content should start from the same line as /\*\*.'
@@ -36,15 +36,15 @@ public interface InputJavadocContentLocationFirstLine {
      */
     void missingAsterisks();
 
-    /**  **** Extra asterisks. //OK
+    /**  **** Extra asterisks. 
      */
     void extraAsterisks();
 
-    /** @implNote Does nothing. // OK
+    /** @implNote Does nothing. 
      **/
     void javadocTag();
 
-    /** <p> // OK
+    /** <p> 
      * HTML paragraph.
      * </p>
      **/
@@ -54,7 +54,7 @@ public interface InputJavadocContentLocationFirstLine {
     void singleLine();
 
     /*
-     * Not a javadoc comment. // OK
+     * Not a javadoc comment. 
      */
     void notJavadocComment();
 

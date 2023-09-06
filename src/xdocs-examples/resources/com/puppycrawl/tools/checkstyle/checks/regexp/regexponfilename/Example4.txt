@@ -10,7 +10,7 @@
 */
 
 // xdoc section -- start
-src/main/resources/sun_checks.xml  //OK
-src/main/resources/check_properties.properties  //OK
+src/main/resources/sun_checks.xml  
+src/main/resources/check_properties.properties  
 src/main/resources/JavaClass.java  //violation, xml|property files are allowed in resource folder
 // xdoc section -- end

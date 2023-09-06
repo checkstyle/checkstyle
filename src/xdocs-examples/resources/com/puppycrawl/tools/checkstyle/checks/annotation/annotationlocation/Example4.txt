@@ -18,15 +18,15 @@ package com.puppycrawl.tools.checkstyle.checks.annotation.annotationlocation;
 
 // xdoc section -- start
 class Example4 {
-  @NotNull private boolean field1; //ok
-  @Override public int hashCode() { return 1; } //ok
-  @NotNull //ok
+  @NotNull private boolean field1; 
+  @Override public int hashCode() { return 1; } 
+  @NotNull 
   private boolean field2;
-  @Override //ok
+  @Override 
   public boolean equals(Object obj) { return true; }
-  @Mock DataLoader loader; //ok
-  @SuppressWarnings("deprecation") DataLoader loader; //ok
+  @Mock DataLoader loader; 
+  @SuppressWarnings("deprecation") DataLoader loader; 
   @SuppressWarnings("deprecation") public int foo() { return 1; } //violation
-  @NotNull @Mock DataLoader loader; //ok
+  @NotNull @Mock DataLoader loader; 
 }
 // xdoc section -- end

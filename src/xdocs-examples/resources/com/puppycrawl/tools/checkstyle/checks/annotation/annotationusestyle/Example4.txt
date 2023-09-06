@@ -11,8 +11,8 @@
 */
 
 // xdoc section -- start
-@SuppressWarnings("unchecked") // OK
-@Deprecated // OK
+@SuppressWarnings("unchecked") 
+@Deprecated 
 @SomeArrays({"unchecked","unused"}) // Violation - must have a trailing array comma
 public class TestOne
 {
@@ -20,8 +20,8 @@ public class TestOne
 }
 
 @SuppressWarnings(value={"unchecked"}) // Violation - must have a trailing array comma
-@Deprecated() // OK
-@SomeArrays(value={"unchecked","unused",}) // OK
+@Deprecated() 
+@SomeArrays(value={"unchecked","unused",}) 
 class TestTwo {
 
 }

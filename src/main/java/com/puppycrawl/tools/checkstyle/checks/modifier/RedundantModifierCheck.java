@@ -116,7 +116,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *
  * <pre>
  * public class PublicClass {
- *   public PublicClass() {} // OK
+ *   public PublicClass() {} 
  * }
  *
  * class PackagePrivateClass {

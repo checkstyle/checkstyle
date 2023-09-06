@@ -71,12 +71,12 @@
         <source>
 public class Test {
   public void func1() throws RuntimeException {} // violation
-  public void func2() throws Exception {}  // ok
+  public void func2() throws Exception {}  
   public void func3() throws Error {}  // violation
   public void func4() throws Throwable {} // violation
-  public void func5() throws NullPointerException {} // ok
+  public void func5() throws NullPointerException {} 
   @Override
-  public void toString() throws Error {} // ok
+  public void toString() throws Error {} 
 }
         </source>
         <p id="Example2-config">
@@ -94,13 +94,13 @@ public class Test {
         <p id="Example2-code">Example:</p>
         <source>
 public class Test {
-  public void func1() throws RuntimeException {} // ok
-  public void func2() throws Exception {}  // ok
-  public void func3() throws Error {}  // ok
-  public void func4() throws Throwable {} // ok
+  public void func1() throws RuntimeException {} 
+  public void func2() throws Exception {}  
+  public void func3() throws Error {}  
+  public void func4() throws Throwable {} 
   public void func5() throws NullPointerException {} // violation
   @Override
-  public void toString() throws Error {} // ok
+  public void toString() throws Error {} 
 }
         </source>
         <p id="Example3-config">
@@ -118,13 +118,13 @@ public class Test {
         <p id="Example3-code">Example:</p>
         <source>
 public class Test {
-  public void func1() throws RuntimeException {} // ok
-  public void func2() throws Exception {}  // ok
+  public void func1() throws RuntimeException {} 
+  public void func2() throws Exception {}  
   public void func3() throws Error {}  // violation
   public void func4() throws Throwable {} // violation
-  public void func5() throws NullPointerException {} // ok
+  public void func5() throws NullPointerException {} 
   @Override
-  public void toString() throws Error {} // ok
+  public void toString() throws Error {} 
 }
         </source>
         <p id="Example4-config">
@@ -143,10 +143,10 @@ public class Test {
         <source>
 public class Test {
   public void func1() throws RuntimeException {} // violation
-  public void func2() throws Exception {}  // ok
+  public void func2() throws Exception {}  
   public void func3() throws Error {}  // violation
   public void func4() throws Throwable {} // violation
-  public void func5() throws NullPointerException {} // ok
+  public void func5() throws NullPointerException {} 
   @Override
   public void toString() throws Error {} // violation
 }

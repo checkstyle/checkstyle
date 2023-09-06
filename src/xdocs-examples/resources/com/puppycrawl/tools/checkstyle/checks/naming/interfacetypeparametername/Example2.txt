@@ -9,8 +9,8 @@
 */
 
 // xdoc section -- start
-interface FirstInterface<T> {} // OK
-interface SecondInterface<t> {} // OK
+interface FirstInterface<T> {} 
+interface SecondInterface<t> {} 
 interface ThirdInterface<type> {} // violation, name 'type' must
                                         // match pattern '^[a-zA-Z]$'
 // xdoc section -- end
