@@ -355,13 +355,13 @@
     <dependency>
       <groupId>org.eclipse.jgit</groupId>
       <artifactId>org.eclipse.jgit</artifactId>
-      <version>6.6.0.202305301015-r</version>
+      <version>6.6.1.202309021850-r</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-simple</artifactId>
-      <version>2.0.7</version>
+      <version>2.0.9</version>
       <scope>test</scope>
     </dependency>
     <dependency>
