@@ -96,7 +96,7 @@
         following:
       </p>
       <source>
-&lt;property name=&quot;tokens&quot; value=&quot;0.42,0.666&quot;/&gt;
+&lt;property name=&quot;tokens&quot; value=&quot;0.42, 0.666&quot;/&gt;
       </source>
       <p>can instead be expressed as:</p>
       <source>
@@ -143,7 +143,7 @@
         following:
       </p>
       <source>
-&lt;property name=&quot;tokens&quot; value=&quot;42,666&quot;/&gt;
+&lt;property name=&quot;tokens&quot; value=&quot;42, 666&quot;/&gt;
       </source>
       <p>can instead be expressed as:</p>
       <source>
@@ -307,11 +307,11 @@
               in other languages.
               Example:
               <div class="wrapper">
-                <pre>@SuppressWarnings(value={"unchecked","unused",})</pre>
+                <pre>@SuppressWarnings(value={"unchecked", "unused",})</pre>
               </div>
               Example of violation:
               <div class="wrapper">
-                <pre>@SuppressWarnings({"unchecked","unused",})</pre>
+                <pre>@SuppressWarnings({"unchecked", "unused",})</pre>
               </div>
             </td>
           </tr>
@@ -325,14 +325,14 @@
               Example:
               <div class="wrapper">
                 <pre>
-                @SuppressWarnings({"unchecked","unused",})
+                @SuppressWarnings({"unchecked", "unused",})
                 @SuppressWarnings("unchecked")
                 </pre>
               </div>
               Example of violation:
               <div class="wrapper">
                 <pre>
-                @SuppressWarnings(value = {"unchecked","unused",})
+                @SuppressWarnings(value = {"unchecked", "unused",})
                 @SuppressWarnings(value = "unchecked")
                 </pre>
               </div>
@@ -960,7 +960,7 @@
             <td>
               Example:
               <div class="wrapper">
-                <pre>@SuppressWarnings(value={"unchecked","unused",})</pre>
+                <pre>@SuppressWarnings(value={"unchecked", "unused",})</pre>
               </div>
             </td>
           </tr>
@@ -970,7 +970,7 @@
             <td>
               Example:
               <div class="wrapper">
-                <pre>@SuppressWarnings(value={"unchecked","unused"})</pre>
+                <pre>@SuppressWarnings(value={"unchecked", "unused"})</pre>
               </div>
             </td>
           </tr>
