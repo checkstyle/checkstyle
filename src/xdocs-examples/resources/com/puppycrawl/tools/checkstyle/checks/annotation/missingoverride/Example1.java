@@ -7,6 +7,19 @@
 */
 
 // xdoc section -- start
+
+class SuperClass{
+
+    public void test1(){
+
+    }
+
+    void test2(){
+
+    }
+
+
+}
 class Test extends SuperClass {
 
     /** {@inheritDoc} */
