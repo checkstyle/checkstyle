@@ -1,0 +1,24 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="DescendantToken">
+      <property name="tokens" value="METHOD_DEF"/>
+      <property name="limitedTokens" value="VARIABLE_DEF"/>
+      <property name="maximumDepth" value="2"/>
+      <property name="maximumNumber" value="1"/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+class Test {
+  public void foo() { // ok
+    int var1 = 1;
+  }
+  public void boo() { // violation
+    int var1 = 1;
+    int var2 = 2;
+  }
+}
+// xdoc section -- end

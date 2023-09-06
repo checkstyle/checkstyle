@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+
+  <head>
+    <title>Importing and debugging in NetBeans IDE</title>
+  </head>
+
+  <body>
+    <section name="Content">
+      <macro name="toc">
+        <param name="fromDepth" value="1"/>
+        <param name="toDepth" value="1"/>
+      </macro>
+    </section>
+
+    <section name="Import Checkstyle Project">
+      <p>
+        Select File > New Project > Maven > Project with existing POM<br/><br/>
+        <span class="wrapper block">
+          <img alt="screenshot" src="images/gui_screenshot_importing_netbeans.png"/>
+        </span>
+        <br/><br/>
+        <span class="wrapper block">
+          <img alt="screenshot" src="images/gui_screenshot_importing_netbeans1.png"/>
+        </span>
+      </p>
+    </section>
+
+    <section name="Debug">
+      <p>
+        Open the Check's source file by double-click on it in a source tree as is shown:<br/><br/>
+        <span class="wrapper block">
+          <img alt="screenshot" src="images/gui_screenshot_select_check_netbeans.png"/>
+        </span>
+        <br/><br/>
+        Debug the Check by putting the breakpoint at controversial place (double-click)
+        on the left part of line number as it is shown:<br/><br/>
+        <span class="wrapper block">
+          <img alt="screenshot" src="images/gui_screenshot_debug_netbeans.png"/>
+        </span>
+        <br/><br/>
+        Then right-click the corresponding Unit-test file or class definition > Debug Test File
+        <br/><br/>
+        <span class="wrapper block">
+          <img alt="screenshot" src="images/gui_screenshot_ut_select_netbeans.png"/>
+        </span>
+        <br/><br/>
+        Then manage you debug operations by Ctrl+F7 (Step Out), F7 (Step Into),
+        Shift+F8 (Step Over Expression), Step Over (F8)
+      </p>
+    </section>
+
+    <section name="Organize Imports">
+      <p>
+        One of the Checkstyle checks we run on our own code require certain order of import
+        statements. Few changes in IDE settings are required to help your IDE do it
+        automatically.<br/>
+        To change formatter settings please go to Tools->Options in menu.<br/>
+        On Options page go to Editor->Formatting->Java->Imports (follow numbers on a
+        picture) and apply settings highlighted:<br/><br/>
+        <span class="wrapper block">
+          <img alt="Organize Imports settings in NetBeans"
+            src="images/gui_screenshot_organize_imports_netbeans.jpg"/>
+        </span>
+        <br/>
+      </p>
+    </section>
+
+  </body>
+</document>

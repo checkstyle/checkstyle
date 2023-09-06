@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/DECORATION/1.8.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/DECORATION/1.8.0
+                        https://maven.apache.org/xsd/decoration-1.8.0.xsd">
+
+  <bannerLeft>
+    <alt>Checkstyle</alt>
+    <href>https://checkstyle.org</href>
+    <src>images/header-checkstyle-logo.png</src>
+  </bannerLeft>
+  <bannerRight>
+    <alt>Checkstyle</alt>
+    <href>https://checkstyle.org</href>
+    <src>images/header-right-ruller.png</src>
+  </bannerRight>
+
+  <publishDate position="right" />
+  <version position="right" />
+
+  <poweredBy>
+    <logo name="GitHub" href="https://github.com/checkstyle/checkstyle"
+        img="images/github_logo_social_coding_outlined.png"
+          />
+    <logo name="Twitter"
+          img="images/twitter_button.png"
+          href="https://twitter.com/checkstyle_java/"
+          />
+    <logo name="Stackoverflow"
+          img="images/stackoverflow.jpeg"
+          href="https://stackoverflow.com/questions/tagged/checkstyle"
+          />
+    <logo name="GoogleGroups"
+          img="images/groups.png"
+          href="https://groups.google.com/forum/#!forum/checkstyle"
+          />
+    <logo name="JProfiler"
+          img="https://www.ej-technologies.com/images/product_banners/jprofiler_medium.png"
+          href="https://www.ej-technologies.com/products/jprofiler/overview.html"
+          />
+  </poweredBy>
+
+  <body>
+    <head>
+      <!-- Will be added to every generated page -->
+      <![CDATA[
+        <script type="text/javascript" src="$relativePath/js/checkstyle.js"></script>
+        <script type="text/javascript"
+              src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script type="text/javascript" src="$relativePath/js/anchors.js"></script>
+        <script type="text/javascript" src="$relativePath/js/google-analytics.js"></script>
+        <link rel="icon" href="$relativePath/images/favicon.png" type="image/x-icon" />
+        <link rel="shortcut icon" href="$relativePath/images/favicon.ico" type="image/ico" />
+      ]]>
+    </head>
+    <links>
+      <item name="toTop"/>
+    </links>
+
+    <menu name="About">
+      <item name="Checkstyle" href="index.html"/>
+      <item name="Release Notes" href="releasenotes.html"/>
+      <item name="Consulting" href="consulting.html"/>
+      <item name="Sponsoring" href="sponsoring.html"/>
+    </menu>
+
+    <menu name="Documentation">
+      <item name="Configuration" href="config.html">
+        <item name="Property Types" href="property_types.html"/>
+        <item name="System Properties" href="config_system_properties.html"/>
+      </item>
+
+      <item name="Running" href="running.html">
+        <item name="Ant Task" href="anttask.html"/>
+        <item name="Command Line" href="cmdline.html"/>
+      </item>
+
+      <item name="Checks" href="checks.html">
+        <item name="Annotations" href="checks/annotation/index.html" collapse="true">
+          <item name="AnnotationLocation" href="checks/annotation/annotationlocation.html"/>
+          <item name="AnnotationOnSameLine" href="checks/annotation/annotationonsameline.html"/>
+          <item name="AnnotationUseStyle" href="checks/annotation/annotationusestyle.html"/>
+          <item name="MissingDeprecated" href="checks/annotation/missingdeprecated.html"/>
+          <item name="MissingOverride" href="checks/annotation/missingoverride.html"/>
+          <item name="PackageAnnotation" href="checks/annotation/packageannotation.html"/>
+          <item name="SuppressWarnings" href="checks/annotation/suppresswarnings.html"/>
+          <item name="SuppressWarningsHolder" href="checks/annotation/suppresswarningsholder.html"/>
+        </item>
+        <item name="Block Checks" href="checks/blocks/index.html" collapse="true">
+          <item name="AvoidNestedBlocks" href="checks/blocks/avoidnestedblocks.html"/>
+          <item name="EmptyBlock" href="checks/blocks/emptyblock.html"/>
+          <item name="EmptyCatchBlock" href="checks/blocks/emptycatchblock.html"/>
+          <item name="LeftCurly" href="checks/blocks/leftcurly.html"/>
+          <item name="NeedBraces" href="checks/blocks/needbraces.html"/>
+          <item name="RightCurly" href="checks/blocks/rightcurly.html"/>
+        </item>
+        <item name="Class Design" href="checks/design/index.html" collapse="true">
+          <item name="DesignForExtension" href="checks/design/designforextension.html"/>
+          <item name="FinalClass" href="checks/design/finalclass.html"/>
+          <item name="HideUtilityClassConstructor"
+                href="checks/design/hideutilityclassconstructor.html"/>
+          <item name="InnerTypeLast" href="checks/design/innertypelast.html"/>
+          <item name="InterfaceIsType" href="checks/design/interfaceistype.html"/>
+          <item name="MutableException" href="checks/design/mutableexception.html"/>
+          <item name="OneTopLevelClass" href="checks/design/onetoplevelclass.html"/>
+          <item name="ThrowsCount" href="checks/design/throwscount.html"/>
+          <item name="VisibilityModifier" href="checks/design/visibilitymodifier.html"/>
+        </item>
+        <item name="Coding" href="checks/coding/index.html" collapse="true">
+          <item name="ArrayTrailingComma" href="checks/coding/arraytrailingcomma.html"/>
+          <item name="AvoidDoubleBraceInitialization"
+                href="checks/coding/avoiddoublebraceinitialization.html"/>
+          <item name="AvoidInlineConditionals" href="checks/coding/avoidinlineconditionals.html"/>
+          <item name="AvoidNoArgumentSuperConstructorCall"
+                href="checks/coding/avoidnoargumentsuperconstructorcall.html"/>
+          <item name="CovariantEquals" href="checks/coding/covariantequals.html"/>
+          <item name="DeclarationOrder" href="checks/coding/declarationorder.html"/>
+          <item name="DefaultComesLast" href="checks/coding/defaultcomeslast.html"/>
+          <item name="EmptyStatement" href="checks/coding/emptystatement.html"/>
+          <item name="EqualsAvoidNull" href="checks/coding/equalsavoidnull.html"/>
+          <item name="EqualsHashCode" href="checks/coding/equalshashcode.html"/>
+          <item name="ExplicitInitialization" href="checks/coding/explicitinitialization.html"/>
+          <item name="FallThrough" href="checks/coding/fallthrough.html"/>
+          <item name="FinalLocalVariable" href="checks/coding/finallocalvariable.html"/>
+          <item name="HiddenField" href="checks/coding/hiddenfield.html"/>
+          <item name="IllegalCatch" href="checks/coding/illegalcatch.html"/>
+          <item name="IllegalInstantiation" href="checks/coding/illegalinstantiation.html"/>
+          <item name="IllegalThrows" href="checks/coding/illegalthrows.html"/>
+          <item name="IllegalToken" href="checks/coding/illegaltoken.html"/>
+          <item name="IllegalTokenText" href="checks/coding/illegaltokentext.html"/>
+          <item name="IllegalType" href="checks/coding/illegaltype.html"/>
+          <item name="InnerAssignment" href="checks/coding/innerassignment.html"/>
+          <item name="MagicNumber" href="checks/coding/magicnumber.html"/>
+          <item name="MatchXpath" href="checks/coding/matchxpath.html"/>
+          <item name="MissingCtor" href="checks/coding/missingctor.html"/>
+          <item name="MissingSwitchDefault" href="checks/coding/missingswitchdefault.html"/>
+          <item name="ModifiedControlVariable" href="checks/coding/modifiedcontrolvariable.html"/>
+          <item name="MultipleStringLiterals" href="checks/coding/multiplestringliterals.html"/>
+          <item name="MultipleVariableDeclarations"
+                href="checks/coding/multiplevariabledeclarations.html"/>
+          <item name="NestedForDepth" href="checks/coding/nestedfordepth.html"/>
+          <item name="NestedIfDepth" href="checks/coding/nestedifdepth.html"/>
+          <item name="NestedTryDepth" href="checks/coding/nestedtrydepth.html"/>
+          <item name="NoArrayTrailingComma" href="checks/coding/noarraytrailingcomma.html"/>
+          <item name="NoClone" href="checks/coding/noclone.html"/>
+          <item name="NoEnumTrailingComma" href="checks/coding/noenumtrailingcomma.html"/>
+          <item name="NoFinalizer" href="checks/coding/nofinalizer.html"/>
+          <item name="OneStatementPerLine" href="checks/coding/onestatementperline.html"/>
+          <item name="OverloadMethodsDeclarationOrder"
+                href="checks/coding/overloadmethodsdeclarationorder.html"/>
+          <item name="PackageDeclaration" href="checks/coding/packagedeclaration.html"/>
+          <item name="ParameterAssignment" href="checks/coding/parameterassignment.html"/>
+          <item name="RequireThis" href="checks/coding/requirethis.html"/>
+          <item name="ReturnCount" href="checks/coding/returncount.html"/>
+          <item name="SimplifyBooleanExpression"
+                href="checks/coding/simplifybooleanexpression.html"/>
+          <item name="SimplifyBooleanReturn" href="checks/coding/simplifybooleanreturn.html"/>
+          <item name="StringLiteralEquality" href="checks/coding/stringliteralequality.html"/>
+          <item name="SuperClone" href="checks/coding/superclone.html"/>
+          <item name="SuperFinalize" href="checks/coding/superfinalize.html"/>
+          <item name="UnnecessaryParentheses" href="checks/coding/unnecessaryparentheses.html"/>
+          <item name="UnnecessarySemicolonAfterOuterTypeDeclaration"
+                href="checks/coding/unnecessarysemicolonafteroutertypedeclaration.html"/>
+          <item name="UnnecessarySemicolonAfterTypeMemberDeclaration"
+                href="checks/coding/unnecessarysemicolonaftertypememberdeclaration.html"/>
+          <item name="UnnecessarySemicolonInEnumeration"
+                href="checks/coding/unnecessarysemicoloninenumeration.html"/>
+          <item name="UnnecessarySemicolonInTryWithResources"
+                href="checks/coding/unnecessarysemicolonintrywithresources.html"/>
+          <item name="UnusedLocalVariable" href="checks/coding/unusedlocalvariable.html"/>
+          <item name="VariableDeclarationUsageDistance"
+                href="checks/coding/variabledeclarationusagedistance.html"/>
+        </item>
+        <item name="Headers" href="checks/header/index.html" collapse="true">
+          <item name="Header" href="checks/header/header.html"/>
+          <item name="RegexpHeader" href="checks/header/regexpheader.html"/>
+        </item>
+        <item name="Imports" href="checks/imports/index.html" collapse="true">
+          <item name="AvoidStarImport" href="checks/imports/avoidstarimport.html"/>
+          <item name="AvoidStaticImport" href="checks/imports/avoidstaticimport.html"/>
+          <item name="CustomImportOrder" href="checks/imports/customimportorder.html"/>
+          <item name="IllegalImport" href="checks/imports/illegalimport.html"/>
+          <item name="ImportControl" href="checks/imports/importcontrol.html"/>
+          <item name="ImportOrder" href="checks/imports/importorder.html"/>
+          <item name="RedundantImport" href="checks/imports/redundantimport.html"/>
+          <item name="UnusedImports" href="checks/imports/unusedimports.html"/>
+        </item>
+        <item name="Javadoc Comments" href="checks/javadoc/index.html" collapse="true">
+          <item name="AtclauseOrder" href="checks/javadoc/atclauseorder.html"/>
+          <item name="InvalidJavadocPosition" href="checks/javadoc/invalidjavadocposition.html"/>
+          <item name="JavadocBlockTagLocation" href="checks/javadoc/javadocblocktaglocation.html"/>
+          <item name="JavadocContentLocation" href="checks/javadoc/javadoccontentlocation.html"/>
+          <item name="JavadocMethod" href="checks/javadoc/javadocmethod.html"/>
+          <item name="JavadocMissingLeadingAsterisk"
+                href="checks/javadoc/javadocmissingleadingasterisk.html"/>
+          <item name="JavadocMissingWhitespaceAfterAsterisk"
+                href="checks/javadoc/javadocmissingwhitespaceafterasterisk.html"/>
+          <item name="JavadocPackage" href="checks/javadoc/javadocpackage.html"/>
+          <item name="JavadocParagraph" href="checks/javadoc/javadocparagraph.html"/>
+          <item name="JavadocStyle" href="checks/javadoc/javadocstyle.html"/>
+          <item name="JavadocTagContinuationIndentation"
+                href="checks/javadoc/javadoctagcontinuationindentation.html"/>
+          <item name="JavadocType" href="checks/javadoc/javadoctype.html"/>
+          <item name="JavadocVariable" href="checks/javadoc/javadocvariable.html"/>
+          <item name="MissingJavadocMethod" href="checks/javadoc/missingjavadocmethod.html"/>
+          <item name="MissingJavadocPackage" href="checks/javadoc/missingjavadocpackage.html"/>
+          <item name="MissingJavadocType" href="checks/javadoc/missingjavadoctype.html"/>
+          <item name="NonEmptyAtclauseDescription"
+                href="checks/javadoc/nonemptyatclausedescription.html"/>
+          <item name="RequireEmptyLineBeforeBlockTagGroup"
+                href="checks/javadoc/requireemptylinebeforeblocktaggroup.html"/>
+          <item name="SingleLineJavadoc" href="checks/javadoc/singlelinejavadoc.html"/>
+          <item name="SummaryJavadoc" href="checks/javadoc/summaryjavadoc.html"/>
+          <item name="WriteTag" href="checks/javadoc/writetag.html"/>
+        </item>
+        <item name="Metrics" href="checks/metrics/index.html" collapse="true">
+          <item name="BooleanExpressionComplexity"
+                href="checks/metrics/booleanexpressioncomplexity.html"/>
+          <item name="ClassDataAbstractionCoupling"
+                href="checks/metrics/classdataabstractioncoupling.html"/>
+          <item name="ClassFanOutComplexity" href="checks/metrics/classfanoutcomplexity.html"/>
+          <item name="CyclomaticComplexity" href="checks/metrics/cyclomaticcomplexity.html"/>
+          <item name="JavaNCSS" href="checks/metrics/javancss.html"/>
+          <item name="NPathComplexity" href="checks/metrics/npathcomplexity.html"/>
+        </item>
+        <item name="Miscellaneous" href="checks/misc/index.html" collapse="true">
+          <item name="ArrayTypeStyle" href="checks/misc/arraytypestyle.html"/>
+          <item name="AvoidEscapedUnicodeCharacters"
+                href="checks/misc/avoidescapedunicodecharacters.html"/>
+          <item name="CommentsIndentation" href="checks/misc/commentsindentation.html"/>
+          <item name="DescendantToken" href="checks/misc/descendanttoken.html"/>
+          <item name="FinalParameters" href="checks/misc/finalparameters.html"/>
+          <item name="Indentation" href="checks/misc/indentation.html"/>
+          <item name="NewlineAtEndOfFile" href="checks/misc/newlineatendoffile.html"/>
+          <item name="NoCodeInFile" href="checks/misc/nocodeinfile.html"/>
+          <item name="OrderedProperties" href="checks/misc/orderedproperties.html"/>
+          <item name="OuterTypeFilename" href="checks/misc/outertypefilename.html"/>
+          <item name="TodoComment" href="checks/misc/todocomment.html"/>
+          <item name="TrailingComment" href="checks/misc/trailingcomment.html"/>
+          <item name="Translation" href="checks/misc/translation.html"/>
+          <item name="UncommentedMain" href="checks/misc/uncommentedmain.html"/>
+          <item name="UniqueProperties" href="checks/misc/uniqueproperties.html"/>
+          <item name="UpperEll" href="checks/misc/upperell.html"/>
+        </item>
+        <item name="Modifiers" href="checks/modifier/index.html" collapse="true">
+          <item name="ClassMemberImpliedModifier"
+                href="checks/modifier/classmemberimpliedmodifier.html"/>
+          <item name="InterfaceMemberImpliedModifier"
+                href="checks/modifier/interfacememberimpliedmodifier.html"/>
+          <item name="ModifierOrder" href="checks/modifier/modifierorder.html"/>
+          <item name="RedundantModifier" href="checks/modifier/redundantmodifier.html"/>
+        </item>
+
+        <item name="Naming Conventions" href="checks/naming/index.html" collapse="true">
+          <item name="AbbreviationAsWordInName"
+                href="checks/naming/abbreviationaswordinname.html"/>
+          <item name="AbstractClassName" href="checks/naming/abstractclassname.html"/>
+          <item name="CatchParameterName" href="checks/naming/catchparametername.html"/>
+          <item name="ClassTypeParameterName" href="checks/naming/classtypeparametername.html"/>
+          <item name="ConstantName" href="checks/naming/constantname.html"/>
+          <item name="IllegalIdentifierName" href="checks/naming/illegalidentifiername.html"/>
+          <item name="InterfaceTypeParameterName"
+                href="checks/naming/interfacetypeparametername.html"/>
+          <item name="LambdaParameterName" href="checks/naming/lambdaparametername.html"/>
+          <item name="LocalFinalVariableName" href="checks/naming/localfinalvariablename.html"/>
+          <item name="LocalVariableName" href="checks/naming/localvariablename.html"/>
+          <item name="MemberName" href="checks/naming/membername.html"/>
+          <item name="MethodName" href="checks/naming/methodname.html"/>
+          <item name="MethodTypeParameterName" href="checks/naming/methodtypeparametername.html"/>
+          <item name="PackageName" href="checks/naming/packagename.html"/>
+          <item name="ParameterName" href="checks/naming/parametername.html"/>
+          <item name="PatternVariableName" href="checks/naming/patternvariablename.html"/>
+          <item name="RecordComponentName" href="checks/naming/recordcomponentname.html"/>
+          <item name="RecordTypeParameterName" href="checks/naming/recordtypeparametername.html"/>
+          <item name="StaticVariableName" href="checks/naming/staticvariablename.html"/>
+          <item name="TypeName" href="checks/naming/typename.html"/>
+        </item>
+        <item name="Regexp" href="checks/regexp/index.html" collapse="true">
+          <item name="Regexp" href="checks/regexp/regexp.html"/>
+          <item name="RegexpMultiline" href="checks/regexp/regexpmultiline.html"/>
+          <item name="RegexpOnFilename" href="checks/regexp/regexponfilename.html"/>
+          <item name="RegexpSingleline" href="checks/regexp/regexpsingleline.html"/>
+          <item name="RegexpSinglelineJava" href="checks/regexp/regexpsinglelinejava.html"/>
+        </item>
+        <item name="Size Violations" href="checks/sizes/index.html" collapse="true">
+          <item name="AnonInnerLength" href="checks/sizes/anoninnerlength.html"/>
+          <item name="ExecutableStatementCount" href="checks/sizes/executablestatementcount.html"/>
+          <item name="FileLength" href="checks/sizes/filelength.html"/>
+          <item name="LambdaBodyLength" href="checks/sizes/lambdabodylength.html"/>
+          <item name="LineLength" href="checks/sizes/linelength.html"/>
+          <item name="MethodCount" href="checks/sizes/methodcount.html"/>
+          <item name="MethodLength" href="checks/sizes/methodlength.html"/>
+          <item name="OuterTypeNumber" href="checks/sizes/outertypenumber.html"/>
+          <item name="ParameterNumber" href="checks/sizes/parameternumber.html"/>
+          <item name="RecordComponentNumber" href="checks/sizes/recordcomponentnumber.html"/>
+        </item>
+        <item name="Whitespace" href="checks/whitespace/index.html" collapse="true">
+          <item name="EmptyForInitializerPad"
+                href="checks/whitespace/emptyforinitializerpad.html"/>
+          <item name="EmptyForIteratorPad" href="checks/whitespace/emptyforiteratorpad.html"/>
+          <item name="EmptyLineSeparator" href="checks/whitespace/emptylineseparator.html"/>
+          <item name="FileTabCharacter" href="checks/whitespace/filetabcharacter.html"/>
+          <item name="GenericWhitespace" href="checks/whitespace/genericwhitespace.html"/>
+          <item name="MethodParamPad" href="checks/whitespace/methodparampad.html"/>
+          <item name="NoLineWrap" href="checks/whitespace/nolinewrap.html"/>
+          <item name="NoWhitespaceAfter" href="checks/whitespace/nowhitespaceafter.html"/>
+          <item name="NoWhitespaceBefore" href="checks/whitespace/nowhitespacebefore.html"/>
+          <item name="NoWhitespaceBeforeCaseDefaultColon"
+                href="checks/whitespace/nowhitespacebeforecasedefaultcolon.html"/>
+          <item name="OperatorWrap" href="checks/whitespace/operatorwrap.html"/>
+          <item name="ParenPad" href="checks/whitespace/parenpad.html"/>
+          <item name="SeparatorWrap" href="checks/whitespace/separatorwrap.html"/>
+          <item name="SingleSpaceSeparator" href="checks/whitespace/singlespaceseparator.html"/>
+          <item name="TypecastParenPad" href="checks/whitespace/typecastparenpad.html"/>
+          <item name="WhitespaceAfter" href="checks/whitespace/whitespaceafter.html"/>
+          <item name="WhitespaceAround" href="checks/whitespace/whitespacearound.html"/>
+        </item>
+      </item>
+
+      <item name="Filters" href="filters/index.html" collapse="true">
+        <item name="SeverityMatchFilter" href="filters/severitymatchfilter.html"/>
+        <item name="SuppressionCommentFilter" href="filters/suppressioncommentfilter.html"/>
+        <item name="SuppressionFilter" href="filters/suppressionfilter.html"/>
+        <item name="SuppressionSingleFilter" href="filters/suppressionsinglefilter.html"/>
+        <item name="SuppressionXpathFilter" href="filters/suppressionxpathfilter.html"/>
+        <item name="SuppressionXpathSingleFilter"
+              href="filters/suppressionxpathsinglefilter.html"/>
+        <item name="SuppressWarningsFilter" href="filters/suppresswarningsfilter.html"/>
+        <item name="SuppressWithNearbyCommentFilter"
+              href="filters/suppresswithnearbycommentfilter.html"/>
+        <item name="SuppressWithNearbyTextFilter"
+              href="filters/suppresswithnearbytextfilter.html"/>
+        <item name="SuppressWithPlainTextCommentFilter"
+              href="filters/suppresswithplaintextcommentfilter.html"/>
+      </item>
+      <item name="File Filters" href="filefilters/index.html" collapse="true">
+        <item name="BeforeExecutionExclusionFileFilter"
+              href="filefilters/beforeexecutionexclusionfilefilter.html"/>
+      </item>
+
+      <item name="Style Configurations" href="style_configs.html">
+        <item name="Google's Style" href="google_style.html"/>
+        <item name="Sun's Style" href="sun_style.html"/>
+      </item>
+    </menu>
+
+    <menu name="Developers">
+      <item name="Extending Checkstyle" href="extending.html">
+        <item name="Writing Checks" href="writingchecks.html"/>
+        <item name="Writing Javadoc Checks" href="writingjavadocchecks.html"/>
+        <item name="Writing Filters" href="writingfilters.html"/>
+        <item name="Writing File Filters" href="writingfilefilters.html"/>
+        <item name="Writing Listeners" href="writinglisteners.html"/>
+      </item>
+      <item name="Contributing" href="contributing.html"/>
+      <item name="Beginning Development" href="beginning_development.html">
+        <item name="Eclipse IDE" href="eclipse.html"/>
+        <item name="NetBeans IDE" href="netbeans.html"/>
+        <item name="IntelliJ IDE" href="idea.html"/>
+      </item>
+      <item name="Javadoc" href="apidocs/index.html"/>
+    </menu>
+
+    <menu ref="reports"/>
+  </body>
+</project>

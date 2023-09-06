@@ -1,0 +1,8 @@
+/*xml
+<module name="Checker">
+  <module name="RegexpSingleline" />
+</module>
+*/
+
+// xdoc section -- start
+// xdoc section -- end

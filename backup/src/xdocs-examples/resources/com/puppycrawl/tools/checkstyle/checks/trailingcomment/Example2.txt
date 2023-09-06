@@ -1,0 +1,18 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="TrailingComment">
+      <property name="format" value="^\s*$"/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+// OK
+if (/* OK, this comment does not end the line */ x > 5) {}
+int a = 5; // violation, line content before comment should match pattern "^\s*$"
+doSomething(
+  param1
+); // violation, line content before comment should match pattern "^\s*$"
+// xdoc section -- end

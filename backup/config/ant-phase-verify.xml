@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="phase-package" default="execute">
+  <condition property="run">
+    <or>
+      <not>
+        <isset property="checkstyle.ant.skip"/>
+      </not>
+      <isfalse value="${checkstyle.ant.skip}"/>
+    </or>
+  </condition>
+
+  <target name="execute" if="run">
+    <taskdef name="checkstyle"
+             classname="com.puppycrawl.tools.checkstyle.ant.CheckstyleAntTask"
+             classpath="${mvn.runtime_classpath}"
+             />
+
+    <property name="check.config" location="config/checkstyle-checks.xml"/>
+    <property name="check.config_non_main"
+              location="config/checkstyle-non-main-files-checks.xml"/>
+    <property name="check.config_resources"
+              location="config/checkstyle-resources-checks.xml"/>
+    <property name="check.config_input"
+              location="config/checkstyle-input-checks.xml"/>
+    <property name="check.config_examples"
+              location="config/checkstyle-examples-checks.xml"/>
+
+    <tstamp>
+      <format property="STARTED" pattern="dd/MM/yyyy hh:mm:ss aa" />
+    </tstamp>
+    <echo level="info">Checkstyle started (checkstyle-checks.xml): ${STARTED}</echo>
+
+    <checkstyle config="${check.config}"
+                failOnViolation="false"
+                failureProperty="checkstyle.failure.property"
+                executeIgnoredModules="true"
+                >
+      <fileset dir="src"
+               includes="**/*"
+               excludes="it/resources/**/*,it/resources-noncompilable/**/*,
+               test/resources/**/*,test/resources-noncompilable/**/*,**/gen/**,
+               xdocs-examples/resources/**/*,xdocs-examples/resources-noncompilable/**/*"/>
+      <formatter type="plain"/>
+      <formatter type="xml" toFile="${mvn.project.build.directory}/cs_errors.xml"/>
+      <formatter type="sarif" toFile="${mvn.project.build.directory}/cs_errors.sarif"/>
+      <property key="checkstyle.cache.file" file="${mvn.project.build.directory}/cachefile"/>
+      <property key="checkstyle.header.file" file="config/java.header"/>
+      <property key="checkstyle.regexp.header.file" file="config/java-regexp.header"/>
+      <property key="checkstyle.importcontrol.file" file="config/import-control.xml"/>
+      <property key="checkstyle.importcontroltest.file" file="config/import-control-test.xml"/>
+      <property key="checkstyle.suppressions.file"
+                file="config/suppressions.xml"/>
+      <property key="checkstyle.suppressions-xpath.file"
+                file="config/suppressions-xpath.xml"/>
+    </checkstyle>
+
+    <tstamp>
+      <format property="FINISHED" pattern="dd/MM/yyyy hh:mm:ss aa"/>
+    </tstamp>
+    <echo level="info">Checkstyle finished (checkstyle-checks.xml) : ${FINISHED}</echo>
+
+    <tstamp>
+      <format property="STARTED" pattern="dd/MM/yyyy hh:mm:ss aa"/>
+    </tstamp>
+    <echo level="info">Checkstyle started (checkstyle-non-main-files-checks.xml): ${STARTED}</echo>
+
+    <checkstyle config="${check.config_non_main}"
+                failOnViolation="true"
+                failureProperty="checkstyle.failure.property"
+                executeIgnoredModules="true"
+                >
+      <property key="checkstyle.non-main-files-suppressions.file"
+                file="config/checkstyle-non-main-files-suppressions.xml"/>
+      <path>
+        <fileset dir="${basedir}" includes="**/*">
+          <exclude name=".git/**/*"/>
+          <!-- TeamCity config is generated and contains embedded CDATA -->
+          <exclude name=".teamcity/**/*"/>
+          <exclude name="src/main/**/*"/>
+          <exclude name="src/test/java/**/*"/>
+          <exclude name="src/xdocs-examples/**/*"/>
+          <exclude name="src/site/resources/images/**/*"/>
+          <!-- styleguides are copied/cached from origin place we should not change them  -->
+          <exclude name="src/site/resources/styleguides/**/*"/>
+
+          <!-- Eclipse project files -->
+          <exclude name=".settings/**/*"/>
+          <exclude name=".externalToolBuilders/**/*"/>
+          <exclude name=".classpath"/>
+          <exclude name=".project"/>
+
+          <!-- m2e-code-quality Eclipse IDE plugin temporary configuration files
+               for Eclipse CS Checkstyle / PMD / SpotBugs Plug-Ins -->
+          <exclude name=".checkstyle"/>
+          <exclude name=".pmd/**/*"/>
+          <exclude name=".pmdruleset.xml"/>
+          <exclude name=".fbExcludeFilterFile/**/*"/>
+
+          <!-- NetBeans project files -->
+          <exclude name="**/nbactions.xml"/>
+          <exclude name="**/nb-configuration.xml"/>
+
+          <!-- Maven build folder -->
+          <exclude name="target/**/*" />
+          <exclude name="bin/**/*" />
+
+          <!-- IDEA project files -->
+          <exclude name="*.iml"/>
+          <exclude name="*.ipr"/>
+          <exclude name="*.iws"/>
+          <exclude name=".idea/**/*"/>
+
+          <!-- Temp files -->
+          <exclude name="*~" />
+
+          <!-- Java Virtual machine crash logs -->
+          <exclude name="hs_err_pid*"/>
+          <exclude name="replay_pid*"/>
+
+          <!-- Apple MAC OSX hidden file -->
+          <exclude name=".DS_Store" />
+
+          <!-- NonDex files -->
+          <exclude name=".nondex/**/*" />
+
+          <!-- Do not validate possible source code remnants after regression testing -->
+          <exclude name=".ci-temp/**/*"/>
+
+          <!-- Exclude because printed AST is verified by matching checkstyle output -->
+          <exclude name="**/grammar/**/Expected*.txt"/>
+
+          <!-- Exclude all peripheral files generated by ANTLR -->
+          <exclude name="**/gen/**"/>
+
+        </fileset>
+      </path>
+      <formatter type="plain"/>
+      <formatter type="xml" toFile="${mvn.project.build.directory}/cs_non_main_files_errors.xml"/>
+    </checkstyle>
+
+    <tstamp>
+      <format property="FINISHED" pattern="dd/MM/yyyy hh:mm:ss aa"/>
+    </tstamp>
+    <echo level="info">Checkstyle finished (checkstyle-non-main-files-checks.xml): ${FINISHED}
+    </echo>
+
+    <tstamp>
+      <format property="STARTED" pattern="dd/MM/yyyy hh:mm:ss aa"/>
+    </tstamp>
+    <echo level="info">Checkstyle started (checkstyle-resources-checks.xml): ${STARTED}</echo>
+
+    <checkstyle config="${check.config_resources}"
+                failOnViolation="true"
+                failureProperty="checkstyle.failure.property"
+                executeIgnoredModules="true"
+                >
+      <path>
+        <fileset dir="src"
+            includes="it/resources/**/*,test/resources/**/*,test/resources-noncompilable/**/*">
+          <!-- bad syntax, permanent exclude -->
+          <exclude name="**/InputAstTreeStringPrinter.java" />
+          <exclude name="**/InputSuppressionsStringPrinter.java"/>
+          <exclude name="**/InputMainIncorrectClass.java"/>
+          <exclude name="**/InputJavadocPropertiesGeneratorParseError.java"/>
+          <exclude name="**/InputMainFrameModelIncorrectClass.java"/>
+          <exclude name="**/InputBeforeExecutionExclusionFileFilterIncorrectClass.java"/>
+          <exclude name="**/InputJavaParser.java"/>
+
+        </fileset>
+      </path>
+      <formatter type="plain"/>
+      <formatter type="xml" toFile="${mvn.project.build.directory}/cs_resources_errors.xml"/>
+    </checkstyle>
+
+    <tstamp>
+      <format property="FINISHED" pattern="dd/MM/yyyy hh:mm:ss aa"/>
+    </tstamp>
+    <echo level="info">Checkstyle finished (checkstyle-resources-checks.xml): ${FINISHED}</echo>
+
+    <fail if="checkstyle.failure.property"
+          message="Checkstyle failed: ${checkstyle.failure.property}"
+          />
+
+    <tstamp>
+      <format property="STARTED" pattern="dd/MM/yyyy hh:mm:ss aa"/>
+    </tstamp>
+    <echo level="info">Checkstyle started (checkstyle-input-checks.xml): ${STARTED}</echo>
+
+    <checkstyle config="${check.config_input}"
+                failOnViolation="true"
+                failureProperty="checkstyle.failure.property"
+                executeIgnoredModules="true"
+    >
+      <path>
+        <fileset dir="src"
+                 includes="test/resources/**/*.java,test/resources-noncompilable/**/*.java">
+          <!-- bad syntax, permanent exclude -->
+          <exclude name="**/InputAstTreeStringPrinter.java" />
+          <exclude name="**/InputSuppressionsStringPrinter.java"/>
+          <exclude name="**/InputMainIncorrectClass.java"/>
+          <exclude name="**/InputJavadocPropertiesGeneratorParseError.java"/>
+          <exclude name="**/InputMainFrameModelIncorrectClass.java"/>
+          <exclude name="**/InputBeforeExecutionExclusionFileFilterIncorrectClass.java"/>
+          <exclude name="**/InputJavaParser.java"/>
+          <!-- This check does not apply to grammar input files -->
+          <exclude name="**/grammar/**/*"/>
+          <!-- No need to check xpathmapper files -->
+          <exclude name="**/xpath/xpathmapper/**/*"/>
+          <!-- No need to check xpathquerygenerator files -->
+          <exclude name="**/xpath/xpathquerygenerator/**/*"/>
+          <!-- No need to check xpathfilegenerator files -->
+          <exclude name="**/xpathfilegenerator*/**/*"/>
+          <!-- No need to check main files -->
+          <exclude name="**/main/**/*"/>
+          <!-- No need to check javaparser files -->
+          <exclude name="**/javaparser/**/*"/>
+          <!-- No need to check treewalker files -->
+          <exclude name="**/treewalker/**/*"/>
+          <!-- No need to check gui files -->
+          <exclude name="**/gui/**/*"/>
+          <!-- No need to check api files -->
+          <exclude name="**/api/**/*"/>
+          <!-- No need to check ant files -->
+          <exclude name="**/ant/**/*"/>
+          <!-- No need to check ast String Printer input files -->
+          <exclude name="**/asttreestringprinter/**/*"/>
+          <!-- Indentation checks use "warn" -->
+          <exclude name="**/resources-noncompilable/**/checks/indentation/**/*"/>
+          <!-- BlockComment test files do not need 'ok', 'violation, or 'Config:' comments -->
+          <exclude name="**/utils/blockcommentposition/**/*"/>
+
+        </fileset>
+      </path>
+      <formatter type="plain"/>
+      <formatter type="xml" toFile="${mvn.project.build.directory}/cs_input_errors.xml"/>
+    </checkstyle>
+
+    <tstamp>
+      <format property="FINISHED" pattern="dd/MM/yyyy hh:mm:ss aa"/>
+    </tstamp>
+    <echo level="info">Checkstyle finished (checkstyle-input-checks.xml): ${FINISHED}</echo>
+
+    <fail if="checkstyle.failure.property"
+          message="Checkstyle failed: ${checkstyle.failure.property}"
+    />
+
+    <tstamp>
+      <format property="STARTED" pattern="dd/MM/yyyy hh:mm:ss aa"/>
+    </tstamp>
+    <echo level="info">Checkstyle started (checkstyle-examples-checks.xml): ${STARTED}</echo>
+
+    <checkstyle config="${check.config_examples}"
+                failOnViolation="true"
+                failureProperty="checkstyle.failure.property"
+                executeIgnoredModules="true"
+    >
+      <property key="checkstyle.examples-suppressions.file"
+          file="config/checkstyle-examples-suppressions.xml"/>
+      <path>
+        <fileset dir="src"
+                 includes="xdocs-examples/resources/**/*.java,
+                 ,xdocs-examples/resources-noncompilable/**/*.java">
+        </fileset>
+      </path>
+      <formatter type="plain"/>
+      <formatter type="xml" toFile="${mvn.project.build.directory}/cs_xdocs_examples_errors.xml"/>
+    </checkstyle>
+
+    <tstamp>
+      <format property="FINISHED" pattern="dd/MM/yyyy hh:mm:ss aa"/>
+    </tstamp>
+    <echo level="info">Checkstyle finished (checkstyle-examples-checks.xml): ${FINISHED}</echo>
+  </target>
+</project>

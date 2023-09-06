@@ -1,0 +1,30 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="SummaryJavadocCheck"/>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+public class Test extends Exception {
+  /**
+   * {@summary  }
+   */
+  public String InvalidFunctionOne(){ // violation
+    return "";
+  }
+
+  /**
+   * {@summary <p> <p/>}
+   */
+  public String InvalidFunctionTwo(){ // violation
+    return "";
+  }
+
+  /**
+   * {@summary <p>This is summary for validFunctionThree.<p/>}
+   */
+  public void validFunctionThree(){} // ok
+}
+// xdoc section -- end

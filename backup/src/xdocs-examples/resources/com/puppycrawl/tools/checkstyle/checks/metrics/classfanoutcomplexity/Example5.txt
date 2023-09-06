@@ -1,0 +1,20 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="ClassFanOutComplexity">
+      <property name="excludedClasses" value="HashMap, HashSet, Place"/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+class InputClassComplexity {
+  Set set = new HashSet(); // Set counted 1, HashSet ignored
+  Map map = new HashMap(); // Map counted 2, HashMap ignored
+  Date date = new Date(); // Counted, 3
+  Time time = new Time(); // Counted, 4
+  // mention of 16 other user defined classes
+  Place place = new Place(); // Ignored
+}
+// xdoc section -- end

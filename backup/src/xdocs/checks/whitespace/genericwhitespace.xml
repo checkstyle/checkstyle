@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>GenericWhitespace</title>
+  </head>
+  <body>
+    <section name="GenericWhitespace">
+      <p>Since Checkstyle 5.0</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Checks that the whitespace around the Generic tokens (angle brackets)
+          &quot;&lt;&quot; and &quot;&gt;&quot; are correct to the <i>typical</i> convention.
+          The convention is not configurable.
+        </p>
+        <p>
+          Left angle bracket (&quot;&lt;&quot;):
+        </p>
+        <ul>
+          <li> should be preceded with whitespace only in generic methods definitions.</li>
+          <li> should not be preceded with whitespace when it is preceded method name
+            or constructor.</li>
+          <li> should not be preceded with whitespace when following type name.</li>
+          <li> should not be followed with whitespace in all cases.</li>
+        </ul>
+        <p>
+          Right angle bracket (&quot;&gt;&quot;):
+        </p>
+        <ul>
+          <li> should not be preceded with whitespace in all cases.</li>
+          <li> should be followed with whitespace in almost all cases, except diamond operators
+               and when preceding method name or constructor.</li>
+        </ul>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;GenericWhitespace&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example1-code">
+          Examples with correct spacing:
+        </p>
+        <source>
+// Generic methods definitions
+public void &lt;K, V extends Number&gt; boolean foo(K, V) {}
+// Generic type definition
+class name&lt;T1, T2, ..., Tn&gt; {}
+// Generic type reference
+OrderedPair&lt;String, Box&lt;Integer&gt;&gt; p;
+// Generic preceded method name
+boolean same = Util.&lt;Integer, String&gt;compare(p1, p2);
+// Diamond operator
+Pair&lt;Integer, String&gt; p1 = new Pair&lt;&gt;(1, &quot;apple&quot;);
+// Method reference
+List&lt;T&gt; list = ImmutableList.Builder&lt;T&gt;::new;
+// Method reference
+sort(list, Comparable::&lt;String&gt;compareTo);
+// Constructor call
+MyClass obj = new &lt;String&gt;MyClass();
+        </source>
+        <p id="Example2-code">
+          Examples with incorrect spacing:
+        </p>
+        <source>
+List&lt; String&gt; l; // violation, &quot;&lt;&quot; followed by whitespace
+Box b = Box. &lt;String&gt;of(&quot;foo&quot;); // violation, &quot;&lt;&quot; preceded with whitespace
+public&lt;T&gt; void foo() {} // violation, &quot;&lt;&quot; not preceded with whitespace
+
+List a = new ArrayList&lt;&gt; (); // violation, &quot;&gt;&quot; followed by whitespace
+Map&lt;Integer, String&gt;m; // violation, &quot;&gt;&quot; not followed by whitespace
+Pair&lt;Integer, Integer &gt; p; // violation, &quot;&gt;&quot; preceded with whitespace
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+GenericWhitespace">
+            Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+GenericWhitespace">
+            Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+GenericWhitespace">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ws.followed%22">
+              ws.followed
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ws.illegalFollow%22">
+              ws.illegalFollow
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ws.notPreceded%22">
+              ws.notPreceded
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ws.preceded%22">
+              ws.preceded
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.whitespace
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

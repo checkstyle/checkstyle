@@ -1,0 +1,174 @@
+h1 {
+  text-transform: capitalize;
+}
+
+h2 {
+  text-transform: capitalize;
+}
+
+h3 {
+  text-transform: capitalize;
+}
+
+h4 {
+  text-transform: capitalize;
+}
+
+.tip {
+  margin-left : 5%;
+  margin-right : 5%;
+  padding-left: 2%;
+  padding-right: 2%;
+  background-color: #c0c0c0;
+  color: #000000;
+  border: ridge;
+}
+
+#bannerLeft img {
+  float:left;
+  position: relative;
+  top: 0;
+  left: 40px;
+
+}
+
+#banner {
+  border-bottom: 1px solid #fff;
+  background: url("../images/header-background.png") repeat-x scroll 0 0 transparent;
+}
+
+.dl-link {
+  position: relative;
+  float: right;
+}
+
+h2:hover .anchor, h3:hover .anchor, p[id^="Example"]:hover .anchor {
+  visibility: visible;
+}
+
+.anchor {
+  visibility: hidden;
+  display: inline-block;
+}
+
+.source {
+  white-space: nowrap;
+  padding: 0;
+  overflow-x: auto;
+}
+
+.source > pre {
+  margin: 0;
+  padding: 12px;
+  width: max-content;
+}
+
+.wrap-content pre {
+  white-space: pre-line !important;
+  word-wrap: break-word !important;
+}
+
+section {
+  position: relative;
+}
+
+p, td, table.bodyTable td, th, table.bodyTable th, li, pre, #breadcrumbs span, #navcolumn h5,
+  #navcolumn li, #footer, div.tip b, .releaseDate, .xright {
+  font-size: 15px;
+}
+
+#navcolumn li.expanded, #navcolumn li.collapsed {
+  background-size: 7px;
+}
+
+#navcolumn {
+  padding: 8px 4px 0 12px;
+}
+
+#bodyColumn h2, h2 {
+  font-size: 24px;
+}
+
+#navcolumn li {
+  margin: 3px 0;
+}
+
+#bodyColumn {
+  margin-left: 297px;
+}
+
+#leftColumn {
+  min-width: 250px;
+  width: fit-content;
+}
+
+.releaseDate {
+  position: absolute;
+  top: 2px;
+  right: 6px;
+}
+
+.wrapper {
+  overflow-y: auto;
+}
+
+span.wrapper.block {
+  display: block;
+}
+
+span.wrapper.inline {
+  display: inline;
+}
+
+a[title="toTop"] {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  border: 1px solid Rgb(0, 0, 0);
+  background-color: Rgb(221, 221, 221);
+  color: Rgb(153, 0, 0);
+  padding: 5px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: 900;
+  z-index: 10;
+}
+
+.poweredBy {
+  display: block;
+}
+
+@media screen and (max-width: 823px) {
+  #leftColumn {
+    float: none;
+    width: auto;
+    margin: 1.5em;
+  }
+
+  #bodyColumn {
+    margin: 1.5em;
+  }
+
+  #bannerRight {
+    display: none;
+  }
+
+  p, h1, h2, h3, h4, h5, h6, li {
+    word-break: break-word;
+  }
+
+  table.bodyTable tr {
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  table.bodyTable th,
+  table.bodyTable td {
+    display: block;
+    text-align: left;
+  }
+
+  section[id="Properties"] .wrapper .bodyTable tr td:first-child {
+    font-style: italic;
+  }
+}

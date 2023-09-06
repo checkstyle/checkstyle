@@ -1,0 +1,75 @@
+image: Visual Studio 2019
+version: '{build}'
+skip_tags: true
+
+clone_depth: 10
+branches:
+  only:
+    - master
+  except:
+    - gh-pages
+install:
+  - ps: |
+      Add-Type -AssemblyName System.IO.Compression.FileSystem
+      if (!(Test-Path -Path "C:\maven\apache-maven-3.8.6" )) {
+        (new-object System.Net.WebClient).DownloadFile(
+          'https://downloads.apache.org/maven/maven-3/3.8.6/binaries/apache-maven-3.8.6-bin.zip',
+          'C:\maven-bin.zip'
+        )
+        [System.IO.Compression.ZipFile]::ExtractToDirectory("C:\maven-bin.zip", "C:\maven")
+      }
+  - cmd: SET M2_HOME=C:\maven\apache-maven-3.8.6
+  - cmd: SET PATH=%M2_HOME%\bin;%JAVA_HOME%\bin;%PATH%
+  - cmd: git config core.autocrlf
+  - cmd: mvn --version
+  - cmd: java -version
+
+cache:
+  - C:\maven\apache-maven-3.8.6
+  - C:\Users\appveyor\.m2
+
+matrix:
+  fast_finish: true
+
+environment:
+  global:
+    CMD: " "
+    # https://stackoverflow.com/questions/42024619/maven-build-gets-connection-reset-when-downloading-artifacts
+    MAVEN_OPTS: "-Dhttp.keepAlive=false -Dmaven.wagon.http.retryHandler.count=3"
+  # We do matrix as AppVeyor could fail to finish simple "mvn -e verify"
+  #    if he loose maven cache (happens from time to time)
+  matrix:
+    # sevntu (JDK11)
+    - JAVA_HOME: C:\Program Files\Java\jdk11
+      DESC: "sevntu (JDK11)"
+      CMD: "./.ci/validation.cmd sevntu"
+    # run checkstyle (JDK11)
+    - JAVA_HOME: C:\Program Files\Java\jdk11
+      DESC: "run checkstyle (JDK11)"
+      CMD: "./.ci/validation.cmd run_checkstyle"
+    # verify without checkstyle (JDK11)
+    - JAVA_HOME: C:\Program Files\Java\jdk11
+      DESC: "verify without checkstyle (JDK11)"
+      CMD: "./.ci/validation.cmd verify_without_checkstyle"
+    # site, without verify (JDK11)
+    - JAVA_HOME: C:\Program Files\Java\jdk11
+      DESC: "site, without verify (JDK11)"
+      CMD: "./.ci/validation.cmd site_without_verify"
+
+build_script:
+  - ps: |
+      $RUN_JOB=1
+      if ($RUN_JOB -eq 1) {
+        $Expr = (get-content env:CMD)
+        Write-Host "CMD: $Expr"
+        Invoke-Expression $Expr
+        Write-Host "CMD exited with exit code $LastExitCode"
+        if ($LastExitCode -ne 0) {
+          exit $LastExitCode
+        }
+      } else {
+        Write-Host "build is skipped ..."
+      }
+  - ps: echo "Size of caches (bytes):"
+  - ps: Get-ChildItem -Recurse 'C:\maven\apache-maven-3.8.6' | Measure-Object -Property Length -Sum
+  - ps: Get-ChildItem -Recurse 'C:\Users\appveyor\.m2' | Measure-Object -Property Length -Sum

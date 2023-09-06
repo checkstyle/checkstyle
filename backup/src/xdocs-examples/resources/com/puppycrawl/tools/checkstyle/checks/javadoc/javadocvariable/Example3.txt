@@ -1,0 +1,24 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="JavadocVariable">
+      <property name="scope" value="private"/>
+      <property name="excludeScope" value="protected"/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+public class Test {
+private int a; // violation, missing javadoc for private member
+
+/**
+ * Some description here
+ */
+private int b; // OK
+protected int c; // OK
+public int d; // OK
+/*package*/ int e; // violation, missing javadoc for package member
+}
+// xdoc section -- end

@@ -1,0 +1,20 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="ClassDataAbstractionCoupling">
+      <property name="excludedClasses" value="HashMap, HashSet, Place"/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+class InputClassCoupling {
+  Set set = new HashSet(); // Ignored
+  Map map = new HashMap(); // Ignored
+  Date date = new Date(); // Counted, 1
+  Time time = new Time(); // Counted, 2
+  // instantiation of 5 other user defined classes
+  Place place = new Place(); // Ignored
+}
+// xdoc section -- end

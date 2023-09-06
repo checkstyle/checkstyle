@@ -1,0 +1,209 @@
+<?xml version="1.0"?>
+<ruleset name="PMD ruleset for Checkstyle"
+         xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0
+                             http://pmd.sourceforge.net/ruleset_2_0_0.xsd">
+  <description>
+    PMD ruleset for Checkstyle tests
+  </description>
+  <exclude-pattern>.*/src/main/.*</exclude-pattern>
+
+  <rule ref="config/pmd.xml">
+    <!-- We do throw Exception, as any exception that in not caught in test should fail
+      a test that is expected behavior and we like it as it follow fail-fast and helps
+      to avoid extra catch blocks -->
+    <exclude name="SignatureDeclareThrowsException"/>
+    <!-- We need reflection in the tests to access some internal state. -->
+    <exclude name="AvoidAccessibilityAlteration"/>
+    <!-- it's madness to move all string values to common variables,
+      it will be hard to read test code -->
+    <exclude name="AvoidDuplicateLiterals"/>
+    <!-- we do not need javadoc on test code -->
+    <exclude name="CommentRequired"/>
+    <!-- we like static imports in UTs as them minimize the code and we know that most of
+      such methods are from UT+moks frameworks -->
+    <exclude name="TooManyStaticImports"/>
+    <!-- we try to keep all testing for class in one place/class/file to ease navigation
+      between target class and it's test -->
+    <exclude name="TooManyMethods"/>
+    <!-- we have too much UTs for each main class, it is better to keep all tests in one
+      file to ease navigation and search for tes -->
+    <exclude name="CouplingBetweenObjects"/>
+    <!-- we have too much UTs for each main class, it is better to keep all tests in one
+      file to ease navigation and search for test -->
+    <exclude name="ExcessiveImports"/>
+    <!-- test should be named as their main class -->
+    <exclude name="ClassNamingConventions"/>
+    <!-- checkstyle do not use IP in configuration, so all values in tests are ok to use,
+      they just another test string data -->
+    <exclude name="AvoidUsingHardCodedIP"/>
+    <!-- UTests are required to be public by design -->
+    <exclude name="ExcessivePublicCount"/>
+    <!-- we have too much UTs for each main class, it is better to keep all tests in one
+      file to ease navigation and search for test -->
+    <exclude name="ExcessiveClassLength"/>
+    <!-- we want to avoid wide throws signature, it is just test -->
+    <exclude name="AvoidCatchingGenericException"/>
+    <!-- we do not want to invest extra time to make logic ideal
+       in test method, may be later... -->
+    <exclude name="NPathComplexity"/>
+    <!-- conflicts with checkstyle rule -->
+    <exclude name="JUnitUseExpected"/>
+    <!-- will be addressed in https://github.com/checkstyle/checkstyle/projects/5 -->
+    <exclude name="NonThreadSafeSingleton"/>
+    <!-- Clashes with CommentDefaultAccessModifier. We do not like package and protected
+      visibility, they are HACK in design and illusion of protection of method from outside.
+      Keeping them public is ok. -->
+    <exclude name="JUnit5TestShouldBePackagePrivate"/>
+  </rule>
+
+  <rule ref="category/java/design.xml/NcssCount">
+    <properties>
+      <!-- We want to keep it all in one place. -->
+      <property name="classReportLevel" value="1000"/>
+      <!-- A big enough value to satisfy the most cases. -->
+      <property name="methodReportLevel" value="100"/>
+      <!-- GeneratedJavaTokenTypesTest.testTokenNumbering' is simple but long as it rechecks
+             each token one by one. Same goes for
+           GeneratedJavadocTokenTypesTest#testTokenNumbers.
+           JavadocTokenTypesTest.TokenValues contains several asserts as it checks each
+             token explicitly.
+           IndentationCheckTest has a lot of cases. -->
+      <property name="violationSuppressXPath"
+              value="//ClassOrInterfaceDeclaration[@SimpleName='JavadocTokenTypesTest']
+                       //MethodDeclaration[@Name='testTokenValues']
+                   | //ClassOrInterfaceDeclaration[@SimpleName='GeneratedJavaTokenTypesTest']
+                       //MethodDeclaration[@Name='testTokenNumbering']
+                   | //ClassOrInterfaceDeclaration[@SimpleName='GeneratedJavadocTokenTypesTest']
+                       //MethodDeclaration[@Name='testTokenNumbers']
+                   | //ClassOrInterfaceDeclaration[@SimpleName='IndentationCheckTest']"/>
+    </properties>
+  </rule>
+
+  <rule ref="category/java/bestpractices.xml/JUnitTestsShouldIncludeAssert">
+    <!-- PMD cannot find assert if it is located in private method of this class called from
+           the test method or method of another class. -->
+    <properties>
+      <!-- In AllChecksTest, AstRegressionTest and ImportControlCheckTest
+           PMD does not find asserts in private methods of the test class called from the
+             test method.
+           In MainTest PMD does not find asserts in lambdas called in the method
+             exit.checkAssertionAfterwards.
+           In AstRegressionTest PMD does not find asserts in inner classes methods called
+             from the test method.
+           In XdocsPagesTest PMD does not find asserts in lambdas.
+           All test classes which starts with XpathRegression have asserts inside parent's method.
+           In ArchUnitTest, ArchUnitSuperClassTest, ImmutabilityTest, ArchUnitCyclesCheckTest
+           assertion calls are not required as they are called by the library.
+           In MainTest PMD does not find asserts in lambdas called in the method
+             invokeAndWait. -->
+      <property name="violationSuppressXPath"
+               value="//ClassOrInterfaceDeclaration[@SimpleName='AllChecksTest'
+                     or @SimpleName='AstRegressionTest'
+                     or @SimpleName='ImportControlCheckTest']//PrimaryPrefix/Name[@Image='verify']
+                   | //ClassOrInterfaceDeclaration[@SimpleName='MainTest']
+                       //PrimaryPrefix//Name[starts-with(@SimpleName, 'assert')]
+                   | //ClassOrInterfaceDeclaration[@SimpleName='XdocsPagesTest']
+                       //MethodDeclaration[@Name='testAllChecksPresentOnAvailableChecksPage']
+                   | //ClassOrInterfaceDeclaration[@SimpleName='XdocsJavaDocsTest']
+                       //MethodDeclaration[@Name='testAllCheckSectionJavaDocs']
+                   | //ClassOrInterfaceDeclaration[starts-with(@SimpleName,'XpathRegression')]
+                       //MethodDeclaration
+                   | //ClassOrInterfaceDeclaration[@SimpleName='ImmutabilityTest']
+                       //MethodDeclaration
+                   | //ClassOrInterfaceDeclaration[@SimpleName='ArchUnitTest']
+                       //MethodDeclaration
+                   | //ClassOrInterfaceDeclaration[@SimpleName='ArchUnitSuperClassTest']
+                       //MethodDeclaration
+                   | //ClassOrInterfaceDeclaration[@SimpleName='ArchUnitCyclesCheckTest']
+                       //MethodDeclaration
+                   | //ClassOrInterfaceDeclaration[@SimpleName='SuppressionFilterTest']
+                       //MethodDeclaration[starts-with(@Name, 'testUseCache')]
+                   | //ClassOrInterfaceDeclaration[@SimpleName='MainTest']
+                       //MethodDeclaration[starts-with(@Name, 'testMain')]"/>
+    </properties>
+  </rule>
+
+  <rule ref="category/java/bestpractices.xml/JUnit4TestShouldUseBeforeAnnotation">
+    <properties>
+      <!-- A false positive. -->
+      <property name="violationSuppressXPath"
+               value="//ClassOrInterfaceDeclaration[@SimpleName='CommitValidationTest']"/>
+    </properties>
+  </rule>
+  <rule ref="category/java/bestpractices.xml/JUnitTestContainsTooManyAsserts">
+    <properties>
+      <property name="maximumAsserts" value="11"/>
+      <!-- GeneratedJavadocTokenTypesTest.testTokenNumbers and
+          GeneratedJavadocTokenTypesTest.testRuleNumbers contains several asserts
+          as they check each token and each rule explicitly.
+         JavadocTokenTypes.testTokenValues contains several asserts as it checks each
+          token explicitly. -->
+      <property name="violationSuppressXPath"
+               value="//ClassOrInterfaceDeclaration[@SimpleName='JavadocTokenTypesTest']
+                        //MethodDeclaration[@Name='testTokenValues']
+                    | //ClassOrInterfaceDeclaration[@SimpleName='GeneratedJavaTokenTypesTest']
+                        //MethodDeclaration[@Name='testTokenNumbering']
+                    | //ClassOrInterfaceDeclaration[@SimpleName='GeneratedJavadocTokenTypesTest']
+                        //MethodDeclaration[@Name='testTokenNumbers']
+                    | //ClassOrInterfaceDeclaration[@SimpleName='ParseTreeTablePresentationTest']
+                        //MethodDeclaration[@Name='testGetValueAtDetailNode']"/>
+    </properties>
+  </rule>
+
+  <rule ref="category/java/codestyle.xml/ConfusingTernary">
+    <properties>
+      <!-- A false positive: commit validation is a sequence of checks, if we shuffle them
+          it would be broken. -->
+      <property name="violationSuppressXPath"
+               value="//ClassOrInterfaceDeclaration[@SimpleName='CommitValidationTest']
+                        //MethodDeclaration[@Name='validateCommitMessage']"/>
+    </properties>
+  </rule>
+
+  <rule ref="category/java/design.xml/UseObjectForClearerAPI">
+    <properties>
+      <!-- This is checking for amount of String arguments more than 3 (hardcoded).
+         Extra abstraction(object) for single method does not make code more readable or
+         easy to maintain. The rule should also only check public methods but has a bug.
+         Suppress the false-positives. -->
+      <property name="violationSuppressXPath"
+               value="//ClassOrInterfaceDeclaration[@SimpleName='SuppressionXpathSingleFilterTest']
+                        //MethodDeclaration[@Name='createSuppressionXpathSingleFilter']
+                    | //ClassOrInterfaceDeclaration[ @SimpleName='XdocsPagesTest']
+                        //MethodDeclaration[@Name='validateRuleNameOrder']"/>
+    </properties>
+  </rule>
+  <rule ref="category/java/errorprone.xml/CloseResource">
+    <properties>
+      <!-- we do close streams in special methods -->
+      <property name="violationSuppressXPath"
+               value="//ClassOrInterfaceDeclaration[@SimpleName='XdocsPagesTest']
+                        //MethodDeclaration[@Name='getModulePropertyExpectedValue']
+                 | //ClassOrInterfaceDeclaration[@SimpleName='DefaultLoggerPowerTest']
+                     //MethodDeclaration[@Name='testNewCtor']
+                 | //ClassOrInterfaceDeclaration[@SimpleName='ImportControlLoaderPowerTest']
+                     //MethodDeclaration[@Name='testInputStreamThatFailsOnClose']
+                 | //ClassOrInterfaceDeclaration[@SimpleName='ImportControlLoaderPowerTest']
+                     //MethodDeclaration[@Name='testInputStreamFailsOnRead']
+                 | //ClassOrInterfaceDeclaration[@SimpleName='XpathFileGeneratorAuditListenerTest']
+                     //MethodDeclaration[@Name='verifyOutput']
+                 | //ClassOrInterfaceDeclaration[@SimpleName='CommonUtilTest']
+                     //MethodDeclaration[@Name='testClose']"/>
+    </properties>
+  </rule>
+  <rule ref="category/java/errorprone.xml/TestClassWithoutTestCases">
+    <properties>
+      <property name="testClassPattern" value="^[^$]*Test(s|Case)?$"/>
+    </properties>
+  </rule>
+  <rule ref="category/java/multithreading.xml/DoNotUseThreads">
+    <properties>
+      <!-- We use thread to limit the stack size for a test method. -->
+      <property name="violationSuppressXPath"
+               value="//ClassOrInterfaceDeclaration[@SimpleName='TestUtil']
+                        //MethodDeclaration[@Name='getResultWithLimitedResources']"/>
+    </properties>
+  </rule>
+</ruleset>

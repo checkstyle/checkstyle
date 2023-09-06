@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.design.DesignForExtensionCheck"
+             name="DesignForExtension"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;p&gt;
+ Checks that classes are designed for extension (subclass creation).
+ &lt;/p&gt;
+ &lt;p&gt;
+ Nothing wrong could be with founded classes.
+ This check makes sense only for library projects (not application projects)
+ which care of ideal OOP-design to make sure that class works in all cases even misusage.
+ Even in library projects this check most likely will find classes that are designed for extension
+ by somebody. User needs to use suppressions extensively to got a benefit from this check,
+ and keep in suppressions all confirmed/known classes that are deigned for inheritance
+ intentionally to let the check catch only new classes, and bring this to team/user attention.
+ &lt;/p&gt;
+
+ &lt;p&gt;
+ ATTENTION: Only user can decide whether a class is designed for extension or not.
+ The check just shows all classes which are possibly designed for extension.
+ If smth inappropriate is found please use suppression.
+ &lt;/p&gt;
+
+ &lt;p&gt;
+ ATTENTION: If the method which can be overridden in a subclass has a javadoc comment
+ (a good practice is to explain its self-use of overridable methods) the check will not
+ rise a violation. The violation can also be skipped if the method which can be overridden
+ in a subclass has one or more annotations that are specified in ignoredAnnotations
+ option. Note, that by default @Override annotation is not included in the
+ ignoredAnnotations set as in a subclass the method which has the annotation can also be
+ overridden in its subclass.
+ &lt;/p&gt;
+ &lt;p&gt;
+ Problem is described at "Effective Java, 2nd Edition by Joshua Bloch" book, chapter
+ "Item 17: Design and document for inheritance or else prohibit it".
+ &lt;/p&gt;
+ &lt;p&gt;
+ Some quotes from book:
+ &lt;/p&gt;
+ &lt;blockquote&gt;The class must document its self-use of overridable methods.
+ By convention, a method that invokes overridable methods contains a description
+ of these invocations at the end of its documentation comment. The description
+ begins with the phrase “This implementation.”
+ &lt;/blockquote&gt;
+ &lt;blockquote&gt;
+ The best solution to this problem is to prohibit subclassing in classes that
+ are not designed and documented to be safely subclassed.
+ &lt;/blockquote&gt;
+ &lt;blockquote&gt;
+ If a concrete class does not implement a standard interface, then you may
+ inconvenience some programmers by prohibiting inheritance. If you feel that you
+ must allow inheritance from such a class, one reasonable approach is to ensure
+ that the class never invokes any of its overridable methods and to document this
+ fact. In other words, eliminate the class’s self-use of overridable methods entirely.
+ In doing so, you’ll create a class that is reasonably safe to subclass. Overriding a
+ method will never affect the behavior of any other method.
+ &lt;/blockquote&gt;
+ &lt;p&gt;
+ The check finds classes that have overridable methods (public or protected methods
+ that are non-static, not-final, non-abstract) and have non-empty implementation.
+ &lt;/p&gt;
+ &lt;p&gt;
+ Rationale: This library design style protects superclasses against being broken
+ by subclasses. The downside is that subclasses are limited in their flexibility,
+ in particular they cannot prevent execution of code in the superclass, but that
+ also means that subclasses cannot corrupt the state of the superclass by forgetting
+ to call the superclass's method.
+ &lt;/p&gt;
+ &lt;p&gt;
+ More specifically, it enforces a programming style where superclasses provide
+ empty "hooks" that can be implemented by subclasses.
+ &lt;/p&gt;
+ &lt;p&gt;
+ Example of code that cause violation as it is designed for extension:
+ &lt;/p&gt;
+ &lt;pre&gt;
+ public abstract class Plant {
+   private String roots;
+   private String trunk;
+
+   protected void validate() {
+     if (roots == null) throw new IllegalArgumentException("No roots!");
+     if (trunk == null) throw new IllegalArgumentException("No trunk!");
+   }
+
+   public abstract void grow();
+ }
+
+ public class Tree extends Plant {
+   private List leaves;
+
+   &amp;#64;Overrides
+   protected void validate() {
+     super.validate();
+     if (leaves == null) throw new IllegalArgumentException("No leaves!");
+   }
+
+   public void grow() {
+     validate();
+   }
+ }
+ &lt;/pre&gt;
+ &lt;p&gt;
+ Example of code without violation:
+ &lt;/p&gt;
+ &lt;pre&gt;
+ public abstract class Plant {
+   private String roots;
+   private String trunk;
+
+   private void validate() {
+     if (roots == null) throw new IllegalArgumentException("No roots!");
+     if (trunk == null) throw new IllegalArgumentException("No trunk!");
+     validateEx();
+   }
+
+   protected void validateEx() { }
+
+   public abstract void grow();
+ }
+ &lt;/pre&gt;</description>
+         <properties>
+            <property default-value="After, AfterClass, Before, BeforeClass, Test"
+                      name="ignoredAnnotations"
+                      type="java.lang.String[]">
+               <description>Specify annotations which allow the check to
+ skip the method from validation.</description>
+            </property>
+            <property default-value=".*"
+                      name="requiredJavadocPhrase"
+                      type="java.util.regex.Pattern">
+               <description>Specify the comment text pattern which qualifies a
+ method as designed for extension. Supports multi-line regex.</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="design.forExtension"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>

@@ -1,0 +1,18 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="IllegalToken"/>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+public void myTest() {
+    outer: // violation
+    for (int i = 0; i < 5; i++) {
+        if (i == 1) {
+            break outer;
+        }
+    }
+}
+// xdoc section -- end

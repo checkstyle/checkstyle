@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+
+  <head>
+    <title>Writing Filters</title>
+  </head>
+
+  <body>
+    <section name="Content">
+      <macro name="toc">
+        <param name="fromDepth" value="1"/>
+        <param name="toDepth" value="1"/>
+      </macro>
+    </section>
+
+    <section name="Overview">
+      <p>
+        A <code>Checker</code> has a set of <code>Filter</code>s that decide which audit events
+        the <code>Checker</code> reports through its listeners.  Interface <code>Filter</code>
+        and class <code>FilterSet</code> are intended to support general <code>AuditEvent</code>
+        filtering using a set of <code>Filter</code>s.
+      </p>
+
+      <p>
+        A <code>Filter</code> has <code>boolean</code> method <code>accept(AuditEvent)</code> that
+        returns <code>true</code> if the <code>Filter</code> accepts the <code>AuditEvent</code>
+        parameter and returns <code>false</code> if the <code>Filter</code> rejects it.
+      </p>
+
+      <p>
+        A <code>FilterSet</code> is a particular <code>Filter</code> that contains a set of
+        <code>Filter</code>s. A <code>FilterSet</code> accepts an <code>AuditEvent</code> if and
+        only if all <code>Filter</code>s in the set accept the <code>AuditEvent</code>.
+      </p>
+
+      <p>
+        Here is a UML diagram for interface <code>Filter</code>
+        and class <code>FilterSet</code>.
+      </p>
+
+      <div class="wrapper">
+        <img src="images/Filter.gif" alt="Filter UML diagram" />
+      </div>
+    </section>
+
+    <section name="Writing Filters">
+      <p>
+        The <code>Filter</code> that we demonstrate here rejects
+        audit events for files whose name matches a <a
+        href="property_types.html#Pattern">Pattern</a>.  In order to
+        enable the specification of the file name pattern as a property in a
+        configuration file, the <code>Filter</code> is an <a
+        href="apidocs/com/puppycrawl/tools/checkstyle/api/AutomaticBean.html">AutomaticBean</a>
+        with mutator method <code>setFiles(String)</code> that
+        receives the file name pattern.  An <code>AutomaticBean</code> uses JavaBean
+        introspection to set JavaBean properties such as <code>files</code>.
+      </p>
+
+      <source>
+package com.mycompany.filters;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.regex.PatternSyntaxException;
+
+import com.puppycrawl.tools.checkstyle.api.AuditEvent;
+import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
+import com.puppycrawl.tools.checkstyle.api.Filter;
+import com.puppycrawl.tools.checkstyle.api.Utils;
+
+public class FilesFilter
+    extends AutomaticBean
+    implements Filter
+{
+  private Pattern mFileRegexp;
+
+  public FilesFilter()
+      throws PatternSyntaxException
+  {
+    setFiles("^$");
+  }
+
+  public boolean accept(AuditEvent aEvent)
+  {
+    final String fileName = aEvent.getFileName();
+    return ((fileName == null) || !mFileRegexp.matcher(fileName).find());
+  }
+
+  public void setFiles(String aFilesPattern)
+      throws PatternSyntaxException
+  {
+    mFileRegexp = Utils.getPattern(aFilesPattern);
+  }
+}
+      </source>
+    </section>
+
+    <section name="Declare check's external resource locations">
+      <p>
+        See <a href="writingchecks.html#Declare_check.27s_external_resource_locations">
+        Declare check's external resource locations</a>.
+      </p>
+    </section>
+
+    <section name="Using Filters">
+      <p>
+        To incorporate a <code>Filter</code> in the filter set
+        for a <code>Checker</code>, include a module element for
+        the <code>Filter</code> in the <a
+        href="config.html#Filters">configuration file</a>. For example, to
+        configure a <code>Checker</code> so that it uses custom
+        filter <code>FilesFilter</code> to prevent reporting of
+        audit events for files whose name contains &quot;Generated&quot;,
+        include the following module in the configuration file:
+      </p>
+
+      <source>
+&lt;module name=&quot;com.mycompany.filters.FilesFilter&quot;&gt;
+  &lt;property name=&quot;files&quot; value=&quot;Generated&quot;/&gt;
+&lt;/module&gt;
+      </source>
+    </section>
+
+    <section name="Huh? I can&#39;t figure it out!">
+      <p>
+        That&#39;s probably our fault, and it means that we have to provide
+        better documentation. Please do not hesitate to ask questions on the
+        user mailing list, this will help us to improve this document.  Please
+        ask your questions as precisely as possible. We will not be able to
+        answer questions like &quot;I want to write a filter but I don&#39;t
+        know how, can you help me?&quot;. Tell us what you are trying to do
+        (the purpose of the filter), what you have understood so far, and what
+        exactly you are getting stuck on.
+      </p>
+    </section>
+
+    <section name="Contributing">
+      <p>
+        We need <em>your</em> help to keep improving Checkstyle. Whenever you
+        write a filter that you think is generally useful, please consider <a
+        href="contributing.html">contributing</a> it to the Checkstyle
+        community and submit it for inclusion in the next release of
+        Checkstyle.
+      </p>
+    </section>
+  </body>
+</document>

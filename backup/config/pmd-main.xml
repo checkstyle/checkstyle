@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<ruleset name="PMD ruleset for Checkstyle"
+         xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0
+                             http://pmd.sourceforge.net/ruleset_2_0_0.xsd">
+  <description>
+    PMD ruleset for Checkstyle main code
+  </description>
+  <exclude-pattern>.*/src/it/.*</exclude-pattern>
+  <exclude-pattern>.*/src/test/.*</exclude-pattern>
+  <exclude-pattern>.*/src/xdocs-examples/.*</exclude-pattern>
+  <rule ref="config/pmd.xml"/>
+
+  <rule ref="category/java/design.xml/ImmutableField">
+    <properties>
+      <!-- final modifier prevent us from reaching full test coverage,
+             we value full coverage more than final modifier.
+           Picocli fields will have their value injected and should not be marked final. -->
+      <property name="violationSuppressXPath"
+               value="//ClassOrInterfaceDeclaration[@SimpleName='FileText']
+                        //FieldDeclaration//VariableDeclarator[@Name='fullText']
+                    | //ClassOrInterfaceDeclaration[@SimpleName='CliOptions']"/>
+    </properties>
+  </rule>
+  <rule ref="category/java/errorprone.xml/CloseResource">
+    <properties>
+      <property name="allowedResourceTypes"
+               value="java.io.ByteArrayOutputStream|java.io.ByteArrayInputStream"/>
+      <property name="allowedResourceTypes"
+               value="java.io.StringWriter|java.io.CharArrayWriter|java.io.StringReader"/>
+      <!-- we do close streams in special methods -->
+      <property name="violationSuppressXPath"
+               value="//ClassOrInterfaceDeclaration[@SimpleName='DefaultLogger']
+                    | //ClassOrInterfaceDeclaration[@SimpleName='Main']
+                        //MethodDeclaration[@Name='createListener']
+                    | //ClassOrInterfaceDeclaration[@SimpleName='PropertyCacheFile']
+                        //MethodDeclaration[@Name='persist' or @Name='serialize']
+                    | //ClassOrInterfaceDeclaration[@SimpleName='XmlLoader']
+                        //MethodDeclaration[@Name='resolveEntity']
+                    | //ClassOrInterfaceDeclaration[@SimpleName='CheckstyleAntTask']
+                        //MethodDeclaration[@Name='getListeners' or @Name='createDefaultLogger']
+                    | //ClassOrInterfaceDeclaration[@SimpleName='AbstractNode']
+                        //MethodDeclaration[@Name='iterateAxis']"/>
+    </properties>
+  </rule>
+  <rule ref="category/java/design.xml/AbstractClassWithoutAnyMethod">
+    <properties>
+      <!-- until https://github.com/checkstyle/checkstyle/issues/12873 -->
+      <property name="violationSuppressXPath"
+         value="//ClassOrInterfaceDeclaration[@SimpleName='AutomaticBean']"/>
+    </properties>
+  </rule>
+</ruleset>

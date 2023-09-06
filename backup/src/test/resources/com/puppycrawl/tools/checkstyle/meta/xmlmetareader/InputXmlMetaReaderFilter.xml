@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+  <module>
+    <filter fully-qualified-name="com.puppycrawl.tools.checkstyle.filters.SomeFilter"
+            name="SomeFilter"
+            parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+      <description>Description for filter</description>
+      <properties>
+        <property default-value="propertyDefaultValue"
+                  name="propertyOne"
+                  type="java.util.regex.Pattern">
+          <description>Property description.</description>
+        </property>
+      </properties>
+    </filter>
+  </module>
+</checkstyle-metadata>

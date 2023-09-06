@@ -1,0 +1,462 @@
+ruleset {
+
+    description '''
+        A Sample Groovy RuleSet containing all CodeNarc Rules, grouped by category.
+        You can use this as a template for your own custom RuleSet.
+        Just delete the rules that you don't want to include.
+        '''
+
+    // rulesets/basic.xml
+    AssertWithinFinallyBlock
+    AssignmentInConditional
+    BigDecimalInstantiation
+    BitwiseOperatorInConditional
+    BooleanGetBoolean
+    BrokenNullCheck
+    BrokenOddnessCheck
+    ClassForName
+    ComparisonOfTwoConstants
+    ComparisonWithSelf
+    ConstantAssertExpression
+    ConstantIfExpression
+    ConstantTernaryExpression
+    DeadCode
+    DoubleNegative
+    DuplicateCaseStatement
+    DuplicateMapKey
+    DuplicateSetValue
+    EmptyCatchBlock
+    EmptyClass
+    EmptyElseBlock
+    EmptyFinallyBlock
+    EmptyForStatement
+    EmptyIfStatement
+    EmptyInstanceInitializer
+    EmptyMethod
+    EmptyStaticInitializer
+    EmptySwitchStatement
+    EmptySynchronizedStatement
+    EmptyTryBlock
+    EmptyWhileStatement
+    EqualsAndHashCode
+    EqualsOverloaded
+    ExplicitGarbageCollection
+    ForLoopShouldBeWhileLoop
+    HardCodedWindowsFileSeparator
+    HardCodedWindowsRootDirectory
+    IntegerGetInteger
+    MultipleUnaryOperators
+    RandomDoubleCoercedToZero
+    RemoveAllOnSelf
+    ReturnFromFinallyBlock
+    ThrowExceptionFromFinallyBlock
+
+    // rulesets/braces.xml
+    ElseBlockBraces
+    ForStatementBraces
+    IfStatementBraces
+    WhileStatementBraces
+
+    // rulesets/concurrency.xml
+    BusyWait
+    DoubleCheckedLocking
+    InconsistentPropertyLocking
+    InconsistentPropertySynchronization
+    NestedSynchronization
+    StaticCalendarField
+    StaticConnection
+    StaticDateFormatField
+    StaticMatcherField
+    StaticSimpleDateFormatField
+    SynchronizedMethod
+    SynchronizedOnBoxedPrimitive
+    SynchronizedOnGetClass
+    SynchronizedOnReentrantLock
+    SynchronizedOnString
+    SynchronizedOnThis
+    SynchronizedReadObjectMethod
+    SystemRunFinalizersOnExit
+    ThisReferenceEscapesConstructor
+    ThreadGroup
+    ThreadLocalNotStaticFinal
+    ThreadYield
+    UseOfNotifyMethod
+    VolatileArrayField
+    VolatileLongOrDoubleField
+    WaitOutsideOfWhileLoop
+
+    // rulesets/convention.xml
+    ConfusingTernary
+
+    // Disabled as the Elvis operator is a very weird language structure. It may lead to potential
+    // bugs and introduce mess in the code. It is better to use traditional if-else block.
+    // CouldBeElvis
+
+    HashtableIsObsolete
+    IfStatementCouldBeTernary
+    InvertedIfElse
+    LongLiteralWithLowerCaseL
+
+    // def is commonly used in Groovy, as it provides greater flexibility and readability.
+    // The keyword removes boilerplate explicit type declaration.
+    // NoDef
+
+    NoTabCharacter
+    ParameterReassignment
+    TernaryCouldBeElvis
+    TrailingComma
+    VectorIsObsolete
+
+    // rulesets/design.xml
+    AbstractClassWithPublicConstructor
+    AbstractClassWithoutAbstractMethod
+    AssignmentToStaticFieldFromInstanceMethod
+    BooleanMethodReturnsNull
+    BuilderMethodWithSideEffects
+    CloneableWithoutClone
+    CloseWithoutCloseable
+    CompareToWithoutComparable
+    ConstantsOnlyInterface
+    EmptyMethodInAbstractClass
+    FinalClassWithProtectedMember
+    ImplementationAsType
+
+    // Using instanceof in equals method is alright
+    Instanceof {
+        ignoreTypeNames = 'CheckerFrameworkError'
+    }
+
+    LocaleSetDefault
+    NestedForLoop
+    PrivateFieldCouldBeFinal
+    PublicInstanceField
+    ReturnsNullInsteadOfEmptyArray
+    ReturnsNullInsteadOfEmptyCollection
+    SimpleDateFormatMissingLocale
+    StatelessSingleton
+    ToStringReturnsNull
+
+    // rulesets/dry.xml
+    DuplicateListLiteral
+    DuplicateMapLiteral
+
+    // it is ok to use duplication, every number cannot be represented by the same logic
+    //DuplicateNumberLiteral
+
+    // it is ok to use simple duplication in scripts
+    //DuplicateStringLiteral
+
+    // rulesets/enhanced.xml
+    CloneWithoutCloneable
+    JUnitAssertEqualsConstantActualValue
+    UnsafeImplementationAsMap
+
+    // rulesets/exceptions.xml
+    CatchArrayIndexOutOfBoundsException
+    CatchError
+    CatchException
+    CatchIllegalMonitorStateException
+    CatchIndexOutOfBoundsException
+    CatchNullPointerException
+    CatchRuntimeException
+    CatchThrowable
+    ConfusingClassNamedException
+    ExceptionExtendsError
+    ExceptionExtendsThrowable
+    ExceptionNotThrown
+    MissingNewInThrowStatement
+    ReturnNullFromCatchBlock
+    SwallowThreadDeath
+    ThrowError
+    ThrowException
+    ThrowNullPointerException
+    ThrowRuntimeException
+    ThrowThrowable
+
+    // rulesets/formatting.xml
+    BlankLineBeforePackage
+    BracesForClass
+    BracesForForLoop
+    BracesForIfElse
+    BracesForMethod
+    BracesForTryCatchFinally
+    ClassJavadoc
+    ClosureStatementOnOpeningLineOfMultipleLineClosure
+    ConsecutiveBlankLines
+    FileEndsWithoutNewline
+    LineLength
+    MissingBlankLineAfterImports
+    MissingBlankLineAfterPackage
+    SpaceAfterCatch
+    SpaceAfterClosingBrace
+    SpaceAfterComma
+    SpaceAfterFor
+    SpaceAfterIf
+    SpaceAfterOpeningBrace
+    SpaceAfterSemicolon
+    SpaceAfterSwitch
+    SpaceAfterWhile
+    SpaceAroundClosureArrow
+
+    // The rule makes the Groovy map initializers hard to read.
+    // SpaceAroundMapEntryColon
+
+    SpaceAroundOperator
+    SpaceBeforeClosingBrace
+    SpaceBeforeOpeningBrace
+    TrailingWhitespace
+
+    // rulesets/generic.xml
+    IllegalClassMember
+    IllegalClassReference
+    IllegalPackageReference
+    IllegalRegex
+    IllegalString
+    IllegalSubclass
+    RequiredRegex
+    RequiredString
+    StatelessClass
+
+    // rulesets/grails.xml
+    GrailsDomainHasEquals
+    GrailsDomainHasToString
+    GrailsDomainReservedSqlKeywordName
+    GrailsDomainWithServiceReference
+    GrailsDuplicateConstraint
+    GrailsDuplicateMapping
+    GrailsMassAssignment
+    GrailsPublicControllerMethod
+    GrailsServletContextReference
+    GrailsStatelessService
+
+    // rulesets/groovyism.xml
+    AssignCollectionSort
+    AssignCollectionUnique
+    ClosureAsLastMethodParameter
+    CollectAllIsDeprecated
+    ConfusingMultipleReturns
+
+    // Disabled as using 'new ArrayList<>()' is easier to read and understand.
+    // ExplicitArrayListInstantiation
+
+    ExplicitCallToAndMethod
+    ExplicitCallToCompareToMethod
+    ExplicitCallToDivMethod
+
+    // Groovy's `==` operator which is equivalent to 'equals' method from Java makes code weird to
+    // Java contributors. It is better to use direct call of 'equals' method to compare objects.
+    // ExplicitCallToEqualsMethod
+
+    ExplicitCallToGetAtMethod
+    ExplicitCallToLeftShiftMethod
+    ExplicitCallToMinusMethod
+    ExplicitCallToModMethod
+    ExplicitCallToMultiplyMethod
+    ExplicitCallToOrMethod
+    ExplicitCallToPlusMethod
+    ExplicitCallToPowerMethod
+    ExplicitCallToRightShiftMethod
+    ExplicitCallToXorMethod
+
+    // Suppressed as these rules make the code hard to understand.
+    // Disabling them helps to have the code more similar to Java.
+    // ExplicitHashMapInstantiation
+    // ExplicitHashSetInstantiation
+    // ExplicitLinkedHashMapInstantiation
+    // ExplicitLinkedListInstantiation
+    // ExplicitStackInstantiation
+    // ExplicitTreeSetInstantiation
+
+    GStringAsMapKey
+    GStringExpressionWithinString
+    GetterMethodCouldBeProperty
+    GroovyLangImmutable
+    UseCollectMany
+    UseCollectNested
+
+    // rulesets/imports.xml
+    DuplicateImport
+    ImportFromSamePackage
+    ImportFromSunPackages
+    MisorderedStaticImports
+
+    // it is ok to keep scripts as small as possible in header
+    //NoWildcardImports
+
+    UnnecessaryGroovyImport {
+        doNotApplyToFileNames = 'codenarc.groovy'
+    }
+    UnusedImport {
+        doNotApplyToFileNames = 'codenarc.groovy'
+    }
+
+    // rulesets/jdbc.xml
+    DirectConnectionManagement
+    JdbcConnectionReference
+    JdbcResultSetReference
+    JdbcStatementReference
+
+    // rulesets/junit.xml
+    ChainedTest
+    CoupledTestCase
+    JUnitAssertAlwaysFails
+    JUnitAssertAlwaysSucceeds
+    JUnitFailWithoutMessage
+    JUnitLostTest
+    JUnitPublicField
+    JUnitPublicNonTestMethod
+    JUnitPublicProperty
+    JUnitSetUpCallsSuper
+    JUnitStyleAssertions
+    JUnitTearDownCallsSuper
+    JUnitTestMethodWithoutAssert
+    JUnitUnnecessarySetUp
+    JUnitUnnecessaryTearDown
+    JUnitUnnecessaryThrowsException
+    SpockIgnoreRestUsed
+    UnnecessaryFail
+    UseAssertEqualsInsteadOfAssertTrue
+    UseAssertFalseInsteadOfNegation
+    UseAssertNullInsteadOfAssertEquals
+    UseAssertSameInsteadOfAssertTrue
+    UseAssertTrueInsteadOfAssertEquals
+    UseAssertTrueInsteadOfNegation
+
+    // rulesets/logging.xml
+    LoggerForDifferentClass
+    LoggerWithWrongModifiers
+    LoggingSwallowsStacktrace
+    MultipleLoggers
+    PrintStackTrace
+
+    // We use groovy as scripted java, usage of std output is required by design
+    //Println
+
+    SystemErrPrint
+    SystemOutPrint
+
+    // rulesets/naming.xml
+    AbstractClassName
+    ClassName
+    ClassNameSameAsFilename
+    ClassNameSameAsSuperclass
+    ConfusingMethodName
+    FactoryMethodName
+    FieldName
+    InterfaceName
+    InterfaceNameSameAsSuperInterface
+    MethodName
+    ObjectOverrideMisspelledMethodName
+    PackageName
+    PackageNameMatchesFilePath
+    ParameterName
+    PropertyName
+    VariableName {
+        finalRegex = null
+        ignoreVariableNames = 'PROFILES,USAGE_STRING'
+    }
+
+    // rulesets/security.xml
+    FileCreateTempFile
+    InsecureRandom
+
+    // we do not care about  EJB container rules
+    //JavaIoPackageAccess
+
+    NonFinalPublicField
+    NonFinalSubclassOfSensitiveInterface
+    ObjectFinalize
+    PublicFinalizeMethod
+    UnsafeArrayDeclaration
+
+    // rulesets/serialization.xml
+    EnumCustomSerializationIgnored
+    SerialPersistentFields
+    SerialVersionUID
+    SerializableClassMustDefineSerialVersionUID
+
+    // rulesets/size.xml
+
+    // Requires the GMetrics jar
+    AbcMetric
+
+    ClassSize
+
+    // Requires the GMetrics jar and a Cobertura coverage file
+    CrapMetric
+
+    // Requires the GMetrics jar
+    CyclomaticComplexity
+    MethodCount
+    MethodSize
+    NestedBlockDepth
+    ParameterCount
+
+    // rulesets/unnecessary.xml
+    AddEmptyString
+    ConsecutiveLiteralAppends
+    ConsecutiveStringConcatenation
+    UnnecessaryBigDecimalInstantiation
+    UnnecessaryBigIntegerInstantiation
+    UnnecessaryBooleanExpression
+    UnnecessaryBooleanInstantiation
+    UnnecessaryCallForLastElement
+    UnnecessaryCallToSubstring
+    UnnecessaryCast
+    UnnecessaryCatchBlock
+    UnnecessaryCollectCall
+    UnnecessaryCollectionCall
+    UnnecessaryConstructor
+    UnnecessaryDefInFieldDeclaration
+    UnnecessaryDefInMethodDeclaration
+    UnnecessaryDefInVariableDeclaration
+    UnnecessaryDotClass
+    UnnecessaryDoubleInstantiation
+    UnnecessaryElseStatement
+    UnnecessaryFinalOnPrivateMethod
+    UnnecessaryFloatInstantiation
+
+    // just to be the same as in java, as our primary language
+    //UnnecessaryGString
+
+    // we are ok with code to looks like Java
+    //UnnecessaryGetter
+    UnnecessaryIfStatement
+    UnnecessaryInstanceOfCheck
+    UnnecessaryInstantiationToGetClass
+    UnnecessaryIntegerInstantiation
+    UnnecessaryLongInstantiation
+    UnnecessaryModOne
+    UnnecessaryNullCheck
+    UnnecessaryNullCheckBeforeInstanceOf
+    UnnecessaryObjectReferences
+    UnnecessaryOverridingMethod
+    UnnecessaryPackageReference
+    UnnecessaryParenthesesForMethodCallWithClosure
+    UnnecessaryPublicModifier
+
+    // Disabled as it makes the code unclear. It becomes hard to understand what value
+    // is returned by a method.
+    // UnnecessaryReturnKeyword
+
+    UnnecessarySafeNavigationOperator
+    UnnecessarySelfAssignment
+    UnnecessarySemicolon
+    UnnecessaryStringInstantiation
+
+    // Suppressed to avoid weird code and make the code more similar to Java.
+    // UnnecessarySubstring
+
+    UnnecessaryTernaryExpression
+    UnnecessaryToString
+    UnnecessaryTransientModifier
+
+    // rulesets/unused.xml
+    UnusedArray
+    UnusedMethodParameter
+    UnusedObject
+    UnusedPrivateField
+    UnusedPrivateMethod
+    UnusedPrivateMethodParameter
+    UnusedVariable
+}

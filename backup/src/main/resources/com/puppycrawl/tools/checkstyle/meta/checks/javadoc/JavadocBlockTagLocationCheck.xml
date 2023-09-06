@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocBlockTagLocationCheck"
+             name="JavadocBlockTagLocation"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;p&gt;
+ Checks that a
+ &lt;a href="https://docs.oracle.com/en/java/javase/11/docs/specs/doc-comment-spec.html#block-tags"&gt;
+ javadoc block tag&lt;/a&gt; appears only at the beginning of a line, ignoring
+ leading asterisks and white space. A block tag is a token that starts with
+ {@code @} symbol and is preceded by a whitespace. This check ignores block
+ tags in comments and inside inline tags {&amp;#64;code } and {&amp;#64;literal }.
+ &lt;/p&gt;
+ &lt;p&gt;
+ Rationale: according to
+ &lt;a href="https://docs.oracle.com/en/java/javase/11/docs/specs/doc-comment-spec.html#block-tags"&gt;
+ the specification&lt;/a&gt; all javadoc block tags should be placed at the beginning
+ of a line. Tags that are not placed at the beginning are treated as plain text.
+ To recognize intentional tag placement to text area it is better to escape the
+ {@code @} symbol, and all non-escaped tags should be located at the beginning
+ of the line. See NOTE section for details on how to escape.
+ &lt;/p&gt;
+ &lt;p&gt;
+ To place a tag explicitly as text, escape the {@code @} symbol with HTML entity
+ &amp;amp;#64; or place it inside {@code {@code }}, for example:
+ &lt;/p&gt;
+ &lt;pre&gt;
+ &amp;#47;**
+  * &amp;amp;#64;serial literal in {&amp;#64;code &amp;#64;serial} Javadoc tag.
+  *&amp;#47;
+ &lt;/pre&gt;</description>
+         <properties>
+            <property default-value="author, deprecated, exception, hidden, param, provides, return, see, serial, serialData, serialField, since, throws, uses, version"
+                      name="tags"
+                      type="java.lang.String[]">
+               <description>Specify the javadoc tags to process.</description>
+            </property>
+            <property default-value="false"
+                      name="violateExecutionOnNonTightHtml"
+                      type="boolean">
+               <description>Control when to print violations
+ if the Javadoc being examined by this check violates the tight html rules defined at
+ &lt;a href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules"&gt;Tight-HTML Rules&lt;/a&gt;.</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="javadoc.blockTagLocation"/>
+            <message-key key="javadoc.missed.html.close"/>
+            <message-key key="javadoc.parse.rule.error"/>
+            <message-key key="javadoc.wrong.singleton.html.tag"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>

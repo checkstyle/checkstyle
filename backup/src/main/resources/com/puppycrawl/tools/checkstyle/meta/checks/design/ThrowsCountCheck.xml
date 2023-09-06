@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.design.ThrowsCountCheck"
+             name="ThrowsCount"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;p&gt;
+ Restricts throws statements to a specified count.
+ Methods with "Override" or "java.lang.Override" annotation are skipped
+ from validation as current class cannot change signature of these methods.
+ &lt;/p&gt;
+ &lt;p&gt;
+ Rationale:
+ Exceptions form part of a method's interface. Declaring
+ a method to throw too many differently rooted
+ exceptions makes exception handling onerous and leads
+ to poor programming practices such as writing code like
+ {@code catch(Exception ex)}. 4 is the empirical value which is based
+ on reports that we had for the ThrowsCountCheck over big projects
+ such as OpenJDK. This check also forces developers to put exceptions
+ into a hierarchy such that in the simplest
+ case, only one type of exception need be checked for by
+ a caller but any subclasses can be caught
+ specifically if necessary. For more information on rules
+ for the exceptions and their issues, see Effective Java:
+ Programming Language Guide Second Edition
+ by Joshua Bloch pages 264-273.
+ &lt;/p&gt;
+ &lt;p&gt;
+ &lt;b&gt;ignorePrivateMethods&lt;/b&gt; - allows to skip private methods as they do
+ not cause problems for other classes.
+ &lt;/p&gt;</description>
+         <properties>
+            <property default-value="4" name="max" type="int">
+               <description>Specify maximum allowed number of throws statements.</description>
+            </property>
+            <property default-value="true" name="ignorePrivateMethods" type="boolean">
+               <description>Allow private methods to be ignored.</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="throws.count"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>

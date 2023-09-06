@@ -1,0 +1,2 @@
+package com.puppycrawl.tools.checkstyle.checks.coding.onestatementperline; import java.io.IOException; import java.io.OutputStream; import java.io.PipedOutputStream; public class InputOneStatementPerLine {  int e = 1, f = 2, g = 5; private void foo2() { try (OutputStream s12 = new PipedOutputStream(); OutputStream s3 = new PipedOutputStream()) { } catch (IOException ex) { throw new RuntimeException(ex); } } private void foo() { toString(); toString(); } }
+// 7 violations above

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+
+  <head>
+    <title>Style Configurations</title>
+  </head>
+
+  <body>
+    <section name="Style Configurations">
+      <p>
+        This section contains tables to display coverage Java styles by Checkstyle.
+      </p>
+
+      <ul>
+        <li><a href="google_style.html">Google's style</a></li>
+        <li><a href="sun_style.html">Sun's style</a></li>
+      </ul>
+    </section>
+  </body>
+</document>

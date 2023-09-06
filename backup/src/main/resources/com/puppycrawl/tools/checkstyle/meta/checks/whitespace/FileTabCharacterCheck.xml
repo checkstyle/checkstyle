@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheck"
+             name="FileTabCharacter"
+             parent="com.puppycrawl.tools.checkstyle.Checker">
+         <description>&lt;p&gt;
+ Checks that there are no tab characters ({@code '\t'}) in the source code.
+ &lt;/p&gt;
+ &lt;p&gt;
+ Rationale:
+ &lt;/p&gt;
+ &lt;ul&gt;
+ &lt;li&gt;
+ Developers should not need to configure the tab width of their text editors in order
+ to be able to read source code.
+ &lt;/li&gt;
+ &lt;li&gt;
+ From the Apache jakarta coding standards: In a distributed development environment,
+ when the commit messages get sent to a mailing list, they are almost impossible to
+ read if you use tabs.
+ &lt;/li&gt;
+ &lt;/ul&gt;</description>
+         <properties>
+            <property default-value="false" name="eachLine" type="boolean">
+               <description>Control whether to report on each line containing a tab,
+ or just the first instance.</description>
+            </property>
+            <property default-value="" name="fileExtensions" type="java.lang.String[]">
+               <description>Specify file type extension of files to process.</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="containsTab"/>
+            <message-key key="file.containsTab"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>

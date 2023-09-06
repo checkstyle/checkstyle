@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>Miscellaneous</title>
+  </head>
+  <body>
+    <section name="Miscellaneous Checks">
+      <div class="wrapper">
+        <table>
+          <tr>
+            <td>
+              <a href="arraytypestyle.html#ArrayTypeStyle">
+                ArrayTypeStyle
+              </a>
+            </td>
+            <td>
+              Checks the style of array type definitions.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="avoidescapedunicodecharacters.html#AvoidEscapedUnicodeCharacters">
+                AvoidEscapedUnicodeCharacters
+              </a>
+            </td>
+            <td>
+              Restricts using Unicode escapes (such as \u221e).
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="commentsindentation.html#CommentsIndentation">
+                CommentsIndentation
+              </a>
+            </td>
+            <td>
+              Controls the indentation between comments and surrounding code.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="descendanttoken.html#DescendantToken">
+                DescendantToken
+              </a>
+            </td>
+            <td>
+              Checks for restricted tokens beneath other tokens.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="finalparameters.html#FinalParameters">
+                FinalParameters
+              </a>
+            </td>
+            <td>
+              Checks that parameters for methods, constructors, catch and for-each blocks are final.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="indentation.html#Indentation">
+                Indentation
+              </a>
+            </td>
+            <td>
+              Checks correct indentation of Java code.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="newlineatendoffile.html#NewlineAtEndOfFile">
+                NewlineAtEndOfFile
+              </a>
+            </td>
+            <td>
+              Checks whether files end with a line separator.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="nocodeinfile.html#NoCodeInFile">
+                NoCodeInFile
+              </a>
+            </td>
+            <td>
+              Checks whether file contains code.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="orderedproperties.html#OrderedProperties">
+                OrderedProperties
+              </a>
+            </td>
+            <td>
+              Detects if keys in properties files are in correct order.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="outertypefilename.html#OuterTypeFilename">
+                OuterTypeFilename
+              </a>
+            </td>
+            <td>
+              Checks that the outer type name and the file name match.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="todocomment.html#TodoComment">
+                TodoComment
+              </a>
+            </td>
+            <td>
+              Checks for TODO: comments.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="trailingcomment.html#TrailingComment">
+                TrailingComment
+              </a>
+            </td>
+            <td>
+              The check to ensure that lines with code do not end with comment.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="translation.html#Translation">
+                Translation
+              </a>
+            </td>
+            <td>
+              Ensures the correct translation of code by checking property files
+            for consistency regarding their keys.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="uncommentedmain.html#UncommentedMain">
+                UncommentedMain
+              </a>
+            </td>
+            <td>
+              Detects uncommented <code>main</code> methods.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="uniqueproperties.html#UniqueProperties">
+                UniqueProperties
+              </a>
+            </td>
+            <td>
+              Detects duplicated keys in properties files.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="upperell.html#UpperEll">
+                UpperEll
+              </a>
+            </td>
+            <td>
+              Checks that long constants are defined with an upper ell.
+            </td>
+          </tr>
+        </table>
+      </div>
+    </section>
+  </body>
+</document>

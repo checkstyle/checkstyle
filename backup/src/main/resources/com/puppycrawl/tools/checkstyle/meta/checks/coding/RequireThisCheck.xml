@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck"
+             name="RequireThis"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;p&gt;
+ Checks that references to instance variables and methods of the present
+ object are explicitly of the form "this.varName" or "this.methodName(args)"
+ and that those references don't rely on the default behavior when "this." is absent.
+ &lt;/p&gt;
+ &lt;p&gt;Warning: the Check is very controversial if 'validateOnlyOverlapping' option is set to 'false'
+ and not that actual nowadays.&lt;/p&gt;
+ &lt;p&gt;Rationale:&lt;/p&gt;
+ &lt;ol&gt;
+   &lt;li&gt;
+     The same notation/habit for C++ and Java (C++ have global methods, so having
+     &amp;quot;this.&amp;quot; do make sense in it to distinguish call of method of class
+     instead of global).
+   &lt;/li&gt;
+   &lt;li&gt;
+     Non-IDE development (ease of refactoring, some clearness to distinguish
+     static and non-static methods).
+   &lt;/li&gt;
+ &lt;/ol&gt;
+ &lt;p&gt;Limitations: Nothing is currently done about static variables
+ or catch-blocks.  Static methods invoked on a class name seem to be OK;
+ both the class name and the method name have a DOT parent.
+ Non-static methods invoked on either this or a variable name seem to be
+ OK, likewise.
+ &lt;/p&gt;</description>
+         <properties>
+            <property default-value="true" name="checkFields" type="boolean">
+               <description>Control whether to check references to fields.</description>
+            </property>
+            <property default-value="true" name="checkMethods" type="boolean">
+               <description>Control whether to check references to methods.</description>
+            </property>
+            <property default-value="true" name="validateOnlyOverlapping" type="boolean">
+               <description>Control whether to check only
+ overlapping by variables or arguments.</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="require.this.method"/>
+            <message-key key="require.this.variable"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>

@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>PackageName</title>
+  </head>
+  <body>
+    <section name="PackageName">
+      <p>Since Checkstyle 3.0</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Checks that package names conform to a specified pattern.
+        </p>
+
+        <p>
+          The default value of <code>format</code> for module <code>PackageName</code> has been
+          chosen to match the requirements in the
+          <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-6.html#jls-6.5.3">Java
+          Language specification</a> and the Sun coding conventions. However,
+          both underscores and uppercase letters are rather uncommon, so most
+          configurations should probably assign value <code>^[a-z]+(\.[a-z][a-z0-9]*)*$</code> to
+          <code>format</code> for module <code>PackageName</code>.
+        </p>
+      </subsection>
+
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>format</td>
+              <td>Specifies valid identifiers.</td>
+              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
+              <td><code>&quot;^[a-z]+(\.[a-zA-Z_]\w*)*$&quot;</code></td>
+              <td>3.0</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;PackageName&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example1-code">Code Example:</p>
+        <source>
+package com; // OK
+package COM; // violation, name 'COM' must match pattern '^[a-z]+(\.[a-zA-Z_]\w*)*$'
+package com.checkstyle.checks; // OK
+package com.A.checkstyle.checks; // OK
+package com.checkstyle1.checks; // OK
+package com.checkSTYLE.checks; // OK
+package com._checkstyle.checks_; // OK
+        </source>
+        <p id="Example2-config">
+          An example of how to configure the check to ensure with packages start with a lowercase
+          letter and only contains lowercase letters or numbers is:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;PackageName&quot;&gt;
+      &lt;property name=&quot;format&quot;
+        value=&quot;^[a-z]+(\.[a-z][a-z0-9]*)*$&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example2-code">Code Example:</p>
+        <source>
+package com; // OK
+package COM; // violation, name 'COM' must match pattern '^[a-z]+(\.[a-z][a-z0-9]*)*$'
+package com.checkstyle.checks; // OK
+package com.A.checkstyle.checks; // violation, name 'com.A.checkstyle' must match
+                                 // pattern '^[a-z]+(\.[a-z][a-z0-9]*)*$'
+package com.checkstyle1.checks; // OK
+package com.checkSTYLE.checks; // violation, name 'com.checkSTYLE.checks' must
+                               // match pattern '^[a-z]+(\.[a-z][a-z0-9]*)*$'
+package com._checkstyle.checks_; // violation, name 'com._checkstyle.checks_' must match
+                                 // pattern '^[a-z]+(\.[a-z][a-z0-9]*)*$'
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+PackageName">
+            Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+PackageName">
+            Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+PackageName">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fnaming%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22name.invalidPattern%22">
+              name.invalidPattern
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p> com.puppycrawl.tools.checkstyle.checks.naming </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

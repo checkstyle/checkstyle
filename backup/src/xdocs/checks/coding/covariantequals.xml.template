@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>CovariantEquals</title>
+  </head>
+  <body>
+    <section name="CovariantEquals">
+      <p>Since Checkstyle 3.2</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Checks that classes and records which define a covariant <code>equals()</code> method
+          also override method <code>equals(Object)</code>.
+        </p>
+        <p>
+          Covariant <code>equals()</code> - method that is similar to <code>equals(Object)</code>,
+          but with a covariant parameter type (any subtype of Object).
+        </p>
+        <p>
+          <strong>Notice</strong>: the enums are also checked, even
+          though they cannot override <code>equals(Object)</code>. The reason is
+          to point out that implementing <code>equals()</code> in enums is considered an
+          awful practice: it may cause having two different enum values that are equal using
+          covariant enum method, and not equal when compared normally.
+        </p>
+
+        <p>
+          Inspired by <a href="https://www.cs.jhu.edu/~daveho/pubs/oopsla2004.pdf">
+          Finding Bugs is Easy, chapter '4.5 Bad Covariant Definition of Equals (Eq)'</a>:
+        </p>
+
+        <p>
+          Java classes and records may override the <code>equals(Object)</code> method to define
+          a predicate for object equality. This method is used by many of the Java runtime
+          library classes; for example, to implement generic containers.
+        </p>
+
+        <p>
+          Programmers sometimes mistakenly use the type of their class <code>Foo</code>
+          as the type of the parameter to <code>equals()</code>:
+        </p>
+
+        <source>
+public boolean equals(Foo obj) {...}
+        </source>
+
+        <p>
+          This covariant version of <code>equals()</code> does not override the version in the
+          <code>Object</code> class, and it may lead to unexpected behavior at runtime,
+          especially if the class is used with one of the standard collection classes
+          which expect that the standard <code>equals(Object)</code> method is overridden.
+        </p>
+
+        <p>
+          This kind of bug is not obvious because it looks correct, and in circumstances where
+          the class is accessed through the references of the class type (rather than a supertype),
+          it will work correctly. However, the first time it is used in a container,
+          the behavior might be mysterious. For these reasons, this type of bug can elude
+          testing and code inspections.
+        </p>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/covariantequals/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+
+        <p id="Example1-code">
+          For example:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/covariantequals/Example1.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example2-code">
+          The same class without violations:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/covariantequals/Example2.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example3-code">
+          Another example:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/covariantequals/Example3.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example4-code">
+          The same record without violations:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/covariantequals/Example4.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+CovariantEquals">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <macro name="violation-messages">
+          <param name="checkName" value="CovariantEquals"/>
+        </macro>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.coding
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <macro name="parent-module">
+          <param name="moduleName" value="CovariantEquals"/>
+        </macro>
+      </subsection>
+    </section>
+  </body>
+</document>

@@ -1,0 +1,17 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="PackageDeclaration">
+    <property name="matchDirectoryStructure" value="false"/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+package com.puppycrawl.tools.checkstyle.checks;  //No Violation
+
+public class AnnotationLocationCheck extends AbstractCheck {
+  //...
+}
+// xdoc section -- end

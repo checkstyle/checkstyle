@@ -1,0 +1,10 @@
+/*xml
+<module name="Checker">
+  <module name="LineLength">
+    <property name="fileExtensions" value="xml, properties"/>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+// xdoc section -- end

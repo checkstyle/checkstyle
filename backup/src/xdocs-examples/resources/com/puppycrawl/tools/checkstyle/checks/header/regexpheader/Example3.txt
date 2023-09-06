@@ -1,0 +1,15 @@
+/*xml
+<module name="Checker">
+  <module name="RegexpHeader">
+    <property
+      name="header"
+      value="^// Copyright \(C\) (\d\d\d\d -)? 2004 MyCompany$
+        \n^// All rights reserved$"/>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+^// Copyright \(C\) (\d\d\d\d -)? 2004 MyCompany$
+^// All rights reserved$
+// xdoc section -- end

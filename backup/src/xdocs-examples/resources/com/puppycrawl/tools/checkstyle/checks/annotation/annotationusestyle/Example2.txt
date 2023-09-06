@@ -1,0 +1,28 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="AnnotationUseStyle">
+      <property name="elementStyle" value="expanded"/>
+      <property name="closingParens" value="never"/>
+      <property name="trailingArrayComma" value="never"/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+@SuppressWarnings("unchecked") // Violation - parameters should be referenced
+@Deprecated // OK
+@SomeArrays({"unchecked","unused"}) // Violation - parameters should be referenced
+public class TestOne
+{
+
+}
+
+@SuppressWarnings(value={"unchecked"}) // OK
+@Deprecated() // Violation - cannot have a closing parenthesis
+@SomeArrays(value={"unchecked","unused",}) // Violation - cannot have a trailing array comma
+class TestTwo {
+
+}
+// xdoc section -- end

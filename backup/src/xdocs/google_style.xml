@@ -1,0 +1,2370 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/XDOC/2.0
+                              https://maven.apache.org/xsd/xdoc-2.0.xsd">
+
+  <head>
+    <title>Google's Style</title>
+  </head>
+
+  <body>
+    <section name="Google's Java Style Checkstyle Coverage ">
+      <subsection name="Useful information" id="Google_Useful_information">
+        <p>
+          This coverage report was created for
+          <a href="https://google.github.io/styleguide/javaguide.html">
+            Google Java Style</a>(
+          <a href="styleguides/google-java-style-20180523/javaguide.html">
+            cached page</a>),
+          version of 23 May 2018, current as of 07 May 2019
+        </p>
+
+        <p>
+          <a href="https://checkstyle.org/reports/google-style/guava/">
+            Checkstyle's html report for Guava library</a>
+        </p>
+        <p>
+          <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml">
+            Checkstyle configuration for 'Google Java Style'</a>
+        </p>
+      </subsection>
+      <subsection name="Legend" id="Google_Legend">
+        <p>
+          "--" - There is no rule in this paragraph.
+          <br />
+          "↓" - This paragraph is the high-level point of some group.
+          <br />
+          <span class="wrapper inline">
+            <img
+                src="images/ok_green.png"
+                alt="" />
+          </span>
+          - Existing Check covers all requirements from Google.
+          <br />
+          <span class="wrapper inline">
+            <img
+                src="images/ok_blue.png"
+                alt="" />
+          </span>
+          - Existing Check covers some part of requirements from Google.
+          <br />
+          <span class="wrapper inline">
+            <img
+                src="images/ban_red.png"
+                alt="" />
+          </span>
+          - Requirements are not possible to check by Checkstyle at all.
+          <br />
+        </p>
+      </subsection>
+      <subsection name="Coverage table" id="Google_Coverage_table">
+        <p>
+          <b>ATTENTION:</b>
+          Links to config and test in following table reference to latest (not released yet) config.
+          Config might be slightly different from what we have in latest release.
+          Please always use config that is embedded to jar or use a custom version copied
+          from one that matches your checkstyle version.
+        </p>
+        <div class="wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th/>
+                <th>Google's Java Style Rule</th>
+                <th>Checkstyle Check</th>
+                <th>Applied to config</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <a name="1"/>
+                  <a href="#1">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/google-java-style-20180523/javaguide.html#s1-introduction">
+                    <strong>1 Introduction</strong>
+                  </a>
+                </td>
+                <td>--</td>
+                <td/>
+              </tr>
+              <tr>
+                <td>
+                  <a name="1.1"/>
+                  <a href="#1.1">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/google-java-style-20180523/javaguide.html#s1.1-terminology">
+                    1.1 Terminology notes</a>
+                </td>
+                <td>--</td>
+                <td/>
+              </tr>
+              <tr>
+                <td>
+                  <a name="1.2"/>
+                  <a href="#1.2">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/google-java-style-20180523/javaguide.html#s1.2-guide-notes">
+                    1.2 Guide notes</a>
+                </td>
+                <td>--</td>
+                <td>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <a name="2"/>
+                  <a href="#2">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/google-java-style-20180523/javaguide.html#s2-source-file-basics">
+                    <strong>2 Source file basics</strong>
+                  </a>
+                </td>
+                <td>↓</td>
+                <td/>
+              </tr>
+              <tr>
+                <td>
+                  <a name="2.1"/>
+                  <a href="#2.1">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/google-java-style-20180523/javaguide.html#s2.1-file-name">
+                    2.1 File name</a>
+                </td>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
+                  <a href="checks/misc/outertypefilename.html#OuterTypeFilename">OuterTypeFilename</a>
+                </td>
+                <td>
+                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+OuterTypeFilename">
+                    config</a>
+                  <br />
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter2filebasic/rule21filename/OuterTypeFilenameTest.java">
+                    test</a>
+                </td>
+              </tr>
+              <tr>
+                <td><a name="2.2"/>
+                  <a href="#2.2">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/google-java-style-20180523/javaguide.html#s2.2-file-encoding">
+                    2.2 File encoding: UTF-8
+                  </a>
+                </td>
+                <td>
+                  <span class="wrapper inline">
+                    <img
+                        src="images/ban_red.png"
+                        alt="" />
+                  </span>
+                  <a href="https://github.com/checkstyle/checkstyle/issues/265">
+                    explanation</a>
+                </td>
+                <td/>
+              </tr>
+              <tr>
+                <td><a name="2.3.1"/>
+                  <a href="#2.3.1">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/google-java-style-20180523/javaguide.html#s2.3.1-whitespace-characters">
+                    2.3.1 Whitespace characters</a>
+                </td>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
+                  <a href="checks/whitespace/filetabcharacter.html#FileTabCharacter">
+                    FileTabCharacter</a>
+                </td>
+                <td>
+                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+FileTabCharacter">
+                    config</a>
+                  <br />
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter2filebasic/rule231filetab/FileTabCharacterTest.java">
+                    test</a>
+                </td>
+              </tr>
+              <tr>
+                <td><a name="2.3.2"/>
+                  <a href="#2.3.2">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/google-java-style-20180523/javaguide.html#s2.3.2-special-escape-sequences">
+                    2.3.2 Special escape sequences</a>
+                </td>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
+                  <a href="checks/coding/illegaltokentext.html#IllegalTokenText">
+                    IllegalTokenText
+                  </a>
+                </td>
+                <td>
+                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+IllegalTokenText">
+                    config</a><br/>
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter2filebasic/rule232specialescape/IllegalTokenTextTest.java">
+                    test</a>
+                </td>
+              </tr>
+              <tr>
+                <td><a name="2.3.3"/>
+                  <a href="#2.3.3">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/google-java-style-20180523/javaguide.html#s2.3.3-non-ascii-characters">
+                    2.3.3 Non-ASCII characters</a>
+                </td>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
+                  <a href="checks/misc/avoidescapedunicodecharacters.html#AvoidEscapedUnicodeCharacters">
+                    AvoidEscapedUnicodeCharacters</a>
+                </td>
+                <td>
+                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+AvoidEscapedUnicodeCharacters">
+                    config</a>
+                  <br />
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter2filebasic/rule233nonascii/AvoidEscapedUnicodeCharactersTest.java">
+                    test</a>
+                </td>
+              </tr>
+              <tr>
+                <td><a name="3"/>
+                  <a href="#3">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/google-java-style-20180523/javaguide.html#s3-source-file-structure">
+                    <strong>3 Source file structure</strong>
+                  </a>
+                </td>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
+                  <a href="checks/whitespace/emptylineseparator.html#EmptyLineSeparator">
+                    EmptyLineSeparator</a>
+                </td>
+                <td>
+                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+EmptyLineSeparator">
+                    config</a>
+                  <br />
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter4formatting/rule461verticalwhitespace/EmptyLineSeparatorTest.java">
+                    test</a>
+                </td>
+              </tr>
+              <tr>
+                <td><a name="3.1"/>
+                  <a href="#3.1">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/google-java-style-20180523/javaguide.html#s3.1-copyright-statement">
+                    3.1 License or copyright information, if present</a>
+                </td>
+                <td>--</td>
+                <td/>
+              </tr>
+              <tr>
+                <td><a name="3.2"/>
+                  <a href="#3.2">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/google-java-style-20180523/javaguide.html#s3.2-package-statement">
+                    3.2 Package statement</a>
+                </td>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
+                  <a href="checks/sizes/linelength.html#LineLength">LineLength</a>
+                  <br />
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
+                  <a href="checks/whitespace/nolinewrap.html#NoLineWrap">NoLineWrap</a>
+                </td>
+                <td>
+                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LineLength">
+                    config</a>
+                  <br />
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter3filestructure/rule32packagestate/LineLengthTest.java">
+                    test</a>
+                  <br />
+                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NoLineWrap">
+                    config</a>
+                  <br />
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter3filestructure/rule332nolinewrap/NoLineWrapTest.java">
+                    test</a>
+                </td>
+              </tr>
+              <tr>
+                <td><a name="3.3"/>
+                  <a href="#3.3">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/google-java-style-20180523/javaguide.html#s3.3-import-statements">
+                    3.3 Import statements
+                  </a>
+                </td>
+                <td>↓</td>
+                <td/>
+              </tr>
+              <tr>
+                <td><a name="3.3.1"/>
+                  <a href="#3.3.1">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/google-java-style-20180523/javaguide.html#s3.3.1-wildcard-imports">
+                    3.3.1 No wildcard imports</a>
+                </td>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
+                  <a href="checks/imports/avoidstarimport.html#AvoidStarImport">AvoidStarImport</a>
+                </td>
+                <td>
+                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+AvoidStarImport">
+                    config</a>
+                  <br />
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter3filestructure/rule331nowildcard/AvoidStarImportTest.java">
+                    test</a>
+                </td>
+              </tr>
+              <tr>
+                <td><a name="3.3.2"/>
+                  <a href="#3.3.2">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/google-java-style-20180523/javaguide.html#s3.3.2-import-line-wrapping">
+                    3.3.2 No line-wrapping</a>
+                </td>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
+                  <a href="checks/sizes/linelength.html#LineLength">LineLength</a>
+                  <br />
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
+                  <a href="checks/whitespace/nolinewrap.html#NoLineWrap">NoLineWrap</a>
+                  <br />
+                </td>
+                <td>
+                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LineLength">
+                    config</a>
+                  <br />
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter3filestructure/rule32packagestate/LineLengthTest.java">
+                    test</a>
+                  <br />
+                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NoLineWrap">
+                    config</a>
+                  <br />
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter3filestructure/rule332nolinewrap/NoLineWrapTest.java">
+                    test</a>
+                </td>
+              </tr>
+              <tr>
+                <td><a name="3.3.3"/>
+                  <a href="#3.3.3">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/google-java-style-20180523/javaguide.html#s3.3.3-import-ordering-and-spacing">
+                    3.3.3 Ordering and spacing</a>
+                </td>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
+                  <a href="checks/imports/customimportorder.html#CustomImportOrder">
+                    CustomImportOrder</a>
+                </td>
+                <td>
+                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+CustomImportOrder">
+                    config</a>
+                  <br />
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter3filestructure/rule333orderingandspacing/CustomImportOrderTest.java">
+                    test</a>
+                </td>
+              </tr>
+              <tr>
+                <td><a name="3.3.4"/>
+                  <a href="#3.3.4">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/google-java-style-20180523/javaguide.html#s3.3.4-import-class-not-static">
+                    3.3.4 No static import for classes</a>
+                </td>
+                <td>
+                  <span class="wrapper inline">
+                    <img
+                        src="images/ban_red.png"
+                        alt="" />
+                  </span>
+                  That validation could not be checked by Checkstyle. It's
+                  need information from another class(java file). But Checkstyle
+                  have no way to open or look at another java file.
+                </td>
+                <td/>
+              </tr>
+              <tr>
+                <td><a name="3.4"/>
+                  <a href="#3.4">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/google-java-style-20180523/javaguide.html#s3.4-class-declaration">
+                    3.4 Class declaration
+                  </a>
+                </td>
+                <td>↓</td>
+                <td/>
+              </tr>
+              <tr>
+                <td><a name="3.4.1"/>
+                  <a href="#3.4.1">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/google-java-style-20180523/javaguide.html#s3.4.1-one-top-level-class">
+                    3.4.1 Exactly one top-level class declaration</a>
+                </td>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
+                  <a href="checks/design/onetoplevelclass.html#OneTopLevelClass">OneTopLevelClass</a>
+                </td>
+                <td>
+                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+OneTopLevelClass">
+                    config</a>
+                  <br />
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter3filestructure/rule341onetoplevel/OneTopLevelClassTest.java">
+                    test</a>
+                </td>
+              </tr>
+              <tr>
+                <td><a name="3.4.2"/>
+                  <a href="#3.4.2">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/google-java-style-20180523/javaguide.html#s3.4.2-class-member-ordering">
+                    3.4.2 Class member ordering</a>
+                </td>
+                <td>--</td>
+                <td/>
+              </tr>
+              <tr>
+                <td><a name="3.4.2.1"/>
+                  <a href="#3.4.2.1">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/google-java-style-20180523/javaguide.html#s3.4.2.1-overloads-never-split">
+                    3.4.2.1 Overloads: never split</a>
+                </td>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
+                  <a href="checks/coding/overloadmethodsdeclarationorder.html#OverloadMethodsDeclarationOrder">
+                    OverloadMethodsDeclarationOrder</a>
+                </td>
+                <td>
+                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+OverloadMethodsDeclarationOrder">
+                    config</a>
+                  <br />
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter3filestructure/rule3421overloadsplit/OverloadMethodsDeclarationOrderTest.java">
+                    test</a>
+                </td>
+              </tr>
+              <tr>
+                <td><a name="4"/>
+                  <a href="#4">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/google-java-style-20180523/javaguide.html#s4-formatting">
+                    <strong>4 Formatting</strong>
+                  </a>
+                </td>
+                <td>--</td>
+                <td/>
+              </tr>
+              <tr>
+                <td><a name="4.1"/>
+                  <a href="#4.1">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/google-java-style-20180523/javaguide.html#s4.1-braces">
+                    4.1 Braces
+                  </a>
+                </td>
+                <td>↓</td>
+                <td/>
+              </tr>
+              <tr>
+                <td><a name="4.1.1"/>
+                  <a href="#4.1.1">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/google-java-style-20180523/javaguide.html#s4.1.1-braces-always-used">
+                    4.1.1 Braces are used where optional</a>
+                </td>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
+                  <a href="checks/blocks/needbraces.html#NeedBraces">NeedBraces</a>
+                </td>
+                <td>
+                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NeedBraces">
+                    config</a>
+                  <br />
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter4formatting/rule411bracesareused/NeedBracesTest.java">
+                    test</a>
+                </td>
+              </tr>
+              <tr>
+                <td><a name="4.1.2"/>
+                  <a href="#4.1.2">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/google-java-style-20180523/javaguide.html#s4.1.2-blocks-k-r-style">
+                    4.1.2 Nonempty blocks: K &amp; R style</a>
+                </td>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
+                  <a href="checks/blocks/leftcurly.html#LeftCurly">LeftCurly</a>
+                  <br/>
+                  <span class="wrapper inline">
+                    <img src="images/ok_blue.png" alt="" />
+                  </span>
+                  <a href="checks/blocks/rightcurly.html#RightCurly">RightCurly</a>
+                </td>
+                <td>
+                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LeftCurly">
+                    config</a>
+                  <br/>
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter4formatting/rule412nonemptyblocks/LeftCurlyTest.java">
+                    test</a>
+                  <br/>
+                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+RightCurly">
+                    config</a>
+                  <br/>
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter4formatting/rule412nonemptyblocks/RightCurlyTest.java">
+                    test</a>
+                </td>
+              </tr>
+              <tr>
+                <td><a name="4.1.3"/>
+                  <a href="#4.1.3">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/google-java-style-20180523/javaguide.html#s4.1.3-braces-empty-blocks">
+                    4.1.3 Empty blocks: may be concise</a>
+                </td>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
+                  <a href="checks/blocks/emptyblock.html#EmptyBlock">EmptyBlock</a>
+                  <br />
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
+                  <a href="checks/blocks/emptycatchblock.html#EmptyCatchBlock">EmptyCatchBlock</a>
+                </td>
+                <td>
+                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+EmptyBlock">
+                    config</a><br/>
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter4formatting/rule413emptyblocks/EmptyBlockTest.java">
+                    test</a>
+                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+EmptyCatchBlock">
+                    config</a><br/>
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter4formatting/rule413emptyblocks/EmptyCatchBlockTest.java">
+                    test</a>
+                </td>
+              </tr>
+              <tr>
+                <td><a name="4.2"/>
+                  <a href="#4.2">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/google-java-style-20180523/javaguide.html#s4.2-block-indentation">
+                    4.2 Block indentation: +2 spaces</a>
+                </td>
+                <td>
+                  <span class="wrapper inline">
+                    <img
+                        src="images/ok_blue.png"
+                        alt="" />
+                  </span>
+                  <a href="checks/misc/indentation.html#Indentation">Indentation</a>
+                  <br />
+                  The rule "A line is never broken adjacent to the arrow in a
+                  lambda, except that a break may come immediately after the arrow
+                  if the body of the lambda consists of a single unbraced
+                  expression" will be addressed in the issue
+                  <a href="https://github.com/checkstyle/checkstyle/issues/4006">
+                    #4006</a>.
+                </td>
+                <td>
+                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+Indentation">
+                    config</a><br/>
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter4formatting/rule4841indentation/IndentationTest.java">
+                    test</a>
+                </td>
+              </tr>
+              <tr>
+                <td><a name="4.3"/>
+                  <a href="#4.3">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/google-java-style-20180523/javaguide.html#s4.3-one-statement-per-line">
+                    4.3 One statement per line</a>
+                </td>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
+                  <a href="checks/coding/onestatementperline.html#OneStatementPerLine">
+                    OneStatementPerLine</a>
+                </td>
+                <td>
+                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+OneStatementPerLine">
+                    config</a>
+                  <br />
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter4formatting/rule43onestatement/OneStatementPerLineTest.java">
+                    test</a>
+                </td>
+              </tr>
+              <tr>
+                <td><a name="4.4"/>
+                  <a href="#4.4">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/google-java-style-20180523/javaguide.html#s4.4-column-limit">
+                    4.4 Column limit: 100</a>
+                </td>
+                <td>
+                  <span class="wrapper inline">
+                    <img
+                        src="images/ok_blue.png"
+                        alt="" />
+                  </span>
+                  <a href="checks/sizes/linelength.html#LineLength">LineLength</a>
+                  <br />
+                  We can detect URL with protocol type as http://, https:// etc.
+                  <br />
+                  <a href="https://webtoolkit.googleblog.com/2008/07/getting-to-really-know-gwt-part-1-jsni.html">
+                    JSNI</a>
+                  could not be detected right now, but might be possible after
+                  comments and javadoc support appear in Checkstyle.
+                  <br />
+                </td>
+                <td>
+                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LineLength">
+                    config</a>
+                  <br />
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter3filestructure/rule32packagestate/LineLengthTest.java">
+                    test</a>
+                </td>
+              </tr>
+              <tr>
+                <td><a name="4.5"/>
+                  <a href="#4.5">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/google-java-style-20180523/javaguide.html#s4.5-line-wrapping">
+                    4.5 Line-wrapping
+                  </a>
+                </td>
+                <td>--</td>
+                <td/>
+              </tr>
+              <tr>
+                <td><a name="4.5.1"/>
+                  <a href="#4.5.1">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/google-java-style-20180523/javaguide.html#s4.5.1-line-wrapping-where-to-break">
+                    4.5.1 Where to break</a>
+                </td>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
+                  <a href="checks/whitespace/operatorwrap.html#OperatorWrap">OperatorWrap</a>
+                  <br />
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
+                  <a href="checks/whitespace/separatorwrap.html#SeparatorWrap">SeparatorWrap</a>
+                  <br />
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
+                  <a href="checks/whitespace/methodparampad.html#MethodParamPad">MethodParamPad</a>
+                </td>
+                <td>
+                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+OperatorWrap">
+                    config</a>
+                  <br />
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter4formatting/rule451wheretobreak/OperatorWrapTest.java">
+                    test</a>
+                  <br />
+                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SeparatorWrap">
+                    config</a>
+                  <br />
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter4formatting/rule451wheretobreak/SeparatorWrapTest.java">
+                    test</a>
+                  <br />
+                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MethodParamPad">
+                    config</a>
+                  <br />
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter4formatting/rule451wheretobreak/MethodParamPadTest.java">
+                    test</a>
+                </td>
+              </tr>
+              <tr>
+                <td><a name="4.5.2"/>
+                  <a href="#4.5.2">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/google-java-style-20180523/javaguide.html#s4.5.2-line-wrapping-indent">
+                    4.5.2 Indent continuation lines at least +4 spaces</a>
+                </td>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
+                  <a href="checks/misc/indentation.html#Indentation">Indentation</a>
+                </td>
+                <td>
+                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+Indentation">
+                    config</a><br/>
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter4formatting/rule4841indentation/IndentationTest.java">
+                    test</a>
+                </td>
+              </tr>
+              <tr>
+                <td><a name="4.6"/>
+                  <a href="#4.6">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/google-java-style-20180523/javaguide.html#s4.6-whitespace">
+                    4.6 Whitespace
+                  </a>
+                </td>
+                <td>↓</td>
+                <td/>
+              </tr>
+              <tr>
+                <td><a name="4.6.1"/>
+                  <a href="#4.6.1">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/google-java-style-20180523/javaguide.html#s4.6.1-vertical-whitespace">
+                    4.6.1 Vertical Whitespace</a>
+                </td>
+                <td>
+                  <span class="wrapper inline">
+                    <img
+                        src="images/ok_blue.png"
+                        alt="" />
+                  </span>
+                  <a href="checks/whitespace/emptylineseparator.html#EmptyLineSeparator">
+                    EmptyLineSeparator</a>
+                  <br />Blank lines between two consecutive fields are optional.
+                  This exception is not satisfied
+                </td>
+                <td>
+                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+EmptyLineSeparator">
+                    config</a>
+                  <br />
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter4formatting/rule461verticalwhitespace/EmptyLineSeparatorTest.java">
+                    test</a>
+                </td>
+              </tr>
+              <tr>
+                <td><a name="4.6.2"/>
+                  <a href="#4.6.2">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/google-java-style-20180523/javaguide.html#s4.6.2-horizontal-whitespace">
+                    4.6.2 Horizontal whitespace</a>
+                </td>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
+                  <a href="checks/whitespace/whitespacearound.html#WhitespaceAround">
+                    WhitespaceAround</a>
+                  <br />
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
+                  <a href="checks/whitespace/genericwhitespace.html#GenericWhitespace">
+                    GenericWhitespace</a>
+                  <br />
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
+                  <a href="checks/whitespace/methodparampad.html#MethodParamPad">MethodParamPad</a>
+                  <br />
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
+                  <a href="checks/whitespace/parenpad.html#ParenPad">ParenPad</a>
+                  <br />
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ok_blue.png" alt="" />
+                  </span>
+                  <a href="checks/whitespace/whitespaceafter.html#WhitespaceAfter">
+                    WhitespaceAfter</a>
+                  <br />
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ok_blue.png" alt="" />
+                  </span>
+                  <a href="checks/whitespace/nowhitespacebefore.html#NoWhitespaceBefore">
+                    NoWhitespaceBefore</a>
+                  <br />
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
+                  <a href="checks/whitespace/nowhitespacebeforecasedefaultcolon.html#NoWhitespaceBeforeCaseDefaultColon">
+                    NoWhitespaceBeforeCaseDefaultColon</a>
+                  <br />
+                  <br />
+                  Between a type annotation and "[]" or "..." cannot be checked
+                  yet and actually "NoWhitespaceBefore" configuration checks the
+                  opposite for ellipsis. This will be addressed in the issue
+                  <a href="https://github.com/checkstyle/checkstyle/issues/6707">
+                    #6707</a>.
+                </td>
+                <td>
+                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+WhitespaceAround">
+                    config</a>
+                  <br />
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter4formatting/rule462horizontalwhitespace/WhitespaceAroundTest.java">
+                    test</a>
+                  <br />
+                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+GenericWhitespace">
+                    config</a>
+                  <br />
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter4formatting/rule462horizontalwhitespace/GenericWhitespaceTest.java">
+                    test</a>
+                  <br />
+                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MethodParamPad">
+                    config</a>
+                  <br />
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter4formatting/rule462horizontalwhitespace/MethodParamPadTest.java">
+                    test</a>
+                  <br />
+                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ParenPad">
+                    config</a>
+                  <br />
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter4formatting/rule462horizontalwhitespace/ParenPadTest.java">
+                    test</a>
+                  <br />
+                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+WhitespaceAfter">
+                    config</a>
+                  <br />
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter4formatting/rule462horizontalwhitespace/WhitespaceAfterTest.java">
+                    test</a>
+                  <br />
+                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NoWhitespaceBefore">
+                    config</a>
+                  <br />
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter4formatting/rule462horizontalwhitespace/NoWhitespaceBeforeTest.java">
+                    test</a>
+                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NoWhitespaceBeforeCaseDefaultColon">
+                    config</a>
+                  <br />
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter4formatting/rule462horizontalwhitespace/NoWhitespaceBeforeCaseDefaultColonTest.java">
+                    test</a>
+
+                </td>
+              </tr>
+              <tr>
+                <td><a name="4.6.3"/>
+                  <a href="#4.6.3">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/google-java-style-20180523/javaguide.html#s4.6.3-horizontal-alignment">
+                    4.6.3 Horizontal alignment: never required</a>
+                </td>
+                <td>--</td>
+                <td/>
+              </tr>
+              <tr>
+                <td><a name="4.7"/>
+                  <a href="#4.7">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/google-java-style-20180523/javaguide.html#s4.7-grouping-parentheses">
+                    4.7 Grouping parentheses: recommended</a>
+                </td>
+                <td>--</td>
+                <td/>
+              </tr>
+              <tr>
+                <td><a name="4.8"/>
+                  <a href="#4.8">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/google-java-style-20180523/javaguide.html#s4.8-specific-constructs">
+                    4.8 Specific constructs
+                  </a>
+                </td>
+                <td>↓</td>
+                <td/>
+              </tr>
+              <tr>
+                <td><a name="4.8.1"/>
+                  <a href="#4.8.1">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/google-java-style-20180523/javaguide.html#s4.8.1-enum-classes">
+                    4.8.1 Enum classes</a>
+                </td>
+                <td>--</td>
+                <td/>
+              </tr>
+              <tr>
+                <td><a name="4.8.2"/>
+                  <a href="#4.8.2">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/google-java-style-20180523/javaguide.html#s4.8.2-variable-declarations">
+                    4.8.2 Variable declarations</a>
+                </td>
+                <td>↓</td>
+                <td/>
+              </tr>
+              <tr>
+                <td><a name="4.8.2.1"/>
+                  <a href="#4.8.2.1">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/google-java-style-20180523/javaguide.html#s4.8.2.1-variables-per-declaration">
+                    4.8.2.1 One variable per declaration</a>
+                </td>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
+                  <a href="checks/coding/multiplevariabledeclarations.html#MultipleVariableDeclarations">
+                    MultipleVariableDeclarations</a>
+                </td>
+                <td>
+                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MultipleVariableDeclarations">
+                    config</a>
+                  <br />
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter4formatting/rule4821onevariableperline/MultipleVariableDeclarationsTest.java">
+                    test</a>
+                </td>
+              </tr>
+              <tr>
+                <td><a name="4.8.2.2"/>
+                  <a href="#4.8.2.2">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/google-java-style-20180523/javaguide.html#s4.8.2.2-variables-limited-scope">
+                    4.8.2.2 Declared when needed
+                  </a>
+                </td>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
+                  <a href="checks/coding/variabledeclarationusagedistance.html#VariableDeclarationUsageDistance">
+                    VariableDeclarationUsageDistance</a>
+                  <br />
+                </td>
+                <td>
+                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+VariableDeclarationUsageDistance">
+                    config</a><br/>
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter4formatting/rule4822variabledistance/VariableDeclarationUsageDistanceTest.java">
+                    test</a>
+                </td>
+              </tr>
+              <tr>
+                <td><a name="4.8.3"/>
+                  <a href="#4.8.3">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/google-java-style-20180523/javaguide.html#s4.8.3-arrays">
+                    4.8.3 Arrays</a>
+                </td>
+                <td>↓</td>
+                <td/>
+              </tr>
+              <tr>
+                <td><a name="4.8.3.1"/>
+                  <a href="#4.8.3.1">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/google-java-style-20180523/javaguide.html#s4.8.3.1-array-initializers">
+                    4.8.3.1 Array initializers: can be "block-like"</a>
+                </td>
+                <td>--</td>
+                <td/>
+              </tr>
+              <tr>
+                <td><a name="4.8.3.2"/>
+                  <a href="#4.8.3.2">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/google-java-style-20180523/javaguide.html#s4.8.3.2-array-declarations">
+                    4.8.3.2 No C-style array declarations</a>
+                </td>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
+                  <a href="checks/misc/arraytypestyle.html#ArrayTypeStyle">ArrayTypeStyle</a>
+                </td>
+                <td>
+                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ArrayTypeStyle">
+                    config</a>
+                  <br />
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter4formatting/rule4832nocstylearray/ArrayTypeStyleTest.java">
+                    test</a>
+                </td>
+              </tr>
+              <tr>
+                <td><a name="4.8.4"/>
+                  <a href="#4.8.4">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/google-java-style-20180523/javaguide.html#s4.8.4-switch">
+                    4.8.4 Switch statements</a>
+                </td>
+                <td>--</td>
+                <td/>
+              </tr>
+              <tr>
+                <td><a name="4.8.4.1"/>
+                  <a href="#4.8.4.1">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/google-java-style-20180523/javaguide.html#s4.8.4.1-switch-indentation">
+                    4.8.4.1 Indentation</a>
+                </td>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
+                  <a href="checks/misc/indentation.html#Indentation">Indentation</a>
+                </td>
+                <td>
+                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+Indentation">
+                    config</a><br/>
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter4formatting/rule4841indentation/IndentationTest.java">
+                    test</a>
+                </td>
+              </tr>
+              <tr>
+                <td><a name="4.8.4.2"/>
+                  <a href="#4.8.4.2">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/google-java-style-20180523/javaguide.html#s4.8.4.2-switch-fall-through">
+                    4.8.4.2 Fall-through: commented</a>
+                </td>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
+                  <a href="checks/coding/fallthrough.html#FallThrough">FallThrough</a>
+                </td>
+                <td>
+                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+FallThrough">
+                    config</a>
+                  <br />
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter4formatting/rule4842fallthrough/FallThroughTest.java">
+                    test</a>
+                </td>
+              </tr>
+              <tr>
+                <td><a name="4.8.4.3"/>
+                  <a href="#4.8.4.3">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/google-java-style-20180523/javaguide.html#s4.8.4.3-switch-default">
+                    4.8.4.3 The default case is present</a>
+                </td>
+                <td>
+                  <span class="wrapper inline">
+                    <img
+                        src="images/ok_blue.png"
+                        alt="" />
+                  </span>
+                  <a href="checks/coding/missingswitchdefault.html#MissingSwitchDefault">
+                    MissingSwitchDefault</a>
+                  <br />
+                  "Exception: enum type may omit the default statement group"
+                  requirement can not be covered as we can not distinguish types,
+                  enum values may look the same as static final String constants.
+                </td>
+                <td>
+                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingSwitchDefault">
+                    config</a>
+                  <br />
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter4formatting/rule4843defaultcasepresent/MissingSwitchDefaultTest.java">
+                    test</a>
+                </td>
+              </tr>
+              <tr>
+                <td><a name="4.8.5"/>
+                  <a href="#4.8.5">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/google-java-style-20180523/javaguide.html#s4.8.5-annotations">
+                    4.8.5 Annotations</a>
+                </td>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
+                  <a href="checks/annotation/annotationlocation.html#AnnotationLocation">
+                    AnnotationLocation</a>
+                </td>
+                <td>
+                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+AnnotationLocation">
+                    config</a>
+                  <br />
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter4formatting/rule485annotations/AnnotationLocationTest.java">
+                    test</a>
+                </td>
+              </tr>
+              <tr>
+                <td><a name="4.8.6"/>
+                  <a href="#4.8.6">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/google-java-style-20180523/javaguide.html#s4.8.6-comments">
+                    4.8.6 Comments</a>
+                </td>
+                <td>↓</td>
+                <td/>
+              </tr>
+              <tr>
+                <td><a name="4.8.6.1"/>
+                  <a href="#4.8.6.1">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/google-java-style-20180523/javaguide.html#s4.8.6.1-block-comment-style">
+                    4.8.6.1 Block comment style</a>
+                </td>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
+                  <a href="checks/misc/commentsindentation.html#CommentsIndentation">
+                    CommentsIndentation</a>
+                </td>
+                <td>
+                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+CommentsIndentation">
+                    config</a>
+                  <br />
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter4formatting/rule4861blockcommentstyle/CommentsIndentationTest.java">
+                    test</a>
+                </td>
+                <td/>
+              </tr>
+              <tr>
+                <td><a name="4.8.7"/>
+                  <a href="#4.8.7">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/google-java-style-20180523/javaguide.html#s4.8.7-modifiers">
+                    4.8.7 Modifiers</a>
+                </td>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
+                  <a href="checks/modifier/modifierorder.html#ModifierOrder">ModifierOrder</a>
+                </td>
+                <td>
+                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ModifierOrder">
+                    config</a>
+                  <br />
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter4formatting/rule487modifiers/ModifierOrderTest.java">
+                    test</a>
+                </td>
+              </tr>
+              <tr>
+                <td><a name="4.8.8"/>
+                  <a href="#4.8.8">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/google-java-style-20180523/javaguide.html#s4.8.8-numeric-literals">
+                    4.8.8 Numeric Literals</a>
+                </td>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
+                  <a href="checks/misc/upperell.html#UpperEll">UpperEll</a>
+                </td>
+                <td>
+                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+UpperEll">
+                    config</a>
+                  <br />
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter4formatting/rule488numericliterals/UpperEllTest.java">
+                    test</a>
+                </td>
+              </tr>
+              <tr>
+                <td><a name="5"/>
+                  <a href="#5">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/google-java-style-20180523/javaguide.html#s5-naming">
+                    <strong>5 Naming</strong>
+                  </a>
+                </td>
+                <td>↓</td>
+                <td/>
+              </tr>
+              <tr>
+                <td><a name="5.1"/>
+                  <a href="#5.1">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/google-java-style-20180523/javaguide.html#s5.1-identifier-names">
+                    5.1 Rules common to all identifiers</a>
+                </td>
+                <td>"5.2 Rules of identifier type" already includes this rule.
+                </td>
+                <td/>
+              </tr>
+              <tr>
+                <td><a name="5.2"/>
+                  <a href="#5.2">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/google-java-style-20180523/javaguide.html#s5.2-specific-identifier-names">
+                    5.2 Rules by identifier type
+                  </a>
+                </td>
+                <td>↓</td>
+                <td/>
+              </tr>
+              <tr>
+                <td><a name="5.2.1"/>
+                  <a href="#5.2.1">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/google-java-style-20180523/javaguide.html#s5.2.1-package-names">
+                    5.2.1 Package names</a>
+                </td>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
+                  <a href="checks/naming/packagename.html#PackageName">PackageName</a>
+                </td>
+                <td>
+                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+PackageName">
+                    config</a>
+                  <br />
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter5naming/rule521packagenames/PackageNameTest.java">
+                    test</a>
+                </td>
+              </tr>
+              <tr>
+                <td><a name="5.2.2"/>
+                  <a href="#5.2.2">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/google-java-style-20180523/javaguide.html#s5.2.2-class-names">
+                    5.2.2 Class names</a>
+                </td>
+                <td>
+                  <span class="wrapper inline">
+                    <img
+                        src="images/ok_blue.png"
+                        alt="" />
+                  </span>
+                  <a href="checks/naming/typename.html#TypeName">TypeName</a>
+                </td>
+                <td>
+                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+TypeName">
+                    config</a>
+                  <br />
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter5naming/rule522typenames/TypeNameTest.java">
+                    test</a>
+                </td>
+              </tr>
+              <tr>
+                <td><a name="5.2.3"/>
+                  <a href="#5.2.3">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/google-java-style-20180523/javaguide.html#s5.2.3-method-names">
+                    5.2.3 Method names</a>
+                </td>
+                <td>
+                  <span class="wrapper inline">
+                    <img
+                        src="images/ok_blue.png"
+                        alt="" />
+                  </span>
+                  <a href="checks/naming/methodname.html#MethodName">MethodName</a>
+                  <br/> No ability to distinguish verb at the beginning of name,
+                  no way distinguish Test method from others so "_" is allowed in
+                  names
+                </td>
+                <td>
+                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MethodName">
+                    config</a>
+                  <br />
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter5naming/rule523methodnames/MethodNameTest.java">
+                    test</a>
+                </td>
+              </tr>
+              <tr>
+                <td><a name="5.2.4"/>
+                  <a href="#5.2.4">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/google-java-style-20180523/javaguide.html#s5.2.4-constant-names">
+                    5.2.4 Constant names</a>
+                </td>
+                <td>
+                  <span class="wrapper inline">
+                    <img
+                        src="images/ban_red.png"
+                        alt="" />
+                  </span>
+                  Every constant is a static final field, but not all static final
+                  fields are constants - impossible to check such rule.
+                </td>
+                <td/>
+              </tr>
+              <tr>
+                <td><a name="5.2.5"/>
+                  <a href="#5.2.5">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/google-java-style-20180523/javaguide.html#s5.2.5-non-constant-field-names">
+                    5.2.5 Non-constant field names</a>
+                </td>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
+                  <a href="checks/naming/membername.html#MemberName">MemberName</a>
+                </td>
+                <td>
+                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MemberName">
+                    config</a>
+                  <br />
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter5naming/rule525nonconstantfieldnames/MemberNameTest.java">
+                    test</a>
+                </td>
+              </tr>
+              <tr>
+                <td><a name="5.2.6"/>
+                  <a href="#5.2.6">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/google-java-style-20180523/javaguide.html#s5.2.6-parameter-names">
+                    5.2.6 Parameter names</a>
+                </td>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
+                  <a href="checks/naming/parametername.html#ParameterName">ParameterName</a>
+                  <br/>
+                  <br/>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
+                  <a href="checks/naming/catchparametername.html#CatchParameterName">
+                    CatchParameterName</a>
+                  <br/>
+                  <br/>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
+                  <a href="checks/naming/lambdaparametername.html#LambdaParameterName">
+                    LambdaParameterName</a>
+                  <br/>
+                  <br/>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
+                  <a href="checks/naming/recordcomponentname.html#RecordComponentName">
+                    RecordComponentName</a>
+                </td>
+                <td>
+                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ParameterName">
+                    config</a>
+                  <br />
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter5naming/rule526parameternames/ParameterNameTest.java">
+                    test</a>
+                  <br/>
+                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+CatchParameterName">
+                    config
+                  </a>
+                  <br/>
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter5naming/rule51identifiernames/CatchParameterNameTest.java">
+                    test
+                  </a>
+                  <br/>
+                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LambdaParameterName">
+                    config</a>
+                  <br />
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter5naming/rule526parameternames/LambdaParameterNameTest.java">
+                    test</a>
+                  <br/>
+                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+RecordComponentName">
+                    config</a>
+                  <br />
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter5naming/rule526parameternames/RecordComponentNameTest.java">
+                    test</a>
+                </td>
+              </tr>
+              <tr>
+                <td><a name="5.2.7"/>
+                  <a href="#5.2.7">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/google-java-style-20180523/javaguide.html#s5.2.7-local-variable-names">
+                    5.2.7 Local variable names</a>
+                </td>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
+                  <a href="checks/naming/localvariablename.html#LocalVariableName">LocalVariableName</a>
+                  <br/>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
+                  <a href="checks/naming/patternvariablename.html#PatternVariableName">PatternVariableName</a>
+                </td>
+                <td>
+                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LocalVariableName">
+                    config</a>
+                  <br />
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter5naming/rule527localvariablenames/LocalVariableNameTest.java">
+                    test</a>
+                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+PatternVariableName">
+                    config</a>
+                  <br />
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter5naming/rule527localvariablenames/PatternVariableNameTest.java">
+                    test</a>
+                </td>
+              </tr>
+              <tr>
+                <td><a name="5.2.8"/>
+                  <a href="#5.2.8">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/google-java-style-20180523/javaguide.html#s5.2.8-type-variable-names">
+                    5.2.8 Type variable names</a>
+                </td>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
+                  <a href="checks/naming/methodtypeparametername.html#MethodTypeParameterName">
+                    MethodTypeParameterName</a>
+                  <br/>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
+                  <a href="checks/naming/classtypeparametername.html#ClassTypeParameterName">
+                    ClassTypeParameterName</a>
+                  <br/>
+                  <span class="wrapper inline">
+                    <img
+                        src="images/ok_green.png"
+                        alt="" />
+                  </span>
+                  <a href="checks/naming/interfacetypeparametername.html#InterfaceTypeParameterName">
+                    InterfaceTypeParameterName</a>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
+                  <a href="checks/naming/recordtypeparametername.html#RecordTypeParameterName">
+                    RecordTypeParameterName</a>
+                  <br/>
+                </td>
+                <td>
+                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MethodTypeParameterName">
+                    config</a>
+                  <br />
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter5naming/rule528typevariablenames/MethodTypeParameterNameTest.java">
+                    test</a>
+                  <br />
+                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ClassTypeParameterName">
+                    config</a>
+                  <br />
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter5naming/rule528typevariablenames/ClassTypeParameterNameTest.java">
+                    test</a>
+                  <br />
+                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+InterfaceTypeParameterName">
+                    config</a>
+                  <br />
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter5naming/rule528typevariablenames/InterfaceTypeParameterNameTest.java">
+                    test</a>
+                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+RecordTypeParameterName">
+                    config</a>
+                  <br />
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter5naming/rule528typevariablenames/RecordTypeParameterNameTest.java">
+                    test</a>
+                  <br />
+                </td>
+              </tr>
+              <tr>
+                <td><a name="5.3"/>
+                  <a href="#5.3">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/google-java-style-20180523/javaguide.html#s5.3-camel-case">
+                    5.3 Camel case: defined</a>
+                </td>
+                <td>
+                  <span class="wrapper inline">
+                    <img
+                        src="images/ok_blue.png"
+                        alt="" />
+                  </span>
+                  <a href="checks/naming/abbreviationaswordinname.html#AbbreviationAsWordInName">
+                    AbbreviationAsWordInName</a>
+                  <br />
+                  Non covered: Some words are ambiguously hyphenated in the
+                  English language. No way to distinguish "YouTubeImporter" or
+                  "YoutubeImporter".
+                </td>
+                <td>
+                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+AbbreviationAsWordInName">
+                    config</a>
+                  <br />
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter5naming/rule53camelcase/AbbreviationAsWordInNameTest.java">
+                    test</a>
+                </td>
+              </tr>
+              <tr>
+                <td><a name="6"/>
+                  <a href="#6">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/google-java-style-20180523/javaguide.html#s6-programming-practices">
+                    <strong>6 Programming Practices</strong>
+                  </a>
+                </td>
+                <td>↓</td>
+                <td/>
+              </tr>
+              <tr>
+                <td><a name="6.1"/>
+                  <a href="#6.1">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/google-java-style-20180523/javaguide.html#s6.1-override-annotation">
+                    6.1 @Override: always used</a>
+                </td>
+                <td>
+                  <span class="wrapper inline">
+                    <img
+                        src="images/ban_red.png"
+                        alt="" />
+                  </span>
+                  That validation could not be checked by Checkstyle. It's
+                  need to
+                  take a look as parent class. But Checkstyle have no way to
+                  open or
+                  look at another Class file.
+                </td>
+                <td/>
+              </tr>
+              <tr>
+                <td><a name="6.2"/>
+                  <a href="#6.2">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/google-java-style-20180523/javaguide.html#s6.2-caught-exceptions">
+                    6.2 Caught exceptions: not ignored</a>
+                </td>
+                <td>
+                  <span class="wrapper inline">
+                    <img
+                        src="images/ok_blue.png"
+                        alt="" />
+                  </span>
+                  <a href="checks/blocks/emptyblock.html#EmptyBlock">EmptyBlock</a>
+                  with option=text.
+                </td>
+                <td>
+                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+EmptyBlock">
+                    config</a><br/>
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter6programpractice/rule62donotignoreexceptions/EmptyBlockTest.java">
+                    test</a>
+                </td>
+              </tr>
+              <tr>
+                <td><a name="6.3"/>
+                  <a href="#6.3">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/google-java-style-20180523/javaguide.html#s6.3-static-members">
+                    6.3 Static members: qualified using class</a>
+                </td>
+                <td>
+                  <span class="wrapper inline">
+                    <img
+                        src="images/ban_red.png"
+                        alt="" />
+                  </span>
+                  Proper validation require parsing other files, sources
+                  are not always available.
+                </td>
+                <td/>
+              </tr>
+              <tr>
+                <td><a name="6.4"/>
+                  <a href="#6.4">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/google-java-style-20180523/javaguide.html#s6.4-finalizers">
+                    6.4 Finalizers: not used</a>
+                </td>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
+                  <a href="checks/coding/nofinalizer.html#NoFinalizer">NoFinalizer</a>
+                </td>
+                <td>
+                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NoFinalizer">
+                    config</a>
+                  <br />
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter6programpractice/rule64finalizers/NoFinalizerTest.java">
+                    test</a>
+                </td>
+              </tr>
+              <tr>
+                <td><a name="7"/>
+                  <a href="#7">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/google-java-style-20180523/javaguide.html#s7-javadoc">
+                    <strong>7 Javadoc</strong>
+                  </a>
+                </td>
+                <td>↓</td>
+                <td/>
+              </tr>
+              <tr>
+                <td><a name="7.1"/>
+                  <a href="#7.1">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/google-java-style-20180523/javaguide.html#s7.1-javadoc-formatting">
+                    7.1 Formatting
+                  </a>
+                </td>
+                <td>↓</td>
+                <td/>
+              </tr>
+              <tr>
+                <td><a name="7.1.1"/>
+                  <a href="#7.1.1">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/google-java-style-20180523/javaguide.html#s7.1.1-javadoc-multi-line">
+                    7.1.1 General form</a>
+                </td>
+                <td>
+                  <span class="wrapper inline">
+                    <img
+                        src="images/ok_blue.png"
+                        alt="" />
+                  </span>
+                  <br />
+                  <a href="checks/javadoc/singlelinejavadoc.html#SingleLineJavadoc">
+                    SingleLineJavadoc</a>
+                  Recent update for guide that clarify requirements will be
+                  addressed at
+                  <a href="https://github.com/checkstyle/checkstyle/issues/4052">
+                    #4052</a>
+                  <br />
+                  <a href="checks/javadoc/invalidjavadocposition.html#InvalidJavadocPosition">
+                    InvalidJavadocPosition</a>
+                </td>
+                <td>
+                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SingleLineJavadoc">
+                    config</a><br/>
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter7javadoc/rule711generalform/SingleLineJavadocTest.java">
+                    test</a>
+                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+InvalidJavadocPosition">
+                    config</a><br/>
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter7javadoc/rule711generalform/InvalidJavadocPositionTest.java">
+                    test</a>
+                </td>
+              </tr>
+              <tr>
+                <td><a name="7.1.2"/>
+                  <a href="#7.1.2">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/google-java-style-20180523/javaguide.html#s7.1.2-javadoc-paragraphs">
+                    7.1.2 Paragraphs</a>
+                </td>
+                <td>
+                  <span class="wrapper inline">
+                    <img
+                        src="images/ok_green.png"
+                        alt="" />
+                  </span>
+                  <a href="checks/javadoc/javadocparagraph.html#JavadocParagraph">JavadocParagraph</a>
+                  <span class="wrapper inline">
+                    <img
+                        src="images/ok_green.png"
+                        alt="" />
+                  </span>
+                  <a href="checks/javadoc/requireemptylinebeforeblocktaggroup.html#RequireEmptyLineBeforeBlockTagGroup">RequireEmptyLineBeforeBlockTagGroup</a>
+                </td>
+                <td>
+                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocParagraph">
+                    config</a><br/>
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter7javadoc/rule712paragraphs/JavadocParagraphTest.java">
+                    test</a>
+                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+RequireEmptyLineBeforeBlockTagGroup">
+                    config</a><br/>
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter7javadoc/rule712paragraphs/RequireEmptyLineBeforeBlockTagGroupTest.java">
+                    test</a>
+                </td>
+              </tr>
+              <tr>
+                <td><a name="7.1.3"/>
+                  <a href="#7.1.3">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/google-java-style-20180523/javaguide.html#s7.1.3-javadoc-at-clauses">
+                    7.1.3 Block tags</a>
+                </td>
+                <td>
+                  <span class="wrapper inline">
+                    <img
+                        src="images/ok_green.png"
+                        alt="" />
+                  </span>
+                  <a href="checks/javadoc/atclauseorder.html#AtclauseOrder">AtclauseOrder</a>
+                  <br/>
+                  <br/>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
+                  <a href="checks/javadoc/javadoctagcontinuationindentation.html#JavadocTagContinuationIndentation">
+                    JavadocTagContinuationIndentation</a>
+                  <br/>
+                  <br/>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
+                  <a href="checks/javadoc/nonemptyatclausedescription.html#NonEmptyAtclauseDescription">
+                    NonEmptyAtclauseDescription</a>
+                </td>
+                <td>
+                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+AtclauseOrder">
+                    config</a><br/>
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter7javadoc/rule713atclauses/AtclauseOrderTest.java">
+                    test</a><br/>
+                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocTagContinuationIndentation">
+                    config</a><br/>
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter7javadoc/rule713atclauses/JavadocTagContinuationIndentationTest.java">
+                    test</a><br/>
+                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NonEmptyAtclauseDescription">
+                    config</a><br/>
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter7javadoc/rule713atclauses/NonEmptyAtclauseDescriptionTest.java">
+                    test</a>
+                </td>
+              </tr>
+              <tr>
+                <td><a name="7.2"/>
+                  <a href="#7.2">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/google-java-style-20180523/javaguide.html#s7.2-summary-fragment">
+                    7.2 The summary fragment</a>
+                </td>
+                <td>
+                  <span class="wrapper inline">
+                    <img
+                        src="images/ok_green.png"
+                        alt="" />
+                  </span>
+                  <a href="checks/javadoc/summaryjavadoc.html#SummaryJavadoc">SummaryJavadoc</a>
+                </td>
+                <td>
+                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SummaryJavadoc">
+                    config</a><br/>
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter7javadoc/rule72thesummaryfragment/SummaryJavadocTest.java">
+                    test</a>
+                </td>
+              </tr>
+              <tr>
+                <td><a name="7.3"/>
+                  <a href="#7.3">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/google-java-style-20180523/javaguide.html#s7.3-javadoc-where-required">
+                    7.3 Where Javadoc is used
+                  </a>
+                </td>
+                <td>
+                  <span class="wrapper inline">
+                    <img
+                        src="images/ok_green.png"
+                        alt="" />
+                  </span>
+                  <a href="checks/javadoc/missingjavadoctype.html#MissingJavadocType">MissingJavadocType</a>
+                  <span class="wrapper inline">
+                    <img
+                        src="images/ok_green.png"
+                        alt="" />
+                  </span>
+                  <a href="checks/javadoc/missingjavadocmethod.html#MissingJavadocMethod">MissingJavadocMethod</a>
+                  <span class="wrapper inline">
+                    <img
+                        src="images/ok_green.png"
+                        alt="" />
+                  </span>
+                  <a href="checks/javadoc/javadocmethod.html#JavadocMethod">JavadocMethod</a>
+                </td>
+                <td>
+                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingJavadocType">
+                    config</a><br/>
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter7javadoc/rule73wherejavadocrequired/MissingJavadocTypeTest.java">
+                    test</a>
+                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingJavadocMethod">
+                    config</a><br/>
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter7javadoc/rule731selfexplanatory/MissingJavadocMethodTest.java">
+                    test</a>
+                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocMethod">
+                    config</a><br/>
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter7javadoc/rule731selfexplanatory/JavadocMethodTest.java">
+                    test</a>
+                </td>
+              </tr>
+              <tr>
+                <td><a name="7.3.1"/>
+                  <a href="#7.3.1">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/google-java-style-20180523/javaguide.html#s7.3.1-javadoc-exception-self-explanatory">
+                    7.3.1 Exception: self-explanatory methods</a>
+                </td>
+                <td>
+                  <span class="wrapper inline">
+                    <img
+                        src="images/ok_green.png"
+                        alt="" />
+                  </span>
+                  <a href="checks/javadoc/missingjavadocmethod.html#MissingJavadocMethod">MissingJavadocMethod</a>
+                  <span class="wrapper inline">
+                    <img
+                        src="images/ok_green.png"
+                        alt="" />
+                  </span>
+                  <a href="checks/javadoc/javadocmethod.html#JavadocMethod">JavadocMethod</a>
+                </td>
+                <td>
+                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingJavadocMethod">
+                    config</a><br/>
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter7javadoc/rule731selfexplanatory/MissingJavadocMethodTest.java">
+                    test</a>
+                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocMethod">
+                    config</a><br/>
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter7javadoc/rule731selfexplanatory/JavadocMethodTest.java">
+                    test</a>
+                </td>
+              </tr>
+              <tr>
+                <td><a name="7.3.2"/>
+                  <a href="#7.3.2">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/google-java-style-20180523/javaguide.html#s7.3.2-javadoc-exception-overrides">
+                    7.3.2 Exception: overrides</a>
+                </td>
+                <td>
+                  <span class="wrapper inline">
+                    <img
+                        src="images/ok_green.png"
+                        alt="" />
+                  </span>
+                  <a href="checks/javadoc/missingjavadocmethod.html#MissingJavadocMethod">MissingJavadocMethod</a>
+                  <span class="wrapper inline">
+                    <img
+                        src="images/ok_blue.png"
+                        alt="" />
+                  </span>
+                  <a href="checks/javadoc/javadocmethod.html#JavadocMethod">JavadocMethod</a><br/>
+                  Overrides are checked by presence of "@Override" annotation on
+                  method.
+                </td>
+                <td>
+                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingJavadocMethod">
+                    config</a><br/>
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter7javadoc/rule731selfexplanatory/MissingJavadocMethodTest.java">
+                    test</a>
+                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocMethod">
+                    config</a><br/>
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter7javadoc/rule731selfexplanatory/JavadocMethodTest.java">
+                    test</a>
+                </td>
+              </tr>
+              <tr>
+                <td><a name="7.3.4"/>
+                  <a href="#7.3.4">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/google-java-style-20180523/javaguide.html#s7.3.4-javadoc-non-required">
+                    7.3.4 Non-required Javadoc</a>
+                </td>
+                <td>
+                  <span class="wrapper inline">
+                    <img
+                        src="images/ok_blue.png"
+                        alt="" />
+                  </span>
+                  <a href="checks/javadoc/invalidjavadocposition.html#InvalidJavadocPosition">
+                    InvalidJavadocPosition</a>
+                </td>
+                <td>
+                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+InvalidJavadocPosition">
+                    config</a><br/>
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter7javadoc/rule734nonrequiredjavadoc/InvalidJavadocPositionTest.java">
+                    test</a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </subsection>
+      <subsection name="Suppressions" id="Google_Suppressions">
+        <p>
+          It is possible to suppress some violations by embeded filters
+          <a href="filters/suppressionfilter.html#SuppressionFilter">
+            SuppressionFilter</a>,
+          <a href="filters/suppressionxpathfilter.html#SuppressionXpathFilter">
+            SuppressionXpathFilter</a>,
+          <a href="filters/suppresswithnearbycommentfilter.html#SuppressWithNearbyCommentFilter">
+            SuppressWithNearbyCommentFilter</a>,
+          <a href="filters/suppressioncommentfilter.html#SuppressionCommentFilter">
+            SuppressionCommentFilter</a>
+          and
+          <a href="filters/suppresswarningsfilter.html#SuppressWarningsFilter">
+            SuppressWarningsFilter</a>.
+        </p>
+        <p>
+          Location of config file for
+          <a href="filters/suppressionfilter.html#SuppressionFilter">SuppressionFilter</a> can
+          be defined by system property <i>org.checkstyle.google.suppressionfilter.config</i>
+          (default value is <i>checkstyle-suppressions.xml</i>).
+        </p>
+        <p>
+          Location of config file for
+          <a href="filters/suppressionxpathfilter.html#SuppressionXpathFilter">SuppressionXpathFilter</a>
+          can be defined by system property
+          <i>org.checkstyle.google.suppressionxpathfilter.config</i> (default value is
+          <i>checkstyle-xpath-suppressions.xml</i>).
+        </p>
+        <p>
+          To suppress a check in the next line of code using
+          <a href="filters/suppresswithnearbycommentfilter.html#SuppressWithNearbyCommentFilter">
+            SuppressWithNearbyCommentFilter</a>precede the line of code with
+          <i>// CHECKSTYLE.SUPPRESS: NameOfTheCheck</i> (replace <i>NameOfTheCheck</i> with
+          the actual check to be suppressed).
+        </p>
+        <p>
+          To suppress a check on a block of code using
+          <a href="filters/suppressioncommentfilter.html#SuppressionCommentFilter">SuppressionCommentFilter</a>
+          add <i>// CHECKSTYLE.OFF: NameOfTheCheck</i> before the beginning of the code block and
+          <i>// CHECKSTYLE.ON: NameOfTheCheck</i> after the end of the code block (replace
+          <i>NameOfTheCheck</i> with the actual check to be suppressed).
+        </p>
+        <p>
+          To suppress a check using
+          <a href="filters/suppresswarningsfilter.html#SuppressWarningsFilter">SuppressWarningsFilter</a>
+          use Java's<i>@SuppressWarnings({"checkstyle:name_of_the_check", ...})</i> annotation.
+          Each value passed in the array parameter must meet the format
+          <i>checkstyle:name_of_the_check</i> where the <i>checkstyle:</i> is optional and
+          <i>name_of_the_check</i> is the actual name of check to be suppressed in lowercase
+          format.
+        </p>
+        <p>
+          For more details please review exact configuration of Filters in google_checks.xml:
+          <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressionFilter">
+                    SuppressionFilter</a>,
+          <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressionXpathFilter">
+                    SuppressionXpathFilter</a>
+          <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressWithNearbyCommentFilter">
+                    SuppressWithNearbyCommentFilter</a>,
+          <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressionCommentFilter">
+                    SuppressionCommentFilter</a>,
+          <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressWarningsFilter">
+                    SuppressWarningsFilter</a>,
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

@@ -1,0 +1,12 @@
+/*xml
+<module name="Checker">
+  <module name="RegexpMultiline"/>
+</module>
+*/
+
+// xdoc section -- start
+void method() {
+  int i = 5; // OK
+  System.out.println(i); // OK
+}
+// xdoc section -- end

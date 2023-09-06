@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>Blocks</title>
+  </head>
+  <body>
+    <section name="Blocks Checks">
+      <div class="wrapper">
+        <table>
+          <tr>
+            <td>
+              <a href="avoidnestedblocks.html#AvoidNestedBlocks">
+                AvoidNestedBlocks
+              </a>
+            </td>
+            <td>
+              Finds nested blocks (blocks that are used freely in the code).
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="emptyblock.html#EmptyBlock">
+                EmptyBlock
+              </a>
+            </td>
+            <td>
+              Checks for empty blocks.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="emptycatchblock.html#EmptyCatchBlock">
+                EmptyCatchBlock
+              </a>
+            </td>
+            <td>
+              Checks for empty catch blocks.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="leftcurly.html#LeftCurly">
+                LeftCurly
+              </a>
+            </td>
+            <td>
+              Checks for the placement of left curly braces (<code>'{'</code>) for code blocks.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="needbraces.html#NeedBraces">
+                NeedBraces
+              </a>
+            </td>
+            <td>
+              Checks for braces around code blocks.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="rightcurly.html#RightCurly">
+                RightCurly
+              </a>
+            </td>
+            <td>
+              Checks the placement of right curly braces (<code>'}'</code>) for code blocks.
+            </td>
+          </tr>
+        </table>
+      </div>
+    </section>
+  </body>
+</document>

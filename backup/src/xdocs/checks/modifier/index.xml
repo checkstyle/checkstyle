@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>Modifiers</title>
+  </head>
+  <body>
+    <section name="Modifiers Checks">
+      <div class="wrapper">
+        <table>
+          <tr>
+            <td>
+              <a href="classmemberimpliedmodifier.html#ClassMemberImpliedModifier">
+                ClassMemberImpliedModifier
+              </a>
+            </td>
+            <td>
+              Checks for implicit modifiers on nested types in classes and records.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="interfacememberimpliedmodifier.html#InterfaceMemberImpliedModifier">
+                InterfaceMemberImpliedModifier
+              </a>
+            </td>
+            <td>
+              Checks for implicit modifiers on interface members and nested types.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="modifierorder.html#ModifierOrder">
+                ModifierOrder
+              </a>
+            </td>
+            <td>
+              Checks that the order of modifiers conforms to the suggestions in the
+            Java Language specification, § 8.1.1, 8.3.1, 8.4.3 and 9.4.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="redundantmodifier.html#RedundantModifier">
+                RedundantModifier
+              </a>
+            </td>
+            <td>
+              Checks for redundant modifiers.
+            </td>
+          </tr>
+        </table>
+      </div>
+    </section>
+  </body>
+</document>

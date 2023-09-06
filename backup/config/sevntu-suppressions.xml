@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE suppressions PUBLIC
+        "-//Checkstyle//DTD SuppressionFilter Configuration 1.1//EN"
+        "https://checkstyle.org/dtds/suppressions_1_1.dtd">
+
+<suppressions>
+
+  <!-- Fixing these cases will decrease code readability -->
+  <suppress checks="MultipleStringLiteralsExtended"
+             files="JavadocStyleCheck\.java|XMLLogger\.java"/>
+  <suppress checks="MultipleStringLiteralsExtended"
+             files=".*[\\/]src[\\/](test|it|xdocs-examples)[\\/]"/>
+
+  <!-- If we change declaration order, Illegal forward reference will appear.
+  See https://github.com/sevntu-checkstyle/sevntu.checkstyle/issues/415 -->
+  <suppress checks="CustomDeclarationOrder"
+             files="JavadocTokenTypes.java"/>
+
+  <!-- JavadocTagInfo.java, JavadocTags.java, InvalidJavadocTag.java, JavadocTag.java will be
+  deprecated as we completely switch to ANTLR parser for javadoc. All the mentioned classes
+  are required only for old javadoc parsers and their usage will be excluded from
+  JavadocUtil.java and JavadocUtilTest.java. -->
+  <suppress checks="ForbidCertainImports"
+             files="JavadocUtil\.java|JavadocUtilTest\.java"/>
+  <!-- Uses other checks as a basis for it's tests. -->
+  <suppress checks="ForbidCertainImports"
+             files="ViolationTest\.java"/>
+  <suppress checks="ForbidCertainImports"
+             files="FullIdentTest\.java"/>
+
+  <!-- Tone down the checking for test code -->
+  <suppress checks="SingleBreakOrContinue" files="[\\/]XdocsPagesTest\.java"/>
+
+  <!-- MainTest is technically not part of the checkstyle library,
+  so static Loggers are okay there. -->
+  <suppress checks="AvoidModifiersForTypesCheck"
+             files="MainTest\.java"/>
+
+  <!-- Suppressed alternative method of pulling partial configuration from file -->
+  <suppress checks="CheckstyleTestMakeup" files="[\\/]RightCurlyTest\.java"/>
+
+  <!-- No need for constructor with cause -->
+  <suppress checks="CauseParameterInException" files=".*MetadataGenerationException\.java"/>
+
+  <!-- Require for testing of util package -->
+  <suppress checks="ForbidCertainImports" files="AnnotationUtilTest\.java"/>
+  <suppress checks="ForbidCertainImports" files="CheckUtilTest\.java"/>
+
+  <!-- Required for reversing a list -->
+  <suppress checks="ForbidCertainImports" files="SiteUtil\.java"/>
+
+</suppressions>

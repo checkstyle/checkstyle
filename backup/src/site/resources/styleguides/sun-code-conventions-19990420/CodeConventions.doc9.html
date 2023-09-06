@@ -1,0 +1,103 @@
+<html><head><title></title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="CodeConvTOC.doc.html">[Contents]</a> <a href="CodeConventions.doc8.html">[Prev]</a> <a href="CodeConventions.doc10.html">[Next]</a> 
+<hr><br>
+ 
+<a name="a529"> </a>
+<h2 align="center">10 - 	 Programming Practices</h2>
+<a name="a177"> </a>
+<h3> 10.1	 Providing Access to Instance and Class Variables</h3>
+<p><a name="208"> </a>
+Don't make any instance or class variable public without good reason. Often, instance variables don't need to be explicitly set or gotten-often that happens as a side effect of method calls.
+</p><p><a name="360"> </a>
+One example of appropriate public instance variables is the case where the class is essentially a data structure, with no behavior. In other words, if you would have used a <code>struct</code> instead of a class (if Java supported <code>struct)</code>, then it's appropriate to make the class's instance variables public.
+</p><a name="a587"> </a>
+<h3> 10.2	 Referring to Class Variables and Methods</h3>
+<p><a name="206"> </a>
+Avoid using an object to access a class (static) variable or method. Use a class name instead. For example:
+</p><blockquote><pre>classMethod();             //OK
+AClass.classMethod();      //OK
+anObject.classMethod();    //AVOID!
+</pre></blockquote><a name="a1255"> </a>
+<h3> 10.3	 Constants</h3>
+<p><a name="1256"> </a>
+Numerical constants (literals) should not be coded directly, except for -1, 0, and 1, which can appear in a <code>for</code> loop as counter values.  
+</p><a name="a547"> </a>
+<h3> 10.4	 Variable Assignments</h3>
+<p><a name="549"> </a>
+Avoid assigning several variables to the same value in a single statement. It is hard to read. Example:
+</p><blockquote><pre>fooBar.fChar = barFoo.lchar = 'c'; // AVOID!
+</pre></blockquote><p><a name="559"> </a>
+Do not use the assignment operator in a place where it can be easily confused with the equality operator. Example:
+</p><blockquote><pre>if (c++ = d++) {        // AVOID! (Java disallows)
+    ...
+}
+</blockquote></pre><p><a name="561"> </a>
+should be written as
+</p><blockquote><pre>if ((c++ = d++) != 0) {
+    ...
+}
+</pre></blockquote><p><a name="563"> </a>
+Do not use embedded assignments in an attempt to improve run-time performance. This is the job of the compiler. Example:
+</p><blockquote><pre>d = (a = b + c) + r;        // AVOID!
+</blockquote></pre><p><a name="565"> </a>
+should be written as
+</p><blockquote><pre>
+a = b + c;
+d = a + r;
+</pre></blockquote><a name="a554"> </a>
+<h3> 10.5	 Miscellaneous Practices</h3>
+<a name="a331"> </a>
+<h4>10.5.1	 Parentheses</h4>
+<p><a name="575"> </a>
+It is generally a good idea to use parentheses liberally in expressions involving mixed operators to avoid operator precedence problems. Even if the operator precedence seems clear to you, it might not be to others-you shouldn't assume that other programmers know precedence as well as you do.
+</p><blockquote><pre>if (a == b &amp;&amp; c == d)     // AVOID!
+if ((a == b) &amp;&amp; (c == d)) // RIGHT
+</pre></blockquote><a name="a333"> </a>
+<h4>10.5.2	 Returning Values</h4>
+<p><a name="577"> </a>
+Try to make the structure of your program match the intent. Example:
+</p><blockquote><pre>if (<em>booleanExpression</em>) {
+    return true;
+} else {
+    return false;
+}
+</pre></blockquote><p><a name="568"> </a>
+should instead be written as
+</p><blockquote><pre>return <em>booleanExpression</em>;
+</pre></blockquote><p><a name="570"> </a>
+Similarly,
+</p><blockquote><pre>if (condition) {
+    return x;
+}
+return y;
+</pre></blockquote><p><a name="572"> </a>
+should be written as
+</p><blockquote><pre>return (condition ? x : y);
+</pre></blockquote><a name="a353"> </a>
+<h4>10.5.3	 Expressions before `?' in the Conditional Operator </h4>
+<p><a name="582"> </a>
+If an expression containing a binary operator appears before the <code>?</code> in the ternary <code>?: </code>operator, it should be parenthesized. Example:
+</p><blockquote><pre>(x &gt;= 0) ? x : -x;
+</pre></blockquote><a name="a395"> </a>
+<h4>10.5.4	 Special Comments</h4>
+<p><a name="389"> </a>
+Use <code>XXX</code> in a comment to flag something that is bogus but works. Use <code>FIXME</code> to flag something that is bogus and broken.
+</p>
+<hr><br>
+ 
+<a href="CodeConvTOC.doc.html">[Contents]</a> <a href="CodeConventions.doc8.html">[Prev]</a> <a href="CodeConventions.doc10.html">[Next]</a> 
+<hr><br>
+
+
+
+
+<i><a href="Copyright.doc.html">Copyright</a> &#169; 1995-1999, Sun Microsystems, Inc.   All rights
+reserved.</i>
+
+
+<!-- Last updated: Thu Apr 15 09:03:50 1999 -->
+
+</body>
+</html>

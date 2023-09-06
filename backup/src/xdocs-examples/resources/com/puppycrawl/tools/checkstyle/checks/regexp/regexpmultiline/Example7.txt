@@ -1,0 +1,13 @@
+/*xml
+<module name="Checker">
+  /var/tmp/Test.java // violation, a file must not be empty.
+</module>
+*/
+
+// xdoc section -- start
+/var/tmp$ cat -n Test.java
+1
+2
+3
+4
+// xdoc section -- end
