@@ -43,7 +43,7 @@ public class InputAnnotationOnSameLineRecordsAndCompactCtors {
      */
     @SuppressWarnings("deprecation") // violation
     public record MyRecord6() {
-        record MyInnerRecord() {@SuppressWarnings("Annotation")public MyInnerRecord {}  
+        record MyInnerRecord() {@SuppressWarnings("Annotation")public MyInnerRecord {}
         }
     }
 
