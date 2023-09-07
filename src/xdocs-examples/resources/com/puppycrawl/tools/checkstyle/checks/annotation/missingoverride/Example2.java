@@ -13,7 +13,14 @@
 class Test1 {
 
     /** {@inheritDoc} */
-    public void equals() { // violation, should be annotated with @Override
+    public boolean equals(Object o) { // violation, should be annotated with @Override
+        return o == this;
+    }
+}
+
+class SuperClass2{
+
+    public void test(){
 
     }
 }
@@ -21,10 +28,10 @@ class Test1 {
 interface Test2 {
 
     /** {@inheritDoc} */
-    void test(); // violation, should be annotated with @Override
+    void test(); // OK, is ignored because in interface we don't use @Override
 }
 
-class Test3 extends SuperClass {
+class Test3 extends SuperClass2 {
 
     /** {@inheritDoc} */
     public void test() { // OK, is ignored because class extends other class
@@ -32,7 +39,7 @@ class Test3 extends SuperClass {
     }
 }
 
-class Test4 implements SuperInterface {
+class Test4 implements Test2 {
 
     /** {@inheritDoc} */
     public void test() { // OK, is ignored because class implements interface

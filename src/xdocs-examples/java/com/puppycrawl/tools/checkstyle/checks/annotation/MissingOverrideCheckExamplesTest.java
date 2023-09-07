@@ -19,13 +19,16 @@
 
 package com.puppycrawl.tools.checkstyle.checks.annotation;
 
-import org.junit.jupiter.api.Disabled;
+import static com.puppycrawl.tools.checkstyle.checks.annotation.MissingOverrideCheck.MSG_KEY_TAG_NOT_VALID_ON;
+import static com.puppycrawl.tools.checkstyle.checks.annotation.MissingOverrideCheck.MSG_KEY_ANNOTATION_MISSING_OVERRIDE;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
-@Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
+
 public class MissingOverrideCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/annotation/missingoverride";
@@ -34,18 +37,20 @@ public class MissingOverrideCheckExamplesTest extends AbstractExamplesModuleTest
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-
+                "32:5: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE, "test2"),
+                "37:5: " + getCheckMessage(MSG_KEY_TAG_NOT_VALID_ON, "test3"),
+                "42:5: " + getCheckMessage(MSG_KEY_TAG_NOT_VALID_ON, "test4"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
 
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-
+                "16:5: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE, "equals"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example2.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
 }
