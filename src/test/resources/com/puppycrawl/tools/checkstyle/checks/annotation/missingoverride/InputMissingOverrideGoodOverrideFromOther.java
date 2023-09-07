@@ -32,13 +32,13 @@ class MoreJunk1 extends InputMissingOverrideGoodOverrideFromOther {
     /**
      * {@inheritDoc}
      */
-    @Override       // ok
+    @Override
     public void doFoo() {}
 
     /**
      * {@inheritDoc}
      */
-    @Override       // ok
+    @Override
     public void doFoo2() {}
 
     class EvenMoreJunk extends MoreJunk1 implements Serializable {
@@ -46,13 +46,13 @@ class MoreJunk1 extends InputMissingOverrideGoodOverrideFromOther {
         /**
          * {@inheritDoc}
          */
-        @Override       // ok
+        @Override
         public void doFoo() {}
 
         /**
          * {@inheritDoc}
          */
-        @Override       // ok
+        @Override
         public void doFoo2() {}
     }
 
@@ -61,13 +61,13 @@ class MoreJunk1 extends InputMissingOverrideGoodOverrideFromOther {
         /**
          * {@inheritDoc}
          */
-        @java.lang.Override     // ok
+        @java.lang.Override
         public void doFoo() {}
 
         /**
          * {@inheritDoc}
          */
-        @java.lang.Override     // ok
+        @java.lang.Override
         public void doFoo2() {}
     }
 }

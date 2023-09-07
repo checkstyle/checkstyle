@@ -1679,17 +1679,6 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/SummaryJavadocCheck.java</fileName>
-    <specifier>array.access.unsafe.high</specifier>
-    <message>Potentially unsafe array access: the index could be larger than the array&apos;s bound</message>
-    <lineContent>final DetailNode child = children[i];</lineContent>
-    <details>
-      found   : int
-      required: @IndexFor(&quot;children&quot;) or @LTLengthOf(&quot;children&quot;) -- an integer less than children&apos;s length
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/SummaryJavadocCheck.java</fileName>
     <specifier>array.access.unsafe.high.constant</specifier>
     <message>Potentially unsafe array access: the constant index 0 could be larger than the array&apos;s bound</message>
     <lineContent>&amp;&amp; node.getChildren()[0].getChildren().length &gt; 1) {</lineContent>
