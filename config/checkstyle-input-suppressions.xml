@@ -944,10 +944,6 @@
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]annotation[\\/]annotationonsameline[\\/]InputAnnotationOnSameLineCheck3.java"/>
   <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]annotation[\\/]missingdeprecated[\\/]InputMissingDeprecatedGood.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]annotation[\\/]missingdeprecated[\\/]InputMissingDeprecatedSingleComment.java"/>
-  <suppress id="UnnecessaryOkComment"
             files="checks[\\/]annotation[\\/]missingoverride[\\/]InputMissingOverrideBadAnnotationJava5.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]annotation[\\/]missingoverride[\\/]InputMissingOverrideBadAnnotationJava5.java"/>
