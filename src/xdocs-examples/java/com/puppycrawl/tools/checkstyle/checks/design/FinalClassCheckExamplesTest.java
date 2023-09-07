@@ -34,8 +34,8 @@ public class FinalClassCheckExamplesTest extends AbstractExamplesModuleTestSuppo
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "14:1: " + getCheckMessage(MSG_KEY, "A"),
-            "41:3: " + getCheckMessage(MSG_KEY, "Class2"),
+            "19:3: " + getCheckMessage(MSG_KEY, "B"),
+            "50:5: " + getCheckMessage(MSG_KEY, "Class2"),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);

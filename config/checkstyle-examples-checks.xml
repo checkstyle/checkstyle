@@ -99,6 +99,8 @@
 
   <module name="TreeWalker">
 
+    <module name="PackageDeclaration"/>
+
     <!-- Miscellaneous -->
     <module name="CommentsIndentation"/>
     <module name="Indentation">
