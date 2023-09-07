@@ -19,7 +19,7 @@ public class InputAnnotationOnSameLineCheck2 {
     @Ann        // violation
     private List<String> names = new ArrayList<>();
 
-    @Ann private List<String> names2 = new ArrayList<>();       // ok
+    @Ann private List<String> names2 = new ArrayList<>();
 
     @SuppressWarnings("deprecation")        // violation
     @Ann Integer x;
@@ -28,7 +28,7 @@ public class InputAnnotationOnSameLineCheck2 {
     @Ann                                    // violation
     Integer x2;
 
-    @SuppressWarnings("deprecation") @Ann @Ann2 @Ann3 @Ann4 Integer x3;     // ok
+    @SuppressWarnings("deprecation") @Ann @Ann2 @Ann3 @Ann4 Integer x3;
 
 }
 
