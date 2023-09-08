@@ -46,27 +46,19 @@ for (int a[]={0};a[0] &lt; 10;a[0]++) {
       <subsection name="Properties" id="Properties">
         <div class="wrapper">
           <table>
-            <tr class="header">
+            <tr>
               <th>name</th>
               <th>description</th>
               <th>type</th>
               <th>default value</th>
               <th>since</th>
             </tr>
-
             <tr>
               <td>skipEnhancedForLoopVariable</td>
-              <td>
-                Control whether to check
-                <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-14.html#jls-14.14.2">
-                  enhanced for-loop</a> variable.
-              </td>
-              <td>
-                <a href="../../property_types.html#boolean">boolean</a>
-              </td>
-              <td>
-                <code>false</code>
-              </td>
+              <td>Control whether to check <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-14.html#jls-14.14.2">
+ enhanced for-loop</a> variable.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
               <td>6.8</td>
             </tr>
           </table>
