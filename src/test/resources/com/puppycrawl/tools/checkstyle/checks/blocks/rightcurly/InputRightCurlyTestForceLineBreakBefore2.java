@@ -35,19 +35,19 @@ class InputRightCurlyTestForceLineBreakBefore2
             } catch (Exception e) { break; } finally { break; }
         }
 
-        synchronized (this) { do { x = 2; } while (x == 2); } // ok
+        synchronized (this) { do { x = 2; } while (x == 2); }
 
         synchronized (this) {
-            do {} while (x == 2); // ok
+            do {} while (x == 2);
         }
 
-        for (int k = 0; k < 1; k++) { String innerBlockVariable = ""; } // ok
+        for (int k = 0; k < 1; k++) { String innerBlockVariable = ""; }
 
-        for (int k = 0; k < 1; k++) {} // ok
+        for (int k = 0; k < 1; k++) {}
                 return a;
     }
 
-    static { int x = 1; } // ok
+    static { int x = 1; }
 
     void method2()
     {

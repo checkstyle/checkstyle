@@ -13,8 +13,8 @@ public class InputRightCurlyTestOptionAloneOrSingleLine {
 
     private int a;
     private static int b;
-    {  a = 2; } // ok
-    static { b = 3; } // ok
+    {  a = 2; }
+    static { b = 3; }
 
     void method1() {
         Thread t = new Thread() {@Override public void run() {
@@ -51,15 +51,15 @@ public class InputRightCurlyTestOptionAloneOrSingleLine {
         if (a>2) a*=10; return ++a; } // violation ''}' at column 37 should be alone on a line'
 
     void method5(int a) {
-        while (a > 5) { a--; } // ok
+        while (a > 5) { a--; }
 
-        if (a > 4) { a++; } // ok
+        if (a > 4) { a++; }
 
-        do {a--;} while (a > 3); // ok
+        do {a--;} while (a > 3);
 
-        for (int i = 1; i < 10; i++) { byte b = 10; } // ok
+        for (int i = 1; i < 10; i++) { byte b = 10; }
 
-        if (a < 2) { --a; } else if (a > 3) { a++; } // ok
+        if (a < 2) { --a; } else if (a > 3) { a++; }
 
         java.util.List<String> list = new java.util.ArrayList<>();
         list.stream()
@@ -77,7 +77,7 @@ public class InputRightCurlyTestOptionAloneOrSingleLine {
         public void meth1(); } // violation ''}' at column 30 should be alone on a line'
 
     interface Interface2
-    { int i = 1; public void meth1(); } // ok
+    { int i = 1; public void meth1(); }
 
     interface Interface3 {
         void display();

@@ -12,7 +12,7 @@ public class InputEmptyBlockTestUppercaseOptionProperty {
 
     void method1(int a) {
         switch (a) {}
-        switch (a) {default: ; }    // ok
+        switch (a) {default: ; }
         switch (a) {default: {}}    // violation 'Empty default block'
         switch (a) {
             default:
@@ -23,7 +23,7 @@ public class InputEmptyBlockTestUppercaseOptionProperty {
         }
         switch (a) {
             default:
-            {   // ok
+            {   // ok as the block contains a comment
             }
         }
     }
