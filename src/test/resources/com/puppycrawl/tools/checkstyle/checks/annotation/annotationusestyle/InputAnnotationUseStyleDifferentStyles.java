@@ -81,15 +81,15 @@ class Closing {
 }
 
 @AnnotationWithAnnotationValue(@Another)
-class Example1 {}
+class ExampleA {}
 @AnnotationWithAnnotationValue(value = @Another)
-class Example2 {}
+class ExampleB {}
 // violation below 'Annotation cannot have closing parenthesis'
 @AnnotationWithAnnotationValue(@Another())
-class Example3 {}
+class ExampleC {}
 // violation below 'Annotation cannot have closing parenthesis'
 @AnnotationWithAnnotationValue(value = @Another())
-class Example4 {}
+class ExampleD {}
 
 class Foo {
    Foo(@Another String par1, @Another int par2) {}
