@@ -16,11 +16,6 @@
                <description>Specify the maximum number of occurrences
  to allow without generating a warning.</description>
             </property>
-            <property default-value="^$"
-                      name="ignoreStringsRegexp"
-                      type="java.util.regex.Pattern">
-               <description>Specify RegExp for ignored strings (with quotation marks).</description>
-            </property>
             <property default-value="ANNOTATION"
                       name="ignoreOccurrenceContext"
                       type="java.lang.String[]"
@@ -28,6 +23,11 @@
                <description>Specify token type names where duplicate
  strings are ignored even if they don't match ignoredStringsRegexp. This allows you to
  exclude syntactical contexts like annotations or static initializers from the check.</description>
+            </property>
+            <property default-value="^$"
+                      name="ignoreStringsRegexp"
+                      type="java.util.regex.Pattern">
+               <description>Specify RegExp for ignored strings (with quotation marks).</description>
             </property>
          </properties>
          <message-keys>
