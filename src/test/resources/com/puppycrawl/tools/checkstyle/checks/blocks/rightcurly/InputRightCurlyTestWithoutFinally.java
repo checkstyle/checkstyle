@@ -26,4 +26,4 @@ class InputRightCurlyTestWithoutFinally
 
     }
 
-class UniqEmptyClassTestWithoutFinally {private int a;} // ok
+class UniqEmptyClassTestWithoutFinally {private int a;}

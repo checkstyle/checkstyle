@@ -11,7 +11,7 @@ package com.puppycrawl.tools.checkstyle.checks.blocks.emptyblock;
 public class InputEmptyBlockDefault2 {
     void method1(int a) {
         switch (a) {}
-        switch (a) {default: ; }    // ok
+        switch (a) {default: ; }
         switch (a) {default: {}}    // violation 'Must have at least one statement'
         switch (a) {
             default:
@@ -31,7 +31,7 @@ public class InputEmptyBlockDefault2 {
         switch (a) {
             case 1:a++;
             case 2:a++;
-            default:    // ok
+            default:
                 switch (a) {
                     default: {  // violation 'Must have at least one statement'
 
@@ -48,7 +48,7 @@ public class InputEmptyBlockDefault2 {
 
         switch (b) {
             case 2: break;
-            default: method2(b); {}     // ok
+            default: method2(b); {}
         }
 
         switch (a+b) {case 1: break; default: {} ; }// violation 'Must have at least one statement'
@@ -62,11 +62,11 @@ public class InputEmptyBlockDefault2 {
 
         switch (b) {
             case 1:
-            default:        // ok
+            default:
         }
 
         switch (a+b) {
-            default:        // ok
+            default:
             case 1: { }
         }
 
@@ -90,7 +90,7 @@ public class InputEmptyBlockDefault2 {
         }
 
         switch (b) {
-            default:       // ok
+            default:
             case 1:
             case 2: { } method2(b);
             case 3:

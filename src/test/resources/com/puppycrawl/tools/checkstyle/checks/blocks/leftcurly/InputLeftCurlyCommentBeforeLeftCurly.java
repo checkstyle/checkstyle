@@ -21,10 +21,10 @@ import java.util.regex.Pattern;
 public class InputLeftCurlyCommentBeforeLeftCurly {
 
     void method1 ()
-    /* violation not reported */ { } // ok until #11410
+    /* violation not reported */ { }
 
     InputLeftCurlyCommentBeforeLeftCurly()
-    /* I am comment */ { // ok until #11410
+    /* I am comment */ {
         System.out.println("Hello CheckStyle");
     }
 
@@ -36,13 +36,13 @@ public class InputLeftCurlyCommentBeforeLeftCurly {
     private void some() throws Exception {
         try {
             throw new IOException();
-        } catch (IOException | NullPointerException | ArithmeticException ex) //ok
-         /* warn */ { // ok until #11410
+        } catch (IOException | NullPointerException | ArithmeticException ex)
+         /* warn */ {
         }
     }
 
     public void multipleBlock()
-    /*CheckStyle*/ /* Checkstyle*/ { // ok until #11410
+    /*CheckStyle*/ /* Checkstyle*/ {
     }
 
     private class Node {
@@ -50,12 +50,12 @@ public class InputLeftCurlyCommentBeforeLeftCurly {
         Node next;
 
         public
-            /**** comment **********/ Node(int value) /*comment*/ { // ok
+            /**** comment **********/ Node(int value) /*comment*/ {
             this.value=value;
         }
 
         public Node(int value, Node next)
-        /*********** comment ****/ { // ok until #11410
+        /*********** comment ****/ {
             this.value = value;
             this.next = next;
         }
@@ -63,14 +63,14 @@ public class InputLeftCurlyCommentBeforeLeftCurly {
 
     public void array() {
         Integer[] array = null;
-        /*50*/ for/*51*/ (/*52*/Integer/*53*/ i/*54*/:/*55*/ array/*56*/)/*57*/ {/*58*/ // ok
+        /*50*/ for/*51*/ (/*52*/Integer/*53*/ i/*54*/:/*55*/ array/*56*/)/*57*/ {/*58*/
             /*59*/
         }/*60*/
     }
 }
 
 class checks implements check
-        /* CheckStyle */ { // ok until #11410
+        /* CheckStyle */ {
 
     public static Set<String> processJavadocTag() {
         final Set<String> references = new HashSet<>();
@@ -84,18 +84,18 @@ class checks implements check
 
     class C {
         void method1 ()
-            /* 😂🥳 */ { } // ok until #11410
+            /* 😂🥳 */ { }
 
         void method2 ()
-        /* 🥳🥳🥳🥳 */ /* 🥳🥳🥳🥳🥳 */ { } // ok until #11410
+        /* 🥳🥳🥳🥳 */ /* 🥳🥳🥳🥳🥳 */ { }
         }
 
-    private void method() { // ok
+    private void method() {
         String b = "🧐🧐🧐ccvb";
-        if (b.equals("🧐🧐")) { // ok
+        if (b.equals("🧐🧐")) {
 
         }
-        if (b.equals("s🧐d🧐a")) { // ok
+        if (b.equals("s🧐d🧐a")) {
         }
 
         while (b == "😂🥳") { /* ok */ }
@@ -105,7 +105,7 @@ class checks implements check
 interface check {
 }
 
-/*15*/ class /*16*/InputAstTreeStringPrinterFullOfBlockComments /*49*/{/*17*/ // ok
+/*15*/ class /*16*/InputAstTreeStringPrinterFullOfBlockComments /*49*/{/*17*/
     /*1*/public/*2*/ static/**/ String/*2*/ main/*2*/(/*4*/String/*2*/[/*2*/]/*2*/ args/*2*/)/**/ {
         /*31*/String /*32*/line /*33*/= /*34*/"/*I'm NOT comment*/blabla"/*35*/;/*36*/
         /*3*/String/*8*/.CASE_INSENSITIVE_ORDER/*0*/./*1*/equals/*2*/(/*3*/line/*4*/)/*4*/;/*6*/

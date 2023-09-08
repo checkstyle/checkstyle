@@ -16,64 +16,64 @@ public class InputNeedBracesLoopBodyTrue {
 
     {
         value = 0;
-        while(incrementValue() < 5);; // ok
+        while(incrementValue() < 5);;
     }
 
     public void foo() {
-        while(incrementValue() < 5); // ok
+        while(incrementValue() < 5);
     }
 
     public void foo2() {
-        for(int i = 0; i < 10; incrementValue()); // ok
-        for(int i = 0; incrementValue() < 8; i++); // ok
+        for(int i = 0; i < 10; incrementValue());
+        for(int i = 0; incrementValue() < 8; i++);
     }
 
     public void foo3() {
-        while(incrementValue() // ok
+        while(incrementValue()
             < 5);
     }
 
     public void foo4() {
-        while(incrementValue() < 5) // ok
+        while(incrementValue() < 5)
             ;
     }
 
     public void foo5() {
-        while(incrementValue() // ok
+        while(incrementValue()
             < 5)
             ;
     }
 
     public void foo6() {
-        while( // ok
+        while(
             incrementValue() < 5
             );
     }
 
     public void foo7() {
-        while( // ok
+        while(
             incrementValue() < 5);
     }
 
     public void foo8() {
-        for(int i = 0; incrementValue() < 8; i++); // ok
+        for(int i = 0; incrementValue() < 8; i++);
     }
 
     public void foo9() {
-        for(int i = 0; // ok
+        for(int i = 0;
             incrementValue() < 8;
             i++);
     }
 
     public void foo10() {
-        for( // ok
+        for(
             int i = 0;
             incrementValue() < 8;
             i++);
     }
 
     public void foo11() {
-        for // ok
+        for
             (
             int i = 0;
             incrementValue() < 8;
@@ -95,11 +95,11 @@ public class InputNeedBracesLoopBodyTrue {
     }
 
     public void foo15() {
-        while (true); // ok
+        while (true);
     }
 
     public void foo16() {
-        for (;;); // ok
+        for (;;);
     }
 
     public void foo17() {
@@ -114,7 +114,7 @@ public class InputNeedBracesLoopBodyTrue {
 
     @Override
     public String toString(){
-        while(fco.removeAssignedRole(this)); // ok
+        while(fco.removeAssignedRole(this));
         return "";
     }
 
