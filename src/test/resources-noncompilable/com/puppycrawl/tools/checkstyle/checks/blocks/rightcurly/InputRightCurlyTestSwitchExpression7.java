@@ -16,7 +16,7 @@ public class InputRightCurlyTestSwitchExpression7 {
               case TUE -> 7;
               case THU, SAT -> 8;
               case WED -> 9;
-          } > 7 ? "long" : "short"; // ok
+          } > 7 ? "long" : "short";
       }
 
      int arithmetic(Day day) {
@@ -25,7 +25,7 @@ public class InputRightCurlyTestSwitchExpression7 {
              case TUE -> 7;
              case THU, SAT -> 8;
              case WED -> 9;
-         } % 2; // ok
+         } % 2;
      }
 
      int signArithmetic(Day day) {
@@ -42,11 +42,11 @@ public class InputRightCurlyTestSwitchExpression7 {
              case MON, TUE -> 0;
              case WED -> 1;
             default -> 2;
-         } * switch (day) { // ok
+         } * switch (day) {
              case WED, THU -> 3;
              case FRI -> 4;
              default -> 5;
-         }; // ok
+         };
      }
 
      static {
