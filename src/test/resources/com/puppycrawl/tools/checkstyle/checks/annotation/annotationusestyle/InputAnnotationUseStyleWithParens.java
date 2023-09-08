@@ -10,14 +10,14 @@ trailingArrayComma = ignore
 package com.puppycrawl.tools.checkstyle.checks.annotation.annotationusestyle;
 
 @Deprecated // violation 'Annotation must have closing parenthesis'
-@SomeArrays(pooches={DOGS.LEO})
+@SomeArraysDiffStyle(pooches={DOGS.LEO})
 @SuppressWarnings({""})
 public class InputAnnotationUseStyleWithParens
 {
 
 }
 
-@SomeArrays(pooches={DOGS.LEO}, um={}, duh={"bleh"})
+@SomeArraysDiffStyle(pooches={DOGS.LEO}, um={}, duh={"bleh"})
 @SuppressWarnings("") //compact_no_array
 @Deprecated()
 class Dep2 {
@@ -25,12 +25,12 @@ class Dep2 {
 }
 
 @Deprecated // violation 'Annotation must have closing parenthesis'
-@SomeArrays(pooches={DOGS.LEO})
+@SomeArraysDiffStyle(pooches={DOGS.LEO})
 @SuppressWarnings({""})
 enum SON2 {
 
     @Deprecated // violation 'Annotation must have closing parenthesis'
-    @SomeArrays(pooches={DOGS.LEO}, um={""}, duh={"bleh"})
+    @SomeArraysDiffStyle(pooches={DOGS.LEO}, um={""}, duh={"bleh"})
     @APooch(dog=DOGS.HERBIE)
     @Another("") //compact_no_array
     ETHAN
@@ -68,7 +68,7 @@ enum E2 {
     String value1() default "";
 }
 
-@SomeArrays(pooches = {})
+@SomeArraysDiffStyle(pooches = {})
 @Another({})
 class Closing2 {
     static final String UN_U = "UN_U";
