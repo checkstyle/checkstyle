@@ -24,7 +24,7 @@ public class InputNeedBracesTestSingleLineCaseDefault2 {
 }
 
 @interface Example {
-    String priority() default "value"; // ok
+    String priority() default "value";
 }
 
 interface IntefaceWithDefaultMethod {

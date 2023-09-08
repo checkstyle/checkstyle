@@ -11,7 +11,7 @@ package com.puppycrawl.tools.checkstyle.checks.blocks.emptyblock;
 public class InputEmptyBlockDefault {
     void method1(int a) {
         switch (a) {}
-        switch (a) {default: ; }    // ok
+        switch (a) {default: ; }
         switch (a) {default: {}}    // violation 'Empty default block'
         switch (a) {
             default:
@@ -22,7 +22,7 @@ public class InputEmptyBlockDefault {
         }
         switch (a) {
             default:
-            {   // ok
+            {   // ok as the block contains a comment
             }
         }
     }
@@ -31,9 +31,9 @@ public class InputEmptyBlockDefault {
         switch (a) {
             case 1:a++;
             case 2:a++;
-            default:    // ok
+            default:
                 switch (a) {
-                    default: {  // ok
+                    default: {  // ok as the block contains a comment
 
                     }
                 }
@@ -48,7 +48,7 @@ public class InputEmptyBlockDefault {
 
         switch (b) {
             case 2: break;
-            default: method2(b); {}     // ok
+            default: method2(b); {}
         }
 
         switch (a+b) {case 1: break; default: {} ; }    // violation 'Empty default block'
@@ -62,17 +62,17 @@ public class InputEmptyBlockDefault {
 
         switch (b) {
             case 1:
-            default:        // ok
+            default:
         }
 
         switch (a+b) {
-            default:        // ok
+            default:
             case 1: { }
         }
 
         switch (a-b) {
             case 1:
-            default: {      // ok
+            default: {      // ok as the block contains a comment
 
             } ;
             case 2: { }
@@ -90,7 +90,7 @@ public class InputEmptyBlockDefault {
         }
 
         switch (b) {
-            default:       // ok
+            default:
             case 1:
             case 2: { } method2(b);
             case 3:
