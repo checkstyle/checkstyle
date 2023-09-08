@@ -16,11 +16,11 @@
   <!-- Regexp -->
   <module name="RegexpOnFilename">
     <property name="id" value="exampleFileName"/>
-    <property name="fileNamePattern" value="^Example\d+$"/>
+    <property name="fileNamePattern" value="^Example[a-zA-Z0-9]+$"/>
     <property name="ignoreFileNameExtensions" value="true"/>
     <property name="match" value="false"/>
     <message key="regexp.filename.mismatch"
-             value="All example files should only match ''{1}'' exactly"/>
+             value="All example files should match ''{1}'' pattern"/>
   </module>
   <module name="RegexpSingleline">
     <property name="id" value="exampleFileXmlConfigPresence"/>
@@ -112,14 +112,15 @@
     <!-- Regexp -->
     <module name="RegexpSinglelineJava">
       <property name="id" value="exampleClassName"/>
-      <property name="format" value="class Example\d+"/>
+      <property name="format" value="class Example[a-zA-Z0-9]+"/>
       <property name="minimum" value="1"/>
       <property name="maximum" value="1"/>
       <message key="regexp.minimum"
-               value="Example test input must declare exactly one class matching ''Example\d+''"/>
+               value="Example test input must declare atleast one class matching ''Example[a-zA-Z0-9]+''"/>
       <message key="regexp.maximum"
-               value="Example test input must declare exactly one class matching ''Example\d+''"/>
+               value="Example test input must declare exactly one class matching ''Example[a-zA-Z0-9]+''"/>
     </module>
+
 
   </module>
 </module>
