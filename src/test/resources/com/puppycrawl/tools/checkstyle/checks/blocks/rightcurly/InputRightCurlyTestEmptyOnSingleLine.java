@@ -9,4 +9,4 @@ tokens = CLASS_DEF, METHOD_DEF, CTOR_DEF, LITERAL_FOR, LITERAL_WHILE, STATIC_INI
 
 package com.puppycrawl.tools.checkstyle.checks.blocks.rightcurly;
 
-public class InputRightCurlyTestEmptyOnSingleLine {} // ok
+public class InputRightCurlyTestEmptyOnSingleLine {}

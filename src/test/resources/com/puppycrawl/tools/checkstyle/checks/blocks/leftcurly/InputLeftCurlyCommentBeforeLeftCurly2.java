@@ -29,9 +29,9 @@ public class InputLeftCurlyCommentBeforeLeftCurly2 {
     }
 
     void method2() /********
-    comment */ {  // ok
+    comment */ {
         if (!Arrays.equals(this.countList, countList)
-            /* || !Arrays.equals(this.whereCreated, other.whereCreated) */ ) { // ok
+            /* || !Arrays.equals(this.whereCreated, other.whereCreated) */ ) {
         }
     }
 
@@ -39,7 +39,7 @@ public class InputLeftCurlyCommentBeforeLeftCurly2 {
     ********/ { } // ok until #11410
 
 
-    InputLeftCurlyCommentBeforeLeftCurly2() /**************/ { } // ok
+    InputLeftCurlyCommentBeforeLeftCurly2() /**************/ { }
 
     InputLeftCurlyCommentBeforeLeftCurly2(int data) /*
      ****** comment *********/ { } // ok until #11410
@@ -58,14 +58,14 @@ class Class {
 
     String s = "🧐  🧐";
     private void foo3(String s) {
-        /*🧐 🧐 🧐*/  /* comment */ if ("🧐".isEmpty()) { // ok
+        /*🧐 🧐 🧐*/  /* comment */ if ("🧐".isEmpty()) {
         }
     }
 
     List<ThrowingConsumer<InetSocketAddress>> targets = List.of(
             /* 0 */  (a) -> {Socket s = new Socket();},
             // violation above ''{' at column 29 should have line break after'
-            /* 0 */  (b) -> { // ok
+            /* 0 */  (b) -> {
                 Socket s = new Socket();
             }
     );
@@ -75,11 +75,11 @@ class Nothing {
     void method() {
         int a = 9;int b = 9;
         if(a == 0 && b == 0
-         /* || a==3 */) {} //ok
+         /* || a==3 */) {}
     }
 
     public void test2(String
-                      /* CHECKSTYLE */ ...para) { // ok
+                      /* CHECKSTYLE */ ...para) {
     }
 
     public void test3(String line) {

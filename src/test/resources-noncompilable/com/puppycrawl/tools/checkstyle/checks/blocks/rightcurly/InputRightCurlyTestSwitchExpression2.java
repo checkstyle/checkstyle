@@ -17,7 +17,7 @@ public class InputRightCurlyTestSwitchExpression2 {
             switch (day) {
                 case 1 -> "Monday";
                 default -> "Invalid day";
-            }; } // ok
+            }; }
 
     public void test1() {
         int day = 3;
@@ -34,7 +34,7 @@ public class InputRightCurlyTestSwitchExpression2 {
             switch (day) {
                 case 1 -> "Monday";
                 default -> "Invalid day";
-            }; System.out.println(check); // ok
+            }; System.out.println(check);
     }
 
     public void test3() {
@@ -58,7 +58,7 @@ public class InputRightCurlyTestSwitchExpression2 {
         switch (num) {
             case 1 -> System.out.println("One");
             default -> System.out.println("Other");
-        } // ok
+        }
     }
 
     public void test6() {
@@ -66,7 +66,7 @@ public class InputRightCurlyTestSwitchExpression2 {
 
         switch (num) {
             //no case or default statement
-        } // ok
+        }
     }
 
     public void test7() {
@@ -100,19 +100,19 @@ public class InputRightCurlyTestSwitchExpression2 {
             default -> {
                 Runnable defaultResult = () -> System.out.println("defaultResult");
             }
-        } // ok
+        }
     }
 
     public void test10() {
         int expression = 2;
         switch (expression)
-        { case 1 -> { Runnable result1 = () -> System.out.println("r1"); } } // ok
+        { case 1 -> { Runnable result1 = () -> System.out.println("r1"); } }
         switch (expression)
-        { case 1 -> { Runnable result1 = () -> System.out.println("r1"); } } // ok
+        { case 1 -> { Runnable result1 = () -> System.out.println("r1"); } }
         switch (expression) {
             case 1 -> {
                 Runnable result1 = () -> System.out.println("r1");
             }
-        } // ok
+        }
     }
 }

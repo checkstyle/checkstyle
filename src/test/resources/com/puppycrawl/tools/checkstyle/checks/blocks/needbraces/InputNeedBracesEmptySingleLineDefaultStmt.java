@@ -24,7 +24,7 @@ public class InputNeedBracesEmptySingleLineDefaultStmt {
 }
 
 @interface ExampleEmptySingleLineDefaultStmt {
-    String priority() default "value"; // ok
+    String priority() default "value";
 }
 
 interface IntefaceWithDefaultMethodEmptySingleLineDefaultStmt {

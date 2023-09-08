@@ -14,7 +14,7 @@ tokens = (default)ANNOTATION_DEF, CLASS_DEF, CTOR_DEF, ENUM_CONSTANT_DEF, \
 package com.puppycrawl.tools.checkstyle.checks.blocks.leftcurly;
 
 public class InputLeftCurlyTestNewLineOptionWithLambda
-{ // ok
+{
     static Runnable r1 = () -> { // violation ''{' at column 32 should be on a new line'
         String.valueOf("Hello world one!");
     };
@@ -24,7 +24,7 @@ public class InputLeftCurlyTestNewLineOptionWithLambda
     static Runnable r3 = () -> {String.valueOf("ok");};
 
     static Runnable r4 = () ->
-    { // ok
+    {
         String.valueOf("Hello world one!");
     };
 }

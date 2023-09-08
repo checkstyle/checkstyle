@@ -29,13 +29,13 @@ public class InputNeedBracesTestSingleLineCaseDefault
     }
 
     private int foo2() {
-        if (SomeClass.test(true) == true) // ok
+        if (SomeClass.test(true) == true)
             return 4;
         return 0;
     }
 
     private int foo3() {
-        if (SomeClass.test(true) == true) if (true) return 4; // ok
+        if (SomeClass.test(true) == true) if (true) return 4;
         return 0;
     }
 
@@ -44,7 +44,7 @@ public class InputNeedBracesTestSingleLineCaseDefault
     }
 
     private void foo2(Object o) {
-        if (o != null) // ok
+        if (o != null)
             this.notify();
     }
 
@@ -52,23 +52,23 @@ public class InputNeedBracesTestSingleLineCaseDefault
         while (o != null) {
             this.notify();
         }
-        while (o != null) // ok
+        while (o != null)
             this.notify();
         while (o != null) this.notify();
         do {
             this.notify();
         } while (o != null);
         do this.notify(); while (o != null);
-        do // ok
+        do
             this.notify();
         while (o != null);
-        for (;;) // ok
+        for (;;)
             break;
         for (;;) break;
         for (int i = 0; i < 10; i++) {
              this.notify();
         }
-        for (int i = 0; i < 10; i++) // ok
+        for (int i = 0; i < 10; i++)
              this.notify();
         for (int i = 0; ; ) this.notify();
     }
@@ -97,11 +97,11 @@ public class InputNeedBracesTestSingleLineCaseDefault
     }
 
     private int testMissingWarnings() {
-        if (true) // ok
+        if (true)
             throw new RuntimeException();
         if (true) {
             return 1;
-        } else // ok
+        } else
             return 2;
     }
 
@@ -113,14 +113,14 @@ public class InputNeedBracesTestSingleLineCaseDefault
 
     private class StateInfo {
         public boolean isInitial() {
-            for (int locator: sourceLocators) if (locator != 0) return false; // ok
+            for (int locator: sourceLocators) if (locator != 0) return false;
             return true;
         }
     }
 
     private void forEachLoop() {
         for (String s: new String[]{""}) break;
-        for (String s: new String[]{""}) // ok
+        for (String s: new String[]{""})
             break;
         for (;;)
         ;
