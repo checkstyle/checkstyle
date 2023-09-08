@@ -21,7 +21,7 @@ public class InputRightCurlyTestSame {
             @Override
             public void run() {
             }
-        }); // ok
+        });
     }
 
     public void doLoop() {

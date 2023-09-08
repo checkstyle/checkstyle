@@ -16,21 +16,21 @@ package com.puppycrawl.tools.checkstyle.checks.blocks.leftcurly;
 public class InputLeftCurlyWithEmoji {
     static Runnable r1 = () -> {String.valueOf("🥳 🎄!");};
     // violation above ''{' at column 32 should have line break after.'
-    private void method() { // ok
+    private void method() {
 
         String a = "🧐🧐🧐";
 
         String b = "🧐🧐🧐ccvb";
-        if (b.equals("🧐🧐")) { // ok
+        if (b.equals("🧐🧐")) {
 
         }
-        if (b.equals("s🧐d🧐a")) { // ok
+        if (b.equals("s🧐d🧐a")) {
         }
 
         while (b == "😂🥳") { /* ok */ }
     }
 
-    private void method2() { // ok
+    private void method2() {
         String x = "🎄🤣";
 
         try
@@ -39,7 +39,7 @@ public class InputLeftCurlyWithEmoji {
             { // violation ''{' at column 13 should be on the previous line'
 
             }
-            else if (!x.equals("🎄🤣")) { // ok
+            else if (!x.equals("🎄🤣")) {
                 ;
             }
             else
@@ -71,8 +71,8 @@ public class InputLeftCurlyWithEmoji {
     enum InputLeftCurlyMethodEnumWithEmoji
     { // violation ''{' at column 5 should be on the previous line'
         CONSTANT1("🧐🧐dsds🧐") {
-            void method1() {}//ok
-            void method2() { //ok
+            void method1() {}
+            void method2() {
             }
             void method3()
             { // violation ''{' at column 13 should be on the previous line'
@@ -82,6 +82,6 @@ public class InputLeftCurlyWithEmoji {
             }
         };
 
-        private InputLeftCurlyMethodEnumWithEmoji (String s) { // ok
+        private InputLeftCurlyMethodEnumWithEmoji (String s) {
         }
     }

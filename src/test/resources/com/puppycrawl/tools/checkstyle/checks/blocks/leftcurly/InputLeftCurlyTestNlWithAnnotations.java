@@ -20,24 +20,24 @@ import java.util.List;
 
 @TestClassAnnotation
 class InputLeftCurlyTestNlWithAnnotations
-{ // ok
+{
     private static final int X = 10;
     @Override
     public boolean equals(Object other)
-    { // ok
+    {
         return false;
     }
 
     @Override
     @SuppressWarnings("unused")
     public int hashCode()
-    { // ok
+    {
         int a = 10;
         return 1;
     }
 
     @Override @SuppressWarnings({"unused", "unchecked", "static-access"}) public String toString()
-    { // ok
+    {
         Integer i = this.X;
         List<String> l = new ArrayList();
         return "SomeString";
@@ -60,7 +60,7 @@ class InputLeftCurlyAnnotations2TestNlWithAnnotations {
     }
 
     @Override @SuppressWarnings({"unused", "unchecked", "static-access"}) public String toString()
-    { // ok
+    {
         Integer i = this.X;
         List<String> l = new ArrayList();
         return "SomeString";
@@ -68,7 +68,7 @@ class InputLeftCurlyAnnotations2TestNlWithAnnotations {
 
     @Deprecated
     @SuppressWarnings({"unused", "unchecked", "static-access"}) public String toString2()
-    { // ok
+    {
         Integer i = this.X;
         List<String> l = new ArrayList();
         return "SomeString";

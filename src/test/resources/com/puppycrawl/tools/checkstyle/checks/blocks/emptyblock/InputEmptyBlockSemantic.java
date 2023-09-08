@@ -45,10 +45,10 @@ class InputEmptyBlockSemantic
         finally {   // violation 'Must have at least one statement'
             // something
         }
-        try {   // ok
+        try {
             ; // something
         }
-        finally {   // ok
+        finally {
             ; // statement
         }
     }
@@ -74,7 +74,7 @@ class InputEmptyBlockSemantic
 
     synchronized void foo() {
         synchronized (this) {}  // violation 'Must have at least one statement'
-        synchronized (Class.class) { // ok
+        synchronized (Class.class) {
             synchronized (new Object()) {   // violation 'Must have at least one statement'
                 // text
             }

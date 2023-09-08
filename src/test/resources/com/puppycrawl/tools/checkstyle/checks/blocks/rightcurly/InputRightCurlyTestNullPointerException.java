@@ -16,4 +16,4 @@ abstract class InputRightCurlyTestNullPointerException {
     void foo() {
         while (true);
     }
-} // ok
+}
