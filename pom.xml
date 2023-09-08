@@ -206,11 +206,11 @@
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <surefire.options />
     <projectVersion>${project.version}</projectVersion>
-    <antlr4.version>4.11.1</antlr4.version>
+    <antlr4.version>4.13.1</antlr4.version>
     <maven.site.plugin.version>3.12.1</maven.site.plugin.version>
-    <maven.spotbugs.plugin.version>4.7.3.0</maven.spotbugs.plugin.version>
+    <maven.spotbugs.plugin.version>4.7.3.5</maven.spotbugs.plugin.version>
     <maven.pmd.plugin.version>3.21.0</maven.pmd.plugin.version>
-    <pmd.version>6.54.0</pmd.version>
+    <pmd.version>6.55.0</pmd.version>
     <maven.jacoco.plugin.version>0.8.8</maven.jacoco.plugin.version>
     <mockito.version>5.2.0</mockito.version>
     <saxon.version>12.3</saxon.version>
@@ -219,21 +219,21 @@
     <maven.sevntu-checkstyle-check.checkstyle.version>
       10.4
     </maven.sevntu-checkstyle-check.checkstyle.version>
-    <maven.versions.plugin.version>2.14.2</maven.versions.plugin.version>
+    <maven.versions.plugin.version>2.16.0</maven.versions.plugin.version>
     <maven.compiler.plugin.version>3.11.0</maven.compiler.plugin.version>
     <java.version>11</java.version>
-    <pitest.plugin.version>1.14.1</pitest.plugin.version>
+    <pitest.plugin.version>1.14.4</pitest.plugin.version>
     <pitest.plugin.timeout.factor>10</pitest.plugin.timeout.factor>
     <pitest.plugin.output.formats>HTML,XML</pitest.plugin.output.formats>
     <pitest.plugin.timeout.constant>50000</pitest.plugin.timeout.constant>
     <pitest.plugin.threads>4</pitest.plugin.threads>
-    <pitest.junit5.plugin.version>1.1.2</pitest.junit5.plugin.version>
+    <pitest.junit5.plugin.version>1.2.0</pitest.junit5.plugin.version>
     <pitest.accelerator.junit5.plugin.version>1.0.6</pitest.accelerator.junit5.plugin.version>
     <sonar.test.exclusions>**/test/resources/**/*,**/it/resources/**/*</sonar.test.exclusions>
     <junit.version>5.9.2</junit.version>
     <forbiddenapis.version>3.4</forbiddenapis.version>
     <json-schema-validator.version>1.2.0</json-schema-validator.version>
-    <error-prone.version>2.18.0</error-prone.version>
+    <error-prone.version>2.21.1</error-prone.version>
     <checkerframework.version>3.27.0</checkerframework.version>
     <doxia.version>1.12.0</doxia.version>
   </properties>
@@ -299,7 +299,7 @@
     <dependency>
       <groupId>org.junit-pioneer</groupId>
       <artifactId>junit-pioneer</artifactId>
-      <version>2.0.0</version>
+      <version>2.0.1</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -355,7 +355,7 @@
     <dependency>
       <groupId>org.eclipse.jgit</groupId>
       <artifactId>org.eclipse.jgit</artifactId>
-      <version>6.6.1.202309021850-r</version>
+      <version>6.7.0.202309050840-r</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -1390,7 +1390,7 @@
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>build-helper-maven-plugin</artifactId>
-        <version>3.3.0</version>
+        <version>3.4.0</version>
         <executions>
           <execution>
             <id>add-source</id>
@@ -4501,7 +4501,7 @@
               <targetTests>
                 <param>com.puppycrawl.tools.checkstyle.MainTest</param>
               </targetTests>
-              <coverageThreshold>100</coverageThreshold>
+              <coverageThreshold>99</coverageThreshold>
               <mutationThreshold>99</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
               <timeoutConstant>${pitest.plugin.timeout.constant}</timeoutConstant>

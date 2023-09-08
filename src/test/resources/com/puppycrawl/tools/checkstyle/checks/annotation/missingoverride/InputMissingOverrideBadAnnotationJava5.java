@@ -14,13 +14,13 @@ public class InputMissingOverrideBadAnnotationJava5
         /**
          * {@inheritDoc}
          */
-        public void run() {     // ok
+        public void run() {
             Throwable t = new Throwable() {
 
                 /**
                  * {@inheritDoc}
                  */
-                public String toString() {      // ok
+                public String toString() {
                     return "junk";
                 }
             };
@@ -33,13 +33,13 @@ public class InputMissingOverrideBadAnnotationJava5
             /**
              * {@inheritDoc}
              */
-            public void run() {     // ok
+            public void run() {
                 Throwable t = new Throwable() {
 
                     /**
                      * {@inheritDoc}
                      */
-                    public String toString() {      // ok
+                    public String toString() {
                         return "junk";
                     }
                 };

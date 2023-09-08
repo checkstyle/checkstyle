@@ -140,10 +140,6 @@
 
   <!-- until https://github.com/checkstyle/checkstyle/issues/13213 -->
   <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]annotation[\\/]annotationonsameline[\\/]InputAnnotationOnSameLineRecordsAndCompactCtors.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]annotation[\\/]annotationonsameline[\\/]InputAnnotationOnSameLineRecordsAndCompactCtors.java"/>
-  <suppress id="UnnecessaryOkComment"
             files="checks[\\/]avoidescapedunicodecharacters[\\/]InputAvoidEscapedUnicodeCharactersEscapedS.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]avoidescapedunicodecharacters[\\/]InputAvoidEscapedUnicodeCharactersEscapedS.java"/>
