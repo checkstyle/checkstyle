@@ -34,7 +34,8 @@ public class AnnotationUseStyleCheckExamplesTest extends AbstractExamplesModuleT
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-
+                "12:12: Array type declaration must follow Java standard style. [ArrayTypeStyle]",
+                "18:8: Array type declaration must follow Java standard style. [ArrayTypeStyle]",
         };
 
         verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
@@ -43,7 +44,8 @@ public class AnnotationUseStyleCheckExamplesTest extends AbstractExamplesModuleT
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-
+                "13:6: Array type declaration must follow the specified style. [ArrayTypeStyle]",
+                "20:8: Array type declaration must follow the specified style. [ArrayTypeStyle]",
         };
 
         verifyWithInlineConfigParser(getPath("Example2.txt"), expected);
@@ -52,7 +54,7 @@ public class AnnotationUseStyleCheckExamplesTest extends AbstractExamplesModuleT
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
-
+                "15:9: Escaped Unicode character usage should be avoided. [AvoidEscapedUnicodeCharacters]",
         };
 
         verifyWithInlineConfigParser(getPath("Example3.txt"), expected);
@@ -61,6 +63,8 @@ public class AnnotationUseStyleCheckExamplesTest extends AbstractExamplesModuleT
     @Test
     public void testExample4() throws Exception {
         final String[] expected = {
+                "13:22: Not all characters are escaped in the string. [AvoidEscapedUnicodeCharacters]",
+                "15:22: Not all characters are escaped in the string. [AvoidEscapedUnicodeCharacters]",
 
         };
 
