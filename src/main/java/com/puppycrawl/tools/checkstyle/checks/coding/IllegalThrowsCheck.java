@@ -41,10 +41,10 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
  * </p>
  * <ul>
  * <li>
- * Property {@code illegalClassNames} - Specify throw class names to reject.
- * Type is {@code java.lang.String[]}.
- * Default value is {@code Error, RuntimeException, Throwable, java.lang.Error,
- * java.lang.RuntimeException, java.lang.Throwable}.
+ * Property {@code ignoreOverriddenMethods} - Allow to ignore checking overridden methods
+ * (marked with {@code Override} or {@code java.lang.Override} annotation).
+ * Type is {@code boolean}.
+ * Default value is {@code true}.
  * </li>
  * <li>
  * Property {@code ignoredMethodNames} - Specify names of methods to ignore.
@@ -52,10 +52,10 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
  * Default value is {@code finalize}.
  * </li>
  * <li>
- * Property {@code ignoreOverriddenMethods} - allow to ignore checking overridden methods
- * (marked with {@code Override} or {@code java.lang.Override} annotation).
- * Type is {@code boolean}.
- * Default value is {@code true}.
+ * Property {@code illegalClassNames} - Specify throw class names to reject.
+ * Type is {@code java.lang.String[]}.
+ * Default value is {@code Error, RuntimeException, Throwable, java.lang.Error,
+ * java.lang.RuntimeException, java.lang.Throwable}.
  * </li>
  * </ul>
  * <p>
