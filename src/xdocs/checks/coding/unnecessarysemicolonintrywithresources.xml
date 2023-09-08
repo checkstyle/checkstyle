@@ -24,7 +24,6 @@
               <th>default value</th>
               <th>since</th>
             </tr>
-
             <tr>
               <td>allowWhenNoBraceAfterSemicolon</td>
               <td>Allow unnecessary semicolon if closing paren is not on the same line.</td>
