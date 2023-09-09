@@ -48,6 +48,22 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testVeryPreciseGrouping() throws Exception {
+        final String[] expected = {
+            "21:1: " + getCheckMessage(MSG_ORDERING, "java.awt.Dialog"),
+            "25:1: " + getCheckMessage(MSG_ORDERING, "javax.swing.JComponent"),
+            "27:1: " + getCheckMessage(MSG_ORDERING, "java.io.File"),
+            "29:1: " + getCheckMessage(MSG_ORDERING, "java.io.IOException"),
+            "34:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP,
+                    "sun.tools.util.ModifierFilter.ALL_ACCESS"),
+            "36:1: " + getCheckMessage(MSG_ORDERING, "java.util.jar.JarInputStream"),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputImportOrder6.java"), expected);
+    }
+
+    @Test
     public void testGetTokens() {
         final ImportOrderCheck checkObj = new ImportOrderCheck();
         final int[] expected = {TokenTypes.IMPORT, TokenTypes.STATIC_IMPORT};
