@@ -686,7 +686,7 @@ public class ImportOrderCheck
      * @param name the import name to find.
      * @return group number for given import name.
      */
-    private static int getGroupNumber(Pattern[] patterns, String name) {
+    public static int getGroupNumber(Pattern[] patterns, String name) {
         int bestIndex = patterns.length;
         int bestEnd = -1;
         int bestPos = Integer.MAX_VALUE;
@@ -696,13 +696,14 @@ public class ImportOrderCheck
         for (int i = 0; i < patterns.length; i++) {
             final Matcher matcher = patterns[i].matcher(name);
             if (matcher.find()) {
-                if (bestPos > 0) {
+                if (matcher.start() < bestPos) {
                     bestIndex = i;
                     bestEnd = matcher.end();
                     bestPos = matcher.start();
                 }
                 else if (matcher.start() == bestPos && matcher.end() > bestEnd) {
                     bestIndex = i;
+                    bestEnd = matcher.end();
                 }
             }
         }

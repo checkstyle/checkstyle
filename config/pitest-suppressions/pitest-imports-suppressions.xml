@@ -62,5 +62,4 @@
     <description>Removed assignment to member variable regex</description>
     <lineContent>this.regex = false;</lineContent>
   </mutation>
-
 </suppressedMutations>
