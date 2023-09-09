@@ -19,11 +19,12 @@ echo "PR_NUMBER=$PR_NUMBER"
 echo "AWS_FOLDER_LINK=$AWS_FOLDER_LINK"
 
 # Extract a list of the changed xdocs in the pull request. For example 'src/xdocs/config_misc.xml'.
+# We ignore template files and deleted files.
 CHANGED_XDOCS_PATHS=$(curl --fail-with-body -Ls \
   -H "Accept: application/vnd.github+json" \
   -H "Authorization: Bearer $GITHUB_TOKEN" \
   "https://api.github.com/repos/$REPOSITORY_OWNER/checkstyle/pulls/$PR_NUMBER/files?per_page=100" |
-  jq -r ".[] | .filename" | grep src/xdocs/ || true)
+  jq -r '.[] | select(.status != "removed") | .filename' | grep src/xdocs/ | grep -v '.*xml.template$' || true)
 echo "CHANGED_XDOCS_PATHS=$CHANGED_XDOCS_PATHS"
 
 if [[ -z "$CHANGED_XDOCS_PATHS" ]]; then
