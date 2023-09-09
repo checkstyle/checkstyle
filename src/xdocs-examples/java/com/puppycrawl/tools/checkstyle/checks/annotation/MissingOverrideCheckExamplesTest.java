@@ -19,13 +19,12 @@
 
 package com.puppycrawl.tools.checkstyle.checks.annotation;
 
-import static com.puppycrawl.tools.checkstyle.checks.annotation.MissingOverrideCheck.MSG_KEY_TAG_NOT_VALID_ON;
 import static com.puppycrawl.tools.checkstyle.checks.annotation.MissingOverrideCheck.MSG_KEY_ANNOTATION_MISSING_OVERRIDE;
+import static com.puppycrawl.tools.checkstyle.checks.annotation.MissingOverrideCheck.MSG_KEY_TAG_NOT_VALID_ON;
 
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
-
 
 public class MissingOverrideCheckExamplesTest extends AbstractExamplesModuleTestSupport {
 
@@ -37,18 +36,18 @@ public class MissingOverrideCheckExamplesTest extends AbstractExamplesModuleTest
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-                "32:5: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE, "test2"),
-                "37:5: " + getCheckMessage(MSG_KEY_TAG_NOT_VALID_ON, "test3"),
-                "42:5: " + getCheckMessage(MSG_KEY_TAG_NOT_VALID_ON, "test4"),
+            "28:3: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE, "test2"),
+            "33:3: " + getCheckMessage(MSG_KEY_TAG_NOT_VALID_ON, "{@inheritDoc}"),
+            "38:3: " + getCheckMessage(MSG_KEY_TAG_NOT_VALID_ON, "{@inheritDoc}"),
         };
-
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
 
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-                "16:5: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE, "equals"),
+            "17:3: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE, "equals"),
+            "32:3: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE, "test"),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);

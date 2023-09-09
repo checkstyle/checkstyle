@@ -6,41 +6,37 @@
 </module>
 */
 
+package com.puppycrawl.tools.checkstyle.checks.annotation.missingoverride;
+
 // xdoc section -- start
+class Example1{
+  public void test1(){}
 
-class SuperClass{
-
-    public void test1(){
-
-    }
-
-    void test2(){
-
-    }
-
+  public void test2(){}
 
 }
-class Test extends SuperClass {
 
-    /** {@inheritDoc} */
-    @Override
-    public void test1() { // OK
+class Test extends Example1 {
 
-    }
+  /** {@inheritDoc} */
+  @Override
+  public void test1() { // OK
 
-    /** {@inheritDoc} */
-    public void test2() { // violation, should be annotated with @Override
+  }
 
-    }
+  /** {@inheritDoc} */
+  public void test2() { // violation, 'include @java.lang.Override'
 
-    /** {@inheritDoc} */
-    private void test3() { // violation, using the @inheritDoc tag on private method
+  }
 
-    }
+  /** {@inheritDoc} */
+  private void test3() { // violation, 'The Javadoc {@inheritDoc}.'
 
-    /** {@inheritDoc} */
-    public static void test4() { // violation, using the @inheritDoc tag on static method
+  }
 
-    }
+  /** {@inheritDoc} */
+  public static void test4() { // violation, 'The Javadoc {@inheritDoc}.'
+
+  }
 }
 // xdoc section -- end
