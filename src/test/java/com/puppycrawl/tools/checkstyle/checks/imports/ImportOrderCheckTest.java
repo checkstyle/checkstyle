@@ -26,6 +26,7 @@ import static com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck.MS
 
 import java.io.File;
 import java.util.Optional;
+import java.util.regex.Pattern;
 
 import org.antlr.v4.runtime.CommonToken;
 import org.junit.jupiter.api.Test;
@@ -45,6 +46,50 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/imports/importorder";
+    }
+
+    @Test
+    public void testPitest() throws Exception {
+        Pattern[] patterns = new Pattern[6];
+
+        patterns[0] = Pattern.compile("awt");
+        patterns[1] = Pattern.compile("jar");
+        patterns[2] = Pattern.compile("util");
+        patterns[3] = Pattern.compile("jar");
+        patterns[4] = Pattern.compile("utility");
+        patterns[5] = Pattern.compile("jarInputStream");
+
+        assertWithMessage("")
+                .that(ImportOrderCheck.getGroupNumber(patterns, "java.util.jar.JarInputStream"))
+                .isEqualTo(2); // with mutation it goes to group 4
+    }
+
+    @Test
+    public void testPitest2() throws Exception {
+        Pattern[] patterns = new Pattern[6];
+
+        patterns[0] = Pattern.compile("awt");
+        patterns[1] = Pattern.compile("jar");
+        patterns[2] = Pattern.compile("util");
+        patterns[3] = Pattern.compile("util.jar.JarInputStream");
+        patterns[4] = Pattern.compile("utility");
+        patterns[5] = Pattern.compile("util.jar");
+
+        assertWithMessage("")
+                .that(ImportOrderCheck.getGroupNumber(patterns, "java.util.jar.JarInputStream"))
+                .isEqualTo(3); // with mutation it goes to group 5
+    }
+
+    // this test is not covering survival
+    @Test
+    public void testVeryPreciseGrouping() throws Exception {
+        final String[] expected = {
+            "21:1: " + getCheckMessage(MSG_ORDERING, "java.awt.Dialog"),
+            "23:1: " + getCheckMessage(MSG_ORDERING, "java.util.jar.JarInputStream"),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputImportOrder6.java"), expected);
     }
 
     @Test
