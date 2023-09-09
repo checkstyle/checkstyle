@@ -16,7 +16,7 @@ class InputRightCurlyTestSingleLineClass
             try
             {
 
-            } // ok
+            }
             catch (Exception e)
             {
                 return;

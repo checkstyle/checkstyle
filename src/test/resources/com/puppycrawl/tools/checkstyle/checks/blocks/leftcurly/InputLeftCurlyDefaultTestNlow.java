@@ -64,9 +64,9 @@ public class InputLeftCurlyDefaultTestNlow
     class MyClass3 { // violation ''{' at column 20 should be on a new line'
     }
 
-    public class MyClass4 { // ok
-        void method() { // ok
-            while(true) {/*foo*/} // ok
+    public class MyClass4 {
+        void method() {
+            while(true) {/*foo*/}
         }
     }
 }
