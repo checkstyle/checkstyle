@@ -696,14 +696,13 @@ public class ImportOrderCheck
         for (int i = 0; i < patterns.length; i++) {
             final Matcher matcher = patterns[i].matcher(name);
             if (matcher.find()) {
-                if (matcher.start() < bestPos) {
+                if (bestPos > 0) {
                     bestIndex = i;
                     bestEnd = matcher.end();
                     bestPos = matcher.start();
                 }
                 else if (matcher.start() == bestPos && matcher.end() > bestEnd) {
                     bestIndex = i;
-                    bestEnd = matcher.end();
                 }
             }
         }
