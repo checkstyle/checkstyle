@@ -53,15 +53,31 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
         Pattern[] patterns = new Pattern[6];
 
         patterns[0] = Pattern.compile("awt");
-        patterns[5] = Pattern.compile("jarInputStream");
-        patterns[4] = Pattern.compile("utility");
-        patterns[3] = Pattern.compile("jar");
-        patterns[2] = Pattern.compile("util");
         patterns[1] = Pattern.compile("jar");
+        patterns[2] = Pattern.compile("util");
+        patterns[3] = Pattern.compile("jar");
+        patterns[4] = Pattern.compile("utility");
+        patterns[5] = Pattern.compile("jarInputStream");
 
         assertWithMessage("")
                 .that(ImportOrderCheck.getGroupNumber(patterns, "java.util.jar.JarInputStream"))
                 .isEqualTo(2); // with mutation it goes to group 4
+    }
+
+    @Test
+    public void testPitest2() throws Exception {
+        Pattern[] patterns = new Pattern[6];
+
+        patterns[0] = Pattern.compile("awt");
+        patterns[1] = Pattern.compile("jar");
+        patterns[2] = Pattern.compile("util");
+        patterns[3] = Pattern.compile("util.jar.JarInputStream");
+        patterns[4] = Pattern.compile("utility");
+        patterns[5] = Pattern.compile("util.jar");
+
+        assertWithMessage("")
+                .that(ImportOrderCheck.getGroupNumber(patterns, "java.util.jar.JarInputStream"))
+                .isEqualTo(3); // with mutation it goes to group 5
     }
 
     // this test is not covering survival
