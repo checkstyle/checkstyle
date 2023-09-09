@@ -54,14 +54,14 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
 
         patterns[0] = Pattern.compile("awt");
         patterns[5] = Pattern.compile("jarInputStream");
-        patterns[4] = Pattern.compile(".util");
-        patterns[3] = Pattern.compile(".jar.");
-        patterns[2] = Pattern.compile(".util.");
+        patterns[4] = Pattern.compile("utility");
+        patterns[3] = Pattern.compile("jar");
+        patterns[2] = Pattern.compile("util");
         patterns[1] = Pattern.compile("jar");
 
         assertWithMessage("")
                 .that(ImportOrderCheck.getGroupNumber(patterns, "java.util.jar.JarInputStream"))
-                .isEqualTo(2);
+                .isEqualTo(2); // with mutation it goes to group 4
     }
 
     // this test is not covering survival
