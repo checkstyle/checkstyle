@@ -39,16 +39,16 @@ class InputEmptyBlockSemanticText
         }   // violation above 'Empty try block'
         finally {
         }   // violation above 'Empty finally block'
-        try {   // ok
+        try {
             // something
         }
-        finally {   // ok
+        finally {
             // something
         }
-        try {   // ok
+        try {
             ; // something
         }
-        finally {   // ok
+        finally {
             ; // statement
         }
     }
@@ -74,8 +74,8 @@ class InputEmptyBlockSemanticText
 
     synchronized void foo() {
         synchronized (this) {}  // violation 'Empty synchronized block'
-        synchronized (Class.class) { // ok
-            synchronized (new Object()) {   // ok
+        synchronized (Class.class) {
+            synchronized (new Object()) {
                 // text
             }
         }

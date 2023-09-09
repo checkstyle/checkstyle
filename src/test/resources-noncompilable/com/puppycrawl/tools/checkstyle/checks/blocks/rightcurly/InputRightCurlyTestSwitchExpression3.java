@@ -25,5 +25,5 @@ public class InputRightCurlyTestSwitchExpression3 {
             case 2 -> 3;
             case 3 -> 4;
             default -> 5;
-        }; } // ok
+        }; }
 }

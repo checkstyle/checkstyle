@@ -33,40 +33,40 @@ public class InputLeftCurlyTestDefault
 
     private
     class
-    MyClass1 { // ok
+    MyClass1 {
     }
 
     class
-    MyClass2 { // ok
+    MyClass2 {
     }
 
     private
     interface
-    MyInterface1 { // ok
+    MyInterface1 {
     }
 
     interface
-    MyInterface2 { // ok
+    MyInterface2 {
     }
 
     protected
     enum
-    MyEnum { // ok
+    MyEnum {
     }
 
     private
     @interface
-    MyAnnotation { // ok
+    MyAnnotation {
     }
 
     @Deprecated
     public
-    class MyClass3 { // ok
+    class MyClass3 {
     }
 
-    public class MyClass4 { // ok
-        void method() { // ok
-            while(true) {/*foo*/} // ok
+    public class MyClass4 {
+        void method() {
+            while(true) {/*foo*/}
         }
     }
 }

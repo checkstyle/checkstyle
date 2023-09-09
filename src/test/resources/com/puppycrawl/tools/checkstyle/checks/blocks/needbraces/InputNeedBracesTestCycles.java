@@ -47,10 +47,10 @@ public class InputNeedBracesTestCycles
         case 3: {
             break;}
 
-        case 4: // ok
+        case 4:
             break;
 
-        case 5:  System.lineSeparator(); // ok
+        case 5:  System.lineSeparator();
             break;
         }
 
@@ -62,7 +62,7 @@ public class InputNeedBracesTestCycles
         }
 
         switch(1) {
-        default: // ok
+        default:
          break;
     }
 
