@@ -928,10 +928,6 @@
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]whitespace[\\/]whitespacearound[\\/]InputWhitespaceAroundRecordsAllowEmptyTypes.java"/>
   <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]annotation[\\/]missingdeprecated[\\/]InputMissingDeprecatedGood.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]annotation[\\/]missingdeprecated[\\/]InputMissingDeprecatedSingleComment.java"/>
-  <suppress id="UnnecessaryOkComment"
             files="checks[\\/]annotation[\\/]packageannotation[\\/]InputPackageAnnotation.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]annotation[\\/]suppresswarnings[\\/]InputSuppressWarningsConstants.java"/>
