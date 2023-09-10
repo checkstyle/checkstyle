@@ -2025,6 +2025,24 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/MatchXpathCheck.java</fileName>
+    <specifier>assignment</specifier>
+    <message>incompatible types in assignment.</message>
+    <lineContent>xpathExpression = null;</lineContent>
+    <details>
+      found   : null (NullType)
+      required: @Initialized @NonNull XPathExpression
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/MatchXpathCheck.java</fileName>
+    <specifier>initialization.field.uninitialized</specifier>
+    <message>the default constructor does not initialize field query</message>
+    <lineContent>private String query;</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/MatchXpathCheck.java</fileName>
     <specifier>initialization.field.uninitialized</specifier>
     <message>the default constructor does not initialize field xpathExpression</message>
     <lineContent>private XPathExpression xpathExpression;</lineContent>
