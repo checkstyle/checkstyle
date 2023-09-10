@@ -445,6 +445,7 @@ finalizer
 finallocalvariable
 finalparameters
 findbugs
+findstr
 Findentation
 firefox
 firstsentence
@@ -1158,6 +1159,7 @@ sariflogger
 sarifweb
 Savinov
 saxonica
+safecrlf
 sbe
 sbt
 scache
