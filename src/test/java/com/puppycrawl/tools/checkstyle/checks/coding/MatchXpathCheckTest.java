@@ -19,12 +19,20 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import static com.google.common.truth.Truth.assertThat;
 import static com.google.common.truth.Truth.assertWithMessage;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import java.io.File;
 
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
+import com.puppycrawl.tools.checkstyle.JavaParser;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -229,5 +237,31 @@ public class MatchXpathCheckTest
         assertWithMessage("Expected empty array")
                 .that(matchXpathCheck.getRequiredTokens())
                 .isEmpty();
+    }
+
+    @Test
+    public void testMatchXpathWithFailedEvaluation() {
+        final CheckstyleException ex = assertThrows(CheckstyleException.class,
+                () -> verifyWithInlineConfigParser(getPath("InputMatchXpath5.java")));
+        assertThat(ex.getCause().getMessage())
+                .isEqualTo("Evaluation of Xpath query failed: count(*) div 0");
+    }
+
+    @Test
+    public void testXpathExpressionStateIsCleared() throws Exception {
+        final MatchXpathCheck check = new MatchXpathCheck();
+        check.setQuery("count(*) div 0");
+        final DetailAST ast = JavaParser.parseFile(
+                new File(getPath("InputMatchXpath5.java")),
+                JavaParser.Options.WITHOUT_COMMENTS);
+
+        final IllegalStateException ex = assertThrows(IllegalStateException.class,
+                () -> check.beginTree(ast));
+        assertThat(ex.getMessage())
+                .isEqualTo("Evaluation of Xpath query failed: count(*) div 0");
+
+        check.setQuery("");
+        assertDoesNotThrow(() -> check.beginTree(ast),
+                "xpath expression should be cleared, exception is not expected");
     }
 }
