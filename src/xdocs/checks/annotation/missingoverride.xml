@@ -67,86 +67,103 @@
         </div>
       </subsection>
       <subsection name="Examples" id="Examples">
-        <p> To configure the check:</p>
+        <p id="Example1-config"> To configure the check:</p>
         <source>
-&lt;module name=&quot;MissingOverride&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;MissingOverride&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
         </source>
-        <p>Example:</p>
+        <p id="Example1-code">Example:</p>
         <source>
-class Test extends SuperClass {
+class Example1{
+  public void test1(){}
 
-    /** {@inheritDoc} */
-    @Override
-    public void test1() { // OK
+  public void test2(){}
 
-    }
+}
 
-    /** {@inheritDoc} */
-    public void test2() { // violation, should be annotated with @Override
+class A extends Example1 {
 
-    }
+  /** {@inheritDoc} */
+  @Override
+  public void test1() { // OK
 
-    /** {@inheritDoc} */
-    private void test3() { // violation, using the @inheritDoc tag on private method
+  }
 
-    }
+  /** {@inheritDoc} */
+  public void test2() { // violation, 'include @java.lang.Override'
 
-    /** {@inheritDoc} */
-    public static void test4() { // violation, using the @inheritDoc tag on static method
+  }
 
-    }
+  /** {@inheritDoc} */
+  private void test3() { // violation, 'The Javadoc {@inheritDoc}.'
+
+  }
+
+  /** {@inheritDoc} */
+  public static void test4() { // violation, 'The Javadoc {@inheritDoc}.'
+
+  }
 }
         </source>
-        <p>
+        <p id="Example2-config">
           To configure the check for the <code>javaFiveCompatibility</code>
           mode:
         </p>
         <source>
-&lt;module name=&quot;MissingOverride&quot;&gt;
-  &lt;property name=&quot;javaFiveCompatibility&quot;
-      value=&quot;true&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;MissingOverride&quot;&gt;
+      &lt;property name=&quot;javaFiveCompatibility&quot;
+                value=&quot;true&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p>Example:</p>
+        <p id="Example2-code">Example:</p>
         <source>
-class Test1 {
+class Example2 {
+  /** {@inheritDoc} */
+  public boolean equals(Object o) { // violation, 'include @java.lang.Override'
+    return o == this;
+  }
+}
+
+class SuperClass{
+
+  public void test(){
+
+  }
+}
+
+interface B {
+
+  /** {@inheritDoc} */
+  void test(); // violation, 'include @java.lang.Override'
+}
+
+class C extends SuperClass {
+  /** {@inheritDoc} */
+  public void test() { // OK, is ignored because class extends other class
+
+  }
+}
+
+class D implements B {
+  /** {@inheritDoc} */
+  public void test() { // OK, is ignored because class implements interface
+  }
+}
+
+class E {
+  Runnable r = new Runnable() {
 
     /** {@inheritDoc} */
-    public void equals() { // violation, should be annotated with @Override
-
+    public void run() { // OK, is ignored because class is anonymous class
     }
-}
-
-interface Test2 {
-
-    /** {@inheritDoc} */
-    void test(); // violation, should be annotated with @Override
-}
-
-class Test3 extends SuperClass {
-
-    /** {@inheritDoc} */
-    public void test() { // OK, is ignored because class extends other class
-
-    }
-}
-
-class Test4 implements SuperInterface {
-
-    /** {@inheritDoc} */
-    public void test() { // OK, is ignored because class implements interface
-
-    }
-}
-
-class Test5 {
-    Runnable r = new Runnable() {
-
-        /** {@inheritDoc} */
-        public void run() { // OK, is ignored because class is anonymous class
-
-        }
-    };
+  };
 }
         </source>
       </subsection>
