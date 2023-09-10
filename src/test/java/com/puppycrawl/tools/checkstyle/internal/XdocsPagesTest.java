@@ -306,7 +306,10 @@ public class XdocsPagesTest {
      */
     @BeforeAll
     public static void generateXdocContent() throws Exception {
+        final String originalLineSeperator = System.getProperty("line.separator");
+        System.setProperty("line.separator", "\n");
         XdocGenerator.generateXdocContent();
+        System.setProperty("line.separator", originalLineSeperator);
     }
 
     @Test
