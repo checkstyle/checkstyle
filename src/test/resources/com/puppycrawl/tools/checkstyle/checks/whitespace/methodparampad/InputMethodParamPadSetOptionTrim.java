@@ -19,7 +19,7 @@ public class InputMethodParamPadSetOptionTrim {
         }
     }
 
-    public int method2 () { // ok
+    public int method2 () {
         return 1;
     }
 

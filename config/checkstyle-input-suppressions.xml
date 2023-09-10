@@ -928,10 +928,6 @@
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]whitespace[\\/]whitespacearound[\\/]InputWhitespaceAroundRecordsAllowEmptyTypes.java"/>
   <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]annotation[\\/]missingdeprecated[\\/]InputMissingDeprecatedGood.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]annotation[\\/]missingdeprecated[\\/]InputMissingDeprecatedSingleComment.java"/>
-  <suppress id="UnnecessaryOkComment"
             files="checks[\\/]annotation[\\/]packageannotation[\\/]InputPackageAnnotation.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]annotation[\\/]suppresswarnings[\\/]InputSuppressWarningsConstants.java"/>
@@ -6317,12 +6313,6 @@
             files="checks[\\/]whitespace[\\/]emptylineseparator[\\/]packageinfo[\\/]test1[\\/]package-info.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]whitespace[\\/]emptylineseparator[\\/]packageinfo[\\/]test2[\\/]package-info.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]whitespace[\\/]methodparampad[\\/]InputMethodParamPad4.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]whitespace[\\/]methodparampad[\\/]InputMethodParamPadSetOptionTrim.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]whitespace[\\/]methodparampad[\\/]InputMethodParamPadWhitespaceAround.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]whitespace[\\/]nolinewrap[\\/]InputNoLineWrapGood.java"/>
   <suppress id="UnnecessaryOkComment"
