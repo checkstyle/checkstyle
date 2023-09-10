@@ -135,7 +135,7 @@ public class MatchXpathCheck extends AbstractCheck {
 
     @Override
     public void beginTree(DetailAST rootAST) {
-        if (xpathExpression != null) {
+        if (!query.isEmpty()) {
             final List<DetailAST> matchingNodes = findMatchingNodesByXpathQuery(rootAST);
             matchingNodes.forEach(node -> log(node, MSG_KEY));
         }
