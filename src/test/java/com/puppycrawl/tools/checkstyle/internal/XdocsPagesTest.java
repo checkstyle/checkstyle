@@ -306,7 +306,10 @@ public class XdocsPagesTest {
      */
     @BeforeAll
     public static void generateXdocContent() throws Exception {
+        final String originalLineSeperator = System.getProperty("line.separator");
+        System.setProperty("line.separator", "\n");
         XdocGenerator.generateXdocContent();
+        System.setProperty("line.separator", originalLineSeperator);
     }
 
     @Test
@@ -378,8 +381,7 @@ public class XdocsPagesTest {
                 assertWithMessage(
                     "The first sentence of the \"Description\" subsection for the check "
                         + checkName + " in the file \"" + fileName + "\" should end with a period")
-                    .that(matcher.find())
-                    .isTrue();
+                    .that(matcher.find()).isTrue();
                 final String firstSentence = XmlUtil.sanitizeXml(matcher.group(1));
                 assertWithMessage("The summary for check " + checkName
                         + " in the file \"" + AVAILABLE_CHECKS_PATH + "\""
@@ -1964,14 +1966,11 @@ public class XdocsPagesTest {
         for (int paramPosition = 0; paramPosition < params.getLength(); paramPosition++) {
             final Node item = params.item(paramPosition);
 
-            if (!"param".equals(item.getNodeName())) {
+            if (!"param".equals(item.getNodeName()))
                 continue;
-            }
 
-            final String paramName = item.getAttributes()
-                    .getNamedItem("name").getTextContent();
-            final String paramValue = item.getAttributes()
-                    .getNamedItem("value").getTextContent();
+            final String paramName = item.getAttributes().getNamedItem("name").getTextContent();
+            final String paramValue = item.getAttributes().getNamedItem("value").getTextContent();
             if ("path".equals(paramName)) {
                 exampleName = paramValue.substring(paramValue.lastIndexOf('/') + 1,
                         paramValue.lastIndexOf('.'));
