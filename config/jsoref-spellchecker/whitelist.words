@@ -446,6 +446,7 @@ finallocalvariable
 finalparameters
 findbugs
 Findentation
+findstr
 firefox
 firstsentence
 FIXME
@@ -1153,6 +1154,7 @@ Ruslan
 rw
 rx
 sabaka
+safecrlf
 Sameline
 sariflogger
 sarifweb
