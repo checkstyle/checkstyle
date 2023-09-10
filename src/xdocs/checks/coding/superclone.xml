@@ -34,28 +34,28 @@
         </source>
         <p id="Example1-code">Example:</p>
         <source>
-class A {
-
- public Object clone() { // OK
-  return super.clone();
- }
+class Example1 {
+  public Object clone() throws CloneNotSupportedException {
+    return super.clone();
+  }
 }
 
-class B {
-private int b;
+class SuperCloneB {
+  private int b;
 
- public B clone() { // violation, does not call super.clone()
-  B other = new B();
-  other.b = this.b;
-  return other;
- }
+  // violation below, &quot;Method 'clone' should call 'super.clone'.&quot;
+  public SuperCloneB clone() {
+    SuperCloneB other = new SuperCloneB();
+    other.b = this.b;
+    return other;
+  }
 }
 
-class C {
+class SuperCloneC {
 
- public C clone() { // OK
-  return (C) super.clone();
- }
+  public SuperCloneC clone() throws CloneNotSupportedException {
+    return (SuperCloneC) super.clone();
+  }
 }
         </source>
       </subsection>
