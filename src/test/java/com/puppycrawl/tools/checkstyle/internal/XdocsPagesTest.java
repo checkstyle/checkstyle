@@ -306,7 +306,10 @@ public class XdocsPagesTest {
      */
     @BeforeAll
     public static void generateXdocContent() throws Exception {
+        final String originalLineSeperator = System.getProperty("line.separator");
+        System.setProperty("line.separator", "\n");
         XdocGenerator.generateXdocContent();
+        System.setProperty("line.separator", originalLineSeperator);
     }
 
     @Test
@@ -378,8 +381,7 @@ public class XdocsPagesTest {
                 assertWithMessage(
                     "The first sentence of the \"Description\" subsection for the check "
                         + checkName + " in the file \"" + fileName + "\" should end with a period")
-                    .that(matcher.find())
-                    .isTrue();
+                    .that(matcher.find()).isTrue();
                 final String firstSentence = XmlUtil.sanitizeXml(matcher.group(1));
                 assertWithMessage("The summary for check " + checkName
                         + " in the file \"" + AVAILABLE_CHECKS_PATH + "\""
