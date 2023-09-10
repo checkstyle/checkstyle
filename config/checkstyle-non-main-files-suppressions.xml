@@ -167,4 +167,94 @@
   <!-- We use negative suppression to check workflow files only. -->
   <suppress id="workflowJobStepSpacing" files="^.((?!github[\\/]workflows[\\/]).)*$" />
 
+  <!-- Examples macro suppressions -->
+  <suppress id="exampleMacroMustExist"
+         files="src[\\/]xdocs[\\/]checks[\\/]annotation[\\/]annotationlocation.xml.template"/>
+  <suppress id="exampleMacroMustExist"
+         files="src[\\/]xdocs[\\/]checks[\\/]annotation[\\/]annotationonsameline.xml.template"/>
+  <suppress id="exampleMacroMustExist"
+         files="src[\\/]xdocs[\\/]checks[\\/]annotation[\\/]annotationusestyle.xml.template"/>
+  <suppress id="exampleMacroMustExist"
+         files="src[\\/]xdocs[\\/]checks[\\/]annotation[\\/]missingdeprecated.xml.template"/>
+  <suppress id="exampleMacroMustExist"
+         files="src[\\/]xdocs[\\/]checks[\\/]annotation[\\/]missingoverride.xml.template"/>
+  <suppress id="exampleMacroMustExist"
+         files="src[\\/]xdocs[\\/]checks[\\/]annotation[\\/]suppresswarnings.xml.template"/>
+  <suppress id="exampleMacroMustExist"
+         files="src[\\/]xdocs[\\/]checks[\\/]blocks[\\/]avoidnestedblocks.xml.template"/>
+  <suppress id="exampleMacroMustExist"
+         files="src[\\/]xdocs[\\/]checks[\\/]blocks[\\/]emptyblock.xml.template"/>
+  <suppress id="exampleMacroMustExist"
+         files="src[\\/]xdocs[\\/]checks[\\/]blocks[\\/]emptycatchblock.xml.template"/>
+  <suppress id="exampleMacroMustExist"
+         files="src[\\/]xdocs[\\/]checks[\\/]blocks[\\/]leftcurly.xml.template"/>
+  <suppress id="exampleMacroMustExist"
+         files="src[\\/]xdocs[\\/]checks[\\/]blocks[\\/]needbraces.xml.template"/>
+  <suppress id="exampleMacroMustExist"
+         files="src[\\/]xdocs[\\/]checks[\\/]blocks[\\/]rightcurly.xml.template"/>
+  <suppress id="exampleMacroMustExist"
+         files="src[\\/]xdocs[\\/]checks[\\/]design[\\/]designforextension.xml.template"/>
+  <suppress id="exampleMacroMustExist"
+         files="src[\\/]xdocs[\\/]checks[\\/]design[\\/]finalclass.xml.template"/>
+  <suppress id="exampleMacroMustExist"
+         files="src[\\/]xdocs[\\/]checks[\\/]design[\\/]hideutilityclassconstructor.xml.template"/>
+  <suppress id="exampleMacroMustExist"
+         files="src[\\/]xdocs[\\/]checks[\\/]imports[\\/]importcontrol.xml.template"/>
+  <suppress id="exampleMacroMustExist"
+         files="src[\\/]xdocs[\\/]filters[\\/]suppressionfilter.xml.template"/>
+  <suppress id="exampleMacroMustExist"
+         files="src[\\/]xdocs[\\/]filters[\\/]suppressionxpathfilter.xml.template"/>
+
+  <!-- Parent module macro suppressions -->
+  <suppress id="parentModuleMacroMustExist"
+         files="src[\\/]xdocs[\\/]checks[\\/]coding[\\/]unnecessarysemicolonafteroutertypedeclaration.xml.template"/>
+  <suppress id="parentModuleMacroMustExist"
+         files="src[\\/]xdocs[\\/]checks[\\/]coding[\\/]unnecessarysemicolonaftertypememberdeclaration.xml.template"/>
+
+  <!-- Violations messages macro suppressions -->
+  <suppress id="violationMessagesModuleMacroMustExist"
+         files="src[\\/]xdocs[\\/]checks[\\/]annotation[\\/]suppresswarningsholder.xml.template"/>
+  <suppress id="violationMessagesModuleMacroMustExist"
+         files="src[\\/]xdocs[\\/]checks[\\/]coding[\\/]avoidnoargumentsuperconstructorcall.xml.template"/>
+  <suppress id="violationMessagesModuleMacroMustExist"
+         files="src[\\/]xdocs[\\/]checks[\\/]coding[\\/]unnecessarysemicolonafteroutertypedeclaration.xml.template"/>
+  <suppress id="violationMessagesModuleMacroMustExist"
+         files="src[\\/]xdocs[\\/]checks[\\/]coding[\\/]unnecessarysemicolonaftertypememberdeclaration.xml.template"/>
+  <suppress id="violationMessagesModuleMacroMustExist"
+         files="src[\\/]xdocs[\\/]checks[\\/]coding[\\/]unnecessarysemicoloninenumeration.xml.template"/>
+  <suppress id="violationMessagesModuleMacroMustExist"
+         files="src[\\/]xdocs[\\/]checks[\\/]coding[\\/]unnecessarysemicolonintrywithresources.xml.template"/>
+  <suppress id="violationMessagesModuleMacroMustExist"
+         files="src[\\/]xdocs[\\/]checks[\\/]coding[\\/]variabledeclarationusagedistance.xml.template"/>
+  <suppress id="violationMessagesModuleMacroMustExist"
+         files="src[\\/]xdocs[\\/]checks[\\/]javadoc[\\/]javadocmissingwhitespaceafterasterisk.xml.template"/>
+  <suppress id="violationMessagesModuleMacroMustExist"
+         files="src[\\/]xdocs[\\/]checks[\\/]javadoc[\\/]javadoctagcontinuationindentation.xml.template"/>
+  <suppress id="violationMessagesModuleMacroMustExist"
+         files="src[\\/]xdocs[\\/]checks[\\/]javadoc[\\/]requireemptylinebeforeblocktaggroup.xml.template"/>
+  <suppress id="violationMessagesModuleMacroMustExist"
+         files="src[\\/]xdocs[\\/]checks[\\/]whitespace[\\/]nowhitespacebeforecasedefaultcolon.xml.template"/>
+  <suppress id="violationMessagesModuleMacroMustExist"
+         files="src[\\/]xdocs[\\/]filefilters[\\/]beforeexecutionexclusionfilefilter.xml.template"/>
+  <suppress id="violationMessagesModuleMacroMustExist"
+         files="src[\\/]xdocs[\\/]filters[\\/]severitymatchfilter.xml.template"/>
+  <suppress id="violationMessagesModuleMacroMustExist"
+         files="src[\\/]xdocs[\\/]filters[\\/]suppressioncommentfilter.xml.template"/>
+  <suppress id="violationMessagesModuleMacroMustExist"
+         files="src[\\/]xdocs[\\/]filters[\\/]suppressionfilter.xml.template"/>
+  <suppress id="violationMessagesModuleMacroMustExist"
+         files="src[\\/]xdocs[\\/]filters[\\/]suppressionsinglefilter.xml.template"/>
+  <suppress id="violationMessagesModuleMacroMustExist"
+         files="src[\\/]xdocs[\\/]filters[\\/]suppressionxpathfilter.xml.template"/>
+  <suppress id="violationMessagesModuleMacroMustExist"
+         files="src[\\/]xdocs[\\/]filters[\\/]suppressionxpathsinglefilter.xml.template"/>
+  <suppress id="violationMessagesModuleMacroMustExist"
+         files="src[\\/]xdocs[\\/]filters[\\/]suppresswarningsfilter.xml.template"/>
+  <suppress id="violationMessagesModuleMacroMustExist"
+         files="src[\\/]xdocs[\\/]filters[\\/]suppresswithnearbycommentfilter.xml.template"/>
+  <suppress id="violationMessagesModuleMacroMustExist"
+         files="src[\\/]xdocs[\\/]filters[\\/]suppresswithnearbytextfilter.xml.template"/>
+  <suppress id="violationMessagesModuleMacroMustExist"
+         files="src[\\/]xdocs[\\/]filters[\\/]suppresswithplaintextcommentfilter.xml.template"/>
+
 </suppressions>
