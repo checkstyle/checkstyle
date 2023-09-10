@@ -67,88 +67,33 @@
         </div>
       </subsection>
       <subsection name="Examples" id="Examples">
-        <p> To configure the check:</p>
-        <source>
-&lt;module name="MissingOverride"/&gt;
-        </source>
-        <p>Example:</p>
-        <source>
-class Test extends SuperClass {
-
-    /** {@inheritDoc} */
-    @Override
-    public void test1() { // OK
-
-    }
-
-    /** {@inheritDoc} */
-    public void test2() { // violation, should be annotated with @Override
-
-    }
-
-    /** {@inheritDoc} */
-    private void test3() { // violation, using the @inheritDoc tag on private method
-
-    }
-
-    /** {@inheritDoc} */
-    public static void test4() { // violation, using the @inheritDoc tag on static method
-
-    }
-}
-        </source>
-        <p>
+        <p id="Example1-config"> To configure the check:</p>
+        <macro name="example">
+             <param name="path"
+                    value="/resources/com/puppycrawl/tools/checkstyle/checks/annotation/missingoverride/Example1.java"/>
+             <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">Example:</p>
+        <macro name="example">
+            <param name="path"
+                   value="/resources/com/puppycrawl/tools/checkstyle/checks/annotation/missingoverride/Example1.java"/>
+            <param name="type" value="code"/>
+        </macro>
+        <p id="Example2-config">
           To configure the check for the <code>javaFiveCompatibility</code>
           mode:
         </p>
-        <source>
-&lt;module name="MissingOverride"&gt;
-  &lt;property name="javaFiveCompatibility"
-      value="true"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>Example:</p>
-        <source>
-class Test1 {
-
-    /** {@inheritDoc} */
-    public void equals() { // violation, should be annotated with @Override
-
-    }
-}
-
-interface Test2 {
-
-    /** {@inheritDoc} */
-    void test(); // violation, should be annotated with @Override
-}
-
-class Test3 extends SuperClass {
-
-    /** {@inheritDoc} */
-    public void test() { // OK, is ignored because class extends other class
-
-    }
-}
-
-class Test4 implements SuperInterface {
-
-    /** {@inheritDoc} */
-    public void test() { // OK, is ignored because class implements interface
-
-    }
-}
-
-class Test5 {
-    Runnable r = new Runnable() {
-
-        /** {@inheritDoc} */
-        public void run() { // OK, is ignored because class is anonymous class
-
-        }
-    };
-}
-        </source>
+        <macro name="example">
+            <param name="path"
+                   value="/resources/com/puppycrawl/tools/checkstyle/checks/annotation/missingoverride/Example2.java"/>
+            <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">Example:</p>
+        <macro name="example">
+            <param name="path"
+                   value="/resources/com/puppycrawl/tools/checkstyle/checks/annotation/missingoverride/Example2.java"/>
+            <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">
