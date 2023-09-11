@@ -47,6 +47,11 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Default value is {@code 3}.
  * </li>
  * <li>
+ * Property {@code ignoreFinal} - Allow to ignore variables with a 'final' modifier.
+ * Type is {@code boolean}.
+ * Default value is {@code true}.
+ * </li>
+ * <li>
  * Property {@code ignoreVariablePattern} - Define RegExp to ignore distance calculation
  * for variables listed in this pattern.
  * Type is {@code java.util.regex.Pattern}.
@@ -57,11 +62,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * declaration of variable and its first usage in the different scopes.
  * Type is {@code boolean}.
  * Default value is {@code false}.
- * </li>
- * <li>
- * Property {@code ignoreFinal} - Allow to ignore variables with a 'final' modifier.
- * Type is {@code boolean}.
- * Default value is {@code true}.
  * </li>
  * </ul>
  * <p>
