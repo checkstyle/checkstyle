@@ -25,7 +25,10 @@ import static com.puppycrawl.tools.checkstyle.checks.javadoc.NonEmptyAtclauseDes
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.TreeWalker;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class NonEmptyAtclauseDescriptionCheckTest
         extends AbstractModuleTestSupport {
@@ -94,5 +97,22 @@ public class NonEmptyAtclauseDescriptionCheckTest
             "77: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(getPath("InputNonEmptyAtclauseDescriptionTwo.java"), expected);
+    }
+
+    @Test
+    public void testDifferentCharset() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(NonEmptyAtclauseDescriptionCheck.class);
+
+        final DefaultConfiguration treeWalkerConfig = createModuleConfig(TreeWalker.class);
+        treeWalkerConfig.addChild(checkConfig);
+
+        final DefaultConfiguration checkerConfig = createRootConfig(treeWalkerConfig);
+        checkerConfig.addChild(treeWalkerConfig);
+        checkerConfig.addProperty("charset", "US-ASCII");
+
+        verify(checkerConfig,
+                getPath("InputNonEmptyAtclauseDescriptionDifferentCharset.java"), expected);
     }
 }
