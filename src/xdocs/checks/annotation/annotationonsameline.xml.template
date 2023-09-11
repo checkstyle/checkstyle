@@ -92,80 +92,36 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name="AnnotationOnSameLine"/&gt;
-        </source>
-        <p>
-          Example:
-        </p>
-        <source>
-class Foo {
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/annotationonsameline/Example1.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                   value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/annotationonsameline/Example1.java"/>
+            <param name="type" value="code"/>
+        </macro>
 
-  @SuppressWarnings("deprecation")  // violation, annotation should be on the same line
-  public Foo() {
-  }
-
-  @SuppressWarnings("unchecked") public void fun2() {  // OK
-  }
-
-}
-
-@SuppressWarnings("unchecked") class Bar extends Foo {  // OK
-
-  @Deprecated public Bar() {  // OK
-  }
-
-  @Override  // violation, annotation should be on the same line
-  public void fun1() {
-  }
-
-  @Before @Override public void fun2() {  // OK
-  }
-
-  @SuppressWarnings("deprecation")  // violation, annotation should be on the same line
-  @Before public void fun3() {
-  }
-
-}
-        </source>
-        <p>
+        <p id="Example2-config">
           To configure the check to check for annotations applied on
           interfaces, variables and constructors:
         </p>
-        <source>
-&lt;module name="AnnotationOnSameLine"&gt;
-  &lt;property name="tokens"
-      value="INTERFACE_DEF, VARIABLE_DEF, CTOR_DEF"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>
-          Example:
-        </p>
-        <source>
-@Deprecated interface Foo {  // OK
-
-  void doSomething();
-
-}
-
-class Bar implements Foo {
-
-  @SuppressWarnings("deprecation")  // violation, annotation should be on the same line
-  public Bar() {
-  }
-
-  @Override  // OK
-  public void doSomething() {
-  }
-
-  @Nullable  // violation, annotation should be on the same line
-  String s;
-
-}
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/annotationonsameline/Example2.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                   value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/annotationonsameline/Example2.java"/>
+            <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

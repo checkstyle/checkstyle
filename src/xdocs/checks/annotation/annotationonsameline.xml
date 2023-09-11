@@ -92,58 +92,67 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;AnnotationOnSameLine&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;AnnotationOnSameLine&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
         </source>
-        <p>
-          Example:
-        </p>
+        <p id="Example1-code">Example:</p>
         <source>
-class Foo {
+class Example1 {
 
-  @SuppressWarnings(&quot;deprecation&quot;)  // violation, annotation should be on the same line
-  public Foo() {
+  @SuppressWarnings(&quot;deprecation&quot;) // violation
+  public Example1() {
   }
 
   @SuppressWarnings(&quot;unchecked&quot;) public void fun2() {  // OK
   }
 
-}
-
-@SuppressWarnings(&quot;unchecked&quot;) class Bar extends Foo {  // OK
-
-  @Deprecated public Bar() {  // OK
-  }
-
-  @Override  // violation, annotation should be on the same line
   public void fun1() {
   }
 
-  @Before @Override public void fun2() {  // OK
+}
+
+@SuppressWarnings(&quot;unchecked&quot;) class Test1 extends Example1 {  // OK
+
+  @Deprecated public Test1() {  // OK
   }
 
-  @SuppressWarnings(&quot;deprecation&quot;)  // violation, annotation should be on the same line
+  @Override // violation
+  public void fun1() {
+  }
+
+  @Before // violation
+  @Override public void fun2() {  // OK
+  }
+
+  @SuppressWarnings(&quot;deprecation&quot;) // violation
   @Before public void fun3() {
   }
 
 }
         </source>
-        <p>
+
+        <p id="Example2-config">
           To configure the check to check for annotations applied on
           interfaces, variables and constructors:
         </p>
         <source>
-&lt;module name=&quot;AnnotationOnSameLine&quot;&gt;
-  &lt;property name=&quot;tokens&quot;
-      value=&quot;INTERFACE_DEF, VARIABLE_DEF, CTOR_DEF&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;AnnotationOnSameLine&quot;&gt;
+      &lt;property name=&quot;tokens&quot;
+                value=&quot;INTERFACE_DEF, VARIABLE_DEF, CTOR_DEF&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p>
-          Example:
-        </p>
+        <p id="Example2-code">Example:</p>
         <source>
 @Deprecated interface Foo {  // OK
 
@@ -151,17 +160,17 @@ class Foo {
 
 }
 
-class Bar implements Foo {
+class Example2 implements Foo {
 
-  @SuppressWarnings(&quot;deprecation&quot;)  // violation, annotation should be on the same line
-  public Bar() {
+  @SuppressWarnings(&quot;deprecation&quot;) // violation
+  public Example2() {
   }
 
   @Override  // OK
   public void doSomething() {
   }
 
-  @Nullable  // violation, annotation should be on the same line
+  @Nullable // violation
   String s;
 
 }
