@@ -21,9 +21,14 @@ package com.puppycrawl.tools.checkstyle.checks.sizes;
 
 import static com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck.MSG_KEY;
 
+import java.io.OutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class LineLengthCheckTest extends AbstractModuleTestSupport {
 
@@ -118,4 +123,27 @@ public class LineLengthCheckTest extends AbstractModuleTestSupport {
             getNonCompilablePath("InputLineLengthIgnoringImportStatements.java"), expected);
     }
 
+    @Test
+    public void testDifferentCharset2() throws Exception {
+        final String[] expected = {
+            "1: " + getCheckMessage(MSG_KEY, 1, 2),
+        };
+
+        final DefaultConfiguration checkConfig = createModuleConfig(LineLengthCheck.class);
+        checkConfig.addProperty("max", "1");
+
+        final DefaultConfiguration checkerConfig = createRootConfig(checkConfig);
+        checkerConfig.addProperty("charset", "IBM1098");
+
+        final Path tempFile = Files.createTempFile("InputLineLengthCharset.java", null);
+
+        try (OutputStream fileOutputStream = Files.newOutputStream(tempFile)) {
+            fileOutputStream.write(0x80);
+            fileOutputStream.write(0x80);
+            verify(checkerConfig, tempFile.toAbsolutePath().toString(), expected);
+        }
+        finally {
+            Files.delete(tempFile);
+        }
+    }
 }
