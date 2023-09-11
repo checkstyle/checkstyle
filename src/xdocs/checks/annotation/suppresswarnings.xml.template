@@ -139,75 +139,37 @@
         </div>
       </subsection>
       <subsection name="Examples" id="Examples">
-        <p> To configure the check:</p>
-        <source> &lt;module name="SuppressWarnings"/&gt;
-        </source>
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/suppresswarnings/Example1.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                   value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/suppresswarnings/Example1.java"/>
+            <param name="type" value="code"/>
+        </macro>
 
-        <p>Example:</p>
-        <source>
-@SuppressWarnings("") // violation
-class TestA {
-  @SuppressWarnings("") // violation
-  final int num1 = 1;
-  @SuppressWarnings("all") // ok
-  final int num2 = 2;
-  @SuppressWarnings("unused") // ok
-  final int num3 = 3;
-
-  void foo1(@SuppressWarnings("unused") int param) {} // ok
-
-  @SuppressWarnings("all") // ok
-  void foo2(int param) {}
-  @SuppressWarnings("unused") // ok
-  void foo3(int param) {}
-  @SuppressWarnings(true?"all":"unused") // ok
-  void foo4(int param) {}
-}
-@SuppressWarnings("unchecked") // ok
-class TestB {}
-        </source>
-
-        <p>
+        <p id="Example2-config">
           To configure the check so that the "unchecked" and "unused"
           warnings cannot be suppressed on anything
           but variable and parameter declarations.
         </p>
-        <source>
-&lt;module name="SuppressWarnings"&gt;
-  &lt;property name="format"
-      value="^unchecked$|^unused$"/&gt;
-  &lt;property name="tokens"
-    value="
-    CLASS_DEF,INTERFACE_DEF,ENUM_DEF,
-    ANNOTATION_DEF,ANNOTATION_FIELD_DEF,
-    ENUM_CONSTANT_DEF,METHOD_DEF,CTOR_DEF
-    "/&gt;
-&lt;/module&gt;
-        </source>
-
-        <p>Example:</p>
-        <source>
-@SuppressWarnings("") // ok
-class TestA {
-  @SuppressWarnings("") // ok
-  final int num1 = 1;
-  @SuppressWarnings("all") // ok
-  final int num2 = 2;
-  @SuppressWarnings("unused") // ok
-  final int num3 = 3;
-
-  void foo1(@SuppressWarnings("unused") int param) {} // ok
-
-  @SuppressWarnings("all") // ok
-  void foo2(int param) {}
-  @SuppressWarnings("unused") // violation
-  void foo3(int param) {}
-  @SuppressWarnings(true?"all":"unused") // violation
-  void foo4(int param) {}
-}
-@SuppressWarnings("unchecked") // violation
-class TestB {}
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/suppresswarnings/Example2.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                   value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/suppresswarnings/Example2.java"/>
+            <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">
