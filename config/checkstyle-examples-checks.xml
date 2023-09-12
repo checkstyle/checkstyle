@@ -89,7 +89,7 @@
     <property name="max" value="60"/>
   </module>
   <module name="LineLength">
-    <property name="max" value="85"/>
+    <property name="max" value="120"/>
   </module>
 
   <!-- Whitespace -->
