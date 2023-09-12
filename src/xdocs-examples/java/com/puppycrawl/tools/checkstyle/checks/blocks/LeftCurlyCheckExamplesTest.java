@@ -19,12 +19,14 @@
 
 package com.puppycrawl.tools.checkstyle.checks.blocks;
 
-import org.junit.jupiter.api.Disabled;
+import static com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck.MSG_KEY_LINE_BREAK_AFTER;
+import static com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck.MSG_KEY_LINE_NEW;
+import static com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck.MSG_KEY_LINE_PREVIOUS;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
-@Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
 public class LeftCurlyCheckExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
     protected String getPackageLocation() {
@@ -34,36 +36,40 @@ public class LeftCurlyCheckExamplesTest extends AbstractExamplesModuleTestSuppor
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-
+            "13:1: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", "1"),
+            "15:3: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", "3"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
 
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-
+            "23:13: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", "13"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example2.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
 
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
-
+            "16:1: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", "1"),
+            "22:13: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", "13"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example3.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }
 
     @Test
     public void testExample4() throws Exception {
         final String[] expected = {
-
+            "15:1: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", "1"),
+            "17:3: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", "3"),
+            "25:15: " + getCheckMessage(MSG_KEY_LINE_BREAK_AFTER, "{", "15"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example4.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
     }
 }

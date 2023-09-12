@@ -9,15 +9,17 @@
 </module>
 */
 
+package com.puppycrawl.tools.checkstyle.checks.blocks.leftcurly;
+
 // xdoc section -- start
-class Test
-{ // Violation - '{' should be on the previous line
+class Example3
+{ // violation, ''{' at column 1 should be on the previous line.'
   private interface TestInterface { // OK
   }
 
   private
-  class
-  MyClass { // Violation - '{' should be on a new line
+    class
+    MyClass { // violation, ''{' at column 13 should be on a new line.'
   }
 
   enum Colors {RED, // OK

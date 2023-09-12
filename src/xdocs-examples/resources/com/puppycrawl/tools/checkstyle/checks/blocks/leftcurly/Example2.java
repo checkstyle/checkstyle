@@ -9,16 +9,18 @@
 </module>
 */
 
+package com.puppycrawl.tools.checkstyle.checks.blocks.leftcurly;
+
 // xdoc section -- start
-class Test
+class Example2
 { // OK
   private interface TestInterface
   { // OK
   }
 
   private
-  class
-  MyClass { // Violation - '{' should be on a new line
+    class
+    MyClass { // violation, ''{' at column 13 should be on a new line.'
   }
 
   enum Colors {RED, // OK
