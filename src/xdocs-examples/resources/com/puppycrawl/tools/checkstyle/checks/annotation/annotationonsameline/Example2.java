@@ -9,6 +9,10 @@
 </module>
 */
 
+package com.puppycrawl.tools.checkstyle.checks.annotation.annotationonsameline;
+
+import javax.annotation.Nullable;
+
 // xdoc section -- start
 @Deprecated interface Foo {  // OK
 
@@ -16,17 +20,17 @@
 
 }
 
-class Bar implements Foo {
+class Example2 implements Foo {
 
-  @SuppressWarnings("deprecation")  // violation, annotation should be on the same line
-  public Bar() {
+  @SuppressWarnings("deprecation") // violation
+  public Example2() {
   }
 
   @Override  // OK
   public void doSomething() {
   }
 
-  @Nullable  // violation, annotation should be on the same line
+  @Nullable // violation
   String s;
 
 }
