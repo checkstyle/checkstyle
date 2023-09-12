@@ -187,11 +187,7 @@ public class PackageObjectFactory implements ModuleFactory {
             instance = createFromStandardCheckSet(name);
             // find the name in third party map
             if (instance == null) {
-                if (thirdPartyNameToFullModuleNames == null) {
-                    thirdPartyNameToFullModuleNames =
-                            generateThirdPartyNameToFullModuleName(moduleClassLoader);
-                }
-                instance = createObjectFromMap(name, thirdPartyNameToFullModuleNames);
+                instance = createObjectFromClassPath(name);
             }
         }
         if (instance == null) {
@@ -215,6 +211,21 @@ public class PackageObjectFactory implements ModuleFactory {
             throw new CheckstyleException(exceptionMessage.getMessage());
         }
         return instance;
+    }
+
+    /**
+     * Calls method that does classpath scanning if required.
+     * This operation is very slow so it should be done only ones.
+     *
+     * @return the map of third party Checkstyle module names to the set of their fully qualified
+     *      names
+     */
+    private Map<String, Set<String>> getThirdPartyModulesWithInitializationIfRequired() {
+        if (thirdPartyNameToFullModuleNames == null) {
+            thirdPartyNameToFullModuleNames =
+                    generateThirdPartyNameToFullModuleName(moduleClassLoader);
+        }
+        return thirdPartyNameToFullModuleNames;
     }
 
     /**
@@ -248,8 +259,9 @@ public class PackageObjectFactory implements ModuleFactory {
      * @return instance of module if it is found in modules map and no ambiguous classes exist.
      * @throws CheckstyleException if the class fails to instantiate or there are ambiguous classes.
      */
-    private Object createObjectFromMap(String name, Map<String, Set<String>> map)
+    private Object createObjectFromClassPath(String name)
             throws CheckstyleException {
+        Map<String, Set<String>> map = getThirdPartyModulesWithInitializationIfRequired();
         final Set<String> fullModuleNames = map.get(name);
         Object instance = null;
         if (fullModuleNames == null) {
