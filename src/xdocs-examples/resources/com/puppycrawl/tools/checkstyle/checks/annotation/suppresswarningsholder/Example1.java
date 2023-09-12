@@ -1,34 +1,25 @@
 /*xml
 <module name="Checker">
   <module name="TreeWalker">
-  <module name="MemberName"/>
-  <module name="ConstantName"/>
-  <module name="ParameterNumber">
-    <property name="id" value="ParamNumberId"/>
-  </module>
-  <module name="NoWhitespaceAfter"/>
-
   <module name="SuppressWarningsHolder"/>
   </module>
-  <module name="SuppressWarningsFilter"/>
 </module>
 */
 
-// xdoc section -- start
-class Test {
+package com.puppycrawl.tools.checkstyle.checks.annotation.suppresswarningsholder;
 
-   private int K; // violation
+// xdoc section -- start
+class Example1 {
+
+   private int K; // violation, 'name.invalidPattern'
    @SuppressWarnings({"membername"})
    private int J; // violation suppressed
 
-   private static final int i = 0; // violation
+   private static final int i = 0; // violation, 'name.invalidPattern'
    @SuppressWarnings("checkstyle:constantname")
    private static final int m = 0; // violation suppressed
 
-   public void needsLotsOfParameters (int a, // violation
-      int b, int c, int d, int e, int f, int g, int h) {
-      // ...
-   }
+
 
    @SuppressWarnings("ParamNumberId")
    public void needsLotsOfParameters1 (int a, // violation suppressed
@@ -36,7 +27,8 @@ class Test {
       // ...
    }
 
-   private int [] ARR; // 2 violations
+   private int [] ARR; // violation, 'ws.followed'
+   // violation above, 'name.invalidPattern'
    @SuppressWarnings("all")
    private int [] ARRAY; // violations suppressed
 }

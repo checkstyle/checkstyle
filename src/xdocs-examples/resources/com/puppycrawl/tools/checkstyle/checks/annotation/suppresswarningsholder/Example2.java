@@ -5,15 +5,17 @@
 
   <module name="SuppressWarningsHolder">
     <property name="aliasList" value=
-      "com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck=paramnum"/>
+      "=paramnum"/>
   </module>
   </module>
   <module name="SuppressWarningsFilter"/>
 </module>
 */
 
+package com.puppycrawl.tools.checkstyle.checks.annotation.suppresswarningsholder;
+
 // xdoc section -- start
-class Test {
+class Example2 {
 
    public void needsLotsOfParameters (int a, // violation
       int b, int c, int d, int e, int f, int g, int h) {

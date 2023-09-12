@@ -19,12 +19,16 @@
 
 package com.puppycrawl.tools.checkstyle.checks.annotation;
 
-import org.junit.jupiter.api.Disabled;
+import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
+import static com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyForIteratorPadCheck.MSG_WS_FOLLOWED;
+
+import com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
-@Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
+
+
 public class SuppressWarningsHolderExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
     protected String getPackageLocation() {
@@ -33,19 +37,27 @@ public class SuppressWarningsHolderExamplesTest extends AbstractExamplesModuleTe
 
     @Test
     public void testExample1() throws Exception {
+        final String defaultPattern = "^[a-z][a-zA-Z0-9]*$";
         final String[] expected = {
-
+                "15: " + MSG_INVALID_PATTERN,
+                "19: " + MSG_INVALID_PATTERN,
+                "31: " + MSG_WS_FOLLOWED,
+                "31: " + MSG_INVALID_PATTERN,
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
 
     @Test
     public void testExample2() throws Exception {
+        final String defaultPattern = "^[a-z][a-zA-Z0-9]*$";
         final String[] expected = {
+
 
         };
 
-        verifyWithInlineConfigParser(getPath("Example2.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
+
+//      "20:16: " + getCheckMessage(ParameterNumberCheck.MSG_KEY, 7,8),
 }
