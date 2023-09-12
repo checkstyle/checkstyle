@@ -78,10 +78,10 @@ public class InputNeedBracesSingleLineStatements
         int counter = 0;
         switch (num) {
             case 1: counter++; break;
-            case 2: // ok
+            case 2:
                 counter += 2;
                 break;
-            case 3: // ok
+            case 3:
                 counter += 3;
                 break;
             case 6: counter += 10; break;
@@ -128,9 +128,9 @@ public class InputNeedBracesSingleLineStatements
     private void method(){
         if(false) {
             switch (0) {
-                case -1: // ok
+                case -1:
                     return;
-                default: // ok
+                default:
                     return;
             }
         }

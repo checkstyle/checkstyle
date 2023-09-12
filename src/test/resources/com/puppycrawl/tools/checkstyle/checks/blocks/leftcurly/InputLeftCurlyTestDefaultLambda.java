@@ -15,7 +15,7 @@ package com.puppycrawl.tools.checkstyle.checks.blocks.leftcurly;
 
 public class InputLeftCurlyTestDefaultLambda
 { // violation ''{' at column 1 should be on the previous line'
-    static Runnable r1 = () -> { // ok
+    static Runnable r1 = () -> {
         String.valueOf("Hello world one!");
     };
 

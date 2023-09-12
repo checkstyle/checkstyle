@@ -84,7 +84,7 @@ public class InputEmptyCatchBlockDefault
     {
         try {
         }
-        catch (Exception e) { //OK
+        catch (Exception e) {
             //This is expected
             /* This is expected */
             /**This is expected */

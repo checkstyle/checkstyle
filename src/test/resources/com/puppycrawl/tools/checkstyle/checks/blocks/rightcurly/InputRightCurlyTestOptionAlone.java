@@ -35,7 +35,7 @@ public class InputRightCurlyTestOptionAlone {
             put("first", "second");
             put("polygene", "lubricants");
             put("alpha", "betical");
-        }}; // ok
+        }};
     }
 
     void method3() {
