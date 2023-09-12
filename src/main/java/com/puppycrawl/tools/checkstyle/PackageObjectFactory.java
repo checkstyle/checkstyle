@@ -27,6 +27,7 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -187,10 +188,11 @@ public class PackageObjectFactory implements ModuleFactory {
             instance = createFromStandardCheckSet(name);
             // find the name in third party map
             if (instance == null) {
-                if (thirdPartyNameToFullModuleNames == null) {
-                    thirdPartyNameToFullModuleNames =
-                            generateThirdPartyNameToFullModuleName(moduleClassLoader);
-                }
+                final Optional<Map<String, Set<String>>> cache =
+                        Optional.ofNullable(thirdPartyNameToFullModuleNames);
+                thirdPartyNameToFullModuleNames = cache.orElseGet(() -> {
+                    return generateThirdPartyNameToFullModuleName(moduleClassLoader);
+                });
                 instance = createObjectFromMap(name, thirdPartyNameToFullModuleNames);
             }
         }
