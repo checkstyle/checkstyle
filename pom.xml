@@ -4361,6 +4361,10 @@
                 <!-- kills mutation in AbstractAutomaticBean -->
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.IllegalTypeCheckTest</param>
               </targetTests>
+              <excludedMethods>
+                <!-- caching of search results, big performance optimization -->
+                <param>getThirdPartyModulesWithInitializationIfRequired</param>
+              </excludedMethods>
               <coverageThreshold>100</coverageThreshold>
               <mutationThreshold>96</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
