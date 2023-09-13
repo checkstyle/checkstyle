@@ -68,11 +68,15 @@
         </div>
       </subsection>
       <subsection name="Examples" id="Examples">
-        <p> To configure the check:</p>
+        <p id="Example1-config"> To configure the check:</p>
         <source>
-&lt;module name=&quot;MissingDeprecated&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;MissingDeprecated&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
         </source>
-        <p>Example:</p>
+        <p id="Example1-code">Example:</p>
         <source>
 @Deprecated
 public static final int MY_CONST = 13; // ok
@@ -95,18 +99,20 @@ public static final int NUM = 123456; // ok
 @Deprecated
 public static final int CONST = 12; // ok
         </source>
-        <p>
+        <p id="Example2-config">
           To configure the check such that it prints violation
           messages if tight HTML rules are not obeyed
         </p>
         <source>
-&lt;module name=&quot;MissingDeprecated&quot;&gt;
-  &lt;property name=&quot;violateExecutionOnNonTightHtml&quot; value=&quot;true&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;MissingDeprecated&quot;&gt;
+      &lt;property name=&quot;violateExecutionOnNonTightHtml&quot; value=&quot;true&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p>
-          Example:
-        </p>
+        <p id="Example2-code">Example:</p>
         <source>
 @Deprecated
 public static final int MY_CONST = 13; // ok

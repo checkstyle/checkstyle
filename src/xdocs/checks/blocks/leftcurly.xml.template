@@ -152,109 +152,62 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p> To configure the check: </p>
-        <source>
-&lt;module name="LeftCurly"/&gt;
-        </source>
-        <source>
-class Test
-{ // Violation - '{' should be on the previous line
-  private interface TestInterface
-  { // Violation - '{' should be on the previous line
-  }
-
-  private
-  class
-  MyClass { // OK
-  }
-
-  enum Colors {RED, // OK
-    BLUE,
-    GREEN;
-  }
-}
-        </source>
-        <p>
+        <p id="Example1-config"> To configure the check: </p>
+        <macro name="example">
+          <param name="path"
+                 value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/leftcurly/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                   value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/leftcurly/Example1.txt"/>
+            <param name="type" value="code"/>
+        </macro>
+        <p id="Example2-config">
           To configure the check to apply the <code>nl</code> policy to
           type blocks:
         </p>
-        <source>
-&lt;module name="LeftCurly"&gt;
-  &lt;property name="option" value="nl"/&gt;
-  &lt;property name="tokens" value="CLASS_DEF,INTERFACE_DEF"/&gt;
-&lt;/module&gt;
-        </source>
-        <source>
-class Test
-{ // OK
-  private interface TestInterface
-  { // OK
-  }
-
-  private
-  class
-  MyClass { // Violation - '{' should be on a new line
-  }
-
-  enum Colors {RED, // OK
-    BLUE,
-    GREEN;
-  }
-}
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/leftcurly/Example2.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                   value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/leftcurly/Example2.txt"/>
+            <param name="type" value="code"/>
+        </macro>
+        <p id="Example3-config">
           To configure the check to apply the <code>nlow</code> policy to
           type blocks:
         </p>
-        <source>
-&lt;module name="LeftCurly"&gt;
-  &lt;property name="option" value="nlow"/&gt;
-  &lt;property name="tokens" value="CLASS_DEF,INTERFACE_DEF"/&gt;
-&lt;/module&gt;
-        </source>
-        <source>
-class Test
-{ // Violation - '{' should be on the previous line
-  private interface TestInterface { // OK
-  }
-
-  private
-  class
-  MyClass { // Violation - '{' should be on a new line
-  }
-
-  enum Colors {RED, // OK
-    BLUE,
-    GREEN;
-  }
-}
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/leftcurly/Example3.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example3-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                   value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/leftcurly/Example3.txt"/>
+            <param name="type" value="code"/>
+        </macro>
+        <p id="Example4-config">
           An example of how to configure the check to validate enum definitions:
         </p>
-        <source>
-&lt;module name="LeftCurly"&gt;
-  &lt;property name="ignoreEnums" value="false"/&gt;
-&lt;/module&gt;
-        </source>
-        <source>
-class Test
-{ // Violation - '{' should be on the previous line
-  private interface TestInterface
-  { // Violation - '{' should be on the previous line
-  }
-
-  private
-  class
-  MyClass { // OK
-  }
-
-  enum Colors {RED, // Violation - '{' should have line break after
-  BLUE,
-  GREEN;
-  }
-}
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/leftcurly/Example4.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example4-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                   value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/leftcurly/Example4.txt"/>
+            <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

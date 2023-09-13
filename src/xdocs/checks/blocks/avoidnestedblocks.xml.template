@@ -71,59 +71,30 @@ public void guessTheOutput()
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>To configure the check:</p>
-        <source>
-&lt;module name="AvoidNestedBlocks"/&gt;
-        </source>
-        <p>Example:</p>
-        <source>
-public void foo() {
-  int myInteger = 0;
-  {                      // violation
-    myInteger = 2;
-  }
-  System.out.println("myInteger = " + myInteger);
-
-  switch (a) {
-    case 1:
-      {                    // violation
-        System.out.println("Case 1");
-        break;
-      }
-    case 2:
-      System.out.println("Case 2");     // OK
-      break;
-  }
-}
-        </source>
-        <p>To configure the check to allow nested blocks in switch case:</p>
-        <source>
-&lt;module name="AvoidNestedBlocks"&gt;
-  &lt;property name="allowInSwitchCase" value="true"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>Example:</p>
-        <source>
-public void foo() {
-  int myInteger = 0;
-  {                      // violation
-    myInteger = 2;
-  }
-  System.out.println("myInteger = " + myInteger);
-
-  switch (a)
-  {
-    case 1:
-      {                    // OK
-        System.out.println("Case 1");
-        break;
-      }
-    case 2:
-      System.out.println("Case 2");     // OK
-      break;
-  }
-}
-        </source>
+        <p id="Example1-config">To configure the check:</p>
+        <macro name="example">
+             <param name="path"
+                    value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/avoidnestedblocks/Example1.txt"/>
+             <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">Example:</p>
+        <macro name="example">
+            <param name="path"
+                   value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/avoidnestedblocks/Example1.txt"/>
+            <param name="type" value="code"/>
+        </macro>
+        <p id="Example2-config">To configure the check to allow nested blocks in switch case:</p>
+        <macro name="example">
+            <param name="path"
+                   value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/avoidnestedblocks/Example2.txt"/>
+            <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">Example:</p>
+        <macro name="example">
+            <param name="path"
+                   value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/avoidnestedblocks/Example2.txt"/>
+            <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

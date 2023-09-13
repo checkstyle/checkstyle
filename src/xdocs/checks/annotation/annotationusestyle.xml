@@ -130,13 +130,17 @@
         </div>
       </subsection>
       <subsection name="Examples" id="Examples">
-        <p> To configure the check:</p>
-        <source>
-&lt;module name=&quot;AnnotationUseStyle&quot;/&gt;
-        </source>
-        <p>
-          Example:
+        <p id="Example1-config">
+          To configure the check:
         </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;AnnotationUseStyle&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example1-code">Example:</p>
         <source>
 @SuppressWarnings(&quot;unchecked&quot;) // OK
 @Deprecated // OK
@@ -153,20 +157,23 @@ class TestTwo {
 
 }
         </source>
-        <p>
+
+        <p id="Example2-config">
           To configure the check to enforce an <code>expanded</code> style,
-            with a closing parenthesis and a trailing array comma set to <code>never</code>.
+          with a closing parenthesis and a trailing array comma set to <code>never</code>.
         </p>
         <source>
-&lt;module name=&quot;AnnotationUseStyle&quot;&gt;
-  &lt;property name=&quot;elementStyle&quot; value=&quot;expanded&quot;/&gt;
-  &lt;property name=&quot;closingParens&quot; value=&quot;never&quot;/&gt;
-  &lt;property name=&quot;trailingArrayComma&quot; value=&quot;never&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;AnnotationUseStyle&quot;&gt;
+      &lt;property name=&quot;elementStyle&quot; value=&quot;expanded&quot;/&gt;
+      &lt;property name=&quot;closingParens&quot; value=&quot;never&quot;/&gt;
+      &lt;property name=&quot;trailingArrayComma&quot; value=&quot;never&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p>
-          Example:
-        </p>
+        <p id="Example2-code">Example:</p>
         <source>
 @SuppressWarnings(&quot;unchecked&quot;) // Violation - parameters should be referenced
 @Deprecated // OK
@@ -183,20 +190,23 @@ class TestTwo {
 
 }
         </source>
-        <p>
-          To configure the check to enforce a <code>compact</code> style,
-            with always including a closing parenthesis and ignoring a trailing array comma.
+
+        <p id="Example3-config">
+          To configure the check to enforce an <code>expanded</code> style,
+          with a closing parenthesis and a trailing array comma set to <code>never</code>.
         </p>
         <source>
-&lt;module name=&quot;AnnotationUseStyle&quot;&gt;
-  &lt;property name=&quot;elementStyle&quot; value=&quot;compact&quot;/&gt;
-  &lt;property name=&quot;closingParens&quot; value=&quot;always&quot;/&gt;
-  &lt;property name=&quot;trailingArrayComma&quot; value=&quot;ignore&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;AnnotationUseStyle&quot;&gt;
+      &lt;property name=&quot;elementStyle&quot; value=&quot;compact&quot;/&gt;
+      &lt;property name=&quot;closingParens&quot; value=&quot;always&quot;/&gt;
+      &lt;property name=&quot;trailingArrayComma&quot; value=&quot;ignore&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p>
-          Example:
-        </p>
+        <p id="Example3-code">Example:</p>
         <source>
 @SuppressWarnings(&quot;unchecked&quot;) // OK
 @Deprecated // Violation - must have a closing parenthesis
@@ -213,20 +223,23 @@ class TestTwo {
 
 }
         </source>
-        <p>
+
+        <p id="Example4-config">
           To configure the check to enforce a trailing array comma,
-            with ignoring the elementStyle and a closing parenthesis.
+          with ignoring the elementStyle and a closing parenthesis.
         </p>
         <source>
-&lt;module name=&quot;AnnotationUseStyle&quot;&gt;
-  &lt;property name=&quot;elementStyle&quot; value=&quot;ignore&quot;/&gt;
-  &lt;property name=&quot;closingParens&quot; value=&quot;ignore&quot;/&gt;
-  &lt;property name=&quot;trailingArrayComma&quot; value=&quot;always&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;AnnotationUseStyle&quot;&gt;
+      &lt;property name=&quot;elementStyle&quot; value=&quot;ignore&quot;/&gt;
+      &lt;property name=&quot;closingParens&quot; value=&quot;ignore&quot;/&gt;
+      &lt;property name=&quot;trailingArrayComma&quot; value=&quot;always&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p>
-          Example:
-        </p>
+        <p id="Example4-code">Example:</p>
         <source>
 @SuppressWarnings(&quot;unchecked&quot;) // OK
 @Deprecated // OK

@@ -35,57 +35,20 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name="FinalClass"/&gt;
-        </source>
-        <p>
-            Example:
-        </p>
-        <source>
-final class MyClass { // OK
-  private MyClass() { }
-}
-
-class MyClass { // violation, class should be declared final
-  private MyClass() { }
-}
-
-class MyClass { // OK, since it has a public constructor
-  int field1;
-  String field2;
-  private MyClass(int value) {
-    this.field1 = value;
-    this.field2 = " ";
-  }
-  public MyClass(String value) {
-    this.field2 = value;
-    this.field1 = 0;
-  }
-}
-
-class TestAnonymousInnerClasses { // OK, class has an anonymous inner class.
-    public static final TestAnonymousInnerClasses ONE = new TestAnonymousInnerClasses() {
-
-    };
-
-    private TestAnonymousInnerClasses() {
-    }
-}
-
-class Class1 {
-
-    private class Class2 { // violation, class should be declared final
-    }
-
-    public class Class3 { // ok
-    }
-
-}
-
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/design/finalclass/Example1.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                   value="resources/com/puppycrawl/tools/checkstyle/checks/design/finalclass/Example1.java"/>
+            <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

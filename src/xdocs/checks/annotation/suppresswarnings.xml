@@ -139,11 +139,15 @@
         </div>
       </subsection>
       <subsection name="Examples" id="Examples">
-        <p> To configure the check:</p>
-        <source> &lt;module name=&quot;SuppressWarnings&quot;/&gt;
+        <p id="Example1-config"> To configure the check:</p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;SuppressWarnings&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
         </source>
-
-        <p>Example:</p>
+        <p id="Example1-code">Example:</p>
         <source>
 @SuppressWarnings(&quot;&quot;) // violation
 class TestA {
@@ -167,25 +171,28 @@ class TestA {
 class TestB {}
         </source>
 
-        <p>
+        <p id="Example2-config">
           To configure the check so that the &quot;unchecked&quot; and &quot;unused&quot;
           warnings cannot be suppressed on anything
           but variable and parameter declarations.
         </p>
         <source>
-&lt;module name=&quot;SuppressWarnings&quot;&gt;
-  &lt;property name=&quot;format&quot;
-      value=&quot;^unchecked$|^unused$&quot;/&gt;
-  &lt;property name=&quot;tokens&quot;
-    value=&quot;
-    CLASS_DEF,INTERFACE_DEF,ENUM_DEF,
-    ANNOTATION_DEF,ANNOTATION_FIELD_DEF,
-    ENUM_CONSTANT_DEF,METHOD_DEF,CTOR_DEF
-    &quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;SuppressWarnings&quot;&gt;
+      &lt;property name=&quot;format&quot;
+          value=&quot;^unchecked$|^unused$&quot;/&gt;
+      &lt;property name=&quot;tokens&quot;
+        value=&quot;
+        CLASS_DEF,INTERFACE_DEF,ENUM_DEF,
+        ANNOTATION_DEF,ANNOTATION_FIELD_DEF,
+        ENUM_CONSTANT_DEF,METHOD_DEF,CTOR_DEF
+        &quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
-
-        <p>Example:</p>
+        <p id="Example2-code">Example:</p>
         <source>
 @SuppressWarnings(&quot;&quot;) // ok
 class TestA {
