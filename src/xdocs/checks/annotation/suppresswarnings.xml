@@ -139,74 +139,98 @@
         </div>
       </subsection>
       <subsection name="Examples" id="Examples">
-        <p> To configure the check:</p>
-        <source> &lt;module name=&quot;SuppressWarnings&quot;/&gt;
-        </source>
-
-        <p>Example:</p>
+        <p id="Example1-config">
+          To configure the check:
+        </p>
         <source>
-@SuppressWarnings(&quot;&quot;) // violation
-class TestA {
-  @SuppressWarnings(&quot;&quot;) // violation
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;SuppressWarnings&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example1-code">Example:</p>
+        <source>
+// violation below 'The warning '' cannot be suppressed at this location'
+@SuppressWarnings(&quot;&quot;)
+class Example1 {
+  // violation below 'The warning '' cannot be suppressed at this location'
+  @SuppressWarnings(&quot;&quot;)
   final int num1 = 1;
-  @SuppressWarnings(&quot;all&quot;) // ok
+  // ok below as default format only checks for a blank or empty string
+  @SuppressWarnings(&quot;all&quot;)
   final int num2 = 2;
-  @SuppressWarnings(&quot;unused&quot;) // ok
+  // ok below as default format only checks for a blank or empty string
+  @SuppressWarnings(&quot;unused&quot;)
   final int num3 = 3;
 
-  void foo1(@SuppressWarnings(&quot;unused&quot;) int param) {} // ok
+  void foo1(@SuppressWarnings(&quot;unused&quot;) int param) {}
 
-  @SuppressWarnings(&quot;all&quot;) // ok
+  @SuppressWarnings(&quot;all&quot;)
   void foo2(int param) {}
-  @SuppressWarnings(&quot;unused&quot;) // ok
+  @SuppressWarnings(&quot;unused&quot;)
   void foo3(int param) {}
-  @SuppressWarnings(true?&quot;all&quot;:&quot;unused&quot;) // ok
+  @SuppressWarnings(true?&quot;all&quot;:&quot;unused&quot;)
   void foo4(int param) {}
 }
-@SuppressWarnings(&quot;unchecked&quot;) // ok
-class TestB {}
+// ok below as default format only checks for a blank or empty string
+@SuppressWarnings(&quot;unchecked&quot;)
+class Test1 {}
         </source>
 
-        <p>
+        <p id="Example2-config">
           To configure the check so that the &quot;unchecked&quot; and &quot;unused&quot;
           warnings cannot be suppressed on anything
           but variable and parameter declarations.
         </p>
         <source>
-&lt;module name=&quot;SuppressWarnings&quot;&gt;
-  &lt;property name=&quot;format&quot;
-      value=&quot;^unchecked$|^unused$&quot;/&gt;
-  &lt;property name=&quot;tokens&quot;
-    value=&quot;
-    CLASS_DEF,INTERFACE_DEF,ENUM_DEF,
-    ANNOTATION_DEF,ANNOTATION_FIELD_DEF,
-    ENUM_CONSTANT_DEF,METHOD_DEF,CTOR_DEF
-    &quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;SuppressWarnings&quot;&gt;
+      &lt;property name=&quot;format&quot;
+          value=&quot;^unchecked$|^unused$&quot;/&gt;
+      &lt;property name=&quot;tokens&quot;
+        value=&quot;
+        CLASS_DEF,INTERFACE_DEF,ENUM_DEF,
+        ANNOTATION_DEF,ANNOTATION_FIELD_DEF,
+        ENUM_CONSTANT_DEF,METHOD_DEF,CTOR_DEF
+        &quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
-
-        <p>Example:</p>
+        <p id="Example2-code">Example:</p>
         <source>
-@SuppressWarnings(&quot;&quot;) // ok
-class TestA {
-  @SuppressWarnings(&quot;&quot;) // ok
+// ok below, since we are only checking for '^unchecked$|^unused$'
+@SuppressWarnings(&quot;&quot;)
+class Example2 {
+  // ok below as VARIABLE_DEF is not configured in tokens to check
+  @SuppressWarnings(&quot;&quot;)
   final int num1 = 1;
-  @SuppressWarnings(&quot;all&quot;) // ok
+  @SuppressWarnings(&quot;all&quot;)
   final int num2 = 2;
-  @SuppressWarnings(&quot;unused&quot;) // ok
+  @SuppressWarnings(&quot;unused&quot;)
   final int num3 = 3;
 
-  void foo1(@SuppressWarnings(&quot;unused&quot;) int param) {} // ok
+  // ok below as PARAMETER_DEF is not configured in tokens to check
+  void foo1(@SuppressWarnings(&quot;unused&quot;) int param) {}
 
-  @SuppressWarnings(&quot;all&quot;) // ok
+  // ok below, since we are only checking for '^unchecked$|^unused$'
+  @SuppressWarnings(&quot;all&quot;)
   void foo2(int param) {}
-  @SuppressWarnings(&quot;unused&quot;) // violation
+
+  // violation below, 'The warning 'unused' cannot be suppressed at this location'
+  @SuppressWarnings(&quot;unused&quot;)
   void foo3(int param) {}
-  @SuppressWarnings(true?&quot;all&quot;:&quot;unused&quot;) // violation
+
+  // violation below, 'The warning 'unused' cannot be suppressed at this location'
+  @SuppressWarnings(true?&quot;all&quot;:&quot;unused&quot;)
   void foo4(int param) {}
 }
-@SuppressWarnings(&quot;unchecked&quot;) // violation
-class TestB {}
+
+// violation below, 'The warning 'unchecked' cannot be suppressed at this location'
+@SuppressWarnings(&quot;unchecked&quot;)
+class Test2 {}
         </source>
       </subsection>
 
